@@ -9,7 +9,7 @@ from pathlib import Path
 
 from flask import Flask, jsonify, redirect, render_template, request, url_for
 
-from app.config import DevelopmentConfig, ProductionConfig
+from app.config import DevelopmentConfig, ProductionConfig, _sqlalchemy_driver_prefix
 from app.extensions import csrf, db, login_manager, migrate
 
 logger = logging.getLogger(__name__)
@@ -65,6 +65,13 @@ def _validate_env_vars() -> None:
         logger.info("Using external database (DATABASE_URL is set)")
     else:
         logger.info("Using local SQLite database (DATABASE_URL is not set)")
+
+    # Temporary diagnostic: log only the SQLAlchemy driver prefix (no credentials)
+    try:
+        driver_prefix = _sqlalchemy_driver_prefix()
+        logger.info("SQLAlchemy database driver prefix: %s", driver_prefix)
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("Could not determine SQLAlchemy driver prefix: %s", exc)
 
     if issues:
         for issue in issues:

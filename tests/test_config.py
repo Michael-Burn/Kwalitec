@@ -33,14 +33,43 @@ class TestConfig:
             if old_url:
                 os.environ["DATABASE_URL"] = old_url
 
-    def test_postgres_url_rewrite(self):
-        """Verify that postgres:// is rewritten to postgresql://."""
-        import os
+    def test_postgres_url_rewrite_legacy_scheme(self):
+        """Verify that postgres:// is rewritten to postgresql+psycopg://."""
+        from app.config import _normalize_postgres_url
 
-        # Test the actual string replacement logic directly
         url = "postgres://user:pass@host:5432/db"
-        result = url.replace("postgres://", "postgresql://", 1)
-        assert result == "postgresql://user:pass@host:5432/db"
+        result = _normalize_postgres_url(url)
+        assert result == "postgresql+psycopg://user:pass@host:5432/db"
+
+    def test_postgres_url_rewrite_modern_scheme(self):
+        """Verify that postgresql:// (Render's format) is rewritten to psycopg v3."""
+        from app.config import _normalize_postgres_url
+
+        url = "postgresql://user:pass@host:5432/db"
+        result = _normalize_postgres_url(url)
+        assert result == "postgresql+psycopg://user:pass@host:5432/db"
+
+    def test_postgres_url_already_has_psycopg_driver(self):
+        """Verify that an explicit psycopg driver is left untouched."""
+        from app.config import _normalize_postgres_url
+
+        url = "postgresql+psycopg://user:pass@host:5432/db"
+        result = _normalize_postgres_url(url)
+        assert result == "postgresql+psycopg://user:pass@host:5432/db"
+
+    def test_sqlalchemy_driver_prefix_safe(self):
+        """Verify the driver prefix helper exposes no credentials."""
+        from app.config import _sqlalchemy_driver_prefix
+
+        assert _sqlalchemy_driver_prefix(
+            "postgresql+psycopg://user:pass@host:5432/db"
+        ) == "postgresql+psycopg://"
+        assert _sqlalchemy_driver_prefix(
+            "postgresql://user:pass@host:5432/db"
+        ) == "postgresql://"
+        assert "pass" not in _sqlalchemy_driver_prefix(
+            "postgresql+psycopg://user:pass@host:5432/db"
+        )
 
     def test_secret_key_default(self, app):
         from app.config import BaseConfig
