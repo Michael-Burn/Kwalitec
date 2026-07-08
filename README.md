@@ -6,7 +6,7 @@ An intelligent learning platform that adapts study plans, tracks mastery, and op
 
 [![Python](https://img.shields.io/badge/python-3.11+-blue?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/flask-3.1-000000?style=flat-square&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
-[![Tests](https://img.shields.io/badge/tests-133%20passed-brightgreen?style=flat-square)](https://github.com)
+[![Tests](https://img.shields.io/badge/tests-138%20passed-brightgreen?style=flat-square)](https://github.com)
 [![Render](https://img.shields.io/badge/deploy-Render-46E3B7?style=flat-square)](https://render.com)
 [![License](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)](LICENSE)
 
@@ -117,20 +117,12 @@ flask --app run.py db upgrade
 
 ### 5. Create the initial user
 
-Registration is intentionally not exposed. Create the initial user through a Flask shell:
+Registration is intentionally not exposed. Create the initial administrator via the bootstrap CLI:
 
 ```bash
-flask --app run.py shell
-```
-
-```python
-from app.extensions import db
-from app.models import User
-
-user = User(email="you@example.com")
-user.set_password("change-me")
-db.session.add(user)
-db.session.commit()
+export ADMIN_EMAIL="you@example.com"
+export ADMIN_PASSWORD="change-me"
+flask --app run.py create-admin
 ```
 
 ### 6. Start the development server
@@ -178,20 +170,19 @@ The included `render.yaml` defines a Render web service with a PostgreSQL databa
 | `SECRET_KEY` | Auto-generated | Cryptographically random key |
 | `DATABASE_URL` | From database | PostgreSQL connection string |
 
-After deployment, create the initial user via Render's shell:
+After deployment, run database migrations and create the administrator:
 
 ```bash
-flask --app wsgi.py shell
+flask --app wsgi.py db upgrade
 ```
 
-```python
-from app.extensions import db
-from app.models import User
-user = User(email="admin@example.com")
-user.set_password("<strong-password>")
-db.session.add(user)
-db.session.commit()
+Then set the required environment variables and run the bootstrap command:
+
+```bash
+flask --app wsgi.py create-admin
 ```
+
+See **[Production Bootstrap](#production-bootstrap)** below for details.
 
 ### Manual Deployment
 
@@ -229,6 +220,38 @@ Ensure `APP_ENV=production` and a strong `SECRET_KEY` are set.
 - **Deterministic calculations.** No external APIs or black-box AI are used for core features.
 - **Test-driven confidence.** Tests cover models, services, routes, configuration, and error handling.
 - **Disciplined learning first.** Every feature supports deliberate, data-informed study habits.
+
+## Production Bootstrap
+
+The `create-admin` Flask CLI command bootstraps the initial administrator account on a fresh deployment. It is designed to be run once, immediately after applying database migrations.
+
+### Environment Variables
+
+| Variable | Required | Description |
+|---|---|---|
+| `ADMIN_EMAIL` | Yes (first run) | Administrator email address |
+| `ADMIN_PASSWORD` | Yes (first run) | Administrator plaintext password (hashed before storage) |
+
+If any `User` records already exist in the database the command prints `Administrator already exists.` and exits successfully (exit code 0) without making changes. This makes it safe to run the command on every deploy—it is idempotent by design.
+
+### Deployment Commands
+
+On Render (or any production host), add `ADMIN_EMAIL` and `ADMIN_PASSWORD` as environment variables (e.g. Render "Environment Variables" panel), then run:
+
+```bash
+flask --app wsgi.py db upgrade
+flask --app wsgi.py create-admin
+```
+
+For local development, export the variables inline:
+
+```bash
+export ADMIN_EMAIL="admin@example.com"
+export ADMIN_PASSWORD="super-secret-password"
+flask --app run.py create-admin
+```
+
+The command exits with a non-zero status and a descriptive error if either `ADMIN_EMAIL` or `ADMIN_PASSWORD` is missing.
 
 ## License
 

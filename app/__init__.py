@@ -172,6 +172,7 @@ def create_app(config_object: type | None = None) -> Flask:
     _validate_env_vars()
     _init_extensions(app)
     _register_blueprints(app)
+    _register_cli_commands(app)
     _register_routes(app)
     _register_error_handlers(app)
     _register_health_check(app)
@@ -218,6 +219,13 @@ def _init_extensions(app: Flask) -> None:
         User,
         WeekPlan,
     )
+
+
+def _register_cli_commands(app: Flask) -> None:
+    """Register custom CLI commands."""
+    from app.cli import create_admin_command
+
+    app.cli.add_command(create_admin_command)
 
 
 def _register_blueprints(app: Flask) -> None:

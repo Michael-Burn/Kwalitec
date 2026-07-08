@@ -21,7 +21,7 @@ def _database_uri() -> str:
     """
     database_url = os.getenv("DATABASE_URL")
     if database_url:
-        return database_url.replace("postgres://", "postgresql://", 1)
+        return database_url.replace("postgres://", "postgresql+psycopg://", 1)
 
     return f"sqlite:///{INSTANCE_DIR / 'kwalitec.sqlite3'}"
 
