@@ -1,0 +1,53 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<section class="section-header">
+    <p class="section-eyebrow">Mission Centre</p>
+    <h1 class="section-title">Missions</h1>
+    <p class="section-description">Track your daily learning missions and progress over time.</p>
+</section>
+
+{% if missions %}
+<div class="mission-grid">
+    {% for mission in missions %}
+    <div class="mission-card">
+        <div class="mission-card-header">
+            <div style="min-width: 0; margin-right: var(--space-lg);">
+                <h2 class="mission-title">{{ mission.title }}</h2>
+                <div class="mission-date">{{ mission.mission_date.strftime('%d %b %Y') }}</div>
+            </div>
+            <span class="badge rounded-pill flex-shrink-0 {% if mission.status == 'Completed' %}text-bg-success{% elif mission.status == 'In Progress' %}text-bg-warning{% else %}text-bg-secondary{% endif %}">
+                {{ mission.status }}
+            </span>
+        </div>
+
+        <p class="small text-muted mb-3">{{ mission.subject.name }}</p>
+
+        <div class="mission-progress">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="mission-task-count">{{ mission.tasks|length }} task{{ 's' if mission.tasks|length != 1 else '' }}</span>
+                <span class="fw-semibold small">{{ mission.get_completion_percentage()|int }}%</span>
+            </div>
+            <div class="progress" role="progressbar" aria-valuenow="{{ mission.get_completion_percentage()|int }}" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar" style="width: {{ mission.get_completion_percentage() }}%"></div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="card border-0">
+    <div class="card-body">
+        <div class="empty-state">
+            <div class="empty-icon">
+                <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/>
+                </svg>
+            </div>
+            <h3 class="empty-title">No Missions Yet</h3>
+            <p class="empty-description">Create a study plan to begin receiving daily missions tailored to your curriculum.</p>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

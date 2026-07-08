@@ -1,0 +1,35 @@
+{% extends "study_plan/wizard_base.html" %}
+
+{% block form_content %}
+<form id="wizard-form" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    
+    <div class="mb-4">
+        <p class="text-secondary mb-4">What grade are you aiming for?</p>
+        
+        {% if form.target_grade.errors %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {% for error in form.target_grade.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {% endif %}
+
+        <div class="d-flex flex-column gap-2">
+            {% for subfield in form.target_grade %}
+                {% if subfield.type != 'CSRFTokenField' %}
+                <div class="form-check">
+                    {{ subfield(class="form-check-input", id="grade_" + loop.index|string) }}
+                    <label class="form-check-label" for="grade_{{ loop.index }}">
+                        {{ subfield.label.text }}
+                    </label>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</form>
+{% set step_title = "Target Grade" %}
+{% set button_text = "Next" %}
+{% endblock %}

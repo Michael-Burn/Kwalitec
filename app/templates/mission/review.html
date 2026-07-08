@@ -1,0 +1,274 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <!-- Header -->
+            <div class="mb-4">
+                <h1 class="h3 mb-1">Reflect on Your Learning</h1>
+                <p class="text-secondary">Help us understand what you learned and what was challenging.</p>
+            </div>
+
+            <!-- Mission Info -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h5 class="card-title mb-1">{{ mission.title }}</h5>
+                            <p class="text-secondary small mb-0">
+                                {{ mission.subject.name }} • Completed {{ mission.mission_date.strftime('%A, %b %d') }}
+                            </p>
+                        </div>
+                        <span class="badge text-bg-success">All Tasks Complete</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review Form -->
+            <form method="POST" id="review-form" class="card border-0 shadow-sm">
+                {{ form.hidden_tag() }}
+                
+                {% if form.errors %}
+                <div class="alert alert-danger" role="alert">
+                    <strong>Please fix the errors below:</strong>
+                    <ul class="mb-0 mt-2">
+                        {% for field, errors in form.errors.items() %}
+                        {% for error in errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                <div class="card-body">
+                    <!-- Time Section -->
+                    <div class="mb-4">
+                        <h6 class="text-uppercase small text-secondary mb-3">How Long Did You Study?</h6>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    {% if form.duration_minutes.errors %}
+                                    <div class="text-danger small mb-1">
+                                        {% for error in form.duration_minutes.errors %}
+                                        {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    {{ form.duration_minutes(class="form-control" + (" is-invalid" if form.duration_minutes.errors else "")) }}
+                                    <label class="form-label">{{ form.duration_minutes.label.text }}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Questions Section -->
+                    <div class="mb-4">
+                        <h6 class="text-uppercase small text-secondary mb-3">How Many Questions Did You Do?</h6>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    {% if form.questions_attempted.errors %}
+                                    <div class="text-danger small mb-1">
+                                        {% for error in form.questions_attempted.errors %}
+                                        {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    {{ form.questions_attempted(class="form-control" + (" is-invalid" if form.questions_attempted.errors else "")) }}
+                                    <label class="form-label">{{ form.questions_attempted.label.text }}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    {% if form.questions_correct.errors %}
+                                    <div class="text-danger small mb-1">
+                                        {% for error in form.questions_correct.errors %}
+                                        {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    {{ form.questions_correct(class="form-control" + (" is-invalid" if form.questions_correct.errors else "")) }}
+                                    <label class="form-label">{{ form.questions_correct.label.text }}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Confidence Section -->
+                    <div class="mb-4">
+                        <h6 class="text-uppercase small text-secondary mb-3">How Confident Are You?</h6>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">{{ form.confidence_before.label.text }}</label>
+                                    {% if form.confidence_before.errors %}
+                                    <div class="text-danger small mb-1">
+                                        {% for error in form.confidence_before.errors %}
+                                        {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    {{ form.confidence_before(class="form-select" + (" is-invalid" if form.confidence_before.errors else "")) }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">{{ form.confidence_after.label.text }}</label>
+                                    {% if form.confidence_after.errors %}
+                                    <div class="text-danger small mb-1">
+                                        {% for error in form.confidence_after.errors %}
+                                        {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    {{ form.confidence_after(class="form-select" + (" is-invalid" if form.confidence_after.errors else "")) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Notes Section -->
+                    <div class="mb-4">
+                        <h6 class="text-uppercase small text-secondary mb-3">Reflection</h6>
+                        <div class="mb-3">
+                            {% if form.notes.errors %}
+                            <div class="text-danger small mb-1">
+                                {% for error in form.notes.errors %}
+                                {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                            {{ form.notes(class="form-control" + (" is-invalid" if form.notes.errors else "")) }}
+                            <label class="form-label">{{ form.notes.label.text }}</label>
+                            <small class="text-secondary">Optional - Help us understand your learning.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mistakes Section -->
+                <div class="card-header bg-light py-3 border-top">
+                    <h6 class="text-uppercase small mb-0">
+                        <i class="bi bi-exclamation-triangle"></i> Record Mistakes (Optional)
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <p class="text-secondary small mb-3">Did you make any mistakes you'd like to learn from?</p>
+                    
+                    <div id="mistakes-container">
+                        <!-- Mistakes will be added here by JavaScript -->
+                    </div>
+
+                    <button type="button" class="btn btn-outline-secondary btn-sm" id="add-mistake-btn">
+                        <i class="bi bi-plus"></i> Add a Mistake
+                    </button>
+                </div>
+
+                <!-- Submit Buttons -->
+                <div class="card-footer bg-light">
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check-circle"></i> Save & Continue
+                        </button>
+                        <a href="{{ url_for('dashboard.index') }}" class="btn btn-secondary">
+                            Skip for Now
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-label {
+        order: -1;
+        font-weight: 500;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-control:not(:placeholder-shown),
+    .form-select {
+        padding-top: 1.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .form-control::placeholder {
+        color: transparent;
+    }
+
+    .form-control:focus::placeholder {
+        color: transparent;
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const mistakesContainer = document.getElementById('mistakes-container');
+    const addMistakeBtn = document.getElementById('add-mistake-btn');
+    let mistakeCount = 0;
+
+    function createMistakeField() {
+        const mistakeIndex = mistakeCount++;
+        const mistakeHtml = `
+            <div class="card card-body mb-3 border-warning" data-mistake="${mistakeIndex}">
+                <button type="button" class="btn-close float-end remove-mistake-btn" aria-label="Remove"></button>
+                
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Type of Mistake</label>
+                        <select class="form-select" name="mistake_type_${mistakeIndex}">
+                            <option value="">-- Select --</option>
+                            <option value="Calculation">Calculation Error</option>
+                            <option value="Concept">Conceptual Misunderstanding</option>
+                            <option value="Misconception">Misconception</option>
+                            <option value="Careless">Careless Error</option>
+                            <option value="Misreading">Misread Question</option>
+                            <option value="Method">Wrong Method</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">What Went Wrong?</label>
+                    <textarea class="form-control" name="description_${mistakeIndex}" 
+                              placeholder="Explain what you did wrong and why..." rows="3" required></textarea>
+                </div>
+
+                <div class="mb-0">
+                    <label class="form-label">Correct Solution</label>
+                    <textarea class="form-control" name="correct_solution_${mistakeIndex}" 
+                              placeholder="What's the correct approach or answer?" rows="2"></textarea>
+                </div>
+
+                <input type="hidden" name="mistake" value="1">
+            </div>
+        `;
+        
+        const mistakeEl = document.createElement('div');
+        mistakeEl.innerHTML = mistakeHtml;
+        mistakesContainer.appendChild(mistakeEl.firstElementChild);
+
+        // Add remove handler
+        mistakesContainer.querySelector(`[data-mistake="${mistakeIndex}"] .remove-mistake-btn`).addEventListener('click', function(e) {
+            e.preventDefault();
+            mistakesContainer.querySelector(`[data-mistake="${mistakeIndex}"]`).remove();
+        });
+    }
+
+    addMistakeBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        createMistakeField();
+    });
+});
+</script>
+{% endblock %}

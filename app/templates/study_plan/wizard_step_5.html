@@ -1,0 +1,32 @@
+{% extends "study_plan/wizard_base.html" %}
+
+{% block form_content %}
+<form id="wizard-form" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    
+    <div class="mb-4">
+        <p class="text-secondary mb-4">Are there any days you won't be able to study?</p>
+        
+        <div class="d-flex flex-column gap-2">
+            {% for subfield in form.available_days %}
+                {% if subfield.type != 'CSRFTokenField' %}
+                <div class="form-check">
+                    {{ subfield(class="form-check-input") }}
+                    <label class="form-check-label" for="{{ subfield.id }}">
+                        {{ subfield.label.text }}
+                    </label>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="alert alert-info mt-4" role="alert">
+            <small>
+                <strong>ℹ️ Note:</strong> Detailed day selection (e.g., every Monday off) will be available in a future update.
+            </small>
+        </div>
+    </div>
+</form>
+{% set step_title = "Unavailable Days" %}
+{% set button_text = "Next" %}
+{% endblock %}

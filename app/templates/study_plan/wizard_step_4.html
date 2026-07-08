@@ -1,0 +1,49 @@
+{% extends "study_plan/wizard_base.html" %}
+
+{% block form_content %}
+<form id="wizard-form" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    
+    <div class="mb-4">
+        <p class="text-secondary mb-4">How much time can you dedicate to studying?</p>
+        
+        <!-- Weekday Study Time -->
+        <div class="mb-4">
+            {{ form.weekday_study_minutes.label(class="form-label fw-semibold") }}
+            {% if form.weekday_study_minutes.errors %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {% for error in form.weekday_study_minutes.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endif %}
+            {{ form.weekday_study_minutes(class="form-control" + (" is-invalid" if form.weekday_study_minutes.errors else ""), type="number", min="15", max="480") }}
+            <small class="text-secondary d-block mt-2">{{ form.weekday_study_minutes.description }}</small>
+        </div>
+
+        <!-- Weekend Study Time -->
+        <div class="mb-4">
+            {{ form.weekend_study_minutes.label(class="form-label fw-semibold") }}
+            {% if form.weekend_study_minutes.errors %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {% for error in form.weekend_study_minutes.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endif %}
+            {{ form.weekend_study_minutes(class="form-control" + (" is-invalid" if form.weekend_study_minutes.errors else ""), type="number", min="15", max="480") }}
+            <small class="text-secondary d-block mt-2">{{ form.weekend_study_minutes.description }}</small>
+        </div>
+
+        <div class="alert alert-info" role="alert">
+            <small>
+                <strong>💡 Tip:</strong> Be realistic about your availability. You can adjust this later if needed.
+            </small>
+        </div>
+    </div>
+</form>
+{% set step_title = "Study Availability" %}
+{% set button_text = "Next" %}
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<div class="container-md py-4">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-start mb-4">
+        <div>
+            <p class="text-uppercase text-secondary small fw-semibold mb-2">Study Plan</p>
+            <h1 class="display-6 fw-bold mb-2">{{ study_plan.exam_name }}</h1>
+            <p class="lead text-secondary mb-0">{{ study_plan.exam_sitting }}</p>
+        </div>
+        <span class="badge rounded-pill text-bg-{% if study_plan.active %}success{% else %}secondary{% endif %}">
+            {% if study_plan.active %}Active{% else %}Inactive{% endif %}
+        </span>
+    </div>
+
+    <!-- Study Plan Details -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <small class="text-secondary d-block mb-2">Current Position</small>
+                    <div class="fw-semibold">{{ study_plan.current_stage }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <small class="text-secondary d-block mb-2">Exam Date</small>
+                    <div class="fw-semibold">{{ study_plan.exam_date.strftime('%b %d, %Y') }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <small class="text-secondary d-block mb-2">Target Grade</small>
+                    <div class="fw-semibold">{{ study_plan.target_grade }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <small class="text-secondary d-block mb-2">Study Preference</small>
+                    <div class="fw-semibold">{{ study_plan.study_preference }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Study Availability -->
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+            <h2 class="h5 mb-3">Study Availability</h2>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <small class="text-secondary d-block">Weekday Study Time</small>
+                    <div class="fw-semibold">{{ study_plan.weekday_study_minutes }} minutes per day</div>
+                </div>
+                <div class="col-md-6">
+                    <small class="text-secondary d-block">Weekend Study Time</small>
+                    <div class="fw-semibold">{{ study_plan.weekend_study_minutes }} minutes per day</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Week Plans -->
+    <div class="mb-4">
+        <h2 class="h5 mb-3">Study Schedule</h2>
+        
+        {% if study_plan.week_plans %}
+        <div class="row g-3">
+            {% for week_plan in study_plan.week_plans %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm h-100 {% if week_plan.is_current_week() %}border-primary border-2{% elif week_plan.is_past() %}opacity-50{% endif %}">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h3 class="h6 mb-0">Week {{ week_plan.week_number }}</h3>
+                            {% if week_plan.is_current_week() %}
+                            <span class="badge text-bg-primary">Current</span>
+                            {% elif week_plan.is_past() %}
+                            <span class="badge text-bg-secondary">Past</span>
+                            {% else %}
+                            <span class="badge text-bg-light border text-dark">Upcoming</span>
+                            {% endif %}
+                        </div>
+                        <small class="text-secondary d-block mb-3">
+                            {{ week_plan.start_date.strftime('%b %d') }} - {{ week_plan.end_date.strftime('%b %d, %Y') }}
+                        </small>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="alert alert-info" role="alert">
+            <small>No week plans created yet. Week plans will be generated when missions start.</small>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Actions -->
+    <div class="d-flex gap-2 flex-wrap">
+        <a href="{{ url_for('study_plan.list_plans') }}" class="btn btn-secondary">
+            All Study Plans
+        </a>
+        <a href="{{ url_for('dashboard.index') }}" class="btn btn-primary">
+            Back to Dashboard
+        </a>
+    </div>
+</div>
+{% endblock %}

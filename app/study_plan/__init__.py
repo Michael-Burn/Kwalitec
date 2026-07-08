@@ -1,0 +1,1 @@
+"""Study Plan blueprint initialization."""

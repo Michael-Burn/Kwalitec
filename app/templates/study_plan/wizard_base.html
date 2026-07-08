@@ -1,0 +1,44 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<div class="container-md py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <!-- Wizard Header -->
+            <div class="mb-5 text-center">
+                <h1 class="display-6 fw-bold mb-2">Study Plan Wizard</h1>
+                <p class="lead text-secondary">Step {{ step }} of {{ total_steps }}: {{ step_title }}</p>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="mb-4">
+                <div class="progress" role="progressbar" 
+                     aria-valuenow="{{ (step / total_steps * 100)|int }}" 
+                     aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar" style="width: {{ (step / total_steps * 100)|int }}%"></div>
+                </div>
+                <small class="text-secondary d-block mt-2 text-center">{{ step }} of {{ total_steps }} completed</small>
+            </div>
+
+            <!-- Form Content -->
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    {% block form_content %}{% endblock %}
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="d-flex gap-2 mt-4">
+                {% if step > 1 %}
+                <a href="{{ url_for('study_plan.wizard_step', step=step-1) }}" class="btn btn-secondary flex-grow-1">
+                    ← Back
+                </a>
+                {% endif %}
+                <button type="submit" form="wizard-form" class="btn btn-primary {% if step == 1 %}w-100{% else %}flex-grow-1{% endif %}">
+                    {{ button_text or 'Next' }} →
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

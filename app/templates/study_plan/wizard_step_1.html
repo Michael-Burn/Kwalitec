@@ -1,0 +1,35 @@
+{% extends "study_plan/wizard_base.html" %}
+
+{% block form_content %}
+<form id="wizard-form" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    
+    <div class="mb-4">
+        <p class="text-secondary mb-3">Choose the examination you're preparing for.</p>
+        
+        {% if form.exam_name.errors %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {% for error in form.exam_name.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {% endif %}
+
+        <div class="d-flex flex-column gap-2">
+            {% for subfield in form.exam_name %}
+                {% if subfield.type != 'CSRFTokenField' %}
+                <div class="form-check">
+                    {{ subfield(class="form-check-input", id="exam_" + loop.index|string) }}
+                    <label class="form-check-label" for="exam_{{ loop.index }}">
+                        {{ subfield.label.text }}
+                    </label>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</form>
+{% set step_title = "Select Examination" %}
+{% set button_text = "Next" %}
+{% endblock %}

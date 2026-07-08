@@ -1,0 +1,178 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+{% set current_section = section or 'general' %}
+
+<section class="section-header">
+    <p class="section-eyebrow">System</p>
+    <h1 class="section-title">Settings</h1>
+    <p class="section-description">Manage your profile, preferences, and data.</p>
+</section>
+
+<div class="row g-4">
+    {# Sidebar Navigation #}
+    <div class="col-md-4 col-lg-3">
+        <div class="settings-sidebar">
+            <a class="settings-nav-link{% if current_section == 'general' %} active{% endif %}"
+               href="{{ url_for('settings.index') }}">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="me-2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33A1.65 1.65 0 0 0 14 20.4V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                General
+            </a>
+            <a class="settings-nav-link{% if current_section == 'profile' %} active{% endif %}"
+               href="{{ url_for('settings.profile') }}">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="me-2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                Profile
+            </a>
+            <a class="settings-nav-link{% if current_section == 'preferences' %} active{% endif %}"
+               href="{{ url_for('settings.preferences') }}">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="me-2"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+                Preferences
+            </a>
+            <a class="settings-nav-link{% if current_section == 'data' %} active{% endif %}"
+               href="{{ url_for('settings.data') }}">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="me-2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                Data
+            </a>
+        </div>
+    </div>
+
+    {# Content Panel #}
+    <div class="col-md-8 col-lg-9">
+        {# General Section #}
+        {% if current_section == 'general' %}
+        <div class="card border-0">
+            <div class="card-body">
+                <div class="settings-section">
+                    <h2 class="settings-section-title">Application Information</h2>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label class="text-muted small d-block">Version</label>
+                            <span class="fw-medium">1.0.0</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="text-muted small d-block">Account</label>
+                            <span class="fw-medium">{{ current_user.email }}</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="text-muted small d-block">User ID</label>
+                            <span class="fw-medium">{{ current_user.id }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h2 class="settings-section-title">About Kwalitec</h2>
+                    <p class="text-muted small">Kwalitec is a disciplined learning system for structured professional exam preparation. Built on principles of spaced repetition, adaptive learning, and evidence-based study strategies.</p>
+                    <p class="text-muted small mb-0">Discipline over motivation.</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {# Profile Section #}
+        {% if current_section == 'profile' %}
+        <div class="card border-0">
+            <div class="card-body">
+                <form method="post" action="{{ url_for('settings.update_profile') }}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <div class="settings-section">
+                        <h2 class="settings-section-title">Profile Details</h2>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" value="{{ current_user.email }}" disabled readonly>
+                            <div class="form-text text-muted">Your email is used for login and cannot be changed here.</div>
+                        </div>
+                        <p class="text-muted small">Additional profile fields will be available in a future update.</p>
+                        <button type="submit" class="btn btn-primary">Save Profile</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endif %}
+
+        {# Preferences Section #}
+        {% if current_section == 'preferences' %}
+        <div class="card border-0">
+            <div class="card-body">
+                <form method="post" action="{{ url_for('settings.update_preferences') }}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <div class="settings-section">
+                        <h2 class="settings-section-title">Study Preferences</h2>
+                        <div class="mb-3">
+                            <label for="daily_goal_hours" class="form-label">Daily Study Goal (hours)</label>
+                            <input type="number" class="form-control" id="daily_goal_hours" name="daily_goal_hours"
+                                   value="{{ session.get('daily_goal_hours', '2') }}" min="0.5" max="12" step="0.5">
+                            <div class="form-text text-muted">Set your target daily study hours. Used for progress tracking and recommendations.</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Preferences</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endif %}
+
+        {# Data Section #}
+        {% if current_section == 'data' %}
+        {# Weekly Report Export #}
+        <div class="card border-0 mb-4">
+            <div class="card-body">
+                <div class="settings-section">
+                    <h2 class="settings-section-title">Weekly Report</h2>
+                    <p class="text-muted small">Download your current weekly report as a structured text file covering your study activity, accuracy, highlights, and areas for improvement.</p>
+                    <a href="{{ url_for('settings.export_weekly_pdf') }}" class="btn btn-primary">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="me-1"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Export Weekly Report
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        {# JSON Backup #}
+        <div class="card border-0 mb-4">
+            <div class="card-body">
+                <div class="settings-section">
+                    <h2 class="settings-section-title">Backup Data</h2>
+                    <p class="text-muted small">Download all your learning data as a JSON file. This includes study plans, missions, study attempts, topic progress, and decision history.</p>
+                    {% if model_stats %}
+                    <div class="mb-3">
+                        <small class="text-muted d-block mb-2">Data summary:</small>
+                        <div class="d-flex flex-wrap gap-2">
+                            {% for label, count in model_stats.items() %}
+                            <span class="badge rounded-pill bg-light text-secondary border">{{ label | replace('_', ' ') | title }}: {{ count }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    <a href="{{ url_for('settings.export_backup') }}" class="btn btn-outline">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="me-1"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Download Backup (JSON)
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        {# JSON Restore #}
+        <div class="card border-0 mb-4">
+            <div class="card-body">
+                <div class="settings-section" style="margin-bottom: 0;">
+                    <h2 class="settings-section-title">Restore from Backup</h2>
+                    <p class="text-muted small">Upload a previously exported JSON backup file to restore your data. <strong>This will replace all existing data.</strong> Use with caution.</p>
+                    <form method="post" action="{{ url_for('settings.import_restore') }}" enctype="multipart/form-data">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <div class="mb-3">
+                            <label for="backup_file" class="form-label">Backup File</label>
+                            <input type="file" class="form-control" id="backup_file" name="backup_file" accept=".json">
+                        </div>
+                        <button type="submit" class="btn btn-outline" style="border-color: var(--color-warning); color: var(--color-warning);"
+                                onclick="return confirm('This will replace all existing data with the backup. Continue?')">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="me-1"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                            Restore from Backup
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

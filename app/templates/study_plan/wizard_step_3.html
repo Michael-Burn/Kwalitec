@@ -1,0 +1,25 @@
+{% extends "study_plan/wizard_base.html" %}
+
+{% block form_content %}
+<form id="wizard-form" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    
+    <div class="mb-4">
+        <p class="text-secondary mb-4">Where are you in your studies right now?</p>
+        
+        {{ form.current_stage.label(class="form-label fw-semibold") }}
+        {% if form.current_stage.errors %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {% for error in form.current_stage.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {% endif %}
+        {{ form.current_stage(class="form-control" + (" is-invalid" if form.current_stage.errors else "")) }}
+        <small class="text-secondary d-block mt-2">{{ form.current_stage.description }}</small>
+    </div>
+</form>
+{% set step_title = "Current Study Position" %}
+{% set button_text = "Next" %}
+{% endblock %}

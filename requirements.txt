@@ -1,0 +1,15 @@
+Flask==3.1.0
+Flask-SQLAlchemy==3.1.1
+Flask-Migrate==4.0.7
+Flask-Login==0.6.3
+Flask-WTF==1.2.2
+WTForms==3.2.1
+email-validator==2.2.0
+python-dotenv==1.0.1
+waitress==3.0.2
+
+# Testing
+pytest==8.3.4
+
+# Linting
+ruff==0.8.6

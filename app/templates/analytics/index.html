@@ -1,0 +1,499 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<section class="section-header">
+    <p class="section-eyebrow">Performance Analytics</p>
+    <h1 class="section-title">Insights</h1>
+    <p class="section-description">Your study data visualized to reveal trends and guide decisions.</p>
+</section>
+
+{# ── Key Metrics Row ──────────────────────────────────────────────────── #}
+<section class="row g-3 mb-4">
+    <div class="col-6 col-md-4 col-lg-2">
+        <div class="stat-card">
+            <div class="stat-value text-primary">{{ readiness.score|int }}%</div>
+            <div class="stat-label">Readiness</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-4 col-lg-2">
+        <div class="stat-card">
+            <div class="stat-value text-success">{{ curriculum_coverage.coverage_percentage|int }}%</div>
+            <div class="stat-label">Coverage</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-4 col-lg-2">
+        <div class="stat-card">
+            <div class="stat-value text-info">{{ readiness.topics_started }}</div>
+            <div class="stat-label">Topics Started</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-4 col-lg-2">
+        <div class="stat-card">
+            <div class="stat-value text-warning">{{ review_backlog.total_backlog }}</div>
+            <div class="stat-label">Review Backlog</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-4 col-lg-2">
+        <div class="stat-card">
+            <div class="stat-value text-danger">{{ current_streak }}</div>
+            <div class="stat-label">Day Streak</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-4 col-lg-2">
+        <div class="stat-card">
+            <div class="stat-value" style="color: var(--color-brand);">{{ review_completion.completion_rate|int }}%</div>
+            <div class="stat-label">Missions Done</div>
+        </div>
+    </div>
+</section>
+
+{# ── Charts Row 1: Readiness & Mastery ────────────────────────────────── #}
+<section class="row g-4 mb-4">
+    <div class="col-lg-6">
+        <div class="card border-0">
+            <div class="card-body">
+                <h2 class="card-section-header mb-3">Readiness Over Time</h2>
+                <div class="chart-container">
+                    <canvas id="readinessChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card border-0">
+            <div class="card-body">
+                <h2 class="card-section-header mb-3">Mastery Over Time</h2>
+                <div class="chart-container">
+                    <canvas id="masteryChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ── Charts Row 2: Accuracy & Study Hours ─────────────────────────────── #}
+<section class="row g-4 mb-4">
+    <div class="col-lg-6">
+        <div class="card border-0">
+            <div class="card-body">
+                <h2 class="card-section-header mb-3">Accuracy Trend</h2>
+                <div class="chart-container">
+                    <canvas id="accuracyChart"></canvas>
+                </div>
+                {% if accuracy_trend|selectattr('accuracy', 'defined')|list|length == 0 %}
+                <div class="text-center text-muted small mt-2">Log question accuracy during study sessions to see trends here.</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card border-0">
+            <div class="card-body">
+                <h2 class="card-section-header mb-3">Weekly Study Hours</h2>
+                <div class="chart-container">
+                    <canvas id="studyHoursChart"></canvas>
+                </div>
+                {% if weekly_report.study_hours == 0 %}
+                <div class="text-center text-muted small mt-2">Record study duration when logging sessions.</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ── Charts Row 3: Mission Completion & Review Activity ───────────────── #}
+<section class="row g-4 mb-4">
+    <div class="col-lg-6">
+        <div class="card border-0">
+            <div class="card-body">
+                <h2 class="card-section-header mb-3">Mission Completion</h2>
+                <div class="chart-container">
+                    <canvas id="missionChart"></canvas>
+                </div>
+                {% if mission_trend|selectattr('completion_rate', 'defined')|list|length == 0 %}
+                <div class="text-center text-muted small mt-2">Complete your first mission to see trends.</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card border-0">
+            <div class="card-body">
+                <h2 class="card-section-header mb-3">Review Activity</h2>
+                <div class="chart-container">
+                    <canvas id="reviewChart"></canvas>
+                </div>
+                {% if review_trend|selectattr('reviews_done', 'gt', 0)|list|length == 0 %}
+                <div class="text-center text-muted small mt-2">Review topics during sessions to see activity here.</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ── Weakest & Strongest Topics ───────────────────────────────────────── #}
+<section class="row g-4 mb-4">
+    <div class="col-lg-6">
+        <div class="card border-0 h-100">
+            <div class="card-body">
+                <h2 class="card-section-header mb-3">Weakest Topics</h2>
+                {% if weakest_topics %}
+                <div>
+                    {% for topic in weakest_topics %}
+                    <div class="topic-item{% if loop.first %} pt-0{% endif %}">
+                        <div class="topic-info">
+                            <div class="topic-name">{{ topic.topic_name }}</div>
+                            <div class="topic-meta">{{ topic.stage }} · {{ topic.revision_count }} review{{ 's' if topic.revision_count != 1 else '' }}</div>
+                        </div>
+                        <span class="badge rounded-pill {% if topic.mastery_score < 40 %}text-bg-danger{% elif topic.mastery_score < 60 %}text-bg-warning{% else %}text-bg-secondary{% endif %}">
+                            {{ topic.mastery_score|int }}%
+                        </span>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="empty-state py-4">
+                    <p class="text-muted small mb-0">No weak topics identified yet. Start studying to see which areas need attention.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card border-0 h-100">
+            <div class="card-body">
+                <h2 class="card-section-header mb-3">Strongest Topics</h2>
+                {% if strongest_topics %}
+                <div>
+                    {% for topic in strongest_topics %}
+                    <div class="topic-item{% if loop.first %} pt-0{% endif %}">
+                        <div class="topic-info">
+                            <div class="topic-name">{{ topic.topic_name }}</div>
+                            <div class="topic-meta">{{ topic.stage }} · {{ topic.revision_count }} review{{ 's' if topic.revision_count != 1 else '' }}</div>
+                        </div>
+                        <span class="badge rounded-pill {% if topic.mastery_score >= 90 %}text-bg-success{% elif topic.mastery_score >= 70 %}bg-info text-white{% else %}text-bg-secondary{% endif %}">
+                            {{ topic.mastery_score|int }}%
+                        </span>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="empty-state py-4">
+                    <p class="text-muted small mb-0">No mastered topics yet. Continue studying to build expertise.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ── Weekly Report ───────────────────────────────────────────────────── #}
+<section class="card border-0 mb-4">
+    <div class="card-body">
+        <h2 class="card-section-header mb-3">Weekly Report — {{ weekly_report.week_label }}</h2>
+        <div class="row g-3 mb-3">
+            <div class="col-6 col-md-3">
+                <div class="metric-pill">
+                    <div class="metric-value text-primary">{{ weekly_report.study_hours }}h</div>
+                    <div class="metric-label">Study Hours</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="metric-pill">
+                    <div class="metric-value text-success">{{ weekly_report.missions_completed }}/{{ weekly_report.total_missions }}</div>
+                    <div class="metric-label">Missions</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="metric-pill">
+                    <div class="metric-value text-info">{{ weekly_report.topics_reviewed }}</div>
+                    <div class="metric-label">Topics Reviewed</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="metric-pill">
+                    <div class="metric-value text-warning">{{ weekly_report.days_studied }}/7</div>
+                    <div class="metric-label">Days Studied</div>
+                </div>
+            </div>
+        </div>
+
+        {% if weekly_report.accuracy is not none %}
+        <div class="row g-3 mb-3">
+            <div class="col-md-4">
+                <div class="metric-pill">
+                    <div class="metric-value {% if weekly_report.accuracy >= 80 %}text-success{% elif weekly_report.accuracy >= 60 %}text-warning{% else %}text-danger{% endif %}">{{ weekly_report.accuracy }}%</div>
+                    <div class="metric-label">Accuracy</div>
+                    <div class="small text-muted mt-1">{{ weekly_report.questions_correct }}/{{ weekly_report.questions_attempted }} correct</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="metric-pill">
+                    <div class="metric-value text-primary">{{ weekly_report.current_streak }}</div>
+                    <div class="metric-label">Current Streak</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="metric-pill">
+                    <div class="metric-value" style="color: var(--color-brand);">{{ weekly_report.longest_streak }}</div>
+                    <div class="metric-label">Longest Streak</div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if weekly_report.highlights %}
+        <div class="mb-3">
+            <h3 class="h6 fw-semibold mb-2">Highlights</h3>
+            <ul class="list-unstyled mb-0">
+                {% for highlight in weekly_report.highlights %}
+                <li class="mb-1 small text-success">
+                    <svg width="14" height="14" fill="currentColor" class="me-1" viewBox="0 0 16 16">
+                        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                    </svg>
+                    {{ highlight }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% if weekly_report.areas_for_improvement %}
+        <div>
+            <h3 class="h6 fw-semibold mb-2">Areas for Improvement</h3>
+            <ul class="list-unstyled mb-0">
+                {% for area in weekly_report.areas_for_improvement %}
+                <li class="mb-1 small text-warning">
+                    <svg width="14" height="14" fill="currentColor" class="me-1" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                    </svg>
+                    {{ area }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{# ── Lifetime Stats ──────────────────────────────────────────────────── #}
+<section class="card border-0 mb-4">
+    <div class="card-body">
+        <h2 class="card-section-header mb-3">Lifetime Stats</h2>
+        <div class="row g-3">
+            <div class="col-6 col-md-3">
+                <div class="metric-pill">
+                    <div class="metric-value text-primary">{{ lifetime.total_hours }}h</div>
+                    <div class="metric-label">Total Study</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="metric-pill">
+                    <div class="metric-value text-success">{{ lifetime.total_questions }}</div>
+                    <div class="metric-label">Questions</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="metric-pill">
+                    <div class="metric-value text-info">{{ lifetime.total_attempts }}</div>
+                    <div class="metric-label">Sessions</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="metric-pill">
+                    <div class="metric-value" style="color: var(--color-brand);">{{ lifetime.total_study_days }}</div>
+                    <div class="metric-label">Study Days</div>
+                </div>
+            </div>
+        </div>
+        {% if lifetime.first_study %}
+        <div class="text-center text-muted small mt-3">
+            Studying since {{ lifetime.first_study }} · Last activity {{ lifetime.last_study }}
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+(function() {
+    var chartData = {{ chart_data|safe }};
+
+    var commonOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { display: false },
+        },
+        scales: {
+            y: {
+                min: 0,
+                grid: { color: '#eef0f4' },
+                ticks: { font: { size: 11 }, color: '#8b919c' }
+            },
+            x: {
+                grid: { display: false },
+                ticks: { font: { size: 11 }, color: '#8b919c', maxTicksLimit: 8 }
+            }
+        }
+    };
+
+    function makeLineChart(id, label, dataPoints, color, yMax) {
+        var ctx = document.getElementById(id);
+        if (!ctx) return;
+
+        var labels = dataPoints.map(function(d) { return d.week_label; });
+        var values = dataPoints.map(function(d) {
+            var key = Object.keys(d).find(function(k) { return k !== 'week_label'; });
+            return d[key] !== undefined ? d[key] : null;
+        });
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: label,
+                    data: values,
+                    borderColor: color,
+                    backgroundColor: color + '18',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.35,
+                    pointRadius: 2,
+                    pointHoverRadius: 5,
+                    pointBackgroundColor: color,
+                }]
+            },
+            options: Object.assign({}, commonOptions, {
+                scales: {
+                    y: Object.assign({}, commonOptions.scales.y, {
+                        max: yMax || 100,
+                        ticks: Object.assign({}, commonOptions.scales.y.ticks, {
+                            callback: function(v) { return v + '%'; },
+                            stepSize: 20
+                        })
+                    }),
+                    x: commonOptions.scales.x
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(ctx) {
+                                if (ctx.parsed.y === null) return 'No data';
+                                return label + ': ' + ctx.parsed.y + '%';
+                            }
+                        }
+                    }
+                }
+            })
+        });
+    }
+
+    function makeBarChart(id, label, dataPoints, color) {
+        var ctx = document.getElementById(id);
+        if (!ctx) return;
+
+        var labels = dataPoints.map(function(d) { return d.week_label; });
+        var values = dataPoints.map(function(d) {
+            var key = Object.keys(d).find(function(k) { return k !== 'week_label'; });
+            return d[key] || 0;
+        });
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: label,
+                    data: values,
+                    backgroundColor: color + '60',
+                    borderColor: color,
+                    borderWidth: 1,
+                    borderRadius: 5,
+                }]
+            },
+            options: Object.assign({}, commonOptions, {
+                scales: {
+                    y: Object.assign({}, commonOptions.scales.y, {
+                        beginAtZero: true,
+                        ticks: Object.assign({}, commonOptions.scales.y.ticks, { stepSize: 0.5 })
+                    }),
+                    x: commonOptions.scales.x
+                }
+            })
+        });
+    }
+
+    function makeCompletionChart(id, dataPoints) {
+        var ctx = document.getElementById(id);
+        if (!ctx) return;
+
+        var labels = dataPoints.map(function(d) { return d.week_label; });
+        var rates = dataPoints.map(function(d) { return d.completion_rate !== undefined ? d.completion_rate : null; });
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Completion Rate',
+                    data: rates,
+                    borderColor: '#0d9488',
+                    backgroundColor: '#0d948818',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.35,
+                    pointRadius: 2,
+                    pointHoverRadius: 5,
+                    pointBackgroundColor: '#0d9488',
+                }]
+            },
+            options: Object.assign({}, commonOptions, {
+                scales: {
+                    y: Object.assign({}, commonOptions.scales.y, {
+                        max: 100,
+                        ticks: Object.assign({}, commonOptions.scales.y.ticks, {
+                            callback: function(v) { return v + '%'; },
+                            stepSize: 20
+                        })
+                    }),
+                    x: commonOptions.scales.x
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(ctx) {
+                                if (ctx.parsed.y === null) return 'No data';
+                                return 'Completion: ' + ctx.parsed.y + '%';
+                            }
+                        }
+                    }
+                }
+            })
+        });
+    }
+
+    if (chartData.readiness && chartData.readiness.length) {
+        makeLineChart('readinessChart', 'Readiness', chartData.readiness, '#2563eb');
+    }
+    if (chartData.mastery && chartData.mastery.length) {
+        makeLineChart('masteryChart', 'Mastery', chartData.mastery, '#0d9488');
+    }
+    if (chartData.accuracy && chartData.accuracy.length) {
+        makeLineChart('accuracyChart', 'Accuracy', chartData.accuracy, '#dc2626');
+    }
+    if (chartData.weeklyHours && chartData.weeklyHours.length) {
+        makeBarChart('studyHoursChart', 'Hours', chartData.weeklyHours, '#0ea5e9');
+    }
+    if (chartData.missionCompletion && chartData.missionCompletion.length) {
+        makeCompletionChart('missionChart', chartData.missionCompletion);
+    }
+    if (chartData.reviewCompletion && chartData.reviewCompletion.length) {
+        makeBarChart('reviewChart', 'Reviews', chartData.reviewCompletion, '#7c3aed');
+    }
+})();
+</script>
+{% endblock %}

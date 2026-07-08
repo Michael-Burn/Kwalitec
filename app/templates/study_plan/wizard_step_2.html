@@ -1,0 +1,42 @@
+{% extends "study_plan/wizard_base.html" %}
+
+{% block form_content %}
+<form id="wizard-form" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    
+    <div class="mb-4">
+        <p class="text-secondary mb-4">Tell us when your exam is and what session it is.</p>
+        
+        <!-- Exam Sitting -->
+        <div class="mb-4">
+            {{ form.exam_sitting.label(class="form-label fw-semibold") }}
+            {% if form.exam_sitting.errors %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {% for error in form.exam_sitting.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endif %}
+            {{ form.exam_sitting(class="form-control" + (" is-invalid" if form.exam_sitting.errors else "")) }}
+            <small class="text-secondary d-block mt-2">{{ form.exam_sitting.description }}</small>
+        </div>
+
+        <!-- Exam Date -->
+        <div class="mb-4">
+            {{ form.exam_date.label(class="form-label fw-semibold") }}
+            {% if form.exam_date.errors %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {% for error in form.exam_date.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endif %}
+            {{ form.exam_date(class="form-control" + (" is-invalid" if form.exam_date.errors else ""), type="date") }}
+        </div>
+    </div>
+</form>
+{% set step_title = "Exam Sitting & Date" %}
+{% set button_text = "Next" %}
+{% endblock %}

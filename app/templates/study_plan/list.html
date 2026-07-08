@@ -1,0 +1,77 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<div class="container-md py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <p class="text-uppercase text-secondary small fw-semibold mb-2">My Plans</p>
+            <h1 class="display-6 fw-bold">Study Plans</h1>
+        </div>
+        <a href="{{ url_for('study_plan.wizard_step', step=1) }}" class="btn btn-primary">
+            + Create New Plan
+        </a>
+    </div>
+
+    {% if plans %}
+    <div class="row g-4">
+        {% for plan in plans %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card border-0 shadow-sm h-100 {% if plan.active %}border-primary border-2{% endif %}">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div>
+                            <h2 class="h5 mb-1">{{ plan.exam_name }}</h2>
+                            <small class="text-secondary">{{ plan.exam_sitting }}</small>
+                        </div>
+                        {% if plan.active %}
+                        <span class="badge text-bg-success">Active</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <small class="text-secondary d-block">Target Grade</small>
+                        <div class="fw-semibold">{{ plan.target_grade }}</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <small class="text-secondary d-block">Current Position</small>
+                        <div class="fw-semibold text-truncate">{{ plan.current_stage }}</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <small class="text-secondary d-block">Exam Date</small>
+                        <div class="fw-semibold">{{ plan.exam_date.strftime('%b %d, %Y') }}</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <small class="text-secondary d-block">Weeks Remaining</small>
+                        <div class="fw-semibold">{{ plan.get_weeks_remaining() }} weeks</div>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-top">
+                    <a href="{{ url_for('study_plan.view_plan', study_plan_id=plan.id) }}" class="btn btn-sm btn-outline-primary w-100">
+                        View Plan
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="card border-0 shadow-sm">
+        <div class="card-body text-center py-5">
+            <div class="mb-3">
+                <svg class="text-secondary" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M1.75 1a.75.75 0 0 0-.75.75v12.5c0 .414.336.75.75.75h12.5a.75.75 0 0 0 .75-.75V1.75a.75.75 0 0 0-.75-.75H1.75zM1 2.5a.25.25 0 0 1 .25-.25h12.5a.25.25 0 0 1 .25.25v1H1V2.5zm0 2v9.5a.25.25 0 0 0 .25.25h12.5a.25.25 0 0 0 .25-.25V4.5H1z"/>
+                </svg>
+            </div>
+            <h3 class="h5 mb-2">No Study Plans Yet</h3>
+            <p class="text-secondary mb-3">Create your first study plan to get started with Kwalitec.</p>
+            <a href="{{ url_for('study_plan.wizard_step', step=1) }}" class="btn btn-primary">
+                Create Study Plan
+            </a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

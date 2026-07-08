@@ -1,0 +1,69 @@
+{% extends "study_plan/wizard_base.html" %}
+
+{% block form_content %}
+<form id="wizard-form" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    
+    <div class="mb-4">
+        <p class="text-secondary mb-4">Please review your study plan details before creation.</p>
+        
+        <!-- Study Plan Summary -->
+        <div class="card bg-light border-0 mb-4">
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <small class="text-secondary">Examination</small>
+                        <div class="fw-semibold">{{ wizard_data.exam_name }}</div>
+                    </div>
+                    <div class="col-md-6">
+                        <small class="text-secondary">Exam Sitting</small>
+                        <div class="fw-semibold">{{ wizard_data.exam_sitting }}</div>
+                    </div>
+                    <div class="col-md-6">
+                        <small class="text-secondary">Exam Date</small>
+                        <div class="fw-semibold">{{ wizard_data.exam_date.strftime('%B %d, %Y') if wizard_data.exam_date is iterable and wizard_data.exam_date is not string else wizard_data.exam_date }}</div>
+                    </div>
+                    <div class="col-md-6">
+                        <small class="text-secondary">Current Position</small>
+                        <div class="fw-semibold">{{ wizard_data.current_stage }}</div>
+                    </div>
+                    <div class="col-md-6">
+                        <small class="text-secondary">Weekday Study Time</small>
+                        <div class="fw-semibold">{{ wizard_data.weekday_study_minutes }} minutes/day</div>
+                    </div>
+                    <div class="col-md-6">
+                        <small class="text-secondary">Weekend Study Time</small>
+                        <div class="fw-semibold">{{ wizard_data.weekend_study_minutes }} minutes/day</div>
+                    </div>
+                    <div class="col-md-6">
+                        <small class="text-secondary">Study Preference</small>
+                        <div class="fw-semibold">{{ wizard_data.study_preference }}</div>
+                    </div>
+                    <div class="col-md-6">
+                        <small class="text-secondary">Target Grade</small>
+                        <div class="fw-semibold">{{ wizard_data.target_grade }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Confirmation -->
+        <div class="mb-4">
+            <div class="d-flex flex-column gap-2">
+                {% for subfield in form.confirm %}
+                    {% if subfield.type != 'CSRFTokenField' %}
+                    <div class="form-check">
+                        {{ subfield(class="form-check-input") }}
+                        <label class="form-check-label" for="{{ subfield.id }}">
+                            {{ subfield.label.text }}
+                        </label>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</form>
+{% set step_title = "Review & Confirm" %}
+{% set button_text = "Create Study Plan" %}
+{% endblock %}
