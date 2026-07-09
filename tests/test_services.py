@@ -1163,6 +1163,132 @@ class TestStudyPlanService:
             assert tp.mastery_score == 0.0
 
 
+class TestExaminationCatalogue:
+    """Tests for IFoA dynamic sitting generation."""
+
+    def test_ifoa_sittings_january_2026(self):
+        """January 2026: the first sitting is April 2026 (same year)."""
+        from datetime import date as dt_date
+        from app.services.examination_catalogue import (
+            _generate_ifoa_sittings,
+            get_sitting_choices,
+        )
+
+        jan_2026 = dt_date(2026, 1, 15)
+        sittings = _generate_ifoa_sittings(today=jan_2026)
+        assert len(sittings) == 4
+        assert sittings[0] == "April 2026"
+        assert "April 2026" in sittings
+        assert "September 2026" in sittings
+
+        # The public API forwards to the generator for IFoA
+        choices = get_sitting_choices("IFoA")
+        assert len(choices) >= 1
+        # First choice should not be in the past (relative to real today)
+        assert choices[0][0] == choices[0][1]
+
+    def test_ifoa_sittings_may_2026(self):
+        """May 2026: April is already past, so September 2026 is next."""
+        from datetime import date as dt_date
+        from app.services.examination_catalogue import _generate_ifoa_sittings
+
+        may_2026 = dt_date(2026, 5, 1)
+        sittings = _generate_ifoa_sittings(today=may_2026)
+        assert len(sittings) == 4
+        assert sittings[0] == "September 2026"
+        # April 2026 must NOT appear (it has passed)
+        assert "April 2026" not in sittings
+
+    def test_ifoa_sittings_july_2026(self):
+        """July 2026: both April and September are still future,
+        but September is the next available sitting."""
+        from datetime import date as dt_date
+        from app.services.examination_catalogue import _generate_ifoa_sittings
+
+        jul_2026 = dt_date(2026, 7, 10)
+        sittings = _generate_ifoa_sittings(today=jul_2026)
+        assert len(sittings) == 4
+        assert sittings[0] == "September 2026"
+        assert "April 2026" not in sittings
+        assert "April 2027" in sittings
+
+    def test_ifoa_sittings_october_2026(self):
+        """October 2026: both 2026 sittings have passed, so April 2027 is first."""
+        from datetime import date as dt_date
+        from app.services.examination_catalogue import _generate_ifoa_sittings
+
+        oct_2026 = dt_date(2026, 10, 5)
+        sittings = _generate_ifoa_sittings(today=oct_2026)
+        assert len(sittings) == 4
+        assert sittings[0] == "April 2027"
+        assert "April 2026" not in sittings
+        assert "September 2026" not in sittings
+
+    def test_ifoa_sittings_during_april(self):
+        """During April, the April sitting should still appear (same month)."""
+        from datetime import date as dt_date
+        from app.services.examination_catalogue import _generate_ifoa_sittings
+
+        april_2026 = dt_date(2026, 4, 15)
+        sittings = _generate_ifoa_sittings(today=april_2026)
+        assert len(sittings) == 4
+        assert sittings[0] == "April 2026"
+
+    def test_ifoa_sittings_during_september(self):
+        """During September, the September sitting should still appear."""
+        from datetime import date as dt_date
+        from app.services.examination_catalogue import _generate_ifoa_sittings
+
+        sept_2026 = dt_date(2026, 9, 25)
+        sittings = _generate_ifoa_sittings(today=sept_2026)
+        assert len(sittings) == 4
+        assert sittings[0] == "September 2026"
+
+    def test_ifoa_sittings_cross_year_boundary(self):
+        """December 2026: all 2026 sittings passed, next is April 2027."""
+        from datetime import date as dt_date
+        from app.services.examination_catalogue import _generate_ifoa_sittings
+
+        dec_2026 = dt_date(2026, 12, 1)
+        sittings = _generate_ifoa_sittings(today=dec_2026)
+        assert len(sittings) == 4
+        assert sittings[0] == "April 2027"
+        assert "April 2026" not in sittings
+        assert "September 2026" not in sittings
+
+    def test_get_sitting_choices_non_ifoa_unchanged(self):
+        """Non-IFoA categories return their hard-coded sittings."""
+        from app.services.examination_catalogue import get_sitting_choices
+
+        cfa = get_sitting_choices("CFA")
+        assert len(cfa) == 4
+        assert ("February 2027", "February 2027") in cfa
+
+    def test_get_sitting_choices_unknown_category(self):
+        """Unknown category returns Custom."""
+        from app.services.examination_catalogue import get_sitting_choices
+
+        choices = get_sitting_choices("DoesNotExist")
+        assert choices == [("Custom", "Custom")]
+
+    def test_generate_ifoa_sittings_custom_count(self):
+        """The count parameter controls how many sittings are returned."""
+        from datetime import date as dt_date
+        from app.services.examination_catalogue import _generate_ifoa_sittings
+
+        jan_2026 = dt_date(2026, 1, 1)
+        sittings = _generate_ifoa_sittings(today=jan_2026, count=6)
+        assert len(sittings) == 6
+        assert sittings == [
+            "April 2026",
+            "September 2026",
+            "April 2027",
+            "September 2027",
+            "April 2028",
+            "September 2028",
+        ]
+
+
 class TestPlanningService:
     """Tests for PlanningService mission generation."""
 

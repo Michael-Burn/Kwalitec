@@ -11,6 +11,7 @@ No AI, no heuristics — just structured data.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from datetime import date as dt_date
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -151,13 +152,50 @@ _OXFORD_PAPERS = [
 ]
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# IFoA sitting generation
+# ─────────────────────────────────────────────────────────────────────────────
+
+_IFOA_SITTING_MONTHS = [
+    (4, "April"),
+    (9, "September"),
+]
+
+
+def _generate_ifoa_sittings(today: dt_date | None = None, count: int = 4) -> list[str]:
+    """Generate the next ``count`` IFoA sittings from *today*.
+
+    The first sitting returned is the earliest future sitting that has **not**
+    yet passed.  If *today* falls within a sitting month the sitting is still
+    considered available.
+    """
+    if today is None:
+        today = dt_date.today()
+
+    sittings: list[str] = []
+    year = today.year
+
+    # Collect candidate sittings for this year and the next few
+    for offset in range(4):  # enough to cover `count` sittings
+        for month_num, month_name in _IFOA_SITTING_MONTHS:
+            sitting_first_day = dt_date(year + offset, month_num, 1)
+            candidate_label = f"{month_name} {year + offset}"
+            # A sitting is considered future if we haven't passed its month
+            if sitting_first_day >= dt_date(today.year, today.month, 1):
+                sittings.append(candidate_label)
+                if len(sittings) == count:
+                    return sittings
+
+    return sittings
+
+
 _CATALOGUE: dict[str, ExaminationCategory] = {
     "IFoA": ExaminationCategory(
         code="IFoA",
         name="IFoA",
         description="Institute and Faculty of Actuaries professional examinations.",
         papers=_IFOA_PAPERS,
-        sittings=["April 2027", "September 2027", "April 2028", "September 2028"],
+        sittings=[],  # generated dynamically — see get_sitting_choices
         targets=["Pass", "Strong Pass"],
     ),
     "CFA": ExaminationCategory(
@@ -271,9 +309,18 @@ def get_paper_choices(category_code: str) -> list[tuple[str, str]]:
 def get_sitting_choices(category_code: str) -> list[tuple[str, str]]:
     """Return (value, label) tuples for sittings of a given category."""
     category = get_category(category_code)
-    if not category or not category.sittings:
+    if not category:
         return [("Custom", "Custom")]
-    return [(s, s) for s in category.sittings]
+
+    sittings: list[str]
+    if category_code == "IFoA":
+        sittings = _generate_ifoa_sittings()
+    else:
+        sittings = category.sittings
+
+    if not sittings:
+        return [("Custom", "Custom")]
+    return [(s, s) for s in sittings]
 
 
 def get_target_choices(category_code: str) -> list[tuple[str, str]]:
