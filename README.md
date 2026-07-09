@@ -71,7 +71,7 @@ kwalitec/
 └── .gitignore
 ```
 
-## Local Setup
+## Local Development Setup
 
 ### Prerequisites
 
@@ -101,20 +101,30 @@ pip install pytest ruff
 
 ### 3. Configure environment variables
 
+Copy the example environment file and edit it with your values:
+
 ```bash
 cp .env.example .env
 ```
 
-Edit `.env` and set a strong `SECRET_KEY`:
+Open `.env` and fill in the required variables:
 
 ```
 SECRET_KEY=<generate-a-random-string>
+ADMIN_EMAIL=you@example.com
+ADMIN_PASSWORD=change-me
+```
+
+Generate a strong `SECRET_KEY`:
+
+```bash
+python3 -c "import secrets; print(secrets.token_hex(32))"
 ```
 
 ### 4. Run database migrations
 
 ```bash
-flask --app run.py db upgrade
+flask db upgrade
 ```
 
 ### 5. Create the initial user
@@ -122,15 +132,17 @@ flask --app run.py db upgrade
 Registration is intentionally not exposed. Create the initial administrator via the bootstrap CLI:
 
 ```bash
-export ADMIN_EMAIL="you@example.com"
-export ADMIN_PASSWORD="change-me"
-flask --app run.py create-admin
+flask create-admin
 ```
+
+> The command reads `ADMIN_EMAIL` and `ADMIN_PASSWORD` from your `.env` file. If any
+> `User` records already exist, the command prints `Administrator already exists.`
+> and exits successfully—it is safe to run more than once.
 
 ### 6. Start the development server
 
 ```bash
-flask --app run.py run
+flask run
 ```
 
 Open http://127.0.0.1:5000 and sign in.
