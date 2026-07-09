@@ -69,3 +69,23 @@ class TestCreateAdminCommand:
         assert result.exit_code != 0
         assert "ADMIN_EMAIL" in result.output
         assert "ADMIN_PASSWORD" in result.output
+
+    def test_skips_when_users_table_missing(self, runner, ctx):
+        """Should exit 0 when the users table does not exist yet.
+
+        This simulates a deploy where create-admin runs before migrations
+        have been applied. The command must not crash the deploy.
+        """
+        os.environ["ADMIN_EMAIL"] = "admin@kwalitec.example"
+        os.environ["ADMIN_PASSWORD"] = "securepassword123"
+
+        # Drop all tables to simulate a fresh, unmigrated database
+        db.drop_all()
+
+        result = runner.invoke(args=["create-admin"])
+
+        assert result.exit_code == 0
+        assert "users table not found" in result.output
+
+        # Recreate tables so the session-scoped app teardown doesn't break
+        db.create_all()

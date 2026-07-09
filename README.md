@@ -157,8 +157,8 @@ The included `render.yaml` defines a Render web service with a PostgreSQL databa
    - Detect the `render.yaml` configuration
    - Create a web service (`kwalitec`)
    - Provision a PostgreSQL database (`kwalitec-db`)
-   - Install Python dependencies
-   - Run database migrations
+   - Install Python dependencies (build phase)
+   - Run database migrations and create the admin (pre-deploy phase, with `DATABASE_URL` available)
    - Start the app with Waitress via `wsgi:app`
 
 #### Environment Variables (Render)

@@ -3,7 +3,8 @@ services:
     name: kwalitec
     env: python
     plan: free
-    buildCommand: "pip install -r requirements.txt && flask --app wsgi.py db upgrade && flask --app wsgi.py create-admin"
+    buildCommand: "pip install -r requirements.txt"
+    preDeploy: "flask --app wsgi.py db upgrade && flask --app wsgi.py create-admin"
     startCommand: "waitress-serve --port=$PORT wsgi:app"
     envVars:
       - key: APP_ENV

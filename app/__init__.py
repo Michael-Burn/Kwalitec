@@ -7,6 +7,8 @@ import os
 from datetime import datetime, timezone
 from pathlib import Path
 
+from alembic.migration import MigrationContext
+from alembic.script import ScriptDirectory
 from flask import Flask, jsonify, redirect, render_template, request, url_for
 
 from app.config import DevelopmentConfig, ProductionConfig, _sqlalchemy_driver_prefix
@@ -79,6 +81,58 @@ def _validate_env_vars() -> None:
         # In production, raise to prevent insecure deployment
         if app_env == "production":
             raise RuntimeError("Configuration validation failed: " + "; ".join(issues))
+
+
+def _log_migration_state(app: Flask) -> None:
+    """Log the current Alembic revision and whether migrations are up to date.
+
+    This is a read-only diagnostic: it never applies migrations. It compares
+    the revision stored in the database (``alembic_version`` table) against
+    the head revision in the migration scripts directory and logs the result
+    so deployment issues can be diagnosed from the startup log.
+    """
+    try:
+        with app.app_context():
+            migrate_cfg = app.extensions["migrate"]
+            migrations_dir = Path(app.root_path).parent / migrate_cfg.directory
+
+            # Head revision from the migration scripts on disk
+            script_dir = ScriptDirectory(str(migrations_dir))
+            head_revision = script_dir.get_current_head()
+
+            # Current revision stamped in the database
+            with db.engine.connect() as connection:
+                context = MigrationContext.configure(connection)
+                current_revision = context.get_current_revision()
+
+        if current_revision is None:
+            logger.warning(
+                "Alembic: no revision recorded in database "
+                "(alembic_version table empty or missing). "
+                "Migrations have NOT been applied."
+            )
+        else:
+            logger.info("Alembic: current database revision = %s", current_revision)
+
+        if head_revision is not None:
+            logger.info("Alembic: head script revision = %s", head_revision)
+            if current_revision == head_revision:
+                logger.info("Alembic: database is up to date.")
+            else:
+                logger.warning(
+                    "Alembic: database is BEHIND head "
+                    "(db=%s, head=%s). Migrations need to be applied.",
+                    current_revision,
+                    head_revision,
+                )
+        else:
+            logger.warning("Alembic: no migration scripts found on disk.")
+    except Exception as exc:  # noqa: BLE001
+        logger.warning(
+            "Alembic: could not determine migration state (%s: %s)",
+            exc.__class__.__name__,
+            exc,
+        )
 
 
 def _register_error_handlers(app: Flask) -> None:
@@ -184,6 +238,9 @@ def create_app(config_object: type | None = None) -> Flask:
     _register_error_handlers(app)
     _register_health_check(app)
     app.after_request(_add_security_headers)
+
+    # Diagnose migration state at startup (read-only; never applies migrations)
+    _log_migration_state(app)
 
     logger.info("Kwalitec application created successfully")
     return app
