@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 import logging
-from datetime import date
+from collections import deque
+from datetime import date, timedelta
 from enum import Enum
 
 from app.extensions import db
@@ -486,3 +487,237 @@ class PlanningService:
         db.session.commit()
         logger.info("Created default subject 'Study Plan' for user %s", user_id)
         return default_subject.id
+
+    # ── Curriculum-backed study plan helpers ──────────────────────────────
+
+    @staticmethod
+    def _resolve_curriculum_sequence(study_plan: StudyPlan) -> list[dict] | None:
+        """Resolve the official curriculum topic order for a curriculum-backed plan.
+
+        Loads the curriculum from the Curriculum Engine, topologically sorts
+        topics respecting prerequisites, and returns the sequence starting
+        from the user's selected ``curriculum_topic_code``.  Topics that come
+        before the selected topic in the official order are excluded.
+
+        Args:
+            study_plan: A study plan with ``curriculum_version`` and
+                ``curriculum_topic_code`` set.
+
+        Returns:
+            A list of topic dicts with keys ``name``, ``code``, ``hours``,
+            ``weighting``, ``prerequisites`` — ordered following the official
+            curriculum sequence — or ``None`` if the curriculum cannot be
+            resolved or the plan is not curriculum-backed.
+        """
+        from app.services.curriculum_engine_service import CurriculumEngineService
+
+        version = study_plan.curriculum_version
+        topic_code = study_plan.curriculum_topic_code
+
+        if not version or not topic_code:
+            return None
+
+        # Parse exam_name — expected format "<Organisation> <Paper>"
+        parts = study_plan.exam_name.split(" ", 1)
+        if len(parts) != 2:
+            logger.debug(
+                "Cannot parse exam_name '%s' for curriculum sequence resolution.",
+                study_plan.exam_name,
+            )
+            return None
+
+        organisation, paper = parts
+        engine = CurriculumEngineService()
+
+        if not engine.curriculum_exists(organisation, paper, version):
+            logger.debug(
+                "Curriculum %s/%s/%s not found on disk — falling back to generic sequencing.",
+                organisation, paper, version,
+            )
+            return None
+
+        try:
+            curriculum = engine.load_curriculum(organisation, paper, version)
+        except Exception:
+            logger.exception(
+                "Failed to load curriculum %s/%s/%s for sequence resolution.",
+                organisation, paper, version,
+            )
+            return None
+
+        engine_topics = curriculum.topics  # list[app.curriculum.models.Topic]
+
+        if not engine_topics:
+            return None
+
+        # ── Topological sort respecting prerequisites ──────────────────
+        topic_map: dict[str, dict] = {}
+        for et in engine_topics:
+            topic_map[et.id] = {
+                "name": et.title,
+                "code": et.code,
+                "hours": et.estimated_hours,
+                "weighting": et.weighting,
+                "prerequisites": list(et.prerequisites),
+                "learning_outcomes": [
+                    {
+                        "code": lo.code,
+                        "description": lo.description,
+                        "suggested_revision_days": lo.suggested_revision_days,
+                    }
+                    for lo in et.learning_outcomes
+                ],
+            }
+
+        # Build dependency graph for Kahn's algorithm
+        in_degree: dict[str, int] = {tid: 0 for tid in topic_map}
+        adj: dict[str, list[str]] = {tid: [] for tid in topic_map}
+
+        for et in engine_topics:
+            for prereq_id in et.prerequisites:
+                if prereq_id in topic_map:
+                    adj[prereq_id].append(et.id)
+                    in_degree[et.id] += 1
+
+        queue: deque[str] = deque(
+            tid for tid, deg in in_degree.items() if deg == 0
+        )
+        sorted_ids: list[str] = []
+
+        while queue:
+            current = queue.popleft()
+            sorted_ids.append(current)
+            for neighbor in adj[current]:
+                in_degree[neighbor] -= 1
+                if in_degree[neighbor] == 0:
+                    queue.append(neighbor)
+
+        # Keep only topics present in the graph
+        sorted_ids = [tid for tid in sorted_ids if tid in topic_map]
+
+        # ── Locate the selected starting topic ─────────────────────────
+        start_index: int | None = None
+        for i, tid in enumerate(sorted_ids):
+            if topic_map[tid]["code"] == topic_code:
+                start_index = i
+                break
+
+        if start_index is None:
+            logger.warning(
+                "Topic code '%s' not found in curriculum %s/%s/%s — using full sequence.",
+                topic_code, organisation, paper, version,
+            )
+            start_index = 0
+
+        # Build the sequence from the selected topic onwards
+        sequence = [
+            topic_map[tid] for tid in sorted_ids[start_index:]
+        ]
+
+        logger.info(
+            "Resolved curriculum sequence for plan %d: %d topics starting from '%s'.",
+            study_plan.id, len(sequence), sequence[0]["code"] if sequence else "N/A",
+        )
+        return sequence
+
+    @staticmethod
+    def generate_curriculum_week_plans(
+        study_plan: StudyPlan,
+    ) -> list[WeekPlan] | None:
+        """Generate week plans paced by the official curriculum topic order.
+
+        Each topic is assigned to one or more weeks based on its estimated
+        hours and the plan's weekly study minutes.  Topics are paced
+        sequentially following the resolved curriculum sequence.
+
+        Args:
+            study_plan: A curriculum-backed study plan.
+
+        Returns:
+            A list of WeekPlan objects with ``topic_name`` embedded, or
+            ``None`` if the curriculum cannot be resolved.
+        """
+        sequence = PlanningService._resolve_curriculum_sequence(study_plan)
+        if sequence is None or not sequence:
+            return None
+
+        today = date.today()
+        exam_date = study_plan.exam_date
+
+        # Total available study minutes per week
+        weekly_minutes = (
+            study_plan.weekday_study_minutes * 5
+            + study_plan.weekend_study_minutes * 2
+        )
+
+        if weekly_minutes <= 0:
+            weekly_minutes = 300  # sensible fallback
+
+        # Find the Monday of the current week
+        days_since_monday = today.weekday()
+        current_week_start = today - timedelta(days=days_since_monday)
+
+        week_plans: list[WeekPlan] = []
+        week_number = 1
+        topic_index = 0
+
+        while current_week_start < exam_date and topic_index < len(sequence):
+            current_week_end = current_week_start + timedelta(days=6)
+
+            # Clamp the end date to the exam date
+            if current_week_end >= exam_date:
+                current_week_end = exam_date - timedelta(days=1)
+
+            topic_data = sequence[topic_index]
+            topic_hours = topic_data["hours"]
+            topic_minutes = int(topic_hours * 60)
+
+            # Determine how many weeks this topic should span
+            weeks_for_topic = max(
+                1, -(-topic_minutes // weekly_minutes)
+            )  # ceiling division
+
+            for _ in range(weeks_for_topic):
+                if current_week_start >= exam_date:
+                    break
+
+                current_week_end = current_week_start + timedelta(days=6)
+                if current_week_end >= exam_date:
+                    current_week_end = exam_date - timedelta(days=1)
+
+                wp = WeekPlan(
+                    study_plan_id=study_plan.id,
+                    week_number=week_number,
+                    start_date=current_week_start,
+                    end_date=current_week_end,
+                )
+                week_plans.append(wp)
+
+                current_week_start = current_week_end + timedelta(days=1)
+                week_number += 1
+
+            topic_index += 1
+
+        # If there are remaining weeks before the exam after all topics
+        # have been assigned, fill with revision weeks.
+        while current_week_start < exam_date:
+            current_week_end = current_week_start + timedelta(days=6)
+            if current_week_end >= exam_date:
+                current_week_end = exam_date - timedelta(days=1)
+
+            wp = WeekPlan(
+                study_plan_id=study_plan.id,
+                week_number=week_number,
+                start_date=current_week_start,
+                end_date=current_week_end,
+            )
+            week_plans.append(wp)
+
+            current_week_start = current_week_end + timedelta(days=1)
+            week_number += 1
+
+        logger.info(
+            "Generated %d curriculum-paced week plans for plan %d (%d topics).",
+            len(week_plans), study_plan.id, len(sequence),
+        )
+        return week_plans

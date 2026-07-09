@@ -5,6 +5,7 @@ All calculations are deterministic. No AI or external APIs are used.
 
 from __future__ import annotations
 
+from dataclasses import dataclass
 from datetime import date, datetime, timedelta
 
 from app.extensions import db
@@ -12,6 +13,29 @@ from app.models.curriculum import Topic
 from app.models.learning import Mistake, StudyAttempt
 from app.models.mission import Mission
 from app.models.topic_progress import TopicProgress
+
+
+@dataclass(frozen=True)
+class ReadinessSummary:
+    """Read-only summary of exam readiness calculated from a
+    StudentCurriculumSummary.
+
+    Attributes:
+        readiness_percentage: The weighted completed percentage
+            (0.0 to 1.0), representing the proportion of syllabus
+            weighting covered by completed topics.
+        weighted_completed_percentage: Mirrored from
+            StudentCurriculumSummary.
+        weighted_remaining_percentage: Mirrored from
+            StudentCurriculumSummary.
+        explanation: A deterministic human-readable sentence describing
+            readiness.
+    """
+
+    readiness_percentage: float
+    weighted_completed_percentage: float
+    weighted_remaining_percentage: float
+    explanation: str
 
 
 class ReadinessService:
@@ -512,6 +536,45 @@ class ReadinessService:
             TopicProgress.topic_id.in_(leaf_ids),
             TopicProgress.current_stage == TopicProgress.STAGE_MASTERED,
         ).count()
+
+    # ── Curriculum-based Readiness ─────────────────────────────────────
+
+    @staticmethod
+    def calculate_readiness(
+        student_curriculum: object,
+    ) -> ReadinessSummary | None:
+        """Calculate exam readiness from a StudentCurriculumSummary.
+
+        readiness_percentage is derived directly from
+        ``student_curriculum.weighted_completed_percentage``.  No
+        mastery, confidence, revision history, question performance,
+        AI, or heuristics are used.
+
+        Args:
+            student_curriculum: A ``StudentCurriculumSummary`` instance,
+                or ``None``.
+
+        Returns:
+            A frozen ``ReadinessSummary``, or ``None`` if no summary
+            is supplied.
+        """
+        if student_curriculum is None:
+            return None
+
+        readiness_pct = student_curriculum.weighted_completed_percentage
+        display_pct = round(readiness_pct * 100)
+
+        explanation = (
+            f"You have completed topics representing "
+            f"{display_pct}% of the official syllabus weighting."
+        )
+
+        return ReadinessSummary(
+            readiness_percentage=readiness_pct,
+            weighted_completed_percentage=student_curriculum.weighted_completed_percentage,
+            weighted_remaining_percentage=student_curriculum.weighted_remaining_percentage,
+            explanation=explanation,
+        )
 
     @staticmethod
     def _average_mastery(user_id: int) -> float:

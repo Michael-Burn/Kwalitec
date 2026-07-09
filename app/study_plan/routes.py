@@ -5,10 +5,11 @@ from __future__ import annotations
 import logging
 from datetime import date
 
-from flask import Blueprint, flash, redirect, render_template, session, url_for
+from flask import Blueprint, flash, redirect, render_template, request, session, url_for
 from flask_login import current_user, login_required
 
 from app.services import examination_catalogue as catalogue
+from app.services.curriculum_engine_service import CurriculumEngineService
 from app.services.study_plan_service import StudyPlanService
 from app.study_plan.forms import (
     CurrentPositionForm,
@@ -55,16 +56,13 @@ def _position_label(code: str) -> str:
     }.get(code, code)
 
 
-def _build_current_stage(position: str, topic: str | None) -> str:
-    """Combine position and topic into a single current_stage string.
+def _build_current_stage(position: str) -> str:
+    """Return the human-readable study stage label from a position code.
 
-    The existing StudyPlan.current_stage column is reused so no schema change
-    is required for the position data.
+    Only the study stage itself is returned (e.g. "Learning new material").
+    The curriculum topic code is stored separately in curriculum_topic_code.
     """
-    label = _position_label(position)
-    if position == "learning" and topic:
-        return f"{label}: {topic}"
-    return label
+    return _position_label(position)
 
 
 def _parse_current_stage(current_stage: str) -> tuple[str, str]:
@@ -83,6 +81,46 @@ def _parse_current_stage(current_stage: str) -> tuple[str, str]:
     if current_stage.startswith("Currently revising"):
         return "revising", ""
     return "learning", current_stage
+
+
+# ── Supported examinations with curriculum mapping ───────────────────────
+# Maps (category_code, paper_code) → curriculum_version.
+_CURRICULUM_VERSION_MAP: dict[tuple[str, str], str] = {
+    ("IFoA", "CS1"): "2026",
+}
+
+
+def _resolve_curriculum_version(category_code: str, paper_code: str) -> str | None | bool:
+    """Determine the curriculum version for a given examination.
+
+    Returns:
+        * ``str`` — curriculum version to use (e.g. ``"2026"``).
+        * ``None`` — no curriculum is associated with this exam; proceed normally.
+        * ``False`` — a curriculum was expected but could not be verified on disk.
+    """
+    version = _CURRICULUM_VERSION_MAP.get((category_code, paper_code))
+    if version is None:
+        return None  # No curriculum mapping — continue with existing behaviour.
+
+    engine = CurriculumEngineService()
+    # The engine's exists() normalises casing internally.
+    if engine.curriculum_exists("IFoA", paper_code, version):
+        logger.debug(
+            "Curriculum %s/%s/%s found — associating with study plan.",
+            "IFoA", paper_code, version,
+        )
+        return version
+
+    logger.warning(
+        "Expected curriculum %s/%s/%s was not found on disk.",
+        "IFoA", paper_code, version,
+    )
+    flash(
+        f"A curriculum for {category_code} {paper_code} (version {version}) "
+        f"is not yet available. Please select another examination or try again later.",
+        "warning",
+    )
+    return False
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -350,12 +388,36 @@ def _handle_step_4():
         form.current_position.data = wizard_data["current_position"]
     if "current_topic" in wizard_data:
         form.current_topic.data = wizard_data["current_topic"]
+
+    # Detect curriculum support for the selected examination
+    category_code = wizard_data.get("exam_category", "")
+    paper_code = wizard_data.get("exam_paper", "")
+    curriculum_version = _CURRICULUM_VERSION_MAP.get((category_code, paper_code))
+
+    extra: dict = {
+        "completed_curriculum_topics": wizard_data.get("completed_curriculum_topics", []),
+    }
+    if curriculum_version is not None:
+        engine = CurriculumEngineService()
+        if engine.curriculum_exists("IFoA", paper_code, curriculum_version):
+            try:
+                curriculum = engine.load_curriculum("IFoA", paper_code, curriculum_version)
+                extra["curriculum_topics"] = curriculum.topics
+                extra["curriculum_version"] = curriculum_version
+            except Exception:
+                logger.exception(
+                    "Failed to load curriculum topics for IFoA/%s/%s",
+                    paper_code,
+                    curriculum_version,
+                )
+
     return render_template(
         "study_plan/wizard_step_4.html",
         form=form,
         step=4,
         total_steps=TOTAL_STEPS,
         step_title=STEP_TITLES[4],
+        **extra,
     )
 
 
@@ -367,6 +429,25 @@ def _handle_step_4_post():
         session["wizard_data"]["current_topic"] = (
             form.current_topic.data.strip() if form.current_topic.data else ""
         )
+
+        # Detect curriculum support for the selected examination
+        wizard_data = session.get("wizard_data", {})
+        category_code = wizard_data.get("exam_category", "")
+        paper_code = wizard_data.get("exam_paper", "")
+        curriculum_version = _CURRICULUM_VERSION_MAP.get((category_code, paper_code))
+
+        if curriculum_version is not None:
+            # Curriculum-backed: read completed topics as a checklist.
+            completed = request.form.getlist("curriculum_topic")
+            completed = [c.strip() for c in completed if c.strip()]
+            session["wizard_data"]["completed_curriculum_topics"] = completed
+        else:
+            # Unsupported examination — clear any curriculum-topic data.
+            session["wizard_data"].pop("completed_curriculum_topics", None)
+
+        # Always remove the legacy single-topic key.
+        session["wizard_data"].pop("curriculum_topic", None)
+
         session.modified = True
         return redirect(url_for("study_plan.wizard_step", step=5))
     return render_template(
@@ -575,11 +656,26 @@ def review_post():
             paper_or_subject = wizard_data.get("exam_paper", "")
         exam_name = catalogue.format_exam_name(category_code, paper_or_subject)
 
-        # Build current_stage from position + topic
-        current_stage = _build_current_stage(
-            wizard_data["current_position"],
-            wizard_data.get("current_topic") or None,
-        )
+        # Build current_stage from position only — curriculum topic is stored separately
+        current_stage = _build_current_stage(wizard_data["current_position"])
+
+        # Extract curriculum topic code for dedicated column
+        curriculum_topic_code = wizard_data.get("curriculum_topic") or None
+
+        # ── Curriculum version resolution ──────────────────────────
+        curriculum_version = _resolve_curriculum_version(category_code, paper_or_subject)
+        if curriculum_version is False:
+            # A failure sentinel means the curriculum was not found;
+            # a friendly message has already been flashed.
+            return render_template(
+                "study_plan/review.html",
+                form=form,
+                wizard_data=wizard_data,
+                review_data=_build_review_data(wizard_data),
+                step=8,
+                total_steps=TOTAL_STEPS + 1,
+                step_title=STEP_TITLES[8],
+            )
 
         # Create the study plan
         try:
@@ -590,6 +686,10 @@ def review_post():
                 exam_date = exam_date_str
 
             preferred_session = int(wizard_data.get("preferred_session_minutes", 60))
+
+            completed_curriculum_topics = wizard_data.get(
+                "completed_curriculum_topics", []
+            )
 
             study_plan = StudyPlanService.create_study_plan(
                 user_id=current_user.id,
@@ -602,6 +702,9 @@ def review_post():
                 study_preference=wizard_data["study_preference"],
                 target_grade=wizard_data["target_grade"],
                 preferred_session_minutes=preferred_session,
+                curriculum_version=curriculum_version,
+                curriculum_topic_code=curriculum_topic_code,
+                completed_curriculum_topics=completed_curriculum_topics,
             )
 
             session.pop("wizard_data", None)
@@ -655,6 +758,7 @@ def _build_review_data(wizard_data: dict) -> dict:
     position_code = wizard_data.get("current_position", "")
     position_label = _position_label(position_code)
     current_topic = wizard_data.get("current_topic", "")
+    completed_curriculum_topics = wizard_data.get("completed_curriculum_topics", [])
 
     return {
         "category": category,
@@ -666,6 +770,7 @@ def _build_review_data(wizard_data: dict) -> dict:
         "days_remaining": days_remaining,
         "position_label": position_label,
         "current_topic": current_topic,
+        "completed_curriculum_topics": completed_curriculum_topics,
         "weekday_study_minutes": wizard_data.get("weekday_study_minutes", ""),
         "weekend_study_minutes": wizard_data.get("weekend_study_minutes", ""),
         "preferred_session_minutes": wizard_data.get("preferred_session_minutes", ""),

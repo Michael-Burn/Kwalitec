@@ -2,10 +2,15 @@
 
 from __future__ import annotations
 
+import logging
 from datetime import date, timedelta
 
 from app.extensions import db
+from app.models.curriculum import Curriculum, Topic
 from app.models.study_plan import StudyPlan, WeekPlan
+from app.models.topic_progress import TopicProgress
+
+logger = logging.getLogger(__name__)
 
 
 class StudyPlanService:
@@ -23,6 +28,9 @@ class StudyPlanService:
         study_preference: str,
         target_grade: str,
         preferred_session_minutes: int = 60,
+        curriculum_version: str | None = None,
+        curriculum_topic_code: str | None = None,
+        completed_curriculum_topics: list[str] | None = None,
     ) -> StudyPlan:
         """Create a new study plan with associated week plans.
 
@@ -33,10 +41,14 @@ class StudyPlanService:
             exam_date: The date of the exam.
             weekday_study_minutes: Minutes per weekday for study.
             weekend_study_minutes: Minutes per weekend day for study.
-            current_stage: Current study position (e.g., "Learning new material: Topic").
+            current_stage: Current study stage (e.g., "Learning", "Revision").
             study_preference: Study preference (Reading First, Questions First, Mixed).
             target_grade: Target grade to achieve.
             preferred_session_minutes: Preferred study session length in minutes.
+            curriculum_version: Optional curriculum version this plan was created against.
+            curriculum_topic_code: Optional official curriculum topic code (e.g., "CS1-A").
+            completed_curriculum_topics: Optional list of topic codes the user has
+                already completed (from the Study Plan Wizard).
 
         Returns:
             StudyPlan: The created study plan with week plans.
@@ -64,6 +76,8 @@ class StudyPlanService:
             study_preference=study_preference,
             target_grade=target_grade,
             preferred_session_minutes=preferred_session_minutes,
+            curriculum_version=curriculum_version,
+            curriculum_topic_code=curriculum_topic_code,
             active=True,
         )
 
@@ -74,6 +88,12 @@ class StudyPlanService:
         week_plans = StudyPlanService._generate_week_plans(study_plan)
         for week_plan in week_plans:
             db.session.add(week_plan)
+
+        # Initialize TopicProgress from curriculum if applicable
+        StudyPlanService._initialize_topic_progress_from_curriculum(
+            study_plan,
+            completed_curriculum_topics or [],
+        )
 
         db.session.commit()
         return study_plan
@@ -106,15 +126,179 @@ class StudyPlanService:
             raise ValueError("Weekend study time must be between 15 and 480 minutes.")
 
     @staticmethod
+    def _initialize_topic_progress_from_curriculum(
+        study_plan: StudyPlan,
+        completed_curriculum_topics: list[str] | None = None,
+    ) -> None:
+        """Initialize TopicProgress records from the curriculum backing this plan.
+
+        When a study plan is created against a known curriculum, this method
+        ensures that every topic in the curriculum has a corresponding
+        TopicProgress row for the user.  Existing records are left untouched
+        so that progress is preserved across plan changes.
+
+        Topics whose ``code`` appears in ``completed_curriculum_topics`` are
+        initialised as *completed* (completed=True, mastery_score=100.0,
+        current_stage="Completed").
+
+        The topic identified by ``curriculum_topic_code`` is promoted as the
+        student's *current* topic (its ``current_stage`` is set to
+        ``Learning``) but is **never** marked completed — even if it
+        accidentally appears in ``completed_curriculum_topics``.
+        """
+        curriculum_version = study_plan.curriculum_version
+        curriculum_topic_code = study_plan.curriculum_topic_code
+
+        if curriculum_version is None or curriculum_topic_code is None:
+            return  # Not a curriculum-backed plan — nothing to do.
+
+        if completed_curriculum_topics is None:
+            completed_curriculum_topics = []
+
+        # Parse exam_name to extract organisation and paper.
+        # Expected format: "<Organisation> <Paper>" (e.g. "IFoA CS1").
+        parts = study_plan.exam_name.split(" ", 1)
+        if len(parts) != 2:
+            logger.debug(
+                "Cannot parse exam_name '%s' for curriculum initialisation — skipping.",
+                study_plan.exam_name,
+            )
+            return
+
+        organisation, paper = parts
+
+        from app.services.curriculum_engine_service import CurriculumEngineService
+
+        engine = CurriculumEngineService()
+
+        if not engine.curriculum_exists(organisation, paper, curriculum_version):
+            logger.debug(
+                "Curriculum %s/%s/%s not found — skipping topic progress initialisation.",
+                organisation, paper, curriculum_version,
+            )
+            return
+
+        try:
+            curriculum = engine.load_curriculum(organisation, paper, curriculum_version)
+        except Exception:
+            logger.exception(
+                "Failed to load curriculum %s/%s/%s.",
+                organisation, paper, curriculum_version,
+            )
+            return
+
+        engine_topics = curriculum.topics
+
+        # ── Find or create the SQLAlchemy Curriculum row ──────────────────
+        db_curriculum = Curriculum.query.filter_by(
+            exam_name=f"{organisation} {paper}",
+            version=curriculum_version,
+        ).first()
+        if db_curriculum is None:
+            db_curriculum = Curriculum(
+                exam_name=f"{organisation} {paper}",
+                version=curriculum_version,
+                active=True,
+            )
+            db.session.add(db_curriculum)
+            db.session.flush()
+
+        # Link the study plan to its curriculum.
+        study_plan.curriculum_id = db_curriculum.id
+
+        # ── Ensure a Topic + TopicProgress row for every engine topic ─────
+        for order, engine_topic in enumerate(engine_topics, start=1):
+            db_topic = Topic.query.filter_by(
+                curriculum_id=db_curriculum.id,
+                name=engine_topic.title,
+            ).first()
+            if db_topic is None:
+                db_topic = Topic(
+                    curriculum_id=db_curriculum.id,
+                    name=engine_topic.title,
+                    order=order,
+                    recommended_minutes=int(engine_topic.estimated_hours * 60),
+                    syllabus_weight=engine_topic.weighting,
+                    active=True,
+                )
+                db.session.add(db_topic)
+                db.session.flush()
+
+            # Create TopicProgress only if one does not already exist.
+            existing_progress = TopicProgress.query.filter_by(
+                user_id=study_plan.user_id,
+                topic_id=db_topic.id,
+            ).first()
+            if existing_progress is not None:
+                continue
+
+            # Determine initial state based on completed topics list.
+            is_completed = engine_topic.code in completed_curriculum_topics
+
+            tp = TopicProgress(
+                user_id=study_plan.user_id,
+                topic_id=db_topic.id,
+                confidence=TopicProgress.STAGE_COMPLETED if is_completed else "Not Started",
+                completed=is_completed,
+                mastery_score=100.0 if is_completed else 0.0,
+                revision_count=0,
+                last_reviewed=None,
+                current_stage=TopicProgress.STAGE_COMPLETED
+                if is_completed
+                else TopicProgress.STAGE_NOT_STARTED,
+            )
+            db.session.add(tp)
+
+        # ── Mark the selected topic as the student's current topic ────────
+        for engine_topic in engine_topics:
+            if engine_topic.code != curriculum_topic_code:
+                continue
+
+            db_topic = Topic.query.filter_by(
+                curriculum_id=db_curriculum.id,
+                name=engine_topic.title,
+            ).first()
+            if db_topic is None:
+                continue
+
+            tp = TopicProgress.query.filter_by(
+                user_id=study_plan.user_id,
+                topic_id=db_topic.id,
+            ).first()
+            if tp is None:
+                # Should not normally happen, but guard anyway.
+                continue
+
+            tp.current_stage = TopicProgress.STAGE_LEARNING
+            tp.completed = False
+            tp.mastery_score = 0.0
+            # Explicitly NOT marking completed.
+            break
+
+    @staticmethod
     def _generate_week_plans(study_plan: StudyPlan) -> list[WeekPlan]:
         """Generate week plans from study start date to exam date.
+        
+        For curriculum-backed study plans (those with both
+        ``curriculum_version`` and ``curriculum_topic_code`` set), week
+        plans are paced according to the official curriculum topic order
+        loaded from the Curriculum Engine.  Otherwise, a simple date-based
+        week-plan grid is produced.
 
         Args:
             study_plan: The study plan to generate weeks for.
-
+        
         Returns:
             list[WeekPlan]: List of generated week plans.
         """
+        # ── Try curriculum-backed sequencing first ──────────────────────
+        if study_plan.curriculum_version and study_plan.curriculum_topic_code:
+            from app.services.planning_service import PlanningService
+            curriculum_weeks = PlanningService.generate_curriculum_week_plans(study_plan)
+            if curriculum_weeks:
+                return curriculum_weeks
+
+        # ── Fall back to simple date-based grid ─────────────────────────
         today = date.today()
         exam_date = study_plan.exam_date
 

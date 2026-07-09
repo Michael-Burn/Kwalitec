@@ -3,39 +3,184 @@
 {% block content %}
 <section class="section-header">
     <p class="section-eyebrow">Mission Centre</p>
-    <h1 class="section-title">Missions</h1>
-    <p class="section-description">Track your daily learning missions and progress over time.</p>
+    <h1 class="section-title">Daily Mission</h1>
+    <p class="section-description">Your focused learning objective for today.</p>
 </section>
 
-{% if missions %}
-<div class="mission-grid">
-    {% for mission in missions %}
-    <div class="mission-card">
-        <div class="mission-card-header">
-            <div style="min-width: 0; margin-right: var(--space-lg);">
-                <h2 class="mission-title">{{ mission.title }}</h2>
-                <div class="mission-date">{{ mission.mission_date.strftime('%d %b %Y') }}</div>
-            </div>
-            <span class="badge rounded-pill flex-shrink-0 {% if mission.status == 'Completed' %}text-bg-success{% elif mission.status == 'In Progress' %}text-bg-warning{% else %}text-bg-secondary{% endif %}">
-                {{ mission.status }}
+{# ── Today's Mission Hero ─────────────────────────────────────────────── #}
+{% if today_mission %}
+<section class="mission-hero mb-4">
+    <div class="mission-hero-card">
+        {# Status badge row #}
+        <div class="mission-hero-header">
+            <span class="badge rounded-pill fs-6 px-3 py-2 {% if today_mission.status == 'Completed' %}text-bg-success{% elif today_mission.status == 'In Progress' %}text-bg-warning{% else %}text-bg-secondary{% endif %}">
+                {{ today_mission.status }}
             </span>
+            <span class="mission-hero-date">{{ today_mission.mission_date.strftime('%A, %d %B %Y') }}</span>
         </div>
 
-        <p class="small text-muted mb-3">{{ mission.subject.name }}</p>
+        {# Today's Topic #}
+        <div class="mission-hero-topic">
+            <span class="mission-hero-topic-label">Today's Topic</span>
+            <h2 class="mission-hero-topic-title">
+                {% if curriculum_summary and curriculum_summary.current_topic_code %}
+                    {{ curriculum_summary.current_topic_code }}
+                    {% if curriculum_summary.current_topic_title %}
+                        <small class="d-block text-muted fs-6 fw-normal mt-1">{{ curriculum_summary.current_topic_title }}</small>
+                    {% endif %}
+                {% else %}
+                    {{ today_mission.title }}
+                {% endif %}
+            </h2>
+        </div>
 
-        <div class="mission-progress">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-                <span class="mission-task-count">{{ mission.tasks|length }} task{{ 's' if mission.tasks|length != 1 else '' }}</span>
-                <span class="fw-semibold small">{{ mission.get_completion_percentage()|int }}%</span>
+        {# Key metrics row #}
+        <div class="mission-hero-metrics">
+            {# Estimated Time #}
+            <div class="mission-hero-metric-item">
+                <div class="mission-hero-metric-icon">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                </div>
+                <div class="mission-hero-metric-text">
+                    <span class="mission-hero-metric-label">Estimated Time</span>
+                    <span class="mission-hero-metric-value">
+                        {% if active_study_plan %}
+                            {% set day = today_mission.mission_date %}
+                            {% if day.weekday() >= 5 %}
+                                {{ active_study_plan.weekend_study_minutes }} min
+                            {% else %}
+                                {{ active_study_plan.weekday_study_minutes }} min
+                            {% endif %}
+                        {% else %}
+                            &mdash;
+                        {% endif %}
+                    </span>
+                </div>
             </div>
-            <div class="progress" role="progressbar" aria-valuenow="{{ mission.get_completion_percentage()|int }}" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar" style="width: {{ mission.get_completion_percentage() }}%"></div>
+
+            {# Current Readiness #}
+            <div class="mission-hero-metric-item">
+                <div class="mission-hero-metric-icon" style="background: var(--color-success-bg); color: var(--color-success);">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/>
+                    </svg>
+                </div>
+                <div class="mission-hero-metric-text">
+                    <span class="mission-hero-metric-label">Current Readiness</span>
+                    <span class="mission-hero-metric-value" style="color: var(--color-success);">
+                        {% if readiness_summary %}
+                            {{ (readiness_summary.readiness_percentage * 100)|int }}%
+                        {% else %}
+                            &mdash;
+                        {% endif %}
+                    </span>
+                </div>
             </div>
+        </div>
+
+        {# Why this mission? #}
+        <div class="mission-hero-why">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink: 0;">
+                <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+            </svg>
+            <div>
+                <span class="mission-hero-why-label">Why this mission?</span>
+                <p class="mission-hero-why-text">
+                    {% if curriculum_summary and curriculum_summary.current_topic_code %}
+                        This is the next incomplete topic in the official curriculum.
+                    {% else %}
+                        This is your scheduled learning session for today.
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+
+        {# Tasks progress #}
+        <div class="mission-hero-tasks">
+            <div class="task-list">
+                {% for task in today_mission.tasks %}
+                <div class="task-item {% if task.completed %}completed{% endif %}">
+                    <div class="form-check">
+                        <input class="form-check-input task-toggle"
+                               type="checkbox"
+                               value="{{ task.id }}"
+                               id="task-{{ task.id }}"
+                               {% if task.completed %}checked{% endif %}
+                               data-task-id="{{ task.id }}">
+                        <label class="form-check-label task-label" for="task-{{ task.id }}">
+                            <span class="task-title">{{ task.title }}</span>
+                            {% if task.description %}
+                            <span class="task-description">{{ task.description }}</span>
+                            {% endif %}
+                        </label>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="mission-hero-progress-bar mt-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="small text-muted">{{ today_mission.tasks|length }} task{{ 's' if today_mission.tasks|length != 1 else '' }}</span>
+                    <span class="fw-semibold small">{{ today_mission.get_completion_percentage()|int }}%</span>
+                </div>
+                <div class="progress" role="progressbar" aria-valuenow="{{ today_mission.get_completion_percentage()|int }}" aria-valuemin="0" aria-valuemax="100" style="height: 8px;">
+                    <div class="progress-bar" style="width: {{ today_mission.get_completion_percentage() }}%;"></div>
+                </div>
+            </div>
+        </div>
+
+        {# Mark Complete button (no logic) #}
+        <div class="mission-hero-action">
+            <button class="btn btn-mark-complete w-100" type="button">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="me-2">
+                    <polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                </svg>
+                Mark Complete
+            </button>
         </div>
     </div>
-    {% endfor %}
-</div>
-{% else %}
+</section>
+
+{# ── Mission History ──────────────────────────────────────────────────── #}
+{% if missions and missions|length > 0 %}
+<section class="mb-4">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+        <h2 class="card-section-header mb-0">Mission History</h2>
+        <span class="badge rounded-pill bg-light text-muted border">{{ missions|length }} total</span>
+    </div>
+
+    <div class="mission-grid">
+        {% for mission in missions %}
+        <div class="mission-card">
+            <div class="mission-card-header">
+                <div style="min-width: 0; margin-right: var(--space-lg);">
+                    <h3 class="mission-title">{{ mission.title }}</h3>
+                    <div class="mission-date">{{ mission.mission_date.strftime('%d %b %Y') }}</div>
+                </div>
+                <span class="badge rounded-pill flex-shrink-0 {% if mission.status == 'Completed' %}text-bg-success{% elif mission.status == 'In Progress' %}text-bg-warning{% else %}text-bg-secondary{% endif %}">
+                    {{ mission.status }}
+                </span>
+            </div>
+
+            <p class="small text-muted mb-3">{{ mission.subject.name }}</p>
+
+            <div class="mission-progress">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="mission-task-count">{{ mission.tasks|length }} task{{ 's' if mission.tasks|length != 1 else '' }}</span>
+                    <span class="fw-semibold small">{{ mission.get_completion_percentage()|int }}%</span>
+                </div>
+                <div class="progress" role="progressbar" aria-valuenow="{{ mission.get_completion_percentage()|int }}" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar" style="width: {{ mission.get_completion_percentage() }}%"></div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+{% if not today_mission %}
 <div class="card border-0">
     <div class="card-body">
         <div class="empty-state">
@@ -44,10 +189,14 @@
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/>
                 </svg>
             </div>
-            <h3 class="empty-title">No Missions Yet</h3>
+            <h3 class="empty-title">No Daily Mission</h3>
             <p class="empty-description">Create a study plan to begin receiving daily missions tailored to your curriculum.</p>
         </div>
     </div>
 </div>
 {% endif %}
+{% endblock %}
+
+{% block extra_head %}
+<script src="{{ url_for('static', filename='js/mission.js') }}"></script>
 {% endblock %}

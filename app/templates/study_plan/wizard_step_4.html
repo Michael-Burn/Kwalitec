@@ -27,6 +27,27 @@
         {% endfor %}
     </div>
 
+    {% if curriculum_topics %}
+    {# ── Curriculum-powered completed topics checklist ─────────── #}
+    <div class="wizard-field-group wizard-conditional-field" id="curriculum-topic-field" style="display: none;">
+        <label class="form-label">Which topics have you already completed?</label>
+        <small class="wizard-field-hint">Select all curriculum topics that you have already finished studying.</small>
+        <div class="wizard-option-list" style="margin-top: var(--space-md);" id="curriculum-topic-list">
+            {% for topic in curriculum_topics %}
+            <label class="wizard-option-row" style="cursor: pointer;">
+                <input type="checkbox" name="curriculum_topic" value="{{ topic.code }}"
+                       class="wizard-option-input"
+                       {% if topic.code in completed_curriculum_topics %}checked{% endif %}>
+                <div class="wizard-option-row-body">
+                    <div class="wizard-option-row-title">{{ topic.code }} &mdash; {{ topic.title }}</div>
+                    <div class="wizard-option-row-desc">{{ topic.description }}</div>
+                </div>
+            </label>
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+    {# ── Free-text topic field (unsupported examination) ───────────── #}
     <div class="wizard-field-group wizard-conditional-field" id="current-topic-field" style="display: none;">
         <label class="form-label" for="current_topic">{{ form.current_topic.label.text }}</label>
         {% if form.current_topic.errors %}
@@ -37,20 +58,27 @@
         {{ form.current_topic(class="form-control", placeholder="e.g., Statistical Distributions") }}
         <small class="wizard-field-hint">Tell us the specific topic you're on so we can pick up from there.</small>
     </div>
+    {% endif %}
 </form>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     var radios = document.querySelectorAll('input[name="current_position"]');
     var topicField = document.getElementById('current-topic-field');
+    var curriculumTopicField = document.getElementById('curriculum-topic-field');
+
     function toggleTopic() {
         var selected = document.querySelector('input[name="current_position"]:checked');
-        if (selected && selected.value === 'learning') {
-            topicField.style.display = 'block';
-        } else {
-            topicField.style.display = 'none';
+        var isLearning = selected && selected.value === 'learning';
+
+        if (topicField) {
+            topicField.style.display = isLearning ? 'block' : 'none';
+        }
+        if (curriculumTopicField) {
+            curriculumTopicField.style.display = isLearning ? 'block' : 'none';
         }
     }
+
     radios.forEach(function(r) { r.addEventListener('change', toggleTopic); });
     toggleTopic();
 });

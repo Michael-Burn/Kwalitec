@@ -44,6 +44,18 @@ class StudyPlan(db.Model):
         nullable=False,
         comment="Preferred study session length in minutes (30/45/60/90/120)",
     )
+    curriculum_version: str = db.Column(
+        db.String(20),
+        nullable=True,
+        default=None,
+        comment="Curriculum version this plan was created against",
+    )
+    curriculum_topic_code: str = db.Column(
+        db.String(50),
+        nullable=True,
+        default=None,
+        comment="Official curriculum topic code currently being studied (e.g., 'CS1-A')",
+    )
     active: bool = db.Column(db.Boolean, default=False, nullable=False)
     created_at: datetime = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
 

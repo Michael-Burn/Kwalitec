@@ -23,6 +23,7 @@ class TopicProgress(db.Model):
     STAGE_PRACTISING = "Practising"
     STAGE_MASTERED = "Mastered"
     STAGE_NEEDS_REVIEW = "Needs Review"
+    STAGE_COMPLETED = "Completed"
 
     STAGES = [
         STAGE_NOT_STARTED,
@@ -30,6 +31,7 @@ class TopicProgress(db.Model):
         STAGE_PRACTISING,
         STAGE_MASTERED,
         STAGE_NEEDS_REVIEW,
+        STAGE_COMPLETED,
     ]
 
     id: int = db.Column(db.Integer, primary_key=True)

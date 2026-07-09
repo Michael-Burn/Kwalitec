@@ -11,8 +11,13 @@ from flask_login import current_user, login_required
 from app.extensions import db
 from app.mission.forms import MissionReviewForm, MistakeForm
 from app.models.mission import Mission, MissionTask
+from app.services.curriculum_engine_service import (
+    CurriculumEngineService,
+)
 from app.services.learning_service import LearningService
 from app.services.mission_service import MissionService
+from app.services.readiness_service import ReadinessService
+from app.services.study_plan_service import StudyPlanService
 
 logger = logging.getLogger(__name__)
 
@@ -22,15 +27,42 @@ mission_bp = Blueprint("mission", __name__, url_prefix="/missions")
 @mission_bp.get("/")
 @login_required
 def missions():
-    """List all missions for the current user."""
-    missions_list = Mission.query.filter_by(user_id=current_user.id).order_by(
+    """Daily mission page with full context."""
+    user_id = current_user.id
+
+    missions_list = Mission.query.filter_by(user_id=user_id).order_by(
         Mission.mission_date.desc()
     ).all()
-    
+
+    # Today's mission
+    today_mission = MissionService.get_today_mission(user_id)
+
+    # Active study plan (for estimated time)
+    active_study_plan = StudyPlanService.get_user_active_plan(user_id)
+
+    # Curriculum summary (for today's topic code/title and readiness)
+    curriculum_summary = None
+    readiness_summary = None
+    if active_study_plan:
+        try:
+            curriculum_summary = CurriculumEngineService().build_student_curriculum(
+                active_study_plan
+            )
+            if curriculum_summary is not None:
+                from app.services.planning_service import PlanningService
+
+                readiness_summary = ReadinessService.calculate_readiness(curriculum_summary)
+        except Exception:
+            logger.warning("Could not build curriculum summary for user %s", user_id, exc_info=True)
+
     return render_template(
         "mission/index.html",
-        title="Missions",
+        title="Daily Mission",
         missions=missions_list,
+        today_mission=today_mission,
+        active_study_plan=active_study_plan,
+        curriculum_summary=curriculum_summary,
+        readiness_summary=readiness_summary,
     )
 
 

@@ -57,6 +57,14 @@
                 <span class="wizard-review-value">{{ review_data.current_topic }}</span>
             </div>
             {% endif %}
+            {% if review_data.completed_curriculum_topics %}
+            <div class="wizard-review-item" style="flex-direction: column; align-items: flex-start; gap: var(--space-xs);">
+                <span class="wizard-review-label">Completed Topics</span>
+                {% for topic_code in review_data.completed_curriculum_topics %}
+                <span class="wizard-review-value" style="text-align: left; font-size: var(--font-sm);">{{ topic_code }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
         </div>
     </div>
 

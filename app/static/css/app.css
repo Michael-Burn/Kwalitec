@@ -963,6 +963,110 @@ a:hover { color: var(--color-accent); }
     padding: var(--space-xl);
 }
 
+/* ── Command Cards (Dashboard Six-Card Layout) ─────────────────────────── */
+.command-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.command-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
+.command-card-header {
+    align-items: center;
+    border-bottom: 1px solid var(--color-border-light);
+    display: flex;
+    gap: var(--space-md);
+    padding: var(--space-lg) var(--space-xl);
+}
+
+.command-card-icon {
+    align-items: center;
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-shrink: 0;
+    height: 40px;
+    justify-content: center;
+    width: 40px;
+}
+
+.command-card-title {
+    color: var(--color-text);
+    font-size: var(--font-lg);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.01em;
+    margin: 0;
+    text-transform: none;
+}
+
+.command-card-body {
+    flex: 1;
+    padding: var(--space-xl);
+}
+
+.command-metric {
+    align-items: baseline;
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-sm) 0;
+}
+
+.command-metric + .command-metric {
+    border-top: 1px solid var(--color-border-light);
+}
+
+.command-metric-label {
+    color: var(--color-text-muted);
+    font-size: var(--font-sm);
+    font-weight: var(--font-weight-medium);
+    min-width: 0;
+    padding-right: var(--space-md);
+}
+
+.command-metric-value {
+    color: var(--color-text);
+    font-size: var(--font-base);
+    font-weight: var(--font-weight-semibold);
+    text-align: right;
+    white-space: nowrap;
+}
+
+.command-hero-metric {
+    text-align: center;
+}
+
+.command-hero-value {
+    color: var(--color-info);
+    display: block;
+    font-size: var(--font-4xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+}
+
+.command-hero-label {
+    color: var(--color-text-muted);
+    display: block;
+    font-size: var(--font-sm);
+    font-weight: var(--font-weight-medium);
+    margin-top: var(--space-xs);
+}
+
+.command-phase {
+    text-align: center;
+}
+
+.command-time-badge {
+    background: var(--color-bg);
+}
+
 /* ── Mission Page ─────────────────────────────────────────────────────── */
 .mission-grid {
     display: grid;
@@ -1009,6 +1113,165 @@ a:hover { color: var(--color-accent); }
 .mission-card .mission-task-count {
     color: var(--color-text-muted);
     font-size: var(--font-sm);
+}
+
+/* ── Mission Hero (Today's Mission) ───────────────────────────────────── */
+.mission-hero-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+}
+
+.mission-hero-header {
+    align-items: center;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border-light);
+    display: flex;
+    gap: var(--space-lg);
+    padding: var(--space-lg) var(--space-xl);
+}
+
+.mission-hero-date {
+    color: var(--color-text-secondary);
+    font-size: var(--font-base);
+    font-weight: var(--font-weight-medium);
+}
+
+.mission-hero-topic {
+    padding: var(--space-xl) var(--space-xl) var(--space-lg);
+}
+
+.mission-hero-topic-label {
+    color: var(--color-text-muted);
+    font-size: var(--font-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-xs);
+    display: block;
+}
+
+.mission-hero-topic-title {
+    color: var(--color-text);
+    font-size: var(--font-3xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.02em;
+    line-height: var(--line-height-tight);
+    margin: 0;
+}
+
+/* Metrics row */
+.mission-hero-metrics {
+    display: flex;
+    gap: var(--space-xl);
+    padding: 0 var(--space-xl) var(--space-xl);
+}
+
+.mission-hero-metric-item {
+    align-items: flex-start;
+    background: var(--color-bg);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex: 1;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+}
+
+.mission-hero-metric-icon {
+    align-items: center;
+    background: var(--color-info-bg);
+    border-radius: var(--radius-md);
+    color: var(--color-info);
+    display: flex;
+    flex-shrink: 0;
+    height: 44px;
+    justify-content: center;
+    width: 44px;
+}
+
+.mission-hero-metric-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    min-width: 0;
+}
+
+.mission-hero-metric-label {
+    color: var(--color-text-muted);
+    font-size: var(--font-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+.mission-hero-metric-value {
+    color: var(--color-text);
+    font-size: var(--font-xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+}
+
+/* Why this mission */
+.mission-hero-why {
+    align-items: flex-start;
+    background: var(--color-info-bg);
+    border-radius: var(--radius-lg);
+    display: flex;
+    gap: var(--space-md);
+    margin: 0 var(--space-xl) var(--space-xl);
+    padding: var(--space-lg) var(--space-xl);
+}
+
+.mission-hero-why-label {
+    color: var(--color-info);
+    display: block;
+    font-size: var(--font-sm);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-xs);
+}
+
+.mission-hero-why-text {
+    color: var(--color-text-secondary);
+    font-size: var(--font-base);
+    line-height: var(--line-height-normal);
+    margin: 0;
+}
+
+/* Tasks inside the hero */
+.mission-hero-tasks {
+    border-top: 1px solid var(--color-border-light);
+    padding: var(--space-xl);
+}
+
+.mission-hero-progress-bar {
+    /* shared with existing styles */
+}
+
+/* Mark Complete button */
+.btn-mark-complete {
+    align-items: center;
+    background: var(--color-success);
+    border: none;
+    border-radius: var(--radius-md);
+    color: var(--color-text-inverse);
+    display: flex;
+    font-size: var(--font-lg);
+    font-weight: var(--font-weight-semibold);
+    justify-content: center;
+    margin: 0 var(--space-xl) var(--space-xl);
+    padding: var(--space-md) var(--space-xl);
+    transition: all var(--transition-base);
+}
+
+.btn-mark-complete:hover {
+    background: #0b7a6f;
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+    transform: translateY(-1px);
+}
+
+.btn-mark-complete:active {
+    transform: translateY(0);
+    box-shadow: none;
 }
 
 /* ── Settings Page ────────────────────────────────────────────────────── */
@@ -1145,6 +1408,14 @@ a:hover { color: var(--color-accent); }
     .ready-score-circle .score-value {
         font-size: var(--font-3xl);
     }
+
+    .command-card-header {
+        padding: var(--space-md) var(--space-lg);
+    }
+
+    .command-card-body {
+        padding: var(--space-lg);
+    }
 }
 
 @media (max-width: 767.98px) {
@@ -1192,6 +1463,10 @@ a:hover { color: var(--color-accent); }
     .metric-pill .metric-value {
         font-size: var(--font-lg);
     }
+
+    .command-hero-value {
+        font-size: var(--font-3xl);
+    }
 }
 
 @media (max-width: 575.98px) {
@@ -1215,7 +1490,21 @@ a:hover { color: var(--color-accent); }
     .ready-score-circle .score-value {
         font-size: var(--font-2xl);
     }
-}/* ── Landing Page Responsive ──────────────────────────────────────────── */
+
+    .command-card-header {
+        padding: var(--space-md);
+    }
+
+    .command-card-body {
+        padding: var(--space-md);
+    }
+
+    .command-hero-value {
+        font-size: var(--font-2xl);
+    }
+}
+
+/* ── Landing Page Responsive ──────────────────────────────────────────── */
 @media (max-width: 991.98px) {
     .landing-split {
         flex-direction: column;
@@ -1317,3 +1606,190 @@ a:hover { color: var(--color-accent); }
         height: 140px;
     }
 }
+
+/* ── Curriculum Roadmap ──────────────────────────────────────────────── */
+.roadmap-section {
+    margin-bottom: var(--space-3xl);
+}
+
+.roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-lg);
+}
+
+/* ── Roadmap Card ────────────────────────────────────────────────────── */
+.roadmap-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.roadmap-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+/* Card header — order number + status badge */
+.roadmap-card-header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-lg) var(--space-xl) var(--space-sm);
+}
+
+.roadmap-card-order {
+    align-items: center;
+    background: var(--color-bg);
+    border-radius: var(--radius-full);
+    color: var(--color-text-secondary);
+    display: flex;
+    font-size: var(--font-sm);
+    font-weight: var(--font-weight-semibold);
+    height: 32px;
+    justify-content: center;
+    width: 32px;
+}
+
+/* Card body */
+.roadmap-card-body {
+    flex: 1;
+    padding: 0 var(--space-xl) var(--space-lg);
+}
+
+.roadmap-card-title {
+    color: var(--color-text);
+    font-size: var(--font-lg);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+    margin-bottom: var(--space-lg);
+}
+
+.roadmap-card-metrics {
+    display: flex;
+    gap: var(--space-xl);
+    flex-wrap: wrap;
+}
+
+.roadmap-metric {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.roadmap-metric-label {
+    color: var(--color-text-muted);
+    font-size: var(--font-xs);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.roadmap-metric-value {
+    color: var(--color-text);
+    font-size: var(--font-base);
+    font-weight: var(--font-weight-semibold);
+}
+
+/* Learning Outcomes slot */
+.roadmap-card-outcomes {
+    align-items: center;
+    background: var(--color-bg);
+    border-top: 1px solid var(--color-border-light);
+    display: flex;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-xl);
+}
+
+.roadmap-outcomes-label {
+    color: var(--color-text-muted);
+    font-size: var(--font-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+.roadmap-outcomes-placeholder {
+    color: var(--color-text-muted);
+    font-size: var(--font-sm);
+}
+
+/* ── Status Badges ───────────────────────────────────────────────────── */
+.roadmap-badge {
+    border-radius: var(--radius-full);
+    font-size: var(--font-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.02em;
+    padding: 0.35em 0.85em;
+    text-transform: uppercase;
+}
+
+/* Completed — green */
+.roadmap-badge--completed {
+    background: var(--color-success-bg);
+    color: var(--color-success);
+}
+
+/* Learning / current — blue */
+.roadmap-badge--learning {
+    background: var(--color-info-bg);
+    color: var(--color-info);
+}
+
+/* Next — accent (purple) */
+.roadmap-badge--next {
+    background: #f3eefb;
+    color: var(--color-accent-light);
+}
+
+/* Not Started — neutral */
+.roadmap-badge--not-started {
+    background: var(--color-border-light);
+    color: var(--color-text-muted);
+}
+
+/* ── Card State Borders ──────────────────────────────────────────────── */
+
+/* Completed — green left accent */
+.roadmap-card--completed {
+    border-left: 3px solid var(--color-success);
+}
+
+/* Learning — blue left accent */
+.roadmap-card--learning {
+    border-left: 3px solid var(--color-info);
+}
+
+/* Next — accent (purple) left accent */
+.roadmap-card--next {
+    border-left: 3px solid var(--color-accent-light);
+}
+
+/* Not Started — neutral */
+.roadmap-card--not-started {
+    border-left: 3px solid var(--color-border);
+}
+
+/* ── Roadmap Responsive ──────────────────────────────────────────────── */
+@media (max-width: 575.98px) {
+    .roadmap-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+
+    .roadmap-card-header {
+        padding: var(--space-md) var(--space-lg) var(--space-sm);
+    }
+
+    .roadmap-card-body {
+        padding: 0 var(--space-lg) var(--space-md);
+    }
+
+    .roadmap-card-outcomes {
+        padding: var(--space-md) var(--space-lg);
+    }
+}
+

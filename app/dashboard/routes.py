@@ -10,7 +10,12 @@ from flask_login import current_user, login_required
 
 from app.services.adaptive_learning_service import AdaptiveLearningService
 from app.services.burnout_monitor import BurnoutMonitor
+from app.services.curriculum_engine_service import (
+    CurriculumEngineService,
+    StudentCurriculumSummary,
+)
 from app.services.exam_timeline import ExamTimeline
+from app.services.time_engine_service import TimeEngineService
 from app.services.mission_optimizer import MissionOptimizer
 from app.services.planning_service import PlanningService
 from app.services.readiness_service import ReadinessService
@@ -140,6 +145,27 @@ def index():
         user_id,
     )
 
+    # Curriculum summary via CurriculumEngineService (no local calculations)
+    curriculum_summary: StudentCurriculumSummary | None = None
+    readiness_summary = None
+    if active_study_plan:
+        curriculum_summary = _timed_call(
+            "curriculum_summary",
+            CurriculumEngineService().build_student_curriculum,
+            active_study_plan,
+        )
+        if curriculum_summary is not None:
+            readiness_summary = ReadinessService.calculate_readiness(curriculum_summary)
+
+    # Time status via TimeEngineService
+    time_summary = None
+    if active_study_plan:
+        time_summary = _timed_call(
+            "time_summary",
+            TimeEngineService.calculate_time_summary,
+            active_study_plan,
+        )
+
     return render_template(
         "dashboard/index.html",
         title="Dashboard",
@@ -158,4 +184,7 @@ def index():
         burnout_status=burnout_status or {},
         decision_journal=decision_journal or [],
         decision_summary=decision_summary or {},
+        curriculum_summary=curriculum_summary,
+        readiness_summary=readiness_summary,
+        time_summary=time_summary,
     )
