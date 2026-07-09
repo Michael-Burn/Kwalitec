@@ -459,6 +459,16 @@ a:hover { color: var(--color-accent); }
     border-color: var(--color-info);
 }
 
+.form-check-input:focus {
+    border-color: var(--color-info);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    outline: none;
+}
+
+.form-check-label {
+    cursor: pointer;
+}
+
 /* ── Buttons ──────────────────────────────────────────────────────────── */
 .btn {
     border-radius: var(--radius-md);

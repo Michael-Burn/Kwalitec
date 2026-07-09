@@ -8,7 +8,6 @@ from flask_wtf import FlaskForm
 from wtforms import (
     IntegerField,
     RadioField,
-    SelectField,
     StringField,
     SubmitField,
     validators,
@@ -19,7 +18,7 @@ from wtforms.fields import DateField
 class ExamSelectionForm(FlaskForm):
     """Step 1: Select the examination."""
 
-    exam_name = SelectField(
+    exam_name = RadioField(
         "Examination",
         choices=[
             ("A-Level", "A-Level"),
@@ -136,7 +135,7 @@ class StudyPreferenceForm(FlaskForm):
 class TargetGradeForm(FlaskForm):
     """Step 7: Select target grade."""
 
-    target_grade = SelectField(
+    target_grade = RadioField(
         "Target Grade",
         choices=[
             ("A", "A - Excellence"),

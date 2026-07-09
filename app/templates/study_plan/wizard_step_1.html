@@ -20,8 +20,8 @@
             {% for subfield in form.exam_name %}
                 {% if subfield.type != 'CSRFTokenField' %}
                 <div class="form-check">
-                    {{ subfield(class="form-check-input", id="exam_" + loop.index|string) }}
-                    <label class="form-check-label" for="exam_{{ loop.index }}">
+                    {{ subfield(class="form-check-input") }}
+                    <label class="form-check-label" for="{{ subfield.id }}">
                         {{ subfield.label.text }}
                     </label>
                 </div>
