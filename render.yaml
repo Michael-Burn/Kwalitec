@@ -17,7 +17,3 @@ services:
         fromDatabase:
           name: kwalitec-db
           property: connectionString
-
-databases:
-  - name: kwalitec-db
-    plan: free
