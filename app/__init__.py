@@ -272,6 +272,7 @@ def _init_extensions(app: Flask) -> None:
 
     login_manager.init_app(app)
     login_manager.login_view = "auth.login"
+    login_manager.login_message = ""
     login_manager.login_message_category = "info"
 
     # Import models to register them with SQLAlchemy

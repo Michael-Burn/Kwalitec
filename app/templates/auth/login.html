@@ -68,7 +68,18 @@
     <section class="landing-form-side" aria-label="Sign in">
         <div class="landing-card">
             <h2 class="landing-card-title">Welcome Back</h2>
-            <p class="landing-card-subtitle">Sign in to continue your study journey.</p>
+            {% if is_redirected %}
+                <div class="landing-signin-hint" role="status">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="16" x2="12" y2="12"/>
+                        <line x1="12" y1="8" x2="12.01" y2="8"/>
+                    </svg>
+                    <span>Please sign in to continue to your dashboard.</span>
+                </div>
+            {% else %}
+                <p class="landing-card-subtitle">Sign in to continue your study journey.</p>
+            {% endif %}
 
             <form method="post" novalidate>
                 {{ form.hidden_tag() }}

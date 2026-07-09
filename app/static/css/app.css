@@ -795,6 +795,28 @@ a:hover { color: var(--color-accent); }
     box-shadow: var(--shadow-md);
 }
 
+/* Inline sign-in hint (replaces full-width flash banner) */
+.landing-signin-hint {
+    align-items: flex-start;
+    background: var(--color-info-bg);
+    border: 1px solid rgba(37, 99, 235, 0.15);
+    border-radius: var(--radius-md);
+    color: var(--color-info);
+    display: flex;
+    font-size: 14px;
+    font-weight: var(--font-weight-medium);
+    gap: var(--space-md);
+    line-height: var(--line-height-normal);
+    margin-bottom: var(--space-2xl);
+    padding: var(--space-md) var(--space-lg);
+}
+
+.landing-signin-hint svg {
+    flex-shrink: 0;
+    margin-top: 1px;
+    opacity: 0.7;
+}
+
 /* Larger form inputs on landing */
 .landing-card .form-control-lg {
     font-size: 16px;

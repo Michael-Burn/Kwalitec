@@ -19,6 +19,8 @@ def login():
         return redirect(url_for("dashboard.index"))
 
     form = LoginForm()
+    is_redirected = request.args.get("next") is not None
+
     if form.validate_on_submit():
         email = form.email.data.lower().strip()
         user = User.query.filter_by(email=email).first()
@@ -38,7 +40,7 @@ def login():
 
         flash("Invalid email or password.", "danger")
 
-    return render_template("auth/login.html", form=form, title="Sign in")
+    return render_template("auth/login.html", form=form, title="Sign in", is_redirected=is_redirected)
 
 
 @auth_bp.post("/logout")
