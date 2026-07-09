@@ -1,42 +1,49 @@
 {% extends "study_plan/wizard_base.html" %}
 
+{% set wizard_question = "What paper or subject are you studying?" %}
+{% set wizard_helper = "Different papers have different syllabi. Tell us which one you're sitting so we can build the right plan." %}
+{% set button_text = "Next" %}
+
 {% block form_content %}
 <form id="wizard-form" method="post" novalidate>
     {{ form.hidden_tag() }}
-    
-    <div class="mb-4">
-        <p class="text-secondary mb-4">Tell us when your exam is and what session it is.</p>
-        
-        <!-- Exam Sitting -->
-        <div class="mb-4">
-            {{ form.exam_sitting.label(class="form-label fw-semibold") }}
-            {% if form.exam_sitting.errors %}
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {% for error in form.exam_sitting.errors %}
-                <span>{{ error }}</span>
-                {% endfor %}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-            {% endif %}
-            {{ form.exam_sitting(class="form-control" + (" is-invalid" if form.exam_sitting.errors else "")) }}
-            <small class="text-secondary d-block mt-2">{{ form.exam_sitting.description }}</small>
-        </div>
 
-        <!-- Exam Date -->
-        <div class="mb-4">
-            {{ form.exam_date.label(class="form-label fw-semibold") }}
-            {% if form.exam_date.errors %}
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {% for error in form.exam_date.errors %}
-                <span>{{ error }}</span>
-                {% endfor %}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-            {% endif %}
-            {{ form.exam_date(class="form-control" + (" is-invalid" if form.exam_date.errors else ""), type="date") }}
+    {% if category.free_text_subject %}
+    <div class="wizard-field-group">
+        <label class="form-label" for="free_text_subject">{{ form.free_text_subject.label.text }}</label>
+        {% if form.free_text_subject.errors %}
+        <div class="alert alert-danger" role="alert">
+            {% for error in form.free_text_subject.errors %}{{ error }}{% endfor %}
         </div>
+        {% endif %}
+        {{ form.free_text_subject(class="form-control", placeholder="e.g., Actuarial Science") }}
+        <small class="wizard-field-hint">Enter the name of your subject or module.</small>
     </div>
+    {% else %}
+    {% if form.exam_paper.errors %}
+    <div class="alert alert-danger" role="alert">
+        {% for error in form.exam_paper.errors %}{{ error }}{% endfor %}
+    </div>
+    {% endif %}
+    <div class="wizard-option-grid">
+        {% for subfield in form.exam_paper %}
+        {% if subfield.type != 'CSRFTokenField' %}
+        <label class="wizard-option-card" for="{{ subfield.id }}">
+            {{ subfield(class="wizard-option-input") }}
+            <div class="wizard-option-body">
+                <div class="wizard-option-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                    </svg>
+                </div>
+                <div class="wizard-option-text">
+                    <div class="wizard-option-title">{{ subfield.label.text }}</div>
+                </div>
+            </div>
+        </label>
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
 </form>
-{% set step_title = "Exam Sitting & Date" %}
-{% set button_text = "Next" %}
 {% endblock %}

@@ -22,19 +22,21 @@ class StudyPlanService:
         current_stage: str,
         study_preference: str,
         target_grade: str,
+        preferred_session_minutes: int = 60,
     ) -> StudyPlan:
         """Create a new study plan with associated week plans.
 
         Args:
             user_id: The ID of the user creating the study plan.
-            exam_name: Name of the exam (e.g., "A-Level").
-            exam_sitting: Exam sitting/session (e.g., "June 2026").
+            exam_name: Name of the exam (e.g., "IFoA CS1").
+            exam_sitting: Exam sitting/session (e.g., "April 2027").
             exam_date: The date of the exam.
             weekday_study_minutes: Minutes per weekday for study.
             weekend_study_minutes: Minutes per weekend day for study.
-            current_stage: Current study position (e.g., "Chapter 1").
+            current_stage: Current study position (e.g., "Learning new material: Topic").
             study_preference: Study preference (Reading First, Questions First, Mixed).
             target_grade: Target grade to achieve.
+            preferred_session_minutes: Preferred study session length in minutes.
 
         Returns:
             StudyPlan: The created study plan with week plans.
@@ -61,6 +63,7 @@ class StudyPlanService:
             current_stage=current_stage,
             study_preference=study_preference,
             target_grade=target_grade,
+            preferred_session_minutes=preferred_session_minutes,
             active=True,
         )
 

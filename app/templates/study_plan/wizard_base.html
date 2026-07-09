@@ -1,43 +1,55 @@
 {% extends "layouts/base.html" %}
 
+{% block extra_head %}
+<link href="{{ url_for('static', filename='css/wizard.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
-<div class="container-md py-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-6">
-            <!-- Wizard Header -->
-            <div class="mb-5 text-center">
-                <h1 class="display-6 fw-bold mb-2">Study Plan Wizard</h1>
-                <p class="lead text-secondary">Step {{ step }} of {{ total_steps }}: {{ step_title }}</p>
+<div class="wizard-container">
+    <div class="wizard-inner">
+        <!-- Wizard Header -->
+        <div class="wizard-header">
+            <div class="wizard-step-indicator">
+                <span class="wizard-step-number">Step {{ step }}</span>
+                <span class="wizard-step-title">{{ step_title }}</span>
             </div>
+            <h1 class="wizard-heading">{{ wizard_question or step_title }}</h1>
+            {% if wizard_helper %}
+            <p class="wizard-helper">{{ wizard_helper }}</p>
+            {% endif %}
+        </div>
 
-            <!-- Progress Bar -->
-            <div class="mb-4">
-                <div class="progress" role="progressbar" 
-                     aria-valuenow="{{ (step / total_steps * 100)|int }}" 
-                     aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar" style="width: {{ (step / total_steps * 100)|int }}%"></div>
-                </div>
-                <small class="text-secondary d-block mt-2 text-center">{{ step }} of {{ total_steps }} completed</small>
+        <!-- Progress Bar -->
+        <div class="wizard-progress">
+            <div class="progress" role="progressbar"
+                 aria-valuenow="{{ (step / total_steps * 100)|int }}"
+                 aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar" style="width: {{ (step / total_steps * 100)|int }}%"></div>
             </div>
+            <div class="wizard-progress-labels">
+                {% for i in range(1, total_steps + 1) %}
+                <span class="wizard-progress-dot {% if i <= step %}active{% endif %} {% if i == step %}current{% endif %}"></span>
+                {% endfor %}
+            </div>
+        </div>
 
-            <!-- Form Content -->
-            <div class="card border-0 shadow-sm">
-                <div class="card-body p-4">
-                    {% block form_content %}{% endblock %}
-                </div>
-            </div>
+        <!-- Form Content -->
+        <div class="wizard-card">
+            {% block form_content %}{% endblock %}
+        </div>
 
-            <!-- Navigation -->
-            <div class="d-flex gap-2 mt-4">
-                {% if step > 1 %}
-                <a href="{{ url_for('study_plan.wizard_step', step=step-1) }}" class="btn btn-secondary flex-grow-1">
-                    ← Back
-                </a>
-                {% endif %}
-                <button type="submit" form="wizard-form" class="btn btn-primary {% if step == 1 %}w-100{% else %}flex-grow-1{% endif %}">
-                    {{ button_text or 'Next' }} →
-                </button>
-            </div>
+        <!-- Navigation -->
+        <div class="wizard-nav">
+            {% if step > 1 %}
+            <a href="{{ url_for('study_plan.wizard_step', step=step-1) }}" class="btn btn-ghost">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Back
+            </a>
+            {% endif %}
+            <button type="submit" form="wizard-form" class="btn btn-primary {% if step == 1 %}w-100{% endif %}">
+                {{ button_text or 'Next' }}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
         </div>
     </div>
 </div>

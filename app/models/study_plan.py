@@ -38,6 +38,12 @@ class StudyPlan(db.Model):
         comment="Reading First, Questions First, or Mixed",
     )
     target_grade: str = db.Column(db.String(50), nullable=False)  # e.g., "A", "B", "Pass"
+    preferred_session_minutes: int = db.Column(
+        db.Integer,
+        default=60,
+        nullable=False,
+        comment="Preferred study session length in minutes (30/45/60/90/120)",
+    )
     active: bool = db.Column(db.Boolean, default=False, nullable=False)
     created_at: datetime = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
 

@@ -1,38 +1,98 @@
-{% extends "layouts/base.html" %}
+{% extends "layouts/auth_base.html" %}
 
 {% block content %}
-<div class="row justify-content-center align-items-center auth-page">
-    <div class="col-12 col-sm-10 col-md-7 col-lg-5 col-xl-4">
-        <div class="card shadow-sm border-0">
-            <div class="card-body p-4 p-lg-5">
-                <p class="text-uppercase text-secondary small fw-semibold mb-2">Kwalitec</p>
-                <h1 class="h3 mb-2">Sign in</h1>
-                <p class="text-secondary mb-4">Return to disciplined, deliberate progress.</p>
+<div class="landing-split">
+    {# ── Left: Hero / product introduction ── #}
+    <section class="landing-hero" aria-label="Product introduction">
+        <div class="landing-hero-inner">
+            <a class="landing-logo" href="{{ url_for('auth.login') }}" aria-label="Kwalitec home">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                    <path d="M2 17l10 5 10-5"/>
+                    <path d="M2 12l10 5 10-5"/>
+                </svg>
+                <span>Kwalitec</span>
+            </a>
 
-                <form method="post" novalidate>
-                    {{ form.hidden_tag() }}
-                    <div class="mb-3">
-                        {{ form.email.label(class="form-label") }}
-                        {{ form.email(class="form-control", placeholder="you@example.com", autocomplete="email") }}
-                        {% for error in form.email.errors %}
-                            <div class="form-text text-danger">{{ error }}</div>
-                        {% endfor %}
-                    </div>
-                    <div class="mb-3">
-                        {{ form.password.label(class="form-label") }}
-                        {{ form.password(class="form-control", placeholder="Password", autocomplete="current-password") }}
-                        {% for error in form.password.errors %}
-                            <div class="form-text text-danger">{{ error }}</div>
-                        {% endfor %}
-                    </div>
-                    <div class="form-check mb-4">
-                        {{ form.remember_me(class="form-check-input") }}
-                        {{ form.remember_me.label(class="form-check-label") }}
-                    </div>
-                    {{ form.submit(class="btn btn-dark w-100") }}
-                </form>
+            <h1 class="landing-heading">Intelligent Exam Preparation</h1>
+            <p class="landing-tagline">Reduce decisions.<br>Increase learning.</p>
+
+            <p class="landing-paragraph">
+                Kwalitec automatically builds personalised study plans, daily missions
+                and intelligent recommendations so students always know exactly what
+                to study next.
+            </p>
+
+            <ul class="landing-features" role="list">
+                <li>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 2a10 10 0 1 0 10 10"/><path d="M22 2L12 12"/>
+                    </svg>
+                    <span>Adaptive Learning</span>
+                </li>
+                <li>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                    <span>Intelligent Study Planning</span>
+                </li>
+                <li>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/>
+                    </svg>
+                    <span>Daily Missions</span>
+                </li>
+                <li>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+                    </svg>
+                    <span>Exam Readiness Analytics</span>
+                </li>
+                <li>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span>Burnout Monitoring</span>
+                </li>
+            </ul>
+
+            <div class="landing-illustration" aria-hidden="true">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
             </div>
         </div>
-    </div>
+    </section>
+
+    {# ── Right: Login card ── #}
+    <section class="landing-form-side" aria-label="Sign in">
+        <div class="landing-card">
+            <h2 class="landing-card-title">Welcome Back</h2>
+            <p class="landing-card-subtitle">Sign in to continue your study journey.</p>
+
+            <form method="post" novalidate>
+                {{ form.hidden_tag() }}
+                <div class="mb-3">
+                    {{ form.email.label(class="form-label") }}
+                    {{ form.email(class="form-control form-control-lg", placeholder="you@example.com", autocomplete="email", aria_describedby="email-help") }}
+                    {% for error in form.email.errors %}
+                        <div id="email-help" class="form-text text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+                    {{ form.password.label(class="form-label") }}
+                    {{ form.password(class="form-control form-control-lg", placeholder="Password", autocomplete="current-password") }}
+                    {% for error in form.password.errors %}
+                        <div class="form-text text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="form-check mb-4">
+                    {{ form.remember_me(class="form-check-input") }}
+                    {{ form.remember_me.label(class="form-check-label") }}
+                </div>
+                {{ form.submit(class="btn btn-dark btn-lg w-100 landing-submit") }}
+            </form>
+        </div>
+    </section>
 </div>
 {% endblock %}

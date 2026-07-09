@@ -1,35 +1,38 @@
 {% extends "study_plan/wizard_base.html" %}
 
+{% set wizard_question = "What examination are you preparing for?" %}
+{% set wizard_helper = "This helps us understand the structure of your exam and tailor your study plan accordingly." %}
+{% set button_text = "Next" %}
+
 {% block form_content %}
 <form id="wizard-form" method="post" novalidate>
     {{ form.hidden_tag() }}
-    
-    <div class="mb-4">
-        <p class="text-secondary mb-3">Choose the examination you're preparing for.</p>
-        
-        {% if form.exam_name.errors %}
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {% for error in form.exam_name.errors %}
-            <span>{{ error }}</span>
-            {% endfor %}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-        {% endif %}
 
-        <div class="d-flex flex-column gap-2">
-            {% for subfield in form.exam_name %}
-                {% if subfield.type != 'CSRFTokenField' %}
-                <div class="form-check">
-                    {{ subfield(class="form-check-input") }}
-                    <label class="form-check-label" for="{{ subfield.id }}">
-                        {{ subfield.label.text }}
-                    </label>
+    {% if form.exam_category.errors %}
+    <div class="alert alert-danger" role="alert">
+        {% for error in form.exam_category.errors %}{{ error }}{% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="wizard-option-grid">
+        {% for category in categories %}
+        <label class="wizard-option-card" for="exam_category-{{ loop.index0 }}">
+            <input type="radio" name="exam_category" id="exam_category-{{ loop.index0 }}"
+                   value="{{ category.code }}" class="wizard-option-input"
+                   {% if form.exam_category.data == category.code %}checked{% endif %}>
+            <div class="wizard-option-body">
+                <div class="wizard-option-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                    </svg>
                 </div>
-                {% endif %}
-            {% endfor %}
-        </div>
+                <div class="wizard-option-text">
+                    <div class="wizard-option-title">{{ category.name }}</div>
+                    <div class="wizard-option-desc">{{ category.description }}</div>
+                </div>
+            </div>
+        </label>
+        {% endfor %}
     </div>
 </form>
-{% set step_title = "Select Examination" %}
-{% set button_text = "Next" %}
 {% endblock %}

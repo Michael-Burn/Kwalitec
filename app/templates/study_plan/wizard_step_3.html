@@ -1,25 +1,33 @@
 {% extends "study_plan/wizard_base.html" %}
 
+{% set wizard_question = "When is your examination?" %}
+{% set wizard_helper = "We use this to determine your study schedule and count down the days remaining." %}
+{% set button_text = "Next" %}
+
 {% block form_content %}
 <form id="wizard-form" method="post" novalidate>
     {{ form.hidden_tag() }}
-    
-    <div class="mb-4">
-        <p class="text-secondary mb-4">Where are you in your studies right now?</p>
-        
-        {{ form.current_stage.label(class="form-label fw-semibold") }}
-        {% if form.current_stage.errors %}
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {% for error in form.current_stage.errors %}
-            <span>{{ error }}</span>
-            {% endfor %}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+
+    <div class="wizard-field-group">
+        <label class="form-label" for="exam_sitting">{{ form.exam_sitting.label.text }}</label>
+        {% if form.exam_sitting.errors %}
+        <div class="alert alert-danger" role="alert">
+            {% for error in form.exam_sitting.errors %}{{ error }}{% endfor %}
         </div>
         {% endif %}
-        {{ form.current_stage(class="form-control" + (" is-invalid" if form.current_stage.errors else "")) }}
-        <small class="text-secondary d-block mt-2">{{ form.current_stage.description }}</small>
+        {{ form.exam_sitting(class="form-select") }}
+        <small class="wizard-field-hint">Choose the exam sitting you're targeting.</small>
+    </div>
+
+    <div class="wizard-field-group">
+        <label class="form-label" for="exam_date">{{ form.exam_date.label.text }}</label>
+        {% if form.exam_date.errors %}
+        <div class="alert alert-danger" role="alert">
+            {% for error in form.exam_date.errors %}{{ error }}{% endfor %}
+        </div>
+        {% endif %}
+        {{ form.exam_date(class="form-control", type="date") }}
+        <small class="wizard-field-hint">Enter the exact date of your exam.</small>
     </div>
 </form>
-{% set step_title = "Current Study Position" %}
-{% set button_text = "Next" %}
 {% endblock %}

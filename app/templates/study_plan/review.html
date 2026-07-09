@@ -1,69 +1,138 @@
 {% extends "study_plan/wizard_base.html" %}
 
+{% set wizard_question = "Review your study plan" %}
+{% set wizard_helper = "Take a moment to review everything. You can go back to any step to make changes." %}
+{% set button_text = "Create Study Plan" %}
+
 {% block form_content %}
 <form id="wizard-form" method="post" novalidate>
     {{ form.hidden_tag() }}
-    
-    <div class="mb-4">
-        <p class="text-secondary mb-4">Please review your study plan details before creation.</p>
-        
-        <!-- Study Plan Summary -->
-        <div class="card bg-light border-0 mb-4">
-            <div class="card-body">
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <small class="text-secondary">Examination</small>
-                        <div class="fw-semibold">{{ wizard_data.exam_name }}</div>
-                    </div>
-                    <div class="col-md-6">
-                        <small class="text-secondary">Exam Sitting</small>
-                        <div class="fw-semibold">{{ wizard_data.exam_sitting }}</div>
-                    </div>
-                    <div class="col-md-6">
-                        <small class="text-secondary">Exam Date</small>
-                        <div class="fw-semibold">{{ wizard_data.exam_date.strftime('%B %d, %Y') if wizard_data.exam_date is iterable and wizard_data.exam_date is not string else wizard_data.exam_date }}</div>
-                    </div>
-                    <div class="col-md-6">
-                        <small class="text-secondary">Current Position</small>
-                        <div class="fw-semibold">{{ wizard_data.current_stage }}</div>
-                    </div>
-                    <div class="col-md-6">
-                        <small class="text-secondary">Weekday Study Time</small>
-                        <div class="fw-semibold">{{ wizard_data.weekday_study_minutes }} minutes/day</div>
-                    </div>
-                    <div class="col-md-6">
-                        <small class="text-secondary">Weekend Study Time</small>
-                        <div class="fw-semibold">{{ wizard_data.weekend_study_minutes }} minutes/day</div>
-                    </div>
-                    <div class="col-md-6">
-                        <small class="text-secondary">Study Preference</small>
-                        <div class="fw-semibold">{{ wizard_data.study_preference }}</div>
-                    </div>
-                    <div class="col-md-6">
-                        <small class="text-secondary">Target Grade</small>
-                        <div class="fw-semibold">{{ wizard_data.target_grade }}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Confirmation -->
-        <div class="mb-4">
-            <div class="d-flex flex-column gap-2">
-                {% for subfield in form.confirm %}
-                    {% if subfield.type != 'CSRFTokenField' %}
-                    <div class="form-check">
-                        {{ subfield(class="form-check-input") }}
-                        <label class="form-check-label" for="{{ subfield.id }}">
-                            {{ subfield.label.text }}
-                        </label>
-                    </div>
-                    {% endif %}
-                {% endfor %}
+    <!-- Examination Section -->
+    <div class="wizard-review-section">
+        <div class="wizard-review-section-header">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+            <h3>Examination</h3>
+        </div>
+        <div class="wizard-review-items">
+            <div class="wizard-review-item">
+                <span class="wizard-review-label">Paper / Subject</span>
+                <span class="wizard-review-value">{{ review_data.paper_label or review_data.exam_name }}</span>
+            </div>
+            <div class="wizard-review-item">
+                <span class="wizard-review-label">Sitting</span>
+                <span class="wizard-review-value">{{ review_data.exam_sitting }}</span>
+            </div>
+            <div class="wizard-review-item">
+                <span class="wizard-review-label">Exam Date</span>
+                <span class="wizard-review-value">{{ review_data.exam_date_display }}</span>
+            </div>
+            {% if review_data.days_remaining is not none %}
+            <div class="wizard-review-item">
+                <span class="wizard-review-label">Days Remaining</span>
+                <span class="wizard-review-value wizard-review-highlight">{{ review_data.days_remaining }} days</span>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Current Position Section -->
+    <div class="wizard-review-section">
+        <div class="wizard-review-section-header">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+            </svg>
+            <h3>Current Position</h3>
+        </div>
+        <div class="wizard-review-items">
+            <div class="wizard-review-item">
+                <span class="wizard-review-label">Position</span>
+                <span class="wizard-review-value">{{ review_data.position_label }}</span>
+            </div>
+            {% if review_data.current_topic %}
+            <div class="wizard-review-item">
+                <span class="wizard-review-label">Current Topic</span>
+                <span class="wizard-review-value">{{ review_data.current_topic }}</span>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Availability Section -->
+    <div class="wizard-review-section">
+        <div class="wizard-review-section-header">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            <h3>Availability</h3>
+        </div>
+        <div class="wizard-review-items">
+            <div class="wizard-review-item">
+                <span class="wizard-review-label">Weekdays</span>
+                <span class="wizard-review-value">{{ review_data.weekday_study_minutes }} mins</span>
+            </div>
+            <div class="wizard-review-item">
+                <span class="wizard-review-label">Weekend</span>
+                <span class="wizard-review-value">{{ review_data.weekend_study_minutes }} mins</span>
+            </div>
+            <div class="wizard-review-item">
+                <span class="wizard-review-label">Session Length</span>
+                <span class="wizard-review-value">{{ review_data.preferred_session_minutes }} mins</span>
             </div>
         </div>
     </div>
+
+    <!-- Learning Style Section -->
+    <div class="wizard-review-section">
+        <div class="wizard-review-section-header">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+            </svg>
+            <h3>Learning Style</h3>
+        </div>
+        <div class="wizard-review-items">
+            <div class="wizard-review-item">
+                <span class="wizard-review-value">{{ review_data.study_preference }}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Target Section -->
+    <div class="wizard-review-section">
+        <div class="wizard-review-section-header">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+            </svg>
+            <h3>Target</h3>
+        </div>
+        <div class="wizard-review-items">
+            <div class="wizard-review-item">
+                <span class="wizard-review-value wizard-review-highlight">{{ review_data.target_grade }}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation -->
+    <div class="wizard-review-confirm">
+        {% if form.confirm.errors %}
+        <div class="alert alert-danger" role="alert">
+            {% for error in form.confirm.errors %}{{ error }}{% endfor %}
+        </div>
+        {% endif %}
+        <div class="wizard-option-list">
+            {% for subfield in form.confirm %}
+            {% if subfield.type != 'CSRFTokenField' %}
+            <label class="wizard-option-row" for="{{ subfield.id }}">
+                {{ subfield(class="wizard-option-input") }}
+                <div class="wizard-option-row-body">
+                    <div class="wizard-option-row-title">{{ subfield.label.text }}</div>
+                </div>
+            </label>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
 </form>
-{% set step_title = "Review & Confirm" %}
-{% set button_text = "Create Study Plan" %}
 {% endblock %}

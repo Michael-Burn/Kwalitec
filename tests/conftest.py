@@ -142,6 +142,7 @@ def _make_study_plan(uid):
         current_stage="Chapter 1",
         study_preference="Mixed",
         target_grade="A",
+        preferred_session_minutes=60,
         active=True,
     )
     _db.session.add(sp)

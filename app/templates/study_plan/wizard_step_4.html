@@ -1,49 +1,58 @@
 {% extends "study_plan/wizard_base.html" %}
 
+{% set wizard_question = "Where are you currently?" %}
+{% set wizard_helper = "Knowing your starting point helps us calibrate your plan and avoid recommending material you already know." %}
+{% set button_text = "Next" %}
+
 {% block form_content %}
 <form id="wizard-form" method="post" novalidate>
     {{ form.hidden_tag() }}
-    
-    <div class="mb-4">
-        <p class="text-secondary mb-4">How much time can you dedicate to studying?</p>
-        
-        <!-- Weekday Study Time -->
-        <div class="mb-4">
-            {{ form.weekday_study_minutes.label(class="form-label fw-semibold") }}
-            {% if form.weekday_study_minutes.errors %}
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {% for error in form.weekday_study_minutes.errors %}
-                <span>{{ error }}</span>
-                {% endfor %}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-            {% endif %}
-            {{ form.weekday_study_minutes(class="form-control" + (" is-invalid" if form.weekday_study_minutes.errors else ""), type="number", min="15", max="480") }}
-            <small class="text-secondary d-block mt-2">{{ form.weekday_study_minutes.description }}</small>
-        </div>
 
-        <!-- Weekend Study Time -->
-        <div class="mb-4">
-            {{ form.weekend_study_minutes.label(class="form-label fw-semibold") }}
-            {% if form.weekend_study_minutes.errors %}
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {% for error in form.weekend_study_minutes.errors %}
-                <span>{{ error }}</span>
-                {% endfor %}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-            {% endif %}
-            {{ form.weekend_study_minutes(class="form-control" + (" is-invalid" if form.weekend_study_minutes.errors else ""), type="number", min="15", max="480") }}
-            <small class="text-secondary d-block mt-2">{{ form.weekend_study_minutes.description }}</small>
-        </div>
+    {% if form.current_position.errors %}
+    <div class="alert alert-danger" role="alert">
+        {% for error in form.current_position.errors %}{{ error }}{% endfor %}
+    </div>
+    {% endif %}
 
-        <div class="alert alert-info" role="alert">
-            <small>
-                <strong>💡 Tip:</strong> Be realistic about your availability. You can adjust this later if needed.
-            </small>
+    <div class="wizard-option-list">
+        {% for subfield in form.current_position %}
+        {% if subfield.type != 'CSRFTokenField' %}
+        <label class="wizard-option-row" for="{{ subfield.id }}">
+            {{ subfield(class="wizard-option-input") }}
+            <div class="wizard-option-row-body">
+                <div class="wizard-option-row-title">{{ subfield.label.text }}</div>
+            </div>
+        </label>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="wizard-field-group wizard-conditional-field" id="current-topic-field" style="display: none;">
+        <label class="form-label" for="current_topic">{{ form.current_topic.label.text }}</label>
+        {% if form.current_topic.errors %}
+        <div class="alert alert-danger" role="alert">
+            {% for error in form.current_topic.errors %}{{ error }}{% endfor %}
         </div>
+        {% endif %}
+        {{ form.current_topic(class="form-control", placeholder="e.g., Statistical Distributions") }}
+        <small class="wizard-field-hint">Tell us the specific topic you're on so we can pick up from there.</small>
     </div>
 </form>
-{% set step_title = "Study Availability" %}
-{% set button_text = "Next" %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var radios = document.querySelectorAll('input[name="current_position"]');
+    var topicField = document.getElementById('current-topic-field');
+    function toggleTopic() {
+        var selected = document.querySelector('input[name="current_position"]:checked');
+        if (selected && selected.value === 'learning') {
+            topicField.style.display = 'block';
+        } else {
+            topicField.style.display = 'none';
+        }
+    }
+    radios.forEach(function(r) { r.addEventListener('change', toggleTopic); });
+    toggleTopic();
+});
+</script>
 {% endblock %}

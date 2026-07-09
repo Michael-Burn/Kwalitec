@@ -1,37 +1,44 @@
 {% extends "study_plan/wizard_base.html" %}
 
+{% set wizard_question = "How do you prefer to learn?" %}
+{% set wizard_helper = "Your learning style shapes the order of tasks in your daily missions." %}
+{% set button_text = "Next" %}
+
 {% block form_content %}
 <form id="wizard-form" method="post" novalidate>
     {{ form.hidden_tag() }}
-    
-    <div class="mb-4">
-        <p class="text-secondary mb-4">What's your preferred learning style?</p>
-        
-        {% if form.study_preference.errors %}
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {% for error in form.study_preference.errors %}
-            <span>{{ error }}</span>
-            {% endfor %}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-        {% endif %}
 
-        <div class="d-flex flex-column gap-3">
-            {% for subfield in form.study_preference %}
-                {% if subfield.type != 'CSRFTokenField' %}
-                <div class="form-check">
-                    {{ subfield(class="form-check-input") }}
-                    <label class="form-check-label" for="{{ subfield.id }}" style="font-size: 0.95rem; line-height: 1.5;">
-                        <strong>{{ subfield.label.text.split(' - ')[0] }}</strong>
-                        <br>
-                        <small class="text-secondary">{{ subfield.label.text.split(' - ')[1] if ' - ' in subfield.label.text else '' }}</small>
-                    </label>
-                </div>
-                {% endif %}
-            {% endfor %}
-        </div>
+    {% if form.study_preference.errors %}
+    <div class="alert alert-danger" role="alert">
+        {% for error in form.study_preference.errors %}{{ error }}{% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="wizard-option-list">
+        <label class="wizard-option-row" for="study_preference-0">
+            <input type="radio" name="study_preference" id="study_preference-0" value="Reading First" class="wizard-option-input"
+                   {% if form.study_preference.data == 'Reading First' %}checked{% endif %}>
+            <div class="wizard-option-row-body">
+                <div class="wizard-option-row-title">Reading First</div>
+                <div class="wizard-option-row-desc">Read the material first, then practice with questions. Best if you're new to the topic.</div>
+            </div>
+        </label>
+        <label class="wizard-option-row" for="study_preference-1">
+            <input type="radio" name="study_preference" id="study_preference-1" value="Questions First" class="wizard-option-input"
+                   {% if form.study_preference.data == 'Questions First' %}checked{% endif %}>
+            <div class="wizard-option-row-body">
+                <div class="wizard-option-row-title">Questions First</div>
+                <div class="wizard-option-row-desc">Start with practice questions, then read to fill gaps. Best if you learn by doing.</div>
+            </div>
+        </label>
+        <label class="wizard-option-row" for="study_preference-2">
+            <input type="radio" name="study_preference" id="study_preference-2" value="Mixed" class="wizard-option-input"
+                   {% if form.study_preference.data == 'Mixed' %}checked{% endif %}>
+            <div class="wizard-option-row-body">
+                <div class="wizard-option-row-title">Mixed</div>
+                <div class="wizard-option-row-desc">Alternate between reading and questions in each session. A balanced approach.</div>
+            </div>
+        </label>
     </div>
 </form>
-{% set step_title = "Study Preference" %}
-{% set button_text = "Next" %}
 {% endblock %}
