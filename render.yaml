@@ -4,7 +4,6 @@ services:
     env: python
     plan: free
     buildCommand: "pip install -r requirements.txt"
-    preDeployCommand: "flask --app wsgi.py db upgrade && flask --app wsgi.py create-admin"
     startCommand: "waitress-serve --port=$PORT wsgi:app"
 
     envVars:
@@ -21,6 +20,12 @@ services:
         fromDatabase:
           name: kwalitec-db
           property: connectionString
+
+      - key: ADMIN_EMAIL
+        sync: false
+
+      - key: ADMIN_PASSWORD
+        sync: false
 
 databases:
   - name: kwalitec-db

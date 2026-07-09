@@ -8,7 +8,11 @@ from alembic import context
 from flask import current_app
 
 config = context.config
-fileConfig(config.config_file_name)
+# Guard fileConfig: when Alembic runs programmatically (e.g. via
+# StartupService) config_file_name may be None, and re-applying the
+# alembic.ini logging config would clobber the application's logging setup.
+if config.config_file_name is not None:
+    fileConfig(config.config_file_name)
 target_db = current_app.extensions["migrate"].db
 target_metadata = target_db.metadata
 

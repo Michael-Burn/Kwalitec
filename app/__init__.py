@@ -242,6 +242,13 @@ def create_app(config_object: type | None = None) -> Flask:
     # Diagnose migration state at startup (read-only; never applies migrations)
     _log_migration_state(app)
 
+    # Production-only: apply migrations and bootstrap the admin user on the
+    # first application startup. Safe, idempotent, and never prevents the app
+    # from starting. No-op in development and testing.
+    from app.services.startup_service import StartupService
+
+    StartupService.run(app)
+
     logger.info("Kwalitec application created successfully")
     return app
 

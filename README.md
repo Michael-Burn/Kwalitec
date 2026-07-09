@@ -5,8 +5,8 @@ An intelligent learning platform that adapts study plans, tracks mastery, and op
 > Reduce decisions. Increase learning.
 
 [![Python](https://img.shields.io/badge/python-3.11+-blue?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
-[![Flask](https://img.shields.io/badge/flask-3.1-000000?style=flat-square&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
-[![Tests](https://img.shields.io/badge/tests-138%20passed-brightgreen?style=flat-square)](https://github.com)
+[![Flask](https://img.shields.io/badge/flask-3.1-000000?style=flat-square&logo=flask&logoColor=white)](https://www.python.org/)
+[![Tests](https://img.shields.io/badge/tests-157%20passed-brightgreen?style=flat-square)](https://github.com)
 [![Render](https://img.shields.io/badge/deploy-Render-46E3B7?style=flat-square)](https://render.com)
 [![License](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)](LICENSE)
 
@@ -28,7 +28,8 @@ Unlike generic study planners that leave you to decide what to work on, Kwalitec
 - **Burnout Monitor**—Automated workload pacing that flags when your study load risks unsustainable intensity.
 - **Secure Backup & Restore**—Export and restore your learning data so you never lose progress.
 - **Production-Ready Render Deployment**—One-click blueprint deploy to Render with PostgreSQL, pre-configured for production.
-- **Automated Test Suite**—133 tests covering models, services, routes, configuration, and error handling with a CI pipeline on every push.
+- **Automatic First-Run Database Initialization**—On production startup, migrations and admin creation run automatically—no shell access or pre-deploy commands needed.
+- **Automated Test Suite**—157 tests covering models, services, routes, configuration, startup initialization, and error handling with a CI pipeline on every push.
 
 ## Why Kwalitec?
 
@@ -52,13 +53,14 @@ kwalitec/
 │   ├── mission/                 # Mission management blueprint
 │   ├── models/                  # SQLAlchemy models
 │   ├── services/                # Business logic layer
+│   │   └── startup_service.py   # First-run DB initialization (production)
 │   ├── settings/                # User settings blueprint
 │   ├── study_plan/              # Study plan wizard blueprint
 │   ├── static/                  # CSS, JS, images
 │   ├── templates/               # Jinja2 templates
 │   └── utils/                   # Utility helpers
 ├── migrations/                  # Alembic migration scripts
-├── tests/                       # pytest test suite (133 tests)
+├── tests/                       # pytest test suite (157 tests)
 ├── .github/workflows/           # CI configuration
 ├── run.py                       # Development entry point
 ├── wsgi.py                      # Production WSGI entry point
@@ -158,31 +160,38 @@ The included `render.yaml` defines a Render web service with a PostgreSQL databa
    - Create a web service (`kwalitec`)
    - Provision a PostgreSQL database (`kwalitec-db`)
    - Install Python dependencies (build phase)
-   - Run database migrations and create the admin (pre-deploy phase, with `DATABASE_URL` available)
    - Start the app with Waitress via `wsgi:app`
+
+On the **first application startup**, the `StartupService` automatically:
+
+- Applies all pending Alembic migrations (equivalent to `flask db upgrade`) using the Alembic Python API
+- Creates the initial administrator user from `ADMIN_EMAIL` / `ADMIN_PASSWORD`
+
+This eliminates the need for shell access or pre-deploy commands. The
+initializer is production-safe: it is idempotent, never drops tables, never
+recreates existing users, never reruns migrations unnecessarily, and catches
+all exceptions so the application can always start. It only runs when
+`APP_ENV=production`; local development and pytest are unaffected.
 
 #### Environment Variables (Render)
 
 | Variable | Source | Description |
 |---|---|---|
-| `APP_ENV` | Static: `production` | Activates production config |
+| `APP_ENV` | Static: `production` | Activates production config and automatic startup initialization |
 | `FLASK_APP` | Static: `wsgi.py` | WSGI entry point |
 | `SECRET_KEY` | Auto-generated | Cryptographically random key |
 | `DATABASE_URL` | From database | PostgreSQL connection string |
+| `ADMIN_EMAIL` | Environment variable | Administrator email (required for first-run admin creation) |
+| `ADMIN_PASSWORD` | Environment variable | Administrator password (required for first-run admin creation) |
 
-After deployment, run database migrations and create the administrator:
+> **No shell access required.** Set `ADMIN_EMAIL` and `ADMIN_PASSWORD` in the
+> Render environment variables panel before the first deploy. The database
+> will be migrated and the admin user created automatically on startup. If
+> either variable is missing, a warning is logged and startup continues
+> without crashing—you can add them later and restart.
 
-```bash
-flask --app wsgi.py db upgrade
-```
-
-Then set the required environment variables and run the bootstrap command:
-
-```bash
-flask --app wsgi.py create-admin
-```
-
-See **[Production Bootstrap](#production-bootstrap)** below for details.
+See **[Production Bootstrap](#production-bootstrap)** below for the manual
+CLI alternative.
 
 ### Manual Deployment
 
@@ -194,7 +203,9 @@ waitress-serve --port=8000 wsgi:app
 gunicorn wsgi:app
 ```
 
-Ensure `APP_ENV=production` and a strong `SECRET_KEY` are set.
+Ensure `APP_ENV=production` and a strong `SECRET_KEY` are set. On first
+startup the database will be migrated and the admin user created
+automatically (see above).
 
 ## API Endpoints
 
@@ -218,25 +229,57 @@ Ensure `APP_ENV=production` and a strong `SECRET_KEY` are set.
 - **Application factory pattern.** `create_app()` enables testing and flexible configuration.
 - **Blueprints for HTTP, services for logic.** Clear separation between web and business layers.
 - **Deterministic calculations.** No external APIs or black-box AI are used for core features.
-- **Test-driven confidence.** Tests cover models, services, routes, configuration, and error handling.
+- **Test-driven confidence.** Tests cover models, services, routes, configuration, startup initialization, and error handling.
 - **Disciplined learning first.** Every feature supports deliberate, data-informed study habits.
 
 ## Production Bootstrap
 
-The `create-admin` Flask CLI command bootstraps the initial administrator account on a fresh deployment. It is designed to be run once, immediately after applying database migrations.
+### Automatic Initialization (Recommended)
 
-### Environment Variables
+On Render Free deployments, the `StartupService` handles first-run database
+initialization automatically during application startup—no shell access or
+pre-deploy commands required.
+
+When `APP_ENV=production`, the service runs once at startup and:
+
+1. **Checks migration state** — Compares the Alembic revision stamped in the
+   database against the head revision from the migration scripts.
+2. **Applies migrations** — If the database is behind, runs `alembic upgrade
+   head` programmatically (no subprocess). If already up to date, skips.
+3. **Creates the admin user** — If no users exist and both `ADMIN_EMAIL` and
+   `ADMIN_PASSWORD` are set, creates the administrator. If credentials are
+   missing, logs a warning and continues.
+
+The service is **idempotent** and **safe**:
+
+- Never drops tables
+- Never recreates existing users
+- Never reruns migrations unnecessarily
+- Catches all startup exceptions
+- Never prevents the Flask application from starting
+- No-op in development and testing
+
+#### Environment Variables
 
 | Variable | Required | Description |
 |---|---|---|
 | `ADMIN_EMAIL` | Yes (first run) | Administrator email address |
 | `ADMIN_PASSWORD` | Yes (first run) | Administrator plaintext password (hashed before storage) |
 
-If any `User` records already exist in the database the command prints `Administrator already exists.` and exits successfully (exit code 0) without making changes. This makes it safe to run the command on every deploy—it is idempotent by design.
+If `ADMIN_EMAIL` or `ADMIN_PASSWORD` is not set, a warning is logged and
+startup continues without crashing. Set them later and restart to create the
+admin user.
 
-### Deployment Commands
+### Manual CLI Alternative
 
-On Render (or any production host), add `ADMIN_EMAIL` and `ADMIN_PASSWORD` as environment variables (e.g. Render "Environment Variables" panel), then run:
+The `create-admin` Flask CLI command bootstraps the initial administrator
+account manually. It is designed to be run once, immediately after applying
+database migrations.
+
+If any `User` records already exist in the database the command prints
+`Administrator already exists.` and exits successfully (exit code 0) without
+making changes. This makes it safe to run the command on every deploy—it is
+idempotent by design.
 
 ```bash
 flask --app wsgi.py db upgrade
@@ -251,7 +294,8 @@ export ADMIN_PASSWORD="super-secret-password"
 flask --app run.py create-admin
 ```
 
-The command exits with a non-zero status and a descriptive error if either `ADMIN_EMAIL` or `ADMIN_PASSWORD` is missing.
+The command exits with a non-zero status and a descriptive error if either
+`ADMIN_EMAIL` or `ADMIN_PASSWORD` is missing.
 
 ## License
 
