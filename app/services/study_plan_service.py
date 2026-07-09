@@ -238,7 +238,7 @@ class StudyPlanService:
             tp = TopicProgress(
                 user_id=study_plan.user_id,
                 topic_id=db_topic.id,
-                confidence=TopicProgress.STAGE_COMPLETED if is_completed else "Not Started",
+                confidence="Mastered" if is_completed else "Not Started",
                 completed=is_completed,
                 mastery_score=100.0 if is_completed else 0.0,
                 revision_count=0,

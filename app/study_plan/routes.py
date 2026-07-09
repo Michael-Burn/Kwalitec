@@ -441,6 +441,24 @@ def _handle_step_4_post():
             completed = request.form.getlist("curriculum_topic")
             completed = [c.strip() for c in completed if c.strip()]
             session["wizard_data"]["completed_curriculum_topics"] = completed
+
+            # Derive the current topic: the first curriculum topic NOT
+            # in the completed set.  This becomes the topic the student
+            # will begin studying (or continue if already started).
+            completed_set = set(completed)
+            try:
+                engine = CurriculumEngineService()
+                if engine.curriculum_exists("IFoA", paper_code, curriculum_version):
+                    curriculum = engine.load_curriculum("IFoA", paper_code, curriculum_version)
+                    for topic in curriculum.topics:
+                        if topic.code not in completed_set:
+                            session["wizard_data"]["curriculum_current_topic"] = topic.code
+                            break
+            except Exception:
+                logger.exception(
+                    "Failed to derive current topic from curriculum %s/%s/%s",
+                    "IFoA", paper_code, curriculum_version,
+                )
         else:
             # Unsupported examination — clear any curriculum-topic data.
             session["wizard_data"].pop("completed_curriculum_topics", None)
@@ -659,8 +677,14 @@ def review_post():
         # Build current_stage from position only — curriculum topic is stored separately
         current_stage = _build_current_stage(wizard_data["current_position"])
 
-        # Extract curriculum topic code for dedicated column
-        curriculum_topic_code = wizard_data.get("curriculum_topic") or None
+        # Extract curriculum topic code for dedicated column.
+        # Prefer the auto-derived key from step 4; fall back to the
+        # legacy key for backwards compatibility.
+        curriculum_topic_code = (
+            wizard_data.get("curriculum_current_topic")
+            or wizard_data.get("curriculum_topic")
+            or None
+        )
 
         # ── Curriculum version resolution ──────────────────────────
         curriculum_version = _resolve_curriculum_version(category_code, paper_or_subject)
