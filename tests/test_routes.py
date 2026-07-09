@@ -116,6 +116,27 @@ class TestSettingsRoutes:
         response = client.get("/settings/", follow_redirects=True)
         assert response.status_code == 200
 
+    def test_data_page_returns_200_on_fresh_database(self, logged_in_client):
+        """Settings → Data must not 500 when no records exist.
+
+        Regression test: WeekPlan and MissionTask lack a direct user_id
+        column, so filter_by(user_id=...) used to raise AttributeError.
+        """
+        response = logged_in_client.get("/settings/data")
+        assert response.status_code == 200
+
+    def test_data_page_shows_counts_with_records(
+        self, logged_in_client, study_plan, mission
+    ):
+        """Settings → Data shows correct record counts."""
+        response = logged_in_client.get("/settings/data")
+        assert response.status_code == 200
+        html = response.data.decode()
+        # Template renders labels via: label | replace('_', ' ') | title
+        assert "Study Plans" in html
+        assert "Missions" in html
+        assert "Mission Tasks" in html
+
 
 class TestErrorHandling:
     """Tests for error pages and error handling."""

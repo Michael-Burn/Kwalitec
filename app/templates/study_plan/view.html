@@ -64,11 +64,12 @@
     {% endfor %}
 
     {% if ns.current_topic_id is not none %}
-        {% set ns.next_topic_id = namespace(found=false) %}
+        {% set ns.next_topic_id = none %}
+        {% set ns.passed_current = false %}
         {% for topic in sorted_topics %}
             {% if topic.id == ns.current_topic_id %}
-                {% set ns.next_topic_id.found = true %}
-            {% elif ns.next_topic_id.found and ns.next_topic_id is mapping %}
+                {% set ns.passed_current = true %}
+            {% elif ns.passed_current and ns.next_topic_id is none %}
                 {% set tp = progress_by_topic.get(topic.id) %}
                 {% if not tp or not tp.completed %}
                     {% set ns.next_topic_id = topic.id %}

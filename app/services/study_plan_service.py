@@ -149,7 +149,7 @@ class StudyPlanService:
         curriculum_version = study_plan.curriculum_version
         curriculum_topic_code = study_plan.curriculum_topic_code
 
-        if curriculum_version is None or curriculum_topic_code is None:
+        if curriculum_version is None:
             return  # Not a curriculum-backed plan — nothing to do.
 
         if completed_curriculum_topics is None:
@@ -250,6 +250,9 @@ class StudyPlanService:
             db.session.add(tp)
 
         # ── Mark the selected topic as the student's current topic ────────
+        if curriculum_topic_code is None:
+            return  # No current topic selected — all topics stay "Not Started".
+
         for engine_topic in engine_topics:
             if engine_topic.code != curriculum_topic_code:
                 continue

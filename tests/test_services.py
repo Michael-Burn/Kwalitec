@@ -540,8 +540,8 @@ class TestStudyPlanService:
         tp_count = TopicProgress.query.filter_by(user_id=user.id).count()
         assert tp_count == 0
 
-    def test_create_plan_with_curriculum_version_only_does_nothing(self, db, user):
-        """curriculum_version without curriculum_topic_code should skip init."""
+    def test_create_plan_with_curriculum_version_only_still_creates_progress(self, db, user):
+        """curriculum_version without curriculum_topic_code should still create TopicProgress."""
         from app.services.study_plan_service import StudyPlanService
         from app.models.topic_progress import TopicProgress
 
@@ -560,7 +560,9 @@ class TestStudyPlanService:
         )
 
         tp_count = TopicProgress.query.filter_by(user_id=user.id).count()
-        assert tp_count == 0
+        # TopicProgress should be initialised from the curriculum even
+        # when no specific curriculum_topic_code is provided.
+        assert tp_count > 0
 
     def test_create_plan_with_topic_code_only_does_nothing(self, db, user):
         """curriculum_topic_code without curriculum_version should skip init."""

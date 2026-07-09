@@ -38,6 +38,44 @@ _BACKUP_MODELS = [
 ]
 
 
+def _user_query(model_class, user_id):
+    """Return a query filtered to a user's records for *model_class*.
+
+    Most models carry a direct ``user_id`` column; a few (WeekPlan,
+    MissionTask) are owned via a parent model and need an explicit join.
+    """
+    if model_class is WeekPlan:
+        return (
+            WeekPlan.query
+            .join(StudyPlan, WeekPlan.study_plan_id == StudyPlan.id)
+            .filter(StudyPlan.user_id == user_id)
+        )
+    if model_class is MissionTask:
+        return (
+            MissionTask.query
+            .join(Mission, MissionTask.mission_id == Mission.id)
+            .filter(Mission.user_id == user_id)
+        )
+    return model_class.query.filter_by(user_id=user_id)
+
+
+def _delete_user_records(model_class, user_id):
+    """Delete every record of *model_class* belonging to *user_id*.
+
+    Uses the direct ``user_id`` column when available; falls back to a
+    subquery for models without one (WeekPlan, MissionTask).
+    """
+    if model_class is WeekPlan:
+        sub = _user_query(WeekPlan, user_id).with_entities(WeekPlan.id).subquery()
+        WeekPlan.query.filter(WeekPlan.id.in_(sub)).delete(synchronize_session="fetch")
+        return
+    if model_class is MissionTask:
+        sub = _user_query(MissionTask, user_id).with_entities(MissionTask.id).subquery()
+        MissionTask.query.filter(MissionTask.id.in_(sub)).delete(synchronize_session="fetch")
+        return
+    model_class.query.filter_by(user_id=user_id).delete()
+
+
 # ── Settings Pages ──────────────────────────────────────────────────────
 
 @settings_bp.get("/")
@@ -97,7 +135,7 @@ def data():
     # Gather data stats per model
     model_stats = {}
     for model_class, label in _BACKUP_MODELS:
-        count = model_class.query.filter_by(user_id=current_user.id).count()
+        count = _user_query(model_class, current_user.id).count()
         model_stats[label] = count
 
     return render_template(
@@ -212,7 +250,7 @@ def export_backup():
     }
 
     for model_class, label in _BACKUP_MODELS:
-        records = model_class.query.filter_by(user_id=user_id).all()
+        records = _user_query(model_class, user_id).all()
         backup["data"][label] = [
             _serialize_record(r) for r in records
         ]
@@ -271,12 +309,18 @@ def import_restore():
             continue
 
         # Remove existing records for this user and model
-        model_class.query.filter_by(user_id=user_id).delete()
+        _delete_user_records(model_class, user_id)
+
+        # Does this model carry a direct user_id column?
+        _has_user_id = hasattr(model_class, "user_id") or "user_id" in {
+            c.name for c in model_class.__table__.columns
+        }
 
         # Insert records from backup
         for record_data in data[label]:
             record_data.pop("id", None)  # Let the DB assign new IDs
-            record_data["user_id"] = user_id  # Ensure ownership
+            if _has_user_id:
+                record_data["user_id"] = user_id  # Ensure ownership
             instance = model_class(**record_data)
             db.session.add(instance)
             restored_count += 1
