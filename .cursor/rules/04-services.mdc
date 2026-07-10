@@ -1,0 +1,38 @@
+---
+description: Service layer rules for Kwalitec business logic
+globs: "app/services/**/*.py"
+alwaysApply: false
+---
+
+# Service Layer Rules
+
+Services own business logic. Blueprints call services; services call models/engine/db.
+
+## Responsibilities
+
+- Orchestrate reads/writes and domain calculations.
+- Keep methods testable without an HTTP request context when possible (app context may still be required for SQLAlchemy).
+- Prefer returning models, dataclasses, or plain dicts — not rendered HTML.
+
+## Curriculum-related services
+
+- `CurriculumEngineService` — thin delegate to `CurriculumRepository` (no extra business logic).
+- `CurriculumService` — DB import, progress, and **canonical traversal**.
+- Other learning services must use `CurriculumService.get_all_topics_ordered` / `get_ordered_topics` / section helpers instead of ad-hoc ordering.
+
+## Import / startup
+
+- `CurriculumService.import_curricula()` must remain idempotent.
+- `StartupService` must remain production-gated, exception-safe, and non-destructive.
+
+## Do
+
+- Pass `user_id`, model instances, and primitives explicitly.
+- Log failures with context (exam/paper/version ids) without secrets.
+- Keep one primary domain per service module.
+
+## Do not
+
+- Import `request`, `session`, or template functions inside services.
+- Duplicate V1/V2 branching outside `CurriculumService` traversal/import helpers.
+- Commit partial imports without clear transaction boundaries when creating related rows.

@@ -1,0 +1,39 @@
+---
+description: Testing standards for Kwalitec pytest suite
+globs: "tests/**/*.py"
+alwaysApply: false
+---
+
+# Testing Standards
+
+## Harness
+
+- Framework: **pytest** (`tests/`, config in `pyproject.toml`).
+- Fixtures: `app`, `db`, `ctx`, `client`, `runner` in `tests/conftest.py`.
+- Tests use a temp SQLite DB; tables truncated between tests.
+- CSRF is disabled in the test app config only.
+
+## Expectations
+
+- Add or update tests for behaviour you change.
+- Prefer focused unit/integration tests near the affected layer (model / service / route).
+- Curriculum work requires both **V1 regression** and **V2/section-aware** coverage when relevant.
+- Do not delete failing tests to “green” CI; fix product code or intentionally revise assertions with rationale.
+
+## Commands
+
+```bash
+python -m pytest tests/ -v
+python -m pytest tests/test_curriculum_engine_v2.py -v
+ruff check app/ tests/
+```
+
+## Patterns
+
+- Use factory helpers from `conftest.py` (`_make_user`, etc.) when available.
+- Push an app context (`ctx` fixture) for DB work.
+- Keep tests deterministic — no reliance on wall-clock flakiness without freezegun-style control (prefer date injection).
+
+## CI
+
+GitHub Actions runs pytest on Python 3.11–3.13 and ruff. Local runs should match before merge.

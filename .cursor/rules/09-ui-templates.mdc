@@ -1,0 +1,42 @@
+---
+description: Jinja, CSS, and JavaScript conventions for Kwalitec UI
+globs: "{app/templates/**,app/static/**}"
+alwaysApply: false
+---
+
+# UI / Templates Rules
+
+## Jinja organisation
+
+```
+app/templates/
+  layouts/     # base.html (app shell), auth_base.html
+  partials/    # sidebar, topnav, flash_messages
+  <feature>/   # auth, dashboard, mission, study_plan, analytics, settings, errors
+```
+
+- Authenticated pages extend `layouts/base.html`.
+- Auth pages extend `layouts/auth_base.html`.
+- Keep feature templates in the matching folder; wizard steps stay under `study_plan/`.
+- Pass `title` for the document title block when practical.
+- Reuse partials instead of duplicating chrome.
+
+## CSS
+
+- Global styles: `app/static/css/app.css`.
+- Wizard-specific: `app/static/css/wizard.css` (include via `extra_head` when needed).
+- Prefer extending existing tokens/classes over introducing a parallel design system.
+- Bootstrap 5.3 is provided via CDN in the layout — do not vendor a second framework without a milestone decision.
+
+## JavaScript
+
+- Shared: `app/static/js/app.js`.
+- Feature-specific files (e.g. `mission.js`) for isolated behaviour.
+- Progressive enhancement: critical flows should not depend on fragile client-only state.
+- Read CSRF from `<meta name="csrf-token">` when posting via JS.
+
+## Do not
+
+- Embed large inline scripts in templates when a static file is clearer.
+- Bypass CSP assumptions casually (see security headers in `app/__init__.py`).
+- Put business rules (ordering, mastery math) in templates — compute in services/routes.

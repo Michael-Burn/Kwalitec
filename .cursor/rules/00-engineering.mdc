@@ -1,0 +1,31 @@
+---
+description: Kwalitec general engineering philosophy for all agent work
+alwaysApply: true
+---
+
+# Engineering Philosophy
+
+Kwalitec is a commercial adaptive learning product. Prefer disciplined, explainable engineering over cleverness.
+
+## Principles
+
+- **Curriculum first** — educational behaviour starts from official syllabus structure.
+- **Deterministic cores** — planning, readiness, and recommendations must be reproducible from the same inputs.
+- **Small scope** — implement only what the current milestone or task asks for.
+- **Layered design** — blueprints for HTTP, services for logic, models/engine for data.
+- **Explainability** — user-facing suggestions must be traceable to data, not opaque scores.
+- **Idempotent bootstrap** — startup import/migrate/admin paths must be safe to re-run.
+- **Match the codebase** — follow existing naming, typing, and docstring patterns.
+
+## Working rules
+
+- Read `PROJECT_CONTEXT.md` and `ARCHITECTURE.md` before structural changes.
+- Obey explicit “do not modify …” constraints literally.
+- Prefer fixing root causes over patching symptoms.
+- Do not add dependencies, refactors, or features outside the task.
+- Do not invent black-box AI/LLM calls into core learning paths.
+- Leave secrets in environment variables; never commit `.env`.
+
+## Definition of done
+
+A change is done when scope is respected, relevant tests/lints pass (or N/A for docs-only), architecture invariants hold (especially curriculum V1/V2), and any required completion report is produced.

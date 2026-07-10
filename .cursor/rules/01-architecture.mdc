@@ -1,0 +1,41 @@
+---
+description: Kwalitec architectural principles and layering rules
+alwaysApply: true
+---
+
+# Architecture Principles
+
+Canonical detail: `ARCHITECTURE.md`.
+
+## Layering (required)
+
+```
+Templates/JS → Blueprints → Services → Models + Curriculum Engine → DB/JSON
+```
+
+- Routes must not contain planning/mastery/recommendation math.
+- Services must not depend on `flask.request` / session globals; take explicit args.
+- Models must not import blueprints or templates.
+- Curriculum ordering must go through `CurriculumService` helpers.
+
+## Structural invariants
+
+1. Application factory (`create_app`) remains the only app construction path.
+2. Feature HTTP surface lives in blueprints registered from `app/__init__.py`.
+3. Business rules live under `app/services/`.
+4. Official syllabus truth starts in `app/curriculum/` JSON + engine.
+5. Schema changes go through Alembic under `migrations/versions/`.
+6. V1 and V2 curricula must both remain loadable and traversable.
+
+## When changing architecture
+
+- Prefer additive changes with compatibility shims over breaking rewrites.
+- Document migration impact and V1/V2 effects in the completion report.
+- Do not bypass `StartupService` safety guarantees (no drops, idempotent admin).
+
+## Anti-patterns
+
+- God routes or god services that mix unrelated domains
+- Duplicating topic ordering logic in multiple services
+- Treating engine dataclasses as ORM models (or vice versa)
+- Feature work that silently breaks flat (V1) curricula

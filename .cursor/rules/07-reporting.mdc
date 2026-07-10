@@ -1,0 +1,41 @@
+---
+description: Milestone completion reporting requirements for Kwalitec
+alwaysApply: true
+---
+
+# Completion Reporting
+
+When a milestone or task requires a completion report, include **all** of the following sections.
+
+## Required sections
+
+### Summary
+What was delivered and why, in a few sentences.
+
+### Files Created
+Bullet list of new paths.
+
+### Files Modified
+Bullet list of changed paths (or “None”).
+
+### Tests Executed
+Commands run and outcome, or “None (documentation-only)”.
+
+### Migration Impact
+Alembic/schema effects. Use **None** when no migrations were added or changed.
+
+### Architecture Compliance
+Confirm layering and especially **curriculum V1/V2** invariants. State whether traversal/import compatibility was preserved or N/A.
+
+### Technical Debt
+Honest leftover risk or follow-ups introduced by this work (or “None”).
+
+### Known Limitations
+Boundaries of what this milestone did not solve.
+
+## Rules
+
+- Be specific to Kwalitec — no placeholder lorem.
+- Call out if application code was intentionally untouched.
+- Include the commit hash when the milestone requires a commit.
+- After the mandated commit/stop instruction, do not start the next milestone.

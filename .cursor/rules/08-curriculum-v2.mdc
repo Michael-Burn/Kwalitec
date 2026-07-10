@@ -1,0 +1,49 @@
+---
+description: Curriculum V1/V2 compatibility, traversal, and engine rules
+globs: "{app/curriculum/**,app/services/curriculum*.py,app/models/curriculum.py,tests/test_curriculum*.py,tests/test_section*.py,tests/test_topic_section*.py}"
+alwaysApply: false
+---
+
+# Curriculum V1 / V2 Rules
+
+These rules protect Kwalitec from syllabus regressions. Background: `PROJECT_CONTEXT.md`, `ARCHITECTURE.md`, `app/curriculum/README.md`, milestone 1.1/1.2 design docs.
+
+## Two formats must coexist
+
+| | V1 (legacy) | V2 (canonical) |
+|---|---|---|
+| Engine types | `Curriculum`, `Topic`, `LearningOutcome` | `CurriculumDefinition`, `SectionDefinition`, `TopicDefinition`, `LearningObjectiveDefinition` |
+| Hierarchy | Flat topics (+ optional `parent_topic_id` in DB) | Section → Topic → Learning Objective |
+| Weights | Topic `syllabus_weight` | Section `exam_weight` (topics often `0.0` on import) |
+| DB sections | None | `Section` + `Topic.section_id` |
+
+## Compatibility (non-negotiable)
+
+- Keep V1 loaders, schemas, validators, and import path working.
+- `Topic.section_id` remains nullable for V1 rows.
+- Existing study plans/missions/readiness on V1 data must not break.
+- Prefer additive V2 behaviour; do not hard-require sections globally.
+
+## Canonical traversal (DB)
+
+Use `CurriculumService` only:
+
+1. If `get_sections(curriculum)` is non-empty → order by `Section.display_order`, then `Topic.order` within each section.
+2. Else → V1 depth-first via `curriculum.get_all_topics_ordered()` (`parent_topic_id` + `order`).
+
+Public helpers: `get_sections`, `get_topics_for_section`, `get_all_topics_ordered`, `get_ordered_topics`.
+
+**Forbidden:** copying this branching into planning/mission/readiness services.
+
+## Engine rules
+
+- JSON under `app/curriculum/data/{org}/{paper}/{year}.json` is the syllabus source of truth before DB import.
+- Format detection stays in the loader/repository; import may try V1 then fall back to V2.
+- Validation must remain deterministic (weight sums, unique codes/ids, etc.).
+- Engine dataclasses are **not** SQLAlchemy models — convert explicitly on import.
+
+## When changing curriculum code
+
+- Update/extend tests in `test_curriculum_engine*.py`, importer, and section-aware suites.
+- Document Migration Impact + Architecture Compliance in the completion report.
+- Do not rename stable official ids casually; downstream progress rows depend on stable topic identity after import.

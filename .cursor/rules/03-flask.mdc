@@ -1,0 +1,48 @@
+---
+description: Flask conventions for Kwalitec blueprints and app factory
+globs: "app/**/*.py"
+alwaysApply: false
+---
+
+# Flask Conventions
+
+## Application factory
+
+- Construct apps only via `create_app()` in `app/__init__.py`.
+- Config selection uses `APP_ENV` / `FLASK_ENV` (`DevelopmentConfig` vs `ProductionConfig`).
+- Extensions are initialized in `_init_extensions`; models imported there for metadata registration.
+
+## Blueprints
+
+| Blueprint | Module | Notes |
+|---|---|---|
+| auth | `app/auth` | Login/logout; no public registration |
+| dashboard | `app/dashboard` | Home |
+| mission | `app/mission` | Daily missions |
+| study_plan | `app/study_plan` | List + wizard |
+| analytics | `app/analytics` | Analytics views |
+| settings | `app/settings` | Settings / backup |
+
+- Keep `url_prefix` stable unless a milestone explicitly changes routes.
+- Protect authenticated views with `@login_required`.
+- Use WTForms for POST bodies; rely on CSRF (enabled outside tests).
+
+## Route shape
+
+```python
+@bp.route("...", methods=["GET", "POST"])
+@login_required
+def view():
+    form = SomeForm()
+    if form.validate_on_submit():
+        result = SomeService.do_work(...)
+        flash("...", "success")
+        return redirect(url_for("..."))
+    return render_template("feature/page.html", form=form, title="...")
+```
+
+## Do not
+
+- Put SQLAlchemy queries with business rules inline when a service already owns that domain.
+- Flash secrets or raw exception traces to end users.
+- Register new blueprints without wiring them in `_register_blueprints`.

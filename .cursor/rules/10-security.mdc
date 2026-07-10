@@ -1,0 +1,47 @@
+---
+description: Security rules for auth, validation, secrets, and SQLAlchemy
+alwaysApply: true
+---
+
+# Security Rules
+
+## Authentication
+
+- Use Flask-Login; `@login_required` on authenticated views.
+- Login view: `auth.login`. Registration is **not** publicly exposed.
+- Admin users are created via `flask create-admin` or production `StartupService` from `ADMIN_EMAIL` / `ADMIN_PASSWORD`.
+- Reject open redirects: only allow local `next` URLs after login.
+
+## Authorization
+
+- Scope queries to the current user for personal resources (plans, missions, progress).
+- Do not expose other users’ ids in URLs without ownership checks.
+- Return 403/404 appropriately; do not leak existence of foreign resources when avoidable.
+
+## Input validation
+
+- Prefer WTForms for POST data.
+- Normalize emails (lower/strip) consistently with auth routes.
+- Validate wizard/step inputs server-side even if the UI constrains them.
+
+## Secrets and environment
+
+- Secrets live in environment variables (`.env` locally, host env in production).
+- Never commit `.env` or hard-code `SECRET_KEY` / passwords.
+- Do not log passwords, session cookies, or full DB URLs with credentials.
+- Production must not run with the default insecure `SECRET_KEY` (factory validates).
+
+## CSRF and headers
+
+- Keep Flask-WTF CSRF enabled outside tests.
+- Preserve security headers / CSP behaviour in `app/__init__.py` when editing responses.
+
+## SQLAlchemy safety
+
+- Use ORM queries or bound parameters (`db.text` with params) — never concatenate user input into SQL.
+- Roll back on 500 paths as the error handler does.
+- Avoid raw DDL from request handlers.
+
+## Dependencies
+
+- Treat new network calls or third-party script CDNs as security-sensitive (CSP impact).

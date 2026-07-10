@@ -1,0 +1,33 @@
+---
+description: Git workflow and commit conventions for Kwalitec
+alwaysApply: true
+---
+
+# Git Workflow
+
+Full contributor guide: `CONTRIBUTING.md`.
+
+## Branches
+
+- Integrate on `main`.
+- Prefer `milestone/<id>-<slug>`, `feature/<slug>`, `fix/<slug>`, or `chore/<slug>`.
+- Never force-push `main`.
+
+## Commits
+
+- Imperative subject; Conventional Commits (`feat:`, `fix:`, `docs:`, …) when natural.
+- Milestone briefs may mandate an exact commit message — use it verbatim.
+- Never commit `.env`, credentials, or private keys.
+- Do not use `--no-verify` unless explicitly requested.
+- Commit only when the user/milestone asks.
+
+## Staging discipline
+
+- For documentation-only milestones, stage **only** docs/rules/prompts — leave unrelated application WIP unstaged.
+- Review `git status` / `git diff` before commit.
+- Prefer path-specific `git add` when the working tree contains mixed work.
+
+## Pull requests
+
+- Include summary, test plan, migration impact, and curriculum/architecture notes when relevant.
+- CI must be green on pytest + ruff unless an explicit exception is documented.
