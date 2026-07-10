@@ -49,9 +49,34 @@
                     </div>
                 </div>
                 <div class="card-footer bg-transparent border-top">
-                    <a href="{{ url_for('study_plan.view_plan', study_plan_id=plan.id) }}" class="btn btn-sm btn-outline-primary w-100">
-                        View Plan
-                    </a>
+                    <div class="d-flex gap-1 flex-wrap">
+                        <a href="{{ url_for('study_plan.view_plan', study_plan_id=plan.id) }}" class="btn btn-sm btn-outline-primary">
+                            View
+                        </a>
+                        <a href="{{ url_for('study_plan.edit_plan', study_plan_id=plan.id) }}" class="btn btn-sm btn-outline-secondary">
+                            Edit
+                        </a>
+                        {% if not plan.active %}
+                        <form method="POST" action="{{ url_for('study_plan.set_active_plan', study_plan_id=plan.id) }}" class="d-inline">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="btn btn-sm btn-outline-success">
+                                Set Active
+                            </button>
+                        </form>
+                        {% endif %}
+                        <form method="POST" action="{{ url_for('study_plan.archive_plan', study_plan_id=plan.id) }}" class="d-inline" onsubmit="return confirm('Archive this study plan? You can find it later in archived plans.');">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="btn btn-sm btn-outline-warning">
+                                Archive
+                            </button>
+                        </form>
+                        <form method="POST" action="{{ url_for('study_plan.delete_plan', study_plan_id=plan.id) }}" class="d-inline" onsubmit="return confirm('Permanently delete this study plan? This cannot be undone.');">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                Delete
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

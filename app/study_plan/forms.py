@@ -199,3 +199,82 @@ class StudyPlanReviewForm(FlaskForm):
         validators=[validators.DataRequired()],
     )
     submit = SubmitField("Confirm")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Edit Study Plan
+# ─────────────────────────────────────────────────────────────────────────────
+
+
+class EditStudyPlanForm(FlaskForm):
+    """Form for editing an existing study plan."""
+
+    exam_name = StringField(
+        "Exam Name",
+        validators=[validators.DataRequired(), validators.Length(max=255)],
+    )
+    exam_sitting = StringField(
+        "Exam Sitting",
+        validators=[validators.DataRequired(), validators.Length(max=100)],
+    )
+    exam_date = DateField(
+        "Exam Date",
+        format="%Y-%m-%d",
+        validators=[validators.DataRequired("Exam date is required.")],
+    )
+    weekday_study_minutes = IntegerField(
+        "Weekday Study Minutes",
+        validators=[
+            validators.DataRequired(),
+            validators.NumberRange(
+                min=15, max=480, message="Must be between 15 and 480 minutes."
+            ),
+        ],
+    )
+    weekend_study_minutes = IntegerField(
+        "Weekend Study Minutes",
+        validators=[
+            validators.DataRequired(),
+            validators.NumberRange(
+                min=15, max=480, message="Must be between 15 and 480 minutes."
+            ),
+        ],
+    )
+    preferred_session_minutes = RadioField(
+        "Preferred study session length",
+        choices=[
+            (30, "30 minutes"),
+            (45, "45 minutes"),
+            (60, "60 minutes"),
+            (90, "90 minutes"),
+            (120, "120 minutes"),
+        ],
+        coerce=int,
+        default=60,
+        validators=[validators.DataRequired()],
+    )
+    current_stage = StringField(
+        "Current Stage",
+        validators=[validators.DataRequired(), validators.Length(max=255)],
+    )
+    study_preference = RadioField(
+        "Learning Style",
+        choices=[
+            ("Reading First", "Reading First"),
+            ("Questions First", "Questions First"),
+            ("Mixed", "Mixed"),
+        ],
+        validators=[validators.DataRequired()],
+    )
+    target_grade = StringField(
+        "Target Grade",
+        validators=[validators.DataRequired(), validators.Length(max=50)],
+    )
+    submit = SubmitField("Save Changes")
+
+    def validate_exam_date(form, field):
+        """Validate that the exam date is in the future."""
+        from datetime import date as date_obj
+
+        if field.data <= date_obj.today():
+            raise validators.ValidationError("Exam date must be in the future.")

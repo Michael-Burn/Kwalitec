@@ -862,6 +862,198 @@ class TestSmokeLogout:
 # ─────────────────────────────────────────────────────────────────────────────
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# Smoke Test 10 — Study Plan Lifecycle (Edit → Archive → Set Active → Delete)
+# ─────────────────────────────────────────────────────────────────────────────
+
+
+class TestSmokeStudyPlanLifecycle:
+    """Comprehensive smoke test covering the full study plan lifecycle:
+    Create → Edit → Archive → Set Active → Delete."""
+
+    def test_complete_lifecycle(self, app, ctx, user):
+        """Create, edit, archive, re-activate, and delete a study plan."""
+        from app.services.study_plan_service import StudyPlanService
+        from app.models.study_plan import StudyPlan
+        from datetime import date as dt_date, timedelta
+
+        client = app.test_client()
+
+        # ── Login ──────────────────────────────────────────────────────
+        client.post(
+            "/auth/login",
+            data={"email": "test@kwalitec.example", "password": "password123"},
+            follow_redirects=True,
+        )
+
+        # ── 1. Create a plan ───────────────────────────────────────────
+        sp = StudyPlanService.create_study_plan(
+            user_id=user.id,
+            exam_name="IFoA CM1",
+            exam_sitting="April 2027",
+            exam_date=dt_date.today() + timedelta(days=180),
+            weekday_study_minutes=60,
+            weekend_study_minutes=120,
+            current_stage="Chapter 1",
+            study_preference="Mixed",
+            target_grade="A",
+        )
+        assert sp.active is True
+        assert sp.archived is False
+
+        # ── 2. Edit the plan via route ─────────────────────────────────
+        future = (dt_date.today() + timedelta(days=365)).isoformat()
+        resp = client.post(
+            f"/study-plan/{sp.id}/edit",
+            data={
+                "exam_name": "IFoA CM1 Revised",
+                "exam_sitting": "September 2027",
+                "exam_date": future,
+                "weekday_study_minutes": 45,
+                "weekend_study_minutes": 90,
+                "preferred_session_minutes": 30,
+                "current_stage": "Revision",
+                "study_preference": "Reading First",
+                "target_grade": "B",
+            },
+            follow_redirects=True,
+        )
+        assert resp.status_code == 200
+        assert b"updated successfully" in resp.data.lower()
+
+        from app.extensions import db
+        db.session.refresh(sp)
+        assert sp.exam_name == "IFoA CM1 Revised"
+        assert sp.weekday_study_minutes == 45
+        assert sp.preferred_session_minutes == 30
+
+        # ── 3. Archive the plan ────────────────────────────────────────
+        resp = client.post(
+            f"/study-plan/{sp.id}/archive",
+            follow_redirects=True,
+        )
+        assert resp.status_code == 200
+        assert b"archived" in resp.data.lower()
+
+        db.session.refresh(sp)
+        assert sp.archived is True
+        assert sp.active is False
+
+        # ── 4. Create a second plan ────────────────────────────────────
+        sp2 = StudyPlanService.create_study_plan(
+            user_id=user.id,
+            exam_name="IFoA CM2",
+            exam_sitting="June 2027",
+            exam_date=dt_date.today() + timedelta(days=365),
+            weekday_study_minutes=60,
+            weekend_study_minutes=120,
+            current_stage="Chapter 1",
+            study_preference="Mixed",
+            target_grade="B",
+        )
+        assert sp2.active is True
+
+        # ── 5. Set the archived plan active (via route — should reject) ─
+        resp = client.post(
+            f"/study-plan/{sp.id}/set-active",
+            follow_redirects=True,
+        )
+        assert resp.status_code == 200
+        assert b"Cannot activate an archived" in resp.data
+        # sp2 must still be active
+        db.session.refresh(sp2)
+        assert sp2.active is True
+
+        # ── 6. Delete the second plan ──────────────────────────────────
+        plan_id_2 = sp2.id
+        resp = client.post(
+            f"/study-plan/{plan_id_2}/delete",
+            follow_redirects=True,
+        )
+        assert resp.status_code == 200
+        assert b"permanently deleted" in resp.data.lower()
+        assert StudyPlan.query.get(plan_id_2) is None
+
+        # ── 7. Delete the archived plan too ────────────────────────────
+        plan_id_1 = sp.id
+        resp = client.post(
+            f"/study-plan/{plan_id_1}/delete",
+            follow_redirects=True,
+        )
+        assert resp.status_code == 200
+        assert b"permanently deleted" in resp.data.lower()
+        assert StudyPlan.query.get(plan_id_1) is None
+
+        # ── Verify no remaining plans ──────────────────────────────────
+        all_plans = StudyPlan.query.filter_by(user_id=user.id).all()
+        assert len(all_plans) == 0
+
+    def test_create_edit_archive_set_active_sequence(self, app, ctx, user):
+        """Create multiple plans and verify set-active ensures only one active."""
+        from app.services.study_plan_service import StudyPlanService
+        from app.models.study_plan import StudyPlan
+        from datetime import date as dt_date, timedelta
+
+        client = app.test_client()
+        client.post(
+            "/auth/login",
+            data={"email": "test@kwalitec.example", "password": "password123"},
+            follow_redirects=True,
+        )
+
+        # Create 3 plans
+        sp1 = StudyPlanService.create_study_plan(
+            user_id=user.id, exam_name="Plan A", exam_sitting="A1",
+            exam_date=dt_date.today() + timedelta(days=90),
+            weekday_study_minutes=60, weekend_study_minutes=120,
+            current_stage="Start", study_preference="Mixed", target_grade="A",
+        )
+        sp2 = StudyPlanService.create_study_plan(
+            user_id=user.id, exam_name="Plan B", exam_sitting="B1",
+            exam_date=dt_date.today() + timedelta(days=180),
+            weekday_study_minutes=60, weekend_study_minutes=120,
+            current_stage="Start", study_preference="Mixed", target_grade="B",
+        )
+        sp3 = StudyPlanService.create_study_plan(
+            user_id=user.id, exam_name="Plan C", exam_sitting="C1",
+            exam_date=dt_date.today() + timedelta(days=270),
+            weekday_study_minutes=60, weekend_study_minutes=120,
+            current_stage="Start", study_preference="Mixed", target_grade="C",
+        )
+        # sp3 should be active, sp1/sp2 inactive
+        assert sp3.active is True
+        assert sp2.active is False
+        assert sp1.active is False
+
+        # Set sp1 active
+        client.post(f"/study-plan/{sp1.id}/set-active", follow_redirects=True)
+        from app.extensions import db
+        db.session.refresh(sp1)
+        db.session.refresh(sp2)
+        db.session.refresh(sp3)
+        assert sp1.active is True
+        assert sp2.active is False
+        assert sp3.active is False
+
+        # Archive sp2
+        client.post(f"/study-plan/{sp2.id}/archive", follow_redirects=True)
+        db.session.refresh(sp2)
+        assert sp2.archived is True
+        assert sp2.active is False
+
+        # sp1 still active
+        db.session.refresh(sp1)
+        assert sp1.active is True
+
+        # Verify get_user_plans excludes archived
+        visible = StudyPlanService.get_user_plans(user.id)
+        assert len(visible) == 2  # sp1 and sp3, sp2 is archived
+
+        # Verify get_user_plans with include_archived
+        all_plans = StudyPlanService.get_user_plans(user.id, include_archived=True)
+        assert len(all_plans) == 3
+
+
 class TestFullEndToEnd:
     """A single test that covers the complete user journey end-to-end."""
 

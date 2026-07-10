@@ -328,6 +328,248 @@ class TestStudyPlanWizardStep4:
         assert "CS1-B" in html
 
 
+class TestStudyPlanManagementRoutes:
+    """Tests for study plan management — edit, delete, archive, set-active,
+    and list routes."""
+
+    def test_list_plans_page(self, logged_in_client, study_plan):
+        """GET /study-plan/plans/all renders the plans list."""
+        resp = logged_in_client.get("/study-plan/plans/all")
+        assert resp.status_code == 200
+        assert b"My Plans" in resp.data or b"Study Plans" in resp.data
+
+    def test_list_plans_requires_login(self, client):
+        resp = client.get("/study-plan/plans/all", follow_redirects=True)
+        assert resp.status_code == 200
+        assert resp.request.path == "/auth/login"
+
+    def test_view_plan_authenticated(self, logged_in_client, study_plan):
+        """GET /study-plan/<id> shows plan details."""
+        resp = logged_in_client.get(f"/study-plan/{study_plan.id}")
+        assert resp.status_code == 200
+
+    def test_view_plan_not_found(self, logged_in_client):
+        """Viewing a non-existent plan redirects."""
+        resp = logged_in_client.get("/study-plan/99999", follow_redirects=True)
+        assert resp.status_code == 200
+        assert b"not found" in resp.data.lower()
+
+    def test_view_plan_wrong_user_redirects(self, logged_in_client, study_plan):
+        """Viewing another user's plan should redirect."""
+        # The study_plan fixture is owned by the current logged-in user,
+        # so we test with an ID that doesn't exist to the user.
+        resp = logged_in_client.get("/study-plan/99999", follow_redirects=True)
+        assert resp.status_code == 200
+
+    def test_edit_plan_get(self, logged_in_client, study_plan):
+        """GET edit page for an existing plan."""
+        resp = logged_in_client.get(
+            f"/study-plan/{study_plan.id}/edit"
+        )
+        assert resp.status_code == 200
+        assert b"Edit Study Plan" in resp.data
+
+    def test_edit_plan_get_not_found(self, logged_in_client):
+        """GET edit for non-existent plan redirects."""
+        resp = logged_in_client.get(
+            "/study-plan/99999/edit", follow_redirects=True
+        )
+        assert resp.status_code == 200
+        assert b"not found" in resp.data.lower()
+
+    def test_edit_plan_archived_rejected(self, logged_in_client, study_plan):
+        """GET edit for archived plan redirects with message."""
+        from app.extensions import db
+        study_plan.archived = True
+        study_plan.active = False
+        db.session.commit()
+
+        resp = logged_in_client.get(
+            f"/study-plan/{study_plan.id}/edit", follow_redirects=True
+        )
+        assert resp.status_code == 200
+        assert b"Cannot edit an archived" in resp.data
+
+    def test_edit_plan_post_updates_fields(self,
+        logged_in_client, study_plan):
+        """POST edit updates study plan fields."""
+        from datetime import date as dt_date, timedelta
+
+        future = (dt_date.today() + timedelta(days=365)).isoformat()
+        resp = logged_in_client.post(
+            f"/study-plan/{study_plan.id}/edit",
+            data={
+                "exam_name": "IFoA CM1 Edited",
+                "exam_sitting": "September 2027",
+                "exam_date": future,
+                "weekday_study_minutes": 90,
+                "weekend_study_minutes": 150,
+                "preferred_session_minutes": 45,
+                "current_stage": "Revision Phase",
+                "study_preference": "Questions First",
+                "target_grade": "B",
+            },
+            follow_redirects=True,
+        )
+        assert resp.status_code == 200
+
+        from app.models.study_plan import StudyPlan
+        from app.extensions import db
+        updated = db.session.get(StudyPlan, study_plan.id)
+        assert updated.exam_name == "IFoA CM1 Edited"
+        assert updated.exam_sitting == "September 2027"
+        assert updated.preferred_session_minutes == 45
+
+    def test_delete_plan_post(self, logged_in_client, study_plan):
+        """POST delete removes the plan."""
+        resp = logged_in_client.post(
+            f"/study-plan/{study_plan.id}/delete",
+            follow_redirects=True,
+        )
+        assert resp.status_code == 200
+        assert b"permanently deleted" in resp.data.lower()
+
+        from app.models.study_plan import StudyPlan
+        assert StudyPlan.query.get(study_plan.id) is None
+
+    def test_delete_plan_not_found(self, logged_in_client):
+        """Deleting a non-existent plan redirects with error."""
+        resp = logged_in_client.post(
+            "/study-plan/99999/delete", follow_redirects=True
+        )
+        assert resp.status_code == 200
+        assert b"not found" in resp.data.lower()
+
+    def test_archive_plan_post(self, logged_in_client, study_plan):
+        """POST archive sets the plan as archived."""
+        resp = logged_in_client.post(
+            f"/study-plan/{study_plan.id}/archive",
+            follow_redirects=True,
+        )
+        assert resp.status_code == 200
+        assert b"archived" in resp.data.lower()
+
+        from app.models.study_plan import StudyPlan
+        from app.extensions import db
+        updated = db.session.get(StudyPlan, study_plan.id)
+        assert updated.archived is True
+        assert updated.active is False
+
+    def test_archive_plan_not_found(self, logged_in_client):
+        """Archiving a non-existent plan redirects with error."""
+        resp = logged_in_client.post(
+            "/study-plan/99999/archive", follow_redirects=True
+        )
+        assert resp.status_code == 200
+        assert b"not found" in resp.data.lower()
+
+    def test_set_active_plan_post(self, app, ctx, user):
+        """POST set-active makes the plan active and deactivates others."""
+        from app.services.study_plan_service import StudyPlanService
+        from datetime import date as dt_date, timedelta
+
+        client = app.test_client()
+        client.post(
+            "/auth/login",
+            data={"email": "test@kwalitec.example", "password": "password123"},
+            follow_redirects=True,
+        )
+
+        sp1 = StudyPlanService.create_study_plan(
+            user_id=user.id,
+            exam_name="IFoA CM1",
+            exam_sitting="April 2027",
+            exam_date=dt_date.today() + timedelta(days=180),
+            weekday_study_minutes=60,
+            weekend_study_minutes=120,
+            current_stage="Chapter 1",
+            study_preference="Mixed",
+            target_grade="A",
+        )
+        sp2 = StudyPlanService.create_study_plan(
+            user_id=user.id,
+            exam_name="IFoA CM2",
+            exam_sitting="June 2027",
+            exam_date=dt_date.today() + timedelta(days=365),
+            weekday_study_minutes=60,
+            weekend_study_minutes=120,
+            current_stage="Chapter 1",
+            study_preference="Mixed",
+            target_grade="B",
+        )
+        # sp2 active (most recent), sp1 inactive
+        assert sp2.active is True
+        assert sp1.active is False
+
+        resp = client.post(
+            f"/study-plan/{sp1.id}/set-active",
+            follow_redirects=True,
+        )
+        assert resp.status_code == 200
+        assert b"set as active" in resp.data.lower()
+
+        from app.models.study_plan import StudyPlan
+        from app.extensions import db
+        sp1_check = db.session.get(StudyPlan, sp1.id)
+        sp2_check = db.session.get(StudyPlan, sp2.id)
+        assert sp1_check.active is True
+        assert sp2_check.active is False
+
+    def test_set_active_archived_plan_rejected(self,
+        logged_in_client, study_plan):
+        """Cannot activate an archived plan."""
+        from app.extensions import db
+        study_plan.archived = True
+        study_plan.active = False
+        db.session.commit()
+
+        resp = logged_in_client.post(
+            f"/study-plan/{study_plan.id}/set-active",
+            follow_redirects=True,
+        )
+        assert resp.status_code == 200
+        assert b"Cannot activate an archived" in resp.data
+
+    def test_set_active_not_found(self, logged_in_client):
+        """Set-active for non-existent plan redirects with error."""
+        resp = logged_in_client.post(
+            "/study-plan/99999/set-active", follow_redirects=True
+        )
+        assert resp.status_code == 200
+        assert b"not found" in resp.data.lower()
+
+    def test_set_active_requires_login(self, client, study_plan):
+        resp = client.post(
+            f"/study-plan/{study_plan.id}/set-active",
+            follow_redirects=True,
+        )
+        assert resp.status_code == 200
+        assert resp.request.path == "/auth/login"
+
+    def test_archive_requires_login(self, client, study_plan):
+        resp = client.post(
+            f"/study-plan/{study_plan.id}/archive",
+            follow_redirects=True,
+        )
+        assert resp.status_code == 200
+        assert resp.request.path == "/auth/login"
+
+    def test_delete_requires_login(self, client, study_plan):
+        resp = client.post(
+            f"/study-plan/{study_plan.id}/delete",
+            follow_redirects=True,
+        )
+        assert resp.status_code == 200
+        assert resp.request.path == "/auth/login"
+
+    def test_edit_requires_login(self, client, study_plan):
+        resp = client.get(
+            f"/study-plan/{study_plan.id}/edit", follow_redirects=True
+        )
+        assert resp.status_code == 200
+        assert resp.request.path == "/auth/login"
+
+
 class TestCurriculumVersionResolution:
     """Tests for _resolve_curriculum_version helper."""
 

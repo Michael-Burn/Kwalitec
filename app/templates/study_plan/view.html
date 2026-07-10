@@ -158,10 +158,27 @@
 
     <!-- Actions -->
     <div class="d-flex gap-2 flex-wrap mt-4">
-        <a href="{{ url_for('study_plan.list_plans') }}" class="btn btn-secondary">
+        <a href="{{ url_for('study_plan.edit_plan', study_plan_id=study_plan.id) }}" class="btn btn-primary">
+            Edit Plan
+        </a>
+        {% if not study_plan.active %}
+        <form method="POST" action="{{ url_for('study_plan.set_active_plan', study_plan_id=study_plan.id) }}" class="d-inline">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="btn btn-success">Set Active</button>
+        </form>
+        {% endif %}
+        <form method="POST" action="{{ url_for('study_plan.archive_plan', study_plan_id=study_plan.id) }}" class="d-inline" onsubmit="return confirm('Archive this study plan? It will be removed from active scheduling but preserved for historical reference.');">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="btn btn-warning">Archive</button>
+        </form>
+        <form method="POST" action="{{ url_for('study_plan.delete_plan', study_plan_id=study_plan.id) }}" class="d-inline" onsubmit="return confirm('Permanently delete this study plan and all associated data? This cannot be undone.');">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+        <a href="{{ url_for('study_plan.list_plans') }}" class="btn btn-secondary ms-auto">
             All Study Plans
         </a>
-        <a href="{{ url_for('dashboard.index') }}" class="btn btn-primary">
+        <a href="{{ url_for('dashboard.index') }}" class="btn btn-outline-primary">
             Back to Dashboard
         </a>
     </div>

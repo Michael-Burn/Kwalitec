@@ -57,6 +57,7 @@ class StudyPlan(db.Model):
         comment="Official curriculum topic code currently being studied (e.g., 'CS1-A')",
     )
     active: bool = db.Column(db.Boolean, default=False, nullable=False)
+    archived: bool = db.Column(db.Boolean, default=False, nullable=False, comment="Archived plans are hidden from active scheduling but preserved")
     created_at: datetime = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
 
     # Relationships

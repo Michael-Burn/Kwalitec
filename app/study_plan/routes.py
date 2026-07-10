@@ -833,3 +833,251 @@ def list_plans():
     """List all study plans for the user."""
     plans = StudyPlanService.get_user_plans(current_user.id)
     return render_template("study_plan/list.html", plans=plans)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Edit Study Plan
+# ─────────────────────────────────────────────────────────────────────────────
+
+
+@study_plan_bp.get("/<int:study_plan_id>/edit")
+@login_required
+def edit_plan(study_plan_id: int):
+    """Display the edit form for a study plan."""
+    from app.models.study_plan import StudyPlan
+
+    study_plan = StudyPlan.query.get(study_plan_id)
+
+    if not study_plan:
+        flash("Study plan not found.", "warning")
+        return redirect(url_for("study_plan.list_plans"))
+
+    if study_plan.user_id != current_user.id:
+        flash("You can only edit your own study plans.", "danger")
+        return redirect(url_for("study_plan.list_plans"))
+
+    if study_plan.archived:
+        flash("Cannot edit an archived study plan.", "warning")
+        return redirect(url_for("study_plan.list_plans"))
+
+    from app.study_plan.forms import EditStudyPlanForm
+
+    form = EditStudyPlanForm(obj=study_plan)
+
+    # Load curriculum topics for the checkbox list if applicable
+    curriculum_topics = []
+    completed_curriculum_topics = []
+    curriculum_version = study_plan.curriculum_version
+
+    if curriculum_version:
+        parts = study_plan.exam_name.split(" ", 1)
+        if len(parts) == 2:
+            organisation, paper = parts
+            engine = CurriculumEngineService()
+            if engine.curriculum_exists(organisation, paper, curriculum_version):
+                try:
+                    curriculum = engine.load_curriculum(organisation, paper, curriculum_version)
+                    curriculum_topics = curriculum.topics
+                    # Determine which topics are already completed
+                    from app.models.topic_progress import TopicProgress
+
+                    completed_progress = TopicProgress.query.filter_by(
+                        user_id=current_user.id,
+                        completed=True,
+                    ).all()
+                    completed_topic_ids = {tp.topic_id for tp in completed_progress}
+                    from app.models.curriculum import Topic as DBTopic
+
+                    for engine_topic in curriculum_topics:
+                        db_topic = DBTopic.query.filter_by(
+                            curriculum_id=study_plan.curriculum_id,
+                            name=engine_topic.title,
+                        ).first()
+                        if db_topic and db_topic.id in completed_topic_ids:
+                            completed_curriculum_topics.append(engine_topic.code)
+                except Exception:
+                    logger.exception("Failed to load curriculum for edit form.")
+
+    return render_template(
+        "study_plan/edit.html",
+        form=form,
+        study_plan=study_plan,
+        curriculum_topics=curriculum_topics,
+        completed_curriculum_topics=completed_curriculum_topics,
+    )
+
+
+@study_plan_bp.post("/<int:study_plan_id>/edit")
+@login_required
+def edit_plan_post(study_plan_id: int):
+    """Handle study plan edit form submission."""
+    from app.models.study_plan import StudyPlan
+
+    study_plan = StudyPlan.query.get(study_plan_id)
+
+    if not study_plan:
+        flash("Study plan not found.", "warning")
+        return redirect(url_for("study_plan.list_plans"))
+
+    if study_plan.user_id != current_user.id:
+        flash("You can only edit your own study plans.", "danger")
+        return redirect(url_for("study_plan.list_plans"))
+
+    if study_plan.archived:
+        flash("Cannot edit an archived study plan.", "warning")
+        return redirect(url_for("study_plan.list_plans"))
+
+    from app.study_plan.forms import EditStudyPlanForm
+
+    form = EditStudyPlanForm()
+
+    if form.validate_on_submit():
+        try:
+            # Collect completed curriculum topic codes from the form
+            completed_codes = request.form.getlist("curriculum_topic")
+            completed_codes = [c.strip() for c in completed_codes if c.strip()]
+
+            # Determine curriculum_topic_code: first topic NOT in completed set
+            curriculum_topic_code = study_plan.curriculum_topic_code
+            curriculum_version = study_plan.curriculum_version
+            if curriculum_version:
+                parts = study_plan.exam_name.split(" ", 1)
+                if len(parts) == 2:
+                    engine = CurriculumEngineService()
+                    if engine.curriculum_exists(parts[0], parts[1], curriculum_version):
+                        try:
+                            cur = engine.load_curriculum(parts[0], parts[1], curriculum_version)
+                            completed_set = set(completed_codes)
+                            for topic in cur.topics:
+                                if topic.code not in completed_set:
+                                    curriculum_topic_code = topic.code
+                                    break
+                        except Exception:
+                            pass
+
+            update_kwargs = {
+                "exam_name": form.exam_name.data,
+                "exam_sitting": form.exam_sitting.data,
+                "exam_date": form.exam_date.data,
+                "weekday_study_minutes": form.weekday_study_minutes.data,
+                "weekend_study_minutes": form.weekend_study_minutes.data,
+                "current_stage": form.current_stage.data,
+                "study_preference": form.study_preference.data,
+                "target_grade": form.target_grade.data,
+                "preferred_session_minutes": form.preferred_session_minutes.data,
+                "curriculum_topic_code": curriculum_topic_code,
+                "completed_curriculum_topics": completed_codes,
+            }
+
+            StudyPlanService.update_study_plan(
+                study_plan_id=study_plan_id,
+                user_id=current_user.id,
+                **update_kwargs,
+            )
+
+            flash("Study plan updated successfully!", "success")
+            return redirect(url_for("study_plan.view_plan", study_plan_id=study_plan_id))
+        except ValueError as e:
+            flash(str(e), "danger")
+
+    return render_template(
+        "study_plan/edit.html",
+        form=form,
+        study_plan=study_plan,
+        curriculum_topics=[],
+        completed_curriculum_topics=[],
+    )
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Delete Study Plan
+# ─────────────────────────────────────────────────────────────────────────────
+
+
+@study_plan_bp.post("/<int:study_plan_id>/delete")
+@login_required
+def delete_plan(study_plan_id: int):
+    """Delete a study plan after confirmation."""
+    from app.models.study_plan import StudyPlan
+
+    study_plan = StudyPlan.query.get(study_plan_id)
+
+    if not study_plan:
+        flash("Study plan not found.", "warning")
+        return redirect(url_for("study_plan.list_plans"))
+
+    if study_plan.user_id != current_user.id:
+        flash("You can only delete your own study plans.", "danger")
+        return redirect(url_for("study_plan.list_plans"))
+
+    try:
+        StudyPlanService.delete_study_plan(study_plan_id, current_user.id)
+        flash("Study plan permanently deleted.", "info")
+    except ValueError as e:
+        flash(str(e), "danger")
+
+    return redirect(url_for("study_plan.list_plans"))
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Archive Study Plan
+# ─────────────────────────────────────────────────────────────────────────────
+
+
+@study_plan_bp.post("/<int:study_plan_id>/archive")
+@login_required
+def archive_plan(study_plan_id: int):
+    """Archive a study plan to preserve history but remove from active scheduling."""
+    from app.models.study_plan import StudyPlan
+
+    study_plan = StudyPlan.query.get(study_plan_id)
+
+    if not study_plan:
+        flash("Study plan not found.", "warning")
+        return redirect(url_for("study_plan.list_plans"))
+
+    if study_plan.user_id != current_user.id:
+        flash("You can only archive your own study plans.", "danger")
+        return redirect(url_for("study_plan.list_plans"))
+
+    try:
+        StudyPlanService.archive_study_plan(study_plan_id, current_user.id)
+        flash("Study plan archived.", "info")
+    except ValueError as e:
+        flash(str(e), "danger")
+
+    return redirect(url_for("study_plan.list_plans"))
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Set Active Study Plan
+# ─────────────────────────────────────────────────────────────────────────────
+
+
+@study_plan_bp.post("/<int:study_plan_id>/set-active")
+@login_required
+def set_active_plan(study_plan_id: int):
+    """Set a study plan as the active plan (only one active at a time)."""
+    from app.models.study_plan import StudyPlan
+
+    study_plan = StudyPlan.query.get(study_plan_id)
+
+    if not study_plan:
+        flash("Study plan not found.", "warning")
+        return redirect(url_for("study_plan.list_plans"))
+
+    if study_plan.user_id != current_user.id:
+        flash("You can only set your own study plans as active.", "danger")
+        return redirect(url_for("study_plan.list_plans"))
+
+    if study_plan.archived:
+        flash("Cannot activate an archived study plan.", "warning")
+        return redirect(url_for("study_plan.list_plans"))
+
+    try:
+        StudyPlanService.set_active_plan(study_plan_id, current_user.id)
+        flash("Study plan set as active.", "success")
+    except ValueError as e:
+        flash(str(e), "danger")
+
+    return redirect(url_for("study_plan.list_plans"))

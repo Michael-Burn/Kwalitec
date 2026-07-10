@@ -1,0 +1,169 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<div class="container-md py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <p class="text-uppercase text-secondary small fw-semibold mb-2">Study Plan</p>
+            <h1 class="display-6 fw-bold">Edit Study Plan</h1>
+        </div>
+        <a href="{{ url_for('study_plan.view_plan', study_plan_id=study_plan.id) }}" class="btn btn-secondary">
+            Cancel
+        </a>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('study_plan.edit_plan', study_plan_id=study_plan.id) }}">
+                        {{ form.hidden_tag() }}
+
+                        <!-- Exam Details -->
+                        <fieldset class="mb-4">
+                            <legend class="h5 mb-3">Exam Details</legend>
+                            <div class="mb-3">
+                                <label for="{{ form.exam_name.id }}" class="form-label">{{ form.exam_name.label.text }}</label>
+                                {{ form.exam_name(class="form-control") }}
+                                {% if form.exam_name.errors %}
+                                <div class="text-danger small mt-1">{{ form.exam_name.errors[0] }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="mb-3">
+                                <label for="{{ form.exam_sitting.id }}" class="form-label">{{ form.exam_sitting.label.text }}</label>
+                                {{ form.exam_sitting(class="form-control") }}
+                                {% if form.exam_sitting.errors %}
+                                <div class="text-danger small mt-1">{{ form.exam_sitting.errors[0] }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="mb-3">
+                                <label for="{{ form.exam_date.id }}" class="form-label">{{ form.exam_date.label.text }}</label>
+                                {{ form.exam_date(class="form-control", type="date") }}
+                                {% if form.exam_date.errors %}
+                                <div class="text-danger small mt-1">{{ form.exam_date.errors[0] }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="mb-3">
+                                <label for="{{ form.target_grade.id }}" class="form-label">{{ form.target_grade.label.text }}</label>
+                                {{ form.target_grade(class="form-control") }}
+                                {% if form.target_grade.errors %}
+                                <div class="text-danger small mt-1">{{ form.target_grade.errors[0] }}</div>
+                                {% endif %}
+                            </div>
+                        </fieldset>
+
+                        <!-- Study Schedule -->
+                        <fieldset class="mb-4">
+                            <legend class="h5 mb-3">Study Schedule</legend>
+                            <div class="mb-3">
+                                <label for="{{ form.weekday_study_minutes.id }}" class="form-label">{{ form.weekday_study_minutes.label.text }}</label>
+                                {{ form.weekday_study_minutes(class="form-control", type="number", min=15, max=480) }}
+                                {% if form.weekday_study_minutes.errors %}
+                                <div class="text-danger small mt-1">{{ form.weekday_study_minutes.errors[0] }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="mb-3">
+                                <label for="{{ form.weekend_study_minutes.id }}" class="form-label">{{ form.weekend_study_minutes.label.text }}</label>
+                                {{ form.weekend_study_minutes(class="form-control", type="number", min=15, max=480) }}
+                                {% if form.weekend_study_minutes.errors %}
+                                <div class="text-danger small mt-1">{{ form.weekend_study_minutes.errors[0] }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">{{ form.preferred_session_minutes.label.text }}</label>
+                                <div class="d-flex gap-3">
+                                    {% for subfield in form.preferred_session_minutes %}
+                                    <div class="form-check">
+                                        {{ subfield(class="form-check-input") }}
+                                        <label class="form-check-label" for="{{ subfield.id }}">{{ subfield.label.text }}</label>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                {% if form.preferred_session_minutes.errors %}
+                                <div class="text-danger small mt-1">{{ form.preferred_session_minutes.errors[0] }}</div>
+                                {% endif %}
+                            </div>
+                        </fieldset>
+
+                        <!-- Learning Preferences -->
+                        <fieldset class="mb-4">
+                            <legend class="h5 mb-3">Learning Preferences</legend>
+                            <div class="mb-3">
+                                <label for="{{ form.current_stage.id }}" class="form-label">{{ form.current_stage.label.text }}</label>
+                                {{ form.current_stage(class="form-control") }}
+                                <div class="form-text">Describe your current study position (e.g., "Chapter 3", "Revision Phase").</div>
+                                {% if form.current_stage.errors %}
+                                <div class="text-danger small mt-1">{{ form.current_stage.errors[0] }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">{{ form.study_preference.label.text }}</label>
+                                <div class="d-flex gap-3">
+                                    {% for subfield in form.study_preference %}
+                                    <div class="form-check">
+                                        {{ subfield(class="form-check-input") }}
+                                        <label class="form-check-label" for="{{ subfield.id }}">{{ subfield.label.text }}</label>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                {% if form.study_preference.errors %}
+                                <div class="text-danger small mt-1">{{ form.study_preference.errors[0] }}</div>
+                                {% endif %}
+                            </div>
+                        </fieldset>
+
+                        <!-- Curriculum Topics (if applicable) -->
+                        {% if curriculum_topics %}
+                        <fieldset class="mb-4">
+                            <legend class="h5 mb-3">
+                                Completed Curriculum Topics
+                                <small class="text-muted fw-normal">(check topics you've already mastered)</small>
+                            </legend>
+                            <div class="row g-2">
+                                {% for topic in curriculum_topics %}
+                                <div class="col-md-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               name="curriculum_topic" value="{{ topic.code }}"
+                                               id="topic-{{ topic.code }}"
+                                               {% if topic.code in completed_curriculum_topics %}checked{% endif %}>
+                                        <label class="form-check-label" for="topic-{{ topic.code }}">
+                                            <strong>{{ topic.code }}</strong> — {{ topic.title }}
+                                        </label>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div class="form-text mt-2">
+                                The first un-checked topic becomes your current learning target.
+                                Previously completed topics with real progress data will be preserved.
+                            </div>
+                        </fieldset>
+                        {% endif %}
+
+                        <!-- Actions -->
+                        <div class="d-flex gap-2">
+                            {{ form.submit(class="btn btn-primary") }}
+                            <a href="{{ url_for('study_plan.view_plan', study_plan_id=study_plan.id) }}" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar Info -->
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Editing</h5>
+                    <p class="card-text text-secondary small">
+                        Changing exam details, schedule, or completed topics will
+                        regenerate your study plan weeks and readiness summary.
+                        Existing topic progress with real study data will be preserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -385,18 +385,261 @@ class StudyPlanService:
         return study_plan
 
     @staticmethod
-    def get_user_plans(user_id: int) -> list[StudyPlan]:
+    def update_study_plan(
+        study_plan_id: int,
+        user_id: int,
+        **kwargs,
+    ) -> StudyPlan:
+        """Update an existing study plan's details and regenerate week plans.
+
+        Args:
+            study_plan_id: The ID of the study plan to update.
+            user_id: The ID of the user (for authorization).
+            **kwargs: Fields to update (exam_name, exam_sitting, exam_date,
+                weekday_study_minutes, weekend_study_minutes, current_stage,
+                study_preference, target_grade, preferred_session_minutes,
+                curriculum_topic_code, completed_curriculum_topics).
+
+        Returns:
+            StudyPlan: The updated study plan.
+
+        Raises:
+            ValueError: If the plan doesn't exist, doesn't belong to the user,
+                or validation fails.
+        """
+        study_plan = StudyPlan.query.get(study_plan_id)
+        if not study_plan:
+            raise ValueError(f"Study plan {study_plan_id} not found")
+
+        if study_plan.user_id != user_id:
+            raise ValueError(f"Study plan {study_plan_id} does not belong to user {user_id}")
+
+        if study_plan.archived:
+            raise ValueError("Cannot edit an archived study plan.")
+
+        # List of allowed scalar fields that can be updated
+        updatable_fields = {
+            "exam_name",
+            "exam_sitting",
+            "exam_date",
+            "weekday_study_minutes",
+            "weekend_study_minutes",
+            "current_stage",
+            "study_preference",
+            "target_grade",
+            "preferred_session_minutes",
+            "curriculum_topic_code",
+            "curriculum_version",
+        }
+
+        # Validate new values for study minutes if provided
+        test_weekday = kwargs.get("weekday_study_minutes", study_plan.weekday_study_minutes)
+        test_weekend = kwargs.get("weekend_study_minutes", study_plan.weekend_study_minutes)
+        test_exam_date = kwargs.get("exam_date", study_plan.exam_date)
+        StudyPlanService._validate_study_plan_input(test_exam_date, test_weekday, test_weekend)
+
+        # Apply scalar updates
+        for field in updatable_fields:
+            if field in kwargs:
+                setattr(study_plan, field, kwargs[field])
+
+        db.session.flush()
+
+        # Regenerate week plans (delete old, create new)
+        WeekPlan.query.filter_by(study_plan_id=study_plan.id).delete()
+        week_plans = StudyPlanService._generate_week_plans(study_plan)
+        for week_plan in week_plans:
+            db.session.add(week_plan)
+
+        # Update completed curriculum topics if provided and plan is curriculum-backed
+        completed_topics = kwargs.get("completed_curriculum_topics")
+        if completed_topics is not None and study_plan.curriculum_version:
+            curriculum_topic_code = kwargs.get(
+                "curriculum_topic_code", study_plan.curriculum_topic_code
+            )
+            StudyPlanService._sync_completed_topics(
+                study_plan, completed_topics, curriculum_topic_code
+            )
+        elif (
+            completed_topics is not None
+            and "curriculum_version" in kwargs
+            and kwargs["curriculum_version"]
+        ):
+            curriculum_topic_code = kwargs.get(
+                "curriculum_topic_code", study_plan.curriculum_topic_code
+            )
+            StudyPlanService._sync_completed_topics(
+                study_plan, completed_topics, curriculum_topic_code
+            )
+
+        db.session.commit()
+        return study_plan
+
+    @staticmethod
+    def _sync_completed_topics(
+        study_plan: StudyPlan,
+        completed_codes: list[str],
+        curriculum_topic_code: str | None,
+    ) -> None:
+        """Synchronise TopicProgress completed status with the supplied list.
+
+        Topics whose engine code appears in *completed_codes* are marked as
+        completed (unless they are the current learning topic).  Topics
+        NOT in the list that were previously completed are reset to
+        ``Not Started`` (so the user can un-check a previously completed
+        topic).
+        """
+        from app.models.curriculum import Topic as DBTopic
+        from app.services.curriculum_engine_service import CurriculumEngineService
+
+        if not study_plan.curriculum_id or not study_plan.curriculum_version:
+            return
+
+        parts = study_plan.exam_name.split(" ", 1)
+        if len(parts) != 2:
+            return
+
+        organisation, paper = parts
+        engine = CurriculumEngineService()
+        if not engine.curriculum_exists(organisation, paper, study_plan.curriculum_version):
+            return
+
+        try:
+            curriculum = engine.load_curriculum(
+                organisation, paper, study_plan.curriculum_version
+            )
+        except Exception:
+            logger.exception("Failed to load curriculum for topic sync.")
+            return
+
+        engine_topics = curriculum.topics
+        completed_set = set(completed_codes)
+
+        for engine_topic in engine_topics:
+            db_topic = DBTopic.query.filter_by(
+                curriculum_id=study_plan.curriculum_id,
+                name=engine_topic.title,
+            ).first()
+            if db_topic is None:
+                continue
+
+            tp = TopicProgress.query.filter_by(
+                user_id=study_plan.user_id,
+                topic_id=db_topic.id,
+            ).first()
+            if tp is None:
+                continue
+
+            # Never mark the current learning topic as completed
+            is_current = curriculum_topic_code and engine_topic.code == curriculum_topic_code
+            should_be_completed = engine_topic.code in completed_set and not is_current
+
+            if should_be_completed:
+                tp.completed = True
+                tp.mastery_score = 100.0
+                tp.confidence = "Mastered"
+                tp.current_stage = TopicProgress.STAGE_COMPLETED
+            else:
+                # If it was previously completed but is no longer in the
+                # list (or is the current topic), reset to appropriate stage.
+                if is_current:
+                    tp.completed = False
+                    tp.mastery_score = 0.0
+                    tp.current_stage = TopicProgress.STAGE_LEARNING
+                elif tp.completed and engine_topic.code not in completed_set:
+                    tp.completed = False
+                    tp.mastery_score = 0.0
+                    tp.confidence = "Not Started"
+                    tp.current_stage = TopicProgress.STAGE_NOT_STARTED
+
+    @staticmethod
+    def delete_study_plan(study_plan_id: int, user_id: int) -> None:
+        """Permanently delete a study plan and cascade through dependent data.
+
+        Deletes the study plan, its week plans, and associated TopicProgress
+        records for this user.  Missions and study attempts are preserved
+        (they belong to the user, not the plan).
+
+        Args:
+            study_plan_id: The ID of the study plan to delete.
+            user_id: The ID of the user (for authorization).
+
+        Raises:
+            ValueError: If the plan doesn't exist or doesn't belong to the user.
+        """
+        study_plan = StudyPlan.query.get(study_plan_id)
+        if not study_plan:
+            raise ValueError(f"Study plan {study_plan_id} not found")
+
+        if study_plan.user_id != user_id:
+            raise ValueError(f"Study plan {study_plan_id} does not belong to user {user_id}")
+
+        # Delete associated TopicProgress records for this user/curriculum
+        if study_plan.curriculum_id:
+            from app.models.curriculum import Topic as DBTopic
+
+            linked_topic_ids = [
+                r.id
+                for r in db.session.query(DBTopic.id)
+                .filter(DBTopic.curriculum_id == study_plan.curriculum_id)
+                .all()
+            ]
+            if linked_topic_ids:
+                TopicProgress.query.filter(
+                    TopicProgress.user_id == user_id,
+                    TopicProgress.topic_id.in_(linked_topic_ids),
+                ).delete(synchronize_session="fetch")
+
+        # The study plan's week_plans cascade automatically (delete-orphan)
+        db.session.delete(study_plan)
+        db.session.commit()
+
+    @staticmethod
+    def archive_study_plan(study_plan_id: int, user_id: int) -> StudyPlan:
+        """Archive a study plan — preserve history but remove from active scheduling.
+
+        If the plan being archived is currently active, it is deactivated
+        so that no new missions are generated from it.
+
+        Args:
+            study_plan_id: The ID of the study plan to archive.
+            user_id: The ID of the user (for authorization).
+
+        Returns:
+            StudyPlan: The archived study plan.
+
+        Raises:
+            ValueError: If the plan doesn't exist or doesn't belong to the user.
+        """
+        study_plan = StudyPlan.query.get(study_plan_id)
+        if not study_plan:
+            raise ValueError(f"Study plan {study_plan_id} not found")
+
+        if study_plan.user_id != user_id:
+            raise ValueError(f"Study plan {study_plan_id} does not belong to user {user_id}")
+
+        study_plan.archived = True
+        study_plan.active = False
+        db.session.commit()
+        return study_plan
+
+    @staticmethod
+    def get_user_plans(
+        user_id: int, include_archived: bool = False
+    ) -> list[StudyPlan]:
         """Get all study plans for a user.
 
         Args:
             user_id: The user ID.
+            include_archived: If True, also return archived plans.
 
         Returns:
             list[StudyPlan]: List of study plans ordered by creation date (newest first).
         """
-        return StudyPlan.query.filter_by(user_id=user_id).order_by(
-            StudyPlan.created_at.desc()
-        ).all()
+        query = StudyPlan.query.filter_by(user_id=user_id)
+        if not include_archived:
+            query = query.filter_by(archived=False)
+        return query.order_by(StudyPlan.created_at.desc()).all()
 
     @staticmethod
     def get_current_week_plan(study_plan: StudyPlan) -> WeekPlan | None:
