@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+import os
+import tempfile
+
 
 class TestDashboardRoute:
     """Tests for dashboard routes."""
@@ -149,6 +152,40 @@ class TestErrorHandling:
         """Test that CSRF protection is active (expect 400)."""
         response = client.post("/auth/login", data={})
         assert response.status_code in (200, 400)
+
+    def test_custom_500_page_in_production_mode(self):
+        """Regression: production (no PROPAGATE_EXCEPTIONS) returns custom 500."""
+        db_fd, db_path = tempfile.mkstemp(suffix=".sqlite3")
+
+        try:
+            from app import create_app
+
+            app = create_app()
+            app.config.update(
+                TESTING=True,
+                PROPAGATE_EXCEPTIONS=False,
+                DEBUG=False,
+                WTF_CSRF_ENABLED=False,
+                SQLALCHEMY_DATABASE_URI=f"sqlite:///{db_path}",
+                SERVER_NAME="localhost.localdomain",
+            )
+
+            @app.route("/trigger-500")
+            def trigger_500():
+                raise RuntimeError("intentional test error")
+
+            with app.app_context():
+                from app.extensions import db
+
+                db.create_all()
+
+            client = app.test_client()
+            response = client.get("/trigger-500")
+            assert response.status_code == 500
+            assert b"Internal Server Error" in response.data
+        finally:
+            os.close(db_fd)
+            os.unlink(db_path)
 
 
 class TestHealthCheck:

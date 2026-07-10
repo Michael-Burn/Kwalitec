@@ -136,7 +136,13 @@ def _log_migration_state(app: Flask) -> None:
 
 
 def _register_error_handlers(app: Flask) -> None:
-    """Register custom error handlers for HTTP error codes."""
+    """Register custom error handlers for HTTP error codes.
+
+    The 500 handler is only registered when exceptions are not being
+    propagated (i.e. production).  In development/debug mode exceptions
+    are allowed to propagate so the interactive debugger can display the
+    traceback instead of swallowing the error with a custom page.
+    """
 
     @app.errorhandler(403)
     def forbidden(error):
@@ -148,11 +154,13 @@ def _register_error_handlers(app: Flask) -> None:
         logger.info("404 Not Found: %s %s", request.method, request.path)
         return render_template("errors/404.html"), 404
 
-    @app.errorhandler(500)
-    def internal_server_error(error):
-        logger.exception("500 Internal Server Error at %s %s", request.method, request.path)
-        db.session.rollback()
-        return render_template("errors/500.html"), 500
+    if not app.config.get("PROPAGATE_EXCEPTIONS", False):
+
+        @app.errorhandler(500)
+        def internal_server_error(error):
+            logger.exception("500 Internal Server Error at %s %s", request.method, request.path)
+            db.session.rollback()
+            return render_template("errors/500.html"), 500
 
 
 def _register_health_check(app: Flask) -> None:

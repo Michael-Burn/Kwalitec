@@ -7,6 +7,7 @@ from datetime import date, timedelta
 
 from app.extensions import db
 from app.models.curriculum import Curriculum, Topic
+from app.models.learning import LearningObjective
 from app.models.study_plan import StudyPlan, WeekPlan
 from app.models.topic_progress import TopicProgress
 
@@ -223,6 +224,20 @@ class StudyPlanService:
                 )
                 db.session.add(db_topic)
                 db.session.flush()
+
+                # Persist learning objectives for this topic.
+                for lo_order, engine_lo in enumerate(
+                    engine_topic.learning_outcomes, start=1
+                ):
+                    db_lo = LearningObjective(
+                        topic_id=db_topic.id,
+                        description=(
+                            f"[{engine_lo.code}] {engine_lo.description}"
+                        ),
+                        order=lo_order,
+                        active=True,
+                    )
+                    db.session.add(db_lo)
 
             # Create TopicProgress only if one does not already exist.
             existing_progress = TopicProgress.query.filter_by(

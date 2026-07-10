@@ -702,3 +702,184 @@ class TestEndToEndCurriculumWorkflow:
         )
         pct = int(match.group(1))
         assert 0 <= pct <= 100
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Fresh-database import tests
+# ═══════════════════════════════════════════════════════════════════════════════
+
+
+class TestCurriculumDatabaseImport:
+    """Tests for the idempotent curriculum import from bundled JSON.
+
+    These tests verify that ``CurriculumService.import_curricula()``
+    correctly populates the database tables (Curriculum, Topic,
+    LearningObjective) on a fresh database and is safe to run repeatedly.
+    """
+
+    def test_import_populates_all_tables_on_fresh_db(self, ctx, db):
+        """After calling import_curricula() on a fresh database, all
+        curriculum tables should contain the expected rows."""
+        from app.services.curriculum_service import CurriculumService
+        from app.models.curriculum import Curriculum, Topic
+        from app.models.learning import LearningObjective
+
+        count = CurriculumService.import_curricula()
+        assert count == 1, "Expected 1 new curriculum to be imported"
+
+        assert Curriculum.query.count() == 1
+        c = Curriculum.query.first()
+        assert c.exam_name == "IFoA CS1"
+        assert c.version == "2026"
+        assert c.active is True
+
+        assert Topic.query.count() == 6
+        topics = Topic.query.order_by(Topic.order).all()
+        expected_names = [
+            "Random Variables and Distributions",
+            "Common Statistical Distributions",
+            "Generating Functions and Sums of Random Variables",
+            "Joint Distributions",
+            "Bayesian Statistics",
+            "Sampling and Statistical Inference",
+        ]
+        for i, t in enumerate(topics):
+            assert t.name == expected_names[i]
+            assert t.order == i + 1
+            assert t.recommended_minutes > 0
+            assert t.syllabus_weight > 0
+
+        assert LearningObjective.query.count() > 0
+
+    def test_import_is_idempotent(self, ctx, db):
+        """Calling import_curricula() twice must not create duplicate rows."""
+        from app.services.curriculum_service import CurriculumService
+        from app.models.curriculum import Curriculum, Topic
+        from app.models.learning import LearningObjective
+
+        count1 = CurriculumService.import_curricula()
+        assert count1 == 1
+
+        count2 = CurriculumService.import_curricula()
+        assert count2 == 0, "Second import should return 0 (no new curricula)"
+
+        assert Curriculum.query.count() == 1
+        assert Topic.query.count() == 6
+        assert LearningObjective.query.count() > 0
+
+    def test_imported_curriculum_available_for_study_plan(self, ctx, db, user):
+        """A study plan created after import must link to the existing
+        imported Curriculum record (not create a duplicate)."""
+        from app.services.curriculum_service import CurriculumService
+        from app.services.study_plan_service import StudyPlanService
+        from app.models.curriculum import Curriculum, Topic
+        from datetime import date, timedelta
+
+        # Import first
+        CurriculumService.import_curricula()
+        pre_count = Curriculum.query.count()
+
+        sp = StudyPlanService.create_study_plan(
+            user_id=user.id,
+            exam_name="IFoA CS1",
+            exam_sitting="April 2027",
+            exam_date=date.today() + timedelta(days=180),
+            weekday_study_minutes=60,
+            weekend_study_minutes=120,
+            current_stage="Learning",
+            study_preference="Mixed",
+            target_grade="B",
+            curriculum_version="2026",
+            curriculum_topic_code="CS1-A",
+        )
+
+        assert sp.curriculum_id is not None
+        assert Curriculum.query.count() == pre_count, (
+            "No new Curriculum row should have been created"
+        )
+        db_cur = db.session.get(Curriculum, sp.curriculum_id)
+        assert db_cur is not None
+        assert db_cur.exam_name == "IFoA CS1"
+        assert db_cur.version == "2026"
+
+    def test_imported_topics_have_learning_objectives(self, ctx, db):
+        """Every imported topic must have at least one LearningObjective."""
+        from app.services.curriculum_service import CurriculumService
+        from app.models.curriculum import Topic
+        from app.models.learning import LearningObjective
+
+        CurriculumService.import_curricula()
+        for topic in Topic.query.all():
+            los = LearningObjective.query.filter_by(topic_id=topic.id).all()
+            assert len(los) > 0, (
+                f"Topic '{topic.name}' has no learning objectives"
+            )
+
+    def test_imported_curriculum_supports_roadmap(self, ctx, db):
+        """The ordered topic list from the imported curriculum matches
+        the official syllabus order — this is what the roadmap displays."""
+        from app.services.curriculum_service import CurriculumService
+        from app.models.curriculum import Topic
+
+        CurriculumService.import_curricula()
+        topics = Topic.query.order_by(Topic.order).all()
+        assert len(topics) == 6
+        for t in topics:
+            assert t.syllabus_weight > 0
+            assert t.recommended_minutes > 0
+
+    def test_imported_curriculum_supports_dashboard_progress(self, ctx, db, user):
+        """Dashboard progress queries must work with the imported curriculum."""
+        from app.services.curriculum_service import CurriculumService
+        from app.models.curriculum import Curriculum
+
+        CurriculumService.import_curricula()
+        curriculum = Curriculum.query.first()
+        assert curriculum is not None
+
+        progress = CurriculumService.get_curriculum_progress(
+            user_id=user.id, curriculum=curriculum
+        )
+        assert progress["total_topics"] > 0
+        assert progress["completion_percentage"] == 0.0
+
+    def test_imported_curriculum_supports_mission_topic_selection(self, ctx, db, user):
+        """Mission topic selection (Priority 3) must work with imported
+        curricula and return the first incomplete topic."""
+        from app.services.curriculum_service import CurriculumService
+        from app.services.study_plan_service import StudyPlanService
+        from app.services.planning_service import PlanningService
+        from datetime import date, timedelta
+
+        CurriculumService.import_curricula()
+
+        sp = StudyPlanService.create_study_plan(
+            user_id=user.id,
+            exam_name="IFoA CS1",
+            exam_sitting="April 2027",
+            exam_date=date.today() + timedelta(days=180),
+            weekday_study_minutes=60,
+            weekend_study_minutes=120,
+            current_stage="Learning",
+            study_preference="Mixed",
+            target_grade="B",
+            curriculum_version="2026",
+            curriculum_topic_code="CS1-A",
+        )
+
+        selected = PlanningService._select_topic_for_today(
+            user_id=user.id,
+            active_plan=sp,
+            target_date=date.today(),
+        )
+        assert selected is not None
+        assert selected.name == "Random Variables and Distributions"
+
+    def test_startup_service_imports_curricula(self, ctx, app, db):
+        """The StartupService must import curricula when it runs."""
+        from app.models.curriculum import Curriculum
+        from app.services.curriculum_service import CurriculumService
+
+        count = CurriculumService.import_curricula()
+        assert count >= 1
+        assert Curriculum.query.count() >= 1

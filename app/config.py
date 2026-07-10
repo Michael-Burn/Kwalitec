@@ -89,6 +89,7 @@ class DevelopmentConfig(BaseConfig):
     """Development configuration."""
 
     DEBUG = True
+    PROPAGATE_EXCEPTIONS = True
 
 
 class ProductionConfig(BaseConfig):

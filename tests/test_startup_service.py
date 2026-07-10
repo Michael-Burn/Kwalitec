@@ -329,7 +329,9 @@ class TestStartupService:
     # ── Environment gating ──────────────────────────────────────────────
 
     def test_no_op_in_development(self, fresh_prod_app):
-        """StartupService is a no-op when APP_ENV is development."""
+        """StartupService skips migrations/admin in development, but still
+        attempts curriculum import. If the table doesn't exist yet, the
+        failure is caught and logged without crashing."""
         app = fresh_prod_app
         os.environ["APP_ENV"] = "development"
 
@@ -340,16 +342,19 @@ class TestStartupService:
             _stop_logs(handler)
 
         messages = [r.getMessage() for r in records]
-        assert "Startup initialization beginning..." not in messages
-
-        # The service is a no-op, so no tables were created.  Querying the
-        # users table would raise; instead we verify via the Alembic
-        # revision that nothing was applied.
-        with app.app_context():
-            assert _current_revision(app) is None
+        # Startup completed without crashing
+        assert "Startup initialization complete." in messages
+        # Migrations and admin creation are skipped in non-production
+        assert not any("Applying migrations" in m for m in messages)
+        assert not any("Admin created" in m for m in messages)
+        # In development with no migrations, curriculum table doesn't exist,
+        # so import is skipped gracefully (no crash)
+        assert "Startup initialization complete." in messages
 
     def test_no_op_in_testing(self, fresh_prod_app):
-        """StartupService is a no-op when APP_ENV is testing."""
+        """StartupService skips migrations/admin in testing, but still
+        attempts curriculum import. If the table doesn't exist yet, the
+        failure is caught and logged without crashing."""
         app = fresh_prod_app
         os.environ["APP_ENV"] = "testing"
 
@@ -360,7 +365,14 @@ class TestStartupService:
             _stop_logs(handler)
 
         messages = [r.getMessage() for r in records]
-        assert "Startup initialization beginning..." not in messages
+        # Startup completed without crashing
+        assert "Startup initialization complete." in messages
+        # Migrations and admin creation are skipped in non-production
+        assert not any("Applying migrations" in m for m in messages)
+        assert not any("Admin created" in m for m in messages)
+        # In testing with no migrations, curriculum table doesn't exist,
+        # so import is skipped gracefully (no crash)
+        assert "Startup initialization complete." in messages
 
     # ── Unit tests for _should_run ──────────────────────────────────────
 
@@ -391,4 +403,90 @@ class TestStartupService:
 
         os.environ["APP_ENV"] = "PRODUCTION"
         assert StartupService._should_run() is True
+
+    # ── Fresh database regression ────────────────────────────────────────
+
+    def test_fresh_database_skips_curriculum_import_before_migrations(
+        self, fresh_prod_app
+    ):
+        """On a completely fresh database, curriculum import runs after
+        migrations complete successfully.
+        
+        This is a regression test for the issue where running startup on a
+        fresh database before migrations would cause:
+        ``sqlite3.OperationalError: no such table: curricula``
+        
+        The test verifies:
+        1. Startup completes without crashing on a fresh database
+        2. Migrations are applied first
+        3. Curriculum import runs successfully after tables exist
+        """
+        app = fresh_prod_app
+        os.environ["APP_ENV"] = "production"
+        os.environ["ADMIN_EMAIL"] = "admin@kwalitec.example"
+        os.environ["ADMIN_PASSWORD"] = "securepassword123"
+
+        # First run on completely fresh database (no tables exist)
+        records, handler = _capture_logs()
+        try:
+            StartupService.run(app)
+        finally:
+            _stop_logs(handler)
+
+        messages = [r.getMessage() for r in records]
+
+        # Startup completed without crashing
+        assert "Startup initialization complete." in messages
+        
+        # Migrations were applied (production mode)
+        with app.app_context():
+            assert _current_revision(app) == _head_revision(app)
+        
+        # Curriculum import ran successfully AFTER migrations created the table
+        assert any("Imported" in m and "new curricula" in m for m in messages), (
+            "Expected curriculum import to run after migrations on fresh database"
+        )
+
+    def test_fresh_database_curriculum_import_after_migrations(self, fresh_prod_app):
+        """Verify curriculum import runs automatically after migrations on
+        a fresh database and is idempotent on subsequent runs."""
+        app = fresh_prod_app
+        os.environ["APP_ENV"] = "production"
+        os.environ["ADMIN_EMAIL"] = "admin@kwalitec.example"
+        os.environ["ADMIN_PASSWORD"] = "securepassword123"
+
+        # First run - applies migrations and imports curricula
+        records, handler = _capture_logs()
+        try:
+            StartupService.run(app)
+        finally:
+            _stop_logs(handler)
+
+        messages = [r.getMessage() for r in records]
+        
+        # Verify curricula were imported on first run
+        with app.app_context():
+            from app.models.curriculum import Curriculum
+            curricula = db.session.query(Curriculum).all()
+            assert len(curricula) > 0, "Expected at least one curriculum to be imported"
+
+        # Second run - should be idempotent (no new imports)
+        records, handler = _capture_logs()
+        try:
+            StartupService.run(app)
+        finally:
+            _stop_logs(handler)
+
+        messages = [r.getMessage() for r in records]
+
+        # Startup completed successfully on second run
+        assert "Startup initialization complete." in messages
+        assert "Database schema up to date." in messages
+        assert "Admin already exists." in messages
+        
+        # Verify no new curricula were imported (idempotent - the import
+        # method returns 0, so no "Imported X new curricula" message)
+        assert not any("Imported" in m and "new curricula" in m for m in messages), (
+            "No new curricula should be imported on second run"
+        )
 

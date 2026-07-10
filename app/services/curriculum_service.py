@@ -1,20 +1,139 @@
-"""Service for managing curriculum and topic data."""
+"""Service for managing curriculum and topic data.
+
+This service provides both query methods for existing curriculum data and
+an idempotent import method that reads official curriculum JSON from the
+Curriculum Engine and persists it into the database (Curriculum, Topic,
+LearningObjective records).
+"""
 
 from __future__ import annotations
 
+import logging
 from datetime import date
+from typing import Any
 
 from app.extensions import db
 from app.models.curriculum import Curriculum, Topic
+from app.models.learning import LearningObjective
 from app.models.topic_progress import TopicProgress
+
+logger = logging.getLogger(__name__)
 
 
 class CurriculumService:
     """Service for curriculum operations and topic management.
     
-    Provides methods for loading curricula, retrieving topics, and tracking
-    progress through curriculum topics.
+    Provides methods for loading curricula, retrieving topics, tracking
+    progress through curriculum topics, and idempotently importing
+    bundled curriculum data into the database.
     """
+
+    # ── Idempotent import ──────────────────────────────────────────────
+
+    @staticmethod
+    def import_curricula() -> int:
+        """Import all bundled curricula from the Curriculum Engine into the
+        database.
+
+        This method is **idempotent** — safe to call on every application
+        startup.  If a ``(exam_name, version)`` record already exists in the
+        ``curricula`` table the import is skipped for that curriculum (no
+        duplicate rows are created, no existing rows are modified).
+
+        Returns:
+            The number of curricula that were newly imported (0 if all were
+            already present).
+        """
+        from app.curriculum.repository import CurriculumRepository
+
+        repo = CurriculumRepository()
+        discovered = repo.list_exams()  # [(org, paper, [versions])]
+
+        imported_count = 0
+
+        for organisation, paper, versions in discovered:
+            for version in versions:
+                # ── Load from engine ─────────────────────────────────
+                try:
+                    engine_curriculum = repo.load(
+                        organisation.lower(),
+                        paper.lower(),
+                        version,
+                    )
+                except Exception:
+                    logger.exception(
+                        "Failed to load curriculum %s/%s/%s — skipping.",
+                        organisation, paper, version,
+                    )
+                    continue
+
+                # Use the engine's canonical organisation and paper
+                # (preserves casing from JSON, e.g. "IFoA" not "IFOA").
+                exam_name = (
+                    f"{engine_curriculum.organisation} {engine_curriculum.paper}"
+                )
+
+                # ── Idempotency check ───────────────────────────────
+                existing = Curriculum.query.filter_by(
+                    exam_name=exam_name,
+                    version=version,
+                ).first()
+                if existing is not None:
+                    logger.debug(
+                        "Curriculum %s v%s already exists — skipping import.",
+                        exam_name, version,
+                    )
+                    continue
+
+                # ── Create DB Curriculum row ─────────────────────────
+                db_curriculum = Curriculum(
+                    exam_name=exam_name,
+                    version=version,
+                    active=True,
+                )
+                db.session.add(db_curriculum)
+                db.session.flush()  # get db_curriculum.id
+
+                # ── Create DB Topic + LearningObjective rows ─────────
+                for order, engine_topic in enumerate(engine_curriculum.topics, start=1):
+                    db_topic = Topic(
+                        curriculum_id=db_curriculum.id,
+                        name=engine_topic.title,
+                        order=order,
+                        recommended_minutes=int(
+                            engine_topic.estimated_hours * 60
+                        ),
+                        syllabus_weight=engine_topic.weighting,
+                        active=True,
+                    )
+                    db.session.add(db_topic)
+                    db.session.flush()  # get db_topic.id
+
+                    for lo_order, engine_lo in enumerate(
+                        engine_topic.learning_outcomes, start=1
+                    ):
+                        db_lo = LearningObjective(
+                            topic_id=db_topic.id,
+                            description=(
+                                f"[{engine_lo.code}] {engine_lo.description}"
+                            ),
+                            order=lo_order,
+                            active=True,
+                        )
+                        db.session.add(db_lo)
+
+                db.session.flush()
+                imported_count += 1
+                logger.info(
+                    "Imported curriculum %s v%s (%d topics) into database.",
+                    exam_name, version, len(engine_curriculum.topics),
+                )
+
+        if imported_count:
+            db.session.commit()
+        return imported_count
+
+    # ── Existing query methods ─────────────────────────────────────────
 
     @staticmethod
     def get_curriculum_by_id(curriculum_id: int) -> Curriculum | None:
@@ -26,7 +145,7 @@ class CurriculumService:
         Returns:
             Curriculum: The curriculum object, or None if not found.
         """
-        return Curriculum.query.get(curriculum_id)
+        return db.session.get(Curriculum, curriculum_id)
 
     @staticmethod
     def get_curriculum_by_exam(exam_name: str) -> Curriculum | None:
@@ -35,7 +154,7 @@ class CurriculumService:
         If multiple curricula exist for the same exam, returns the most recent.
         
         Args:
-            exam_name: The exam name (e.g., "A-Level Maths").
+            exam_name: The exam name (e.g., "IFoA CS1").
         
         Returns:
             Curriculum: The active curriculum, or None if not found.

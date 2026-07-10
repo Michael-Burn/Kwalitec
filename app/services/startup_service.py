@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import logging
 import os
+import sys
 from pathlib import Path
 
 from alembic import command
@@ -47,15 +48,18 @@ class StartupService:
         This is the single entry point called from the application factory.
         It never raises — all exceptions are caught and logged so the Flask
         application can always start.
-        """
-        if not StartupService._should_run():
-            return
 
+        The curriculum import runs in **all** environments so that bundled
+        official curricula are available automatically on a fresh database.
+        Migrations and admin creation remain production-only.
+        """
         try:
             with app.app_context():
                 logger.info("Startup initialization beginning...")
-                StartupService._apply_migrations(app)
-                StartupService._ensure_admin()
+                if StartupService._should_run():
+                    StartupService._apply_migrations(app)
+                    StartupService._ensure_admin()
+                StartupService._run_curriculum_import(app)
                 logger.info("Startup initialization complete.")
         except Exception as exc:  # noqa: BLE001
             logger.exception(
@@ -70,6 +74,26 @@ class StartupService:
     def _should_run() -> bool:
         """Return True only when ``APP_ENV`` is production."""
         return os.getenv("APP_ENV", "development").lower() == "production"
+
+    @staticmethod
+    def _is_flask_cli_command() -> bool:
+        """Return True if the current process is a Flask CLI command.
+        
+        Detects Flask CLI commands (flask db upgrade, flask db migrate,
+        flask shell, flask routes, etc.) to prevent curriculum import
+        from running during database migrations or other CLI operations.
+        """
+        # Check if we're running via the flask command
+        if sys.argv[0].endswith("flask") or "flask" in sys.argv[0]:
+            return True
+        
+        # Check if the first argument is a flask subcommand
+        if len(sys.argv) > 1 and sys.argv[1] in (
+            "db", "shell", "routes", "run", "test", "test-discovery"
+        ):
+            return True
+        
+        return False
 
     @staticmethod
     def _apply_migrations(app: Flask) -> None:
@@ -183,3 +207,62 @@ class StartupService:
         db.session.add(user)
         db.session.commit()
         logger.info("Admin created.")
+
+
+    @staticmethod
+    def _table_exists(table_name: str) -> bool:
+        """Check if a database table exists.
+        
+        Uses SQLAlchemy's inspector to safely check table existence without
+        raising exceptions.
+        """
+        from sqlalchemy import inspect
+        
+        try:
+            inspector = inspect(db.engine)
+            return inspector.has_table(table_name)
+        except Exception as exc:  # noqa: BLE001
+            logger.debug(
+                "Could not check if table '%s' exists (%s: %s)",
+                table_name,
+                exc.__class__.__name__,
+                exc,
+            )
+            return False
+
+    @staticmethod
+    def _run_curriculum_import(app: Flask) -> None:
+        """Idempotently import bundled curricula into the database.
+        
+        Skips import if:
+        - The curricula table does not yet exist (e.g., during ``flask db upgrade``)
+        - The process is a Flask CLI command (to avoid interfering with migrations)
+        
+        Curriculum import only runs when the web application actually starts
+        serving requests, not during Flask CLI commands.
+        """
+        # Skip if running a Flask CLI command (db upgrade, migrate, shell, etc.)
+        if StartupService._is_flask_cli_command():
+            logger.debug(
+                "Skipping curriculum import during Flask CLI command. "
+                "Import will run on next normal application startup."
+            )
+            return
+        
+        # Skip if the curricula table doesn't exist yet
+        if not StartupService._table_exists("curricula"):
+            logger.debug(
+                "Curricula table does not exist yet; skipping curriculum import. "
+                "Import will run on next normal application startup."
+            )
+            return
+        
+        try:
+            from app.services.curriculum_service import CurriculumService
+            count = CurriculumService.import_curricula()
+            if count:
+                logger.info("Imported %d new curricula.", count)
+            else:
+                logger.debug("All curricula already present.")
+        except Exception as exc:
+            logger.exception("Curriculum import failed: %s", exc)
