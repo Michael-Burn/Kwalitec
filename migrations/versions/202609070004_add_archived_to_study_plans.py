@@ -27,7 +27,7 @@ def upgrade() -> None:
                 "archived",
                 sa.Boolean(),
                 nullable=False,
-                server_default=sa.text("0"),
+                server_default=sa.false(),
                 comment="Archived plans are hidden from active scheduling but preserved",
             )
         )
