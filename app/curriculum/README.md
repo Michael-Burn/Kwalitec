@@ -2,6 +2,8 @@
 
 The **Curriculum Engine** is the central source of truth for every educational feature in Kwalitec — Study Planning, Adaptive Learning, Mission Generation, Exam Readiness, Recommendations, Analytics, and Dashboard.
 
+Supports both **V1 (flat topics)** and **V2 (hierarchical: Section → Topic → Learning Objective)** formats with automatic detection.
+
 ---
 
 ## Purpose
@@ -25,35 +27,49 @@ Every feature in Kwalitec that needs to know *what* a student should study gets 
 ```
 app/curriculum/
 ├── __init__.py          # Public API exports
-├── models.py            # Dataclasses: Curriculum, Topic, LearningOutcome
-├── exceptions.py        # Typed exceptions for every failure mode
-├── schemas.py           # JSON Schema definition + lightweight validator
-├── loader.py            # File I/O, JSON parsing, curriculum discovery
-├── validator.py         # Business-rule validation (weightings, codes, etc.)
-├── repository.py        # In-memory cache + query API
+├── models.py            # V1 + V2 dataclasses
+├── exceptions.py        # Typed exceptions
+├── schemas.py           # JSON Schema + detect_format()
+├── loader.py            # File I/O, JSON parsing, discovery
+├── validator.py         # Business-rule validation
+├── repository.py        # Cache + query API (load_auto canonical entry point)
 ├── seed.py              # Bootstrap bundled curricula at startup
 ├── README.md            # This file
 └── data/
     └── ifoa/
         └── cs1/
-            └── 2026.json   # IFoA CS1 2026 syllabus
+            └── 2026.json   # IFoA CS1 2026 syllabus (V1 format)
 ```
 
 ### Data Flow
 
 ```
-JSON file  →  loader  →  schemas.validate_instance()
-                        →  loader.build dataclasses
-                        →  validator.validate_curriculum()
-                        →  repository.cache
-                        →  repository API (get_curriculum, get_topics, ...)
+JSON file  →  schemas.detect_format()  →  loader (V1 or V2 builder)
+           →  schemas.validate_instance()
+           →  validator.validate_curriculum[_v2]()
+           →  repository._cache
+           →  load_auto() / load() / load_v2()
 ```
 
 ---
 
-## JSON Schema
+## Two Curriculum Formats
 
-Each curriculum file is a JSON document with this structure:
+| | V1 (legacy) | V2 (canonical) |
+|---|---|---|
+| Engine types | `Curriculum`, `Topic`, `LearningOutcome` | `CurriculumDefinition`, `SectionDefinition`, `TopicDefinition`, `LearningObjectiveDefinition` |
+| Hierarchy | Flat topics list | Section → Topic → Learning Objective |
+| Weights | Per-topic `weighting` (sums to 100%) | Per-section `exam_weight` |
+| Difficulty | On `Topic` | On `SectionDefinition` and `TopicDefinition` |
+| Hours | `estimated_hours` on `Topic` | `estimated_minutes` on `TopicDefinition`; `estimated_hours` on `SectionDefinition` |
+| DB sections | None (`topic.section_id` NULL) | `Section` + `topic.section_id` set |
+| Format key | `organisation` + `topics` present | `exam_code` + `sections` present |
+
+Both formats coexist permanently. V1 study plans and progress rows must not break when V2 features are added.
+
+---
+
+## V1 JSON Schema
 
 ```json
 {
@@ -63,10 +79,6 @@ Each curriculum file is a JSON document with this structure:
   "syllabus_version": "2026",
   "effective_from": "2026-01-01",
   "effective_to": null,
-  "metadata": {
-    "description": "...",
-    "source_url": "..."
-  },
   "topics": [
     {
       "id": "cs1-2026-1",
@@ -81,7 +93,7 @@ Each curriculum file is a JSON document with this structure:
         {
           "id": "cs1-2026-1-1",
           "code": "CS1-A-1",
-          "description": "Define and distinguish between discrete and continuous random variables.",
+          "description": "Define and distinguish ...",
           "suggested_revision_days": 7
         }
       ]
@@ -90,45 +102,153 @@ Each curriculum file is a JSON document with this structure:
 }
 ```
 
-### Field Reference
+## V2 JSON Schema
 
-| Field | Type | Required | Notes |
-|---|---|---|---|
-| `organisation` | string | Yes | e.g. `IFoA`, `CAA`, `SOA` |
-| `examination` | string | Yes | Full qualification name |
-| `paper` | string | Yes | Paper code, e.g. `CS1`, `CM1` |
-| `syllabus_version` | string | Yes | 4-digit year |
-| `effective_from` | string | Yes | ISO date |
-| `effective_to` | string\|null | No | ISO date or null |
-| `metadata` | object | No | Arbitrary key-value pairs |
-| `topics[].id` | string | Yes | Unique within the curriculum |
-| `topics[].code` | string | Yes | Human-readable, unique |
-| `topics[].weighting` | number | Yes | 0–100; all must sum to ~100 |
-| `topics[].estimated_hours` | number | Yes | Must be > 0 |
-| `topics[].difficulty` | enum | Yes | `foundational`, `intermediate`, `advanced` |
-| `topics[].prerequisites` | string[] | Yes | Topic IDs that should be studied first |
-| `topics[].learning_outcomes[].suggested_revision_days` | int | No | Defaults to 14 |
+```json
+{
+  "exam_code": "CS1",
+  "exam_name": "Actuarial Statistics",
+  "provider": "IFoA",
+  "version": "2026",
+  "effective_date": "2026-01-01",
+  "sections": [
+    {
+      "id": "CS1-A",
+      "code": "CS1-A",
+      "title": "Random Variables and Distributions",
+      "description": "...",
+      "exam_weight": 25.0,
+      "estimated_hours": 45.0,
+      "difficulty": "foundational",
+      "display_order": 1,
+      "topics": [
+        {
+          "id": "CS1-A-T01",
+          "section_id": "CS1-A",
+          "code": "CS1-A.1",
+          "title": "Discrete and Continuous Random Variables",
+          "description": "...",
+          "estimated_minutes": 90,
+          "difficulty": "foundational",
+          "display_order": 1,
+          "learning_objectives": [
+            {
+              "id": "CS1-A-T01-LO01",
+              "topic_id": "CS1-A-T01",
+              "code": "CS1-A.1.a",
+              "description": "...",
+              "cognitive_level": "understand",
+              "estimated_minutes": 20,
+              "learning_type": "conceptual",
+              "display_order": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+---
+
+## Canonical Loader — `load_auto()`
+
+All application code that needs to load a curriculum **without knowing its format** must use the canonical loader:
+
+```python
+from app.curriculum.repository import CurriculumRepository
+
+repo = CurriculumRepository()
+curriculum = repo.load_auto("ifoa", "cs1", "2026")
+# → Curriculum (V1) or CurriculumDefinition (V2)
+```
+
+Or via `CurriculumEngineService` (preferred from service/route layer):
+
+```python
+from app.services.curriculum_engine_service import CurriculumEngineService
+
+engine = CurriculumEngineService()
+curriculum = engine.load_auto("IFoA", "CS1", "2026")
+```
+
+`load_auto()` tries V1 first, then falls back to V2. **Never** duplicate this logic elsewhere.
+
+Detect the format after loading:
+
+```python
+from app.curriculum.models import CurriculumDefinition
+is_v2 = isinstance(curriculum, CurriculumDefinition)
+```
+
+---
+
+## Canonical Flattening — `get_topics_flat()`
+
+To obtain a flat, canonically ordered list of topics from either a V1 or V2 engine curriculum:
+
+```python
+from app.services.curriculum_engine_service import CurriculumEngineService
+
+topics = CurriculumEngineService.get_topics_flat(curriculum)
+# V1: list[Topic] unchanged
+# V2: list[TopicDefinition] sorted by section.display_order then topic.display_order
+```
+
+**Never** copy the `sorted(curriculum.sections, ...) for topic in sorted(...)` pattern outside this helper.
 
 ---
 
 ## Repository API
 
 ```python
-from app.curriculum import CurriculumRepository, seed_curricula
+from app.curriculum.repository import CurriculumRepository
 
-repo = seed_curricula()
+repo = CurriculumRepository()
 
-curriculum  = repo.get_curriculum("ifoa", "cs1", "2026")
+# Canonical auto-detect (recommended)
+curriculum  = repo.load_auto("ifoa", "cs1", "2026")
+
+# V1-specific
+v1          = repo.load("ifoa", "cs1", "2026")
 topics      = repo.get_topics("ifoa", "cs1", "2026")
 topic       = repo.get_topic("ifoa", "cs1", "2026", "cs1-2026-1")
 lo          = repo.get_learning_outcome("ifoa", "cs1", "2026", "cs1-2026-1-2")
 
-exams       = repo.list_exams()       # [("IFoA", "CS1", ["2026"])]
-versions    = repo.list_versions("ifoa", "cs1")  # ["2026"]
+# V2-specific
+v2          = repo.load_v2("ifoa", "cs1", "2026")
+sections    = repo.get_sections("ifoa", "cs1", "2026")
+section     = repo.get_section("ifoa", "cs1", "2026", "CS1-A")
+topic_v2    = repo.get_topic_v2("ifoa", "cs1", "2026", "CS1-A-T01")
+los         = repo.get_learning_objectives("ifoa", "cs1", "2026", "CS1-A-T01")
 
-repo.exists("ifoa", "cs1", "2026")    # True
-repo.exists("ifoa", "cm2", "2025")    # False
+# Discovery
+exams       = repo.list_exams()           # [("IFoA", "CS1", ["2026"])]
+versions    = repo.list_versions("ifoa", "cs1")  # ["2026"]
+repo.exists("ifoa", "cs1", "2026")       # True
 ```
+
+---
+
+## Canonical DB Hierarchy (V2)
+
+```
+Curriculum (exam_name, version)
+  └─ Section (display_order, exam_weight)
+       └─ Topic (order, section_id → Section.id)
+            └─ LearningObjective (order)
+```
+
+V1 DB layout (no sections):
+
+```
+Curriculum (exam_name, version)
+  └─ Topic (order, section_id = NULL, parent_topic_id optional)
+       └─ LearningObjective (order)
+```
+
+Use `CurriculumService` helpers for DB traversal — never query topics directly.
 
 ---
 
@@ -136,45 +256,47 @@ repo.exists("ifoa", "cm2", "2025")    # False
 
 - Each syllabus year is a separate JSON file: `data/{org}/{paper}/{year}.json`
 - Multiple versions coexist — a 2025 and 2026 syllabus can both be loaded
-- `Curriculum.effective_from` / `effective_to` encode the active date range
+- V1 and V2 formats can coexist within the same paper across years
 - No version migration is needed; each version is self-contained
 
 ---
 
 ## Adding a New Syllabus
 
-1. Create the JSON file at `data/{organisation}/{paper}/{version}.json`
-2. Follow the JSON schema documented above
-3. Ensure weightings sum to ~100%
-4. Ensure all prerequisite IDs reference valid topic IDs
-5. Add a `repo.load(...)` call in `seed.py`
-6. No code changes needed
+### V1 format
+1. Create `data/{organisation}/{paper}/{version}.json` following the V1 schema
+2. Ensure `weighting` fields sum to ~100%
+3. Ensure all `prerequisites` IDs reference valid topic IDs
+4. Add `repo.load(org, paper, version)` in `seed.py`
 
----
-
-## Adding a New Examination Board
-
-1. Create a new directory under `data/` (e.g. `data/caa/`)
-2. Create paper subdirectories and JSON files following the same convention
-3. Update `seed.py` if the board should be pre-loaded at startup
-4. No code changes needed
+### V2 format
+1. Create `data/{organisation}/{paper}/{version}.json` following the V2 schema
+2. Ensure `exam_weight` fields on sections sum to ~100%
+3. Use `display_order` on both sections and topics
+4. No `seed.py` change needed (V2 is discovered and imported automatically)
 
 ---
 
 ## Validation Rules
 
-The engine enforces these rules on every load:
+### V1
 
 | Rule | Error |
 |---|---|
 | Required fields present | `CurriculumLoadError` |
-| `syllabus_version` is a 4-digit year | `CurriculumLoadError` |
-| Topics array is non-empty | `CurriculumLoadError` |
-| Unique topic IDs | `CurriculumValidationError` |
-| Unique topic codes | `DuplicateTopicCodeError` |
-| Unique learning outcome codes | `DuplicateLearningOutcomeCodeError` |
+| Topics array non-empty | `CurriculumLoadError` |
+| Unique topic IDs and codes | `CurriculumValidationError` |
 | Weightings sum to 100 ± 5% | `InvalidWeightingError` |
 | All `estimated_hours` > 0 | `CurriculumValidationError` |
-| Prerequisites reference valid topic IDs | `InvalidPrerequisiteError` |
-| Difficulty is one of the three enum values | `CurriculumValidationError` |
-| All `suggested_revision_days` > 0 | `CurriculumValidationError` |
+| Prerequisites reference valid IDs | `InvalidPrerequisiteError` |
+
+### V2
+
+| Rule | Error |
+|---|---|
+| Required fields present | `CurriculumLoadError` |
+| Sections array non-empty | `CurriculumLoadError` |
+| Unique section/topic/LO codes | `CurriculumValidationError` |
+| Section `exam_weight` sum 100 ± 5% | `InvalidWeightingError` |
+| All `estimated_minutes` > 0 | `CurriculumValidationError` |
+| `display_order` unique within parent | `CurriculumValidationError` |

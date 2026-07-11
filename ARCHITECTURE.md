@@ -222,7 +222,7 @@ app/curriculum/
 ├── schemas.py       # JSON schema + validation
 ├── loader.py        # I/O + format detection
 ├── validator.py     # Weightings, uniqueness, prerequisites
-├── repository.py    # Cache + query API
+├── repository.py    # Cache + query API (load_auto canonical entry point)
 ├── seed.py          # Bootstrap bundled curricula
 ├── exceptions.py
 └── data/{org}/{paper}/{year}.json
@@ -230,9 +230,51 @@ app/curriculum/
 
 Engine models are **not** ORM models. Naming overlap (`Curriculum`, `Topic`) is intentional historically; V2 uses `*Definition` suffixes for clarity.
 
+### Canonical loading — `load_auto()`
+
+All application code that needs to load a curriculum **without knowing its format in advance** must use the canonical loader chain:
+
+```python
+# Engine layer (lowest level — repository)
+repo.load_auto(organisation, paper, version)
+    → Curriculum (V1) | CurriculumDefinition (V2)
+
+# Service layer (recommended for application code)
+engine_service.load_auto(exam, paper, version)
+    → Curriculum (V1) | CurriculumDefinition (V2)
+```
+
+`load_auto()` tries V1 first (backwards compatibility), then falls back to V2.
+Caller can detect the format afterwards: `isinstance(result, CurriculumDefinition)`.
+
+**Never** duplicate the V1 → V2 try/except chain outside `CurriculumRepository`.
+
+### Canonical engine flattening — `get_topics_flat()`
+
+All code that needs a flat ordered topic list from an engine curriculum must use:
+
+```python
+CurriculumEngineService.get_topics_flat(curriculum)
+    → list[Topic]          # V1: flat .topics list unchanged
+    → list[TopicDefinition]  # V2: sections → topics in display_order
+```
+
+**Never** copy the `sorted(curriculum.sections, ...) for topic in sorted(...)` pattern
+outside `CurriculumEngineService.get_topics_flat()`.
+
 ---
 
 ## Curriculum Traversal
+
+### Engine-side (in-memory)
+
+| Method | Where | Behaviour |
+|---|---|---|
+| `repo.load_auto(org, paper, ver)` | `CurriculumRepository` | Single V1/V2 loader |
+| `engine.load_auto(exam, paper, ver)` | `CurriculumEngineService` | Public load_auto wrapper |
+| `CurriculumEngineService.get_topics_flat(c)` | `CurriculumEngineService` | Flat ordered topic list |
+
+### DB-side (SQLAlchemy)
 
 Canonical DB traversal lives on `CurriculumService`:
 
@@ -242,6 +284,7 @@ Canonical DB traversal lives on `CurriculumService`:
 | `get_topics_for_section(section)` | Active topics by `Topic.order` |
 | `get_all_topics_ordered(curriculum)` | V2: section then topic; V1: parent-tree DFS |
 | `get_ordered_topics(curriculum)` | Alias → `get_all_topics_ordered` |
+| `get_learning_objectives_for_topic(topic)` | Active LOs by `LearningObjective.order` |
 | `get_next_incomplete_topic(...)` | First incomplete leaf in canonical order |
 
 ```
@@ -260,6 +303,29 @@ Curriculum
 ```
 
 **Do not** reimplement ordering in planning, missions, or readiness. Call the helpers above.
+
+---
+
+## CLI Commands
+
+| Command | Purpose |
+|---|---|
+| `flask create-admin` | Create initial admin from `ADMIN_EMAIL`/`ADMIN_PASSWORD` env vars |
+| `flask backfill-sections` | Backfill Section rows + `Topic.section_id` for legacy V2 curricula |
+| `flask db upgrade` | Apply Alembic migrations |
+
+### `flask backfill-sections`
+
+Run after `flask db upgrade` on any database that contains V2 `Curriculum` rows
+imported **before** the sections migration (`202610070001`) was applied.
+
+```bash
+flask backfill-sections --dry-run  # preview changes
+flask backfill-sections            # apply changes
+```
+
+The command is **idempotent**: already-linked topics are skipped.
+Safe on production; no data is deleted.
 
 ---
 
