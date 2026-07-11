@@ -15,7 +15,11 @@ from app.domain.twin.knowledge_state import KnowledgeState, TopicMasteryRecord
 from app.domain.twin.memory_state import MemoryState, RetentionRecord
 from app.domain.twin.performance_state import PerformanceState, PerformanceSummary
 from app.domain.twin.prediction_state import PredictionState
-from app.domain.twin.strategies import BaseUpdateStrategy
+from app.domain.twin.strategies import (
+    KNOWLEDGE_EVIDENCE_TYPES,
+    BaseUpdateStrategy,
+    KnowledgeUpdateStrategy,
+)
 from app.domain.twin.update_context import UpdateContext
 from app.domain.twin.update_pipeline import TwinUpdatePipeline
 from app.domain.twin.update_result import UpdateResult
@@ -27,7 +31,9 @@ __all__ = [
     "DigitalTwin",
     "GoalState",
     "IdentityState",
+    "KNOWLEDGE_EVIDENCE_TYPES",
     "KnowledgeState",
+    "KnowledgeUpdateStrategy",
     "MemoryState",
     "PerformanceState",
     "PerformanceSummary",

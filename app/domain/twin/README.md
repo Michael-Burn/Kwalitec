@@ -1,15 +1,17 @@
 # Student Digital Twin Domain
 
 Pure domain vocabulary for the **Student Digital Twin** in Kwalitec, plus the
-**Twin Update Pipeline** orchestration framework.
+**Twin Update Pipeline** orchestration framework and its first concrete
+**Knowledge Update Strategy**.
 
-This package is **not** persistence, HTTP, UI, educational scoring algorithms,
+This package is **not** persistence, HTTP, UI, mastery/readiness scoring,
 recommendation logic, or service-layer orchestration. It defines:
 
 1. Immutable *state objects* that represent a learner’s current exam-preparation
    condition.
-2. A registry-backed *update pipeline* that coordinates future update strategies
-   without implementing educational belief revision.
+2. A registry-backed *update pipeline* that coordinates update strategies.
+3. Concrete *update strategies* that evolve domain states from Learning Evidence
+   (starting with Knowledge — intentionally simple structural rules only).
 
 Canonical architecture: [`STUDENT_DIGITAL_TWIN.md`](../../../STUDENT_DIGITAL_TWIN.md).  
 Ubiquitous language: [`UBIQUITOUS_LANGUAGE.md`](../../../UBIQUITOUS_LANGUAGE.md).
@@ -28,9 +30,11 @@ The Twin is Kwalitec’s **single authoritative learner-state model**. Study
 plans, missions, readiness scores, and recommendations are *consequences* of
 Twin state; they must not become competing learner-state stores.
 
-Capability 2.1 delivered **state objects**. Capability 2.2 delivers the
-**update orchestration framework only** — no Knowledge / Memory / Behaviour /
-Performance / Prediction algorithms.
+| Capability | Delivered |
+|---|---|
+| 2.1 | Immutable Twin **state objects** |
+| 2.2 | Twin Update Pipeline **orchestration framework** |
+| 2.3 | **Knowledge Update Strategy** (structural Knowledge evolution) |
 
 ## Responsibilities
 
@@ -48,6 +52,7 @@ Performance / Prediction algorithms.
 | `update_result.py` | Pipeline outcome (original / updated Twin, messages) |
 | `update_strategy.py` | Public strategy contract alias |
 | `strategies/base_strategy.py` | Abstract update strategy interface |
+| `strategies/knowledge_update_strategy.py` | Structural KnowledgeState evolution from evidence |
 | `update_pipeline.py` | Registry coordinator that invokes applicable strategies |
 
 This package **must not**:
@@ -55,9 +60,76 @@ This package **must not**:
 - Import Flask, blueprints, SQLAlchemy, or request/session globals
 - Define repositories, database models, or Alembic migrations
 - Persist Twin state or Learning Evidence
-- Implement Knowledge / Memory / Behaviour / Performance / Prediction algorithms
+- Compute mastery, confidence, readiness, pass probability, or forgetting curves
 - Produce recommendations, plans, or missions
 - Expose routes, templates, or HTTP APIs
+
+## Knowledge Update Strategy
+
+`KnowledgeUpdateStrategy` is the first concrete `BaseUpdateStrategy`.
+
+### Purpose
+
+Evolve the Twin’s **KnowledgeState** when Knowledge-related Learning Evidence
+arrives. Capability 2.3 keeps educational behaviour intentionally simple so the
+pipeline can evolve Knowledge structure without committing to a mastery model.
+
+### Behaviour (intentionally simple)
+
+1. **Applicability** — runs when the context contains at least one
+   Knowledge-related evidence record with a non-empty `topic_id`
+   (see `KNOWLEDGE_EVIDENCE_TYPES`).
+2. **New topic** — creates a `TopicMasteryRecord` when a topic is first seen.
+3. **Evidence count** — appends the evidence id to the topic’s `evidence_ids`
+   (count = `len(evidence_ids)`). Does not invent a separate counter field.
+4. **State references** — appends the evidence id to `KnowledgeState.evidence_ids`.
+5. **Timestamp** — sets `KnowledgeState.last_updated` to the latest processed
+   evidence timestamp.
+6. **Immutability** — returns a **new** `DigitalTwin`; the original Twin is
+   never mutated. `mastery_belief` is preserved as-is and never computed here.
+
+### What it does *not* do
+
+- Mastery / Bayesian Knowledge Tracing / IRT
+- Confidence, readiness, or pass-probability scoring
+- Forgetting curves or spaced-repetition scheduling
+- Persistence, recommendations, planning, or insight generation
+
+### Relationship to the Twin Update Pipeline
+
+```
+Learning Evidence
+      │
+      ▼
+UpdateContext
+      │
+      ▼
+TwinUpdatePipeline
+      │  register(KnowledgeUpdateStrategy())
+      │  supports(context)? → apply(context) → new Twin
+      ▼
+UpdateResult (original_twin, updated_twin, applied_strategies, …)
+```
+
+The pipeline remains an orchestration shell. Strategies own domain-specific
+evolution. Register `KnowledgeUpdateStrategy` (constructor list or
+`pipeline.register(...)`) — the pipeline class itself does not hard-code it.
+
+### Relationship to the future Memory Strategy
+
+| Strategy | Owns | Typical evidence |
+|---|---|---|
+| **KnowledgeUpdateStrategy** (2.3) | “What do they know *now*?” structure | Attempts, quizzes, diagnostics, topic coverage |
+| **MemoryUpdateStrategy** (later) | “Will they still know it?” retention | Revision sessions, flashcard reviews, decay clocks |
+
+The same Learning Evidence batch may eventually drive **both** strategies
+(e.g. a quiz reinforces Knowledge structure *and* resets a Memory due date).
+They must not share mutable state: each returns a new Twin snapshot; the
+pipeline chains them via `context.with_twin(...)`.
+
+Knowledge must not encode forgetting curves. Memory must not become a second
+mastery store. Keep the domains complementary
+([`STUDENT_DIGITAL_TWIN.md`](../../../STUDENT_DIGITAL_TWIN.md) Knowledge vs Memory).
 
 ## Update lifecycle
 
@@ -104,7 +176,8 @@ that history.
 Learning Event
       → Evidence Candidate → Learning Evidence (canonical, append-only)
             → Twin Update Pipeline (this package)
-                  → DigitalTwin domain states (new snapshot)
+                  → KnowledgeUpdateStrategy (and future strategies)
+                        → DigitalTwin domain states (new snapshot)
 ```
 
 Rules:
@@ -112,8 +185,8 @@ Rules:
 1. Evidence is the only legitimate input that may change Twin beliefs.
 2. Twin domains reference curriculum identity and evidence ids — they do not
    invent syllabus structure.
-3. The pipeline coordinates strategy application; specialised strategies (later
-   capabilities) own belief revision.
+3. The pipeline coordinates strategy application; specialised strategies own
+   domain evolution.
 
 ## Relationship to the Student Digital Twin
 
@@ -124,11 +197,10 @@ in tests / bootstrap).
 
 ## Future Update Strategies
 
-Registered later (Capability 2.3+); **not** implemented here:
+Registered later; **not** implemented in this capability:
 
 | Strategy | Intended concern |
 |---|---|
-| `KnowledgeUpdateStrategy` | Mastery / belief revision from knowledge evidence |
 | `MemoryUpdateStrategy` | Retention / decay / revision signals |
 | `BehaviourUpdateStrategy` | Consistency, skips, session patterns |
 | `PerformanceUpdateStrategy` | Assessment and mock outcomes |
@@ -157,11 +229,16 @@ Engine **reads** those snapshots. They must not be conflated.
 3. **New update strategies** — subclass `BaseUpdateStrategy` under
    `strategies/`, register with the pipeline; do not put educational math in
    `update_pipeline.py`.
-4. **Planning / Readiness / Motivation domains** — introduce as additional
+4. **Richer Knowledge algorithms** — extend `KnowledgeUpdateStrategy` (or
+   introduce a successor strategy) when mastery / confidence models are ready;
+   keep the pipeline unaware of scoring details.
+5. **Planning / Readiness / Motivation domains** — introduce as additional
    immutable state modules when a later capability requires them.
-5. **Do not** introduce Flask, ORM, HTTP, or service types into this package.
-6. **Do not** mutate Twin aggregates in place — always return a new frozen
+6. **Do not** introduce Flask, ORM, HTTP, or service types into this package.
+7. **Do not** mutate Twin aggregates in place — always return a new frozen
    snapshot from `apply`.
+8. **Do not** let Memory and Knowledge share mutable bags or diverge into
+   competing mastery stores.
 
 ## Package layout
 
@@ -183,5 +260,6 @@ app/domain/twin/
   strategies/
     __init__.py
     base_strategy.py
+    knowledge_update_strategy.py
   README.md
 ```
