@@ -36,6 +36,13 @@ class Curriculum(db.Model):
         back_populates="curriculum",
         lazy=True,
     )
+    sections = db.relationship(
+        "Section",
+        back_populates="curriculum",
+        lazy=True,
+        cascade="all, delete-orphan",
+        foreign_keys="Section.curriculum_id",
+    )
 
     def __repr__(self) -> str:
         return f"<Curriculum {self.exam_name} v{self.version}>"
@@ -122,9 +129,23 @@ class Topic(db.Model):
     )
     active: bool = db.Column(db.Boolean, default=True, nullable=False)
     created_at: datetime = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+    # V2 curriculum hierarchy: a Topic may optionally belong to a Section.
+    # This field is intentionally nullable during the introduction milestone so
+    # that existing topics (and study plans built on them) continue to work
+    # unchanged. It is populated in a later milestone.
+    section_id: int | None = db.Column(
+        db.Integer,
+        db.ForeignKey("sections.id"),
+        nullable=True,
+    )
 
     # Relationships
     curriculum = db.relationship("Curriculum", back_populates="topics")
+    section = db.relationship(
+        "Section",
+        back_populates="topics",
+        foreign_keys=[section_id],
+    )
     parent_topic = db.relationship(
         "Topic",
         remote_side=[id],
@@ -181,3 +202,72 @@ class Topic(db.Model):
 
         collect_subs(self)
         return all_subs
+
+
+class Section(db.Model):
+    """A section within a curriculum (V2 curriculum architecture).
+
+    Sections are the top-level organizational units of a curriculum, sitting
+    between the :class:`Curriculum` and its :class:`Topic` records. A
+    curriculum has many sections; each section belongs to exactly one
+    curriculum. A section may contain many topics (linked via
+    ``Topic.section_id``), though that link is optional during the
+    introduction milestone.
+    """
+
+    __tablename__ = "sections"
+
+    id: int = db.Column(db.Integer, primary_key=True)
+    curriculum_id: int = db.Column(
+        db.Integer,
+        db.ForeignKey("curricula.id"),
+        nullable=False,
+    )
+    official_id: str | None = db.Column(
+        db.String(100),
+        nullable=True,
+        comment="Canonical identifier from the official syllabus source",
+    )
+    code: str | None = db.Column(
+        db.String(50),
+        nullable=True,
+        comment="Short human-readable code for the section (e.g. 'S1')",
+    )
+    title: str = db.Column(db.String(255), nullable=False)
+    description: str | None = db.Column(db.Text(), nullable=True)
+    exam_weight: float | None = db.Column(
+        db.Float(),
+        nullable=True,
+        comment="Relative weighting of this section in the exam",
+    )
+    display_order: int = db.Column(
+        db.Integer,
+        default=0,
+        nullable=False,
+        comment="Ordering of the section within the curriculum",
+    )
+    estimated_hours: float | None = db.Column(
+        db.Float(),
+        nullable=True,
+        comment="Estimated study hours required to cover this section",
+    )
+    difficulty: str | None = db.Column(
+        db.String(50),
+        nullable=True,
+        comment="Difficulty rating (e.g. 'Easy', 'Medium', 'Hard')",
+    )
+    created_at: datetime = db.Column(
+        db.DateTime, default=datetime.utcnow, nullable=False
+    )
+
+    # Relationships
+    curriculum = db.relationship("Curriculum", back_populates="sections")
+    topics = db.relationship(
+        "Topic",
+        back_populates="section",
+        lazy=True,
+        foreign_keys="Topic.section_id",
+    )
+
+    def __repr__(self) -> str:
+        return f"<Section {self.code or self.official_id or self.title}>"

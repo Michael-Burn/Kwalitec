@@ -1,12 +1,47 @@
-"""Service for managing study plans and week plans."""
+"""Service for managing study plans and week plans.
+
+Study plan generation traverses the canonical curriculum hierarchy:
+
+    Curriculum → Section (display_order) → Topic (display_order) → LearningObjective
+
+For V2 curricula (those with ``Section`` rows) this ordering is enforced
+via the two private helpers :meth:`StudyPlanService._load_engine_curriculum_auto`
+and :meth:`StudyPlanService._get_engine_topics_ordered`.  V1 curricula (no
+sections) continue to use the original flat ``topics`` list so that all
+existing study plans and topic-progress records remain unaffected.
+
+Why this improves architectural consistency
+-------------------------------------------
+Previously, :meth:`_initialize_topic_progress_from_curriculum` called
+``engine.load_curriculum()`` which only supports V1, and then accessed
+``curriculum.topics`` directly — a flat V1-only attribute that does not
+exist on V2 ``CurriculumDefinition`` objects.  As a result, study plans
+created against V2 curricula would silently skip all TopicProgress
+initialisation.
+
+The refactoring delegates topic ordering to ``_get_engine_topics_ordered``,
+which mirrors the canonical DB-side ordering applied by
+:meth:`CurriculumService.get_all_topics_ordered`.  No duplication of
+traversal logic is introduced: the DB traversal still goes through
+``CurriculumService``; the engine-side traversal uses the same
+``Section.display_order → Topic.display_order`` rule.
+
+V1 compatibility
+-----------------
+V1 curricula have no ``sections`` attribute — ``is_v2`` is ``False`` and
+``_get_engine_topics_ordered`` returns the original ``curriculum.topics``
+list unchanged.  All existing study plans, week plans, TopicProgress rows,
+and mission generation paths are unaffected.
+"""
 
 from __future__ import annotations
 
 import logging
 from datetime import date, timedelta
+from typing import Any
 
 from app.extensions import db
-from app.models.curriculum import Curriculum, Topic
+from app.models.curriculum import Curriculum, Section, Topic
 from app.models.learning import LearningObjective
 from app.models.study_plan import StudyPlan, WeekPlan
 from app.models.topic_progress import TopicProgress
@@ -126,6 +161,63 @@ class StudyPlanService:
         if weekend_study_minutes < 15 or weekend_study_minutes > 480:
             raise ValueError("Weekend study time must be between 15 and 480 minutes.")
 
+    # ── Private engine-loading helpers ────────────────────────────────────
+
+    @staticmethod
+    def _load_engine_curriculum_auto(
+        organisation: str, paper: str, version: str
+    ) -> tuple[Any, bool] | None:
+        """Load a curriculum from the engine with automatic V1/V2 detection.
+
+        Delegates to :meth:`CurriculumEngineService.load_auto` — the single
+        canonical loader — so V1/V2 detection logic lives in exactly one place.
+
+        Args:
+            organisation: Examining body (e.g. ``"IFoA"``).
+            paper: Paper code (e.g. ``"CS1"``).
+            version: Syllabus version string (e.g. ``"2026"``).
+
+        Returns:
+            ``(engine_curriculum, is_v2)`` on success, or ``None`` if the
+            curriculum cannot be loaded in either format.
+        """
+        from app.curriculum.models import CurriculumDefinition
+        from app.services.curriculum_engine_service import CurriculumEngineService
+
+        try:
+            engine = CurriculumEngineService()
+            curriculum = engine.load_auto(organisation, paper, version)
+            return curriculum, isinstance(curriculum, CurriculumDefinition)
+        except Exception:
+            logger.exception(
+                "Failed to load curriculum %s/%s/%s.",
+                organisation, paper, version,
+            )
+            return None
+
+    @staticmethod
+    def _get_engine_topics_ordered(engine_curriculum: Any, is_v2: bool) -> list:
+        """Return engine topics in canonical curriculum order.
+
+        Delegates to :meth:`CurriculumEngineService.get_topics_flat` — the
+        single engine-level flattening helper — so traversal logic lives in
+        exactly one place.
+
+        Args:
+            engine_curriculum: A V1 ``Curriculum`` or a V2
+                ``CurriculumDefinition`` from the engine layer.
+            is_v2: Unused; format is detected from the curriculum type.
+                Kept for API compatibility.
+
+        Returns:
+            Flat list of engine topic objects in canonical order.
+        """
+        from app.services.curriculum_engine_service import CurriculumEngineService
+
+        return CurriculumEngineService.get_topics_flat(engine_curriculum)
+
+    # ── Topic-progress initialisation ─────────────────────────────────────
+
     @staticmethod
     def _initialize_topic_progress_from_curriculum(
         study_plan: StudyPlan,
@@ -146,6 +238,14 @@ class StudyPlanService:
         student's *current* topic (its ``current_stage`` is set to
         ``Learning``) but is **never** marked completed — even if it
         accidentally appears in ``completed_curriculum_topics``.
+
+        Traversal order
+        ---------------
+        Topics are enumerated via :meth:`_get_engine_topics_ordered`, which
+        applies the canonical ``Section (display_order) → Topic
+        (display_order)`` ordering for V2 curricula and the original flat
+        ``topics`` list for V1 curricula.  The generator therefore naturally
+        carries section context for every topic it processes.
         """
         curriculum_version = study_plan.curriculum_version
         curriculum_topic_code = study_plan.curriculum_topic_code
@@ -168,27 +268,18 @@ class StudyPlanService:
 
         organisation, paper = parts
 
-        from app.services.curriculum_engine_service import CurriculumEngineService
-
-        engine = CurriculumEngineService()
-
-        if not engine.curriculum_exists(organisation, paper, curriculum_version):
+        # ── Load engine curriculum (V1 first, V2 fallback) ────────────────
+        load_result = StudyPlanService._load_engine_curriculum_auto(
+            organisation, paper, curriculum_version
+        )
+        if load_result is None:
             logger.debug(
-                "Curriculum %s/%s/%s not found — skipping topic progress initialisation.",
+                "Curriculum %s/%s/%s not found — skipping topic progress init.",
                 organisation, paper, curriculum_version,
             )
             return
 
-        try:
-            curriculum = engine.load_curriculum(organisation, paper, curriculum_version)
-        except Exception:
-            logger.exception(
-                "Failed to load curriculum %s/%s/%s.",
-                organisation, paper, curriculum_version,
-            )
-            return
-
-        engine_topics = curriculum.topics
+        engine_curriculum, is_v2 = load_result
 
         # ── Find or create the SQLAlchemy Curriculum row ──────────────────
         db_curriculum = Curriculum.query.filter_by(
@@ -208,66 +299,127 @@ class StudyPlanService:
         study_plan.curriculum_id = db_curriculum.id
 
         # ── Ensure a Topic + TopicProgress row for every engine topic ─────
-        for order, engine_topic in enumerate(engine_topics, start=1):
-            db_topic = Topic.query.filter_by(
-                curriculum_id=db_curriculum.id,
-                name=engine_topic.title,
-            ).first()
-            if db_topic is None:
-                db_topic = Topic(
+        # Topics are enumerated in canonical order: for V2 curricula the
+        # iteration traverses Section (display_order) → Topic (display_order)
+        # so that section context is naturally available at each step.
+        # V1 curricula use the original flat topics list unchanged.
+
+        if is_v2:
+            # V2: iterate sections → topics, preserving section context.
+            global_order = 0
+            for engine_section in sorted(
+                engine_curriculum.sections, key=lambda s: s.display_order
+            ):
+                # Find or create the DB Section row so Topic.section_id can
+                # be populated — this lets CurriculumService.get_all_topics_ordered
+                # return the correct canonical order from the DB side too.
+                db_section = Section.query.filter_by(
+                    curriculum_id=db_curriculum.id,
+                    code=engine_section.code,
+                ).first()
+                if db_section is None:
+                    db_section = Section(
+                        curriculum_id=db_curriculum.id,
+                        official_id=engine_section.id,
+                        code=engine_section.code,
+                        title=engine_section.title,
+                        description=getattr(engine_section, "description", None),
+                        exam_weight=getattr(engine_section, "exam_weight", None),
+                        display_order=engine_section.display_order,
+                        estimated_hours=getattr(
+                            engine_section, "estimated_hours", None
+                        ),
+                        difficulty=getattr(engine_section, "difficulty", None),
+                    )
+                    db.session.add(db_section)
+                    db.session.flush()
+
+                # current_section is naturally known here — section context
+                # is preserved throughout the inner topic loop.
+                for engine_topic in sorted(
+                    engine_section.topics, key=lambda t: t.display_order
+                ):
+                    global_order += 1
+                    db_topic = Topic.query.filter_by(
+                        curriculum_id=db_curriculum.id,
+                        name=engine_topic.title,
+                    ).first()
+                    if db_topic is None:
+                        db_topic = Topic(
+                            curriculum_id=db_curriculum.id,
+                            name=engine_topic.title,
+                            order=global_order,
+                            recommended_minutes=engine_topic.estimated_minutes,
+                            syllabus_weight=0.0,  # V2 weights live on Section
+                            active=True,
+                            section_id=db_section.id,
+                        )
+                        db.session.add(db_topic)
+                        db.session.flush()
+
+                        # Persist learning objectives (V2 uses display_order).
+                        for engine_lo in sorted(
+                            engine_topic.learning_objectives,
+                            key=lambda lo: lo.display_order,
+                        ):
+                            db.session.add(LearningObjective(
+                                topic_id=db_topic.id,
+                                description=(
+                                    f"[{engine_lo.code}] {engine_lo.description}"
+                                ),
+                                order=engine_lo.display_order,
+                                active=True,
+                            ))
+
+                    StudyPlanService._create_topic_progress_if_absent(
+                        study_plan, db_topic, engine_topic.code,
+                        completed_curriculum_topics,
+                    )
+
+        else:
+            # V1: original flat-topic enumeration — unchanged behaviour.
+            for order, engine_topic in enumerate(engine_curriculum.topics, start=1):
+                db_topic = Topic.query.filter_by(
                     curriculum_id=db_curriculum.id,
                     name=engine_topic.title,
-                    order=order,
-                    recommended_minutes=int(engine_topic.estimated_hours * 60),
-                    syllabus_weight=engine_topic.weighting,
-                    active=True,
-                )
-                db.session.add(db_topic)
-                db.session.flush()
-
-                # Persist learning objectives for this topic.
-                for lo_order, engine_lo in enumerate(
-                    engine_topic.learning_outcomes, start=1
-                ):
-                    db_lo = LearningObjective(
-                        topic_id=db_topic.id,
-                        description=(
-                            f"[{engine_lo.code}] {engine_lo.description}"
-                        ),
-                        order=lo_order,
+                ).first()
+                if db_topic is None:
+                    db_topic = Topic(
+                        curriculum_id=db_curriculum.id,
+                        name=engine_topic.title,
+                        order=order,
+                        recommended_minutes=int(engine_topic.estimated_hours * 60),
+                        syllabus_weight=engine_topic.weighting,
                         active=True,
                     )
-                    db.session.add(db_lo)
+                    db.session.add(db_topic)
+                    db.session.flush()
 
-            # Create TopicProgress only if one does not already exist.
-            existing_progress = TopicProgress.query.filter_by(
-                user_id=study_plan.user_id,
-                topic_id=db_topic.id,
-            ).first()
-            if existing_progress is not None:
-                continue
+                    # Persist learning objectives (V1 uses enumeration order).
+                    for lo_order, engine_lo in enumerate(
+                        engine_topic.learning_outcomes, start=1
+                    ):
+                        db.session.add(LearningObjective(
+                            topic_id=db_topic.id,
+                            description=(
+                                f"[{engine_lo.code}] {engine_lo.description}"
+                            ),
+                            order=lo_order,
+                            active=True,
+                        ))
 
-            # Determine initial state based on completed topics list.
-            is_completed = engine_topic.code in completed_curriculum_topics
-
-            tp = TopicProgress(
-                user_id=study_plan.user_id,
-                topic_id=db_topic.id,
-                confidence="Mastered" if is_completed else "Not Started",
-                completed=is_completed,
-                mastery_score=100.0 if is_completed else 0.0,
-                revision_count=0,
-                last_reviewed=None,
-                current_stage=TopicProgress.STAGE_COMPLETED
-                if is_completed
-                else TopicProgress.STAGE_NOT_STARTED,
-            )
-            db.session.add(tp)
+                StudyPlanService._create_topic_progress_if_absent(
+                    study_plan, db_topic, engine_topic.code,
+                    completed_curriculum_topics,
+                )
 
         # ── Mark the selected topic as the student's current topic ────────
         if curriculum_topic_code is None:
             return  # No current topic selected — all topics stay "Not Started".
 
+        engine_topics = StudyPlanService._get_engine_topics_ordered(
+            engine_curriculum, is_v2
+        )
         for engine_topic in engine_topics:
             if engine_topic.code != curriculum_topic_code:
                 continue
@@ -292,6 +444,49 @@ class StudyPlanService:
             tp.mastery_score = 0.0
             # Explicitly NOT marking completed.
             break
+
+    @staticmethod
+    def _create_topic_progress_if_absent(
+        study_plan: StudyPlan,
+        db_topic: Topic,
+        engine_topic_code: str,
+        completed_curriculum_topics: list[str],
+    ) -> None:
+        """Create a TopicProgress row for *db_topic* if one does not already exist.
+
+        Extracted from :meth:`_initialize_topic_progress_from_curriculum` to
+        avoid repeating the creation logic in both the V1 and V2 branches.
+
+        Args:
+            study_plan: The study plan being initialised.
+            db_topic: The DB Topic row to create progress for.
+            engine_topic_code: The engine-side topic code (e.g. ``"CS1-A"``).
+            completed_curriculum_topics: Codes of topics the user has already
+                completed (from the Study Plan Wizard).
+        """
+        existing = TopicProgress.query.filter_by(
+            user_id=study_plan.user_id,
+            topic_id=db_topic.id,
+        ).first()
+        if existing is not None:
+            return  # Existing progress is preserved unchanged.
+
+        is_completed = engine_topic_code in completed_curriculum_topics
+
+        db.session.add(TopicProgress(
+            user_id=study_plan.user_id,
+            topic_id=db_topic.id,
+            confidence="Mastered" if is_completed else "Not Started",
+            completed=is_completed,
+            mastery_score=100.0 if is_completed else 0.0,
+            revision_count=0,
+            last_reviewed=None,
+            current_stage=(
+                TopicProgress.STAGE_COMPLETED
+                if is_completed
+                else TopicProgress.STAGE_NOT_STARTED
+            ),
+        ))
 
     @staticmethod
     def _generate_week_plans(study_plan: StudyPlan) -> list[WeekPlan]:
@@ -503,9 +698,11 @@ class StudyPlanService:
         NOT in the list that were previously completed are reset to
         ``Not Started`` (so the user can un-check a previously completed
         topic).
+
+        Topics are visited in canonical curriculum order (Section →  Topic
+        for V2, flat list for V1) via :meth:`_get_engine_topics_ordered`.
         """
         from app.models.curriculum import Topic as DBTopic
-        from app.services.curriculum_engine_service import CurriculumEngineService
 
         if not study_plan.curriculum_id or not study_plan.curriculum_version:
             return
@@ -515,19 +712,21 @@ class StudyPlanService:
             return
 
         organisation, paper = parts
-        engine = CurriculumEngineService()
-        if not engine.curriculum_exists(organisation, paper, study_plan.curriculum_version):
-            return
 
-        try:
-            curriculum = engine.load_curriculum(
-                organisation, paper, study_plan.curriculum_version
+        load_result = StudyPlanService._load_engine_curriculum_auto(
+            organisation, paper, study_plan.curriculum_version
+        )
+        if load_result is None:
+            logger.debug(
+                "Curriculum %s/%s/%s not found — skipping topic sync.",
+                organisation, paper, study_plan.curriculum_version,
             )
-        except Exception:
-            logger.exception("Failed to load curriculum for topic sync.")
             return
 
-        engine_topics = curriculum.topics
+        engine_curriculum, is_v2 = load_result
+        engine_topics = StudyPlanService._get_engine_topics_ordered(
+            engine_curriculum, is_v2
+        )
         completed_set = set(completed_codes)
 
         for engine_topic in engine_topics:
@@ -545,8 +744,11 @@ class StudyPlanService:
             if tp is None:
                 continue
 
-            # Never mark the current learning topic as completed
-            is_current = curriculum_topic_code and engine_topic.code == curriculum_topic_code
+            # Never mark the current learning topic as completed.
+            is_current = (
+                curriculum_topic_code
+                and engine_topic.code == curriculum_topic_code
+            )
             should_be_completed = engine_topic.code in completed_set and not is_current
 
             if should_be_completed:

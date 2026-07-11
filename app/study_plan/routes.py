@@ -401,8 +401,10 @@ def _handle_step_4():
         engine = CurriculumEngineService()
         if engine.curriculum_exists("IFoA", paper_code, curriculum_version):
             try:
-                curriculum = engine.load_curriculum("IFoA", paper_code, curriculum_version)
-                extra["curriculum_topics"] = curriculum.topics
+                curriculum = engine.load_auto("IFoA", paper_code, curriculum_version)
+                extra["curriculum_topics"] = CurriculumEngineService.get_topics_flat(
+                    curriculum
+                )
                 extra["curriculum_version"] = curriculum_version
             except Exception:
                 logger.exception(
@@ -449,8 +451,8 @@ def _handle_step_4_post():
             try:
                 engine = CurriculumEngineService()
                 if engine.curriculum_exists("IFoA", paper_code, curriculum_version):
-                    curriculum = engine.load_curriculum("IFoA", paper_code, curriculum_version)
-                    for topic in curriculum.topics:
+                    curriculum = engine.load_auto("IFoA", paper_code, curriculum_version)
+                    for topic in CurriculumEngineService.get_topics_flat(curriculum):
                         if topic.code not in completed_set:
                             session["wizard_data"]["curriculum_current_topic"] = topic.code
                             break
@@ -876,8 +878,8 @@ def edit_plan(study_plan_id: int):
             engine = CurriculumEngineService()
             if engine.curriculum_exists(organisation, paper, curriculum_version):
                 try:
-                    curriculum = engine.load_curriculum(organisation, paper, curriculum_version)
-                    curriculum_topics = curriculum.topics
+                    curriculum = engine.load_auto(organisation, paper, curriculum_version)
+                    curriculum_topics = CurriculumEngineService.get_topics_flat(curriculum)
                     # Determine which topics are already completed
                     from app.models.topic_progress import TopicProgress
 

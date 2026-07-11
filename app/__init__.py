@@ -303,9 +303,10 @@ def _init_extensions(app: Flask) -> None:
 
 def _register_cli_commands(app: Flask) -> None:
     """Register custom CLI commands."""
-    from app.cli import create_admin_command
+    from app.cli import backfill_sections_command, create_admin_command
 
     app.cli.add_command(create_admin_command)
+    app.cli.add_command(backfill_sections_command)
 
 
 def _register_blueprints(app: Flask) -> None:

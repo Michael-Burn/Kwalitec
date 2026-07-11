@@ -1,6 +1,6 @@
 """Database models."""
 
-from app.models.curriculum import Curriculum, Topic
+from app.models.curriculum import Curriculum, Section, Topic
 from app.models.decision import Decision
 from app.models.learning import LearningObjective, Mistake, StudyAttempt
 from app.models.mission import Mission, MissionTask
@@ -17,6 +17,7 @@ __all__ = [
     "StudyPlan",
     "WeekPlan",
     "Curriculum",
+    "Section",
     "Topic",
     "TopicProgress",
     "StudyAttempt",

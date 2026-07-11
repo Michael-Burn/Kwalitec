@@ -2,6 +2,8 @@
 
 All file I/O and deserialisation lives here.  The rest of the engine
 never touches the file system directly.
+
+Supports both V1 (flat) and V2 (hierarchical) formats with automatic detection.
 """
 
 from __future__ import annotations
@@ -12,13 +14,25 @@ from pathlib import Path
 from typing import Any
 
 from app.curriculum.exceptions import CurriculumLoadError
-from app.curriculum.models import Curriculum, LearningOutcome, Topic
-from app.curriculum.schemas import validate_instance
+from app.curriculum.models import (
+    Curriculum,
+    CurriculumDefinition,
+    LearningObjectiveDefinition,
+    LearningOutcome,
+    SectionDefinition,
+    Topic,
+    TopicDefinition,
+)
+from app.curriculum.schemas import detect_format, validate_instance
 
 # Directory layout convention:
 #   data/{organisation_lower}/{paper_lower}/{version}.json
 _DATA_ROOT = Path(__file__).parent / "data"
 
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Date Parsing
+# ═══════════════════════════════════════════════════════════════════════════════
 
 def _parse_date(raw: object) -> date:
     """Convert an ISO-8601 string or None to a ``date``."""
@@ -31,7 +45,12 @@ def _parse_date(raw: object) -> date:
     raise CurriculumLoadError("", f"Cannot parse date from {raw!r}")
 
 
+# ═══════════════════════════════════════════════════════════════════════════════
+# V1 Model Builders
+# ═══════════════════════════════════════════════════════════════════════════════
+
 def _build_learning_outcome(raw: dict[str, Any]) -> LearningOutcome:
+    """Build a V1 LearningOutcome from a dict."""
     return LearningOutcome(
         id=raw["id"],
         code=raw["code"],
@@ -41,6 +60,7 @@ def _build_learning_outcome(raw: dict[str, Any]) -> LearningOutcome:
 
 
 def _build_topic(raw: dict[str, Any]) -> Topic:
+    """Build a V1 Topic from a dict."""
     return Topic(
         id=raw["id"],
         code=raw["code"],
@@ -56,12 +76,8 @@ def _build_topic(raw: dict[str, Any]) -> Topic:
     )
 
 
-def load_from_dict(data: dict[str, Any]) -> Curriculum:
-    """Build a ``Curriculum`` from an already-deserialised dict."""
-    schema_errors = validate_instance(data)
-    if schema_errors:
-        raise CurriculumLoadError("<dict>", "; ".join(schema_errors))
-
+def _build_curriculum_v1(data: dict[str, Any]) -> Curriculum:
+    """Build a V1 Curriculum from a validated dict."""
     topics = [_build_topic(t) for t in data["topics"]]
 
     total_weight = sum(t.weighting for t in topics)
@@ -81,8 +97,129 @@ def load_from_dict(data: dict[str, Any]) -> Curriculum:
     )
 
 
-def load_from_json(path: Path | str) -> Curriculum:
-    """Read a JSON file from disk and return a ``Curriculum``."""
+# ═══════════════════════════════════════════════════════════════════════════════
+# V2 Model Builders
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _build_learning_objective(raw: dict[str, Any]) -> LearningObjectiveDefinition:
+    """Build a V2 LearningObjectiveDefinition from a dict."""
+    return LearningObjectiveDefinition(
+        id=raw["id"],
+        topic_id=raw["topic_id"],
+        code=raw["code"],
+        description=raw["description"],
+        cognitive_level=raw["cognitive_level"],
+        estimated_minutes=int(raw["estimated_minutes"]),
+        learning_type=raw["learning_type"],
+        display_order=int(raw.get("display_order", 1)),
+    )
+
+
+def _build_topic_v2(raw: dict[str, Any]) -> TopicDefinition:
+    """Build a V2 TopicDefinition from a dict."""
+    return TopicDefinition(
+        id=raw["id"],
+        section_id=raw["section_id"],
+        code=raw["code"],
+        title=raw["title"],
+        description=raw["description"],
+        estimated_minutes=int(raw["estimated_minutes"]),
+        difficulty=raw["difficulty"],
+        display_order=int(raw.get("display_order", 1)),
+        learning_objectives=[
+            _build_learning_objective(lo) for lo in raw.get("learning_objectives", [])
+        ],
+    )
+
+
+def _build_section(raw: dict[str, Any]) -> SectionDefinition:
+    """Build a V2 SectionDefinition from a dict."""
+    return SectionDefinition(
+        id=raw["id"],
+        code=raw["code"],
+        title=raw["title"],
+        description=raw["description"],
+        exam_weight=float(raw["exam_weight"]),
+        estimated_hours=float(raw["estimated_hours"]),
+        difficulty=raw.get("difficulty", "intermediate"),
+        display_order=int(raw.get("display_order", 1)),
+        topics=[_build_topic_v2(t) for t in raw.get("topics", [])],
+    )
+
+
+def _build_curriculum_v2(data: dict[str, Any]) -> CurriculumDefinition:
+    """Build a V2 CurriculumDefinition from a validated dict."""
+    sections = [_build_section(s) for s in data["sections"]]
+
+    total_hours = sum(s.estimated_hours for s in sections)
+
+    return CurriculumDefinition(
+        exam_code=data["exam_code"],
+        exam_name=data["exam_name"],
+        provider=data["provider"],
+        version=data["version"],
+        effective_date=_parse_date(data["effective_date"]),
+        superseded_date=_parse_date(data.get("superseded_date")),
+        total_estimated_hours=total_hours,
+        description=data.get("description", ""),
+        sections=sections,
+        metadata=data.get("metadata", {}),
+    )
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Unified Loader API
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def load_from_dict(data: dict[str, Any], version: str | None = None) -> Curriculum | CurriculumDefinition:
+    """Build a curriculum from an already-deserialised dict.
+
+    Automatically detects V1 or V2 format if version is not specified.
+
+    Args:
+        data: The deserialised curriculum dictionary.
+        version: Optional format version ("v1" or "v2"). If None, auto-detects.
+
+    Returns:
+        A Curriculum (V1) or CurriculumDefinition (V2) instance.
+
+    Raises:
+        CurriculumLoadError: If validation fails.
+    """
+    # Detect format if not specified
+    if version is None:
+        try:
+            version = detect_format(data)
+        except ValueError as e:
+            raise CurriculumLoadError("<dict>", str(e)) from e
+
+    # Validate against appropriate schema
+    schema_errors = validate_instance(data, version)
+    if schema_errors:
+        raise CurriculumLoadError("<dict>", "; ".join(schema_errors))
+
+    # Build appropriate model
+    if version == "v1":
+        return _build_curriculum_v1(data)
+    elif version == "v2":
+        return _build_curriculum_v2(data)
+    else:
+        raise CurriculumLoadError("<dict>", f"Unsupported curriculum version: {version}")
+
+
+def load_from_json(path: Path | str, version: str | None = None) -> Curriculum | CurriculumDefinition:
+    """Read a JSON file from disk and return a Curriculum or CurriculumDefinition.
+
+    Args:
+        path: Path to the JSON file.
+        version: Optional format version ("v1" or "v2"). If None, auto-detects.
+
+    Returns:
+        A Curriculum (V1) or CurriculumDefinition (V2) instance.
+
+    Raises:
+        CurriculumLoadError: If the file cannot be read or parsed.
+    """
     path = Path(path)
     try:
         raw_text = path.read_text(encoding="utf-8")
@@ -97,7 +234,7 @@ def load_from_json(path: Path | str) -> Curriculum:
     if not isinstance(data, dict):
         raise CurriculumLoadError(str(path), "Top-level JSON must be an object")
 
-    return load_from_dict(data)
+    return load_from_dict(data, version)
 
 
 def load_curriculum(
@@ -105,18 +242,64 @@ def load_curriculum(
     paper: str,
     version: str,
 ) -> Curriculum:
-    """Load a curriculum using the standard directory convention."""
+    """Load a V1 curriculum using the standard directory convention.
+
+    This function maintains backwards compatibility with existing code.
+    For V2 curricula, use load_curriculum_v2() instead.
+
+    Args:
+        organisation: Examining body (e.g., 'ifoa').
+        paper: Paper code (e.g., 'cs1').
+        version: Syllabus version year (e.g., '2026').
+
+    Returns:
+        A Curriculum instance (V1 format).
+    """
     file_path = (
         _DATA_ROOT
         / organisation.lower()
         / paper.lower()
         / f"{version}.json"
     )
-    return load_from_json(file_path)
+    result = load_from_json(file_path, version="v1")
+    # Type narrowing: we know this is V1
+    assert isinstance(result, Curriculum)
+    return result
+
+
+def load_curriculum_v2(
+    provider: str,
+    exam_code: str,
+    version: str,
+) -> CurriculumDefinition:
+    """Load a V2 curriculum using the standard directory convention.
+
+    Args:
+        provider: Examining body (e.g., 'ifoa').
+        exam_code: Exam code (e.g., 'cs1').
+        version: Syllabus version year (e.g., '2026').
+
+    Returns:
+        A CurriculumDefinition instance (V2 format).
+    """
+    file_path = (
+        _DATA_ROOT
+        / provider.lower()
+        / exam_code.lower()
+        / f"{version}.json"
+    )
+    result = load_from_json(file_path, version="v2")
+    # Type narrowing: we know this is V2
+    assert isinstance(result, CurriculumDefinition)
+    return result
 
 
 def discover_curricula() -> list[tuple[str, str, list[str]]]:
-    """Walk the data directory and return every available curriculum."""
+    """Walk the data directory and return every available curriculum.
+
+    Returns:
+        List of (organisation, paper, [versions]) tuples.
+    """
     result: list[tuple[str, str, list[str]]] = []
     if not _DATA_ROOT.exists():
         return result

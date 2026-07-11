@@ -9,7 +9,12 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from app.curriculum.models import Curriculum, LearningOutcome, Topic
+from app.curriculum.models import (
+    Curriculum,
+    CurriculumDefinition,
+    LearningOutcome,
+    Topic,
+)
 from app.curriculum.repository import CurriculumRepository
 
 
@@ -172,6 +177,66 @@ class CurriculumEngineService:
         """
         return self._repo.list_versions(exam, paper)
 
+    def load_auto(
+        self, exam: str, paper: str, version: str
+    ) -> Curriculum | CurriculumDefinition:
+        """Load a curriculum with automatic V1/V2 format detection.
+
+        This is the **canonical public loader** for all callers that need to
+        handle both V1 and V2 curricula without knowing in advance which format
+        is on disk.  Tries V1 first, then falls back to V2.
+
+        Args:
+            exam: Organisation name (e.g. ``"IFoA"`` or ``"ifoa"``).
+            paper: Exam paper code (e.g. ``"CS1"`` or ``"cs1"``).
+            version: Syllabus version string (e.g. ``"2026"``).
+
+        Returns:
+            A :class:`~app.curriculum.models.Curriculum` (V1) or
+            :class:`~app.curriculum.models.CurriculumDefinition` (V2).
+
+        Raises:
+            CurriculumLoadError: If the file cannot be loaded in either format.
+        """
+        return self._repo.load_auto(exam, paper, version)
+
+    @staticmethod
+    def get_topics_flat(
+        curriculum: Curriculum | CurriculumDefinition,
+    ) -> list:
+        """Return engine topics as a flat, canonically ordered list.
+
+        This is the **single engine-level flattening helper** used throughout
+        the application.  All callers that previously duplicated the
+        ``Section (display_order) → Topic (display_order)`` traversal should
+        delegate here.
+
+        * **V2** (:class:`CurriculumDefinition`): sections sorted by
+          ``display_order``, then topics within each section sorted by
+          ``display_order``.
+        * **V1** (:class:`Curriculum`): original flat ``topics`` list,
+          unchanged (prerequisite-based order is handled downstream by
+          ``PlanningService``).
+
+        Args:
+            curriculum: A V1 :class:`Curriculum` or V2
+                :class:`CurriculumDefinition` from the engine layer.
+
+        Returns:
+            Flat list of engine topic objects in canonical curriculum order.
+        """
+        if isinstance(curriculum, CurriculumDefinition):
+            return [
+                topic
+                for section in sorted(
+                    curriculum.sections, key=lambda s: s.display_order
+                )
+                for topic in sorted(
+                    section.topics, key=lambda t: t.display_order
+                )
+            ]
+        return list(curriculum.topics)
+
     # ------------------------------------------------------------------
     # Student Curriculum Summary
     # ------------------------------------------------------------------
@@ -184,6 +249,13 @@ class CurriculumEngineService:
         Calculates which topics have been completed based solely on
         ``TopicProgress.completed`` flags.  No mastery, weighting, or
         readiness calculations are performed.
+
+        Supports both V1 (flat topic list) and V2 (section-hierarchical) engine
+        curricula.  For V2 curricula topics are flattened in canonical order
+        (``Section.display_order`` → ``TopicDefinition.display_order``) before
+        comparison.  V1 weighted coverage uses official syllabus topic
+        weightings; V2 uses equal weighting (no per-topic weights exist in the
+        V2 format).
 
         Args:
             study_plan: A ``StudyPlan`` ORM instance.
@@ -205,12 +277,19 @@ class CurriculumEngineService:
             return None
 
         version: str = study_plan.curriculum_version
+        org_lower = org.lower()
+        paper_lower = paper.lower()
 
-        # Load the engine curriculum; fail gracefully if unsupported
+        # Load the engine curriculum using the canonical auto-detect loader.
         try:
-            engine_curriculum = self._repo.load(org.lower(), paper.lower(), version)
+            engine_curriculum = self.load_auto(org_lower, paper_lower, version)
         except Exception:
             return None
+
+        is_v2_engine = isinstance(engine_curriculum, CurriculumDefinition)
+
+        # Flatten topics in canonical order via the shared helper.
+        engine_topics = self.get_topics_flat(engine_curriculum)
 
         # Retrieve the DB-side curriculum topics
         from app.models.curriculum import Topic as DBTopic
@@ -222,7 +301,7 @@ class CurriculumEngineService:
 
         # Build mapping: engine topic code → DB Topic (matched by title/name)
         code_to_db_topic: dict[str, object] = {}
-        for engine_topic in engine_curriculum.topics:
+        for engine_topic in engine_topics:
             for db_topic in db_topics:
                 if db_topic.name == engine_topic.title:
                     code_to_db_topic[engine_topic.code] = db_topic
@@ -246,7 +325,7 @@ class CurriculumEngineService:
         completed_codes: list[str] = []
         remaining_codes: list[str] = []
 
-        for engine_topic in engine_curriculum.topics:
+        for engine_topic in engine_topics:
             db_topic = code_to_db_topic.get(engine_topic.code)
             if db_topic is None:
                 remaining_codes.append(engine_topic.code)
@@ -256,17 +335,24 @@ class CurriculumEngineService:
             else:
                 remaining_codes.append(engine_topic.code)
 
-        total_topics = len(engine_curriculum.topics)
+        total_topics = len(engine_topics)
         completed_count = len(completed_codes)
         remaining_count = len(remaining_codes)
         coverage = completed_count / total_topics if total_topics > 0 else 0.0
 
-        # Weighted coverage based on official syllabus topic weightings
-        # Build a lookup: topic code → weighting
-        code_to_weighting: dict[str, float] = {
-            t.code: t.weighting for t in engine_curriculum.topics
-        }
-        total_weight = engine_curriculum.total_weight
+        # Weighted coverage.
+        # V1: use official per-topic syllabus weightings.
+        # V2: no per-topic weights exist; fall back to equal weighting so that
+        #     weighted_completed_percentage == curriculum_coverage_percentage.
+        if is_v2_engine:
+            code_to_weighting: dict[str, float] = {
+                t.code: 1.0 for t in engine_topics
+            }
+            total_weight = float(total_topics)
+        else:
+            code_to_weighting = {t.code: t.weighting for t in engine_topics}
+            total_weight = engine_curriculum.total_weight
+
         completed_weight = sum(
             code_to_weighting.get(code, 0.0) for code in completed_codes
         )
@@ -285,13 +371,13 @@ class CurriculumEngineService:
 
         # Find the index of the current topic so we only look ahead
         current_index: int | None = None
-        for i, engine_topic in enumerate(engine_curriculum.topics):
+        for i, engine_topic in enumerate(engine_topics):
             if engine_topic.code == current_code:
                 current_index = i
                 break
 
         if current_index is not None:
-            for engine_topic in engine_curriculum.topics[current_index + 1:]:
+            for engine_topic in engine_topics[current_index + 1:]:
                 if engine_topic.code in completed_set:
                     continue
                 # Found the first non-completed topic after current

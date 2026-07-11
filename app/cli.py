@@ -15,6 +15,15 @@ from app.models.user import User
 logger = logging.getLogger(__name__)
 
 
+def _sections_table_exists() -> bool:
+    """Return True if the ``sections`` table exists in the current database."""
+    try:
+        db.session.execute(db.text("SELECT 1 FROM sections LIMIT 1"))
+        return True
+    except (OperationalError, ProgrammingError):
+        return False
+
+
 def _users_table_exists() -> bool:
     """Return True if the ``users`` table exists in the current database.
 
@@ -111,4 +120,192 @@ def create_admin_command() -> None:
     click.echo("Administrator created successfully.")
     logger.info(
         "create-admin: administrator created for email=%s", email
+    )
+
+
+@click.command("backfill-sections")
+@click.option(
+    "--dry-run",
+    is_flag=True,
+    default=False,
+    help="Preview changes without writing to the database.",
+)
+def backfill_sections_command(dry_run: bool) -> None:
+    """Backfill Section rows and Topic.section_id for legacy V2 curricula.
+
+    Finds every V2 curriculum in the database whose topics do not yet have
+    their ``section_id`` populated (i.e. records created before the sections
+    migration was applied) and:
+
+    \b
+    1. Finds the matching engine V2 curriculum by exam_name + version.
+    2. Creates any missing Section rows (idempotent).
+    3. Sets Topic.section_id on unlinked topics matched by title.
+
+    This command is **idempotent**: already-linked topics are skipped.
+    It is safe to run on production — no existing rows are deleted or
+    modified except for setting the nullable ``section_id`` column.
+
+    Exit codes:
+        0 – Success (or nothing to do)
+        1 – Schema not ready (migrations have not been applied)
+    """
+    if not _sections_table_exists():
+        click.echo(
+            "sections table not found — run `flask db upgrade` first.",
+            err=True,
+        )
+        logger.error("backfill-sections: sections table missing; aborting.")
+        sys.exit(1)
+
+    from app.curriculum.models import CurriculumDefinition
+    from app.curriculum.repository import CurriculumRepository
+    from app.models.curriculum import Curriculum, Section, Topic
+
+    repo = CurriculumRepository()
+    discovered = repo.list_exams()  # [(org, paper, [versions])]
+
+    total_sections_created = 0
+    total_topics_linked = 0
+    total_curricula_processed = 0
+
+    for organisation, paper, versions in discovered:
+        for version in versions:
+            # Only process V2 curricula — skip V1 silently.
+            try:
+                engine_curriculum = repo.load_auto(organisation, paper, version)
+            except Exception as exc:
+                logger.warning(
+                    "backfill-sections: cannot load %s/%s/%s — skipping (%s)",
+                    organisation, paper, version, exc,
+                )
+                continue
+
+            if not isinstance(engine_curriculum, CurriculumDefinition):
+                continue  # V1 curriculum — no sections to backfill.
+
+            # Find the DB Curriculum row for this V2 curriculum.
+            db_curriculum = Curriculum.query.filter_by(
+                exam_name=engine_curriculum.exam_name,
+                version=version,
+            ).first()
+            if db_curriculum is None:
+                click.echo(
+                    f"  [SKIP] No DB row for '{engine_curriculum.exam_name}'"
+                    f" v{version} — run startup import first."
+                )
+                continue
+
+            # Check whether any topics still have section_id = NULL.
+            unlinked_count = Topic.query.filter_by(
+                curriculum_id=db_curriculum.id,
+                section_id=None,
+                active=True,
+            ).count()
+            if unlinked_count == 0:
+                click.echo(
+                    f"  [OK]   '{engine_curriculum.exam_name}' v{version} — "
+                    f"all topics already linked."
+                )
+                continue
+
+            total_curricula_processed += 1
+            click.echo(
+                f"  [PROC] '{engine_curriculum.exam_name}' v{version} — "
+                f"{unlinked_count} topic(s) need linking."
+            )
+
+            sections_created = 0
+            topics_linked = 0
+
+            for engine_section in sorted(
+                engine_curriculum.sections, key=lambda s: s.display_order
+            ):
+                # Find or create the DB Section row.
+                db_section = Section.query.filter_by(
+                    curriculum_id=db_curriculum.id,
+                    code=engine_section.code,
+                ).first()
+
+                if db_section is None:
+                    if not dry_run:
+                        db_section = Section(
+                            curriculum_id=db_curriculum.id,
+                            official_id=engine_section.id,
+                            code=engine_section.code,
+                            title=engine_section.title,
+                            description=getattr(engine_section, "description", None),
+                            exam_weight=getattr(engine_section, "exam_weight", None),
+                            display_order=engine_section.display_order,
+                            estimated_hours=getattr(
+                                engine_section, "estimated_hours", None
+                            ),
+                            difficulty=getattr(engine_section, "difficulty", None),
+                        )
+                        db.session.add(db_section)
+                        db.session.flush()
+                    sections_created += 1
+                    total_sections_created += 1
+                    label = "[DRY] " if dry_run else ""
+                    action = "would be created" if dry_run else "created"
+                    click.echo(
+                        f"    {label}Section '{engine_section.code}' {action}."
+                    )
+
+                if dry_run:
+                    # Count how many topics would be linked for this section.
+                    for engine_topic in engine_section.topics:
+                        db_topic = Topic.query.filter_by(
+                            curriculum_id=db_curriculum.id,
+                            name=engine_topic.title,
+                            section_id=None,
+                        ).first()
+                        if db_topic is not None:
+                            topics_linked += 1
+                            total_topics_linked += 1
+                    continue
+
+                # Link unlinked topics to this section.
+                for engine_topic in sorted(
+                    engine_section.topics, key=lambda t: t.display_order
+                ):
+                    db_topic = Topic.query.filter_by(
+                        curriculum_id=db_curriculum.id,
+                        name=engine_topic.title,
+                        section_id=None,
+                    ).first()
+                    if db_topic is not None:
+                        db_topic.section_id = db_section.id
+                        topics_linked += 1
+                        total_topics_linked += 1
+
+            if not dry_run and (sections_created > 0 or topics_linked > 0):
+                db.session.commit()
+
+            prefix = "[DRY] " if dry_run else ""
+            wb = "would be " if dry_run else ""
+            click.echo(
+                f"    {prefix}{sections_created} section(s) {wb}created, "
+                f"{topics_linked} topic(s) {wb}linked."
+            )
+
+    if dry_run:
+        click.echo(
+            f"\nDry run complete — {total_curricula_processed} curriculum/a, "
+            f"{total_sections_created} section(s) to create, "
+            f"{total_topics_linked} topic(s) to link. "
+            "No changes written."
+        )
+    else:
+        click.echo(
+            f"\nBackfill complete — {total_curricula_processed} curriculum/a, "
+            f"{total_sections_created} section(s) created, "
+            f"{total_topics_linked} topic(s) linked."
+        )
+    logger.info(
+        "backfill-sections: done (%d curricula, %d sections, %d topics%s)",
+        total_curricula_processed,
+        total_sections_created,
+        total_topics_linked,
+        " [DRY RUN]" if dry_run else "",
     )
