@@ -2,7 +2,7 @@
 
 Contains the abstract strategy contract and concrete update strategies
 registered with ``TwinUpdatePipeline``. Further specialised strategies
-(MemoryUpdateStrategy, BehaviourUpdateStrategy, PerformanceUpdateStrategy,
+(BehaviourUpdateStrategy, PerformanceUpdateStrategy,
 PredictionSnapshotStrategy, …) land in later capabilities.
 """
 
@@ -13,9 +13,15 @@ from app.domain.twin.strategies.knowledge_update_strategy import (
     KNOWLEDGE_EVIDENCE_TYPES,
     KnowledgeUpdateStrategy,
 )
+from app.domain.twin.strategies.memory_update_strategy import (
+    MEMORY_EVIDENCE_TYPES,
+    MemoryUpdateStrategy,
+)
 
 __all__ = [
     "BaseUpdateStrategy",
     "KNOWLEDGE_EVIDENCE_TYPES",
     "KnowledgeUpdateStrategy",
+    "MEMORY_EVIDENCE_TYPES",
+    "MemoryUpdateStrategy",
 ]

@@ -1,8 +1,8 @@
 # Student Digital Twin Domain
 
 Pure domain vocabulary for the **Student Digital Twin** in Kwalitec, plus the
-**Twin Update Pipeline** orchestration framework and its first concrete
-**Knowledge Update Strategy**.
+**Twin Update Pipeline** orchestration framework and concrete update strategies
+for **Knowledge** and **Memory** structural evolution.
 
 This package is **not** persistence, HTTP, UI, mastery/readiness scoring,
 recommendation logic, or service-layer orchestration. It defines:
@@ -11,7 +11,7 @@ recommendation logic, or service-layer orchestration. It defines:
    condition.
 2. A registry-backed *update pipeline* that coordinates update strategies.
 3. Concrete *update strategies* that evolve domain states from Learning Evidence
-   (starting with Knowledge — intentionally simple structural rules only).
+   (Knowledge and Memory — intentionally simple structural rules only).
 
 Canonical architecture: [`STUDENT_DIGITAL_TWIN.md`](../../../STUDENT_DIGITAL_TWIN.md).  
 Ubiquitous language: [`UBIQUITOUS_LANGUAGE.md`](../../../UBIQUITOUS_LANGUAGE.md).
@@ -35,6 +35,7 @@ Twin state; they must not become competing learner-state stores.
 | 2.1 | Immutable Twin **state objects** |
 | 2.2 | Twin Update Pipeline **orchestration framework** |
 | 2.3 | **Knowledge Update Strategy** (structural Knowledge evolution) |
+| 2.4 | **Memory Update Strategy** (structural Memory evolution) |
 
 ## Responsibilities
 
@@ -53,6 +54,7 @@ Twin state; they must not become competing learner-state stores.
 | `update_strategy.py` | Public strategy contract alias |
 | `strategies/base_strategy.py` | Abstract update strategy interface |
 | `strategies/knowledge_update_strategy.py` | Structural KnowledgeState evolution from evidence |
+| `strategies/memory_update_strategy.py` | Structural MemoryState evolution from evidence |
 | `update_pipeline.py` | Registry coordinator that invokes applicable strategies |
 
 This package **must not**:
@@ -95,6 +97,55 @@ pipeline can evolve Knowledge structure without committing to a mastery model.
 - Forgetting curves or spaced-repetition scheduling
 - Persistence, recommendations, planning, or insight generation
 
+## Memory Update Strategy
+
+`MemoryUpdateStrategy` is the second concrete `BaseUpdateStrategy`.
+
+### Purpose
+
+Evolve the Twin’s **MemoryState** when Memory-related Learning Evidence
+arrives. Capability 2.4 keeps educational behaviour intentionally simple so the
+pipeline can evolve Memory structure without committing to a retention,
+forgetting, or spaced-repetition model.
+
+### Behaviour (intentionally simple)
+
+1. **Applicability** — runs when the context contains at least one
+   Memory-related evidence record with a non-empty `topic_id`
+   (see `MEMORY_EVIDENCE_TYPES`: revision sessions, flashcard reviews).
+2. **New retention entry** — creates a `RetentionRecord` when a topic is first
+   seen, setting `last_reinforced` to the evidence timestamp.
+3. **Existing entry** — updates `last_reinforced` when newer evidence arrives;
+   never regresses the clock on older evidence.
+4. **Evidence references** — appends the evidence id to
+   `MemoryState.revision_ids` (deduped).
+5. **Timestamp** — sets `MemoryState.last_updated` to the latest processed
+   evidence timestamp.
+6. **Immutability** — returns a **new** `DigitalTwin`; the original Twin is
+   never mutated. `retention_belief` is preserved as-is and never computed here.
+
+### What it does *not* do
+
+- Retention / forgetting-curve / memory-strength scoring
+- Spaced repetition, FSRS, SM-2, Leitner, or revision scheduling
+- Confidence or readiness scoring
+- Persistence, recommendations, planning, or insight generation
+
+### KnowledgeState vs MemoryState
+
+| | **KnowledgeState** | **MemoryState** |
+|---|---|---|
+| Question | “What do they know *now*?” | “Will they still know it?” |
+| Structural slot | `TopicMasteryRecord` | `RetentionRecord` |
+| Belief field (stored, not computed here) | `mastery_belief` | `retention_belief` |
+| Evidence references | `evidence_ids` (state + per topic) | `revision_ids` (state) |
+| Typical evidence | Attempts, quizzes, diagnostics | Revision sessions, flashcard reviews |
+| Strategy | `KnowledgeUpdateStrategy` | `MemoryUpdateStrategy` |
+
+Knowledge must not encode forgetting curves. Memory must not become a second
+mastery store. Keep the domains complementary
+([`STUDENT_DIGITAL_TWIN.md`](../../../STUDENT_DIGITAL_TWIN.md) Knowledge vs Memory).
+
 ### Relationship to the Twin Update Pipeline
 
 ```
@@ -106,30 +157,36 @@ UpdateContext
       ▼
 TwinUpdatePipeline
       │  register(KnowledgeUpdateStrategy())
+      │  register(MemoryUpdateStrategy())
       │  supports(context)? → apply(context) → new Twin
       ▼
 UpdateResult (original_twin, updated_twin, applied_strategies, …)
 ```
 
 The pipeline remains an orchestration shell. Strategies own domain-specific
-evolution. Register `KnowledgeUpdateStrategy` (constructor list or
-`pipeline.register(...)`) — the pipeline class itself does not hard-code it.
+evolution. Register both strategies (constructor list or
+`pipeline.register(...)`) — the pipeline class itself does not hard-code them.
 
-### Relationship to the future Memory Strategy
+The same Learning Evidence batch may drive **both** strategies when mixed
+types are present (e.g. a quiz attempt updates Knowledge; a revision session
+updates Memory). They must not share mutable state: each returns a new Twin
+snapshot; the pipeline chains them via `context.with_twin(...)`.
 
-| Strategy | Owns | Typical evidence |
-|---|---|---|
-| **KnowledgeUpdateStrategy** (2.3) | “What do they know *now*?” structure | Attempts, quizzes, diagnostics, topic coverage |
-| **MemoryUpdateStrategy** (later) | “Will they still know it?” retention | Revision sessions, flashcard reviews, decay clocks |
+### Relationship to the future Memory Engine
 
-The same Learning Evidence batch may eventually drive **both** strategies
-(e.g. a quiz reinforces Knowledge structure *and* resets a Memory due date).
-They must not share mutable state: each returns a new Twin snapshot; the
-pipeline chains them via `context.with_twin(...)`.
+The **Memory Engine** (Revision Engine / spaced-repetition scheduling) will
+later:
 
-Knowledge must not encode forgetting curves. Memory must not become a second
-mastery store. Keep the domains complementary
-([`STUDENT_DIGITAL_TWIN.md`](../../../STUDENT_DIGITAL_TWIN.md) Knowledge vs Memory).
+- **Read** `MemoryState` retention structure and `last_reinforced` clocks
+- **Compute** retention beliefs, due dates, and decay using educational
+  algorithms (forgetting curves, FSRS, etc.)
+- **Emit** revision / flashcard Learning Evidence that this strategy already
+  knows how to apply structurally
+
+Capability 2.4 only establishes the *structural write path*. Educational
+memory algorithms remain deferred. When those algorithms land, they should
+update beliefs via evidence + strategy extension — not by mutating Twin
+state from services or bypassing the pipeline.
 
 ## Update lifecycle
 
@@ -176,7 +233,7 @@ that history.
 Learning Event
       → Evidence Candidate → Learning Evidence (canonical, append-only)
             → Twin Update Pipeline (this package)
-                  → KnowledgeUpdateStrategy (and future strategies)
+                  → KnowledgeUpdateStrategy / MemoryUpdateStrategy
                         → DigitalTwin domain states (new snapshot)
 ```
 
@@ -201,7 +258,6 @@ Registered later; **not** implemented in this capability:
 
 | Strategy | Intended concern |
 |---|---|
-| `MemoryUpdateStrategy` | Retention / decay / revision signals |
 | `BehaviourUpdateStrategy` | Consistency, skips, session patterns |
 | `PerformanceUpdateStrategy` | Assessment and mock outcomes |
 | `PredictionSnapshotStrategy` | Store readiness / pass-probability snapshots |
@@ -214,7 +270,7 @@ registered with `TwinUpdatePipeline` without modifying the pipeline class.
 The Insight Engine (and related Prediction / Recommendation consumers) will
 **read** Twin state to produce explainable insights, forecasts, and next
 actions. Insights must cite Twin factors and evidence lineage; they must not
-silently mutate Knowledge or bypass Twin inputs.
+silently mutate Knowledge or Memory or bypass Twin inputs.
 
 The Update Pipeline **writes** new Twin snapshots from evidence. The Insight
 Engine **reads** those snapshots. They must not be conflated.
@@ -225,20 +281,29 @@ Engine **reads** those snapshots. They must not be conflated.
    dataclass when the concept is stable across producers. Prefer tuples for
    collections and defensive copies for dict bags.
 2. **New nested records** — keep them frozen dataclasses in the owning state
-   module (e.g. `TopicMasteryRecord` beside `KnowledgeState`).
+   module (e.g. `TopicMasteryRecord` beside `KnowledgeState`,
+   `RetentionRecord` beside `MemoryState`).
 3. **New update strategies** — subclass `BaseUpdateStrategy` under
    `strategies/`, register with the pipeline; do not put educational math in
    `update_pipeline.py`.
 4. **Richer Knowledge algorithms** — extend `KnowledgeUpdateStrategy` (or
    introduce a successor strategy) when mastery / confidence models are ready;
    keep the pipeline unaware of scoring details.
-5. **Planning / Readiness / Motivation domains** — introduce as additional
+5. **Richer Memory algorithms** — extend `MemoryUpdateStrategy` (or introduce
+   a successor / Memory Engine consumer) when retention, decay, or spaced-
+   repetition models are ready; keep scheduling and belief math out of the
+   pipeline shell. Prefer emitting Learning Evidence that this strategy (or
+   an extended version) applies structurally.
+6. **Expand `MEMORY_EVIDENCE_TYPES`** carefully when new revision-like
+   evidence types are added — do not absorb Knowledge attempt types into
+   Memory.
+7. **Planning / Readiness / Motivation domains** — introduce as additional
    immutable state modules when a later capability requires them.
-6. **Do not** introduce Flask, ORM, HTTP, or service types into this package.
-7. **Do not** mutate Twin aggregates in place — always return a new frozen
+8. **Do not** introduce Flask, ORM, HTTP, or service types into this package.
+9. **Do not** mutate Twin aggregates in place — always return a new frozen
    snapshot from `apply`.
-8. **Do not** let Memory and Knowledge share mutable bags or diverge into
-   competing mastery stores.
+10. **Do not** let Memory and Knowledge share mutable bags or diverge into
+    competing mastery stores.
 
 ## Package layout
 
@@ -261,5 +326,6 @@ app/domain/twin/
     __init__.py
     base_strategy.py
     knowledge_update_strategy.py
+    memory_update_strategy.py
   README.md
 ```

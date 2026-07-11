@@ -17,8 +17,10 @@ from app.domain.twin.performance_state import PerformanceState, PerformanceSumma
 from app.domain.twin.prediction_state import PredictionState
 from app.domain.twin.strategies import (
     KNOWLEDGE_EVIDENCE_TYPES,
+    MEMORY_EVIDENCE_TYPES,
     BaseUpdateStrategy,
     KnowledgeUpdateStrategy,
+    MemoryUpdateStrategy,
 )
 from app.domain.twin.update_context import UpdateContext
 from app.domain.twin.update_pipeline import TwinUpdatePipeline
@@ -34,7 +36,9 @@ __all__ = [
     "KNOWLEDGE_EVIDENCE_TYPES",
     "KnowledgeState",
     "KnowledgeUpdateStrategy",
+    "MEMORY_EVIDENCE_TYPES",
     "MemoryState",
+    "MemoryUpdateStrategy",
     "PerformanceState",
     "PerformanceSummary",
     "PredictionState",
