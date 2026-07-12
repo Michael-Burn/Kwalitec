@@ -82,7 +82,7 @@ class StudyPlanService:
             target_grade: Target grade to achieve.
             preferred_session_minutes: Preferred study session length in minutes.
             curriculum_version: Optional curriculum version this plan was created against.
-            curriculum_topic_code: Optional official curriculum topic code (e.g., "CS1-A").
+            curriculum_topic_code: Optional official curriculum topic code (e.g., "1.1").
             completed_curriculum_topics: Optional list of topic codes the user has
                 already completed (from the Study Plan Wizard).
 
@@ -460,7 +460,7 @@ class StudyPlanService:
         Args:
             study_plan: The study plan being initialised.
             db_topic: The DB Topic row to create progress for.
-            engine_topic_code: The engine-side topic code (e.g. ``"CS1-A"``).
+            engine_topic_code: The engine-side topic code (e.g. ``"1.1"``).
             completed_curriculum_topics: Codes of topics the user has already
                 completed (from the Study Plan Wizard).
         """

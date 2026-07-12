@@ -812,28 +812,29 @@ class TestLoadFromJson:
 
 
 class TestLoadCurriculum:
-    """Tests for load_curriculum()."""
+    """Tests for load_curriculum() / load_curriculum_v2()."""
 
     def test_loads_bundled_cs1_2026(self):
-        from app.curriculum.loader import load_curriculum
+        from app.curriculum.loader import load_curriculum_v2
 
-        c = load_curriculum("ifoa", "cs1", "2026")
-        assert c.organisation == "IFoA"
-        assert c.paper == "CS1"
-        assert c.syllabus_version == "2026"
-        assert len(c.topics) == 6
+        c = load_curriculum_v2("ifoa", "cs1", "2026")
+        assert c.provider == "IFoA"
+        assert c.exam_code == "CS1"
+        assert c.version == "2026"
+        assert len(c.sections) == 5
+        assert sum(len(section.topics) for section in c.sections) == 14
 
     def test_case_insensitive_organisation(self):
-        from app.curriculum.loader import load_curriculum
+        from app.curriculum.loader import load_curriculum_v2
 
-        c = load_curriculum("IFOA", "cs1", "2026")
-        assert c.organisation == "IFoA"
+        c = load_curriculum_v2("IFOA", "cs1", "2026")
+        assert c.provider == "IFoA"
 
     def test_case_insensitive_paper(self):
-        from app.curriculum.loader import load_curriculum
+        from app.curriculum.loader import load_curriculum_v2
 
-        c = load_curriculum("ifoa", "CS1", "2026")
-        assert c.paper == "CS1"
+        c = load_curriculum_v2("ifoa", "CS1", "2026")
+        assert c.exam_code == "CS1"
 
     def test_unknown_curriculum_raises(self):
         from app.curriculum.loader import load_curriculum
@@ -1032,11 +1033,11 @@ class TestValidateCurriculum:
         assert len(exc_info.value.messages) >= 3  # multiple issues found
 
     def test_bundled_cs1_passes_validation(self):
-        from app.curriculum.loader import load_curriculum
-        from app.curriculum.validator import validate_curriculum
+        from app.curriculum.loader import load_curriculum_v2
+        from app.curriculum.validator import validate_curriculum_v2
 
-        c = load_curriculum("ifoa", "cs1", "2026")
-        validate_curriculum(c)  # should not raise
+        c = load_curriculum_v2("ifoa", "cs1", "2026")
+        validate_curriculum_v2(c)  # should not raise
 
 
 class TestIndividualValidators:
@@ -1166,10 +1167,10 @@ class TestCurriculumRepository:
         from app.curriculum.repository import CurriculumRepository
 
         repo = CurriculumRepository()
-        c = repo.load("ifoa", "cs1", "2026")
+        c = repo.load_auto("ifoa", "cs1", "2026")
         assert repo.is_loaded("ifoa", "cs1", "2026")
         # Second load returns cached
-        c2 = repo.load("ifoa", "cs1", "2026")
+        c2 = repo.load_auto("ifoa", "cs1", "2026")
         assert c is c2
 
     def test_load_invalid_curriculum_raises(self):
@@ -1178,7 +1179,7 @@ class TestCurriculumRepository:
 
         repo = CurriculumRepository()
         with pytest.raises(CurriculumLoadError):
-            repo.load("no-such-org", "no-such-paper", "2099")
+            repo.load_auto("no-such-org", "no-such-paper", "2099")
 
     def test_exists_true(self):
         from app.curriculum.repository import CurriculumRepository
@@ -1196,9 +1197,9 @@ class TestCurriculumRepository:
         from app.curriculum.repository import CurriculumRepository
 
         repo = CurriculumRepository()
-        repo.load("ifoa", "cs1", "2026")
-        c = repo.get_curriculum("ifoa", "cs1", "2026")
-        assert c.paper == "CS1"
+        repo.load_auto("ifoa", "cs1", "2026")
+        c = repo.get_curriculum_v2("ifoa", "cs1", "2026")
+        assert c.exam_code == "CS1"
 
     def test_get_curriculum_not_loaded_raises(self):
         from app.curriculum.repository import CurriculumRepository
@@ -1206,50 +1207,51 @@ class TestCurriculumRepository:
 
         repo = CurriculumRepository()
         with pytest.raises(CurriculumNotFoundError, match="not found"):
-            repo.get_curriculum("ifoa", "cs1", "2026")
+            repo.get_curriculum_v2("ifoa", "cs1", "2026")
 
     def test_get_topics(self):
         from app.curriculum.repository import CurriculumRepository
 
         repo = CurriculumRepository()
-        repo.load("ifoa", "cs1", "2026")
-        topics = repo.get_topics("ifoa", "cs1", "2026")
-        assert len(topics) == 6
-        assert topics[0].code == "CS1-A"
+        repo.load_auto("ifoa", "cs1", "2026")
+        topics = repo.get_topics_v2("ifoa", "cs1", "2026", "CS1-A")
+        assert len(topics) == 2
+        assert topics[0].code == "1.1"
 
     def test_get_topic_found(self):
         from app.curriculum.repository import CurriculumRepository
 
         repo = CurriculumRepository()
-        repo.load("ifoa", "cs1", "2026")
-        t = repo.get_topic("ifoa", "cs1", "2026", "cs1-2026-1")
-        assert t.title == "Random Variables and Distributions"
+        repo.load_auto("ifoa", "cs1", "2026")
+        t = repo.get_topic_v2("ifoa", "cs1", "2026", "CS1-B-T01")
+        assert t.code == "2.1"
+        assert "univariate distributions" in t.title.lower()
 
     def test_get_topic_not_found_raises(self):
         from app.curriculum.repository import CurriculumRepository
         from app.curriculum.exceptions import CurriculumNotFoundError
 
         repo = CurriculumRepository()
-        repo.load("ifoa", "cs1", "2026")
+        repo.load_auto("ifoa", "cs1", "2026")
         with pytest.raises(CurriculumNotFoundError):
-            repo.get_topic("ifoa", "cs1", "2026", "nonexistent-topic")
+            repo.get_topic_v2("ifoa", "cs1", "2026", "nonexistent-topic")
 
     def test_get_learning_outcome_found(self):
         from app.curriculum.repository import CurriculumRepository
 
         repo = CurriculumRepository()
-        repo.load("ifoa", "cs1", "2026")
-        lo = repo.get_learning_outcome("ifoa", "cs1", "2026", "cs1-2026-1-1")
-        assert lo.code == "CS1-A-1"
+        repo.load_auto("ifoa", "cs1", "2026")
+        lo = repo.get_learning_objective("ifoa", "cs1", "2026", "CS1-A-T01-LO01")
+        assert lo.code == "1.1.1"
 
     def test_get_learning_outcome_not_found_raises(self):
         from app.curriculum.repository import CurriculumRepository
         from app.curriculum.exceptions import CurriculumNotFoundError
 
         repo = CurriculumRepository()
-        repo.load("ifoa", "cs1", "2026")
+        repo.load_auto("ifoa", "cs1", "2026")
         with pytest.raises(CurriculumNotFoundError):
-            repo.get_learning_outcome("ifoa", "cs1", "2026", "nonexistent-lo")
+            repo.get_learning_objective("ifoa", "cs1", "2026", "nonexistent-lo")
 
     def test_list_exams(self):
         from app.curriculum.repository import CurriculumRepository
@@ -1282,7 +1284,7 @@ class TestCurriculumRepository:
         from app.curriculum.repository import CurriculumRepository
 
         repo = CurriculumRepository()
-        repo.load("ifoa", "cs1", "2026")
+        repo.load_auto("ifoa", "cs1", "2026")
         assert repo.is_loaded("ifoa", "cs1", "2026")
         repo.clear()
         assert not repo.is_loaded("ifoa", "cs1", "2026")
@@ -1298,18 +1300,18 @@ class TestCurriculumRepository:
         from app.curriculum.repository import CurriculumRepository
 
         repo = CurriculumRepository()
-        repo.load("ifoa", "cs1", "2026")
+        repo.load_auto("ifoa", "cs1", "2026")
         assert repo.is_loaded("ifoa", "cs1", "2026")
 
     def test_case_insensitive_lookup(self):
         from app.curriculum.repository import CurriculumRepository
 
         repo = CurriculumRepository()
-        repo.load("ifoa", "cs1", "2026")
+        repo.load_auto("ifoa", "cs1", "2026")
         # Look up with different case
         assert repo.is_loaded("IFOA", "CS1", "2026")
-        c = repo.get_curriculum("IfOa", "Cs1", "2026")
-        assert c.paper == "CS1"
+        c = repo.get_curriculum_v2("IfOa", "Cs1", "2026")
+        assert c.exam_code == "CS1"
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -1324,8 +1326,8 @@ class TestSeedCurricula:
 
         repo = seed_curricula()
         assert repo.is_loaded("ifoa", "cs1", "2026")
-        c = repo.get_curriculum("ifoa", "cs1", "2026")
-        assert c.paper == "CS1"
+        c = repo.get_curriculum_v2("ifoa", "cs1", "2026")
+        assert c.exam_code == "CS1"
 
     def test_seeds_into_provided_repo(self):
         from app.curriculum.repository import CurriculumRepository
@@ -1340,8 +1342,8 @@ class TestSeedCurricula:
         from app.curriculum.seed import seed_curricula
 
         repo = seed_curricula()
-        c1 = repo.get_curriculum("ifoa", "cs1", "2026")
+        c1 = repo.get_curriculum_v2("ifoa", "cs1", "2026")
         # Seed again into same repo
         seed_curricula(repo)
-        c2 = repo.get_curriculum("ifoa", "cs1", "2026")
+        c2 = repo.get_curriculum_v2("ifoa", "cs1", "2026")
         assert c1 is c2  # Same cached object

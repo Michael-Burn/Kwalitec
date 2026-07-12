@@ -29,7 +29,7 @@ DATA_DIR = PROJECT_ROOT / "app" / "curriculum" / "data"
 # ═══════════════════════════════════════════════════════════════════════════════
 
 class TestV1Import:
-    """Tests for importing V1 (flat) curriculum format."""
+    """Tests for importing the bundled curriculum (canonical CS1 V2)."""
 
     def test_import_v1_curriculum_populates_tables(self, ctx, db):
         """V1 curriculum import should populate Curriculum, Topic, and LearningObjective tables."""
@@ -72,17 +72,20 @@ class TestV1Import:
             assert topic.order == i, f"Topic {topic.name} has order {topic.order}, expected {i}"
 
     def test_import_v1_creates_correct_metadata(self, ctx, db):
-        """V1 topics should have correct recommended_minutes and syllabus_weight."""
+        """Bundled CS1 V2 topics carry minutes; syllabus_weight is section-level (0 on topics)."""
         from app.services.curriculum_service import CurriculumService
         from app.models.curriculum import Curriculum, Topic
 
         CurriculumService.import_curricula()
         c = Curriculum.query.first()
+        assert c.exam_name == "IFoA CS1"
         topics = Topic.query.filter_by(curriculum_id=c.id).all()
 
         for topic in topics:
             assert topic.recommended_minutes > 0, f"Topic {topic.name} has no recommended minutes"
-            assert topic.syllabus_weight > 0, f"Topic {topic.name} has no syllabus weight"
+            assert topic.syllabus_weight == 0.0, (
+                f"V2 topic {topic.name} must have syllabus_weight 0.0"
+            )
             assert topic.active is True
 
 
@@ -161,8 +164,8 @@ class TestV2Import:
             count = CurriculumService.import_curricula()
             assert count >= 1, "Should import V2 curriculum"
 
-            # Verify the V2 curriculum was imported
-            c = Curriculum.query.filter_by(exam_name="Actuarial Statistics V2").first()
+            # Verify the V2 curriculum was imported under product naming
+            c = Curriculum.query.filter_by(exam_name="IFoA CS1", version="2027").first()
             assert c is not None, "V2 curriculum not found in database"
             assert c.version == "2027"
 
@@ -507,7 +510,7 @@ class TestFormatDetection:
         count = CurriculumService.import_curricula()
         assert count >= 1
 
-        # The bundled curriculum is V1 format
+        # The bundled curriculum uses product naming
         c = Curriculum.query.first()
         assert c is not None
         assert c.exam_name == "IFoA CS1"
@@ -838,7 +841,7 @@ class TestSectionPersistence:
         v2_dir, v2_file, backup = _write_v2_fixture(_TWO_SECTION_V2)
         try:
             CurriculumService.import_curricula()
-            c = Curriculum.query.filter_by(exam_name="Test Exam Nine").first()
+            c = Curriculum.query.filter_by(exam_name="IFoA CS9").first()
             assert c is not None
 
             sections = Section.query.filter_by(curriculum_id=c.id).order_by(Section.display_order).all()
@@ -854,7 +857,7 @@ class TestSectionPersistence:
         v2_dir, v2_file, backup = _write_v2_fixture(_TWO_SECTION_V2)
         try:
             CurriculumService.import_curricula()
-            c = Curriculum.query.filter_by(exam_name="Test Exam Nine").first()
+            c = Curriculum.query.filter_by(exam_name="IFoA CS9").first()
             sections = (
                 Section.query.filter_by(curriculum_id=c.id)
                 .order_by(Section.display_order)
@@ -890,7 +893,7 @@ class TestSectionPersistence:
         v2_dir, v2_file, backup = _write_v2_fixture(_TWO_SECTION_V2)
         try:
             CurriculumService.import_curricula()
-            c = Curriculum.query.filter_by(exam_name="Test Exam Nine").first()
+            c = Curriculum.query.filter_by(exam_name="IFoA CS9").first()
 
             topics = Topic.query.filter_by(curriculum_id=c.id).order_by(Topic.order).all()
             assert len(topics) == 2
@@ -917,7 +920,7 @@ class TestSectionPersistence:
         v2_dir, v2_file, backup = _write_v2_fixture(_TWO_SECTION_V2)
         try:
             CurriculumService.import_curricula()
-            c = Curriculum.query.filter_by(exam_name="Test Exam Nine").first()
+            c = Curriculum.query.filter_by(exam_name="IFoA CS9").first()
 
             topics = Topic.query.filter_by(curriculum_id=c.id).order_by(Topic.order).all()
             for topic in topics:
@@ -937,7 +940,7 @@ class TestSectionPersistence:
         v2_dir, v2_file, backup = _write_v2_fixture(_TWO_SECTION_V2)
         try:
             CurriculumService.import_curricula()
-            c = Curriculum.query.filter_by(exam_name="Test Exam Nine").first()
+            c = Curriculum.query.filter_by(exam_name="IFoA CS9").first()
             count_first = Section.query.filter_by(curriculum_id=c.id).count()
 
             CurriculumService.import_curricula()
@@ -958,7 +961,7 @@ class TestSectionPersistence:
         v2_dir, v2_file, backup = _write_v2_fixture(_TWO_SECTION_V2)
         try:
             CurriculumService.import_curricula()
-            c = Curriculum.query.filter_by(exam_name="Test Exam Nine").first()
+            c = Curriculum.query.filter_by(exam_name="IFoA CS9").first()
 
             for topic in Topic.query.filter_by(curriculum_id=c.id).all():
                 los = (
@@ -980,35 +983,35 @@ class TestSectionPersistence:
 # ═══════════════════════════════════════════════════════════════════════════════
 
 class TestV1SectionUnchanged:
-    """V1 import must create zero Section rows and leave section_id NULL on Topics."""
+    """Bundled CS1 2026 is canonical V2: sections exist and topics are linked."""
 
     def test_v1_creates_no_sections(self, ctx, db):
-        """Importing a V1 curriculum must not create any Section rows."""
+        """Importing canonical CS1 V2 creates the official section rows."""
         from app.services.curriculum_service import CurriculumService
         from app.models.curriculum import Curriculum, Section
 
         CurriculumService.import_curricula()
-        c = Curriculum.query.filter_by(version="2026").first()
-        assert c is not None, "V1 curriculum (2026) was not imported"
+        c = Curriculum.query.filter_by(exam_name="IFoA CS1", version="2026").first()
+        assert c is not None, "Canonical CS1 (2026) was not imported"
 
         section_count = Section.query.filter_by(curriculum_id=c.id).count()
-        assert section_count == 0, (
-            f"V1 import should create 0 sections, created {section_count}"
+        assert section_count == 5, (
+            f"CS1 V2 import should create 5 sections, created {section_count}"
         )
 
     def test_v1_topics_have_null_section_id(self, ctx, db):
-        """All Topics from a V1 import must have section_id == None."""
+        """All Topics from canonical CS1 V2 import must have section_id set."""
         from app.services.curriculum_service import CurriculumService
         from app.models.curriculum import Curriculum, Topic
 
         CurriculumService.import_curricula()
-        c = Curriculum.query.filter_by(version="2026").first()
+        c = Curriculum.query.filter_by(exam_name="IFoA CS1", version="2026").first()
         topics = Topic.query.filter_by(curriculum_id=c.id).all()
-        assert topics, "V1 curriculum should have topics"
+        assert topics, "CS1 curriculum should have topics"
 
         for topic in topics:
-            assert topic.section_id is None, (
-                f"V1 topic {topic.name!r} must have section_id=None"
+            assert topic.section_id is not None, (
+                f"V2 topic {topic.name!r} must have section_id set"
             )
 
 
@@ -1020,7 +1023,7 @@ class TestMixedImportSections:
     """V1 and V2 can coexist: V1 topics unsectioned, V2 topics all sectioned."""
 
     def test_mixed_import_sections_isolated(self, ctx, db):
-        """V1 topics have no section; V2 topics all have a section. No cross-contamination."""
+        """Canonical CS1 and synthetic CS9 both import as V2 with isolated sections."""
         from app.services.curriculum_service import CurriculumService
         from app.models.curriculum import Curriculum, Section, Topic
 
@@ -1028,24 +1031,19 @@ class TestMixedImportSections:
         try:
             CurriculumService.import_curricula()
 
-            v1 = Curriculum.query.filter_by(version="2026").first()
-            v2 = Curriculum.query.filter_by(exam_name="Test Exam Nine").first()
-            assert v1 is not None, "V1 curriculum not imported"
-            assert v2 is not None, "V2 curriculum not imported"
+            cs1 = Curriculum.query.filter_by(exam_name="IFoA CS1", version="2026").first()
+            cs9 = Curriculum.query.filter_by(exam_name="IFoA CS9").first()
+            assert cs1 is not None, "IFoA CS1 curriculum not imported"
+            assert cs9 is not None, "IFoA CS9 curriculum not imported"
 
-            # V1 topics: no section
-            for t in Topic.query.filter_by(curriculum_id=v1.id).all():
-                assert t.section_id is None, f"V1 topic {t.name!r} must not have section_id"
+            for t in Topic.query.filter_by(curriculum_id=cs1.id).all():
+                assert t.section_id is not None, f"CS1 topic {t.name!r} must have section_id"
 
-            # V2 topics: all sectioned
-            for t in Topic.query.filter_by(curriculum_id=v2.id).all():
-                assert t.section_id is not None, f"V2 topic {t.name!r} must have section_id"
+            for t in Topic.query.filter_by(curriculum_id=cs9.id).all():
+                assert t.section_id is not None, f"CS9 topic {t.name!r} must have section_id"
 
-            # Section rows belong exclusively to V2
-            v2_section_count = Section.query.filter_by(curriculum_id=v2.id).count()
-            v1_section_count = Section.query.filter_by(curriculum_id=v1.id).count()
-            assert v2_section_count == 2
-            assert v1_section_count == 0
+            assert Section.query.filter_by(curriculum_id=cs9.id).count() == 2
+            assert Section.query.filter_by(curriculum_id=cs1.id).count() == 5
         finally:
             _cleanup_v2_fixture(v2_dir, v2_file, backup)
 
@@ -1067,7 +1065,7 @@ class TestIdempotentSectionImport:
             for _ in range(3):
                 CurriculumService.import_curricula()
 
-            c = Curriculum.query.filter_by(exam_name="Test Exam Nine").first()
+            c = Curriculum.query.filter_by(exam_name="IFoA CS9").first()
             assert Section.query.filter_by(curriculum_id=c.id).count() == 2
         finally:
             _cleanup_v2_fixture(v2_dir, v2_file, backup)
@@ -1080,7 +1078,7 @@ class TestIdempotentSectionImport:
         v2_dir, v2_file, backup = _write_v2_fixture(_TWO_SECTION_V2)
         try:
             CurriculumService.import_curricula()
-            c = Curriculum.query.filter_by(exam_name="Test Exam Nine").first()
+            c = Curriculum.query.filter_by(exam_name="IFoA CS9").first()
             snapshot = {
                 t.id: t.section_id
                 for t in Topic.query.filter_by(curriculum_id=c.id).all()
@@ -1110,7 +1108,7 @@ class TestImportOrdering:
         v2_dir, v2_file, backup = _write_v2_fixture(_TWO_SECTION_V2)
         try:
             CurriculumService.import_curricula()
-            c = Curriculum.query.filter_by(exam_name="Test Exam Nine").first()
+            c = Curriculum.query.filter_by(exam_name="IFoA CS9").first()
             topics = (
                 Topic.query.filter_by(curriculum_id=c.id)
                 .order_by(Topic.order)
@@ -1131,7 +1129,7 @@ class TestImportOrdering:
         v2_dir, v2_file, backup = _write_v2_fixture(_TWO_SECTION_V2)
         try:
             CurriculumService.import_curricula()
-            c = Curriculum.query.filter_by(exam_name="Test Exam Nine").first()
+            c = Curriculum.query.filter_by(exam_name="IFoA CS9").first()
             sections = (
                 Section.query.filter_by(curriculum_id=c.id)
                 .order_by(Section.display_order)
@@ -1158,7 +1156,7 @@ class TestDuplicateSectionProtection:
         v2_dir, v2_file, backup = _write_v2_fixture(_TWO_SECTION_V2)
         try:
             CurriculumService.import_curricula()
-            c = Curriculum.query.filter_by(exam_name="Test Exam Nine").first()
+            c = Curriculum.query.filter_by(exam_name="IFoA CS9").first()
             count_after_first = Section.query.filter_by(curriculum_id=c.id).count()
 
             CurriculumService.import_curricula()

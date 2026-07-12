@@ -132,7 +132,7 @@ class TestCalculateTimeSummary:
 
     @staticmethod
     def _make_curriculum_with_db_topics(app, version="2026"):
-        """Create a DB Curriculum with Topics that match the CS1 bundled JSON.
+        """Create a DB Curriculum with Topics that match canonical CS1 V2 titles.
 
         Returns (db_curriculum, list_of_db_topics).
         """
@@ -143,50 +143,50 @@ class TestCalculateTimeSummary:
         db.session.add(c)
         db.session.flush()
 
-        # Topic names MUST match the CS1 2026 JSON titles
-        t1 = Topic(
-            name="Random Variables and Distributions",
-            curriculum_id=c.id,
-            order=1,
-            recommended_minutes=2700,
-            active=True,
-        )
-        t2 = Topic(
-            name="Common Statistical Distributions",
-            curriculum_id=c.id,
-            order=2,
-            recommended_minutes=2100,
-            active=True,
-        )
-        t3 = Topic(
-            name="Generating Functions and Sums of Random Variables",
-            curriculum_id=c.id,
-            order=3,
-            recommended_minutes=1800,
-            active=True,
-        )
-        t4 = Topic(
-            name="Joint Distributions",
-            curriculum_id=c.id,
-            order=4,
-            recommended_minutes=1500,
-            active=True,
-        )
-        t5 = Topic(
-            name="Bayesian Statistics",
-            curriculum_id=c.id,
-            order=5,
-            recommended_minutes=1500,
-            active=True,
-        )
-        t6 = Topic(
-            name="Sampling and Statistical Inference",
-            curriculum_id=c.id,
-            order=6,
-            recommended_minutes=1800,
-            active=True,
-        )
-        topics = [t1, t2, t3, t4, t5, t6]
+        # Topic names MUST match the canonical CS1 2026 JSON titles
+        topic_specs = [
+            ("Describe the purpose and function of data analysis", 686),
+            ("Complete exploratory data analysis", 514),
+            (
+                "Understand the characteristics of basic univariate "
+                "distributions and how to generate samples from them",
+                655,
+            ),
+            (
+                "Determine the characteristics of jointly distributed "
+                "random variables",
+                436,
+            ),
+            ("Evaluate expectations and conditional expectations", 218),
+            ("Evaluate and apply generating functions", 218),
+            ("State and apply the central limit theorem", 218),
+            (
+                "Describe random sampling and the sampling distributions of "
+                "statistics commonly used in statistical inference",
+                655,
+            ),
+            ("Construct estimators and discuss their properties", 947),
+            ("Calculate confidence intervals and prediction intervals", 1263),
+            ("Apply the concepts of hypothesis testing and goodness of fit", 789),
+            ("Understand and use linear regression models", 1200),
+            ("Understand and use generalised linear models", 2400),
+            (
+                "Explain fundamental concepts of Bayesian statistics and use "
+                "these concepts to calculate Bayesian estimators",
+                1800,
+            ),
+        ]
+        topics = [
+            Topic(
+                name=name,
+                curriculum_id=c.id,
+                order=i,
+                recommended_minutes=minutes,
+                active=True,
+                syllabus_weight=0.0,
+            )
+            for i, (name, minutes) in enumerate(topic_specs, start=1)
+        ]
         db.session.add_all(topics)
         db.session.commit()
         return c, topics
@@ -271,16 +271,16 @@ class TestCalculateTimeSummary:
         result = TimeEngineService.calculate_time_summary(sp)
         assert result is not None
 
-        # CS1 2026 total estimated_hours = 45+35+30+25+25+30 = 190
-        assert result.total_curriculum_hours == 190.0
+        # Canonical CS1 V2 ≈ 200h from topic estimated_minutes
+        assert result.total_curriculum_hours == 199.98
         assert result.completed_hours == 0.0
-        assert result.remaining_hours == 190.0
+        assert result.remaining_hours == 199.98
 
     def test_some_completed_topics(self, app, db, ctx):
         c, topics = self._make_curriculum_with_db_topics(app)
-        # Mark first topic (45h) as completed
+        # Mark first topic (11.43h) as completed
         self._set_topic_completed(app, 1, topics[0].id)
-        # Mark third topic (30h) as completed
+        # Mark third topic (10.92h) as completed
         self._set_topic_completed(app, 1, topics[2].id)
 
         sp = self._make_study_plan(
@@ -298,10 +298,10 @@ class TestCalculateTimeSummary:
         result = TimeEngineService.calculate_time_summary(sp)
         assert result is not None
 
-        # completed: 45 + 30 = 75
-        assert result.total_curriculum_hours == 190.0
-        assert result.completed_hours == 75.0
-        assert result.remaining_hours == 115.0
+        # completed: 11.43 + 10.92 = 22.35
+        assert result.total_curriculum_hours == 199.98
+        assert result.completed_hours == 22.35
+        assert result.remaining_hours == 177.63
 
     def test_all_topics_completed(self, app, db, ctx):
         c, topics = self._make_curriculum_with_db_topics(app)
@@ -322,7 +322,7 @@ class TestCalculateTimeSummary:
 
         result = TimeEngineService.calculate_time_summary(sp)
         assert result is not None
-        assert result.completed_hours == 190.0
+        assert result.completed_hours == 199.98
         assert result.remaining_hours == 0.0
 
     def test_available_study_hours_calculation(self, app, db, ctx):
@@ -406,7 +406,7 @@ class TestCalculateTimeSummary:
     def test_surplus_when_available_exceeds_remaining(self, app, db, ctx):
         c, topics = self._make_curriculum_with_db_topics(app)  # noqa: F841
 
-        # 200 days at 120 min/day → 400 hours available, only 190 needed
+        # 200 days at 120 min/day → 400 hours available, only ~199.98 needed
         sp = self._make_study_plan(
             app,
             exam_name="IFoA CS1",
@@ -420,13 +420,13 @@ class TestCalculateTimeSummary:
 
         result = TimeEngineService.calculate_time_summary(sp)
         assert result is not None
-        # 200 * 120 / 60 = 400 available, 190 remaining → surplus 210
+        # 200 * 120 / 60 = 400 available, 199.98 remaining → surplus
         assert result.hours_surplus_or_deficit > 0
 
     def test_deficit_when_remaining_exceeds_available(self, app, db, ctx):
         c, topics = self._make_curriculum_with_db_topics(app)  # noqa: F841
 
-        # 10 days at 60 min → 10 hours available, 190 needed → deficit -180
+        # 10 days at 60 min → 10 hours available, 199.98 needed → deficit
         sp = self._make_study_plan(
             app,
             exam_name="IFoA CS1",
@@ -441,8 +441,8 @@ class TestCalculateTimeSummary:
         result = TimeEngineService.calculate_time_summary(sp)
         assert result is not None
         assert result.available_study_hours == 10.0
-        assert result.remaining_hours == 190.0
-        assert result.hours_surplus_or_deficit == -180.0
+        assert result.remaining_hours == 199.98
+        assert result.hours_surplus_or_deficit == -189.98
 
     def test_deterministic_same_input_same_output(self, app, db, ctx):
         c, topics = self._make_curriculum_with_db_topics(app)  # noqa: F841
@@ -486,7 +486,7 @@ class TestCalculateTimeSummary:
     def test_different_user_sees_only_their_progress(self, app, db, ctx):
         c, topics = self._make_curriculum_with_db_topics(app)
 
-        # User 1 completes topic 0 (45h)
+        # User 1 completes topic 0 (11.43h)
         self._set_topic_completed(app, 1, topics[0].id)
 
         # User 2 has no completions
@@ -513,7 +513,7 @@ class TestCalculateTimeSummary:
 
         assert r1 is not None
         assert r2 is not None
-        assert r1.completed_hours == 45.0
+        assert r1.completed_hours == 11.43
         assert r2.completed_hours == 0.0
 
     def test_values_are_rounded_to_two_decimals(self, app, db, ctx):

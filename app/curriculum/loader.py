@@ -103,6 +103,12 @@ def _build_curriculum_v1(data: dict[str, Any]) -> Curriculum:
 
 def _build_learning_objective(raw: dict[str, Any]) -> LearningObjectiveDefinition:
     """Build a V2 LearningObjectiveDefinition from a dict."""
+    metadata_raw = raw.get("metadata") or {}
+    metadata = {
+        str(key): str(value)
+        for key, value in metadata_raw.items()
+        if value is not None
+    }
     return LearningObjectiveDefinition(
         id=raw["id"],
         topic_id=raw["topic_id"],
@@ -112,6 +118,7 @@ def _build_learning_objective(raw: dict[str, Any]) -> LearningObjectiveDefinitio
         estimated_minutes=int(raw["estimated_minutes"]),
         learning_type=raw["learning_type"],
         display_order=int(raw.get("display_order", 1)),
+        metadata=metadata,
     )
 
 

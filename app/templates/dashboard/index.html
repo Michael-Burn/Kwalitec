@@ -434,8 +434,36 @@
     </div>
 </section>
 
-{# ── All Recommendations ─────────────────────────────────────────────── #}
-{% if all_recommendations %}
+{# ── Educational Intelligence Recommendation Card (Stage A, flag-gated) ─ #}
+{% if dashboard_view_model and dashboard_view_model.recommendation_card %}
+{% set ei_card = dashboard_view_model.recommendation_card %}
+<section class="card border-0 mb-4" data-ei-recommendation-card="1">
+    <div class="card-body">
+        <h2 class="card-section-header mb-3">Today's Recommendation</h2>
+        <div class="fw-medium mb-1">{{ ei_card.title }}</div>
+        {% if ei_card.subtitle %}
+        <p class="small text-muted mb-2">{{ ei_card.subtitle }}</p>
+        {% endif %}
+        {% if ei_card.reason_summary %}
+        <p class="small mb-2"><strong class="text-body">Why:</strong> {{ ei_card.reason_summary }}</p>
+        {% endif %}
+        {% if ei_card.estimated_duration %}
+        <p class="small text-muted mb-2">{{ ei_card.estimated_duration }}</p>
+        {% endif %}
+        {% if ei_card.warning %}
+        <p class="small mb-2" style="color: var(--color-warning);">{{ ei_card.warning }}</p>
+        {% endif %}
+        {% if ei_card.show_start_button and ei_card.primary_action %}
+        <a href="{{ url_for('mission.missions') }}" class="btn btn-primary mt-2">
+            {{ ei_card.primary_action }}
+        </a>
+        {% endif %}
+    </div>
+</section>
+{% endif %}
+
+{# ── All Recommendations (legacy; hidden when EI Recommendation card is live) #}
+{% if all_recommendations and not (dashboard_view_model and dashboard_view_model.recommendation_card) %}
 <div class="card border-0 mb-4">
     <div class="card-body">
         <h2 class="card-section-header mb-3">All Recommendations</h2>
@@ -460,8 +488,8 @@
 </div>
 {% endif %}
 
-{# ── Decision Journal ─────────────────────────────────────────────────── #}
-{% if decision_journal %}
+{# ── Decision Journal (legacy peer; hidden when EI Recommendation card is live) #}
+{% if decision_journal and not (dashboard_view_model and dashboard_view_model.recommendation_card) %}
 <div class="card border-0 mb-4">
     <div class="card-body">
         <h2 class="card-section-header mb-3">

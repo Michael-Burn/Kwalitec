@@ -47,7 +47,7 @@ class TestEndToEndCurriculumWorkflow:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
         assert sp.curriculum_id is not None
@@ -57,12 +57,12 @@ class TestEndToEndCurriculumWorkflow:
         assert db_cur.version == "2026"
         assert db_cur.active is True
 
-        # All 6 DB topics must exist
+        # All 14 DB topics must exist
         topics = Topic.query.filter_by(curriculum_id=db_cur.id).all()
-        assert len(topics) == 6
+        assert len(topics) == 14
         for t in topics:
             assert t.recommended_minutes > 0
-            assert t.syllabus_weight > 0
+            assert t.syllabus_weight == 0.0
 
     def test_curriculum_plan_preserves_curriculum_relationship(self, db, user):
         """The study_plan.curriculum relationship is a valid ORM link."""
@@ -79,13 +79,13 @@ class TestEndToEndCurriculumWorkflow:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
         assert sp.curriculum is not None
         assert sp.curriculum.exam_name == "IFoA CS1"
         assert sp.curriculum.version == "2026"
-        assert len(sp.curriculum.topics) == 6
+        assert len(sp.curriculum.topics) == 14
 
     # ── (2) Completed topics from Step 4 saved ──────────────────────────
 
@@ -108,8 +108,8 @@ class TestEndToEndCurriculumWorkflow:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-C",
-            completed_curriculum_topics=["CS1-A", "CS1-B"],
+            curriculum_topic_code="2.1",
+            completed_curriculum_topics=["1.1", "1.2"],
         )
 
         db_topics = DBTopic.query.filter_by(curriculum_id=sp.curriculum_id).all()
@@ -142,8 +142,8 @@ class TestEndToEndCurriculumWorkflow:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-C",
-            completed_curriculum_topics=["CS1-A", "CS1-B"],
+            curriculum_topic_code="2.1",
+            completed_curriculum_topics=["1.1", "1.2"],
         )
 
         db_topics = DBTopic.query.filter_by(curriculum_id=sp.curriculum_id).all()
@@ -177,15 +177,15 @@ class TestEndToEndCurriculumWorkflow:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
         engine = CurriculumEngineService()
         summary = engine.build_student_curriculum(sp)
         assert summary is not None
-        assert summary.total_topics == 6
-        assert summary.current_topic_code == "CS1-A"
-        assert summary.next_topic_code == "CS1-B"
+        assert summary.total_topics == 14
+        assert summary.current_topic_code == "1.1"
+        assert summary.next_topic_code == "1.2"
 
     def test_curriculum_summary_with_completed_and_current(self, db, user):
         """Summary correctly reflects completed + current + next topics."""
@@ -203,21 +203,21 @@ class TestEndToEndCurriculumWorkflow:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-C",
-            completed_curriculum_topics=["CS1-A", "CS1-B"],
+            curriculum_topic_code="2.1",
+            completed_curriculum_topics=["1.1", "1.2"],
         )
 
         engine = CurriculumEngineService()
         summary = engine.build_student_curriculum(sp)
         assert summary is not None
-        assert summary.total_topics == 6
+        assert summary.total_topics == 14
         assert summary.completed_topics == 2
-        assert summary.remaining_topics == 4
-        assert summary.completed_topic_codes == ("CS1-A", "CS1-B")
-        assert summary.remaining_topic_codes == ("CS1-C", "CS1-D", "CS1-E", "CS1-F")
-        assert summary.current_topic_code == "CS1-C"
-        # Next should skip completed (A,B) and current (C) → D
-        assert summary.next_topic_code == "CS1-D"
+        assert summary.remaining_topics == 12
+        assert summary.completed_topic_codes == ("1.1", "1.2")
+        assert summary.remaining_topic_codes == ("2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "3.1", "3.2", "3.3", "4.1", "4.2", "5.1")
+        assert summary.current_topic_code == "2.1"
+        # Next should skip completed (1.1,1.2) and current (2.1) → 2.2
+        assert summary.next_topic_code == "2.2"
 
     def test_study_plan_curriculum_topic_code_is_persisted(self, db, user):
         """The curriculum_topic_code provided at creation time is stored
@@ -235,10 +235,10 @@ class TestEndToEndCurriculumWorkflow:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-E",
+            curriculum_topic_code="2.3",
         )
 
-        assert sp.curriculum_topic_code == "CS1-E"
+        assert sp.curriculum_topic_code == "2.3"
 
     # ── (6) Roadmap renders official curriculum topics ──────────────────
 
@@ -258,21 +258,29 @@ class TestEndToEndCurriculumWorkflow:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
         topics = DBTopic.query.filter_by(
             curriculum_id=sp.curriculum_id,
         ).order_by(DBTopic.order).all()
 
-        assert len(topics) == 6
+        assert len(topics) == 14
         expected_names = [
-            "Random Variables and Distributions",
-            "Common Statistical Distributions",
-            "Generating Functions and Sums of Random Variables",
-            "Joint Distributions",
-            "Bayesian Statistics",
-            "Sampling and Statistical Inference",
+            'Describe the purpose and function of data analysis',
+            'Complete exploratory data analysis',
+            'Understand the characteristics of basic univariate distributions and how to generate samples from them',
+            'Determine the characteristics of jointly distributed random variables',
+            'Evaluate expectations and conditional expectations',
+            'Evaluate and apply generating functions',
+            'State and apply the central limit theorem',
+            'Describe random sampling and the sampling distributions of statistics commonly used in statistical inference',
+            'Construct estimators and discuss their properties',
+            'Calculate confidence intervals and prediction intervals',
+            'Apply the concepts of hypothesis testing and goodness of fit',
+            'Understand and use linear regression models',
+            'Understand and use generalised linear models',
+            'Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators'
         ]
         for i, expected in enumerate(expected_names):
             assert topics[i].name == expected, (
@@ -296,7 +304,7 @@ class TestEndToEndCurriculumWorkflow:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
         topics = DBTopic.query.filter_by(
@@ -305,12 +313,20 @@ class TestEndToEndCurriculumWorkflow:
 
         # Weighting and estimated minutes from the JSON data
         expected = [
-            (25.0, 45 * 60),  # CS1-A: 25%, 45h
-            (20.0, 35 * 60),  # CS1-B: 20%, 35h
-            (15.0, 30 * 60),  # CS1-C: 15%, 30h
-            (15.0, 25 * 60),  # CS1-D: 15%, 25h
-            (15.0, 25 * 60),  # CS1-E: 15%, 25h
-            (10.0, 30 * 60),  # CS1-F: 10%, 30h
+            (0.0, 686),  # 1.1,
+            (0.0, 514),  # 1.2,
+            (0.0, 655),  # 2.1,
+            (0.0, 436),  # 2.2,
+            (0.0, 218),  # 2.3,
+            (0.0, 218),  # 2.4,
+            (0.0, 218),  # 2.5,
+            (0.0, 655),  # 2.6,
+            (0.0, 947),  # 3.1,
+            (0.0, 1263),  # 3.2,
+            (0.0, 789),  # 3.3,
+            (0.0, 1200),  # 4.1,
+            (0.0, 2400),  # 4.2,
+            (0.0, 1800),  # 5.1
         ]
 
         for i, (weight, minutes) in enumerate(expected):
@@ -331,7 +347,7 @@ class TestEndToEndCurriculumWorkflow:
         Priority 3 (curriculum sequence).
 
         The first non-completed topic in curriculum order is the current
-        topic itself (CS1-B), which is in 'Learning' stage — it hasn't
+        topic itself (1.2), which is in 'Learning' stage — it hasn't
         been completed yet so it is the correct next topic to study.
         """
         from app.services.planning_service import PlanningService
@@ -349,29 +365,29 @@ class TestEndToEndCurriculumWorkflow:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-B",
-            completed_curriculum_topics=["CS1-A"],
+            curriculum_topic_code="1.2",
+            completed_curriculum_topics=["1.1"],
         )
 
         # No review topics, no weak topics → Priority 3 returns the
-        # first non-completed topic (CS1-B, the current learning topic).
+        # first non-completed topic (1.2, the current learning topic).
         selected = PlanningService._select_topic_for_today(
             user_id=user.id,
             active_plan=sp,
             target_date=date.today(),
         )
         assert selected is not None
-        # The current topic CS1-B is not completed → it is the next
-        # incomplete topic in curriculum order (after skipping CS1-A).
+        # The current topic 1.2 is not completed → it is the next
+        # incomplete topic in curriculum order (after skipping 1.1).
         cs1b_topic = DBTopic.query.filter_by(
             curriculum_id=sp.curriculum_id,
-            name="Common Statistical Distributions",
+            name="Complete exploratory data analysis",
         ).first()
         assert selected.id == cs1b_topic.id
 
     def test_mission_selects_curriculum_topic_after_current_completed(self, db, user):
-        """When the current topic (CS1-B) is marked as completed,
-        Priority 3 picks the next uncompleted topic (CS1-C)."""
+        """When the current topic (1.2) is marked as completed,
+        Priority 3 picks the next uncompleted topic (2.1)."""
         from app.services.planning_service import PlanningService
         from app.services.study_plan_service import StudyPlanService
         from app.models.topic_progress import TopicProgress
@@ -388,14 +404,14 @@ class TestEndToEndCurriculumWorkflow:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-B",
-            completed_curriculum_topics=["CS1-A"],
+            curriculum_topic_code="1.2",
+            completed_curriculum_topics=["1.1"],
         )
 
-        # Mark CS1-B as completed manually
+        # Mark 1.2 as completed manually
         rows = TopicProgress.query.filter_by(user_id=user.id).all()
         for r in rows:
-            if r.topic and r.topic.name == "Common Statistical Distributions":
+            if r.topic and r.topic.name == "Complete exploratory data analysis":
                 r.completed = True
         db.session.commit()
 
@@ -405,10 +421,10 @@ class TestEndToEndCurriculumWorkflow:
             target_date=date.today(),
         )
         assert selected is not None
-        # CS1-A and CS1-B completed → next is CS1-C
+        # 1.1 and 1.2 completed → next is 2.1
         cs1c_topic = DBTopic.query.filter_by(
             curriculum_id=sp.curriculum_id,
-            name="Generating Functions and Sums of Random Variables",
+            name="Understand the characteristics of basic univariate distributions and how to generate samples from them",
         ).first()
         assert selected.id == cs1c_topic.id
 
@@ -430,7 +446,7 @@ class TestEndToEndCurriculumWorkflow:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
         # Ensure there's a current week plan so mission generation succeeds
@@ -445,11 +461,8 @@ class TestEndToEndCurriculumWorkflow:
 
         mission = PlanningService.generate_today_mission(user.id)
         assert mission is not None
-        # The title should reference the curriculum topic name, not a
-        # generic "Chapter X" or stage label
-        assert "Random Variables" in mission.title or "CS1" in mission.title or (
-            "Distributions" in mission.title
-        )
+        # Title should reference the canonical curriculum topic (1.1)
+        assert "data analysis" in mission.title.lower()
 
     def test_mission_from_curriculum_is_idempotent(self, db, user):
         """Generating a mission multiple times for a curriculum-backed plan
@@ -469,7 +482,7 @@ class TestEndToEndCurriculumWorkflow:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
         wp = WeekPlan(
@@ -508,14 +521,14 @@ class TestEndToEndCurriculumWorkflow:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-B",
+            curriculum_topic_code="1.2",
             completed_curriculum_topics=[],
         )
 
-        # Mark CS1-A as completed (weighting 25%)
+        # Mark 1.1 as completed (V2 equal topic weighting)
         rows = TopicProgress.query.filter_by(user_id=user.id).all()
         for r in rows:
-            if r.topic and r.topic.name == "Random Variables and Distributions":
+            if r.topic and r.topic.name == "Describe the purpose and function of data analysis":
                 r.completed = True
         db.session.commit()
 
@@ -523,9 +536,9 @@ class TestEndToEndCurriculumWorkflow:
         summary = engine.build_student_curriculum(sp)
         assert summary is not None
 
-        # CS1-A = 25% of 100% total weight → weighted = 25%
-        assert summary.weighted_completed_percentage == 0.25
-        assert summary.weighted_remaining_percentage == 0.75
+        # 1 of 14 topics → equal-weight coverage ≈ 1/14
+        assert summary.weighted_completed_percentage == pytest.approx(1 / 14)
+        assert summary.weighted_remaining_percentage == pytest.approx(13 / 14)
 
     def test_readiness_from_curriculum_summary(self, db, user):
         """ReadinessService.calculate_readiness produces a valid
@@ -548,8 +561,8 @@ class TestEndToEndCurriculumWorkflow:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-C",
-            completed_curriculum_topics=["CS1-A", "CS1-B"],
+            curriculum_topic_code="2.1",
+            completed_curriculum_topics=["1.1", "1.2"],
         )
 
         engine = CurriculumEngineService()
@@ -559,11 +572,11 @@ class TestEndToEndCurriculumWorkflow:
         readiness = ReadinessService.calculate_readiness(summary)
         assert readiness is not None
         assert isinstance(readiness, ReadinessSummary)
-        # CS1-A (25%) + CS1-B (20%) = 45%
-        assert readiness.weighted_completed_percentage == 0.45
-        assert readiness.weighted_remaining_percentage == 0.55
-        assert readiness.readiness_percentage == 0.45
-        assert "45%" in readiness.explanation
+        # 2 of 14 topics → equal-weight coverage ≈ 2/14
+        assert readiness.weighted_completed_percentage == pytest.approx(2 / 14)
+        assert readiness.weighted_remaining_percentage == pytest.approx(12 / 14)
+        assert readiness.readiness_percentage == pytest.approx(2 / 14)
+        assert "14%" in readiness.explanation
 
     def test_time_summary_from_curriculum_plan(self, db, user):
         """TimeEngineService calculates time summary for a
@@ -582,7 +595,7 @@ class TestEndToEndCurriculumWorkflow:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
         time_summary = TimeEngineService.calculate_time_summary(sp)
@@ -613,8 +626,8 @@ class TestEndToEndCurriculumWorkflow:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-C",
-            completed_curriculum_topics=["CS1-A", "CS1-B"],
+            curriculum_topic_code="2.1",
+            completed_curriculum_topics=["1.1", "1.2"],
         )
 
         engine = CurriculumEngineService()
@@ -628,9 +641,9 @@ class TestEndToEndCurriculumWorkflow:
         assert time_summary is not None
 
         # Ensure all values are internally consistent
-        assert curriculum_summary.total_topics == 6
+        assert curriculum_summary.total_topics == 14
         assert curriculum_summary.completed_topics == 2
-        assert curriculum_summary.current_topic_code == "CS1-C"
+        assert curriculum_summary.current_topic_code == "2.1"
         assert readiness_summary.readiness_percentage > 0
         assert time_summary.remaining_hours >= 0
 
@@ -651,7 +664,7 @@ class TestEndToEndCurriculumWorkflow:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
         ts = TimeEngineService.calculate_time_summary(sp)
@@ -683,8 +696,8 @@ class TestEndToEndCurriculumWorkflow:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-B",
-            completed_curriculum_topics=["CS1-A"],
+            curriculum_topic_code="1.2",
+            completed_curriculum_topics=["1.1"],
         )
 
         engine = CurriculumEngineService()
@@ -733,21 +746,29 @@ class TestCurriculumDatabaseImport:
         assert c.version == "2026"
         assert c.active is True
 
-        assert Topic.query.count() == 6
+        assert Topic.query.count() == 14
         topics = Topic.query.order_by(Topic.order).all()
         expected_names = [
-            "Random Variables and Distributions",
-            "Common Statistical Distributions",
-            "Generating Functions and Sums of Random Variables",
-            "Joint Distributions",
-            "Bayesian Statistics",
-            "Sampling and Statistical Inference",
+            'Describe the purpose and function of data analysis',
+            'Complete exploratory data analysis',
+            'Understand the characteristics of basic univariate distributions and how to generate samples from them',
+            'Determine the characteristics of jointly distributed random variables',
+            'Evaluate expectations and conditional expectations',
+            'Evaluate and apply generating functions',
+            'State and apply the central limit theorem',
+            'Describe random sampling and the sampling distributions of statistics commonly used in statistical inference',
+            'Construct estimators and discuss their properties',
+            'Calculate confidence intervals and prediction intervals',
+            'Apply the concepts of hypothesis testing and goodness of fit',
+            'Understand and use linear regression models',
+            'Understand and use generalised linear models',
+            'Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators'
         ]
         for i, t in enumerate(topics):
             assert t.name == expected_names[i]
             assert t.order == i + 1
             assert t.recommended_minutes > 0
-            assert t.syllabus_weight > 0
+            assert t.syllabus_weight == 0.0
 
         assert LearningObjective.query.count() > 0
 
@@ -764,7 +785,7 @@ class TestCurriculumDatabaseImport:
         assert count2 == 0, "Second import should return 0 (no new curricula)"
 
         assert Curriculum.query.count() == 1
-        assert Topic.query.count() == 6
+        assert Topic.query.count() == 14
         assert LearningObjective.query.count() > 0
 
     def test_imported_curriculum_available_for_study_plan(self, ctx, db, user):
@@ -790,7 +811,7 @@ class TestCurriculumDatabaseImport:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
         assert sp.curriculum_id is not None
@@ -823,9 +844,9 @@ class TestCurriculumDatabaseImport:
 
         CurriculumService.import_curricula()
         topics = Topic.query.order_by(Topic.order).all()
-        assert len(topics) == 6
+        assert len(topics) == 14
         for t in topics:
-            assert t.syllabus_weight > 0
+            assert t.syllabus_weight == 0.0
             assert t.recommended_minutes > 0
 
     def test_imported_curriculum_supports_dashboard_progress(self, ctx, db, user):
@@ -864,7 +885,7 @@ class TestCurriculumDatabaseImport:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
         selected = PlanningService._select_topic_for_today(
@@ -873,7 +894,7 @@ class TestCurriculumDatabaseImport:
             target_date=date.today(),
         )
         assert selected is not None
-        assert selected.name == "Random Variables and Distributions"
+        assert selected.name == "Describe the purpose and function of data analysis"
 
     def test_startup_service_imports_curricula(self, ctx, app, db):
         """The StartupService must import curricula when it runs."""

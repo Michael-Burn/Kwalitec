@@ -11,8 +11,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from datetime import date
-from typing import Optional
-
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # V2 Canonical Format Models
@@ -25,12 +23,13 @@ class LearningObjectiveDefinition:
     Attributes:
         id: Stable identifier (e.g. ``CS1-A-T01-LO01``).
         topic_id: Parent topic identifier.
-        code: Human-readable code (e.g. ``CS1-A.1.1``).
+        code: Official syllabus code (e.g. ``2.1.1``).
         description: Full text of the learning objective.
         cognitive_level: Bloom's taxonomy level (remember, understand, apply, etc.).
         estimated_minutes: Estimated study time in minutes.
         learning_type: Type of learning outcome (concept, procedure, etc.).
         display_order: Sequential order within topic (1-based).
+        metadata: Optional non-hierarchical metadata (syllabus_code, difficulty, etc.).
     """
 
     id: str
@@ -41,6 +40,7 @@ class LearningObjectiveDefinition:
     estimated_minutes: int
     learning_type: str
     display_order: int = 1
+    metadata: dict[str, str] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -125,7 +125,7 @@ class CurriculumDefinition:
     provider: str
     version: str
     effective_date: date
-    superseded_date: Optional[date]
+    superseded_date: date | None
     total_estimated_hours: float
     description: str
     sections: list[SectionDefinition] = field(default_factory=list)
@@ -218,7 +218,7 @@ class Curriculum:
     paper: str
     syllabus_version: str
     effective_from: date
-    effective_to: Optional[date]
+    effective_to: date | None
     total_weight: float
     estimated_total_hours: float
     topics: list[Topic] = field(default_factory=list)

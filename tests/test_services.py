@@ -452,15 +452,15 @@ class TestStudyPlanService:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
         # A curriculum should have been created
         assert sp.curriculum_id is not None
 
-        # All 6 CS1-2026 curriculum topics should now have TopicProgress rows
+        # All 14 CS1-2026 curriculum topics should now have TopicProgress rows
         progress_rows = TopicProgress.query.filter_by(user_id=user.id).all()
-        assert len(progress_rows) == 6
+        assert len(progress_rows) == 14
 
         # Every row must be initialised with defaults
         for tp in progress_rows:
@@ -470,11 +470,15 @@ class TestStudyPlanService:
             assert tp.revision_count == 0
             assert tp.confidence == "Not Started"
 
-        # The selected topic (CS1-A) must be marked as current (Learning stage)
-        # CS1-A = "Random Variables and Distributions" in the engine data
+        # The selected topic (1.1) must be marked as current (Learning stage)
         db_topics = DBTopic.query.filter_by(curriculum_id=sp.curriculum_id).all()
         cs1a_topic = next(
-            (t for t in db_topics if t.name == "Random Variables and Distributions"),
+            (
+                t
+                for t in db_topics
+                if t.name
+                == "Describe the purpose and function of data analysis"
+            ),
             None,
         )
         assert cs1a_topic is not None
@@ -503,7 +507,7 @@ class TestStudyPlanService:
             study_preference="Mixed",
             target_grade="A",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
         db_topics = DBTopic.query.filter_by(curriculum_id=sp.curriculum_id).all()
@@ -513,7 +517,7 @@ class TestStudyPlanService:
                 topic_id=db_topic.id,
             ).first()
             assert tp is not None
-            if db_topic.name == "Random Variables and Distributions":
+            if db_topic.name == "Describe the purpose and function of data analysis":
                 assert tp.current_stage == TopicProgress.STAGE_LEARNING
             else:
                 assert tp.current_stage == TopicProgress.STAGE_NOT_STARTED
@@ -579,7 +583,7 @@ class TestStudyPlanService:
             current_stage="Learning",
             study_preference="Mixed",
             target_grade="A",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
             # No curriculum_version
         )
 
@@ -604,11 +608,11 @@ class TestStudyPlanService:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
         first_count = TopicProgress.query.filter_by(user_id=user.id).count()
-        assert first_count == 6
+        assert first_count == 14
 
         # Second plan — must not create more TopicProgress rows
         StudyPlanService.create_study_plan(
@@ -622,11 +626,11 @@ class TestStudyPlanService:
             study_preference="Questions First",
             target_grade="A",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-B",
+            curriculum_topic_code="1.2",
         )
 
         second_count = TopicProgress.query.filter_by(user_id=user.id).count()
-        assert second_count == 6  # Same count — no dupes
+        assert second_count == 14  # Same count — no dupes
 
     def test_existing_topic_progress_not_overwritten(self, db, user):
         """Pre-existing TopicProgress values must survive plan re-creation."""
@@ -646,13 +650,13 @@ class TestStudyPlanService:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
         # Manually set some progress to emulate real work
         rv_topic = DBTopic.query.filter_by(
             curriculum_id=sp1.curriculum_id,
-            name="Random Variables and Distributions",
+            name="Describe the purpose and function of data analysis",
         ).first()
         rv_progress = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=rv_topic.id,
@@ -675,7 +679,7 @@ class TestStudyPlanService:
             study_preference="Questions First",
             target_grade="A",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-B",
+            curriculum_topic_code="1.2",
         )
 
         # The previously worked-on topic must keep its progress
@@ -703,7 +707,7 @@ class TestStudyPlanService:
             study_preference="Mixed",
             target_grade="A",
             curriculum_version="2099",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
         # Plan is still created successfully
@@ -728,7 +732,7 @@ class TestStudyPlanService:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
         # Should have week plans covering at least the 6 CS1 topics
@@ -760,7 +764,7 @@ class TestStudyPlanService:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
         import time
@@ -777,7 +781,7 @@ class TestStudyPlanService:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
         # Low-minutes plan should need more weeks per topic
@@ -803,7 +807,7 @@ class TestStudyPlanService:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-D",
+            curriculum_topic_code="2.2",
         )
 
         assert sp.id is not None
@@ -875,7 +879,7 @@ class TestStudyPlanService:
         from app.services.study_plan_service import StudyPlanService
         from app.models.topic_progress import TopicProgress
 
-        completed_codes = ["CS1-A", "CS1-B"]
+        completed_codes = ["1.1", "1.2"]
         sp = StudyPlanService.create_study_plan(
             user_id=user.id,
             exam_name="IFoA CS1",
@@ -887,7 +891,7 @@ class TestStudyPlanService:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-C",
+            curriculum_topic_code="2.1",
             completed_curriculum_topics=completed_codes,
         )
 
@@ -895,7 +899,7 @@ class TestStudyPlanService:
 
         # All 6 topics must have TopicProgress
         progress_rows = TopicProgress.query.filter_by(user_id=user.id).all()
-        assert len(progress_rows) == 6
+        assert len(progress_rows) == 14
 
         # Build a map: topic name → TopicProgress
         from app.models.curriculum import Topic as DBTopic
@@ -908,25 +912,31 @@ class TestStudyPlanService:
             name_to_progress[db_topic.name] = tp
 
         # CS1-A (Random Variables) and CS1-B (Common Distributions) → Completed
-        cs1a = name_to_progress["Random Variables and Distributions"]
+        cs1a = name_to_progress["Describe the purpose and function of data analysis"]
         assert cs1a.completed is True
         assert cs1a.mastery_score == 100.0
         assert cs1a.current_stage == TopicProgress.STAGE_COMPLETED
 
-        cs1b = name_to_progress["Common Statistical Distributions"]
+        cs1b = name_to_progress["Complete exploratory data analysis"]
         assert cs1b.completed is True
         assert cs1b.mastery_score == 100.0
         assert cs1b.current_stage == TopicProgress.STAGE_COMPLETED
 
-        # CS1-C (Generating Functions) → current topic, must be Learning
-        cs1c = name_to_progress["Generating Functions and Sums of Random Variables"]
+        # 2.1 (current topic) → Learning
+        cs1c = name_to_progress[
+            "Understand the characteristics of basic univariate "
+            "distributions and how to generate samples from them"
+        ]
         assert cs1c.completed is False
         assert cs1c.mastery_score == 0.0
         assert cs1c.current_stage == TopicProgress.STAGE_LEARNING
 
-        # CS1-D through CS1-F → Not Started
-        for name in ("Joint Distributions", "Bayesian Statistics",
-                     "Sampling and Statistical Inference"):
+        # Remaining later topics → Not Started
+        for name in (
+            "Determine the characteristics of jointly distributed random variables",
+            "Evaluate expectations and conditional expectations",
+            "Evaluate and apply generating functions",
+        ):
             tp = name_to_progress[name]
             assert tp.completed is False
             assert tp.mastery_score == 0.0
@@ -949,12 +959,12 @@ class TestStudyPlanService:
             study_preference="Mixed",
             target_grade="A",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
             completed_curriculum_topics=[],
         )
 
         progress_rows = TopicProgress.query.filter_by(user_id=user.id).all()
-        assert len(progress_rows) == 6
+        assert len(progress_rows) == 14
 
         from app.models.curriculum import Topic as DBTopic
         db_topics = DBTopic.query.filter_by(curriculum_id=sp.curriculum_id).all()
@@ -965,7 +975,7 @@ class TestStudyPlanService:
             assert tp is not None
             assert tp.completed is False
             assert tp.mastery_score == 0.0
-            if db_topic.name == "Random Variables and Distributions":
+            if db_topic.name == "Describe the purpose and function of data analysis":
                 assert tp.current_stage == TopicProgress.STAGE_LEARNING
             else:
                 assert tp.current_stage == TopicProgress.STAGE_NOT_STARTED
@@ -988,15 +998,18 @@ class TestStudyPlanService:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-D",
-            completed_curriculum_topics=["CS1-A", "CS1-B", "CS1-D"],
+            curriculum_topic_code="2.2",
+            completed_curriculum_topics=["1.1", "1.2", "2.2"],
         )
 
         from app.models.curriculum import Topic as DBTopic
 
         cs1d_topic = DBTopic.query.filter_by(
             curriculum_id=sp.curriculum_id,
-            name="Joint Distributions",
+            name=(
+                "Determine the characteristics of jointly distributed "
+                "random variables"
+            ),
         ).first()
         assert cs1d_topic is not None
 
@@ -1011,7 +1024,7 @@ class TestStudyPlanService:
         # CS1-A and CS1-B should still be marked completed
         cs1a_topic = DBTopic.query.filter_by(
             curriculum_id=sp.curriculum_id,
-            name="Random Variables and Distributions",
+            name="Describe the purpose and function of data analysis",
         ).first()
         cs1a_progress = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=cs1a_topic.id,
@@ -1022,7 +1035,7 @@ class TestStudyPlanService:
 
         cs1b_topic = DBTopic.query.filter_by(
             curriculum_id=sp.curriculum_id,
-            name="Common Statistical Distributions",
+            name="Complete exploratory data analysis",
         ).first()
         cs1b_progress = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=cs1b_topic.id,
@@ -1048,16 +1061,16 @@ class TestStudyPlanService:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
             completed_curriculum_topics=[],
         )
 
-        assert TopicProgress.query.filter_by(user_id=user.id).count() == 6
+        assert TopicProgress.query.filter_by(user_id=user.id).count() == 14
 
         # ── Manually advance CS1-B progress to simulate real work ──────
         cs1b_topic = DBTopic.query.filter_by(
             curriculum_id=sp1.curriculum_id,
-            name="Common Statistical Distributions",
+            name="Complete exploratory data analysis",
         ).first()
         cs1b_progress = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=cs1b_topic.id,
@@ -1084,8 +1097,8 @@ class TestStudyPlanService:
             study_preference="Questions First",
             target_grade="A",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-C",
-            completed_curriculum_topics=["CS1-B"],
+            curriculum_topic_code="2.1",
+            completed_curriculum_topics=["1.2"],
         )
 
         # CS1-B must retain its manual progress (idempotent — NOT overwritten)
@@ -1098,10 +1111,13 @@ class TestStudyPlanService:
         assert cs1b_check.current_stage == TopicProgress.STAGE_PRACTISING
         assert cs1b_check.completed is False
 
-        # CS1-C is the current learning topic — must be Learning
+        # 2.1 is the current learning topic — must be Learning
         cs1c_topic = DBTopic.query.filter_by(
             curriculum_id=sp2.curriculum_id,
-            name="Generating Functions and Sums of Random Variables",
+            name=(
+                "Understand the characteristics of basic univariate "
+                "distributions and how to generate samples from them"
+            ),
         ).first()
         cs1c_check = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=cs1c_topic.id,
@@ -1112,7 +1128,7 @@ class TestStudyPlanService:
         assert cs1c_check.mastery_score == 0.0
 
         # Row count unchanged
-        assert TopicProgress.query.filter_by(user_id=user.id).count() == 6
+        assert TopicProgress.query.filter_by(user_id=user.id).count() == 14
 
     def test_unsupported_exam_with_completed_topics_does_nothing(self, db, user):
         """completed_curriculum_topics passed for an unsupported examination
@@ -1130,7 +1146,7 @@ class TestStudyPlanService:
             current_stage="Chapter 1",
             study_preference="Mixed",
             target_grade="A",
-            completed_curriculum_topics=["CS1-A", "CS1-B"],
+            completed_curriculum_topics=["1.1", "1.2"],
         )
 
         assert sp.id is not None
@@ -1154,12 +1170,12 @@ class TestStudyPlanService:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
         assert sp.id is not None
         progress_rows = TopicProgress.query.filter_by(user_id=user.id).all()
-        assert len(progress_rows) == 6
+        assert len(progress_rows) == 14
         for tp in progress_rows:
             assert tp.completed is False
             assert tp.mastery_score == 0.0
@@ -1283,13 +1299,13 @@ class TestStudyPlanService:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-C",
-            completed_curriculum_topics=["CS1-A"],
+            curriculum_topic_code="2.1",
+            completed_curriculum_topics=["1.1"],
         )
         # CS1-A should be completed
         cs1a_topic = DBTopic.query.filter_by(
             curriculum_id=sp.curriculum_id,
-            name="Random Variables and Distributions",
+            name="Describe the purpose and function of data analysis",
         ).first()
         cs1a_progress = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=cs1a_topic.id,
@@ -1301,8 +1317,8 @@ class TestStudyPlanService:
         StudyPlanService.update_study_plan(
             study_plan_id=sp.id,
             user_id=user.id,
-            curriculum_topic_code="CS1-D",
-            completed_curriculum_topics=["CS1-B"],
+            curriculum_topic_code="2.2",
+            completed_curriculum_topics=["1.2"],
         )
 
         cs1a_check = TopicProgress.query.filter_by(
@@ -1384,10 +1400,10 @@ class TestStudyPlanService:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
-        assert TopicProgress.query.filter_by(user_id=user.id).count() == 6
+        assert TopicProgress.query.filter_by(user_id=user.id).count() == 14
 
         StudyPlanService.delete_study_plan(sp.id, user.id)
         assert TopicProgress.query.filter_by(user_id=user.id).count() == 0
@@ -1840,7 +1856,7 @@ class TestPlanningService:
             target_grade="A",
             preferred_session_minutes=60,
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
             active=True,
         )
         db.session.add(sp)
@@ -1848,7 +1864,7 @@ class TestPlanningService:
 
         sequence = PlanningService._resolve_curriculum_sequence(sp)
         assert sequence is not None
-        assert len(sequence) == 6  # CS1 has 6 topics
+        assert len(sequence) == 14  # CS1 has 14 official subtopics
 
         for topic_dict in sequence:
             assert "learning_outcomes" in topic_dict
@@ -1875,7 +1891,7 @@ class TestPlanningService:
             target_grade="A",
             preferred_session_minutes=60,
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
             active=True,
         )
         db.session.add(sp)
@@ -1902,9 +1918,9 @@ class TestPlanningService:
 
         # Verify outcomes are in the order defined by the curriculum JSON
         # (the list itself should already be ordered by construction)
-        assert outcomes[0]["code"] == "CS1-A-1"
-        assert outcomes[1]["code"] == "CS1-A-2"
-        assert outcomes[2]["code"] == "CS1-A-3"
+        assert outcomes[0]["code"] == "1.1.1"
+        assert outcomes[1]["code"] == "1.1.2"
+        assert outcomes[2]["code"] == "1.1.3"
 
     def test_non_curriculum_plan_sequence_returns_none(self):
         """A study plan without curriculum_version or curriculum_topic_code
@@ -2339,23 +2355,23 @@ class TestBuildStudentCurriculum:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-C",
+            curriculum_topic_code="2.1",
         )
 
         svc = CurriculumEngineService()
         summary = svc.build_student_curriculum(sp)
         assert summary is not None
-        assert summary.total_topics == 6
+        assert summary.total_topics == 14
         assert summary.completed_topics == 0
-        assert summary.remaining_topics == 6
-        assert summary.current_topic_code == "CS1-C"
+        assert summary.remaining_topics == 14
+        assert summary.current_topic_code == "2.1"
         assert summary.curriculum_coverage_percentage == 0.0
         assert summary.completed_topic_codes == ()
-        assert len(summary.remaining_topic_codes) == 6
-        expected_codes = ("CS1-A", "CS1-B", "CS1-C", "CS1-D", "CS1-E", "CS1-F")
+        assert len(summary.remaining_topic_codes) == 14
+        expected_codes = ("1.1", "1.2", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "3.1", "3.2", "3.3", "4.1", "4.2", "5.1")
         assert summary.remaining_topic_codes == expected_codes
-        # next_topic skips current (CS1-C) → CS1-D
-        assert summary.next_topic_code == "CS1-D"
+        # next_topic skips current (2.1) → 2.2
+        assert summary.next_topic_code == "2.2"
         assert summary.next_topic_title is not None
 
     def test_completed_topics_reflected_in_summary(self, db, user):
@@ -2375,7 +2391,7 @@ class TestBuildStudentCurriculum:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-C",
+            curriculum_topic_code="2.1",
         )
 
         # Mark the first two topics as completed
@@ -2387,14 +2403,14 @@ class TestBuildStudentCurriculum:
         svc = CurriculumEngineService()
         summary = svc.build_student_curriculum(sp)
         assert summary is not None
-        assert summary.total_topics == 6
+        assert summary.total_topics == 14
         assert summary.completed_topics == 2
-        assert summary.remaining_topics == 4
-        assert summary.curriculum_coverage_percentage == 2.0 / 6.0
-        assert summary.completed_topic_codes == ("CS1-A", "CS1-B")
-        assert summary.remaining_topic_codes == ("CS1-C", "CS1-D", "CS1-E", "CS1-F")
-        # next_topic skips completed (CS1-A, CS1-B) and current (CS1-C) → CS1-D
-        assert summary.next_topic_code == "CS1-D"
+        assert summary.remaining_topics == 12
+        assert summary.curriculum_coverage_percentage == pytest.approx(2.0 / 14.0)
+        assert summary.completed_topic_codes == ("1.1", "1.2")
+        assert summary.remaining_topic_codes == ("2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "3.1", "3.2", "3.3", "4.1", "4.2", "5.1")
+        # next_topic skips completed (1.1, 1.2) and current (2.1) → 2.2
+        assert summary.next_topic_code == "2.2"
         assert summary.next_topic_title is not None
 
     def test_all_topics_completed(self, db, user):
@@ -2414,7 +2430,7 @@ class TestBuildStudentCurriculum:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-C",
+            curriculum_topic_code="2.1",
         )
 
         # Mark all topics as completed
@@ -2426,8 +2442,8 @@ class TestBuildStudentCurriculum:
         svc = CurriculumEngineService()
         summary = svc.build_student_curriculum(sp)
         assert summary is not None
-        assert summary.total_topics == 6
-        assert summary.completed_topics == 6
+        assert summary.total_topics == 14
+        assert summary.completed_topics == 14
         assert summary.remaining_topics == 0
         assert summary.curriculum_coverage_percentage == 1.0
         assert summary.remaining_topic_codes == ()
@@ -2489,7 +2505,7 @@ class TestBuildStudentCurriculum:
             target_grade="B",
             curriculum_id=db_cur.id,
             curriculum_version="2099",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
             active=True,
         )
         db.session.add(sp)
@@ -2518,7 +2534,7 @@ class TestBuildStudentCurriculum:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-C",
+            curriculum_topic_code="2.1",
         )
 
         svc = CurriculumEngineService()
@@ -2545,7 +2561,7 @@ class TestBuildStudentCurriculum:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-C",
+            curriculum_topic_code="2.1",
         )
 
         svc = CurriculumEngineService()
@@ -2578,13 +2594,13 @@ class TestBuildStudentCurriculum:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
         svc = CurriculumEngineService()
         summary = svc.build_student_curriculum(sp)
         assert summary is not None
-        assert summary.next_topic_code == "CS1-B"
+        assert summary.next_topic_code == "1.2"
         assert summary.next_topic_title is not None
         assert summary.next_topic_title != ""
 
@@ -2605,7 +2621,7 @@ class TestBuildStudentCurriculum:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-C",
+            curriculum_topic_code="2.1",
         )
 
         # Mark CS1-A, CS1-B, CS1-D as completed (CS1-C is current)
@@ -2613,17 +2629,20 @@ class TestBuildStudentCurriculum:
         # rows are in DB topic order; map by name
         for r in rows:
             name = r.topic.name if r.topic else ""
-            if name in ("Random Variables and Distributions",
-                         "Common Statistical Distributions",
-                         "Joint Distributions"):
+            if name in (
+                "Describe the purpose and function of data analysis",
+                "Complete exploratory data analysis",
+                "Determine the characteristics of jointly distributed "
+                "random variables",
+            ):
                 r.completed = True
         db.session.commit()
 
         svc = CurriculumEngineService()
         summary = svc.build_student_curriculum(sp)
         assert summary is not None
-        # Next should be CS1-E (skips completed A,B,D and current C)
-        assert summary.next_topic_code == "CS1-E"
+        # Next should be 2.3 (skips completed 1.1,1.2,2.2 and current 2.1)
+        assert summary.next_topic_code == "2.3"
         assert summary.next_topic_title is not None
 
     def test_existing_behaviour_preserved(self, db):
@@ -2639,7 +2658,11 @@ class TestBuildStudentCurriculum:
         assert svc.curriculum_exists("ifoa", "cs1", "2026") is True
         assert svc.curriculum_exists("no", "no", "9999") is False
 
-        # get_topics still works
-        svc.load_curriculum("ifoa", "cs1", "2026")
-        topics = svc.get_topics("ifoa", "cs1", "2026")
-        assert len(topics) == 6
+        # load_auto still works for the bundled V2 CS1 syllabus
+        curriculum = svc.load_auto("ifoa", "cs1", "2026")
+        from app.curriculum.models import CurriculumDefinition
+
+        assert isinstance(curriculum, CurriculumDefinition)
+        assert len(curriculum.sections) == 5
+        topics = CurriculumEngineService.get_topics_flat(curriculum)
+        assert len(topics) == 14

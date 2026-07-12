@@ -1,164 +1,1329 @@
 {
-  "organisation": "IFoA",
-  "examination": "Actuarial Statistics",
-  "paper": "CS1",
-  "syllabus_version": "2026",
-  "effective_from": "2026-01-01",
-  "effective_to": null,
+  "exam_code": "CS1",
+  "exam_name": "Actuarial Statistics",
+  "provider": "IFoA",
+  "version": "2026",
+  "effective_date": "2026-01-01",
+  "superseded_date": null,
+  "total_estimated_hours": 200.0,
+  "description": "Actuarial Statistics provides a grounding in mathematical and statistical techniques that are of particular relevance to actuarial work. Canonical representation of the official IFoA CS1 Syllabus for the 2026 Examinations (April 2025).",
   "metadata": {
-    "description": "IFoA CS1 Actuarial Statistics syllabus for the 2026 examinations.",
-    "source_url": "https://www.actuaries.org.uk/studying/curriculum/actuarial-statistics",
+    "source": "IFoA CS1 Syllabus for the 2026 Examinations",
+    "source_document": "cs1_syllabus-2026-_final-proof.pdf",
+    "source_url": "https://actuaries.org.uk/media/5xzbwoyf/cs1_syllabus-2026-_final-proof.pdf",
     "qualification_level": "Core Principles",
-    "language": "en"
+    "associateship_qualification": "Associateship Qualification",
+    "published": "April 2025",
+    "recommended_study_hours": "200",
+    "language": "en",
+    "assessment": "CS1A 3h20m Word; CS1B 1h50m Word and R; same sitting required"
   },
-  "topics": [
+  "sections": [
     {
-      "id": "cs1-2026-1",
-      "code": "CS1-A",
-      "title": "Random Variables and Distributions",
-      "description": "Understand and apply key concepts related to random variables, including probability functions, distribution functions, expectation, variance, and higher moments.",
-      "weighting": 25.0,
-      "estimated_hours": 45.0,
+      "id": "CS1-A",
+      "code": "1",
+      "title": "Data analysis",
+      "description": "Production of simple visualisations and statistics from a data set.",
+      "exam_weight": 10.0,
+      "estimated_hours": 20.0,
       "difficulty": "foundational",
-      "prerequisites": [],
-      "learning_outcomes": [
+      "display_order": 1,
+      "topics": [
         {
-          "id": "cs1-2026-1-1",
-          "code": "CS1-A-1",
-          "description": "Define and distinguish between discrete, continuous and mixed random variables.",
-          "suggested_revision_days": 7
+          "id": "CS1-A-T01",
+          "section_id": "CS1-A",
+          "code": "1.1",
+          "title": "Describe the purpose and function of data analysis",
+          "description": "Describe the purpose and function of data analysis",
+          "estimated_minutes": 686,
+          "difficulty": "foundational",
+          "display_order": 1,
+          "learning_objectives": [
+            {
+              "id": "CS1-A-T01-LO01",
+              "topic_id": "CS1-A-T01",
+              "code": "1.1.1",
+              "description": "Aims of a data analysis (e.g. descriptive, inferential and predictive)",
+              "cognitive_level": "understand",
+              "estimated_minutes": 171,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "1.1.1",
+                "estimated_hours": "2.85",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CS1-A-T01-LO02",
+              "topic_id": "CS1-A-T01",
+              "code": "1.1.2",
+              "description": "Stages and suitable tools used to conduct a data analysis to solve real-world problems",
+              "cognitive_level": "understand",
+              "estimated_minutes": 171,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "1.1.2",
+                "estimated_hours": "2.85",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CS1-A-T01-LO03",
+              "topic_id": "CS1-A-T01",
+              "code": "1.1.3",
+              "description": "Sources of data and their characteristics, including extremely large data sets",
+              "cognitive_level": "understand",
+              "estimated_minutes": 171,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "1.1.3",
+                "estimated_hours": "2.85",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CS1-A-T01-LO04",
+              "topic_id": "CS1-A-T01",
+              "code": "1.1.4",
+              "description": "Meaning and value of reproducible research and the elements required to ensure a data analysis is reproducible",
+              "cognitive_level": "understand",
+              "estimated_minutes": 173,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "1.1.4",
+                "estimated_hours": "2.88",
+                "difficulty": "foundational"
+              }
+            }
+          ]
         },
         {
-          "id": "cs1-2026-1-2",
-          "code": "CS1-A-2",
-          "description": "Calculate and interpret expectation, variance, skewness and kurtosis.",
-          "suggested_revision_days": 10
-        },
-        {
-          "id": "cs1-2026-1-3",
-          "code": "CS1-A-3",
-          "description": "Derive the moment generating function and cumulant generating function for common distributions.",
-          "suggested_revision_days": 14
+          "id": "CS1-A-T02",
+          "section_id": "CS1-A",
+          "code": "1.2",
+          "title": "Complete exploratory data analysis",
+          "description": "Complete exploratory data analysis",
+          "estimated_minutes": 514,
+          "difficulty": "foundational",
+          "display_order": 2,
+          "learning_objectives": [
+            {
+              "id": "CS1-A-T02-LO01",
+              "topic_id": "CS1-A-T02",
+              "code": "1.2.1",
+              "description": "Appropriate tools to calculate suitable summary statistics and undertake exploratory data visualisations",
+              "cognitive_level": "apply",
+              "estimated_minutes": 171,
+              "learning_type": "procedure",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "1.2.1",
+                "estimated_hours": "2.85",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CS1-A-T02-LO02",
+              "topic_id": "CS1-A-T02",
+              "code": "1.2.2",
+              "description": "Interpret and make statistical inferences using Pearson’s, Spearman’s and Kendall’s measures of correlation for bivariate data",
+              "cognitive_level": "analyze",
+              "estimated_minutes": 171,
+              "learning_type": "analysis",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "1.2.2",
+                "estimated_hours": "2.85",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CS1-A-T02-LO03",
+              "topic_id": "CS1-A-T02",
+              "code": "1.2.3",
+              "description": "Principal component analysis to reduce the dimensionality of a complex data set",
+              "cognitive_level": "understand",
+              "estimated_minutes": 172,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "1.2.3",
+                "estimated_hours": "2.87",
+                "difficulty": "foundational"
+              }
+            }
+          ]
         }
       ]
     },
     {
-      "id": "cs1-2026-2",
-      "code": "CS1-B",
-      "title": "Common Statistical Distributions",
-      "description": "Apply the binomial, Poisson, negative binomial, exponential, gamma, normal, log-normal, chi-squared, t and F distributions.",
-      "weighting": 20.0,
-      "estimated_hours": 35.0,
+      "id": "CS1-B",
+      "code": "2",
+      "title": "Random variables and distributions",
+      "description": "The basic properties and uses of commonly-used probability distributions and the statistical properties of data generated by randomly sampling from a known distribution.",
+      "exam_weight": 20.0,
+      "estimated_hours": 40.0,
+      "difficulty": "foundational",
+      "display_order": 2,
+      "topics": [
+        {
+          "id": "CS1-B-T01",
+          "section_id": "CS1-B",
+          "code": "2.1",
+          "title": "Understand the characteristics of basic univariate distributions and how to generate samples from them",
+          "description": "Understand the characteristics of basic univariate distributions and how to generate samples from them",
+          "estimated_minutes": 655,
+          "difficulty": "foundational",
+          "display_order": 1,
+          "learning_objectives": [
+            {
+              "id": "CS1-B-T01-LO01",
+              "topic_id": "CS1-B-T01",
+              "code": "2.1.1",
+              "description": "Geometric, binomial, negative binomial, hypergeometric, Poisson and uniform discrete distributions on a finite set",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "2.1.1",
+                "estimated_hours": "1.82",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CS1-B-T01-LO02",
+              "topic_id": "CS1-B-T01",
+              "code": "2.1.2",
+              "description": "Normal, lognormal, exponential, gamma, chi-square, t, F, beta and uniform continuous distributions on an interval",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "2.1.2",
+                "estimated_hours": "1.82",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CS1-B-T01-LO03",
+              "topic_id": "CS1-B-T01",
+              "code": "2.1.3",
+              "description": "Evaluation of probabilities and quantiles associated with these distributions (by calculation or using statistical software as appropriate)",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "2.1.3",
+                "estimated_hours": "1.82",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CS1-B-T01-LO04",
+              "topic_id": "CS1-B-T01",
+              "code": "2.1.4",
+              "description": "Poisson process and the connection between the Poisson process and the Poisson distribution",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "2.1.4",
+                "estimated_hours": "1.82",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CS1-B-T01-LO05",
+              "topic_id": "CS1-B-T01",
+              "code": "2.1.5",
+              "description": "Generation of basic discrete and continuous random variables using the inverse transform method",
+              "cognitive_level": "apply",
+              "estimated_minutes": 109,
+              "learning_type": "procedure",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "2.1.5",
+                "estimated_hours": "1.82",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CS1-B-T01-LO06",
+              "topic_id": "CS1-B-T01",
+              "code": "2.1.6",
+              "description": "Generation of discrete and continuous random variables using statistical software",
+              "cognitive_level": "apply",
+              "estimated_minutes": 110,
+              "learning_type": "procedure",
+              "display_order": 6,
+              "metadata": {
+                "syllabus_code": "2.1.6",
+                "estimated_hours": "1.83",
+                "difficulty": "foundational"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CS1-B-T02",
+          "section_id": "CS1-B",
+          "code": "2.2",
+          "title": "Determine the characteristics of jointly distributed random variables",
+          "description": "Determine the characteristics of jointly distributed random variables",
+          "estimated_minutes": 436,
+          "difficulty": "intermediate",
+          "display_order": 2,
+          "learning_objectives": [
+            {
+              "id": "CS1-B-T02-LO01",
+              "topic_id": "CS1-B-T02",
+              "code": "2.2.1",
+              "description": "Probability function or density function for marginal and conditional distributions of jointly distributed random variables",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "2.2.1",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-B-T02-LO02",
+              "topic_id": "CS1-B-T02",
+              "code": "2.2.2",
+              "description": "The conditions under which random variables are independent",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "2.2.2",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-B-T02-LO03",
+              "topic_id": "CS1-B-T02",
+              "code": "2.2.3",
+              "description": "Covariance, the correlation and the expected value of a function of two jointly distributed random variables",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "2.2.3",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-B-T02-LO04",
+              "topic_id": "CS1-B-T02",
+              "code": "2.2.4",
+              "description": "Mean and variance of linear combinations of random variables",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "2.2.4",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CS1-B-T03",
+          "section_id": "CS1-B",
+          "code": "2.3",
+          "title": "Evaluate expectations and conditional expectations",
+          "description": "Evaluate expectations and conditional expectations",
+          "estimated_minutes": 218,
+          "difficulty": "intermediate",
+          "display_order": 3,
+          "learning_objectives": [
+            {
+              "id": "CS1-B-T03-LO01",
+              "topic_id": "CS1-B-T03",
+              "code": "2.3.1",
+              "description": "Conditional expectation of one random variable given the value of another random variable",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "2.3.1",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-B-T03-LO02",
+              "topic_id": "CS1-B-T03",
+              "code": "2.3.2",
+              "description": "Mean and variance of a random variable as an expectation of conditional expected values",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "2.3.2",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CS1-B-T04",
+          "section_id": "CS1-B",
+          "code": "2.4",
+          "title": "Evaluate and apply generating functions",
+          "description": "Evaluate and apply generating functions",
+          "estimated_minutes": 218,
+          "difficulty": "intermediate",
+          "display_order": 4,
+          "learning_objectives": [
+            {
+              "id": "CS1-B-T04-LO01",
+              "topic_id": "CS1-B-T04",
+              "code": "2.4.1",
+              "description": "Moment and cumulant generating functions of a random variable",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "2.4.1",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-B-T04-LO02",
+              "topic_id": "CS1-B-T04",
+              "code": "2.4.2",
+              "description": "Moment calculation via series expansion or differentiation of a generating function",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "2.4.2",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CS1-B-T05",
+          "section_id": "CS1-B",
+          "code": "2.5",
+          "title": "State and apply the central limit theorem",
+          "description": "State and apply the central limit theorem",
+          "estimated_minutes": 218,
+          "difficulty": "intermediate",
+          "display_order": 5,
+          "learning_objectives": [
+            {
+              "id": "CS1-B-T05-LO01",
+              "topic_id": "CS1-B-T05",
+              "code": "2.5.1",
+              "description": "Central limit theorem for a sequence of independent, identically distributed random variables",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "2.5.1",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-B-T05-LO02",
+              "topic_id": "CS1-B-T05",
+              "code": "2.5.2",
+              "description": "Comparison of simulated samples from a given distribution with the Normal distribution",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "2.5.2",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CS1-B-T06",
+          "section_id": "CS1-B",
+          "code": "2.6",
+          "title": "Describe random sampling and the sampling distributions of statistics commonly used in statistical inference",
+          "description": "Describe random sampling and the sampling distributions of statistics commonly used in statistical inference",
+          "estimated_minutes": 655,
+          "difficulty": "intermediate",
+          "display_order": 6,
+          "learning_objectives": [
+            {
+              "id": "CS1-B-T06-LO01",
+              "topic_id": "CS1-B-T06",
+              "code": "2.6.1",
+              "description": "Random samples from a population",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "2.6.1",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-B-T06-LO02",
+              "topic_id": "CS1-B-T06",
+              "code": "2.6.2",
+              "description": "The sampling distribution of a statistic",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "2.6.2",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-B-T06-LO03",
+              "topic_id": "CS1-B-T06",
+              "code": "2.6.3",
+              "description": "The mean and variance of a sample mean and the mean of a sample variance in terms of the population mean, variance and sample size",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "2.6.3",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-B-T06-LO04",
+              "topic_id": "CS1-B-T06",
+              "code": "2.6.4",
+              "description": "Basic sampling distributions for the sample mean and variance for random samples from a normal distribution",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "2.6.4",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-B-T06-LO05",
+              "topic_id": "CS1-B-T06",
+              "code": "2.6.5",
+              "description": "The distribution of the t-statistic for random samples from a normal distribution",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "2.6.5",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-B-T06-LO06",
+              "topic_id": "CS1-B-T06",
+              "code": "2.6.6",
+              "description": "The F distribution for the ratio of two sample variances from independent samples taken from normal distributions",
+              "cognitive_level": "understand",
+              "estimated_minutes": 110,
+              "learning_type": "concept",
+              "display_order": 6,
+              "metadata": {
+                "syllabus_code": "2.6.6",
+                "estimated_hours": "1.83",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CS1-C",
+      "code": "3",
+      "title": "Statistical inference",
+      "description": "Use of statistics to make inferences about the process underlying a data set.",
+      "exam_weight": 25.0,
+      "estimated_hours": 50.0,
       "difficulty": "intermediate",
-      "prerequisites": ["cs1-2026-1"],
-      "learning_outcomes": [
+      "display_order": 3,
+      "topics": [
         {
-          "id": "cs1-2026-2-1",
-          "code": "CS1-B-1",
-          "description": "Derive moments, mode and quantiles for each distribution.",
-          "suggested_revision_days": 10
+          "id": "CS1-C-T01",
+          "section_id": "CS1-C",
+          "code": "3.1",
+          "title": "Construct estimators and discuss their properties",
+          "description": "Construct estimators and discuss their properties",
+          "estimated_minutes": 947,
+          "difficulty": "intermediate",
+          "display_order": 1,
+          "learning_objectives": [
+            {
+              "id": "CS1-C-T01-LO01",
+              "topic_id": "CS1-C-T01",
+              "code": "3.1.1",
+              "description": "Method of moments for constructing estimators of population parameters",
+              "cognitive_level": "apply",
+              "estimated_minutes": 157,
+              "learning_type": "procedure",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "3.1.1",
+                "estimated_hours": "2.62",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-C-T01-LO02",
+              "topic_id": "CS1-C-T01",
+              "code": "3.1.2",
+              "description": "Method of maximum likelihood for constructing estimators of population parameters",
+              "cognitive_level": "apply",
+              "estimated_minutes": 157,
+              "learning_type": "procedure",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "3.1.2",
+                "estimated_hours": "2.62",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-C-T01-LO03",
+              "topic_id": "CS1-C-T01",
+              "code": "3.1.3",
+              "description": "Efficiency, bias, consistency and mean square error of an estimator",
+              "cognitive_level": "understand",
+              "estimated_minutes": 157,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "3.1.3",
+                "estimated_hours": "2.62",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-C-T01-LO04",
+              "topic_id": "CS1-C-T01",
+              "code": "3.1.4",
+              "description": "Comparison of estimators using their mean square error and bias or unbiasedness",
+              "cognitive_level": "understand",
+              "estimated_minutes": 157,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "3.1.4",
+                "estimated_hours": "2.62",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-C-T01-LO05",
+              "topic_id": "CS1-C-T01",
+              "code": "3.1.5",
+              "description": "Asymptotic distribution of maximum likelihood estimators",
+              "cognitive_level": "understand",
+              "estimated_minutes": 157,
+              "learning_type": "concept",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "3.1.5",
+                "estimated_hours": "2.62",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-C-T01-LO06",
+              "topic_id": "CS1-C-T01",
+              "code": "3.1.6",
+              "description": "Bootstrap method for estimating properties of an estimator",
+              "cognitive_level": "apply",
+              "estimated_minutes": 162,
+              "learning_type": "procedure",
+              "display_order": 6,
+              "metadata": {
+                "syllabus_code": "3.1.6",
+                "estimated_hours": "2.7",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
         },
         {
-          "id": "cs1-2026-2-2",
-          "code": "CS1-B-2",
-          "description": "Identify appropriate distributions for real-world modelling scenarios.",
-          "suggested_revision_days": 7
+          "id": "CS1-C-T02",
+          "section_id": "CS1-C",
+          "code": "3.2",
+          "title": "Calculate confidence intervals and prediction intervals",
+          "description": "Calculate confidence intervals and prediction intervals",
+          "estimated_minutes": 1263,
+          "difficulty": "intermediate",
+          "display_order": 2,
+          "learning_objectives": [
+            {
+              "id": "CS1-C-T02-LO01",
+              "topic_id": "CS1-C-T02",
+              "code": "3.2.1",
+              "description": "Confidence interval for an unknown parameter of a distribution based on a random sample",
+              "cognitive_level": "understand",
+              "estimated_minutes": 157,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "3.2.1",
+                "estimated_hours": "2.62",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-C-T02-LO02",
+              "topic_id": "CS1-C-T02",
+              "code": "3.2.2",
+              "description": "Prediction interval for a future observation based on a model fitted to a random sample",
+              "cognitive_level": "understand",
+              "estimated_minutes": 157,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "3.2.2",
+                "estimated_hours": "2.62",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-C-T02-LO03",
+              "topic_id": "CS1-C-T02",
+              "code": "3.2.3",
+              "description": "Confidence interval for an unknown parameter using a given sampling distribution",
+              "cognitive_level": "understand",
+              "estimated_minutes": 157,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "3.2.3",
+                "estimated_hours": "2.62",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-C-T02-LO04",
+              "topic_id": "CS1-C-T02",
+              "code": "3.2.4",
+              "description": "Confidence intervals for the mean and the variance of a normal distribution",
+              "cognitive_level": "understand",
+              "estimated_minutes": 157,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "3.2.4",
+                "estimated_hours": "2.62",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-C-T02-LO05",
+              "topic_id": "CS1-C-T02",
+              "code": "3.2.5",
+              "description": "Confidence intervals for a binomial probability and a Poisson mean, including the use of the normal approximation in both cases",
+              "cognitive_level": "apply",
+              "estimated_minutes": 157,
+              "learning_type": "procedure",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "3.2.5",
+                "estimated_hours": "2.62",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-C-T02-LO06",
+              "topic_id": "CS1-C-T02",
+              "code": "3.2.6",
+              "description": "Confidence intervals for two-sample situations involving the normal distribution and the binomial and Poisson distributions using the normal approximation",
+              "cognitive_level": "understand",
+              "estimated_minutes": 157,
+              "learning_type": "concept",
+              "display_order": 6,
+              "metadata": {
+                "syllabus_code": "3.2.6",
+                "estimated_hours": "2.62",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-C-T02-LO07",
+              "topic_id": "CS1-C-T02",
+              "code": "3.2.7",
+              "description": "Confidence intervals for a difference between two means from paired data",
+              "cognitive_level": "understand",
+              "estimated_minutes": 157,
+              "learning_type": "concept",
+              "display_order": 7,
+              "metadata": {
+                "syllabus_code": "3.2.7",
+                "estimated_hours": "2.62",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-C-T02-LO08",
+              "topic_id": "CS1-C-T02",
+              "code": "3.2.8",
+              "description": "Bootstrap method to obtain confidence intervals",
+              "cognitive_level": "apply",
+              "estimated_minutes": 164,
+              "learning_type": "procedure",
+              "display_order": 8,
+              "metadata": {
+                "syllabus_code": "3.2.8",
+                "estimated_hours": "2.73",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CS1-C-T03",
+          "section_id": "CS1-C",
+          "code": "3.3",
+          "title": "Apply the concepts of hypothesis testing and goodness of fit",
+          "description": "Apply the concepts of hypothesis testing and goodness of fit",
+          "estimated_minutes": 789,
+          "difficulty": "advanced",
+          "display_order": 3,
+          "learning_objectives": [
+            {
+              "id": "CS1-C-T03-LO01",
+              "topic_id": "CS1-C-T03",
+              "code": "3.3.1",
+              "description": "Understand the concepts of Null and alternative hypotheses, simple and composite hypotheses, type I and type II errors, sensitivity, specificity, test statistic, likelihood ratio, critical region, level of significance, probability value and power of a test",
+              "cognitive_level": "understand",
+              "estimated_minutes": 157,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "3.3.1",
+                "estimated_hours": "2.62",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CS1-C-T03-LO02",
+              "topic_id": "CS1-C-T03",
+              "code": "3.3.2",
+              "description": "Use of basic tests for the one-sample and two-sample situations involving the normal, binomial and Poisson distributions, and apply basic tests for paired data",
+              "cognitive_level": "apply",
+              "estimated_minutes": 157,
+              "learning_type": "procedure",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "3.3.2",
+                "estimated_hours": "2.62",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CS1-C-T03-LO03",
+              "topic_id": "CS1-C-T03",
+              "code": "3.3.3",
+              "description": "The permutation approach to non-parametric hypothesis tests",
+              "cognitive_level": "understand",
+              "estimated_minutes": 157,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "3.3.3",
+                "estimated_hours": "2.62",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CS1-C-T03-LO04",
+              "topic_id": "CS1-C-T03",
+              "code": "3.3.4",
+              "description": "Chi-square test to test the hypothesis that a random sample is from a particular distribution, including cases where parameters are unknown",
+              "cognitive_level": "understand",
+              "estimated_minutes": 157,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "3.3.4",
+                "estimated_hours": "2.62",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CS1-C-T03-LO05",
+              "topic_id": "CS1-C-T03",
+              "code": "3.3.5",
+              "description": "A contingency (or two-way) table, and use of a chi-square test to test the independence of two classification criteria",
+              "cognitive_level": "apply",
+              "estimated_minutes": 161,
+              "learning_type": "procedure",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "3.3.5",
+                "estimated_hours": "2.68",
+                "difficulty": "advanced"
+              }
+            }
+          ]
         }
       ]
     },
     {
-      "id": "cs1-2026-3",
-      "code": "CS1-C",
-      "title": "Generating Functions and Sums of Random Variables",
-      "description": "Use probability generating functions, moment generating functions and cumulant generating functions to derive properties of sums of independent random variables, including the central limit theorem.",
-      "weighting": 15.0,
-      "estimated_hours": 30.0,
-      "difficulty": "intermediate",
-      "prerequisites": ["cs1-2026-1", "cs1-2026-2"],
-      "learning_outcomes": [
-        {
-          "id": "cs1-2026-3-1",
-          "code": "CS1-C-1",
-          "description": "Derive exact distributions of sums of independent random variables using generating functions.",
-          "suggested_revision_days": 10
-        },
-        {
-          "id": "cs1-2026-3-2",
-          "code": "CS1-C-2",
-          "description": "State and apply the central limit theorem for a single sample and for two independent samples.",
-          "suggested_revision_days": 14
-        }
-      ]
-    },
-    {
-      "id": "cs1-2026-4",
-      "code": "CS1-D",
-      "title": "Joint Distributions",
-      "description": "Understand joint (bivariate) distributions, including joint probability/density functions, marginal distributions, conditional distributions, independence, covariance, correlation and expectation of functions of two random variables.",
-      "weighting": 15.0,
-      "estimated_hours": 25.0,
+      "id": "CS1-D",
+      "code": "4",
+      "title": "Regression theory and applications",
+      "description": "Use of statistics to examine and make inferences about the relationships between two or more data sets.",
+      "exam_weight": 30.0,
+      "estimated_hours": 60.0,
       "difficulty": "advanced",
-      "prerequisites": ["cs1-2026-1"],
-      "learning_outcomes": [
+      "display_order": 4,
+      "topics": [
         {
-          "id": "cs1-2026-4-1",
-          "code": "CS1-D-1",
-          "description": "Calculate marginal and conditional distributions from a joint distribution.",
-          "suggested_revision_days": 10
+          "id": "CS1-D-T01",
+          "section_id": "CS1-D",
+          "code": "4.1",
+          "title": "Understand and use linear regression models",
+          "description": "Understand and use linear regression models",
+          "estimated_minutes": 1200,
+          "difficulty": "intermediate",
+          "display_order": 1,
+          "learning_objectives": [
+            {
+              "id": "CS1-D-T01-LO01",
+              "topic_id": "CS1-D-T01",
+              "code": "4.1.1",
+              "description": "Response and explanatory variables",
+              "cognitive_level": "understand",
+              "estimated_minutes": 240,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "4.1.1",
+                "estimated_hours": "4.0",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-D-T01-LO02",
+              "topic_id": "CS1-D-T01",
+              "code": "4.1.2",
+              "description": "Simple regression model (with a single explanatory variable) and multiple linear regression model (with several explanatory variables)",
+              "cognitive_level": "understand",
+              "estimated_minutes": 240,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "4.1.2",
+                "estimated_hours": "4.0",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-D-T01-LO03",
+              "topic_id": "CS1-D-T01",
+              "code": "4.1.3",
+              "description": "Least squares estimates of the slope and intercept parameters in a simple linear regression model",
+              "cognitive_level": "apply",
+              "estimated_minutes": 240,
+              "learning_type": "procedure",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "4.1.3",
+                "estimated_hours": "4.0",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-D-T01-LO04",
+              "topic_id": "CS1-D-T01",
+              "code": "4.1.4",
+              "description": "Use of appropriate software to fit a linear regression model to a data set and interpret the output: Perform statistical inference on the slope parameter; Describe the use of measures of goodness of fit of a linear regression model; Use a fitted linear relationship to predict a mean response or an individual response with confidence limits; Use residuals to check the suitability and validity of a linear regression model",
+              "cognitive_level": "apply",
+              "estimated_minutes": 240,
+              "learning_type": "procedure",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "4.1.4",
+                "estimated_hours": "4.0",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CS1-D-T01-LO05",
+              "topic_id": "CS1-D-T01",
+              "code": "4.1.5",
+              "description": "Measures of model fit to select an appropriate set of explanatory variables",
+              "cognitive_level": "apply",
+              "estimated_minutes": 240,
+              "learning_type": "procedure",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "4.1.5",
+                "estimated_hours": "4.0",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
         },
         {
-          "id": "cs1-2026-4-2",
-          "code": "CS1-D-2",
-          "description": "Determine whether two random variables are independent and calculate covariance and correlation.",
-          "suggested_revision_days": 10
+          "id": "CS1-D-T02",
+          "section_id": "CS1-D",
+          "code": "4.2",
+          "title": "Understand and use generalised linear models",
+          "description": "Understand and use generalised linear models",
+          "estimated_minutes": 2400,
+          "difficulty": "advanced",
+          "display_order": 2,
+          "learning_objectives": [
+            {
+              "id": "CS1-D-T02-LO01",
+              "topic_id": "CS1-D-T02",
+              "code": "4.2.1",
+              "description": "Binomial, Poisson, exponential, gamma and normal distributions as an exponential family",
+              "cognitive_level": "understand",
+              "estimated_minutes": 240,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "4.2.1",
+                "estimated_hours": "4.0",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CS1-D-T02-LO02",
+              "topic_id": "CS1-D-T02",
+              "code": "4.2.2",
+              "description": "Mean, variance, variance function and scale parameter for a generalised linear model binomial, Poisson, exponential, gamma and normal distributions. Evaluate these quantities for the distributions in 4.2.1",
+              "cognitive_level": "understand",
+              "estimated_minutes": 240,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "4.2.2",
+                "estimated_hours": "4.0",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CS1-D-T02-LO03",
+              "topic_id": "CS1-D-T02",
+              "code": "4.2.3",
+              "description": "The link function and the canonical link function, referring to the distributions in 4.2.1",
+              "cognitive_level": "understand",
+              "estimated_minutes": 240,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "4.2.3",
+                "estimated_hours": "4.0",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CS1-D-T02-LO04",
+              "topic_id": "CS1-D-T02",
+              "code": "4.2.4",
+              "description": "Variables, factors taking categorical values and interaction terms.",
+              "cognitive_level": "understand",
+              "estimated_minutes": 240,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "4.2.4",
+                "estimated_hours": "4.0",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CS1-D-T02-LO05",
+              "topic_id": "CS1-D-T02",
+              "code": "4.2.5",
+              "description": "Definition of the linear predictor, including its form for simple models, including polynomial models and models involving factors",
+              "cognitive_level": "understand",
+              "estimated_minutes": 240,
+              "learning_type": "concept",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "4.2.5",
+                "estimated_hours": "4.0",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CS1-D-T02-LO06",
+              "topic_id": "CS1-D-T02",
+              "code": "4.2.6",
+              "description": "Deviance scaled deviance and estimation of the parameters of a generalised linear model",
+              "cognitive_level": "understand",
+              "estimated_minutes": 240,
+              "learning_type": "concept",
+              "display_order": 6,
+              "metadata": {
+                "syllabus_code": "4.2.6",
+                "estimated_hours": "4.0",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CS1-D-T02-LO07",
+              "topic_id": "CS1-D-T02",
+              "code": "4.2.7",
+              "description": "Choice of a suitable model using an analysis of deviance and examination of the significance of the parameters",
+              "cognitive_level": "analyze",
+              "estimated_minutes": 240,
+              "learning_type": "analysis",
+              "display_order": 7,
+              "metadata": {
+                "syllabus_code": "4.2.7",
+                "estimated_hours": "4.0",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CS1-D-T02-LO08",
+              "topic_id": "CS1-D-T02",
+              "code": "4.2.8",
+              "description": "Pearson and deviance residuals and their use",
+              "cognitive_level": "understand",
+              "estimated_minutes": 240,
+              "learning_type": "concept",
+              "display_order": 8,
+              "metadata": {
+                "syllabus_code": "4.2.8",
+                "estimated_hours": "4.0",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CS1-D-T02-LO09",
+              "topic_id": "CS1-D-T02",
+              "code": "4.2.9",
+              "description": "Statistical tests to determine the acceptability of a fitted model: Pearson’s chi-square test and the likelihood-ratio test",
+              "cognitive_level": "analyze",
+              "estimated_minutes": 240,
+              "learning_type": "analysis",
+              "display_order": 9,
+              "metadata": {
+                "syllabus_code": "4.2.9",
+                "estimated_hours": "4.0",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CS1-D-T02-LO10",
+              "topic_id": "CS1-D-T02",
+              "code": "4.2.10",
+              "description": "Fit a generalised linear model to a data set and interpret the output",
+              "cognitive_level": "apply",
+              "estimated_minutes": 240,
+              "learning_type": "procedure",
+              "display_order": 10,
+              "metadata": {
+                "syllabus_code": "4.2.10",
+                "estimated_hours": "4.0",
+                "difficulty": "advanced"
+              }
+            }
+          ]
         }
       ]
     },
     {
-      "id": "cs1-2026-5",
-      "code": "CS1-E",
-      "title": "Bayesian Statistics",
-      "description": "Understand and apply Bayesian methods, including the prior distribution, posterior distribution, conjugate priors, loss functions and Bayesian estimators.",
-      "weighting": 15.0,
-      "estimated_hours": 25.0,
-      "difficulty": "advanced",
-      "prerequisites": ["cs1-2026-1", "cs1-2026-2"],
-      "learning_outcomes": [
-        {
-          "id": "cs1-2026-5-1",
-          "code": "CS1-E-1",
-          "description": "Derive posterior distributions using Bayes' theorem for common conjugate families.",
-          "suggested_revision_days": 10
-        },
-        {
-          "id": "cs1-2026-5-2",
-          "code": "CS1-E-2",
-          "description": "Calculate Bayesian estimators under quadratic and absolute error loss.",
-          "suggested_revision_days": 14
-        }
-      ]
-    },
-    {
-      "id": "cs1-2026-6",
-      "code": "CS1-F",
-      "title": "Sampling and Statistical Inference",
-      "description": "Apply methods of point estimation including the method of moments and maximum likelihood estimation. Construct confidence intervals and perform hypothesis tests, including likelihood ratio tests.",
-      "weighting": 10.0,
+      "id": "CS1-E",
+      "code": "5",
+      "title": "Bayesian statistics",
+      "description": "Use of Bayesian statistics to update prior beliefs about a data-generating process.",
+      "exam_weight": 15.0,
       "estimated_hours": 30.0,
-      "difficulty": "intermediate",
-      "prerequisites": ["cs1-2026-1", "cs1-2026-2", "cs1-2026-3"],
-      "learning_outcomes": [
+      "difficulty": "advanced",
+      "display_order": 5,
+      "topics": [
         {
-          "id": "cs1-2026-6-1",
-          "code": "CS1-F-1",
-          "description": "Derive maximum likelihood estimators and evaluate their properties.",
-          "suggested_revision_days": 14
-        },
-        {
-          "id": "cs1-2026-6-2",
-          "code": "CS1-F-2",
-          "description": "Construct confidence intervals for means, proportions and variances.",
-          "suggested_revision_days": 10
+          "id": "CS1-E-T01",
+          "section_id": "CS1-E",
+          "code": "5.1",
+          "title": "Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators",
+          "description": "Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators",
+          "estimated_minutes": 1800,
+          "difficulty": "advanced",
+          "display_order": 1,
+          "learning_objectives": [
+            {
+              "id": "CS1-E-T01-LO01",
+              "topic_id": "CS1-E-T01",
+              "code": "5.1.1",
+              "description": "Use of Bayes’ theorem to calculate simple conditional probabilities",
+              "cognitive_level": "apply",
+              "estimated_minutes": 200,
+              "learning_type": "procedure",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "5.1.1",
+                "estimated_hours": "3.33",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CS1-E-T01-LO02",
+              "topic_id": "CS1-E-T01",
+              "code": "5.1.2",
+              "description": "Prior distribution, posterior distribution and conjugate prior distribution",
+              "cognitive_level": "understand",
+              "estimated_minutes": 200,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "5.1.2",
+                "estimated_hours": "3.33",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CS1-E-T01-LO03",
+              "topic_id": "CS1-E-T01",
+              "code": "5.1.3",
+              "description": "Posterior distribution for a parameter in simple cases",
+              "cognitive_level": "understand",
+              "estimated_minutes": 200,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "5.1.3",
+                "estimated_hours": "3.33",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CS1-E-T01-LO04",
+              "topic_id": "CS1-E-T01",
+              "code": "5.1.4",
+              "description": "Use of simple loss functions to derive Bayesian estimates of parameters",
+              "cognitive_level": "apply",
+              "estimated_minutes": 200,
+              "learning_type": "procedure",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "5.1.4",
+                "estimated_hours": "3.33",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CS1-E-T01-LO05",
+              "topic_id": "CS1-E-T01",
+              "code": "5.1.5",
+              "description": "Credible intervals in simple cases",
+              "cognitive_level": "understand",
+              "estimated_minutes": 200,
+              "learning_type": "concept",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "5.1.5",
+                "estimated_hours": "3.33",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CS1-E-T01-LO06",
+              "topic_id": "CS1-E-T01",
+              "code": "5.1.6",
+              "description": "Credibility premium formula and the role played by the credibility factor",
+              "cognitive_level": "understand",
+              "estimated_minutes": 200,
+              "learning_type": "concept",
+              "display_order": 6,
+              "metadata": {
+                "syllabus_code": "5.1.6",
+                "estimated_hours": "3.33",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CS1-E-T01-LO07",
+              "topic_id": "CS1-E-T01",
+              "code": "5.1.7",
+              "description": "Bayesian approach to credibility theory and its use for calculating credibility premiums in simple cases",
+              "cognitive_level": "understand",
+              "estimated_minutes": 200,
+              "learning_type": "concept",
+              "display_order": 7,
+              "metadata": {
+                "syllabus_code": "5.1.7",
+                "estimated_hours": "3.33",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CS1-E-T01-LO08",
+              "topic_id": "CS1-E-T01",
+              "code": "5.1.8",
+              "description": "Empirical Bayes approach to credibility theory and its use for deriving credibility premiums in simple cases",
+              "cognitive_level": "understand",
+              "estimated_minutes": 200,
+              "learning_type": "concept",
+              "display_order": 8,
+              "metadata": {
+                "syllabus_code": "5.1.8",
+                "estimated_hours": "3.33",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CS1-E-T01-LO09",
+              "topic_id": "CS1-E-T01",
+              "code": "5.1.9",
+              "description": "Understanding the differences between the two approaches (Bayes v Empirical Bayes) and the assumptions underlying each of them",
+              "cognitive_level": "analyze",
+              "estimated_minutes": 200,
+              "learning_type": "analysis",
+              "display_order": 9,
+              "metadata": {
+                "syllabus_code": "5.1.9",
+                "estimated_hours": "3.33",
+                "difficulty": "advanced"
+              }
+            }
+          ]
         }
       ]
     }

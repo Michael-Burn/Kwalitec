@@ -93,8 +93,14 @@ class CurriculumService:
                 )
 
                 # ── Build exam_name ───────────────────────────────────
+                # DB exam_name follows the product convention "<Provider> <Paper>"
+                # (e.g. "IFoA CS1") so study plans and catalogue lookups stay
+                # aligned. The official examination title remains on the engine
+                # definition (exam_name / description) and in syllabus metadata.
                 if is_v2:
-                    exam_name = engine_curriculum.exam_name
+                    exam_name = (
+                        f"{engine_curriculum.provider} {engine_curriculum.exam_code}"
+                    )
                 else:
                     exam_name = (
                         f"{engine_curriculum.organisation} {engine_curriculum.paper}"

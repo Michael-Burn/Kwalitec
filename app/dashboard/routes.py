@@ -8,6 +8,15 @@ import time
 from flask import Blueprint, render_template
 from flask_login import current_user, login_required
 
+from app.application.config import (
+    build_twin_provider,
+    resolve_feature_flags,
+)
+from app.application.dashboard import (
+    DashboardCompositionContext,
+    DashboardViewModel,
+    EducationalDashboardComposer,
+)
 from app.services.adaptive_learning_service import AdaptiveLearningService
 from app.services.burnout_monitor import BurnoutMonitor
 from app.services.curriculum_engine_service import (
@@ -15,12 +24,12 @@ from app.services.curriculum_engine_service import (
     StudentCurriculumSummary,
 )
 from app.services.exam_timeline import ExamTimeline
-from app.services.time_engine_service import TimeEngineService
 from app.services.mission_optimizer import MissionOptimizer
 from app.services.planning_service import PlanningService
 from app.services.readiness_service import ReadinessService
 from app.services.recommendation_service import RecommendationService
 from app.services.study_plan_service import StudyPlanService
+from app.services.time_engine_service import TimeEngineService
 
 logger = logging.getLogger(__name__)
 
@@ -47,6 +56,37 @@ def _timed_call(label: str, fn, *args, **kwargs):
         elapsed = (time.monotonic() - start) * 1000
         logger.error("Dashboard query failed: %s (%.0f ms): %s", label, elapsed, exc)
         return None
+
+
+def _compose_educational_dashboard(
+    user_id: int,
+    active_study_plan,
+) -> DashboardViewModel | None:
+    """Request Twin-first dashboard composition via Application Layer only.
+
+    Presentation owns auth / HTTP. Educational coordination lives in
+    EducationalDashboardComposer. Returns None for legacy RecommendationService
+    fallback — never invents Mid readiness. Internal Alpha wires the interim
+    cold-start TwinSource so the Recommendation card is reachable for daily use.
+    """
+    flags = resolve_feature_flags()
+    curriculum_id = None
+    available_minutes = None
+    if active_study_plan is not None:
+        curriculum_id = getattr(active_study_plan, "curriculum_id", None)
+        available_minutes = getattr(
+            active_study_plan, "preferred_session_minutes", None
+        )
+    return EducationalDashboardComposer(
+        twin_provider=build_twin_provider(flags=flags),
+        flags=flags,
+    ).compose(
+        DashboardCompositionContext(
+            student_id=str(user_id),
+            curriculum_id=curriculum_id,
+            available_minutes=available_minutes,
+        )
+    )
 
 
 @dashboard_bp.get("/")
@@ -106,18 +146,39 @@ def index():
         "strongest_topics", ReadinessService.get_strongest_topics, user_id, 3
     )
 
-    # Recommendations
-    today_recommendation = _timed_call(
-        "today_recommendation",
-        RecommendationService.generate_today_recommendation,
-        user_id,
+    # Educational Intelligence (Stage A / Internal Alpha) — Application only.
+    # Flags default off; missing curriculum / composition → None fallback.
+    ei_flags = resolve_feature_flags()
+    dashboard_view_model = None
+    if ei_flags.ENABLE_EDUCATIONAL_ORCHESTRATOR:
+        dashboard_view_model = _timed_call(
+            "educational_dashboard",
+            _compose_educational_dashboard,
+            user_id,
+            active_study_plan,
+        )
+
+    # Legacy recommendations remain default authority and silent fallback when
+    # EI cannot produce a truthful Experience. When the EI card is present,
+    # legacy recommendation lists stay out of the template (invisible dual path).
+    ei_recommendation_active = bool(
+        dashboard_view_model is not None
+        and dashboard_view_model.recommendation_card is not None
     )
-    all_recommendations = _timed_call(
-        "all_recommendations",
-        RecommendationService.generate_recommendations,
-        user_id,
-        5,
-    )
+    today_recommendation = None
+    all_recommendations = None
+    if not ei_recommendation_active:
+        today_recommendation = _timed_call(
+            "today_recommendation",
+            RecommendationService.generate_today_recommendation,
+            user_id,
+        )
+        all_recommendations = _timed_call(
+            "all_recommendations",
+            RecommendationService.generate_recommendations,
+            user_id,
+            5,
+        )
 
     # Optional / heavier widgets
     balanced_mission = _timed_call(
@@ -179,6 +240,7 @@ def index():
         strongest_topics=strongest_topics or [],
         today_recommendation=today_recommendation,
         all_recommendations=all_recommendations or [],
+        dashboard_view_model=dashboard_view_model,
         balanced_mission=balanced_mission,
         exam_timeline=exam_timeline,
         burnout_status=burnout_status or {},

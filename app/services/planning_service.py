@@ -537,7 +537,7 @@ class PlanningService:
             return None
 
         try:
-            curriculum = engine.load_curriculum(organisation, paper, version)
+            curriculum = engine.load_auto(organisation, paper, version)
         except Exception:
             logger.exception(
                 "Failed to load curriculum %s/%s/%s for sequence resolution.",
@@ -545,28 +545,48 @@ class PlanningService:
             )
             return None
 
-        engine_topics = curriculum.topics  # list[app.curriculum.models.Topic]
+        engine_topics = CurriculumEngineService.get_topics_flat(curriculum)
 
         if not engine_topics:
             return None
 
         # ── Topological sort respecting prerequisites ──────────────────
+        # V1 topics carry prerequisites; V2 TopicDefinitions are already in
+        # official syllabus order and typically have no prerequisite graph.
         topic_map: dict[str, dict] = {}
         for et in engine_topics:
-            topic_map[et.id] = {
-                "name": et.title,
-                "code": et.code,
-                "hours": et.estimated_hours,
-                "weighting": et.weighting,
-                "prerequisites": list(et.prerequisites),
-                "learning_outcomes": [
+            learning_outcomes = []
+            if hasattr(et, "learning_outcomes"):
+                learning_outcomes = [
                     {
                         "code": lo.code,
                         "description": lo.description,
                         "suggested_revision_days": lo.suggested_revision_days,
                     }
                     for lo in et.learning_outcomes
-                ],
+                ]
+            elif hasattr(et, "learning_objectives"):
+                learning_outcomes = [
+                    {
+                        "code": lo.code,
+                        "description": lo.description,
+                        "suggested_revision_days": 14,
+                    }
+                    for lo in et.learning_objectives
+                ]
+
+            if hasattr(et, "estimated_hours"):
+                hours = float(et.estimated_hours)
+            else:
+                hours = float(getattr(et, "estimated_minutes", 0)) / 60.0
+
+            topic_map[et.id] = {
+                "name": et.title,
+                "code": et.code,
+                "hours": hours,
+                "weighting": float(getattr(et, "weighting", 0.0) or 0.0),
+                "prerequisites": list(getattr(et, "prerequisites", []) or []),
+                "learning_outcomes": learning_outcomes,
             }
 
         # Build dependency graph for Kahn's algorithm
@@ -574,7 +594,7 @@ class PlanningService:
         adj: dict[str, list[str]] = {tid: [] for tid in topic_map}
 
         for et in engine_topics:
-            for prereq_id in et.prerequisites:
+            for prereq_id in getattr(et, "prerequisites", []) or []:
                 if prereq_id in topic_map:
                     adj[prereq_id].append(et.id)
                     in_degree[et.id] += 1

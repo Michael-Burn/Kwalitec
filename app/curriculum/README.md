@@ -38,7 +38,7 @@ app/curriculum/
 └── data/
     └── ifoa/
         └── cs1/
-            └── 2026.json   # IFoA CS1 2026 syllabus (V1 format)
+            └── 2026.json   # IFoA CS1 2026 syllabus (V2 canonical hierarchy)
 ```
 
 ### Data Flow

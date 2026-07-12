@@ -75,10 +75,11 @@ class TimeEngineService:
 
         # ── Load the engine curriculum ───────────────────────────
         from app.curriculum.repository import CurriculumRepository
+        from app.services.curriculum_engine_service import CurriculumEngineService
 
         repo = CurriculumRepository()
         try:
-            engine_curriculum = repo.load(org.lower(), paper.lower(), version)
+            engine_curriculum = repo.load_auto(org.lower(), paper.lower(), version)
         except Exception:
             return None
 
@@ -89,8 +90,10 @@ class TimeEngineService:
             curriculum_id=study_plan.curriculum_id,
         ).all()
 
+        engine_topics = CurriculumEngineService.get_topics_flat(engine_curriculum)
+
         code_to_db_topic: dict[str, DBTopic] = {}
-        for engine_topic in engine_curriculum.topics:
+        for engine_topic in engine_topics:
             for db_topic in db_topics:
                 if db_topic.name == engine_topic.title:
                     code_to_db_topic[engine_topic.code] = db_topic
@@ -110,12 +113,16 @@ class TimeEngineService:
             tp.topic_id: tp.completed for tp in progress_rows
         }
 
-        # ── Accumulate hours ─────────────────────────────────────
+        # ── Accumulate hours from the flat canonical topic list ─
         total_curriculum_hours: float = 0.0
         completed_hours: float = 0.0
 
-        for engine_topic in engine_curriculum.topics:
-            hours = engine_topic.estimated_hours
+        for engine_topic in engine_topics:
+            if hasattr(engine_topic, "estimated_hours"):
+                hours = float(engine_topic.estimated_hours)
+            else:
+                hours = float(getattr(engine_topic, "estimated_minutes", 0)) / 60.0
+
             total_curriculum_hours += hours
 
             db_topic = code_to_db_topic.get(engine_topic.code)

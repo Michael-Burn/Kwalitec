@@ -6,8 +6,12 @@ from app.curriculum.repository import CurriculumRepository
 
 
 def seed_curricula(repo: CurriculumRepository | None = None) -> CurriculumRepository:
-    """Load all bundled curricula into the repository."""
+    """Load all bundled curricula into the repository.
+
+    Uses :meth:`CurriculumRepository.load_auto` so both V1 and V2 syllabus
+    files are accepted without callers needing to know the format.
+    """
     if repo is None:
         repo = CurriculumRepository()
-    repo.load("ifoa", "cs1", "2026")
+    repo.load_auto("ifoa", "cs1", "2026")
     return repo

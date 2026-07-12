@@ -124,15 +124,16 @@ def _patch_repo_for_v2(v2_curriculum):
 class TestLoadEngineCurriculumAuto:
     """Unit tests for StudyPlanService._load_engine_curriculum_auto."""
 
-    def test_v1_returned_with_is_v2_false(self, ctx, db):
+    def test_real_cs1_returned_as_v2(self, ctx, db):
         from app.services.study_plan_service import StudyPlanService
 
-        # Real on-disk V1 curriculum should load successfully.
+        # Real on-disk CS1 curriculum is the canonical V2 syllabus.
         result = StudyPlanService._load_engine_curriculum_auto("IFoA", "CS1", "2026")
         assert result is not None
         engine_curriculum, is_v2 = result
-        assert is_v2 is False
-        assert hasattr(engine_curriculum, "topics")
+        assert is_v2 is True
+        assert hasattr(engine_curriculum, "sections")
+        assert len(engine_curriculum.sections) == 5
 
     def test_v2_fallback_returns_is_v2_true(self, ctx, db):
         from app.services.study_plan_service import StudyPlanService
@@ -182,16 +183,20 @@ class TestLoadEngineCurriculumAuto:
 class TestGetEngineTopicsOrdered:
     """Unit tests for StudyPlanService._get_engine_topics_ordered."""
 
-    def test_v1_returns_flat_topics_unchanged(self, ctx, db):
+    def test_real_cs1_returns_flat_topics_from_sections(self, ctx, db):
+        from app.services.curriculum_engine_service import CurriculumEngineService
         from app.services.study_plan_service import StudyPlanService
 
         result = StudyPlanService._load_engine_curriculum_auto("IFoA", "CS1", "2026")
         assert result is not None
         engine_curriculum, is_v2 = result
-        assert is_v2 is False
+        assert is_v2 is True
 
-        ordered = StudyPlanService._get_engine_topics_ordered(engine_curriculum, False)
-        assert ordered == list(engine_curriculum.topics)
+        ordered = StudyPlanService._get_engine_topics_ordered(engine_curriculum, True)
+        expected = CurriculumEngineService.get_topics_flat(engine_curriculum)
+        assert ordered == expected
+        assert len(ordered) == 14
+        assert [t.code for t in ordered[:2]] == ["1.1", "1.2"]
 
     def test_v2_flattens_in_section_display_order(self, ctx, db):
         from app.services.study_plan_service import StudyPlanService
@@ -294,13 +299,14 @@ class TestGetEngineTopicsOrdered:
 # ═══════════════════════════════════════════════════════════════════════════════
 
 
-class TestV1Regression:
+class TestCanonicalCS1Regression:
+    """Regression tests for the real on-disk canonical CS1 V2 curriculum."""
     """Verify that the V1 path inside _initialize_topic_progress_from_curriculum
     is completely unchanged after the Milestone 1.9 refactoring."""
 
-    def test_v1_creates_topic_progress_rows(self, ctx, db):
-        """Creating a plan against the real V1 CS1-2026 curriculum must produce
-        one TopicProgress row per engine topic."""
+    def test_creates_topic_progress_rows(self, ctx, db):
+        """Creating a plan against canonical CS1-2026 must produce one
+        TopicProgress row per engine topic."""
         from app.models.topic_progress import TopicProgress
         from app.services.study_plan_service import StudyPlanService
 
@@ -316,14 +322,14 @@ class TestV1Regression:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
         progress_rows = TopicProgress.query.filter_by(user_id=user.id).all()
-        assert len(progress_rows) == 6  # 6 topics in CS1-2026
+        assert len(progress_rows) == 14  # 14 subtopics in canonical CS1-2026
 
-    def test_v1_topics_have_no_section_id(self, ctx, db):
-        """V1 DB topics must have section_id=None."""
+    def test_topics_have_section_id(self, ctx, db):
+        """Canonical CS1 DB topics must link to their parent section."""
         from app.models.curriculum import Topic as DBTopic
         from app.services.study_plan_service import StudyPlanService
 
@@ -339,13 +345,13 @@ class TestV1Regression:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
         topics = DBTopic.query.filter_by(curriculum_id=sp.curriculum_id).all()
-        assert all(t.section_id is None for t in topics)
+        assert all(t.section_id is not None for t in topics)
 
-    def test_v1_current_topic_marked_learning(self, ctx, db):
+    def test_current_topic_marked_learning(self, ctx, db):
         from app.models.curriculum import Topic as DBTopic
         from app.models.topic_progress import TopicProgress
         from app.services.study_plan_service import StudyPlanService
@@ -362,12 +368,12 @@ class TestV1Regression:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
         topic = DBTopic.query.filter_by(
             curriculum_id=sp.curriculum_id,
-            name="Random Variables and Distributions",
+            name="Describe the purpose and function of data analysis",
         ).first()
         assert topic is not None
         tp = TopicProgress.query.filter_by(
@@ -377,7 +383,7 @@ class TestV1Regression:
         assert tp.current_stage == TopicProgress.STAGE_LEARNING
         assert tp.completed is False
 
-    def test_v1_completed_topics_marked_correctly(self, ctx, db):
+    def test_completed_topics_marked_correctly(self, ctx, db):
         from app.models.curriculum import Topic as DBTopic
         from app.models.topic_progress import TopicProgress
         from app.services.study_plan_service import StudyPlanService
@@ -394,13 +400,13 @@ class TestV1Regression:
             study_preference="Mixed",
             target_grade="A",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-B",
-            completed_curriculum_topics=["CS1-A"],
+            curriculum_topic_code="1.2",
+            completed_curriculum_topics=["1.1"],
         )
 
         topic_a = DBTopic.query.filter_by(
             curriculum_id=sp.curriculum_id,
-            name="Random Variables and Distributions",
+            name="Describe the purpose and function of data analysis",
         ).first()
         tp_a = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=topic_a.id,
@@ -811,7 +817,7 @@ class TestV1V2Coexistence:
             study_preference="Mixed",
             target_grade="B",
             curriculum_version="2026",
-            curriculum_topic_code="CS1-A",
+            curriculum_topic_code="1.1",
         )
 
         # V2 plan for u2
@@ -832,7 +838,7 @@ class TestV1V2Coexistence:
 
         u1_count = TopicProgress.query.filter_by(user_id=u1.id).count()
         u2_count = TopicProgress.query.filter_by(user_id=u2.id).count()
-        assert u1_count == 6  # V1 CS1-2026
+        assert u1_count == 14  # canonical CS1 V2
         assert u2_count == 3  # V2 mock (3 topics)
 
 

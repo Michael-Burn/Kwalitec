@@ -948,9 +948,11 @@ def edit_plan_post(study_plan_id: int):
                     engine = CurriculumEngineService()
                     if engine.curriculum_exists(parts[0], parts[1], curriculum_version):
                         try:
-                            cur = engine.load_curriculum(parts[0], parts[1], curriculum_version)
+                            cur = engine.load_auto(
+                                parts[0], parts[1], curriculum_version
+                            )
                             completed_set = set(completed_codes)
-                            for topic in cur.topics:
+                            for topic in CurriculumEngineService.get_topics_flat(cur):
                                 if topic.code not in completed_set:
                                     curriculum_topic_code = topic.code
                                     break

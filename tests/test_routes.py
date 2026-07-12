@@ -266,7 +266,7 @@ class TestStudyPlanWizardStep4:
             "/study-plan/wizard/4",
             data={
                 "current_position": "learning",
-                "curriculum_topic": ["CS1-A", "CS1-B"],
+                "curriculum_topic": ["1.1", "1.2"],
             },
             follow_redirects=True,
         )
@@ -275,7 +275,7 @@ class TestStudyPlanWizardStep4:
             wizard_data = sess["wizard_data"]
             assert wizard_data["current_position"] == "learning"
             assert "completed_curriculum_topics" in wizard_data
-            assert wizard_data["completed_curriculum_topics"] == ["CS1-A", "CS1-B"]
+            assert wizard_data["completed_curriculum_topics"] == ["1.1", "1.2"]
             # Legacy key must be removed
             assert "curriculum_topic" not in wizard_data
 
@@ -332,13 +332,13 @@ class TestStudyPlanWizardStep4:
                 "exam_sitting": "April 2027",
                 "exam_date": "2027-04-15",
                 "current_position": "learning",
-                "completed_curriculum_topics": ["CS1-A"],
+                "completed_curriculum_topics": ["1.1"],
             }
         response = logged_in_client.get("/study-plan/wizard/4")
         assert response.status_code == 200
         html = response.data.decode()
         # The previously completed topic should be checked
-        assert 'value="CS1-A"' in html
+        assert 'value="1.1"' in html
         assert "checked" in html
 
     def test_step4_review_shows_completed_topics(self, logged_in_client):
@@ -350,7 +350,7 @@ class TestStudyPlanWizardStep4:
                 "exam_sitting": "April 2027",
                 "exam_date": "2027-04-15",
                 "current_position": "learning",
-                "completed_curriculum_topics": ["CS1-A", "CS1-B"],
+                "completed_curriculum_topics": ["1.1", "1.2"],
                 "weekday_study_minutes": 60,
                 "weekend_study_minutes": 120,
                 "study_preference": "Mixed",
@@ -361,8 +361,8 @@ class TestStudyPlanWizardStep4:
         assert response.status_code == 200
         html = response.data.decode()
         assert "Completed Topics" in html
-        assert "CS1-A" in html
-        assert "CS1-B" in html
+        assert "1.1" in html
+        assert "1.2" in html
 
 
 class TestStudyPlanManagementRoutes:
