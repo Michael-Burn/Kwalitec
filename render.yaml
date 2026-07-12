@@ -27,6 +27,10 @@ services:
       - key: ADMIN_PASSWORD
         sync: false
 
+      # Educational Intelligence Internal Alpha (developer daily use — not public).
+      - key: KWALITEC_EI_INTERNAL_ALPHA
+        value: "1"
+
 databases:
   - name: kwalitec-db
     plan: free
