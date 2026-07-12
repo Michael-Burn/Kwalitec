@@ -2,10 +2,15 @@
 
 from __future__ import annotations
 
+import logging
+
 from flask_login import UserMixin
+from sqlalchemy.exc import OperationalError, ProgrammingError
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from app.extensions import db, login_manager
+
+logger = logging.getLogger(__name__)
 
 
 class User(UserMixin, db.Model):
@@ -47,8 +52,22 @@ class User(UserMixin, db.Model):
 
 @login_manager.user_loader
 def load_user(user_id: str) -> User | None:
-    """Load a user by ID for Flask-Login sessions."""
+    """Load a user by ID for Flask-Login sessions.
+
+    Returns ``None`` when the id is invalid, the user row is missing, or the
+    ``users`` table is unavailable (e.g. incomplete local schema). Raising
+    from this callback breaks every ``current_user`` access — including
+    logout — with a 500.
+    """
     if not user_id.isdigit():
         return None
 
-    return db.session.get(User, int(user_id))
+    try:
+        return db.session.get(User, int(user_id))
+    except (OperationalError, ProgrammingError) as exc:
+        logger.warning(
+            "load_user: cannot load user id=%s (%s); treating as anonymous",
+            user_id,
+            exc.__class__.__name__,
+        )
+        return None

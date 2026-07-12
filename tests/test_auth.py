@@ -43,11 +43,39 @@ class TestAuthRoutes:
     def test_logout(self, logged_in_client):
         response = logged_in_client.post("/auth/logout", follow_redirects=True)
         assert response.status_code == 200
-        assert b"You have been signed out" in response.data
+        assert response.request.path == "/auth/login"
+        assert b"You have been signed out" not in response.data
 
-    def test_logout_requires_login(self, client):
+    def test_logout_is_idempotent_when_anonymous(self, client):
+        """Unauthenticated logout still clears session state and reaches login."""
         response = client.post("/auth/logout", follow_redirects=True)
         assert response.status_code == 200
+        assert response.request.path == "/auth/login"
+        assert b"You have been signed out" not in response.data
+
+    def test_load_user_returns_none_when_users_table_missing(self, app):
+        """Schema gaps must not raise from the Flask-Login user loader."""
+        from sqlalchemy.exc import OperationalError
+
+        from app.models.user import load_user
+
+        with app.app_context():
+            from app.extensions import db
+
+            original_get = db.session.get
+
+            def _raise_missing_table(*_args, **_kwargs):
+                raise OperationalError(
+                    "SELECT",
+                    {},
+                    Exception("no such table: users"),
+                )
+
+            db.session.get = _raise_missing_table  # type: ignore[method-assign]
+            try:
+                assert load_user("1") is None
+            finally:
+                db.session.get = original_get  # type: ignore[method-assign]
 
     def test_login_redirects_to_dashboard_if_authenticated(self, logged_in_client):
         response = logged_in_client.get("/auth/login", follow_redirects=True)

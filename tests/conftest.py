@@ -14,25 +14,34 @@ from app.extensions import db as _db
 
 @pytest.fixture(scope="session")
 def app():
-    """Create a session-scoped Flask application with a temp database."""
+    """Create a session-scoped Flask application with a temp database.
+
+    ``BaseConfig.SQLALCHEMY_DATABASE_URI`` is assigned at import time from
+    ``_database_uri()``. Patching only the function is not enough:
+    ``create_app()`` copies the frozen class attribute, binds the engine
+    during startup diagnostics, and a later ``drop_all()`` would wipe the
+    developer's ``instance/kwalitec.sqlite3`` while leaving ``alembic_version``
+    intact. Always patch both the helper and the class attribute before
+    ``create_app()``.
+    """
     db_fd, db_path = tempfile.mkstemp(suffix=".sqlite3")
     os.environ["APP_ENV"] = "testing"
     os.environ["SECRET_KEY"] = "test-secret-key-for-testing-only"
 
     from app import config
 
-    original_uri = config._database_uri
+    test_uri = f"sqlite:///{db_path}"
+    original_uri_fn = config._database_uri
+    original_base_uri = config.BaseConfig.SQLALCHEMY_DATABASE_URI
 
-    def _test_uri() -> str:
-        return f"sqlite:///{db_path}"
-
-    config._database_uri = _test_uri
+    config._database_uri = lambda: test_uri
+    config.BaseConfig.SQLALCHEMY_DATABASE_URI = test_uri
 
     app = create_app()
     app.config.update(
         TESTING=True,
         WTF_CSRF_ENABLED=False,
-        SQLALCHEMY_DATABASE_URI=f"sqlite:///{db_path}",
+        SQLALCHEMY_DATABASE_URI=test_uri,
         SERVER_NAME="localhost.localdomain",
     )
 
@@ -47,7 +56,8 @@ def app():
 
     os.close(db_fd)
     os.unlink(db_path)
-    config._database_uri = original_uri
+    config._database_uri = original_uri_fn
+    config.BaseConfig.SQLALCHEMY_DATABASE_URI = original_base_uri
 
 
 @pytest.fixture(scope="function")

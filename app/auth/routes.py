@@ -3,7 +3,7 @@
 from urllib.parse import urlsplit
 
 from flask import Blueprint, flash, redirect, render_template, request, url_for
-from flask_login import current_user, login_required, login_user, logout_user
+from flask_login import current_user, login_user, logout_user
 
 from app.auth.forms import LoginForm
 from app.models import User
@@ -44,11 +44,14 @@ def login():
 
 
 @auth_bp.post("/logout")
-@login_required
 def logout():
-    """Log out the current user."""
+    """Log out the current user.
+
+    Intentionally not ``@login_required``: logout must remain idempotent and
+    must clear a stale session even when ``load_user`` cannot resolve a user
+    (for example after a local schema rebuild). CSRF still protects the POST.
+    """
     logout_user()
-    flash("You have been signed out.", "info")
     return redirect(url_for("auth.login"))
 
 

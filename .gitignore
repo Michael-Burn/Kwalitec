@@ -8,6 +8,7 @@ venv/
 # Flask / local environment
 .env
 instance/*.sqlite3
+instance/*.sqlite3.*
 instance/*.db
 
 # Tooling
