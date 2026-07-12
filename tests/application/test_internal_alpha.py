@@ -60,7 +60,16 @@ class TestInternalAlphaTwinSource:
         assert twin.memory == twin.memory.__class__.create()
         assert twin.performance == twin.performance.__class__.create()
 
-    def test_build_twin_provider_wires_source_when_alpha_on(self) -> None:
+    def test_build_twin_provider_wires_shared_repository_when_orchestrator_on(
+        self,
+    ) -> None:
+        from app.application.twin import TwinAbsent
+        from app.application.twin_repository import (
+            get_shared_twin_repository,
+            reset_shared_twin_repository,
+        )
+
+        reset_shared_twin_repository()
         flags = EducationalIntelligenceFeatureFlags(
             ENABLE_EDUCATIONAL_ORCHESTRATOR=True,
             ENABLE_EI_RECOMMENDATIONS=True,
@@ -70,19 +79,23 @@ class TestInternalAlphaTwinSource:
             environ={"KWALITEC_EI_INTERNAL_ALPHA": "1"},
         )
         assert isinstance(provider, TwinProvider)
-        twin = provider.retrieve(
+        assert provider.repository is get_shared_twin_repository()
+        # Empty repository → honest TwinAbsent (no fabricated Mid Twin).
+        result = provider.retrieve(
             "99",
             context=TwinRetrievalContext(curriculum_id="1"),
         )
-        assert isinstance(twin, DigitalTwin)
-        assert twin.identity.student_id == "99"
+        assert isinstance(result, TwinAbsent)
 
-    def test_build_twin_provider_has_no_source_when_alpha_off(self) -> None:
+    def test_build_twin_provider_has_no_repository_when_orchestrator_off(
+        self,
+    ) -> None:
         provider = build_twin_provider(
             flags=FEATURE_FLAGS,
             environ={},
         )
         from app.application.twin import TwinAbsent
 
+        assert provider.repository is None
         result = provider.retrieve("99")
         assert isinstance(result, TwinAbsent)

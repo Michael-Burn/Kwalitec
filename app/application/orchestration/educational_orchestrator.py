@@ -4,9 +4,11 @@ Coordinates Educational Intelligence on the Twin-first product read path.
 Owns lifecycle, lawful invocation order, context wiring, Experience assembly,
 and truthful failure propagation.
 
-Never scores readiness, selects next actions, ranks recommendations, alters
-Decisions or Missions, mutates Twin, or imports Flask / routes / templates /
-ORM. Educational judgement remains in domain owners (ADR-002).
+Retrieves the current Digital Twin only through TwinProvider (sole retrieval
+authority). Never scores readiness, selects next actions, ranks
+recommendations, alters Decisions or Missions, mutates Twin, or imports Flask /
+routes / templates / ORM. Educational judgement remains in domain owners
+(ADR-002).
 """
 
 from __future__ import annotations
@@ -17,6 +19,11 @@ from typing import Protocol
 
 from app.application.curriculum.curriculum_context_builder import (
     CurriculumContextBuilder,
+)
+from app.application.twin.twin_provider import (
+    TwinAbsent,
+    TwinProvider,
+    TwinRetrievalContext,
 )
 from app.domain.decision.constraints import Constraints
 from app.domain.decision.decision import Decision, DecisionLineage
@@ -38,6 +45,17 @@ from app.domain.twin.digital_twin import DigitalTwin
 
 # Contract version identity for Educational Experience Metadata (Capability 3.2.3).
 CONTRACT_VERSION = "educational-experience/3.2.5-skeleton"
+
+
+class TwinProviderProtocol(Protocol):
+    """Callable / type with retrieve → DigitalTwin | TwinAbsent."""
+
+    def retrieve(
+        self,
+        student_id: str | None,
+        *,
+        context: TwinRetrievalContext | None = None,
+    ) -> DigitalTwin | TwinAbsent: ...
 
 
 class CurriculumContextBuilderProtocol(Protocol):
@@ -190,13 +208,15 @@ class ProductContext:
 class EducationalOrchestrator:
     """Sole Application composition entry for the Twin-first educational read path.
 
-    Invokes CurriculumContextBuilder → Readiness → Decision → Recommendation →
-    Mission in lawful order, then assembles the Educational Experience Contract.
+    Retrieves Twin via TwinProvider, then invokes CurriculumContextBuilder →
+    Readiness → Decision → Recommendation → Mission in lawful order, then
+    assembles the Educational Experience Contract.
     """
 
     def __init__(
         self,
         *,
+        twin_provider: TwinProviderProtocol | None = None,
         curriculum_context_builder: CurriculumContextBuilderProtocol = (
             CurriculumContextBuilder
         ),
@@ -205,15 +225,20 @@ class EducationalOrchestrator:
         recommendation_engine: RecommendationEngineProtocol = RecommendationEngine,
         mission_intelligence: MissionIntelligenceProtocol = MissionIntelligence,
     ) -> None:
-        """Wire educational domain owners and CurriculumContext construction.
+        """Wire Twin retrieval and educational domain owners.
 
         Args:
+            twin_provider: Application Twin retrieval adapter (default:
+                ``TwinProvider()`` with no durable source — honest absence).
             curriculum_context_builder: Application builder for CurriculumContext.
             readiness_aggregation: Domain readiness derive API.
             decision_engine: Domain next-action evaluate API.
             recommendation_engine: Domain Decision packaging API.
             mission_intelligence: Domain Mission compose API.
         """
+        self._twin_provider = (
+            twin_provider if twin_provider is not None else TwinProvider()
+        )
         self._curriculum_context_builder = curriculum_context_builder
         self._readiness_aggregation = readiness_aggregation
         self._decision_engine = decision_engine
@@ -223,23 +248,28 @@ class EducationalOrchestrator:
     def build_experience(
         self,
         *,
+        student_id: str,
         curriculum_id: int,
-        twin: DigitalTwin,
         constraints: Constraints,
+        twin_retrieval_context: TwinRetrievalContext | None = None,
         mission_execution_context: MissionExecutionContext | None = None,
         decision_history: DecisionHistory | None = None,
         recommendation_context: RecommendationContext | None = None,
         product_context: ProductContext | None = None,
-    ) -> EducationalExperience:
+    ) -> EducationalExperience | TwinAbsent:
         """Compose one Educational Experience for an authorised product request.
 
-        Twin must be supplied by the caller (TwinRepository is out of scope).
-        Failures from builders or domains propagate without fabrication.
+        Twin is retrieved only through TwinProvider. Caller supplies identity and
+        request context — never a Twin snapshot. Failures from builders or
+        domains propagate without fabrication. TwinAbsent is returned when
+        TwinProvider signals honest absence (composition does not continue).
 
         Args:
+            student_id: Authorised learner identity for TwinProvider retrieval.
             curriculum_id: Persisted curriculum primary key for CurriculumContext.
-            twin: Authoritative Digital Twin snapshot (read-only; never mutated).
             constraints: Session feasibility envelope for Decision / Mission.
+            twin_retrieval_context: Optional TwinProvider scope / surface hints.
+                When omitted, curriculum_id and product surface_intent are used.
             mission_execution_context: Optional Mission bounds; defaults from
                 constraints + curriculum identity (wiring only).
             decision_history: Optional Decision Journal anti-thrash context.
@@ -247,15 +277,27 @@ class EducationalOrchestrator:
             product_context: Optional Metadata facts (surface, cutover, locale).
 
         Returns:
-            Immutable Educational Experience Contract snapshot.
+            Immutable Educational Experience Contract snapshot, or TwinAbsent
+            when TwinProvider cannot return a lawful Twin.
 
         Raises:
             Exception: Any builder or domain failure, propagated truthfully.
         """
-        # 1. CurriculumContext — syllabus denominator via Application builder.
-        curriculum = self._curriculum_context_builder.build(curriculum_id)
+        # 1. Twin — TwinProvider is the sole retrieval authority.
+        retrieval_context = twin_retrieval_context or _default_twin_retrieval_context(
+            curriculum_id=curriculum_id,
+            product_context=product_context,
+        )
+        twin_result = self._twin_provider.retrieve(
+            student_id,
+            context=retrieval_context,
+        )
+        if isinstance(twin_result, TwinAbsent):
+            return twin_result
+        twin = twin_result
 
-        # 2. Twin is caller-supplied (read-only). No TwinRepository in this skeleton.
+        # 2. CurriculumContext — syllabus denominator via Application builder.
+        curriculum = self._curriculum_context_builder.build(curriculum_id)
 
         # 3. Readiness Aggregation.
         readiness = self._readiness_aggregation.derive(twin, curriculum)
@@ -295,6 +337,19 @@ class EducationalOrchestrator:
             mission=mission,
             product_context=product_context,
         )
+
+
+def _default_twin_retrieval_context(
+    *,
+    curriculum_id: int,
+    product_context: ProductContext | None,
+) -> TwinRetrievalContext:
+    """Wire TwinRetrievalContext from request facts — no Twin invention."""
+    surface = product_context.surface_intent if product_context is not None else None
+    return TwinRetrievalContext(
+        curriculum_id=str(curriculum_id),
+        surface_intent=surface,
+    )
 
 
 def _default_mission_context(

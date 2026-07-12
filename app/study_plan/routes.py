@@ -736,8 +736,12 @@ def review_post():
             session.pop("wizard_data", None)
 
             logger.info("Study plan %d created for user %s", study_plan.id, current_user.id)
-            flash("Study plan created successfully!", "success")
-            return redirect(url_for("study_plan.view_plan", study_plan_id=study_plan.id))
+            # Product law (Capability 3.6.3 / 3.8.1): Calibration begins
+            # immediately after Study Plan success — not login / settings /
+            # dashboard. Birth Twin is authored on the Calibration path.
+            return redirect(
+                url_for("calibration.start", study_plan_id=study_plan.id)
+            )
         except ValueError as e:
             logger.warning("Study plan creation failed: %s", e)
             flash(str(e), "danger")

@@ -1,0 +1,120 @@
+{% extends "study_plan/wizard_base.html" %}
+
+{% set step = 1 %}
+{% set total_steps = 1 %}
+{% set step_title = "Educational history" %}
+{% set wizard_question = "Where are you starting from?" %}
+{% set wizard_helper = "This is not a test. Tell us your educational history so we don't assume you're starting from zero — answers are declarations, not measured mastery." %}
+{% set button_text = "Create my study profile" %}
+
+{% block form_content %}
+<form id="wizard-form" method="post" novalidate>
+    {{ form.hidden_tag() }}
+
+    <p class="wizard-field-hint mb-3">
+        Study plan: <strong>{{ study_plan.exam_name }}</strong>
+        {% if launch.sitting_label %} · {{ launch.sitting_label }}{% endif %}
+    </p>
+
+    {% if form.previously_studied.errors %}
+    <div class="alert alert-danger" role="alert">
+        {% for error in form.previously_studied.errors %}{{ error }}{% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="wizard-field-group">
+        <label class="form-label">{{ form.previously_studied.label.text }}</label>
+        <div class="wizard-option-list">
+            {% for subfield in form.previously_studied %}
+            {% if subfield.type != 'CSRFTokenField' %}
+            <label class="wizard-option-row" for="{{ subfield.id }}">
+                {{ subfield(class="wizard-option-input") }}
+                <div class="wizard-option-row-body">
+                    <div class="wizard-option-row-title">{{ subfield.label.text }}</div>
+                </div>
+            </label>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="wizard-field-group">
+        <label class="form-label">{{ form.core_reading_completed.label.text }}</label>
+        <small class="wizard-field-hint">Declared coverage only — not a mastery score.</small>
+        <div class="wizard-option-list">
+            {% for subfield in form.core_reading_completed %}
+            {% if subfield.type != 'CSRFTokenField' %}
+            <label class="wizard-option-row" for="{{ subfield.id }}">
+                {{ subfield(class="wizard-option-input") }}
+                <div class="wizard-option-row-body">
+                    <div class="wizard-option-row-title">{{ subfield.label.text }}</div>
+                </div>
+            </label>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="wizard-field-group">
+        <label class="form-label" for="previous_attempts_count">{{ form.previous_attempts_count.label.text }}</label>
+        {{ form.previous_attempts_count(class="form-control", min=0, max=20) }}
+        <small class="wizard-field-hint">Use 0 if you have not sat this paper before.</small>
+    </div>
+
+    <div class="wizard-field-group">
+        <label class="form-label">{{ form.study_objective.label.text }}</label>
+        <div class="wizard-option-list">
+            {% for subfield in form.study_objective %}
+            {% if subfield.type != 'CSRFTokenField' %}
+            <label class="wizard-option-row" for="{{ subfield.id }}">
+                {{ subfield(class="wizard-option-input") }}
+                <div class="wizard-option-row-body">
+                    <div class="wizard-option-row-title">{{ subfield.label.text }}</div>
+                </div>
+            </label>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    {% if form.completed_sections.choices %}
+    <div class="wizard-field-group" id="completed-sections-field">
+        <label class="form-label">{{ form.completed_sections.label.text }}</label>
+        <small class="wizard-field-hint">Optional when you've studied before. Official syllabus only.</small>
+        <div class="wizard-option-list" style="margin-top: var(--space-md);">
+            {% for value, label in form.completed_sections.choices %}
+            <label class="wizard-option-row" style="cursor: pointer;">
+                <input type="checkbox" name="completed_sections" value="{{ value }}"
+                       class="wizard-option-input"
+                       {% if value in (form.completed_sections.data or []) %}checked{% endif %}>
+                <div class="wizard-option-row-body">
+                    <div class="wizard-option-row-title">{{ label }}</div>
+                </div>
+            </label>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="wizard-field-group">
+        <label class="form-label">{{ form.confirm.label.text }}</label>
+        <div class="wizard-option-list">
+            {% for subfield in form.confirm %}
+            {% if subfield.type != 'CSRFTokenField' %}
+            <label class="wizard-option-row" for="{{ subfield.id }}">
+                {{ subfield(class="wizard-option-input") }}
+                <div class="wizard-option-row-body">
+                    <div class="wizard-option-row-title">{{ subfield.label.text }}</div>
+                </div>
+            </label>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="d-flex flex-column gap-2 mt-4">
+        {{ form.skip_beginner(class="btn btn-ghost") }}
+        {{ form.abandon(class="btn btn-link text-muted") }}
+    </div>
+</form>
+{% endblock %}

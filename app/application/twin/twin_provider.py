@@ -2,13 +2,18 @@
 
 Retrieves an existing Student Digital Twin for Educational Orchestrator, or
 signals honest absence. Owns retrieval, absence signalling, optional adaptation
-of an interim / future persistence source, and retrieval validation.
+of TwinRepository (durable load) or an interim TwinSource, and retrieval
+validation.
 
-Never computes, updates, or fabricates a Twin. Never derives Readiness, calls
-Decision / Recommendation / Mission, or imports Flask / routes / templates /
-ORM. Twin belief mutation remains on the Evidence → Twin Update Pipeline path
-(ADR-002). Durable TwinRepository is future; incomplete persistence yields
-TwinAbsent, not a fabricated Twin.
+Never computes, updates, or fabricates a Twin. Never persists Twins. Never
+invokes StudentCalibrationBuilder, CalibrationBirthPersister, or Educational
+Orchestrator. Never derives Readiness, calls Decision / Recommendation /
+Mission, or imports Flask / routes / templates / ORM. Twin belief mutation
+remains on the Evidence → Twin Update Pipeline path (ADR-002).
+
+Flow: Student Identity → TwinProvider → TwinRepository.retrieve_current_twin
+→ DigitalTwin | TwinAbsent. Incomplete or missing persistence yields TwinAbsent,
+not a fabricated Twin.
 """
 
 from __future__ import annotations
@@ -17,6 +22,12 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Protocol
 
+from app.application.twin_repository.twin_repository import TwinRepository
+from app.application.twin_repository.types import (
+    TwinPersistenceFailure,
+    TwinPersistenceFailureReason,
+    TwinScope,
+)
 from app.domain.twin.digital_twin import DigitalTwin
 
 
@@ -56,12 +67,14 @@ class TwinAbsent:
 
 
 class TwinSource(Protocol):
-    """Interim or future persistence load seam for TwinProvider.
+    """Interim persistence load seam for TwinProvider.
 
-    Implementations may adapt legacy / durable storage. They must never
-    fabricate Twin beliefs. Returning ``None`` means no Twin exists.
-    Raising signals unavailable / unreadable storage for TwinProvider to map
-    to honest absence — TwinProvider does not repair corrupt payloads.
+    Implementations may adapt legacy / test doubles. They must never fabricate
+    Twin beliefs. Returning ``None`` means no Twin exists. Raising signals
+    unavailable / unreadable storage for TwinProvider to map to honest absence
+    — TwinProvider does not repair corrupt payloads.
+
+    Durable product load prefers ``TwinRepository`` via TwinProvider injection.
     """
 
     def load(
@@ -77,17 +90,32 @@ class TwinProvider:
 
     Called by Educational Orchestrator (or Application composition). Domains
     never import TwinProvider; they receive Twin snapshots as arguments.
+    TwinRepository remains persistence only; TwinProvider maps load honesty.
     """
 
-    def __init__(self, *, source: TwinSource | None = None) -> None:
-        """Wire an optional Twin load source.
+    def __init__(
+        self,
+        *,
+        repository: TwinRepository | None = None,
+        source: TwinSource | None = None,
+    ) -> None:
+        """Wire durable TwinRepository and/or an interim TwinSource.
 
         Args:
-            source: Interim / future persistence adapter. When ``None``,
-                durable Twin persistence is treated as incomplete and every
-                retrieval returns ``TwinAbsent`` (honest absence).
+            repository: TwinRepository persistence adapter. When set, Provider
+                delegates current-Twin load to ``retrieve_current_twin`` and maps
+                Persistence honesty signals to ``TwinAbsent``.
+            source: Interim / test Twin load seam. Used only when ``repository``
+                is not configured. When both are unset, retrieval returns
+                ``TwinAbsent`` (honest absence).
         """
+        self._repository = repository
         self._source = source
+
+    @property
+    def repository(self) -> TwinRepository | None:
+        """Injected TwinRepository when wired for durable retrieval."""
+        return self._repository
 
     def retrieve(
         self,
@@ -101,7 +129,8 @@ class TwinProvider:
             student_id: Authorised learner identity (already ownership-validated
                 by Presentation / Application). Required for retrieval.
             context: Optional product / sitting scope and non-authoritative
-                retrieval hints.
+                retrieval hints (sitting_id / curriculum_id forwarded to
+                TwinRepository scope).
 
         Returns:
             The existing ``DigitalTwin`` snapshot, or ``TwinAbsent`` when no
@@ -116,8 +145,13 @@ class TwinProvider:
                 detail="authorised student identity is required",
             )
 
+        if self._repository is not None:
+            return self._retrieve_from_repository(
+                normalized, context=context
+            )
+
         if self._source is None:
-            # TwinRepository / durable Twin persistence is not yet available.
+            # No TwinRepository and no interim source — honest absence.
             # Do not fabricate a starter Twin from legacy mastery peers.
             return TwinAbsent(
                 reason=TwinAbsenceReason.MISSING,
@@ -136,6 +170,83 @@ class TwinProvider:
             )
 
         return _validate_retrieved(loaded, expected_student_id=normalized)
+
+    def _retrieve_from_repository(
+        self,
+        student_id: str,
+        *,
+        context: TwinRetrievalContext | None,
+    ) -> DigitalTwin | TwinAbsent:
+        """Delegate current-Twin load to TwinRepository; map honesty signals."""
+        assert self._repository is not None
+
+        sitting_id = context.sitting_id if context is not None else None
+        curriculum_id = context.curriculum_id if context is not None else None
+
+        try:
+            scope = TwinScope.create(
+                student_id,
+                sitting_id=sitting_id,
+                curriculum_id=curriculum_id,
+            )
+        except ValueError as exc:
+            return TwinAbsent(
+                reason=TwinAbsenceReason.CORRUPT,
+                student_id=student_id,
+                detail=f"invalid Twin retrieval scope: {exc}",
+            )
+
+        try:
+            result = self._repository.retrieve_current_twin(scope)
+        except Exception as exc:
+            return TwinAbsent(
+                reason=TwinAbsenceReason.UNAVAILABLE,
+                student_id=student_id,
+                detail=f"TwinRepository unavailable: {exc}",
+            )
+
+        if isinstance(result, TwinPersistenceFailure):
+            return _map_persistence_failure(
+                result, expected_student_id=student_id
+            )
+
+        return _validate_retrieved(result, expected_student_id=student_id)
+
+
+def _map_persistence_failure(
+    failure: TwinPersistenceFailure,
+    *,
+    expected_student_id: str,
+) -> TwinAbsent:
+    """Map TwinRepository honesty cargo to TwinAbsent — never repair beliefs."""
+    reason = failure.reason
+    detail = failure.detail
+
+    if reason is TwinPersistenceFailureReason.MISSING:
+        return TwinAbsent(
+            reason=TwinAbsenceReason.MISSING,
+            student_id=expected_student_id,
+            detail=detail or "no Twin snapshot for requested scope",
+        )
+    if reason is TwinPersistenceFailureReason.CORRUPT:
+        return TwinAbsent(
+            reason=TwinAbsenceReason.CORRUPT,
+            student_id=expected_student_id,
+            detail=detail or "stored Twin cargo is corrupt",
+        )
+    if reason is TwinPersistenceFailureReason.UNAVAILABLE:
+        return TwinAbsent(
+            reason=TwinAbsenceReason.UNAVAILABLE,
+            student_id=expected_student_id,
+            detail=detail or "Twin storage unavailable",
+        )
+    # REJECTED / DUPLICATE / CONCURRENT are not expected on retrieve_current;
+    # treat as corrupt retrieval honesty rather than fabricating a Twin.
+    return TwinAbsent(
+        reason=TwinAbsenceReason.CORRUPT,
+        student_id=expected_student_id,
+        detail=detail or f"TwinRepository retrieve honesty: {reason.value}",
+    )
 
 
 def _normalize_student_id(student_id: str | None) -> str | None:

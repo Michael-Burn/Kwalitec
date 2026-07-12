@@ -296,6 +296,7 @@ def _init_extensions(app: Flask) -> None:
         Subject,
         Topic,
         TopicProgress,
+        TwinSnapshot,
         User,
         WeekPlan,
     )
@@ -313,6 +314,7 @@ def _register_blueprints(app: Flask) -> None:
     """Register application blueprints."""
     from app.analytics.routes import analytics_bp
     from app.auth.routes import auth_bp
+    from app.calibration import calibration_bp
     from app.dashboard.routes import dashboard_bp
     from app.mission.routes import mission_bp
     from app.settings.routes import settings_bp
@@ -324,6 +326,7 @@ def _register_blueprints(app: Flask) -> None:
     app.register_blueprint(mission_bp)
     app.register_blueprint(settings_bp)
     app.register_blueprint(study_plan_bp)
+    app.register_blueprint(calibration_bp)
 
 
 def _register_routes(app: Flask) -> None:

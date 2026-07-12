@@ -24,6 +24,7 @@ from app.application.orchestration import (
     EducationalExperience,
     EducationalOrchestrator,
 )
+from app.application.twin import TwinProvider
 from app.domain.decision import Constraints, IntensityPosture
 from app.domain.readiness import (
     CurriculumContext,
@@ -131,16 +132,28 @@ class _RecordingBuilder:
         return self.curriculum
 
 
+class _TwinSource:
+    def __init__(self, twin: DigitalTwin):
+        self.twin = twin
+
+    def load(self, student_id: str, *, context=None) -> DigitalTwin | None:
+        return self.twin
+
+
 def _experience() -> EducationalExperience:
     """Compose a real Educational Experience via Application orchestrator."""
+    twin = _twin()
     orchestrator = EducationalOrchestrator(
+        twin_provider=TwinProvider(source=_TwinSource(twin)),
         curriculum_context_builder=_RecordingBuilder(_curriculum()),
     )
-    return orchestrator.build_experience(
+    experience = orchestrator.build_experience(
+        student_id=twin.identity.student_id,
         curriculum_id=1,
-        twin=_twin(),
         constraints=_constraints(),
     )
+    assert isinstance(experience, EducationalExperience)
+    return experience
 
 
 def _cold_start_experience() -> EducationalExperience:
@@ -148,13 +161,16 @@ def _cold_start_experience() -> EducationalExperience:
     # Goals-absent Twin yields cold-start / not-yet-knowable readiness honesty.
     twin = DigitalTwin.create(_identity())
     orchestrator = EducationalOrchestrator(
+        twin_provider=TwinProvider(source=_TwinSource(twin)),
         curriculum_context_builder=_RecordingBuilder(_curriculum()),
     )
-    return orchestrator.build_experience(
+    experience = orchestrator.build_experience(
+        student_id=twin.identity.student_id,
         curriculum_id=1,
-        twin=twin,
         constraints=_constraints(),
     )
+    assert isinstance(experience, EducationalExperience)
+    return experience
 
 
 # ═══════════════════════════════════════════════════════════════════════════════

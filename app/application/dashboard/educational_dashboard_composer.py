@@ -2,8 +2,9 @@
 
 Coordinates the Twin-first dashboard read path for Presentation:
 
-    TwinProvider → ConstraintBuilder → EducationalOrchestrator
-        (CurriculumContextBuilder inside) → DashboardAssembler → DashboardViewModel
+    EducationalOrchestrator
+        (TwinProvider → ConstraintBuilder inputs → CurriculumContextBuilder)
+        → DashboardAssembler → DashboardViewModel
 
 Owns Application coordination and honest fallback signalling only. Never scores
 readiness, selects next actions, fabricates Twin / Readiness, averages legacy
@@ -33,11 +34,7 @@ from app.application.orchestration.educational_orchestrator import (
     EducationalOrchestrator,
     ProductContext,
 )
-from app.application.twin.twin_provider import (
-    TwinAbsent,
-    TwinProvider,
-    TwinRetrievalContext,
-)
+from app.application.twin.twin_provider import TwinAbsent, TwinProvider
 
 logger = logging.getLogger(__name__)
 
@@ -59,7 +56,8 @@ class EducationalDashboardComposer:
     """Compose DashboardViewModel for Stage A Educational Intelligence cutover.
 
     Presentation calls this entry when ``ENABLE_EDUCATIONAL_ORCHESTRATOR`` is
-    on. Educational judgement remains in domain owners (ADR-002).
+    on. Educational judgement remains in domain owners (ADR-002). Twin retrieval
+    is owned by EducationalOrchestrator via TwinProvider.
     """
 
     def __init__(
@@ -73,23 +71,25 @@ class EducationalDashboardComposer:
         """Wire Application adapters for one composition path.
 
         Args:
-            twin_provider: Twin retrieval adapter (default: no persistence source).
+            twin_provider: Twin retrieval adapter wired into the default
+                orchestrator when ``orchestrator`` is not supplied.
             constraint_builder: Constraints constructor from product facts.
-            orchestrator: Educational Experience composition entry.
+            orchestrator: Educational Experience composition entry (owns
+                TwinProvider retrieval).
             flags: Optional flag snapshot for tests / staged rollout.
         """
-        self._twin_provider = (
-            twin_provider if twin_provider is not None else TwinProvider()
-        )
+        if orchestrator is not None:
+            self._orchestrator = orchestrator
+        else:
+            self._orchestrator = EducationalOrchestrator(
+                twin_provider=(
+                    twin_provider if twin_provider is not None else TwinProvider()
+                ),
+            )
         self._constraint_builder = (
             constraint_builder
             if constraint_builder is not None
             else ConstraintBuilder()
-        )
-        self._orchestrator = (
-            orchestrator
-            if orchestrator is not None
-            else EducationalOrchestrator()
         )
         self._flags = flags if flags is not None else FEATURE_FLAGS
 
@@ -122,21 +122,6 @@ class EducationalDashboardComposer:
             )
             return None
 
-        twin_result = self._twin_provider.retrieve(
-            context.student_id,
-            context=TwinRetrievalContext(
-                curriculum_id=str(context.curriculum_id),
-                surface_intent="dashboard",
-            ),
-        )
-        if isinstance(twin_result, TwinAbsent):
-            logger.info(
-                "Educational dashboard fallback: TwinAbsent reason=%s student=%s",
-                twin_result.reason.value,
-                context.student_id,
-            )
-            return None
-
         try:
             constraints = self._constraint_builder.build(
                 ConstraintProductContext(
@@ -146,14 +131,21 @@ class EducationalDashboardComposer:
                 )
             )
             experience = self._orchestrator.build_experience(
+                student_id=context.student_id,
                 curriculum_id=context.curriculum_id,
-                twin=twin_result,
                 constraints=constraints,
                 product_context=ProductContext(
                     surface_intent="dashboard",
                     cutover_mode="stage_a",
                 ),
             )
+            if isinstance(experience, TwinAbsent):
+                logger.info(
+                    "Educational dashboard fallback: TwinAbsent reason=%s student=%s",
+                    experience.reason.value,
+                    context.student_id,
+                )
+                return None
             return DashboardAssembler.assemble(experience, flags=self._flags)
         except ConstraintBuildError as exc:
             logger.info(

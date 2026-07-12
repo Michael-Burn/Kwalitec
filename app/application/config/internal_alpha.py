@@ -1,8 +1,12 @@
 """Educational Intelligence Internal Alpha — developer daily-use glue.
 
 Enables the Stage A Recommendation vertical slice for personal CS1 study
-without public rollout. Does not redesign Educational Intelligence, enable
-unfinished widgets, or claim TwinRepository persistence.
+without public rollout. Does not redesign Educational Intelligence or enable
+unfinished widgets.
+
+After Capability 3.8.1, TwinProvider is wired to the shared TwinRepository so
+Birth Twins from Student Calibration are retrievable on the dashboard path.
+Internal Alpha still enables orchestrator + recommendations only.
 
 Environment:
     KWALITEC_EI_INTERNAL_ALPHA — truthy (1/true/yes/on) enables orchestrator +
@@ -17,8 +21,8 @@ from app.application.config.feature_flags import (
     FEATURE_FLAGS,
     EducationalIntelligenceFeatureFlags,
 )
-from app.application.twin.internal_alpha_twin_source import InternalAlphaTwinSource
 from app.application.twin.twin_provider import TwinProvider
+from app.application.twin_repository.shared import get_shared_twin_repository
 
 _TRUTHY = frozenset({"1", "true", "yes", "on"})
 
@@ -64,13 +68,12 @@ def build_twin_provider(
 ) -> TwinProvider:
     """Wire TwinProvider for dashboard composition.
 
-    Internal Alpha installs the interim cold-start TwinSource so the
-    Recommendation card is reachable. Without alpha, no source is configured
-    (honest TwinAbsent until TwinRepository lands).
+    When the Educational Orchestrator is enabled (including Internal Alpha),
+    TwinProvider retrieves from the shared TwinRepository — Birth Twins from
+    Student Calibration, or honest TwinAbsent when none exists. Without the
+    orchestrator flag, returns an unwired TwinProvider (honest absence).
     """
     active = flags if flags is not None else resolve_feature_flags(environ=environ)
-    if active.ENABLE_EDUCATIONAL_ORCHESTRATOR and is_internal_alpha_enabled(
-        environ=environ
-    ):
-        return TwinProvider(source=InternalAlphaTwinSource())
+    if active.ENABLE_EDUCATIONAL_ORCHESTRATOR:
+        return TwinProvider(repository=get_shared_twin_repository())
     return TwinProvider()

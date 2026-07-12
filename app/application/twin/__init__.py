@@ -1,7 +1,8 @@
 """Application Twin Integration adapters.
 
 Retrieves existing Digital Twin snapshots (or honest absence) for Educational
-Orchestration without owning Twin belief strategies or durable persistence.
+Orchestration. TwinProvider may delegate durable load to TwinRepository; it
+never owns Twin belief strategies, birth, mutation, or persistence writes.
 """
 
 from __future__ import annotations

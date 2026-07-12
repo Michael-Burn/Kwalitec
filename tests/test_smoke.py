@@ -380,8 +380,8 @@ class TestSmokeStudyPlanWizard:
             follow_redirects=True,
         )
         assert resp.status_code == 200
-        assert "/study-plan/" in resp.request.path
-        assert b"Study Plan" in resp.data or b"study" in resp.data.lower()
+        assert "/calibration/" in resp.request.path
+        assert b"history" in resp.data.lower() or b"starting" in resp.data.lower()
 
     def test_exactly_one_study_plan_created(self, app, ctx, user):
         """Only one StudyPlan should be created for the user."""
@@ -1149,14 +1149,25 @@ class TestFullEndToEnd:
         resp = client.get("/study-plan/review")
         assert resp.status_code == 200
 
-        # Review — POST (Create)
+        # Review — POST (Create) → first plan launches Student Calibration
         resp = client.post(
             "/study-plan/review",
             data={"confirm": "yes"},
             follow_redirects=True,
         )
         assert resp.status_code == 200
-        assert "/study-plan/" in resp.request.path
+        assert "/calibration/" in resp.request.path
+        assert b"Internal Server Error" not in resp.data
+
+        # Calibration skip (empty-history Birth Twin) → dashboard
+        plan = StudyPlan.query.filter_by(user_id=user.id, active=True).one()
+        resp = client.post(
+            f"/calibration/after-plan/{plan.id}",
+            data={"skip_beginner": "I'm starting from scratch — skip detail"},
+            follow_redirects=True,
+        )
+        assert resp.status_code == 200
+        assert "/dashboard" in resp.request.path
         assert b"Internal Server Error" not in resp.data
 
         # ── Verify exactly one StudyPlan ────────────────────────────────

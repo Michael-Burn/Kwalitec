@@ -1,9 +1,9 @@
-"""Tests for EducationalOrchestrator skeleton (Capability 3.2.5).
+"""Tests for EducationalOrchestrator (Capability 3.2.5 + 3.7.7 TwinProvider).
 
-Covers successful composition, lawful dependency order, CurriculumContextBuilder
-and domain invocations, dependency injection, immutable Experience output,
-framework independence, failure propagation, and absence of educational logic
-in the orchestrator module.
+Covers successful composition, TwinProvider retrieval, TwinAbsent honesty,
+lawful dependency order, CurriculumContextBuilder and domain invocations,
+dependency injection, immutable Experience output, framework independence,
+failure propagation, and absence of educational logic in the orchestrator.
 """
 
 from __future__ import annotations
@@ -20,6 +20,12 @@ from app.application.orchestration import (
     EducationalExperience,
     EducationalOrchestrator,
     ProductContext,
+)
+from app.application.twin import (
+    TwinAbsenceReason,
+    TwinAbsent,
+    TwinProvider,
+    TwinRetrievalContext,
 )
 from app.domain.decision import (
     Constraints,
@@ -124,6 +130,58 @@ def _constraints() -> Constraints:
         available_minutes=60,
         intensity=IntensityPosture.AMPLE,
     )
+
+
+class _TwinSource:
+    """Interim TwinSource double for TwinProvider."""
+
+    def __init__(
+        self,
+        twin: DigitalTwin | None = None,
+        *,
+        error: Exception | None = None,
+    ):
+        self.twin = twin if twin is not None else _twin()
+        self.error = error
+        self.calls: list[tuple[str, TwinRetrievalContext | None]] = []
+
+    def load(
+        self,
+        student_id: str,
+        *,
+        context: TwinRetrievalContext | None = None,
+    ) -> DigitalTwin | None:
+        self.calls.append((student_id, context))
+        if self.error is not None:
+            raise self.error
+        return self.twin
+
+
+class _RecordingTwinProvider:
+    """TwinProvider double that records retrieve calls."""
+
+    def __init__(
+        self,
+        result: DigitalTwin | TwinAbsent | None = None,
+        *,
+        call_log: list[str] | None = None,
+    ):
+        self.result: DigitalTwin | TwinAbsent = (
+            result if result is not None else _twin()
+        )
+        self.call_log = call_log
+        self.calls: list[tuple[str | None, TwinRetrievalContext | None]] = []
+
+    def retrieve(
+        self,
+        student_id: str | None,
+        *,
+        context: TwinRetrievalContext | None = None,
+    ) -> DigitalTwin | TwinAbsent:
+        self.calls.append((student_id, context))
+        if self.call_log is not None:
+            self.call_log.append("twin")
+        return self.result
 
 
 class _RecordingBuilder:
@@ -236,14 +294,24 @@ class _RecordingMission:
 
 def _orchestrator_with_recorders(
     *,
+    twin: DigitalTwin | TwinAbsent | None = None,
     builder: _RecordingBuilder | None = None,
     readiness_error: Exception | None = None,
     decision_error: Exception | None = None,
     recommendation_error: Exception | None = None,
     mission_error: Exception | None = None,
-) -> tuple[EducationalOrchestrator, list[str], _RecordingBuilder]:
+) -> tuple[
+    EducationalOrchestrator,
+    list[str],
+    _RecordingBuilder,
+    _RecordingTwinProvider,
+]:
     call_log: list[str] = []
     recording_builder = builder or _RecordingBuilder(_curriculum())
+    twin_provider = _RecordingTwinProvider(
+        twin if twin is not None else _twin(),
+        call_log=call_log,
+    )
 
     class _LoggedBuilder:
         def build(self, curriculum_id: int | None) -> CurriculumContext:
@@ -251,6 +319,7 @@ def _orchestrator_with_recorders(
             return recording_builder.build(curriculum_id)
 
     orchestrator = EducationalOrchestrator(
+        twin_provider=twin_provider,
         curriculum_context_builder=_LoggedBuilder(),
         readiness_aggregation=_RecordingReadiness(
             call_log, error=readiness_error
@@ -261,7 +330,22 @@ def _orchestrator_with_recorders(
         ),
         mission_intelligence=_RecordingMission(call_log, error=mission_error),
     )
-    return orchestrator, call_log, recording_builder
+    return orchestrator, call_log, recording_builder, twin_provider
+
+
+def _build(
+    orchestrator: EducationalOrchestrator,
+    *,
+    student_id: str = "student-42",
+    curriculum_id: int = 1,
+    product_context: ProductContext | None = None,
+) -> EducationalExperience | TwinAbsent:
+    return orchestrator.build_experience(
+        student_id=student_id,
+        curriculum_id=curriculum_id,
+        constraints=_constraints(),
+        product_context=product_context,
+    )
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -271,12 +355,10 @@ def _orchestrator_with_recorders(
 
 class TestSuccessfulOrchestration:
     def test_build_experience_returns_closed_contract(self) -> None:
-        orchestrator, _, _ = _orchestrator_with_recorders()
+        orchestrator, _, _, _ = _orchestrator_with_recorders()
 
-        experience = orchestrator.build_experience(
-            curriculum_id=1,
-            twin=_twin(),
-            constraints=_constraints(),
+        experience = _build(
+            orchestrator,
             product_context=ProductContext(
                 surface_intent="dashboard",
                 cutover_mode="stage_a",
@@ -295,23 +377,67 @@ class TestSuccessfulOrchestration:
         assert experience.metadata.cutover_mode == "stage_a"
 
     def test_default_engines_compose_without_injection(self) -> None:
-        """Real domain owners work when only CurriculumContextBuilder is faked."""
+        """Real domain owners work when CurriculumContextBuilder + Twin are faked."""
         builder = _RecordingBuilder(_curriculum())
+        source = _TwinSource(_twin())
         orchestrator = EducationalOrchestrator(
+            twin_provider=TwinProvider(source=source),
             curriculum_context_builder=builder,
         )
 
-        experience = orchestrator.build_experience(
-            curriculum_id=7,
-            twin=_twin(),
-            constraints=_constraints(),
-        )
+        experience = _build(orchestrator, curriculum_id=7)
 
+        assert isinstance(experience, EducationalExperience)
         assert builder.calls == [7]
         assert experience.todays_recommendation.decision_ref.scope.student_id == (
             "student-42"
         )
         assert experience.todays_mission.tasks  # Decision-authored tasks present
+        assert source.calls[0][0] == "student-42"
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# TwinProvider integration (Capability 3.7.7)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+
+class TestTwinProviderIntegration:
+    def test_caller_does_not_supply_twin(self) -> None:
+        """build_experience accepts identity + request context — not a Twin."""
+        orchestrator, _, _, twin_provider = _orchestrator_with_recorders()
+        experience = _build(orchestrator)
+
+        assert isinstance(experience, EducationalExperience)
+        assert twin_provider.calls[0][0] == "student-42"
+        # Signature must not require a Twin keyword — already enforced by helper.
+
+    def test_twin_absent_path_preserved(self) -> None:
+        absent = TwinAbsent(
+            reason=TwinAbsenceReason.MISSING,
+            student_id="student-42",
+            detail="no Twin snapshot",
+        )
+        orchestrator, call_log, builder, _ = _orchestrator_with_recorders(
+            twin=absent,
+        )
+
+        result = _build(orchestrator)
+
+        assert result is absent
+        assert isinstance(result, TwinAbsent)
+        assert result.reason is TwinAbsenceReason.MISSING
+        # Educational chain must not run when Twin is absent.
+        assert call_log == ["twin"]
+        assert builder.calls == []
+
+    def test_no_twin_parameter_on_build_experience(self) -> None:
+        import inspect
+
+        params = inspect.signature(
+            EducationalOrchestrator.build_experience
+        ).parameters
+        assert "twin" not in params
+        assert "student_id" in params
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -321,15 +447,12 @@ class TestSuccessfulOrchestration:
 
 class TestDependencyOrdering:
     def test_lawful_invocation_order(self) -> None:
-        orchestrator, call_log, builder = _orchestrator_with_recorders()
+        orchestrator, call_log, builder, _ = _orchestrator_with_recorders()
 
-        orchestrator.build_experience(
-            curriculum_id=3,
-            twin=_twin(),
-            constraints=_constraints(),
-        )
+        _build(orchestrator, curriculum_id=3)
 
         assert call_log == [
+            "twin",
             "curriculum",
             "readiness",
             "decision",
@@ -342,26 +465,18 @@ class TestDependencyOrdering:
 class TestCurriculumContextBuilderInvocation:
     def test_builder_receives_curriculum_id(self) -> None:
         builder = _RecordingBuilder(_curriculum())
-        orchestrator, _, _ = _orchestrator_with_recorders(builder=builder)
+        orchestrator, _, _, _ = _orchestrator_with_recorders(builder=builder)
 
-        orchestrator.build_experience(
-            curriculum_id=99,
-            twin=_twin(),
-            constraints=_constraints(),
-        )
+        _build(orchestrator, curriculum_id=99)
 
         assert builder.calls == [99]
 
 
 class TestDomainInvocations:
     def test_readiness_decision_recommendation_mission_invoked(self) -> None:
-        orchestrator, call_log, _ = _orchestrator_with_recorders()
+        orchestrator, call_log, _, _ = _orchestrator_with_recorders()
 
-        orchestrator.build_experience(
-            curriculum_id=1,
-            twin=_twin(),
-            constraints=_constraints(),
-        )
+        _build(orchestrator)
 
         assert "readiness" in call_log
         assert "decision" in call_log
@@ -393,7 +508,9 @@ class TestDependencyInjection:
             _identity(curriculum_id="INJECTED"),
             goals=GoalState.create(target_completion_date=date(2026, 9, 15)),
         )
+        twin_provider = _RecordingTwinProvider(twin, call_log=call_log)
         orchestrator = EducationalOrchestrator(
+            twin_provider=twin_provider,
             curriculum_context_builder=_Builder(),
             readiness_aggregation=_RecordingReadiness(call_log),
             decision_engine=_RecordingDecision(call_log),
@@ -401,13 +518,11 @@ class TestDependencyInjection:
             mission_intelligence=_RecordingMission(call_log),
         )
 
-        experience = orchestrator.build_experience(
-            curriculum_id=1,
-            twin=twin,
-            constraints=_constraints(),
-        )
+        experience = _build(orchestrator)
 
-        assert call_log[0] == "injected_builder"
+        assert isinstance(experience, EducationalExperience)
+        assert call_log[0] == "twin"
+        assert call_log[1] == "injected_builder"
         assert experience.student_summary.curriculum_id == "INJECTED"
         assert experience.readiness_summary.curriculum_format == (
             CurriculumFormat.V1.value
@@ -421,12 +536,9 @@ class TestDependencyInjection:
 
 class TestImmutableOutput:
     def test_experience_is_frozen(self) -> None:
-        orchestrator, _, _ = _orchestrator_with_recorders()
-        experience = orchestrator.build_experience(
-            curriculum_id=1,
-            twin=_twin(),
-            constraints=_constraints(),
-        )
+        orchestrator, _, _, _ = _orchestrator_with_recorders()
+        experience = _build(orchestrator)
+        assert isinstance(experience, EducationalExperience)
 
         with pytest.raises(FrozenInstanceError):
             experience.warnings = ("mutated",)  # type: ignore[misc]
@@ -449,72 +561,53 @@ class TestFailurePropagation:
             _curriculum(),
             error=RuntimeError("missing curriculum"),
         )
-        orchestrator, call_log, _ = _orchestrator_with_recorders(builder=builder)
+        orchestrator, call_log, _, _ = _orchestrator_with_recorders(builder=builder)
 
         with pytest.raises(RuntimeError, match="missing curriculum"):
-            orchestrator.build_experience(
-                curriculum_id=1,
-                twin=_twin(),
-                constraints=_constraints(),
-            )
+            _build(orchestrator)
 
-        assert call_log == ["curriculum"]
+        assert call_log == ["twin", "curriculum"]
 
     def test_readiness_failure_propagates_and_stops_chain(self) -> None:
-        orchestrator, call_log, _ = _orchestrator_with_recorders(
+        orchestrator, call_log, _, _ = _orchestrator_with_recorders(
             readiness_error=RuntimeError("readiness failed"),
         )
 
         with pytest.raises(RuntimeError, match="readiness failed"):
-            orchestrator.build_experience(
-                curriculum_id=1,
-                twin=_twin(),
-                constraints=_constraints(),
-            )
+            _build(orchestrator)
 
-        assert call_log == ["curriculum", "readiness"]
+        assert call_log == ["twin", "curriculum", "readiness"]
 
     def test_decision_failure_propagates(self) -> None:
-        orchestrator, call_log, _ = _orchestrator_with_recorders(
+        orchestrator, call_log, _, _ = _orchestrator_with_recorders(
             decision_error=RuntimeError("decision failed"),
         )
 
         with pytest.raises(RuntimeError, match="decision failed"):
-            orchestrator.build_experience(
-                curriculum_id=1,
-                twin=_twin(),
-                constraints=_constraints(),
-            )
+            _build(orchestrator)
 
-        assert call_log == ["curriculum", "readiness", "decision"]
+        assert call_log == ["twin", "curriculum", "readiness", "decision"]
 
     def test_recommendation_failure_propagates(self) -> None:
-        orchestrator, call_log, _ = _orchestrator_with_recorders(
+        orchestrator, call_log, _, _ = _orchestrator_with_recorders(
             recommendation_error=RuntimeError("recommendation failed"),
         )
 
         with pytest.raises(RuntimeError, match="recommendation failed"):
-            orchestrator.build_experience(
-                curriculum_id=1,
-                twin=_twin(),
-                constraints=_constraints(),
-            )
+            _build(orchestrator)
 
         assert "mission" not in call_log
 
     def test_mission_failure_propagates(self) -> None:
-        orchestrator, call_log, _ = _orchestrator_with_recorders(
+        orchestrator, call_log, _, _ = _orchestrator_with_recorders(
             mission_error=RuntimeError("mission failed"),
         )
 
         with pytest.raises(RuntimeError, match="mission failed"):
-            orchestrator.build_experience(
-                curriculum_id=1,
-                twin=_twin(),
-                constraints=_constraints(),
-            )
+            _build(orchestrator)
 
         assert call_log == [
+            "twin",
             "curriculum",
             "readiness",
             "decision",
@@ -556,6 +649,7 @@ class TestFrameworkIndependence:
         assert "flask.request" not in src
         assert "flask.session" not in src
         assert "sqlalchemy" not in src.lower()
+        assert "TwinRepository" not in src  # Provider is sole retrieval authority
 
 
 class TestNoEducationalLogic:
@@ -567,10 +661,11 @@ class TestNoEducationalLogic:
         assert hits == []
 
     def test_orchestrator_only_invokes_domain_entrypoints(self) -> None:
-        """Structural check: coordination calls derive/evaluate/package/compose."""
+        """Structural check: retrieve / derive / evaluate / package / compose."""
         src = (
             ORCHESTRATION_ROOT / "educational_orchestrator.py"
         ).read_text(encoding="utf-8")
+        assert ".retrieve(" in src
         assert ".derive(" in src
         assert ".evaluate(" in src
         assert ".package(" in src
@@ -581,12 +676,9 @@ class TestNoEducationalLogic:
         assert "authorise_prefix" not in src
 
     def test_cold_start_warnings_are_forwarded_not_coerced(self) -> None:
-        orchestrator, _, _ = _orchestrator_with_recorders()
-        experience = orchestrator.build_experience(
-            curriculum_id=1,
-            twin=_twin(),
-            constraints=_constraints(),
-        )
+        orchestrator, _, _, _ = _orchestrator_with_recorders()
+        experience = _build(orchestrator)
+        assert isinstance(experience, EducationalExperience)
 
         # Goals-only twin is cold-start / not-yet-knowable — honesty survives.
         assert experience.readiness_summary.cold_start is True

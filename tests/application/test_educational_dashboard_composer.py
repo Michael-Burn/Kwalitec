@@ -124,8 +124,8 @@ class TestEducationalDashboardComposerFlags:
 
     def test_flag_on_with_twin_returns_view_model(self) -> None:
         composer = EducationalDashboardComposer(
-            twin_provider=TwinProvider(source=_TwinSource(_twin())),
             orchestrator=EducationalOrchestrator(
+                twin_provider=TwinProvider(source=_TwinSource(_twin())),
                 curriculum_context_builder=_RecordingBuilder(),
             ),
             flags=FLAGS_RECOMMENDATIONS,
@@ -172,8 +172,8 @@ class TestEducationalDashboardComposerFallback:
 
     def test_curriculum_builder_failure_returns_none(self) -> None:
         composer = EducationalDashboardComposer(
-            twin_provider=TwinProvider(source=_TwinSource(_twin())),
             orchestrator=EducationalOrchestrator(
+                twin_provider=TwinProvider(source=_TwinSource(_twin())),
                 curriculum_context_builder=_RecordingBuilder(
                     error=MissingCurriculumError("curriculum not found"),
                 ),
@@ -207,8 +207,8 @@ class TestEducationalDashboardComposerIntegrity:
     def test_invokes_curriculum_builder_via_orchestrator(self) -> None:
         builder = _RecordingBuilder()
         composer = EducationalDashboardComposer(
-            twin_provider=TwinProvider(source=_TwinSource(_twin())),
             orchestrator=EducationalOrchestrator(
+                twin_provider=TwinProvider(source=_TwinSource(_twin())),
                 curriculum_context_builder=builder,
             ),
             flags=FLAGS_ORCHESTRATOR,
