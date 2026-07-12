@@ -8,7 +8,7 @@ legacy dual path when EI is live, and no educational reasoning in the Flask rout
 from __future__ import annotations
 
 import ast
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 from unittest.mock import patch
 
@@ -19,8 +19,10 @@ from app.application.dashboard import (
     NavigationAffordancesViewModel,
     RecommendationCardViewModel,
 )
+from app.application.twin_repository import reset_shared_twin_repository
 from app.domain.twin import DigitalTwin, GoalState, IdentityState
 from app.extensions import db
+from app.services.study_plan_service import StudyPlanService
 
 ROUTES_PATH = (
     Path(__file__).resolve().parents[2] / "app" / "dashboard" / "routes.py"
@@ -246,14 +248,41 @@ class TestDashboardFeatureFlagOn:
 
 class TestInternalAlphaDailyPath:
     def test_alpha_env_renders_ei_card_with_real_composition(
-        self, logged_in_client, study_plan, curriculum, monkeypatch
+        self, logged_in_client, user, monkeypatch
     ) -> None:
-        cur, _ = curriculum
-        study_plan.curriculum_id = cur.id
-        study_plan.active = True
-        db.session.commit()
+        """Internal Alpha daily path: Study Plan → Calibration → EI card.
 
+        After durable Twin persistence, TwinProvider no longer fabricates a
+        cold-start Twin on the read path. The real journey births a Twin via
+        Student Calibration (beginner skip here), then Dashboard retrieves it.
+        """
+        reset_shared_twin_repository()
         monkeypatch.setenv("KWALITEC_EI_INTERNAL_ALPHA", "1")
+
+        plan = StudyPlanService.create_study_plan(
+            user_id=user.id,
+            exam_name="IFoA CS1",
+            exam_sitting="April 2027",
+            exam_date=date.today() + timedelta(days=180),
+            weekday_study_minutes=60,
+            weekend_study_minutes=90,
+            current_stage="I haven't started",
+            study_preference="Mixed",
+            target_grade="Pass",
+            preferred_session_minutes=60,
+            curriculum_version="2026",
+        )
+        assert plan.curriculum_id is not None
+
+        # Real Alpha journey: explicit beginner skip births empty-history Twin.
+        cal = logged_in_client.post(
+            f"/calibration/after-plan/{plan.id}",
+            data={"skip_beginner": "I'm starting from scratch — skip detail"},
+            follow_redirects=False,
+        )
+        assert cal.status_code == 302
+        assert "/dashboard" in cal.headers["Location"]
+
         response = logged_in_client.get("/dashboard/")
         assert response.status_code == 200
         assert b'data-ei-recommendation-card="1"' in response.data
