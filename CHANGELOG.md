@@ -6,6 +6,112 @@ The format follows the principles of Keep a Changelog and Semantic Versioning.
 
 ---
 
+# [0.5.0] - July 2026
+
+## 🎓 Educational Intelligence Platform
+
+This release marks the completion of Epic 2 — Educational Intelligence.
+
+---
+
+## 1. Executive Summary
+
+Epic 2 delivers Kwalitec’s structural Educational Intelligence stack: an immutable Student Digital Twin evolved only through Learning Evidence; write-path Update Strategies for Knowledge, Memory, Behaviour, and Performance; and read-side Readiness Aggregation, Decision Engine, Recommendation packaging, and Mission Intelligence.
+
+Kwalitec now possesses a complete Educational Intelligence pipeline. The domain layer can answer, from evidence-backed Twin state, what the highest-value next action for a student should be — with curriculum-safe ownership, explainability, and deterministic reasoning. Product surfaces still coexist with Stage A legacy services; Twin-first cutover is the work of the next epic.
+
+---
+
+## 2. Major Additions
+
+### Student Digital Twin
+
+- Immutable educational-state aggregate
+- Domain states for Knowledge, Memory, Behaviour, Performance, and related slots
+- Twin Update Pipeline coordinating evidence-driven evolution
+
+### Learning Evidence pipeline
+
+- Append-only Learning Evidence as the sole legitimate input that may change Twin beliefs
+- Evidence → Pipeline → Strategies → new Twin snapshot write path
+
+### Knowledge Update Strategy
+
+- Structural Knowledge evolution from evidence
+
+### Memory Update Strategy
+
+- Structural Memory evolution from evidence
+
+### Behaviour Update Strategy
+
+- Structural Behaviour evolution from evidence (adherence, feasibility — not mastery)
+
+### Performance Update Strategy
+
+- Structural Performance evolution from assessment-shaped evidence
+
+### Readiness Aggregation
+
+- Read-side, factorable preparedness derived from Twin, Goals, and Curriculum weights
+- Does not select next actions or mutate Twin beliefs
+
+### Decision Engine
+
+- Highest-value next-action selection with reason codes and warrant / cold-start honesty
+- Sole selection authority in the Twin-first stack
+
+### Recommendation Engine
+
+- Decision → Recommendation packaging (title, explanation chain, affordances, warrant posture)
+- Does not re-rank or invent a second Decision
+
+### Mission Intelligence
+
+- Decision → Mission operationalisation into attributable session tasks
+- Does not plan WeekPlans, invent filler, or replace Decision selection
+
+---
+
+## 3. Architectural Achievements
+
+- **Educational ownership** — Knowledge ≠ Memory ≠ Behaviour ≠ Performance; Readiness ≠ Decision; Recommendation ≠ Decision; Mission ≠ Decision / Planning
+- **Explainability** — Mandatory chain Curriculum → Evidence → Twin → Readiness → Decision → Recommendation → Mission
+- **Framework-independent domains** — Twin, Evidence, Readiness, Decision, Recommendation, and Mission packages free of Flask / SQLAlchemy / route globals (AST-enforced purity)
+- **Read-side / write-side separation** — Strategies write structure; Readiness / Decision / Recommendation / Mission never write beliefs
+- **Immutable Twin** — Evidence-driven snapshots only; no in-place educational-state mutation from product layers
+- **Curriculum V1/V2 compatibility** — Domain contracts use format-aware context / lineage; Epic 1 traversal invariants preserved
+
+---
+
+## 4. Documentation
+
+- **ADR-002** — Accepted decision to adopt Educational Intelligence as the authoritative educational reasoning architecture
+- **Educational Intelligence Architecture** — Governing specification for Twin, Evidence, Update Strategies, Readiness, Decision, Recommendation, and Mission
+- **Integrity Reviews** — Recommendation Integrity Review and Mission Integrity Review (both APPROVED WITH CONDITIONS)
+- **Epic 2 Completion Review** — Official domain epic sign-off (APPROVED WITH CONDITIONS); subordinate gates closed
+
+---
+
+## 5. Known Limitations
+
+- **Stage A coexistence** — Live product surfaces still consume legacy readiness, recommendation, and planning / ORM mission paths alongside the Twin-first domain stack (named dual authority; no hybrid averages)
+- **Legacy services** — `ReadinessService`, `RecommendationService`, and `PlanningService` remain Stage A product peers, not Twin-first authority
+- **Twin persistence** — No production Twin ORM / persistence bridge yet
+- **Evidence journal** — Decision Journal and accept/dismiss / completion → Evidence recording loops not yet shipped in product
+- **Confidence ownership** — Confidence domain / update path incomplete; Confidence risk framing remains constrained
+- **Product integration deferred** — Orchestration, UI cutover, and Twin-first student experience are out of Epic 2 scope
+
+---
+
+## 6. Next Release
+
+**Epic 3 — Product Integration & Experience**
+
+Wire Educational Intelligence into product surfaces: thin orchestration, Stage B/C cutover from legacy dual authority, Twin persistence, Evidence loops, and explainable student-facing experience.
+
+---
+
 # [0.4.0] - July 2026
 
 ## 🎉 Epic 1 — Curriculum Architecture Foundation

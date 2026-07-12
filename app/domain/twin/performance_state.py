@@ -56,11 +56,13 @@ class PerformanceState:
     Attributes:
         assessment_ids: References to assessment / attempt evidence.
         performance_summaries: Structural performance summary collection.
+        evidence_ids: Learning Evidence references informing this state.
         last_updated: When this performance snapshot was last materialised.
     """
 
     assessment_ids: tuple[str, ...] = ()
     performance_summaries: tuple[PerformanceSummary, ...] = ()
+    evidence_ids: tuple[str, ...] = ()
     last_updated: datetime | None = None
 
     @classmethod
@@ -71,6 +73,7 @@ class PerformanceState:
         performance_summaries: list[PerformanceSummary]
         | tuple[PerformanceSummary, ...]
         | None = None,
+        evidence_ids: list[str] | tuple[str, ...] | None = None,
         last_updated: datetime | None = None,
     ) -> PerformanceState:
         """Construct a PerformanceState.
@@ -78,6 +81,7 @@ class PerformanceState:
         Args:
             assessment_ids: Optional assessment reference collection.
             performance_summaries: Optional performance summary collection.
+            evidence_ids: Optional Learning Evidence references.
             last_updated: Optional materialisation timestamp.
 
         Returns:
@@ -86,5 +90,6 @@ class PerformanceState:
         return cls(
             assessment_ids=tuple(assessment_ids or ()),
             performance_summaries=tuple(performance_summaries or ()),
+            evidence_ids=tuple(evidence_ids or ()),
             last_updated=last_updated,
         )

@@ -200,6 +200,7 @@ class TestBehaviourState:
         assert state.consistency_metrics == {}
         assert state.session_history_ids == ()
         assert state.study_pattern_ids == ()
+        assert state.evidence_ids == ()
 
     def test_create_with_metrics_and_references(self) -> None:
         metrics = {"adherence_ratio": 0.8, "sessions_completed": 12}
@@ -207,10 +208,12 @@ class TestBehaviourState:
             consistency_metrics=metrics,
             session_history_ids=["sess-1", "sess-2"],
             study_pattern_ids=["pat-weekday"],
+            evidence_ids=["ev-b1"],
         )
         assert state.consistency_metrics["adherence_ratio"] == 0.8
         assert state.session_history_ids == ("sess-1", "sess-2")
         assert state.study_pattern_ids == ("pat-weekday",)
+        assert state.evidence_ids == ("ev-b1",)
         # Defensive copy of metrics bag
         metrics["adherence_ratio"] = 0.1
         assert state.consistency_metrics["adherence_ratio"] == 0.8
@@ -228,6 +231,7 @@ class TestPerformanceState:
         state = PerformanceState.create()
         assert state.assessment_ids == ()
         assert state.performance_summaries == ()
+        assert state.evidence_ids == ()
 
     def test_create_with_assessments_and_summaries(self) -> None:
         summary = PerformanceSummary.create(

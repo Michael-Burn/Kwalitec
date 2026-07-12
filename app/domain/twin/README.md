@@ -2,16 +2,58 @@
 
 Pure domain vocabulary for the **Student Digital Twin** in Kwalitec, plus the
 **Twin Update Pipeline** orchestration framework and concrete update strategies
-for **Knowledge** and **Memory** structural evolution.
+for **Knowledge**, **Memory**, **Behaviour**, and **Performance** structural
+evolution.
+
+**Readiness** is a separate read-side package (`app/domain/readiness/`), not a
+Twin write domain and not an Update Strategy. Live readiness is derived on
+read from Twin + CurriculumContext + Goals; it is not a required field on
+`DigitalTwin`.
+
+**Decision Engine** is a separate read-side package (`app/domain/decision/`),
+not a Twin write domain and not an Update Strategy. It selects the next
+learning action from Twin + ReadinessState + CurriculumContext + Goals +
+Constraints; live `Decision` is not a required field on `DigitalTwin`.
+Decision State materialisation is an in-memory audit artefact only in this
+capability (no ORM). Readiness remains preparedness context — Decision never
+asks readiness to choose actions.
+
+**Recommendation Engine** is a separate read-side package
+(`app/domain/recommendation/`), not a Twin write domain, not an Update
+Strategy, and not a second Decision Engine. It packages a `Decision` into an
+attributable `Recommendation` (suggestion surface, reason narration, warrant
+honesty, journal affordances). It never re-selects actions, invents ranking,
+mutates Twin beliefs, recomputes readiness, or generates missions. Live
+`Recommendation` is not a required field on `DigitalTwin`. Callers that need
+a Recommendation must obtain a Decision via `DecisionEngine.evaluate(...)`
+first, then call `RecommendationEngine.package(decision, ...)`.
+
+**Mission Intelligence** is a separate execution / projection package
+(`app/domain/mission/`), not a Twin write domain, not an Update Strategy, not
+a second Decision Engine, and not Recommendation packaging. It operationalises
+`Decision`(s) into session/day domain `Mission` / `MissionTask` structure
+with Decision attribution, warrant honesty, feasibility acknowledgements, and
+Behaviour evidence hooks. It never re-selects actions, invents filler or
+ranking, mutates Twin beliefs, recomputes readiness, owns WeekPlan policy, or
+runs scheduling optimisation. Live domain `Mission` is not a required field
+on `DigitalTwin`. Domain `Mission` / `MissionTask` are distinct from ORM
+`app.models.mission.Mission` / `MissionTask` (Stage A coexistence — named
+dual truth). Callers that need a Decision-first Mission must obtain
+`Decision`(s) via `DecisionEngine.evaluate(...)` (and optionally Recommendation
+language via `RecommendationEngine.package(...)`), then call
+`MissionIntelligence.compose(decision_or_batch, execution_context, ...)`.
+Composition must not call Decision Engine as a hidden re-selection path.
 
 This package is **not** persistence, HTTP, UI, mastery/readiness scoring,
-recommendation logic, or service-layer orchestration. It defines:
+recommendation packaging logic, mission composition, or service-layer
+orchestration. It defines:
 
 1. Immutable *state objects* that represent a learner’s current exam-preparation
    condition.
 2. A registry-backed *update pipeline* that coordinates update strategies.
 3. Concrete *update strategies* that evolve domain states from Learning Evidence
-   (Knowledge and Memory — intentionally simple structural rules only).
+   (Knowledge, Memory, Behaviour, and Performance — intentionally simple
+   structural rules only).
 
 Canonical architecture: [`STUDENT_DIGITAL_TWIN.md`](../../../STUDENT_DIGITAL_TWIN.md).  
 Ubiquitous language: [`UBIQUITOUS_LANGUAGE.md`](../../../UBIQUITOUS_LANGUAGE.md).
@@ -36,6 +78,12 @@ Twin state; they must not become competing learner-state stores.
 | 2.2 | Twin Update Pipeline **orchestration framework** |
 | 2.3 | **Knowledge Update Strategy** (structural Knowledge evolution) |
 | 2.4 | **Memory Update Strategy** (structural Memory evolution) |
+| 2.5 | **Behaviour Update Strategy** (structural Behaviour evolution) |
+| 2.6 | **Performance Update Strategy** (structural Performance evolution) |
+| 2.7 | **Readiness Aggregation** (read-side; see `app/domain/readiness/`) |
+| 2.8 | **Decision Engine** (read-side; see `app/domain/decision/`) |
+| 2.9 | **Recommendation Engine** (read-side packaging; see `app/domain/recommendation/`) |
+| 2.10 | **Mission Intelligence** (execution / projection; see `app/domain/mission/`) |
 
 ## Responsibilities
 
@@ -45,7 +93,7 @@ Twin state; they must not become competing learner-state stores.
 | `goal_state.py` | Pass ambition, completion date, planned weekly hours |
 | `knowledge_state.py` | Structural topic-mastery slots and evidence references |
 | `memory_state.py` | Structural retention slots and revision references |
-| `behaviour_state.py` | Consistency metrics and session / pattern references |
+| `behaviour_state.py` | Consistency metrics and session / pattern / evidence references |
 | `performance_state.py` | Assessment references and performance summaries |
 | `prediction_state.py` | Stored readiness / pass-probability snapshots |
 | `digital_twin.py` | Immutable aggregate composing the domains above |
@@ -55,6 +103,8 @@ Twin state; they must not become competing learner-state stores.
 | `strategies/base_strategy.py` | Abstract update strategy interface |
 | `strategies/knowledge_update_strategy.py` | Structural KnowledgeState evolution from evidence |
 | `strategies/memory_update_strategy.py` | Structural MemoryState evolution from evidence |
+| `strategies/behaviour_update_strategy.py` | Structural BehaviourState evolution from evidence |
+| `strategies/performance_update_strategy.py` | Structural PerformanceState evolution from evidence |
 | `update_pipeline.py` | Registry coordinator that invokes applicable strategies |
 
 This package **must not**:
@@ -146,6 +196,129 @@ Knowledge must not encode forgetting curves. Memory must not become a second
 mastery store. Keep the domains complementary
 ([`STUDENT_DIGITAL_TWIN.md`](../../../STUDENT_DIGITAL_TWIN.md) Knowledge vs Memory).
 
+## Behaviour Update Strategy
+
+`BehaviourUpdateStrategy` is the third concrete `BaseUpdateStrategy`.
+
+### Purpose
+
+Evolve the Twin’s **BehaviourState** when Behaviour-primary Learning Evidence
+arrives. Capability 2.5 keeps educational behaviour intentionally simple so the
+pipeline can evolve Behaviour structure without committing to consistency,
+adherence, burnout, or velocity models.
+
+**Hard educational rule:** Behaviour never grants or revokes mastery by itself.
+Behaviour is not learning; activity is not readiness.
+
+### Behaviour (intentionally simple)
+
+1. **Applicability** — runs when the context contains at least one
+   Behaviour-primary evidence record (see `BEHAVIOUR_EVIDENCE_TYPES`:
+   mission completed/missed, skipped/abandoned session, study session,
+   time on task, study break). Does **not** require `topic_id`.
+2. **Session lineage** — appends a practice-unit / session id to
+   `session_history_ids` (deduped). Identity priority: payload
+   `session_id` / `mission_id` / `practice_unit_id`, else
+   `originating_event_id`, else `evidence_id`.
+3. **Pattern lineage** — appends `study_pattern_ids` only when evidence
+   payload/metadata already supplies them; never invents clusters.
+4. **Evidence references** — appends the evidence id to
+   `BehaviourState.evidence_ids` (deduped).
+5. **Metric bag** — preserves `consistency_metrics` unchanged; never invents
+   scores.
+6. **Timestamp** — sets `BehaviourState.last_updated` to the latest processed
+   evidence timestamp.
+7. **Immutability** — returns a **new** `DigitalTwin`; the original Twin is
+   never mutated.
+
+### What it does *not* do
+
+- Consistency / adherence / streak scoring
+- Burnout, velocity, or preferred-window models
+- Knowledge or Memory belief changes
+- Readiness, recommendations, planning, or mission generation
+- Persistence or nested `BehaviourRecord` scoring
+
+### Ownership vs Knowledge / Memory
+
+| | **Knowledge** | **Memory** | **Behaviour** |
+|---|---|---|---|
+| Question | “What do they know *now*?” | “Will they still know it?” | “How do they actually study?” |
+| Primary evidence | Attempts, quizzes, diagnostics | Revision, flashcards | Missions, skips, sessions, time |
+| Requires `topic_id`? | Yes | Yes | No |
+| Strategy | `KnowledgeUpdateStrategy` | `MemoryUpdateStrategy` | `BehaviourUpdateStrategy` |
+
+Mission completion must not overwrite quiz-driven Knowledge updates. Revision
+evidence remains Memory-primary; Behaviour does not absorb those types.
+
+## Performance Update Strategy
+
+`PerformanceUpdateStrategy` is the fourth concrete `BaseUpdateStrategy`.
+
+### Purpose
+
+Evolve the Twin’s **PerformanceState** when Performance-primary Learning
+Evidence arrives. Capability 2.6 keeps educational behaviour intentionally
+simple so the pipeline can evolve Performance structure without committing to
+accuracy, strength, IRT, or pass-probability models.
+
+**Hard educational rules:**
+
+1. Performance never becomes a second Knowledge mastery store.
+2. High mission adherence never invents strong Performance.
+3. A single mock never becomes the whole readiness or pass-probability story.
+4. Self-reported confidence never overrides dense contrary Performance evidence
+   in educational narrative.
+
+### Behaviour (intentionally simple)
+
+1. **Applicability** — runs when the context contains at least one
+   Performance-primary evidence record (see `PERFORMANCE_EVIDENCE_TYPES`:
+   quiz completed, mock exam, past-paper attempt, diagnostic assessment,
+   post-exam outcome). Does **not** require `topic_id` for all primary types
+   (assessment-instance / post-exam scopes may apply without topic mapping).
+2. **Assessment lineage** — appends an assessment / attempt id to
+   `assessment_ids` (deduped). Identity priority: payload/metadata
+   `assessment_id` / `quiz_id` / `mock_id` / `past_paper_id` /
+   `diagnostic_id`, else `evidence_id`.
+3. **Scoped summaries** — creates or merges a `PerformanceSummary` when a
+   usable `scope_id` is resolved. Scope priority: explicit `scope_id` /
+   assessment-instance keys, else non-empty `topic_id`, else non-empty
+   `originating_event_id`. If no usable scope exists, append assessment /
+   evidence references only — never fabricate a topic summary from free text.
+4. **Fact bag** — overlays only summary facts / condition tags already
+   supplied on evidence; preserves unknown keys; never invents accuracy or
+   strength scores. Formative condition tags are stored as supplied — never
+   upgraded to exam-condition strength.
+5. **Evidence references** — appends the evidence id to
+   `PerformanceState.evidence_ids` (deduped).
+6. **Timestamp** — sets `PerformanceState.last_updated` to the latest
+   processed evidence timestamp.
+7. **Immutability** — returns a **new** `DigitalTwin`; the original Twin is
+   never mutated.
+
+### What it does *not* do
+
+- Accuracy / strength / IRT / partial-credit scoring
+- Pass probability or readiness composites
+- Knowledge mastery or Memory retention belief changes
+- Behaviour adherence absorption into “study quality” Performance
+- Recommendations, planning, or mission generation
+- Persistence
+
+### Ownership vs Knowledge / Memory / Behaviour
+
+| | **Knowledge** | **Memory** | **Behaviour** | **Performance** |
+|---|---|---|---|---|
+| Question | “What do they know *now*?” | “Will they still know it?” | “How do they actually study?” | “How do they perform when assessed?” |
+| Primary evidence | Attempts, quizzes, diagnostics | Revision, flashcards | Missions, skips, sessions, time | Quiz / mock / past paper / diagnostic / post-exam |
+| Requires `topic_id`? | Yes | Yes | No | No (topic optional for supports) |
+| Strategy | `KnowledgeUpdateStrategy` | `MemoryUpdateStrategy` | `BehaviourUpdateStrategy` | `PerformanceUpdateStrategy` |
+
+Mission completion alone must not invent Performance. Question attempts remain
+Knowledge-primary (Choice A: Performance ignores them). Revision remains
+Memory-primary. Post-exam is Performance-primary.
+
 ### Relationship to the Twin Update Pipeline
 
 ```
@@ -158,19 +331,21 @@ UpdateContext
 TwinUpdatePipeline
       │  register(KnowledgeUpdateStrategy())
       │  register(MemoryUpdateStrategy())
+      │  register(BehaviourUpdateStrategy())
+      │  register(PerformanceUpdateStrategy())
       │  supports(context)? → apply(context) → new Twin
       ▼
 UpdateResult (original_twin, updated_twin, applied_strategies, …)
 ```
 
-The pipeline remains an orchestration shell. Strategies own domain-specific
-evolution. Register both strategies (constructor list or
-`pipeline.register(...)`) — the pipeline class itself does not hard-code them.
+Recommended registration order (structural phase): Knowledge → Memory →
+Behaviour → Performance. The pipeline remains an orchestration shell and does
+not hard-code these strategies.
 
-The same Learning Evidence batch may drive **both** strategies when mixed
-types are present (e.g. a quiz attempt updates Knowledge; a revision session
-updates Memory). They must not share mutable state: each returns a new Twin
-snapshot; the pipeline chains them via `context.with_twin(...)`.
+The same Learning Evidence batch may drive multiple strategies when mixed
+types are present (e.g. a quiz updates Knowledge and Performance; a mission
+completed updates Behaviour). They must not share mutable state: each returns
+a new Twin snapshot; the pipeline chains them via `context.with_twin(...)`.
 
 ### Relationship to the future Memory Engine
 
@@ -180,7 +355,7 @@ later:
 - **Read** `MemoryState` retention structure and `last_reinforced` clocks
 - **Compute** retention beliefs, due dates, and decay using educational
   algorithms (forgetting curves, FSRS, etc.)
-- **Emit** revision / flashcard Learning Evidence that this strategy already
+- **Emit** revision / flashcard Learning Evidence that Memory strategy already
   knows how to apply structurally
 
 Capability 2.4 only establishes the *structural write path*. Educational
@@ -233,7 +408,7 @@ that history.
 Learning Event
       → Evidence Candidate → Learning Evidence (canonical, append-only)
             → Twin Update Pipeline (this package)
-                  → KnowledgeUpdateStrategy / MemoryUpdateStrategy
+                  → Knowledge / Memory / Behaviour / Performance Update Strategies
                         → DigitalTwin domain states (new snapshot)
 ```
 
@@ -252,25 +427,57 @@ in-place update methods. Evolution happens only by constructing a new Twin
 through the Update Pipeline (or by explicit `DigitalTwin.create` composition
 in tests / bootstrap).
 
+## Readiness Aggregation (read-side)
+
+Capability 2.7 lives in [`app/domain/readiness/`](../readiness/), **outside**
+this Twin write package.
+
+| Concern | Owner |
+|---|---|
+| Producing `ReadinessState` | `ReadinessAggregation.derive(twin, curriculum, …)` |
+| Twin belief domains used as inputs | Knowledge / Memory / Behaviour / Performance strategies |
+| Syllabus denominator / weights | `CurriculumContext` built **outside** aggregation (via CurriculumService helpers in future orchestration) |
+| Optional historical copy | Prediction snapshot path (deferred) |
+
+Binding rules:
+
+1. Aggregation **reads** Twin domains; it never mutates them.
+2. Aggregation never writes Learning Evidence.
+3. Aggregation never selects next actions or generates missions.
+4. Cold start / empty domains yield **not yet knowable** overall posture — never Mid/High fabrication.
+5. Confidence self-report is **omitted** from readiness v1 inputs.
+6. Future services that need Curriculum weights must build `CurriculumContext` outside the domain aggregator so aggregation stays framework-free.
+
+```
+DigitalTwin snapshot + CurriculumContext + Goals
+        ↓
+ReadinessAggregation.derive(...)
+        ↓
+ReadinessState (factors + Evidence Warrant)
+```
+
+Do **not** register Readiness as a `BaseUpdateStrategy`. Do **not** add a
+required `readiness` field on `DigitalTwin` in this capability.
+
 ## Future Update Strategies
 
 Registered later; **not** implemented in this capability:
 
 | Strategy | Intended concern |
 |---|---|
-| `BehaviourUpdateStrategy` | Consistency, skips, session patterns |
-| `PerformanceUpdateStrategy` | Assessment and mock outcomes |
 | `PredictionSnapshotStrategy` | Store readiness / pass-probability snapshots |
 
 Each inherits `BaseUpdateStrategy`, implements `supports` / `apply`, and is
 registered with `TwinUpdatePipeline` without modifying the pipeline class.
+Readiness Aggregation remains a read-side consumer — not a write strategy.
 
 ## Relationship to the future Insight Engine
 
 The Insight Engine (and related Prediction / Recommendation consumers) will
 **read** Twin state to produce explainable insights, forecasts, and next
 actions. Insights must cite Twin factors and evidence lineage; they must not
-silently mutate Knowledge or Memory or bypass Twin inputs.
+silently mutate Knowledge, Memory, Behaviour, or Performance or bypass Twin
+inputs.
 
 The Update Pipeline **writes** new Twin snapshots from evidence. The Insight
 Engine **reads** those snapshots. They must not be conflated.
@@ -297,13 +504,31 @@ Engine **reads** those snapshots. They must not be conflated.
 6. **Expand `MEMORY_EVIDENCE_TYPES`** carefully when new revision-like
    evidence types are added — do not absorb Knowledge attempt types into
    Memory.
-7. **Planning / Readiness / Motivation domains** — introduce as additional
+7. **Richer Behaviour algorithms** — extend `BehaviourUpdateStrategy` (or
+   introduce a successor) when consistency / adherence models are ready; fill
+   `consistency_metrics` via approved extension; never invent pattern clusters
+   without evidence lineage. Prefer emitting Learning Evidence that this
+   strategy (or an extended version) applies structurally.
+8. **Expand `BEHAVIOUR_EVIDENCE_TYPES`** carefully for documented secondary
+   weak updates — do not absorb Knowledge attempt or Memory revision primary
+   types into Behaviour.
+9. **Planning / Readiness / Motivation domains** — introduce as additional
    immutable state modules when a later capability requires them.
-8. **Do not** introduce Flask, ORM, HTTP, or service types into this package.
-9. **Do not** mutate Twin aggregates in place — always return a new frozen
-   snapshot from `apply`.
-10. **Do not** let Memory and Knowledge share mutable bags or diverge into
-    competing mastery stores.
+10. **Do not** introduce Flask, ORM, HTTP, or service types into this package.
+11. **Do not** mutate Twin aggregates in place — always return a new frozen
+    snapshot from `apply`.
+12. **Do not** let Memory, Knowledge, Behaviour, and Performance share mutable
+    bags or diverge into competing mastery / assessment stores.
+13. **Richer Performance algorithms** — extend `PerformanceUpdateStrategy` (or
+    introduce a successor) when accuracy / strength / condition-delta models
+    are ready; fill summary bags via approved extension; never invent High
+    Performance from Goals, Behaviour, or empty cold start. Prefer emitting
+    Learning Evidence that this strategy (or an extended version) applies
+    structurally.
+14. **Expand `PERFORMANCE_EVIDENCE_TYPES`** carefully for documented secondary
+    weak updates — do not absorb Behaviour mission or Memory revision primary
+    types into Performance; question attempts remain Knowledge-primary unless
+    secondary weak lineage is explicitly approved.
 
 ## Package layout
 
@@ -327,5 +552,7 @@ app/domain/twin/
     base_strategy.py
     knowledge_update_strategy.py
     memory_update_strategy.py
+    behaviour_update_strategy.py
+    performance_update_strategy.py
   README.md
 ```

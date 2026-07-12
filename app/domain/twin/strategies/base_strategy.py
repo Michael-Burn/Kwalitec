@@ -4,6 +4,10 @@ Specialised strategies (KnowledgeUpdateStrategy, MemoryUpdateStrategy,
 BehaviourUpdateStrategy, PerformanceUpdateStrategy, PredictionSnapshotStrategy,
 …) inherit from this base. This module defines the contract only — no
 educational update algorithms live here.
+
+Readiness Aggregation (``app.domain.readiness``) is **not** an Update Strategy:
+it is a read-side derive over Twin + Curriculum + Goals and must never be
+registered on the Twin Update Pipeline as a belief writer.
 """
 
 from __future__ import annotations

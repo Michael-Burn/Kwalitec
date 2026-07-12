@@ -16,11 +16,15 @@ from app.domain.twin.memory_state import MemoryState, RetentionRecord
 from app.domain.twin.performance_state import PerformanceState, PerformanceSummary
 from app.domain.twin.prediction_state import PredictionState
 from app.domain.twin.strategies import (
+    BEHAVIOUR_EVIDENCE_TYPES,
     KNOWLEDGE_EVIDENCE_TYPES,
     MEMORY_EVIDENCE_TYPES,
+    PERFORMANCE_EVIDENCE_TYPES,
     BaseUpdateStrategy,
+    BehaviourUpdateStrategy,
     KnowledgeUpdateStrategy,
     MemoryUpdateStrategy,
+    PerformanceUpdateStrategy,
 )
 from app.domain.twin.update_context import UpdateContext
 from app.domain.twin.update_pipeline import TwinUpdatePipeline
@@ -28,8 +32,10 @@ from app.domain.twin.update_result import UpdateResult
 from app.domain.twin.update_strategy import UpdateStrategy
 
 __all__ = [
+    "BEHAVIOUR_EVIDENCE_TYPES",
     "BaseUpdateStrategy",
     "BehaviourState",
+    "BehaviourUpdateStrategy",
     "DigitalTwin",
     "GoalState",
     "IdentityState",
@@ -39,8 +45,10 @@ __all__ = [
     "MEMORY_EVIDENCE_TYPES",
     "MemoryState",
     "MemoryUpdateStrategy",
+    "PERFORMANCE_EVIDENCE_TYPES",
     "PerformanceState",
     "PerformanceSummary",
+    "PerformanceUpdateStrategy",
     "PredictionState",
     "RetentionRecord",
     "TopicMasteryRecord",
