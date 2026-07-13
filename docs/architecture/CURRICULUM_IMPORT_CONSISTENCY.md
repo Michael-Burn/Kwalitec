@@ -58,11 +58,17 @@ Rules:
 
 | Consumer | Expectation |
 |---|---|
-| Study Plan wizard | Paper appears via examination catalogue (`IFoA` + paper code) |
+| Study Plan wizard | Paper appears via examination catalogue; curriculum version is **discovered** from on-disk JSON (`list_supported_versions`), not a hardcoded paper map |
 | Roadmap UI | Show section weight on section headers; omit blank topic weights |
 | Planning / missions | Traverse topics via `CurriculumService.get_all_topics_ordered` |
 | CurriculumContextBuilder | Detects V2 when sections exist; uses section weights |
 | Time Engine / Orchestrator | Receive curriculum context through existing builders |
+
+Wizard version resolution lives in `_discover_curriculum_version` /
+`_resolve_curriculum_version` (`app/study_plan/routes.py`). Any paper with a
+valid V2 JSON under `app/curriculum/data/{org}/{paper}/` is automatically
+eligible for topic checklists, curriculum-backed study plans, and topic-named
+missions.
 
 ## Adding a paper checklist
 

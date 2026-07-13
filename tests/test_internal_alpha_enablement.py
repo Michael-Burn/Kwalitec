@@ -210,21 +210,39 @@ class TestMissionWording:
             current_stage="Chapter",
             study_preference="Mixed",
             topic=_T(),
+            topic_code="4.2",
         )
-        assert tasks[0]["title"] == "Study Generalised Linear Models"
+        assert tasks[0]["title"] == "Study 4.2 Generalised Linear Models"
         assert "Study and practice Understand" not in tasks[0]["description"]
-        assert "Core Reading" in tasks[0]["description"]
+        assert "4.2 Generalised Linear Models" in tasks[0]["description"]
+        assert tasks[0]["description"].startswith("Focus on 4.2")
+        # Core Reading may appear as method language, but not as the lead subject.
+        assert not tasks[0]["description"].startswith(
+            "Read the Core Reading for today's section"
+        )
 
     def test_mission_title_reads_naturally(self):
         class _T:
             name = "Understand and use generalised linear models"
 
         title = PlanningService._generate_mission_title(
-            DayType.WEEKDAY, date(2026, 7, 13), topic=_T()
+            DayType.WEEKDAY, date(2026, 7, 13), topic=_T(), topic_code="4.2"
         )
-        assert title.startswith("Study Generalised Linear Models")
+        assert title.startswith("Study 4.2 Generalised Linear Models")
         assert "Understand and use" not in title
 
+    def test_generic_core_reading_only_without_topic(self):
+        """Bare Core Reading lead copy is reserved for non-curriculum plans."""
+        tasks = PlanningService._generate_weekday_tasks(
+            study_minutes=60,
+            current_stage="Learning",
+            study_preference="Mixed",
+            topic=None,
+        )
+        assert tasks[0]["title"] == "Study Learning"
+        assert tasks[0]["description"].startswith(
+            "Read the Core Reading for today's section"
+        )
 
 class TestCreateTestUserCommand:
     def test_creates_additional_user(self, runner, user, ctx):
@@ -277,8 +295,10 @@ class TestCb2Curriculum:
     def test_cb2_imports_and_supports_study_plan(self, db, user):
         CurriculumService.import_curricula()
         from app.models.curriculum import Curriculum
-        from app.models.study_plan import StudyPlan
         from app.services.examination_catalogue import parse_exam_name
+        from app.services.planning_service import PlanningService
+        from app.services.study_plan_service import StudyPlanService
+        from app.models.study_plan import WeekPlan
 
         curriculum = Curriculum.query.filter_by(exam_name="IFoA CB2").first()
         assert curriculum is not None
@@ -291,7 +311,7 @@ class TestCb2Curriculum:
         assert org == "IFoA"
         assert paper == "CB2"
 
-        plan = StudyPlan(
+        plan = StudyPlanService.create_study_plan(
             user_id=user.id,
             exam_name="IFoA CB2",
             exam_sitting="Apr 2027",
@@ -302,15 +322,28 @@ class TestCb2Curriculum:
             current_stage="Learning",
             study_preference="Reading First",
             preferred_session_minutes=60,
-            active=True,
-            curriculum_id=curriculum.id,
             curriculum_version="2026",
+            curriculum_topic_code="1.1",
         )
-        db.session.add(plan)
+        assert plan.curriculum_id == curriculum.id
+
+        wp = WeekPlan(
+            study_plan_id=plan.id,
+            week_number=1,
+            start_date=date.today() - timedelta(days=2),
+            end_date=date.today() + timedelta(days=4),
+        )
+        db.session.add(wp)
         db.session.commit()
 
         next_topic = CurriculumService.get_next_incomplete_topic(user.id, curriculum)
         assert next_topic is not None
+        assert "economics and business" in next_topic.name.lower()
+
+        mission = PlanningService.generate_today_mission(user.id)
+        assert mission is not None
+        assert "economics and business" in mission.title.lower()
+        assert mission.title.lower() != "study learning"
 
 
 class TestCm1Curriculum:
@@ -329,8 +362,10 @@ class TestCm1Curriculum:
     def test_cm1_imports_and_supports_study_plan(self, db, user):
         CurriculumService.import_curricula()
         from app.models.curriculum import Curriculum
-        from app.models.study_plan import StudyPlan
         from app.services.examination_catalogue import parse_exam_name
+        from app.services.planning_service import PlanningService
+        from app.services.study_plan_service import StudyPlanService
+        from app.models.study_plan import WeekPlan
 
         curriculum = Curriculum.query.filter_by(exam_name="IFoA CM1").first()
         assert curriculum is not None
@@ -343,7 +378,7 @@ class TestCm1Curriculum:
         assert org == "IFoA"
         assert paper == "CM1"
 
-        plan = StudyPlan(
+        plan = StudyPlanService.create_study_plan(
             user_id=user.id,
             exam_name="IFoA CM1",
             exam_sitting="Apr 2027",
@@ -354,12 +389,25 @@ class TestCm1Curriculum:
             current_stage="Learning",
             study_preference="Reading First",
             preferred_session_minutes=60,
-            active=True,
-            curriculum_id=curriculum.id,
             curriculum_version="2026",
+            curriculum_topic_code="1.1",
         )
-        db.session.add(plan)
+        assert plan.curriculum_id == curriculum.id
+
+        wp = WeekPlan(
+            study_plan_id=plan.id,
+            week_number=1,
+            start_date=date.today() - timedelta(days=2),
+            end_date=date.today() + timedelta(days=4),
+        )
+        db.session.add(wp)
         db.session.commit()
 
         next_topic = CurriculumService.get_next_incomplete_topic(user.id, curriculum)
         assert next_topic is not None
+        assert "interest rates" in next_topic.name.lower()
+
+        mission = PlanningService.generate_today_mission(user.id)
+        assert mission is not None
+        assert "interest rates" in mission.title.lower()
+        assert mission.title.lower() != "study learning"

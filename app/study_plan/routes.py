@@ -83,38 +83,67 @@ def _parse_current_stage(current_stage: str) -> tuple[str, str]:
     return "learning", current_stage
 
 
-# ── Supported examinations with curriculum mapping ───────────────────────
-# Maps (category_code, paper_code) → curriculum_version.
-_CURRICULUM_VERSION_MAP: dict[tuple[str, str], str] = {
-    ("IFoA", "CS1"): "2026",
-    ("IFoA", "CM1"): "2026",
-}
+# ── Curriculum version discovery ──────────────────────────────────────────
+# Versions are discovered from on-disk syllabus JSON via the Curriculum Engine.
+# Adding a new paper requires only a V2 JSON file under app/curriculum/data/ —
+# no per-paper entries here.
 
 
-def _resolve_curriculum_version(category_code: str, paper_code: str) -> str | None | bool:
+def _discover_curriculum_version(
+    category_code: str, paper_code: str
+) -> str | None:
+    """Return the latest on-disk curriculum version for an examination.
+
+    Discovers versions through ``CurriculumEngineService.list_supported_versions``
+    so CS1, CB2, CM1, and future papers stay curriculum-driven without a
+    hardcoded paper map.
+
+    Args:
+        category_code: Examining body code (e.g. ``"IFoA"``).
+        paper_code: Paper code (e.g. ``"CB2"``).
+
+    Returns:
+        Latest available version string (e.g. ``"2026"``), or ``None`` when
+        no syllabus JSON exists for the pair.
+    """
+    if not category_code or not paper_code:
+        return None
+
+    engine = CurriculumEngineService()
+    versions = engine.list_supported_versions(category_code, paper_code)
+    if not versions:
+        return None
+
+    # Year strings sort lexicographically in chronological order.
+    return max(versions)
+
+
+def _resolve_curriculum_version(
+    category_code: str, paper_code: str
+) -> str | None | bool:
     """Determine the curriculum version for a given examination.
 
     Returns:
         * ``str`` — curriculum version to use (e.g. ``"2026"``).
         * ``None`` — no curriculum is associated with this exam; proceed normally.
-        * ``False`` — a curriculum was expected but could not be verified on disk.
+        * ``False`` — a curriculum was discovered but could not be verified on disk.
     """
-    version = _CURRICULUM_VERSION_MAP.get((category_code, paper_code))
+    version = _discover_curriculum_version(category_code, paper_code)
     if version is None:
-        return None  # No curriculum mapping — continue with existing behaviour.
+        return None  # No on-disk syllabus — continue without curriculum binding.
 
     engine = CurriculumEngineService()
-    # The engine's exists() normalises casing internally.
-    if engine.curriculum_exists("IFoA", paper_code, version):
+    # exists() normalises casing internally.
+    if engine.curriculum_exists(category_code, paper_code, version):
         logger.debug(
             "Curriculum %s/%s/%s found — associating with study plan.",
-            "IFoA", paper_code, version,
+            category_code, paper_code, version,
         )
         return version
 
     logger.warning(
-        "Expected curriculum %s/%s/%s was not found on disk.",
-        "IFoA", paper_code, version,
+        "Discovered curriculum %s/%s/%s was not verifiable on disk.",
+        category_code, paper_code, version,
     )
     flash(
         f"A curriculum for {category_code} {paper_code} (version {version}) "
@@ -390,26 +419,29 @@ def _handle_step_4():
     if "current_topic" in wizard_data:
         form.current_topic.data = wizard_data["current_topic"]
 
-    # Detect curriculum support for the selected examination
+    # Detect curriculum support from on-disk syllabi (not a hardcoded paper map)
     category_code = wizard_data.get("exam_category", "")
     paper_code = wizard_data.get("exam_paper", "")
-    curriculum_version = _CURRICULUM_VERSION_MAP.get((category_code, paper_code))
+    curriculum_version = _discover_curriculum_version(category_code, paper_code)
 
     extra: dict = {
         "completed_curriculum_topics": wizard_data.get("completed_curriculum_topics", []),
     }
     if curriculum_version is not None:
         engine = CurriculumEngineService()
-        if engine.curriculum_exists("IFoA", paper_code, curriculum_version):
+        if engine.curriculum_exists(category_code, paper_code, curriculum_version):
             try:
-                curriculum = engine.load_auto("IFoA", paper_code, curriculum_version)
+                curriculum = engine.load_auto(
+                    category_code, paper_code, curriculum_version
+                )
                 extra["curriculum_topics"] = CurriculumEngineService.get_topics_flat(
                     curriculum
                 )
                 extra["curriculum_version"] = curriculum_version
             except Exception:
                 logger.exception(
-                    "Failed to load curriculum topics for IFoA/%s/%s",
+                    "Failed to load curriculum topics for %s/%s/%s",
+                    category_code,
                     paper_code,
                     curriculum_version,
                 )
@@ -433,11 +465,11 @@ def _handle_step_4_post():
             form.current_topic.data.strip() if form.current_topic.data else ""
         )
 
-        # Detect curriculum support for the selected examination
+        # Detect curriculum support from on-disk syllabi (not a hardcoded paper map)
         wizard_data = session.get("wizard_data", {})
         category_code = wizard_data.get("exam_category", "")
         paper_code = wizard_data.get("exam_paper", "")
-        curriculum_version = _CURRICULUM_VERSION_MAP.get((category_code, paper_code))
+        curriculum_version = _discover_curriculum_version(category_code, paper_code)
 
         if curriculum_version is not None:
             # Curriculum-backed: read completed topics as a checklist.
@@ -451,16 +483,22 @@ def _handle_step_4_post():
             completed_set = set(completed)
             try:
                 engine = CurriculumEngineService()
-                if engine.curriculum_exists("IFoA", paper_code, curriculum_version):
-                    curriculum = engine.load_auto("IFoA", paper_code, curriculum_version)
+                if engine.curriculum_exists(
+                    category_code, paper_code, curriculum_version
+                ):
+                    curriculum = engine.load_auto(
+                        category_code, paper_code, curriculum_version
+                    )
                     for topic in CurriculumEngineService.get_topics_flat(curriculum):
                         if topic.code not in completed_set:
-                            session["wizard_data"]["curriculum_current_topic"] = topic.code
+                            session["wizard_data"]["curriculum_current_topic"] = (
+                                topic.code
+                            )
                             break
             except Exception:
                 logger.exception(
                     "Failed to derive current topic from curriculum %s/%s/%s",
-                    "IFoA", paper_code, curriculum_version,
+                    category_code, paper_code, curriculum_version,
                 )
         else:
             # Unsupported examination — clear any curriculum-topic data.

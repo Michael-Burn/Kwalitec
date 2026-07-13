@@ -184,15 +184,29 @@ class RecommendationService:
         if coverage["total_leaf_topics"] == 0:
             return recs
 
+        next_topic_name = RecommendationService._next_incomplete_topic_label(user_id)
+
         if coverage["coverage_percentage"] < 30 and coverage["topics_not_started"] > 0:
-            recs.append({
-                "title": f"Explore new topics — {coverage['topics_not_started']} remaining",
-                "category": CATEGORY_NEW_TOPIC,
-                "priority": PRIORITY_HIGH,
-                "reason": (
+            if next_topic_name:
+                title = f"Study {next_topic_name}"
+                reason = (
+                    f"Your next syllabus topic is {next_topic_name}. "
+                    f"You have only covered {coverage['coverage_percentage']:.0f}% "
+                    "of the curriculum."
+                )
+            else:
+                title = (
+                    f"Explore new topics — {coverage['topics_not_started']} remaining"
+                )
+                reason = (
                     f"You have only covered {coverage['coverage_percentage']:.0f}% "
                     "of the curriculum. Broadening coverage is essential."
-                ),
+                )
+            recs.append({
+                "title": title,
+                "category": CATEGORY_NEW_TOPIC,
+                "priority": PRIORITY_HIGH,
+                "reason": reason,
                 "expected_benefit": (
                     "Increase curriculum coverage which directly raises readiness."
                 ),
@@ -200,32 +214,79 @@ class RecommendationService:
             })
 
         if 30 <= coverage["coverage_percentage"] < 70:
+            if next_topic_name:
+                title = f"Continue with {next_topic_name}"
+                reason = (
+                    f"Your curriculum coverage is at "
+                    f"{coverage['coverage_percentage']:.0f}%. "
+                    f"Next up: {next_topic_name}."
+                )
+            else:
+                title = "Continue progressing through the curriculum"
+                reason = (
+                    f"Your curriculum coverage is at "
+                    f"{coverage['coverage_percentage']:.0f}%. "
+                    "Steady progression ensures comprehensive exam preparation."
+                )
             recs.append({
-                "title": "Continue progressing through the curriculum",
+                "title": title,
                 "category": CATEGORY_NEW_TOPIC,
                 "priority": PRIORITY_MEDIUM,
-                "reason": (
-                    f"Your curriculum coverage is at {coverage['coverage_percentage']:.0f}%. "
-                    "Steady progression ensures comprehensive exam preparation."
+                "reason": reason,
+                "expected_benefit": (
+                    "Sustained curriculum progression builds broad knowledge."
                 ),
-                "expected_benefit": "Sustained curriculum progression builds broad knowledge.",
                 "generated_at": datetime.utcnow().isoformat(),
             })
 
         if coverage["coverage_percentage"] >= 70 and coverage["topics_not_started"] > 0:
+            if next_topic_name:
+                title = f"Complete {next_topic_name}"
+                reason = (
+                    f"You have excellent coverage at "
+                    f"{coverage['coverage_percentage']:.0f}%. "
+                    f"Remaining work includes {next_topic_name}."
+                )
+            else:
+                title = (
+                    f"Complete remaining {coverage['topics_not_started']} topics"
+                )
+                reason = (
+                    f"You have excellent coverage at "
+                    f"{coverage['coverage_percentage']:.0f}%. "
+                    "Complete the full syllabus for no blind spots."
+                )
             recs.append({
-                "title": f"Complete remaining {coverage['topics_not_started']} topics",
+                "title": title,
                 "category": CATEGORY_NEW_TOPIC,
                 "priority": PRIORITY_LOW,
-                "reason": (
-                    f"You have excellent coverage at {coverage['coverage_percentage']:.0f}%. "
-                    "Complete the full syllabus for no blind spots."
+                "reason": reason,
+                "expected_benefit": (
+                    "Reach 100% curriculum coverage for complete exam confidence."
                 ),
-                "expected_benefit": "Reach 100% curriculum coverage for complete exam confidence.",
                 "generated_at": datetime.utcnow().isoformat(),
             })
 
         return recs
+
+    @staticmethod
+    def _next_incomplete_topic_label(user_id: int) -> str | None:
+        """Return a display label for the user's next incomplete syllabus topic."""
+        from app.services.curriculum_service import CurriculumService
+        from app.services.planning_service import PlanningService
+        from app.services.study_plan_service import StudyPlanService
+
+        plan = StudyPlanService.get_user_active_plan(user_id)
+        if plan is None or not plan.curriculum_id:
+            return None
+        curriculum = CurriculumService.get_curriculum_by_id(plan.curriculum_id)
+        if curriculum is None:
+            return None
+        topic = CurriculumService.get_next_incomplete_topic(user_id, curriculum)
+        if topic is None:
+            return None
+        topic_code = PlanningService._resolve_official_topic_code(plan, topic)
+        return PlanningService._topic_study_label(topic, topic_code=topic_code)
 
     @staticmethod
     def _mock_exam_recommendations(user_id: int) -> list[dict]:

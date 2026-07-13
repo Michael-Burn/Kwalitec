@@ -62,12 +62,19 @@ class PlanningService:
     """
 
     @staticmethod
-    def _topic_study_label(topic: Topic | None, fallback: str = "today's topic") -> str:
+    def _topic_study_label(
+        topic: Topic | None,
+        fallback: str = "today's topic",
+        *,
+        topic_code: str | None = None,
+    ) -> str:
         """Return a natural study label from an official syllabus topic title.
 
         Official titles are often imperative learning objectives. Mission copy
-        should read like a premium learning platform, e.g. ``Generalised Linear
-        Models`` rather than ``Understand and use generalised linear models``.
+        should read like a premium learning platform, e.g. ``4.2 Generalised
+        Linear Models`` rather than ``Understand and use generalised linear
+        models``. When ``topic_code`` is supplied it is prefixed so titles stay
+        syllabus-anchored across every curriculum.
         """
         raw = (topic.name if topic and topic.name else fallback).strip()
         lowered = raw.lower()
@@ -84,7 +91,59 @@ class PlanningService:
                 words.append(word)
             else:
                 words.append(word[:1].upper() + word[1:] if word else word)
-        return " ".join(words)
+        label = " ".join(words)
+        code = (topic_code or "").strip()
+        if code:
+            return f"{code} {label}"
+        return label
+
+    @staticmethod
+    def _resolve_official_topic_code(
+        study_plan: StudyPlan,
+        topic: Topic | None,
+    ) -> str | None:
+        """Resolve the official syllabus topic code for a DB topic.
+
+        Matches the persisted topic title against the engine curriculum for the
+        study plan's organisation / paper / version. Curriculum-driven — no
+        subject-specific branches.
+        """
+        if topic is None or not topic.name:
+            return None
+        version = study_plan.curriculum_version
+        if not version:
+            return None
+
+        from app.services.curriculum_engine_service import CurriculumEngineService
+        from app.services.examination_catalogue import parse_exam_name
+
+        organisation, paper = parse_exam_name(study_plan.exam_name)
+        if not organisation or not paper:
+            # Catalogue casing may differ from on-disk discovery labels
+            # (e.g. "IFOA" vs "IFoA") — fall back to a simple split.
+            parts = (study_plan.exam_name or "").split(" ", 1)
+            if len(parts) != 2:
+                return None
+            organisation, paper = parts
+
+        engine = CurriculumEngineService()
+        if not engine.curriculum_exists(organisation, paper, version):
+            return None
+        try:
+            engine_curriculum = engine.load_auto(organisation, paper, version)
+        except Exception:
+            logger.exception(
+                "Failed to load curriculum %s/%s/%s for topic code resolution",
+                organisation, paper, version,
+            )
+            return None
+
+        for engine_topic in CurriculumEngineService.get_topics_flat(engine_curriculum):
+            if engine_topic.title == topic.name:
+                code = getattr(engine_topic, "code", None)
+                if code and str(code).strip():
+                    return str(code).strip()
+        return None
     @staticmethod
     def generate_today_mission(user_id: int, today: date | None = None) -> Mission | None:
         """Generate today's mission if it doesn't already exist.
@@ -177,12 +236,16 @@ class PlanningService:
             active_plan=active_plan,
             target_date=target_date,
         )
+        topic_code = PlanningService._resolve_official_topic_code(
+            active_plan, next_topic
+        )
 
         # Generate mission title and tasks based on day type and topic
         mission_title = PlanningService._generate_mission_title(
             day_type=day_type,
             target_date=target_date,
             topic=next_topic,
+            topic_code=topic_code,
         )
         tasks_data = PlanningService._generate_mission_tasks(
             day_type=day_type,
@@ -190,6 +253,7 @@ class PlanningService:
             current_stage=active_plan.current_stage,
             study_preference=active_plan.study_preference,
             topic=next_topic,
+            topic_code=topic_code,
         )
 
         # Use a default subject for all automatically generated missions
@@ -225,6 +289,8 @@ class PlanningService:
         day_type: DayType,
         target_date: date,
         topic: Topic | None = None,
+        *,
+        topic_code: str | None = None,
     ) -> str:
         """Generate a descriptive mission title based on day type and topic.
         
@@ -232,13 +298,18 @@ class PlanningService:
             day_type: The type of day (WEEKDAY or WEEKEND).
             target_date: The date of the mission.
             topic: Optional topic to include in the title.
+            topic_code: Optional official syllabus code (e.g. ``"4.2"``).
         
         Returns:
             str: A descriptive mission title.
         """
         day_name = target_date.strftime("%A")
         date_str = target_date.strftime("%b %d")
-        topic_label = PlanningService._topic_study_label(topic) if topic else None
+        topic_label = (
+            PlanningService._topic_study_label(topic, topic_code=topic_code)
+            if topic
+            else None
+        )
 
         if topic_label:
             if day_type == DayType.WEEKDAY:
@@ -255,6 +326,8 @@ class PlanningService:
         current_stage: str,
         study_preference: str,
         topic: Topic | None = None,
+        *,
+        topic_code: str | None = None,
     ) -> list[dict]:
         """Generate mission tasks based on day type and study time.
         
@@ -268,6 +341,7 @@ class PlanningService:
             current_stage: Current study stage (e.g., "Chapter 3").
             study_preference: Study preference (Reading First, Questions First, Mixed).
             topic: Optional curriculum topic to use in task descriptions.
+            topic_code: Optional official syllabus code for the topic.
         
         Returns:
             list[dict]: List of task dictionaries with title, description, and order.
@@ -281,6 +355,7 @@ class PlanningService:
                     current_stage=current_stage,
                     study_preference=study_preference,
                     topic=topic,
+                    topic_code=topic_code,
                 )
             )
         else:
@@ -289,6 +364,7 @@ class PlanningService:
                     study_minutes=study_minutes,
                     current_stage=current_stage,
                     topic=topic,
+                    topic_code=topic_code,
                 )
             )
 
@@ -300,16 +376,21 @@ class PlanningService:
         current_stage: str,
         study_preference: str,
         topic: Topic | None = None,
+        *,
+        topic_code: str | None = None,
     ) -> list[dict]:
         """Generate tasks for a weekday.
         
         Weekday structure depends on study preference and topic.
+        When a curriculum topic is selected, copy leads with that syllabus
+        node; Core Reading wording is retained only as study method language.
         
         Args:
             study_minutes: Total available study minutes.
             current_stage: Current study position (used if no topic).
             study_preference: User's study preference.
             topic: Optional curriculum topic to reference in tasks.
+            topic_code: Optional official syllabus code for the topic.
         
         Returns:
             list[dict]: List of task dictionaries.
@@ -322,16 +403,28 @@ class PlanningService:
         practice_mins = max(10, int(study_minutes * 0.40))
         review_mins = max(10, int(study_minutes * 0.25))
 
-        study_subject = PlanningService._topic_study_label(topic, fallback=current_stage)
+        study_subject = PlanningService._topic_study_label(
+            topic, fallback=current_stage, topic_code=topic_code
+        )
+        syllabus_bound = topic is not None and bool(
+            (topic.name or "").strip()
+        )
 
         if study_preference == "Reading First":
-            tasks.append({
-                "title": f"Study {study_subject}",
-                "description": (
+            if syllabus_bound:
+                reading_desc = (
+                    f"Focus on {study_subject}: work through the Core Reading "
+                    f"for about {reading_mins} minutes and note the key ideas."
+                )
+            else:
+                reading_desc = (
                     f"Read the Core Reading for today's section for about "
                     f"{reading_mins} minutes. Focus on the key ideas in "
                     f"{study_subject}."
-                ),
+                )
+            tasks.append({
+                "title": f"Study {study_subject}",
+                "description": reading_desc,
                 "order": order,
             })
             order += 1
@@ -363,12 +456,20 @@ class PlanningService:
                 "order": order,
             })
             order += 1
-            tasks.append({
-                "title": f"Study {study_subject}",
-                "description": (
+            if syllabus_bound:
+                study_desc = (
+                    f"Return to {study_subject}: spend about {reading_mins} "
+                    f"minutes on the Core Reading for the gaps the questions "
+                    f"highlighted."
+                )
+            else:
+                study_desc = (
                     f"Read the Core Reading for about {reading_mins} minutes, "
                     f"focusing on the areas the questions highlighted."
-                ),
+                )
+            tasks.append({
+                "title": f"Study {study_subject}",
+                "description": study_desc,
                 "order": order,
             })
             order += 1
@@ -381,13 +482,20 @@ class PlanningService:
                 "order": order,
             })
         else:  # Mixed
-            tasks.append({
-                "title": f"Study {study_subject}",
-                "description": (
+            if syllabus_bound:
+                mixed_desc = (
+                    f"Focus on {study_subject}: combine Core Reading and "
+                    f"practice questions for about {reading_mins} minutes."
+                )
+            else:
+                mixed_desc = (
                     f"Read the Core Reading for today's section and complete "
                     f"the recommended practice questions "
                     f"(about {reading_mins} minutes on {study_subject})."
-                ),
+                )
+            tasks.append({
+                "title": f"Study {study_subject}",
+                "description": mixed_desc,
                 "order": order,
             })
             order += 1
@@ -416,6 +524,8 @@ class PlanningService:
         study_minutes: int,
         current_stage: str,
         topic: Topic | None = None,
+        *,
+        topic_code: str | None = None,
     ) -> list[dict]:
         """Generate tasks for a weekend day.
         
@@ -423,6 +533,7 @@ class PlanningService:
             study_minutes: Total available study minutes.
             current_stage: Current study position (used if no topic).
             topic: Optional curriculum topic to reference in tasks.
+            topic_code: Optional official syllabus code for the topic.
         
         Returns:
             list[dict]: List of task dictionaries.
@@ -434,7 +545,9 @@ class PlanningService:
         review_mins = max(10, int(study_minutes * 0.30))
         formula_mins = max(10, int(study_minutes * 0.20))
 
-        study_subject = PlanningService._topic_study_label(topic, fallback=current_stage)
+        study_subject = PlanningService._topic_study_label(
+            topic, fallback=current_stage, topic_code=topic_code
+        )
 
         tasks.append({
             "title": "Timed practice",

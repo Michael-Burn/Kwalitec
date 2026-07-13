@@ -375,6 +375,7 @@ button.btn:hover,
     border: 1px solid var(--color-border-light);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
+    color: var(--text-primary);
     transition: box-shadow var(--transition-base);
 }
 
@@ -1092,6 +1093,7 @@ a.btn-ghost:focus {
 }
 
 .topic-item .topic-name {
+    color: var(--text-primary);
     font-weight: var(--font-weight-medium);
     overflow: hidden;
     text-overflow: ellipsis;
@@ -2366,6 +2368,7 @@ a.btn-secondary:focus {
 .landing-card,
 .stat-card {
     background: var(--surface);
+    color: var(--text-primary);
 }
 
 .command-card:hover,
@@ -2414,11 +2417,16 @@ a.btn-secondary:focus {
 .briefing-card {
     background: var(--info-bg);
     border-left: 3px solid var(--info);
+    color: var(--text-primary);
 }
 
 .briefing-card svg {
     flex-shrink: 0;
     margin-top: 2px;
+}
+
+.briefing-card p {
+    color: var(--text-secondary);
 }
 
 .study-tip-card {

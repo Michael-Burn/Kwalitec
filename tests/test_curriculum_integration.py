@@ -911,3 +911,139 @@ class TestCurriculumDatabaseImport:
         count = CurriculumService.import_curricula()
         assert count >= 1
         assert Curriculum.query.count() >= 1
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Multi-paper consistency (CS1 / CB2 / CM1)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+
+def _create_curriculum_plan(user_id: int, exam_name: str, topic_code: str = "1.1"):
+    """Create a curriculum-backed study plan with a current week window."""
+    from app.models.study_plan import WeekPlan
+    from app.services.study_plan_service import StudyPlanService
+    from app.extensions import db
+
+    sp = StudyPlanService.create_study_plan(
+        user_id=user_id,
+        exam_name=exam_name,
+        exam_sitting="April 2027",
+        exam_date=date.today() + timedelta(days=180),
+        weekday_study_minutes=60,
+        weekend_study_minutes=120,
+        current_stage="Learning",
+        study_preference="Mixed",
+        target_grade="B",
+        curriculum_version="2026",
+        curriculum_topic_code=topic_code,
+    )
+    wp = WeekPlan(
+        study_plan_id=sp.id,
+        week_number=1,
+        start_date=date.today() - timedelta(days=2),
+        end_date=date.today() + timedelta(days=4),
+    )
+    db.session.add(wp)
+    db.session.commit()
+    return sp
+
+
+class TestMultiPaperCurriculumConsistency:
+    """Every supported syllabus must drive topic-based missions and recommendations.
+
+    Guards against paper-specific hardcoding regressions (e.g. CB2 omitted from
+    a version map while CS1/CM1 remained wired).
+    """
+
+    @pytest.mark.parametrize(
+        "exam_name,topic_fragment,topic_count",
+        [
+            ("IFoA CS1", "data analysis", 14),
+            ("IFoA CB2", "economics and business", 21),
+            ("IFoA CM1", "interest rates", 21),
+        ],
+    )
+    def test_study_plan_links_curriculum_and_topics(
+        self, db, user, exam_name, topic_fragment, topic_count
+    ):
+        from app.models.curriculum import Topic
+        from app.models.topic_progress import TopicProgress
+
+        sp = _create_curriculum_plan(user.id, exam_name)
+        assert sp.curriculum_id is not None
+        assert sp.curriculum.exam_name == exam_name
+        assert Topic.query.filter_by(curriculum_id=sp.curriculum_id).count() == topic_count
+        assert TopicProgress.query.filter_by(user_id=user.id).count() == topic_count
+
+    @pytest.mark.parametrize(
+        "exam_name,topic_fragment",
+        [
+            ("IFoA CS1", "data analysis"),
+            ("IFoA CB2", "economics and business"),
+            ("IFoA CM1", "interest rates"),
+        ],
+    )
+    def test_mission_title_includes_syllabus_topic(
+        self, db, user, exam_name, topic_fragment
+    ):
+        from app.services.planning_service import PlanningService
+
+        _create_curriculum_plan(user.id, exam_name)
+        mission = PlanningService.generate_today_mission(user.id)
+        assert mission is not None
+        assert topic_fragment in mission.title.lower()
+        # Must not fall back to generic stage-only wording as the title subject.
+        assert mission.title.lower() != "study learning"
+
+    @pytest.mark.parametrize(
+        "exam_name,topic_fragment",
+        [
+            ("IFoA CS1", "data analysis"),
+            ("IFoA CB2", "economics and business"),
+            ("IFoA CM1", "interest rates"),
+        ],
+    )
+    def test_topic_selection_returns_first_incomplete(
+        self, db, user, exam_name, topic_fragment
+    ):
+        from app.services.planning_service import PlanningService
+
+        sp = _create_curriculum_plan(user.id, exam_name)
+        selected = PlanningService._select_topic_for_today(
+            user_id=user.id,
+            active_plan=sp,
+            target_date=date.today(),
+        )
+        assert selected is not None
+        assert topic_fragment in selected.name.lower()
+
+    @pytest.mark.parametrize("exam_name", ["IFoA CS1", "IFoA CB2", "IFoA CM1"])
+    def test_recommendation_uses_curriculum_coverage(self, db, user, exam_name):
+        from app.services.recommendation_service import RecommendationService
+
+        _create_curriculum_plan(user.id, exam_name)
+        recs = RecommendationService.generate_recommendations(user.id, limit=5)
+        assert len(recs) >= 1
+        # Fresh plans should surface curriculum progression, not empty coverage.
+        titles = " ".join(r["title"].lower() for r in recs)
+        categories = {r["category"] for r in recs}
+        assert (
+            "new topic" in {c.lower() for c in categories}
+            or "topic" in titles
+            or "curriculum" in titles
+            or "explore" in titles
+            or "progress" in titles
+        )
+
+    @pytest.mark.parametrize("exam_name", ["IFoA CS1", "IFoA CB2", "IFoA CM1"])
+    def test_dashboard_renders_with_curriculum_plan(
+        self, logged_in_client, db, user, exam_name
+    ):
+        _create_curriculum_plan(user.id, exam_name)
+        response = logged_in_client.get("/dashboard/")
+        assert response.status_code == 200
+        # Mission auto-generation should produce a topic-bearing card/title area.
+        body = response.data.lower()
+        assert b"mission" in body or b"study" in body
+        # Guard against unlinked curriculum (generic stage-only fallback).
+        assert b"study learning" not in body

@@ -4,6 +4,7 @@
  * Modes: light | dark | system
  * Persists selection in localStorage and applies a resolved data-theme
  * (light|dark) on <html> immediately for FOUC-safe loads.
+ * Also sets data-bs-theme so Bootstrap 5.3 components follow the same mode.
  */
 (function () {
     "use strict";
@@ -50,6 +51,7 @@
         var root = document.documentElement;
         root.setAttribute("data-appearance", appearance);
         root.setAttribute("data-theme", resolved);
+        root.setAttribute("data-bs-theme", resolved);
         root.style.colorScheme = resolved;
     }
 

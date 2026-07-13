@@ -238,6 +238,21 @@ class TestStudyPlanWizardStep4:
         # Should use checkboxes, not radios
         assert b'type="checkbox"' in response.data
 
+    def test_step4_get_displays_for_cb2_curriculum(self, logged_in_client):
+        """Step 4 for IFoA/CB2 should show curriculum topic checkboxes."""
+        with logged_in_client.session_transaction() as sess:
+            sess["wizard_data"] = {
+                "exam_category": "IFoA",
+                "exam_paper": "CB2",
+                "exam_sitting": "April 2027",
+                "exam_date": "2027-04-15",
+            }
+        response = logged_in_client.get("/study-plan/wizard/4")
+        assert response.status_code == 200
+        assert b'id="curriculum-topic-field"' in response.data
+        assert b'type="checkbox"' in response.data
+        assert b'id="current-topic-field"' not in response.data
+
     def test_step4_get_displays_for_cm1_curriculum(self, logged_in_client):
         """Step 4 for IFoA/CM1 should show curriculum topic checkboxes."""
         with logged_in_client.session_transaction() as sess:
@@ -624,13 +639,20 @@ class TestStudyPlanManagementRoutes:
 
 
 class TestCurriculumVersionResolution:
-    """Tests for _resolve_curriculum_version helper."""
+    """Tests for discovery-driven curriculum version resolution."""
 
     def test_ifoa_cs1_resolves_to_2026(self):
         """IFoA + CS1 should resolve to curriculum version '2026'."""
         from app.study_plan.routes import _resolve_curriculum_version
 
         result = _resolve_curriculum_version("IFoA", "CS1")
+        assert result == "2026"
+
+    def test_ifoa_cb2_resolves_to_2026(self):
+        """IFoA + CB2 should resolve to curriculum version '2026' from disk."""
+        from app.study_plan.routes import _resolve_curriculum_version
+
+        result = _resolve_curriculum_version("IFoA", "CB2")
         assert result == "2026"
 
     def test_ifoa_cm1_resolves_to_2026(self):
@@ -641,22 +663,33 @@ class TestCurriculumVersionResolution:
         assert result == "2026"
 
     def test_ifoa_cm2_returns_none(self):
-        """IFoA + CM2 is not yet mapped — returns None (no curriculum)."""
+        """IFoA + CM2 has no on-disk syllabus — returns None."""
         from app.study_plan.routes import _resolve_curriculum_version
 
         result = _resolve_curriculum_version("IFoA", "CM2")
         assert result is None
 
     def test_cfa_returns_none(self):
-        """CFA is not mapped — returns None (no curriculum)."""
+        """CFA has no on-disk syllabus — returns None."""
         from app.study_plan.routes import _resolve_curriculum_version
 
         result = _resolve_curriculum_version("CFA", "Level I")
         assert result is None
 
     def test_unknown_category_returns_none(self):
-        """An unknown category returns None — no curriculum mapping."""
+        """An unknown category returns None — no curriculum on disk."""
         from app.study_plan.routes import _resolve_curriculum_version
 
         result = _resolve_curriculum_version("Other", "")
         assert result is None
+
+    def test_discover_curriculum_version_matches_resolve(self):
+        """Silent discovery and resolve agree for supported papers."""
+        from app.study_plan.routes import (
+            _discover_curriculum_version,
+            _resolve_curriculum_version,
+        )
+
+        for paper in ("CS1", "CB2", "CM1"):
+            assert _discover_curriculum_version("IFoA", paper) == "2026"
+            assert _resolve_curriculum_version("IFoA", paper) == "2026"

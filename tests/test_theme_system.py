@@ -42,6 +42,7 @@ class TestThemeAssets:
         assert "system" in source
         assert "prefers-color-scheme" in source
         assert "data-theme" in source
+        assert "data-bs-theme" in source
         assert "data-appearance" in source
 
     def test_app_css_declares_semantic_tokens(self):
