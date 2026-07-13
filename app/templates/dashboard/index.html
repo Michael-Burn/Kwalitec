@@ -87,8 +87,14 @@
                     <span class="command-hero-label">Days Remaining</span>
                 </div>
                 <div class="command-phase mt-3">
-                    <span class="badge rounded-pill {% if exam_timeline.schedule_status in ['ahead', 'on_track'] %}text-bg-success{% elif exam_timeline.schedule_status == 'behind' %}text-bg-warning{% else %}text-bg-danger{% endif %}">
-                        {{ exam_timeline.status_label }}
+                    <span
+                        class="kpi-status kpi-status--{{ exam_timeline.status_severity | default('neutral') }}"
+                        role="status"
+                        aria-label="Schedule status: {{ exam_timeline.status_label }}. {{ exam_timeline.status_evidence | default('') }}"
+                        title="{{ exam_timeline.status_evidence | default(exam_timeline.status_label) }}"
+                    >
+                        <span class="kpi-status-symbol" aria-hidden="true">{{ exam_timeline.status_symbol | default('·') }}</span>
+                        <span class="kpi-status-label">{{ exam_timeline.status_label }}</span>
                     </span>
                 </div>
             </div>
@@ -275,18 +281,8 @@
                 </div>
                 <h2 class="command-card-title">Time Status</h2>
             </div>
-            {% if time_summary %}
+            {% if time_summary and schedule_kpi_status %}
             {% set surplus = time_summary.hours_surplus_or_deficit %}
-            {% if surplus >= 0 %}
-                {% set time_status_color = 'success' %}
-                {% set time_status_label = 'Ahead of Schedule' %}
-            {% elif surplus >= -20 %}
-                {% set time_status_color = 'warning' %}
-                {% set time_status_label = 'Running Close' %}
-            {% else %}
-                {% set time_status_color = 'danger' %}
-                {% set time_status_label = 'Behind Schedule' %}
-            {% endif %}
             <div class="command-card-body">
                 <div class="row g-3 mb-3">
                     <div class="col-6">
@@ -298,31 +294,23 @@
                     <div class="col-6">
                         <div class="command-metric">
                             <span class="command-metric-label">Available Study Hours</span>
-                            <span class="command-metric-value text-success">{{ time_summary.available_study_hours }}</span>
+                            <span class="command-metric-value">{{ time_summary.available_study_hours }}</span>
                         </div>
                     </div>
                 </div>
-                <div class="command-time-badge mt-3 bg-{{ time_status_color }}-subtle p-3 rounded-3 d-flex align-items-center gap-3">
-                    {% if time_status_color == 'success' %}
-                    <svg width="20" height="20" fill="none" stroke="var(--color-success)" stroke-width="2" viewBox="0 0 24 24" class="flex-shrink-0">
-                        <polyline points="20 6 9 17 4 12"/>
-                    </svg>
-                    {% elif time_status_color == 'warning' %}
-                    <svg width="20" height="20" fill="none" stroke="var(--color-warning)" stroke-width="2" viewBox="0 0 24 24" class="flex-shrink-0">
-                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
-                    </svg>
-                    {% else %}
-                    <svg width="20" height="20" fill="none" stroke="var(--color-danger)" stroke-width="2" viewBox="0 0 24 24" class="flex-shrink-0">
-                        <circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>
-                    </svg>
-                    {% endif %}
+                <div
+                    class="command-time-badge kpi-status-panel kpi-status-panel--{{ schedule_kpi_status.severity }} mt-3 p-3 rounded-3 d-flex align-items-center gap-3"
+                    role="status"
+                    aria-label="Time status: {{ schedule_kpi_status.label }}. {{ schedule_kpi_status.evidence_summary }}"
+                >
+                    <span class="kpi-status-symbol kpi-status-symbol--lg" aria-hidden="true">{{ schedule_kpi_status.symbol }}</span>
                     <div>
-                        <div class="fw-semibold small" style="color: var(--color-{{ time_status_color }});">{{ time_status_label }}</div>
+                        <div class="fw-semibold small kpi-status-label-text">{{ schedule_kpi_status.label }}</div>
                         <div class="small text-muted">
                             {% if surplus >= 0 %}
-                                {{ surplus }} hours surplus
+                                {{ surplus }} hours surplus vs planned study time
                             {% else %}
-                                {{ (surplus * -1) }} hours deficit
+                                {{ (surplus * -1) }} hours deficit vs planned study time
                             {% endif %}
                         </div>
                     </div>
@@ -391,19 +379,18 @@
     </div>
 </section>
 
-{# ── Burnout Warning ──────────────────────────────────────────────────── #}
+{# ── Study pattern notice (observed indicators only — not burnout prediction) #}
 {% if burnout_status and burnout_status.risk_level in ['high', 'moderate'] %}
 <section class="mb-4">
-    <div class="{% if burnout_status.risk_level == 'high' %}alert-danger-card{% else %}alert-warning-card{% endif %}">
+    <div class="{% if burnout_status.risk_level == 'high' %}alert-danger-card{% else %}alert-warning-card{% endif %}" role="status">
         <div class="d-flex align-items-start gap-3">
-            <svg width="22" height="22" fill="none" stroke="{% if burnout_status.risk_level == 'high' %}var(--color-danger){% else %}var(--color-warning){% endif %}" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink: 0; margin-top: 1px;">
-                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
-            </svg>
+            <span class="kpi-status-symbol kpi-status-symbol--lg" aria-hidden="true">{% if burnout_status.risk_level == 'high' %}‼{% else %}!{% endif %}</span>
             <div>
                 <h2 class="h6 fw-semibold mb-1">
-                    {% if burnout_status.risk_level == 'high' %}Burnout Risk Detected{% else %}Study Load Warning{% endif %}
+                    {% if burnout_status.risk_level == 'high' %}Study Pattern Notice{% else %}Study Load Notice{% endif %}
                 </h2>
                 <p class="mb-2 small">{{ burnout_status.explanation }}</p>
+                <p class="mb-2 small text-muted">Based on recent study activity patterns — not a prediction of burnout or exam outcome.</p>
                 {% if burnout_status.indicators %}
                 <div>
                     {% for indicator in burnout_status.indicators %}

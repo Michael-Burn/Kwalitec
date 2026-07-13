@@ -308,11 +308,13 @@ def _register_cli_commands(app: Flask) -> None:
         backfill_sections_command,
         create_admin_command,
         create_test_user_command,
+        internal_alpha_reset_command,
     )
 
     app.cli.add_command(create_admin_command)
     app.cli.add_command(create_test_user_command)
     app.cli.add_command(backfill_sections_command)
+    app.cli.add_command(internal_alpha_reset_command)
 
 
 def _register_blueprints(app: Flask) -> None:

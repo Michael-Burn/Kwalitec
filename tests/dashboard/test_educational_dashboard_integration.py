@@ -108,10 +108,46 @@ class TestDashboardFeatureFlagOff:
 
 
 class TestDashboardFeatureFlagOn:
-    def test_missing_curriculum_falls_back(
+    def test_unbound_healable_plan_self_heals_on_dashboard(
         self, logged_in_client, study_plan, user
     ) -> None:
+        """Capability 4.6: missing curriculum_id is repaired on dashboard load."""
         study_plan.curriculum_id = None
+        study_plan.curriculum_version = None
+        db.session.commit()
+
+        with (
+            _patch_flags(FLAGS_ON),
+            patch(
+                "app.dashboard.routes.build_twin_provider",
+                return_value=__import__(
+                    "app.application.twin", fromlist=["TwinProvider"]
+                ).TwinProvider(
+                    source=type(
+                        "S",
+                        (),
+                        {
+                            "load": staticmethod(
+                                lambda student_id, *, context=None: _twin_for(user.id)
+                            )
+                        },
+                    )()
+                ),
+            ),
+        ):
+            response = logged_in_client.get("/dashboard/")
+        assert response.status_code == 200
+        db.session.refresh(study_plan)
+        assert study_plan.curriculum_id is not None
+        assert study_plan.curriculum_version is not None
+
+    def test_unhealable_missing_curriculum_falls_back(
+        self, logged_in_client, study_plan, user
+    ) -> None:
+        """When binding cannot be discovered, EI composition falls back."""
+        study_plan.curriculum_id = None
+        study_plan.curriculum_version = None
+        study_plan.exam_name = "Unknown Exam XYZ"
         db.session.commit()
 
         with (

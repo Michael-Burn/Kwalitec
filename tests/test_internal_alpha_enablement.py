@@ -116,6 +116,7 @@ class TestMissionCompletion:
             active=True,
             curriculum_id=curriculum.id,
             curriculum_version="2026",
+            curriculum_topic_code="1.1",
         )
         db.session.add(plan)
         db.session.flush()
@@ -155,6 +156,11 @@ class TestMissionCompletion:
         ).first()
         assert progress is not None
         assert progress.completed is True
+
+        db.session.refresh(plan)
+        # Completing the first CS1 leaf must advance the live pointer so
+        # refresh/heal cannot demote 1.1 back to incomplete.
+        assert plan.curriculum_topic_code == "1.2"
 
     def test_complete_mission_endpoint_rejects_incomplete_tasks(self, app, ctx, user):
         subject = Subject(user_id=user.id, name="CS1")
@@ -295,10 +301,10 @@ class TestCb2Curriculum:
     def test_cb2_imports_and_supports_study_plan(self, db, user):
         CurriculumService.import_curricula()
         from app.models.curriculum import Curriculum
+        from app.models.study_plan import WeekPlan
         from app.services.examination_catalogue import parse_exam_name
         from app.services.planning_service import PlanningService
         from app.services.study_plan_service import StudyPlanService
-        from app.models.study_plan import WeekPlan
 
         curriculum = Curriculum.query.filter_by(exam_name="IFoA CB2").first()
         assert curriculum is not None
@@ -345,6 +351,186 @@ class TestCb2Curriculum:
         assert "economics and business" in mission.title.lower()
         assert mission.title.lower() != "study learning"
 
+    def test_cb2_unbound_plan_topic_selection_and_mission(self, db, user):
+        """Regression: unbound CB2 plans must bind, select a topic, and never
+        emit generic Core Reading missions.
+
+        Simulates Internal Alpha plans created when curriculum_version was
+        omitted. ``selected_topic`` became ``None`` at curriculum lookup in
+        ``PlanningService._select_topic_for_today`` because ``curriculum_id``
+        was unset.
+        """
+        from unittest.mock import patch
+
+        from app.models.curriculum import Curriculum
+        from app.models.study_plan import WeekPlan
+        from app.models.topic_progress import TopicProgress
+        from app.services.planning_service import PlanningService
+        from app.services.recommendation_service import RecommendationService
+        from app.services.study_plan_service import StudyPlanService
+
+        CurriculumService.import_curricula()
+        curriculum = Curriculum.query.filter_by(
+            exam_name="IFoA CB2", version="2026"
+        ).one()
+        sections = CurriculumService.get_sections(curriculum)
+        topics = CurriculumService.get_all_topics_ordered(curriculum)
+        assert len(sections) == 3
+        assert len(topics) == 21
+        first_topic = topics[0]
+
+        # Pre-fix / orphan shape: exam name known, no curriculum binding.
+        plan = StudyPlanService.create_study_plan(
+            user_id=user.id,
+            exam_name="IFoA CB2",
+            exam_sitting="Apr 2027",
+            exam_date=date.today() + timedelta(days=180),
+            target_grade="Pass",
+            weekday_study_minutes=90,
+            weekend_study_minutes=120,
+            current_stage="Learning",
+            study_preference="Reading First",
+            preferred_session_minutes=60,
+            curriculum_version=None,
+            curriculum_topic_code=None,
+        )
+        assert plan.curriculum_id is None
+        assert TopicProgress.query.filter_by(user_id=user.id).count() == 0
+
+        wp = WeekPlan(
+            study_plan_id=plan.id,
+            week_number=1,
+            start_date=date.today() - timedelta(days=2),
+            end_date=date.today() + timedelta(days=4),
+        )
+        db.session.add(wp)
+        db.session.commit()
+
+        # Exact None point: curriculum lookup fails while the plan is unbound.
+        with patch.object(
+            StudyPlanService, "ensure_curriculum_binding", return_value=False
+        ):
+            selected_none = PlanningService._select_topic_for_today(
+                user_id=user.id,
+                active_plan=plan,
+                target_date=date.today(),
+            )
+        assert selected_none is None
+        assert plan.curriculum_id is None
+
+        # Repair binds curriculum + TopicProgress (paper-agnostic).
+        assert StudyPlanService.ensure_curriculum_binding(plan) is True
+        assert plan.curriculum_id == curriculum.id
+        assert plan.curriculum_version == "2026"
+        assert TopicProgress.query.filter_by(user_id=user.id).count() == len(topics)
+
+        selected = PlanningService._select_topic_for_today(
+            user_id=user.id,
+            active_plan=plan,
+            target_date=date.today(),
+        )
+        assert selected is not None
+        code = PlanningService._resolve_official_topic_code(plan, selected)
+        assert code == "1.1"
+        assert selected.name == first_topic.name
+        assert selected.section_id is not None
+
+        mission = PlanningService.generate_today_mission(user.id)
+        assert mission is not None
+        title = mission.title
+        assert code in title or first_topic.name.lower() in title.lower()
+        assert not title.lower().startswith("daily study")
+        assert mission.tasks
+        lead = mission.tasks[0].description.lower()
+        assert not lead.startswith("read the core reading for today's section")
+        assert code in lead or "economics and business" in lead
+
+        recs = RecommendationService.generate_recommendations(user.id, limit=5)
+        assert any(
+            code in (r.get("title") or "")
+            or "economics and business" in (r.get("title") or "").lower()
+            or "economics and business" in (r.get("reason") or "").lower()
+            for r in recs
+        )
+
+    def test_generate_mission_repairs_unbound_plan_and_replaces_generic(
+        self, db, user
+    ):
+        """generate_today_mission must bind orphans and replace unfinished
+        generic Core Reading missions once a syllabus is available.
+        """
+        from app.models.curriculum import Curriculum
+        from app.models.study_plan import WeekPlan
+        from app.services.planning_service import PlanningService
+        from app.services.study_plan_service import StudyPlanService
+
+        CurriculumService.import_curricula()
+        curriculum = Curriculum.query.filter_by(
+            exam_name="IFoA CB2", version="2026"
+        ).one()
+
+        plan = StudyPlanService.create_study_plan(
+            user_id=user.id,
+            exam_name="IFoA CB2",
+            exam_sitting="Apr 2027",
+            exam_date=date.today() + timedelta(days=180),
+            target_grade="Pass",
+            weekday_study_minutes=90,
+            weekend_study_minutes=120,
+            current_stage="Learning",
+            study_preference="Reading First",
+            preferred_session_minutes=60,
+            curriculum_version=None,
+            curriculum_topic_code=None,
+        )
+        wp = WeekPlan(
+            study_plan_id=plan.id,
+            week_number=1,
+            start_date=date.today() - timedelta(days=2),
+            end_date=date.today() + timedelta(days=4),
+        )
+        db.session.add(wp)
+        db.session.commit()
+
+        # Seed a generic mission as if generated while unbound.
+        from app.models.mission import Mission, MissionTask
+        from app.models.subject import Subject
+
+        subject = Subject(user_id=user.id, name="Study Plan", colour="#007bff")
+        db.session.add(subject)
+        db.session.flush()
+        generic = Mission(
+            user_id=user.id,
+            subject_id=subject.id,
+            mission_date=date.today(),
+            title="Daily Study — Monday, Jul 13",
+        )
+        db.session.add(generic)
+        db.session.flush()
+        db.session.add(
+            MissionTask(
+                mission_id=generic.id,
+                title="Study Learning",
+                description=(
+                    "Read the Core Reading for today's section for about "
+                    "30 minutes. Focus on the key ideas in Learning."
+                ),
+                order=0,
+            )
+        )
+        db.session.commit()
+
+        mission = PlanningService.generate_today_mission(user.id)
+        assert mission is not None
+        assert plan.curriculum_id == curriculum.id
+        assert (
+            "1.1" in mission.title
+            or "economics and business" in mission.title.lower()
+        )
+        assert not mission.title.lower().startswith("daily study")
+        lead = mission.tasks[0].description.lower()
+        assert not lead.startswith("read the core reading for today's section")
+
 
 class TestCm1Curriculum:
     def test_cm1_loads_and_validates(self):
@@ -362,10 +548,10 @@ class TestCm1Curriculum:
     def test_cm1_imports_and_supports_study_plan(self, db, user):
         CurriculumService.import_curricula()
         from app.models.curriculum import Curriculum
+        from app.models.study_plan import WeekPlan
         from app.services.examination_catalogue import parse_exam_name
         from app.services.planning_service import PlanningService
         from app.services.study_plan_service import StudyPlanService
-        from app.models.study_plan import WeekPlan
 
         curriculum = Curriculum.query.filter_by(exam_name="IFoA CM1").first()
         assert curriculum is not None

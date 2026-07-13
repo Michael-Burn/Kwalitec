@@ -1275,6 +1275,125 @@ a.btn-ghost:focus {
     background: var(--color-bg);
 }
 
+/* ── Educational KPI status (Capability 4.7) ─────────────────────────────
+   Colour is supportive only; symbol + text + border pattern carry meaning. */
+.kpi-status {
+    align-items: center;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    display: inline-flex;
+    font-size: var(--font-sm);
+    font-weight: var(--font-weight-semibold);
+    gap: 0.4rem;
+    line-height: 1.2;
+    padding: 0.35rem 0.75rem;
+}
+
+.kpi-status-symbol {
+    font-size: 0.95em;
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+}
+
+.kpi-status-symbol--lg {
+    flex-shrink: 0;
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+    min-width: 1.25rem;
+    text-align: center;
+}
+
+.kpi-status--neutral {
+    background: var(--color-bg);
+    border-style: dotted;
+    color: var(--color-text-secondary);
+}
+
+.kpi-status--info {
+    background: var(--color-success-bg, var(--success-bg, #ecfdf5));
+    border-style: solid;
+    color: var(--color-success, var(--success, #047857));
+}
+
+.kpi-status--attention {
+    background: var(--color-warning-bg, var(--warning-bg, #fffbeb));
+    border-style: dashed;
+    color: var(--color-warning, var(--warning, #b45309));
+}
+
+.kpi-status--urgent {
+    background: var(--color-danger-bg, var(--danger-bg, #fef2f2));
+    border-style: double;
+    border-width: 3px;
+    color: var(--color-danger, var(--danger, #b91c1c));
+}
+
+.kpi-status-panel {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+}
+
+.kpi-status-panel--neutral {
+    border-style: dotted;
+}
+
+.kpi-status-panel--info {
+    border-color: var(--color-success, var(--success, #047857));
+    border-style: solid;
+}
+
+.kpi-status-panel--attention {
+    border-color: var(--color-warning, var(--warning, #b45309));
+    border-style: dashed;
+}
+
+.kpi-status-panel--urgent {
+    border-color: var(--color-danger, var(--danger, #b91c1c));
+    border-style: double;
+    border-width: 3px;
+}
+
+.kpi-status-label-text {
+    color: var(--color-text-primary);
+}
+
+[data-theme="dark"] .kpi-status--info,
+[data-theme="dark"] .kpi-status-panel--info {
+    background: var(--success-bg, #064e3b);
+    color: var(--success, #6ee7b7);
+}
+
+[data-theme="dark"] .kpi-status--attention,
+[data-theme="dark"] .kpi-status-panel--attention {
+    background: var(--warning-bg, #78350f);
+    color: var(--warning, #fcd34d);
+}
+
+[data-theme="dark"] .kpi-status--urgent,
+[data-theme="dark"] .kpi-status-panel--urgent {
+    background: var(--danger-bg, #7f1d1d);
+    color: var(--danger, #fca5a5);
+}
+
+@media (prefers-contrast: more) {
+    .kpi-status,
+    .kpi-status-panel {
+        border-width: 2px;
+        color: var(--color-text-primary);
+    }
+
+    .kpi-status--urgent,
+    .kpi-status-panel--urgent {
+        border-width: 4px;
+        font-weight: 700;
+    }
+
+    .kpi-status-symbol {
+        font-size: 1.1em;
+    }
+}
+
 /* ── Mission Page ─────────────────────────────────────────────────────── */
 .mission-grid {
     display: grid;

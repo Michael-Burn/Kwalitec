@@ -980,13 +980,14 @@ class TestStudyPlanService:
             else:
                 assert tp.current_stage == TopicProgress.STAGE_NOT_STARTED
 
-    def test_curriculum_topic_code_never_completed(self, db, user):
-        """The current learning topic (curriculum_topic_code) must NEVER
-        be marked completed, even if it appears in completed_curriculum_topics."""
+    def test_curriculum_topic_code_honours_completed_and_advances(self, db, user):
+        """When the current learning topic also appears in
+        completed_curriculum_topics, keep it completed and advance the
+        plan pointer to the next incomplete topic."""
         from app.services.study_plan_service import StudyPlanService
         from app.models.topic_progress import TopicProgress
 
-        # CS1-D is both the current topic AND in the completed list.
+        # 2.2 is both the current topic AND in the completed list.
         sp = StudyPlanService.create_study_plan(
             user_id=user.id,
             exam_name="IFoA CS1",
@@ -1017,9 +1018,11 @@ class TestStudyPlanService:
             user_id=user.id, topic_id=cs1d_topic.id,
         ).first()
         assert cs1d_progress is not None
-        assert cs1d_progress.current_stage == TopicProgress.STAGE_LEARNING
-        assert cs1d_progress.completed is False
-        assert cs1d_progress.mastery_score == 0.0
+        assert cs1d_progress.completed is True
+        assert cs1d_progress.current_stage == TopicProgress.STAGE_COMPLETED
+        assert cs1d_progress.mastery_score == 100.0
+        # First incomplete in syllabus order (2.1 was never declared complete).
+        assert sp.curriculum_topic_code == "2.1"
 
         # CS1-A and CS1-B should still be marked completed
         cs1a_topic = DBTopic.query.filter_by(

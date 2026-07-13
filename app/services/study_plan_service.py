@@ -235,9 +235,13 @@ class StudyPlanService:
         current_stage="Completed").
 
         The topic identified by ``curriculum_topic_code`` is promoted as the
-        student's *current* topic (its ``current_stage`` is set to
-        ``Learning``) but is **never** marked completed — even if it
-        accidentally appears in ``completed_curriculum_topics``.
+        student's *current* topic (``current_stage`` = ``Learning``) when that
+        row is not already completed. Existing ``completed=True`` progress is
+        never demoted — heal/re-init must not undo mission or wizard progress
+        when the plan pointer is stale (common for CS1 topic ``1.1``).
+
+        After initialisation, :meth:`reconcile_current_topic_pointer` advances
+        a stale pointer past any completed topics.
 
         Traversal order
         ---------------
@@ -439,11 +443,95 @@ class StudyPlanService:
                 # Should not normally happen, but guard anyway.
                 continue
 
+            # Preserve earned / declared completion. Demoting here caused CS1
+            # 1.1 (and other first topics) to uncheck on refresh when the plan
+            # pointer still named a completed topic.
+            if tp.completed:
+                break
+
             tp.current_stage = TopicProgress.STAGE_LEARNING
             tp.completed = False
             tp.mastery_score = 0.0
-            # Explicitly NOT marking completed.
             break
+
+        StudyPlanService.reconcile_current_topic_pointer(study_plan)
+
+    @staticmethod
+    def reconcile_current_topic_pointer(study_plan: StudyPlan) -> None:
+        """Advance ``curriculum_topic_code`` past topics already completed.
+
+        Mission completion updates TopicProgress but historically left the
+        plan pointer unchanged. A stale pointer on the first topic (e.g.
+        ``1.1``) then caused heal/re-init and edit sync to treat that topic
+        as the live learning target and reset ``completed`` to ``False``.
+
+        Idempotent: no-op when the pointer is already on an incomplete topic
+        or when the plan is not curriculum-backed.
+
+        Args:
+            study_plan: The study plan whose pointer may need advancing.
+        """
+        if (
+            not study_plan.curriculum_id
+            or not study_plan.curriculum_version
+            or not study_plan.curriculum_topic_code
+        ):
+            return
+
+        parts = (study_plan.exam_name or "").split(" ", 1)
+        if len(parts) != 2:
+            return
+
+        organisation, paper = parts
+        load_result = StudyPlanService._load_engine_curriculum_auto(
+            organisation, paper, study_plan.curriculum_version
+        )
+        if load_result is None:
+            return
+
+        engine_curriculum, is_v2 = load_result
+        engine_topics = StudyPlanService._get_engine_topics_ordered(
+            engine_curriculum, is_v2
+        )
+
+        completed_codes: set[str] = set()
+        for engine_topic in engine_topics:
+            db_topic = Topic.query.filter_by(
+                curriculum_id=study_plan.curriculum_id,
+                name=engine_topic.title,
+            ).first()
+            if db_topic is None:
+                continue
+            tp = TopicProgress.query.filter_by(
+                user_id=study_plan.user_id,
+                topic_id=db_topic.id,
+            ).first()
+            if tp is not None and tp.completed:
+                completed_codes.add(engine_topic.code)
+
+        if study_plan.curriculum_topic_code not in completed_codes:
+            return
+
+        for engine_topic in engine_topics:
+            if engine_topic.code in completed_codes:
+                continue
+            study_plan.curriculum_topic_code = engine_topic.code
+            db_topic = Topic.query.filter_by(
+                curriculum_id=study_plan.curriculum_id,
+                name=engine_topic.title,
+            ).first()
+            if db_topic is None:
+                return
+            tp = TopicProgress.query.filter_by(
+                user_id=study_plan.user_id,
+                topic_id=db_topic.id,
+            ).first()
+            if tp is not None and not tp.completed:
+                tp.current_stage = TopicProgress.STAGE_LEARNING
+            return
+
+        # Entire syllabus completed — clear the live pointer.
+        study_plan.curriculum_topic_code = None
 
     @staticmethod
     def _create_topic_progress_if_absent(
@@ -547,13 +635,132 @@ class StudyPlanService:
     def get_user_active_plan(user_id: int) -> StudyPlan | None:
         """Get the active study plan for a user.
 
+        Self-heals curriculum binding when the exam has an on-disk syllabus.
+        Callers may assume a returned curriculum-backed plan is already valid.
+
         Args:
             user_id: The user ID.
 
         Returns:
             StudyPlan | None: The active study plan or None if not found.
         """
-        return StudyPlan.query.filter_by(user_id=user_id, active=True).first()
+        study_plan = StudyPlan.query.filter_by(
+            user_id=user_id, active=True
+        ).first()
+        if study_plan is None:
+            return None
+        StudyPlanService.ensure_curriculum_binding(study_plan)
+        return study_plan
+
+    @staticmethod
+    def get_plan(
+        study_plan_id: int, user_id: int | None = None
+    ) -> StudyPlan | None:
+        """Load a study plan by id, self-healing curriculum binding.
+
+        This is the canonical single-plan access path. Prefer it over raw
+        ``StudyPlan.query.get`` so legacy unbound plans are repaired once
+        before any consumer uses them.
+
+        Args:
+            study_plan_id: The study plan primary key.
+            user_id: Optional owner check. When provided and the plan belongs
+                to another user, returns ``None`` (does not raise).
+
+        Returns:
+            StudyPlan | None: The healed plan, or ``None`` if missing / not owned.
+        """
+        study_plan = db.session.get(StudyPlan, study_plan_id)
+        if study_plan is None:
+            return None
+        if user_id is not None and study_plan.user_id != user_id:
+            return None
+        StudyPlanService.ensure_curriculum_binding(study_plan)
+        return study_plan
+
+    @staticmethod
+    def ensure_curriculum_binding(study_plan: StudyPlan) -> bool:
+        """Bind an unbound study plan to its on-disk syllabus when discoverable.
+
+        Product invariant (Capability 4.6): every curriculum-backed study plan
+        must eventually have ``curriculum_id``, ``curriculum_version``, and
+        TopicProgress rows. Plans created before discovery-driven version
+        resolution may lack either identity field; this method repairs them
+        transparently.
+
+        Trigger: ``curriculum_id`` is ``None`` **or** ``curriculum_version``
+        is ``None``. Idempotent and paper-agnostic — discovers the latest
+        on-disk version for the plan's organisation/paper, initialises
+        TopicProgress (which also sets ``curriculum_id``), and persists.
+
+        Args:
+            study_plan: The study plan to inspect and possibly bind.
+
+        Returns:
+            bool: ``True`` when the plan is curriculum-bound after this call
+            (``curriculum_id`` and ``curriculum_version`` both set). ``False``
+            when the exam has no on-disk syllabus (genuine non-curriculum plan).
+        """
+        if study_plan.curriculum_id and study_plan.curriculum_version:
+            return True
+
+        from app.services.curriculum_engine_service import CurriculumEngineService
+        from app.services.examination_catalogue import parse_exam_name
+
+        organisation, paper = parse_exam_name(study_plan.exam_name or "")
+        if not organisation or not paper:
+            parts = (study_plan.exam_name or "").split(" ", 1)
+            if len(parts) != 2:
+                logger.debug(
+                    "Cannot parse exam_name %r for curriculum binding — skipping.",
+                    study_plan.exam_name,
+                )
+                return False
+            organisation, paper = parts
+
+        version = study_plan.curriculum_version
+        if not version:
+            engine = CurriculumEngineService()
+            versions = engine.list_supported_versions(organisation, paper)
+            if not versions:
+                logger.debug(
+                    "No on-disk curriculum for %s/%s — leaving plan %s unbound.",
+                    organisation,
+                    paper,
+                    study_plan.id,
+                )
+                return False
+            version = max(versions)
+            study_plan.curriculum_version = version
+            logger.info(
+                "Discovered curriculum version %s for unbound plan %s (%s/%s).",
+                version,
+                study_plan.id,
+                organisation,
+                paper,
+            )
+
+        StudyPlanService._initialize_topic_progress_from_curriculum(study_plan)
+        db.session.commit()
+
+        bound = bool(
+            study_plan.curriculum_id and study_plan.curriculum_version
+        )
+        if bound:
+            logger.info(
+                "Bound study plan %s to curriculum_id=%s version=%s",
+                study_plan.id,
+                study_plan.curriculum_id,
+                study_plan.curriculum_version,
+            )
+        else:
+            logger.warning(
+                "Curriculum binding failed for study plan %s (%s version=%s)",
+                study_plan.id,
+                study_plan.exam_name,
+                study_plan.curriculum_version,
+            )
+        return bound
 
     @staticmethod
     def deactivate_user_plans(user_id: int) -> None:
@@ -579,12 +786,16 @@ class StudyPlanService:
         Raises:
             ValueError: If the study plan doesn't exist or doesn't belong to the user.
         """
-        study_plan = StudyPlan.query.get(study_plan_id)
+        study_plan = db.session.get(StudyPlan, study_plan_id)
         if not study_plan:
             raise ValueError(f"Study plan {study_plan_id} not found")
 
         if study_plan.user_id != user_id:
-            raise ValueError(f"Study plan {study_plan_id} does not belong to user {user_id}")
+            raise ValueError(
+                f"Study plan {study_plan_id} does not belong to user {user_id}"
+            )
+
+        StudyPlanService.ensure_curriculum_binding(study_plan)
 
         # Deactivate other plans
         StudyPlanService.deactivate_user_plans(user_id)
@@ -617,12 +828,16 @@ class StudyPlanService:
             ValueError: If the plan doesn't exist, doesn't belong to the user,
                 or validation fails.
         """
-        study_plan = StudyPlan.query.get(study_plan_id)
+        study_plan = db.session.get(StudyPlan, study_plan_id)
         if not study_plan:
             raise ValueError(f"Study plan {study_plan_id} not found")
 
         if study_plan.user_id != user_id:
-            raise ValueError(f"Study plan {study_plan_id} does not belong to user {user_id}")
+            raise ValueError(
+                f"Study plan {study_plan_id} does not belong to user {user_id}"
+            )
+
+        StudyPlanService.ensure_curriculum_binding(study_plan)
 
         if study_plan.archived:
             raise ValueError("Cannot edit an archived study plan.")
@@ -694,12 +909,16 @@ class StudyPlanService:
         """Synchronise TopicProgress completed status with the supplied list.
 
         Topics whose engine code appears in *completed_codes* are marked as
-        completed (unless they are the current learning topic).  Topics
-        NOT in the list that were previously completed are reset to
-        ``Not Started`` (so the user can un-check a previously completed
-        topic).
+        completed. Explicit completion wins over a stale
+        ``curriculum_topic_code`` pointer — callers should advance the
+        pointer (and this method reconciles it afterward).
 
-        Topics are visited in canonical curriculum order (Section →  Topic
+        Topics NOT in the list that were previously completed are reset to
+        ``Not Started`` (so the user can un-check a previously completed
+        topic). The live current topic, when not in *completed_codes*, is
+        set to Learning.
+
+        Topics are visited in canonical curriculum order (Section → Topic
         for V2, flat list for V1) via :meth:`_get_engine_topics_ordered`.
         """
         from app.models.curriculum import Topic as DBTopic
@@ -744,30 +963,28 @@ class StudyPlanService:
             if tp is None:
                 continue
 
-            # Never mark the current learning topic as completed.
             is_current = (
                 curriculum_topic_code
                 and engine_topic.code == curriculum_topic_code
             )
-            should_be_completed = engine_topic.code in completed_set and not is_current
+            in_completed = engine_topic.code in completed_set
 
-            if should_be_completed:
+            if in_completed:
                 tp.completed = True
                 tp.mastery_score = 100.0
                 tp.confidence = "Mastered"
                 tp.current_stage = TopicProgress.STAGE_COMPLETED
-            else:
-                # If it was previously completed but is no longer in the
-                # list (or is the current topic), reset to appropriate stage.
-                if is_current:
-                    tp.completed = False
-                    tp.mastery_score = 0.0
-                    tp.current_stage = TopicProgress.STAGE_LEARNING
-                elif tp.completed and engine_topic.code not in completed_set:
-                    tp.completed = False
-                    tp.mastery_score = 0.0
-                    tp.confidence = "Not Started"
-                    tp.current_stage = TopicProgress.STAGE_NOT_STARTED
+            elif is_current:
+                tp.completed = False
+                tp.mastery_score = 0.0
+                tp.current_stage = TopicProgress.STAGE_LEARNING
+            elif tp.completed:
+                tp.completed = False
+                tp.mastery_score = 0.0
+                tp.confidence = "Not Started"
+                tp.current_stage = TopicProgress.STAGE_NOT_STARTED
+
+        StudyPlanService.reconcile_current_topic_pointer(study_plan)
 
     @staticmethod
     def delete_study_plan(study_plan_id: int, user_id: int) -> None:
@@ -856,7 +1073,10 @@ class StudyPlanService:
         query = StudyPlan.query.filter_by(user_id=user_id)
         if not include_archived:
             query = query.filter_by(archived=False)
-        return query.order_by(StudyPlan.created_at.desc()).all()
+        plans = query.order_by(StudyPlan.created_at.desc()).all()
+        for plan in plans:
+            StudyPlanService.ensure_curriculum_binding(plan)
+        return plans
 
     @staticmethod
     def get_current_week_plan(study_plan: StudyPlan) -> WeekPlan | None:

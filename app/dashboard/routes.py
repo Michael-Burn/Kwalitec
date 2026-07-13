@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 import time
+from datetime import date, datetime
 
 from flask import Blueprint, redirect, render_template, request, url_for
 from flask_login import current_user, login_required
@@ -23,6 +24,7 @@ from app.services.curriculum_engine_service import (
     CurriculumEngineService,
     StudentCurriculumSummary,
 )
+from app.services.educational_kpi_status import EducationalKpiStatusService
 from app.services.exam_timeline import ExamTimeline
 from app.services.mission_optimizer import MissionOptimizer
 from app.services.planning_service import PlanningService
@@ -218,13 +220,41 @@ def index():
         if curriculum_summary is not None:
             readiness_summary = ReadinessService.calculate_readiness(curriculum_summary)
 
-    # Time status via TimeEngineService
+    # Time status via TimeEngineService (single source for hours balance)
     time_summary = None
     if active_study_plan:
         time_summary = _timed_call(
             "time_summary",
             TimeEngineService.calculate_time_summary,
             active_study_plan,
+        )
+
+    # Schedule/pace KPI status — same EducationalKpiStatusService as Exam card
+    schedule_kpi_status = None
+    days_for_status = None
+    if exam_timeline is not None:
+        days_for_status = exam_timeline["days_remaining"]
+    elif (
+        active_study_plan is not None
+        and getattr(active_study_plan, "exam_date", None)
+    ):
+        exam_dt = active_study_plan.exam_date
+        if isinstance(exam_dt, datetime):
+            exam_dt = exam_dt.date()
+        days_for_status = (exam_dt - date.today()).days
+
+    if time_summary is not None and days_for_status is not None:
+        coverage_pct = None
+        if exam_timeline is not None:
+            coverage_pct = exam_timeline.get("curriculum_coverage_pct")
+        schedule_kpi_status = EducationalKpiStatusService.from_time_summary(
+            time_summary,
+            days_for_status,
+            coverage_pct=coverage_pct,
+        )
+    elif days_for_status is not None:
+        schedule_kpi_status = EducationalKpiStatusService.from_days_remaining(
+            days_for_status
         )
 
     from app.services.study_tips_service import StudyTipsService
@@ -255,6 +285,7 @@ def index():
         curriculum_summary=curriculum_summary,
         readiness_summary=readiness_summary,
         time_summary=time_summary,
+        schedule_kpi_status=schedule_kpi_status,
         study_tip=study_tip,
         show_welcome=show_welcome,
     )

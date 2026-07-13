@@ -513,3 +513,4 @@ class RecommendationService:
                 for cat, data in categories.items()
             },
         }
+

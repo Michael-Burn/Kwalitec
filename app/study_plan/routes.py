@@ -857,9 +857,7 @@ def _build_review_data(wizard_data: dict) -> dict:
 @login_required
 def view_plan(study_plan_id: int):
     """View a study plan."""
-    from app.models.study_plan import StudyPlan
-
-    study_plan = StudyPlan.query.get(study_plan_id)
+    study_plan = StudyPlanService.get_plan(study_plan_id)
 
     if not study_plan:
         flash("Study plan not found.", "warning")
@@ -889,9 +887,7 @@ def list_plans():
 @login_required
 def edit_plan(study_plan_id: int):
     """Display the edit form for a study plan."""
-    from app.models.study_plan import StudyPlan
-
-    study_plan = StudyPlan.query.get(study_plan_id)
+    study_plan = StudyPlanService.get_plan(study_plan_id)
 
     if not study_plan:
         flash("Study plan not found.", "warning")
@@ -956,9 +952,7 @@ def edit_plan(study_plan_id: int):
 @login_required
 def edit_plan_post(study_plan_id: int):
     """Handle study plan edit form submission."""
-    from app.models.study_plan import StudyPlan
-
-    study_plan = StudyPlan.query.get(study_plan_id)
+    study_plan = StudyPlanService.get_plan(study_plan_id)
 
     if not study_plan:
         flash("Study plan not found.", "warning")

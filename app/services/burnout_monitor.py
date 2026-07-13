@@ -1,10 +1,13 @@
-"""Burnout detection service using deterministic thresholds.
+"""Study-activity pattern notice service using deterministic thresholds.
 
-Monitors:
+Observes:
 - Falling accuracy (week-over-week decline)
 - Falling confidence
 - Excessive study duration (single session)
 - Long streaks without breaks
+
+Capability 4.7: presentations must not claim burnout prediction — only
+observed study-activity patterns the platform can defend.
 """
 
 from __future__ import annotations
@@ -65,12 +68,14 @@ class BurnoutMonitor:
 
         if not indicators:
             explanation = (
-                "No burnout indicators detected. "
+                "No concerning study-activity patterns detected. "
                 "Keep maintaining a healthy study rhythm."
             )
         else:
             descs = [i["description"] for i in indicators]
-            explanation = "Burnout indicators detected: " + "; ".join(descs) + "."
+            explanation = (
+                "Observed study-activity patterns: " + "; ".join(descs) + "."
+            )
 
         return {
             "risk_level": risk_level,

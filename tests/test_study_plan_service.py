@@ -631,9 +631,12 @@ class TestV2SectionAwareInitialisation:
         assert tp.mastery_score == 100.0
         assert tp.confidence == "Mastered"
 
-    def test_v2_current_topic_never_marked_completed_even_if_in_list(self, ctx, db):
-        """The current topic must not be completed even if its code appears in
-        completed_curriculum_topics."""
+    def test_v2_current_topic_honours_completed_list_and_advances_pointer(
+        self, ctx, db
+    ):
+        """When the current code also appears in completed_curriculum_topics,
+        progress stays completed and the plan pointer advances to the next
+        incomplete topic."""
         from app.models.curriculum import Topic as DBTopic
         from app.models.topic_progress import TopicProgress
 
@@ -652,8 +655,9 @@ class TestV2SectionAwareInitialisation:
         tp = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=alpha_topic.id,
         ).first()
-        assert tp.completed is False
-        assert tp.current_stage == TopicProgress.STAGE_LEARNING
+        assert tp.completed is True
+        assert tp.current_stage == TopicProgress.STAGE_COMPLETED
+        assert sp.curriculum_topic_code == "T2-A.2"
 
     def test_v2_idempotency_no_duplicate_progress_rows(self, ctx, db):
         """Creating a second plan against the same V2 curriculum must not
@@ -1109,7 +1113,9 @@ class TestSyncCompletedTopicsV2:
         assert tp.completed is True
         assert tp.mastery_score == 100.0
 
-    def test_v2_sync_never_marks_current_topic_completed(self, ctx, db):
+    def test_v2_sync_honours_completed_current_topic_and_advances_pointer(
+        self, ctx, db
+    ):
         from app.models.curriculum import Topic as DBTopic
         from app.models.topic_progress import TopicProgress
         from app.services.study_plan_service import StudyPlanService
@@ -1146,9 +1152,9 @@ class TestSyncCompletedTopicsV2:
         tp = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=alpha.id,
         ).first()
-        # Must stay Learning, not Completed
-        assert tp.current_stage == TopicProgress.STAGE_LEARNING
-        assert tp.completed is False
+        assert tp.completed is True
+        assert tp.current_stage == TopicProgress.STAGE_COMPLETED
+        assert sp.curriculum_topic_code == "T2-A.2"
 
     def test_v2_sync_resets_unchecked_previously_completed_topic(self, ctx, db):
         from app.models.curriculum import Topic as DBTopic

@@ -381,3 +381,93 @@ def backfill_sections_command(dry_run: bool) -> None:
         total_topics_linked,
         " [DRY RUN]" if dry_run else "",
     )
+
+
+@click.command("internal-alpha-reset")
+@click.option(
+    "--yes",
+    "assume_yes",
+    is_flag=True,
+    default=False,
+    help="Skip the interactive confirmation prompt (operator automation only).",
+)
+def internal_alpha_reset_command(assume_yes: bool) -> None:
+    """Reset generated educational state for Internal Alpha.
+
+    Removes Study Plans, Twins, progress, missions, attempts, decisions, and
+    related regenerable history. Preserves users, password hashes, curricula,
+    sections, topics, learning objectives, configuration, and Alembic history.
+
+    This is NOT a database wipe. THIS CANNOT BE UNDONE.
+
+    Exit codes:
+        0 – Reset completed or cancelled by the operator
+        1 – Reset failed
+    """
+    from app.services.internal_alpha_reset_service import InternalAlphaResetService
+
+    logger.info("Starting internal-alpha-reset command")
+
+    click.echo("=" * 60)
+    click.echo("INTERNAL ALPHA RESET")
+    click.echo("=" * 60)
+    click.echo()
+    click.echo("THIS CANNOT BE UNDONE")
+    click.echo()
+    click.echo(
+        "This command removes generated educational state so every "
+        "Internal Alpha participant starts from the same baseline."
+    )
+    click.echo("It does NOT wipe the database.")
+    click.echo()
+
+    preview = InternalAlphaResetService.preview()
+
+    click.echo("Will delete (generated educational data):")
+    for item in preview.to_delete:
+        click.echo(f"  - {item.table}: {item.count}")
+    click.echo(f"  Total rows to delete: {preview.total_to_delete}")
+    click.echo()
+    click.echo("Will preserve:")
+    for item in preview.preserved:
+        click.echo(f"  - {item.table}: {item.count}")
+    click.echo("  - Alembic migration history (alembic_version)")
+    click.echo("  - Application configuration and environment settings")
+    click.echo()
+
+    if not assume_yes:
+        confirmed = click.confirm(
+            "Proceed with Internal Alpha reset? THIS CANNOT BE UNDONE",
+            default=False,
+        )
+        if not confirmed:
+            click.echo("Reset cancelled. No changes were made.")
+            logger.info("internal-alpha-reset: cancelled by operator")
+            return
+
+    try:
+        result = InternalAlphaResetService.execute()
+    except Exception as exc:
+        click.echo(f"Error: Internal Alpha reset failed: {exc}", err=True)
+        logger.error("internal-alpha-reset: failed (%s)", exc)
+        sys.exit(1)
+
+    click.echo()
+    click.echo("Reset complete. Records removed:")
+    for item in result.deleted:
+        click.echo(f"  - {item.table}: {item.count}")
+    click.echo(f"  Total deleted: {result.total_deleted}")
+    click.echo()
+    click.echo("Preserved after reset:")
+    for item in result.preserved:
+        click.echo(f"  - {item.table}: {item.count}")
+    click.echo()
+    click.echo(
+        "Application is ready for Internal Alpha. "
+        "Participants may create new Study Plans, Calibration, Twins, "
+        "recommendations, and missions from a shared baseline."
+    )
+    logger.info(
+        "internal-alpha-reset: completed total_deleted=%d",
+        result.total_deleted,
+    )

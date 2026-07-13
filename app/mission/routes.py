@@ -54,7 +54,12 @@ def _resolve_topic_for_mission(user_id: int, mission: Mission):
 
 
 def _apply_mission_topic_progress(user_id: int, topic) -> None:
-    """Persist syllabus progress so dashboard readiness updates after completion."""
+    """Persist syllabus progress so dashboard readiness updates after completion.
+
+    Also advances the active plan's ``curriculum_topic_code`` past the
+    completed topic so refresh/heal cannot demote progress on the first
+    syllabus leaf (e.g. CS1 ``1.1``).
+    """
     if topic is None:
         return
 
@@ -79,6 +84,10 @@ def _apply_mission_topic_progress(user_id: int, topic) -> None:
             )
             if not next_progress.completed:
                 next_progress.current_stage = TopicProgress.STAGE_LEARNING
+
+    active_plan = StudyPlanService.get_user_active_plan(user_id)
+    if active_plan is not None:
+        StudyPlanService.reconcile_current_topic_pointer(active_plan)
 
     from app.extensions import db
 

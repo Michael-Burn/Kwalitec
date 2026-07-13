@@ -144,18 +144,23 @@ class PlanningService:
                 if code and str(code).strip():
                     return str(code).strip()
         return None
+
     @staticmethod
-    def generate_today_mission(user_id: int, today: date | None = None) -> Mission | None:
+    def generate_today_mission(
+        user_id: int, today: date | None = None
+    ) -> Mission | None:
         """Generate today's mission if it doesn't already exist.
-        
+
         This method is idempotent - calling it multiple times on the same day
         will not create duplicate missions. If a mission already exists for today,
-        it will be returned without modification.
-        
+        it will be returned without modification — except when an unbound plan
+        is repaired to a syllabus and today's mission is still a generic
+        Core Reading fallback with no completed work; that mission is replaced.
+
         Args:
             user_id: The ID of the user.
             today: The date to generate the mission for (defaults to today).
-        
+
         Returns:
             Mission: The generated or existing mission for today, or None if no
                     active study plan exists or today is outside the study window.
@@ -163,10 +168,13 @@ class PlanningService:
         if today is None:
             today = date.today()
 
-        # Get active study plan
+        # Get active study plan (self-heals curriculum binding via StudyPlanService)
         active_plan = StudyPlanService.get_user_active_plan(user_id)
         if not active_plan:
-            logger.info("No active study plan for user %s; skipping mission generation", user_id)
+            logger.info(
+                "No active study plan for user %s; skipping mission generation",
+                user_id,
+            )
             return None
 
         # Check if mission already exists for today (idempotency)
@@ -176,8 +184,21 @@ class PlanningService:
         ).first()
 
         if existing_mission:
-            logger.debug("Mission already exists for user %s on %s", user_id, today)
-            return existing_mission
+            if PlanningService._should_replace_generic_mission(
+                existing_mission, active_plan
+            ):
+                logger.info(
+                    "Replacing generic mission %s for user %s after curriculum binding",
+                    existing_mission.id,
+                    user_id,
+                )
+                db.session.delete(existing_mission)
+                db.session.commit()
+            else:
+                logger.debug(
+                    "Mission already exists for user %s on %s", user_id, today
+                )
+                return existing_mission
 
         # Get current week plan
         current_week = StudyPlanService.get_current_week_plan(active_plan)
@@ -196,8 +217,37 @@ class PlanningService:
             target_date=today,
         )
 
-        logger.info("Generated mission %d for user %s on %s", mission.id, user_id, today)
+        logger.info(
+            "Generated mission %d for user %s on %s",
+            mission.id,
+            user_id,
+            today,
+        )
         return mission
+
+    @staticmethod
+    def _should_replace_generic_mission(
+        mission: Mission,
+        active_plan: StudyPlan,
+    ) -> bool:
+        """Return True when a generic fallback mission should be regenerated.
+
+        Only replaces unfinished missions after the plan is curriculum-bound,
+        so syllabus repair can correct Core Reading stubs without discarding
+        in-progress student work.
+        """
+        if not active_plan.curriculum_id:
+            return False
+        if any(task.completed for task in mission.tasks):
+            return False
+        title = (mission.title or "").strip().lower()
+        if title.startswith("daily study") or title.startswith("weekend review"):
+            return True
+        if mission.tasks:
+            lead = (mission.tasks[0].description or "").strip().lower()
+            if lead.startswith("read the core reading for today's section"):
+                return True
+        return False
 
     @staticmethod
     def _generate_mission_for_date(
@@ -602,13 +652,45 @@ class PlanningService:
         Returns:
             Topic: The selected topic, or None if no curriculum/no topics available.
         """
-        # If no curriculum is associated, fall back to generic topic selection
-        if not active_plan.curriculum_id:
+        # Curriculum binding is a StudyPlanService invariant — callers must load
+        # plans via get_user_active_plan / get_plan so repair has already run.
+        curriculum_id = active_plan.curriculum_id
+        curriculum_version = active_plan.curriculum_version
+        if not curriculum_id:
             curriculum = None
         else:
-            curriculum = CurriculumService.get_curriculum_by_id(active_plan.curriculum_id)
+            curriculum = CurriculumService.get_curriculum_by_id(curriculum_id)
+
+        topic_progress_count = 0
+        if curriculum is not None:
+            from app.models.topic_progress import TopicProgress
+
+            topic_progress_count = (
+                TopicProgress.query.join(Topic)
+                .filter(
+                    TopicProgress.user_id == user_id,
+                    Topic.curriculum_id == curriculum.id,
+                )
+                .count()
+            )
+
+        logger.debug(
+            "Topic selection inputs user=%s plan=%s curriculum_id=%s "
+            "curriculum_version=%s topic_progress_count=%s",
+            user_id,
+            active_plan.id,
+            curriculum_id,
+            curriculum_version,
+            topic_progress_count,
+        )
 
         if not curriculum:
+            logger.debug(
+                "selected_topic=None at curriculum lookup "
+                "(curriculum_id=%s version=%s)",
+                curriculum_id,
+                curriculum_version,
+            )
             return None
 
         # --- Priority 1: Topics due for review today ---
@@ -621,8 +703,13 @@ class PlanningService:
             selected_progress = due_reviews[0]
             topic = selected_progress.topic
             logger.debug(
-                "Priority 1: Selected review topic %s (due %s, mastery=%.1f)",
-                topic.name, selected_progress.next_review_date, selected_progress.mastery_score,
+                "Priority 1: selected_topic id=%s name=%r section_id=%s "
+                "(due %s, mastery=%.1f)",
+                topic.id,
+                topic.name,
+                topic.section_id,
+                selected_progress.next_review_date,
+                selected_progress.mastery_score,
             )
             return topic
 
@@ -636,8 +723,12 @@ class PlanningService:
             selected_progress = weak_topics[0]
             topic = selected_progress.topic
             logger.debug(
-                "Priority 2: Selected weak topic %s (mastery=%.1f)",
-                topic.name, selected_progress.mastery_score,
+                "Priority 2: selected_topic id=%s name=%r section_id=%s "
+                "(mastery=%.1f)",
+                topic.id,
+                topic.name,
+                topic.section_id,
+                selected_progress.mastery_score,
             )
             return topic
 
@@ -647,11 +738,22 @@ class PlanningService:
             curriculum=curriculum,
         )
         if next_topic:
-            logger.debug("Priority 3: Selected next curriculum topic %s", next_topic.name)
+            logger.debug(
+                "Priority 3: selected_topic id=%s name=%r section_id=%s",
+                next_topic.id,
+                next_topic.name,
+                next_topic.section_id,
+            )
             return next_topic
 
         # All topics complete
-        logger.info("All curriculum topics completed for user %s", user_id)
+        logger.info(
+            "selected_topic=None — all curriculum topics completed for user %s "
+            "(curriculum_id=%s topic_progress_count=%s)",
+            user_id,
+            curriculum_id,
+            topic_progress_count,
+        )
         return None
 
     @staticmethod
