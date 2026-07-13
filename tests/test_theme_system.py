@@ -54,6 +54,16 @@ class TestThemeAssets:
         assert '[data-theme="dark"]' in css
         assert '[data-theme="light"]' in css
 
+    def test_dark_theme_keeps_brand_emphasis_readable(self):
+        """Brand emphasis must not collapse to near-black chrome in dark mode."""
+        css = APP_CSS.read_text(encoding="utf-8")
+        dark_block_start = css.index('[data-theme="dark"]')
+        dark_block = css[dark_block_start : dark_block_start + 1600]
+        assert "--chrome:" in dark_block
+        assert "--brand: #93c5fd" in dark_block
+        assert "--brand: #0f131a" not in dark_block
+        assert "--on-primary: #0f131a" in dark_block
+
     def test_app_css_avoids_pure_black_background(self):
         css = APP_CSS.read_text(encoding="utf-8")
         # Dark background should not be pure #000

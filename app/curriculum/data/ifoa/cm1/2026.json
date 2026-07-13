@@ -1,0 +1,1238 @@
+{
+  "exam_code": "CM1",
+  "exam_name": "Actuarial Mathematics for Modelling",
+  "provider": "IFoA",
+  "version": "2026",
+  "effective_date": "2026-01-01",
+  "superseded_date": null,
+  "total_estimated_hours": 250.0,
+  "description": "Actuarial Mathematics for Modelling provides a grounding in the mathematical principles required for actuarial modelling, with a focus on understanding deterministic models and their application to solve financial problems. Canonical representation of the official IFoA CM1 Syllabus for the 2026 Examinations (April 2025).",
+  "metadata": {
+    "source": "IFoA CM1 Syllabus for the 2026 Examinations",
+    "source_document": "cm1_syllabus-2026-_final-proof.pdf",
+    "source_url": "https://actuaries.org.uk/media/yfnkmkbq/cm1_syllabus-2026-_final-proof.pdf",
+    "qualification_level": "Core Principles",
+    "associateship_qualification": "Associateship Qualification",
+    "published": "April 2025",
+    "recommended_study_hours": "250",
+    "language": "en",
+    "assessment": "CM1A 3h20m Word; CM1B 1h50m Excel; same sitting required"
+  },
+  "sections": [
+    {
+      "id": "CM1-A",
+      "code": "1",
+      "title": "Theory of interest rates",
+      "description": "Understand the principles of time preference theory of interest and the time value of money, including the term structure of interest rates and standard actuarial compound interest rate functions. Apply these principles to real world examples of interest rates, discounting and evaluation of present values of cashflows.",
+      "exam_weight": 25.0,
+      "estimated_hours": 62.5,
+      "difficulty": "foundational",
+      "display_order": 1,
+      "topics": [
+        {
+          "id": "CM1-A-T01",
+          "section_id": "CM1-A",
+          "code": "1.1",
+          "title": "Show how interest rates may be expressed in different time periods",
+          "description": "Show how interest rates may be expressed in different time periods",
+          "estimated_minutes": 561,
+          "difficulty": "foundational",
+          "display_order": 1,
+          "learning_objectives": [
+            {
+              "id": "CM1-A-T01-LO01",
+              "topic_id": "CM1-A-T01",
+              "code": "1.1.1",
+              "description": "Relationship between the rates of interest and discount over one effective period, considered arithmetically and by general reasoning",
+              "cognitive_level": "understand",
+              "estimated_minutes": 187,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "1.1.1",
+                "estimated_hours": "3.12",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CM1-A-T01-LO02",
+              "topic_id": "CM1-A-T01",
+              "code": "1.1.2",
+              "description": "Determine, when given a rate of interest under a specified payment frequency, the equivalent rate under an alternative payment frequency, including: annual effective rate of interest or discount; rate of interest or discount payable pthly (p>1); force of interest",
+              "cognitive_level": "apply",
+              "estimated_minutes": 187,
+              "learning_type": "procedure",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "1.1.2",
+                "estimated_hours": "3.12",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CM1-A-T01-LO03",
+              "topic_id": "CM1-A-T01",
+              "code": "1.1.3",
+              "description": "Calculate the equivalent annual rate of interest implied by the accumulation of a sum of money over a specified period where the force of interest is a function of time",
+              "cognitive_level": "apply",
+              "estimated_minutes": 187,
+              "learning_type": "procedure",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "1.1.3",
+                "estimated_hours": "3.12",
+                "difficulty": "foundational"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM1-A-T02",
+          "section_id": "CM1-A",
+          "code": "1.2",
+          "title": "Account for the time value of money using the concepts of compound interest and discounting",
+          "description": "Account for the time value of money using the concepts of compound interest and discounting",
+          "estimated_minutes": 374,
+          "difficulty": "foundational",
+          "display_order": 2,
+          "learning_objectives": [
+            {
+              "id": "CM1-A-T02-LO01",
+              "topic_id": "CM1-A-T02",
+              "code": "1.2.1",
+              "description": "Accumulate a single investment at a constant rate of interest under the operation of simple and compound interest",
+              "cognitive_level": "apply",
+              "estimated_minutes": 187,
+              "learning_type": "procedure",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "1.2.1",
+                "estimated_hours": "3.12",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CM1-A-T02-LO02",
+              "topic_id": "CM1-A-T02",
+              "code": "1.2.2",
+              "description": "Calculate the present value of a future payment by discounting a single investment",
+              "cognitive_level": "apply",
+              "estimated_minutes": 187,
+              "learning_type": "procedure",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "1.2.2",
+                "estimated_hours": "3.12",
+                "difficulty": "foundational"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM1-A-T03",
+          "section_id": "CM1-A",
+          "code": "1.3",
+          "title": "Extend the techniques in 1.1 and 1.2 where appropriate to allow for inflation",
+          "description": "Extend the techniques in 1.1 and 1.2 where appropriate to allow for inflation",
+          "estimated_minutes": 187,
+          "difficulty": "foundational",
+          "display_order": 3,
+          "learning_objectives": [
+            {
+              "id": "CM1-A-T03-LO01",
+              "topic_id": "CM1-A-T03",
+              "code": "1.3.1",
+              "description": "Extend the techniques in 1.1 and 1.2 where appropriate to allow for inflation",
+              "cognitive_level": "apply",
+              "estimated_minutes": 187,
+              "learning_type": "application",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "1.3.1",
+                "estimated_hours": "3.12",
+                "difficulty": "foundational"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM1-A-T04",
+          "section_id": "CM1-A",
+          "code": "1.4",
+          "title": "Describe the operation of financial instruments and insurance contracts as a cashflow model",
+          "description": "Describe the operation of financial instruments and insurance contracts as a cashflow model",
+          "estimated_minutes": 187,
+          "difficulty": "intermediate",
+          "display_order": 4,
+          "learning_objectives": [
+            {
+              "id": "CM1-A-T04-LO01",
+              "topic_id": "CM1-A-T04",
+              "code": "1.4.1",
+              "description": "Describe the operation of financial instruments and insurance contracts as a cashflow model (where cashflows may be fixed or uncertain in terms of both amount and timing)",
+              "cognitive_level": "understand",
+              "estimated_minutes": 187,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "1.4.1",
+                "estimated_hours": "3.12",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM1-A-T05",
+          "section_id": "CM1-A",
+          "code": "1.5",
+          "title": "Calculate the present value and accumulated value for a given stream of cashflows under individual or combination scenarios",
+          "description": "Calculate the present value and accumulated value for a given stream of cashflows under individual or combination scenarios",
+          "estimated_minutes": 937,
+          "difficulty": "intermediate",
+          "display_order": 5,
+          "learning_objectives": [
+            {
+              "id": "CM1-A-T05-LO01",
+              "topic_id": "CM1-A-T05",
+              "code": "1.5.1",
+              "description": "Cashflows are equal at each time period",
+              "cognitive_level": "apply",
+              "estimated_minutes": 187,
+              "learning_type": "procedure",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "1.5.1",
+                "estimated_hours": "3.12",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM1-A-T05-LO02",
+              "topic_id": "CM1-A-T05",
+              "code": "1.5.2",
+              "description": "Cashflows vary with time, which may or may not be a continuous function of time",
+              "cognitive_level": "apply",
+              "estimated_minutes": 187,
+              "learning_type": "procedure",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "1.5.2",
+                "estimated_hours": "3.12",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM1-A-T05-LO03",
+              "topic_id": "CM1-A-T05",
+              "code": "1.5.3",
+              "description": "Some of the cashflows are deferred for a period of time",
+              "cognitive_level": "apply",
+              "estimated_minutes": 187,
+              "learning_type": "procedure",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "1.5.3",
+                "estimated_hours": "3.12",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM1-A-T05-LO04",
+              "topic_id": "CM1-A-T05",
+              "code": "1.5.4",
+              "description": "Rate of interest or discount is constant",
+              "cognitive_level": "apply",
+              "estimated_minutes": 188,
+              "learning_type": "procedure",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "1.5.4",
+                "estimated_hours": "3.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM1-A-T05-LO05",
+              "topic_id": "CM1-A-T05",
+              "code": "1.5.5",
+              "description": "Rate of interest or discount varies with time, which may or may not be a continuous function of time",
+              "cognitive_level": "apply",
+              "estimated_minutes": 188,
+              "learning_type": "procedure",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "1.5.5",
+                "estimated_hours": "3.13",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM1-A-T06",
+          "section_id": "CM1-A",
+          "code": "1.6",
+          "title": "Evaluate annuity and accumulation functions for given term and interest or discount functions",
+          "description": "Evaluate annuity and accumulation functions for given term and interest or discount functions",
+          "estimated_minutes": 564,
+          "difficulty": "intermediate",
+          "display_order": 6,
+          "learning_objectives": [
+            {
+              "id": "CM1-A-T06-LO01",
+              "topic_id": "CM1-A-T06",
+              "code": "1.6.1",
+              "description": "Evaluate a_n, s_n, a_n^(p), s_n^(p), ä_n, s̈_n, ä_n^(p), s̈_n^(p), ā_n and s̄_n",
+              "cognitive_level": "apply",
+              "estimated_minutes": 188,
+              "learning_type": "procedure",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "1.6.1",
+                "estimated_hours": "3.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM1-A-T06-LO02",
+              "topic_id": "CM1-A-T06",
+              "code": "1.6.2",
+              "description": "Evaluate deferred annuity functions m|a_n, m|a_n^(p), m|ä_n, m|ä_n^(p) and m|ā_n",
+              "cognitive_level": "apply",
+              "estimated_minutes": 188,
+              "learning_type": "procedure",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "1.6.2",
+                "estimated_hours": "3.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM1-A-T06-LO03",
+              "topic_id": "CM1-A-T06",
+              "code": "1.6.3",
+              "description": "Evaluate increasing annuity functions (Ia)_n, (Iä)_n, (Iā)_n and (Ia)_n bar, and the respective deferred annuities",
+              "cognitive_level": "apply",
+              "estimated_minutes": 188,
+              "learning_type": "procedure",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "1.6.3",
+                "estimated_hours": "3.13",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM1-A-T07",
+          "section_id": "CM1-A",
+          "code": "1.7",
+          "title": "Demonstrate an understanding of the term structure of interest rates",
+          "description": "Demonstrate an understanding of the term structure of interest rates",
+          "estimated_minutes": 564,
+          "difficulty": "intermediate",
+          "display_order": 7,
+          "learning_objectives": [
+            {
+              "id": "CM1-A-T07-LO01",
+              "topic_id": "CM1-A-T07",
+              "code": "1.7.1",
+              "description": "Understand the main factors influencing the term structure of interest rates",
+              "cognitive_level": "understand",
+              "estimated_minutes": 188,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "1.7.1",
+                "estimated_hours": "3.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM1-A-T07-LO02",
+              "topic_id": "CM1-A-T07",
+              "code": "1.7.2",
+              "description": "Understand and calculate discrete spot rates and forward rates, and continuous spot rates and forward rates",
+              "cognitive_level": "apply",
+              "estimated_minutes": 188,
+              "learning_type": "procedure",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "1.7.2",
+                "estimated_hours": "3.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM1-A-T07-LO03",
+              "topic_id": "CM1-A-T07",
+              "code": "1.7.3",
+              "description": "Understand and calculate the par yield and yield to maturity",
+              "cognitive_level": "apply",
+              "estimated_minutes": 188,
+              "learning_type": "procedure",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "1.7.3",
+                "estimated_hours": "3.13",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM1-A-T08",
+          "section_id": "CM1-A",
+          "code": "1.8",
+          "title": "Understand duration, convexity and immunisation of cashflows",
+          "description": "Understand duration, convexity and immunisation of cashflows",
+          "estimated_minutes": 376,
+          "difficulty": "advanced",
+          "display_order": 8,
+          "learning_objectives": [
+            {
+              "id": "CM1-A-T08-LO01",
+              "topic_id": "CM1-A-T08",
+              "code": "1.8.1",
+              "description": "Demonstrate how the duration and convexity of a cashflow sequence may be used to estimate the sensitivity of the value of the cashflow sequence to a shift in interest rates",
+              "cognitive_level": "analyze",
+              "estimated_minutes": 188,
+              "learning_type": "analysis",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "1.8.1",
+                "estimated_hours": "3.13",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM1-A-T08-LO02",
+              "topic_id": "CM1-A-T08",
+              "code": "1.8.2",
+              "description": "Understand, apply and discuss Redington's conditions for immunisation of a portfolio of liabilities",
+              "cognitive_level": "evaluate",
+              "estimated_minutes": 188,
+              "learning_type": "analysis",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "1.8.2",
+                "estimated_hours": "3.13",
+                "difficulty": "advanced"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CM1-B",
+      "code": "2",
+      "title": "Equation of value and its applications",
+      "description": "Understand and apply equation of value principles to evaluate financial problems in particular relating to loan schedules, bond prices, bond yields and project appraisals.",
+      "exam_weight": 20.0,
+      "estimated_hours": 50.0,
+      "difficulty": "intermediate",
+      "display_order": 2,
+      "topics": [
+        {
+          "id": "CM1-B-T01",
+          "section_id": "CM1-B",
+          "code": "2.1",
+          "title": "Understand and apply the concept of an equation of value",
+          "description": "Understand and apply the concept of an equation of value",
+          "estimated_minutes": 375,
+          "difficulty": "intermediate",
+          "display_order": 1,
+          "learning_objectives": [
+            {
+              "id": "CM1-B-T01-LO01",
+              "topic_id": "CM1-B-T01",
+              "code": "2.1.1",
+              "description": "Understand and apply the concept of an equation of value in terms of: where payment or receipt is certain; where payment or receipt is uncertain; and the two conditions required for there to be an exact solution",
+              "cognitive_level": "understand",
+              "estimated_minutes": 375,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "2.1.1",
+                "estimated_hours": "6.25",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM1-B-T02",
+          "section_id": "CM1-B",
+          "code": "2.2",
+          "title": "Use the concept of equation of value to solve various practical problems",
+          "description": "Use the concept of equation of value to solve various practical problems",
+          "estimated_minutes": 1875,
+          "difficulty": "intermediate",
+          "display_order": 2,
+          "learning_objectives": [
+            {
+              "id": "CM1-B-T02-LO01",
+              "topic_id": "CM1-B-T02",
+              "code": "2.2.1",
+              "description": "Apply the equation of value to loans repaid by regular instalments of interest and capital. Obtain repayments, interest and capital components, the effective interest rate (APR) and construct a schedule of repayments",
+              "cognitive_level": "apply",
+              "estimated_minutes": 375,
+              "learning_type": "application",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "2.2.1",
+                "estimated_hours": "6.25",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM1-B-T02-LO02",
+              "topic_id": "CM1-B-T02",
+              "code": "2.2.2",
+              "description": "Calculate the price of, or yield (nominal or real allowing for inflation) from, a bond (fixed interest or index-linked) where the investor is subject to deduction of income tax on coupon payments and redemption payments are subject to deduction of capital gains tax",
+              "cognitive_level": "apply",
+              "estimated_minutes": 375,
+              "learning_type": "application",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "2.2.2",
+                "estimated_hours": "6.25",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM1-B-T02-LO03",
+              "topic_id": "CM1-B-T02",
+              "code": "2.2.3",
+              "description": "Calculate the running yield and the redemption yield for the financial instrument as described in 2.2.2",
+              "cognitive_level": "apply",
+              "estimated_minutes": 375,
+              "learning_type": "procedure",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "2.2.3",
+                "estimated_hours": "6.25",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM1-B-T02-LO04",
+              "topic_id": "CM1-B-T02",
+              "code": "2.2.4",
+              "description": "Calculate the upper and lower bounds for the present value of the financial instrument as described in 2.2.2, when the redemption date can be a single date within a given range at the option of the borrower",
+              "cognitive_level": "apply",
+              "estimated_minutes": 375,
+              "learning_type": "problem_solving",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "2.2.4",
+                "estimated_hours": "6.25",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM1-B-T02-LO05",
+              "topic_id": "CM1-B-T02",
+              "code": "2.2.5",
+              "description": "Calculate the present value or yield (nominal or real allowing for inflation) from an ordinary share or property, given constant or variable rate of growth of dividends or rents",
+              "cognitive_level": "apply",
+              "estimated_minutes": 375,
+              "learning_type": "application",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "2.2.5",
+                "estimated_hours": "6.25",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM1-B-T03",
+          "section_id": "CM1-B",
+          "code": "2.3",
+          "title": "Apply cashflow and equation of value techniques to project appraisals",
+          "description": "Apply cashflow and equation of value techniques to project appraisals",
+          "estimated_minutes": 750,
+          "difficulty": "intermediate",
+          "display_order": 3,
+          "learning_objectives": [
+            {
+              "id": "CM1-B-T03-LO01",
+              "topic_id": "CM1-B-T03",
+              "code": "2.3.1",
+              "description": "Calculate the net present value and accumulated profit of the receipts and payments from an investment project at given rates of interest",
+              "cognitive_level": "apply",
+              "estimated_minutes": 375,
+              "learning_type": "application",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "2.3.1",
+                "estimated_hours": "6.25",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM1-B-T03-LO02",
+              "topic_id": "CM1-B-T03",
+              "code": "2.3.2",
+              "description": "Calculate the internal rate of return, payback period and discounted payback period and discuss their suitability for assessing the suitability of an investment project",
+              "cognitive_level": "evaluate",
+              "estimated_minutes": 375,
+              "learning_type": "analysis",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "2.3.2",
+                "estimated_hours": "6.25",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CM1-C",
+      "code": "3",
+      "title": "Decrement and multiple life models",
+      "description": "Understand how to model uncertain future cashflows, which may depend on the death or survival of an individual, or other uncertain events. Be introduced to the life table, calculation of the mean and variance of the present value of all of the main life insurance and annuity contracts, and their relationship in actuarial terms. Extend the single decrement model to evaluate health insurance contracts involving two lives as well as the valuation of cashflows in a competing risk environment using multiple state models.",
+      "exam_weight": 20.0,
+      "estimated_hours": 50.0,
+      "difficulty": "intermediate",
+      "display_order": 3,
+      "topics": [
+        {
+          "id": "CM1-C-T01",
+          "section_id": "CM1-C",
+          "code": "3.1",
+          "title": "Demonstrate an understanding of the operation of key assurance and annuity contracts",
+          "description": "Demonstrate an understanding of the operation of key assurance and annuity contracts",
+          "estimated_minutes": 569,
+          "difficulty": "intermediate",
+          "display_order": 1,
+          "learning_objectives": [
+            {
+              "id": "CM1-C-T01-LO01",
+              "topic_id": "CM1-C-T01",
+              "code": "3.1.1",
+              "description": "Understand the following contracts, for example by explaining the timing and nature of the cashflows involved: whole-life assurance; term assurance; pure endowment; endowment assurance; whole-life level annuity; temporary level annuity; guaranteed level annuity; deferred benefits (annuity and assurance); return of premiums annuity; joint life and variable versions of all products",
+              "cognitive_level": "understand",
+              "estimated_minutes": 142,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "3.1.1",
+                "estimated_hours": "2.37",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM1-C-T01-LO02",
+              "topic_id": "CM1-C-T01",
+              "code": "3.1.2",
+              "description": "Understand the operation of conventional with-profits contracts, where profits are distributed by the use of regular reversionary bonuses and by terminal bonuses",
+              "cognitive_level": "understand",
+              "estimated_minutes": 142,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "3.1.2",
+                "estimated_hours": "2.37",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM1-C-T01-LO03",
+              "topic_id": "CM1-C-T01",
+              "code": "3.1.3",
+              "description": "Understand the operation of conventional unit-linked contracts, where death benefits are expressed as combination of absolute amount and relative to a unit fund",
+              "cognitive_level": "understand",
+              "estimated_minutes": 142,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "3.1.3",
+                "estimated_hours": "2.37",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM1-C-T01-LO04",
+              "topic_id": "CM1-C-T01",
+              "code": "3.1.4",
+              "description": "Understand the operation of accumulating with-profits contracts, where benefits take the form of an accumulating fund of premiums, where: the fund is defined in monetary terms, has no explicit charges and is increased by the addition of regular guaranteed and bonus interest payments plus a terminal bonus; or the fund is defined in terms of the value of a unit fund, is subject to explicit charges and is increased by regular bonus additions (through unit price increases or allocations of additional units) plus a terminal bonus (unitised with-profits)",
+              "cognitive_level": "understand",
+              "estimated_minutes": 143,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "3.1.4",
+                "estimated_hours": "2.38",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM1-C-T02",
+          "section_id": "CM1-C",
+          "code": "3.2",
+          "title": "Apply formulae for the means and variances of the payments under various assurance and annuity contracts, assuming a constant deterministic interest rate",
+          "description": "Apply formulae for the means and variances of the payments under various assurance and annuity contracts, assuming a constant deterministic interest rate",
+          "estimated_minutes": 1144,
+          "difficulty": "advanced",
+          "display_order": 2,
+          "learning_objectives": [
+            {
+              "id": "CM1-C-T02-LO01",
+              "topic_id": "CM1-C-T02",
+              "code": "3.2.1",
+              "description": "Life table functions l_x and d_x and their select equivalents l_[x]+r and d_[x]+r",
+              "cognitive_level": "understand",
+              "estimated_minutes": 143,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "3.2.1",
+                "estimated_hours": "2.38",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM1-C-T02-LO02",
+              "topic_id": "CM1-C-T02",
+              "code": "3.2.2",
+              "description": "Describe the meaning of the following probabilities: n p_x, n q_x, n|m q_x, n|q_x and their select equivalents n p_[x]+r, n q_[x]+r, n|m q_[x]+r, n|q_[x]+r",
+              "cognitive_level": "understand",
+              "estimated_minutes": 143,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "3.2.2",
+                "estimated_hours": "2.38",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM1-C-T02-LO03",
+              "topic_id": "CM1-C-T02",
+              "code": "3.2.3",
+              "description": "Express the probabilities defined in 3.2.2 in terms of life table functions defined in 3.2.1",
+              "cognitive_level": "apply",
+              "estimated_minutes": 143,
+              "learning_type": "procedure",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "3.2.3",
+                "estimated_hours": "2.38",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM1-C-T02-LO04",
+              "topic_id": "CM1-C-T02",
+              "code": "3.2.4",
+              "description": "Use assurance and annuity factors and their select and continuous equivalents, including the extension of the annuity factors to allow for the possibility that payments are more frequent than annual but less frequent than continuous",
+              "cognitive_level": "apply",
+              "estimated_minutes": 143,
+              "learning_type": "procedure",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "3.2.4",
+                "estimated_hours": "2.38",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM1-C-T02-LO05",
+              "topic_id": "CM1-C-T02",
+              "code": "3.2.5",
+              "description": "Use the relationship between annuities payable in advance and in arrear, and between temporary, deferred and whole-life annuities",
+              "cognitive_level": "apply",
+              "estimated_minutes": 143,
+              "learning_type": "procedure",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "3.2.5",
+                "estimated_hours": "2.38",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM1-C-T02-LO06",
+              "topic_id": "CM1-C-T02",
+              "code": "3.2.6",
+              "description": "Use the relationship between assurance and annuity factors using equation of value, and their select and continuous equivalents",
+              "cognitive_level": "apply",
+              "estimated_minutes": 143,
+              "learning_type": "procedure",
+              "display_order": 6,
+              "metadata": {
+                "syllabus_code": "3.2.6",
+                "estimated_hours": "2.38",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM1-C-T02-LO07",
+              "topic_id": "CM1-C-T02",
+              "code": "3.2.7",
+              "description": "Express the mean and variance of the present value of benefit payments as sums / integrals under each contract defined in 3.1.1, in terms of the (curtate) random future lifetime, assuming contingent benefits (constant, increasing or decreasing) payable at the middle or end of the year of the contingent event or continuously; annuities paid in advance, in arrear or continuously with constant, increasing or decreasing amounts; and premiums payable in advance, in arrear or continuously for the full policy term or a limited period. Where appropriate, simplify the above expressions into a form suitable for evaluation by table look-up or other means",
+              "cognitive_level": "analyze",
+              "estimated_minutes": 143,
+              "learning_type": "problem_solving",
+              "display_order": 7,
+              "metadata": {
+                "syllabus_code": "3.2.7",
+                "estimated_hours": "2.38",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM1-C-T02-LO08",
+              "topic_id": "CM1-C-T02",
+              "code": "3.2.8",
+              "description": "Evaluate the expected accumulations in terms of expected values for the contracts described in 3.1.1 and contract structures described in 3.2.7",
+              "cognitive_level": "apply",
+              "estimated_minutes": 143,
+              "learning_type": "application",
+              "display_order": 8,
+              "metadata": {
+                "syllabus_code": "3.2.8",
+                "estimated_hours": "2.38",
+                "difficulty": "advanced"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM1-C-T03",
+          "section_id": "CM1-C",
+          "code": "3.3",
+          "title": "Describe and use assurance and annuity functions involving two lives",
+          "description": "Describe and use assurance and annuity functions involving two lives",
+          "estimated_minutes": 286,
+          "difficulty": "advanced",
+          "display_order": 3,
+          "learning_objectives": [
+            {
+              "id": "CM1-C-T03-LO01",
+              "topic_id": "CM1-C-T03",
+              "code": "3.3.1",
+              "description": "Extend the techniques of objectives 3.2 to deal with cashflows dependent upon the death or survival of either or both of two lives",
+              "cognitive_level": "apply",
+              "estimated_minutes": 143,
+              "learning_type": "application",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "3.3.1",
+                "estimated_hours": "2.38",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM1-C-T03-LO02",
+              "topic_id": "CM1-C-T03",
+              "code": "3.3.2",
+              "description": "Extend technique in 3.3.1 to deal with functions dependent upon a fixed term as well as age",
+              "cognitive_level": "apply",
+              "estimated_minutes": 143,
+              "learning_type": "application",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "3.3.2",
+                "estimated_hours": "2.38",
+                "difficulty": "advanced"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM1-C-T04",
+          "section_id": "CM1-C",
+          "code": "3.4",
+          "title": "Describe and apply methods of valuing cashflows that are contingent upon multiple transition events",
+          "description": "Describe and apply methods of valuing cashflows that are contingent upon multiple transition events",
+          "estimated_minutes": 429,
+          "difficulty": "advanced",
+          "display_order": 4,
+          "learning_objectives": [
+            {
+              "id": "CM1-C-T04-LO01",
+              "topic_id": "CM1-C-T04",
+              "code": "3.4.1",
+              "description": "Demonstrate an understanding of simple health insurance premium and benefit structures",
+              "cognitive_level": "understand",
+              "estimated_minutes": 143,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "3.4.1",
+                "estimated_hours": "2.38",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM1-C-T04-LO02",
+              "topic_id": "CM1-C-T04",
+              "code": "3.4.2",
+              "description": "Describe how a cashflow, contingent upon multiple transition events, may be valued using a multiple-state Markov Model, in terms of the forces and probabilities of transition",
+              "cognitive_level": "understand",
+              "estimated_minutes": 143,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "3.4.2",
+                "estimated_hours": "2.38",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM1-C-T04-LO03",
+              "topic_id": "CM1-C-T04",
+              "code": "3.4.3",
+              "description": "Construct formulae for the expected present values of cashflows that are contingent upon multiple transition events, including simple health insurance premiums and benefits, and calculate these in simple cases. This includes regular premiums and sickness benefits payable continuously and assurance benefits payable immediately on transition",
+              "cognitive_level": "apply",
+              "estimated_minutes": 143,
+              "learning_type": "problem_solving",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "3.4.3",
+                "estimated_hours": "2.38",
+                "difficulty": "advanced"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM1-C-T05",
+          "section_id": "CM1-C",
+          "code": "3.5",
+          "title": "Describe and use methods of projecting and valuing expected cashflows that are contingent upon multiple decrement events",
+          "description": "Describe and use methods of projecting and valuing expected cashflows that are contingent upon multiple decrement events",
+          "estimated_minutes": 572,
+          "difficulty": "advanced",
+          "display_order": 5,
+          "learning_objectives": [
+            {
+              "id": "CM1-C-T05-LO01",
+              "topic_id": "CM1-C-T05",
+              "code": "3.5.1",
+              "description": "Understand the construction and use of multiple decrement tables",
+              "cognitive_level": "understand",
+              "estimated_minutes": 143,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "3.5.1",
+                "estimated_hours": "2.38",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM1-C-T05-LO02",
+              "topic_id": "CM1-C-T05",
+              "code": "3.5.2",
+              "description": "Understand the operation of a multiple decrement model as a special case of multiple-state Markov model",
+              "cognitive_level": "understand",
+              "estimated_minutes": 143,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "3.5.2",
+                "estimated_hours": "2.38",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM1-C-T05-LO03",
+              "topic_id": "CM1-C-T05",
+              "code": "3.5.3",
+              "description": "Determine dependent probabilities for a multiple decrement model in terms of given forces of transition, assuming forces of transition are constant over single years of age",
+              "cognitive_level": "apply",
+              "estimated_minutes": 143,
+              "learning_type": "procedure",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "3.5.3",
+                "estimated_hours": "2.38",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM1-C-T05-LO04",
+              "topic_id": "CM1-C-T05",
+              "code": "3.5.4",
+              "description": "Determine forces of transition from given dependent probabilities, assuming forces of transition are constant over single years of age",
+              "cognitive_level": "apply",
+              "estimated_minutes": 143,
+              "learning_type": "procedure",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "3.5.4",
+                "estimated_hours": "2.38",
+                "difficulty": "advanced"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CM1-D",
+      "code": "4",
+      "title": "Pricing and reserving",
+      "description": "Understand the future loss random variable and its application to the calculation of premiums for conventional life assurance and annuity contracts. Use the prospective and retrospective approaches to calculate reserves, the recursive relationship between reserves, and calculate mortality profit. Project cashflows to profit test life insurance contracts and apply projected cashflow techniques to pricing and reserving.",
+      "exam_weight": 35.0,
+      "estimated_hours": 87.5,
+      "difficulty": "advanced",
+      "display_order": 4,
+      "topics": [
+        {
+          "id": "CM1-D-T01",
+          "section_id": "CM1-D",
+          "code": "4.1",
+          "title": "Determine the gross random future loss random variable under an insurance contract",
+          "description": "Determine the gross random future loss random variable under an insurance contract",
+          "estimated_minutes": 437,
+          "difficulty": "advanced",
+          "display_order": 1,
+          "learning_objectives": [
+            {
+              "id": "CM1-D-T01-LO01",
+              "topic_id": "CM1-D-T01",
+              "code": "4.1.1",
+              "description": "Determine the gross random future loss random variable under an insurance contract",
+              "cognitive_level": "analyze",
+              "estimated_minutes": 437,
+              "learning_type": "analysis",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "4.1.1",
+                "estimated_hours": "7.28",
+                "difficulty": "advanced"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM1-D-T02",
+          "section_id": "CM1-D",
+          "code": "4.2",
+          "title": "Calculate gross premiums and reserves of assurance and annuity contracts",
+          "description": "Calculate gross premiums and reserves of assurance and annuity contracts",
+          "estimated_minutes": 2623,
+          "difficulty": "advanced",
+          "display_order": 2,
+          "learning_objectives": [
+            {
+              "id": "CM1-D-T02-LO01",
+              "topic_id": "CM1-D-T02",
+              "code": "4.2.1",
+              "description": "Calculate gross premiums for the insurance contract benefits listed in 3.1.1 under the following scenarios, or a combination thereof, using the equivalence principle or otherwise: contracts may accept only a single premium; regular premiums and annuity benefits may be payable annually, more frequently than annually or continuously; death benefits (which increase or decrease by a constant compound rate or by a constant monetary amount) may be payable at the end of the year of death or immediately on death; survival benefits (other than annuities) may be payable at defined intervals other than at maturity",
+              "cognitive_level": "apply",
+              "estimated_minutes": 437,
+              "learning_type": "problem_solving",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "4.2.1",
+                "estimated_hours": "7.28",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM1-D-T02-LO02",
+              "topic_id": "CM1-D-T02",
+              "code": "4.2.2",
+              "description": "Understand why an insurance company will set up reserves",
+              "cognitive_level": "understand",
+              "estimated_minutes": 437,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "4.2.2",
+                "estimated_hours": "7.28",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM1-D-T02-LO03",
+              "topic_id": "CM1-D-T02",
+              "code": "4.2.3",
+              "description": "Calculate gross prospective and retrospective reserves",
+              "cognitive_level": "apply",
+              "estimated_minutes": 437,
+              "learning_type": "procedure",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "4.2.3",
+                "estimated_hours": "7.28",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM1-D-T02-LO04",
+              "topic_id": "CM1-D-T02",
+              "code": "4.2.4",
+              "description": "Understand the equivalence of the prospective reserve and the retrospective reserve under certain conditions, with or without allowance for expenses, for all fixed benefit and increasing/decreasing benefit contracts",
+              "cognitive_level": "understand",
+              "estimated_minutes": 437,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "4.2.4",
+                "estimated_hours": "7.28",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM1-D-T02-LO05",
+              "topic_id": "CM1-D-T02",
+              "code": "4.2.5",
+              "description": "Obtain recursive relationships between successive periodic gross premium reserves, and use this relationship to calculate the profit earned from a contract during the period",
+              "cognitive_level": "apply",
+              "estimated_minutes": 437,
+              "learning_type": "problem_solving",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "4.2.5",
+                "estimated_hours": "7.28",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM1-D-T02-LO06",
+              "topic_id": "CM1-D-T02",
+              "code": "4.2.6",
+              "description": "Understand the concepts of net premiums and net premium valuation and how they relate to gross premiums and gross premium valuation respectively",
+              "cognitive_level": "understand",
+              "estimated_minutes": 438,
+              "learning_type": "concept",
+              "display_order": 6,
+              "metadata": {
+                "syllabus_code": "4.2.6",
+                "estimated_hours": "7.30",
+                "difficulty": "advanced"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM1-D-T03",
+          "section_id": "CM1-D",
+          "code": "4.3",
+          "title": "Describe and calculate death strain and mortality profit for policies",
+          "description": "Describe and calculate death strain and mortality profit for policies",
+          "estimated_minutes": 438,
+          "difficulty": "advanced",
+          "display_order": 3,
+          "learning_objectives": [
+            {
+              "id": "CM1-D-T03-LO01",
+              "topic_id": "CM1-D-T03",
+              "code": "4.3.1",
+              "description": "Describe and calculate, for a single policy or a portfolio of policies (as appropriate): death strain at risk; expected death strain; actual death strain; and mortality profit for policies with death benefits payable immediately on death or at the end of the year of death, policies paying annuity benefits at the start of the year or on survival to the end of the year and policies where single or non-single premiums are payable",
+              "cognitive_level": "apply",
+              "estimated_minutes": 438,
+              "learning_type": "application",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "4.3.1",
+                "estimated_hours": "7.30",
+                "difficulty": "advanced"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM1-D-T04",
+          "section_id": "CM1-D",
+          "code": "4.4",
+          "title": "Project expected future cashflows for assurance, annuity, unit-linked and with-profits contracts",
+          "description": "Project expected future cashflows for assurance, annuity, unit-linked and with-profits contracts",
+          "estimated_minutes": 1314,
+          "difficulty": "advanced",
+          "display_order": 4,
+          "learning_objectives": [
+            {
+              "id": "CM1-D-T04-LO01",
+              "topic_id": "CM1-D-T04",
+              "code": "4.4.1",
+              "description": "Profit test life insurance contracts of the types listed above and determine the profit vector, the profit signature, the net present value and the profit margin",
+              "cognitive_level": "apply",
+              "estimated_minutes": 438,
+              "learning_type": "application",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "4.4.1",
+                "estimated_hours": "7.30",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM1-D-T04-LO02",
+              "topic_id": "CM1-D-T04",
+              "code": "4.4.2",
+              "description": "Show how a profit test may be used to price a product, and use a profit test to calculate a premium for life insurance contracts of the types listed above",
+              "cognitive_level": "apply",
+              "estimated_minutes": 438,
+              "learning_type": "application",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "4.4.2",
+                "estimated_hours": "7.30",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM1-D-T04-LO03",
+              "topic_id": "CM1-D-T04",
+              "code": "4.4.3",
+              "description": "Show how gross premium reserves can be computed using the above cashflow projection model and included as part of profit testing",
+              "cognitive_level": "apply",
+              "estimated_minutes": 438,
+              "learning_type": "application",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "4.4.3",
+                "estimated_hours": "7.30",
+                "difficulty": "advanced"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM1-D-T05",
+          "section_id": "CM1-D",
+          "code": "4.5",
+          "title": "Show how, for unit-linked contracts, non-unit reserves can be established to eliminate future negative cashflows",
+          "description": "Show how, for unit-linked contracts, non-unit reserves can be established to eliminate future negative cashflows",
+          "estimated_minutes": 438,
+          "difficulty": "advanced",
+          "display_order": 5,
+          "learning_objectives": [
+            {
+              "id": "CM1-D-T05-LO01",
+              "topic_id": "CM1-D-T05",
+              "code": "4.5.1",
+              "description": "Show how, for unit-linked contracts, non-unit reserves can be established to eliminate ('zeroise') future negative cashflows, using a profit test model",
+              "cognitive_level": "apply",
+              "estimated_minutes": 438,
+              "learning_type": "application",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "4.5.1",
+                "estimated_hours": "7.30",
+                "difficulty": "advanced"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

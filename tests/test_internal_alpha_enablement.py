@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from datetime import date, timedelta
 
+import pytest
+
 from app.extensions import db
 from app.models.mission import Mission, MissionTask
 from app.models.subject import Subject
@@ -26,8 +28,8 @@ class TestMissionCompletion:
             title="Study Generalised Linear Models — Monday, Jul 13",
             status="Pending",
         )
-        mission.tasks.append(MissionTask(title="Study", order=0, completed=False))
-        mission.tasks.append(MissionTask(title="Practice", order=1, completed=False))
+        mission.tasks.append(MissionTask(title="Study", order=0, completed=True))
+        mission.tasks.append(MissionTask(title="Practice", order=1, completed=True))
         db.session.add(mission)
         db.session.commit()
 
@@ -37,6 +39,50 @@ class TestMissionCompletion:
         assert updated.status == "Completed"
         assert all(task.completed for task in updated.tasks)
         assert updated.get_completion_percentage() == 100.0
+
+    def test_complete_mission_rejects_incomplete_tasks(self, db, user):
+        subject = Subject(user_id=user.id, name="CS1")
+        db.session.add(subject)
+        db.session.flush()
+        mission = Mission(
+            user_id=user.id,
+            subject_id=subject.id,
+            mission_date=date.today(),
+            title="Study Generalised Linear Models — Monday, Jul 13",
+            status="In Progress",
+        )
+        mission.tasks.append(MissionTask(title="Study", order=0, completed=True))
+        mission.tasks.append(MissionTask(title="Practice", order=1, completed=False))
+        db.session.add(mission)
+        db.session.commit()
+
+        with pytest.raises(ValueError, match="Complete all mission points"):
+            MissionService.complete_mission(mission.id, user.id)
+
+        db.session.refresh(mission)
+        assert mission.status == "In Progress"
+        assert mission.tasks[1].completed is False
+
+    def test_repair_reopens_completed_mission_with_incomplete_tasks(self, db, user):
+        subject = Subject(user_id=user.id, name="CS1")
+        db.session.add(subject)
+        db.session.flush()
+        mission = Mission(
+            user_id=user.id,
+            subject_id=subject.id,
+            mission_date=date.today(),
+            title="Study topic — Monday, Jul 13",
+            status="Completed",
+        )
+        mission.tasks.append(MissionTask(title="Study", order=0, completed=True))
+        mission.tasks.append(MissionTask(title="Practice", order=1, completed=False))
+        db.session.add(mission)
+        db.session.commit()
+
+        repaired = MissionService.get_today_mission(user.id)
+        assert repaired is not None
+        assert repaired.status == "In Progress"
+        assert repaired.tasks[1].completed is False
 
     def test_complete_mission_endpoint_updates_progress(self, app, ctx, user):
         CurriculumService.import_curricula()
@@ -79,9 +125,9 @@ class TestMissionCompletion:
             subject_id=subject.id,
             mission_date=date.today(),
             title=f"Study {topic.name} — Monday, Jul 13",
-            status="Pending",
+            status="In Progress",
         )
-        mission.tasks.append(MissionTask(title="Study", order=0, completed=False))
+        mission.tasks.append(MissionTask(title="Study", order=0, completed=True))
         db.session.add(mission)
         db.session.commit()
 
@@ -109,6 +155,41 @@ class TestMissionCompletion:
         ).first()
         assert progress is not None
         assert progress.completed is True
+
+    def test_complete_mission_endpoint_rejects_incomplete_tasks(self, app, ctx, user):
+        subject = Subject(user_id=user.id, name="CS1")
+        db.session.add(subject)
+        db.session.flush()
+        mission = Mission(
+            user_id=user.id,
+            subject_id=subject.id,
+            mission_date=date.today(),
+            title="Study topic — Monday, Jul 13",
+            status="In Progress",
+        )
+        mission.tasks.append(MissionTask(title="Study", order=0, completed=False))
+        mission.tasks.append(MissionTask(title="Practice", order=1, completed=False))
+        db.session.add(mission)
+        db.session.commit()
+
+        client = app.test_client()
+        with client.session_transaction() as sess:
+            sess["_user_id"] = str(user.id)
+            sess["_fresh"] = True
+
+        resp = client.post(
+            f"/missions/{mission.id}/complete",
+            json={},
+            headers={"Content-Type": "application/json"},
+        )
+        assert resp.status_code == 400
+        payload = resp.get_json()
+        assert payload["success"] is False
+        assert "mission points" in payload["error"].lower()
+
+        db.session.refresh(mission)
+        assert mission.status == "In Progress"
+        assert not any(t.completed for t in mission.tasks)
 
 
 class TestMissionWording:
@@ -213,6 +294,58 @@ class TestCb2Curriculum:
         plan = StudyPlan(
             user_id=user.id,
             exam_name="IFoA CB2",
+            exam_sitting="Apr 2027",
+            exam_date=date.today() + timedelta(days=180),
+            target_grade="Pass",
+            weekday_study_minutes=90,
+            weekend_study_minutes=120,
+            current_stage="Learning",
+            study_preference="Reading First",
+            preferred_session_minutes=60,
+            active=True,
+            curriculum_id=curriculum.id,
+            curriculum_version="2026",
+        )
+        db.session.add(plan)
+        db.session.commit()
+
+        next_topic = CurriculumService.get_next_incomplete_topic(user.id, curriculum)
+        assert next_topic is not None
+
+
+class TestCm1Curriculum:
+    def test_cm1_loads_and_validates(self):
+        from app.curriculum.loader import load_curriculum_v2
+        from app.curriculum.validator import validate_curriculum_v2
+
+        curriculum = load_curriculum_v2("ifoa", "cm1", "2026")
+        validate_curriculum_v2(curriculum)
+        assert curriculum.exam_code == "CM1"
+        assert curriculum.exam_name == "Actuarial Mathematics for Modelling"
+        assert len(curriculum.sections) == 4
+        assert sum(s.exam_weight for s in curriculum.sections) == 100.0
+        assert sum(len(s.topics) for s in curriculum.sections) == 21
+
+    def test_cm1_imports_and_supports_study_plan(self, db, user):
+        CurriculumService.import_curricula()
+        from app.models.curriculum import Curriculum
+        from app.models.study_plan import StudyPlan
+        from app.services.examination_catalogue import parse_exam_name
+
+        curriculum = Curriculum.query.filter_by(exam_name="IFoA CM1").first()
+        assert curriculum is not None
+        sections = CurriculumService.get_sections(curriculum)
+        assert len(sections) == 4
+        topics = CurriculumService.get_all_topics_ordered(curriculum)
+        assert len(topics) == 21
+
+        org, paper = parse_exam_name("IFoA CM1")
+        assert org == "IFoA"
+        assert paper == "CM1"
+
+        plan = StudyPlan(
+            user_id=user.id,
+            exam_name="IFoA CM1",
             exam_sitting="Apr 2027",
             exam_date=date.today() + timedelta(days=180),
             target_grade="Pass",

@@ -238,12 +238,27 @@ class TestStudyPlanWizardStep4:
         # Should use checkboxes, not radios
         assert b'type="checkbox"' in response.data
 
-    def test_step4_get_displays_free_text_for_unsupported(self, logged_in_client):
-        """Step 4 for an unsupported exam (CM1) should show free-text topic."""
+    def test_step4_get_displays_for_cm1_curriculum(self, logged_in_client):
+        """Step 4 for IFoA/CM1 should show curriculum topic checkboxes."""
         with logged_in_client.session_transaction() as sess:
             sess["wizard_data"] = {
                 "exam_category": "IFoA",
                 "exam_paper": "CM1",
+                "exam_sitting": "April 2027",
+                "exam_date": "2027-04-15",
+            }
+        response = logged_in_client.get("/study-plan/wizard/4")
+        assert response.status_code == 200
+        assert b'id="curriculum-topic-field"' in response.data
+        assert b'type="checkbox"' in response.data
+        assert b'id="current-topic-field"' not in response.data
+
+    def test_step4_get_displays_free_text_for_unsupported(self, logged_in_client):
+        """Step 4 for an unsupported exam (CM2) should show free-text topic."""
+        with logged_in_client.session_transaction() as sess:
+            sess["wizard_data"] = {
+                "exam_category": "IFoA",
+                "exam_paper": "CM2",
                 "exam_sitting": "April 2027",
                 "exam_date": "2027-04-15",
             }
@@ -306,7 +321,7 @@ class TestStudyPlanWizardStep4:
         with logged_in_client.session_transaction() as sess:
             sess["wizard_data"] = {
                 "exam_category": "IFoA",
-                "exam_paper": "CM1",
+                "exam_paper": "CM2",
                 "exam_sitting": "April 2027",
                 "exam_date": "2027-04-15",
             }
@@ -618,11 +633,18 @@ class TestCurriculumVersionResolution:
         result = _resolve_curriculum_version("IFoA", "CS1")
         assert result == "2026"
 
-    def test_ifoa_cm1_returns_none(self):
-        """IFoA + CM1 is not yet mapped — returns None (no curriculum)."""
+    def test_ifoa_cm1_resolves_to_2026(self):
+        """IFoA + CM1 should resolve to curriculum version '2026'."""
         from app.study_plan.routes import _resolve_curriculum_version
 
         result = _resolve_curriculum_version("IFoA", "CM1")
+        assert result == "2026"
+
+    def test_ifoa_cm2_returns_none(self):
+        """IFoA + CM2 is not yet mapped — returns None (no curriculum)."""
+        from app.study_plan.routes import _resolve_curriculum_version
+
+        result = _resolve_curriculum_version("IFoA", "CM2")
         assert result is None
 
     def test_cfa_returns_none(self):

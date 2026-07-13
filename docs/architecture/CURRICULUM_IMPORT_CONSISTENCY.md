@@ -6,7 +6,7 @@
 
 ## Purpose
 
-Keep multi-paper syllabi (CS1, CB2, …) importable through one V2 path so
+Keep multi-paper syllabi (CS1, CB2, CM1, …) importable through one V2 path so
 `CurriculumService`, `CurriculumContextBuilder`, Study Plan wizard,
 `PlanningService`, Time Engine, and the Educational Orchestrator stay compatible
 without per-paper special cases.
@@ -21,6 +21,7 @@ Example:
 
 - `app/curriculum/data/ifoa/cs1/2026.json`
 - `app/curriculum/data/ifoa/cb2/2026.json`
+- `app/curriculum/data/ifoa/cm1/2026.json`
 
 Organisation and paper directory names are lowercase. Discovery is automatic via
 `CurriculumRepository.discover_curricula` / `load_auto`.

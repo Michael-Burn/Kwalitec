@@ -19,3 +19,4 @@ htmlcov/
 # OS / editor
 .DS_Store
 .vscode/
+.alpha_participant_credentials.txt

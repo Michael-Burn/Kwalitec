@@ -177,9 +177,10 @@ def toggle_task(task_id: int) -> dict:
 def complete_mission(mission_id: int):
     """Mark a mission complete, persist progress, and refresh dashboard state.
 
-    Completes all tasks, sets mission status to Completed, records a study
-    attempt against the linked curriculum topic when available, and updates
-    TopicProgress so readiness/progress bars advance after refresh.
+    Requires every mission task to already be marked done. Sets mission status
+    to Completed, records a study attempt against the linked curriculum topic
+    when available, and updates TopicProgress so readiness/progress bars
+    advance after refresh.
     """
     try:
         mission = MissionService.complete_mission(mission_id, current_user.id)

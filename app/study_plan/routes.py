@@ -87,6 +87,7 @@ def _parse_current_stage(current_stage: str) -> tuple[str, str]:
 # Maps (category_code, paper_code) → curriculum_version.
 _CURRICULUM_VERSION_MAP: dict[tuple[str, str], str] = {
     ("IFoA", "CS1"): "2026",
+    ("IFoA", "CM1"): "2026",
 }
 
 

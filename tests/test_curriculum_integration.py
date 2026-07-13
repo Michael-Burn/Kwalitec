@@ -738,14 +738,15 @@ class TestCurriculumDatabaseImport:
         from app.models.learning import LearningObjective
 
         count = CurriculumService.import_curricula()
-        assert count == 2, "Expected CS1 and CB2 curricula to be imported"
+        assert count == 3, "Expected CS1, CB2, and CM1 curricula to be imported"
 
-        assert Curriculum.query.count() == 2
+        assert Curriculum.query.count() == 3
         c = Curriculum.query.filter_by(exam_name="IFoA CS1", version="2026").one()
         assert c.exam_name == "IFoA CS1"
         assert c.version == "2026"
         assert c.active is True
         assert Curriculum.query.filter_by(exam_name="IFoA CB2", version="2026").one() is not None
+        assert Curriculum.query.filter_by(exam_name="IFoA CM1", version="2026").one() is not None
 
         assert Topic.query.filter_by(curriculum_id=c.id).count() == 14
         topics = Topic.query.filter_by(curriculum_id=c.id).order_by(Topic.order).all()
@@ -780,15 +781,16 @@ class TestCurriculumDatabaseImport:
         from app.models.learning import LearningObjective
 
         count1 = CurriculumService.import_curricula()
-        assert count1 == 2
+        assert count1 == 3
 
         count2 = CurriculumService.import_curricula()
         assert count2 == 0, "Second import should return 0 (no new curricula)"
 
-        assert Curriculum.query.count() == 2
+        assert Curriculum.query.count() == 3
         cs1 = Curriculum.query.filter_by(exam_name="IFoA CS1", version="2026").one()
         assert Topic.query.filter_by(curriculum_id=cs1.id).count() == 14
         assert LearningObjective.query.count() > 0
+        assert Curriculum.query.filter_by(exam_name="IFoA CM1", version="2026").one() is not None
 
     def test_imported_curriculum_available_for_study_plan(self, ctx, db, user):
         """A study plan created after import must link to the existing

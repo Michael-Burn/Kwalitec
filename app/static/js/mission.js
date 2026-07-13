@@ -25,10 +25,19 @@
         return headers;
     }
 
+    function getTaskToggles() {
+        return Array.from(document.querySelectorAll(".task-toggle"));
+    }
+
+    function allTasksComplete() {
+        const toggles = getTaskToggles();
+        return toggles.length === 0 || toggles.every((t) => t.checked);
+    }
+
     function updateProgress() {
-        const allToggles = document.querySelectorAll(".task-toggle");
+        const allToggles = getTaskToggles();
         const total = allToggles.length;
-        const completed = Array.from(allToggles).filter((t) => t.checked).length;
+        const completed = allToggles.filter((t) => t.checked).length;
         const percentage = total > 0 ? Math.round((completed / total) * 100) : 100;
 
         const progressBar = document.querySelector(".mission-hero-progress-bar .progress-bar");
@@ -47,6 +56,22 @@
         if (progressWrap) {
             progressWrap.setAttribute("aria-valuenow", percentage);
         }
+
+        syncMarkCompleteButton();
+    }
+
+    function syncMarkCompleteButton() {
+        const button = document.querySelector(".btn-mark-complete");
+        if (!button || button.dataset.sessionComplete === "true") {
+            return;
+        }
+
+        const ready = allTasksComplete();
+        button.disabled = !ready;
+        button.setAttribute("aria-disabled", ready ? "false" : "true");
+        button.title = ready
+            ? "Mark this study session complete"
+            : "Mark every mission point done before completing the session";
     }
 
     function markTaskLabel(taskId, completed) {
@@ -66,11 +91,14 @@
     }
 
     function bindTaskToggles() {
-        const taskToggles = document.querySelectorAll(".task-toggle");
+        const taskToggles = getTaskToggles();
         taskToggles.forEach((toggle) => {
             toggle.addEventListener("change", function () {
                 const taskId = this.dataset.taskId;
                 const completed = this.checked;
+
+                // Keep the complete button in sync immediately; revert on failure.
+                updateProgress();
 
                 fetch(`/missions/tasks/${taskId}/toggle`, {
                     method: "POST",
@@ -104,6 +132,18 @@
         }
 
         button.addEventListener("click", function () {
+            if (this.dataset.sessionComplete === "true" || this.disabled) {
+                return;
+            }
+
+            if (!allTasksComplete()) {
+                window.alert(
+                    "Mark every mission point done before completing the session."
+                );
+                syncMarkCompleteButton();
+                return;
+            }
+
             const missionId = this.dataset.missionId;
             if (!missionId) {
                 return;
@@ -121,11 +161,12 @@
                 .then((response) => response.json().then((data) => ({ ok: response.ok, data })))
                 .then(({ ok, data }) => {
                     if (ok && data.success) {
-                        document.querySelectorAll(".task-toggle").forEach((toggle) => {
-                            toggle.checked = true;
-                            markTaskLabel(toggle.dataset.taskId, true);
-                        });
-                        updateProgress();
+                        this.dataset.sessionComplete = "true";
+                        this.disabled = true;
+                        this.setAttribute("aria-disabled", "true");
+                        this.classList.add("is-session-complete");
+                        this.innerHTML = "Session Complete";
+                        this.title = "Session already complete";
 
                         const badge = document.querySelector(".mission-hero-header .badge");
                         if (badge) {
@@ -140,12 +181,14 @@
 
                     this.disabled = false;
                     this.innerHTML = originalLabel;
+                    syncMarkCompleteButton();
                     console.error("Failed to complete mission:", data && data.error);
                     window.alert((data && data.error) || "Could not complete mission.");
                 })
                 .catch((error) => {
                     this.disabled = false;
                     this.innerHTML = originalLabel;
+                    syncMarkCompleteButton();
                     console.error("Error completing mission:", error);
                     window.alert("Could not complete mission. Please try again.");
                 });

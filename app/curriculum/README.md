@@ -37,8 +37,12 @@ app/curriculum/
 ├── README.md            # This file
 └── data/
     └── ifoa/
-        └── cs1/
-            └── 2026.json   # IFoA CS1 2026 syllabus (V2 canonical hierarchy)
+        ├── cs1/
+        │   └── 2026.json   # IFoA CS1 2026 syllabus (V2 canonical hierarchy)
+        ├── cb2/
+        │   └── 2026.json   # IFoA CB2 2026 syllabus (V2)
+        └── cm1/
+            └── 2026.json   # IFoA CM1 2026 syllabus (V2)
 ```
 
 ### Data Flow
@@ -276,7 +280,7 @@ Use `CurriculumService` helpers for DB traversal — never query topics directly
 4. No `seed.py` change needed (V2 is discovered and imported automatically)
 
 See also `docs/architecture/CURRICULUM_IMPORT_CONSISTENCY.md` for multi-paper
-import invariants (CS1, CB2, …).
+import invariants (CS1, CB2, CM1, …).
 
 ---
 

@@ -144,18 +144,23 @@
             </div>
         </div>
 
-        {# Mark Complete — persists tasks + mission + syllabus progress #}
+        {# Mark Complete — only after every mission point is checked #}
+        {% set all_tasks_done = (today_mission.tasks|rejectattr('completed')|list|length) == 0 %}
+        {% set session_complete = today_mission.status == 'Completed' %}
         <div class="mission-hero-action">
             <button
-                class="btn btn-mark-complete w-100"
+                class="btn btn-mark-complete w-100{% if session_complete %} is-session-complete{% endif %}"
                 type="button"
                 data-mission-id="{{ today_mission.id }}"
-                {% if today_mission.status == 'Completed' %}disabled{% endif %}
+                data-session-complete="{{ 'true' if session_complete else 'false' }}"
+                {% if session_complete or not all_tasks_done %}disabled{% endif %}
+                aria-disabled="{{ 'true' if (session_complete or not all_tasks_done) else 'false' }}"
+                title="{% if session_complete %}Session already complete{% elif not all_tasks_done %}Mark every mission point done before completing the session{% else %}Mark this study session complete{% endif %}"
             >
                 <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="me-2" aria-hidden="true">
                     <polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
                 </svg>
-                {% if today_mission.status == 'Completed' %}
+                {% if session_complete %}
                     Session Complete
                 {% else %}
                     Mark Session Complete

@@ -21,6 +21,8 @@
     --text-secondary: #4a5568;
     --text-muted: #5c6570;
     --text-inverse: #f8fafc;
+    --on-primary: #f8fafc;
+    --on-success: #f8fafc;
     --success: #0f766e;
     --success-bg: #e6f7f5;
     --warning: #b45309;
@@ -32,14 +34,18 @@
     --shadow: 0 1px 2px rgba(30, 36, 48, 0.05), 0 2px 8px rgba(30, 36, 48, 0.06);
     --radius: 0.5rem;
 
-    /* Brand / chrome (sidebar, hero) */
+    /* Chrome (sidebar, landing hero) vs brand emphasis (metrics, weights) */
+    --chrome: #1c2438;
+    --chrome-muted: #243049;
     --brand: #1c2438;
     --brand-muted: #243049;
     --accent: #1e3a5f;
-    --accent-soft: #5b4a8a;
+    --accent-soft: #3d5a80;
     --focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.28);
 
     /* Legacy aliases — keep existing components on semantic tokens */
+    --color-chrome: var(--chrome);
+    --color-chrome-muted: var(--chrome-muted);
     --color-brand: var(--brand);
     --color-brand-light: var(--brand-muted);
     --color-accent: var(--accent);
@@ -120,30 +126,35 @@
     --background: #141820;
     --surface: #1c222d;
     --surface-elevated: #242b38;
-    --border: #343b4a;
-    --border-subtle: #2a3140;
-    --primary: #3b82f6;
-    --primary-hover: #60a5fa;
-    --secondary: #94a3b8;
-    --text-primary: #e8eaef;
-    --text-secondary: #b4bcc9;
-    --text-muted: #9aa3b2;
+    --border: #3d4658;
+    --border-subtle: #2f3645;
+    --primary: #60a5fa;
+    --primary-hover: #93c5fd;
+    --secondary: #64748b;
+    --text-primary: #eef1f6;
+    --text-secondary: #c2c9d4;
+    --text-muted: #a8b0bd;
     --text-inverse: #f8fafc;
+    --on-primary: #0f131a;
+    --on-success: #0f131a;
     --success: #2dd4bf;
-    --success-bg: rgba(45, 212, 191, 0.14);
+    --success-bg: rgba(45, 212, 191, 0.16);
     --warning: #fbbf24;
-    --warning-bg: rgba(251, 191, 36, 0.14);
+    --warning-bg: rgba(251, 191, 36, 0.16);
     --danger: #f87171;
-    --danger-bg: rgba(248, 113, 113, 0.14);
+    --danger-bg: rgba(248, 113, 113, 0.16);
     --info: #60a5fa;
-    --info-bg: rgba(96, 165, 250, 0.14);
+    --info-bg: rgba(96, 165, 250, 0.16);
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.28), 0 4px 14px rgba(0, 0, 0, 0.32);
     --radius: 0.5rem;
 
-    --brand: #0f131a;
-    --brand-muted: #161c26;
-    --accent: #1e3a5f;
-    --accent-soft: #a78bfa;
+    /* Chrome stays dark; brand emphasis stays light for metrics/text */
+    --chrome: #0f131a;
+    --chrome-muted: #161c26;
+    --brand: #93c5fd;
+    --brand-muted: #60a5fa;
+    --accent: #1a2744;
+    --accent-soft: #2563eb;
     --focus-ring: 0 0 0 3px rgba(96, 165, 250, 0.35);
 
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
@@ -215,8 +226,8 @@ button.btn:hover,
 
 /* ── Sidebar ─────────────────────────────────────────────────────────── */
 .sidebar {
-    background: var(--color-brand);
-    color: var(--color-text-inverse);
+    background: var(--color-chrome);
+    color: #f8fafc;
     flex: 0 0 var(--sidebar-width);
     min-height: 100vh;
     position: sticky;
@@ -233,13 +244,13 @@ button.btn:hover,
 }
 
 .sidebar-brand a {
-    color: var(--color-text-inverse);
+    color: #f8fafc;
     font-size: var(--font-2xl);
     font-weight: var(--font-weight-bold);
     letter-spacing: -0.02em;
 }
 
-.sidebar-brand a:hover { color: var(--color-text-inverse); opacity: 0.9; }
+.sidebar-brand a:hover { color: #f8fafc; opacity: 0.9; }
 
 .sidebar-brand .tagline {
     color: rgba(255, 255, 255, 0.5);
@@ -287,7 +298,7 @@ button.btn:hover,
 
 .sidebar .nav-link:hover:not(.disabled) {
     background: rgba(255, 255, 255, 0.08);
-    color: var(--color-text-inverse);
+    color: #f8fafc;
 }
 
 .sidebar .nav-link:hover:not(.disabled) svg {
@@ -297,7 +308,7 @@ button.btn:hover,
 .sidebar .nav-link.active,
 .sidebar .nav-link.active:hover {
     background: rgba(255, 255, 255, 0.12);
-    color: var(--color-text-inverse);
+    color: #f8fafc;
 }
 
 .sidebar .nav-link.active svg {
@@ -343,8 +354,8 @@ button.btn:hover,
 }
 
 .topnav .btn-outline-dark {
-    border-color: var(--color-brand);
-    background: var(--color-brand);
+    border-color: var(--color-chrome);
+    background: var(--color-chrome);
     color: var(--color-text-inverse);
     font-weight: var(--font-weight-medium);
     padding: var(--space-sm) var(--space-lg);
@@ -353,8 +364,8 @@ button.btn:hover,
 }
 
 .topnav .btn-outline-dark:hover {
-    background: var(--color-brand-light);
-    border-color: var(--color-brand-light);
+    background: var(--color-chrome-muted);
+    border-color: var(--color-chrome-muted);
     color: var(--color-text-inverse);
 }
 
@@ -527,6 +538,20 @@ button.btn:hover,
     transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
+.form-control::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+}
+
+.form-control:-webkit-autofill,
+.form-control:-webkit-autofill:hover,
+.form-control:-webkit-autofill:focus,
+.form-select:-webkit-autofill {
+    -webkit-text-fill-color: var(--text-primary);
+    box-shadow: 0 0 0 1000px var(--surface) inset;
+    transition: background-color 99999s ease-out;
+}
+
 .form-control:focus, .form-select:focus {
     background-color: var(--surface);
     border-color: var(--primary);
@@ -591,7 +616,7 @@ button.btn:hover,
 a.btn-primary {
     background: var(--primary);
     border-color: var(--primary);
-    color: var(--text-inverse);
+    color: var(--on-primary);
 }
 
 .btn-primary:hover,
@@ -600,7 +625,7 @@ a.btn-primary:hover,
 a.btn-primary:focus {
     background: var(--primary-hover);
     border-color: var(--primary-hover);
-    color: var(--text-inverse);
+    color: var(--on-primary);
 }
 
 .btn-outline,
@@ -780,7 +805,7 @@ a.btn-ghost:focus {
 /* Left hero panel */
 .landing-hero {
     flex: 1 1 55%;
-    background: linear-gradient(135deg, var(--color-brand) 0%, var(--color-accent) 55%, var(--color-accent-light) 100%);
+    background: linear-gradient(135deg, var(--color-chrome) 0%, var(--color-accent) 55%, var(--color-accent-light) 100%);
     color: var(--color-text-inverse);
     display: flex;
     align-items: center;
@@ -1428,43 +1453,64 @@ a.btn-ghost:focus {
     /* shared with existing styles */
 }
 
-/* Mark Complete button */
+/* Mark Complete button — actionable when enabled; muted while waiting on tasks */
 .btn-mark-complete {
     align-items: center;
-    background: var(--color-success);
+    background: var(--primary);
     border: none;
     border-radius: var(--radius-md);
-    color: var(--color-text-inverse);
+    box-shadow: none;
+    color: var(--on-primary);
+    cursor: pointer;
     display: flex;
+    filter: none;
     font-size: var(--font-lg);
     font-weight: var(--font-weight-semibold);
     justify-content: center;
     margin: 0 var(--space-xl) var(--space-xl);
+    opacity: 1;
     padding: var(--space-md) var(--space-xl);
-    transition: all var(--transition-base);
+    transform: none;
+    transition: background-color var(--transition-base),
+                box-shadow var(--transition-base),
+                opacity var(--transition-base);
 }
 
-.btn-mark-complete:hover,
-.btn-mark-complete:focus {
-    background: var(--success);
-    filter: brightness(0.92);
+.btn-mark-complete:hover:not(:disabled),
+.btn-mark-complete:focus-visible:not(:disabled) {
+    background: var(--primary-hover);
     box-shadow: var(--shadow-md);
-    color: var(--text-inverse);
-    transform: translateY(-1px);
+    color: var(--on-primary);
+    filter: none;
+    opacity: 1;
+    transform: none;
+}
+
+.btn-mark-complete:active:not(:disabled) {
+    background: var(--primary-hover);
+    box-shadow: none;
+    filter: none;
+    transform: none;
 }
 
 .btn-mark-complete:disabled,
-.btn-mark-complete:disabled:hover {
-    background: var(--success);
-    filter: none;
-    opacity: 0.55;
-    transform: none;
+.btn-mark-complete:disabled:hover,
+.btn-mark-complete:disabled:focus,
+.btn-mark-complete:disabled:active {
+    background: var(--secondary);
     box-shadow: none;
+    color: var(--text-inverse);
+    cursor: not-allowed;
+    filter: none;
+    opacity: 0.7;
+    transform: none;
 }
 
-.btn-mark-complete:active {
-    transform: translateY(0);
-    box-shadow: none;
+.btn-mark-complete.is-session-complete:disabled,
+.btn-mark-complete.is-session-complete:disabled:hover {
+    background: var(--success);
+    color: var(--on-success);
+    opacity: 1;
 }
 
 /* ── Settings Page ────────────────────────────────────────────────────── */
@@ -2252,15 +2298,63 @@ a.btn-ghost:focus {
 [data-theme="dark"] .bg-danger-subtle,
 [data-theme="dark"] .bg-info-subtle {
     background-color: var(--surface-elevated) !important;
+    color: var(--text-primary);
 }
 
 [data-theme="dark"] .text-bg-secondary {
-    background-color: var(--secondary) !important;
-    color: var(--text-inverse) !important;
+    background-color: var(--surface-elevated) !important;
+    border: 1px solid var(--border);
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .text-bg-success,
+[data-theme="dark"] .badge.text-bg-success {
+    background-color: var(--success-bg) !important;
+    color: var(--success) !important;
+}
+
+[data-theme="dark"] .text-bg-warning,
+[data-theme="dark"] .badge.text-bg-warning {
+    background-color: var(--warning-bg) !important;
+    color: var(--warning) !important;
+}
+
+[data-theme="dark"] .text-bg-danger,
+[data-theme="dark"] .badge.text-bg-danger {
+    background-color: var(--danger-bg) !important;
+    color: var(--danger) !important;
+}
+
+[data-theme="dark"] .text-bg-info,
+[data-theme="dark"] .badge.text-bg-info,
+[data-theme="dark"] .bg-info.text-white {
+    background-color: var(--info-bg) !important;
+    color: var(--info) !important;
+}
+
+[data-theme="dark"] .progress-bar.bg-success {
+    background-color: var(--success) !important;
 }
 
 [data-theme="dark"] .landing-illustration .shape-1 {
-    background: var(--text-inverse);
+    background: #f8fafc;
+}
+
+/* Secondary actions: readable in both themes (no light-on-light) */
+.btn-secondary,
+a.btn-secondary {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus,
+a.btn-secondary:hover,
+a.btn-secondary:focus {
+    background: var(--background);
+    border-color: var(--border);
+    color: var(--text-primary);
 }
 
 /* Card / surface elevation */
@@ -2420,23 +2514,7 @@ a.btn-ghost:focus {
 
 .sidebar-signout:hover {
     background: rgba(255, 255, 255, 0.08) !important;
-    color: var(--text-inverse) !important;
-}
-
-.btn-secondary,
-a.btn-secondary {
-    background: var(--secondary);
-    border-color: var(--secondary);
-    color: var(--text-inverse);
-}
-
-.btn-secondary:hover,
-.btn-secondary:focus,
-a.btn-secondary:hover,
-a.btn-secondary:focus {
-    background: var(--text-secondary);
-    border-color: var(--text-secondary);
-    color: var(--text-inverse);
+    color: #f8fafc !important;
 }
 
 .table-responsive {

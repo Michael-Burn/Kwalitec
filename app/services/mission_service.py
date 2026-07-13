@@ -80,7 +80,33 @@ class MissionService:
         if mission_date is None:
             mission_date = date.today()
 
-        return Mission.query.filter_by(user_id=user_id, mission_date=mission_date).first()
+        mission = Mission.query.filter_by(
+            user_id=user_id, mission_date=mission_date
+        ).first()
+        if mission is not None:
+            MissionService.repair_inconsistent_completion(mission)
+        return mission
+
+    @staticmethod
+    def repair_inconsistent_completion(mission: Mission) -> Mission:
+        """Reopen a mission marked Completed while any task is still incomplete.
+
+        Guards against the previous complete path that could set status without
+        requiring every mission point to be checked.
+        """
+        if mission.status != "Completed":
+            return mission
+        if all(task.completed for task in mission.tasks):
+            return mission
+
+        any_done = any(task.completed for task in mission.tasks)
+        mission.status = "In Progress" if any_done else "Pending"
+        db.session.commit()
+        logger.warning(
+            "Reopened mission %d: status was Completed with incomplete tasks",
+            mission.id,
+        )
+        return mission
 
     @staticmethod
     def mark_task_complete(task_id: int, user_id: int, completed: bool = True) -> MissionTask:
@@ -170,10 +196,11 @@ class MissionService:
 
     @staticmethod
     def complete_mission(mission_id: int, user_id: int) -> Mission:
-        """Mark every task complete and set the mission status to Completed.
+        """Set the mission status to Completed once every task is done.
 
-        Idempotent for already-completed missions. Persists immediately so the
-        result survives refresh and application restart.
+        Does not auto-check incomplete tasks — callers must mark mission points
+        done first. Idempotent for already-completed missions. Persists
+        immediately so the result survives refresh and application restart.
 
         Args:
             mission_id: The ID of the mission to complete.
@@ -183,7 +210,8 @@ class MissionService:
             Mission: The completed mission.
 
         Raises:
-            ValueError: If the mission doesn't exist or doesn't belong to the user.
+            ValueError: If the mission doesn't exist, doesn't belong to the user,
+                or still has incomplete tasks.
         """
         mission = Mission.query.get(mission_id)
         if not mission:
@@ -192,8 +220,16 @@ class MissionService:
         if mission.user_id != user_id:
             raise ValueError(f"Mission {mission_id} does not belong to user {user_id}")
 
-        for task in mission.tasks:
-            task.completed = True
+        if mission.status == "Completed" and all(t.completed for t in mission.tasks):
+            return mission
+
+        incomplete = [t for t in mission.tasks if not t.completed]
+        if incomplete:
+            if mission.status == "Completed":
+                MissionService.repair_inconsistent_completion(mission)
+            raise ValueError(
+                "Complete all mission points before marking the session complete."
+            )
 
         mission.status = "Completed"
         db.session.commit()
