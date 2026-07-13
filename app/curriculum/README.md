@@ -275,6 +275,9 @@ Use `CurriculumService` helpers for DB traversal — never query topics directly
 3. Use `display_order` on both sections and topics
 4. No `seed.py` change needed (V2 is discovered and imported automatically)
 
+See also `docs/architecture/CURRICULUM_IMPORT_CONSISTENCY.md` for multi-paper
+import invariants (CS1, CB2, …).
+
 ---
 
 ## Validation Rules

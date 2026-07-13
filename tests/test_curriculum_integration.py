@@ -738,16 +738,17 @@ class TestCurriculumDatabaseImport:
         from app.models.learning import LearningObjective
 
         count = CurriculumService.import_curricula()
-        assert count == 1, "Expected 1 new curriculum to be imported"
+        assert count == 2, "Expected CS1 and CB2 curricula to be imported"
 
-        assert Curriculum.query.count() == 1
-        c = Curriculum.query.first()
+        assert Curriculum.query.count() == 2
+        c = Curriculum.query.filter_by(exam_name="IFoA CS1", version="2026").one()
         assert c.exam_name == "IFoA CS1"
         assert c.version == "2026"
         assert c.active is True
+        assert Curriculum.query.filter_by(exam_name="IFoA CB2", version="2026").one() is not None
 
-        assert Topic.query.count() == 14
-        topics = Topic.query.order_by(Topic.order).all()
+        assert Topic.query.filter_by(curriculum_id=c.id).count() == 14
+        topics = Topic.query.filter_by(curriculum_id=c.id).order_by(Topic.order).all()
         expected_names = [
             'Describe the purpose and function of data analysis',
             'Complete exploratory data analysis',
@@ -779,13 +780,14 @@ class TestCurriculumDatabaseImport:
         from app.models.learning import LearningObjective
 
         count1 = CurriculumService.import_curricula()
-        assert count1 == 1
+        assert count1 == 2
 
         count2 = CurriculumService.import_curricula()
         assert count2 == 0, "Second import should return 0 (no new curricula)"
 
-        assert Curriculum.query.count() == 1
-        assert Topic.query.count() == 14
+        assert Curriculum.query.count() == 2
+        cs1 = Curriculum.query.filter_by(exam_name="IFoA CS1", version="2026").one()
+        assert Topic.query.filter_by(curriculum_id=cs1.id).count() == 14
         assert LearningObjective.query.count() > 0
 
     def test_imported_curriculum_available_for_study_plan(self, ctx, db, user):
@@ -840,10 +842,11 @@ class TestCurriculumDatabaseImport:
         """The ordered topic list from the imported curriculum matches
         the official syllabus order — this is what the roadmap displays."""
         from app.services.curriculum_service import CurriculumService
-        from app.models.curriculum import Topic
+        from app.models.curriculum import Curriculum, Topic
 
         CurriculumService.import_curricula()
-        topics = Topic.query.order_by(Topic.order).all()
+        cs1 = Curriculum.query.filter_by(exam_name="IFoA CS1", version="2026").one()
+        topics = Topic.query.filter_by(curriculum_id=cs1.id).order_by(Topic.order).all()
         assert len(topics) == 14
         for t in topics:
             assert t.syllabus_weight == 0.0
@@ -855,7 +858,9 @@ class TestCurriculumDatabaseImport:
         from app.models.curriculum import Curriculum
 
         CurriculumService.import_curricula()
-        curriculum = Curriculum.query.first()
+        curriculum = Curriculum.query.filter_by(
+            exam_name="IFoA CS1", version="2026"
+        ).one()
         assert curriculum is not None
 
         progress = CurriculumService.get_curriculum_progress(

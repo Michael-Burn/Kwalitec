@@ -526,7 +526,7 @@ class TestSmokeDashboard:
 
         resp = client.get("/dashboard/")
         assert resp.status_code == 200
-        assert b"Dashboard" in resp.data or b"Command Centre" in resp.data
+        assert b"Dashboard" in resp.data or b"Today" in resp.data or b"Command Centre" in resp.data
 
     def test_curriculum_progress_section(self, app, ctx, user):
         """Curriculum Progress section renders on dashboard."""

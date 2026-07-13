@@ -1,0 +1,1886 @@
+{
+  "exam_code": "CB2",
+  "exam_name": "Business Economics",
+  "provider": "IFoA",
+  "version": "2026",
+  "effective_date": "2026-01-01",
+  "superseded_date": null,
+  "total_estimated_hours": 150.0,
+  "description": "Business Economics introduces the core economic principles and how these can be used in a business environment to help inform decision-making and behaviour. Canonical representation of the official IFoA CB2 Syllabus for the 2026 Examinations (April 2025).",
+  "metadata": {
+    "source": "IFoA CB2 Syllabus for the 2026 Examinations",
+    "source_document": "cb2_syllabus-2026-_final-proof.pdf",
+    "source_url": "https://actuaries.org.uk/qualify/curriculum/business/",
+    "qualification_level": "Core Principles",
+    "associateship_qualification": "Associateship Qualification",
+    "published": "April 2025",
+    "recommended_study_hours": "150",
+    "language": "en",
+    "assessment": "One online written examination paper; 3h20m including reading time"
+  },
+  "sections": [
+    {
+      "id": "CB2-A",
+      "code": "1",
+      "title": "Economic schools, the economic way of thinking and recent historical applications",
+      "description": "An introduction to economic concepts and models, their use in business as well as recent economic and financial history.",
+      "exam_weight": 5.0,
+      "estimated_hours": 7.5,
+      "difficulty": "foundational",
+      "display_order": 1,
+      "topics": [
+        {
+          "id": "CB2-A-T01",
+          "section_id": "CB2-A",
+          "code": "1.1",
+          "title": "Relationship between economics and business",
+          "description": "Relationship between economics and business",
+          "estimated_minutes": 135,
+          "difficulty": "foundational",
+          "display_order": 1,
+          "learning_objectives": [
+            {
+              "id": "CB2-A-T01-LO01",
+              "topic_id": "CB2-A-T01",
+              "code": "1.1.1",
+              "description": "Principles of economic choice, including opportunity cost and scarcity",
+              "cognitive_level": "understand",
+              "estimated_minutes": 45,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "1.1.1",
+                "estimated_hours": "0.75",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CB2-A-T01-LO02",
+              "topic_id": "CB2-A-T01",
+              "code": "1.1.2",
+              "description": "Core economic concepts used by businesses to make choices relevant to selection of outputs, inputs, technology, location and competition",
+              "cognitive_level": "understand",
+              "estimated_minutes": 45,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "1.1.2",
+                "estimated_hours": "0.75",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CB2-A-T01-LO03",
+              "topic_id": "CB2-A-T01",
+              "code": "1.1.3",
+              "description": "Features of and differences between microeconomics and macroeconomics",
+              "cognitive_level": "understand",
+              "estimated_minutes": 45,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "1.1.3",
+                "estimated_hours": "0.75",
+                "difficulty": "foundational"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CB2-A-T02",
+          "section_id": "CB2-A",
+          "code": "1.2",
+          "title": "Main economic schools and their key features",
+          "description": "Main economic schools and their key features",
+          "estimated_minutes": 225,
+          "difficulty": "foundational",
+          "display_order": 2,
+          "learning_objectives": [
+            {
+              "id": "CB2-A-T02-LO01",
+              "topic_id": "CB2-A-T02",
+              "code": "1.2.1",
+              "description": "Classical school and its key features",
+              "cognitive_level": "understand",
+              "estimated_minutes": 45,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "1.2.1",
+                "estimated_hours": "0.75",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CB2-A-T02-LO02",
+              "topic_id": "CB2-A-T02",
+              "code": "1.2.2",
+              "description": "Marxian socialism and its key features",
+              "cognitive_level": "understand",
+              "estimated_minutes": 45,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "1.2.2",
+                "estimated_hours": "0.75",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CB2-A-T02-LO03",
+              "topic_id": "CB2-A-T02",
+              "code": "1.2.3",
+              "description": "Neo-classical, Keynesian, neo-Keynesian and post-Keynesian schools and their key features",
+              "cognitive_level": "understand",
+              "estimated_minutes": 45,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "1.2.3",
+                "estimated_hours": "0.75",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CB2-A-T02-LO04",
+              "topic_id": "CB2-A-T02",
+              "code": "1.2.4",
+              "description": "Monetarist school and its key features",
+              "cognitive_level": "understand",
+              "estimated_minutes": 45,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "1.2.4",
+                "estimated_hours": "0.75",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CB2-A-T02-LO05",
+              "topic_id": "CB2-A-T02",
+              "code": "1.2.5",
+              "description": "Austrian school and its key features",
+              "cognitive_level": "understand",
+              "estimated_minutes": 45,
+              "learning_type": "concept",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "1.2.5",
+                "estimated_hours": "0.75",
+                "difficulty": "foundational"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CB2-A-T03",
+          "section_id": "CB2-A",
+          "code": "1.3",
+          "title": "Recent macroeconomic history",
+          "description": "Recent macroeconomic history",
+          "estimated_minutes": 90,
+          "difficulty": "foundational",
+          "display_order": 3,
+          "learning_objectives": [
+            {
+              "id": "CB2-A-T03-LO01",
+              "topic_id": "CB2-A-T03",
+              "code": "1.3.1",
+              "description": "Progress of the world economy since the Great Depression, with a particular focus on banking crises, their consequences and irrational behaviour",
+              "cognitive_level": "understand",
+              "estimated_minutes": 45,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "1.3.1",
+                "estimated_hours": "0.75",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CB2-A-T03-LO02",
+              "topic_id": "CB2-A-T03",
+              "code": "1.3.2",
+              "description": "Banking crisis of 2008, the Great Recession, and recovery, including effectiveness of monetary policy in the 2008 financial crisis; governments’ actions to combat recession; aftershocks in Europe; and the stimulus–austerity debate and regulatory action after the 2008 crisis",
+              "cognitive_level": "understand",
+              "estimated_minutes": 45,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "1.3.2",
+                "estimated_hours": "0.75",
+                "difficulty": "foundational"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CB2-B",
+      "code": "2",
+      "title": "Microeconomics – the behaviour of consumers, firms and markets",
+      "description": "Understand, in detail, models of consumer choice, the theory of the firm and how these affect business decisions under different conditions.",
+      "exam_weight": 40.0,
+      "estimated_hours": 60.0,
+      "difficulty": "intermediate",
+      "display_order": 2,
+      "topics": [
+        {
+          "id": "CB2-B-T01",
+          "section_id": "CB2-B",
+          "code": "2.1",
+          "title": "How competitive markets operate",
+          "description": "How competitive markets operate",
+          "estimated_minutes": 982,
+          "difficulty": "intermediate",
+          "display_order": 1,
+          "learning_objectives": [
+            {
+              "id": "CB2-B-T01-LO01",
+              "topic_id": "CB2-B-T01",
+              "code": "2.1.1",
+              "description": "Role of the price mechanism and the behaviour of firms and consumers in a free market",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "2.1.1",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T01-LO02",
+              "topic_id": "CB2-B-T01",
+              "code": "2.1.2",
+              "description": "Factors that influence market demand and supply",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "2.1.2",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T01-LO03",
+              "topic_id": "CB2-B-T01",
+              "code": "2.1.3",
+              "description": "How market equilibrium quantity and price are achieved",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "2.1.3",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T01-LO04",
+              "topic_id": "CB2-B-T01",
+              "code": "2.1.4",
+              "description": "How markets react to changes in demand and supply",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "2.1.4",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T01-LO05",
+              "topic_id": "CB2-B-T01",
+              "code": "2.1.5",
+              "description": "Calculation of price and income elasticities of demand and price elasticity of supply, using both original and average quantities",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "2.1.5",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T01-LO06",
+              "topic_id": "CB2-B-T01",
+              "code": "2.1.6",
+              "description": "Factors that affect elasticity",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 6,
+              "metadata": {
+                "syllabus_code": "2.1.6",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T01-LO07",
+              "topic_id": "CB2-B-T01",
+              "code": "2.1.7",
+              "description": "Effect of elasticity on the short- and long-term operation of markets",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 7,
+              "metadata": {
+                "syllabus_code": "2.1.7",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T01-LO08",
+              "topic_id": "CB2-B-T01",
+              "code": "2.1.8",
+              "description": "How firms deal with risk and uncertainty about future market movements",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 8,
+              "metadata": {
+                "syllabus_code": "2.1.8",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T01-LO09",
+              "topic_id": "CB2-B-T01",
+              "code": "2.1.9",
+              "description": "Price expectations and speculation and how price bubbles develop",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 9,
+              "metadata": {
+                "syllabus_code": "2.1.9",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CB2-B-T02",
+          "section_id": "CB2-B",
+          "code": "2.2",
+          "title": "Consumer demand and behaviour",
+          "description": "Consumer demand and behaviour",
+          "estimated_minutes": 327,
+          "difficulty": "intermediate",
+          "display_order": 2,
+          "learning_objectives": [
+            {
+              "id": "CB2-B-T02-LO01",
+              "topic_id": "CB2-B-T02",
+              "code": "2.2.1",
+              "description": "The concept of utility and the representation of consumer preferences as indifference curves",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "2.2.1",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T02-LO02",
+              "topic_id": "CB2-B-T02",
+              "code": "2.2.2",
+              "description": "How rational choice and optimal consumption choice is determined by using indifference curves and budget lines",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "2.2.2",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T02-LO03",
+              "topic_id": "CB2-B-T02",
+              "code": "2.2.3",
+              "description": "Rational choice, perfect information and irrational behaviour in the context of behavioural economics",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "2.2.3",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CB2-B-T03",
+          "section_id": "CB2-B",
+          "code": "2.3",
+          "title": "The impact of advertising on sales and demand",
+          "description": "The impact of advertising on sales and demand",
+          "estimated_minutes": 109,
+          "difficulty": "intermediate",
+          "display_order": 3,
+          "learning_objectives": [
+            {
+              "id": "CB2-B-T03-LO01",
+              "topic_id": "CB2-B-T03",
+              "code": "2.3.1",
+              "description": "The impact of advertising on sales and demand",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "2.3.1",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CB2-B-T04",
+          "section_id": "CB2-B",
+          "code": "2.4",
+          "title": "Impact of the production function, costs of production and revenue and profit on a firm’s price and output decisions",
+          "description": "Impact of the production function, costs of production and revenue and profit on a firm’s price and output decisions",
+          "estimated_minutes": 982,
+          "difficulty": "intermediate",
+          "display_order": 4,
+          "learning_objectives": [
+            {
+              "id": "CB2-B-T04-LO01",
+              "topic_id": "CB2-B-T04",
+              "code": "2.4.1",
+              "description": "The production function and the relationship between short- and long-term inputs and outputs",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "2.4.1",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T04-LO02",
+              "topic_id": "CB2-B-T04",
+              "code": "2.4.2",
+              "description": "Average and marginal physical product",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "2.4.2",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T04-LO03",
+              "topic_id": "CB2-B-T04",
+              "code": "2.4.3",
+              "description": "Meaning and measurement of costs and how these vary with short- and long-term output",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "2.4.3",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T04-LO04",
+              "topic_id": "CB2-B-T04",
+              "code": "2.4.4",
+              "description": "Total, average and marginal costs",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "2.4.4",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T04-LO05",
+              "topic_id": "CB2-B-T04",
+              "code": "2.4.5",
+              "description": "Economies of scale and how a business can achieve efficiency in selecting the level of its inputs",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "2.4.5",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T04-LO06",
+              "topic_id": "CB2-B-T04",
+              "code": "2.4.6",
+              "description": "Revenue and profit and how they are influenced by market conditions",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 6,
+              "metadata": {
+                "syllabus_code": "2.4.6",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T04-LO07",
+              "topic_id": "CB2-B-T04",
+              "code": "2.4.7",
+              "description": "Calculation of average and marginal revenue",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 7,
+              "metadata": {
+                "syllabus_code": "2.4.7",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T04-LO08",
+              "topic_id": "CB2-B-T04",
+              "code": "2.4.8",
+              "description": "Measurement of profit and how a firm arrives at its profit-maximising output",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 8,
+              "metadata": {
+                "syllabus_code": "2.4.8",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T04-LO09",
+              "topic_id": "CB2-B-T04",
+              "code": "2.4.9",
+              "description": "The ‘shut-down’ point in the short and long run",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 9,
+              "metadata": {
+                "syllabus_code": "2.4.9",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CB2-B-T05",
+          "section_id": "CB2-B",
+          "code": "2.5",
+          "title": "Profit maximisation under perfect competition and monopoly",
+          "description": "Profit maximisation under perfect competition and monopoly",
+          "estimated_minutes": 436,
+          "difficulty": "intermediate",
+          "display_order": 5,
+          "learning_objectives": [
+            {
+              "id": "CB2-B-T05-LO01",
+              "topic_id": "CB2-B-T05",
+              "code": "2.5.1",
+              "description": "What determines the market power of a firm",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "2.5.1",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T05-LO02",
+              "topic_id": "CB2-B-T05",
+              "code": "2.5.2",
+              "description": "Main features of a market characterised by perfect competition, including how output and price are determined in the short and long term",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "2.5.2",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T05-LO03",
+              "topic_id": "CB2-B-T05",
+              "code": "2.5.3",
+              "description": "Monopolies and how they emerge; how they select profit-maximising price and output; and the determination of the profit of a monopolist",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "2.5.3",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T05-LO04",
+              "topic_id": "CB2-B-T05",
+              "code": "2.5.4",
+              "description": "Barriers to entry and market contestability and their impact on the profit of a monopolist",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "2.5.4",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CB2-B-T06",
+          "section_id": "CB2-B",
+          "code": "2.6",
+          "title": "Profit maximisation under imperfect competition",
+          "description": "Profit maximisation under imperfect competition",
+          "estimated_minutes": 436,
+          "difficulty": "intermediate",
+          "display_order": 6,
+          "learning_objectives": [
+            {
+              "id": "CB2-B-T06-LO01",
+              "topic_id": "CB2-B-T06",
+              "code": "2.6.1",
+              "description": "Behaviour of firms under monopolistic competition and why in this type of market only normal profits are made in the long run",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "2.6.1",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T06-LO02",
+              "topic_id": "CB2-B-T06",
+              "code": "2.6.2",
+              "description": "Main features of an oligopoly and the behaviour of firms in an oligopoly",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "2.6.2",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T06-LO03",
+              "topic_id": "CB2-B-T06",
+              "code": "2.6.3",
+              "description": "Competition and collusion of firms in an oligopoly and how strategic decisions of such firms can be explained by game theory",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "2.6.3",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T06-LO04",
+              "topic_id": "CB2-B-T06",
+              "code": "2.6.4",
+              "description": "Behaviour of oligopolists and the consumer interest",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "2.6.4",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CB2-B-T07",
+          "section_id": "CB2-B",
+          "code": "2.7",
+          "title": "Pricing strategies that firms in the financial services sector can adopt",
+          "description": "Pricing strategies that firms in the financial services sector can adopt",
+          "estimated_minutes": 328,
+          "difficulty": "intermediate",
+          "display_order": 7,
+          "learning_objectives": [
+            {
+              "id": "CB2-B-T07-LO01",
+              "topic_id": "CB2-B-T07",
+              "code": "2.7.1",
+              "description": "How prices are determined in practice and factors that affect the ability of a firm to determine its prices",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "2.7.1",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T07-LO02",
+              "topic_id": "CB2-B-T07",
+              "code": "2.7.2",
+              "description": "Average-cost pricing and price discrimination",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "2.7.2",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-B-T07-LO03",
+              "topic_id": "CB2-B-T07",
+              "code": "2.7.3",
+              "description": "Pricing strategy for multiple products and how pricing varies with the stage in the life of a product",
+              "cognitive_level": "understand",
+              "estimated_minutes": 109,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "2.7.3",
+                "estimated_hours": "1.82",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CB2-C",
+      "code": "3",
+      "title": "Macroeconomics and the role of government",
+      "description": "Understand aggregate economic variables and concepts which relate them to government policy, business decision making and financial market variables.",
+      "exam_weight": 55.0,
+      "estimated_hours": 82.5,
+      "difficulty": "intermediate",
+      "display_order": 3,
+      "topics": [
+        {
+          "id": "CB2-C-T01",
+          "section_id": "CB2-C",
+          "code": "3.1",
+          "title": "Government intervention in a market",
+          "description": "Government intervention in a market",
+          "estimated_minutes": 559,
+          "difficulty": "intermediate",
+          "display_order": 1,
+          "learning_objectives": [
+            {
+              "id": "CB2-C-T01-LO01",
+              "topic_id": "CB2-C-T01",
+              "code": "3.1.1",
+              "description": "Extent to which businesses meet the interests of consumers and society in general",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "3.1.1",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T01-LO02",
+              "topic_id": "CB2-C-T01",
+              "code": "3.1.2",
+              "description": "Socially efficient perfect markets and why markets fail to achieve the theoretical ideal of social efficiency",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "3.1.2",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T01-LO03",
+              "topic_id": "CB2-C-T01",
+              "code": "3.1.3",
+              "description": "Why externalities can lead to inefficient markets",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "3.1.3",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T01-LO04",
+              "topic_id": "CB2-C-T01",
+              "code": "3.1.4",
+              "description": "How governments intervene in markets to influence business behaviour and the drawbacks of such intervention",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "3.1.4",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T01-LO05",
+              "topic_id": "CB2-C-T01",
+              "code": "3.1.5",
+              "description": "Role of taxation and regulation in correcting shortcomings in markets",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "3.1.5",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T01-LO06",
+              "topic_id": "CB2-C-T01",
+              "code": "3.1.6",
+              "description": "Why government intervention might not improve market outcomes in practice even if the existence of ‘market failures’ suggest they can in theory",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 6,
+              "metadata": {
+                "syllabus_code": "3.1.6",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T01-LO07",
+              "topic_id": "CB2-C-T01",
+              "code": "3.1.7",
+              "description": "Policy instruments that can be used to promote environmental sustainability",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 7,
+              "metadata": {
+                "syllabus_code": "3.1.7",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CB2-C-T02",
+          "section_id": "CB2-C",
+          "code": "3.2",
+          "title": "Relationship between the government and the individual firm",
+          "description": "Relationship between the government and the individual firm",
+          "estimated_minutes": 240,
+          "difficulty": "intermediate",
+          "display_order": 2,
+          "learning_objectives": [
+            {
+              "id": "CB2-C-T02-LO01",
+              "topic_id": "CB2-C-T02",
+              "code": "3.2.1",
+              "description": "Main targets of ‘competition policy’ and the extent to which it is effective",
+              "cognitive_level": "understand",
+              "estimated_minutes": 80,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "3.2.1",
+                "estimated_hours": "1.33",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T02-LO02",
+              "topic_id": "CB2-C-T02",
+              "code": "3.2.2",
+              "description": "Why a free market can fail to achieve the optimal amount of research and development",
+              "cognitive_level": "understand",
+              "estimated_minutes": 80,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "3.2.2",
+                "estimated_hours": "1.33",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T02-LO03",
+              "topic_id": "CB2-C-T02",
+              "code": "3.2.3",
+              "description": "Government intervention to encourage technological advance and innovation",
+              "cognitive_level": "understand",
+              "estimated_minutes": 80,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "3.2.3",
+                "estimated_hours": "1.33",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CB2-C-T03",
+          "section_id": "CB2-C",
+          "code": "3.3",
+          "title": "Globalisation and multinational business",
+          "description": "Globalisation and multinational business",
+          "estimated_minutes": 160,
+          "difficulty": "intermediate",
+          "display_order": 3,
+          "learning_objectives": [
+            {
+              "id": "CB2-C-T03-LO01",
+              "topic_id": "CB2-C-T03",
+              "code": "3.3.1",
+              "description": "Globalisation and its impact on business",
+              "cognitive_level": "understand",
+              "estimated_minutes": 80,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "3.3.1",
+                "estimated_hours": "1.33",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T03-LO02",
+              "topic_id": "CB2-C-T03",
+              "code": "3.3.2",
+              "description": "The driving processes of globalisation and the benefits of globalisation",
+              "cognitive_level": "understand",
+              "estimated_minutes": 80,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "3.3.2",
+                "estimated_hours": "1.33",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CB2-C-T04",
+          "section_id": "CB2-C",
+          "code": "3.4",
+          "title": "Importance of international trade",
+          "description": "Importance of international trade",
+          "estimated_minutes": 319,
+          "difficulty": "intermediate",
+          "display_order": 4,
+          "learning_objectives": [
+            {
+              "id": "CB2-C-T04-LO01",
+              "topic_id": "CB2-C-T04",
+              "code": "3.4.1",
+              "description": "Growth of international trade and its benefits to countries and firms",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "3.4.1",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T04-LO02",
+              "topic_id": "CB2-C-T04",
+              "code": "3.4.2",
+              "description": "Advantages of specialisation",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "3.4.2",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T04-LO03",
+              "topic_id": "CB2-C-T04",
+              "code": "3.4.3",
+              "description": "Arguments for trade restrictions and protection of domestic industries",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "3.4.3",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T04-LO04",
+              "topic_id": "CB2-C-T04",
+              "code": "3.4.4",
+              "description": "Role of the World Trade Organization (WTO) in international trade",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "3.4.4",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CB2-C-T05",
+          "section_id": "CB2-C",
+          "code": "3.5",
+          "title": "Impact of the macroeconomic environment on business",
+          "description": "Impact of the macroeconomic environment on business",
+          "estimated_minutes": 798,
+          "difficulty": "intermediate",
+          "display_order": 5,
+          "learning_objectives": [
+            {
+              "id": "CB2-C-T05-LO01",
+              "topic_id": "CB2-C-T05",
+              "code": "3.5.1",
+              "description": "Main macroeconomic variables that governments seek to control",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "3.5.1",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T05-LO02",
+              "topic_id": "CB2-C-T05",
+              "code": "3.5.2",
+              "description": "Impact of an economic stimulus on business output",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "3.5.2",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T05-LO03",
+              "topic_id": "CB2-C-T05",
+              "code": "3.5.3",
+              "description": "Difference between actual and potential growth",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "3.5.3",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T05-LO04",
+              "topic_id": "CB2-C-T05",
+              "code": "3.5.4",
+              "description": "Factors that determine economic growth and the reasons for differences in different nations’ growth rates",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "3.5.4",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T05-LO05",
+              "topic_id": "CB2-C-T05",
+              "code": "3.5.5",
+              "description": "Why economies experience periods of boom followed by periods of recession and the factors that influence the length and magnitude of the phases of a business cycle",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "3.5.5",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T05-LO06",
+              "topic_id": "CB2-C-T05",
+              "code": "3.5.6",
+              "description": "Causes and costs of unemployment and its impact on the level of business activity",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 6,
+              "metadata": {
+                "syllabus_code": "3.5.6",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T05-LO07",
+              "topic_id": "CB2-C-T05",
+              "code": "3.5.7",
+              "description": "Determination of the price level in the economy by the interaction between aggregate supply (AS) and aggregate demand (AD) in a simple AS–AD model",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 7,
+              "metadata": {
+                "syllabus_code": "3.5.7",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T05-LO08",
+              "topic_id": "CB2-C-T05",
+              "code": "3.5.8",
+              "description": "Causes and costs of inflation and its impact on the level of business activity",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 8,
+              "metadata": {
+                "syllabus_code": "3.5.8",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T05-LO09",
+              "topic_id": "CB2-C-T05",
+              "code": "3.5.9",
+              "description": "Gross domestic product (GDP) and its measurement",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 9,
+              "metadata": {
+                "syllabus_code": "3.5.9",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T05-LO10",
+              "topic_id": "CB2-C-T05",
+              "code": "3.5.10",
+              "description": "Representation of the economy as a simple model of the circular flow of income",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 10,
+              "metadata": {
+                "syllabus_code": "3.5.10",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CB2-C-T06",
+          "section_id": "CB2-C",
+          "code": "3.6",
+          "title": "Balance of payments and the determination of exchange rates",
+          "description": "Balance of payments and the determination of exchange rates",
+          "estimated_minutes": 479,
+          "difficulty": "intermediate",
+          "display_order": 6,
+          "learning_objectives": [
+            {
+              "id": "CB2-C-T06-LO01",
+              "topic_id": "CB2-C-T06",
+              "code": "3.6.1",
+              "description": "Definitions of ‘the balance of payments’ and how trade and financial movements affect it",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "3.6.1",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T06-LO02",
+              "topic_id": "CB2-C-T06",
+              "code": "3.6.2",
+              "description": "How exchange rates are determined and their impact on business",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "3.6.2",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T06-LO03",
+              "topic_id": "CB2-C-T06",
+              "code": "3.6.3",
+              "description": "Relationship between the balance of payments and exchange rates",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "3.6.3",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T06-LO04",
+              "topic_id": "CB2-C-T06",
+              "code": "3.6.4",
+              "description": "Advantages and disadvantages of fixed and floating exchange rates",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "3.6.4",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T06-LO05",
+              "topic_id": "CB2-C-T06",
+              "code": "3.6.5",
+              "description": "How governments and/or central banks seek to influence the exchange rates and the implications of such actions for other macroeconomic policies and for business",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "3.6.5",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T06-LO06",
+              "topic_id": "CB2-C-T06",
+              "code": "3.6.6",
+              "description": "Purpose and effectiveness of monetary union and single currencies, with reference to the European Economic and Monetary Union, the Exchange Rate Mechanism and the creation of a single Currency",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 6,
+              "metadata": {
+                "syllabus_code": "3.6.6",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CB2-C-T07",
+          "section_id": "CB2-C",
+          "code": "3.7",
+          "title": "Role of money and interest rates in the economy",
+          "description": "Role of money and interest rates in the economy",
+          "estimated_minutes": 559,
+          "difficulty": "intermediate",
+          "display_order": 7,
+          "learning_objectives": [
+            {
+              "id": "CB2-C-T07-LO01",
+              "topic_id": "CB2-C-T07",
+              "code": "3.7.1",
+              "description": "Functions of money",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "3.7.1",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T07-LO02",
+              "topic_id": "CB2-C-T07",
+              "code": "3.7.2",
+              "description": "Factors that determine the amount of money in the economy, what causes it to grow and the role of banks in this process",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "3.7.2",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T07-LO03",
+              "topic_id": "CB2-C-T07",
+              "code": "3.7.3",
+              "description": "Concept of the money multiplier",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "3.7.3",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T07-LO04",
+              "topic_id": "CB2-C-T07",
+              "code": "3.7.4",
+              "description": "Determination of interest rates",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "3.7.4",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T07-LO05",
+              "topic_id": "CB2-C-T07",
+              "code": "3.7.5",
+              "description": "Relationship between money and interest rates",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "3.7.5",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T07-LO06",
+              "topic_id": "CB2-C-T07",
+              "code": "3.7.6",
+              "description": "Why central banks play a crucial role in the functioning of economies",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 6,
+              "metadata": {
+                "syllabus_code": "3.7.6",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T07-LO07",
+              "topic_id": "CB2-C-T07",
+              "code": "3.7.7",
+              "description": "How a change in the money supply and/or interest rates affects the level of business activity",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 7,
+              "metadata": {
+                "syllabus_code": "3.7.7",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CB2-C-T08",
+          "section_id": "CB2-C",
+          "code": "3.8",
+          "title": "Role, structure and stability of the financial system",
+          "description": "Role, structure and stability of the financial system",
+          "estimated_minutes": 399,
+          "difficulty": "intermediate",
+          "display_order": 8,
+          "learning_objectives": [
+            {
+              "id": "CB2-C-T08-LO01",
+              "topic_id": "CB2-C-T08",
+              "code": "3.8.1",
+              "description": "Functions of the financial sector",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "3.8.1",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T08-LO02",
+              "topic_id": "CB2-C-T08",
+              "code": "3.8.2",
+              "description": "Role and functions of investment funds, banks and insurance companies/pension funds",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "3.8.2",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T08-LO03",
+              "topic_id": "CB2-C-T08",
+              "code": "3.8.3",
+              "description": "Different ways banks and insurance companies can be exposed to credit risk and liquidity risks through bank loans, corporate bonds, securitisations, syndicated loans and credit derivatives",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "3.8.3",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T08-LO04",
+              "topic_id": "CB2-C-T08",
+              "code": "3.8.4",
+              "description": "Why the banking sector is more likely to be exposed to systemic risk than the non-bank financial sector",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "3.8.4",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T08-LO05",
+              "topic_id": "CB2-C-T08",
+              "code": "3.8.5",
+              "description": "How financial innovation could lead to some functions of the banking sector being performed by non-banks",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "3.8.5",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CB2-C-T09",
+          "section_id": "CB2-C",
+          "code": "3.9",
+          "title": "Factors that determine the level of business activity and how they also affect unemployment and inflation",
+          "description": "Factors that determine the level of business activity and how they also affect unemployment and inflation",
+          "estimated_minutes": 639,
+          "difficulty": "intermediate",
+          "display_order": 9,
+          "learning_objectives": [
+            {
+              "id": "CB2-C-T09-LO01",
+              "topic_id": "CB2-C-T09",
+              "code": "3.9.1",
+              "description": "Determination of the equilibrium level of income within a simple aggregate demand–expenditure model",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "3.9.1",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T09-LO02",
+              "topic_id": "CB2-C-T09",
+              "code": "3.9.2",
+              "description": "Concept of the multiplier and the calculation of its value",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "3.9.2",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T09-LO03",
+              "topic_id": "CB2-C-T09",
+              "code": "3.9.3",
+              "description": "Impact of a rise in money supply on output and prices",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "3.9.3",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T09-LO04",
+              "topic_id": "CB2-C-T09",
+              "code": "3.9.4",
+              "description": "Relationship between unemployment and inflation and whether the relationship is stable",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "3.9.4",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T09-LO05",
+              "topic_id": "CB2-C-T09",
+              "code": "3.9.5",
+              "description": "How business and consumer expectations affect the relationship between unemployment and inflation and the formation of such expectations",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "3.9.5",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T09-LO06",
+              "topic_id": "CB2-C-T09",
+              "code": "3.9.6",
+              "description": "Independent central banks, inflation targeting and their impact on unemployment, business cycles and growth",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 6,
+              "metadata": {
+                "syllabus_code": "3.9.6",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T09-LO07",
+              "topic_id": "CB2-C-T09",
+              "code": "3.9.7",
+              "description": "Course of a business cycle and its turning points",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 7,
+              "metadata": {
+                "syllabus_code": "3.9.7",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T09-LO08",
+              "topic_id": "CB2-C-T09",
+              "code": "3.9.8",
+              "description": "Whether the business cycle is caused by changes in aggregate demand or changes in aggregate supply (or both)",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 8,
+              "metadata": {
+                "syllabus_code": "3.9.8",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CB2-C-T10",
+          "section_id": "CB2-C",
+          "code": "3.10",
+          "title": "Impact of macroeconomic policies on businesses",
+          "description": "Impact of macroeconomic policies on businesses",
+          "estimated_minutes": 479,
+          "difficulty": "intermediate",
+          "display_order": 10,
+          "learning_objectives": [
+            {
+              "id": "CB2-C-T10-LO01",
+              "topic_id": "CB2-C-T10",
+              "code": "3.10.1",
+              "description": "Types of macroeconomic policy that are likely to have an impact on business and the way in which this impact takes effect",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "3.10.1",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T10-LO02",
+              "topic_id": "CB2-C-T10",
+              "code": "3.10.2",
+              "description": "Impact of fiscal policy on the economy and business and the factors that determine its effectiveness in smoothing out economic fluctuations",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "3.10.2",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T10-LO03",
+              "topic_id": "CB2-C-T10",
+              "code": "3.10.3",
+              "description": "Fiscal rules and their efficacy",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "3.10.3",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T10-LO04",
+              "topic_id": "CB2-C-T10",
+              "code": "3.10.4",
+              "description": "How monetary policy works in the UK and the eurozone and the roles of the Bank of England and the European Central Bank",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "3.10.4",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T10-LO05",
+              "topic_id": "CB2-C-T10",
+              "code": "3.10.5",
+              "description": "Targeting inflation to influence interest rates and economic activity",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "3.10.5",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T10-LO06",
+              "topic_id": "CB2-C-T10",
+              "code": "3.10.6",
+              "description": "The merits of central banks following a simple inflation target and possible alternatives",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 6,
+              "metadata": {
+                "syllabus_code": "3.10.6",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CB2-C-T11",
+          "section_id": "CB2-C",
+          "code": "3.11",
+          "title": "Supply-side policies and their impact on businesses",
+          "description": "Supply-side policies and their impact on businesses",
+          "estimated_minutes": 319,
+          "difficulty": "intermediate",
+          "display_order": 11,
+          "learning_objectives": [
+            {
+              "id": "CB2-C-T11-LO01",
+              "topic_id": "CB2-C-T11",
+              "code": "3.11.1",
+              "description": "Effect of supply-side policies on business and the economy",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "3.11.1",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T11-LO02",
+              "topic_id": "CB2-C-T11",
+              "code": "3.11.2",
+              "description": "Types of supply-side policies that can be pursued and their effectiveness",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "3.11.2",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T11-LO03",
+              "topic_id": "CB2-C-T11",
+              "code": "3.11.3",
+              "description": "Impact of cutting taxes on business",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "3.11.3",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CB2-C-T11-LO04",
+              "topic_id": "CB2-C-T11",
+              "code": "3.11.4",
+              "description": "Major forms of government policy that can be used to encourage competition",
+              "cognitive_level": "understand",
+              "estimated_minutes": 79,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "3.11.4",
+                "estimated_hours": "1.32",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

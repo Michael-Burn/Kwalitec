@@ -25,10 +25,6 @@ from app.application.orchestration.educational_orchestrator import (
 from app.domain.decision.action_types import ActionFamily
 from app.domain.recommendation.affordances import AffordanceOutcome
 from app.domain.recommendation.recommendation import Recommendation
-from app.domain.recommendation.warrant import (
-    THIN_WARRANT_CONFIDENCE_POSTURES,
-    RecommendationConfidencePosture,
-)
 
 # Presentation labels for Decision-selected action families — display only.
 _FAMILY_TITLE: dict[ActionFamily, str] = {
@@ -40,11 +36,11 @@ _FAMILY_TITLE: dict[ActionFamily, str] = {
 }
 
 _FAMILY_PRIMARY_ACTION: dict[ActionFamily, str] = {
-    ActionFamily.STUDY: "Start study",
-    ActionFamily.REVISE: "Start revision",
-    ActionFamily.ASSESS: "Start assessment",
-    ActionFamily.DIAGNOSTIC: "Start diagnostic",
-    ActionFamily.REST_PROTECT_INTENSITY: "Protect intensity",
+    ActionFamily.STUDY: "Start Today's Session",
+    ActionFamily.REVISE: "Continue Studying",
+    ActionFamily.ASSESS: "Start Today's Session",
+    ActionFamily.DIAGNOSTIC: "Start Today's Session",
+    ActionFamily.REST_PROTECT_INTENSITY: "Protect Today's Intensity",
 }
 
 
@@ -135,35 +131,54 @@ def _primary_action(recommendation: Recommendation) -> str | None:
     if AffordanceOutcome.ACCEPT not in recommendation.affordances.outcomes:
         return None
     family = recommendation.suggestion.family
-    return _FAMILY_PRIMARY_ACTION.get(family, "Start")
+    return _FAMILY_PRIMARY_ACTION.get(family, "Continue Studying")
 
 
 def _estimated_duration(recommendation: Recommendation) -> str | None:
-    """Forward Decision-derived duration / feasibility tags — never invent minutes."""
+    """Student-facing duration hint — never dump internal feasibility tags."""
     tags = recommendation.urgency_duration_tags
     if not tags:
         return None
-    duration_related = tuple(
-        tag
-        for tag in tags
-        if "duration" in tag
-        or tag.startswith("feasibility/")
-        or tag.startswith("constraint/")
-    )
-    if not duration_related:
-        return None
-    return ", ".join(duration_related)
+    # Internal tags (feasibility/*, constraint/*, *duration*) stay in the
+    # Recommendation warrant; Internal Alpha UI shows no raw diagnostic strings.
+    return None
+
+
+_STUDENT_REASON_BY_FAMILY: dict[ActionFamily, str] = {
+    ActionFamily.STUDY: (
+        "Based on your current study progress and your previous learning "
+        "history, this is the most appropriate next topic."
+    ),
+    ActionFamily.REVISE: (
+        "Based on your recent study history, revisiting this material will "
+        "strengthen what you have already started."
+    ),
+    ActionFamily.ASSESS: (
+        "Based on your current study progress, a focused assessment will "
+        "clarify what to practise next."
+    ),
+    ActionFamily.DIAGNOSTIC: (
+        "Based on your current study progress, a short diagnostic will help "
+        "identify the most useful next step."
+    ),
+    ActionFamily.REST_PROTECT_INTENSITY: (
+        "Based on your recent study load, protecting intensity today supports "
+        "sustainable progress."
+    ),
+}
+
+_DEFAULT_STUDENT_REASON = (
+    "Based on your current study progress and your previous learning "
+    "history, this is the most appropriate next topic."
+)
 
 
 def _reason_summary(recommendation: Recommendation) -> str | None:
-    """Short reason summary from Recommendation Reasons — narration already authored."""
+    """Concise student explanation — never expose internal warrant note tags."""
     if not recommendation.reasons:
-        return None
-    primary = recommendation.reasons[0]
-    notes = tuple(primary.note_tags)
-    if notes:
-        return ", ".join(notes)
-    return primary.reason_id
+        return _DEFAULT_STUDENT_REASON
+    family = recommendation.suggestion.family
+    return _STUDENT_REASON_BY_FAMILY.get(family, _DEFAULT_STUDENT_REASON)
 
 
 def _compose_warning(
@@ -171,19 +186,14 @@ def _compose_warning(
     experience_warnings: tuple[str, ...],
     recommendation: Recommendation,
 ) -> str | None:
-    """Propagate honesty / thin-warrant signals — never upgrade warrant."""
-    tags: list[str] = list(experience_warnings)
-    confidence = recommendation.confidence_posture
-    if confidence in THIN_WARRANT_CONFIDENCE_POSTURES:
-        confidence_tag = f"confidence:{confidence.value}"
-        if confidence_tag not in tags:
-            tags.append(confidence_tag)
-    if confidence is RecommendationConfidencePosture.COLD_START:
-        if "cold_start" not in tags:
-            tags.append("cold_start")
-    if not tags:
-        return None
-    return "; ".join(tags)
+    """Keep thin-warrant honesty internal — do not render diagnostic tags in UI.
+
+    Domain warnings and confidence postures remain on the Recommendation /
+    Experience for explainability consumers. The Internal Alpha dashboard
+    card must never surface tags such as ``cold_start`` or ``thin_warrant``.
+    """
+    del experience_warnings, recommendation
+    return None
 
 
 def _show_explanation(experience: EducationalExperience) -> bool:

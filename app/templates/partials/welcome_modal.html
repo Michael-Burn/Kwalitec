@@ -1,0 +1,26 @@
+{# One-time welcome modal after Study Plan + Calibration (Capability 4.4). #}
+{% if show_welcome %}
+<div class="welcome-modal-backdrop" id="welcome-modal" role="dialog" aria-modal="true" aria-labelledby="welcome-modal-title">
+    <div class="welcome-modal-card">
+        <p class="welcome-modal-eyebrow">Kwalitec</p>
+        <h2 class="welcome-modal-title" id="welcome-modal-title">Welcome to Kwalitec</h2>
+        <p class="welcome-modal-lead">Your study journey is now personalised.</p>
+        <div class="welcome-modal-body">
+            <p>Each day Kwalitec will recommend what to study based on your curriculum and study progress.</p>
+            <p>Complete today's mission and your progress will grow over time.</p>
+            <p>Kwalitec improves as you continue studying.</p>
+        </div>
+        <div class="welcome-modal-actions">
+            <a href="{{ url_for('mission.missions') }}" class="btn btn-primary" data-welcome-dismiss data-welcome-href="{{ url_for('mission.missions') }}">
+                Start Studying
+            </a>
+            <button type="button" class="btn btn-outline" data-welcome-dismiss>
+                Dismiss
+            </button>
+        </div>
+        <form id="welcome-dismiss-form" method="post" action="{{ url_for('dashboard.dismiss_welcome') }}" class="d-none">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        </form>
+    </div>
+</div>
+{% endif %}

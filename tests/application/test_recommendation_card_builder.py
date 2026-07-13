@@ -227,11 +227,11 @@ class TestFeatureFlagOn:
         card = RecommendationCardBuilder.build(experience, flags=FLAGS_ON)
         assert card is not None
         assert card.reason_summary is not None
+        assert "Based on your current study progress" in card.reason_summary
         primary = experience.todays_recommendation.reasons[0]
-        assert card.reason_summary in {
-            primary.reason_id,
-            ", ".join(primary.note_tags),
-        }
+        # Internal warrant tags must never leak into student-facing copy.
+        for tag in primary.note_tags:
+            assert tag not in card.reason_summary
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -374,11 +374,12 @@ class TestColdStartAndWarnings:
         experience = _cold_start_experience()
         card = RecommendationCardBuilder.build(experience, flags=FLAGS_ON)
         assert card is not None
-        assert card.warning is not None
-        assert "cold_start" in card.warning or any(
-            tag in card.warning
-            for tag in ("thin_warrant", "not_yet_knowable", "confidence:")
-        )
+        # Internal Alpha: diagnostic warrant tags stay internal — not on the card.
+        assert card.warning is None
+        assert card.reason_summary is not None
+        assert "cold_start" not in card.reason_summary
+        assert "thin_warrant" not in card.reason_summary
+        assert "warrant_honesty" not in card.reason_summary
 
     def test_experience_warnings_forwarded_verbatim(self) -> None:
         experience = _experience()
@@ -396,27 +397,23 @@ class TestColdStartAndWarnings:
         )
         card = RecommendationCardBuilder.build(tagged, flags=FLAGS_ON)
         assert card is not None
-        assert card.warning is not None
-        assert "thin_warrant" in card.warning
-        assert "cold_start" in card.warning
+        assert card.warning is None
+        assert "thin_warrant" not in (card.reason_summary or "")
+        assert "cold_start" not in (card.reason_summary or "")
 
     def test_thin_warrant_confidence_never_upgraded(self) -> None:
         experience = _cold_start_experience()
         confidence = experience.todays_recommendation.confidence_posture
         card = RecommendationCardBuilder.build(experience, flags=FLAGS_ON)
         assert card is not None
-        assert card.warning is not None
-        # Must not invent Mid/High preparedness theatre in warning text.
-        assert "honest_medium" not in card.warning
-        assert "honest_high" not in card.warning
-        assert "Mid" not in card.warning
-        assert "High" not in card.warning
-        if confidence in THIN_WARRANT_CONFIDENCE_POSTURES:
-            assert (
-                f"confidence:{confidence.value}" in card.warning
-                or "cold_start" in card.warning
-                or "thin_warrant" in card.warning
-            )
+        # Student card must not invent Mid/High preparedness theatre.
+        assert card.warning is None
+        assert "honest_medium" not in (card.reason_summary or "")
+        assert "honest_high" not in (card.reason_summary or "")
+        assert "Mid" not in (card.reason_summary or "")
+        assert "High" not in (card.reason_summary or "")
+        # Domain confidence posture remains thin — presentation does not upgrade it.
+        assert confidence in THIN_WARRANT_CONFIDENCE_POSTURES
 
 
 # ═══════════════════════════════════════════════════════════════════════════════

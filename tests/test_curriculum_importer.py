@@ -77,7 +77,7 @@ class TestV1Import:
         from app.models.curriculum import Curriculum, Topic
 
         CurriculumService.import_curricula()
-        c = Curriculum.query.first()
+        c = Curriculum.query.filter_by(exam_name="IFoA CS1", version="2026").one()
         assert c.exam_name == "IFoA CS1"
         topics = Topic.query.filter_by(curriculum_id=c.id).all()
 
@@ -510,10 +510,11 @@ class TestFormatDetection:
         count = CurriculumService.import_curricula()
         assert count >= 1
 
-        # The bundled curriculum uses product naming
-        c = Curriculum.query.first()
+        # Bundled curricula use product naming (CS1 + CB2)
+        c = Curriculum.query.filter_by(exam_name="IFoA CS1", version="2026").one()
         assert c is not None
         assert c.exam_name == "IFoA CS1"
+        assert Curriculum.query.filter_by(exam_name="IFoA CB2", version="2026").one() is not None
 
     def test_format_detection_logs_correctly(self, ctx, db, caplog):
         """Format detection should be logged."""
@@ -659,8 +660,9 @@ class TestStartupImport:
             assert isinstance(count, int)
             assert count >= 0
 
-        # Should still have only one curriculum
-        assert Curriculum.query.count() == 1
+        # Should still have exactly the bundled curricula (CS1 + CB2)
+        assert Curriculum.query.count() == 2
+        assert {c.exam_name for c in Curriculum.query.all()} == {"IFoA CS1", "IFoA CB2"}
 
 
 # ═══════════════════════════════════════════════════════════════════════════════

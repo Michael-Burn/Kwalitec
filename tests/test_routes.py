@@ -23,8 +23,9 @@ class TestDashboardRoute:
         """Curriculum progress card shows empty state when there is no active study plan."""
         response = logged_in_client.get("/dashboard/")
         assert response.status_code == 200
-        assert b"Curriculum Progress" in response.data
-        assert b"Curriculum data will appear once you create a study plan." in response.data
+        assert b"Curriculum Roadmap" in response.data
+        assert b"Curriculum data will appear once you create a study plan." not in response.data
+        assert b"Create your first study plan to unlock your curriculum roadmap." in response.data
 
     def test_dashboard_curriculum_summary_for_supported_exam(
         self, logged_in_client, study_plan, curriculum

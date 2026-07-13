@@ -110,6 +110,21 @@ def preferences():
     )
 
 
+@settings_bp.get("/internal-alpha")
+@login_required
+def internal_alpha():
+    """Render Internal Alpha informational status (presentation only)."""
+    from app.services.internal_alpha_status_service import InternalAlphaStatusService
+
+    status = InternalAlphaStatusService.build_status(current_user.id)
+    return render_template(
+        "settings/index.html",
+        title="Internal Alpha",
+        section="internal-alpha",
+        alpha_status=status,
+    )
+
+
 @settings_bp.post("/preferences")
 @login_required
 def update_preferences():
@@ -123,7 +138,7 @@ def update_preferences():
             session["daily_goal_hours"] = hours
             flash("Preferences updated successfully.", "success")
         except ValueError:
-            flash("Please enter a valid number for daily goal hours.", "danger")
+            flash("Please enter a valid number for daily study goal hours.", "danger")
 
     return redirect(url_for("settings.preferences"))
 

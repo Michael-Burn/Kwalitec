@@ -123,6 +123,78 @@ def create_admin_command() -> None:
     )
 
 
+@click.command("create-test-user")
+@click.option(
+    "--name",
+    prompt="Name",
+    help="Display name for the Internal Alpha participant.",
+)
+@click.option("--email", prompt="Email", help="Login email for the test user.")
+@click.option(
+    "--password",
+    prompt=True,
+    hide_input=True,
+    confirmation_prompt=True,
+    help="Password for the test user.",
+)
+def create_test_user_command(name: str, email: str, password: str) -> None:
+    """Create an additional Internal Alpha test user.
+
+    Unlike ``create-admin``, this command allows creating users when the
+    database already has accounts. It is intended for operator use only and
+    is not exposed through the public web UI.
+
+    Prompts interactively for name, email, and password when options are
+    omitted. Name is confirmed in the success message; authentication uses
+    email and password only (User model has no separate name column).
+    """
+    logger.info("Starting create-test-user command")
+
+    if not _users_table_exists():
+        click.echo(
+            "users table not found – run `flask db upgrade` first.",
+            err=True,
+        )
+        logger.error("create-test-user: users table missing; aborting.")
+        sys.exit(1)
+
+    display_name = (name or "").strip()
+    normalized_email = (email or "").strip().lower()
+    if not display_name:
+        click.echo("Error: Name is required.", err=True)
+        sys.exit(1)
+    if not normalized_email or "@" not in normalized_email:
+        click.echo("Error: A valid email is required.", err=True)
+        sys.exit(1)
+    if not password or len(password) < 8:
+        click.echo("Error: Password must be at least 8 characters.", err=True)
+        sys.exit(1)
+
+    existing = User.query.filter_by(email=normalized_email).first()
+    if existing is not None:
+        click.echo(
+            f"Error: A user with email {normalized_email} already exists.",
+            err=True,
+        )
+        sys.exit(1)
+
+    user = User(email=normalized_email, is_active_user=True)
+    user.set_password(password)
+    db.session.add(user)
+    db.session.commit()
+
+    click.echo(
+        f"Test user created successfully for {display_name} "
+        f"<{normalized_email}> (id={user.id})."
+    )
+    logger.info(
+        "create-test-user: created user id=%s email=%s name=%s",
+        user.id,
+        normalized_email,
+        display_name,
+    )
+
+
 @click.command("backfill-sections")
 @click.option(
     "--dry-run",

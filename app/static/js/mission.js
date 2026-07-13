@@ -2,14 +2,6 @@
 (function () {
     "use strict";
 
-    // Initialize task toggle handlers
-    const taskToggles = document.querySelectorAll(".task-toggle");
-
-    if (!taskToggles.length) {
-        return;
-    }
-
-    // Get CSRF token from meta tag or hidden input
     function getCsrfToken() {
         const meta = document.querySelector('meta[name="csrf-token"]');
         if (meta) {
@@ -22,15 +14,25 @@
         return null;
     }
 
-    // Update progress bar and percentage display
+    function authHeaders() {
+        const headers = {
+            "Content-Type": "application/json",
+        };
+        const csrfToken = getCsrfToken();
+        if (csrfToken) {
+            headers["X-CSRFToken"] = csrfToken;
+        }
+        return headers;
+    }
+
     function updateProgress() {
         const allToggles = document.querySelectorAll(".task-toggle");
         const total = allToggles.length;
-        const completed = Array.from(allToggles).filter(t => t.checked).length;
+        const completed = Array.from(allToggles).filter((t) => t.checked).length;
         const percentage = total > 0 ? Math.round((completed / total) * 100) : 100;
 
-        const progressBar = document.querySelector(".progress-bar");
-        const progressText = document.querySelector(".fw-semibold");
+        const progressBar = document.querySelector(".mission-hero-progress-bar .progress-bar");
+        const progressText = document.querySelector(".mission-hero-progress-bar .fw-semibold");
 
         if (progressBar) {
             progressBar.style.width = percentage + "%";
@@ -40,62 +42,125 @@
         if (progressText) {
             progressText.textContent = percentage + "%";
         }
+
+        const progressWrap = document.querySelector(".mission-hero-progress-bar .progress");
+        if (progressWrap) {
+            progressWrap.setAttribute("aria-valuenow", percentage);
+        }
     }
 
-    taskToggles.forEach(toggle => {
-        toggle.addEventListener("change", function () {
-            const taskId = this.dataset.taskId;
-            const completed = this.checked;
-            const csrfToken = getCsrfToken();
+    function markTaskLabel(taskId, completed) {
+        const label = document.querySelector(`label[for="task-${taskId}"]`);
+        if (!label) {
+            return;
+        }
+        if (completed) {
+            label.classList.add("text-decoration-line-through", "text-secondary");
+        } else {
+            label.classList.remove("text-decoration-line-through", "text-secondary");
+        }
+        const item = label.closest(".task-item");
+        if (item) {
+            item.classList.toggle("completed", completed);
+        }
+    }
 
-            const headers = {
-                "Content-Type": "application/json",
-            };
+    function bindTaskToggles() {
+        const taskToggles = document.querySelectorAll(".task-toggle");
+        taskToggles.forEach((toggle) => {
+            toggle.addEventListener("change", function () {
+                const taskId = this.dataset.taskId;
+                const completed = this.checked;
 
-            if (csrfToken) {
-                headers["X-CSRFToken"] = csrfToken;
-            }
-
-            // Send request to mark task complete
-            fetch(`/missions/tasks/${taskId}/toggle`, {
-                method: "POST",
-                headers: headers,
-                body: JSON.stringify({ completed: completed })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Update the label styling
-                    const label = document.querySelector(`label[for="task-${taskId}"]`);
-                    if (label) {
-                        if (completed) {
-                            label.classList.add("text-decoration-line-through", "text-secondary");
+                fetch(`/missions/tasks/${taskId}/toggle`, {
+                    method: "POST",
+                    headers: authHeaders(),
+                    body: JSON.stringify({ completed: completed }),
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        if (data.success) {
+                            markTaskLabel(taskId, completed);
+                            updateProgress();
                         } else {
-                            label.classList.remove("text-decoration-line-through", "text-secondary");
+                            this.checked = !completed;
+                            updateProgress();
+                            console.error("Failed to update task:", data.error);
                         }
-                    }
-
-                    // Update progress bar dynamically
-                    updateProgress();
-
-                    // Check if all tasks are complete
-                    if (data.mission.all_tasks_complete) {
-                        // Redirect to mission review page
-                        window.location.href = `/missions/review/${data.mission.id}`;
-                    }
-                } else {
-                    // Revert the checkbox if the request failed
-                    this.checked = !completed;
-                    updateProgress();
-                    console.error("Failed to update task:", data.error);
-                }
-            })
-            .catch(error => {
-                // Revert the checkbox if there was a network error
-                this.checked = !completed;
-                updateProgress();
-                console.error("Error updating task:", error);
+                    })
+                    .catch((error) => {
+                        this.checked = !completed;
+                        updateProgress();
+                        console.error("Error updating task:", error);
+                    });
             });
         });
-    });
+    }
+
+    function bindMarkComplete() {
+        const button = document.querySelector(".btn-mark-complete");
+        if (!button) {
+            return;
+        }
+
+        button.addEventListener("click", function () {
+            const missionId = this.dataset.missionId;
+            if (!missionId) {
+                return;
+            }
+
+            this.disabled = true;
+            const originalLabel = this.innerHTML;
+            this.innerHTML = "Saving…";
+
+            fetch(`/missions/${missionId}/complete`, {
+                method: "POST",
+                headers: authHeaders(),
+                body: JSON.stringify({}),
+            })
+                .then((response) => response.json().then((data) => ({ ok: response.ok, data })))
+                .then(({ ok, data }) => {
+                    if (ok && data.success) {
+                        document.querySelectorAll(".task-toggle").forEach((toggle) => {
+                            toggle.checked = true;
+                            markTaskLabel(toggle.dataset.taskId, true);
+                        });
+                        updateProgress();
+
+                        const badge = document.querySelector(".mission-hero-header .badge");
+                        if (badge) {
+                            badge.textContent = "Completed";
+                            badge.className =
+                                "badge rounded-pill fs-6 px-3 py-2 text-bg-success";
+                        }
+
+                        window.location.href = data.redirect_url || "/";
+                        return;
+                    }
+
+                    this.disabled = false;
+                    this.innerHTML = originalLabel;
+                    console.error("Failed to complete mission:", data && data.error);
+                    window.alert((data && data.error) || "Could not complete mission.");
+                })
+                .catch((error) => {
+                    this.disabled = false;
+                    this.innerHTML = originalLabel;
+                    console.error("Error completing mission:", error);
+                    window.alert("Could not complete mission. Please try again.");
+                });
+        });
+    }
+
+    function init() {
+        bindTaskToggles();
+        bindMarkComplete();
+        updateProgress();
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+    } else {
+        init();
+    }
 })();

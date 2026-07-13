@@ -167,3 +167,35 @@ class MissionService:
         db.session.commit()
         logger.info("Mission %d status updated to %s", mission_id, status)
         return mission
+
+    @staticmethod
+    def complete_mission(mission_id: int, user_id: int) -> Mission:
+        """Mark every task complete and set the mission status to Completed.
+
+        Idempotent for already-completed missions. Persists immediately so the
+        result survives refresh and application restart.
+
+        Args:
+            mission_id: The ID of the mission to complete.
+            user_id: The ID of the user (for authorization).
+
+        Returns:
+            Mission: The completed mission.
+
+        Raises:
+            ValueError: If the mission doesn't exist or doesn't belong to the user.
+        """
+        mission = Mission.query.get(mission_id)
+        if not mission:
+            raise ValueError(f"Mission {mission_id} not found")
+
+        if mission.user_id != user_id:
+            raise ValueError(f"Mission {mission_id} does not belong to user {user_id}")
+
+        for task in mission.tasks:
+            task.completed = True
+
+        mission.status = "Completed"
+        db.session.commit()
+        logger.info("Mission %d marked complete for user %s", mission_id, user_id)
+        return mission

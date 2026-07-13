@@ -110,7 +110,10 @@ def start(study_plan_id: int):
                 "continuing without a calibrated starting profile.",
                 "info",
             )
-            return redirect(url_for("dashboard.index"))
+            from app.services.welcome_service import WelcomeService
+
+            WelcomeService.mark_eligible(current_user.id)
+            return redirect(url_for("dashboard.index", welcome=1))
         flash(
             "Calibration needs a successfully created study plan first.",
             "info",
@@ -219,27 +222,37 @@ def submit(study_plan_id: int):
     return _persist_and_redirect(launch, declarations)
 
 
+def _mark_welcome_and_go_dashboard(*, flash_message: str, category: str = "success"):
+    """Mark first-time welcome eligible, then open the dashboard."""
+    from app.services.welcome_service import WelcomeService
+
+    WelcomeService.mark_eligible(current_user.id)
+    flash(flash_message, category)
+    return redirect(url_for("dashboard.index", welcome=1))
+
+
 def _finish_beginner_skip(launch):
     try:
         result = _coordinator().complete_beginner_skip(launch)
     except CalibrationValidationError as exc:
         logger.warning("Beginner skip calibration validation failed: %s", exc)
-        flash(
-            "We could not record a beginner starting profile. "
-            "Your study plan is ready — continuing honestly.",
-            "warning",
+        return _mark_welcome_and_go_dashboard(
+            flash_message=(
+                "We could not record a beginner starting profile. "
+                "Your study plan is ready — continuing honestly."
+            ),
+            category="warning",
         )
-        return redirect(url_for("dashboard.index"))
 
     if isinstance(result, TwinPersistenceFailure):
         return _handle_persist_failure(result, launch.study_plan_id)
 
-    flash(
-        "Study plan created. Starting from scratch — we'll refine guidance "
-        "as you study.",
-        "success",
+    return _mark_welcome_and_go_dashboard(
+        flash_message=(
+            "Study plan created. Starting from scratch — we'll refine guidance "
+            "as you study."
+        ),
     )
-    return redirect(url_for("dashboard.index"))
 
 
 def _persist_and_redirect(launch, declarations: AlphaCalibrationDeclarations):
@@ -260,24 +273,25 @@ def _persist_and_redirect(launch, declarations: AlphaCalibrationDeclarations):
         return _handle_persist_failure(result, launch.study_plan_id)
 
     assert isinstance(result, PersistedCalibrationBirth)
-    flash(
-        "Study plan created. We've recorded what you declared about your "
-        "educational history — not measured mastery. Here's your dashboard.",
-        "success",
+    return _mark_welcome_and_go_dashboard(
+        flash_message=(
+            "Your study plan is ready. We've recorded what you shared about "
+            "your learning history — not measured mastery."
+        ),
     )
-    return redirect(url_for("dashboard.index"))
 
 
 def _handle_persist_failure(
     failure: TwinPersistenceFailure, study_plan_id: int
 ):
     if failure.reason is TwinPersistenceFailureReason.DUPLICATE:
-        flash(
-            "Your study profile already exists for this plan. "
-            "Continuing to the dashboard.",
-            "info",
+        return _mark_welcome_and_go_dashboard(
+            flash_message=(
+                "Your study profile already exists for this plan. "
+                "Continuing to the dashboard."
+            ),
+            category="info",
         )
-        return redirect(url_for("dashboard.index"))
 
     logger.warning(
         "Calibration birth persist failed for plan=%s reason=%s detail=%s",
@@ -285,12 +299,13 @@ def _handle_persist_failure(
         failure.reason.value,
         failure.detail,
     )
-    flash(
-        "Your study plan was created, but we could not save your declared "
-        "history right now. Continuing honestly without inventing readiness.",
-        "warning",
+    return _mark_welcome_and_go_dashboard(
+        flash_message=(
+            "Your study plan was created, but we could not save your declared "
+            "history right now. Continuing honestly without inventing readiness."
+        ),
+        category="warning",
     )
-    return redirect(url_for("dashboard.index"))
 
 
 @calibration_bp.get("/resume")

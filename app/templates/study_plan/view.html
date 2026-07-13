@@ -44,6 +44,7 @@
 
     <!-- Curriculum Roadmap -->
     {% if study_plan.curriculum and study_plan.curriculum.topics %}
+    {% set curriculum_sections = study_plan.curriculum.sections|sort(attribute='display_order') if study_plan.curriculum.sections else [] %}
     {% set sorted_topics = study_plan.curriculum.topics|sort(attribute='order') %}
 
     {# Build a progress lookup keyed by topic_id #}
@@ -84,6 +85,79 @@
             <small class="text-muted">{{ sorted_topics|length }} topics</small>
         </div>
 
+        {% if curriculum_sections %}
+            {% for section in curriculum_sections %}
+            {% set section_topics = sorted_topics|selectattr('section_id', 'equalto', section.id)|list %}
+            <div class="roadmap-section-block mb-4">
+                <div class="roadmap-section-header">
+                    <div>
+                        <p class="roadmap-section-eyebrow mb-1">Section {{ section.code }}</p>
+                        <h3 class="roadmap-section-title mb-0">{{ section.title }}</h3>
+                    </div>
+                    {% if section.exam_weight is not none %}
+                    <div class="roadmap-section-weight" title="Official syllabus section weight">
+                        <span class="roadmap-section-weight-value">{{ '%g'|format(section.exam_weight) }}%</span>
+                        <span class="roadmap-section-weight-label">Weight</span>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="roadmap-grid">
+                    {% for topic in section_topics %}
+                    {% set tp = progress_by_topic.get(topic.id) %}
+                    {% set is_completed = tp and tp.completed %}
+                    {% set is_learning = (topic.id == ns.current_topic_id) %}
+                    {% set is_next = (topic.id == ns.next_topic_id) %}
+
+                    {% if is_completed %}
+                        {% set card_state = 'completed' %}
+                        {% set badge_text = 'Completed' %}
+                        {% set badge_class = 'roadmap-badge--completed' %}
+                    {% elif is_learning %}
+                        {% set card_state = 'learning' %}
+                        {% set badge_text = 'Learning' %}
+                        {% set badge_class = 'roadmap-badge--learning' %}
+                    {% elif is_next %}
+                        {% set card_state = 'next' %}
+                        {% set badge_text = 'Next' %}
+                        {% set badge_class = 'roadmap-badge--next' %}
+                    {% else %}
+                        {% set card_state = 'not-started' %}
+                        {% set badge_text = 'Not Started' %}
+                        {% set badge_class = 'roadmap-badge--not-started' %}
+                    {% endif %}
+
+                    <div class="roadmap-card roadmap-card--{{ card_state }}">
+                        <div class="roadmap-card-header">
+                            <span class="roadmap-card-order">{{ topic.order }}</span>
+                            <span class="roadmap-badge {{ badge_class }}">{{ badge_text }}</span>
+                        </div>
+                        <div class="roadmap-card-body">
+                            <h3 class="roadmap-card-title">{{ topic.name }}</h3>
+                            <div class="roadmap-card-metrics">
+                                <div class="roadmap-metric">
+                                    <span class="roadmap-metric-label">Est. Hours</span>
+                                    <span class="roadmap-metric-value">{{ ((topic.recommended_minutes or 0) / 60)|round(1) }}h</span>
+                                </div>
+                                {% if tp and tp.mastery_score > 0 %}
+                                <div class="roadmap-metric">
+                                    <span class="roadmap-metric-label">Mastery</span>
+                                    <span class="roadmap-metric-value">{{ '%d'|format(tp.mastery_score) }}%</span>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="roadmap-card-outcomes">
+                            <span class="roadmap-outcomes-label">Learning Outcomes</span>
+                            <span class="roadmap-outcomes-placeholder">—</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+        {# V1 curricula: keep per-topic syllabus weights #}
         <div class="roadmap-grid">
             {% for topic in sorted_topics %}
             {% set tp = progress_by_topic.get(topic.id) %}
@@ -133,7 +207,6 @@
                         {% endif %}
                     </div>
                 </div>
-                <!-- Future Learning Outcomes slot -->
                 <div class="roadmap-card-outcomes">
                     <span class="roadmap-outcomes-label">Learning Outcomes</span>
                     <span class="roadmap-outcomes-placeholder">—</span>
@@ -141,6 +214,7 @@
             </div>
             {% endfor %}
         </div>
+        {% endif %}
     </div>
 
     {% else %}

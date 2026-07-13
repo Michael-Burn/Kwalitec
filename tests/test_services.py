@@ -1725,7 +1725,7 @@ class TestPlanningService:
             current_stage="Chapter 1",
             study_preference="Reading First",
         )
-        assert "Read" in tasks[0]["title"]
+        assert "Study" in tasks[0]["title"]
 
     def test_generate_weekday_tasks_questions_first(self):
         from app.services.planning_service import PlanningService
@@ -1735,7 +1735,7 @@ class TestPlanningService:
             current_stage="Chapter 1",
             study_preference="Questions First",
         )
-        assert "Practice Questions" in tasks[0]["title"]
+        assert "practice questions" in tasks[0]["title"].lower()
 
     def test_generate_weekend_tasks(self):
         from app.services.planning_service import PlanningService
@@ -1745,7 +1745,7 @@ class TestPlanningService:
             current_stage="Chapter 5",
         )
         assert len(tasks) == 3
-        assert "Timed Practice" in tasks[0]["title"]
+        assert "Timed practice" in tasks[0]["title"]
 
     def test_generate_mission_title_weekday(self):
         from app.services.planning_service import DayType, PlanningService

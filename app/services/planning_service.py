@@ -9,7 +9,7 @@ from enum import Enum
 
 from app.extensions import db
 from app.models.curriculum import Topic
-from app.models.mission import Mission, MissionTask
+from app.models.mission import Mission
 from app.models.study_plan import StudyPlan, WeekPlan
 from app.services.adaptive_learning_service import AdaptiveLearningService
 from app.services.curriculum_service import CurriculumService
@@ -26,6 +26,33 @@ class DayType(Enum):
     WEEKEND = "weekend"
 
 
+# Leading syllabus command verbs that make awkward mission copy when prefixed
+# with "Study" / "Practice" (e.g. "Study Understand and use …").
+_TOPIC_TITLE_VERB_PREFIXES: tuple[str, ...] = (
+    "understand and use ",
+    "understand and apply ",
+    "understand and explain ",
+    "understand ",
+    "describe and use ",
+    "describe ",
+    "explain ",
+    "calculate ",
+    "derive ",
+    "apply ",
+    "define ",
+    "identify ",
+    "analyse ",
+    "analyze ",
+    "compare ",
+    "discuss ",
+    "evaluate ",
+    "produce ",
+    "construct ",
+    "solve ",
+    "use ",
+)
+
+
 class PlanningService:
     """Service for automatic mission planning from study plans.
     
@@ -34,6 +61,30 @@ class PlanningService:
     the current day and that refreshing never creates duplicates.
     """
 
+    @staticmethod
+    def _topic_study_label(topic: Topic | None, fallback: str = "today's topic") -> str:
+        """Return a natural study label from an official syllabus topic title.
+
+        Official titles are often imperative learning objectives. Mission copy
+        should read like a premium learning platform, e.g. ``Generalised Linear
+        Models`` rather than ``Understand and use generalised linear models``.
+        """
+        raw = (topic.name if topic and topic.name else fallback).strip()
+        lowered = raw.lower()
+        for prefix in _TOPIC_TITLE_VERB_PREFIXES:
+            if lowered.startswith(prefix):
+                raw = raw[len(prefix):].strip()
+                break
+        if not raw:
+            return fallback
+        # Preserve intentional acronyms; otherwise title-case word-wise.
+        words = []
+        for word in raw.split():
+            if word.isupper() or any(ch.isdigit() for ch in word):
+                words.append(word)
+            else:
+                words.append(word[:1].upper() + word[1:] if word else word)
+        return " ".join(words)
     @staticmethod
     def generate_today_mission(user_id: int, today: date | None = None) -> Mission | None:
         """Generate today's mission if it doesn't already exist.
@@ -112,7 +163,7 @@ class PlanningService:
         """
         # Determine day type (weekday or weekend)
         day_type = PlanningService._get_day_type(target_date)
-        
+
         # Get study minutes for this day type
         study_minutes = (
             active_plan.weekday_study_minutes
@@ -187,17 +238,15 @@ class PlanningService:
         """
         day_name = target_date.strftime("%A")
         date_str = target_date.strftime("%b %d")
-        
-        if topic:
+        topic_label = PlanningService._topic_study_label(topic) if topic else None
+
+        if topic_label:
             if day_type == DayType.WEEKDAY:
-                return f"Learn: {topic.name} - {day_name}, {date_str}"
-            else:
-                return f"Practice: {topic.name} - {day_name}, {date_str}"
-        else:
-            if day_type == DayType.WEEKDAY:
-                return f"Daily Study - {day_name}, {date_str}"
-            else:
-                return f"Weekend Review - {day_name}, {date_str}"
+                return f"Study {topic_label} — {day_name}, {date_str}"
+            return f"Practice {topic_label} — {day_name}, {date_str}"
+        if day_type == DayType.WEEKDAY:
+            return f"Daily Study — {day_name}, {date_str}"
+        return f"Weekend Review — {day_name}, {date_str}"
 
     @staticmethod
     def _generate_mission_tasks(
@@ -273,60 +322,90 @@ class PlanningService:
         practice_mins = max(10, int(study_minutes * 0.40))
         review_mins = max(10, int(study_minutes * 0.25))
 
-        study_subject = topic.name if topic else current_stage
+        study_subject = PlanningService._topic_study_label(topic, fallback=current_stage)
 
         if study_preference == "Reading First":
             tasks.append({
-                "title": f"Read: {study_subject}",
-                "description": f"Study the material for {reading_mins} minutes. Focus on understanding key concepts and definitions. Refer to your textbook or notes on {study_subject}.",
+                "title": f"Study {study_subject}",
+                "description": (
+                    f"Read the Core Reading for today's section for about "
+                    f"{reading_mins} minutes. Focus on the key ideas in "
+                    f"{study_subject}."
+                ),
                 "order": order,
             })
             order += 1
             tasks.append({
-                "title": "Practice Questions",
-                "description": f"Complete practice questions for {practice_mins} minutes. Test your understanding of {study_subject} with worked examples.",
+                "title": "Complete practice questions",
+                "description": (
+                    f"Work through the recommended practice questions for about "
+                    f"{practice_mins} minutes on {study_subject}."
+                ),
                 "order": order,
             })
             order += 1
             tasks.append({
-                "title": "Review & Consolidate",
-                "description": f"Review your answers for {review_mins} minutes. Identify any gaps in your understanding of {study_subject} and note key points.",
+                "title": "Review and consolidate",
+                "description": (
+                    f"Spend about {review_mins} minutes reviewing your answers "
+                    f"and noting any gaps in {study_subject}."
+                ),
                 "order": order,
             })
         elif study_preference == "Questions First":
             tasks.append({
-                "title": "Practice Questions",
-                "description": f"Start with practice questions for {practice_mins} minutes. Test your current knowledge of {study_subject}. This helps identify what you need to learn.",
+                "title": "Complete practice questions",
+                "description": (
+                    f"Start with practice questions for about {practice_mins} "
+                    f"minutes to test your current understanding of "
+                    f"{study_subject}."
+                ),
                 "order": order,
             })
             order += 1
             tasks.append({
-                "title": f"Read: {study_subject}",
-                "description": f"Study relevant material for {reading_mins} minutes. Based on the questions, focus on areas where you need improvement.",
+                "title": f"Study {study_subject}",
+                "description": (
+                    f"Read the Core Reading for about {reading_mins} minutes, "
+                    f"focusing on the areas the questions highlighted."
+                ),
                 "order": order,
             })
             order += 1
             tasks.append({
-                "title": "Review & Learn",
-                "description": f"Review for {review_mins} minutes. Connect the theory you just learned to the practice questions. Reinforce your understanding.",
+                "title": "Review and learn",
+                "description": (
+                    f"Spend about {review_mins} minutes connecting the theory "
+                    f"to the practice questions on {study_subject}."
+                ),
                 "order": order,
             })
         else:  # Mixed
             tasks.append({
-                "title": f"Study: {study_subject}",
-                "description": f"Study and practice {study_subject} for {reading_mins} minutes. Alternate between reading concepts and solving problems.",
+                "title": f"Study {study_subject}",
+                "description": (
+                    f"Read the Core Reading for today's section and complete "
+                    f"the recommended practice questions "
+                    f"(about {reading_mins} minutes on {study_subject})."
+                ),
                 "order": order,
             })
             order += 1
             tasks.append({
-                "title": "Practice & Apply",
-                "description": f"Apply your learning for {practice_mins} minutes. Work through more questions on {study_subject}. Deepen your understanding.",
+                "title": "Practice and apply",
+                "description": (
+                    f"Apply what you have learned for about {practice_mins} "
+                    f"minutes with further questions on {study_subject}."
+                ),
                 "order": order,
             })
             order += 1
             tasks.append({
-                "title": "Reflect & Review",
-                "description": f"Reflect for {review_mins} minutes. Consolidate all learning from {study_subject} today. Note any remaining questions.",
+                "title": "Reflect and review",
+                "description": (
+                    f"Spend about {review_mins} minutes consolidating today's "
+                    f"learning on {study_subject} and noting remaining questions."
+                ),
                 "order": order,
             })
 
@@ -355,23 +434,32 @@ class PlanningService:
         review_mins = max(10, int(study_minutes * 0.30))
         formula_mins = max(10, int(study_minutes * 0.20))
 
-        study_subject = topic.name if topic else current_stage
+        study_subject = PlanningService._topic_study_label(topic, fallback=current_stage)
 
         tasks.append({
-            "title": "Timed Practice",
-            "description": f"Complete a full practice paper or substantial problem set on {study_subject} in {practice_mins} minutes. Time yourself to simulate exam conditions.",
+            "title": "Timed practice",
+            "description": (
+                f"Complete a focused practice set on {study_subject} in about "
+                f"{practice_mins} minutes under timed conditions."
+            ),
             "order": order,
         })
         order += 1
         tasks.append({
-            "title": "Review & Analyze",
-            "description": f"Review your answers thoroughly for {review_mins} minutes. Analyze your mistakes on {study_subject}. Understand where you went wrong.",
+            "title": "Review and analyse",
+            "description": (
+                f"Review your answers thoroughly for about {review_mins} "
+                f"minutes and note where {study_subject} still feels uncertain."
+            ),
             "order": order,
         })
         order += 1
         tasks.append({
-            "title": "Concept Consolidation",
-            "description": f"Consolidate key concepts and formulas for {formula_mins} minutes. Focus on areas revealed by your practice on {study_subject}.",
+            "title": "Consolidate key points",
+            "description": (
+                f"Spend about {formula_mins} minutes consolidating formulas, "
+                f"definitions, and key results for {study_subject}."
+            ),
             "order": order,
         })
 

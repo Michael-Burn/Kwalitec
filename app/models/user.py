@@ -27,8 +27,11 @@ class User(UserMixin, db.Model):
     email: str = db.Column(db.String(255), unique=True, nullable=False, index=True)
     password_hash: str = db.Column(db.String(255), nullable=False)
     is_active_user: bool = db.Column(db.Boolean, default=True, nullable=False)
+    # First-time welcome modal (Capability 4.4) — presentation only.
+    welcome_eligible: bool = db.Column(db.Boolean, default=False, nullable=False)
+    welcome_dismissed: bool = db.Column(db.Boolean, default=False, nullable=False)
 
-    # Relationships — declared explicitly with back_populates matching child-side declarations
+    # Relationships — explicit back_populates matching child-side declarations
     subjects = db.relationship("Subject", back_populates="user", lazy=True)
     missions = db.relationship("Mission", back_populates="user", lazy=True)
     study_plans = db.relationship("StudyPlan", back_populates="user", lazy=True)

@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 import time
 
-from flask import Blueprint, render_template
+from flask import Blueprint, redirect, render_template, request, url_for
 from flask_login import current_user, login_required
 
 from app.application.config import (
@@ -227,6 +227,12 @@ def index():
             active_study_plan,
         )
 
+    from app.services.study_tips_service import StudyTipsService
+    from app.services.welcome_service import WelcomeService
+
+    study_tip = StudyTipsService.tip_for_day()
+    show_welcome = WelcomeService.should_show(current_user)
+
     return render_template(
         "dashboard/index.html",
         title="Dashboard",
@@ -249,4 +255,20 @@ def index():
         curriculum_summary=curriculum_summary,
         readiness_summary=readiness_summary,
         time_summary=time_summary,
+        study_tip=study_tip,
+        show_welcome=show_welcome,
     )
+
+
+@dashboard_bp.post("/welcome/dismiss")
+@login_required
+def dismiss_welcome():
+    """Permanently dismiss the first-time welcome modal."""
+    from app.services.welcome_service import WelcomeService
+
+    WelcomeService.dismiss(current_user.id)
+    next_url = request.form.get("next") or url_for("dashboard.index")
+    # Only allow local relative redirects
+    if not next_url.startswith("/"):
+        next_url = url_for("dashboard.index")
+    return redirect(next_url)

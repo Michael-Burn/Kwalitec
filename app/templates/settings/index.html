@@ -6,7 +6,7 @@
 <section class="section-header">
     <p class="section-eyebrow">System</p>
     <h1 class="section-title">Settings</h1>
-    <p class="section-description">Manage your profile, preferences, and data.</p>
+    <p class="section-description">Manage your profile, preferences, and Internal Alpha status.</p>
 </section>
 
 <div class="row g-4">
@@ -32,6 +32,11 @@
                href="{{ url_for('settings.data') }}">
                 <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="me-2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
                 Data
+            </a>
+            <a class="settings-nav-link{% if current_section == 'internal-alpha' %} active{% endif %}"
+               href="{{ url_for('settings.internal_alpha') }}">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="me-2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                Internal Alpha
             </a>
         </div>
     </div>
@@ -92,6 +97,31 @@
 
         {# Preferences Section #}
         {% if current_section == 'preferences' %}
+        <div class="card border-0 mb-4">
+            <div class="card-body">
+                <div class="settings-section" style="margin-bottom: 0;">
+                    <h2 class="settings-section-title">Appearance</h2>
+                    <p class="text-muted small">Choose Light, Dark, or System. System follows your device preference. Your choice is saved in this browser.</p>
+                    <div class="appearance-switcher" role="group" aria-label="Appearance preference">
+                        <button type="button" class="appearance-option" data-appearance-option="light" aria-pressed="false">
+                            <span>Light</span>
+                        </button>
+                        <button type="button" class="appearance-option" data-appearance-option="dark" aria-pressed="false">
+                            <span>Dark</span>
+                        </button>
+                        <button type="button" class="appearance-option" data-appearance-option="system" aria-pressed="false">
+                            <span>System</span>
+                        </button>
+                    </div>
+                    <label class="form-label mt-3 d-block" for="appearance-select">Or select from the list</label>
+                    <select id="appearance-select" class="appearance-select form-select" data-appearance-select style="max-width: 12rem;">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="system">System</option>
+                    </select>
+                </div>
+            </div>
+        </div>
         <div class="card border-0">
             <div class="card-body">
                 <form method="post" action="{{ url_for('settings.update_preferences') }}">
@@ -169,6 +199,67 @@
                             Restore from Backup
                         </button>
                     </form>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {# Internal Alpha Section #}
+        {% if current_section == 'internal-alpha' and alpha_status %}
+        <div class="card border-0 mb-4">
+            <div class="card-body">
+                <div class="settings-section">
+                    <h2 class="settings-section-title">Appearance</h2>
+                    <p class="text-muted small">Choose Light, Dark, or System. System follows your device preference.</p>
+                    <div class="appearance-switcher" role="group" aria-label="Appearance preference">
+                        <button type="button" class="appearance-option" data-appearance-option="light" aria-pressed="false">
+                            <span>Light</span>
+                        </button>
+                        <button type="button" class="appearance-option" data-appearance-option="dark" aria-pressed="false">
+                            <span>Dark</span>
+                        </button>
+                        <button type="button" class="appearance-option" data-appearance-option="system" aria-pressed="false">
+                            <span>System</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card border-0">
+            <div class="card-body">
+                <div class="settings-section" style="margin-bottom: 0;">
+                    <h2 class="settings-section-title">Internal Alpha Status</h2>
+                    <p class="text-muted small mb-3">Informational only — these values do not change Educational Intelligence behaviour.</p>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label class="text-muted small d-block">Internal Alpha version</label>
+                            <span class="fw-medium">{{ alpha_status.internal_alpha_version }}</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="text-muted small d-block">Build number</label>
+                            <span class="fw-medium">{{ alpha_status.build_number }}</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="text-muted small d-block">Application version</label>
+                            <span class="fw-medium">{{ alpha_status.app_version }}</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="text-muted small d-block">Internal Alpha enablement</label>
+                            <span class="fw-medium">{% if alpha_status.internal_alpha_enabled %}Enabled{% else %}Disabled{% endif %}</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="text-muted small d-block">Current curriculum</label>
+                            <span class="fw-medium">{{ alpha_status.curriculum_label }}</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="text-muted small d-block">Current study plan</label>
+                            <span class="fw-medium">{{ alpha_status.study_plan_label }}</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="text-muted small d-block">Digital Twin status</label>
+                            <span class="fw-medium">{{ alpha_status.twin_status }}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
