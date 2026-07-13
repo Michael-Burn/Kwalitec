@@ -100,9 +100,9 @@ class LearningObjective(db.Model):
     id: int = db.Column(db.Integer, primary_key=True)
     topic_id: int = db.Column(db.Integer, db.ForeignKey("topics.id"), nullable=False)
     description: str = db.Column(
-        db.String(500),
+        db.Text,
         nullable=False,
-        comment="What students should be able to do (e.g., 'Solve linear equations')",
+        comment="What students should be able to do (full official syllabus text)",
     )
     order: int = db.Column(
         db.Integer,
