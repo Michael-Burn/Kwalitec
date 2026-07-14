@@ -52,6 +52,13 @@ Entries are written after each study session from lived experience. Blank fields
 --- Kwalitec should inform the student of the best setting in terms of environment to focus
 --- Require a way to add another user so that my friend can also participate in the test runs
 
+## Most of Day 1 feedback and queries have been implemented ##
+
+# Some Ideas
+- Time status should consider the overall impact of the Study plans for the student. A student can be studying 2 courses at once. That will impact their overall ability to complete their study preparation and also their performance. 
+- Kwalitec should be able to detect that the student is using an unsustainable combination of courses that may eventually affect mastery of both courses.
+
+
 # Day 2
 
 ## Study Context

@@ -323,6 +323,7 @@ def _register_blueprints(app: Flask) -> None:
     from app.auth.routes import auth_bp
     from app.calibration import calibration_bp
     from app.dashboard.routes import dashboard_bp
+    from app.founder.dashboard import founder_dashboard_bp
     from app.mission.routes import mission_bp
     from app.settings.routes import settings_bp
     from app.study_plan.routes import study_plan_bp
@@ -334,6 +335,7 @@ def _register_blueprints(app: Flask) -> None:
     app.register_blueprint(settings_bp)
     app.register_blueprint(study_plan_bp)
     app.register_blueprint(calibration_bp)
+    app.register_blueprint(founder_dashboard_bp)
 
 
 def _register_routes(app: Flask) -> None:

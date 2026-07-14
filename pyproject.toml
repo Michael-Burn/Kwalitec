@@ -7,7 +7,19 @@ readme = "README.md"
 license = { text = "MIT" }
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = [
+    "tests",
+    "app/founder/knowledge_engine/tests",
+    "app/founder/capability_archive/tests",
+    "app/founder/internal_alpha/tests",
+    "app/founder/dashboard/tests",
+    "app/founder/operational_state/tests",
+    "app/founder/recommendations/tests",
+    "app/founder/briefing/tests",
+    "app/founder/internal_alpha_workflow/tests",
+    "app/automation/tests",
+    "tests/certification",
+]
 pythonpath = ["."]
 addopts = [
     "-v",

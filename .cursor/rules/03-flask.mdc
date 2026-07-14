@@ -22,6 +22,7 @@ alwaysApply: false
 | study_plan | `app/study_plan` | List + wizard |
 | analytics | `app/analytics` | Analytics views |
 | settings | `app/settings` | Settings / backup |
+| founder_dashboard | `app/founder/dashboard` | Founder OS executive dashboard (`/founder`, admin only) |
 
 - Keep `url_prefix` stable unless a milestone explicitly changes routes.
 - Protect authenticated views with `@login_required`.
