@@ -1,0 +1,10 @@
+{
+  "capability_id": "FSI-003",
+  "title": "Internal Alpha Live Workflow",
+  "status": "completed",
+  "version": "1.0",
+  "completion_date": "2026-07-14",
+  "programme": "Founder System Integration",
+  "subsystem": "internal_alpha_workflow",
+  "related_documents": ["FSI-003", "FOS-003"]
+}

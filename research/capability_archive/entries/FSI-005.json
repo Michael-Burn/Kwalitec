@@ -1,0 +1,10 @@
+{
+  "capability_id": "FSI-005",
+  "title": "Operational Certification & Production Readiness",
+  "status": "completed",
+  "version": "1.0",
+  "completion_date": "2026-07-14",
+  "programme": "Founder System Integration",
+  "subsystem": "operational_certification",
+  "related_documents": ["FSI-005"]
+}

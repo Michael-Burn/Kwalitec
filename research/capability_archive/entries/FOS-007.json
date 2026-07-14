@@ -1,0 +1,10 @@
+{
+  "capability_id": "FOS-007",
+  "title": "Founder Weekly Briefing",
+  "status": "completed",
+  "version": "1.0",
+  "completion_date": "2026-07-14",
+  "programme": "Founder Operating System",
+  "subsystem": "briefing",
+  "related_documents": ["FOS-007"]
+}

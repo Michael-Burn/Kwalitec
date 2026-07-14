@@ -1,0 +1,10 @@
+{
+  "capability_id": "FOS-004",
+  "title": "Founder Dashboard",
+  "status": "completed",
+  "version": "1.0",
+  "completion_date": "2026-07-14",
+  "programme": "Founder Operating System",
+  "subsystem": "dashboard",
+  "related_documents": ["FOS-004"]
+}

@@ -1,0 +1,10 @@
+{
+  "capability_id": "FOS-005",
+  "title": "Founder Operational State Service",
+  "status": "completed",
+  "version": "1.0",
+  "completion_date": "2026-07-14",
+  "programme": "Founder Operating System",
+  "subsystem": "operational_state",
+  "related_documents": ["FOS-005"]
+}

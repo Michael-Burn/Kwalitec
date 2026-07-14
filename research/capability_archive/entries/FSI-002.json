@@ -1,0 +1,10 @@
+{
+  "capability_id": "FSI-002",
+  "title": "Founder Dashboard Live Integration",
+  "status": "completed",
+  "version": "1.0",
+  "completion_date": "2026-07-14",
+  "programme": "Founder System Integration",
+  "subsystem": "dashboard_live",
+  "related_documents": ["FSI-002", "FOS-004"]
+}

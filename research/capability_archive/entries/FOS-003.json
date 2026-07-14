@@ -1,0 +1,10 @@
+{
+  "capability_id": "FOS-003",
+  "title": "Internal Alpha Processing Pipeline",
+  "status": "completed",
+  "version": "1.0",
+  "completion_date": "2026-07-14",
+  "programme": "Founder Operating System",
+  "subsystem": "internal_alpha",
+  "related_documents": ["FOS-003"]
+}
