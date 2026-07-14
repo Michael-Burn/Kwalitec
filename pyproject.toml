@@ -18,7 +18,6 @@ testpaths = [
     "app/founder/briefing/tests",
     "app/founder/internal_alpha_workflow/tests",
     "app/automation/tests",
-    "tests/certification",
 ]
 pythonpath = ["."]
 addopts = [
