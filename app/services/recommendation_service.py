@@ -335,11 +335,13 @@ class RecommendationService:
 
         if burnout["risk_level"] == "high":
             recs.append({
-                "title": "Take a rest day — burnout risk detected",
+                "title": "Take a rest day — study pattern notice",
                 "category": CATEGORY_REST,
                 "priority": PRIORITY_CRITICAL,
                 "reason": f"{burnout['explanation']} Taking a rest day now prevents longer forced breaks later.",
-                "expected_benefit": "Mental recovery, improved focus, and prevention of deeper burnout.",
+                "expected_benefit": (
+                    "Recovery, clearer focus, and steadier progress over the week."
+                ),
                 "generated_at": datetime.utcnow().isoformat(),
             })
         elif burnout["risk_level"] == "moderate":
@@ -348,7 +350,7 @@ class RecommendationService:
                 "category": CATEGORY_REST,
                 "priority": PRIORITY_MEDIUM,
                 "reason": f"{burnout['explanation']} A lighter day helps maintain momentum while recovering.",
-                "expected_benefit": "Prevent burnout escalation while maintaining study momentum.",
+                "expected_benefit": "Protect focus while keeping study momentum.",
                 "generated_at": datetime.utcnow().isoformat(),
             })
 

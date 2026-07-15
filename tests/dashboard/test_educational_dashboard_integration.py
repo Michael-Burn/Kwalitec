@@ -54,11 +54,14 @@ def _twin_for(user_id: int) -> DigitalTwin:
 def _ei_view_model() -> DashboardViewModel:
     return DashboardViewModel(
         recommendation_card=RecommendationCardViewModel(
-            title="Study",
-            subtitle="topic-a · deepen",
+            title="Continue studying",
+            subtitle="The next useful step on your active study plan",
             primary_action="Start Today's Session",
             estimated_duration=None,
-            reason_summary="Based on your current study progress and your previous learning history, this is the most appropriate next topic.",
+            reason_summary=(
+                "Based on your recent progress, this is the most useful "
+                "next topic on your study plan."
+            ),
             warning=None,
             show_explanation=False,
             show_start_button=True,
@@ -192,7 +195,7 @@ class TestDashboardFeatureFlagOn:
         assert b'data-ei-recommendation-card="1"' in response.data
         assert b"Today's Recommendation" in response.data
         assert b"Start Today's Session" in response.data
-        assert b"Based on your current study progress" in response.data
+        assert b"Based on your recent progress" in response.data
         assert b'href="/missions/"' in response.data
 
     def test_legacy_recommendations_hidden_when_ei_card_live(

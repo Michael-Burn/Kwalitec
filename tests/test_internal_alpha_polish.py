@@ -47,7 +47,7 @@ class TestInternalAlphaSettings:
         body = response.get_data(as_text=True)
         assert "Internal Alpha Status" in body
         assert INTERNAL_ALPHA_VERSION in body
-        assert "Digital Twin status" in body
+        assert "Learning profile status" in body
         assert "Current curriculum" in body
         assert 'data-appearance-option="light"' in body
 
@@ -58,10 +58,10 @@ class TestInternalAlphaSettings:
         assert status.curriculum_label == "No active curriculum"
         assert status.study_plan_label == "No active study plan"
         assert status.twin_status in {
-            "Not yet calibrated",
+            "Not yet set up",
             "Unavailable",
-            "Present",
-            "Needs recalibration",
+            "Ready",
+            "Needs a fresh setup",
         }
 
     def test_status_service_with_plan(self, db, user, study_plan):

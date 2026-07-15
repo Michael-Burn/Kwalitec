@@ -574,7 +574,13 @@ class TestStudyPlanManagementRoutes:
             follow_redirects=True,
         )
         assert resp.status_code == 200
-        assert b"set as active" in resp.data.lower()
+        body = resp.get_data(as_text=True).lower()
+        assert "active study plan" in body
+        assert "cm1" in body
+        # IA-002: successful activate redirects into the dashboard compose path
+        assert resp.request.path.rstrip("/").endswith("dashboard") or (
+            "today" in body and "mission" in body
+        )
 
         from app.models.study_plan import StudyPlan
         from app.extensions import db

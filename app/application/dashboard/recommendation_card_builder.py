@@ -26,13 +26,21 @@ from app.domain.decision.action_types import ActionFamily
 from app.domain.recommendation.affordances import AffordanceOutcome
 from app.domain.recommendation.recommendation import Recommendation
 
-# Presentation labels for Decision-selected action families — display only.
+# Student-facing action labels — educational intent only (never domain enum text).
 _FAMILY_TITLE: dict[ActionFamily, str] = {
-    ActionFamily.STUDY: "Study",
-    ActionFamily.REVISE: "Revise",
-    ActionFamily.ASSESS: "Assess",
-    ActionFamily.DIAGNOSTIC: "Diagnostic",
-    ActionFamily.REST_PROTECT_INTENSITY: "Protect intensity",
+    ActionFamily.STUDY: "Continue studying",
+    ActionFamily.REVISE: "Review and strengthen",
+    ActionFamily.ASSESS: "Check your understanding",
+    ActionFamily.DIAGNOSTIC: "Find your next focus",
+    ActionFamily.REST_PROTECT_INTENSITY: "Protect today's study energy",
+}
+
+_FAMILY_SUBTITLE: dict[ActionFamily, str] = {
+    ActionFamily.STUDY: "The next useful step on your active study plan",
+    ActionFamily.REVISE: "Reinforce material you have already started",
+    ActionFamily.ASSESS: "See what has stuck and what still needs practice",
+    ActionFamily.DIAGNOSTIC: "A short check to guide today's recommendation",
+    ActionFamily.REST_PROTECT_INTENSITY: "A lighter day supports lasting progress",
 }
 
 _FAMILY_PRIMARY_ACTION: dict[ActionFamily, str] = {
@@ -40,7 +48,7 @@ _FAMILY_PRIMARY_ACTION: dict[ActionFamily, str] = {
     ActionFamily.REVISE: "Continue Studying",
     ActionFamily.ASSESS: "Start Today's Session",
     ActionFamily.DIAGNOSTIC: "Start Today's Session",
-    ActionFamily.REST_PROTECT_INTENSITY: "Protect Today's Intensity",
+    ActionFamily.REST_PROTECT_INTENSITY: "Take a Lighter Session",
 }
 
 
@@ -107,23 +115,20 @@ class RecommendationCardBuilder:
 
 
 def _title(recommendation: Recommendation) -> str:
-    """Presentation title from Decision-selected action family — no re-selection."""
+    """Educational title from Decision-selected family — no re-selection."""
     family = recommendation.suggestion.family
-    return _FAMILY_TITLE.get(family, family.value)
+    return _FAMILY_TITLE.get(family, "Today's recommended focus")
 
 
 def _subtitle(recommendation: Recommendation) -> str | None:
-    """Situating subtitle from curriculum scope and intent tags — display only."""
-    suggestion = recommendation.suggestion
-    parts: list[str] = []
-    if suggestion.curriculum_entity_id:
-        parts.append(suggestion.curriculum_entity_id)
-    intent_value = suggestion.intent.value
-    if intent_value and intent_value not in parts:
-        parts.append(intent_value)
-    if not parts:
-        return None
-    return " · ".join(parts)
+    """Educational situating line — never dump ids, intent enums, or tags.
+
+    ``curriculum_entity_id`` is an internal syllabus key (often a numeric PK).
+    ``intent.value`` is domain vocabulary (e.g. ``evidence_creating``). Neither
+    belongs on a student surface.
+    """
+    family = recommendation.suggestion.family
+    return _FAMILY_SUBTITLE.get(family)
 
 
 def _primary_action(recommendation: Recommendation) -> str | None:
@@ -146,30 +151,30 @@ def _estimated_duration(recommendation: Recommendation) -> str | None:
 
 _STUDENT_REASON_BY_FAMILY: dict[ActionFamily, str] = {
     ActionFamily.STUDY: (
-        "Based on your current study progress and your previous learning "
-        "history, this is the most appropriate next topic."
+        "Based on your recent progress, this is the most useful next topic "
+        "on your study plan."
     ),
     ActionFamily.REVISE: (
-        "Based on your recent study history, revisiting this material will "
+        "Based on your recent study activity, revisiting this material will "
         "strengthen what you have already started."
     ),
     ActionFamily.ASSESS: (
-        "Based on your current study progress, a focused assessment will "
-        "clarify what to practise next."
+        "Based on your recent progress, a short practice check will clarify "
+        "what to focus on next."
     ),
     ActionFamily.DIAGNOSTIC: (
-        "Based on your current study progress, a short diagnostic will help "
-        "identify the most useful next step."
+        "You've completed valuable study activities. A short check now will "
+        "help identify the most useful next step."
     ),
     ActionFamily.REST_PROTECT_INTENSITY: (
-        "Based on your recent study load, protecting intensity today supports "
-        "sustainable progress."
+        "Based on your recent study load, a lighter day today supports "
+        "steady, sustainable progress."
     ),
 }
 
 _DEFAULT_STUDENT_REASON = (
-    "Based on your current study progress and your previous learning "
-    "history, this is the most appropriate next topic."
+    "Based on your recent progress, this is the most useful next step "
+    "on your study plan."
 )
 
 

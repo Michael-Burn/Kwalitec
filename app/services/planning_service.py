@@ -177,11 +177,22 @@ class PlanningService:
             )
             return None
 
-        # Check if mission already exists for today (idempotency)
+        # Idempotency is scoped to the active study plan (IA-001). A mission for
+        # another plan on the same date must never be returned as "today's".
         existing_mission = Mission.query.filter_by(
             user_id=user_id,
             mission_date=today,
+            study_plan_id=active_plan.id,
         ).first()
+
+        if existing_mission is None:
+            # Legacy unbound rows (pre-IA-001) may still block regeneration if we
+            # ignore them. Adopt or replace unfinished orphans onto this plan.
+            existing_mission = PlanningService._resolve_legacy_orphan_mission(
+                user_id=user_id,
+                today=today,
+                active_plan=active_plan,
+            )
 
         if existing_mission:
             if PlanningService._should_replace_generic_mission(
@@ -196,7 +207,10 @@ class PlanningService:
                 db.session.commit()
             else:
                 logger.debug(
-                    "Mission already exists for user %s on %s", user_id, today
+                    "Mission already exists for user %s on %s (study_plan_id=%s)",
+                    user_id,
+                    today,
+                    active_plan.id,
                 )
                 return existing_mission
 
@@ -218,12 +232,57 @@ class PlanningService:
         )
 
         logger.info(
-            "Generated mission %d for user %s on %s",
+            "Generated mission %d for user %s on %s (study_plan_id=%s)",
             mission.id,
             user_id,
             today,
+            active_plan.id,
         )
         return mission
+
+    @staticmethod
+    def _resolve_legacy_orphan_mission(
+        user_id: int,
+        today: date,
+        active_plan: StudyPlan,
+    ) -> Mission | None:
+        """Adopt or discard pre-IA-001 missions with no study_plan_id.
+
+        Unfinished orphans are rebound onto the active plan so a refresh does
+        not spawn a duplicate. Completed orphans are left unbound — they are
+        historical and must not satisfy the active plan lookup.
+        """
+        orphan = (
+            Mission.query.filter_by(
+                user_id=user_id,
+                mission_date=today,
+            )
+            .filter(Mission.study_plan_id.is_(None))
+            .order_by(Mission.id.desc())
+            .first()
+        )
+        if orphan is None:
+            return None
+
+        if orphan.status == "Completed" and all(t.completed for t in orphan.tasks):
+            logger.debug(
+                "Ignoring completed unbound mission %s for user %s; "
+                "will generate for study_plan_id=%s",
+                orphan.id,
+                user_id,
+                active_plan.id,
+            )
+            return None
+
+        orphan.study_plan_id = active_plan.id
+        db.session.commit()
+        logger.info(
+            "Bound legacy mission %s to study_plan_id=%s for user %s",
+            orphan.id,
+            active_plan.id,
+            user_id,
+        )
+        return orphan
 
     @staticmethod
     def _should_replace_generic_mission(
@@ -309,13 +368,14 @@ class PlanningService:
         # Use a default subject for all automatically generated missions
         subject_id = PlanningService._get_or_create_default_subject(user_id)
 
-        # Create mission via service
+        # Create mission via service — always bind to the active study plan
         mission = MissionService.create_mission(
             user_id=user_id,
             subject_id=subject_id,
             mission_date=target_date,
             title=mission_title,
             tasks=tasks_data,
+            study_plan_id=active_plan.id,
         )
 
         return mission
@@ -693,11 +753,17 @@ class PlanningService:
             )
             return None
 
-        # --- Priority 1: Topics due for review today ---
+        # --- Priority 1: Topics due for review today (active curriculum only) ---
         due_reviews = AdaptiveLearningService.get_topics_due_for_review(
             user_id=user_id,
             target_date=target_date,
         )
+        due_reviews = [
+            progress
+            for progress in due_reviews
+            if progress.topic is not None
+            and progress.topic.curriculum_id == curriculum.id
+        ]
         if due_reviews:
             # Pick the first topic due for review (by next_review_date ascending)
             selected_progress = due_reviews[0]
@@ -713,11 +779,17 @@ class PlanningService:
             )
             return topic
 
-        # --- Priority 2: Weak topics that need attention ---
+        # --- Priority 2: Weak topics that need attention (active curriculum only) ---
         weak_topics = AdaptiveLearningService.get_weak_topics(
             user_id=user_id,
             threshold=60.0,
         )
+        weak_topics = [
+            progress
+            for progress in weak_topics
+            if progress.topic is not None
+            and progress.topic.curriculum_id == curriculum.id
+        ]
         if weak_topics:
             # Weakest topic first (already ordered by mastery ascending)
             selected_progress = weak_topics[0]

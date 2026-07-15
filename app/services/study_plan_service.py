@@ -776,6 +776,10 @@ class StudyPlanService:
     def set_active_plan(study_plan_id: int, user_id: int) -> StudyPlan:
         """Set a specific study plan as active for a user.
 
+        After committing the active flag, synchronizes derived student-facing
+        state (today's mission) so dashboard / mission / recommendation
+        surfaces observe the new plan without a manual refresh (IA-002).
+
         Args:
             study_plan_id: The ID of the study plan to activate.
             user_id: The ID of the user (for authorization).
@@ -803,7 +807,22 @@ class StudyPlanService:
         # Activate this plan
         study_plan.active = True
         db.session.commit()
+
+        StudyPlanService.synchronize_student_surfaces(user_id)
         return study_plan
+
+    @staticmethod
+    def synchronize_student_surfaces(user_id: int) -> None:
+        """Align derived student surfaces with the DB active study plan.
+
+        The active ``StudyPlan`` row remains the single source of truth. This
+        method only regenerates/binds today's mission for that plan so
+        subsequent dashboard and mission renders need no browser refresh.
+        No Flask-session or client-side plan cache is introduced (IA-002).
+        """
+        from app.services.planning_service import PlanningService
+
+        PlanningService.generate_today_mission(user_id)
 
     @staticmethod
     def update_study_plan(

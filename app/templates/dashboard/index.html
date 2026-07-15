@@ -71,7 +71,7 @@
                     <span class="command-metric-value">{{ active_study_plan.exam_name }}</span>
                 </div>
                 <div class="command-metric">
-                    <span class="command-metric-label">Curriculum Version</span>
+                    <span class="command-metric-label">Syllabus Year</span>
                     <span class="command-metric-value">{{ active_study_plan.curriculum_version or '—' }}</span>
                 </div>
                 <div class="command-metric">
@@ -125,18 +125,14 @@
             </div>
             {% if today_mission %}
             <div class="command-card-body">
-                {% if curriculum_summary and curriculum_summary.current_topic_code %}
                 <div class="command-metric">
-                    <span class="command-metric-label">Current Topic</span>
-                    <span class="command-metric-value" style="font-size: 0.85rem;">{{ curriculum_summary.current_topic_code }}</span>
+                    <span class="command-metric-label">Today's Recommended Mission</span>
+                    <span class="command-metric-value" style="font-size: 0.85rem;">{{ today_mission.title }}</span>
                 </div>
-                {% endif %}
-                {% if curriculum_summary and curriculum_summary.next_topic_code %}
+                {% if active_study_plan %}
                 <div class="command-metric">
-                    <span class="command-metric-label">Next Recommended Topic</span>
-                    <span class="command-metric-value" style="font-size: 0.85rem;">{{ curriculum_summary.next_topic_code }}
-                        {% if curriculum_summary.next_topic_title %}<small class="text-muted d-block mt-1">{{ curriculum_summary.next_topic_title }}</small>{% endif %}
-                    </span>
+                    <span class="command-metric-label">Study Plan</span>
+                    <span class="command-metric-value" style="font-size: 0.85rem;">{{ active_study_plan.exam_name }}</span>
                 </div>
                 {% endif %}
                 <a href="{{ url_for('mission.missions') }}" class="btn btn-primary w-100 mt-3">
@@ -195,14 +191,14 @@
             <div class="command-card-body">
                 <div class="d-flex align-items-end gap-3 mb-3">
                     <span class="command-hero-value" style="color: var(--color-brand);">{{ readiness.score|int }}%</span>
-                    <span class="command-hero-label" style="margin-bottom: 4px;">Composite Score</span>
+                    <span class="command-hero-label" style="margin-bottom: 4px;">Overall progress</span>
                 </div>
                 <div class="progress" role="progressbar" aria-valuenow="{{ readiness.score|int }}" aria-valuemin="0" aria-valuemax="100" style="height: 10px;">
                     <div class="progress-bar" style="width: {{ readiness.score }}%; background: var(--color-brand);"></div>
                 </div>
                 <p class="small mt-3 mb-0" style="color: var(--color-text-secondary);">
                     {{ readiness.topics_started }}/{{ readiness.total_topics }} topics started
-                    &middot; {{ readiness.avg_mastery|int }}% avg mastery
+                    &middot; {{ readiness.avg_mastery|int }}% average topic progress
                 </p>
             </div>
             {% else %}
@@ -394,7 +390,17 @@
                 {% if burnout_status.indicators %}
                 <div>
                     {% for indicator in burnout_status.indicators %}
-                    <span class="badge rounded-pill text-bg-light border me-1 mb-1 small">{{ indicator.type | replace('_', ' ') | title }}</span>
+                    {% if indicator.type == 'accuracy_decline' %}
+                    <span class="badge rounded-pill text-bg-light border me-1 mb-1 small">Accuracy drop</span>
+                    {% elif indicator.type == 'confidence_decline' %}
+                    <span class="badge rounded-pill text-bg-light border me-1 mb-1 small">Lower confidence</span>
+                    {% elif indicator.type == 'excessive_duration' %}
+                    <span class="badge rounded-pill text-bg-light border me-1 mb-1 small">Long sessions</span>
+                    {% elif indicator.type == 'long_streak' %}
+                    <span class="badge rounded-pill text-bg-light border me-1 mb-1 small">Few breaks</span>
+                    {% else %}
+                    <span class="badge rounded-pill text-bg-light border me-1 mb-1 small">Study pattern</span>
+                    {% endif %}
                     {% endfor %}
                 </div>
                 {% endif %}

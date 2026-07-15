@@ -33,15 +33,14 @@ from app.application.orchestration.educational_orchestrator import (
 )
 from app.domain.decision.action_types import ActionFamily
 from app.domain.mission.mission import Mission
-from app.domain.mission.warrant import THIN_MISSION_WARRANT_POSTURES
 
-# Presentation labels for Mission task families — display only.
+# Student-facing Mission task labels — educational intent only.
 _FAMILY_HEADLINE: dict[ActionFamily, str] = {
     ActionFamily.STUDY: "Study",
-    ActionFamily.REVISE: "Revise",
-    ActionFamily.ASSESS: "Assess",
-    ActionFamily.DIAGNOSTIC: "Diagnostic",
-    ActionFamily.REST_PROTECT_INTENSITY: "Protect intensity",
+    ActionFamily.REVISE: "Review",
+    ActionFamily.ASSESS: "Practice check",
+    ActionFamily.DIAGNOSTIC: "Focus check",
+    ActionFamily.REST_PROTECT_INTENSITY: "Lighter session",
 }
 
 
@@ -160,30 +159,18 @@ def _mission_summary(mission: Mission) -> str | None:
 
 
 def _task_headlines(mission: Mission) -> tuple[str, ...]:
-    """Short task headlines suitable for a card — never invent filler."""
+    """Short educational task headlines — never dump internal entity ids."""
     headlines: list[str] = []
     for task in mission.tasks:
-        family_label = _FAMILY_HEADLINE.get(task.family, task.family.value)
-        if task.curriculum_entity_id:
-            headlines.append(f"{family_label} · {task.curriculum_entity_id}")
-        else:
-            headlines.append(family_label)
+        family_label = _FAMILY_HEADLINE.get(task.family, "Study task")
+        headlines.append(family_label)
     return tuple(headlines)
 
 
 def _mission_duration(mission: Mission) -> str | None:
-    """Forward feasibility note tags already packaged — never invent minutes."""
-    tags: list[str] = []
-    for ack in mission.feasibility_acknowledgements:
-        for tag in ack.note_tags:
-            if tag not in tags:
-                tags.append(tag)
-        effect = ack.effect.value
-        if effect not in tags:
-            tags.append(effect)
-    if not tags:
-        return None
-    return ", ".join(tags)
+    """Student-facing duration hint — never dump internal feasibility tags."""
+    del mission
+    return None
 
 
 def _mission_warning(
@@ -191,18 +178,13 @@ def _mission_warning(
     experience_warnings: tuple[str, ...],
     mission: Mission,
 ) -> str | None:
-    """Propagate honesty / thin-warrant signals — never upgrade warrant."""
-    tags: list[str] = list(experience_warnings)
-    warrant = mission.warrant_posture
-    if warrant in THIN_MISSION_WARRANT_POSTURES:
-        warrant_tag = f"mission_warrant:{warrant.value}"
-        if warrant_tag not in tags:
-            tags.append(warrant_tag)
-    if mission.is_empty and "mission_empty" not in tags:
-        tags.append("mission_empty")
-    if not tags:
-        return None
-    return "; ".join(tags)
+    """Keep thin-warrant honesty internal — do not render diagnostic tags in UI.
+
+    Domain warnings remain on the Experience for explainability consumers. The
+    student Mission card must never surface tags such as ``cold_start``.
+    """
+    del experience_warnings, mission
+    return None
 
 
 def _readiness_summary(

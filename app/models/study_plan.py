@@ -70,6 +70,11 @@ class StudyPlan(db.Model):
         cascade="all, delete-orphan",
         order_by="WeekPlan.week_number",
     )
+    missions = db.relationship(
+        "Mission",
+        back_populates="study_plan",
+        lazy=True,
+    )
 
     def __repr__(self) -> str:
         return f"<StudyPlan {self.exam_name}>"

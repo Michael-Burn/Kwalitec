@@ -33,19 +33,15 @@
             <span class="mission-hero-date">{{ today_mission.mission_date.strftime('%A, %d %B %Y') }}</span>
         </div>
 
-        {# Today's Topic #}
+        {# Today's Topic — mission title is the single authority (IA-001) #}
         <div class="mission-hero-topic">
             <span class="mission-hero-topic-label">Today's Topic</span>
             <h2 class="mission-hero-topic-title">
-                {% if curriculum_summary and curriculum_summary.current_topic_code %}
-                    {{ curriculum_summary.current_topic_code }}
-                    {% if curriculum_summary.current_topic_title %}
-                        <small class="d-block text-muted fs-6 fw-normal mt-1">{{ curriculum_summary.current_topic_title }}</small>
-                    {% endif %}
-                {% else %}
-                    {{ today_mission.title }}
-                {% endif %}
+                {{ today_mission.title }}
             </h2>
+            {% if active_study_plan %}
+            <p class="text-muted small mb-0 mt-2">Study plan: {{ active_study_plan.exam_name }}</p>
+            {% endif %}
         </div>
 
         {# Key metrics row #}
@@ -82,7 +78,7 @@
                     </svg>
                 </div>
                 <div class="mission-hero-metric-text">
-                    <span class="mission-hero-metric-label">Current Readiness</span>
+                    <span class="mission-hero-metric-label">Syllabus progress</span>
                     <span class="mission-hero-metric-value" style="color: var(--color-success);">
                         {% if readiness_summary %}
                             {{ (readiness_summary.readiness_percentage * 100)|int }}%
@@ -102,11 +98,8 @@
             <div>
                 <span class="mission-hero-why-label">Why this mission?</span>
                 <p class="mission-hero-why-text">
-                    {% if curriculum_summary and curriculum_summary.current_topic_code %}
-                        This is the next incomplete topic in the official curriculum.
-                    {% else %}
-                        This is your scheduled learning session for today.
-                    {% endif %}
+                    Based on your active study plan, this is today's recommended focus.
+                    Complete the steps below, then mark your session complete.
                 </p>
             </div>
         </div>

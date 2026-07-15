@@ -106,7 +106,7 @@ def index():
         "active_study_plan", StudyPlanService.get_user_active_plan, user_id
     )
 
-    # Auto-generate today's mission if needed (idempotent)
+    # Auto-generate today's mission if needed (idempotent, active-plan scoped)
     if active_study_plan:
         _timed_call(
             "generate_today_mission",
@@ -117,7 +117,11 @@ def index():
     from app.services.mission_service import MissionService
 
     today_mission = _timed_call(
-        "today_mission", MissionService.get_today_mission, user_id
+        "today_mission",
+        MissionService.get_today_mission,
+        user_id,
+        None,
+        active_study_plan.id if active_study_plan else None,
     )
 
     # Learning snapshot (lightweight aggregates)

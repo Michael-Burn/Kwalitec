@@ -9,7 +9,7 @@ from app.extensions import db
 
 class Mission(db.Model):
     """A mission is a collection of tasks assigned for a specific date and subject.
-    
+
     Missions represent daily learning objectives organized by subject.
     Each mission contains multiple tasks that need to be completed.
     """
@@ -19,6 +19,12 @@ class Mission(db.Model):
     id: int = db.Column(db.Integer, primary_key=True)
     user_id: int = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     subject_id: int = db.Column(db.Integer, db.ForeignKey("subjects.id"), nullable=False)
+    study_plan_id: int | None = db.Column(
+        db.Integer,
+        db.ForeignKey("study_plans.id"),
+        nullable=True,
+        comment="Active study plan this mission was generated for",
+    )
     mission_date: datetime = db.Column(db.Date, nullable=False)
     title: str = db.Column(db.String(255), nullable=False)
     status: str = db.Column(
@@ -32,6 +38,7 @@ class Mission(db.Model):
     # Relationships
     user = db.relationship("User", back_populates="missions")
     subject = db.relationship("Subject", back_populates="missions")
+    study_plan = db.relationship("StudyPlan", back_populates="missions")
     study_attempts = db.relationship(
         "StudyAttempt",
         back_populates="mission",
@@ -51,7 +58,7 @@ class Mission(db.Model):
 
     def get_completion_percentage(self) -> float:
         """Calculate the completion percentage of this mission's tasks.
-        
+
         Returns:
             float: Percentage of tasks completed (0-100). Returns 100 if no tasks.
         """
@@ -64,7 +71,7 @@ class Mission(db.Model):
 
 class MissionTask(db.Model):
     """A single task within a mission.
-    
+
     Tasks are the atomic units of work that make up a mission.
     Each task can be marked as complete or incomplete.
     """

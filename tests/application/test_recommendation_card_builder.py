@@ -227,7 +227,11 @@ class TestFeatureFlagOn:
         card = RecommendationCardBuilder.build(experience, flags=FLAGS_ON)
         assert card is not None
         assert card.reason_summary is not None
-        assert "Based on your current study progress" in card.reason_summary
+        assert card.reason_summary is not None
+        assert (
+            "Based on your recent progress" in card.reason_summary
+            or "You've completed valuable study activities" in card.reason_summary
+        )
         primary = experience.todays_recommendation.reasons[0]
         # Internal warrant tags must never leak into student-facing copy.
         for tag in primary.note_tags:
@@ -427,13 +431,14 @@ class TestNoEducationalReasoning:
         card = RecommendationCardBuilder.build(experience, flags=FLAGS_ON)
         assert card is not None
         family = experience.todays_recommendation.suggestion.family
-        assert family.value in card.title.lower() or card.title in {
-            "Study",
-            "Revise",
-            "Assess",
-            "Diagnostic",
-            "Protect intensity",
+        expected = {
+            "study": "Continue studying",
+            "revise": "Review and strengthen",
+            "assess": "Check your understanding",
+            "diagnostic": "Find your next focus",
+            "rest_protect_intensity": "Protect today's study energy",
         }
+        assert card.title == expected[family.value]
 
     def test_builder_does_not_replace_recommendation(self) -> None:
         experience = _experience()

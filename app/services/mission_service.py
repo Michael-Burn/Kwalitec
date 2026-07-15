@@ -22,6 +22,7 @@ class MissionService:
         mission_date: date,
         title: str,
         tasks: list[dict] | None = None,
+        study_plan_id: int | None = None,
     ) -> Mission:
         """Create a new mission with optional tasks.
 
@@ -31,6 +32,7 @@ class MissionService:
             mission_date: The date for the mission.
             title: The title of the mission.
             tasks: Optional list of task dicts with 'title', 'description', and 'order'.
+            study_plan_id: Optional study plan this mission belongs to (IA-001).
 
         Returns:
             Mission: The created mission.
@@ -46,6 +48,7 @@ class MissionService:
         mission = Mission(
             user_id=user_id,
             subject_id=subject_id,
+            study_plan_id=study_plan_id,
             mission_date=mission_date,
             title=title,
             status="Pending",
@@ -63,26 +66,54 @@ class MissionService:
 
         db.session.add(mission)
         db.session.commit()
-        logger.info("Mission %d created for user %s on %s", mission.id, user_id, mission_date)
+        logger.info(
+            "Mission %d created for user %s on %s (study_plan_id=%s)",
+            mission.id,
+            user_id,
+            mission_date,
+            study_plan_id,
+        )
         return mission
 
     @staticmethod
-    def get_today_mission(user_id: int, mission_date: date | None = None) -> Mission | None:
+    def get_today_mission(
+        user_id: int,
+        mission_date: date | None = None,
+        study_plan_id: int | None = None,
+    ) -> Mission | None:
         """Get the mission for a specific date (defaults to today).
+
+        When ``study_plan_id`` is provided, only that plan's mission is returned.
+        When omitted, the active study plan is resolved and used so callers
+        cannot accidentally surface another plan's mission (IA-001).
 
         Args:
             user_id: The ID of the user.
             mission_date: The date to retrieve the mission for (defaults to today).
+            study_plan_id: Optional study plan to scope the lookup.
 
         Returns:
-            Mission | None: The mission for that date, or None if not found.
+            Mission | None: The mission for that date and plan, or None if not found.
         """
         if mission_date is None:
             mission_date = date.today()
 
-        mission = Mission.query.filter_by(
-            user_id=user_id, mission_date=mission_date
-        ).first()
+        resolved_plan_id = study_plan_id
+        if resolved_plan_id is None:
+            from app.services.study_plan_service import StudyPlanService
+
+            active_plan = StudyPlanService.get_user_active_plan(user_id)
+            if active_plan is not None:
+                resolved_plan_id = active_plan.id
+
+        query = Mission.query.filter_by(user_id=user_id, mission_date=mission_date)
+        if resolved_plan_id is not None:
+            query = query.filter_by(study_plan_id=resolved_plan_id)
+        else:
+            # No active plan: only return unbound legacy rows, never a foreign plan.
+            query = query.filter(Mission.study_plan_id.is_(None))
+
+        mission = query.order_by(Mission.id.desc()).first()
         if mission is not None:
             MissionService.repair_inconsistent_completion(mission)
         return mission
@@ -109,7 +140,9 @@ class MissionService:
         return mission
 
     @staticmethod
-    def mark_task_complete(task_id: int, user_id: int, completed: bool = True) -> MissionTask:
+    def mark_task_complete(
+        task_id: int, user_id: int, completed: bool = True
+    ) -> MissionTask:
         """Mark a mission task as complete or incomplete.
 
         Also updates the mission status to "In Progress" when any task is
@@ -124,7 +157,8 @@ class MissionService:
             MissionTask: The updated task.
 
         Raises:
-            ValueError: If the task doesn't exist or doesn't belong to the user's mission.
+            ValueError: If the task doesn't exist or doesn't belong to the
+                user's mission.
         """
         task = MissionTask.query.get(task_id)
         if not task:

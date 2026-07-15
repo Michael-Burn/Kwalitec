@@ -512,8 +512,8 @@ class AdaptiveLearningService:
             weak_not_due = [w for w in weak_topics if w not in reviews_due]
             if weak_not_due:
                 priority_items.append(
-                    f"{len(weak_not_due)} weak topic{'s' if len(weak_not_due) != 1 else ''} "
-                    f"needing attention (mastery < 60)"
+                    f"{len(weak_not_due)} topic{'s' if len(weak_not_due) != 1 else ''} "
+                    f"that still need more practice"
                 )
             elif reviews_due:
                 # The reviews due include weak topics

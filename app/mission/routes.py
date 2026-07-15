@@ -31,15 +31,19 @@ def _resolve_topic_for_mission(user_id: int, mission: Mission):
 
     Prefers a topic whose official title or natural study label appears in the
     mission title, then falls back to the next incomplete curriculum topic for
-    the active plan.
+    the mission's study plan (or the active plan when unbound).
     """
     from app.services.planning_service import PlanningService
 
-    active_plan = StudyPlanService.get_user_active_plan(user_id)
-    if not active_plan or not active_plan.curriculum:
+    plan = None
+    if mission.study_plan_id is not None:
+        plan = StudyPlanService.get_plan(mission.study_plan_id, user_id=user_id)
+    if plan is None:
+        plan = StudyPlanService.get_user_active_plan(user_id)
+    if not plan or not plan.curriculum:
         return None
 
-    curriculum = active_plan.curriculum
+    curriculum = plan.curriculum
     title = mission.title or ""
     for topic in CurriculumService.get_ordered_topics(curriculum):
         if not topic.name:
@@ -100,17 +104,25 @@ def missions():
     """Daily mission page with full context."""
     user_id = current_user.id
 
+    # Active study plan first — today's mission must belong to it (IA-001).
+    active_study_plan = StudyPlanService.get_user_active_plan(user_id)
+
+    # Ensure a plan-scoped mission exists before launch/display.
+    if active_study_plan is not None:
+        from app.services.planning_service import PlanningService
+
+        PlanningService.generate_today_mission(user_id)
+
     missions_list = Mission.query.filter_by(user_id=user_id).order_by(
         Mission.mission_date.desc()
     ).all()
 
-    # Today's mission
-    today_mission = MissionService.get_today_mission(user_id)
+    today_mission = MissionService.get_today_mission(
+        user_id,
+        study_plan_id=active_study_plan.id if active_study_plan else None,
+    )
 
-    # Active study plan (for estimated time)
-    active_study_plan = StudyPlanService.get_user_active_plan(user_id)
-
-    # Curriculum summary (for today's topic code/title and readiness)
+    # Curriculum summary (coverage / readiness widgets only — not mission topic)
     curriculum_summary = None
     readiness_summary = None
     if active_study_plan:
@@ -320,7 +332,10 @@ def submit_review(mission_id: int):
         )
         _apply_mission_topic_progress(current_user.id, topic)
 
-        flash("Mission review saved. Great work!", "success")
+        flash(
+            "Session reflection saved. Great work — keep building on today's progress!",
+            "success",
+        )
         return redirect(url_for("dashboard.index"))
 
     except ValueError as e:

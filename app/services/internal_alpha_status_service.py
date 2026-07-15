@@ -65,18 +65,18 @@ class InternalAlphaStatusService:
 
     @staticmethod
     def _twin_status_label(user_id: int) -> str:
-        """Return a student-facing Twin presence label — never Twin contents."""
+        """Return a student-facing learning-profile label — never Twin contents."""
         result = build_twin_provider().retrieve(str(user_id))
         if isinstance(result, TwinAbsent):
             reason = result.reason.value
             if reason == "missing":
-                return "Not yet calibrated"
+                return "Not yet set up"
             if reason == "missing_identity":
                 return "Unavailable"
             if reason == "corrupt":
-                return "Needs recalibration"
+                return "Needs a fresh setup"
             return "Unavailable"
-        return "Present"
+        return "Ready"
 
 
 def _build_number() -> str:

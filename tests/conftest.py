@@ -160,11 +160,17 @@ def _make_study_plan(uid):
     return sp
 
 
-def _make_mission(uid, sid):
+def _make_mission(uid, sid, study_plan_id=None):
     from app.models.mission import Mission, MissionTask
 
-    m = Mission(user_id=uid, subject_id=sid, mission_date=date.today(),
-                 title="Test Mission", status="Pending")
+    m = Mission(
+        user_id=uid,
+        subject_id=sid,
+        study_plan_id=study_plan_id,
+        mission_date=date.today(),
+        title="Test Mission",
+        status="Pending",
+    )
     _db.session.add(m)
     _db.session.commit()
     _db.session.refresh(m)

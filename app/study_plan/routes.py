@@ -1098,7 +1098,12 @@ def archive_plan(study_plan_id: int):
 @study_plan_bp.post("/<int:study_plan_id>/set-active")
 @login_required
 def set_active_plan(study_plan_id: int):
-    """Set a study plan as the active plan (only one active at a time)."""
+    """Set a study plan as the active plan (only one active at a time).
+
+    On success, redirects to the dashboard so every student-facing surface
+    re-reads ``StudyPlan.active`` and today's mission in the same response
+    cycle — no manual refresh or secondary navigation required (IA-002).
+    """
     from app.models.study_plan import StudyPlan
 
     study_plan = StudyPlan.query.get(study_plan_id)
@@ -1117,8 +1122,12 @@ def set_active_plan(study_plan_id: int):
 
     try:
         StudyPlanService.set_active_plan(study_plan_id, current_user.id)
-        flash("Study plan set as active.", "success")
+        flash(
+            f"{study_plan.exam_name} is now your active study plan.",
+            "success",
+        )
     except ValueError as e:
         flash(str(e), "danger")
+        return redirect(url_for("study_plan.list_plans"))
 
-    return redirect(url_for("study_plan.list_plans"))
+    return redirect(url_for("dashboard.index"))
