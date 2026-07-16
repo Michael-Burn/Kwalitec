@@ -10,7 +10,6 @@ from wtforms import (
     SelectField,
     StringField,
     TextAreaField,
-    ValidationError,
 )
 from wtforms.validators import DataRequired, Length, Optional
 
@@ -84,14 +83,6 @@ class ProductCheckinForm(FlaskForm):
     submission_source = HiddenField(validators=[DataRequired()])
     mission_id = HiddenField()
     study_plan_id = HiddenField()
-
-    def validate_classification(self, field: RadioField) -> None:
-        """Require classification only when optional free-text is entered."""
-        text = (self.free_text.data or "").strip()
-        if text and not field.data:
-            raise ValidationError(
-                "Please classify your note with one tap."
-            )
 
 
 class FounderFeedbackReviewForm(FlaskForm):

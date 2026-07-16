@@ -86,6 +86,9 @@ CLASSIFICATION_CHOICES = (
     "Other",
 )
 
+# Generic bucket when free-text is present but the student skips classification.
+DEFAULT_FREE_TEXT_CLASSIFICATION = "Other"
+
 VALID_SOURCES = frozenset({SOURCE_STUDY_SESSION, SOURCE_SETTINGS})
 
 
@@ -270,7 +273,8 @@ class ResearchFeedbackService:
         """Persist a completed Product Check-in and create one Contribution.
 
         Unlimited submissions are allowed. Free-text is optional; when
-        present, classification is required.
+        present without an explicit classification, defaults to
+        ``DEFAULT_FREE_TEXT_CLASSIFICATION`` (``Other``).
 
         Args:
             user_id: Authenticated student id.
@@ -281,7 +285,8 @@ class ResearchFeedbackService:
             return_intent: Q5 answer.
             submission_source: ``study_session`` or ``settings``.
             free_text: Optional comment (max 300 chars).
-            classification: Required when free_text is non-empty.
+            classification: Optional; when free-text is non-empty and this is
+                omitted, defaults to ``Other``. Explicit values are preserved.
             study_plan_id: Optional study plan context.
             mission_id: Optional mission context.
             product_version: Product version string for RIP-003.
@@ -313,10 +318,8 @@ class ResearchFeedbackService:
         cleaned_classification = (classification or "").strip() or None
         if cleaned_text is not None:
             if cleaned_classification is None:
-                raise ValueError(
-                    "classification is required when free_text is provided"
-                )
-            if cleaned_classification not in CLASSIFICATION_CHOICES:
+                cleaned_classification = DEFAULT_FREE_TEXT_CLASSIFICATION
+            elif cleaned_classification not in CLASSIFICATION_CHOICES:
                 raise ValueError(
                     f"Invalid classification: {cleaned_classification}"
                 )

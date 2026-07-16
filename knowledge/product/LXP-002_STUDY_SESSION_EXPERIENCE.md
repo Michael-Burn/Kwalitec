@@ -65,7 +65,8 @@ state. The student UI uses Study Session → Practice Outcome Capture.
 - Estimated duration  
 - Recommended activities (educational prompts)  
 - Progress checklist (client-side ticks for activities)  
-- Elapsed timer  
+- Elapsed timer (IAHF-001: **active study time** — Pause freezes elapsed; Resume continues without adding paused duration; Version 1 state is browser-local)  
+- **Pause Study Session** / **Resume** (timer control on the session screen)  
 - **Finish Study Session**  
 
 Recommended activities (Version 1 prompts):
@@ -154,6 +155,11 @@ Service module: `app/services/study_session_service.py`.
    Outcome Capture / Study Session Feedback (PTP-002) and is not a student write path.
 7. Legacy `POST /missions/<id>/complete` delegates to the Study Session path
    (PTP-002); it no longer records attempts or Study Progress itself.
+8. **IAHF-001 timer continuity (Version 1):** active elapsed time and Pause/Resume
+   state are stored in the current browser profile (`localStorage`). Clearing
+   browser data or switching devices resets the timer. This is acceptable for
+   Internal Alpha; server-persisted timer continuity is a candidate for a future
+   release if cross-device continuity becomes a common expectation.
 
 ---
 

@@ -22,6 +22,7 @@ from app.models.study_plan import StudyPlan, WeekPlan
 from app.models.subject import Subject
 from app.models.topic_progress import TopicProgress
 from app.services.research_feedback_service import (
+    DEFAULT_FREE_TEXT_CLASSIFICATION,
     PRODUCT_VERSION,
     SOURCE_SETTINGS,
     SOURCE_STUDY_SESSION,
@@ -216,18 +217,22 @@ class TestSubmitCheckinService:
         assert contribution.submission_id == submission.id
         assert ResearchContribution.query.count() == 1
 
-    def test_optional_free_text_requires_classification(self, user):
-        with pytest.raises(ValueError, match="classification is required"):
-            ResearchFeedbackService.submit_checkin(
-                user.id,
-                experience_rating="Good",
-                feature_helped_most="Dashboard",
-                friction_area="Nothing",
-                confidence_rating="Neutral",
-                return_intent="Not Sure",
-                submission_source=SOURCE_SETTINGS,
-                free_text="The nav is unclear on mobile.",
-            )
+    def test_free_text_without_classification_defaults_to_other(self, user):
+        result = ResearchFeedbackService.submit_checkin(
+            user.id,
+            experience_rating="Good",
+            feature_helped_most="Dashboard",
+            friction_area="Nothing",
+            confidence_rating="Neutral",
+            return_intent="Not Sure",
+            submission_source=SOURCE_SETTINGS,
+            free_text="The nav is unclear on mobile.",
+        )
+        assert result.submission.free_text == "The nav is unclear on mobile."
+        assert (
+            result.submission.classification == DEFAULT_FREE_TEXT_CLASSIFICATION
+        )
+        assert result.submission.classification == "Other"
 
     def test_optional_free_text_with_classification(self, user):
         result = ResearchFeedbackService.submit_checkin(
@@ -243,6 +248,21 @@ class TestSubmitCheckinService:
         )
         assert result.submission.free_text == "Terminology felt dense."
         assert result.submission.classification == "Confusing"
+
+    def test_no_free_text_leaves_classification_none(self, user):
+        result = ResearchFeedbackService.submit_checkin(
+            user.id,
+            experience_rating="Good",
+            feature_helped_most="Dashboard",
+            friction_area="Nothing",
+            confidence_rating="High",
+            return_intent="Probably",
+            submission_source=SOURCE_SETTINGS,
+            free_text="",
+            classification="Bug",
+        )
+        assert result.submission.free_text is None
+        assert result.submission.classification is None
 
     def test_unlimited_submissions_allowed(self, user):
         for _ in range(3):
@@ -387,6 +407,22 @@ class TestCheckinHttpFlow:
         submission = ResearchFeedbackSubmission.query.filter_by(user_id=user.id).one()
         assert submission.free_text is None
         assert submission.classification is None
+
+    def test_free_text_without_classification_on_http(self, logged_in_client, user):
+        response = logged_in_client.post(
+            "/research/checkin",
+            data=_valid_payload(
+                submission_source=SOURCE_SETTINGS,
+                free_text="Would love a dark mode.",
+                classification="",
+            ),
+            follow_redirects=True,
+        )
+        assert response.status_code == 200
+        assert b"Thank you for helping improve Kwalitec" in response.data
+        submission = ResearchFeedbackSubmission.query.filter_by(user_id=user.id).one()
+        assert submission.free_text == "Would love a dark mode."
+        assert submission.classification == "Other"
 
     def test_unlimited_http_submissions(self, logged_in_client, user):
         for _ in range(2):

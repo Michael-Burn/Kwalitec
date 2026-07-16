@@ -11,6 +11,11 @@
     <div class="mission-hero-card">
         <div class="mission-hero-header">
             <span class="badge rounded-pill fs-6 px-3 py-2 text-bg-warning">In Progress</span>
+            <span
+                class="badge rounded-pill fs-6 px-3 py-2 text-bg-secondary"
+                data-session-paused-label
+                hidden
+            >Paused</span>
             <span class="mission-hero-date">
                 Elapsed
                 <strong class="ms-2" data-session-timer data-mission-id="{{ mission.id }}">00:00</strong>
@@ -90,9 +95,18 @@
         </div>
 
         <div class="mission-hero-action d-flex flex-column gap-2">
+            <button
+                type="button"
+                class="btn btn-outline-secondary w-100"
+                data-session-pause-toggle
+                aria-pressed="false"
+            >
+                Pause Study Session
+            </button>
             <a
                 class="btn btn-mark-complete w-100"
                 href="{{ url_for('mission.finish_study_session', mission_id=mission.id) }}"
+                data-session-finish
             >
                 Finish Study Session
             </a>

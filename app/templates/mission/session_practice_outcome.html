@@ -63,7 +63,11 @@
                     {{ form.duration_minutes.label.text }}
                     <span class="text-secondary fw-normal">(optional)</span>
                 </label>
-                {{ form.duration_minutes(class="form-control") }}
+                {{ form.duration_minutes(
+                    class="form-control",
+                    data_session_duration_prefill="1",
+                    data_mission_id=mission.id,
+                ) }}
                 {% if form.duration_minutes.errors %}
                 <div class="text-danger small mt-1">
                     {% for error in form.duration_minutes.errors %}{{ error }}{% endfor %}
@@ -98,4 +102,8 @@
         </div>
     </div>
 </section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/study_session.js') }}" defer></script>
 {% endblock %}
