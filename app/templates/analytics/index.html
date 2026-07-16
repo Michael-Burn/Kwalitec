@@ -3,7 +3,7 @@
 {% block content %}
 <section class="section-header">
     <p class="section-eyebrow">Performance Analytics</p>
-    <h1 class="section-title">Insights</h1>
+    <h1 class="section-title">Analytics</h1>
     <p class="section-description">Your study data visualized to reveal trends and guide decisions.</p>
 </section>
 
@@ -11,14 +11,22 @@
 <section class="row g-3 mb-4">
     <div class="col-6 col-md-4 col-lg-2">
         <div class="stat-card">
+            {% if readiness_narrative and readiness_narrative.can_estimate and readiness_narrative.percentage is not none %}
+            <div class="stat-value text-primary">{{ readiness_narrative.percentage|int }}%</div>
+            <div class="stat-label">{{ readiness_narrative.label }}</div>
+            {% elif readiness_narrative %}
+            <div class="stat-value text-muted">—</div>
+            <div class="stat-label">{{ readiness_narrative.label }}</div>
+            {% else %}
             <div class="stat-value text-primary">{{ readiness.score|int }}%</div>
-            <div class="stat-label">Readiness</div>
+            <div class="stat-label">Estimated readiness</div>
+            {% endif %}
         </div>
     </div>
     <div class="col-6 col-md-4 col-lg-2">
         <div class="stat-card">
             <div class="stat-value text-success">{{ curriculum_coverage.coverage_percentage|int }}%</div>
-            <div class="stat-label">Coverage</div>
+            <div class="stat-label">Syllabus coverage</div>
         </div>
     </div>
     <div class="col-6 col-md-4 col-lg-2">
@@ -42,17 +50,28 @@
     <div class="col-6 col-md-4 col-lg-2">
         <div class="stat-card">
             <div class="stat-value" style="color: var(--color-brand);">{{ review_completion.completion_rate|int }}%</div>
-            <div class="stat-label">Missions Done</div>
+            <div class="stat-label">Study Sessions Done</div>
         </div>
     </div>
 </section>
 
-{# ── Charts Row 1: Readiness & Mastery ────────────────────────────────── #}
+{% if readiness_narrative %}
+<section class="card border-0 mb-4" data-eip003-readiness="1">
+    <div class="card-body py-3">
+        <h2 class="card-section-header mb-2">{{ readiness_narrative.label }}</h2>
+        <p class="small mb-1">{{ readiness_narrative.explanation }}</p>
+        <p class="small text-muted mb-0">{{ readiness_narrative.evidence_basis }}</p>
+    </div>
+</section>
+{% endif %}
+
+{# ── Charts Row 1: Readiness & Estimated Knowledge ────────────────────── #}
 <section class="row g-4 mb-4">
     <div class="col-lg-6">
         <div class="card border-0">
             <div class="card-body">
-                <h2 class="card-section-header mb-3">Readiness Over Time</h2>
+                <h2 class="card-section-header mb-3">Estimated Readiness Over Time</h2>
+                <p class="small text-muted mb-2">Estimated readiness depends on practice results you recorded — not independently verified exam performance.</p>
                 <div class="chart-container">
                     <canvas id="readinessChart"></canvas>
                 </div>
@@ -62,7 +81,8 @@
     <div class="col-lg-6">
         <div class="card border-0">
             <div class="card-body">
-                <h2 class="card-section-header mb-3">Mastery Over Time</h2>
+                <h2 class="card-section-header mb-3">Estimated Knowledge Over Time</h2>
+                <p class="small text-muted mb-2">Based on your recorded practice outcomes.</p>
                 <div class="chart-container">
                     <canvas id="masteryChart"></canvas>
                 </div>
@@ -77,11 +97,12 @@
         <div class="card border-0">
             <div class="card-body">
                 <h2 class="card-section-header mb-3">Accuracy Trend</h2>
+                <p class="small text-muted mb-2">Accuracy is calculated from practice results you recorded — not a verified exam score.</p>
                 <div class="chart-container">
                     <canvas id="accuracyChart"></canvas>
                 </div>
                 {% if accuracy_trend|selectattr('accuracy', 'defined')|list|length == 0 %}
-                <div class="text-center text-muted small mt-2">Log question accuracy during study sessions to see trends here.</div>
+                <div class="text-center text-muted small mt-2">Accuracy appears after you record practice results in Study Sessions.</div>
                 {% endif %}
             </div>
         </div>
@@ -106,12 +127,12 @@
     <div class="col-lg-6">
         <div class="card border-0">
             <div class="card-body">
-                <h2 class="card-section-header mb-3">Mission Completion</h2>
+                <h2 class="card-section-header mb-3">Study Session Completion</h2>
                 <div class="chart-container">
                     <canvas id="missionChart"></canvas>
                 </div>
                 {% if mission_trend|selectattr('completion_rate', 'defined')|list|length == 0 %}
-                <div class="text-center text-muted small mt-2">Complete your first mission to see trends.</div>
+                <div class="text-center text-muted small mt-2">Complete your first study session to see trends.</div>
                 {% endif %}
             </div>
         </div>
@@ -136,24 +157,24 @@
     <div class="col-lg-6">
         <div class="card border-0 h-100">
             <div class="card-body">
-                <h2 class="card-section-header mb-3">Weakest Topics</h2>
+                <h2 class="card-section-header mb-3">Topics needing more practice</h2>
                 {% if weakest_topics %}
                 <div>
                     {% for topic in weakest_topics %}
                     <div class="topic-item{% if loop.first %} pt-0{% endif %}">
                         <div class="topic-info">
                             <div class="topic-name">{{ topic.topic_name }}</div>
-                            <div class="topic-meta">{{ topic.stage }} · {{ topic.revision_count }} review{{ 's' if topic.revision_count != 1 else '' }}</div>
+                            <div class="topic-meta">{{ topic.stage_label or topic.stage }} · {{ topic.revision_count }} review{{ 's' if topic.revision_count != 1 else '' }}</div>
                         </div>
-                        <span class="badge rounded-pill {% if topic.mastery_score < 40 %}text-bg-danger{% elif topic.mastery_score < 60 %}text-bg-warning{% else %}text-bg-secondary{% endif %}">
-                            {{ topic.mastery_score|int }}%
+                        <span class="badge rounded-pill {% if topic.mastery_score < 40 %}text-bg-danger{% elif topic.mastery_score < 60 %}text-bg-warning{% else %}text-bg-secondary{% endif %}" title="Based on your recorded practice outcomes.">
+                            {{ topic.mastery_score|int }}% est.
                         </span>
                     </div>
                     {% endfor %}
                 </div>
                 {% else %}
                 <div class="empty-state py-4">
-                    <p class="text-muted small mb-0">Your learning journey begins after your first completed mission.</p>
+                    <p class="text-muted small mb-0">{{ pcs.ESTIMATED_KNOWLEDGE_EMPTY }}</p>
                 </div>
                 {% endif %}
             </div>
@@ -162,24 +183,24 @@
     <div class="col-lg-6">
         <div class="card border-0 h-100">
             <div class="card-body">
-                <h2 class="card-section-header mb-3">Strongest Topics</h2>
+                <h2 class="card-section-header mb-3">Strongest Estimated Knowledge</h2>
                 {% if strongest_topics %}
                 <div>
                     {% for topic in strongest_topics %}
                     <div class="topic-item{% if loop.first %} pt-0{% endif %}">
                         <div class="topic-info">
                             <div class="topic-name">{{ topic.topic_name }}</div>
-                            <div class="topic-meta">{{ topic.stage }} · {{ topic.revision_count }} review{{ 's' if topic.revision_count != 1 else '' }}</div>
+                            <div class="topic-meta">{{ topic.stage_label or topic.stage }} · {{ topic.revision_count }} review{{ 's' if topic.revision_count != 1 else '' }}</div>
                         </div>
-                        <span class="badge rounded-pill {% if topic.mastery_score >= 90 %}text-bg-success{% elif topic.mastery_score >= 70 %}bg-info text-white{% else %}text-bg-secondary{% endif %}">
-                            {{ topic.mastery_score|int }}%
+                        <span class="badge rounded-pill {% if topic.mastery_score >= 90 %}text-bg-success{% elif topic.mastery_score >= 70 %}bg-info text-white{% else %}text-bg-secondary{% endif %}" title="Based on your recorded practice outcomes.">
+                            {{ topic.mastery_score|int }}% est.
                         </span>
                     </div>
                     {% endfor %}
                 </div>
                 {% else %}
                 <div class="empty-state py-4">
-                    <p class="text-muted small mb-0">Strong topics will appear here as your learning progress grows.</p>
+                    <p class="text-muted small mb-0">{{ pcs.ESTIMATED_KNOWLEDGE_EMPTY_STRONG }}</p>
                 </div>
                 {% endif %}
             </div>
@@ -201,7 +222,7 @@
             <div class="col-6 col-md-3">
                 <div class="metric-pill">
                     <div class="metric-value text-success">{{ weekly_report.missions_completed }}/{{ weekly_report.total_missions }}</div>
-                    <div class="metric-label">Missions</div>
+                    <div class="metric-label">Study Sessions</div>
                 </div>
             </div>
             <div class="col-6 col-md-3">
@@ -225,6 +246,7 @@
                     <div class="metric-value {% if weekly_report.accuracy >= 80 %}text-success{% elif weekly_report.accuracy >= 60 %}text-warning{% else %}text-danger{% endif %}">{{ weekly_report.accuracy }}%</div>
                     <div class="metric-label">Accuracy</div>
                     <div class="small text-muted mt-1">{{ weekly_report.questions_correct }}/{{ weekly_report.questions_attempted }} correct</div>
+                    <div class="small text-muted mt-1">From practice results you recorded</div>
                 </div>
             </div>
             <div class="col-md-4">
@@ -492,10 +514,10 @@
     }
 
     if (chartData.readiness && chartData.readiness.length) {
-        makeLineChart('readinessChart', 'Readiness', chartData.readiness, primaryColor);
+        makeLineChart('readinessChart', 'Estimated readiness', chartData.readiness, primaryColor);
     }
     if (chartData.mastery && chartData.mastery.length) {
-        makeLineChart('masteryChart', 'Mastery', chartData.mastery, successColor);
+        makeLineChart('masteryChart', 'Estimated Knowledge', chartData.mastery, successColor);
     }
     if (chartData.accuracy && chartData.accuracy.length) {
         makeLineChart('accuracyChart', 'Accuracy', chartData.accuracy, dangerColor);

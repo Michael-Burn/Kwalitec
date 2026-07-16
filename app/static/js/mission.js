@@ -149,49 +149,9 @@
                 return;
             }
 
-            this.disabled = true;
-            const originalLabel = this.innerHTML;
-            this.innerHTML = "Saving…";
-
-            fetch(`/missions/${missionId}/complete`, {
-                method: "POST",
-                headers: authHeaders(),
-                body: JSON.stringify({}),
-            })
-                .then((response) => response.json().then((data) => ({ ok: response.ok, data })))
-                .then(({ ok, data }) => {
-                    if (ok && data.success) {
-                        this.dataset.sessionComplete = "true";
-                        this.disabled = true;
-                        this.setAttribute("aria-disabled", "true");
-                        this.classList.add("is-session-complete");
-                        this.innerHTML = "Session Complete";
-                        this.title = "Session already complete";
-
-                        const badge = document.querySelector(".mission-hero-header .badge");
-                        if (badge) {
-                            badge.textContent = "Completed";
-                            badge.className =
-                                "badge rounded-pill fs-6 px-3 py-2 text-bg-success";
-                        }
-
-                        window.location.href = data.redirect_url || "/";
-                        return;
-                    }
-
-                    this.disabled = false;
-                    this.innerHTML = originalLabel;
-                    syncMarkCompleteButton();
-                    console.error("Failed to complete mission:", data && data.error);
-                    window.alert((data && data.error) || "Could not complete mission.");
-                })
-                .catch((error) => {
-                    this.disabled = false;
-                    this.innerHTML = originalLabel;
-                    syncMarkCompleteButton();
-                    console.error("Error completing mission:", error);
-                    window.alert("Could not complete mission. Please try again.");
-                });
+            // PTP-002: Mark Complete is compatibility-only — never write
+            // educational state here. Navigate to Practice Outcome Capture.
+            window.location.href = `/missions/${missionId}/session/finish`;
         });
     }
 

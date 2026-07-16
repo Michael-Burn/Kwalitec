@@ -1,0 +1,101 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<section class="section-header">
+    <p class="section-eyebrow">Practice Outcome Capture</p>
+    <h1 class="section-title">How did practice go?</h1>
+    <p class="section-description">
+        These results reflect the answers you recorded after today's study session.
+        Record how many questions you tried and how many you got right.
+        This is not a knowledge or mastery rating.
+    </p>
+</section>
+
+<section class="mission-hero mb-4">
+    <div class="mission-hero-card">
+        <div class="mission-hero-topic">
+            <span class="mission-hero-topic-label">Topic</span>
+            <h2 class="mission-hero-topic-title">{{ session_context.topic_title }}</h2>
+        </div>
+
+        <form method="POST" class="mission-hero-tasks">
+            {{ form.hidden_tag() }}
+
+            {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+                <strong>Please fix the errors below:</strong>
+                <ul class="mb-0 mt-2">
+                    {% for field, errors in form.errors.items() %}
+                    {% for error in errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            <div class="mb-3">
+                <label class="form-label" for="{{ form.questions_attempted.id }}">
+                    {{ form.questions_attempted.label.text }}
+                </label>
+                {{ form.questions_attempted(class="form-control") }}
+                {% if form.questions_attempted.errors %}
+                <div class="text-danger small mt-1">
+                    {% for error in form.questions_attempted.errors %}{{ error }}{% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="{{ form.questions_correct.id }}">
+                    {{ form.questions_correct.label.text }}
+                </label>
+                {{ form.questions_correct(class="form-control") }}
+                {% if form.questions_correct.errors %}
+                <div class="text-danger small mt-1">
+                    {% for error in form.questions_correct.errors %}{{ error }}{% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="{{ form.duration_minutes.id }}">
+                    {{ form.duration_minutes.label.text }}
+                    <span class="text-secondary fw-normal">(optional)</span>
+                </label>
+                {{ form.duration_minutes(class="form-control") }}
+                {% if form.duration_minutes.errors %}
+                <div class="text-danger small mt-1">
+                    {% for error in form.duration_minutes.errors %}{{ error }}{% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label" for="{{ form.notes.id }}">
+                    {{ form.notes.label.text }}
+                    <span class="text-secondary fw-normal">(optional)</span>
+                </label>
+                {{ form.notes(class="form-control") }}
+            </div>
+
+            <button type="submit" class="btn btn-mark-complete w-100">
+                Record Study Session
+            </button>
+        </form>
+
+        <div class="mission-hero-action d-flex flex-column gap-2 px-0">
+            <form method="POST" class="m-0">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="skip_practice" value="1">
+                <button type="submit" class="btn btn-outline-secondary w-100">
+                    I didn't practise today — close session without practice results
+                </button>
+            </form>
+            <a class="btn btn-outline-secondary w-100" href="{{ url_for('mission.study_session', mission_id=mission.id) }}">
+                Back to Study Session
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<section class="section-header">
+    <p class="section-eyebrow">Product Research</p>
+    <h1 class="section-title">Thank you</h1>
+    <p class="section-description">{{ journey.appreciation_message }}</p>
+</section>
+
+<section class="mission-hero mb-4">
+    <div class="mission-hero-card">
+        <div class="mission-hero-tasks mb-4" data-rip001-thank-you="1" data-rip002-thank-you="1">
+            <p class="mb-2">Thank you for helping improve Kwalitec.</p>
+            <p class="text-muted small mb-3">{{ journey.appreciation_message }}</p>
+
+            <div class="settings-section mb-3">
+                <h2 class="h6 mb-2">Your contribution</h2>
+                <p class="mb-1">
+                    <span class="text-muted small">Check-ins completed</span><br>
+                    <span class="fw-medium">{{ journey.contribution_count }}</span>
+                </p>
+                {% if journey.current_badge %}
+                <p class="mb-1">
+                    <span class="text-muted small">Current badge</span><br>
+                    <span class="badge rounded-pill bg-light text-secondary border">
+                        {{ journey.current_badge.label }}
+                    </span>
+                </p>
+                {% endif %}
+                {% if journey.next_badge %}
+                <p class="mb-1">
+                    <span class="text-muted small">Next badge</span><br>
+                    <span class="fw-medium">{{ journey.next_badge.label }}</span>
+                </p>
+                <p class="text-muted small mb-2">{{ journey.progress_label }}</p>
+                {% if journey.progress_target %}
+                <div class="progress progress-thin" role="progressbar"
+                     aria-valuenow="{{ journey.progress_current }}"
+                     aria-valuemin="0"
+                     aria-valuemax="{{ journey.progress_target }}">
+                    <div class="progress-bar bg-success"
+                         style="width: {{ (journey.progress_current / journey.progress_target * 100) | round(0) }}%">
+                    </div>
+                </div>
+                {% endif %}
+                {% endif %}
+            </div>
+
+            {% if new_badge_labels %}
+            <div class="alert alert-success mb-0" role="status">
+                {% if new_badge_labels | length == 1 %}
+                You earned the <strong>{{ new_badge_labels[0] }}</strong> badge.
+                {% else %}
+                You earned new badges: <strong>{{ new_badge_labels | join(', ') }}</strong>.
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+        <div class="mission-hero-action d-flex flex-column gap-2">
+            <a class="btn btn-mark-complete w-100" href="{{ url_for('dashboard.index') }}">
+                Return to Dashboard
+            </a>
+            <a class="btn btn-outline w-100" href="{{ url_for('settings.profile') }}">
+                View Research Journey
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

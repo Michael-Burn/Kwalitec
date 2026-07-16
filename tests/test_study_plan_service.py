@@ -412,7 +412,7 @@ class TestCanonicalCS1Regression:
             user_id=user.id, topic_id=topic_a.id,
         ).first()
         assert tp_a.completed is True
-        assert tp_a.mastery_score == 100.0
+        assert tp_a.mastery_score == 0.0  # study progress only (IA-004)
 
     def test_v1_topic_ordering_uses_engine_order(self, ctx, db):
         """DB topics for V1 curriculum must have order values 1, 2, 3... matching
@@ -628,8 +628,8 @@ class TestV2SectionAwareInitialisation:
             user_id=user.id, topic_id=alpha_topic.id,
         ).first()
         assert tp.completed is True
-        assert tp.mastery_score == 100.0
-        assert tp.confidence == "Mastered"
+        assert tp.mastery_score == 0.0  # study progress only (IA-004 / EIP-001)
+        assert tp.confidence == "Not Started"  # EIP-001: coverage ≠ confidence
 
     def test_v2_current_topic_honours_completed_list_and_advances_pointer(
         self, ctx, db
@@ -1059,8 +1059,8 @@ class TestCreateTopicProgressIfAbsent:
         tp = TopicProgress.query.filter_by(user_id=user.id, topic_id=t.id).first()
         assert tp is not None
         assert tp.completed is True
-        assert tp.mastery_score == 100.0
-        assert tp.confidence == "Mastered"
+        assert tp.mastery_score == 0.0  # study progress only (IA-004 / EIP-001)
+        assert tp.confidence == "Not Started"  # EIP-001: coverage ≠ confidence
         assert tp.current_stage == TopicProgress.STAGE_COMPLETED
 
 
@@ -1111,7 +1111,7 @@ class TestSyncCompletedTopicsV2:
             user_id=user.id, topic_id=alpha.id,
         ).first()
         assert tp.completed is True
-        assert tp.mastery_score == 100.0
+        assert tp.mastery_score == 0.0  # study progress only (IA-004)
 
     def test_v2_sync_honours_completed_current_topic_and_advances_pointer(
         self, ctx, db

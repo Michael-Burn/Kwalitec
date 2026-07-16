@@ -3,9 +3,9 @@
 {% set step = 1 %}
 {% set total_steps = 1 %}
 {% set step_title = "Educational history" %}
-{% set wizard_question = "Where are you starting from?" %}
-{% set wizard_helper = "This is not a test. Tell us your educational history so we don't assume you're starting from zero — answers are declarations, not measured mastery." %}
-{% set button_text = "Create my study profile" %}
+{% set wizard_question = "Confirm your educational history" %}
+{% set wizard_helper = "Tell us what you have already studied for this exam. This is the only place we ask about prior syllabus coverage — answers are declarations, not measured mastery." %}
+{% set button_text = "Continue" %}
 
 {% block form_content %}
 <form id="wizard-form" method="post" novalidate>
@@ -80,7 +80,7 @@
     {% if form.completed_sections.choices %}
     <div class="wizard-field-group" id="completed-sections-field">
         <label class="form-label">{{ form.completed_sections.label.text }}</label>
-        <small class="wizard-field-hint">Optional when you've studied before. Official syllabus only.</small>
+        <small class="wizard-field-hint">Select syllabus topics you have already completed studying.</small>
         <div class="wizard-option-list" style="margin-top: var(--space-md);">
             {% for value, label in form.completed_sections.choices %}
             <label class="wizard-option-row" style="cursor: pointer;">

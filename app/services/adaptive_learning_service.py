@@ -38,16 +38,23 @@ class AdaptiveLearningService:
         revision_count: int,
         unresolved_mistakes: int,
     ) -> float:
-        """Calculate a mastery score from 0 to 100.
+        """Calculate a mastery score from 0 to 100 from authorised accuracy.
+
+        EIP-002: this formula may interpret authorised Structured Question
+        Results (accuracy). It must not mint estimates from activity,
+        confidence, or revision alone.
 
         The formula is a weighted combination of:
-        - Accuracy (40%): average percentage correct across attempts
-        - Confidence (30%): numeric confidence level
-        - Consistency (15%): bonus based on revision count (capped)
-        - Penalty (15%): deduction for unresolved mistakes
+        - Accuracy (required for a non-zero estimate write path): average
+          percentage correct across authorised attempts
+        - Confidence (30%): legacy parameter retained for compatibility —
+          EIP-001/EIP-002 forbid student confidence from authoring Estimated
+          Mastery; ``update_mastery_after_attempt`` always passes ``None``.
+        - Consistency bonus: capped revision signal only when accuracy exists
+        - Penalty: deduction for unresolved mistakes when accuracy exists
 
-        All inputs are deterministic. If accuracy or confidence is None,
-        the weight is redistributed to the remaining components.
+        If accuracy is None, returns 0.0 — callers must treat this as
+        **correct silence** (do not write Twin estimates from this alone).
 
         Args:
             accuracy: Average accuracy percentage (0-100), or None.
@@ -56,31 +63,27 @@ class AdaptiveLearningService:
             unresolved_mistakes: Number of unresolved mistakes.
 
         Returns:
-            float: Mastery score from 0 to 100.
+            float: Mastery score from 0 to 100, or 0.0 when accuracy is absent.
         """
+        # EIP-002: no authorised Educational Evidence ⇒ no artificial estimate.
+        if accuracy is None:
+            return 0.0
+
         score = 0.0
         total_weight = 0.0
 
         # Accuracy component (weight: 0.40)
-        if accuracy is not None:
-            score += accuracy * 0.40
-            total_weight += 0.40
+        score += accuracy * 0.40
+        total_weight += 0.40
 
-        # Confidence component (weight: 0.30)
+        # Confidence component (weight: 0.30) — never used on live estimate path.
         if confidence_numeric is not None:
             score += confidence_numeric * 0.30
             total_weight += 0.30
 
-        # If both accuracy and confidence are missing, assign baseline from revision count
-        if total_weight == 0.0:
-            baseline = min(revision_count * 10, 50)
-            score = baseline
-            total_weight = 1.0
-        else:
-            # Normalize the score from accuracy/confidence components
-            score = score / total_weight
+        score = score / total_weight
 
-        # Consistency bonus: up to 10 points for repeated revision (revision_count capped at 5)
+        # Consistency bonus only as soft modifier on authorised evidence.
         consistency_bonus = min(revision_count, 5) * 2.0  # max 10
         score += consistency_bonus
 
@@ -168,56 +171,76 @@ class AdaptiveLearningService:
         user_id: int,
         topic_id: int,
     ) -> TopicProgress:
-        """Recalculate and persist mastery metrics after a StudyAttempt.
+        """Recalculate evidence-backed understanding estimate from authorised Educational Evidence.
 
-        This method:
-        1. Gathers all study attempts for the user+topic.
-        2. Computes average accuracy and average confidence.
-        3. Calculates the new mastery score.
-        4. Determines the new learning stage.
-        5. Schedules the next review date.
-        6. Saves the updated TopicProgress.
+        Version 1 (EIP-006): the written scalar is student-facing Estimated Knowledge
+        (understanding posture), not constitutionally sufficient Estimated Mastery.
+
+        EIP-002 Evidence Authority: Twin-owned Estimated Knowledge may be mutated
+        only when V1.0 authorised evidence exists (Structured Question Results and
+        future quiz / assessment pathways). Absence of authorised evidence leaves
+        estimates unchanged — correct silence. Estimated Mastery remains a defined
+        educational construct (EL-007) but is not a Version 1 student-facing state.
+
+        Ownership invariants enforced here:
+        - Student confidence is ignored in the mastery formula (EL-005 / IV.10).
+        - Study Progress (``completed``) is never written (EL-001 / FINDING-001).
+        - Mission completion, time spent, revision count alone never write
+          estimates (EL-004 / EL-006 / EL-007 / FINDING-003).
 
         Args:
             user_id: The ID of the user.
             topic_id: The ID of the topic.
 
         Returns:
-            TopicProgress: The updated progress record.
+            TopicProgress: Progress record; estimate fields updated only when
+            authorised evidence is present.
         """
         from app.services.curriculum_service import CurriculumService
+        from app.services.educational_evidence_authority import (
+            EducationalEvidenceAuthority,
+        )
 
         progress = CurriculumService.get_or_create_topic_progress(
             user_id=user_id,
             topic_id=topic_id,
         )
 
-        # Gather all study attempts for this topic
         attempts = StudyAttempt.query.filter_by(
             user_id=user_id,
             topic_id=topic_id,
         ).order_by(StudyAttempt.study_date.asc()).all()
 
-        # Count unresolved mistakes
+        accuracies = EducationalEvidenceAuthority.collect_authorised_accuracies(
+            attempts
+        )
+
+        # EIP-002: no authorised Educational Evidence ⇒ leave Twin estimates alone.
+        if not accuracies:
+            logger.info(
+                "No authorised Educational Evidence for user=%d topic=%d; "
+                "leaving Estimated Knowledge/Mastery unchanged",
+                user_id,
+                topic_id,
+            )
+            return progress
+
         unresolved_mistakes = Mistake.query.join(StudyAttempt).filter(
             StudyAttempt.user_id == user_id,
             Mistake.topic_id == topic_id,
             Mistake.resolved == False,
         ).count()
 
-        # Calculate average accuracy
-        accuracies = [
-            a.get_accuracy_percentage()
-            for a in attempts
-            if a.get_accuracy_percentage() is not None
-        ]
-        avg_accuracy = (sum(accuracies) / len(accuracies)) if accuracies else None
+        avg_accuracy = sum(accuracies) / len(accuracies)
 
-        # Calculate average numeric confidence
+        # Soft confidence average for display only — never formula input,
+        # never Educational Evidence of understanding (EIP-002).
         confidence_after_values = [
             AdaptiveLearningService.get_confidence_numeric(a.confidence_after)
             for a in attempts
-            if a.confidence_after and AdaptiveLearningService.get_confidence_numeric(a.confidence_after) is not None
+            if a.confidence_after
+            and AdaptiveLearningService.get_confidence_numeric(a.confidence_after)
+            is not None
         ]
         avg_confidence = (
             (sum(confidence_after_values) / len(confidence_after_values))
@@ -225,39 +248,49 @@ class AdaptiveLearningService:
             else None
         )
 
-        # Calculate mastery score
         mastery_score = AdaptiveLearningService.calculate_mastery_score(
             accuracy=avg_accuracy,
-            confidence_numeric=avg_confidence,
+            confidence_numeric=None,
             revision_count=progress.revision_count,
             unresolved_mistakes=unresolved_mistakes,
         )
 
-        # Determine stage
         current_stage = AdaptiveLearningService.determine_stage(mastery_score)
+        # EL-007 / FINDING-007: Mastered-stage language requires accumulation.
+        if (
+            current_stage == TopicProgress.STAGE_MASTERED
+            and not EducationalEvidenceAuthority.may_assign_high_mastery_stage(
+                len(accuracies)
+            )
+        ):
+            current_stage = TopicProgress.STAGE_PRACTISING
 
-        # Schedule next review
         next_review = AdaptiveLearningService.schedule_next_review(
             mastery_score=mastery_score,
             last_reviewed=progress.last_reviewed,
         )
 
-        # Update progress record
+        # Twin-owned estimate fields only — never Study Progress (EIP-001).
         progress.mastery_score = round(mastery_score, 1)
-        progress.average_accuracy = round(avg_accuracy, 1) if avg_accuracy is not None else None
-        progress.average_confidence = round(avg_confidence, 1) if avg_confidence is not None else None
+        progress.average_accuracy = round(avg_accuracy, 1)
+        progress.average_confidence = (
+            round(avg_confidence, 1) if avg_confidence is not None else None
+        )
         progress.next_review_date = next_review
-        progress.current_stage = current_stage
-
-        # Auto-mark as completed if mastery is sufficient
-        if mastery_score >= 70 and not progress.completed:
-            progress.completed = True
+        if not progress.completed:
+            progress.current_stage = current_stage
 
         db.session.commit()
 
         logger.info(
-            "Mastery updated for user=%d topic=%d: score=%.1f stage=%s next_review=%s",
-            user_id, topic_id, mastery_score, current_stage, next_review,
+            "Mastery updated from authorised evidence for user=%d topic=%d: "
+            "score=%.1f stage=%s next_review=%s observations=%d",
+            user_id,
+            topic_id,
+            mastery_score,
+            current_stage,
+            next_review,
+            len(accuracies),
         )
 
         return progress

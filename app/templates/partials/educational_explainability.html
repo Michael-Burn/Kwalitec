@@ -1,0 +1,42 @@
+{# EIP-003 Educational Explainability — claim-type narrative block #}
+{% macro explainability_block(observed_facts=none, estimates=none, educational_advice=none, next_action=none, reason=none) %}
+<div class="educational-explainability" data-eip003-explainability="1">
+    {% if observed_facts %}
+    <div class="edu-claim edu-claim--observed mb-2">
+        <p class="edu-claim-label mb-1"><strong>Observed Facts</strong></p>
+        <ul class="small mb-0 ps-3">
+            {% for fact in observed_facts %}
+            <li>{{ fact }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% if estimates %}
+    <div class="edu-claim edu-claim--estimate mb-2">
+        <p class="edu-claim-label mb-1"><strong>Estimates</strong></p>
+        <ul class="small mb-0 ps-3">
+            {% for item in estimates %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% if educational_advice %}
+    <div class="edu-claim edu-claim--advice mb-2">
+        <p class="edu-claim-label mb-1"><strong>Educational Advice</strong></p>
+        <p class="small mb-0">{{ educational_advice }}</p>
+    </div>
+    {% elif reason %}
+    <div class="edu-claim edu-claim--advice mb-2">
+        <p class="edu-claim-label mb-1"><strong>Why</strong></p>
+        <p class="small mb-0">{{ reason }}</p>
+    </div>
+    {% endif %}
+    {% if next_action %}
+    <div class="edu-claim edu-claim--next">
+        <p class="edu-claim-label mb-1"><strong>Next step</strong></p>
+        <p class="small mb-0">{{ next_action }}</p>
+    </div>
+    {% endif %}
+</div>
+{% endmacro %}

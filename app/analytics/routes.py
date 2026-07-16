@@ -8,6 +8,9 @@ from flask import Blueprint, render_template
 from flask_login import current_user, login_required
 
 from app.services.analytics_service import AnalyticsService
+from app.services.educational_explainability_service import (
+    EducationalExplainabilityService,
+)
 from app.services.readiness_service import ReadinessService
 
 analytics_bp = Blueprint("analytics", __name__, url_prefix="/analytics")
@@ -21,13 +24,20 @@ def index():
 
     # Readiness
     readiness = ReadinessService.get_overall_readiness(user_id)
+    readiness_narrative = EducationalExplainabilityService.explain_composite_readiness(
+        readiness
+    )
     curriculum_coverage = ReadinessService.get_curriculum_coverage(user_id)
     review_backlog = ReadinessService.get_review_backlog(user_id)
     review_completion = ReadinessService.get_review_completion_rate(user_id)
     current_streak = ReadinessService.get_current_streak(user_id)
     longest_streak = ReadinessService.get_longest_streak(user_id)
-    weakest_topics = ReadinessService.get_weakest_topics(user_id, limit=5)
-    strongest_topics = ReadinessService.get_strongest_topics(user_id, limit=5)
+    weakest_topics = EducationalExplainabilityService.enrich_topic_rows(
+        ReadinessService.get_weakest_topics(user_id, limit=5)
+    )
+    strongest_topics = EducationalExplainabilityService.enrich_topic_rows(
+        ReadinessService.get_strongest_topics(user_id, limit=5)
+    )
 
     # Time-series analytics
     readiness_trend = AnalyticsService.get_readiness_over_time(user_id, weeks=12)
@@ -55,6 +65,7 @@ def index():
         "analytics/index.html",
         title="Analytics",
         readiness=readiness,
+        readiness_narrative=readiness_narrative,
         curriculum_coverage=curriculum_coverage,
         review_backlog=review_backlog,
         review_completion=review_completion,

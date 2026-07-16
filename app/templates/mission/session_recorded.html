@@ -1,0 +1,74 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<section class="section-header">
+    <p class="section-eyebrow">Study Session</p>
+    <h1 class="section-title">Study Session Feedback</h1>
+    <p class="section-description">{{ session_context.topic_title }}</p>
+</section>
+
+<section class="mission-hero mb-4">
+    <div class="mission-hero-card">
+        <div class="mission-hero-header">
+            <span class="badge rounded-pill fs-6 px-3 py-2 {% if mission.status == 'Completed' %}text-bg-success{% else %}text-bg-warning{% endif %}">
+                {{ mission.status }}
+            </span>
+        </div>
+
+        <div class="study-session-feedback" data-lxp004-feedback="{{ session_feedback.scenario }}">
+            <div class="mission-hero-tasks mb-4">
+                <h2 class="h6 mb-2">What happened today?</h2>
+                <ul class="small mb-0 ps-3">
+                    {% for line in session_feedback.what_happened %}
+                    <li>{{ line }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="mission-hero-tasks mb-4">
+                <h2 class="h6 mb-2">What did Kwalitec observe?</h2>
+                <ul class="small mb-0 ps-3">
+                    {% for line in session_feedback.what_observed %}
+                    <li>{{ line }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="mission-hero-tasks mb-4">
+                <h2 class="h6 mb-2">What can Kwalitec honestly conclude?</h2>
+                <ul class="small mb-0 ps-3">
+                    {% for line in session_feedback.honest_conclusions %}
+                    <li>{{ line }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="mission-hero-why">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink: 0;" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+                </svg>
+                <div>
+                    <span class="mission-hero-why-label">What happens next?</span>
+                    <p class="mission-hero-why-text mb-0">{{ session_feedback.what_next }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mission-hero-action d-flex flex-column gap-2" data-rip001-invite="1">
+            <p class="small text-muted mb-1 px-1">
+                Optional next step: a short Product Check-in about using Kwalitec today — not about your learning.
+            </p>
+            <a class="btn btn-mark-complete w-100"
+               href="{{ url_for('research.checkin', source='study_session', mission_id=mission.id) }}">
+                Continue
+            </a>
+            <a class="btn btn-outline-secondary w-100" href="{{ url_for('dashboard.index') }}">
+                Return to Dashboard
+            </a>
+            <a class="btn btn-outline-secondary mx-4 mb-4" href="{{ url_for('mission.missions') }}">
+                Back to Today's Study Session
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

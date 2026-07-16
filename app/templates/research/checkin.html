@@ -1,0 +1,169 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<section class="section-header">
+    <p class="section-eyebrow">Product Research</p>
+    <h1 class="section-title">Daily Reflection &amp; Product Check-in</h1>
+    <p class="section-description">
+        Optional — about 30 seconds. Your answers help improve Kwalitec.
+        This is about the product, not your learning.
+    </p>
+</section>
+
+<section class="mission-hero mb-4">
+    <div class="mission-hero-card">
+        <form method="POST" action="{{ url_for('research.checkin') }}" class="research-checkin-form" data-rip001-checkin="1">
+            {{ form.hidden_tag() }}
+            {{ form.submission_source() }}
+            {{ form.mission_id() }}
+            {{ form.study_plan_id() }}
+
+            <div class="mission-hero-tasks mb-4">
+                <h2 class="h6 mb-3">{{ form.experience_rating.label.text }}</h2>
+                <div class="d-flex flex-wrap gap-2" role="group" aria-label="{{ form.experience_rating.label.text }}">
+                    {% for value, label in form.experience_rating.choices %}
+                    <label class="btn btn-outline-secondary research-choice">
+                        <input type="radio" name="experience_rating" value="{{ value }}"
+                               {% if form.experience_rating.data == value %}checked{% endif %} required>
+                        {{ label }}
+                    </label>
+                    {% endfor %}
+                </div>
+                {% for error in form.experience_rating.errors %}
+                <div class="text-danger small mt-2">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="mission-hero-tasks mb-4">
+                <h2 class="h6 mb-3">{{ form.feature_helped_most.label.text }}</h2>
+                <div class="d-flex flex-wrap gap-2" role="group" aria-label="{{ form.feature_helped_most.label.text }}">
+                    {% for value, label in form.feature_helped_most.choices %}
+                    <label class="btn btn-outline-secondary research-choice">
+                        <input type="radio" name="feature_helped_most" value="{{ value }}"
+                               {% if form.feature_helped_most.data == value %}checked{% endif %} required>
+                        {{ label }}
+                    </label>
+                    {% endfor %}
+                </div>
+                {% for error in form.feature_helped_most.errors %}
+                <div class="text-danger small mt-2">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="mission-hero-tasks mb-4">
+                <h2 class="h6 mb-3">{{ form.friction_area.label.text }}</h2>
+                <div class="d-flex flex-wrap gap-2" role="group" aria-label="{{ form.friction_area.label.text }}">
+                    {% for value, label in form.friction_area.choices %}
+                    <label class="btn btn-outline-secondary research-choice">
+                        <input type="radio" name="friction_area" value="{{ value }}"
+                               {% if form.friction_area.data == value %}checked{% endif %} required>
+                        {{ label }}
+                    </label>
+                    {% endfor %}
+                </div>
+                {% for error in form.friction_area.errors %}
+                <div class="text-danger small mt-2">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="mission-hero-tasks mb-4">
+                <h2 class="h6 mb-3">{{ form.confidence_rating.label.text }}</h2>
+                <div class="d-flex flex-wrap gap-2" role="group" aria-label="{{ form.confidence_rating.label.text }}">
+                    {% for value, label in form.confidence_rating.choices %}
+                    <label class="btn btn-outline-secondary research-choice">
+                        <input type="radio" name="confidence_rating" value="{{ value }}"
+                               {% if form.confidence_rating.data == value %}checked{% endif %} required>
+                        {{ label }}
+                    </label>
+                    {% endfor %}
+                </div>
+                {% for error in form.confidence_rating.errors %}
+                <div class="text-danger small mt-2">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="mission-hero-tasks mb-4">
+                <h2 class="h6 mb-3">{{ form.return_intent.label.text }}</h2>
+                <div class="d-flex flex-wrap gap-2" role="group" aria-label="{{ form.return_intent.label.text }}">
+                    {% for value, label in form.return_intent.choices %}
+                    <label class="btn btn-outline-secondary research-choice">
+                        <input type="radio" name="return_intent" value="{{ value }}"
+                               {% if form.return_intent.data == value %}checked{% endif %} required>
+                        {{ label }}
+                    </label>
+                    {% endfor %}
+                </div>
+                {% for error in form.return_intent.errors %}
+                <div class="text-danger small mt-2">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="mission-hero-tasks mb-4">
+                <h2 class="h6 mb-2">{{ form.free_text.label.text }}</h2>
+                <p class="small text-muted mb-2">Optional — max 300 characters.</p>
+                {{ form.free_text(class="form-control", id="rip001-free-text") }}
+                {% for error in form.free_text.errors %}
+                <div class="text-danger small mt-2">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="mission-hero-tasks mb-4" id="rip001-classification" hidden>
+                <h2 class="h6 mb-3">{{ form.classification.label.text }}</h2>
+                <div class="d-flex flex-wrap gap-2" role="group" aria-label="{{ form.classification.label.text }}">
+                    {% for value, label in form.classification.choices %}
+                    <label class="btn btn-outline-secondary research-choice">
+                        <input type="radio" name="classification" value="{{ value }}"
+                               {% if form.classification.data == value %}checked{% endif %}>
+                        {{ label }}
+                    </label>
+                    {% endfor %}
+                </div>
+                {% for error in form.classification.errors %}
+                <div class="text-danger small mt-2">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="mission-hero-action d-flex flex-column gap-2">
+                <button type="submit" class="btn btn-mark-complete w-100">
+                    Submit Check-in
+                </button>
+                <a class="btn btn-outline-secondary mx-4 mb-4" href="{{ url_for('research.dismiss') }}">
+                    Not now
+                </a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+(function () {
+    var text = document.getElementById("rip001-free-text");
+    var box = document.getElementById("rip001-classification");
+    if (!text || !box) return;
+    function sync() {
+        var hasText = (text.value || "").trim().length > 0;
+        box.hidden = !hasText;
+    }
+    text.addEventListener("input", sync);
+    sync();
+})();
+</script>
+<style>
+.research-choice {
+    cursor: pointer;
+    user-select: none;
+}
+.research-choice input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+.research-choice:has(input:checked) {
+    background-color: var(--bs-secondary);
+    color: #fff;
+    border-color: var(--bs-secondary);
+}
+</style>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<section class="section-header">
+    <p class="section-eyebrow">Founder</p>
+    <h1 class="section-title">Review Feedback</h1>
+    <p class="section-description">
+        Mark submission #{{ submission_id }}. Only Implemented contributes toward Product Shaper.
+    </p>
+</section>
+
+<section class="mission-hero mb-4">
+    <div class="mission-hero-card">
+        <form method="post"
+              action="{{ url_for('research.founder_review_submission', submission_id=submission_id) }}"
+              data-rip002-founder-review="1">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="helpful" name="helpful" value="y">
+                <label class="form-check-label" for="helpful">Helpful</label>
+            </div>
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="insightful" name="insightful" value="y">
+                <label class="form-check-label" for="insightful">Insightful</label>
+            </div>
+            <div class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" id="implemented" name="implemented" value="y">
+                <label class="form-check-label" for="implemented">Implemented</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save Review</button>
+            <a class="btn btn-outline ms-2" href="{{ url_for('research.founder_command_centre', submission=submission_id) }}">Cancel</a>
+        </form>
+    </div>
+</section>
+{% endblock %}

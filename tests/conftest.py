@@ -204,6 +204,7 @@ def _make_topic_progress(uid, tid):
         user_id=uid, topic_id=tid, mastery_score=75.0,
         current_stage=TopicProgress.STAGE_PRACTISING,
         revision_count=3,
+        average_accuracy=70.0,
         next_review_date=date.today() + timedelta(days=7),
         completed=False,
     )

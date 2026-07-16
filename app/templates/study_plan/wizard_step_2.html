@@ -1,12 +1,16 @@
 {% extends "study_plan/wizard_base.html" %}
 
 {% set wizard_question = "What paper or subject are you studying?" %}
-{% set wizard_helper = "Different papers have different syllabi. Tell us which one you're sitting so we can build the right plan." %}
+{% set wizard_helper = "Each paper shows whether Kwalitec can build a full study plan for it. Only Supported papers can continue." %}
 {% set button_text = "Next" %}
 
 {% block form_content %}
 <form id="wizard-form" method="post" novalidate>
     {{ form.hidden_tag() }}
+
+    {% if support_gate %}
+    {% include "partials/subject_support_gate.html" %}
+    {% endif %}
 
     {% if category.free_text_subject %}
     <div class="wizard-field-group">
@@ -17,7 +21,7 @@
         </div>
         {% endif %}
         {{ form.free_text_subject(class="form-control", placeholder="e.g., Actuarial Science") }}
-        <small class="wizard-field-hint">Enter the name of your subject or module.</small>
+        <small class="wizard-field-hint">Custom subjects are not available for full study plans in Version 1.</small>
     </div>
     {% else %}
     {% if form.exam_paper.errors %}
@@ -26,10 +30,13 @@
     </div>
     {% endif %}
     <div class="wizard-option-grid">
-        {% for subfield in form.exam_paper %}
-        {% if subfield.type != 'CSRFTokenField' %}
-        <label class="wizard-option-card" for="{{ subfield.id }}">
-            {{ subfield(class="wizard-option-input") }}
+        {% for paper in category.papers %}
+        {% set support = paper_support.get(paper.code) %}
+        <label class="wizard-option-card {% if support and not support.allows_plan_creation %}wizard-option-card--limited{% endif %}"
+               for="exam_paper-{{ loop.index0 }}">
+            <input type="radio" name="exam_paper" id="exam_paper-{{ loop.index0 }}"
+                   value="{{ paper.code }}" class="wizard-option-input"
+                   {% if form.exam_paper.data == paper.code %}checked{% endif %}>
             <div class="wizard-option-body">
                 <div class="wizard-option-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -37,11 +44,18 @@
                     </svg>
                 </div>
                 <div class="wizard-option-text">
-                    <div class="wizard-option-title">{{ subfield.label.text }}</div>
+                    <div class="wizard-option-title-row">
+                        <div class="wizard-option-title">{{ paper.name }}</div>
+                        {% if support %}
+                        <span class="support-status-badge support-status-badge--{{ support.status.value }}">{{ support.label }}</span>
+                        {% endif %}
+                    </div>
+                    {% if paper.description %}
+                    <div class="wizard-option-desc">{{ paper.description }}</div>
+                    {% endif %}
                 </div>
             </div>
         </label>
-        {% endif %}
         {% endfor %}
     </div>
     {% endif %}

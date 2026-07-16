@@ -44,10 +44,10 @@ _FAMILY_SUBTITLE: dict[ActionFamily, str] = {
 }
 
 _FAMILY_PRIMARY_ACTION: dict[ActionFamily, str] = {
-    ActionFamily.STUDY: "Start Today's Session",
+    ActionFamily.STUDY: "Start Study Session",
     ActionFamily.REVISE: "Continue Studying",
-    ActionFamily.ASSESS: "Start Today's Session",
-    ActionFamily.DIAGNOSTIC: "Start Today's Session",
+    ActionFamily.ASSESS: "Start Study Session",
+    ActionFamily.DIAGNOSTIC: "Start Study Session",
     ActionFamily.REST_PROTECT_INTENSITY: "Take a Lighter Session",
 }
 
@@ -67,6 +67,11 @@ class RecommendationCardViewModel:
     warning: str | None
     show_explanation: bool
     show_start_button: bool
+    # EIP-003 claim-type fields (presentation only)
+    observed_facts: tuple[str, ...] = ()
+    estimates: tuple[str, ...] = ()
+    educational_advice: str | None = None
+    next_action: str | None = None
 
 
 class RecommendationCardBuilder:
@@ -102,15 +107,20 @@ class RecommendationCardBuilder:
             experience_warnings=experience.warnings,
             recommendation=recommendation,
         )
+        narrative = _claim_narrative(recommendation)
         return RecommendationCardViewModel(
             title=_title(recommendation),
             subtitle=_subtitle(recommendation),
             primary_action=_primary_action(recommendation),
             estimated_duration=_estimated_duration(recommendation),
-            reason_summary=_reason_summary(recommendation),
+            reason_summary=narrative["reason_summary"],
             warning=warning,
             show_explanation=_show_explanation(experience),
             show_start_button=_show_start_button(recommendation),
+            observed_facts=narrative["observed_facts"],
+            estimates=narrative["estimates"],
+            educational_advice=narrative["educational_advice"],
+            next_action=narrative["next_action"],
         )
 
 
@@ -151,31 +161,108 @@ def _estimated_duration(recommendation: Recommendation) -> str | None:
 
 _STUDENT_REASON_BY_FAMILY: dict[ActionFamily, str] = {
     ActionFamily.STUDY: (
-        "Based on your recent progress, this is the most useful next topic "
-        "on your study plan."
+        "Suggested: continue with the next useful topic on your study plan. "
+        "This coaching supports Learning Mode — it does not replace Today's Study Session."
     ),
     ActionFamily.REVISE: (
-        "Based on your recent study activity, revisiting this material will "
-        "strengthen what you have already started."
+        "Suggested: revisit material you have already started so it stays fresher. "
+        "Optional review advice does not replace Today's Study Session."
     ),
     ActionFamily.ASSESS: (
-        "Based on your recent progress, a short practice check will clarify "
-        "what to focus on next."
+        "Suggested: a short practice check to clarify what still needs work. "
+        "Checks inform estimates — they do not certify mastery by themselves."
     ),
     ActionFamily.DIAGNOSTIC: (
-        "You've completed valuable study activities. A short check now will "
-        "help identify the most useful next step."
+        "Suggested: a short check to identify the most useful next study step. "
+        "This is advisory guidance alongside your study plan."
     ),
     ActionFamily.REST_PROTECT_INTENSITY: (
-        "Based on your recent study load, a lighter day today supports "
-        "steady, sustainable progress."
+        "Suggested: a lighter day today to support steady, sustainable progress. "
+        "Based on recent study load patterns — not a prediction of burnout."
     ),
 }
 
 _DEFAULT_STUDENT_REASON = (
-    "Based on your recent progress, this is the most useful next step "
-    "on your study plan."
+    "Suggested: take the most useful next step on your study plan. "
+    "This is educational advice — Today's Study Session still follows Learning Mode."
 )
+
+_OBSERVED_BY_FAMILY: dict[ActionFamily, str] = {
+    ActionFamily.STUDY: (
+        "You have an active study plan guiding syllabus order in Learning Mode."
+    ),
+    ActionFamily.REVISE: (
+        "You have already started material that can benefit from another pass."
+    ),
+    ActionFamily.ASSESS: (
+        "You have completed recent study activity that a short check can build on."
+    ),
+    ActionFamily.DIAGNOSTIC: (
+        "You have completed valuable study activities on your active plan."
+    ),
+    ActionFamily.REST_PROTECT_INTENSITY: (
+        "Recent study activity shows a heavier load than usual."
+    ),
+}
+
+_ESTIMATE_BY_FAMILY: dict[ActionFamily, str] = {
+    ActionFamily.STUDY: (
+        "Estimated: continuing syllabus order is currently the most useful focus."
+    ),
+    ActionFamily.REVISE: (
+        "Estimated: revisiting started material will strengthen what you retain."
+    ),
+    ActionFamily.ASSESS: (
+        "Estimated: a practice check will clarify what to practise next."
+    ),
+    ActionFamily.DIAGNOSTIC: (
+        "Estimated: a short diagnostic check will identify the next useful step."
+    ),
+    ActionFamily.REST_PROTECT_INTENSITY: (
+        "Estimated: a lighter day supports lasting progress more than pushing harder."
+    ),
+}
+
+_NEXT_BY_FAMILY: dict[ActionFamily, str] = {
+    ActionFamily.STUDY: (
+        "Open Today's Study Session to continue your Current Learning Topic."
+    ),
+    ActionFamily.REVISE: (
+        "Continue studying today; treat review as optional coaching."
+    ),
+    ActionFamily.ASSESS: (
+        "Start today's session, then use a short practice check if useful."
+    ),
+    ActionFamily.DIAGNOSTIC: (
+        "Start today's session and complete the suggested short check."
+    ),
+    ActionFamily.REST_PROTECT_INTENSITY: (
+        "Choose a lighter session or rest, then return tomorrow."
+    ),
+}
+
+
+def _claim_narrative(recommendation: Recommendation) -> dict[str, object]:
+    """EIP-003 claim types for the Recommendation card (educational speech only)."""
+    family = recommendation.suggestion.family
+    reason = _STUDENT_REASON_BY_FAMILY.get(family, _DEFAULT_STUDENT_REASON)
+    observed = _OBSERVED_BY_FAMILY.get(
+        family,
+        "Your active study plan guides today's educational focus.",
+    )
+    estimate = _ESTIMATE_BY_FAMILY.get(family)
+    next_action = _NEXT_BY_FAMILY.get(
+        family,
+        "Open Today's Study Session to take the next clear step.",
+    )
+    estimates: tuple[str, ...] = (estimate,) if estimate else ()
+    return {
+        "reason_summary": reason,
+        "observed_facts": (observed,),
+        "estimates": estimates,
+        "educational_advice": reason,
+        "next_action": next_action,
+    }
 
 
 def _reason_summary(recommendation: Recommendation) -> str | None:

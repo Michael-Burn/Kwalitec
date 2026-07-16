@@ -5,9 +5,9 @@ from urllib.parse import urlsplit
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_user, logout_user
 
+from app.application.config.internal_alpha import is_internal_alpha_enabled
 from app.auth.forms import LoginForm
 from app.models import User
-
 
 auth_bp = Blueprint("auth", __name__, url_prefix="/auth")
 
@@ -27,20 +27,26 @@ def login():
         if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
             flash("Welcome back to Kwalitec.", "success")
-            
+
             # Check if user has an active study plan
             from app.services.study_plan_service import StudyPlanService
             active_plan = StudyPlanService.get_user_active_plan(user.id)
-            
+
             if not active_plan:
                 # Redirect to study plan wizard if no active plan
                 return redirect(url_for("study_plan.wizard_step", step=1))
-            
+
             return redirect(_safe_next_url() or url_for("dashboard.index"))
 
         flash("Invalid email or password.", "danger")
 
-    return render_template("auth/login.html", form=form, title="Sign in", is_redirected=is_redirected)
+    return render_template(
+        "auth/login.html",
+        form=form,
+        title="Sign in",
+        is_redirected=is_redirected,
+        internal_alpha_enabled=is_internal_alpha_enabled(),
+    )
 
 
 @auth_bp.post("/logout")

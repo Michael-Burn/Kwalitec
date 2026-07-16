@@ -224,6 +224,15 @@ button.btn:hover,
     flex: 1;
 }
 
+.app-footer {
+    text-align: center;
+    padding: var(--space-md) var(--space-xl);
+    color: var(--color-text-muted);
+    font-size: var(--font-sm);
+    border-top: 1px solid var(--color-border-light);
+    background: var(--color-surface);
+}
+
 /* ── Sidebar ─────────────────────────────────────────────────────────── */
 .sidebar {
     background: var(--color-chrome);
@@ -1006,6 +1015,29 @@ a.btn-ghost:focus {
     padding: var(--space-md) var(--space-lg);
 }
 
+/* Internal Alpha onboarding note (invite-only guidance) */
+.landing-onboarding-note {
+    background: var(--color-info-bg);
+    border: 1px solid rgba(37, 99, 235, 0.15);
+    border-radius: var(--radius-md);
+    margin-top: var(--space-2xl);
+    padding: var(--space-lg);
+}
+
+.landing-onboarding-title {
+    color: var(--color-text-primary);
+    font-size: 15px;
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-sm);
+}
+
+.landing-onboarding-text {
+    color: var(--color-text-secondary);
+    font-size: 14px;
+    line-height: var(--line-height-normal);
+    margin-bottom: var(--space-md);
+}
+
 /* ── Error Pages (public) ─────────────────────────────────────────────── */
 .error-page {
     flex: 1;
@@ -1574,7 +1606,7 @@ a.btn-ghost:focus {
     /* shared with existing styles */
 }
 
-/* Mark Complete button — actionable when enabled; muted while waiting on tasks */
+/* Mark Complete / Start Study Session CTA */
 .btn-mark-complete {
     align-items: center;
     background: var(--primary);
@@ -1591,10 +1623,17 @@ a.btn-ghost:focus {
     margin: 0 var(--space-xl) var(--space-xl);
     opacity: 1;
     padding: var(--space-md) var(--space-xl);
+    text-decoration: none;
     transform: none;
     transition: background-color var(--transition-base),
                 box-shadow var(--transition-base),
                 opacity var(--transition-base);
+}
+
+a.btn-mark-complete:hover,
+a.btn-mark-complete:focus-visible {
+    color: var(--on-primary);
+    text-decoration: none;
 }
 
 .btn-mark-complete:hover:not(:disabled),

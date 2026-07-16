@@ -24,6 +24,9 @@ from app.services.curriculum_engine_service import (
     CurriculumEngineService,
     StudentCurriculumSummary,
 )
+from app.services.educational_explainability_service import (
+    EducationalExplainabilityService,
+)
 from app.services.educational_kpi_status import EducationalKpiStatusService
 from app.services.exam_timeline import ExamTimeline
 from app.services.mission_optimizer import MissionOptimizer
@@ -144,12 +147,16 @@ def index():
         "review_backlog", ReadinessService.get_review_backlog, user_id
     )
 
-    # Topic highlights (only 3 each)
-    weakest_topics = _timed_call(
-        "weakest_topics", ReadinessService.get_weakest_topics, user_id, 3
+    # Topic highlights (only 3 each) — student-safe stage labels (EIP-003)
+    weakest_topics = EducationalExplainabilityService.enrich_topic_rows(
+        _timed_call(
+            "weakest_topics", ReadinessService.get_weakest_topics, user_id, 3
+        )
     )
-    strongest_topics = _timed_call(
-        "strongest_topics", ReadinessService.get_strongest_topics, user_id, 3
+    strongest_topics = EducationalExplainabilityService.enrich_topic_rows(
+        _timed_call(
+            "strongest_topics", ReadinessService.get_strongest_topics, user_id, 3
+        )
     )
 
     # Educational Intelligence (Stage A / Internal Alpha) — Application only.
@@ -184,6 +191,14 @@ def index():
             RecommendationService.generate_recommendations,
             user_id,
             5,
+        )
+        if today_recommendation:
+            enriched_today = EducationalExplainabilityService.enrich_recommendations(
+                [today_recommendation]
+            )
+            today_recommendation = enriched_today[0] if enriched_today else None
+        all_recommendations = EducationalExplainabilityService.enrich_recommendations(
+            all_recommendations
         )
 
     # Optional / heavier widgets
@@ -267,6 +282,38 @@ def index():
     study_tip = StudyTipsService.tip_for_day()
     show_welcome = WelcomeService.should_show(current_user)
 
+    # EIP-003 readiness narratives (communication only — no score redesign)
+    readiness_narrative = EducationalExplainabilityService.explain_composite_readiness(
+        readiness
+    )
+    coverage_narrative = None
+    if readiness_summary is not None:
+        coverage_narrative = (
+            EducationalExplainabilityService.explain_coverage_readiness(
+                readiness_percentage=readiness_summary.readiness_percentage,
+                explanation=readiness_summary.explanation,
+            )
+        )
+
+    mission_narrative = None
+    if today_mission is not None:
+        syllabus_pct = None
+        completed_topics = None
+        total_topics = None
+        if curriculum_summary is not None:
+            completed_topics = getattr(curriculum_summary, "completed_topics", None)
+            total_topics = getattr(curriculum_summary, "total_topics", None)
+        if readiness_summary is not None:
+            syllabus_pct = readiness_summary.readiness_percentage * 100
+        mission_narrative = EducationalExplainabilityService.build_mission_narrative(
+            mission_title=today_mission.title,
+            mission_status=today_mission.status,
+            exam_name=active_study_plan.exam_name if active_study_plan else None,
+            completed_topics=completed_topics,
+            total_topics=total_topics,
+            syllabus_coverage_pct=syllabus_pct,
+        )
+
     return render_template(
         "dashboard/index.html",
         title="Dashboard",
@@ -275,6 +322,9 @@ def index():
         learning_snapshot=learning_snapshot or {},
         daily_briefing=daily_briefing or "",
         readiness=readiness or {},
+        readiness_narrative=readiness_narrative,
+        coverage_narrative=coverage_narrative,
+        mission_narrative=mission_narrative,
         review_backlog=review_backlog or {},
         weakest_topics=weakest_topics or [],
         strongest_topics=strongest_topics or [],

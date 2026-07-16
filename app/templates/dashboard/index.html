@@ -1,11 +1,19 @@
 {% extends "layouts/base.html" %}
 
 {% block content %}
+{# PTP-004 Information Architecture — decision order, not visual redesign.
+   1. Today's Study Session
+   2. Progress through Study Plan
+   3. Estimated Knowledge
+   4. Recommendations / Attention
+   5. Secondary exploration
+#}
+
 {# ── Page Header ─────────────────────────────────────────────────────── #}
 <section class="section-header">
     <p class="section-eyebrow">Today</p>
     <h1 class="section-title">Dashboard</h1>
-    <p class="section-description">Your personalised study overview — start with today's recommendation.</p>
+    <p class="section-description">What to study, whether you are on track, and whether anything needs attention.</p>
 </section>
 
 {% if not active_study_plan %}
@@ -19,46 +27,333 @@
 </section>
 {% endif %}
 
-{# ── Daily Briefing ──────────────────────────────────────────────────── #}
-{% if daily_briefing %}
-<section class="card border-0 mb-4 briefing-card">
-    <div class="card-body py-3">
-        <div class="d-flex align-items-start gap-3">
-            <svg width="20" height="20" fill="none" stroke="var(--info)" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-            </svg>
-            <div>
-                <div class="fw-semibold mb-1" style="color: var(--info);">Daily Briefing</div>
-                <p class="mb-0">{{ daily_briefing }}</p>
+{# ══════════════════════════════════════════════════════════════════════
+   1. PRIMARY — Today's Study Session
+   ══════════════════════════════════════════════════════════════════════ #}
+<section class="mb-4" aria-label="Today's Study Session" data-ptp004-slot="primary-session">
+    <div class="command-card">
+        <div class="command-card-header">
+            <div class="command-card-icon" style="background: var(--color-success-bg); color: var(--color-success);">
+                <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                </svg>
             </div>
+            <h2 class="command-card-title">Today's Study Session</h2>
+            {% if today_mission %}
+            <span class="badge rounded-pill ms-auto {% if today_mission.status == 'Completed' %}text-bg-success{% elif today_mission.status == 'In Progress' %}text-bg-warning{% else %}text-bg-secondary{% endif %}">
+                {{ today_mission.status }}
+            </span>
+            {% endif %}
+        </div>
+        {% if today_mission %}
+        <div class="command-card-body">
+            <div class="command-metric">
+                <span class="command-metric-label">Today's Topic</span>
+                <span class="command-metric-value">{{ today_mission.title }}</span>
+            </div>
+            {% if mission_narrative %}
+            <p class="small text-muted mb-0 mt-2">{{ mission_narrative.reason_for_selection }}</p>
+            <p class="small mb-0 mt-1"><strong>Next step:</strong> {{ mission_narrative.next_action }}</p>
+            {% endif %}
+            {% if active_study_plan %}
+            <div class="command-metric mt-2">
+                <span class="command-metric-label">Study Plan</span>
+                <span class="command-metric-value" style="font-size: 0.85rem;">{{ active_study_plan.exam_name }}</span>
+            </div>
+            {% endif %}
+            <a href="{{ url_for('mission.missions') }}" class="btn btn-primary w-100 mt-3" data-ptp004-cta="primary">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="me-2" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                </svg>
+                {% if today_mission.status == 'In Progress' %}
+                    Resume Study Session
+                {% elif today_mission.status == 'Completed' %}
+                    Review Today's Study Session
+                {% else %}
+                    Start Study Session
+                {% endif %}
+            </a>
+        </div>
+        {% elif active_study_plan %}
+        <div class="command-card-body">
+            <div class="empty-state py-3">
+                <p class="text-muted small mb-0">Today's study session will appear here once available.</p>
+                <a href="{{ url_for('mission.missions') }}" class="btn btn-primary mt-3" data-ptp004-cta="primary">Open Today's Study Session</a>
+            </div>
+        </div>
+        {% else %}
+        <div class="command-card-body">
+            <div class="empty-state py-3">
+                <p class="text-muted small mb-0">Today's study session will appear here once your study plan is ready.</p>
+                <a href="{{ url_for('study_plan.wizard_step', step=1) }}" class="btn btn-sm btn-primary mt-3">Create Study Plan</a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{# ══════════════════════════════════════════════════════════════════════
+   2 + 3. Progress through Study Plan · Estimated Knowledge
+   ══════════════════════════════════════════════════════════════════════ #}
+<section class="row g-4 mb-4" aria-label="Progress and Estimated Knowledge">
+
+    {# ── 2. Progress through Study Plan (single authoritative coverage story) #}
+    <div class="col-12 col-lg-6" data-ptp004-slot="progress">
+        <div class="command-card h-100">
+            <div class="command-card-header">
+                <div class="command-card-icon" style="background: var(--color-success-bg); color: var(--color-success);">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                    </svg>
+                </div>
+                <h2 class="command-card-title">Progress through Study Plan</h2>
+            </div>
+            {% if readiness_summary %}
+            <div class="command-card-body">
+                <div class="d-flex align-items-end gap-3 mb-3">
+                    <span class="command-hero-value" style="color: var(--color-brand);" data-ptp004-metric="syllabus-coverage">{{ (readiness_summary.readiness_percentage * 100)|int }}%</span>
+                    <span class="command-hero-label" style="margin-bottom: 4px;">Syllabus coverage</span>
+                </div>
+                <div class="progress" role="progressbar" aria-valuenow="{{ (readiness_summary.readiness_percentage * 100)|int }}" aria-valuemin="0" aria-valuemax="100" style="height: 10px;">
+                    <div class="progress-bar" style="width: {{ (readiness_summary.readiness_percentage * 100)|int }}%; background: var(--color-brand);"></div>
+                </div>
+                {% if curriculum_summary %}
+                <p class="small mt-3 mb-1" style="color: var(--color-text-secondary);">
+                    {{ curriculum_summary.completed_topics }} completed studying · {{ curriculum_summary.remaining_topics }} remaining
+                </p>
+                {% endif %}
+                {% if coverage_narrative %}
+                <p class="small mb-1" style="color: var(--color-text-secondary);">{{ coverage_narrative.explanation }}</p>
+                <p class="small mb-0 text-muted">{{ coverage_narrative.evidence_basis }}</p>
+                {% else %}
+                <p class="small mt-2 mb-0 text-muted">{{ readiness_summary.explanation }}</p>
+                {% endif %}
+            </div>
+            {% elif curriculum_summary %}
+            <div class="command-card-body">
+                <div class="d-flex align-items-end gap-3 mb-3">
+                    <span class="command-hero-value" style="color: var(--color-brand);" data-ptp004-metric="syllabus-coverage">{{ (curriculum_summary.weighted_completed_percentage * 100)|int }}%</span>
+                    <span class="command-hero-label" style="margin-bottom: 4px;">Syllabus coverage</span>
+                </div>
+                <div class="progress" role="progressbar" aria-valuenow="{{ (curriculum_summary.weighted_completed_percentage * 100)|int }}" aria-valuemin="0" aria-valuemax="100" style="height: 10px;">
+                    <div class="progress-bar" style="width: {{ (curriculum_summary.weighted_completed_percentage * 100)|int }}%; background: var(--color-brand);"></div>
+                </div>
+                <p class="small mt-3 mb-1" style="color: var(--color-text-secondary);">
+                    {{ curriculum_summary.completed_topics }} of {{ curriculum_summary.total_topics }} topics completed studying
+                </p>
+                <p class="small mb-0 text-muted">Study Progress from completed topics — not Estimated Knowledge.</p>
+            </div>
+            {% else %}
+            <div class="command-card-body">
+                <div class="empty-state py-3">
+                    <p class="text-muted small mb-0">Create your first study plan to see progress through the syllabus.</p>
+                    <a href="{{ url_for('study_plan.wizard_step', step=1) }}" class="btn btn-sm btn-primary mt-3">Create Study Plan</a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {# ── 3. Estimated Knowledge (practice-based — never a second coverage %) #}
+    <div class="col-12 col-lg-6" data-ptp004-slot="estimated-knowledge">
+        <div class="command-card h-100">
+            <div class="command-card-header">
+                <div class="command-card-icon" style="background: var(--color-warning-bg); color: var(--color-warning);">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/>
+                    </svg>
+                </div>
+                <h2 class="command-card-title">Estimated Knowledge</h2>
+            </div>
+            {% if readiness and readiness.avg_mastery is defined and readiness.topics_started and readiness.topics_started > 0 %}
+            <div class="command-card-body">
+                <div class="d-flex align-items-end gap-3 mb-3">
+                    <span class="command-hero-value" style="color: var(--color-brand);" data-ptp004-metric="estimated-knowledge">{{ readiness.avg_mastery|int }}%</span>
+                    <span class="command-hero-label" style="margin-bottom: 4px;">Avg. Estimated Knowledge</span>
+                </div>
+                <div class="progress" role="progressbar" aria-valuenow="{{ readiness.avg_mastery|int }}" aria-valuemin="0" aria-valuemax="100" style="height: 10px;">
+                    <div class="progress-bar" style="width: {{ readiness.avg_mastery }}%; background: var(--color-brand);"></div>
+                </div>
+                <p class="small mt-3 mb-1" style="color: var(--color-text-secondary);">
+                    Across {{ readiness.topics_started }} topic{{ 's' if readiness.topics_started != 1 else '' }} with recorded practice.
+                </p>
+                <p class="small mb-0 text-muted">{{ pcs.ESTIMATED_KNOWLEDGE_BASIS }}</p>
+            </div>
+            {% elif readiness_narrative and readiness_narrative.can_estimate %}
+            <div class="command-card-body">
+                <div class="d-flex align-items-end gap-3 mb-3">
+                    <span class="command-hero-value" style="color: var(--color-brand);" data-ptp004-metric="estimated-readiness">{{ readiness_narrative.percentage|int }}%</span>
+                    <span class="command-hero-label" style="margin-bottom: 4px;">{{ readiness_narrative.label }}</span>
+                </div>
+                <div class="progress" role="progressbar" aria-valuenow="{{ readiness_narrative.percentage|int }}" aria-valuemin="0" aria-valuemax="100" style="height: 10px;">
+                    <div class="progress-bar" style="width: {{ readiness_narrative.percentage }}%; background: var(--color-brand);"></div>
+                </div>
+                <p class="small mt-3 mb-1" style="color: var(--color-text-secondary);">{{ readiness_narrative.explanation }}</p>
+                <p class="small mb-0 text-muted">{{ readiness_narrative.evidence_basis }}</p>
+            </div>
+            {% else %}
+            <div class="command-card-body">
+                <div class="empty-state py-3">
+                    <p class="text-muted small mb-1">{{ pcs.READINESS_UNAVAILABLE }}</p>
+                    <p class="text-muted small mb-0">{{ pcs.ESTIMATED_KNOWLEDGE_EMPTY }}</p>
+                </div>
+            </div>
+            {% endif %}
         </div>
     </div>
 </section>
+
+{# ══════════════════════════════════════════════════════════════════════
+   4. Recommendations / Attention
+   ══════════════════════════════════════════════════════════════════════ #}
+<section class="mb-4" aria-label="Attention and recommendations" data-ptp004-slot="attention">
+
+{% if burnout_status and burnout_status.risk_level in ['high', 'moderate'] %}
+    <div class="{% if burnout_status.risk_level == 'high' %}alert-danger-card{% else %}alert-warning-card{% endif %} mb-4" role="status">
+        <div class="d-flex align-items-start gap-3">
+            <span class="kpi-status-symbol kpi-status-symbol--lg" aria-hidden="true">{% if burnout_status.risk_level == 'high' %}‼{% else %}!{% endif %}</span>
+            <div>
+                <h2 class="h6 fw-semibold mb-1">
+                    {% if burnout_status.risk_level == 'high' %}Study Pattern Notice{% else %}Study Load Notice{% endif %}
+                </h2>
+                <p class="mb-2 small">{{ burnout_status.explanation }}</p>
+                <p class="mb-2 small text-muted">Based on recent study activity patterns — not a prediction of burnout or exam outcome.</p>
+                {% if burnout_status.indicators %}
+                <div>
+                    {% for indicator in burnout_status.indicators %}
+                    {% if indicator.type == 'accuracy_decline' %}
+                    <span class="badge rounded-pill text-bg-light border me-1 mb-1 small">Accuracy drop</span>
+                    {% elif indicator.type == 'confidence_decline' %}
+                    <span class="badge rounded-pill text-bg-light border me-1 mb-1 small">Lower confidence</span>
+                    {% elif indicator.type == 'excessive_duration' %}
+                    <span class="badge rounded-pill text-bg-light border me-1 mb-1 small">Long sessions</span>
+                    {% elif indicator.type == 'long_streak' %}
+                    <span class="badge rounded-pill text-bg-light border me-1 mb-1 small">Few breaks</span>
+                    {% else %}
+                    <span class="badge rounded-pill text-bg-light border me-1 mb-1 small">Study pattern</span>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% endif %}
 
-{# ── Study Tip (coaching only — not Educational Intelligence) ─────────── #}
-{% if study_tip %}
-<section class="study-tip-card mb-4" aria-label="Study tip">
-    <div class="study-tip-icon" aria-hidden="true">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 1 4 12.7V17H8v-2.3A7 7 0 0 1 12 2z"/>
-        </svg>
+{% if dashboard_view_model and dashboard_view_model.recommendation_card %}
+{% set ei_card = dashboard_view_model.recommendation_card %}
+<div class="card border-0 mb-4 ei-recommendation-card" data-ei-recommendation-card="1">
+    <div class="card-body">
+        <h2 class="card-section-header mb-3">Today's Recommendation</h2>
+        <div class="ei-rec-title">{{ ei_card.title }}</div>
+        {% if ei_card.subtitle %}
+        <p class="ei-rec-subtitle">{{ ei_card.subtitle }}</p>
+        {% endif %}
+        {% from "partials/educational_explainability.html" import explainability_block %}
+        {{ explainability_block(
+            observed_facts=ei_card.observed_facts,
+            estimates=ei_card.estimates,
+            educational_advice=ei_card.educational_advice or ei_card.reason_summary,
+            next_action=ei_card.next_action
+        ) }}
+        {% if ei_card.estimated_duration %}
+        <p class="ei-rec-meta">{{ ei_card.estimated_duration }}</p>
+        {% endif %}
+        {% if ei_card.warning %}
+        <p class="ei-rec-warning">{{ ei_card.warning }}</p>
+        {% endif %}
+        {% if ei_card.show_start_button and ei_card.primary_action %}
+        <a href="{{ url_for('mission.missions') }}" class="btn btn-primary mt-2">
+            {{ ei_card.primary_action }}
+        </a>
+        {% endif %}
     </div>
-    <div>
-        <div class="study-tip-label">Study Tip</div>
-        <p class="study-tip-text">{{ study_tip }}</p>
+</div>
+{% endif %}
+
+{% if not (dashboard_view_model and dashboard_view_model.recommendation_card) and not all_recommendations and not active_study_plan %}
+<div class="card border-0 mb-4">
+    <div class="card-body">
+        {% from "partials/empty_state.html" import educational_empty %}
+        {{ educational_empty(
+            "No Recommendations Yet",
+            "Complete your setup to receive your first recommendation.",
+            "Create Study Plan",
+            url_for("study_plan.wizard_step", step=1),
+            "recommendation"
+        ) }}
     </div>
+</div>
+{% endif %}
+
+{% if all_recommendations and not (dashboard_view_model and dashboard_view_model.recommendation_card) %}
+<div class="card border-0 mb-4">
+    <div class="card-body">
+        <h2 class="card-section-header mb-3">Recommendations needing attention</h2>
+        <div>
+            {% for rec in all_recommendations %}
+            <div class="rec-card priority-{{ rec.priority | lower }} py-3 px-0{% if not loop.first %} border-top{% endif %}" style="border-top-color: var(--color-border-light) !important;">
+                <div class="d-flex justify-content-between align-items-start mb-1">
+                    <div class="fw-medium">{{ rec.title }}</div>
+                    <span class="badge rounded-pill {% if rec.priority == 'Critical' %}text-bg-danger{% elif rec.priority == 'High' %}text-bg-warning{% elif rec.priority == 'Medium' %}bg-info text-white{% else %}text-bg-secondary{% endif %} flex-shrink-0 ms-2">
+                        {{ rec.priority }}
+                    </span>
+                </div>
+                <span class="badge rounded-pill bg-light text-secondary border small mb-2">{{ rec.category }}</span>
+                {% from "partials/educational_explainability.html" import explainability_block %}
+                {{ explainability_block(
+                    observed_facts=rec.observed_facts,
+                    estimates=rec.estimates,
+                    educational_advice=rec.educational_advice or rec.reason,
+                    next_action=rec.next_action
+                ) }}
+                {% if not rec.observed_facts and not rec.educational_advice %}
+                <div class="small text-muted">
+                    <p class="mb-1"><strong class="text-body">Why:</strong> {{ rec.reason }}</p>
+                    <p class="mb-0"><strong class="text-body">Benefit:</strong> {{ rec.expected_benefit }}</p>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if weakest_topics %}
+<div class="card border-0 mb-4">
+    <div class="card-body">
+        <h2 class="card-section-header mb-3">Topics needing more practice</h2>
+        <div>
+            {% for topic in weakest_topics %}
+            <div class="topic-item{% if loop.first %} pt-0{% endif %}">
+                <div class="topic-info">
+                    <div class="topic-name">{{ topic.topic_name }}</div>
+                    <div class="topic-meta">{{ topic.stage_label or topic.stage }} · {{ topic.revision_count }} review{{ 's' if topic.revision_count != 1 else '' }}</div>
+                </div>
+                <span class="badge rounded-pill {% if topic.mastery_score < 40 %}text-bg-danger{% elif topic.mastery_score < 60 %}text-bg-warning{% else %}text-bg-secondary{% endif %}" title="Based on your recorded practice outcomes.">
+                    {{ topic.mastery_score|int }}% est.
+                </span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
 </section>
-{% endif %}
 
-{# ── Six-Card Command Centre ─────────────────────────────────────────── #}
-<section class="row g-4 mb-4">
-    {# ── CARD 1: Exam ─────────────────────────────────────────────── #}
+{# ══════════════════════════════════════════════════════════════════════
+   5. Secondary exploration
+   ══════════════════════════════════════════════════════════════════════ #}
+<section class="row g-4 mb-4" aria-label="Secondary exploration" data-ptp004-slot="secondary">
+
+    {# Exam context #}
     <div class="col-12 col-md-6 col-xl-4">
-        <div class="command-card">
+        <div class="command-card h-100">
             <div class="command-card-header">
                 <div class="command-card-icon" style="background: var(--color-info-bg); color: var(--color-info);">
-                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
                         <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
                     </svg>
                 </div>
@@ -71,14 +366,6 @@
                     <span class="command-metric-value">{{ active_study_plan.exam_name }}</span>
                 </div>
                 <div class="command-metric">
-                    <span class="command-metric-label">Syllabus Year</span>
-                    <span class="command-metric-value">{{ active_study_plan.curriculum_version or '—' }}</span>
-                </div>
-                <div class="command-metric">
-                    <span class="command-metric-label">Exam Sitting</span>
-                    <span class="command-metric-value">{{ active_study_plan.exam_sitting }}</span>
-                </div>
-                <div class="command-metric">
                     <span class="command-metric-label">Exam Date</span>
                     <span class="command-metric-value">{{ exam_timeline.exam_date }}</span>
                 </div>
@@ -88,7 +375,7 @@
                 </div>
                 <div class="command-phase mt-3">
                     <span
-                        class="kpi-status kpi-status--{{ exam_timeline.status_severity | default('neutral') }}"
+                        class="kpi-status kpi-status--{{ exam_timeline.status_audience | default('neutral') }}"
                         role="status"
                         aria-label="Schedule status: {{ exam_timeline.status_label }}. {{ exam_timeline.status_evidence | default('') }}"
                         title="{{ exam_timeline.status_evidence | default(exam_timeline.status_label) }}"
@@ -100,178 +387,19 @@
             </div>
             {% else %}
             <div class="command-card-body">
-                <p class="text-muted small mb-0">Create your first study plan to see your exam details and timeline.</p>
+                <p class="text-muted small mb-0">Create your first study plan to see your exam timeline.</p>
                 <a href="{{ url_for('study_plan.wizard_step', step=1) }}" class="btn btn-sm btn-primary mt-3">Create Study Plan</a>
             </div>
             {% endif %}
         </div>
     </div>
 
-    {# ── CARD 2: Today's Mission ─────────────────────────────────── #}
+    {# Time status #}
     <div class="col-12 col-md-6 col-xl-4">
-        <div class="command-card">
-            <div class="command-card-header">
-                <div class="command-card-icon" style="background: var(--color-success-bg); color: var(--color-success);">
-                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-                    </svg>
-                </div>
-                <h2 class="command-card-title">Today's Mission</h2>
-                {% if today_mission %}
-                <span class="badge rounded-pill ms-auto {% if today_mission.status == 'Completed' %}text-bg-success{% elif today_mission.status == 'In Progress' %}text-bg-warning{% else %}text-bg-secondary{% endif %}">
-                    {{ today_mission.status }}
-                </span>
-                {% endif %}
-            </div>
-            {% if today_mission %}
-            <div class="command-card-body">
-                <div class="command-metric">
-                    <span class="command-metric-label">Today's Recommended Mission</span>
-                    <span class="command-metric-value" style="font-size: 0.85rem;">{{ today_mission.title }}</span>
-                </div>
-                {% if active_study_plan %}
-                <div class="command-metric">
-                    <span class="command-metric-label">Study Plan</span>
-                    <span class="command-metric-value" style="font-size: 0.85rem;">{{ active_study_plan.exam_name }}</span>
-                </div>
-                {% endif %}
-                <a href="{{ url_for('mission.missions') }}" class="btn btn-primary w-100 mt-3">
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="me-2" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                    </svg>
-                    {% if today_mission.status == 'In Progress' %}
-                        Resume Mission
-                    {% elif today_mission.status == 'Completed' %}
-                        Review Today's Session
-                    {% else %}
-                        Start Today's Session
-                    {% endif %}
-                </a>
-            </div>
-            {% elif active_study_plan %}
-            <div class="command-card-body">
-                <div class="empty-state py-3">
-                    <p class="text-muted small mb-0">Today's mission will appear here once available.</p>
-                </div>
-            </div>
-            {% else %}
-            <div class="command-card-body">
-                <div class="empty-state py-3">
-                    <p class="text-muted small mb-0">Today's mission will appear here once your study plan is ready.</p>
-                    <a href="{{ url_for('study_plan.wizard_step', step=1) }}" class="btn btn-sm btn-primary mt-3">Create Study Plan</a>
-                </div>
-            </div>
-            {% endif %}
-        </div>
-    </div>
-
-    {# ── CARD 3: Readiness ───────────────────────────────────────── #}
-    <div class="col-12 col-md-6 col-xl-4">
-        <div class="command-card">
+        <div class="command-card h-100">
             <div class="command-card-header">
                 <div class="command-card-icon" style="background: var(--color-warning-bg); color: var(--color-warning);">
-                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/>
-                    </svg>
-                </div>
-                <h2 class="command-card-title">Learning Progress</h2>
-            </div>
-            {% if readiness_summary %}
-            <div class="command-card-body">
-                <div class="d-flex align-items-end gap-3 mb-3">
-                    <span class="command-hero-value" style="color: var(--color-brand);">{{ (readiness_summary.readiness_percentage * 100)|int }}%</span>
-                    <span class="command-hero-label" style="margin-bottom: 4px;">Weighted Syllabus Complete</span>
-                </div>
-                <div class="progress" role="progressbar" aria-valuenow="{{ (readiness_summary.readiness_percentage * 100)|int }}" aria-valuemin="0" aria-valuemax="100" style="height: 10px;">
-                    <div class="progress-bar" style="width: {{ (readiness_summary.readiness_percentage * 100)|int }}%; background: var(--color-brand);"></div>
-                </div>
-                <p class="small mt-3 mb-0" style="color: var(--color-text-secondary);">{{ readiness_summary.explanation }}</p>
-            </div>
-            {% elif readiness and readiness.score >= 0 %}
-            <div class="command-card-body">
-                <div class="d-flex align-items-end gap-3 mb-3">
-                    <span class="command-hero-value" style="color: var(--color-brand);">{{ readiness.score|int }}%</span>
-                    <span class="command-hero-label" style="margin-bottom: 4px;">Overall progress</span>
-                </div>
-                <div class="progress" role="progressbar" aria-valuenow="{{ readiness.score|int }}" aria-valuemin="0" aria-valuemax="100" style="height: 10px;">
-                    <div class="progress-bar" style="width: {{ readiness.score }}%; background: var(--color-brand);"></div>
-                </div>
-                <p class="small mt-3 mb-0" style="color: var(--color-text-secondary);">
-                    {{ readiness.topics_started }}/{{ readiness.total_topics }} topics started
-                    &middot; {{ readiness.avg_mastery|int }}% average topic progress
-                </p>
-            </div>
-            {% else %}
-            <div class="command-card-body">
-                <div class="empty-state py-3">
-                    <p class="text-muted small mb-0">Your learning progress begins after your first completed mission.</p>
-                </div>
-            </div>
-            {% endif %}
-        </div>
-    </div>
-
-    {# ── CARD 4: Curriculum Progress ─────────────────────────────── #}
-    <div class="col-12 col-md-6 col-xl-4">
-        <div class="command-card">
-            <div class="command-card-header">
-                <div class="command-card-icon" style="background: var(--color-success-bg); color: var(--color-success);">
-                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-                    </svg>
-                </div>
-                <h2 class="command-card-title">Curriculum Roadmap</h2>
-            </div>
-            {% if curriculum_summary %}
-            <div class="command-card-body">
-                <div class="row g-3 mb-3">
-                    <div class="col-6">
-                        <div class="command-metric">
-                            <span class="command-metric-label">Topics Completed</span>
-                            <span class="command-metric-value text-success">{{ curriculum_summary.completed_topics }}</span>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="command-metric">
-                            <span class="command-metric-label">Topics Remaining</span>
-                            <span class="command-metric-value text-warning">{{ curriculum_summary.remaining_topics }}</span>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="command-metric">
-                            <span class="command-metric-label">Curriculum Coverage</span>
-                            <span class="command-metric-value" style="color: var(--color-brand);">{{ (curriculum_summary.curriculum_coverage_percentage * 100)|int }}%</span>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="command-metric">
-                            <span class="command-metric-label">Weighted Coverage</span>
-                            <span class="command-metric-value" style="color: var(--color-brand);">{{ (curriculum_summary.weighted_completed_percentage * 100)|int }}%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="progress" role="progressbar" aria-valuenow="{{ (curriculum_summary.curriculum_coverage_percentage * 100)|int }}" aria-valuemin="0" aria-valuemax="100" style="height: 10px;">
-                    <div class="progress-bar bg-success" style="width: {{ (curriculum_summary.curriculum_coverage_percentage * 100)|int }}%;"></div>
-                </div>
-                <small class="text-muted d-block mt-2">{{ curriculum_summary.completed_topics }} of {{ curriculum_summary.total_topics }} total topics</small>
-            </div>
-            {% else %}
-            <div class="command-card-body">
-                <div class="empty-state py-3">
-                    <p class="text-muted small mb-0">Create your first study plan to unlock your curriculum roadmap.</p>
-                    <a href="{{ url_for('study_plan.wizard_step', step=1) }}" class="btn btn-sm btn-primary mt-3">Create Study Plan</a>
-                </div>
-            </div>
-            {% endif %}
-        </div>
-    </div>
-
-    {# ── CARD 5: Time Status ─────────────────────────────────────── #}
-    <div class="col-12 col-md-6 col-xl-4">
-        <div class="command-card">
-            <div class="command-card-header">
-                <div class="command-card-icon" style="background: var(--color-warning-bg); color: var(--color-warning);">
-                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
                         <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
                     </svg>
                 </div>
@@ -280,22 +408,12 @@
             {% if time_summary and schedule_kpi_status %}
             {% set surplus = time_summary.hours_surplus_or_deficit %}
             <div class="command-card-body">
-                <div class="row g-3 mb-3">
-                    <div class="col-6">
-                        <div class="command-metric">
-                            <span class="command-metric-label">Remaining Study Hours</span>
-                            <span class="command-metric-value" style="color: var(--color-info);">{{ time_summary.remaining_hours }}</span>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="command-metric">
-                            <span class="command-metric-label">Available Study Hours</span>
-                            <span class="command-metric-value">{{ time_summary.available_study_hours }}</span>
-                        </div>
-                    </div>
+                <div class="command-metric mb-2">
+                    <span class="command-metric-label">Remaining Study Hours</span>
+                    <span class="command-metric-value" style="color: var(--color-info);">{{ time_summary.remaining_hours }}</span>
                 </div>
                 <div
-                    class="command-time-badge kpi-status-panel kpi-status-panel--{{ schedule_kpi_status.severity }} mt-3 p-3 rounded-3 d-flex align-items-center gap-3"
+                    class="command-time-badge kpi-status-panel kpi-status-panel--{{ schedule_kpi_status.audience }} mt-2 p-3 rounded-3 d-flex align-items-center gap-3"
                     role="status"
                     aria-label="Time status: {{ schedule_kpi_status.label }}. {{ schedule_kpi_status.evidence_summary }}"
                 >
@@ -328,137 +446,35 @@
         </div>
     </div>
 
-    {# ── CARD 6: Quick Actions ───────────────────────────────────── #}
+    {# Strongest estimated knowledge #}
     <div class="col-12 col-md-6 col-xl-4">
-        <div class="command-card">
+        <div class="command-card h-100">
             <div class="command-card-header">
-                <div class="command-card-icon" style="background: var(--color-info-bg); color: var(--color-info);">
-                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/>
+                <div class="command-card-icon" style="background: var(--color-success-bg); color: var(--color-success);">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/>
                     </svg>
                 </div>
-                <h2 class="command-card-title">Quick Actions</h2>
+                <h2 class="command-card-title">Strongest estimated knowledge</h2>
             </div>
             <div class="command-card-body">
-                <div class="d-flex flex-column gap-2">
-                    <a href="{{ url_for('study_plan.index') }}" class="btn btn-outline w-100 text-start d-flex align-items-center gap-3">
-                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="flex-shrink-0" aria-hidden="true">
-                            <rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/>
-                        </svg>
-                        Review Study Plan
-                    </a>
-                    <a href="{{ url_for('mission.missions') }}" class="btn btn-outline w-100 text-start d-flex align-items-center gap-3">
-                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="flex-shrink-0" aria-hidden="true">
-                            <polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-                        </svg>
-                        {% if today_mission and today_mission.status == 'In Progress' %}
-                            Resume Mission
-                        {% else %}
-                            Start Today's Session
-                        {% endif %}
-                    </a>
-                    <a href="{{ url_for('mission.missions') }}" class="btn btn-outline w-100 text-start d-flex align-items-center gap-3">
-                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="flex-shrink-0" aria-hidden="true">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
-                        </svg>
-                        Record Study Progress
-                    </a>
-                    <a href="{{ url_for('analytics.index') }}" class="btn btn-outline w-100 text-start d-flex align-items-center gap-3">
-                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="flex-shrink-0" aria-hidden="true">
-                            <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
-                        </svg>
-                        Review Progress
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-{# ── Study pattern notice (observed indicators only — not burnout prediction) #}
-{% if burnout_status and burnout_status.risk_level in ['high', 'moderate'] %}
-<section class="mb-4">
-    <div class="{% if burnout_status.risk_level == 'high' %}alert-danger-card{% else %}alert-warning-card{% endif %}" role="status">
-        <div class="d-flex align-items-start gap-3">
-            <span class="kpi-status-symbol kpi-status-symbol--lg" aria-hidden="true">{% if burnout_status.risk_level == 'high' %}‼{% else %}!{% endif %}</span>
-            <div>
-                <h2 class="h6 fw-semibold mb-1">
-                    {% if burnout_status.risk_level == 'high' %}Study Pattern Notice{% else %}Study Load Notice{% endif %}
-                </h2>
-                <p class="mb-2 small">{{ burnout_status.explanation }}</p>
-                <p class="mb-2 small text-muted">Based on recent study activity patterns — not a prediction of burnout or exam outcome.</p>
-                {% if burnout_status.indicators %}
-                <div>
-                    {% for indicator in burnout_status.indicators %}
-                    {% if indicator.type == 'accuracy_decline' %}
-                    <span class="badge rounded-pill text-bg-light border me-1 mb-1 small">Accuracy drop</span>
-                    {% elif indicator.type == 'confidence_decline' %}
-                    <span class="badge rounded-pill text-bg-light border me-1 mb-1 small">Lower confidence</span>
-                    {% elif indicator.type == 'excessive_duration' %}
-                    <span class="badge rounded-pill text-bg-light border me-1 mb-1 small">Long sessions</span>
-                    {% elif indicator.type == 'long_streak' %}
-                    <span class="badge rounded-pill text-bg-light border me-1 mb-1 small">Few breaks</span>
-                    {% else %}
-                    <span class="badge rounded-pill text-bg-light border me-1 mb-1 small">Study pattern</span>
-                    {% endif %}
-                    {% endfor %}
-                </div>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</section>
-{% endif %}
-
-{# ── Secondary: Weakest & Strongest Topics ───────────────────────────── #}
-<section class="row g-4 mb-4">
-    <div class="col-lg-6">
-        <div class="card border-0 h-100">
-            <div class="card-body">
-                <h2 class="card-section-header mb-3">Weakest Topics</h2>
-                {% if weakest_topics %}
-                <div>
-                    {% for topic in weakest_topics %}
-                    <div class="topic-item{% if loop.first %} pt-0{% endif %}">
-                        <div class="topic-info">
-                            <div class="topic-name">{{ topic.topic_name }}</div>
-                            <div class="topic-meta">{{ topic.stage }} · {{ topic.revision_count }} review{{ 's' if topic.revision_count != 1 else '' }}</div>
-                        </div>
-                        <span class="badge rounded-pill {% if topic.mastery_score < 40 %}text-bg-danger{% elif topic.mastery_score < 60 %}text-bg-warning{% else %}text-bg-secondary{% endif %}">
-                            {{ topic.mastery_score|int }}%
-                        </span>
-                    </div>
-                    {% endfor %}
-                </div>
-                {% else %}
-                <div class="empty-state py-4">
-                    <p class="text-muted small mb-0">Your learning journey begins after your first completed mission.</p>
-                </div>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6">
-        <div class="card border-0 h-100">
-            <div class="card-body">
-                <h2 class="card-section-header mb-3">Strongest Topics</h2>
                 {% if strongest_topics %}
                 <div>
                     {% for topic in strongest_topics %}
                     <div class="topic-item{% if loop.first %} pt-0{% endif %}">
                         <div class="topic-info">
                             <div class="topic-name">{{ topic.topic_name }}</div>
-                            <div class="topic-meta">{{ topic.stage }} · {{ topic.revision_count }} review{{ 's' if topic.revision_count != 1 else '' }}</div>
+                            <div class="topic-meta">{{ topic.stage_label or topic.stage }} · {{ topic.revision_count }} review{{ 's' if topic.revision_count != 1 else '' }}</div>
                         </div>
-                        <span class="badge rounded-pill {% if topic.mastery_score >= 90 %}text-bg-success{% elif topic.mastery_score >= 70 %}bg-info text-white{% else %}text-bg-secondary{% endif %}">
-                            {{ topic.mastery_score|int }}%
+                        <span class="badge rounded-pill {% if topic.mastery_score >= 90 %}text-bg-success{% elif topic.mastery_score >= 70 %}bg-info text-white{% else %}text-bg-secondary{% endif %}" title="Based on your recorded practice outcomes.">
+                            {{ topic.mastery_score|int }}% est.
                         </span>
                     </div>
                     {% endfor %}
                 </div>
                 {% else %}
-                <div class="empty-state py-4">
-                    <p class="text-muted small mb-0">Strong topics will appear here as your learning progress grows.</p>
+                <div class="empty-state py-3">
+                    <p class="text-muted small mb-0">Strong estimated knowledge appears here as practice results accumulate.</p>
                 </div>
                 {% endif %}
             </div>
@@ -466,114 +482,20 @@
     </div>
 </section>
 
-{# ── Educational Intelligence Recommendation Card (Stage A, flag-gated) ─ #}
-{% if dashboard_view_model and dashboard_view_model.recommendation_card %}
-{% set ei_card = dashboard_view_model.recommendation_card %}
-<section class="card border-0 mb-4 ei-recommendation-card" data-ei-recommendation-card="1">
-    <div class="card-body">
-        <h2 class="card-section-header mb-3">Today's Recommendation</h2>
-        <div class="ei-rec-title">{{ ei_card.title }}</div>
-        {% if ei_card.subtitle %}
-        <p class="ei-rec-subtitle">{{ ei_card.subtitle }}</p>
-        {% endif %}
-        {% if ei_card.reason_summary %}
-        <p class="ei-rec-why-label">Why this recommendation</p>
-        <p class="ei-rec-why">{{ ei_card.reason_summary }}</p>
-        {% endif %}
-        {% if ei_card.estimated_duration %}
-        <p class="ei-rec-meta">{{ ei_card.estimated_duration }}</p>
-        {% endif %}
-        {% if ei_card.warning %}
-        <p class="ei-rec-warning">{{ ei_card.warning }}</p>
-        {% endif %}
-        {% if ei_card.show_start_button and ei_card.primary_action %}
-        <a href="{{ url_for('mission.missions') }}" class="btn btn-primary mt-2">
-            {{ ei_card.primary_action }}
-        </a>
-        {% endif %}
+{# Study tip — supporting coaching only; never recommendation authority #}
+{% if study_tip %}
+<section class="study-tip-card mb-4" aria-label="Study tip" data-ptp004-slot="supporting">
+    <div class="study-tip-icon" aria-hidden="true">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 1 4 12.7V17H8v-2.3A7 7 0 0 1 12 2z"/>
+        </svg>
+    </div>
+    <div>
+        <div class="study-tip-label">Study Tip</div>
+        <p class="study-tip-text">{{ study_tip }}</p>
     </div>
 </section>
-{% endif %}
-
-{# ── Recommendation empty state when setup incomplete ───────── #}
-{% if not (dashboard_view_model and dashboard_view_model.recommendation_card) and not all_recommendations and not active_study_plan %}
-<section class="card border-0 mb-4">
-    <div class="card-body">
-        {% from "partials/empty_state.html" import educational_empty %}
-        {{ educational_empty(
-            "No Recommendations Yet",
-            "Complete your setup to receive your first recommendation.",
-            "Create Study Plan",
-            url_for("study_plan.wizard_step", step=1),
-            "recommendation"
-        ) }}
-    </div>
-</section>
-{% endif %}
-
-{# ── All Recommendations (legacy; hidden when EI Recommendation card is live) #}
-{% if all_recommendations and not (dashboard_view_model and dashboard_view_model.recommendation_card) %}
-<div class="card border-0 mb-4">
-    <div class="card-body">
-        <h2 class="card-section-header mb-3">All Recommendations</h2>
-        <div>
-            {% for rec in all_recommendations %}
-            <div class="rec-card priority-{{ rec.priority | lower }} py-3 px-0{% if not loop.first %} border-top{% endif %}" style="border-top-color: var(--color-border-light) !important;">
-                <div class="d-flex justify-content-between align-items-start mb-1">
-                    <div class="fw-medium">{{ rec.title }}</div>
-                    <span class="badge rounded-pill {% if rec.priority == 'Critical' %}text-bg-danger{% elif rec.priority == 'High' %}text-bg-warning{% elif rec.priority == 'Medium' %}bg-info text-white{% else %}text-bg-secondary{% endif %} flex-shrink-0 ms-2">
-                        {{ rec.priority }}
-                    </span>
-                </div>
-                <span class="badge rounded-pill bg-light text-secondary border small mb-2">{{ rec.category }}</span>
-                <div class="small text-muted">
-                    <p class="mb-1"><strong class="text-body">Why:</strong> {{ rec.reason }}</p>
-                    <p class="mb-0"><strong class="text-body">Benefit:</strong> {{ rec.expected_benefit }}</p>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</div>
-{% endif %}
-
-{# ── Decision Journal (legacy peer; hidden when EI Recommendation card is live) #}
-{% if decision_journal and not (dashboard_view_model and dashboard_view_model.recommendation_card) %}
-<div class="card border-0 mb-4">
-    <div class="card-body">
-        <h2 class="card-section-header mb-3">
-            Decision Journal
-            <span class="text-muted fw-normal small ms-2" style="letter-spacing: normal; text-transform: none;">
-                Acceptance: {{ decision_summary.acceptance_rate }}% · Completion: {{ decision_summary.completion_rate }}%
-            </span>
-        </h2>
-        <div>
-            {% for decision in decision_journal[:5] %}
-            <div class="d-flex justify-content-between align-items-start py-2{% if not loop.first %} border-top{% endif %}" style="border-top-color: var(--color-border-light) !important;">
-                <div style="min-width: 0; margin-right: var(--space-lg);">
-                    <div class="fw-medium small text-truncate">{{ decision.recommendation_title }}</div>
-                    <small class="text-muted">{{ decision.recommendation_category }} · {{ decision.recommendation_priority }}</small>
-                    {% if decision.outcome_summary %}
-                    <div><small class="text-muted">Outcome: {{ decision.outcome_summary }}</small></div>
-                    {% endif %}
-                </div>
-                <div class="d-flex gap-1 flex-shrink-0">
-                    <span class="badge rounded-pill {% if decision.accepted %}text-bg-success{% else %}text-bg-secondary{% endif %} small">
-                        {% if decision.accepted %}Accepted{% else %}Declined{% endif %}
-                    </span>
-                    {% if decision.accepted %}
-                    <span class="badge rounded-pill {% if decision.completed %}text-bg-success{% else %}text-bg-warning{% endif %} small">
-                        {% if decision.completed %}Done{% else %}Pending{% endif %}
-                    </span>
-                    {% endif %}
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</div>
 {% endif %}
 
 {% include "partials/welcome_modal.html" %}
-<script src="{{ url_for('static', filename='js/mission.js') }}"></script>
 {% endblock %}

@@ -587,7 +587,7 @@ class TestSmokeMission:
         _create_plan(client, user)
         resp = client.get("/missions/")
         assert resp.status_code == 200
-        assert b"Mission Centre" in resp.data or b"Daily Mission" in resp.data
+        assert b"Today's Study Session" in resp.data
 
     def test_progress_bar_renders(self, app, ctx, user):
         """Progress bar renders on mission page."""
@@ -971,7 +971,11 @@ class TestSmokeStudyPlanLifecycle:
             follow_redirects=True,
         )
         assert resp.status_code == 200
-        assert b"permanently deleted" in resp.data.lower()
+        body = resp.data.lower()
+        assert b"study plan deleted" in body
+        assert b"learning progress" in body
+        assert b"study history" in body
+        assert b"preserved" in body
         assert StudyPlan.query.get(plan_id_2) is None
 
         # ── 7. Delete the archived plan too ────────────────────────────
@@ -981,7 +985,11 @@ class TestSmokeStudyPlanLifecycle:
             follow_redirects=True,
         )
         assert resp.status_code == 200
-        assert b"permanently deleted" in resp.data.lower()
+        body = resp.data.lower()
+        assert b"study plan deleted" in body
+        assert b"learning progress" in body
+        assert b"study history" in body
+        assert b"preserved" in body
         assert StudyPlan.query.get(plan_id_1) is None
 
         # ── Verify no remaining plans ──────────────────────────────────

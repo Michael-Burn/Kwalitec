@@ -147,12 +147,12 @@ def _register_error_handlers(app: Flask) -> None:
     @app.errorhandler(403)
     def forbidden(error):
         logger.warning("403 Forbidden: %s %s", request.method, request.path)
-        return render_template("errors/403.html"), 403
+        return render_template("errors/403.html", title="Access Denied"), 403
 
     @app.errorhandler(404)
     def page_not_found(error):
         logger.info("404 Not Found: %s %s", request.method, request.path)
-        return render_template("errors/404.html"), 404
+        return render_template("errors/404.html", title="Page Not Found"), 404
 
     if not app.config.get("PROPAGATE_EXCEPTIONS", False):
 
@@ -160,7 +160,7 @@ def _register_error_handlers(app: Flask) -> None:
         def internal_server_error(error):
             logger.exception("500 Internal Server Error at %s %s", request.method, request.path)
             db.session.rollback()
-            return render_template("errors/500.html"), 500
+            return render_template("errors/500.html", title="Error"), 500
 
 
 def _register_health_check(app: Flask) -> None:
@@ -175,12 +175,14 @@ def _register_health_check(app: Flask) -> None:
             db_status = "error"
             logger.error("Health check database error: %s", exc)
 
+        from app.version import APP_VERSION
+
         return jsonify(
             {
                 "status": "ok" if db_status == "connected" else "degraded",
                 "database": db_status,
                 "timestamp": datetime.now(timezone.utc).isoformat(),
-                "version": "1.0.0",
+                "version": APP_VERSION,
             }
         )
 
@@ -240,6 +242,7 @@ def create_app(config_object: type | None = None) -> Flask:
     _configure_logging(app)
     _validate_env_vars()
     _init_extensions(app)
+    _register_template_context(app)
     _register_blueprints(app)
     _register_cli_commands(app)
     _register_routes(app)
@@ -291,6 +294,10 @@ def _init_extensions(app: Flask) -> None:
         Mission,
         MissionTask,
         Mistake,
+        ResearchContribution,
+        ResearchContributorBadge,
+        ResearchFeedbackReview,
+        ResearchFeedbackSubmission,
         StudyAttempt,
         StudyPlan,
         Subject,
@@ -300,6 +307,21 @@ def _init_extensions(app: Flask) -> None:
         User,
         WeekPlan,
     )
+
+
+def _register_template_context(app: Flask) -> None:
+    """Inject shared presentation context into all templates."""
+
+    @app.context_processor
+    def inject_global_template_context():
+        from app.services.product_communication_service import ProductCommunicationService
+        from app.version import APP_VERSION, PRODUCT_TAGLINE
+
+        return {
+            "app_version": APP_VERSION,
+            "product_tagline": PRODUCT_TAGLINE,
+            "pcs": ProductCommunicationService,
+        }
 
 
 def _register_cli_commands(app: Flask) -> None:
@@ -325,6 +347,7 @@ def _register_blueprints(app: Flask) -> None:
     from app.dashboard.routes import dashboard_bp
     from app.founder.dashboard import founder_dashboard_bp
     from app.mission.routes import mission_bp
+    from app.research import research_bp
     from app.settings.routes import settings_bp
     from app.study_plan.routes import study_plan_bp
 
@@ -336,6 +359,7 @@ def _register_blueprints(app: Flask) -> None:
     app.register_blueprint(study_plan_bp)
     app.register_blueprint(calibration_bp)
     app.register_blueprint(founder_dashboard_bp)
+    app.register_blueprint(research_bp)
 
 
 def _register_routes(app: Flask) -> None:

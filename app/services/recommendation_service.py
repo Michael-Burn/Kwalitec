@@ -109,11 +109,10 @@ class RecommendationService:
                 "priority": PRIORITY_CRITICAL,
                 "reason": (
                     f"You have {backlog['topics_overdue']} topic(s) overdue for review. "
-                    "Overdue reviews cause knowledge decay and reduce exam readiness."
+                    "Staying current on reviews helps protect Estimated Knowledge."
                 ),
                 "expected_benefit": (
-                    "Restore retention on overdue topics, prevent knowledge fade, "
-                    "and raise your review discipline score."
+                    "Restore retention on overdue topics and keep review rhythm steady."
                 ),
                 "generated_at": datetime.utcnow().isoformat(),
             })
@@ -145,15 +144,16 @@ class RecommendationService:
         if critical_weak:
             topic_names = ", ".join(t["topic_name"] for t in critical_weak[:2])
             recs.append({
-                "title": f"Focus on critically weak topic(s): {topic_names}",
+                "title": f"Practise lower Estimated Knowledge: {topic_names}",
                 "category": CATEGORY_WEAK_TOPIC,
                 "priority": PRIORITY_CRITICAL,
                 "reason": (
-                    f"Your mastery score for {topic_names} is below 30%. "
-                    "These fundamental gaps must be addressed before progressing."
+                    f"Your Estimated Knowledge for {topic_names} is below 30%. "
+                    "These foundational areas may benefit from more practice before "
+                    "you lean on them in later topics."
                 ),
                 "expected_benefit": (
-                    "Strengthen foundational knowledge and lift your average mastery."
+                    "Strengthen foundational Estimated Knowledge through practice."
                 ),
                 "generated_at": datetime.utcnow().isoformat(),
             })
@@ -163,14 +163,14 @@ class RecommendationService:
         if moderate_weak:
             topic_names = ", ".join(t["topic_name"] for t in moderate_weak[:2])
             recs.append({
-                "title": f"Improve weak topic(s): {topic_names}",
+                "title": f"Improve Estimated Knowledge: {topic_names}",
                 "category": CATEGORY_WEAK_TOPIC,
                 "priority": PRIORITY_HIGH,
                 "reason": (
-                    f"Your mastery for {topic_names} is between 30-60%. "
-                    "Targeted practice on weak areas produces high returns."
+                    f"Your Estimated Knowledge for {topic_names} is between 30-60%. "
+                    "Targeted practice on lower-estimate areas often helps most."
                 ),
-                "expected_benefit": "Bring these topics into the 60-80% range.",
+                "expected_benefit": "Bring these topics into a stronger estimated range.",
                 "generated_at": datetime.utcnow().isoformat(),
             })
 
@@ -208,7 +208,7 @@ class RecommendationService:
                 "priority": PRIORITY_HIGH,
                 "reason": reason,
                 "expected_benefit": (
-                    "Increase curriculum coverage which directly raises readiness."
+                    "Increase syllabus coverage — Study Progress, not Estimated Knowledge."
                 ),
                 "generated_at": datetime.utcnow().isoformat(),
             })
@@ -262,7 +262,7 @@ class RecommendationService:
                 "priority": PRIORITY_LOW,
                 "reason": reason,
                 "expected_benefit": (
-                    "Reach 100% curriculum coverage for complete exam confidence."
+                    "Finish remaining syllabus topics so Study Progress is complete."
                 ),
                 "generated_at": datetime.utcnow().isoformat(),
             })
@@ -302,12 +302,13 @@ class RecommendationService:
                 "category": CATEGORY_MOCK_EXAM,
                 "priority": PRIORITY_MEDIUM,
                 "reason": (
-                    f"Your readiness is at {readiness['score']:.0f}% with "
-                    f"{readiness['coverage_pct']:.0f}% coverage. "
-                    "Mock exams identify remaining gaps and build exam stamina."
+                    f"Estimated readiness is about {readiness['score']:.0f}% with "
+                    f"{readiness['coverage_pct']:.0f}% syllabus coverage. "
+                    "Mock exams can help reveal remaining gaps — estimates are not "
+                    "exam outcome guarantees."
                 ),
                 "expected_benefit": (
-                    "Mock exams reveal knowledge gaps and build exam-day confidence."
+                    "Reveal remaining gaps and build exam-day familiarity."
                 ),
                 "generated_at": datetime.utcnow().isoformat(),
             })
@@ -317,11 +318,11 @@ class RecommendationService:
                 "category": CATEGORY_MOCK_EXAM,
                 "priority": PRIORITY_LOW,
                 "reason": (
-                    f"Your readiness is at {readiness['score']:.0f}%. "
+                    f"Estimated readiness is about {readiness['score']:.0f}%. "
                     "Introducing occasional mock exam sections builds familiarity."
                 ),
                 "expected_benefit": (
-                    "Early exposure to exam-style questions reduces anxiety."
+                    "Early exposure to exam-style questions builds familiarity."
                 ),
                 "generated_at": datetime.utcnow().isoformat(),
             })
@@ -439,7 +440,12 @@ class RecommendationService:
         completed: bool = False,
         outcome_summary: str | None = None,
     ) -> Decision:
-        """Record a user's decision about a recommendation."""
+        """Record a user's decision about a recommendation.
+
+        EIP-002: Accept / dismiss is preference history only. It must never
+        create Educational Evidence of understanding or mutate Version 1
+        Estimated Knowledge (Constitution Art. V §2; EL-006 / EL-008).
+        """
         decision = Decision(
             user_id=user_id,
             recommendation_title=recommendation["title"],

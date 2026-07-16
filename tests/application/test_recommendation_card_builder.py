@@ -59,7 +59,7 @@ FORBIDDEN_PREFIXES = (
 )
 
 # ViewModel presentation primitives only — no domain objects.
-ALLOWED_VALUE_TYPES = (str, bool, type(None))
+ALLOWED_VALUE_TYPES = (str, bool, type(None), tuple)
 FORBIDDEN_DOMAIN_TYPE_NAMES = frozenset(
     {
         "Decision",
@@ -227,11 +227,13 @@ class TestFeatureFlagOn:
         card = RecommendationCardBuilder.build(experience, flags=FLAGS_ON)
         assert card is not None
         assert card.reason_summary is not None
-        assert card.reason_summary is not None
         assert (
-            "Based on your recent progress" in card.reason_summary
+            "Suggested:" in card.reason_summary
+            or "Based on your recent progress" in card.reason_summary
             or "You've completed valuable study activities" in card.reason_summary
         )
+        assert card.observed_facts
+        assert card.next_action
         primary = experience.todays_recommendation.reasons[0]
         # Internal warrant tags must never leak into student-facing copy.
         for tag in primary.note_tags:
@@ -252,6 +254,10 @@ class TestNoDomainLeakage:
             assert isinstance(value, ALLOWED_VALUE_TYPES), (
                 f"{field.name} leaked non-presentation type: {type(value)!r}"
             )
+            if isinstance(value, tuple):
+                assert all(isinstance(item, str) for item in value), (
+                    f"{field.name} tuple must contain only strings"
+                )
 
     def test_view_model_annotations_exclude_domain_types(self) -> None:
         assert is_dataclass(RecommendationCardViewModel)

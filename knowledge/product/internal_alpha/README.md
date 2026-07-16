@@ -21,6 +21,7 @@ Active
 | [IA-001_MISSION_RECOMMENDATION_INTEGRITY.md](IA-001_MISSION_RECOMMENDATION_INTEGRITY.md) | IA-001 | Dashboard, today's mission, and launch always share the active study plan |
 | [IA-002_STUDY_PLAN_STATE_SYNCHRONIZATION.md](IA-002_STUDY_PLAN_STATE_SYNCHRONIZATION.md) | IA-002 | Plan switch immediately synchronizes dashboard/mission without refresh |
 | [IA-003_STUDENT_CENTRED_EDUCATIONAL_MESSAGING.md](IA-003_STUDENT_CENTRED_EDUCATIONAL_MESSAGING.md) | IA-003 | Student-facing copy uses educational language — no engineering terminology |
+| [IA-004_TRUTHFUL_LEARNING_PROGRESS.md](IA-004_TRUTHFUL_LEARNING_PROGRESS.md) | IA-004 | Study completion separated from Estimated Mastery; Learning Mode missions |
 
 ## Related
 

@@ -72,6 +72,7 @@ class TestAdaptiveLearningService:
         assert score >= 0.0
 
     def test_calculate_mastery_score_none_inputs(self):
+        """EIP-002: no accuracy ⇒ correct silence (0.0), never revision baseline."""
         from app.services.adaptive_learning_service import AdaptiveLearningService
 
         score = AdaptiveLearningService.calculate_mastery_score(
@@ -80,7 +81,7 @@ class TestAdaptiveLearningService:
             revision_count=2,
             unresolved_mistakes=0,
         )
-        assert 0 <= score <= 100
+        assert score == 0.0
 
     def test_determine_stage_mastered(self):
         from app.services.adaptive_learning_service import AdaptiveLearningService
@@ -875,7 +876,8 @@ class TestStudyPlanService:
 
     def test_completed_curriculum_topics_initialise_as_completed(self, db, user):
         """Topics listed in completed_curriculum_topics must be initialised
-        with completed=True, mastery_score=100.0, current_stage='Completed'."""
+        with completed=True, mastery_score=0.0 (study progress only — IA-004),
+        current_stage='Completed'."""
         from app.services.study_plan_service import StudyPlanService
         from app.models.topic_progress import TopicProgress
 
@@ -914,12 +916,12 @@ class TestStudyPlanService:
         # CS1-A (Random Variables) and CS1-B (Common Distributions) → Completed
         cs1a = name_to_progress["Describe the purpose and function of data analysis"]
         assert cs1a.completed is True
-        assert cs1a.mastery_score == 100.0
+        assert cs1a.mastery_score == 0.0  # study progress only (IA-004)
         assert cs1a.current_stage == TopicProgress.STAGE_COMPLETED
 
         cs1b = name_to_progress["Complete exploratory data analysis"]
         assert cs1b.completed is True
-        assert cs1b.mastery_score == 100.0
+        assert cs1b.mastery_score == 0.0  # study progress only (IA-004)
         assert cs1b.current_stage == TopicProgress.STAGE_COMPLETED
 
         # 2.1 (current topic) → Learning
@@ -1020,7 +1022,7 @@ class TestStudyPlanService:
         assert cs1d_progress is not None
         assert cs1d_progress.completed is True
         assert cs1d_progress.current_stage == TopicProgress.STAGE_COMPLETED
-        assert cs1d_progress.mastery_score == 100.0
+        assert cs1d_progress.mastery_score == 0.0  # study progress only (IA-004)
         # First incomplete in syllabus order (2.1 was never declared complete).
         assert sp.curriculum_topic_code == "2.1"
 
@@ -1033,7 +1035,7 @@ class TestStudyPlanService:
             user_id=user.id, topic_id=cs1a_topic.id,
         ).first()
         assert cs1a_progress.completed is True
-        assert cs1a_progress.mastery_score == 100.0
+        assert cs1a_progress.mastery_score == 0.0  # study progress only (IA-004)
         assert cs1a_progress.current_stage == TopicProgress.STAGE_COMPLETED
 
         cs1b_topic = DBTopic.query.filter_by(
@@ -1385,10 +1387,8 @@ class TestStudyPlanService:
         StudyPlanService.delete_study_plan(sp.id, user.id)
         assert WeekPlan.query.filter_by(study_plan_id=sp.id).count() == 0
 
-    def test_delete_study_plan_cascades_topic_progress(
-        self, db, user
-    ):
-        """Deleting a curriculum-backed plan removes associated TopicProgress."""
+    def test_delete_study_plan_preserves_topic_progress(self, db, user):
+        """EIP-005: deleting a curriculum-backed plan preserves TopicProgress."""
         from app.services.study_plan_service import StudyPlanService
         from app.models.topic_progress import TopicProgress
 
@@ -1409,7 +1409,7 @@ class TestStudyPlanService:
         assert TopicProgress.query.filter_by(user_id=user.id).count() == 14
 
         StudyPlanService.delete_study_plan(sp.id, user.id)
-        assert TopicProgress.query.filter_by(user_id=user.id).count() == 0
+        assert TopicProgress.query.filter_by(user_id=user.id).count() == 14
 
     def test_delete_study_plan_not_found(self, db, user):
         """Deleting a non-existent plan raises ValueError."""
@@ -2079,8 +2079,9 @@ class TestReadinessService:
         assert result.weighted_completed_percentage == 0.0
         assert result.weighted_remaining_percentage == 1.0
         assert result.explanation == (
-            "You have completed topics representing "
-            "0% of the official syllabus weighting."
+            "You have completed studying topics representing "
+            "0% of the official syllabus weighting. "
+            "This is Learning Progress from Study Progress — not Estimated Knowledge."
         )
 
     def test_calculate_readiness_full_completion(self):
@@ -2111,8 +2112,9 @@ class TestReadinessService:
         assert result.weighted_completed_percentage == 1.0
         assert result.weighted_remaining_percentage == 0.0
         assert result.explanation == (
-            "You have completed topics representing "
-            "100% of the official syllabus weighting."
+            "You have completed studying topics representing "
+            "100% of the official syllabus weighting. "
+            "This is Learning Progress from Study Progress — not Estimated Knowledge."
         )
 
     def test_calculate_readiness_partial_completion(self):
@@ -2143,8 +2145,9 @@ class TestReadinessService:
         assert result.weighted_completed_percentage == 0.45
         assert result.weighted_remaining_percentage == 0.55
         assert result.explanation == (
-            "You have completed topics representing "
-            "45% of the official syllabus weighting."
+            "You have completed studying topics representing "
+            "45% of the official syllabus weighting. "
+            "This is Learning Progress from Study Progress — not Estimated Knowledge."
         )
 
     def test_readiness_summary_is_immutable(self):
@@ -2212,8 +2215,9 @@ class TestReadinessService:
         result = ReadinessService.calculate_readiness(summary)
         assert result is not None
         assert result.explanation == (
-            "You have completed topics representing "
-            "46% of the official syllabus weighting."
+            "You have completed studying topics representing "
+            "46% of the official syllabus weighting. "
+            "This is Learning Progress from Study Progress — not Estimated Knowledge."
         )
 
 

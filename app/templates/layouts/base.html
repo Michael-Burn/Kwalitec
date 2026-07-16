@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Kwalitec disciplined learning system.">
+    <meta name="description" content="{{ product_tagline }}">
     <meta name="csrf-token" content="{{ csrf_token() if csrf_token else '' }}">
     <meta name="color-scheme" content="light dark">
     <title>{{ title ~ ' · ' if title else '' }}Kwalitec</title>
@@ -21,6 +21,9 @@
                 {% include "partials/flash_messages.html" %}
                 {% block content %}{% endblock %}
             </main>
+            <footer class="app-footer" role="contentinfo">
+                <span>Kwalitec v{{ app_version }}</span>
+            </footer>
         </div>
     </div>
 

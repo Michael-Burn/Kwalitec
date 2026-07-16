@@ -1,14 +1,14 @@
+{% set title = 'Study Plan' %}
 {% extends "layouts/base.html" %}
 
 {% block content %}
 <div class="container-md py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <p class="text-uppercase text-secondary small fw-semibold mb-2">My Plans</p>
-            <h1 class="display-6 fw-bold">Study Plans</h1>
+            <h1 class="display-6 fw-bold">Study Plan</h1>
         </div>
         <a href="{{ url_for('study_plan.wizard_step', step=1) }}" class="btn btn-primary">
-            + Create New Plan
+            Create Study Plan
         </a>
     </div>
 

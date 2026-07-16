@@ -3,18 +3,134 @@
 from __future__ import annotations
 
 from flask_wtf import FlaskForm
-from wtforms import IntegerField, SelectField, StringField, TextAreaField, validators
-from wtforms.validators import DataRequired, Optional, ValidationError
+from wtforms import IntegerField, RadioField, SelectField, TextAreaField, validators
+from wtforms.validators import DataRequired, InputRequired, Optional, ValidationError
+
+from app.services.study_session_service import (
+    COMPLETION_NO,
+    COMPLETION_PARTIAL,
+    COMPLETION_YES,
+)
+
+
+class PracticeOutcomeCaptureForm(FlaskForm):
+    """LXP-003 Practice Outcome Capture — observed practice facts only.
+
+    Does not collect confidence, mastery, understanding, difficulty, or readiness.
+    """
+
+    questions_attempted = IntegerField(
+        "Questions Attempted",
+        validators=[
+            InputRequired(message="Enter how many questions you attempted."),
+            validators.NumberRange(
+                min=1,
+                message="Questions Attempted must be greater than zero.",
+            ),
+        ],
+        render_kw={"placeholder": "e.g., 10", "min": 1},
+    )
+
+    questions_correct = IntegerField(
+        "Questions Correct",
+        validators=[
+            InputRequired(message="Enter how many questions you got correct."),
+            validators.NumberRange(
+                min=0,
+                message="Questions Correct must be zero or greater.",
+            ),
+        ],
+        render_kw={"placeholder": "e.g., 7", "min": 0},
+    )
+
+    duration_minutes = IntegerField(
+        "Time spent answering questions (minutes)",
+        validators=[
+            Optional(),
+            validators.NumberRange(
+                min=1,
+                max=600,
+                message="Time spent must be between 1 and 600 minutes.",
+            ),
+        ],
+        render_kw={
+            "placeholder": "Optional — e.g., 25",
+            "min": 1,
+            "max": 600,
+        },
+    )
+
+    notes = TextAreaField(
+        "Notes",
+        validators=[Optional(), validators.Length(max=2000)],
+        render_kw={
+            "placeholder": "Optional notes about today's practice",
+            "rows": 3,
+        },
+    )
+
+    def validate_questions_correct(self, field: IntegerField) -> None:
+        """Reject impossible scores: correct must be <= attempted."""
+        attempted = self.questions_attempted.data
+        correct = field.data
+        if attempted is None or correct is None:
+            return
+        if correct > attempted:
+            raise ValidationError(
+                "Questions Correct cannot exceed Questions Attempted."
+            )
+
+
+class StudySessionReviewForm(FlaskForm):
+    """LXP-002 Study Session Review — completion only (no performance).
+
+    Retained for service-level compatibility tests. The student primary path
+    after Finish Study Session is Practice Outcome Capture (LXP-003).
+    """
+
+    completion_status = RadioField(
+        "Did you complete today's planned study?",
+        choices=[
+            (COMPLETION_YES, "Yes"),
+            (COMPLETION_PARTIAL, "Partially"),
+            (COMPLETION_NO, "No"),
+        ],
+        validators=[
+            DataRequired(
+                message="Please say whether you completed today's study.",
+            ),
+        ],
+    )
+
+    notes = TextAreaField(
+        "Optional notes",
+        validators=[Optional(), validators.Length(max=2000)],
+        render_kw={
+            "placeholder": (
+                "Anything you want to remember about today's study (optional)"
+            ),
+            "rows": 3,
+        },
+    )
 
 
 class MissionReviewForm(FlaskForm):
-    """Form for reviewing a completed mission and recording learning."""
+    """Retired Reflect on Your Learning form (PTP-002).
+
+    Retained for import compatibility and historical templates. Student HTTP
+    journeys must not render or submit this form — Practice Outcome Capture
+    and Study Session Feedback are the Version 1 authority.
+    """
 
     duration_minutes = IntegerField(
         "Time Spent (minutes)",
         validators=[
             DataRequired(),
-            validators.NumberRange(min=1, max=600, message="Must be between 1 and 600 minutes"),
+            validators.NumberRange(
+                min=1,
+                max=600,
+                message="Must be between 1 and 600 minutes",
+            ),
         ],
         render_kw={"placeholder": "e.g., 45", "min": 1, "max": 600},
     )

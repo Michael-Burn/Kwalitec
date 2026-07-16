@@ -1,0 +1,597 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<section class="section-header">
+    <p class="section-eyebrow">Founder</p>
+    <h1 class="section-title">Research Command Centre</h1>
+    <p class="section-description">
+        Observe student experience, understand emerging issues, and decide what belongs on the roadmap.
+    </p>
+</section>
+
+<div data-rip003-command-centre="1">
+{% set filter_args = request.args.to_dict() %}
+{% set _ = filter_args.pop('submission', none) %}
+
+{# ── Internal Alpha Summary ─────────────────────────────────────────── #}
+<section class="mb-4" aria-label="Internal Alpha Summary">
+    <h2 class="h5 mb-3">Internal Alpha Summary</h2>
+    <div class="row g-3">
+        <div class="col-md-3 col-6">
+            <div class="command-card h-100">
+                <div class="command-card-body">
+                    <span class="command-metric-label">Active Participants</span>
+                    <span class="command-metric-value">{{ context.summary.active_participants }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="command-card h-100">
+                <div class="command-card-body">
+                    <span class="command-metric-label">Completed Check-ins</span>
+                    <span class="command-metric-value">{{ context.summary.completed_checkins }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="command-card h-100">
+                <div class="command-card-body">
+                    <span class="command-metric-label">Participation Rate</span>
+                    <span class="command-metric-value">
+                        {% if context.summary.participation_rate_pct is not none %}{{ context.summary.participation_rate_pct }}%{% else %}—{% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="command-card h-100">
+                <div class="command-card-body">
+                    <span class="command-metric-label">Avg Product Experience</span>
+                    <span class="command-metric-value">
+                        {% if context.summary.avg_product_experience is not none %}{{ context.summary.avg_product_experience }}/5{% else %}—{% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="command-card h-100">
+                <div class="command-card-body">
+                    <span class="command-metric-label">Would Open Tomorrow</span>
+                    <span class="command-metric-value">
+                        {% if context.summary.would_open_tomorrow_pct is not none %}{{ context.summary.would_open_tomorrow_pct }}%{% else %}—{% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="command-card h-100">
+                <div class="command-card-body">
+                    <span class="command-metric-label">Avg Confidence</span>
+                    <span class="command-metric-value">
+                        {% if context.summary.avg_confidence is not none %}{{ context.summary.avg_confidence }}/5{% else %}—{% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="command-card h-100">
+                <div class="command-card-body">
+                    <span class="command-metric-label">Outstanding Reviews</span>
+                    <span class="command-metric-value">{{ context.summary.outstanding_reviews }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="command-card h-100">
+                <div class="command-card-body">
+                    <span class="command-metric-label">Implemented Feedback</span>
+                    <span class="command-metric-value">{{ context.summary.implemented_feedback }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="command-card h-100">
+                <div class="command-card-body">
+                    <span class="command-metric-label">Product Shapers</span>
+                    <span class="command-metric-value">{{ context.summary.product_shapers }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ── What changed since yesterday ───────────────────────────────────── #}
+<section class="mb-4" aria-label="Changes since yesterday">
+    <div class="command-card">
+        <div class="command-card-header">
+            <h2 class="command-card-title h6 mb-0">What changed since yesterday</h2>
+        </div>
+        <div class="command-card-body">
+            <p class="mb-1"><strong>New submissions:</strong> {{ context.changes.new_submissions }}</p>
+            <p class="mb-1">
+                <strong>Avg experience:</strong>
+                {% if context.changes.avg_experience_yesterday is not none %}{{ context.changes.avg_experience_yesterday }}/5{% else %}—{% endif %}
+                (prior day:
+                {% if context.changes.avg_experience_prior_day is not none %}{{ context.changes.avg_experience_prior_day }}/5{% else %}—{% endif %})
+            </p>
+            <p class="mb-0"><strong>New friction mentions:</strong> {{ context.changes.new_friction_mentions }}</p>
+        </div>
+    </div>
+</section>
+
+{# ── Product Health ─────────────────────────────────────────────────── #}
+<section class="mb-4" aria-label="Product Health">
+    <h2 class="h5 mb-3">Product Health</h2>
+    <div class="row g-3">
+        <div class="col-md-4">
+            <div class="command-card h-100">
+                <div class="command-card-body">
+                    <span class="command-metric-label">Most Loved Feature</span>
+                    <span class="command-metric-value">{{ context.product_health.most_loved_feature or '—' }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="command-card h-100">
+                <div class="command-card-body">
+                    <span class="command-metric-label">Most Confusing Feature</span>
+                    <span class="command-metric-value">{{ context.product_health.most_confusing_feature or '—' }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="command-card h-100">
+                <div class="command-card-body">
+                    <span class="command-metric-label">Most Mentioned Friction</span>
+                    <span class="command-metric-value">{{ context.product_health.most_mentioned_friction or '—' }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="command-card h-100">
+                <div class="command-card-body">
+                    <span class="command-metric-label">Fastest Growing Concern</span>
+                    <span class="command-metric-value">{{ context.product_health.fastest_growing_concern or '—' }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="command-card h-100">
+                <div class="command-card-body">
+                    <span class="command-metric-label">Recently Improved</span>
+                    <span class="command-metric-value">
+                        {% if context.product_health.recently_improved_areas %}
+                            {{ context.product_health.recently_improved_areas | join(', ') }}
+                        {% else %}—{% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="command-card h-100">
+                <div class="command-card-body">
+                    <span class="command-metric-label">Areas With No Feedback</span>
+                    <span class="command-metric-value small">
+                        {% if context.product_health.areas_with_no_feedback %}
+                            {{ context.product_health.areas_with_no_feedback | join(', ') }}
+                        {% else %}All covered{% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ── Research Insight Engine (RIP-004) ──────────────────────────────── #}
+<section class="mb-4" aria-label="Research Insights" data-rip004-insight-engine="1">
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+        <h2 class="h5 mb-0">Research Insights</h2>
+        <form method="get" action="{{ url_for('research.founder_command_centre') }}" class="d-flex flex-wrap gap-2 align-items-center">
+            {% for key, val in filter_args.items() %}
+            <input type="hidden" name="{{ key }}" value="{{ val }}">
+            {% endfor %}
+            {% if context.selected_submission %}
+            <input type="hidden" name="submission" value="{{ context.selected_submission.submission.id }}">
+            {% endif %}
+            <select name="time_window" class="form-select form-select-sm" style="width:auto" onchange="this.form.submit()">
+                {% for key, label in time_window_labels.items() %}
+                <option value="{{ key }}" {% if time_window == key %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+            {% if time_window == 'custom' %}
+            <input type="date" name="custom_date_from" class="form-control form-control-sm" value="{{ custom_date_from }}" style="width:auto">
+            <input type="date" name="custom_date_to" class="form-control form-control-sm" value="{{ custom_date_to }}" style="width:auto">
+            <button type="submit" class="btn btn-sm btn-outline-secondary">Apply</button>
+            {% endif %}
+        </form>
+    </div>
+    <p class="small text-muted mb-3">
+        Window: {{ context.insight_engine.time_window_label }} ·
+        {{ context.insight_engine.insights | length }} insight(s) generated.
+        Insights describe patterns — they never prescribe decisions.
+    </p>
+
+    <div class="row g-3 mb-3">
+        <div class="col-md-6">
+            <div class="command-card h-100">
+                <div class="command-card-header">
+                    <h3 class="command-card-title h6 mb-0">Top Trends</h3>
+                </div>
+                <div class="command-card-body">
+                    {% if context.insight_engine.top_trends %}
+                        {% for insight in context.insight_engine.top_trends %}
+                        <div class="mb-2 pb-2 {% if not loop.last %}border-bottom{% endif %}">
+                            <strong>{{ insight.title }}</strong>
+                            <span class="badge text-bg-secondary ms-1">{{ insight.confidence }}</span>
+                            <p class="small mb-0 mt-1">{{ insight.summary }}</p>
+                            {% if insight.comparison %}
+                            <p class="small text-muted mb-0">
+                                {{ insight.comparison.label }}:
+                                {{ insight.comparison.current_value }}
+                                vs {{ insight.comparison.previous_value }}
+                                ({{ insight.comparison.delta | default('—') }})
+                            </p>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                    <p class="text-muted small mb-0">No trend insights for this window.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="command-card h-100">
+                <div class="command-card-header">
+                    <h3 class="command-card-title h6 mb-0">Emerging Concerns</h3>
+                </div>
+                <div class="command-card-body">
+                    {% if context.insight_engine.emerging_concerns %}
+                        {% for insight in context.insight_engine.emerging_concerns %}
+                        <div class="mb-2 pb-2 {% if not loop.last %}border-bottom{% endif %}">
+                            <strong>{{ insight.title }}</strong>
+                            <span class="badge text-bg-warning ms-1">{{ insight.suggested_review_priority }}</span>
+                            <p class="small mb-0 mt-1">{{ insight.summary }}</p>
+                            <p class="small text-muted mb-0">{{ insight.supporting_observation_count }} observation(s) · {{ insight.affected_feature or '—' }}</p>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                    <p class="text-muted small mb-0">No emerging concerns detected.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="command-card h-100">
+                <div class="command-card-header">
+                    <h3 class="command-card-title h6 mb-0">Most Improved Areas</h3>
+                </div>
+                <div class="command-card-body">
+                    {% if context.insight_engine.most_improved_areas %}
+                        {% for insight in context.insight_engine.most_improved_areas %}
+                        <div class="mb-2">
+                            <strong>{{ insight.title }}</strong>
+                            <p class="small mb-0">{{ insight.summary }}</p>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                    <p class="text-muted small mb-0">No improvement signals in this window.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="command-card h-100">
+                <div class="command-card-header">
+                    <h3 class="command-card-title h6 mb-0">Stable Areas</h3>
+                </div>
+                <div class="command-card-body">
+                    {% if context.insight_engine.stable_areas %}
+                        {% for insight in context.insight_engine.stable_areas %}
+                        <div class="mb-2">
+                            <strong>{{ insight.title }}</strong>
+                            <p class="small mb-0">{{ insight.summary }}</p>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                    <p class="text-muted small mb-0">No stable-area patterns identified.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="command-card h-100">
+                <div class="command-card-header">
+                    <h3 class="command-card-title h6 mb-0">Participation</h3>
+                </div>
+                <div class="command-card-body">
+                    {% for insight in context.insight_engine.participation %}
+                    <div class="mb-2 pb-2 {% if not loop.last %}border-bottom{% endif %}">
+                        <strong>{{ insight.title }}</strong>
+                        <span class="badge text-bg-secondary ms-1">{{ insight.confidence }}</span>
+                        <p class="small mb-0 mt-1">{{ insight.summary }}</p>
+                    </div>
+                    {% else %}
+                    <p class="text-muted small mb-0">No participation data.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="command-card h-100">
+                <div class="command-card-header">
+                    <h3 class="command-card-title h6 mb-0">Release Comparison</h3>
+                </div>
+                <div class="command-card-body">
+                    {% if context.insight_engine.release_comparison %}
+                        {% for insight in context.insight_engine.release_comparison %}
+                        <div class="mb-2 pb-2 {% if not loop.last %}border-bottom{% endif %}">
+                            <strong>{{ insight.title }}</strong>
+                            <span class="badge text-bg-secondary ms-1">{{ insight.confidence }}</span>
+                            <p class="small mb-0 mt-1">{{ insight.summary }}</p>
+                            {% if insight.related_finding_ids %}
+                            <p class="small text-muted mb-0">{{ insight.related_finding_ids | length }} related finding(s)</p>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                    <p class="text-muted small mb-0">No release comparison data.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Legacy summary row #}
+    <div class="command-card">
+        <div class="command-card-body">
+            <p class="mb-1"><strong>Most common feature:</strong> {{ context.insights.most_common_feature or '—' }}</p>
+            <p class="mb-1"><strong>Most common friction:</strong> {{ context.insights.most_common_friction or '—' }}</p>
+            <p class="mb-1"><strong>Most common suggestion category:</strong> {{ context.insights.most_common_suggestion_category or '—' }}</p>
+            <p class="mb-1"><strong>7-day participation:</strong>
+                {% for day, count in context.insights.participation_trend %}
+                    {{ day }} ({{ count }}){% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+            <p class="mb-0"><strong>Recently awarded badges:</strong>
+                {% if context.insights.recently_awarded_badges %}
+                    {% for badge in context.insights.recently_awarded_badges %}
+                        {{ badge_labels.get(badge.badge_slug, badge.badge_slug) }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                {% else %}None this week{% endif %}
+            </p>
+        </div>
+    </div>
+</section>
+
+<div class="row g-4">
+    {# ── Research Inbox ─────────────────────────────────────────────── #}
+    <div class="col-lg-7">
+        <section aria-label="Research Inbox">
+            <h2 class="h5 mb-3">Research Inbox</h2>
+
+            <form method="get" action="{{ url_for('research.founder_command_centre') }}" class="mb-3">
+                <div class="row g-2">
+                    <div class="col-md-4">
+                        {{ filter_form.keyword(class="form-control form-control-sm", placeholder="Search keyword") }}
+                    </div>
+                    <div class="col-md-3">
+                        {{ filter_form.student(class="form-control form-control-sm", placeholder="Student email") }}
+                    </div>
+                    <div class="col-md-3">
+                        {{ filter_form.status(class="form-select form-select-sm") }}
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary w-100">Filter</button>
+                    </div>
+                    <div class="col-md-2">
+                        {{ filter_form.version(class="form-control form-control-sm", placeholder="Version") }}
+                    </div>
+                    <div class="col-md-2">
+                        {{ filter_form.feature(class="form-select form-select-sm") }}
+                    </div>
+                    <div class="col-md-2">
+                        {{ filter_form.classification(class="form-select form-select-sm") }}
+                    </div>
+                    <div class="col-md-2">
+                        {{ filter_form.submission_source(class="form-select form-select-sm") }}
+                    </div>
+                    <div class="col-md-2">
+                        {{ filter_form.badge(class="form-select form-select-sm") }}
+                    </div>
+                    <div class="col-md-2">
+                        {{ filter_form.severity(class="form-select form-select-sm") }}
+                    </div>
+                </div>
+            </form>
+
+            {% if context.inbox %}
+            <div class="list-group">
+                {% for item in context.inbox %}
+                <a href="{{ url_for('research.founder_command_centre', submission=item.id, **filter_args) }}"
+                   class="list-group-item list-group-item-action {% if context.selected_submission and context.selected_submission.submission.id == item.id %}active{% endif %}">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h3 class="h6 mb-1">#{{ item.id }} · {{ item.user.email if item.user else 'Student' }}</h3>
+                        <small>{{ item.submitted_at.strftime('%Y-%m-%d %H:%M') }}</small>
+                    </div>
+                    <p class="mb-1 small">
+                        {{ item.experience_rating }} · {{ item.feature_helped_most }}
+                        {% if item.friction_area != 'Nothing' %} · Friction: {{ item.friction_area }}{% endif %}
+                    </p>
+                    <span class="badge text-bg-secondary">{{ workflow_labels.get(item.workflow_status, item.workflow_status) }}</span>
+                </a>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="text-muted">No feedback submissions match the current filters.</p>
+            {% endif %}
+        </section>
+    </div>
+
+    {# ── Feedback Detail ────────────────────────────────────────────── #}
+    <div class="col-lg-5">
+        <section aria-label="Feedback Detail">
+            <h2 class="h5 mb-3">Feedback Detail</h2>
+            {% if context.selected_submission %}
+            {% set detail = context.selected_submission %}
+            {% set sub = detail.submission %}
+            <div class="command-card">
+                <div class="command-card-body">
+                    <p class="mb-1"><strong>Student:</strong> {{ detail.student.email }}</p>
+                    <p class="mb-1"><strong>Version:</strong> {{ sub.product_version }}</p>
+                    <p class="mb-1"><strong>Mission:</strong> {{ sub.mission_id or '—' }}</p>
+                    <p class="mb-1"><strong>Study Plan:</strong> {{ sub.study_plan_id or '—' }}</p>
+                    <p class="mb-1"><strong>Source:</strong> {{ sub.submission_source }}</p>
+                    <p class="mb-1"><strong>Experience:</strong> {{ sub.experience_rating }}</p>
+                    <p class="mb-1"><strong>Feature helped:</strong> {{ sub.feature_helped_most }}</p>
+                    <p class="mb-1"><strong>Friction:</strong> {{ sub.friction_area }}</p>
+                    <p class="mb-1"><strong>Confidence:</strong> {{ sub.confidence_rating }}</p>
+                    <p class="mb-1"><strong>Return intent:</strong> {{ sub.return_intent }}</p>
+                    {% if sub.free_text %}
+                    <p class="mb-1"><strong>Free text:</strong> {{ sub.free_text }}</p>
+                    <p class="mb-1"><strong>Classification:</strong> {{ sub.classification or '—' }}</p>
+                    {% endif %}
+                    <p class="mb-1"><strong>Status:</strong> {{ workflow_labels.get(sub.workflow_status, sub.workflow_status) }}</p>
+
+                    <hr>
+                    <p class="mb-1"><strong>Contributor journey:</strong>
+                        {{ detail.contributor_journey.contribution_count }} check-ins
+                        {% if detail.contributor_journey.current_badge %}
+                            · {{ detail.contributor_journey.current_badge.label }}
+                        {% endif %}
+                    </p>
+
+                    {% if detail.previous_submissions %}
+                    <p class="mb-1"><strong>Previous feedback:</strong> {{ detail.previous_submissions | length }} earlier submission(s)</p>
+                    {% endif %}
+
+                    {% if detail.review %}
+                    <p class="mb-1 small text-muted">
+                        Review marks:
+                        {% if detail.review.is_helpful %}Helpful{% endif %}
+                        {% if detail.review.is_insightful %}{% if detail.review.is_helpful %} · {% endif %}Insightful{% endif %}
+                        {% if detail.review.is_implemented %}{% if detail.review.is_helpful or detail.review.is_insightful %} · {% endif %}Implemented{% endif %}
+                    </p>
+                    {% endif %}
+
+                    {% if detail.status_history %}
+                    <div class="mb-3">
+                        <strong>Review history</strong>
+                        <ul class="small mb-0">
+                            {% for t in detail.status_history %}
+                            <li>{{ t.transitioned_at.strftime('%Y-%m-%d %H:%M') }}:
+                                {{ workflow_labels.get(t.from_status, t.from_status or '—') }}
+                                → {{ workflow_labels.get(t.to_status, t.to_status) }}
+                                {% if t.rationale %}({{ t.rationale }}){% endif %}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+
+                    {% if detail.founder_notes %}
+                    <div class="mb-3">
+                        <strong>Founder notes</strong>
+                        <ul class="small mb-0">
+                            {% for note in detail.founder_notes %}
+                            <li>{{ note.created_at.strftime('%Y-%m-%d %H:%M') }}: {{ note.note_text }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+
+                    <form method="post" action="{{ url_for('research.founder_command_centre', submission=sub.id, **filter_args) }}" class="d-flex flex-wrap gap-2 mb-3">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="submission_id" value="{{ sub.id }}">
+                        <button type="submit" name="action" value="under_review" class="btn btn-sm btn-outline-secondary">Under Review</button>
+                        <button type="submit" name="action" value="helpful" class="btn btn-sm btn-outline-primary">Helpful</button>
+                        <button type="submit" name="action" value="insightful" class="btn btn-sm btn-outline-primary">Insightful</button>
+                        <button type="submit" name="action" value="accept" class="btn btn-sm btn-outline-success">Accept</button>
+                        <button type="submit" name="action" value="reject" class="btn btn-sm btn-outline-danger">Reject</button>
+                        <button type="submit" name="action" value="clarify" class="btn btn-sm btn-outline-warning">Request Clarification</button>
+                        <button type="submit" name="action" value="plan" class="btn btn-sm btn-outline-info">Plan</button>
+                        <button type="submit" name="action" value="implement" class="btn btn-sm btn-primary">Implement</button>
+                        <button type="submit" name="action" value="release" class="btn btn-sm btn-outline-success">Release</button>
+                        <button type="submit" name="action" value="verify" class="btn btn-sm btn-outline-success">Verify</button>
+                    </form>
+
+                    <form method="post" action="{{ url_for('research.founder_command_centre', submission=sub.id, **filter_args) }}" class="mb-3">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="submission_id" value="{{ sub.id }}">
+                        <input type="hidden" name="action" value="note">
+                        {{ note_form.note_text(class="form-control form-control-sm mb-2", placeholder="Add internal note…") }}
+                        <button type="submit" class="btn btn-sm btn-secondary">Add Note</button>
+                    </form>
+                </div>
+            </div>
+            {% else %}
+            <p class="text-muted">Select a submission from the inbox to review details and take action.</p>
+            {% endif %}
+        </section>
+    </div>
+</div>
+
+{# ── Product Findings ───────────────────────────────────────────────── #}
+<section class="mt-4" aria-label="Product Findings">
+    <h2 class="h5 mb-3">Product Findings</h2>
+    <div class="row g-4">
+        <div class="col-lg-6">
+            {% if context.findings %}
+            <div class="list-group mb-3">
+                {% for finding in context.findings %}
+                <a href="{{ url_for('research.founder_finding_detail', finding_id=finding.id) }}"
+                   class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h3 class="h6 mb-1">{{ finding.title }}</h3>
+                        <span class="badge text-bg-secondary">{{ finding.severity }}</span>
+                    </div>
+                    <p class="mb-1 small">{{ finding.feature_area }} · {{ workflow_labels.get(finding.status, finding.status) }}</p>
+                    {% if finding.target_release %}
+                    <small>Target: {{ finding.target_release }}</small>
+                    {% endif %}
+                </a>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="text-muted">No product findings yet.</p>
+            {% endif %}
+        </div>
+        <div class="col-lg-6">
+            <div class="command-card">
+                <div class="command-card-header">
+                    <h3 class="h6 mb-0">Create Product Finding</h3>
+                </div>
+                <div class="command-card-body">
+                    <form method="post" action="{{ url_for('research.founder_command_centre') }}">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="action" value="create_finding">
+                        <div class="mb-2">
+                            {{ finding_form.title(class="form-control form-control-sm", placeholder="Title") }}
+                        </div>
+                        <div class="mb-2">
+                            {{ finding_form.summary(class="form-control form-control-sm", placeholder="Summary") }}
+                        </div>
+                        <div class="row g-2 mb-2">
+                            <div class="col-6">{{ finding_form.severity(class="form-select form-select-sm") }}</div>
+                            <div class="col-6">{{ finding_form.feature_area(class="form-select form-select-sm") }}</div>
+                        </div>
+                        <div class="row g-2 mb-2">
+                            <div class="col-6">{{ finding_form.status(class="form-select form-select-sm") }}</div>
+                            <div class="col-6">{{ finding_form.target_release(class="form-control form-control-sm") }}</div>
+                        </div>
+                        <div class="mb-2">
+                            {{ finding_form.linked_submission_ids(class="form-control form-control-sm") }}
+                        </div>
+                        <div class="mb-2">
+                            {{ finding_form.notes(class="form-control form-control-sm", placeholder="Internal notes") }}
+                        </div>
+                        <button type="submit" class="btn btn-sm btn-primary">Create Finding</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>
+{% endblock %}

@@ -90,9 +90,8 @@ class TestEndToEndCurriculumWorkflow:
     # ── (2) Completed topics from Step 4 saved ──────────────────────────
 
     def test_completed_topics_init_correct_confidence(self, db, user):
-        """Completed topics must have confidence='Mastered', not 'Completed'
-        (which is an invalid confidence value — it's a stage, not a
-        confidence level)."""
+        """Completed topics must use a valid confidence that is not Mastered
+        from study declaration alone (IA-004 — Study Progress ≠ Mastery)."""
         from app.services.study_plan_service import StudyPlanService
         from app.models.topic_progress import TopicProgress
         from app.models.curriculum import Topic as DBTopic
@@ -124,9 +123,12 @@ class TestEndToEndCurriculumWorkflow:
                 f"Topic '{db_topic.name}' has invalid confidence "
                 f"'{tp.confidence}'; must be one of {valid_confidence}"
             )
+            if tp.completed:
+                assert tp.confidence != "Mastered"
+                assert tp.mastery_score == 0.0
 
-    def test_completed_topics_have_mastered_confidence(self, db, user):
-        """Specifically, completed topics must have confidence='Mastered'."""
+    def test_completed_topics_have_study_progress_not_mastery(self, db, user):
+        """Completed topics record Study Progress only — never Mastery or felt confidence."""
         from app.services.study_plan_service import StudyPlanService
         from app.models.topic_progress import TopicProgress
         from app.models.curriculum import Topic as DBTopic
@@ -153,10 +155,13 @@ class TestEndToEndCurriculumWorkflow:
             ).first()
             assert tp is not None
             if tp.completed:
-                assert tp.confidence == "Mastered", (
+                # EIP-001: coverage must not co-write student-felt confidence.
+                assert tp.confidence == "Not Started", (
                     f"Completed topic '{db_topic.name}' has confidence "
-                    f"'{tp.confidence}', expected 'Mastered'"
+                    f"'{tp.confidence}', expected 'Not Started' (coverage only)"
                 )
+                assert tp.mastery_score == 0.0
+                assert tp.has_estimated_mastery is False
 
     # ── (5) StudentCurriculumSummary returns non-null ───────────────────
 

@@ -11,6 +11,7 @@ from flask_login import current_user, login_required
 from app.services import examination_catalogue as catalogue
 from app.services.curriculum_engine_service import CurriculumEngineService
 from app.services.study_plan_service import StudyPlanService
+from app.services.subject_support_service import SubjectSupportService
 from app.study_plan.forms import (
     CurrentPositionForm,
     ExamCategoryForm,
@@ -234,6 +235,45 @@ def wizard_step_post(step: int):
 # ─────────────────────────────────────────────────────────────────────────────
 
 
+def _wizard_selection_support(wizard_data: dict):
+    """Resolve PTP-001 support status for the current wizard selection."""
+    category_code = wizard_data.get("exam_category", "")
+    free_text = catalogue.is_free_text_subject(category_code)
+    if free_text:
+        paper = wizard_data.get("free_text_subject", "")
+    else:
+        paper = wizard_data.get("exam_paper", "")
+    return SubjectSupportService.resolve(
+        category_code, paper, free_text_subject=free_text
+    )
+
+
+def _require_supported_selection():
+    """Redirect to step 2 when wizard selection cannot create a real plan.
+
+    Returns ``None`` when the selection is Supported; otherwise a redirect
+    response with student-safe explanation.
+    """
+    wizard_data = session.get("wizard_data", {})
+    category_code = wizard_data.get("exam_category")
+    if not category_code:
+        flash("Please complete the wizard from the beginning.", "info")
+        return redirect(url_for("study_plan.wizard_step", step=1))
+
+    has_paper = bool(
+        wizard_data.get("exam_paper") or wizard_data.get("free_text_subject")
+    )
+    if not has_paper:
+        flash("Please choose your paper or subject first.", "info")
+        return redirect(url_for("study_plan.wizard_step", step=2))
+
+    support = _wizard_selection_support(wizard_data)
+    if not support.allows_plan_creation:
+        flash(support.explanation, "warning")
+        return redirect(url_for("study_plan.wizard_step", step=2))
+    return None
+
+
 def _handle_step_1():
     """Display exam category selection form."""
     form = ExamCategoryForm()
@@ -248,6 +288,7 @@ def _handle_step_1():
         total_steps=TOTAL_STEPS,
         step_title=STEP_TITLES[1],
         categories=categories,
+        category_support=SubjectSupportService.category_summaries(),
     )
 
 
@@ -270,12 +311,28 @@ def _handle_step_1_post():
         total_steps=TOTAL_STEPS,
         step_title=STEP_TITLES[1],
         categories=categories,
+        category_support=SubjectSupportService.category_summaries(),
     )
 
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Step 2 — Paper / subject
 # ─────────────────────────────────────────────────────────────────────────────
+
+
+def _render_step_2(form, category, *, support_gate=None):
+    """Render wizard step 2 with paper-level support labels (PTP-001)."""
+    paper_support = SubjectSupportService.paper_statuses_for_category(category.code)
+    return render_template(
+        "study_plan/wizard_step_2.html",
+        form=form,
+        step=2,
+        total_steps=TOTAL_STEPS,
+        step_title=STEP_TITLES[2],
+        category=category,
+        paper_support=paper_support,
+        support_gate=support_gate,
+    )
 
 
 def _handle_step_2():
@@ -299,18 +356,15 @@ def _handle_step_2():
     if "free_text_subject" in wizard_data:
         form.free_text_subject.data = wizard_data["free_text_subject"]
 
-    return render_template(
-        "study_plan/wizard_step_2.html",
-        form=form,
-        step=2,
-        total_steps=TOTAL_STEPS,
-        step_title=STEP_TITLES[2],
-        category=category,
-    )
+    return _render_step_2(form, category)
 
 
 def _handle_step_2_post():
-    """Process paper/subject selection form."""
+    """Process paper/subject selection form.
+
+    PTP-001: only Supported examinations may advance. Coming Soon and Not
+    Supported selections stay on this step with a clear explanation.
+    """
     wizard_data = session.get("wizard_data", {})
     category_code = wizard_data.get("exam_category")
     if not category_code:
@@ -324,29 +378,38 @@ def _handle_step_2_post():
         return redirect(url_for("study_plan.wizard_step", step=1))
 
     if category.free_text_subject:
-        if form.free_text_subject.validate(form) and form.free_text_subject.data.strip():
-            session["wizard_data"]["free_text_subject"] = form.free_text_subject.data.strip()
+        subject_ok = (
+            form.free_text_subject.validate(form)
+            and form.free_text_subject.data.strip()
+        )
+        if subject_ok:
+            subject = form.free_text_subject.data.strip()
+            support = SubjectSupportService.resolve(
+                category_code, subject, free_text_subject=True
+            )
+            session["wizard_data"]["free_text_subject"] = subject
             session["wizard_data"].pop("exam_paper", None)
             session.modified = True
+            if not support.allows_plan_creation:
+                form.free_text_subject.data = subject
+                return _render_step_2(form, category, support_gate=support)
             return redirect(url_for("study_plan.wizard_step", step=3))
         form.free_text_subject.errors = ["Please enter your subject."]
     else:
         form.exam_paper.choices = catalogue.get_paper_choices(category_code)
         if form.exam_paper.validate(form) and form.exam_paper.data:
-            session["wizard_data"]["exam_paper"] = form.exam_paper.data
+            paper_code = form.exam_paper.data
+            support = SubjectSupportService.resolve(category_code, paper_code)
+            session["wizard_data"]["exam_paper"] = paper_code
             session["wizard_data"].pop("free_text_subject", None)
             session.modified = True
+            if not support.allows_plan_creation:
+                form.exam_paper.data = paper_code
+                return _render_step_2(form, category, support_gate=support)
             return redirect(url_for("study_plan.wizard_step", step=3))
         form.exam_paper.errors = ["Please select a paper."]
 
-    return render_template(
-        "study_plan/wizard_step_2.html",
-        form=form,
-        step=2,
-        total_steps=TOTAL_STEPS,
-        step_title=STEP_TITLES[2],
-        category=category,
-    )
+    return _render_step_2(form, category)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -356,6 +419,10 @@ def _handle_step_2_post():
 
 def _handle_step_3():
     """Display exam sitting/date form."""
+    blocked = _require_supported_selection()
+    if blocked is not None:
+        return blocked
+
     wizard_data = session.get("wizard_data", {})
     category_code = wizard_data.get("exam_category")
     if not category_code:
@@ -379,6 +446,10 @@ def _handle_step_3():
 
 def _handle_step_3_post():
     """Process exam sitting/date form."""
+    blocked = _require_supported_selection()
+    if blocked is not None:
+        return blocked
+
     wizard_data = session.get("wizard_data", {})
     category_code = wizard_data.get("exam_category")
     if not category_code:
@@ -412,6 +483,10 @@ def _handle_step_3_post():
 
 def _handle_step_4():
     """Display current position form."""
+    blocked = _require_supported_selection()
+    if blocked is not None:
+        return blocked
+
     form = CurrentPositionForm()
     wizard_data = session.get("wizard_data", {})
     if "current_position" in wizard_data:
@@ -424,9 +499,7 @@ def _handle_step_4():
     paper_code = wizard_data.get("exam_paper", "")
     curriculum_version = _discover_curriculum_version(category_code, paper_code)
 
-    extra: dict = {
-        "completed_curriculum_topics": wizard_data.get("completed_curriculum_topics", []),
-    }
+    extra: dict = {}
     if curriculum_version is not None:
         engine = CurriculumEngineService()
         if engine.curriculum_exists(category_code, paper_code, curriculum_version):
@@ -458,6 +531,10 @@ def _handle_step_4():
 
 def _handle_step_4_post():
     """Process current position form."""
+    blocked = _require_supported_selection()
+    if blocked is not None:
+        return blocked
+
     form = CurrentPositionForm()
     if form.validate_on_submit():
         session["wizard_data"]["current_position"] = form.current_position.data
@@ -472,15 +549,10 @@ def _handle_step_4_post():
         curriculum_version = _discover_curriculum_version(category_code, paper_code)
 
         if curriculum_version is not None:
-            # Curriculum-backed: read completed topics as a checklist.
-            completed = request.form.getlist("curriculum_topic")
-            completed = [c.strip() for c in completed if c.strip()]
-            session["wizard_data"]["completed_curriculum_topics"] = completed
-
-            # Derive the current topic: the first curriculum topic NOT
-            # in the completed set.  This becomes the topic the student
-            # will begin studying (or continue if already started).
-            completed_set = set(completed)
+            # Curriculum-backed exams: starting topic derived from position only.
+            # Completed topics are declared once in Educational History (calibration).
+            session["wizard_data"].pop("completed_curriculum_topics", None)
+            position = form.current_position.data
             try:
                 engine = CurriculumEngineService()
                 if engine.curriculum_exists(
@@ -489,12 +561,19 @@ def _handle_step_4_post():
                     curriculum = engine.load_auto(
                         category_code, paper_code, curriculum_version
                     )
-                    for topic in CurriculumEngineService.get_topics_flat(curriculum):
-                        if topic.code not in completed_set:
+                    topics = CurriculumEngineService.get_topics_flat(curriculum)
+                    if position == "learning":
+                        for topic in topics:
                             session["wizard_data"]["curriculum_current_topic"] = (
                                 topic.code
                             )
                             break
+                    elif position == "completed":
+                        session["wizard_data"]["curriculum_current_topic"] = None
+                    elif position == "revising" and topics:
+                        session["wizard_data"]["curriculum_current_topic"] = (
+                            topics[-1].code
+                        )
             except Exception:
                 logger.exception(
                     "Failed to derive current topic from curriculum %s/%s/%s",
@@ -525,6 +604,10 @@ def _handle_step_4_post():
 
 def _handle_step_5():
     """Display study availability form."""
+    blocked = _require_supported_selection()
+    if blocked is not None:
+        return blocked
+
     form = StudyAvailabilityForm()
     wizard_data = session.get("wizard_data", {})
     if "weekday_study_minutes" in wizard_data:
@@ -544,6 +627,10 @@ def _handle_step_5():
 
 def _handle_step_5_post():
     """Process study availability form."""
+    blocked = _require_supported_selection()
+    if blocked is not None:
+        return blocked
+
     form = StudyAvailabilityForm()
     if form.validate_on_submit():
         session["wizard_data"]["weekday_study_minutes"] = form.weekday_study_minutes.data
@@ -567,6 +654,10 @@ def _handle_step_5_post():
 
 def _handle_step_6():
     """Display study preference form."""
+    blocked = _require_supported_selection()
+    if blocked is not None:
+        return blocked
+
     form = StudyPreferenceForm()
     wizard_data = session.get("wizard_data", {})
     if "study_preference" in wizard_data:
@@ -584,6 +675,10 @@ def _handle_step_6():
 
 def _handle_step_6_post():
     """Process study preference form."""
+    blocked = _require_supported_selection()
+    if blocked is not None:
+        return blocked
+
     form = StudyPreferenceForm()
     if form.validate_on_submit():
         session["wizard_data"]["study_preference"] = form.study_preference.data
@@ -605,6 +700,10 @@ def _handle_step_6_post():
 
 def _handle_step_7():
     """Display target result form."""
+    blocked = _require_supported_selection()
+    if blocked is not None:
+        return blocked
+
     wizard_data = session.get("wizard_data", {})
     category_code = wizard_data.get("exam_category")
     if not category_code:
@@ -626,6 +725,10 @@ def _handle_step_7():
 
 def _handle_step_7_post():
     """Process target result form and redirect to review."""
+    blocked = _require_supported_selection()
+    if blocked is not None:
+        return blocked
+
     wizard_data = session.get("wizard_data", {})
     category_code = wizard_data.get("exam_category")
     if not category_code:
@@ -661,6 +764,12 @@ def review():
     if not wizard_data or "exam_category" not in wizard_data:
         flash("Please complete the wizard from the beginning.", "info")
         return redirect(url_for("study_plan.wizard_step", step=1))
+
+    # PTP-001 fail-closed: never present a create review for unsupported exams.
+    support = _wizard_selection_support(wizard_data)
+    if not support.allows_plan_creation:
+        flash(support.explanation, "warning")
+        return redirect(url_for("study_plan.wizard_step", step=2))
 
     review_data = _build_review_data(wizard_data)
     form = StudyPlanReviewForm()
@@ -715,6 +824,16 @@ def review_post():
             paper_or_subject = wizard_data.get("exam_paper", "")
         exam_name = catalogue.format_exam_name(category_code, paper_or_subject)
 
+        # PTP-001 fail-closed: refuse hollow-plan creation.
+        support = SubjectSupportService.resolve(
+            category_code,
+            paper_or_subject,
+            free_text_subject=catalogue.is_free_text_subject(category_code),
+        )
+        if not support.allows_plan_creation:
+            flash(support.explanation, "warning")
+            return redirect(url_for("study_plan.wizard_step", step=2))
+
         # Build current_stage from position only — curriculum topic is stored separately
         current_stage = _build_current_stage(wizard_data["current_position"])
 
@@ -741,6 +860,10 @@ def review_post():
                 total_steps=TOTAL_STEPS + 1,
                 step_title=STEP_TITLES[8],
             )
+        if curriculum_version is None:
+            # Supported exams must bind a curriculum; refuse hollow shells.
+            flash(support.explanation, "warning")
+            return redirect(url_for("study_plan.wizard_step", step=2))
 
         # Create the study plan
         try:
@@ -867,7 +990,7 @@ def view_plan(study_plan_id: int):
         flash("You can only view your own study plans.", "danger")
         return redirect(url_for("study_plan.index"))
 
-    return render_template("study_plan/view.html", study_plan=study_plan)
+    return render_template("study_plan/view.html", study_plan=study_plan, title="Study Plan")
 
 
 @study_plan_bp.get("/plans/all")
@@ -875,7 +998,7 @@ def view_plan(study_plan_id: int):
 def list_plans():
     """List all study plans for the user."""
     plans = StudyPlanService.get_user_plans(current_user.id)
-    return render_template("study_plan/list.html", plans=plans)
+    return render_template("study_plan/list.html", plans=plans, title="Study Plan")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -1053,7 +1176,11 @@ def delete_plan(study_plan_id: int):
 
     try:
         StudyPlanService.delete_study_plan(study_plan_id, current_user.id)
-        flash("Study plan permanently deleted.", "info")
+        flash(
+            "Study plan deleted. Your learning progress and study history "
+            "are preserved.",
+            "info",
+        )
     except ValueError as e:
         flash(str(e), "danger")
 

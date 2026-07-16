@@ -109,3 +109,25 @@ class TopicProgress(db.Model):
         self.last_reviewed = datetime.utcnow()
         self.revision_count += 1
         self.updated_at = datetime.utcnow()
+
+    @property
+    def has_estimated_knowledge(self) -> bool:
+        """True when an Estimated Knowledge figure is evidence-backed (EIP-006).
+
+        Completing a topic records Study Progress only (IA-004 / EIP-001).
+        Version 1 student surfaces may show Estimated Knowledge only when
+        authorised Structured Question Results (or future assessment pathways)
+        have produced accuracy evidence under Educational Evidence Authority
+        (EIP-002 / EL-005–EL-006). The stored scalar is understanding posture,
+        not constitutionally sufficient Estimated Mastery (EL-007).
+        """
+        return self.average_accuracy is not None
+
+    @property
+    def has_estimated_mastery(self) -> bool:
+        """Compatibility alias for :meth:`has_estimated_knowledge`.
+
+        Prefer ``has_estimated_knowledge`` in Version 1 student and service paths.
+        Retained so existing regressions continue to assert evidence gating.
+        """
+        return self.has_estimated_knowledge

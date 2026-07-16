@@ -1,7 +1,7 @@
 {% extends "study_plan/wizard_base.html" %}
 
 {% set wizard_question = "What examination are you preparing for?" %}
-{% set wizard_helper = "This helps us understand the structure of your exam and tailor your study plan accordingly." %}
+{% set wizard_helper = "Choose your examining body. Kwalitec shows which examinations can create a full study plan in Version 1." %}
 {% set button_text = "Next" %}
 
 {% block form_content %}
@@ -16,6 +16,7 @@
 
     <div class="wizard-option-grid">
         {% for category in categories %}
+        {% set summary = category_support.get(category.code) %}
         <label class="wizard-option-card" for="exam_category-{{ loop.index0 }}">
             <input type="radio" name="exam_category" id="exam_category-{{ loop.index0 }}"
                    value="{{ category.code }}" class="wizard-option-input"
@@ -27,8 +28,16 @@
                     </svg>
                 </div>
                 <div class="wizard-option-text">
-                    <div class="wizard-option-title">{{ category.name }}</div>
+                    <div class="wizard-option-title-row">
+                        <div class="wizard-option-title">{{ category.name }}</div>
+                        {% if summary %}
+                        <span class="support-status-badge support-status-badge--{{ summary.status.value }}">{{ summary.label }}</span>
+                        {% endif %}
+                    </div>
                     <div class="wizard-option-desc">{{ category.description }}</div>
+                    {% if summary and summary.hint %}
+                    <div class="wizard-option-support-hint">{{ summary.hint }}</div>
+                    {% endif %}
                 </div>
             </div>
         </label>

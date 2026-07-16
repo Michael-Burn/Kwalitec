@@ -3,22 +3,28 @@
 from __future__ import annotations
 
 import logging
-from datetime import date
 
 from flask import Blueprint, flash, jsonify, redirect, render_template, request, url_for
 from flask_login import current_user, login_required
 
-from app.mission.forms import MissionReviewForm, MistakeForm
+from app.mission.forms import PracticeOutcomeCaptureForm
 from app.models.mission import Mission
 from app.models.topic_progress import TopicProgress
 from app.services.curriculum_engine_service import (
     CurriculumEngineService,
 )
 from app.services.curriculum_service import CurriculumService
-from app.services.learning_service import LearningService
+from app.services.educational_explainability_service import (
+    EducationalExplainabilityService,
+)
 from app.services.mission_service import MissionService
 from app.services.readiness_service import ReadinessService
 from app.services.study_plan_service import StudyPlanService
+from app.services.study_session_service import (
+    COMPLETION_YES,
+    PRACTICE_OUTCOME_SUCCESS_MESSAGE,
+    StudySessionService,
+)
 from app.services.study_tips_service import StudyTipsService
 
 logger = logging.getLogger(__name__)
@@ -71,11 +77,11 @@ def _apply_mission_topic_progress(user_id: int, topic) -> None:
         user_id=user_id,
         topic_id=topic.id,
     )
+    # EIP-001 / EIP-002 / EL-001 / IA-004: Mission Completion may update Study
+    # Progress only. Never Estimated Mastery/Knowledge, never Educational
+    # Evidence of understanding, never student-felt confidence (Art. V; EL-004).
     progress.completed = True
-    progress.confidence = "High"
     progress.current_stage = TopicProgress.STAGE_COMPLETED
-    if progress.mastery_score < 70.0:
-        progress.mastery_score = 70.0
     progress.mark_reviewed()
 
     # Advance the following incomplete topic into Learning when present.
@@ -125,6 +131,7 @@ def missions():
     # Curriculum summary (coverage / readiness widgets only — not mission topic)
     curriculum_summary = None
     readiness_summary = None
+    coverage_narrative = None
     if active_study_plan:
         try:
             curriculum_summary = CurriculumEngineService().build_student_curriculum(
@@ -134,6 +141,13 @@ def missions():
                 readiness_summary = ReadinessService.calculate_readiness(
                     curriculum_summary
                 )
+                if readiness_summary is not None:
+                    coverage_narrative = (
+                        EducationalExplainabilityService.explain_coverage_readiness(
+                            readiness_percentage=readiness_summary.readiness_percentage,
+                            explanation=readiness_summary.explanation,
+                        )
+                    )
         except Exception:
             logger.warning(
                 "Could not build curriculum summary for user %s",
@@ -141,15 +155,241 @@ def missions():
                 exc_info=True,
             )
 
+    mission_narrative = None
+    session_context = None
+    if today_mission is not None:
+        syllabus_pct = None
+        completed_topics = None
+        total_topics = None
+        if curriculum_summary is not None:
+            completed_topics = getattr(curriculum_summary, "completed_topics", None)
+            total_topics = getattr(curriculum_summary, "total_topics", None)
+        if readiness_summary is not None:
+            syllabus_pct = readiness_summary.readiness_percentage * 100
+        mission_narrative = EducationalExplainabilityService.build_mission_narrative(
+            mission_title=today_mission.title,
+            mission_status=today_mission.status,
+            exam_name=active_study_plan.exam_name if active_study_plan else None,
+            completed_topics=completed_topics,
+            total_topics=total_topics,
+            syllabus_coverage_pct=syllabus_pct,
+        )
+        session_context = StudySessionService.build_session_context(
+            today_mission,
+            active_study_plan,
+            why_studying=(
+                mission_narrative.reason_for_selection if mission_narrative else None
+            ),
+            learning_objective=(
+                mission_narrative.educational_purpose if mission_narrative else None
+            ),
+        )
+
     return render_template(
         "mission/index.html",
-        title="Daily Mission",
+        title="Today's Study Session",
         missions=missions_list,
         today_mission=today_mission,
         active_study_plan=active_study_plan,
         curriculum_summary=curriculum_summary,
         readiness_summary=readiness_summary,
+        coverage_narrative=coverage_narrative,
+        mission_narrative=mission_narrative,
+        session_context=session_context,
         study_tip=StudyTipsService.tip_for_day(),
+    )
+
+
+def _session_context_for_mission(user_id: int, mission: Mission):
+    """Build narrative + Study Session context for a mission-owned page."""
+    plan = None
+    if mission.study_plan_id is not None:
+        plan = StudyPlanService.get_plan(mission.study_plan_id, user_id=user_id)
+    if plan is None:
+        plan = StudyPlanService.get_user_active_plan(user_id)
+
+    mission_narrative = EducationalExplainabilityService.build_mission_narrative(
+        mission_title=mission.title,
+        mission_status=mission.status,
+        exam_name=plan.exam_name if plan else None,
+    )
+    session_context = StudySessionService.build_session_context(
+        mission,
+        plan,
+        why_studying=mission_narrative.reason_for_selection,
+        learning_objective=mission_narrative.educational_purpose,
+    )
+    return plan, mission_narrative, session_context
+
+
+@mission_bp.post("/<int:mission_id>/session/start")
+@login_required
+def start_study_session(mission_id: int):
+    """LXP-002: Start today's Study Session from Today's Mission."""
+    try:
+        mission = StudySessionService.start_session(mission_id, current_user.id)
+    except ValueError as e:
+        flash(str(e), "warning")
+        return redirect(url_for("mission.missions"))
+
+    return redirect(url_for("mission.study_session", mission_id=mission.id))
+
+
+@mission_bp.get("/<int:mission_id>/session")
+@login_required
+def study_session(mission_id: int):
+    """LXP-002: Dedicated Study Session screen."""
+    try:
+        mission = StudySessionService.get_owned_mission(mission_id, current_user.id)
+    except ValueError:
+        flash("You can only open your own study sessions.", "danger")
+        return redirect(url_for("mission.missions"))
+
+    if mission.status == "Completed":
+        return redirect(
+            url_for(
+                "mission.study_session_recorded",
+                mission_id=mission.id,
+                practice="1",
+            )
+        )
+
+    if mission.status == "Pending":
+        # Opening the session screen is an intentional start.
+        try:
+            mission = StudySessionService.start_session(mission.id, current_user.id)
+        except ValueError as e:
+            flash(str(e), "warning")
+            return redirect(url_for("mission.missions"))
+
+    _plan, mission_narrative, session_context = _session_context_for_mission(
+        current_user.id, mission
+    )
+
+    return render_template(
+        "mission/session.html",
+        title="Study Session",
+        mission=mission,
+        mission_narrative=mission_narrative,
+        session_context=session_context,
+    )
+
+
+@mission_bp.route("/<int:mission_id>/session/finish", methods=["GET", "POST"])
+@login_required
+def finish_study_session(mission_id: int):
+    """LXP-003: Practice Outcome Capture after Finish Study Session."""
+    try:
+        mission = StudySessionService.get_owned_mission(mission_id, current_user.id)
+    except ValueError:
+        flash("You can only finish your own study sessions.", "danger")
+        return redirect(url_for("mission.missions"))
+
+    if mission.status == "Completed":
+        return redirect(
+            url_for(
+                "mission.study_session_recorded",
+                mission_id=mission.id,
+                practice="1",
+            )
+        )
+
+    form = PracticeOutcomeCaptureForm()
+    _plan, mission_narrative, session_context = _session_context_for_mission(
+        current_user.id, mission
+    )
+
+    if request.method == "POST" and request.form.get("skip_practice") == "1":
+        topic = _resolve_topic_for_mission(current_user.id, mission)
+        topic_id = topic.id if topic is not None else None
+        try:
+            StudySessionService.finish_session(
+                mission_id=mission.id,
+                user_id=current_user.id,
+                completion_status=COMPLETION_YES,
+                notes="No practice questions recorded today.",
+                topic_id=topic_id,
+            )
+        except ValueError as e:
+            flash(str(e), "warning")
+            return redirect(url_for("mission.missions"))
+
+        flash("Today's study session has been recorded.", "success")
+        return redirect(
+            url_for(
+                "mission.study_session_recorded",
+                mission_id=mission.id,
+                practice="0",
+            )
+        )
+
+    if form.validate_on_submit():
+        topic = _resolve_topic_for_mission(current_user.id, mission)
+        topic_id = topic.id if topic is not None else None
+
+        try:
+            result = StudySessionService.record_practice_outcome(
+                mission_id=mission.id,
+                user_id=current_user.id,
+                questions_attempted=form.questions_attempted.data,
+                questions_correct=form.questions_correct.data,
+                duration_minutes=form.duration_minutes.data,
+                notes=form.notes.data,
+                topic_id=topic_id,
+            )
+        except ValueError as e:
+            flash(str(e), "warning")
+            return redirect(url_for("mission.missions"))
+
+        flash(PRACTICE_OUTCOME_SUCCESS_MESSAGE, "success")
+        return redirect(
+            url_for(
+                "mission.study_session_recorded",
+                mission_id=result.mission.id,
+                practice="1",
+                evidence="1" if result.authorised_evidence else "0",
+            )
+        )
+
+    return render_template(
+        "mission/session_practice_outcome.html",
+        title="Practice Outcome Capture",
+        mission=mission,
+        form=form,
+        mission_narrative=mission_narrative,
+        session_context=session_context,
+    )
+
+
+@mission_bp.get("/<int:mission_id>/session/recorded")
+@login_required
+def study_session_recorded(mission_id: int):
+    """LXP-004 Study Session Feedback after Practice Outcome Capture."""
+    try:
+        mission = StudySessionService.get_owned_mission(mission_id, current_user.id)
+    except ValueError:
+        flash("You can only view your own study sessions.", "danger")
+        return redirect(url_for("mission.missions"))
+
+    study_progress_updated = request.args.get("progress") == "1"
+    _plan, mission_narrative, session_context = _session_context_for_mission(
+        current_user.id, mission
+    )
+    session_feedback = StudySessionService.build_session_feedback(
+        mission.id,
+        current_user.id,
+        topic_title=session_context.topic_title,
+        study_progress_updated=study_progress_updated,
+    )
+
+    return render_template(
+        "mission/session_recorded.html",
+        title="Study Session Feedback",
+        mission=mission,
+        mission_narrative=mission_narrative,
+        session_context=session_context,
+        session_feedback=session_feedback,
+        practice_success_message=PRACTICE_OUTCOME_SUCCESS_MESSAGE,
     )
 
 
@@ -193,159 +433,110 @@ def toggle_task(task_id: int) -> dict:
         return jsonify({"success": False, "error": str(e)}), 500
 
 
+def _wants_json_response() -> bool:
+    """True when a legacy client expects a JSON navigation payload."""
+    if request.is_json:
+        return True
+    accept = request.accept_mimetypes
+    if accept.best == "application/json":
+        return True
+    content_type = (request.content_type or "").lower()
+    return content_type.startswith("application/json")
+
+
+def _authoritative_closure_redirect(mission: Mission):
+    """PTP-002: Send the student to the single Version 1 closure path.
+
+    Open missions → Practice Outcome Capture (session/finish).
+    Completed missions → Study Session Feedback (session/recorded).
+    Never writes educational state from legacy entry points.
+    """
+    if mission.status == "Pending":
+        try:
+            mission = StudySessionService.start_session(mission.id, current_user.id)
+        except ValueError:
+            pass
+
+    if mission.status == "Completed":
+        return url_for(
+            "mission.study_session_recorded",
+            mission_id=mission.id,
+            practice="1",
+        )
+    return url_for("mission.finish_study_session", mission_id=mission.id)
+
+
 @mission_bp.post("/<int:mission_id>/complete")
 @login_required
 def complete_mission(mission_id: int):
-    """Mark a mission complete, persist progress, and refresh dashboard state.
+    """PTP-002 legacy compatibility — delegate to Study Session closure.
 
-    Requires every mission task to already be marked done. Sets mission status
-    to Completed, records a study attempt against the linked curriculum topic
-    when available, and updates TopicProgress so readiness/progress bars
-    advance after refresh.
+    Does not mark the mission complete, create a StudyAttempt, or update
+    Study Progress. The authoritative student path is:
+
+        Study Session → Practice Outcome Capture → Study Session Feedback
     """
     try:
-        mission = MissionService.complete_mission(mission_id, current_user.id)
-        topic = _resolve_topic_for_mission(current_user.id, mission)
-        topic_id = topic.id if topic is not None else None
+        mission = StudySessionService.get_owned_mission(mission_id, current_user.id)
+    except ValueError as e:
+        logger.warning("Legacy complete delegated failed: %s", e)
+        if _wants_json_response():
+            return jsonify({"success": False, "error": str(e)}), 400
+        flash(str(e), "warning")
+        return redirect(url_for("mission.missions"))
 
-        LearningService.create_study_attempt(
-            user_id=current_user.id,
-            mission_id=mission.id,
-            topic_id=topic_id,
-            study_date=date.today(),
-        )
-        _apply_mission_topic_progress(current_user.id, topic)
-
+    target = _authoritative_closure_redirect(mission)
+    if _wants_json_response():
         return jsonify({
             "success": True,
+            "delegated": True,
+            "message": (
+                "Today's study is recorded through the Study Session path."
+            ),
+            "redirect_url": target,
             "mission": {
                 "id": mission.id,
                 "status": mission.status,
                 "completion_percentage": mission.get_completion_percentage(),
             },
-            "redirect_url": url_for("dashboard.index"),
         })
-    except ValueError as e:
-        logger.warning("Mission complete failed: %s", e)
-        return jsonify({"success": False, "error": str(e)}), 400
-    except Exception as e:
-        logger.error("Mission complete error: %s", e, exc_info=True)
-        return jsonify({"success": False, "error": str(e)}), 500
+    return redirect(target)
 
 
 @mission_bp.get("/review/<int:mission_id>")
 @login_required
 def review_mission(mission_id: int):
-    """Display mission review form after mission completion.
+    """PTP-002 legacy compatibility — Reflect on Your Learning redirects.
 
-    Allows student to record how they learned and what they need to improve.
+    The competing reflection form is no longer a student journey. Practice
+    Outcome Capture and Study Session Feedback own the record / close day.
     """
-    mission = Mission.query.get_or_404(mission_id)
+    try:
+        mission = StudySessionService.get_owned_mission(mission_id, current_user.id)
+    except ValueError:
+        flash("You can only review your own study sessions.", "danger")
+        return redirect(url_for("mission.missions"))
 
-    # Verify mission belongs to current user
-    if mission.user_id != current_user.id:
-        flash("You can only review your own missions.", "danger")
-        return redirect(url_for("dashboard.index"))
-
-    # Verify all tasks are complete
-    if not all(t.completed for t in mission.tasks):
-        flash("Complete all tasks before reviewing your mission.", "info")
-        return redirect(url_for("dashboard.index"))
-
-    form = MissionReviewForm()
-    mistake_form = MistakeForm()
-
-    return render_template(
-        "mission/review.html",
-        title="Reflect on Your Learning",
-        mission=mission,
-        form=form,
-        mistake_form=mistake_form,
-    )
+    return redirect(_authoritative_closure_redirect(mission))
 
 
 @mission_bp.post("/review/<int:mission_id>")
 @login_required
 def submit_review(mission_id: int):
-    """Handle mission review submission.
+    """PTP-002 legacy compatibility — never write a second educational record.
 
-    Creates a StudyAttempt and optional Mistake records.
+    POST bodies to the retired Reflect on Your Learning form are ignored for
+    state mutation and redirected to the authoritative Study Session path.
     """
-    mission = Mission.query.get_or_404(mission_id)
-
-    # Verify mission belongs to current user
-    if mission.user_id != current_user.id:
-        flash("You can only review your own missions.", "danger")
-        return redirect(url_for("dashboard.index"))
-
-    form = MissionReviewForm()
-    if not form.validate_on_submit():
-        mistake_form = MistakeForm()
-        return render_template(
-            "mission/review.html",
-            title="Reflect on Your Learning",
-            mission=mission,
-            form=form,
-            mistake_form=mistake_form,
-        ), 400
-
     try:
-        topic = _resolve_topic_for_mission(current_user.id, mission)
-        topic_id = topic.id if topic is not None else None
+        mission = StudySessionService.get_owned_mission(mission_id, current_user.id)
+    except ValueError:
+        flash("You can only review your own study sessions.", "danger")
+        return redirect(url_for("mission.missions"))
 
-        # Create study attempt linked to the curriculum topic when known
-        study_attempt = LearningService.create_study_attempt(
-            user_id=current_user.id,
-            mission_id=mission_id,
-            topic_id=topic_id,
-            study_date=date.today(),
-            duration_minutes=form.duration_minutes.data,
-            questions_attempted=form.questions_attempted.data,
-            questions_correct=form.questions_correct.data,
-            confidence_before=form.confidence_before.data,
-            confidence_after=form.confidence_after.data,
-            notes=form.notes.data,
-        )
-
-        # Handle optional mistakes
-        mistakes_data = request.form.getlist("mistake")
-        for mistake_index in range(len(mistakes_data)):
-            if mistakes_data[mistake_index]:
-                mistake_type = request.form.get(f"mistake_type_{mistake_index}")
-                description = request.form.get(f"description_{mistake_index}")
-                correct_solution = request.form.get(f"correct_solution_{mistake_index}")
-
-                if description:
-                    LearningService.record_mistake(
-                        study_attempt_id=study_attempt.id,
-                        description=description,
-                        topic_id=topic_id,
-                        mistake_type=mistake_type,
-                        correct_solution=correct_solution,
-                    )
-
-        # Mark mission as completed and advance syllabus progress
-        MissionService.update_mission_status(
-            mission_id=mission.id,
-            user_id=current_user.id,
-            status="Completed",
-        )
-        _apply_mission_topic_progress(current_user.id, topic)
-
-        flash(
-            "Session reflection saved. Great work — keep building on today's progress!",
-            "success",
-        )
-        return redirect(url_for("dashboard.index"))
-
-    except ValueError as e:
-        logger.warning("Review submission failed: %s", e)
-        form.errors["general"] = [str(e)]
-        mistake_form = MistakeForm()
-        return render_template(
-            "mission/review.html",
-            title="Reflect on Your Learning",
-            mission=mission,
-            form=form,
-            mistake_form=mistake_form,
-        ), 400
+    flash(
+        "Practice results and session feedback are recorded through the "
+        "Study Session path after you finish studying.",
+        "info",
+    )
+    return redirect(_authoritative_closure_redirect(mission))

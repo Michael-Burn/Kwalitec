@@ -1,0 +1,89 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<section class="section-header">
+    <p class="section-eyebrow">Founder · Product Finding</p>
+    <h1 class="section-title">{{ detail.finding.title }}</h1>
+    <p class="section-description">{{ detail.finding.summary }}</p>
+</section>
+
+<div data-rip003-finding-detail="1">
+<section class="mb-4">
+    <div class="command-card">
+        <div class="command-card-body">
+            <p class="mb-1"><strong>Severity:</strong> {{ detail.finding.severity }}</p>
+            <p class="mb-1"><strong>Feature area:</strong> {{ detail.finding.feature_area }}</p>
+            <p class="mb-1"><strong>Status:</strong> {{ workflow_labels.get(detail.finding.status, detail.finding.status) }}</p>
+            <p class="mb-1"><strong>Target release:</strong> {{ detail.finding.target_release or '—' }}</p>
+            {% if detail.finding.notes %}
+            <p class="mb-1"><strong>Notes:</strong> {{ detail.finding.notes }}</p>
+            {% endif %}
+            <p class="mb-0 text-muted small">Created {{ detail.finding.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
+        </div>
+    </div>
+</section>
+
+<section class="mb-4" aria-label="Linked feedback">
+    <h2 class="h5 mb-3">Linked Feedback</h2>
+    {% if detail.linked_submissions %}
+    <div class="list-group">
+        {% for sub in detail.linked_submissions %}
+        <a href="{{ url_for('research.founder_command_centre', submission=sub.id) }}"
+           class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+                <span>#{{ sub.id }} · {{ sub.experience_rating }}</span>
+                <small>{{ sub.submitted_at.strftime('%Y-%m-%d') }}</small>
+            </div>
+            <p class="mb-0 small">{{ sub.feature_helped_most }} · {{ sub.friction_area }}</p>
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-muted">No linked feedback submissions.</p>
+    {% endif %}
+</section>
+
+<section class="mb-4" aria-label="Status history">
+    <h2 class="h5 mb-3">Decision History</h2>
+    {% if detail.status_history %}
+    <ul class="small">
+        {% for t in detail.status_history %}
+        <li>{{ t.transitioned_at.strftime('%Y-%m-%d %H:%M') }}:
+            {{ workflow_labels.get(t.from_status, t.from_status or '—') }}
+            → {{ workflow_labels.get(t.to_status, t.to_status) }}
+            {% if t.rationale %}({{ t.rationale }}){% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="text-muted">No status transitions recorded.</p>
+    {% endif %}
+</section>
+
+<section class="mb-4">
+    <div class="command-card">
+        <div class="command-card-header">
+            <h2 class="h6 mb-0">Update Status / Target Release</h2>
+        </div>
+        <div class="command-card-body">
+            <form method="post" action="{{ url_for('research.founder_finding_detail', finding_id=detail.finding.id) }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="mb-2">
+                    {{ transition_form.to_status(class="form-select form-select-sm") }}
+                </div>
+                <div class="mb-2">
+                    <input type="text" name="target_release" class="form-control form-control-sm"
+                           value="{{ detail.finding.target_release or '' }}"
+                           placeholder="Target release (e.g. 1.0.1)">
+                </div>
+                <div class="mb-2">
+                    {{ transition_form.rationale(class="form-control form-control-sm", placeholder="Rationale (optional)") }}
+                </div>
+                <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                <a href="{{ url_for('research.founder_command_centre') }}" class="btn btn-sm btn-outline-secondary ms-2">Back to Command Centre</a>
+            </form>
+        </div>
+    </div>
+</section>
+</div>
+{% endblock %}

@@ -231,8 +231,10 @@ class StudyPlanService:
         so that progress is preserved across plan changes.
 
         Topics whose ``code`` appears in ``completed_curriculum_topics`` are
-        initialised as *completed* (completed=True, mastery_score=100.0,
-        current_stage="Completed").
+        initialised as *study completed* only (completed=True,
+        current_stage="Completed", mastery_score unchanged at 0.0).
+        Completion never declares Mastery and never co-writes student-felt
+        confidence (IA-004 / EIP-001).
 
         The topic identified by ``curriculum_topic_code`` is promoted as the
         student's *current* topic (``current_stage`` = ``Learning``) when that
@@ -417,6 +419,19 @@ class StudyPlanService:
                     completed_curriculum_topics,
                 )
 
+        # EIP-005: after target syllabus units exist, continue learner history
+        # from prior curricula of the same exam by objective topic-code match.
+        # Existing progress on the target curriculum is never overwritten.
+        from app.services.educational_continuity_service import (
+            EducationalContinuityService,
+        )
+
+        EducationalContinuityService.remap_study_progress_to_curriculum(
+            study_plan.user_id,
+            db_curriculum,
+            exam_name=study_plan.exam_name,
+        )
+
         # ── Mark the selected topic as the student's current topic ────────
         if curriculum_topic_code is None:
             return  # No current topic selected — all topics stay "Not Started".
@@ -449,9 +464,10 @@ class StudyPlanService:
             if tp.completed:
                 break
 
+            # EIP-005: promote live pointer without erasing Estimated Knowledge /
+            # Mastery continuity already held on this TopicProgress row.
             tp.current_stage = TopicProgress.STAGE_LEARNING
             tp.completed = False
-            tp.mastery_score = 0.0
             break
 
         StudyPlanService.reconcile_current_topic_pointer(study_plan)
@@ -561,12 +577,15 @@ class StudyPlanService:
 
         is_completed = engine_topic_code in completed_curriculum_topics
 
+        # EIP-001 / EL-001 / IA-004: Manual topic completion writes Study
+        # Progress only. Never invent Mastery or student-felt confidence
+        # from a coverage declaration.
         db.session.add(TopicProgress(
             user_id=study_plan.user_id,
             topic_id=db_topic.id,
-            confidence="Mastered" if is_completed else "Not Started",
+            confidence="Not Started",
             completed=is_completed,
-            mastery_score=100.0 if is_completed else 0.0,
+            mastery_score=0.0,
             revision_count=0,
             last_reviewed=None,
             current_stage=(
@@ -989,29 +1008,45 @@ class StudyPlanService:
             in_completed = engine_topic.code in completed_set
 
             if in_completed:
+                # EIP-001 / EL-001: Study Progress only — do not write mastery
+                # or student-felt confidence from coverage edits.
                 tp.completed = True
-                tp.mastery_score = 100.0
-                tp.confidence = "Mastered"
                 tp.current_stage = TopicProgress.STAGE_COMPLETED
             elif is_current:
                 tp.completed = False
-                tp.mastery_score = 0.0
                 tp.current_stage = TopicProgress.STAGE_LEARNING
             elif tp.completed:
                 tp.completed = False
-                tp.mastery_score = 0.0
-                tp.confidence = "Not Started"
                 tp.current_stage = TopicProgress.STAGE_NOT_STARTED
 
         StudyPlanService.reconcile_current_topic_pointer(study_plan)
 
     @staticmethod
-    def delete_study_plan(study_plan_id: int, user_id: int) -> None:
-        """Permanently delete a study plan and cascade through dependent data.
+    def sync_declared_completed_topics(
+        study_plan_id: int,
+        user_id: int,
+        completed_codes: list[str],
+    ) -> None:
+        """Apply declared coverage from Educational History to Study Progress."""
+        study_plan = StudyPlanService.get_plan(study_plan_id, user_id=user_id)
+        if study_plan is None:
+            return
+        StudyPlanService._sync_completed_topics(
+            study_plan,
+            completed_codes,
+            study_plan.curriculum_topic_code,
+        )
+        db.session.commit()
 
-        Deletes the study plan, its week plans, and associated TopicProgress
-        records for this user.  Missions and study attempts are preserved
-        (they belong to the user, not the plan).
+    @staticmethod
+    def delete_study_plan(study_plan_id: int, user_id: int) -> None:
+        """Permanently delete a Study Plan's planning artefacts only.
+
+        EIP-005 Educational Continuity: educational history belongs to the
+        learner. Deleting a Study Plan removes planning metadata and week
+        schedules, and clears temporary mission plan pointers. It must not
+        delete Study Progress, Study Attempts, Educational Evidence posture,
+        Estimated Knowledge, or Estimated Mastery.
 
         Args:
             study_plan_id: The ID of the study plan to delete.
@@ -1020,6 +1055,10 @@ class StudyPlanService:
         Raises:
             ValueError: If the plan doesn't exist or doesn't belong to the user.
         """
+        from app.services.educational_continuity_service import (
+            EducationalContinuityService,
+        )
+
         study_plan = StudyPlan.query.get(study_plan_id)
         if not study_plan:
             raise ValueError(f"Study plan {study_plan_id} not found")
@@ -1027,23 +1066,11 @@ class StudyPlanService:
         if study_plan.user_id != user_id:
             raise ValueError(f"Study plan {study_plan_id} does not belong to user {user_id}")
 
-        # Delete associated TopicProgress records for this user/curriculum
-        if study_plan.curriculum_id:
-            from app.models.curriculum import Topic as DBTopic
+        # Detach disposable plan context; retain learner educational history.
+        EducationalContinuityService.release_plan_planning_artifacts(study_plan)
 
-            linked_topic_ids = [
-                r.id
-                for r in db.session.query(DBTopic.id)
-                .filter(DBTopic.curriculum_id == study_plan.curriculum_id)
-                .all()
-            ]
-            if linked_topic_ids:
-                TopicProgress.query.filter(
-                    TopicProgress.user_id == user_id,
-                    TopicProgress.topic_id.in_(linked_topic_ids),
-                ).delete(synchronize_session="fetch")
-
-        # The study plan's week_plans cascade automatically (delete-orphan)
+        # Week plans cascade via delete-orphan. TopicProgress is intentionally
+        # untouched — it is learner-owned Study Progress / estimate storage.
         db.session.delete(study_plan)
         db.session.commit()
 

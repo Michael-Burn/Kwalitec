@@ -1,7 +1,7 @@
 {% extends "study_plan/wizard_base.html" %}
 
-{% set wizard_question = "Where are you currently?" %}
-{% set wizard_helper = "Knowing your starting point helps us calibrate your plan and avoid recommending material you already know." %}
+{% set wizard_question = "Where are you in the syllabus?" %}
+{% set wizard_helper = "Tell us your current study stage. You will declare completed topics once in the next step." %}
 {% set button_text = "Next" %}
 
 {% block form_content %}
@@ -27,26 +27,7 @@
         {% endfor %}
     </div>
 
-    {% if curriculum_topics %}
-    {# ── Curriculum-powered completed topics checklist ─────────── #}
-    <div class="wizard-field-group wizard-conditional-field" id="curriculum-topic-field" style="display: none;">
-        <label class="form-label">Which topics have you already completed?</label>
-        <small class="wizard-field-hint">Select all curriculum topics that you have already finished studying.</small>
-        <div class="wizard-option-list" style="margin-top: var(--space-md);" id="curriculum-topic-list">
-            {% for topic in curriculum_topics %}
-            <label class="wizard-option-row" style="cursor: pointer;">
-                <input type="checkbox" name="curriculum_topic" value="{{ topic.code }}"
-                       class="wizard-option-input"
-                       {% if topic.code in completed_curriculum_topics %}checked{% endif %}>
-                <div class="wizard-option-row-body">
-                    <div class="wizard-option-row-title">{{ topic.code }} &mdash; {{ topic.title }}</div>
-                    <div class="wizard-option-row-desc">{{ topic.description }}</div>
-                </div>
-            </label>
-            {% endfor %}
-        </div>
-    </div>
-    {% else %}
+    {% if not curriculum_topics %}
     {# ── Free-text topic field (unsupported examination) ───────────── #}
     <div class="wizard-field-group wizard-conditional-field" id="current-topic-field" style="display: none;">
         <label class="form-label" for="current_topic">{{ form.current_topic.label.text }}</label>
@@ -56,7 +37,7 @@
         </div>
         {% endif %}
         {{ form.current_topic(class="form-control", placeholder="e.g., Statistical Distributions") }}
-        <small class="wizard-field-hint">Tell us the specific topic you're on so we can pick up from there.</small>
+        <small class="wizard-field-hint">Tell us the specific topic you are on so we can pick up from there.</small>
     </div>
     {% endif %}
 </form>
@@ -65,7 +46,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     var radios = document.querySelectorAll('input[name="current_position"]');
     var topicField = document.getElementById('current-topic-field');
-    var curriculumTopicField = document.getElementById('curriculum-topic-field');
 
     function toggleTopic() {
         var selected = document.querySelector('input[name="current_position"]:checked');
@@ -73,9 +53,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (topicField) {
             topicField.style.display = isLearning ? 'block' : 'none';
-        }
-        if (curriculumTopicField) {
-            curriculumTopicField.style.display = isLearning ? 'block' : 'none';
         }
     }
 

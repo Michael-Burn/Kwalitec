@@ -9,6 +9,7 @@ from app.models.learning import LearningObjective, Mistake, StudyAttempt
 from app.models.mission import Mission
 from app.models.topic_progress import TopicProgress
 from app.services.curriculum_service import CurriculumService
+from app.services.educational_evidence_authority import EducationalEvidenceAuthority
 
 
 class LearningService:
@@ -75,15 +76,26 @@ class LearningService:
         db.session.add(study_attempt)
         db.session.commit()
 
-        # Update topic progress and mastery if topic is provided
-        if topic_id:
-            LearningService._update_progress_from_attempt(
+        # EIP-001 / EIP-002 observation vs evidence:
+        # - Confidence / duration / notes are Educational Observations only.
+        # - They must never mint Educational Evidence of understanding.
+        # - Twin estimates update only when authorised Structured Question
+        #   Results are present (Constitution Art. V; EL-005–EL-007).
+        if topic_id and confidence_after:
+            LearningService._record_student_confidence(
                 user_id=user_id,
                 topic_id=topic_id,
                 confidence_after=confidence_after,
             )
-            # Recalculate mastery after the new attempt
+
+        has_authorised = topic_id is not None and (
+            EducationalEvidenceAuthority.study_attempt_has_structured_question_results(
+                study_attempt
+            )
+        )
+        if has_authorised:
             from app.services.adaptive_learning_service import AdaptiveLearningService
+
             AdaptiveLearningService.update_mastery_after_attempt(
                 user_id=user_id,
                 topic_id=topic_id,
@@ -136,38 +148,37 @@ class LearningService:
         return mistake
 
     @staticmethod
-    def _update_progress_from_attempt(
+    def _record_student_confidence(
         user_id: int,
         topic_id: int,
-        confidence_after: str | None = None,
+        confidence_after: str,
     ) -> TopicProgress:
-        """Update topic progress based on study attempt data.
-        
-        Updates the user's confidence level for the topic based on their
-        reported confidence after studying.
-        
+        """Record student-felt confidence without mutating ownership-bound states.
+
+        EIP-001 / EIP-002 / EL-005 / Constitution IV.10:
+        - Student-felt confidence may be stored as an Educational Observation.
+        - Confidence must NEVER modify Study Progress (``completed``).
+        - Confidence must NEVER modify Estimated Mastery / Estimated Knowledge.
+        - Confidence must NEVER enter Educational Evidence of understanding
+          (V1.0 authorised catalogue excludes it).
+
         Args:
             user_id: The ID of the user.
             topic_id: The ID of the topic.
             confidence_after: Reported confidence level after studying.
-        
+
         Returns:
-            TopicProgress: The updated progress record.
+            TopicProgress: The progress record with confidence updated when valid.
         """
         progress = CurriculumService.get_or_create_topic_progress(
             user_id=user_id,
             topic_id=topic_id,
         )
 
-        # Update confidence if provided
-        if confidence_after:
-            valid_confidence = {"Not Started", "Low", "Medium", "High", "Mastered"}
-            if confidence_after in valid_confidence:
-                progress.confidence = confidence_after
-
-        # Mark as reviewed
-        progress.mark_reviewed()
-        db.session.commit()
+        valid_confidence = {"Not Started", "Low", "Medium", "High", "Mastered"}
+        if confidence_after in valid_confidence:
+            progress.confidence = confidence_after
+            db.session.commit()
 
         return progress
 

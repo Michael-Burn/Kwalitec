@@ -14,13 +14,13 @@
                 <span>Kwalitec</span>
             </a>
 
-            <h1 class="landing-heading">Intelligent Exam Preparation</h1>
+            <h1 class="landing-heading">Disciplined Exam Preparation</h1>
             <p class="landing-tagline">Reduce decisions.<br>Increase learning.</p>
 
             <p class="landing-paragraph">
-                Kwalitec automatically builds personalised study plans, daily missions
-                and intelligent recommendations so students always know exactly what
-                to study next.
+                {{ product_tagline }}
+                Kwalitec builds structured study plans, daily study sessions,
+                and honest progress tracking so you always know what to study next.
             </p>
 
             <ul class="landing-features" role="list">
@@ -28,31 +28,31 @@
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M12 2a10 10 0 1 0 10 10"/><path d="M22 2L12 12"/>
                     </svg>
-                    <span>Adaptive Learning</span>
+                    <span>Structured Study Planning</span>
                 </li>
                 <li>
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
                     </svg>
-                    <span>Intelligent Study Planning</span>
+                    <span>Study Plan Wizard</span>
                 </li>
                 <li>
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/>
                     </svg>
-                    <span>Daily Missions</span>
+                    <span>Daily Study Sessions</span>
                 </li>
                 <li>
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
                     </svg>
-                    <span>Exam Readiness Analytics</span>
+                    <span>{{ pcs.LOGIN_ANALYTICS_FEATURE }}</span>
                 </li>
                 <li>
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
                     </svg>
-                    <span>Burnout Monitoring</span>
+                    <span>Study Load Notices</span>
                 </li>
             </ul>
 
@@ -103,6 +103,22 @@
                 </div>
                 {{ form.submit(class="btn btn-primary btn-lg w-100 landing-submit") }}
             </form>
+
+            {% if internal_alpha_enabled %}
+            <div class="landing-onboarding-note" role="note">
+                <h3 class="landing-onboarding-title">New to the Internal Alpha?</h3>
+                <p class="landing-onboarding-text">
+                    Kwalitec is invite-only during the Internal Alpha — there is no
+                    public sign-up yet. Sign in with the credentials provided by your
+                    Kwalitec coordinator, and you'll go straight to setting up your
+                    study plan.
+                </p>
+                <p class="landing-onboarding-text mb-0">
+                    Don't have your details, or need a reset? Contact your Kwalitec
+                    coordinator and they'll get you set up to start studying.
+                </p>
+            </div>
+            {% endif %}
         </div>
     </section>
 </div>

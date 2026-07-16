@@ -58,7 +58,7 @@ class ReadinessService:
 
         The readiness score is a weighted composite of:
         - Curriculum Coverage (50%): percentage of leaf topics started
-        - Average Mastery (30%): mean mastery across started topics
+        - Average Estimated Knowledge (30%): mean evidence-backed estimate across started topics
         - Review Discipline (20%): based on review completion rate
 
         Args:
@@ -341,9 +341,11 @@ class ReadinessService:
 
     @staticmethod
     def get_weakest_topics(user_id: int, limit: int = 5) -> list[dict]:
-        """Get the weakest topics based on mastery score.
+        """Get the weakest topics based on Estimated Knowledge.
 
-        Only includes topics that have been started (revision_count > 0).
+        Only includes topics with attempt-derived evidence
+        (``average_accuracy`` set). Study completion alone does not qualify
+        (IA-004).
 
         Args:
             user_id: The ID of the user.
@@ -356,6 +358,7 @@ class ReadinessService:
             TopicProgress.query.filter(
                 TopicProgress.user_id == user_id,
                 TopicProgress.revision_count > 0,
+                TopicProgress.average_accuracy.isnot(None),
             )
             .order_by(TopicProgress.mastery_score.asc())
             .limit(limit)
@@ -376,9 +379,11 @@ class ReadinessService:
 
     @staticmethod
     def get_strongest_topics(user_id: int, limit: int = 5) -> list[dict]:
-        """Get the strongest topics based on mastery score.
+        """Get the strongest topics based on Estimated Knowledge.
 
-        Only includes topics that have been started.
+        Only includes topics with attempt-derived evidence
+        (``average_accuracy`` set). Study completion alone does not qualify
+        (IA-004).
 
         Args:
             user_id: The ID of the user.
@@ -391,6 +396,7 @@ class ReadinessService:
             TopicProgress.query.filter(
                 TopicProgress.user_id == user_id,
                 TopicProgress.revision_count > 0,
+                TopicProgress.average_accuracy.isnot(None),
             )
             .order_by(TopicProgress.mastery_score.desc())
             .limit(limit)
@@ -565,8 +571,9 @@ class ReadinessService:
         display_pct = round(readiness_pct * 100)
 
         explanation = (
-            f"You have completed topics representing "
-            f"{display_pct}% of the official syllabus weighting."
+            f"You have completed studying topics representing "
+            f"{display_pct}% of the official syllabus weighting. "
+            "This is Learning Progress from Study Progress — not Estimated Knowledge."
         )
 
         return ReadinessSummary(

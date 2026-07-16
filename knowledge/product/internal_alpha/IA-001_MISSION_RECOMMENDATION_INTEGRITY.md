@@ -117,6 +117,7 @@ Algorithms, ranking priorities (review → weak → next incomplete), Educationa
 2. **Nullable historical rows:** Completed unbound missions are left as historical; unfinished orphans are adopted onto the active plan on next generate.
 3. **Legacy RecommendationService weak/coverage lists** remain user-global for non-EI dashboards. Progression labels were already active-plan scoped. Full legacy-list scoping is out of IA-001 scope.
 4. **Subject placeholder** remains the shared `"Study Plan"` subject; distinction is via `study_plan_id`, not `subject_id`.
+5. **Within-plan topic preemption (open follow-up):** IA-001 did not change Priority 1/2 (review → weak) over next-incomplete. A completed CS1 topic can still win Today's Mission while Study Plan shows a later Learning topic (e.g. 2.6 vs 4.2). See [IA-001_FOLLOWUP_TOPIC_SELECTION_RCA.md](IA-001_FOLLOWUP_TOPIC_SELECTION_RCA.md).
 
 ---
 

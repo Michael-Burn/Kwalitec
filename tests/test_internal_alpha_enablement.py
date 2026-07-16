@@ -84,10 +84,13 @@ class TestMissionCompletion:
         assert repaired.status == "In Progress"
         assert repaired.tasks[1].completed is False
 
-    def test_complete_mission_endpoint_updates_progress(self, app, ctx, user):
-        CurriculumService.import_curricula()
+    def test_complete_mission_service_updates_progress(self, app, ctx, user):
+        """Mission completion + Study Progress apply still works at service layer."""
+        from app.mission.routes import _apply_mission_topic_progress
         from app.models.curriculum import Curriculum, Topic
         from app.models.study_plan import StudyPlan
+
+        CurriculumService.import_curricula()
 
         curriculum = Curriculum.query.filter_by(exam_name="IFoA CS1").first()
         assert curriculum is not None
@@ -132,20 +135,8 @@ class TestMissionCompletion:
         db.session.add(mission)
         db.session.commit()
 
-        client = app.test_client()
-        with client.session_transaction() as sess:
-            sess["_user_id"] = str(user.id)
-            sess["_fresh"] = True
-
-        resp = client.post(
-            f"/missions/{mission.id}/complete",
-            json={},
-            headers={"Content-Type": "application/json"},
-        )
-        assert resp.status_code == 200
-        payload = resp.get_json()
-        assert payload["success"] is True
-        assert payload["mission"]["status"] == "Completed"
+        MissionService.complete_mission(mission.id, user.id)
+        _apply_mission_topic_progress(user.id, topic)
 
         db.session.refresh(mission)
         assert mission.status == "Completed"
@@ -162,7 +153,10 @@ class TestMissionCompletion:
         # refresh/heal cannot demote 1.1 back to incomplete.
         assert plan.curriculum_topic_code == "1.2"
 
-    def test_complete_mission_endpoint_rejects_incomplete_tasks(self, app, ctx, user):
+    def test_complete_mission_endpoint_delegates_to_study_session(
+        self, app, ctx, user
+    ):
+        """PTP-002: legacy HTTP complete delegates; does not write state."""
         subject = Subject(user_id=user.id, name="CS1")
         db.session.add(subject)
         db.session.flush()
@@ -173,8 +167,48 @@ class TestMissionCompletion:
             title="Study topic — Monday, Jul 13",
             status="In Progress",
         )
+        mission.tasks.append(MissionTask(title="Study", order=0, completed=True))
+        mission.tasks.append(MissionTask(title="Practice", order=1, completed=True))
+        db.session.add(mission)
+        db.session.commit()
+
+        client = app.test_client()
+        with client.session_transaction() as sess:
+            sess["_user_id"] = str(user.id)
+            sess["_fresh"] = True
+
+        resp = client.post(
+            f"/missions/{mission.id}/complete",
+            json={},
+            headers={"Content-Type": "application/json"},
+        )
+        assert resp.status_code == 200
+        payload = resp.get_json()
+        assert payload["success"] is True
+        assert payload["delegated"] is True
+        assert f"/missions/{mission.id}/session/finish" in payload["redirect_url"]
+
+        db.session.refresh(mission)
+        assert mission.status == "In Progress"
+
+    def test_complete_mission_endpoint_rejects_foreign_mission(
+        self, app, ctx, user
+    ):
+        other = User(email="other-alpha@kwalitec.example", is_active_user=True)
+        other.set_password("password123")
+        db.session.add(other)
+        db.session.flush()
+        subject = Subject(user_id=other.id, name="CS1")
+        db.session.add(subject)
+        db.session.flush()
+        mission = Mission(
+            user_id=other.id,
+            subject_id=subject.id,
+            mission_date=date.today(),
+            title="Study topic — Monday, Jul 13",
+            status="In Progress",
+        )
         mission.tasks.append(MissionTask(title="Study", order=0, completed=False))
-        mission.tasks.append(MissionTask(title="Practice", order=1, completed=False))
         db.session.add(mission)
         db.session.commit()
 
@@ -191,7 +225,6 @@ class TestMissionCompletion:
         assert resp.status_code == 400
         payload = resp.get_json()
         assert payload["success"] is False
-        assert "mission points" in payload["error"].lower()
 
         db.session.refresh(mission)
         assert mission.status == "In Progress"

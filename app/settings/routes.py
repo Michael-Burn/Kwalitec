@@ -89,7 +89,17 @@ def index():
 @login_required
 def profile():
     """Render the profile settings section."""
-    return render_template("settings/index.html", title="Settings", section="profile")
+    from app.services.contributor_recognition_service import (
+        ContributorRecognitionService,
+    )
+
+    journey = ContributorRecognitionService.get_journey_summary(current_user.id)
+    return render_template(
+        "settings/index.html",
+        title="Settings",
+        section="profile",
+        research_journey=journey,
+    )
 
 
 @settings_bp.post("/profile")
@@ -107,6 +117,15 @@ def preferences():
     """Render the preferences settings section."""
     return render_template(
         "settings/index.html", title="Settings", section="preferences"
+    )
+
+
+@settings_bp.get("/share-feedback")
+@login_required
+def share_feedback():
+    """Settings entry for RIP-001 Product Check-in (unlimited submissions)."""
+    return redirect(
+        url_for("research.checkin", source="settings")
     )
 
 
@@ -194,7 +213,7 @@ def export_weekly_pdf():
     lines.append("─── Overview ─────────────────────────────────")
     lines.append(f"Overall Readiness:      {readiness['score']:.0f}%")
     lines.append(f"Curriculum Coverage:    {curriculum_coverage['coverage_percentage']:.0f}%")
-    lines.append(f"Average Mastery:        {readiness['avg_mastery']:.0f}%")
+    lines.append(f"Average Estimated Knowledge: {readiness['avg_mastery']:.0f}%")
     lines.append(f"Current Streak:         {weekly_report.get('current_streak', 0)} days")
     lines.append("")
     lines.append("─── This Week ────────────────────────────────")

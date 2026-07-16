@@ -194,9 +194,14 @@ class TestIa003RecommendationCardMessaging:
         card = RecommendationCardBuilder.build(experience, flags=FLAGS_ON)
         assert card is not None
         assert card.reason_summary is not None
-        assert "Based on" in card.reason_summary or "You've completed" in (
-            card.reason_summary
+        assert (
+            "Suggested:" in card.reason_summary
+            or "Based on" in card.reason_summary
+            or "You've completed" in card.reason_summary
         )
+        assert card.educational_advice
+        assert card.next_action
+        assert card.observed_facts
 
     def test_builder_source_never_joins_raw_intent(self) -> None:
         src = BUILDER_PATH.read_text(encoding="utf-8")
@@ -289,8 +294,9 @@ class TestIa003StudentSurfacesRegression:
         assert "evidence_creating" not in body
         assert "digital twin" not in body
         if "why this mission" in body:
-            assert "active study plan" in body
-            assert "recommended focus" in body
+            assert "learning mode" in body
+            assert "current learning topic" in body
+            assert "next step" in body
 
     def test_settings_learning_profile_not_digital_twin(
         self, logged_in_client

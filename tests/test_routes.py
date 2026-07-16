@@ -20,12 +20,12 @@ class TestDashboardRoute:
     def test_dashboard_no_curriculum_summary_when_no_study_plan(
         self, logged_in_client
     ):
-        """Curriculum progress card shows empty state when there is no active study plan."""
+        """Progress card shows empty state when there is no active study plan."""
         response = logged_in_client.get("/dashboard/")
         assert response.status_code == 200
-        assert b"Curriculum Roadmap" in response.data
+        assert b"Progress through Study Plan" in response.data
         assert b"Curriculum data will appear once you create a study plan." not in response.data
-        assert b"Create your first study plan to unlock your curriculum roadmap." in response.data
+        assert b"Create your first study plan to see progress through the syllabus." in response.data
 
     def test_dashboard_curriculum_summary_for_supported_exam(
         self, logged_in_client, study_plan, curriculum
@@ -68,9 +68,16 @@ class TestMissionRoutes:
         response = client.get("/missions/", follow_redirects=True)
         assert response.status_code == 200
 
-    def test_mission_review_authenticated(self, logged_in_client, mission):
-        response = logged_in_client.get(f"/missions/review/{mission.id}")
-        assert response.status_code in (200, 302, 404)
+    def test_mission_review_redirects_to_session_path(self, logged_in_client, mission):
+        response = logged_in_client.get(
+            f"/missions/review/{mission.id}", follow_redirects=False
+        )
+        assert response.status_code == 302
+        location = response.headers["Location"]
+        assert (
+            f"/missions/{mission.id}/session/finish" in location
+            or f"/missions/{mission.id}/session/recorded" in location
+        )
 
     def test_mission_review_requires_login(self, client, mission):
         response = client.get(f"/missions/review/{mission.id}", follow_redirects=True)
@@ -223,7 +230,7 @@ class TestStudyPlanWizardStep4:
         assert response.status_code == 200
 
     def test_step4_get_displays_for_supported_curriculum(self, logged_in_client):
-        """Step 4 for IFoA/CS1 should show curriculum topic checkboxes."""
+        """Step 4 for IFoA/CS1 captures study stage only — not completed topics."""
         with logged_in_client.session_transaction() as sess:
             sess["wizard_data"] = {
                 "exam_category": "IFoA",
@@ -233,13 +240,11 @@ class TestStudyPlanWizardStep4:
             }
         response = logged_in_client.get("/study-plan/wizard/4")
         assert response.status_code == 200
-        # Should contain the curriculum topic checklist div
-        assert b'id="curriculum-topic-field"' in response.data
-        # Should use checkboxes, not radios
-        assert b'type="checkbox"' in response.data
+        assert b'id="curriculum-topic-field"' not in response.data
+        assert b'name="current_position"' in response.data
 
     def test_step4_get_displays_for_cb2_curriculum(self, logged_in_client):
-        """Step 4 for IFoA/CB2 should show curriculum topic checkboxes."""
+        """Step 4 for IFoA/CB2 captures study stage only."""
         with logged_in_client.session_transaction() as sess:
             sess["wizard_data"] = {
                 "exam_category": "IFoA",
@@ -249,12 +254,11 @@ class TestStudyPlanWizardStep4:
             }
         response = logged_in_client.get("/study-plan/wizard/4")
         assert response.status_code == 200
-        assert b'id="curriculum-topic-field"' in response.data
-        assert b'type="checkbox"' in response.data
+        assert b'id="curriculum-topic-field"' not in response.data
         assert b'id="current-topic-field"' not in response.data
 
     def test_step4_get_displays_for_cm1_curriculum(self, logged_in_client):
-        """Step 4 for IFoA/CM1 should show curriculum topic checkboxes."""
+        """Step 4 for IFoA/CM1 captures study stage only."""
         with logged_in_client.session_transaction() as sess:
             sess["wizard_data"] = {
                 "exam_category": "IFoA",
@@ -264,12 +268,11 @@ class TestStudyPlanWizardStep4:
             }
         response = logged_in_client.get("/study-plan/wizard/4")
         assert response.status_code == 200
-        assert b'id="curriculum-topic-field"' in response.data
-        assert b'type="checkbox"' in response.data
+        assert b'id="curriculum-topic-field"' not in response.data
         assert b'id="current-topic-field"' not in response.data
 
-    def test_step4_get_displays_free_text_for_unsupported(self, logged_in_client):
-        """Step 4 for an unsupported exam (CM2) should show free-text topic."""
+    def test_step4_get_redirects_unsupported_to_paper_step(self, logged_in_client):
+        """PTP-001: unsupported exams cannot reach step 4."""
         with logged_in_client.session_transaction() as sess:
             sess["wizard_data"] = {
                 "exam_category": "IFoA",
@@ -277,15 +280,14 @@ class TestStudyPlanWizardStep4:
                 "exam_sitting": "April 2027",
                 "exam_date": "2027-04-15",
             }
-        response = logged_in_client.get("/study-plan/wizard/4")
-        assert response.status_code == 200
-        # Should contain the free-text topic field
-        assert b'id="current-topic-field"' in response.data
-        # Should NOT contain the curriculum topic checklist
-        assert b'id="curriculum-topic-field"' not in response.data
+        response = logged_in_client.get(
+            "/study-plan/wizard/4", follow_redirects=False
+        )
+        assert response.status_code == 302
+        assert "/study-plan/wizard/2" in response.headers["Location"]
 
-    def test_step4_post_stores_completed_topics(self, logged_in_client):
-        """POST with checked curriculum topics stores them in session."""
+    def test_step4_post_stores_position_not_completed_topics(self, logged_in_client):
+        """QS-001: completed topics are declared once in Educational History."""
         with logged_in_client.session_transaction() as sess:
             sess["wizard_data"] = {
                 "exam_category": "IFoA",
@@ -297,7 +299,6 @@ class TestStudyPlanWizardStep4:
             "/study-plan/wizard/4",
             data={
                 "current_position": "learning",
-                "curriculum_topic": ["1.1", "1.2"],
             },
             follow_redirects=True,
         )
@@ -305,13 +306,11 @@ class TestStudyPlanWizardStep4:
         with logged_in_client.session_transaction() as sess:
             wizard_data = sess["wizard_data"]
             assert wizard_data["current_position"] == "learning"
-            assert "completed_curriculum_topics" in wizard_data
-            assert wizard_data["completed_curriculum_topics"] == ["1.1", "1.2"]
-            # Legacy key must be removed
-            assert "curriculum_topic" not in wizard_data
+            assert "completed_curriculum_topics" not in wizard_data
+            assert "curriculum_current_topic" in wizard_data
 
-    def test_step4_post_no_topics_selected(self, logged_in_client):
-        """POST with no completed topics stores an empty list."""
+    def test_step4_post_not_started_clears_completed_topics(self, logged_in_client):
+        """POST for not_started must not retain wizard completed-topic capture."""
         with logged_in_client.session_transaction() as sess:
             sess["wizard_data"] = {
                 "exam_category": "IFoA",
@@ -329,10 +328,10 @@ class TestStudyPlanWizardStep4:
         assert response.status_code == 200
         with logged_in_client.session_transaction() as sess:
             wizard_data = sess["wizard_data"]
-            assert wizard_data["completed_curriculum_topics"] == []
+            assert "completed_curriculum_topics" not in wizard_data
 
-    def test_step4_post_unsupported_clears_completed_topics(self, logged_in_client):
-        """POST for unsupported exam should clear completed_curriculum_topics."""
+    def test_step4_post_unsupported_redirects_to_paper_step(self, logged_in_client):
+        """PTP-001: POST for unsupported exam cannot advance past the gate."""
         with logged_in_client.session_transaction() as sess:
             sess["wizard_data"] = {
                 "exam_category": "IFoA",
@@ -346,16 +345,13 @@ class TestStudyPlanWizardStep4:
                 "current_position": "learning",
                 "current_topic": "Probability distributions",
             },
-            follow_redirects=True,
+            follow_redirects=False,
         )
-        assert response.status_code == 200
-        with logged_in_client.session_transaction() as sess:
-            wizard_data = sess["wizard_data"]
-            assert "completed_curriculum_topics" not in wizard_data
-            assert wizard_data["current_topic"] == "Probability distributions"
+        assert response.status_code == 302
+        assert "/study-plan/wizard/2" in response.headers["Location"]
 
-    def test_step4_back_navigation_restores_completed_topics(self, logged_in_client):
-        """When navigating back to step 4, completed topics are pre-checked."""
+    def test_step4_back_navigation_restores_position(self, logged_in_client):
+        """When navigating back to step 4, the selected position is restored."""
         with logged_in_client.session_transaction() as sess:
             sess["wizard_data"] = {
                 "exam_category": "IFoA",
@@ -363,17 +359,15 @@ class TestStudyPlanWizardStep4:
                 "exam_sitting": "April 2027",
                 "exam_date": "2027-04-15",
                 "current_position": "learning",
-                "completed_curriculum_topics": ["1.1"],
             }
         response = logged_in_client.get("/study-plan/wizard/4")
         assert response.status_code == 200
         html = response.data.decode()
-        # The previously completed topic should be checked
-        assert 'value="1.1"' in html
+        assert 'value="learning"' in html
         assert "checked" in html
 
-    def test_step4_review_shows_completed_topics(self, logged_in_client):
-        """Review page should display completed curriculum topics."""
+    def test_step4_review_does_not_show_completed_topics(self, logged_in_client):
+        """Review page no longer duplicates Educational History coverage capture."""
         with logged_in_client.session_transaction() as sess:
             sess["wizard_data"] = {
                 "exam_category": "IFoA",
@@ -381,7 +375,6 @@ class TestStudyPlanWizardStep4:
                 "exam_sitting": "April 2027",
                 "exam_date": "2027-04-15",
                 "current_position": "learning",
-                "completed_curriculum_topics": ["1.1", "1.2"],
                 "weekday_study_minutes": 60,
                 "weekend_study_minutes": 120,
                 "study_preference": "Mixed",
@@ -391,9 +384,7 @@ class TestStudyPlanWizardStep4:
         response = logged_in_client.get("/study-plan/review")
         assert response.status_code == 200
         html = response.data.decode()
-        assert "Completed Topics" in html
-        assert "1.1" in html
-        assert "1.2" in html
+        assert "Completed Topics" not in html
 
 
 class TestStudyPlanManagementRoutes:
@@ -404,7 +395,7 @@ class TestStudyPlanManagementRoutes:
         """GET /study-plan/plans/all renders the plans list."""
         resp = logged_in_client.get("/study-plan/plans/all")
         assert resp.status_code == 200
-        assert b"My Plans" in resp.data or b"Study Plans" in resp.data
+        assert b"Study Plan" in resp.data
 
     def test_list_plans_requires_login(self, client):
         resp = client.get("/study-plan/plans/all", follow_redirects=True)
@@ -489,13 +480,17 @@ class TestStudyPlanManagementRoutes:
         assert updated.preferred_session_minutes == 45
 
     def test_delete_plan_post(self, logged_in_client, study_plan):
-        """POST delete removes the plan."""
+        """POST delete removes the plan (EIP-005 continuity flash)."""
         resp = logged_in_client.post(
             f"/study-plan/{study_plan.id}/delete",
             follow_redirects=True,
         )
         assert resp.status_code == 200
-        assert b"permanently deleted" in resp.data.lower()
+        body = resp.data.lower()
+        assert b"study plan deleted" in body
+        assert b"learning progress" in body
+        assert b"study history" in body
+        assert b"preserved" in body
 
         from app.models.study_plan import StudyPlan
         assert StudyPlan.query.get(study_plan.id) is None

@@ -273,6 +273,11 @@ def _persist_and_redirect(launch, declarations: AlphaCalibrationDeclarations):
         return _handle_persist_failure(result, launch.study_plan_id)
 
     assert isinstance(result, PersistedCalibrationBirth)
+    StudyPlanService.sync_declared_completed_topics(
+        launch.study_plan_id,
+        current_user.id,
+        list(declarations.declared_completed_sections),
+    )
     return _mark_welcome_and_go_dashboard(
         flash_message=(
             "Your study plan is ready. We've recorded what you shared about "

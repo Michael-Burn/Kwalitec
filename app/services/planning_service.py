@@ -11,7 +11,6 @@ from app.extensions import db
 from app.models.curriculum import Topic
 from app.models.mission import Mission
 from app.models.study_plan import StudyPlan, WeekPlan
-from app.services.adaptive_learning_service import AdaptiveLearningService
 from app.services.curriculum_service import CurriculumService
 from app.services.mission_service import MissionService
 from app.services.study_plan_service import StudyPlanService
@@ -694,24 +693,30 @@ class PlanningService:
         active_plan: StudyPlan,
         target_date: date,
     ) -> Topic | None:
-        """Select the best topic for today's mission using priority-based ordering.
+        """Select today's mission topic under Learning Mode (IA-004).
 
-        Priority order:
-        1. Topics due for review today (next_review_date <= today)
-        2. Weak topics (mastery < 60) that need attention
-        3. Continue curriculum sequence (next incomplete topic)
+        Version 1.0 Learning Mode: Today's Mission always follows the
+        Current Learning Topic (first incomplete syllabus leaf in the
+        active plan). Review / weak-topic interruption is deferred to
+        Educational Intelligence Phase 1 and must never silently replace
+        the planned learning sequence.
 
-        This method is deterministic - given the same inputs, it always returns
-        the same topic.
+        ``target_date`` is retained for API stability; Learning Mode does
+        not use review schedules for mission topic selection.
+
+        This method is deterministic — given the same inputs, it always
+        returns the same topic.
 
         Args:
             user_id: The ID of the user.
             active_plan: The active study plan.
-            target_date: The date to select a topic for.
+            target_date: The date to select a topic for (unused in Learning Mode).
 
         Returns:
             Topic: The selected topic, or None if no curriculum/no topics available.
         """
+        del target_date  # Learning Mode ignores review-date interruption.
+
         # Curriculum binding is a StudyPlanService invariant — callers must load
         # plans via get_user_active_plan / get_plan so repair has already run.
         curriculum_id = active_plan.curriculum_id
@@ -735,13 +740,15 @@ class PlanningService:
             )
 
         logger.debug(
-            "Topic selection inputs user=%s plan=%s curriculum_id=%s "
-            "curriculum_version=%s topic_progress_count=%s",
+            "Learning Mode topic selection user=%s plan=%s curriculum_id=%s "
+            "curriculum_version=%s topic_progress_count=%s "
+            "curriculum_topic_code=%s",
             user_id,
             active_plan.id,
             curriculum_id,
             curriculum_version,
             topic_progress_count,
+            active_plan.curriculum_topic_code,
         )
 
         if not curriculum:
@@ -753,65 +760,15 @@ class PlanningService:
             )
             return None
 
-        # --- Priority 1: Topics due for review today (active curriculum only) ---
-        due_reviews = AdaptiveLearningService.get_topics_due_for_review(
-            user_id=user_id,
-            target_date=target_date,
-        )
-        due_reviews = [
-            progress
-            for progress in due_reviews
-            if progress.topic is not None
-            and progress.topic.curriculum_id == curriculum.id
-        ]
-        if due_reviews:
-            # Pick the first topic due for review (by next_review_date ascending)
-            selected_progress = due_reviews[0]
-            topic = selected_progress.topic
-            logger.debug(
-                "Priority 1: selected_topic id=%s name=%r section_id=%s "
-                "(due %s, mastery=%.1f)",
-                topic.id,
-                topic.name,
-                topic.section_id,
-                selected_progress.next_review_date,
-                selected_progress.mastery_score,
-            )
-            return topic
-
-        # --- Priority 2: Weak topics that need attention (active curriculum only) ---
-        weak_topics = AdaptiveLearningService.get_weak_topics(
-            user_id=user_id,
-            threshold=60.0,
-        )
-        weak_topics = [
-            progress
-            for progress in weak_topics
-            if progress.topic is not None
-            and progress.topic.curriculum_id == curriculum.id
-        ]
-        if weak_topics:
-            # Weakest topic first (already ordered by mastery ascending)
-            selected_progress = weak_topics[0]
-            topic = selected_progress.topic
-            logger.debug(
-                "Priority 2: selected_topic id=%s name=%r section_id=%s "
-                "(mastery=%.1f)",
-                topic.id,
-                topic.name,
-                topic.section_id,
-                selected_progress.mastery_score,
-            )
-            return topic
-
-        # --- Priority 3: Continue curriculum sequence ---
+        # Current Learning Topic = first incomplete syllabus leaf.
         next_topic = CurriculumService.get_next_incomplete_topic(
             user_id=user_id,
             curriculum=curriculum,
         )
         if next_topic:
             logger.debug(
-                "Priority 3: selected_topic id=%s name=%r section_id=%s",
+                "Learning Mode: selected_topic id=%s name=%r section_id=%s "
+                "(current learning / next incomplete)",
                 next_topic.id,
                 next_topic.name,
                 next_topic.section_id,

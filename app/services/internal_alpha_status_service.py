@@ -16,9 +16,9 @@ from app.application.config.internal_alpha import (
 )
 from app.application.twin.twin_provider import TwinAbsent
 from app.services.study_plan_service import StudyPlanService
+from app.version import APP_VERSION
 
-# Product experience labels — keep in sync with pyproject / release notes.
-APP_VERSION = "1.0.0"
+# Internal build track — distinct from product version (PTP-005 F-1).
 INTERNAL_ALPHA_VERSION = "4.3"
 
 
