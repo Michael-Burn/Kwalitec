@@ -17,6 +17,9 @@ class StudyAttempt(db.Model):
     """
 
     __tablename__ = "study_attempts"
+    __table_args__ = (
+        db.Index("ix_study_attempts_user_study_date", "user_id", "study_date"),
+    )
 
     id: int = db.Column(db.Integer, primary_key=True)
     user_id: int = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)

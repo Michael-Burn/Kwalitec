@@ -16,6 +16,15 @@ class StudyPlan(db.Model):
     """
 
     __tablename__ = "study_plans"
+    __table_args__ = (
+        db.Index("ix_study_plans_active_archived", "active", "archived"),
+        db.Index(
+            "ix_study_plans_user_active_archived",
+            "user_id",
+            "active",
+            "archived",
+        ),
+    )
 
     id: int = db.Column(db.Integer, primary_key=True)
     user_id: int = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)

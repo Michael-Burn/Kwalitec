@@ -1,6 +1,3 @@
-// Study Session helpers (LXP-002 / IAHF-001) — checklist + active-time timer.
-// Elapsed = sum of RUNNING intervals only (not wall-clock since open).
-// Timer state is localStorage-scoped to this browser profile (Version 1).
 (function () {
     "use strict";
 

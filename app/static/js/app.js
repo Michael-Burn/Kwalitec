@@ -1,7 +1,6 @@
 (function () {
     'use strict';
 
-    // ── Sidebar ──────────────────────────────────────────────────────────
     var sidebar = document.querySelector('.sidebar');
     var toggle = document.querySelector('[data-sidebar-toggle]');
     var backdrop = document.querySelector('[data-sidebar-close]');
@@ -54,7 +53,6 @@
         });
     }
 
-    // ── Welcome modal (Capability 4.4) ────────────────────────────────────
     var welcome = document.getElementById('welcome-modal');
     if (!welcome) {
         return;

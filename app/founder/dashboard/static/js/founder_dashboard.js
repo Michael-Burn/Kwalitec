@@ -1,7 +1,3 @@
-/**
- * Founder Dashboard (FOS-004) — capability table filter only.
- * No frameworks. No charts. No animations.
- */
 (function () {
   "use strict";
 

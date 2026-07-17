@@ -68,11 +68,9 @@ class ReadinessService:
             dict with keys: score, coverage_pct, avg_mastery, review_discipline,
                            total_topics, topics_started, topics_mastered.
         """
-        total_topics = ReadinessService._count_leaf_topics(user_id)
-        topics_started = ReadinessService._count_started_topics(user_id)
-        topics_mastered = ReadinessService._count_mastered_topics(user_id)
-        avg_mastery = ReadinessService._average_mastery(user_id)
-        review_completion = ReadinessService.get_review_completion_rate(user_id)
+        leaf_topics = ReadinessService._get_leaf_topics()
+        total_topics = len(leaf_topics)
+        leaf_ids = [t.id for t in leaf_topics]
 
         if total_topics == 0:
             return {
@@ -85,14 +83,34 @@ class ReadinessService:
                 "topics_mastered": 0,
             }
 
-        coverage_pct = (topics_started / total_topics) * 100
-        avg_mastery_score = avg_mastery
+        progress_rows = TopicProgress.query.filter(
+            TopicProgress.user_id == user_id,
+            TopicProgress.topic_id.in_(leaf_ids),
+        ).all()
 
-        # Review discipline: scale 0-100 from review completion rate
+        topics_started = 0
+        topics_mastered = 0
+        mastery_sum = 0.0
+        for row in progress_rows:
+            if row.revision_count > 0:
+                topics_started += 1
+                mastery_sum += row.mastery_score
+            if row.current_stage == TopicProgress.STAGE_MASTERED:
+                topics_mastered += 1
+
+        avg_mastery_score = (
+            mastery_sum / topics_started if topics_started > 0 else 0.0
+        )
+        review_completion = ReadinessService.get_review_completion_rate(user_id)
+        coverage_pct = (topics_started / total_topics) * 100
         review_discipline = review_completion["completion_rate"]
 
         # Weighted composite: Coverage 50%, Mastery 30%, Review Discipline 20%
-        score = (coverage_pct * 0.50) + (avg_mastery_score * 0.30) + (review_discipline * 0.20)
+        score = (
+            (coverage_pct * 0.50)
+            + (avg_mastery_score * 0.30)
+            + (review_discipline * 0.20)
+        )
 
         return {
             "score": round(score, 1),
@@ -171,8 +189,19 @@ class ReadinessService:
             dict with keys: total_missions, completed_missions, completion_rate,
                            in_progress, pending.
         """
-        missions = Mission.query.filter_by(user_id=user_id).all()
-        total = len(missions)
+        from sqlalchemy import func
+
+        rows = (
+            db.session.query(Mission.status, func.count(Mission.id))
+            .filter_by(user_id=user_id)
+            .group_by(Mission.status)
+            .all()
+        )
+        counts = {status: count for status, count in rows}
+        completed = counts.get("Completed", 0)
+        in_progress = counts.get("In Progress", 0)
+        pending = counts.get("Pending", 0)
+        total = sum(counts.values())
 
         if total == 0:
             return {
@@ -183,11 +212,7 @@ class ReadinessService:
                 "pending": 0,
             }
 
-        completed = sum(1 for m in missions if m.status == "Completed")
-        in_progress = sum(1 for m in missions if m.status == "In Progress")
-        pending = sum(1 for m in missions if m.status == "Pending")
-
-        completion_rate = (completed / total) * 100 if total > 0 else 0.0
+        completion_rate = (completed / total) * 100
 
         return {
             "total_missions": total,
@@ -211,36 +236,36 @@ class ReadinessService:
                            next_7_days.
         """
         today = date.today()
-
-        overdue = TopicProgress.query.filter(
-            TopicProgress.user_id == user_id,
-            TopicProgress.next_review_date.isnot(None),
-            TopicProgress.next_review_date < today,
-            TopicProgress.current_stage != TopicProgress.STAGE_MASTERED,
-        ).count()
-
-        due_today = TopicProgress.query.filter(
-            TopicProgress.user_id == user_id,
-            TopicProgress.next_review_date.isnot(None),
-            TopicProgress.next_review_date == today,
-            TopicProgress.current_stage != TopicProgress.STAGE_MASTERED,
-        ).count()
-
         next_7_end = today + timedelta(days=7)
-        next_7_days = TopicProgress.query.filter(
-            TopicProgress.user_id == user_id,
-            TopicProgress.next_review_date.isnot(None),
-            TopicProgress.next_review_date > today,
-            TopicProgress.next_review_date <= next_7_end,
-            TopicProgress.current_stage != TopicProgress.STAGE_MASTERED,
-        ).count()
 
-        total_backlog = overdue + due_today
+        rows = (
+            TopicProgress.query.filter(
+                TopicProgress.user_id == user_id,
+                TopicProgress.next_review_date.isnot(None),
+                TopicProgress.current_stage != TopicProgress.STAGE_MASTERED,
+                TopicProgress.next_review_date <= next_7_end,
+            )
+            .with_entities(TopicProgress.next_review_date)
+            .all()
+        )
+
+        overdue = 0
+        due_today = 0
+        next_7_days = 0
+        for (review_date,) in rows:
+            if isinstance(review_date, datetime):
+                review_date = review_date.date()
+            if review_date < today:
+                overdue += 1
+            elif review_date == today:
+                due_today += 1
+            elif review_date <= next_7_end:
+                next_7_days += 1
 
         return {
             "topics_due_today": due_today,
             "topics_overdue": overdue,
-            "total_backlog": total_backlog,
+            "total_backlog": overdue + due_today,
             "next_7_days": next_7_days,
         }
 
@@ -258,7 +283,6 @@ class ReadinessService:
         Returns:
             int: Number of consecutive days (including today) with a study attempt.
         """
-        from sqlalchemy import func
 
         rows = (
             db.session.query(StudyAttempt.study_date)

@@ -5,6 +5,8 @@ from __future__ import annotations
 import logging
 from datetime import date
 
+from sqlalchemy.orm import selectinload
+
 from app.extensions import db
 from app.models.mission import Mission, MissionTask
 from app.models.subject import Subject
@@ -106,7 +108,9 @@ class MissionService:
             if active_plan is not None:
                 resolved_plan_id = active_plan.id
 
-        query = Mission.query.filter_by(user_id=user_id, mission_date=mission_date)
+        query = Mission.query.options(selectinload(Mission.tasks)).filter_by(
+            user_id=user_id, mission_date=mission_date
+        )
         if resolved_plan_id is not None:
             query = query.filter_by(study_plan_id=resolved_plan_id)
         else:

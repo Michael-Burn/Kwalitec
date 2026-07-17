@@ -18,7 +18,6 @@ from app.application.dashboard import (
     DashboardViewModel,
     EducationalDashboardComposer,
 )
-from app.services.adaptive_learning_service import AdaptiveLearningService
 from app.services.burnout_monitor import BurnoutMonitor
 from app.services.curriculum_engine_service import (
     CurriculumEngineService,
@@ -29,7 +28,6 @@ from app.services.educational_explainability_service import (
 )
 from app.services.educational_kpi_status import EducationalKpiStatusService
 from app.services.exam_timeline import ExamTimeline
-from app.services.mission_optimizer import MissionOptimizer
 from app.services.planning_service import PlanningService
 from app.services.readiness_service import ReadinessService
 from app.services.recommendation_service import RecommendationService
@@ -127,18 +125,6 @@ def index():
         active_study_plan.id if active_study_plan else None,
     )
 
-    # Learning snapshot (lightweight aggregates)
-    learning_snapshot = _timed_call(
-        "learning_snapshot",
-        AdaptiveLearningService.get_learning_snapshot,
-        user_id,
-    )
-    daily_briefing = _timed_call(
-        "daily_briefing",
-        AdaptiveLearningService.generate_daily_briefing,
-        user_id,
-    )
-
     # Readiness
     readiness = _timed_call(
         "readiness", ReadinessService.get_overall_readiness, user_id
@@ -201,30 +187,12 @@ def index():
             all_recommendations
         )
 
-    # Optional / heavier widgets
-    balanced_mission = _timed_call(
-        "balanced_mission",
-        MissionOptimizer.generate_balanced_mission,
-        user_id,
-    )
+    # Optional widgets still rendered by the template
     exam_timeline = _timed_call(
         "exam_timeline", ExamTimeline.get_timeline, user_id
     )
     burnout_status = _timed_call(
         "burnout_status", BurnoutMonitor.detect_burnout, user_id
-    )
-
-    # Decision journal (last 10)
-    decision_journal = _timed_call(
-        "decision_journal",
-        RecommendationService.get_decision_journal,
-        user_id,
-        10,
-    )
-    decision_summary = _timed_call(
-        "decision_summary",
-        RecommendationService.get_decision_summary,
-        user_id,
     )
 
     # Curriculum summary via CurriculumEngineService (no local calculations)
@@ -330,8 +298,6 @@ def index():
         title="Student Dashboard",
         today_mission=today_mission,
         active_study_plan=active_study_plan,
-        learning_snapshot=learning_snapshot or {},
-        daily_briefing=daily_briefing or "",
         readiness=readiness or {},
         readiness_narrative=readiness_narrative,
         coverage_narrative=coverage_narrative,
@@ -342,11 +308,8 @@ def index():
         today_recommendation=today_recommendation,
         all_recommendations=all_recommendations or [],
         dashboard_view_model=dashboard_view_model,
-        balanced_mission=balanced_mission,
         exam_timeline=exam_timeline,
         burnout_status=burnout_status or {},
-        decision_journal=decision_journal or [],
-        decision_summary=decision_summary or {},
         curriculum_summary=curriculum_summary,
         readiness_summary=readiness_summary,
         time_summary=time_summary,

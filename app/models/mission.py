@@ -15,6 +15,15 @@ class Mission(db.Model):
     """
 
     __tablename__ = "missions"
+    __table_args__ = (
+        db.Index("ix_missions_status_mission_date", "status", "mission_date"),
+        db.Index(
+            "ix_missions_user_date_study_plan",
+            "user_id",
+            "mission_date",
+            "study_plan_id",
+        ),
+    )
 
     id: int = db.Column(db.Integer, primary_key=True)
     user_id: int = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
@@ -79,7 +88,9 @@ class MissionTask(db.Model):
     __tablename__ = "mission_tasks"
 
     id: int = db.Column(db.Integer, primary_key=True)
-    mission_id: int = db.Column(db.Integer, db.ForeignKey("missions.id"), nullable=False)
+    mission_id: int = db.Column(
+        db.Integer, db.ForeignKey("missions.id"), nullable=False, index=True
+    )
     title: str = db.Column(db.String(255), nullable=False)
     description: str = db.Column(db.Text, nullable=True)
     order: int = db.Column(db.Integer, default=0, nullable=False)

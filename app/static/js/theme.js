@@ -1,11 +1,3 @@
-/**
- * Kwalitec appearance theme system.
- *
- * Modes: light | dark | system
- * Persists selection in localStorage and applies a resolved data-theme
- * (light|dark) on <html> immediately for FOUC-safe loads.
- * Also sets data-bs-theme so Bootstrap 5.3 components follow the same mode.
- */
 (function () {
     "use strict";
 
@@ -19,7 +11,7 @@
                 return value;
             }
         } catch (_err) {
-            /* private mode / blocked storage */
+
         }
         return "system";
     }
@@ -28,7 +20,7 @@
         try {
             window.localStorage.setItem(STORAGE_KEY, appearance);
         } catch (_err) {
-            /* ignore */
+
         }
     }
 
@@ -84,7 +76,6 @@
         }
     }
 
-    // Apply before paint when this script runs in <head>
     var current = getStoredAppearance();
     applyAppearance(current);
 

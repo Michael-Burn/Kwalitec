@@ -1,4 +1,3 @@
-// Mission-related JavaScript functionality
 (function () {
     "use strict";
 
@@ -97,7 +96,6 @@
                 const taskId = this.dataset.taskId;
                 const completed = this.checked;
 
-                // Keep the complete button in sync immediately; revert on failure.
                 updateProgress();
 
                 fetch(`/missions/tasks/${taskId}/toggle`, {
@@ -149,8 +147,6 @@
                 return;
             }
 
-            // PTP-002: Mark Complete is compatibility-only — never write
-            // educational state here. Navigate to Practice Outcome Capture.
             window.location.href = `/missions/${missionId}/session/finish`;
         });
     }

@@ -7,7 +7,6 @@ from __future__ import annotations
 
 from datetime import date, datetime, timedelta
 
-from app.extensions import db
 from app.models.learning import StudyAttempt
 from app.models.mission import Mission
 from app.models.topic_progress import TopicProgress
@@ -43,56 +42,53 @@ class AnalyticsService:
         today = date.today()
         result = []
 
+        leaf_ids = AnalyticsService._leaf_topic_ids()
+        total_leaf = len(leaf_ids)
+
+        progress_records = []
+        if leaf_ids:
+            progress_records = TopicProgress.query.filter(
+                TopicProgress.user_id == user_id,
+                TopicProgress.topic_id.in_(leaf_ids),
+            ).all()
+
+        started_count = 0
+        mastered_count = 0
+        mastery_sum = 0.0
+        for p in progress_records:
+            if p.revision_count > 0:
+                started_count += 1
+                mastery_sum += p.mastery_score
+            if p.current_stage == TopicProgress.STAGE_MASTERED:
+                mastered_count += 1
+
+        coverage_pct = (started_count / total_leaf * 100) if total_leaf > 0 else 0.0
+        avg_mastery = (mastery_sum / started_count) if started_count > 0 else 0.0
+
+        # Load missions once; filter per week in memory (same educational formula).
+        missions = Mission.query.filter(Mission.user_id == user_id).all()
+
         for i in range(weeks - 1, -1, -1):
-            # Calculate the end of week i weeks ago
             days_since_monday = today.weekday()
             last_monday = today - timedelta(days=days_since_monday)
             week_end = last_monday + timedelta(days=6) - timedelta(weeks=i)
-
-            # Week label
             week_start = week_end - timedelta(days=6)
             label = f"{week_start.strftime('%b %d')}"
 
-            # Count topics started as of week_end
-            leaf_ids = AnalyticsService._leaf_topic_ids()
+            week_missions = [
+                m for m in missions if m.mission_date <= week_end
+            ]
+            total_missions = len(week_missions)
+            completed = sum(1 for m in week_missions if m.status == "Completed")
+            review_discipline = (
+                (completed / total_missions * 100) if total_missions > 0 else 0.0
+            )
 
-            if not leaf_ids:
-                total_leaf = 0
-            else:
-                total_leaf = len(leaf_ids)
-
-            started_count = 0
-            mastered_count = 0
-            mastery_sum = 0.0
-
-            if leaf_ids:
-                progress_records = TopicProgress.query.filter(
-                    TopicProgress.user_id == user_id,
-                    TopicProgress.topic_id.in_(leaf_ids),
-                ).all()
-
-                for p in progress_records:
-                    # Consider it started if created_at is on or before week_end
-                    if p.revision_count > 0:
-                        started_count += 1
-                        mastery_sum += p.mastery_score
-                    if p.current_stage == TopicProgress.STAGE_MASTERED:
-                        mastered_count += 1
-
-            coverage_pct = (started_count / total_leaf * 100) if total_leaf > 0 else 0.0
-            avg_mastery = (mastery_sum / started_count) if started_count > 0 else 0.0
-
-            # Missions completed up to week_end
-            missions = Mission.query.filter(
-                Mission.user_id == user_id,
-                Mission.mission_date <= week_end,
-            ).all()
-
-            total_missions = len(missions)
-            completed = sum(1 for m in missions if m.status == "Completed")
-            review_discipline = (completed / total_missions * 100) if total_missions > 0 else 0.0
-
-            score = (coverage_pct * 0.50) + (avg_mastery * 0.30) + (review_discipline * 0.20)
+            score = (
+                (coverage_pct * 0.50)
+                + (avg_mastery * 0.30)
+                + (review_discipline * 0.20)
+            )
 
             result.append({
                 "week_label": label,
@@ -119,37 +115,30 @@ class AnalyticsService:
             list[dict]: Each dict has week_label and average_mastery.
         """
         today = date.today()
-        result = []
+        leaf_ids = AnalyticsService._leaf_topic_ids()
 
-        for i in range(weeks - 1, -1, -1):
-            days_since_monday = today.weekday()
-            last_monday = today - timedelta(days=days_since_monday)
-            week_end = last_monday + timedelta(days=6) - timedelta(weeks=i)
-            week_start = week_end - timedelta(days=6)
-
-            label = f"{week_start.strftime('%b %d')}"
-
-            leaf_ids = AnalyticsService._leaf_topic_ids()
-            if not leaf_ids:
-                result.append({"week_label": label, "average_mastery": 0.0})
-                continue
-
+        avg = 0.0
+        if leaf_ids:
             progress_records = TopicProgress.query.filter(
                 TopicProgress.user_id == user_id,
                 TopicProgress.topic_id.in_(leaf_ids),
                 TopicProgress.revision_count > 0,
             ).all()
+            if progress_records:
+                avg = sum(p.mastery_score for p in progress_records) / len(
+                    progress_records
+                )
 
-            if not progress_records:
-                result.append({"week_label": label, "average_mastery": 0.0})
-                continue
-
-            avg = sum(p.mastery_score for p in progress_records) / len(progress_records)
+        result = []
+        for i in range(weeks - 1, -1, -1):
+            days_since_monday = today.weekday()
+            last_monday = today - timedelta(days=days_since_monday)
+            week_end = last_monday + timedelta(days=6) - timedelta(weeks=i)
+            week_start = week_end - timedelta(days=6)
             result.append({
-                "week_label": label,
+                "week_label": f"{week_start.strftime('%b %d')}",
                 "average_mastery": round(avg, 1),
             })
-
         return result
 
     @staticmethod
@@ -167,6 +156,9 @@ class AnalyticsService:
             list[dict]: Each dict has week_label and accuracy.
         """
         today = date.today()
+        attempts = StudyAttempt.query.filter(
+            StudyAttempt.user_id == user_id
+        ).all()
         result = []
 
         for i in range(weeks - 1, -1, -1):
@@ -174,19 +166,21 @@ class AnalyticsService:
             last_monday = today - timedelta(days=days_since_monday)
             week_end = last_monday + timedelta(days=6) - timedelta(weeks=i)
             week_start = week_end - timedelta(days=6)
-
             label = f"{week_start.strftime('%b %d')}"
 
-            # Get all study attempts in this week
-            attempts = StudyAttempt.query.filter(
-                StudyAttempt.user_id == user_id,
-                StudyAttempt.study_date >= week_start,
-                StudyAttempt.study_date <= week_end,
-            ).all()
-
-            total_q = sum(a.questions_attempted or 0 for a in attempts)
-            total_c = sum(a.questions_correct or 0 for a in attempts)
-
+            week_attempts = [
+                a
+                for a in attempts
+                if week_start
+                <= (
+                    a.study_date.date()
+                    if isinstance(a.study_date, datetime)
+                    else a.study_date
+                )
+                <= week_end
+            ]
+            total_q = sum(a.questions_attempted or 0 for a in week_attempts)
+            total_c = sum(a.questions_correct or 0 for a in week_attempts)
             accuracy = (total_c / total_q * 100) if total_q > 0 else None
 
             result.append({
@@ -211,6 +205,9 @@ class AnalyticsService:
             list[dict]: Each dict has week_label and study_hours.
         """
         today = date.today()
+        attempts = StudyAttempt.query.filter(
+            StudyAttempt.user_id == user_id
+        ).all()
         result = []
 
         for i in range(weeks - 1, -1, -1):
@@ -218,21 +215,23 @@ class AnalyticsService:
             last_monday = today - timedelta(days=days_since_monday)
             week_end = last_monday + timedelta(days=6) - timedelta(weeks=i)
             week_start = week_end - timedelta(days=6)
-
             label = f"{week_start.strftime('%b %d')}"
 
-            attempts = StudyAttempt.query.filter(
-                StudyAttempt.user_id == user_id,
-                StudyAttempt.study_date >= week_start,
-                StudyAttempt.study_date <= week_end,
-            ).all()
-
-            total_minutes = sum(a.duration_minutes or 0 for a in attempts)
-            hours = total_minutes / 60.0
-
+            week_attempts = [
+                a
+                for a in attempts
+                if week_start
+                <= (
+                    a.study_date.date()
+                    if isinstance(a.study_date, datetime)
+                    else a.study_date
+                )
+                <= week_end
+            ]
+            total_minutes = sum(a.duration_minutes or 0 for a in week_attempts)
             result.append({
                 "week_label": label,
-                "study_hours": round(hours, 1),
+                "study_hours": round(total_minutes / 60.0, 1),
             })
 
         return result
@@ -252,6 +251,7 @@ class AnalyticsService:
             list[dict]: Each dict has week_label, total_missions, completed, completion_rate.
         """
         today = date.today()
+        missions = Mission.query.filter(Mission.user_id == user_id).all()
         result = []
 
         for i in range(weeks - 1, -1, -1):
@@ -259,17 +259,15 @@ class AnalyticsService:
             last_monday = today - timedelta(days=days_since_monday)
             week_end = last_monday + timedelta(days=6) - timedelta(weeks=i)
             week_start = week_end - timedelta(days=6)
-
             label = f"{week_start.strftime('%b %d')}"
 
-            missions = Mission.query.filter(
-                Mission.user_id == user_id,
-                Mission.mission_date >= week_start,
-                Mission.mission_date <= week_end,
-            ).all()
-
-            total = len(missions)
-            completed = sum(1 for m in missions if m.status == "Completed")
+            week_missions = [
+                m
+                for m in missions
+                if week_start <= m.mission_date <= week_end
+            ]
+            total = len(week_missions)
+            completed = sum(1 for m in week_missions if m.status == "Completed")
             rate = (completed / total * 100) if total > 0 else None
 
             result.append({
@@ -296,42 +294,47 @@ class AnalyticsService:
             list[dict]: Each dict has week_label, reviews_due, reviews_done, completion_rate.
         """
         today = date.today()
-        result = []
+        attempts = StudyAttempt.query.filter(
+            StudyAttempt.user_id == user_id,
+            StudyAttempt.topic_id.isnot(None),
+        ).all()
+        progress_updates = TopicProgress.query.filter(
+            TopicProgress.user_id == user_id,
+        ).with_entities(TopicProgress.updated_at).all()
 
+        result = []
         for i in range(weeks - 1, -1, -1):
             days_since_monday = today.weekday()
             last_monday = today - timedelta(days=days_since_monday)
             week_end = last_monday + timedelta(days=6) - timedelta(weeks=i)
             week_start = week_end - timedelta(days=6)
-
             label = f"{week_start.strftime('%b %d')}"
 
-            # Topics reviewed this week: distinct topic_ids in study attempts
             reviewed_topics = set()
-            attempts = StudyAttempt.query.filter(
-                StudyAttempt.user_id == user_id,
-                StudyAttempt.study_date >= week_start,
-                StudyAttempt.study_date <= week_end,
-                StudyAttempt.topic_id.isnot(None),
-            ).all()
-
             for a in attempts:
-                if a.topic_id:
+                study_day = (
+                    a.study_date.date()
+                    if isinstance(a.study_date, datetime)
+                    else a.study_date
+                )
+                if week_start <= study_day <= week_end and a.topic_id:
                     reviewed_topics.add(a.topic_id)
 
-            reviews_done = len(reviewed_topics)
-
-            # Reviews due during this week: topics with next_review_date in this week
-            # This is approximate since we don't track historical review due dates
-            last_updated = TopicProgress.query.filter(
-                TopicProgress.user_id == user_id,
-                TopicProgress.updated_at >= week_start,
-                TopicProgress.updated_at <= week_end,
-            ).count()
+            last_updated = 0
+            for (updated_at,) in progress_updates:
+                if updated_at is None:
+                    continue
+                updated_day = (
+                    updated_at.date()
+                    if isinstance(updated_at, datetime)
+                    else updated_at
+                )
+                if week_start <= updated_day <= week_end:
+                    last_updated += 1
 
             result.append({
                 "week_label": label,
-                "reviews_done": reviews_done,
+                "reviews_done": len(reviewed_topics),
                 "topics_updated": last_updated,
             })
 

@@ -407,16 +407,19 @@ class CommandCentreService:
     def _recent_feedback(
         self, *, limit: int
     ) -> tuple[RecentFeedbackItem, ...]:
+        from sqlalchemy.orm import joinedload
+
         newest = (
-            ResearchFeedbackSubmission.query.order_by(
-                ResearchFeedbackSubmission.submitted_at.desc()
+            ResearchFeedbackSubmission.query.options(
+                joinedload(ResearchFeedbackSubmission.user)
             )
+            .order_by(ResearchFeedbackSubmission.submitted_at.desc())
             .limit(limit)
             .all()
         )
         items: list[RecentFeedbackItem] = []
         for sub in newest:
-            user = db.session.get(User, sub.user_id)
+            user = sub.user
             label = user.email if user is not None else f"user:{sub.user_id}"
             items.append(
                 RecentFeedbackItem(

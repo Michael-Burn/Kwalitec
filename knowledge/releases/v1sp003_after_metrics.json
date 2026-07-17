@@ -1,0 +1,196 @@
+{
+  "label": "after",
+  "seed": {
+    "admin_id": 1,
+    "primary_learner_id": 2,
+    "learner_count": 12,
+    "leaf_topics": 30,
+    "missions_per_user": 20,
+    "feedback_per_user": 4
+  },
+  "metrics": [
+    {
+      "path": "dashboard_render",
+      "iterations": 3,
+      "median_ms": 53.76,
+      "mean_ms": 53.32,
+      "min_ms": 52.31,
+      "max_ms": 53.9,
+      "median_queries": 280,
+      "mean_queries": 280,
+      "min_queries": 280,
+      "max_queries": 280
+    },
+    {
+      "path": "founder_overview",
+      "iterations": 3,
+      "median_ms": 8.32,
+      "mean_ms": 8.19,
+      "min_ms": 7.86,
+      "max_ms": 8.39,
+      "median_queries": 38,
+      "mean_queries": 38,
+      "min_queries": 38,
+      "max_queries": 38
+    },
+    {
+      "path": "operational_health",
+      "iterations": 3,
+      "median_ms": 4.72,
+      "mean_ms": 4.85,
+      "min_ms": 4.7,
+      "max_ms": 5.13,
+      "median_queries": 25,
+      "mean_queries": 25,
+      "min_queries": 25,
+      "max_queries": 25
+    },
+    {
+      "path": "study_session_start",
+      "iterations": 3,
+      "median_ms": 1.51,
+      "mean_ms": 1.6,
+      "min_ms": 1.43,
+      "max_ms": 1.87,
+      "median_queries": 4,
+      "mean_queries": 4,
+      "min_queries": 4,
+      "max_queries": 4
+    },
+    {
+      "path": "analytics_compose",
+      "iterations": 3,
+      "median_ms": 7.25,
+      "mean_ms": 7.07,
+      "min_ms": 6.65,
+      "max_ms": 7.32,
+      "median_queries": 32,
+      "mean_queries": 32,
+      "min_queries": 32,
+      "max_queries": 32
+    },
+    {
+      "path": "analytics_readiness_trend",
+      "iterations": 3,
+      "median_ms": 0.87,
+      "mean_ms": 0.89,
+      "min_ms": 0.85,
+      "max_ms": 0.97,
+      "median_queries": 3,
+      "mean_queries": 3,
+      "min_queries": 3,
+      "max_queries": 3
+    },
+    {
+      "path": "oh_revision_idle",
+      "iterations": 3,
+      "median_ms": 0.25,
+      "mean_ms": 0.26,
+      "min_ms": 0.25,
+      "max_ms": 0.3,
+      "median_queries": 1,
+      "mean_queries": 1,
+      "min_queries": 1,
+      "max_queries": 1
+    },
+    {
+      "path": "oh_negative_sentiment",
+      "iterations": 3,
+      "median_ms": 0.41,
+      "mean_ms": 0.4,
+      "min_ms": 0.35,
+      "max_ms": 0.42,
+      "median_queries": 1,
+      "mean_queries": 1,
+      "min_queries": 1,
+      "max_queries": 1
+    }
+  ],
+  "static_assets": {
+    "css_bytes": 63514,
+    "js_bytes": 20592,
+    "brand_bytes": 1739297,
+    "files": {
+      "css/app.css": {
+        "bytes": 54112,
+        "suffix": ".css"
+      },
+      "css/wizard.css": {
+        "bytes": 9402,
+        "suffix": ".css"
+      },
+      "js/app.js": {
+        "bytes": 2915,
+        "suffix": ".js"
+      },
+      "js/mission.js": {
+        "bytes": 5311,
+        "suffix": ".js"
+      },
+      "js/study_session.js": {
+        "bytes": 8330,
+        "suffix": ".js"
+      },
+      "js/theme.js": {
+        "bytes": 4036,
+        "suffix": ".js"
+      },
+      "branding/README.md": {
+        "bytes": 1416,
+        "suffix": ".md"
+      },
+      "branding/android-chrome-192.png": {
+        "bytes": 27666,
+        "suffix": ".png"
+      },
+      "branding/android-chrome-512.png": {
+        "bytes": 182054,
+        "suffix": ".png"
+      },
+      "branding/apple-touch-icon.png": {
+        "bytes": 24727,
+        "suffix": ".png"
+      },
+      "branding/favicon.ico": {
+        "bytes": 3341,
+        "suffix": ".ico"
+      },
+      "branding/logo-icon.png": {
+        "bytes": 49892,
+        "suffix": ".png"
+      },
+      "branding/logo-icon.svg": {
+        "bytes": 1386,
+        "suffix": ".svg"
+      },
+      "branding/logo-monochrome.svg": {
+        "bytes": 1634,
+        "suffix": ".svg"
+      },
+      "branding/logo-primary.png": {
+        "bytes": 314571,
+        "suffix": ".png"
+      },
+      "branding/logo-primary.svg": {
+        "bytes": 1609,
+        "suffix": ".svg"
+      },
+      "branding/logo-white.png": {
+        "bytes": 451441,
+        "suffix": ".png"
+      },
+      "branding/logo-white.svg": {
+        "bytes": 1578,
+        "suffix": ".svg"
+      },
+      "branding/manifest.webmanifest": {
+        "bytes": 715,
+        "suffix": ".webmanifest"
+      },
+      "branding/social-preview.png": {
+        "bytes": 677267,
+        "suffix": ".png"
+      }
+    }
+  }
+}

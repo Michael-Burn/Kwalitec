@@ -16,6 +16,15 @@ class TopicProgress(db.Model):
     """
 
     __tablename__ = "topic_progress"
+    __table_args__ = (
+        db.Index("ix_topic_progress_user_topic", "user_id", "topic_id"),
+        db.Index(
+            "ix_topic_progress_user_next_review",
+            "user_id",
+            "next_review_date",
+        ),
+        db.Index("ix_topic_progress_user_stage", "user_id", "current_stage"),
+    )
 
     # Stage constants
     STAGE_NOT_STARTED = "Not Started"

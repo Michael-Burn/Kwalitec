@@ -615,32 +615,28 @@ class OperationalHealthService:
     @staticmethod
     def _revision_without_sessions_count() -> int:
         """Active plans in Revision with no completed mission since entry."""
-        plans = (
-            StudyPlan.query.filter(
+        completed_exists = (
+            db.session.query(Mission.id)
+            .filter(
+                Mission.study_plan_id == StudyPlan.id,
+                Mission.user_id == StudyPlan.user_id,
+                Mission.status == "Completed",
+                Mission.mission_date
+                >= func.date(StudyPlan.revision_entered_at),
+            )
+            .exists()
+        )
+        return (
+            db.session.query(func.count(StudyPlan.id))
+            .filter(
                 StudyPlan.active.is_(True),
                 StudyPlan.archived.is_(False),
                 StudyPlan.revision_entered_at.isnot(None),
+                ~completed_exists,
             )
-            .all()
+            .scalar()
+            or 0
         )
-        idle = 0
-        for plan in plans:
-            entered = plan.revision_entered_at
-            entered_date = entered.date() if isinstance(entered, datetime) else entered
-            completed = (
-                db.session.query(func.count(Mission.id))
-                .filter(
-                    Mission.user_id == plan.user_id,
-                    Mission.study_plan_id == plan.id,
-                    Mission.mission_date >= entered_date,
-                    Mission.status == "Completed",
-                )
-                .scalar()
-                or 0
-            )
-            if completed == 0:
-                idle += 1
-        return idle
 
     @staticmethod
     def _help_seeking_checkin_count() -> int:
@@ -659,22 +655,31 @@ class OperationalHealthService:
     @staticmethod
     def _consecutive_negative_sentiment_users() -> int:
         """Users whose two most recent check-ins are both Frustrating/Poor."""
-        rows = (
+        row_number = (
+            func.row_number()
+            .over(
+                partition_by=ResearchFeedbackSubmission.user_id,
+                order_by=ResearchFeedbackSubmission.submitted_at.desc(),
+            )
+            .label("rn")
+        )
+        ranked = (
             db.session.query(
-                ResearchFeedbackSubmission.user_id,
-                ResearchFeedbackSubmission.experience_rating,
-                ResearchFeedbackSubmission.submitted_at,
+                ResearchFeedbackSubmission.user_id.label("user_id"),
+                ResearchFeedbackSubmission.experience_rating.label("rating"),
+                row_number,
             )
-            .order_by(
-                ResearchFeedbackSubmission.user_id.asc(),
-                ResearchFeedbackSubmission.submitted_at.desc(),
-            )
+        ).subquery()
+
+        rows = (
+            db.session.query(ranked.c.user_id, ranked.c.rating)
+            .filter(ranked.c.rn <= 2)
+            .order_by(ranked.c.user_id.asc(), ranked.c.rn.asc())
             .all()
         )
+
         by_user: dict[int, list[str]] = defaultdict(list)
-        for user_id, rating, _submitted in rows:
-            if len(by_user[user_id]) >= 2:
-                continue
+        for user_id, rating in rows:
             by_user[user_id].append(rating)
 
         return sum(
