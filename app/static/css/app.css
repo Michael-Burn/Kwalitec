@@ -252,6 +252,24 @@ button.btn:hover,
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+.sidebar-brand-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: #f8fafc;
+    font-size: var(--font-2xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.02em;
+}
+
+.sidebar-brand-mark {
+    display: block;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
 .sidebar-brand a {
     color: #f8fafc;
     font-size: var(--font-2xl);
@@ -848,6 +866,14 @@ a.btn-ghost:focus {
 .landing-logo:hover {
     color: var(--color-text-inverse);
     opacity: 0.9;
+}
+
+.landing-logo-mark {
+    display: block;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
 }
 
 .landing-heading {
@@ -1981,7 +2007,7 @@ a.btn-mark-complete:focus-visible {
         margin-bottom: var(--space-2xl);
     }
 
-    .landing-logo svg {
+    .landing-logo-mark {
         width: 28px;
         height: 28px;
     }

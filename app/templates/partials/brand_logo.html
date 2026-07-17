@@ -1,0 +1,34 @@
+{#
+  Canonical Kwalitec logo mark (IAHF-004A).
+
+  Usage:
+    {% include "partials/brand_logo.html" %}
+    {% with brand_variant='icon', brand_class='landing-logo-mark', brand_alt='Kwalitec' %}
+      {% include "partials/brand_logo.html" %}
+    {% endwith %}
+
+  Variants: icon (default), primary, white, monochrome
+  Prefer SVG; PNG fallbacks exist for icon/primary/white.
+#}
+{% set _variant = brand_variant|default('icon') %}
+{% set _class = brand_class|default('brand-logo') %}
+{% set _alt = brand_alt|default('Kwalitec') %}
+{% set _width = brand_width|default(None) %}
+{% set _height = brand_height|default(None) %}
+{% if _variant == 'primary' %}
+  {% set _file = 'branding/logo-primary.svg' %}
+{% elif _variant == 'white' %}
+  {% set _file = 'branding/logo-white.svg' %}
+{% elif _variant == 'monochrome' %}
+  {% set _file = 'branding/logo-monochrome.svg' %}
+{% else %}
+  {% set _file = 'branding/logo-icon.svg' %}
+{% endif %}
+<img
+    class="{{ _class }}"
+    src="{{ url_for('static', filename=_file) }}"
+    alt="{{ _alt }}"
+    decoding="async"
+    {% if _width %}width="{{ _width }}"{% endif %}
+    {% if _height %}height="{{ _height }}"{% endif %}
+>

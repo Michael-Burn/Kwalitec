@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 128" role="img" aria-label="Kwalitec">
+  <!-- Canonical white logo for dark surfaces (IAHF-004A) -->
+  <g fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round">
+    <path stroke="none" d="M30 16h24c1.7 0 3 1.3 3 3v90c0 1.7-1.3 3-3 3H30c-1.7 0-3-1.3-3-3V19c0-1.7 1.3-3 3-3z"/>
+    <path stroke="none" d="M57 19c0-1.7 1.3-3 3-3h8.2c1 0 1.9.5 2.5 1.3L108 68.2c1.1 1.5.1 3.6-1.7 3.6h-12.4c-1.1 0-2.1-.5-2.7-1.4L57 36.2V19z"/>
+    <path stroke="none" d="M57 91.8l34.2-34.2c.6-.6 1.5-1 2.4-1H106c1.8 0 2.8 2.1 1.7 3.6L70.7 110.7c-.6.8-1.5 1.3-2.5 1.3H60c-1.7 0-3-1.3-3-3V91.8z"/>
+    <g aria-hidden="true">
+      <line x1="36" y1="34" x2="44" y2="46"/>
+      <line x1="44" y1="46" x2="38" y2="60"/>
+      <line x1="44" y1="46" x2="54" y2="42"/>
+      <line x1="38" y1="60" x2="46" y2="72"/>
+      <line x1="46" y1="72" x2="40" y2="86"/>
+      <line x1="46" y1="72" x2="56" y2="66"/>
+      <line x1="54" y1="42" x2="56" y2="66"/>
+      <circle cx="36" cy="34" r="3.1" stroke="none"/>
+      <circle cx="44" cy="46" r="3.5" stroke="none"/>
+      <circle cx="38" cy="60" r="2.9" stroke="none"/>
+      <circle cx="46" cy="72" r="3.3" stroke="none"/>
+      <circle cx="40" cy="86" r="2.7" stroke="none"/>
+      <circle cx="54" cy="42" r="2.5" stroke="none"/>
+      <circle cx="56" cy="66" r="2.7" stroke="none"/>
+    </g>
+  </g>
+  <text x="128" y="78" fill="#FFFFFF" font-family="Avenir Next, Segoe UI, Helvetica, Arial, sans-serif" font-size="42" font-weight="600" letter-spacing="0.08em">KWALITEC</text>
+</svg>

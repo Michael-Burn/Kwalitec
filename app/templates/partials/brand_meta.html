@@ -1,0 +1,20 @@
+{#
+  Canonical browser / social brand metadata (IAHF-004A).
+  Include from every root layout so favicon, PWA, and OG tags stay consistent.
+#}
+<link rel="icon" href="{{ url_for('static', filename='branding/favicon.ico') }}" sizes="any">
+<link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='branding/logo-icon.svg') }}">
+<link rel="apple-touch-icon" href="{{ url_for('static', filename='branding/apple-touch-icon.png') }}">
+<link rel="manifest" href="{{ url_for('static', filename='branding/manifest.webmanifest') }}">
+<meta name="application-name" content="Kwalitec">
+<meta name="apple-mobile-web-app-title" content="Kwalitec">
+<meta name="theme-color" content="#0D1B2A">
+<meta property="og:site_name" content="Kwalitec">
+<meta property="og:title" content="{{ title ~ ' · ' if title else '' }}Kwalitec">
+<meta property="og:description" content="{{ product_tagline }}">
+<meta property="og:type" content="website">
+<meta property="og:image" content="{{ url_for('static', filename='branding/social-preview.png', _external=True) }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ title ~ ' · ' if title else '' }}Kwalitec">
+<meta name="twitter:description" content="{{ product_tagline }}">
+<meta name="twitter:image" content="{{ url_for('static', filename='branding/social-preview.png', _external=True) }}">

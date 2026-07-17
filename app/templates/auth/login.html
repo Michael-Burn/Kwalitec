@@ -6,11 +6,9 @@
     <section class="landing-hero" aria-label="Product introduction">
         <div class="landing-hero-inner">
             <a class="landing-logo" href="{{ url_for('auth.login') }}" aria-label="Kwalitec home">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                    <path d="M2 17l10 5 10-5"/>
-                    <path d="M2 12l10 5 10-5"/>
-                </svg>
+                {% with brand_variant='icon', brand_class='landing-logo-mark', brand_width=36, brand_height=36, brand_alt='' %}
+                    {% include "partials/brand_logo.html" %}
+                {% endwith %}
                 <span>Kwalitec</span>
             </a>
 
