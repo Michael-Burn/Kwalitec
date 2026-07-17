@@ -35,12 +35,14 @@
     --radius: 0.5rem;
 
     /* Chrome (sidebar, landing hero) vs brand emphasis (metrics, weights) */
-    --chrome: #1c2438;
-    --chrome-muted: #243049;
-    --brand: #1c2438;
-    --brand-muted: #243049;
+    --chrome: #0D1B2A;
+    --chrome-muted: #162536;
+    --brand: #0D1B2A;
+    --brand-muted: #3950A2;
+    --brand-gold: #D4AF37;
+    --brand-gold-soft: rgba(212, 175, 55, 0.16);
     --accent: #1e3a5f;
-    --accent-soft: #3d5a80;
+    --accent-soft: #3950A2;
     --focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.28);
 
     /* Legacy aliases — keep existing components on semantic tokens */
@@ -149,12 +151,14 @@
     --radius: 0.5rem;
 
     /* Chrome stays dark; brand emphasis stays light for metrics/text */
-    --chrome: #0f131a;
-    --chrome-muted: #161c26;
+    --chrome: #0D1B2A;
+    --chrome-muted: #121f2e;
     --brand: #93c5fd;
     --brand-muted: #60a5fa;
+    --brand-gold: #D4AF37;
+    --brand-gold-soft: rgba(212, 175, 55, 0.22);
     --accent: #1a2744;
-    --accent-soft: #2563eb;
+    --accent-soft: #3950A2;
     --focus-ring: 0 0 0 3px rgba(96, 165, 250, 0.35);
 
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
@@ -233,6 +237,19 @@ button.btn:hover,
     background: var(--color-surface);
 }
 
+.app-footer-inner,
+.public-footer .app-footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm) var(--space-lg);
+}
+
+.app-footer-brand {
+    color: var(--color-text-muted);
+}
+
 /* ── Sidebar ─────────────────────────────────────────────────────────── */
 .sidebar {
     background: var(--color-chrome);
@@ -283,6 +300,18 @@ button.btn:hover,
     color: rgba(255, 255, 255, 0.5);
     font-size: var(--font-sm);
     margin-top: var(--space-xs);
+}
+
+.sidebar-brand-identity {
+    margin-top: var(--space-sm);
+}
+
+.sidebar-brand-identity .alpha-identity {
+    /* Compact identity on dark chrome */
+    --alpha-identity-fg: rgba(255, 255, 255, 0.92);
+    --alpha-identity-muted: rgba(255, 255, 255, 0.65);
+    --alpha-identity-border: rgba(212, 175, 55, 0.55);
+    --alpha-identity-bg: rgba(212, 175, 55, 0.12);
 }
 
 .sidebar nav {
@@ -367,6 +396,17 @@ button.btn:hover,
 .topnav .navbar {
     width: 100%;
     padding: 0 var(--space-xl);
+}
+
+.topnav-end {
+    align-items: center;
+    display: inline-flex;
+    gap: var(--space-md);
+    margin-left: auto;
+}
+
+.topnav-end .appearance-switcher {
+    margin-left: 0;
 }
 
 .topnav .navbar-text {
@@ -528,6 +568,75 @@ button.btn:hover,
     color: var(--color-text-secondary);
     font-size: var(--font-lg);
     max-width: 640px;
+}
+
+/* ── Internal Alpha identity badge (IAHF-004B) ───────────────────────── */
+.alpha-identity {
+    --alpha-identity-fg: var(--text-primary);
+    --alpha-identity-muted: var(--text-muted);
+    --alpha-identity-border: var(--brand-gold);
+    --alpha-identity-bg: var(--brand-gold-soft);
+    align-items: center;
+    background: var(--alpha-identity-bg);
+    border: 1px solid var(--alpha-identity-border);
+    border-radius: var(--radius-sm);
+    color: var(--alpha-identity-fg);
+    display: inline-flex;
+    gap: 0.4rem;
+    line-height: 1.2;
+    max-width: 100%;
+    padding: 0.2rem 0.55rem;
+}
+
+.alpha-identity-mark {
+    background: var(--brand-gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+    height: 0.4rem;
+    width: 0.4rem;
+}
+
+.alpha-identity-text {
+    align-items: center;
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    min-width: 0;
+}
+
+.alpha-identity-primary {
+    color: var(--alpha-identity-fg);
+    font-size: var(--font-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.alpha-identity-secondary,
+.alpha-identity-sep {
+    color: var(--alpha-identity-muted);
+    font-size: var(--font-xs);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.02em;
+}
+
+.alpha-identity--footer {
+    background: transparent;
+    border-color: transparent;
+    padding: 0;
+}
+
+.alpha-identity--footer .alpha-identity-primary,
+.alpha-identity--footer .alpha-identity-secondary,
+.alpha-identity--footer .alpha-identity-sep {
+    font-size: var(--font-sm);
+    letter-spacing: 0.01em;
+    text-transform: none;
+}
+
+.alpha-identity--footer .alpha-identity-primary {
+    color: var(--text-secondary);
+    font-weight: var(--font-weight-semibold);
 }
 
 /* Card section header */
@@ -866,6 +975,17 @@ a.btn-ghost:focus {
 .landing-logo:hover {
     color: var(--color-text-inverse);
     opacity: 0.9;
+}
+
+.landing-alpha-identity {
+    margin: calc(-1 * var(--space-2xl)) 0 var(--space-2xl);
+}
+
+.landing-alpha-identity .alpha-identity {
+    --alpha-identity-fg: rgba(255, 255, 255, 0.95);
+    --alpha-identity-muted: rgba(255, 255, 255, 0.72);
+    --alpha-identity-border: rgba(212, 175, 55, 0.6);
+    --alpha-identity-bg: rgba(212, 175, 55, 0.14);
 }
 
 .landing-logo-mark {

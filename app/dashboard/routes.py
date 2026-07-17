@@ -316,7 +316,7 @@ def index():
 
     return render_template(
         "dashboard/index.html",
-        title="Dashboard",
+        title="Student Dashboard",
         today_mission=today_mission,
         active_study_plan=active_study_plan,
         learning_snapshot=learning_snapshot or {},

@@ -314,13 +314,29 @@ def _register_template_context(app: Flask) -> None:
 
     @app.context_processor
     def inject_global_template_context():
-        from app.services.product_communication_service import ProductCommunicationService
+        from app.brand_identity import (
+            FOUNDER_COMMAND_CENTRE_LABEL,
+            FOUNDING_COHORT_LABEL,
+            INTERNAL_ALPHA_BUILD_LABEL,
+            INTERNAL_ALPHA_LABEL,
+            LEARNING_WORKSPACE_LABEL,
+            STUDENT_DASHBOARD_LABEL,
+        )
+        from app.services.product_communication_service import (
+            ProductCommunicationService,
+        )
         from app.version import APP_VERSION, PRODUCT_TAGLINE
 
         return {
             "app_version": APP_VERSION,
             "product_tagline": PRODUCT_TAGLINE,
             "pcs": ProductCommunicationService,
+            "internal_alpha_label": INTERNAL_ALPHA_LABEL,
+            "founding_cohort_label": FOUNDING_COHORT_LABEL,
+            "internal_alpha_build_label": INTERNAL_ALPHA_BUILD_LABEL,
+            "founder_command_centre_label": FOUNDER_COMMAND_CENTRE_LABEL,
+            "learning_workspace_label": LEARNING_WORKSPACE_LABEL,
+            "student_dashboard_label": STUDENT_DASHBOARD_LABEL,
         }
 
 

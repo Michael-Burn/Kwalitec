@@ -1,0 +1,7 @@
+{# Shared application footer identity (IAHF-004B). #}
+<div class="app-footer-inner">
+    <span class="app-footer-brand">Kwalitec v{{ app_version }}</span>
+    {% with alpha_badge_variant='footer' %}
+        {% include "partials/internal_alpha_badge.html" %}
+    {% endwith %}
+</div>

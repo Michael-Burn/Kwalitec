@@ -23,7 +23,7 @@
                 {% block content %}{% endblock %}
             </main>
             <footer class="app-footer" role="contentinfo">
-                <span>Kwalitec v{{ app_version }}</span>
+                {% include "partials/app_footer.html" %}
             </footer>
         </div>
     </div>

@@ -1,0 +1,46 @@
+{#
+  Ambient Internal Alpha identity badge (IAHF-004B).
+
+  Usage:
+    {% include "partials/internal_alpha_badge.html" %}
+    {% with alpha_badge_variant='footer' %}
+      {% include "partials/internal_alpha_badge.html" %}
+    {% endwith %}
+
+  Variants:
+    compact (default) — sidebar / topnav / login: "Internal Alpha"
+    full — short expanded: "Internal Alpha · Founding Cohort"
+    footer — full chrome line including build: "… · Build RC2"
+#}
+{% set _variant = alpha_badge_variant|default('compact') %}
+{% if _variant == 'footer' %}
+<span class="alpha-identity alpha-identity--footer" role="status"
+      title="{{ internal_alpha_label }} · {{ founding_cohort_label }} · Build {{ internal_alpha_build_label }}">
+    <span class="alpha-identity-mark" aria-hidden="true"></span>
+    <span class="alpha-identity-text">
+        <span class="alpha-identity-primary">{{ internal_alpha_label }}</span>
+        <span class="alpha-identity-sep" aria-hidden="true">·</span>
+        <span class="alpha-identity-secondary">{{ founding_cohort_label }}</span>
+        <span class="alpha-identity-sep" aria-hidden="true">·</span>
+        <span class="alpha-identity-secondary">Build {{ internal_alpha_build_label }}</span>
+    </span>
+</span>
+{% elif _variant == 'full' %}
+<span class="alpha-identity alpha-identity--full" role="status"
+      title="{{ internal_alpha_label }} · {{ founding_cohort_label }} · Build {{ internal_alpha_build_label }}">
+    <span class="alpha-identity-mark" aria-hidden="true"></span>
+    <span class="alpha-identity-text">
+        <span class="alpha-identity-primary">{{ internal_alpha_label }}</span>
+        <span class="alpha-identity-sep" aria-hidden="true">·</span>
+        <span class="alpha-identity-secondary">{{ founding_cohort_label }}</span>
+    </span>
+</span>
+{% else %}
+<span class="alpha-identity alpha-identity--compact" role="status"
+      title="{{ internal_alpha_label }} · {{ founding_cohort_label }} · Build {{ internal_alpha_build_label }}">
+    <span class="alpha-identity-mark" aria-hidden="true"></span>
+    <span class="alpha-identity-text">
+        <span class="alpha-identity-primary">{{ internal_alpha_label }}</span>
+    </span>
+</span>
+{% endif %}

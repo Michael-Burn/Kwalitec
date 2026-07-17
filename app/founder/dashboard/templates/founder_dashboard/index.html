@@ -6,8 +6,8 @@
 
 {% block content %}
 <section class="section-header founder-header">
-    <p class="section-eyebrow">Founder Operating System</p>
-    <h1 class="section-title">Founder Dashboard</h1>
+    <p class="section-eyebrow">{{ founder_command_centre_label }}</p>
+    <h1 class="section-title">Overview</h1>
     <p class="section-description">
         Executive control centre — Version {{ page.fos_version }}
         · Release {{ overview.current_release }}
@@ -343,7 +343,7 @@
 </section>
 
 <footer class="founder-footer" role="contentinfo">
-    <span>Founder Operating System</span>
+    <span>{{ founder_command_centre_label }}</span>
     <span>Version {{ page.fos_version }} · Snapshot {{ overview.snapshot_version or '—' }}</span>
 </footer>
 {% endblock %}
