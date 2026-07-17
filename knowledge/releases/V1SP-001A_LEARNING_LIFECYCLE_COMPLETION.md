@@ -4,6 +4,7 @@
 **Milestone:** V1SP-001A  
 **Status:** Implementation complete  
 **Date:** 2026-07-17  
+**Commit:** `b9340b6` — `feat(lifecycle): complete Version 1 learning lifecycle with Revision (V1SP-001A)`  
 
 ---
 

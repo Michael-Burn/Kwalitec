@@ -255,15 +255,46 @@ Kwalitec aims to improve:
 
 # Product Roadmap
 
-## Epic 1
+## Version 1 (Internal Alpha — RC2 baseline)
 
-Curriculum Architecture
+Shipped for invite-only Internal Alpha:
 
-✓ Complete
+- Curriculum Architecture (Epic 1) — V1 flat + V2 hierarchical curricula
+- Educational Intelligence domain stack (Epic 2) — Twin / Evidence / Readiness / Decision / Recommendation packages (Stage A product coexistence remains)
+- Student Learning + Revision workspaces
+- Founder Command Centre (operations, not educational authority)
+- Brand infrastructure and Internal Alpha identity
+
+Version 1 does **not** include public registration, Exam Ready lifecycle, or Twin-first sole-authority student UI.
 
 ---
 
-## Epic 2
+## Version 2 / later epics (deferred)
+
+### Epic 2 product cutover / Epic 3
+
+Adaptive Educational Guidance on Twin-first authority:
+
+- Explainable recommendations as sole product path
+- Dynamic study planning refinements
+- Revision optimisation beyond Version 1 Revision Workspace
+- Twin persistence and Evidence journal product loops
+
+### Epic 4
+
+Professional Learning Ecosystem
+
+- Multiple examination providers
+- Institutional support
+- Advanced analytics
+
+---
+
+## Historical epic labels (strategy)
+
+The original Epic 2–4 headings below remain as long-term strategy language. Prefer the Version 1 / Version 2 table above when judging whether a capability is live in RC2.
+
+## Epic 2 (domain complete; product cutover deferred)
 
 Educational Intelligence
 

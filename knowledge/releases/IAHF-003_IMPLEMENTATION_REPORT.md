@@ -5,6 +5,7 @@
 **Milestone:** IAHF-003  
 **Status:** Implementation complete  
 **Date:** 2026-07-17  
+**Commit:** `6018ab3` — `feat(founder): implement Founder Command Centre (IAHF-003)`  
 
 ---
 

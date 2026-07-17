@@ -6,6 +6,7 @@
 **Date:** 2026-07-17  
 **Nature:** Hardening only — no new product capabilities  
 **Closes:** RC2 Operational Readiness High findings H-1 through H-9  
+**Commit:** `77edeb8` — `fix: resolve RC2 High operational readiness findings (V1SP-001B)`  
 
 ---
 
@@ -56,7 +57,7 @@ Requires HTTPS termination (Render). Development / testing configs unchanged.
 
 Student Dashboard highlighting uses `request.endpoint.startswith('dashboard.')`, so Founder Command Centre routes no longer falsely activate Dashboard.
 
-Command Centre secondary nav continues to highlight Overview, Operational Insights, Feedback, Vision Journal, Releases, and Settings via `active_section_id`.
+Command Centre secondary nav continues to highlight Overview, Operational Health, Feedback, Vision Journal, Releases, and Settings via `active_section_id`.
 
 ### H-5 — Feedback inbox declutter
 

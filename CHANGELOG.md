@@ -6,6 +6,44 @@ The format follows the principles of Keep a Changelog and Semantic Versioning.
 
 ---
 
+# [1.0.0] - July 2026 — Version1-RC2 (Internal Alpha)
+
+## Fingerprint
+
+| Field | Value |
+|---|---|
+| Product version | `1.0.0` |
+| Internal Alpha chrome | **Build RC2** |
+| Audience | Invite-only Internal Alpha (Founding Cohort) |
+| Release notes | `docs/release/RELEASE_NOTES_v1.0.0-RC2.md` |
+
+## Summary
+
+Version 1.0.0 Build RC2 is the operational baseline for continued Internal Alpha after the Version 1 Stabilisation Programme (V1SP). It consolidates Epic 1 curriculum foundations, Epic 2 Educational Intelligence domain packages, Founder Command Centre / brand infrastructure (IAHF-003–004B), and V1SP hardening.
+
+## Added / completed in the RC2 stabilisation window
+
+- Learning lifecycle completion with **Revision Workspace** (V1SP-001A)
+- Founder **Operational Health** decision surface (V1SP-001C)
+- Founder **Vision Journal** strategic memory (V1SP-001D)
+- Information architecture density simplification (V1SP-001E)
+- Measured hot-path performance indexes and query reductions (V1SP-003)
+
+## Security & operations
+
+- RC2 operational readiness gate: APPROVED WITH MINOR ISSUES (`knowledge/releases/RC2_OPERATIONAL_READINESS_REPORT.md`)
+- High-severity readiness findings closed (V1SP-001B): open-redirect hardening, production cookie flags, SECRET_KEY gate, Founder nav honesty, Feedback triage, static caching, brand raster budgets, top-level docs refresh
+- Independent security re-verification (V1SP-004): no Critical/High blockers for invite-only Alpha
+
+## Known limitations (intentional for Version 1)
+
+- Public self-registration remains disabled
+- Twin-first product cutover / Twin persistence deferred to Version 2
+- Exam Ready lifecycle deferred to Version 2
+- Medium Alpha deferrals remain (rate limiting, CSP nonces, Founder post-login landing, archive recovery UI, etc.)
+
+---
+
 # [0.5.0] - July 2026
 
 ## 🎓 Educational Intelligence Platform

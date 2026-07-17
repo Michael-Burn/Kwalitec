@@ -5,7 +5,8 @@
 **Status:** Implementation complete  
 **Date:** 2026-07-17  
 **Nature:** Measured performance optimisation only — no new product functionality or UI changes  
-**Build identity:** Product `1.0.0` · Internal Alpha chrome **Build RC2**
+**Build identity:** Product `1.0.0` · Internal Alpha chrome **Build RC2**  
+**Commit:** `1ee8a13` — `perf: optimise Version 1 hot paths from measured baselines (V1SP-003)`
 
 ---
 

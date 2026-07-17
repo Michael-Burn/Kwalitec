@@ -4,6 +4,7 @@
 **Milestone:** V1SP-001E  
 **Status:** Implementation complete  
 **Date:** 2026-07-17  
+**Commit:** `0663f61` — `feat(ui): simplify information architecture and dashboard density (V1SP-001E)`  
 
 ---
 

@@ -4,6 +4,7 @@
 **Milestone:** V1SP-001D  
 **Status:** Implementation complete  
 **Date:** 2026-07-17  
+**Commit:** `7f3610a` — `feat(founder): add Founder Vision Journal for strategic product memory (V1SP-001D)`  
 
 ---
 
@@ -96,9 +97,9 @@ Founder Overview includes four compact Vision widgets:
 
 Primary Command Centre navigation now:
 
-Overview · Operational Insights · Feedback · Research · **Vision Journal** · Releases · Settings  
+Overview · Operational Health · Feedback · Research · **Vision Journal** · Releases · Settings  
 
-Secondary operational destinations (Attention, Findings, Internal Alpha, Participants) remain reachable from Overview / Operational Insights.
+Secondary operational destinations (Attention, Findings, Internal Alpha, Participants) remain reachable from Overview / Operational Health.
 
 ---
 

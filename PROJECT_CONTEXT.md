@@ -185,7 +185,7 @@ Detailed rules: [`.cursor/rules/08-curriculum-v2.mdc`](.cursor/rules/08-curricul
 
 ## Current Project Status
 
-As of Version1-RC2 / V1SP-001B (Internal Alpha operational baseline):
+As of Version1-RC2 / V1SP documentation baseline (Internal Alpha operational baseline):
 
 | Fingerprint | Value |
 |---|---|
@@ -195,20 +195,25 @@ As of Version1-RC2 / V1SP-001B (Internal Alpha operational baseline):
 
 | Area | Status |
 |---|---|
-| Flask app factory, auth, CSRF, security headers | Stable; production cookies + redirect hardening (V1SP-001B) |
+| Flask app factory, auth, CSRF, security headers | Stable; production cookies + redirect hardening (V1SP-001B); re-verified V1SP-004 |
 | Study plan wizard, study sessions, analytics, settings | Stable for Internal Alpha |
-| Adaptive learning, readiness, recommendations | Stable |
+| Learning + Revision workspaces | Stable (V1SP-001A lifecycle) |
+| Adaptive learning, readiness, recommendations | Stable (Stage A product path; Twin domain packages coexist) |
 | Curriculum Engine (in-memory JSON) | Stable; V1 + V2 support in engine/services |
-| Founder Command Centre (`/founder`) | Live SoT for Product Check-ins (IAHF-003+) |
-| Brand pack (`app/static/branding/`) | Canonical SVG + optimised rasters (IAHF-004A/B) |
+| Founder Command Centre (`/founder`) | Live SoT — Overview, **Operational Health**, Feedback, Research, Vision Journal, Releases (IAHF-003+, V1SP-001C/D) |
+| Brand pack (`app/static/branding/`) | Canonical SVG + optimised rasters (IAHF-004A/B; V1SP-001B) |
+| Information architecture density | Simplified student + Founder chrome (V1SP-001E) |
+| Hot-path performance | Indexed + query reductions (V1SP-003) |
 | DB `Section` model + `Topic.section_id` | Present (curriculum architecture track) |
 | Production Render deploy + `StartupService` | Stable |
 | Automated tests + CI (Python 3.11–3.13) | Active |
 | Public self-registration | Intentionally disabled; admin via CLI / startup |
 
+**Version 1 vs Version 2:** RC2 is the invite-only Version 1 operational baseline. Twin-first product cutover, Exam Ready lifecycle, public registration, and broader cohort hardening remain Version 2 (or later) unless a milestone explicitly promotes them.
+
 Known operational note: local SQLite migration failures have been observed under disk I/O conditions (see `MIGRATION_INVESTIGATION_FINDINGS.md`). Treat migration health as environment-sensitive; prefer clean DB recreate when investigating schema issues locally.
 
-Release references: `knowledge/releases/RC2_OPERATIONAL_READINESS_REPORT.md`, `knowledge/releases/V1SP-001B_OPERATIONAL_FIXES.md`.
+Release references: `knowledge/releases/RC2_OPERATIONAL_READINESS_REPORT.md`, `knowledge/releases/V1SP-*.md`, `docs/release/RELEASE_NOTES_v1.0.0-RC2.md`.
 
 ---
 

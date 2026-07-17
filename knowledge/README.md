@@ -9,6 +9,8 @@ This knowledge base complements (does not replace):
 | [`PROJECT_CONTEXT.md`](../PROJECT_CONTEXT.md) | Product thesis, stack, current status |
 | [`ARCHITECTURE.md`](../ARCHITECTURE.md) | Structural map and layer diagrams |
 | [`CONTRIBUTING.md`](../CONTRIBUTING.md) | Branching, commits, PRs, milestones |
+| [`PRODUCT_BLUEPRINT.md`](../PRODUCT_BLUEPRINT.md) | Long-term product vision |
+| [`docs/process/RELEASE_PROTOCOL.md`](../docs/process/RELEASE_PROTOCOL.md) | Release procedure |
 | [`.cursor/rules/`](../.cursor/rules/) | Enforceable agent conventions |
 | [`prompts/`](../prompts/) | Task-start templates |
 
@@ -32,31 +34,30 @@ This knowledge base preserves the architectural decisions behind those invariant
 ```
 knowledge/
 ├── README.md                 ← you are here
-├── architecture/             ← Architecture Decision Records (ADRs)
-│   ├── ADR-001-service-layer.md
-│   ├── ADR-002-blueprint-architecture.md
-│   ├── ADR-003-curriculum-v1-v2.md
-│   ├── ADR-004-canonical-topic-traversal.md
-│   └── ADR-005-testing-strategy.md
+├── architecture/             ← ADRs, Design Principles, Founder IA
+├── educational/              ← Educational Constitution & governance
+├── engineering/              ← Handbook, patterns, standards
+├── founder/                  ← Founder OS / FSI programme docs
+├── investigations/           ← Audits (e.g. POP-001)
+├── product/                  ← Product programmes (PTP, LXP, IA)
+├── release/                  ← Version 1 RC1 / certification trail
+├── releases/                 ← Implementation & verification reports (IAHF, V1SP, RC2)
+├── research/                 ← Research Intelligence Programme
 ├── subsystems/               ← How major domains work
-│   ├── curriculum-engine.md
-│   ├── study-planning.md
-│   ├── readiness.md
-│   ├── missions.md
-│   ├── analytics.md
-│   └── authentication.md
-└── development/              ← How to work on the codebase
-    ├── coding-standards.md
-    ├── ai-workflow.md
-    ├── project-history.md
-    └── glossary.md
+└── development/              ← Coding standards, AI workflow, glossary
 ```
 
 | Folder | Use when |
 |---|---|
-| `architecture/` | You need the **why** behind a hard constraint |
-| `subsystems/` | You need the **how** of a domain before changing it |
-| `development/` | You need style, AI process, history, or terminology |
+| `architecture/` | Design Principles, POP-002 IA, ADRs — the **why** behind hard constraints |
+| `educational/` | Educational Constitution and governance law |
+| `releases/` | Milestone implementation / verification reports for RC2 and IAHF |
+| `release/` | Version 1 RC1 certification and release-candidate records |
+| `subsystems/` | The **how** of a domain before changing it |
+| `development/` | Style, AI process, history, or terminology |
+| `investigations/` | Pre-implementation audits (do not treat as live as-built without checking `releases/`) |
+
+**Avoid duplication:** Prefer updating the authoritative programme doc (e.g. POP-002, Design Principles) over copying guidance into multiple status files. Historical investigation text may describe pre-fix state — check the matching implementation report for live behaviour.
 
 ---
 
@@ -65,8 +66,9 @@ knowledge/
 1. **Before structural changes** — read the relevant ADR(s) and subsystem doc, then [`ARCHITECTURE.md`](../ARCHITECTURE.md).
 2. **Before curriculum work** — read [ADR-003](architecture/ADR-003-curriculum-v1-v2.md), [ADR-004](architecture/ADR-004-canonical-topic-traversal.md), and [curriculum-engine.md](subsystems/curriculum-engine.md).
 3. **Before adding business logic** — read [ADR-001](architecture/ADR-001-service-layer.md) and [ADR-002](architecture/ADR-002-blueprint-architecture.md); put logic in services, not routes.
-4. **When stuck on naming** — check [glossary.md](development/glossary.md).
-5. **When proposing a new architectural pattern** — add or update an ADR; do not silently diverge from Accepted decisions.
+4. **Before Founder / ops UI work** — read [Design Principles](architecture/DESIGN_PRINCIPLES.md) and [POP-002](architecture/POP-002_FOUNDER_INFORMATION_ARCHITECTURE.md); confirm as-built status against IAHF / V1SP reports.
+5. **When stuck on naming** — check [glossary.md](development/glossary.md) and `app/brand_identity.py` for user-facing labels.
+6. **When proposing a new architectural pattern** — add or update an ADR; do not silently diverge from Accepted decisions.
 
 Cross-links inside these docs point to concrete modules under `app/` (services, blueprints, engine). Prefer those paths over inventing parallel abstractions.
 
@@ -82,6 +84,19 @@ Cross-links inside these docs point to concrete modules under `app/` (services, 
 6. For documentation-only milestones: create/update docs only; leave application WIP unstaged unless the brief says otherwise.
 
 Agents must not invent black-box LLM calls into core learning paths, break V1 loaders, or duplicate `CurriculumService` ordering logic.
+
+---
+
+## Version 1 RC2 quick links
+
+| Topic | Document |
+|---|---|
+| Operational readiness | [RC2 report](releases/RC2_OPERATIONAL_READINESS_REPORT.md) |
+| Release notes | [`docs/release/RELEASE_NOTES_v1.0.0-RC2.md`](../docs/release/RELEASE_NOTES_v1.0.0-RC2.md) |
+| Design Principles | [DESIGN_PRINCIPLES.md](architecture/DESIGN_PRINCIPLES.md) |
+| Founder IA | [POP-002](architecture/POP-002_FOUNDER_INFORMATION_ARCHITECTURE.md) |
+| Educational Constitution | [KWALITEC_EDUCATIONAL_CONSTITUTION.md](educational/KWALITEC_EDUCATIONAL_CONSTITUTION.md) |
+| Brand assets | [`app/static/branding/README.md`](../app/static/branding/README.md) |
 
 ---
 

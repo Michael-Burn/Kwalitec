@@ -4,6 +4,7 @@
 **Milestone:** V1SP-001C  
 **Status:** Implementation complete  
 **Date:** 2026-07-17  
+**Commit:** `164dfb0` — `feat(founder): add Operational Health decision dashboard (V1SP-001C)`  
 
 ---
 

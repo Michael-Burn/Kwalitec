@@ -5,6 +5,7 @@
 **Milestone:** IAHF-004A  
 **Status:** Implementation complete  
 **Date:** 2026-07-17  
+**Commit:** `6c8e7cc` — `feat(brand): establish canonical Kwalitec brand infrastructure (IAHF-004A)`
 ---
 
 ## Summary

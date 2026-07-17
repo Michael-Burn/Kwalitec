@@ -5,6 +5,7 @@
 **Milestone:** IAHF-004B  
 **Status:** Implementation complete  
 **Date:** 2026-07-17  
+**Commit:** `d5021fc` — `feat(brand): apply coherent brand experience across application shell (IAHF-004B)`
 
 ---
 

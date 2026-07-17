@@ -53,7 +53,7 @@ app/
 | `dashboard` / `mission` / `study_plan` / `analytics` | Students | Learning Workspace |
 | `settings` | Authenticated | Includes Internal Alpha status |
 | `research` | Students | Product Check-in intake (`/research/checkin`) |
-| `founder_dashboard` | Founders | Command Centre — Overview, Feedback, Vision Journal, etc. |
+| `founder_dashboard` | Founders | Command Centre — Overview, **Operational Health**, Feedback, Vision Journal, Research, Releases |
 | `calibration` | Operators | Calibration workflows |
 
 ### Blueprint responsibilities
@@ -164,17 +164,17 @@ app/templates/
 ├── layouts/
 │   ├── base.html          # Authenticated shell (sidebar + topnav)
 │   └── auth_base.html     # Unauthenticated layout
-├── partials/
-│   ├── sidebar.html
-│   ├── topnav.html
-│   └── flash_messages.html
+├── partials/              # sidebar, topnav, brand_*, flash, etc.
 ├── auth/
 ├── dashboard/
 ├── mission/
-├── study_plan/            # list, view, edit, wizard_step_*.html
+├── study_plan/
 ├── analytics/
 ├── settings/
-└── errors/                # 403, 404, 500
+├── research/              # Product Check-in (student)
+├── calibration/
+├── errors/
+└── (Founder) app/founder/dashboard/templates/founder_dashboard/
 ```
 
 Conventions:
@@ -183,6 +183,7 @@ Conventions:
 - Keep feature templates in the matching folder name.
 - Prefer partials for repeated chrome; avoid duplicating nav markup.
 - Pass a `title` into the layout when possible.
+- User-facing Founder / workspace labels come from `app/brand_identity.py` (e.g. Founder Command Centre, Learning Workspace, Revision Workspace, Operational Health).
 
 ---
 
@@ -190,8 +191,10 @@ Conventions:
 
 ```
 app/static/js/
-├── app.js          # Shared behaviours
-└── mission.js      # Mission-specific interactions
+├── app.js              # Shared behaviours
+├── mission.js          # Mission-specific interactions
+├── study_session.js    # Study session interactions
+└── theme.js            # Appearance / theme
 ```
 
 CSS:
@@ -201,6 +204,8 @@ app/static/css/
 ├── app.css
 └── wizard.css
 ```
+
+Founder Command Centre CSS lives under `app/founder/dashboard/static/css/`.
 
 Conventions:
 
