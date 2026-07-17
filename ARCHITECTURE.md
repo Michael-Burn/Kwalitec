@@ -36,13 +36,25 @@ Blueprints are registered in `_register_blueprints()` inside `app/__init__.py`.
 
 ```
 app/
-├── auth/          Blueprint("auth", url_prefix="/auth")
-├── dashboard/     Blueprint("dashboard", ...)
-├── mission/       Blueprint("mission", url_prefix="/missions")
-├── study_plan/    Blueprint("study_plan", url_prefix="/study-plan")
-├── analytics/     Blueprint("analytics", ...)
-└── settings/      Blueprint("settings", ...)
+├── auth/                 Blueprint("auth", url_prefix="/auth")
+├── dashboard/            Blueprint("dashboard", ...)
+├── mission/              Blueprint("mission", url_prefix="/missions")
+├── study_plan/           Blueprint("study_plan", url_prefix="/study-plan")
+├── analytics/            Blueprint("analytics", ...)
+├── settings/             Blueprint("settings", ...)
+├── research/             Blueprint("research", url_prefix="/research")
+├── calibration/          Blueprint("calibration", ...)
+└── founder/dashboard/    Blueprint("founder_dashboard", url_prefix="/founder")
 ```
+
+| Blueprint | Audience | Notes |
+|---|---|---|
+| `auth` | All | Invite-only login; no public registration |
+| `dashboard` / `mission` / `study_plan` / `analytics` | Students | Learning Workspace |
+| `settings` | Authenticated | Includes Internal Alpha status |
+| `research` | Students | Product Check-in intake (`/research/checkin`) |
+| `founder_dashboard` | Founders | Command Centre — Overview, Feedback, Vision Journal, etc. |
+| `calibration` | Operators | Calibration workflows |
 
 ### Blueprint responsibilities
 
@@ -375,9 +387,11 @@ create_app()
 - Session auth via Flask-Login; login view `auth.login`.
 - CSRF via Flask-WTF on state-changing forms.
 - Security headers + CSP on every response (`_add_security_headers`).
-- Open redirect protection on post-login `next` URLs.
+- Open redirect protection on post-login `next` URLs (path-absolute only; rejects `//`, `///`, backslashes, and encoded bypasses).
+- Production cookies: `Secure`, `HttpOnly`, `SameSite=Lax` for session and remember-me.
+- Static assets: long-lived `Cache-Control` with `v=` fingerprint; HTML remains `no-store`.
 - Registration not exposed; admin created via CLI or production startup.
-- Secrets from environment (`.env` locally; Render env vars in production).
+- Secrets from environment (`.env` locally; Render env vars in production). Insecure `SECRET_KEY` is rejected whenever `ProductionConfig` is selected.
 
 Details: [`.cursor/rules/10-security.mdc`](.cursor/rules/10-security.mdc).
 

@@ -102,6 +102,7 @@ def handle_feedback_request():
 
     filters = filters_from_request()
     selected_id = parse_optional_int(request.args.get("submission"))
+    inbox_page = parse_optional_int(request.args.get("page")) or 1
     time_window = (request.args.get("time_window") or TIME_WINDOW_7_DAYS).strip()
     if time_window not in TIME_WINDOW_LABELS:
         time_window = TIME_WINDOW_7_DAYS
@@ -260,6 +261,7 @@ def handle_feedback_request():
         custom_date_to=custom_date_to,
         current_release=current_release,
         previous_release=previous_release,
+        inbox_page=inbox_page,
     )
 
     return render_template(

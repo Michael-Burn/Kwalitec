@@ -15,8 +15,10 @@ Do **not** add logo, favicon, PWA, or social-preview assets under `app/static/im
 | `favicon.ico` | Browser tab icon |
 | `apple-touch-icon.png` | iOS home-screen icon |
 | `android-chrome-192.png` / `512.png` | Android / PWA icons |
-| `social-preview.png` | Open Graph / Twitter card image |
+| `social-preview.png` | Open Graph / Twitter card image (**1200×630**) |
 | `manifest.webmanifest` | Web app manifest |
+
+**Runtime default:** templates prefer **SVG** via `brand_logo.html`. PNG rasters are fallback / PWA / social only and were compressed in V1SP-001B (resized lockups; OG crop 1200×630).
 
 Brand colours (metadata / logo art / IAHF-004B chrome tokens):
 

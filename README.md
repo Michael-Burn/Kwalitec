@@ -91,14 +91,20 @@ This hierarchy is the canonical educational model used throughout the platform.
 
 # Current Status
 
-Current Release
-
-**v0.4.0**
+| Fingerprint | Value |
+|---|---|
+| Product version | **1.0.0** (`APP_VERSION` / `pyproject.toml`) |
+| Internal Alpha build | **Build RC2** |
+| Programme | Version 1 Stabilisation (V1SP) · invite-only Internal Alpha |
+| Operational readiness | APPROVED WITH MINOR ISSUES — High items closed in V1SP-001B |
 
 Epic Status
 
 - ✅ Epic 1 — Curriculum Architecture Foundation
-- 🚧 Epic 2 — Educational Intelligence
+- ✅ Epic 2 — Educational Intelligence (core learning loop live for Alpha)
+- 🚧 Version 1 Stabilisation — final optimisation and release validation
+
+See `knowledge/releases/RC2_OPERATIONAL_READINESS_REPORT.md` and `knowledge/releases/V1SP-001B_OPERATIONAL_FIXES.md`.
 
 ---
 
@@ -190,6 +196,11 @@ Every release includes:
 | Document | Purpose |
 |-----------|---------|
 | PRODUCT_BLUEPRINT.md | Product vision and long-term strategy |
+| PROJECT_CONTEXT.md | Developer / agent orientation |
+| ARCHITECTURE.md | Layers, blueprints, curriculum invariants |
+| knowledge/architecture/DESIGN_PRINCIPLES.md | Governing product design principles |
+| knowledge/architecture/POP-002_FOUNDER_INFORMATION_ARCHITECTURE.md | Founder Command Centre IA |
+| knowledge/releases/ | Release and operational readiness reports |
 | docs/ENGINEERING_CHARTER.md | Engineering principles and workflow |
 | CHANGELOG.md | Release history |
 | docs/TECHNICAL_DEBT_REGISTER.md | Engineering debt tracking |

@@ -370,7 +370,9 @@ class TestCommandCentreHttp:
         body = response.get_data(as_text=True)
         assert 'data-rip003-command-centre="1"' in body
         assert "Feedback" in body
-        assert "Internal Alpha Summary" in body
+        assert "Inbox" in body
+        # V1SP-001B: Feedback is triage-only; analysis blocks live elsewhere.
+        assert "Internal Alpha Summary" not in body
 
     def test_legacy_research_founder_redirects(self, founder_client):
         response = founder_client.get("/research/founder", follow_redirects=False)

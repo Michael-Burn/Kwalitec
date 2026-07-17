@@ -97,6 +97,20 @@ class ProductionConfig(BaseConfig):
 
     DEBUG = False
 
+    # Session cookie hardening (HTTPS deployments; Render terminates TLS).
+    SESSION_COOKIE_SECURE = True
+    SESSION_COOKIE_HTTPONLY = True
+    SESSION_COOKIE_SAMESITE = "Lax"
+
+    # Flask-Login remember-me cookie — mirror session flags.
+    REMEMBER_COOKIE_SECURE = True
+    REMEMBER_COOKIE_HTTPONLY = True
+    REMEMBER_COOKIE_SAMESITE = "Lax"
+
+    # Browser-cache fingerprinted / versioned static assets for one year.
+    # HTML responses still receive Cache-Control: no-store via middleware.
+    SEND_FILE_MAX_AGE_DEFAULT = 31_536_000
+
 
 config_by_name = {
     "development": DevelopmentConfig,

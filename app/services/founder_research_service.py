@@ -184,6 +184,24 @@ class DashboardContext:
     findings: tuple[ResearchProductFinding, ...]
     filters: InboxFilters
     selected_submission: SubmissionDetail | None = None
+    inbox_page: int = 1
+    inbox_per_page: int = 50
+    inbox_total: int = 0
+
+    @property
+    def inbox_total_pages(self) -> int:
+        if self.inbox_per_page <= 0:
+            return 1
+        pages = (self.inbox_total + self.inbox_per_page - 1) // self.inbox_per_page
+        return max(1, pages)
+
+    @property
+    def inbox_has_prev(self) -> bool:
+        return self.inbox_page > 1
+
+    @property
+    def inbox_has_next(self) -> bool:
+        return self.inbox_page < self.inbox_total_pages
 
 
 class FounderResearchService:
@@ -538,17 +556,28 @@ class FounderResearchService:
         return query
 
     @staticmethod
+    def count_inbox(filters: InboxFilters | None = None) -> int:
+        """Return the number of submissions matching inbox filters."""
+        filters = filters or InboxFilters()
+        query = ResearchFeedbackSubmission.query
+        query = FounderResearchService._apply_inbox_filters(query, filters)
+        return int(query.count())
+
+    @staticmethod
     def list_inbox(
         filters: InboxFilters | None = None,
         *,
         limit: int = 50,
+        offset: int = 0,
     ) -> tuple[ResearchFeedbackSubmission, ...]:
-        """Return filtered research inbox submissions."""
+        """Return filtered research inbox submissions (paginated)."""
         filters = filters or InboxFilters()
         query = ResearchFeedbackSubmission.query.order_by(
             ResearchFeedbackSubmission.submitted_at.desc()
         )
         query = FounderResearchService._apply_inbox_filters(query, filters)
+        if offset > 0:
+            query = query.offset(offset)
         return tuple(query.limit(limit).all())
 
     @staticmethod
@@ -931,6 +960,8 @@ class FounderResearchService:
         custom_date_to: date | None = None,
         current_release: str | None = None,
         previous_release: str | None = None,
+        inbox_page: int = 1,
+        inbox_per_page: int = 50,
     ) -> DashboardContext:
         """Assemble all data for the Founder Research Command Centre."""
         filters = filters or InboxFilters()
@@ -950,14 +981,30 @@ class FounderResearchService:
             previous_release=previous_release,
         )
 
+        per_page = max(1, min(inbox_per_page, 100))
+        page = max(1, inbox_page)
+        inbox_total = FounderResearchService.count_inbox(filters)
+        if inbox_total:
+            total_pages = max(1, (inbox_total + per_page - 1) // per_page)
+        else:
+            total_pages = 1
+        if page > total_pages:
+            page = total_pages
+        offset = (page - 1) * per_page
+
         return DashboardContext(
             summary=FounderResearchService.get_internal_alpha_summary(),
             changes=FounderResearchService.get_changes_since_yesterday(on_date=as_of),
             product_health=FounderResearchService.get_product_health(),
             insights=insight_engine.legacy,
             insight_engine=insight_engine,
-            inbox=FounderResearchService.list_inbox(filters),
+            inbox=FounderResearchService.list_inbox(
+                filters, limit=per_page, offset=offset
+            ),
             findings=FounderResearchService.list_findings(),
             filters=filters,
             selected_submission=selected,
+            inbox_page=page,
+            inbox_per_page=per_page,
+            inbox_total=inbox_total,
         )

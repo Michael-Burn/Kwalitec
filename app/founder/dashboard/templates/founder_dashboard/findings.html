@@ -18,7 +18,6 @@
         <input class="form-control form-control-sm w-auto" name="severity" value="{{ severity }}" placeholder="Severity">
         <input class="form-control form-control-sm w-auto" name="status" value="{{ status }}" placeholder="Status">
         <button class="btn btn-sm btn-outline-secondary" type="submit">Filter</button>
-        <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('founder_dashboard.feedback') }}">Create from Feedback</a>
     </form>
 
     {% if findings %}
@@ -41,4 +40,41 @@
     <p class="text-muted mb-0">No findings match these filters.</p>
     {% endif %}
 </section>
+
+{% if finding_form %}
+<section class="mb-4" aria-label="Create Product Finding">
+    <div class="command-card">
+        <div class="command-card-header">
+            <h2 class="h6 mb-0">Create Product Finding</h2>
+        </div>
+        <div class="command-card-body">
+            <form method="post" action="{{ url_for('founder_dashboard.feedback') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="action" value="create_finding">
+                <div class="mb-2">
+                    {{ finding_form.title(class="form-control form-control-sm", placeholder="Title") }}
+                </div>
+                <div class="mb-2">
+                    {{ finding_form.summary(class="form-control form-control-sm", placeholder="Summary") }}
+                </div>
+                <div class="row g-2 mb-2">
+                    <div class="col-6">{{ finding_form.severity(class="form-select form-select-sm") }}</div>
+                    <div class="col-6">{{ finding_form.feature_area(class="form-select form-select-sm") }}</div>
+                </div>
+                <div class="row g-2 mb-2">
+                    <div class="col-6">{{ finding_form.status(class="form-select form-select-sm") }}</div>
+                    <div class="col-6">{{ finding_form.target_release(class="form-control form-control-sm") }}</div>
+                </div>
+                <div class="mb-2">
+                    {{ finding_form.linked_submission_ids(class="form-control form-control-sm", placeholder="Linked submission ids") }}
+                </div>
+                <div class="mb-2">
+                    {{ finding_form.notes(class="form-control form-control-sm", placeholder="Internal notes") }}
+                </div>
+                <button type="submit" class="btn btn-sm btn-primary">Create Finding</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endif %}
 {% endblock %}

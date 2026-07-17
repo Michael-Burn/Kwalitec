@@ -176,6 +176,102 @@
     border-bottom-color: var(--text-primary);
 }
 
+/* Feedback inbox (V1SP-001B) — triage-first hierarchy */
+.feedback-inbox-count {
+    font-size: var(--font-xs);
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+}
+
+.feedback-filters {
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.feedback-inbox-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.feedback-inbox-item {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 0.75rem 0.85rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+    background: var(--surface);
+}
+
+.feedback-inbox-item:hover {
+    border-color: var(--border);
+    color: inherit;
+}
+
+.feedback-inbox-item.is-selected {
+    border-color: var(--text-primary);
+    background: var(--surface-elevated, var(--surface));
+}
+
+.feedback-inbox-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 0.25rem;
+}
+
+.feedback-inbox-item-title {
+    font-size: var(--font-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+}
+
+.feedback-inbox-item-time {
+    font-size: var(--font-xs);
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.feedback-inbox-item-summary {
+    margin: 0 0 0.4rem;
+    font-size: var(--font-sm);
+    color: var(--text-secondary);
+}
+
+.feedback-status-badge {
+    display: inline-block;
+    font-size: var(--font-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.1rem 0.4rem;
+}
+
+.feedback-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-top: var(--space-md);
+    padding-top: var(--space-sm);
+}
+
+.feedback-pagination-status {
+    font-size: var(--font-xs);
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+}
+
+.feedback-detail-card .command-card-body > p {
+    margin-bottom: 0.4rem;
+}
+
 .founder-alert-severity {
     display: inline-block;
     font-size: var(--font-xs);

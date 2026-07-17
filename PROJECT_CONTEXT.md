@@ -57,26 +57,32 @@ Kwalitec is **not** a generic study planner and **not** a black-box AI tutor. Co
 
 ```
 kwalitec/
-├── .cursor/rules/           # Persistent Cursor Agent rules (this milestone)
+├── .cursor/rules/           # Persistent Cursor Agent rules
 ├── prompts/                 # Reusable agent prompt templates
 ├── app/
 │   ├── __init__.py          # create_app(), blueprints, security headers, health
 │   ├── config.py            # Development / Production config
 │   ├── extensions.py        # db, migrate, login_manager, csrf
+│   ├── brand_identity.py    # Internal Alpha / Command Centre labels
+│   ├── version.py           # APP_VERSION source of truth
 │   ├── cli.py               # flask create-admin
 │   ├── auth/                # Login / logout blueprint
-│   ├── dashboard/           # Main dashboard blueprint
-│   ├── mission/             # Daily missions blueprint
+│   ├── dashboard/           # Student dashboard blueprint
+│   ├── mission/             # Study sessions blueprint
 │   ├── study_plan/          # Study plan list + wizard blueprint
 │   ├── analytics/           # Learning analytics blueprint
 │   ├── settings/            # User settings blueprint
+│   ├── research/            # Product Check-in (student intake)
+│   ├── calibration/         # Calibration workflows
+│   ├── founder/             # Founder Command Centre + FOS subsystems
 │   ├── models/              # SQLAlchemy ORM models
 │   ├── services/            # Business logic (no HTTP)
 │   ├── curriculum/          # In-memory Curriculum Engine (JSON → dataclasses)
 │   │   └── data/            # Bundled syllabus JSON (e.g. ifoa/cs1/2026.json)
 │   ├── templates/           # Jinja2 (layouts, partials, feature folders)
-│   ├── static/              # css/, js/, images/
+│   ├── static/              # css/, js/, branding/
 │   └── utils/               # Shared helpers
+├── knowledge/               # Architecture, investigations, release reports
 ├── migrations/              # Alembic revision scripts
 ├── tests/                   # pytest suite
 ├── run.py                   # Local development entry
@@ -136,11 +142,14 @@ Business logic lives in `app/services/`. Representative services:
 | Blueprint | URL prefix | Purpose |
 |---|---|---|
 | `auth` | `/auth` | Login / logout (registration is not public) |
-| `dashboard` | `/dashboard` | Home / overview |
-| `mission` | `/missions` | Daily missions and review |
+| `dashboard` | `/dashboard` | Student Learning Workspace home |
+| `mission` | `/missions` | Study sessions and review |
 | `study_plan` | `/study-plan` | Plan list and multi-step wizard |
 | `analytics` | `/analytics` | Performance analytics |
-| `settings` | `/settings` | User preferences / backup |
+| `settings` | `/settings` | User preferences / backup / Internal Alpha status |
+| `research` | `/research` | Student Product Check-in intake |
+| `calibration` | `/calibration` | Calibration workflows |
+| `founder_dashboard` | `/founder` | Founder Command Centre (Overview + sections) |
 
 App-level routes: `/` → dashboard redirect; `/health` public health check.
 
@@ -176,21 +185,30 @@ Detailed rules: [`.cursor/rules/08-curriculum-v2.mdc`](.cursor/rules/08-curricul
 
 ## Current Project Status
 
-As of Milestone 0.1 (AI development infrastructure):
+As of Version1-RC2 / V1SP-001B (Internal Alpha operational baseline):
+
+| Fingerprint | Value |
+|---|---|
+| Product version | `1.0.0` |
+| Internal Alpha build | Build RC2 |
+| Registration | Invite-only (public self-registration disabled) |
 
 | Area | Status |
 |---|---|
-| Flask app factory, auth, CSRF, security headers | Stable |
-| Study plan wizard, missions, analytics, settings | Stable |
+| Flask app factory, auth, CSRF, security headers | Stable; production cookies + redirect hardening (V1SP-001B) |
+| Study plan wizard, study sessions, analytics, settings | Stable for Internal Alpha |
 | Adaptive learning, readiness, recommendations | Stable |
 | Curriculum Engine (in-memory JSON) | Stable; V1 + V2 support in engine/services |
-| DB `Section` model + `Topic.section_id` | Introduced (curriculum architecture track) |
+| Founder Command Centre (`/founder`) | Live SoT for Product Check-ins (IAHF-003+) |
+| Brand pack (`app/static/branding/`) | Canonical SVG + optimised rasters (IAHF-004A/B) |
+| DB `Section` model + `Topic.section_id` | Present (curriculum architecture track) |
 | Production Render deploy + `StartupService` | Stable |
 | Automated tests + CI (Python 3.11–3.13) | Active |
 | Public self-registration | Intentionally disabled; admin via CLI / startup |
-| AI development framework (this milestone) | Established |
 
 Known operational note: local SQLite migration failures have been observed under disk I/O conditions (see `MIGRATION_INVESTIGATION_FINDINGS.md`). Treat migration health as environment-sensitive; prefer clean DB recreate when investigating schema issues locally.
+
+Release references: `knowledge/releases/RC2_OPERATIONAL_READINESS_REPORT.md`, `knowledge/releases/V1SP-001B_OPERATIONAL_FIXES.md`.
 
 ---
 

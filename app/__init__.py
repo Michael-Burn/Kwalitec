@@ -43,24 +43,48 @@ def _configure_logging(app: Flask) -> None:
     logger.info("Kwalitec logging configured at level %s", logging.getLevelName(log_level))
 
 
-def _validate_env_vars() -> None:
+_INSECURE_SECRET_KEYS = frozenset(
+    {
+        "",
+        "dev-change-this-secret-key",
+        "change-me",
+        "secret",
+        "changeme",
+    }
+)
+
+
+def _validate_env_vars(config_object: type) -> None:
     """Validate required environment variables at startup.
 
-    Logs warnings for missing or default values that need attention.
+    Rejects insecure ``SECRET_KEY`` values whenever production config is
+    selected (via ``APP_ENV`` or ``FLASK_ENV``), not only when ``APP_ENV``
+    is literally ``production``.
     """
-    issues = []
+    issues: list[str] = []
 
     secret_key = os.getenv("SECRET_KEY", "dev-change-this-secret-key")
-    if secret_key == "dev-change-this-secret-key":
-        app_env = os.getenv("APP_ENV", "development")
-        if app_env == "production":
-            issues.append("SECRET_KEY is using the default insecure value in production!")
+    is_production_config = config_object is ProductionConfig
+    if secret_key.strip() in _INSECURE_SECRET_KEYS:
+        if is_production_config:
+            issues.append(
+                "SECRET_KEY is using an insecure default/placeholder with "
+                "ProductionConfig active!"
+            )
         else:
-            logger.warning("SECRET_KEY is using the default value. Set a strong key for production use.")
+            logger.warning(
+                "SECRET_KEY is using the default value. "
+                "Set a strong key for production use."
+            )
 
     flask_env = os.getenv("FLASK_ENV", "development")
     app_env = os.getenv("APP_ENV", flask_env)
-    logger.info("Environment: APP_ENV=%s, FLASK_ENV=%s", app_env, flask_env)
+    logger.info(
+        "Environment: APP_ENV=%s, FLASK_ENV=%s, config=%s",
+        app_env,
+        flask_env,
+        config_object.__name__,
+    )
 
     database_url = os.getenv("DATABASE_URL")
     if database_url:
@@ -78,8 +102,7 @@ def _validate_env_vars() -> None:
     if issues:
         for issue in issues:
             logger.error("CONFIGURATION ERROR: %s", issue)
-        # In production, raise to prevent insecure deployment
-        if app_env == "production":
+        if is_production_config:
             raise RuntimeError("Configuration validation failed: " + "; ".join(issues))
 
 
@@ -187,6 +210,15 @@ def _register_health_check(app: Flask) -> None:
         )
 
 
+def _is_static_response() -> bool:
+    """Return True when the current request serves a static asset."""
+    endpoint = request.endpoint or ""
+    if endpoint == "static" or endpoint.endswith(".static"):
+        return True
+    path = request.path or ""
+    return path.startswith("/static/")
+
+
 def _add_security_headers(response):
     """Add security headers to every response."""
     response.headers["X-Content-Type-Options"] = "nosniff"
@@ -227,7 +259,18 @@ def _add_security_headers(response):
             "connect-src 'self'"
         )
 
-    response.headers["Cache-Control"] = "no-store"
+    # Authenticated HTML stays uncached; versioned static assets may be cached.
+    if _is_static_response():
+        max_age = int(
+            response.cache_control.max_age
+            if response.cache_control.max_age is not None
+            else 31_536_000
+        )
+        response.headers["Cache-Control"] = (
+            f"public, max-age={max_age}, immutable"
+        )
+    else:
+        response.headers["Cache-Control"] = "no-store"
 
     return response
 
@@ -242,8 +285,17 @@ def create_app(config_object: type | None = None) -> Flask:
 
     app.config.from_object(config_object)
 
+    from app.brand_identity import INTERNAL_ALPHA_BUILD_LABEL
+    from app.version import APP_VERSION
+
+    # Cache-bust query param for static url_for() calls (deployment fingerprint).
+    app.config.setdefault(
+        "STATIC_ASSET_VERSION",
+        f"{APP_VERSION}-{INTERNAL_ALPHA_BUILD_LABEL}",
+    )
+
     _configure_logging(app)
-    _validate_env_vars()
+    _validate_env_vars(config_object)
     _init_extensions(app)
     _register_template_context(app)
     _register_blueprints(app)
@@ -252,6 +304,16 @@ def create_app(config_object: type | None = None) -> Flask:
     _register_error_handlers(app)
     _register_health_check(app)
     app.after_request(_add_security_headers)
+
+    @app.url_defaults
+    def _static_cache_bust(endpoint: str | None, values: dict) -> None:
+        """Append ``v=`` fingerprint to static asset URLs."""
+        if not endpoint:
+            return
+        if endpoint != "static" and not endpoint.endswith(".static"):
+            return
+        values.setdefault("v", app.config["STATIC_ASSET_VERSION"])
+
 
     # Diagnose migration state at startup (read-only; never applies migrations)
     _log_migration_state(app)

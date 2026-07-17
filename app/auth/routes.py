@@ -1,6 +1,8 @@
 """Authentication blueprint routes."""
 
-from urllib.parse import urlsplit
+from __future__ import annotations
+
+from urllib.parse import unquote, urlsplit
 
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_user, logout_user
@@ -62,13 +64,49 @@ def logout():
 
 
 def _safe_next_url() -> str | None:
-    """Return a local next URL, rejecting external redirects."""
+    """Return a same-origin relative path for post-login redirect.
+
+    Rejects absolute URLs, protocol-relative URLs (``//…``, ``///…``),
+    backslash tricks, and percent-encoded bypasses. Only path-absolute
+    internal destinations are allowed (leading single ``/``).
+    """
     next_url = request.args.get("next")
     if not next_url:
         return None
 
-    parsed = urlsplit(next_url)
-    if parsed.netloc or parsed.scheme:
+    raw = next_url.strip()
+    if not raw:
         return None
 
-    return next_url
+    # Reject control characters that can smuggle headers or confuse parsers.
+    if any(ch in raw for ch in ("\r", "\n", "\0", "\\")):
+        return None
+
+    # Fully decode percent-encoding so ``/%2f%2f…`` cannot bypass checks.
+    candidate = raw
+    for _ in range(5):
+        decoded = unquote(candidate)
+        if decoded == candidate:
+            break
+        candidate = decoded
+
+    if any(ch in candidate for ch in ("\r", "\n", "\0", "\\")):
+        return None
+
+    # Require a single leading slash (path-absolute). Reject ``//`` / ``///``.
+    if not candidate.startswith("/") or candidate.startswith("//"):
+        return None
+
+    parsed = urlsplit(candidate)
+    if parsed.scheme or parsed.netloc:
+        return None
+    if not parsed.path.startswith("/") or parsed.path.startswith("//"):
+        return None
+
+    # Return a normalised local path (never the raw attacker string).
+    safe = parsed.path
+    if parsed.query:
+        safe = f"{safe}?{parsed.query}"
+    if parsed.fragment:
+        safe = f"{safe}#{parsed.fragment}"
+    return safe

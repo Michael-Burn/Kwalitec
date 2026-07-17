@@ -97,6 +97,8 @@ def feedback():
 @founder_required
 def findings():
     """Product Findings list."""
+    from app.research.forms import ProductFindingForm
+
     severity = (request.args.get("severity") or "").strip() or None
     status = (request.args.get("status") or "").strip() or None
     findings_list = FounderResearchService.list_findings(
@@ -111,6 +113,7 @@ def findings():
         severity=severity or "",
         status=status or "",
         workflow_labels=WORKFLOW_LABELS,
+        finding_form=ProductFindingForm(),
     )
 
 
