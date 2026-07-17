@@ -21,6 +21,7 @@ from app.founder.dashboard.dto.command_centre import (
     CommandCentreOverview,
     OperationalAlert,
     RecentFeedbackItem,
+    VisionWidgetItem,
 )
 from app.founder.dashboard.providers import OperationalStateProvider
 from app.founder.dashboard.providers.protocols import OperationalStateGate
@@ -33,6 +34,10 @@ from app.models.research_feedback import (
     ResearchProductFinding,
 )
 from app.models.user import User
+from app.models.vision_journal import (
+    TARGET_VERSION_LABELS,
+    VISION_STATUS_LABELS,
+)
 from app.services.founder_research_service import (
     WORKFLOW_LABELS,
     FounderResearchService,
@@ -42,6 +47,7 @@ from app.services.internal_alpha_status_service import (
     InternalAlphaStatusService,
 )
 from app.services.research_insight_service import TIME_WINDOW_7_DAYS
+from app.services.vision_journal_service import VisionJournalService
 from app.version import APP_VERSION
 
 TIMEZONE_POLICY = "Calendar day (server local date)"
@@ -130,6 +136,7 @@ class CommandCentreService:
 
         inbox_total = self._inbox_total()
         inbox_truncated = inbox_total > INBOX_DISPLAY_CAP
+        vision = self._vision_widgets()
 
         return CommandCentreOverview(
             refreshed_at=now.strftime("%Y-%m-%d %H:%M UTC"),
@@ -166,6 +173,10 @@ class CommandCentreService:
             inbox_truncated=inbox_truncated,
             inbox_shown=min(inbox_total, INBOX_DISPLAY_CAP),
             inbox_total=inbox_total,
+            vision_recent=vision["recent"],
+            vision_awaiting_validation=vision["awaiting"],
+            vision_planned_next=vision["planned"],
+            vision_recently_promoted=vision["promoted"],
         )
 
     def list_attention_items(
@@ -502,6 +513,64 @@ class CommandCentreService:
         }
         items.sort(key=lambda i: urgency_rank.get(i.urgency, 9))
         return tuple(items[:limit])
+
+    def _vision_widgets(self) -> dict[str, tuple[VisionWidgetItem, ...]]:
+        """Compact Vision Journal widgets for Overview."""
+        widgets = VisionJournalService.overview_widgets(limit=5)
+
+        def _item(entry, *, meta: str) -> VisionWidgetItem:
+            return VisionWidgetItem(
+                entry_id=entry.id,
+                title=entry.title,
+                status_label=VISION_STATUS_LABELS.get(
+                    entry.status, entry.status
+                ),
+                meta=meta,
+            )
+
+        recent = tuple(
+            _item(
+                e,
+                meta=(
+                    f"{e.category} · "
+                    f"{TARGET_VERSION_LABELS.get(e.target_version, e.target_version)}"
+                ),
+            )
+            for e in widgets.recent_entries
+        )
+        awaiting = tuple(
+            _item(
+                e,
+                meta=f"{e.category} · updated {e.updated_at.strftime('%Y-%m-%d')}",
+            )
+            for e in widgets.awaiting_validation
+        )
+        planned = tuple(
+            _item(
+                e,
+                meta=TARGET_VERSION_LABELS.get(
+                    e.target_version, e.target_version
+                ),
+            )
+            for e in widgets.planned_next_version
+        )
+        promoted = tuple(
+            VisionWidgetItem(
+                entry_id=entry.id,
+                title=entry.title,
+                status_label=VISION_STATUS_LABELS.get(
+                    entry.status, entry.status
+                ),
+                meta=promo.placeholder_ref,
+            )
+            for entry, promo in widgets.recently_promoted
+        )
+        return {
+            "recent": recent,
+            "awaiting": awaiting,
+            "planned": planned,
+            "promoted": promoted,
+        }
 
 
 def build_operations_page():

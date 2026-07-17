@@ -1,0 +1,39 @@
+{% extends "layouts/base.html" %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('founder_dashboard.static', filename='css/founder_dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+{% include "founder_dashboard/_nav.html" %}
+
+<section class="section-header founder-header">
+    <p class="section-eyebrow">{{ founder_command_centre_label }} / Vision Journal</p>
+    <h1 class="section-title">Vision Timeline</h1>
+    <p class="section-description">How ideas evolved over time.</p>
+</section>
+
+<p class="mb-3">
+    <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('founder_dashboard.vision_journal') }}">Back to Journal</a>
+</p>
+
+<section class="command-card">
+    <div class="command-card-body">
+        {% if events %}
+        <ol class="vision-timeline vision-timeline--page mb-0">
+            {% for event in events %}
+            <li>
+                <time>{{ event.occurred_at.strftime('%Y-%m-%d %H:%M') }}</time>
+                <span>
+                    <a href="{{ url_for('founder_dashboard.vision_entry', entry_id=event.entry_id) }}">{{ event.entry_title }}</a>
+                    · {{ event.detail }}
+                </span>
+            </li>
+            {% endfor %}
+        </ol>
+        {% else %}
+        <p class="text-muted mb-0">No timeline events yet.</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

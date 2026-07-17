@@ -22,6 +22,15 @@ from app.founder.dashboard.services.command_centre_service import (
     CommandCentreService,
     build_operations_page,
 )
+from app.founder.dashboard.vision_handlers import (
+    handle_remove_relation,
+    handle_vision_edit,
+    handle_vision_entry,
+    handle_vision_export,
+    handle_vision_journal,
+    handle_vision_new,
+    handle_vision_timeline,
+)
 from app.services.founder_research_service import (
     WORKFLOW_LABELS,
     FounderResearchService,
@@ -191,6 +200,59 @@ def releases():
         alpha_status=status,
         findings_by_release=by_release,
     )
+
+
+@founder_dashboard_bp.get("/vision")
+@founder_required
+def vision_journal():
+    """Founder Vision Journal — strategic memory of product ideas."""
+    return handle_vision_journal()
+
+
+@founder_dashboard_bp.get("/vision/timeline")
+@founder_required
+def vision_timeline():
+    """Chronological Vision Journal timeline."""
+    return handle_vision_timeline()
+
+
+@founder_dashboard_bp.route("/vision/new", methods=["GET", "POST"])
+@founder_required
+def vision_new():
+    """Create a structured vision entry."""
+    return handle_vision_new()
+
+
+@founder_dashboard_bp.route("/vision/<int:entry_id>", methods=["GET", "POST"])
+@founder_required
+def vision_entry(entry_id: int):
+    """Vision entry detail, relations, and promotion."""
+    return handle_vision_entry(entry_id)
+
+
+@founder_dashboard_bp.route(
+    "/vision/<int:entry_id>/edit", methods=["GET", "POST"]
+)
+@founder_required
+def vision_edit(entry_id: int):
+    """Edit a vision entry."""
+    return handle_vision_edit(entry_id)
+
+
+@founder_dashboard_bp.get("/vision/export/<fmt>")
+@founder_required
+def vision_export(fmt: str):
+    """Export Vision Journal (markdown, json, csv)."""
+    return handle_vision_export(fmt)
+
+
+@founder_dashboard_bp.post(
+    "/vision/<int:entry_id>/relations/<int:relation_id>/remove"
+)
+@founder_required
+def vision_remove_relation(entry_id: int, relation_id: int):
+    """Remove a vision entry relationship."""
+    return handle_remove_relation(relation_id, entry_id)
 
 
 @founder_dashboard_bp.get("/settings")

@@ -39,6 +39,16 @@ class AttentionQueueItem:
 
 
 @dataclass(frozen=True)
+class VisionWidgetItem:
+    """Compact Vision Journal row for Overview widgets."""
+
+    entry_id: int
+    title: str
+    status_label: str
+    meta: str
+
+
+@dataclass(frozen=True)
 class CommandCentreOverview:
     """Homepage model for the Founder Command Centre Overview."""
 
@@ -76,3 +86,7 @@ class CommandCentreOverview:
     inbox_truncated: bool
     inbox_shown: int
     inbox_total: int
+    vision_recent: tuple[VisionWidgetItem, ...] = ()
+    vision_awaiting_validation: tuple[VisionWidgetItem, ...] = ()
+    vision_planned_next: tuple[VisionWidgetItem, ...] = ()
+    vision_recently_promoted: tuple[VisionWidgetItem, ...] = ()

@@ -219,12 +219,106 @@
             {% else %}
             <p class="text-muted mb-2">Operational State unavailable.</p>
             {% endif %}
-            <a href="{{ url_for('founder_dashboard.operations') }}">Open Operations</a>
+            <a href="{{ url_for('founder_dashboard.operations') }}">Open Operational Insights</a>
+            · <a href="{{ url_for('founder_dashboard.attention') }}">Attention</a>
+            · <a href="{{ url_for('founder_dashboard.findings') }}">Findings</a>
         </div>
     </div>
 </section>
 
-{# G. Deployment / build #}
+{# G. Vision Journal snapshot #}
+<section class="mb-4" aria-label="Vision Journal">
+    <h2 class="founder-section-title">Vision Journal</h2>
+    <div class="row g-3">
+        <div class="col-md-6 col-lg-3">
+            <div class="command-card h-100">
+                <div class="command-card-header">
+                    <h3 class="command-card-title h6 mb-0">Recent</h3>
+                    <a href="{{ url_for('founder_dashboard.vision_journal') }}" class="small">Open</a>
+                </div>
+                <div class="command-card-body">
+                    {% if overview.vision_recent %}
+                    <ul class="founder-activity-list mb-0">
+                        {% for item in overview.vision_recent %}
+                        <li>
+                            <a href="{{ url_for('founder_dashboard.vision_entry', entry_id=item.entry_id) }}">{{ item.title }}</a>
+                            · {{ item.status_label }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <p class="text-muted mb-0 small">No entries yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="command-card h-100">
+                <div class="command-card-header">
+                    <h3 class="command-card-title h6 mb-0">Awaiting validation</h3>
+                </div>
+                <div class="command-card-body">
+                    {% if overview.vision_awaiting_validation %}
+                    <ul class="founder-activity-list mb-0">
+                        {% for item in overview.vision_awaiting_validation %}
+                        <li>
+                            <a href="{{ url_for('founder_dashboard.vision_entry', entry_id=item.entry_id) }}">{{ item.title }}</a>
+                            · {{ item.status_label }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <p class="text-muted mb-0 small">None awaiting.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="command-card h-100">
+                <div class="command-card-header">
+                    <h3 class="command-card-title h6 mb-0">Planned next version</h3>
+                </div>
+                <div class="command-card-body">
+                    {% if overview.vision_planned_next %}
+                    <ul class="founder-activity-list mb-0">
+                        {% for item in overview.vision_planned_next %}
+                        <li>
+                            <a href="{{ url_for('founder_dashboard.vision_entry', entry_id=item.entry_id) }}">{{ item.title }}</a>
+                            · {{ item.meta }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <p class="text-muted mb-0 small">None planned.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="command-card h-100">
+                <div class="command-card-header">
+                    <h3 class="command-card-title h6 mb-0">Recently promoted</h3>
+                </div>
+                <div class="command-card-body">
+                    {% if overview.vision_recently_promoted %}
+                    <ul class="founder-activity-list mb-0">
+                        {% for item in overview.vision_recently_promoted %}
+                        <li>
+                            <a href="{{ url_for('founder_dashboard.vision_entry', entry_id=item.entry_id) }}">{{ item.title }}</a>
+                            · <code class="small">{{ item.meta }}</code>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <p class="text-muted mb-0 small">None promoted.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# H. Deployment / build #}
 <section class="mb-4" aria-label="Deployment information">
     <h2 class="founder-section-title">Deployment</h2>
     <div class="command-card">

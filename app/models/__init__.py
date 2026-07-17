@@ -24,6 +24,16 @@ from app.models.subject import Subject
 from app.models.topic_progress import TopicProgress
 from app.models.twin_snapshot import TwinSnapshot
 from app.models.user import User
+from app.models.vision_journal import (
+    RELATION_TYPES,
+    TARGET_VERSIONS,
+    VISION_CATEGORIES,
+    VISION_STATUSES,
+    VisionEntry,
+    VisionEntryPromotion,
+    VisionEntryRelation,
+    VisionEntryStatusTransition,
+)
 
 __all__ = [
     "User",
@@ -54,4 +64,12 @@ __all__ = [
     "SEVERITY_CHOICES",
     "FEATURE_AREA_CHOICES",
     "FINDING_STATUSES",
+    "VisionEntry",
+    "VisionEntryStatusTransition",
+    "VisionEntryRelation",
+    "VisionEntryPromotion",
+    "VISION_CATEGORIES",
+    "VISION_STATUSES",
+    "TARGET_VERSIONS",
+    "RELATION_TYPES",
 ]

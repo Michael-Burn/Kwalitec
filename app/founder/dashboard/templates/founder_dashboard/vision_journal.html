@@ -1,0 +1,125 @@
+{% extends "layouts/base.html" %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('founder_dashboard.static', filename='css/founder_dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+{% include "founder_dashboard/_nav.html" %}
+
+<section class="section-header founder-header">
+    <p class="section-eyebrow">{{ founder_command_centre_label }} / Vision Journal</p>
+    <h1 class="section-title">Vision Journal</h1>
+    <p class="section-description">
+        Structured strategic memory for product ideas — before architecture or implementation.
+    </p>
+</section>
+
+<section class="mb-3 d-flex flex-wrap gap-2 align-items-center justify-content-between">
+    <div class="d-flex flex-wrap gap-2">
+        <a class="btn btn-sm btn-primary" href="{{ url_for('founder_dashboard.vision_new') }}">New entry</a>
+        <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('founder_dashboard.vision_timeline') }}">Timeline</a>
+    </div>
+    <div class="d-flex flex-wrap gap-2">
+        <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('founder_dashboard.vision_export', fmt='markdown') }}{% if request.query_string %}?{{ request.query_string.decode('utf-8') }}{% endif %}">Export MD</a>
+        <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('founder_dashboard.vision_export', fmt='json') }}{% if request.query_string %}?{{ request.query_string.decode('utf-8') }}{% endif %}">Export JSON</a>
+        <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('founder_dashboard.vision_export', fmt='csv') }}{% if request.query_string %}?{{ request.query_string.decode('utf-8') }}{% endif %}">Export CSV</a>
+    </div>
+</section>
+
+<section class="mb-4" aria-label="Search and filters">
+    <form method="get" class="command-card">
+        <div class="command-card-body">
+            <div class="row g-2 align-items-end">
+                <div class="col-md-4">
+                    <label class="form-label small mb-1" for="q">Search</label>
+                    <input class="form-control form-control-sm" id="q" name="q" value="{{ request.args.get('q', '') }}" placeholder="Title, description, tags…">
+                </div>
+                <div class="col-6 col-md-2">
+                    <label class="form-label small mb-1" for="category">Category</label>
+                    <select class="form-select form-select-sm" id="category" name="category">
+                        {% for value, label in filter_form.category.choices %}
+                        <option value="{{ value }}" {% if request.args.get('category','') == value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-6 col-md-2">
+                    <label class="form-label small mb-1" for="status">Status</label>
+                    <select class="form-select form-select-sm" id="status" name="status">
+                        {% for value, label in filter_form.status.choices %}
+                        <option value="{{ value }}" {% if request.args.get('status','') == value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-6 col-md-2">
+                    <label class="form-label small mb-1" for="target_version">Version</label>
+                    <select class="form-select form-select-sm" id="target_version" name="target_version">
+                        {% for value, label in filter_form.target_version.choices %}
+                        <option value="{{ value }}" {% if request.args.get('target_version','') == value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-6 col-md-2">
+                    <label class="form-label small mb-1" for="sort">Sort</label>
+                    <select class="form-select form-select-sm" id="sort" name="sort">
+                        {% for value, label in filter_form.sort.choices %}
+                        <option value="{{ value }}" {% if sort == value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-6 col-md-2">
+                    <label class="form-label small mb-1" for="tag">Tag</label>
+                    <input class="form-control form-control-sm" id="tag" name="tag" value="{{ request.args.get('tag', '') }}">
+                </div>
+                <div class="col-6 col-md-2">
+                    <label class="form-label small mb-1" for="author">Author</label>
+                    <select class="form-select form-select-sm" id="author" name="author">
+                        {% for value, label in filter_form.author.choices %}
+                        <option value="{{ value }}" {% if request.args.get('author','') == value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-sm btn-outline-secondary" type="submit">Apply</button>
+                    <a class="btn btn-sm btn-link" href="{{ url_for('founder_dashboard.vision_journal') }}">Clear</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+
+<section aria-label="Vision entries">
+    {% if entries %}
+    <ul class="list-unstyled mb-0">
+        {% for entry in entries %}
+        <li class="command-card mb-2 vision-entry-row">
+            <div class="command-card-body">
+                <div class="d-flex flex-wrap justify-content-between gap-2 align-items-start">
+                    <div>
+                        <a href="{{ url_for('founder_dashboard.vision_entry', entry_id=entry.id) }}">
+                            <strong>{{ entry.title }}</strong>
+                        </a>
+                        <div class="vision-entry-meta mt-1">
+                            <span class="vision-status vision-status--{{ entry.status }}">{{ status_labels.get(entry.status, entry.status) }}</span>
+                            <span>{{ entry.category }}</span>
+                            <span>{{ version_labels.get(entry.target_version, entry.target_version) }}</span>
+                            <span>{{ value_labels.get(entry.potential_value, entry.potential_value) }}</span>
+                            {% if entry.tags %}
+                            <span class="vision-tags">{% for tag in entry.tags %}{{ tag }}{% if not loop.last %}, {% endif %}{% endfor %}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="text-muted small text-nowrap">
+                        Updated {{ entry.updated_at.strftime('%Y-%m-%d') }}
+                    </div>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    <p class="small text-muted mt-3 mb-0">{{ entries|length }} entr{% if entries|length == 1 %}y{% else %}ies{% endif %}</p>
+    {% else %}
+    <p class="text-muted mb-0">No vision entries match these filters. Create the first idea to begin the strategic memory.</p>
+    {% endif %}
+</section>
+{% endblock %}

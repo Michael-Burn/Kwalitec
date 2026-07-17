@@ -1,0 +1,168 @@
+{% extends "layouts/base.html" %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('founder_dashboard.static', filename='css/founder_dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+{% include "founder_dashboard/_nav.html" %}
+
+<section class="section-header founder-header">
+    <p class="section-eyebrow">{{ founder_command_centre_label }} / Vision Journal</p>
+    <div class="d-flex flex-wrap justify-content-between gap-2 align-items-start">
+        <div>
+            <h1 class="section-title mb-2">{{ entry.title }}</h1>
+            <div class="vision-entry-meta">
+                <span class="vision-status vision-status--{{ entry.status }}">{{ status_labels.get(entry.status, entry.status) }}</span>
+                <span>{{ version_labels.get(entry.target_version, entry.target_version) }}</span>
+                <span>{{ entry.category }}</span>
+                <span>{{ value_labels.get(entry.potential_value, entry.potential_value) }}</span>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+            <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('founder_dashboard.vision_edit', entry_id=entry.id) }}">Edit</a>
+            <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('founder_dashboard.vision_journal') }}">Back</a>
+        </div>
+    </div>
+</section>
+
+<section class="mb-4">
+    {% if entry.tags %}
+    <p class="vision-tags mb-2">
+        {% for tag in entry.tags %}<span class="vision-tag">{{ tag }}</span>{% endfor %}
+    </p>
+    {% endif %}
+    <p class="small text-muted mb-0">
+        Author {{ author_email }}
+        · Created {{ entry.created_at.strftime('%Y-%m-%d %H:%M') }}
+        · Updated {{ entry.updated_at.strftime('%Y-%m-%d %H:%M') }}
+        {% if entry.future_milestone %} · Milestone {{ entry.future_milestone }}{% endif %}
+    </p>
+</section>
+
+<div class="row g-3 mb-4">
+    <div class="col-lg-8">
+        <section class="command-card mb-3">
+            <div class="command-card-header"><h2 class="command-card-title h6 mb-0">Description</h2></div>
+            <div class="command-card-body"><p class="mb-0 vision-prose">{{ entry.description }}</p></div>
+        </section>
+        <section class="command-card mb-3">
+            <div class="command-card-header"><h2 class="command-card-title h6 mb-0">Reason</h2></div>
+            <div class="command-card-body"><p class="mb-0 vision-prose">{{ entry.reason }}</p></div>
+        </section>
+        <section class="command-card mb-3">
+            <div class="command-card-header"><h2 class="command-card-title h6 mb-0">Expected impact</h2></div>
+            <div class="command-card-body"><p class="mb-0 vision-prose">{{ entry.expected_impact }}</p></div>
+        </section>
+
+        <section class="command-card mb-3">
+            <div class="command-card-header"><h2 class="command-card-title h6 mb-0">Related entries</h2></div>
+            <div class="command-card-body">
+                {% if relations %}
+                <ul class="founder-activity-list mb-3">
+                    {% for rel in relations %}
+                    {% set other = rel.to_entry if rel.from_entry_id == entry.id else rel.from_entry %}
+                    <li>
+                        {% if rel.from_entry_id == entry.id %}
+                        {{ relation_labels.get(rel.relation_type, rel.relation_type) }}
+                        <a href="{{ url_for('founder_dashboard.vision_entry', entry_id=other.id) }}">{{ other.title }}</a>
+                        {% else %}
+                        <a href="{{ url_for('founder_dashboard.vision_entry', entry_id=other.id) }}">{{ other.title }}</a>
+                        {{ relation_labels.get(rel.relation_type, rel.relation_type) }} this
+                        {% endif %}
+                        <form method="post" action="{{ url_for('founder_dashboard.vision_remove_relation', entry_id=entry.id, relation_id=rel.id) }}" class="d-inline">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="btn btn-link btn-sm p-0 align-baseline">Remove</button>
+                        </form>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p class="text-muted small mb-3">No linked ideas yet.</p>
+                {% endif %}
+                {% if relation_form.to_entry_id.choices %}
+                <form method="post" class="row g-2 align-items-end">
+                    {{ relation_form.hidden_tag() }}
+                    <div class="col-md-5">
+                        {{ relation_form.to_entry_id(class="form-select form-select-sm") }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ relation_form.relation_type(class="form-select form-select-sm") }}
+                    </div>
+                    <div class="col-md-3">
+                        {{ relation_form.submit(class="btn btn-sm btn-outline-secondary") }}
+                    </div>
+                </form>
+                {% endif %}
+            </div>
+        </section>
+    </div>
+
+    <div class="col-lg-4">
+        <section class="command-card mb-3">
+            <div class="command-card-header"><h2 class="command-card-title h6 mb-0">Timeline</h2></div>
+            <div class="command-card-body">
+                {% if entry.status_transitions %}
+                <ol class="vision-timeline mb-0">
+                    {% for tr in entry.status_transitions %}
+                    <li>
+                        <time>{{ tr.transitioned_at.strftime('%Y-%m-%d %H:%M') }}</time>
+                        <span>
+                            {% if tr.from_status %}
+                            {{ status_labels.get(tr.from_status, tr.from_status) }} →
+                            {% endif %}
+                            {{ status_labels.get(tr.to_status, tr.to_status) }}
+                            {% if tr.note %} · {{ tr.note }}{% endif %}
+                        </span>
+                    </li>
+                    {% endfor %}
+                </ol>
+                {% else %}
+                <p class="text-muted mb-0">No status history.</p>
+                {% endif %}
+            </div>
+        </section>
+
+        <section class="command-card mb-3">
+            <div class="command-card-header"><h2 class="command-card-title h6 mb-0">Promote to Development</h2></div>
+            <div class="command-card-body">
+                <p class="small text-muted">Creates a placeholder linking this idea to future architecture. Does not create implementation work.</p>
+                {% if entry.promotions %}
+                <ul class="founder-activity-list mb-3">
+                    {% for promo in entry.promotions %}
+                    <li>
+                        <code>{{ promo.placeholder_ref }}</code>
+                        · {{ promo.promoted_at.strftime('%Y-%m-%d') }}
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <form method="post">
+                    {{ promote_form.hidden_tag() }}
+                    <div class="mb-2">
+                        {{ promote_form.placeholder_ref(class="form-control form-control-sm", placeholder="Optional ref") }}
+                    </div>
+                    <div class="mb-2">
+                        {{ promote_form.notes(class="form-control form-control-sm", rows=2) }}
+                    </div>
+                    {{ promote_form.submit(class="btn btn-sm btn-primary") }}
+                </form>
+            </div>
+        </section>
+
+        <section class="command-card mb-3">
+            <div class="command-card-header"><h2 class="command-card-title h6 mb-0">Archive / delete</h2></div>
+            <div class="command-card-body">
+                <form method="post" class="mb-2" onsubmit="return confirm('Archive this vision entry?');">
+                    {{ archive_form.hidden_tag() }}
+                    {{ archive_form.submit(class="btn btn-sm btn-outline-secondary") }}
+                </form>
+                <form method="post" onsubmit="return confirm('Soft-delete this vision entry? It will be hidden from the journal.');">
+                    {{ delete_form.hidden_tag() }}
+                    {{ delete_form.submit(class="btn btn-sm btn-outline-danger") }}
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

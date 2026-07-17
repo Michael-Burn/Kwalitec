@@ -14,24 +14,33 @@ class CommandCentreNavItem:
     section_id: str
 
 
-# Fixed order per POP-002 hierarchy.
+# Primary Founder Command Centre hierarchy (V1SP-001D / POP-002).
+# Operational Insights groups Attention + Operations; secondary sections
+# (Findings, Internal Alpha, Participants) remain reachable from Overview.
 COMMAND_CENTRE_NAV: tuple[CommandCentreNavItem, ...] = (
     CommandCentreNavItem("founder_dashboard.index", "Overview", "overview"),
-    CommandCentreNavItem("founder_dashboard.attention", "Attention", "attention"),
+    CommandCentreNavItem(
+        "founder_dashboard.operations", "Operational Insights", "operations"
+    ),
     CommandCentreNavItem("founder_dashboard.feedback", "Feedback", "feedback"),
-    CommandCentreNavItem("founder_dashboard.findings", "Findings", "findings"),
     CommandCentreNavItem("founder_dashboard.research", "Research", "research"),
+    CommandCentreNavItem(
+        "founder_dashboard.vision_journal", "Vision Journal", "vision"
+    ),
+    CommandCentreNavItem("founder_dashboard.releases", "Releases", "releases"),
+    CommandCentreNavItem("founder_dashboard.settings", "Settings", "settings"),
+)
+
+# Secondary operational destinations kept reachable (not primary nav).
+COMMAND_CENTRE_SECONDARY_NAV: tuple[CommandCentreNavItem, ...] = (
+    CommandCentreNavItem("founder_dashboard.attention", "Attention", "attention"),
+    CommandCentreNavItem("founder_dashboard.findings", "Findings", "findings"),
     CommandCentreNavItem(
         "founder_dashboard.internal_alpha", "Internal Alpha", "internal_alpha"
     ),
     CommandCentreNavItem(
         "founder_dashboard.participants", "Participants", "participants"
     ),
-    CommandCentreNavItem(
-        "founder_dashboard.operations", "Operations", "operations"
-    ),
-    CommandCentreNavItem("founder_dashboard.releases", "Releases", "releases"),
-    CommandCentreNavItem("founder_dashboard.settings", "Settings", "settings"),
 )
 
 
@@ -51,9 +60,27 @@ def active_section_id(endpoint: str | None) -> str:
         "founder_dashboard.finding_detail",
     }:
         return "findings"
+    if endpoint in {
+        "founder_dashboard.vision_journal",
+        "founder_dashboard.vision_timeline",
+        "founder_dashboard.vision_new",
+        "founder_dashboard.vision_entry",
+        "founder_dashboard.vision_edit",
+        "founder_dashboard.vision_export",
+        "founder_dashboard.vision_remove_relation",
+    }:
+        return "vision"
+    if endpoint in {
+        "founder_dashboard.operations",
+        "founder_dashboard.attention",
+    }:
+        return "operations"
     if endpoint.startswith("founder_dashboard."):
         suffix = endpoint.removeprefix("founder_dashboard.")
         for item in COMMAND_CENTRE_NAV:
+            if item.section_id == suffix:
+                return item.section_id
+        for item in COMMAND_CENTRE_SECONDARY_NAV:
             if item.section_id == suffix:
                 return item.section_id
     return "overview"

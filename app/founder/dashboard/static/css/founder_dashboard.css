@@ -200,3 +200,81 @@
     align-items: center;
     gap: var(--space-md);
 }
+
+/* Vision Journal (V1SP-001D) */
+.vision-entry-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.85rem;
+    font-size: var(--font-xs);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.vision-status {
+    display: inline-block;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.1rem 0.4rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+}
+
+.vision-tags,
+.vision-tag {
+    font-size: var(--font-xs);
+    color: var(--text-secondary);
+    letter-spacing: 0.02em;
+    text-transform: none;
+}
+
+.vision-tag {
+    display: inline-block;
+    margin-right: 0.4rem;
+    padding: 0.1rem 0.35rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+}
+
+.vision-prose {
+    white-space: pre-wrap;
+    color: var(--text-secondary);
+    font-size: var(--font-sm);
+    line-height: 1.55;
+}
+
+.vision-timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.vision-timeline li {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    gap: 0.75rem;
+    padding: 0.45rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+    font-size: var(--font-sm);
+    color: var(--text-secondary);
+}
+
+.vision-timeline li:last-child {
+    border-bottom: 0;
+}
+
+.vision-timeline time {
+    color: var(--text-muted);
+    font-size: var(--font-xs);
+    font-variant-numeric: tabular-nums;
+}
+
+.vision-timeline--page li {
+    grid-template-columns: 8.5rem 1fr;
+}
+
+.vision-entry-row .command-card-body {
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+}

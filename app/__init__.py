@@ -308,6 +308,7 @@ def _init_extensions(app: Flask) -> None:
         TopicProgress,
         TwinSnapshot,
         User,
+        VisionEntry,
         WeekPlan,
     )
 
