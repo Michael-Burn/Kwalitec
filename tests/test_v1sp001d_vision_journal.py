@@ -333,7 +333,7 @@ class TestVisionJournalRoutes:
         body = overview.get_data(as_text=True)
         assert "Vision Journal" in body
         assert "Awaiting validation" in body or "Recent" in body
-        assert "Operational Insights" in body
+        assert "Operational Health" in body
 
         export_json = client.get("/founder/vision/export/json")
         assert export_json.status_code == 200

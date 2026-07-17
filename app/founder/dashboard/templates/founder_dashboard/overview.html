@@ -30,7 +30,7 @@
             </a>
         </div>
         <div class="col-6 col-md-3">
-            <a class="command-card h-100 text-decoration-none d-block" href="{{ url_for('founder_dashboard.attention') }}">
+            <a class="command-card h-100 text-decoration-none d-block" href="{{ url_for('founder_dashboard.operational_health') }}">
                 <div class="command-card-body">
                     <span class="command-metric-label">Needs action</span>
                     <span class="command-metric-value">{{ overview.needs_action_count }}</span>
@@ -120,7 +120,10 @@
             <div class="command-card h-100">
                 <div class="command-card-header">
                     <h2 class="command-card-title h6 mb-0">Attention queue</h2>
-                    <a href="{{ url_for('founder_dashboard.attention') }}" class="small">Open Attention</a>
+                    <span class="d-flex gap-2">
+                        <a href="{{ url_for('founder_dashboard.operational_health') }}" class="small">Operational Health</a>
+                        <a href="{{ url_for('founder_dashboard.attention') }}" class="small">Open Attention</a>
+                    </span>
                 </div>
                 <div class="command-card-body">
                     {% if overview.attention_queue %}
@@ -218,7 +221,7 @@
             {% else %}
             <p class="text-muted mb-2">Operational State unavailable.</p>
             {% endif %}
-            <a href="{{ url_for('founder_dashboard.operations') }}">Open Operational Insights</a>
+            <a href="{{ url_for('founder_dashboard.operations') }}">Open System Operations</a>
             · <a href="{{ url_for('founder_dashboard.attention') }}">Attention</a>
             · <a href="{{ url_for('founder_dashboard.findings') }}">Findings</a>
         </div>

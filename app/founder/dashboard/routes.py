@@ -22,6 +22,9 @@ from app.founder.dashboard.services.command_centre_service import (
     CommandCentreService,
     build_operations_page,
 )
+from app.founder.dashboard.services.operational_health_service import (
+    OperationalHealthService,
+)
 from app.founder.dashboard.vision_handlers import (
     handle_remove_relation,
     handle_vision_edit,
@@ -71,6 +74,18 @@ def index():
         "founder_dashboard/overview.html",
         title="Founder Command Centre",
         overview=overview,
+    )
+
+
+@founder_dashboard_bp.get("/operational-health")
+@founder_required
+def operational_health():
+    """Operational decision dashboard — Needs Attention / Healthy / Trends."""
+    page = OperationalHealthService().build_page()
+    return render_template(
+        "founder_dashboard/operational_health.html",
+        title="Operational Health",
+        page=page,
     )
 
 

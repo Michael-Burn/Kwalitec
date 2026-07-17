@@ -1,0 +1,127 @@
+{% extends "layouts/base.html" %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('founder_dashboard.static', filename='css/founder_dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+{% include "founder_dashboard/_nav.html" %}
+
+<section class="section-header founder-header">
+    <p class="section-eyebrow">{{ founder_command_centre_label }} / Operational Health</p>
+    <h1 class="section-title">Operational Health</h1>
+    <p class="section-description">
+        What needs attention · what is healthy · how the platform is trending
+        · {{ page.refreshed_at }} · {{ page.timezone_policy }}
+    </p>
+</section>
+
+{# ── Section 1: Needs Attention ───────────────────────────────────────── #}
+<section class="mb-4" aria-labelledby="oh-attention-heading">
+    <h2 id="oh-attention-heading" class="founder-section-title">Needs Attention</h2>
+    {% if page.needs_attention %}
+    <p class="small text-muted mb-3">
+        {{ page.attention_total }} item(s) across {{ page.needs_attention|length }} insight(s).
+    </p>
+    <div class="row g-3">
+        {% for card in page.needs_attention %}
+        <div class="col-md-6 col-xl-4">
+            <article class="command-card oh-card h-100" data-oh-rule="{{ card.rule_id }}">
+                <div class="command-card-body">
+                    <p class="oh-card-group mb-1">{{ card.group }}</p>
+                    <h3 class="oh-card-title">{{ card.title }}</h3>
+                    <p class="oh-card-count" aria-label="Count {{ card.count }}">{{ card.count }}</p>
+                    <p class="oh-card-what small mb-2">{{ card.explanation }}</p>
+                    <p class="oh-card-why small text-muted mb-3">{{ card.why_it_matters }}</p>
+                    <a class="btn btn-sm btn-outline-secondary" href="{{ card.href }}">
+                        {{ card.primary_action_label }}
+                    </a>
+                </div>
+            </article>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-muted mb-0" data-oh-empty="needs-attention">
+        Nothing needs attention right now.
+    </p>
+    {% endif %}
+</section>
+
+{# ── Section 2: Healthy Activity ──────────────────────────────────────── #}
+<section class="mb-4" aria-labelledby="oh-healthy-heading">
+    <h2 id="oh-healthy-heading" class="founder-section-title">Healthy Activity</h2>
+    <div class="row g-3">
+        {% for metric in page.healthy_activity %}
+        <div class="col-6 col-md-4 col-xl-3">
+            {% if metric.href %}
+            <a class="command-card oh-metric-card h-100 text-decoration-none d-block"
+               href="{{ metric.href }}"
+               data-oh-metric="{{ metric.metric_id }}">
+            {% else %}
+            <div class="command-card oh-metric-card h-100" data-oh-metric="{{ metric.metric_id }}">
+            {% endif %}
+                <div class="command-card-body">
+                    <span class="command-metric-label">{{ metric.label }}</span>
+                    <span class="command-metric-value">{{ metric.value }}</span>
+                    <p class="mb-0 small text-muted mt-1">{{ metric.explanation }}</p>
+                </div>
+            {% if metric.href %}
+            </a>
+            {% else %}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+{# ── Section 3: Trends ────────────────────────────────────────────────── #}
+<section class="mb-4" aria-labelledby="oh-trends-heading">
+    <h2 id="oh-trends-heading" class="founder-section-title">Trends</h2>
+    <p class="small text-muted mb-3">
+        Short-term operational counts only — no forecasting.
+    </p>
+    <div class="row g-3">
+        {% for series in page.trends %}
+        <div class="col-md-6">
+            <article class="command-card h-100" data-oh-trend="{{ series.series_id }}">
+                <div class="command-card-body">
+                    <h3 class="oh-trend-title">{{ series.label }}</h3>
+                    <div class="oh-sparkline"
+                         role="img"
+                         aria-label="{{ series.summary }}">
+                        {% set peak = series.values|max if series.values else 0 %}
+                        {% for value in series.values %}
+                        <span class="oh-sparkline-bar{% if value == 0 %} is-zero{% endif %}"
+                              style="height: {% if peak == 0 or value == 0 %}4px{% elif (value * 48 // peak) < 6 %}6px{% else %}{{ value * 48 // peak }}px{% endif %};"
+                              title="{{ series.labels[loop.index0] }}: {{ value }}">
+                            <span class="visually-hidden">
+                                {{ series.labels[loop.index0] }}: {{ value }}
+                            </span>
+                        </span>
+                        {% endfor %}
+                    </div>
+                    <ol class="oh-trend-legend list-unstyled mb-2">
+                        {% for value in series.values %}
+                        <li>
+                            <span class="oh-trend-day">{{ series.labels[loop.index0] }}</span>
+                            <span class="oh-trend-value">{{ value }}</span>
+                        </li>
+                        {% endfor %}
+                    </ol>
+                    <p class="small text-muted mb-0">{{ series.summary }}</p>
+                </div>
+            </article>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="founder-footer" aria-label="Related operational destinations">
+    <a href="{{ url_for('founder_dashboard.index') }}">Overview</a>
+    <a href="{{ url_for('founder_dashboard.attention') }}">Attention queue</a>
+    <a href="{{ url_for('founder_dashboard.operations') }}">System Operations</a>
+    <a href="{{ url_for('founder_dashboard.feedback') }}">Feedback</a>
+</section>
+{% endblock %}

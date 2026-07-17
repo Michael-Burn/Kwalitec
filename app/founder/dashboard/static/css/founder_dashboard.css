@@ -374,3 +374,101 @@
     padding-top: 0.85rem;
     padding-bottom: 0.85rem;
 }
+
+/* Operational Health (V1SP-001C) */
+.oh-card-group {
+    font-size: var(--font-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.oh-card-title {
+    font-size: var(--font-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin: 0 0 0.35rem;
+    line-height: 1.35;
+}
+
+.oh-card-count {
+    font-size: 1.75rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin: 0 0 0.5rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.oh-card-what,
+.oh-card-why {
+    margin: 0;
+    line-height: 1.45;
+}
+
+.oh-metric-card .command-metric-value {
+    font-variant-numeric: tabular-nums;
+}
+
+.oh-trend-title {
+    font-size: var(--font-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin: 0 0 0.75rem;
+}
+
+.oh-sparkline {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.35rem;
+    height: 3.25rem;
+    margin-bottom: 0.75rem;
+    padding: 0.15rem 0;
+}
+
+.oh-sparkline-bar {
+    flex: 1 1 0;
+    min-width: 0.5rem;
+    max-width: 2rem;
+    background: var(--text-secondary);
+    border-radius: 2px 2px 0 0;
+}
+
+.oh-sparkline-bar.is-zero {
+    background: var(--border);
+    opacity: 0.85;
+}
+
+.oh-trend-legend {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 0.25rem;
+    font-size: var(--font-xs);
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+}
+
+.oh-trend-legend li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
+    text-align: center;
+}
+
+.oh-trend-day {
+    letter-spacing: 0.02em;
+}
+
+.oh-trend-value {
+    color: var(--text-secondary);
+    font-weight: var(--font-weight-semibold);
+}
+
+@media (max-width: 575.98px) {
+    .oh-trend-legend {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}

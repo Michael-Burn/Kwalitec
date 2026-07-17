@@ -10,10 +10,14 @@ from app.founder.dashboard.services.dashboard_service import (
     FOUNDER_OS_VERSION,
     FounderDashboardService,
 )
+from app.founder.dashboard.services.operational_health_service import (
+    OperationalHealthService,
+)
 
 __all__ = [
     "CommandCentreService",
     "DEFAULT_RELEASE",
     "FOUNDER_OS_VERSION",
     "FounderDashboardService",
+    "OperationalHealthService",
 ]

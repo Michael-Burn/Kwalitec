@@ -14,13 +14,14 @@ class CommandCentreNavItem:
     section_id: str
 
 
-# Primary Founder Command Centre hierarchy (V1SP-001D / POP-002).
-# Operational Insights groups Attention + Operations; secondary sections
-# (Findings, Internal Alpha, Participants) remain reachable from Overview.
+# Primary Founder Command Centre hierarchy (V1SP-001C / POP-002).
+# Operational Health is the actionable decision layer beneath Overview.
 COMMAND_CENTRE_NAV: tuple[CommandCentreNavItem, ...] = (
     CommandCentreNavItem("founder_dashboard.index", "Overview", "overview"),
     CommandCentreNavItem(
-        "founder_dashboard.operations", "Operational Insights", "operations"
+        "founder_dashboard.operational_health",
+        "Operational Health",
+        "operational_health",
     ),
     CommandCentreNavItem("founder_dashboard.feedback", "Feedback", "feedback"),
     CommandCentreNavItem("founder_dashboard.research", "Research", "research"),
@@ -40,6 +41,9 @@ COMMAND_CENTRE_SECONDARY_NAV: tuple[CommandCentreNavItem, ...] = (
     ),
     CommandCentreNavItem(
         "founder_dashboard.participants", "Participants", "participants"
+    ),
+    CommandCentreNavItem(
+        "founder_dashboard.operations", "Operations", "operations"
     ),
 )
 
@@ -70,11 +74,13 @@ def active_section_id(endpoint: str | None) -> str:
         "founder_dashboard.vision_remove_relation",
     }:
         return "vision"
+    if endpoint == "founder_dashboard.operational_health":
+        return "operational_health"
     if endpoint in {
         "founder_dashboard.operations",
         "founder_dashboard.attention",
     }:
-        return "operations"
+        return "operational_health"
     if endpoint.startswith("founder_dashboard."):
         suffix = endpoint.removeprefix("founder_dashboard.")
         for item in COMMAND_CENTRE_NAV:
