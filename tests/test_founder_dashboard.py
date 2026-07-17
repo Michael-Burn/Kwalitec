@@ -55,7 +55,7 @@ class TestFounderDashboardAuth:
         response = client.get("/founder/")
         assert response.status_code == 403
 
-    def test_founder_user_allowed(self, client, ctx, app, monkeypatch) -> None:
+    def test_founder_user_allowed(self, client, ctx, app) -> None:
         app.config["FOUNDER_EMAILS"] = "founder@kwalitec.example"
         _make_user("founder@kwalitec.example")
         client.post(
@@ -65,10 +65,6 @@ class TestFounderDashboardAuth:
                 "password": "password123",
             },
             follow_redirects=True,
-        )
-        monkeypatch.setattr(
-            "app.founder.dashboard.routes._service",
-            lambda: make_service(),
         )
         response = client.get("/founder/")
         assert response.status_code == 200
@@ -78,7 +74,7 @@ class TestFounderDashboardRoutes:
     def test_blueprint_registered(self, app) -> None:
         assert "founder_dashboard" in app.blueprints
 
-    def test_dashboard_renders_sections(self, client, ctx, app, monkeypatch) -> None:
+    def test_overview_renders_command_centre(self, client, ctx, app) -> None:
         app.config["FOUNDER_EMAILS"] = "founder@kwalitec.example"
         _make_user("founder@kwalitec.example")
         client.post(
@@ -89,22 +85,41 @@ class TestFounderDashboardRoutes:
             },
             follow_redirects=True,
         )
-        monkeypatch.setattr(
-            "app.founder.dashboard.routes._service",
-            lambda: make_service(),
-        )
         response = client.get("/founder/")
         assert response.status_code == 200
         html = response.data
-        assert b"Founder Operating System" in html
+        assert b"Founder Command Centre" in html
+        assert b"Overview" in html
+        assert b"Needs action" in html
+        assert b"Operational alerts" in html
+        assert b"Recent feedback" in html
+        assert b"Programme pulse" in html
+
+    def test_operations_renders_system_sections(
+        self, client, ctx, app, monkeypatch
+    ) -> None:
+        app.config["FOUNDER_EMAILS"] = "founder@kwalitec.example"
+        _make_user("founder@kwalitec.example")
+        client.post(
+            "/auth/login",
+            data={
+                "email": "founder@kwalitec.example",
+                "password": "password123",
+            },
+            follow_redirects=True,
+        )
+        from app.founder.dashboard.services import command_centre_service as ccs
+
+        monkeypatch.setattr(
+            ccs, "build_operations_page", lambda: make_service().build_page()
+        )
+        response = client.get("/founder/operations")
+        assert response.status_code == 200
+        html = response.data
+        assert b"Operations" in html
         assert b"Engineering Health" in html
-        assert b"Internal Alpha" in html
-        assert b"2026-W28" in html
-        assert b"Capability Archive" in html
-        assert b"FOS-003" in html
-        assert b"Engineering Standards" in html
-        assert b"Indexed Artefacts" in html
-        assert b"Version 1.0" in html
+        assert b"Offline week processing" in html
+        assert b"not wired" in html or b"Unavailable" in html
 
     def test_founder_nav_visible_only_to_founder(self, client, ctx, app) -> None:
         app.config["FOUNDER_EMAILS"] = "founder@kwalitec.example"
@@ -135,3 +150,18 @@ class TestFounderDashboardRoutes:
         ordinary_home = client.get("/dashboard/")
         assert ordinary_home.status_code == 200
         assert b'href="/founder' not in ordinary_home.data
+
+    def test_legacy_research_founder_redirects(self, client, ctx, app) -> None:
+        app.config["FOUNDER_EMAILS"] = "founder@kwalitec.example"
+        _make_user("founder@kwalitec.example")
+        client.post(
+            "/auth/login",
+            data={
+                "email": "founder@kwalitec.example",
+                "password": "password123",
+            },
+            follow_redirects=True,
+        )
+        response = client.get("/research/founder", follow_redirects=False)
+        assert response.status_code == 302
+        assert "/founder/feedback" in response.headers["Location"]

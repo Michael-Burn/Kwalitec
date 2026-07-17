@@ -1,0 +1,36 @@
+{% extends "layouts/base.html" %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('founder_dashboard.static', filename='css/founder_dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+{% include "founder_dashboard/_nav.html" %}
+
+<section class="section-header founder-header">
+    <p class="section-eyebrow">Founder / Attention</p>
+    <h1 class="section-title">Attention</h1>
+    <p class="section-description">Work requiring Founder action — outstanding reviews and high-severity findings.</p>
+</section>
+
+<section class="mb-4" aria-label="Attention queue">
+    {% if items %}
+    <ul class="list-unstyled">
+        {% for item in items %}
+        <li class="command-card mb-2">
+            <div class="command-card-body d-flex justify-content-between gap-3 align-items-center flex-wrap">
+                <div>
+                    <span class="founder-alert-severity founder-alert-severity--{{ item.urgency }}">{{ item.urgency }}</span>
+                    <strong>{{ item.title }}</strong>
+                    <span class="text-muted">· {{ item.detail }}</span>
+                </div>
+                <a href="{{ item.href }}" class="btn btn-sm btn-outline-secondary">Open</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="text-muted mb-0">Nothing needs action right now.</p>
+    {% endif %}
+</section>
+{% endblock %}

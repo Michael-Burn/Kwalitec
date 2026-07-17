@@ -1,0 +1,49 @@
+{% extends "layouts/base.html" %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('founder_dashboard.static', filename='css/founder_dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+{% include "founder_dashboard/_nav.html" %}
+
+<section class="section-header founder-header">
+    <p class="section-eyebrow">Founder / Releases</p>
+    <h1 class="section-title">Releases</h1>
+    <p class="section-description">Release identity and findings by target release.</p>
+</section>
+
+<section class="mb-4">
+    <div class="command-card mb-3">
+        <div class="command-card-body">
+            <p class="mb-1"><strong>App version:</strong> {{ alpha_status.app_version }}</p>
+            <p class="mb-1"><strong>Internal Alpha version:</strong> {{ alpha_status.internal_alpha_version }}</p>
+            <p class="mb-0"><strong>Build:</strong> {{ alpha_status.build_number }}</p>
+        </div>
+    </div>
+
+    {% if findings_by_release %}
+    {% for release, findings in findings_by_release.items() %}
+    <div class="command-card mb-3">
+        <div class="command-card-header">
+            <h2 class="command-card-title h6 mb-0">{{ release }}</h2>
+        </div>
+        <div class="command-card-body">
+            <ul class="founder-activity-list mb-0">
+                {% for finding in findings %}
+                <li>
+                    <a href="{{ url_for('founder_dashboard.finding_detail', finding_id=finding.id) }}">
+                        {{ finding.title }}
+                    </a>
+                    · {{ finding.severity }} · {{ finding.status }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p class="text-muted mb-0">No findings with release targets yet.</p>
+    {% endif %}
+</section>
+{% endblock %}

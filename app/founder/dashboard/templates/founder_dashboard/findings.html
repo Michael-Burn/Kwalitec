@@ -1,0 +1,44 @@
+{% extends "layouts/base.html" %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('founder_dashboard.static', filename='css/founder_dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+{% include "founder_dashboard/_nav.html" %}
+
+<section class="section-header founder-header">
+    <p class="section-eyebrow">Founder / Findings</p>
+    <h1 class="section-title">Findings</h1>
+    <p class="section-description">Product Findings as roadmap-facing decision objects.</p>
+</section>
+
+<section class="mb-4">
+    <form method="get" class="d-flex flex-wrap gap-2 mb-3">
+        <input class="form-control form-control-sm w-auto" name="severity" value="{{ severity }}" placeholder="Severity">
+        <input class="form-control form-control-sm w-auto" name="status" value="{{ status }}" placeholder="Status">
+        <button class="btn btn-sm btn-outline-secondary" type="submit">Filter</button>
+        <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('founder_dashboard.feedback') }}">Create from Feedback</a>
+    </form>
+
+    {% if findings %}
+    <ul class="list-unstyled">
+        {% for finding in findings %}
+        <li class="command-card mb-2">
+            <div class="command-card-body">
+                <a href="{{ url_for('founder_dashboard.finding_detail', finding_id=finding.id) }}">
+                    <strong>{{ finding.title }}</strong>
+                </a>
+                <span class="text-muted">
+                    · {{ finding.severity }} · {{ workflow_labels.get(finding.status, finding.status) }}
+                    {% if finding.target_release %} · {{ finding.target_release }}{% endif %}
+                </span>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="text-muted mb-0">No findings match these filters.</p>
+    {% endif %}
+</section>
+{% endblock %}

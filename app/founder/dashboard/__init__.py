@@ -1,7 +1,7 @@
-"""Founder Dashboard blueprint (FOS-004).
+"""Founder Dashboard blueprint — Founder Command Centre (IAHF-003 / POP-002).
 
-Version 1 presentation layer over Knowledge Engine, Capability Archive,
-and Internal Alpha Pipeline outputs.
+Single Founder operational home under ``/founder``. Historical FOS-004
+presentation lives under Operations; live Product Check-in ops under Feedback.
 """
 
 from __future__ import annotations

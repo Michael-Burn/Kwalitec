@@ -139,3 +139,64 @@
     font-size: var(--font-sm);
     color: var(--text-secondary);
 }
+
+/* Command Centre shell (IAHF-003) */
+.founder-cc-nav {
+    margin-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: var(--space-sm);
+}
+
+.founder-cc-nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.75rem;
+}
+
+.founder-cc-nav-link {
+    font-size: var(--font-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 0.25rem 0;
+    border-bottom: 2px solid transparent;
+}
+
+.founder-cc-nav-link:hover {
+    color: var(--text-primary);
+}
+
+.founder-cc-nav-link.active {
+    color: var(--text-primary);
+    border-bottom-color: var(--text-primary);
+}
+
+.founder-alert-severity {
+    display: inline-block;
+    font-size: var(--font-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-right: 0.5rem;
+    padding: 0.1rem 0.4rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.founder-alert-severity--critical,
+.founder-alert-severity--high {
+    border-color: var(--color-warning, #b45309);
+    color: var(--color-warning, #b45309);
+}
+
+.command-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
+}

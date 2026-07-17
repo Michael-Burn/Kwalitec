@@ -365,12 +365,17 @@ class TestEducationalIsolation:
 @pytest.mark.usefixtures("ctx")
 class TestCommandCentreHttp:
     def test_founder_dashboard_access(self, founder_client):
-        response = founder_client.get("/research/founder")
+        response = founder_client.get("/founder/feedback")
         assert response.status_code == 200
         body = response.get_data(as_text=True)
         assert 'data-rip003-command-centre="1"' in body
-        assert "Research Command Centre" in body
+        assert "Feedback" in body
         assert "Internal Alpha Summary" in body
+
+    def test_legacy_research_founder_redirects(self, founder_client):
+        response = founder_client.get("/research/founder", follow_redirects=False)
+        assert response.status_code == 302
+        assert "/founder/feedback" in response.headers["Location"]
 
     def test_student_forbidden(self, client, app, user):
         app.config["FOUNDER_EMAILS"] = "founder@kwalitec.example"
@@ -380,13 +385,13 @@ class TestCommandCentreHttp:
             data={"email": user.email, "password": "password123"},
             follow_redirects=True,
         )
-        response = client.get("/research/founder")
+        response = client.get("/founder/feedback")
         assert response.status_code == 403
 
     def test_workflow_action_via_http(self, founder_client, user, founder):
         submission = _submit_checkin(user.id)
         response = founder_client.post(
-            "/research/founder",
+            "/founder/feedback",
             data={
                 "action": "accept",
                 "submission_id": str(submission.id),
@@ -407,7 +412,7 @@ class TestCommandCentreHttp:
             feature_area="Study Session",
             linked_submission_ids=(submission.id,),
         )
-        response = founder_client.get(f"/research/founder/finding/{finding.id}")
+        response = founder_client.get(f"/founder/findings/{finding.id}")
         assert response.status_code == 200
         body = response.get_data(as_text=True)
         assert 'data-rip003-finding-detail="1"' in body
@@ -424,9 +429,9 @@ class TestCommandCentreHttp:
             follow_redirects=True,
         )
         response = client.post(
-            f"/research/founder/review/{submission.id}",
+            f"/founder/feedback/review/{submission.id}",
             data={"implemented": "y"},
             follow_redirects=False,
         )
         assert response.status_code == 302
-        assert "/research/founder" in response.location
+        assert "/founder/feedback" in response.location

@@ -1,0 +1,249 @@
+{% extends "layouts/base.html" %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('founder_dashboard.static', filename='css/founder_dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+{% include "founder_dashboard/_nav.html" %}
+
+<section class="section-header founder-header">
+    <p class="section-eyebrow">Founder Command Centre · Internal Alpha · v{{ overview.app_version }} · {{ overview.build_number }}</p>
+    <h1 class="section-title">Overview</h1>
+    <p class="section-description">
+        Last refreshed: {{ overview.refreshed_at }} · Timezone: {{ overview.timezone_policy }}
+        · Alpha {{ overview.alpha_version }}{% if not overview.alpha_enabled %} (disabled){% endif %}
+    </p>
+</section>
+
+{# A. Top summary cards #}
+<section class="mb-4" aria-label="Operational summary">
+    <div class="row g-3">
+        <div class="col-6 col-md-3">
+            <a class="command-card h-100 text-decoration-none d-block" href="{{ url_for('founder_dashboard.feedback', date_from=none) }}">
+                <div class="command-card-body">
+                    <span class="command-metric-label">Today</span>
+                    <span class="command-metric-value">{{ overview.checkins_today }}</span>
+                    <p class="mb-0 small text-muted mt-1">
+                        Check-ins · {{ overview.participants_active_today }} participants active
+                    </p>
+                </div>
+            </a>
+        </div>
+        <div class="col-6 col-md-3">
+            <a class="command-card h-100 text-decoration-none d-block" href="{{ url_for('founder_dashboard.attention') }}">
+                <div class="command-card-body">
+                    <span class="command-metric-label">Needs action</span>
+                    <span class="command-metric-value">{{ overview.needs_action_count }}</span>
+                    <p class="mb-0 small text-muted mt-1">
+                        {{ overview.outstanding_reviews }} reviews · {{ overview.open_high_severity_findings }} high findings
+                    </p>
+                </div>
+            </a>
+        </div>
+        <div class="col-6 col-md-3">
+            <a class="command-card h-100 text-decoration-none d-block" href="{{ url_for('founder_dashboard.internal_alpha') }}">
+                <div class="command-card-body">
+                    <span class="command-metric-label">Alpha health</span>
+                    <span class="command-metric-value founder-metric-value--sm">{{ overview.alpha_health_label }}</span>
+                    <p class="mb-0 small text-muted mt-1">{{ overview.alpha_health_detail }}</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-6 col-md-3">
+            <a class="command-card h-100 text-decoration-none d-block" href="{{ url_for('founder_dashboard.operations') }}">
+                <div class="command-card-body">
+                    <span class="command-metric-label">System health</span>
+                    {% if overview.system_health_available %}
+                    <span class="command-metric-value">{{ overview.system_health_pct }}%</span>
+                    <p class="mb-0 small text-muted mt-1">{{ overview.system_health_label }}</p>
+                    {% else %}
+                    <span class="command-metric-value founder-metric-value--sm">Unavailable</span>
+                    <p class="mb-0 small text-muted mt-1">Operational State not available</p>
+                    {% endif %}
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+{# B. Operational alerts #}
+<section class="mb-4" aria-label="Operational alerts">
+    <h2 class="founder-section-title">Operational alerts</h2>
+    {% if overview.alerts %}
+    <ul class="list-unstyled mb-0">
+        {% for alert in overview.alerts %}
+        <li class="command-card mb-2">
+            <div class="command-card-body d-flex justify-content-between gap-3 align-items-center flex-wrap">
+                <span>
+                    <span class="founder-alert-severity founder-alert-severity--{{ alert.severity }}">{{ alert.severity }}</span>
+                    {{ alert.message }}
+                </span>
+                <a href="{{ alert.href }}" class="btn btn-sm btn-outline-secondary">Open</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="text-muted mb-0">No alerts</p>
+    {% endif %}
+</section>
+
+{# C. Two-column work strip #}
+<section class="mb-4" aria-label="Work strip">
+    <div class="row g-3">
+        <div class="col-lg-6">
+            <div class="command-card h-100">
+                <div class="command-card-header">
+                    <h2 class="command-card-title h6 mb-0">Recent feedback</h2>
+                    <a href="{{ url_for('founder_dashboard.feedback') }}" class="small">Open Feedback</a>
+                </div>
+                <div class="command-card-body">
+                    {% if overview.recent_feedback %}
+                    <ul class="founder-activity-list mb-0">
+                        {% for item in overview.recent_feedback %}
+                        <li>
+                            <a href="{{ url_for('founder_dashboard.feedback', submission=item.submission_id) }}">
+                                #{{ item.submission_id }}
+                            </a>
+                            · {{ item.student_label }} · {{ item.feature }}
+                            · {{ item.status_label }} · {{ item.submitted_at }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <p class="text-muted mb-0">No Product Check-ins yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="command-card h-100">
+                <div class="command-card-header">
+                    <h2 class="command-card-title h6 mb-0">Attention queue</h2>
+                    <a href="{{ url_for('founder_dashboard.attention') }}" class="small">Open Attention</a>
+                </div>
+                <div class="command-card-body">
+                    {% if overview.attention_queue %}
+                    <ul class="founder-activity-list mb-0">
+                        {% for item in overview.attention_queue %}
+                        <li>
+                            <a href="{{ item.href }}">{{ item.title }}</a>
+                            · {{ item.urgency }} · {{ item.detail }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <p class="text-muted mb-0">Nothing needs action right now.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# D. Programme pulse #}
+<section class="mb-4" aria-label="Programme pulse">
+    <h2 class="founder-section-title">Programme pulse</h2>
+    <div class="command-card">
+        <div class="command-card-body">
+            <div class="row g-3">
+                <div class="col-6 col-md-3">
+                    <div class="founder-metric-label">Active participants</div>
+                    <div class="founder-metric-value founder-metric-value--sm">{{ overview.active_participants }}</div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="founder-metric-label">Completed check-ins</div>
+                    <div class="founder-metric-value founder-metric-value--sm">{{ overview.completed_checkins }}</div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="founder-metric-label">Last 7 days</div>
+                    <div class="founder-metric-value founder-metric-value--sm">{{ overview.checkins_last_7_days }}</div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="founder-metric-label">Participation</div>
+                    <div class="founder-metric-value founder-metric-value--sm">
+                        {% if overview.participation_rate_pct is not none %}{{ overview.participation_rate_pct }}%{% else %}—{% endif %}
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="founder-metric-label">Avg experience</div>
+                    <div class="founder-metric-value founder-metric-value--sm">
+                        {% if overview.avg_product_experience is not none %}{{ overview.avg_product_experience }}/5{% else %}—{% endif %}
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="founder-metric-label">Would open tomorrow</div>
+                    <div class="founder-metric-value founder-metric-value--sm">
+                        {% if overview.would_open_tomorrow_pct is not none %}{{ overview.would_open_tomorrow_pct }}%{% else %}—{% endif %}
+                    </div>
+                </div>
+            </div>
+            <p class="small text-muted mb-0 mt-3">
+                Source: live Product Check-in records.
+                <a href="{{ url_for('founder_dashboard.internal_alpha') }}">Internal Alpha</a>
+            </p>
+        </div>
+    </div>
+</section>
+
+{# E. Research snapshot #}
+<section class="mb-4" aria-label="Research snapshot">
+    <h2 class="founder-section-title">Research snapshot</h2>
+    <div class="command-card">
+        <div class="command-card-body">
+            {% if overview.research_available %}
+            <p class="mb-1"><strong>Top trend:</strong> {{ overview.research_top_trend or "—" }}</p>
+            <p class="mb-2"><strong>Top friction:</strong> {{ overview.research_top_friction or "—" }}</p>
+            {% else %}
+            <p class="text-muted mb-2">No research insights yet — waiting for Product Check-ins.</p>
+            {% endif %}
+            <a href="{{ url_for('founder_dashboard.research') }}">Open Research</a>
+        </div>
+    </div>
+</section>
+
+{# F. Operations snapshot #}
+<section class="mb-4" aria-label="Operations snapshot">
+    <h2 class="founder-section-title">Operations snapshot</h2>
+    <div class="command-card">
+        <div class="command-card-body">
+            {% if overview.ops_available %}
+            <p class="mb-1"><strong>System:</strong> {{ overview.system_health_label }}
+                {% if overview.system_health_pct is not none %}({{ overview.system_health_pct }}%){% endif %}
+            </p>
+            <p class="mb-2">
+                <strong>Capabilities:</strong>
+                {{ overview.capability_completed }} completed · {{ overview.capability_active }} active
+            </p>
+            {% else %}
+            <p class="text-muted mb-2">Operational State unavailable.</p>
+            {% endif %}
+            <a href="{{ url_for('founder_dashboard.operations') }}">Open Operations</a>
+        </div>
+    </div>
+</section>
+
+{# G. Deployment / build #}
+<section class="mb-4" aria-label="Deployment information">
+    <h2 class="founder-section-title">Deployment</h2>
+    <div class="command-card">
+        <div class="command-card-body">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="founder-metric-label">App version</div>
+                    <div class="founder-metric-value founder-metric-value--sm">{{ overview.app_version }}</div>
+                </div>
+                <div class="col-md-4">
+                    <div class="founder-metric-label">Internal Alpha version</div>
+                    <div class="founder-metric-value founder-metric-value--sm">{{ overview.alpha_version }}</div>
+                </div>
+                <div class="col-md-4">
+                    <div class="founder-metric-label">Build</div>
+                    <div class="founder-metric-value founder-metric-value--sm">{{ overview.build_number }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

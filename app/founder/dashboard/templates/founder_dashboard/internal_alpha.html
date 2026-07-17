@@ -1,0 +1,118 @@
+{% extends "layouts/base.html" %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('founder_dashboard.static', filename='css/founder_dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+{% include "founder_dashboard/_nav.html" %}
+
+<section class="section-header founder-header">
+    <p class="section-eyebrow">Founder / Internal Alpha</p>
+    <h1 class="section-title">Internal Alpha</h1>
+    <p class="section-description">
+        Programme health from live Product Check-ins (operational source of truth).
+    </p>
+</section>
+
+<section class="mb-4" aria-label="Live programme metrics">
+    <h2 class="founder-section-title">Live programme metrics</h2>
+    <div class="row g-3">
+        <div class="col-6 col-md-3">
+            <div class="command-card h-100"><div class="command-card-body">
+                <span class="command-metric-label">Active participants</span>
+                <span class="command-metric-value">{{ summary.active_participants }}</span>
+            </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="command-card h-100"><div class="command-card-body">
+                <span class="command-metric-label">Completed check-ins</span>
+                <span class="command-metric-value">{{ summary.completed_checkins }}</span>
+            </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="command-card h-100"><div class="command-card-body">
+                <span class="command-metric-label">Participation rate</span>
+                <span class="command-metric-value">
+                    {% if summary.participation_rate_pct is not none %}{{ summary.participation_rate_pct }}%{% else %}—{% endif %}
+                </span>
+            </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="command-card h-100"><div class="command-card-body">
+                <span class="command-metric-label">Avg experience</span>
+                <span class="command-metric-value">
+                    {% if summary.avg_product_experience is not none %}{{ summary.avg_product_experience }}/5{% else %}—{% endif %}
+                </span>
+            </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="command-card h-100"><div class="command-card-body">
+                <span class="command-metric-label">Would open tomorrow</span>
+                <span class="command-metric-value">
+                    {% if summary.would_open_tomorrow_pct is not none %}{{ summary.would_open_tomorrow_pct }}%{% else %}—{% endif %}
+                </span>
+            </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="command-card h-100"><div class="command-card-body">
+                <span class="command-metric-label">Outstanding reviews</span>
+                <span class="command-metric-value">{{ summary.outstanding_reviews }}</span>
+            </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="command-card h-100"><div class="command-card-body">
+                <span class="command-metric-label">Implemented</span>
+                <span class="command-metric-value">{{ summary.implemented_feedback }}</span>
+            </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="command-card h-100"><div class="command-card-body">
+                <span class="command-metric-label">Product Shapers</span>
+                <span class="command-metric-value">{{ summary.product_shapers }}</span>
+            </div></div>
+        </div>
+    </div>
+</section>
+
+<section class="mb-4" aria-label="Day over day">
+    <div class="command-card">
+        <div class="command-card-header">
+            <h2 class="command-card-title h6 mb-0">Since yesterday</h2>
+        </div>
+        <div class="command-card-body">
+            <p class="mb-1"><strong>New submissions:</strong> {{ changes.new_submissions }}</p>
+            <p class="mb-0"><strong>New friction mentions:</strong> {{ changes.new_friction_mentions }}</p>
+        </div>
+    </div>
+</section>
+
+<section class="mb-4" aria-label="Build identity">
+    <h2 class="founder-section-title">Build identity</h2>
+    <div class="command-card">
+        <div class="command-card-body">
+            <p class="mb-1"><strong>App version:</strong> {{ alpha_status.app_version }}</p>
+            <p class="mb-1"><strong>Internal Alpha version:</strong> {{ alpha_status.internal_alpha_version }}</p>
+            <p class="mb-1"><strong>Build:</strong> {{ alpha_status.build_number }}</p>
+            <p class="mb-2"><strong>Enabled:</strong> {{ "Yes" if alpha_status.internal_alpha_enabled else "No" }}</p>
+            <a href="{{ url_for('founder_dashboard.participants') }}">Participants</a>
+            ·
+            <a href="{{ url_for('founder_dashboard.feedback') }}">Feedback</a>
+            ·
+            <a href="{{ url_for('settings.index') }}">Product Settings</a>
+        </div>
+    </div>
+</section>
+
+<section class="mb-4" aria-label="Offline week processing">
+    <h2 class="founder-section-title">Offline week processing</h2>
+    <div class="command-card">
+        <div class="command-card-body">
+            <p class="text-muted mb-0">
+                Secondary filesystem week pipeline is not wired into HTTP.
+                Programme metrics above use live Product Check-in records only.
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}

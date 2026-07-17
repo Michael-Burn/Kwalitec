@@ -1,0 +1,29 @@
+{% extends "layouts/base.html" %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('founder_dashboard.static', filename='css/founder_dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+{% include "founder_dashboard/_nav.html" %}
+
+<section class="section-header founder-header">
+    <p class="section-eyebrow">Founder / Settings</p>
+    <h1 class="section-title">Settings</h1>
+    <p class="section-description">Operator configuration and Internal Alpha identity.</p>
+</section>
+
+<section class="mb-4">
+    <div class="command-card">
+        <div class="command-card-body">
+            <p class="mb-1"><strong>App version:</strong> {{ alpha_status.app_version }}</p>
+            <p class="mb-1"><strong>Internal Alpha version:</strong> {{ alpha_status.internal_alpha_version }}</p>
+            <p class="mb-1"><strong>Build:</strong> {{ alpha_status.build_number }}</p>
+            <p class="mb-3"><strong>Enabled:</strong> {{ "Yes" if alpha_status.internal_alpha_enabled else "No" }}</p>
+            <a class="btn btn-sm btn-outline-secondary" href="{{ product_settings_url }}">
+                Open product Settings
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

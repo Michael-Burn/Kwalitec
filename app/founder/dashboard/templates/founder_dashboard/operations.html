@@ -1,0 +1,353 @@
+{% extends "layouts/base.html" %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('founder_dashboard.static', filename='css/founder_dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+{% include "founder_dashboard/_nav.html" %}
+<section class="section-header founder-header">
+    <p class="section-eyebrow">Founder / Operations</p>
+    <h1 class="section-title">Operations</h1>
+    <p class="section-description">
+        System &amp; engineering readiness — Version {{ page.fos_version }}
+        · Release {{ overview.current_release }}
+        · Snapshot {{ overview.snapshot_version or '—' }}
+    </p>
+</section>
+
+{# ── Operational Snapshot ────────────────────────────────────────────── #}
+<section class="mb-4" aria-labelledby="founder-snapshot-heading">
+    <h2 id="founder-snapshot-heading" class="founder-section-title">Current Operational Snapshot</h2>
+    <div class="card founder-panel-card">
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-6 col-md-3">
+                    <div class="founder-metric-label">Snapshot Version</div>
+                    <div class="founder-metric-value founder-metric-value--sm">
+                        {{ overview.snapshot_version or '—' }}
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="founder-metric-label">Recommendations</div>
+                    <div class="founder-metric-value founder-metric-value--sm">
+                        {{ overview.recommendation_count }}
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="founder-metric-label">Overall Status</div>
+                    <div class="founder-metric-value founder-metric-value--sm">
+                        {{ overview.overall_recommendation_status or '—' }}
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="founder-metric-label">Latest Activity</div>
+                    <div class="founder-metric-value founder-metric-value--sm text-break">
+                        {{ overview.latest_activity or '—' }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ── Engineering ─────────────────────────────────────────────────────── #}
+<section class="mb-4" aria-labelledby="founder-engineering-heading">
+    <h2 id="founder-engineering-heading" class="founder-section-title">Engineering</h2>
+    <div class="row g-3">
+        <div class="col-6 col-md-3">
+            <div class="card founder-metric-card h-100">
+                <div class="card-body">
+                    <div class="founder-metric-label">Engineering Health</div>
+                    <div class="founder-metric-value">{{ overview.engineering_health }}%</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card founder-metric-card h-100">
+                <div class="card-body">
+                    <div class="founder-metric-label">Architecture Health</div>
+                    <div class="founder-metric-value">{{ overview.architecture_health }}%</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card founder-metric-card h-100">
+                <div class="card-body">
+                    <div class="founder-metric-label">Capabilities Completed</div>
+                    <div class="founder-metric-value">{{ overview.completed_capabilities }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card founder-metric-card h-100">
+                <div class="card-body">
+                    <div class="founder-metric-label">Capabilities Active</div>
+                    <div class="founder-metric-value">{{ overview.active_capabilities }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ── Top Recommendations ─────────────────────────────────────────────── #}
+<section class="mb-4" aria-labelledby="founder-recommendations-heading">
+    <h2 id="founder-recommendations-heading" class="founder-section-title">Top Recommendations</h2>
+    <div class="card founder-panel-card">
+        <div class="card-body">
+            {% if page.recommendations.available and page.recommendations.top %}
+            <ul class="founder-recommendation-list mb-0">
+                {% for rec in page.recommendations.top %}
+                <li class="founder-recommendation-item">
+                    <div class="founder-recommendation-meta">
+                        <span class="founder-priority founder-priority--{{ rec.priority | lower }}">
+                            {{ rec.priority }}
+                        </span>
+                        <span class="founder-recommendation-category">{{ rec.category }}</span>
+                    </div>
+                    <div class="founder-recommendation-title">{{ rec.title }}</div>
+                    <p class="founder-recommendation-explanation mb-0">{{ rec.explanation }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+            {% elif page.recommendations.available %}
+            <p class="text-muted mb-0">No recommendations for the current snapshot.</p>
+            {% else %}
+            <p class="text-muted mb-0">Recommendation set unavailable.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{# ── Weekly Brief ────────────────────────────────────────────────────── #}
+<section class="mb-4" aria-labelledby="founder-brief-heading">
+    <h2 id="founder-brief-heading" class="founder-section-title">Latest Weekly Brief</h2>
+    <div class="card founder-panel-card">
+        <div class="card-body">
+            {% if page.weekly_brief.available %}
+            <div class="row g-3">
+                <div class="col-6 col-md-4">
+                    <div class="founder-metric-label">Week</div>
+                    <div class="founder-metric-value founder-metric-value--sm">
+                        {{ page.weekly_brief.week or '—' }}
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="founder-metric-label">Generated At</div>
+                    <div class="founder-metric-value founder-metric-value--sm text-break">
+                        {{ page.weekly_brief.generated_at or '—' }}
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="founder-metric-label">Report Version</div>
+                    <div class="founder-metric-value founder-metric-value--sm">
+                        {{ page.weekly_brief.report_version or '—' }}
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="founder-metric-label">Snapshot Version</div>
+                    <div class="founder-metric-value founder-metric-value--sm">
+                        {{ page.weekly_brief.snapshot_version or '—' }}
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="founder-metric-label">Recommendation Version</div>
+                    <div class="founder-metric-value founder-metric-value--sm">
+                        {{ page.weekly_brief.recommendation_version or '—' }}
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <p class="text-muted mb-0">Weekly brief unavailable.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{# ── Offline week processing (secondary) ─────────────────────────────── #}
+<section class="mb-4" aria-labelledby="founder-alpha-heading">
+    <h2 id="founder-alpha-heading" class="founder-section-title">Offline week processing</h2>
+    <div class="card founder-panel-card">
+        <div class="card-body">
+            {% if page.internal_alpha.pipeline_available %}
+            <div class="row g-3">
+                <div class="col-6 col-md-4">
+                    <div class="founder-metric-label">Current Week</div>
+                    <div class="founder-metric-value founder-metric-value--sm">
+                        {{ page.internal_alpha.current_week or '—' }}
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="founder-metric-label">Feedback Received</div>
+                    <div class="founder-metric-value founder-metric-value--sm">
+                        {{ page.internal_alpha.feedback_count }}
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="founder-metric-label">Duplicate Reports</div>
+                    <div class="founder-metric-value founder-metric-value--sm">
+                        {{ page.internal_alpha.duplicate_count }}
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <p class="text-muted mb-2">
+                Unavailable — offline week pipeline is not wired
+                {% if page.internal_alpha.source_version %}(source: {{ page.internal_alpha.source_version }}){% endif %}.
+            </p>
+            <p class="mb-0">
+                Programme metrics live under
+                <a href="{{ url_for('founder_dashboard.internal_alpha') }}">Internal Alpha</a>
+                (Product Check-in source of truth).
+            </p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{# ── Knowledge ───────────────────────────────────────────────────────── #}
+<section class="mb-4" aria-labelledby="founder-knowledge-heading">
+    <h2 id="founder-knowledge-heading" class="founder-section-title">Knowledge</h2>
+    <div class="row g-3">
+        <div class="col-6 col-md-4 col-xl">
+            <div class="card founder-metric-card h-100">
+                <div class="card-body">
+                    <div class="founder-metric-label">Engineering Standards</div>
+                    <div class="founder-metric-value founder-metric-value--sm">
+                        {{ page.knowledge.engineering_standards }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl">
+            <div class="card founder-metric-card h-100">
+                <div class="card-body">
+                    <div class="founder-metric-label">Architecture Documents</div>
+                    <div class="founder-metric-value founder-metric-value--sm">
+                        {{ page.knowledge.architecture_documents }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl">
+            <div class="card founder-metric-card h-100">
+                <div class="card-body">
+                    <div class="founder-metric-label">Research Documents</div>
+                    <div class="founder-metric-value founder-metric-value--sm">
+                        {{ page.knowledge.research_documents }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-6 col-xl">
+            <div class="card founder-metric-card h-100">
+                <div class="card-body">
+                    <div class="founder-metric-label">Capability Archive Entries</div>
+                    <div class="founder-metric-value founder-metric-value--sm">
+                        {{ page.knowledge.capability_documents }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-6 col-xl">
+            <div class="card founder-metric-card h-100">
+                <div class="card-body">
+                    <div class="founder-metric-label">Indexed Artefacts</div>
+                    <div class="founder-metric-value founder-metric-value--sm">
+                        {{ page.knowledge.indexed_artefacts }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ── Capability Summary ──────────────────────────────────────────────── #}
+<section class="mb-4" aria-labelledby="founder-capability-heading">
+    <h2 id="founder-capability-heading" class="founder-section-title">Capability Archive</h2>
+    <div class="card founder-panel-card">
+        <div class="card-body">
+            <div class="row g-3 mb-3">
+                <div class="col-6 col-md-3">
+                    <div class="founder-metric-label">Total</div>
+                    <div class="founder-metric-value founder-metric-value--sm">
+                        {{ page.capabilities.total_count }}
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="founder-metric-label">Completed</div>
+                    <div class="founder-metric-value founder-metric-value--sm">
+                        {{ page.capabilities.completed_count }}
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="founder-metric-label">Active</div>
+                    <div class="founder-metric-value founder-metric-value--sm">
+                        {{ page.capabilities.active_count }}
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="founder-metric-label">Archive Inconsistencies</div>
+                    <div class="founder-metric-value founder-metric-value--sm">
+                        {{ page.capabilities.archive_inconsistencies }}
+                    </div>
+                </div>
+            </div>
+            <div class="founder-metric-label mb-2">Recent Capabilities</div>
+            {% if page.capabilities.recent_capability_ids %}
+            <ul class="founder-activity-list mb-0">
+                {% for cap_id in page.capabilities.recent_capability_ids %}
+                <li>{{ cap_id }}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="text-muted mb-0">No recent capability identifiers available.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{# ── Activity ────────────────────────────────────────────────────────── #}
+<section class="mb-4" aria-labelledby="founder-activity-heading">
+    <h2 id="founder-activity-heading" class="founder-section-title">Activity</h2>
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="card founder-panel-card h-100">
+                <div class="card-body">
+                    <div class="founder-metric-label mb-2">Recent Capabilities</div>
+                    {% if page.activity.recently_completed_capabilities %}
+                    <ul class="founder-activity-list mb-0">
+                        {% for item in page.activity.recently_completed_capabilities %}
+                        <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <p class="text-muted mb-0">None</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card founder-panel-card h-100">
+                <div class="card-body">
+                    <div class="founder-metric-label mb-2">Recent Internal Alpha Weeks</div>
+                    {% if page.activity.recent_internal_alpha_weeks %}
+                    <ul class="founder-activity-list mb-0">
+                        {% for item in page.activity.recent_internal_alpha_weeks %}
+                        <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <p class="text-muted mb-0">None</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="founder-footer" role="contentinfo">
+    <span>Founder Command Centre · Operations</span>
+    <span>Version {{ page.fos_version }} · Snapshot {{ overview.snapshot_version or '—' }}</span>
+</footer>
+{% endblock %}

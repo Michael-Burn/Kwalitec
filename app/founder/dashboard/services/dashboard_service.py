@@ -264,6 +264,8 @@ def _map_internal_alpha(state: FounderOperationalState) -> InternalAlphaSection:
         )
         for label in state.internal_alpha.recent_week_labels
     )
+    source_version = state.source_versions.internal_alpha
+    pipeline_available = bool(source_version) and source_version != "unwired"
     return InternalAlphaSection(
         current_week=state.internal_alpha.current_week,
         feedback_count=state.internal_alpha.feedback_count,
@@ -271,6 +273,8 @@ def _map_internal_alpha(state: FounderOperationalState) -> InternalAlphaSection:
         category_counts=dict(state.internal_alpha.category_counts),
         latest_summary_file="",
         recent_weeks=recent_weeks,
+        pipeline_available=pipeline_available,
+        source_version=source_version,
     )
 
 

@@ -37,3 +37,5 @@ class InternalAlphaSection:
     category_counts: Mapping[str, int]
     latest_summary_file: str
     recent_weeks: tuple[InternalAlphaWeekSummary, ...]
+    pipeline_available: bool = False
+    source_version: str = ""
