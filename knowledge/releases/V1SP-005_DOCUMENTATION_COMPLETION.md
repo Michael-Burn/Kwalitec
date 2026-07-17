@@ -6,6 +6,7 @@
 **Nature:** Documentation audit (application code unchanged)  
 **Date:** 2026-07-17  
 **Build identity:** Product `1.0.0` (`pyproject.toml` / `APP_VERSION`) · Internal Alpha chrome **Build RC2**  
+**Commit:** `7033a2b` — `docs: complete Version 1 RC2 documentation baseline (V1SP-005)`  
 
 ---
 
