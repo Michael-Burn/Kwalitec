@@ -60,6 +60,12 @@ def _resolve_topic_for_mission(user_id: int, mission: Mission):
         if label and label in title:
             return topic
 
+    from app.services.learning_lifecycle_service import LearningLifecycleService
+
+    # Revision Mode has no Current Learning Topic — do not invent Topic 1.
+    if LearningLifecycleService.is_revision(user_id, study_plan=plan):
+        return None
+
     return CurriculumService.get_next_incomplete_topic(user_id, curriculum)
 
 
@@ -69,8 +75,26 @@ def _apply_mission_topic_progress(user_id: int, topic) -> None:
     Also advances the active plan's ``curriculum_topic_code`` past the
     completed topic so refresh/heal cannot demote progress on the first
     syllabus leaf (e.g. CS1 ``1.1``).
+
+    In Revision Mode (syllabus complete), Study Progress coverage is not
+    advanced — revision consolidates completed material and must not restart
+    Topic 1 or invent new coverage.
     """
     if topic is None:
+        return
+
+    from app.extensions import db
+    from app.services.learning_lifecycle_service import LearningLifecycleService
+
+    if LearningLifecycleService.is_revision(user_id):
+        progress = CurriculumService.get_or_create_topic_progress(
+            user_id=user_id,
+            topic_id=topic.id,
+        )
+        # Consolidation signal only — never un-complete or invent mastery.
+        progress.revision_count = int(progress.revision_count or 0) + 1
+        progress.mark_reviewed()
+        db.session.commit()
         return
 
     progress = CurriculumService.get_or_create_topic_progress(
@@ -98,8 +122,6 @@ def _apply_mission_topic_progress(user_id: int, topic) -> None:
     active_plan = StudyPlanService.get_user_active_plan(user_id)
     if active_plan is not None:
         StudyPlanService.reconcile_current_topic_pointer(active_plan)
-
-    from app.extensions import db
 
     db.session.commit()
 
@@ -157,6 +179,16 @@ def missions():
 
     mission_narrative = None
     session_context = None
+    from app.services.learning_lifecycle_service import (
+        LearningLifecycle,
+        LearningLifecycleService,
+    )
+
+    lifecycle = LearningLifecycleService.resolve(
+        user_id, study_plan=active_study_plan
+    )
+    is_revision = lifecycle.stage == LearningLifecycle.REVISION
+
     if today_mission is not None:
         syllabus_pct = None
         completed_topics = None
@@ -173,6 +205,7 @@ def missions():
             completed_topics=completed_topics,
             total_topics=total_topics,
             syllabus_coverage_pct=syllabus_pct,
+            is_revision=is_revision,
         )
         session_context = StudySessionService.build_session_context(
             today_mission,
@@ -197,6 +230,8 @@ def missions():
         mission_narrative=mission_narrative,
         session_context=session_context,
         study_tip=StudyTipsService.tip_for_day(),
+        is_revision=is_revision,
+        lifecycle=lifecycle,
     )
 
 

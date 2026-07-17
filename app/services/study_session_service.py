@@ -125,21 +125,37 @@ class StudySessionService:
     ) -> StudySessionContext:
         """Build student-facing Study Session presentation fields."""
         topic_title = mission.title or "Today's topic"
-        objective = learning_objective or (
-            "Engage with today's topic through reading, examples, and practice "
-            "so you can close today's planned study honestly."
-        )
-        why = why_studying or (
-            "In Learning Mode, today's mission follows your Current Learning "
-            "Topic — the next syllabus topic you have not yet completed studying."
-        )
+        revision = (mission.title or "").strip().lower().startswith("revision")
+        if revision:
+            objective = learning_objective or (
+                "Consolidate completed syllabus material through practice, "
+                "recall, and mixed review — not new topic coverage."
+            )
+            why = why_studying or (
+                "In Revision Mode, today's session consolidates the completed "
+                "syllabus and prepares for the examination."
+            )
+            success = (
+                "Complete today's revision activities",
+                "Practise under conditions that support exam readiness",
+                "Finish the session and record today's practice results",
+            )
+        else:
+            objective = learning_objective or (
+                "Engage with today's topic through reading, examples, and practice "
+                "so you can close today's planned study honestly."
+            )
+            why = why_studying or (
+                "In Learning Mode, today's mission follows your Current Learning "
+                "Topic — the next syllabus topic you have not yet completed studying."
+            )
+            success = (
+                "Spend focused time on today's topic",
+                "Work through the recommended study activities",
+                "Finish the session and record today's practice results",
+            )
         minutes = StudySessionService.estimated_minutes_for_mission(
             mission, study_plan
-        )
-        success = (
-            "Spend focused time on today's topic",
-            "Work through the recommended study activities",
-            "Finish the session and record today's practice results",
         )
         return StudySessionContext(
             topic_title=topic_title,

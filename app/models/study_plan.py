@@ -56,6 +56,18 @@ class StudyPlan(db.Model):
         default=None,
         comment="Official curriculum topic code currently being studied (e.g., 'CS1-A')",
     )
+    revision_entered_at: datetime = db.Column(
+        db.DateTime,
+        nullable=True,
+        default=None,
+        comment="Syllabus-complete Revision entry timestamp (V1SP-001A)",
+    )
+    revision_acknowledged: bool = db.Column(
+        db.Boolean,
+        default=False,
+        nullable=False,
+        comment="One-time syllabus-complete acknowledgement dismissed",
+    )
     active: bool = db.Column(db.Boolean, default=False, nullable=False)
     archived: bool = db.Column(db.Boolean, default=False, nullable=False, comment="Archived plans are hidden from active scheduling but preserved")
     created_at: datetime = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
@@ -93,7 +105,7 @@ class StudyPlan(db.Model):
         Returns:
             int: Number of weeks remaining
         """
-        from datetime import date, timedelta
+        from datetime import date
 
         today = date.today()
         exam_date = self.exam_date

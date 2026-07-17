@@ -203,9 +203,12 @@ def _add_security_headers(response):
     is_production = app_env == "production"
 
     if is_production:
+        # 'unsafe-inline' is required for current templates (Analytics Chart.js
+        # bootstrap, Product Check-in, Study Plan wizard step 4, and onsubmit
+        # confirms). Prefer nonces/hashes + external JS in a later hardening pass.
         response.headers["Content-Security-Policy"] = (
             "default-src 'self'; "
-            "script-src 'self' https://cdn.jsdelivr.net; "
+            "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; "
             "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; "
             "img-src 'self' data:; "
             "font-src 'self' https://cdn.jsdelivr.net; "
@@ -320,6 +323,7 @@ def _register_template_context(app: Flask) -> None:
             INTERNAL_ALPHA_BUILD_LABEL,
             INTERNAL_ALPHA_LABEL,
             LEARNING_WORKSPACE_LABEL,
+            REVISION_WORKSPACE_LABEL,
             STUDENT_DASHBOARD_LABEL,
         )
         from app.services.product_communication_service import (
@@ -336,6 +340,7 @@ def _register_template_context(app: Flask) -> None:
             "internal_alpha_build_label": INTERNAL_ALPHA_BUILD_LABEL,
             "founder_command_centre_label": FOUNDER_COMMAND_CENTRE_LABEL,
             "learning_workspace_label": LEARNING_WORKSPACE_LABEL,
+            "revision_workspace_label": REVISION_WORKSPACE_LABEL,
             "student_dashboard_label": STUDENT_DASHBOARD_LABEL,
         }
 

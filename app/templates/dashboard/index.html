@@ -11,10 +11,32 @@
 
 {# ── Page Header ─────────────────────────────────────────────────────── #}
 <section class="section-header">
-    <p class="section-eyebrow">{{ learning_workspace_label }}</p>
+    <p class="section-eyebrow">{% if is_revision %}{{ revision_workspace_label }}{% else %}{{ learning_workspace_label }}{% endif %}</p>
     <h1 class="section-title">{{ student_dashboard_label }}</h1>
+    {% if is_revision %}
+    <p class="section-description">Consolidate what you have studied and prepare for the examination.</p>
+    {% else %}
     <p class="section-description">What to study, whether you are on track, and whether anything needs attention.</p>
+    {% endif %}
 </section>
+
+{% if show_revision_acknowledgement %}
+<section class="mb-4" aria-label="Syllabus complete acknowledgement" data-lifecycle="revision-ack">
+    <div class="command-card" style="border-left: 3px solid var(--color-brand);">
+        <div class="command-card-body py-3">
+            <p class="mb-1" style="font-weight: 600; color: var(--color-text-primary);">
+                <span aria-hidden="true">✓</span> {{ lifecycle.acknowledgement_title }}
+            </p>
+            <p class="small mb-2" style="color: var(--color-text-secondary);">{{ lifecycle.acknowledgement_body }}</p>
+            <p class="small text-muted mb-3">{{ revision_intro }}</p>
+            <form method="POST" action="{{ url_for('dashboard.acknowledge_revision') }}" class="m-0">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button type="submit" class="btn btn-sm btn-outline-secondary">Continue</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endif %}
 
 {% if not active_study_plan %}
 <section class="onboarding-next-card mb-4" aria-label="Next step">
@@ -38,7 +60,7 @@
                     <polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
                 </svg>
             </div>
-            <h2 class="command-card-title">Today's Study Session</h2>
+            <h2 class="command-card-title">{% if is_revision %}Today's Revision Session{% else %}Today's Study Session{% endif %}</h2>
             {% if today_mission %}
             <span class="badge rounded-pill ms-auto {% if today_mission.status == 'Completed' %}text-bg-success{% elif today_mission.status == 'In Progress' %}text-bg-warning{% else %}text-bg-secondary{% endif %}">
                 {{ today_mission.status }}
@@ -106,9 +128,27 @@
                         <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
                     </svg>
                 </div>
-                <h2 class="command-card-title">Progress through Study Plan</h2>
+                <h2 class="command-card-title">{% if is_revision %}Revision Progress{% else %}Progress through Study Plan{% endif %}</h2>
             </div>
-            {% if readiness_summary %}
+            {% if is_revision and lifecycle.revision_metrics %}
+            <div class="command-card-body">
+                <div class="d-flex align-items-end gap-3 mb-3">
+                    <span class="command-hero-value" style="color: var(--color-brand);" data-ptp004-metric="syllabus-coverage">100%</span>
+                    <span class="command-hero-label" style="margin-bottom: 4px;">Syllabus complete</span>
+                </div>
+                <div class="progress" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="height: 10px;">
+                    <div class="progress-bar" style="width: 100%; background: var(--color-brand);"></div>
+                </div>
+                <ul class="list-unstyled small mt-3 mb-0" style="color: var(--color-text-secondary);">
+                    <li class="mb-1">Topics Completed · {{ lifecycle.revision_metrics.topics_completed }} of {{ lifecycle.revision_metrics.topics_total }}</li>
+                    <li class="mb-1">Revision Sessions · {% if lifecycle.revision_metrics.revision_sessions is not none %}{{ lifecycle.revision_metrics.revision_sessions }}{% else %}—{% endif %}</li>
+                    <li class="mb-1">Practice Questions Completed · {% if lifecycle.revision_metrics.practice_questions_completed is not none %}{{ lifecycle.revision_metrics.practice_questions_completed }}{% else %}—{% endif %}</li>
+                    <li class="mb-1">Revision Streak · {% if lifecycle.revision_metrics.revision_streak is not none %}{{ lifecycle.revision_metrics.revision_streak }} day{{ 's' if lifecycle.revision_metrics.revision_streak != 1 else '' }}{% else %}—{% endif %}</li>
+                    <li class="mb-0">Mixed Quiz Attempts · {% if lifecycle.revision_metrics.mixed_quiz_attempts is not none %}{{ lifecycle.revision_metrics.mixed_quiz_attempts }}{% else %}—{% endif %}</li>
+                </ul>
+                <p class="small mt-2 mb-0 text-muted">Metrics show observed revision activity only. Em dashes mean no recorded activity yet.</p>
+            </div>
+            {% elif readiness_summary %}
             <div class="command-card-body">
                 <div class="d-flex align-items-end gap-3 mb-3">
                     <span class="command-hero-value" style="color: var(--color-brand);" data-ptp004-metric="syllabus-coverage">{{ (readiness_summary.readiness_percentage * 100)|int }}%</span>

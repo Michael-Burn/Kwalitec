@@ -2,9 +2,9 @@
 
 {% block content %}
 <section class="section-header">
-    <p class="section-eyebrow">{{ learning_workspace_label }}</p>
-    <h1 class="section-title">Today's Study Session</h1>
-    <p class="section-description">Your focused study session for today — one clear objective at a time.</p>
+    <p class="section-eyebrow">{% if is_revision|default(false) %}{{ revision_workspace_label }}{% else %}{{ learning_workspace_label }}{% endif %}</p>
+    <h1 class="section-title">{% if is_revision|default(false) %}Today's Revision Session{% else %}Today's Study Session{% endif %}</h1>
+    <p class="section-description">{% if is_revision|default(false) %}Consolidate completed syllabus material and prepare for the examination.{% else %}Your focused study session for today — one clear objective at a time.{% endif %}</p>
 </section>
 
 {% if study_tip %}
@@ -108,8 +108,13 @@
                 {% else %}
                 <span class="mission-hero-why-label">Why you are studying this</span>
                 <p class="mission-hero-why-text">
+                    {% if is_revision|default(false) %}
+                    In Revision Mode, today's session consolidates the completed syllabus —
+                    practice, mixed review, and examination readiness — not new Topic 1 coverage.
+                    {% else %}
                     In Learning Mode, today's study session follows your Current Learning Topic
                     in this study plan — the next syllabus topic you have not yet completed studying.
+                    {% endif %}
                 </p>
                 {% endif %}
             </div>

@@ -54,6 +54,17 @@ class RecommendationService:
     @staticmethod
     def generate_recommendations(user_id: int, limit: int = 5) -> list[dict]:
         """Generate the top N recommendations for a user."""
+        from app.services.learning_lifecycle_service import (
+            LearningLifecycle,
+            LearningLifecycleService,
+        )
+
+        lifecycle = LearningLifecycleService.resolve(user_id)
+        if lifecycle.stage == LearningLifecycle.REVISION:
+            return RecommendationService._revision_lifecycle_recommendations(
+                user_id, limit=limit
+            )
+
         recommendations: list[dict] = []
 
         recommendations.extend(
@@ -87,6 +98,87 @@ class RecommendationService:
                 seen_titles.add(rec["title"])
                 unique.append(rec)
 
+        return unique[:limit]
+
+    @staticmethod
+    def _revision_lifecycle_recommendations(
+        user_id: int, *, limit: int = 5
+    ) -> list[dict]:
+        """Deterministic revision recommendations when syllabus coverage is complete.
+
+        Suppresses unread-topic progression. Uses observed weak-topic and
+        timeline signals only — no adaptive AI.
+        """
+        from app.services.learning_lifecycle_service import LearningLifecycleService
+
+        recs: list[dict] = []
+        weak_label = LearningLifecycleService.weakest_completed_topic_label(user_id)
+        now = datetime.utcnow().isoformat()
+
+        if weak_label:
+            recs.append({
+                "title": f"Review weakest topic: {weak_label}",
+                "category": CATEGORY_REVISION,
+                "priority": PRIORITY_HIGH,
+                "reason": (
+                    f"Your syllabus is complete. Revisiting {weak_label} "
+                    "consolidates understanding where Estimated Knowledge "
+                    "is comparatively lower."
+                ),
+                "expected_benefit": (
+                    "Strengthen a weaker completed topic before the exam."
+                ),
+                "generated_at": now,
+            })
+
+        recs.append({
+            "title": "Complete a mixed-topic practice set",
+            "category": CATEGORY_REVISION,
+            "priority": PRIORITY_HIGH,
+            "reason": (
+                "Syllabus coverage is complete. Mixed practice consolidates "
+                "knowledge across topics rather than advancing unread material."
+            ),
+            "expected_benefit": (
+                "Build exam fluency across the full syllabus."
+            ),
+            "generated_at": now,
+        })
+
+        recs.append({
+            "title": "Recall important formulae",
+            "category": CATEGORY_REVISION,
+            "priority": PRIORITY_MEDIUM,
+            "reason": (
+                "In Revision Mode, retrieving key formulae without notes "
+                "supports examination readiness."
+            ),
+            "expected_benefit": "Improve recall under exam conditions.",
+            "generated_at": now,
+        })
+
+        recs.append({
+            "title": "Complete one timed practice session",
+            "category": CATEGORY_EXAM_TECHNIQUE,
+            "priority": PRIORITY_MEDIUM,
+            "reason": (
+                "Timed practice builds pacing discipline once the syllabus "
+                "has been completed studying."
+            ),
+            "expected_benefit": "Strengthen timing and exam technique.",
+            "generated_at": now,
+        })
+
+        recs.extend(RecommendationService._burnout_recommendations(user_id))
+        recs.extend(RecommendationService._mock_exam_recommendations(user_id))
+
+        recs.sort(key=lambda r: PRIORITY_ORDER.get(r["priority"], 99))
+        seen: set[str] = set()
+        unique: list[dict] = []
+        for rec in recs:
+            if rec["title"] not in seen:
+                seen.add(rec["title"])
+                unique.append(rec)
         return unique[:limit]
 
     @staticmethod

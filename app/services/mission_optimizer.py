@@ -77,33 +77,54 @@ class MissionOptimizer:
                     ),
                 }
 
-        # 3. Progression topic
+        # 3. Progression topic — Learning Mode only (never in Revision)
+        from app.services.learning_lifecycle_service import (
+            LearningLifecycle,
+            LearningLifecycleService,
+        )
+
         active_plan = StudyPlanService.get_user_active_plan(user_id)
-        if active_plan and active_plan.curriculum_id:
-            curriculum = CurriculumService.get_curriculum_by_id(
-                active_plan.curriculum_id
-            )
-            if curriculum:
-                next_topic = CurriculumService.get_next_incomplete_topic(
-                    user_id=user_id, curriculum=curriculum
+        lifecycle = LearningLifecycleService.resolve(user_id, study_plan=active_plan)
+        if lifecycle.stage != LearningLifecycle.REVISION:
+            if active_plan and active_plan.curriculum_id:
+                curriculum = CurriculumService.get_curriculum_by_id(
+                    active_plan.curriculum_id
                 )
-                if next_topic:
-                    existing_ids = {
-                        topics[t]["topic_id"]
-                        for t in ["review", "weak"]
-                        if topics[t]
-                    }
-                    if next_topic.id not in existing_ids:
-                        topics["progression"] = {
-                            "topic_id": next_topic.id,
-                            "topic_name": next_topic.name,
-                            "mastery_score": None,
-                            "stage": "Not Started",
-                            "reason": "Next unstarted topic in curriculum sequence",
-                            "expected_benefit": (
-                                "Continue forward progress through the syllabus."
-                            ),
+                if curriculum:
+                    next_topic = CurriculumService.get_next_incomplete_topic(
+                        user_id=user_id, curriculum=curriculum
+                    )
+                    if next_topic:
+                        existing_ids = {
+                            topics[t]["topic_id"]
+                            for t in ["review", "weak"]
+                            if topics[t]
                         }
+                        if next_topic.id not in existing_ids:
+                            topics["progression"] = {
+                                "topic_id": next_topic.id,
+                                "topic_name": next_topic.name,
+                                "mastery_score": None,
+                                "stage": "Not Started",
+                                "reason": "Next unstarted topic in curriculum sequence",
+                                "expected_benefit": (
+                                    "Continue forward progress through the syllabus."
+                                ),
+                            }
+        else:
+            # Revision advisory: prefer weak / review slots only — no Topic 1.
+            if topics["weak"] is None and weak_topics:
+                wp = weak_topics[0]
+                topics["weak"] = {
+                    "topic_id": wp.topic_id,
+                    "topic_name": wp.topic.name if wp.topic else "Unknown",
+                    "mastery_score": round(wp.mastery_score, 1),
+                    "stage": wp.current_stage,
+                    "reason": "Revision focus — consolidate a weaker completed topic",
+                    "expected_benefit": (
+                        "Consolidate understanding without restarting the syllabus."
+                    ),
+                }
 
         topic_count = sum(1 for v in topics.values() if v is not None)
         if topic_count < 2:

@@ -111,22 +111,36 @@ class EducationalExplainabilityService:
         completed_topics: int | None = None,
         total_topics: int | None = None,
         syllabus_coverage_pct: float | None = None,
+        is_revision: bool = False,
     ) -> MissionNarrative | None:
         """Assemble Today's Mission educational narrative.
 
         Args:
-            mission_title: Persisted mission title (Learning Mode topic authority).
+            mission_title: Persisted mission title (Learning or Revision Mode).
             mission_status: Current mission status string.
             exam_name: Active study plan exam name, if any.
             completed_topics: Count of topics with Study Progress complete.
             total_topics: Syllabus topic count when known.
             syllabus_coverage_pct: Weighted syllabus coverage 0–100 when known.
+            is_revision: True when Learning Lifecycle is Revision (V1SP-001A).
 
         Returns:
             MissionNarrative, or None when there is no mission to narrate.
         """
         if not mission_title:
             return None
+
+        revision = is_revision or mission_title.strip().lower().startswith("revision")
+
+        if revision:
+            return EducationalExplainabilityService._revision_mission_narrative(
+                mission_title=mission_title,
+                mission_status=mission_status,
+                exam_name=exam_name,
+                completed_topics=completed_topics,
+                total_topics=total_topics,
+                syllabus_coverage_pct=syllabus_coverage_pct,
+            )
 
         observed: list[str] = [
             f"Today's Study Session topic is {mission_title}.",
@@ -200,6 +214,92 @@ class EducationalExplainabilityService:
                 "In Learning Mode, today's mission follows your Current Learning Topic "
                 "in this study plan — the next syllabus topic you have not yet "
                 "completed studying."
+            ),
+            educational_position=position,
+            next_action=next_action,
+            observed_facts=tuple(observed),
+            estimates=tuple(estimates),
+        )
+
+    @staticmethod
+    def _revision_mission_narrative(
+        *,
+        mission_title: str,
+        mission_status: str | None,
+        exam_name: str | None,
+        completed_topics: int | None,
+        total_topics: int | None,
+        syllabus_coverage_pct: float | None,
+    ) -> MissionNarrative:
+        """Narrate a Revision Mode session — consolidation, not new coverage."""
+        observed: list[str] = [
+            f"Today's Revision Session is {mission_title}.",
+        ]
+        if exam_name:
+            observed.append(f"Active study plan: {exam_name}.")
+        if (
+            completed_topics is not None
+            and total_topics is not None
+            and total_topics > 0
+        ):
+            observed.append(
+                f"Study Progress: {completed_topics} of {total_topics} "
+                "syllabus topics marked completed studying."
+            )
+
+        estimates: list[str] = []
+        if syllabus_coverage_pct is not None:
+            estimates.append(
+                f"Syllabus coverage (derived from Study Progress): "
+                f"{int(round(syllabus_coverage_pct))}% of official syllabus weighting."
+            )
+        estimates.append(
+            "Revision consolidates completed material. Completing revision "
+            "sessions does not invent Estimated Mastery."
+        )
+
+        if mission_status == "Completed":
+            next_action = (
+                "Revision session complete. Return tomorrow for the next "
+                "revision focus, or open practice when ready."
+            )
+        elif mission_status == "In Progress":
+            next_action = (
+                "Resume your revision session, then finish when today's "
+                "consolidation work is done."
+            )
+        else:
+            next_action = (
+                "Start your revision session, then finish when today's "
+                "consolidation work is done."
+            )
+
+        if (
+            completed_topics is not None
+            and total_topics is not None
+            and total_topics > 0
+            and completed_topics >= total_topics
+        ):
+            position = (
+                f"Syllabus complete ({completed_topics} of {total_topics} "
+                "topics). You are in Revision Mode."
+            )
+        else:
+            position = (
+                "You are in Revision Mode — consolidating completed "
+                "syllabus material."
+            )
+
+        return MissionNarrative(
+            topic_title=mission_title,
+            educational_purpose=(
+                "Consolidate completed syllabus material and strengthen "
+                "examination readiness in Revision Mode."
+            ),
+            reason_for_selection=(
+                "In Revision Mode, today's mission consolidates the completed "
+                "syllabus — practice, mixed review, and recall — not new "
+                "Topic 1 coverage."
             ),
             educational_position=position,
             next_action=next_action,

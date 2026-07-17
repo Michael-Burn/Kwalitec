@@ -14,4 +14,5 @@ INTERNAL_ALPHA_BUILD_LABEL = "RC2"
 # Official product-area names (user-facing).
 FOUNDER_COMMAND_CENTRE_LABEL = "Founder Command Centre"
 LEARNING_WORKSPACE_LABEL = "Learning Workspace"
+REVISION_WORKSPACE_LABEL = "Revision Workspace"
 STUDENT_DASHBOARD_LABEL = "Student Dashboard"

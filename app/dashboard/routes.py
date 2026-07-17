@@ -276,8 +276,18 @@ def index():
             days_for_status
         )
 
+    from app.services.learning_lifecycle_service import (
+        LearningLifecycle,
+        LearningLifecycleService,
+    )
     from app.services.study_tips_service import StudyTipsService
     from app.services.welcome_service import WelcomeService
+
+    lifecycle = LearningLifecycleService.resolve(
+        user_id, study_plan=active_study_plan
+    )
+    workspace_label = lifecycle.workspace_label
+    show_revision_acknowledgement = lifecycle.show_completion_acknowledgement
 
     study_tip = StudyTipsService.tip_for_day()
     show_welcome = WelcomeService.should_show(current_user)
@@ -312,6 +322,7 @@ def index():
             completed_topics=completed_topics,
             total_topics=total_topics,
             syllabus_coverage_pct=syllabus_pct,
+            is_revision=lifecycle.stage == LearningLifecycle.REVISION,
         )
 
     return render_template(
@@ -342,6 +353,11 @@ def index():
         schedule_kpi_status=schedule_kpi_status,
         study_tip=study_tip,
         show_welcome=show_welcome,
+        lifecycle=lifecycle,
+        workspace_label=workspace_label,
+        show_revision_acknowledgement=show_revision_acknowledgement,
+        is_revision=lifecycle.stage == LearningLifecycle.REVISION,
+        revision_intro=LearningLifecycleService.revision_intro_line(),
     )
 
 
@@ -357,3 +373,13 @@ def dismiss_welcome():
     if not next_url.startswith("/"):
         next_url = url_for("dashboard.index")
     return redirect(next_url)
+
+
+@dashboard_bp.post("/revision/acknowledge")
+@login_required
+def acknowledge_revision():
+    """Dismiss the one-time syllabus-complete acknowledgement."""
+    from app.services.learning_lifecycle_service import LearningLifecycleService
+
+    LearningLifecycleService.acknowledge_revision(current_user.id)
+    return redirect(url_for("dashboard.index"))

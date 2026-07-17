@@ -12,10 +12,23 @@ from app.models.curriculum import Topic
 from app.models.mission import Mission
 from app.models.study_plan import StudyPlan, WeekPlan
 from app.services.curriculum_service import CurriculumService
+from app.services.learning_lifecycle_service import (
+    LearningLifecycle,
+    LearningLifecycleService,
+)
 from app.services.mission_service import MissionService
 from app.services.study_plan_service import StudyPlanService
 
 logger = logging.getLogger(__name__)
+
+# Deterministic revision mission templates (V1SP-001A). Indexed by date ordinal.
+_REVISION_MISSION_KINDS: tuple[str, ...] = (
+    "practice_questions",
+    "mixed_quiz",
+    "weakest_topic",
+    "formulae",
+    "timed_practice",
+)
 
 
 class DayType(Enum):
@@ -193,12 +206,30 @@ class PlanningService:
                 active_plan=active_plan,
             )
 
+        lifecycle = LearningLifecycleService.resolve(
+            user_id, study_plan=active_plan, today=today
+        )
+
         if existing_mission:
             if PlanningService._should_replace_generic_mission(
                 existing_mission, active_plan
             ):
                 logger.info(
                     "Replacing generic mission %s for user %s after curriculum binding",
+                    existing_mission.id,
+                    user_id,
+                )
+                db.session.delete(existing_mission)
+                db.session.commit()
+            elif (
+                lifecycle.stage == LearningLifecycle.REVISION
+                and PlanningService._should_replace_learning_mission_for_revision(
+                    existing_mission
+                )
+            ):
+                logger.info(
+                    "Replacing learning mission %s for user %s — syllabus complete, "
+                    "entering Revision",
                     existing_mission.id,
                     user_id,
                 )
@@ -223,11 +254,12 @@ class PlanningService:
             )
             return None
 
-        # Generate new mission
+        # Generate new mission (Revision or Learning)
         mission = PlanningService._generate_mission_for_date(
             user_id=user_id,
             active_plan=active_plan,
             target_date=today,
+            lifecycle_stage=lifecycle.stage,
         )
 
         logger.info(
@@ -308,37 +340,57 @@ class PlanningService:
         return False
 
     @staticmethod
+    def _should_replace_learning_mission_for_revision(mission: Mission) -> bool:
+        """Return True when an unfinished learning mission must yield to Revision.
+
+        Once the syllabus is complete, Topic-1 / Core Reading learning missions
+        must not remain as today's commitment. Completed work is preserved.
+        """
+        if mission.status == "Completed":
+            return False
+        if any(task.completed for task in mission.tasks):
+            return False
+        title = (mission.title or "").strip().lower()
+        if title.startswith("revision"):
+            return False
+        # Learning Mode titles and generic fallbacks that revive Topic 1.
+        if title.startswith("study ") or title.startswith("practice "):
+            return True
+        if title.startswith("daily study") or title.startswith("weekend review"):
+            return True
+        return False
+
+    @staticmethod
     def _generate_mission_for_date(
         user_id: int,
         active_plan: StudyPlan,
         target_date: date,
+        *,
+        lifecycle_stage: str | None = None,
     ) -> Mission:
         """Generate a mission for a specific date.
-        
-        This is the core mission generation logic that creates missions based on
-        the study plan configuration and deterministic rules. If a curriculum
-        is associated with the study plan, the next incomplete topic is used
-        to guide task generation. Otherwise, falls back to generic tasks.
-        
-        Args:
-            user_id: The ID of the user.
-            active_plan: The active study plan.
-            target_date: The date to generate the mission for.
-        
-        Returns:
-            Mission: The created mission with tasks.
-        """
-        # Determine day type (weekday or weekend)
-        day_type = PlanningService._get_day_type(target_date)
 
-        # Get study minutes for this day type
+        Learning Mode selects the next incomplete topic. Revision Mode generates
+        consolidation missions and never restarts Topic 1.
+        """
+        if lifecycle_stage is None:
+            lifecycle_stage = LearningLifecycleService.resolve(
+                user_id, study_plan=active_plan, today=target_date
+            ).stage
+
+        if lifecycle_stage == LearningLifecycle.REVISION:
+            return PlanningService._generate_revision_mission_for_date(
+                user_id=user_id,
+                active_plan=active_plan,
+                target_date=target_date,
+            )
+
+        day_type = PlanningService._get_day_type(target_date)
         study_minutes = (
             active_plan.weekday_study_minutes
             if day_type == DayType.WEEKDAY
             else active_plan.weekend_study_minutes
         )
-
-        # Determine the best topic for today using priority-based selection
         next_topic = PlanningService._select_topic_for_today(
             user_id=user_id,
             active_plan=active_plan,
@@ -347,8 +399,6 @@ class PlanningService:
         topic_code = PlanningService._resolve_official_topic_code(
             active_plan, next_topic
         )
-
-        # Generate mission title and tasks based on day type and topic
         mission_title = PlanningService._generate_mission_title(
             day_type=day_type,
             target_date=target_date,
@@ -363,12 +413,8 @@ class PlanningService:
             topic=next_topic,
             topic_code=topic_code,
         )
-
-        # Use a default subject for all automatically generated missions
         subject_id = PlanningService._get_or_create_default_subject(user_id)
-
-        # Create mission via service — always bind to the active study plan
-        mission = MissionService.create_mission(
+        return MissionService.create_mission(
             user_id=user_id,
             subject_id=subject_id,
             mission_date=target_date,
@@ -377,7 +423,170 @@ class PlanningService:
             study_plan_id=active_plan.id,
         )
 
+    @staticmethod
+    def _generate_revision_mission_for_date(
+        user_id: int,
+        active_plan: StudyPlan,
+        target_date: date,
+    ) -> Mission:
+        """Generate a deterministic Revision-stage mission for a date.
+
+        Never selects unread syllabus topics. Never falls back to Topic 1 /
+        ``current_stage`` learning copy. Uses fixed rule rotation by date.
+        """
+        day_type = PlanningService._get_day_type(target_date)
+        study_minutes = (
+            active_plan.weekday_study_minutes
+            if day_type == DayType.WEEKDAY
+            else active_plan.weekend_study_minutes
+        )
+        kind = _REVISION_MISSION_KINDS[
+            target_date.toordinal() % len(_REVISION_MISSION_KINDS)
+        ]
+        day_name = target_date.strftime("%A")
+        date_str = target_date.strftime("%b %d")
+        weak_label = LearningLifecycleService.weakest_completed_topic_label(user_id)
+        title, tasks_data = PlanningService._revision_mission_content(
+            kind=kind,
+            study_minutes=study_minutes,
+            day_name=day_name,
+            date_str=date_str,
+            weak_label=weak_label,
+        )
+        subject_id = PlanningService._get_or_create_default_subject(user_id)
+        mission = MissionService.create_mission(
+            user_id=user_id,
+            subject_id=subject_id,
+            mission_date=target_date,
+            title=title,
+            tasks=tasks_data,
+            study_plan_id=active_plan.id,
+        )
+        logger.info(
+            "Generated revision mission %s kind=%s for user %s on %s",
+            mission.id,
+            kind,
+            user_id,
+            target_date,
+        )
         return mission
+
+    @staticmethod
+    def _revision_mission_content(
+        *,
+        kind: str,
+        study_minutes: int,
+        day_name: str,
+        date_str: str,
+        weak_label: str | None,
+    ) -> tuple[str, list[dict]]:
+        """Build title and tasks for a revision mission kind."""
+        focus_mins = max(20, int(study_minutes * 0.55))
+        support_mins = max(10, study_minutes - focus_mins)
+        topic_focus = weak_label or "a previously completed topic"
+
+        if kind == "practice_questions":
+            title = f"Revision: Practice Questions — {day_name}, {date_str}"
+            tasks = [
+                {
+                    "title": "Complete 20 practice questions",
+                    "description": (
+                        f"Work through about 20 practice questions across the "
+                        f"syllabus for about {focus_mins} minutes. Focus on "
+                        f"accuracy and exam technique, not new coverage."
+                    ),
+                    "order": 0,
+                },
+                {
+                    "title": "Review solutions",
+                    "description": (
+                        f"Spend about {support_mins} minutes reviewing solutions "
+                        "and noting recurring gaps."
+                    ),
+                    "order": 1,
+                },
+            ]
+        elif kind == "mixed_quiz":
+            title = f"Revision: Mixed-Topic Quiz — {day_name}, {date_str}"
+            tasks = [
+                {
+                    "title": "Attempt one mixed-topic quiz",
+                    "description": (
+                        f"Complete one mixed-topic quiz for about {focus_mins} "
+                        "minutes to consolidate across the syllabus."
+                    ),
+                    "order": 0,
+                },
+                {
+                    "title": "Mark and reflect",
+                    "description": (
+                        f"Spend about {support_mins} minutes marking answers and "
+                        "listing topics to revisit."
+                    ),
+                    "order": 1,
+                },
+            ]
+        elif kind == "weakest_topic":
+            title = f"Revision: Review Weakest Topic — {day_name}, {date_str}"
+            tasks = [
+                {
+                    "title": f"Review weakest topic: {topic_focus}",
+                    "description": (
+                        f"Spend about {focus_mins} minutes revising {topic_focus}, "
+                        "focusing on definitions, methods, and typical exam traps."
+                    ),
+                    "order": 0,
+                },
+                {
+                    "title": "Targeted practice",
+                    "description": (
+                        f"Spend about {support_mins} minutes on practice questions "
+                        f"for {topic_focus}."
+                    ),
+                    "order": 1,
+                },
+            ]
+        elif kind == "formulae":
+            title = f"Revision: Recall Important Formulae — {day_name}, {date_str}"
+            tasks = [
+                {
+                    "title": "Recall important formulae",
+                    "description": (
+                        f"Spend about {focus_mins} minutes recalling and writing "
+                        "down key formulae, definitions, and results without notes."
+                    ),
+                    "order": 0,
+                },
+                {
+                    "title": "Check and close gaps",
+                    "description": (
+                        f"Spend about {support_mins} minutes checking against "
+                        "your notes and correcting any gaps."
+                    ),
+                    "order": 1,
+                },
+            ]
+        else:  # timed_practice
+            title = f"Revision: Timed Practice Session — {day_name}, {date_str}"
+            tasks = [
+                {
+                    "title": "Complete one timed practice session",
+                    "description": (
+                        f"Work under timed conditions for about {focus_mins} "
+                        "minutes on exam-style questions."
+                    ),
+                    "order": 0,
+                },
+                {
+                    "title": "Review timing and accuracy",
+                    "description": (
+                        f"Spend about {support_mins} minutes reviewing where time "
+                        "or accuracy slipped."
+                    ),
+                    "order": 1,
+                },
+            ]
+        return title, tasks
 
     @staticmethod
     def _get_day_type(target_date: date) -> DayType:
