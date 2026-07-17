@@ -32,7 +32,7 @@ class TestWelcomeService:
         assert response.status_code == 200
         body = response.get_data(as_text=True)
         assert "Welcome to Kwalitec" in body
-        assert "Start Studying" in body
+        assert "Start Study Session" in body
         assert "welcome-modal" in body
 
     def test_dashboard_hides_welcome_when_dismissed(self, logged_in_client, user):

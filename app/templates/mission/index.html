@@ -1,10 +1,11 @@
 {% extends "layouts/base.html" %}
 
 {% block content %}
+{% from "partials/contextual_help.html" import help_tip, learn_more %}
 <section class="section-header">
     <p class="section-eyebrow">{% if is_revision|default(false) %}{{ revision_workspace_label }}{% else %}{{ learning_workspace_label }}{% endif %}</p>
     <h1 class="section-title">{% if is_revision|default(false) %}Today's Revision Session{% else %}Today's Study Session{% endif %}</h1>
-    <p class="section-description">{% if is_revision|default(false) %}Consolidate completed syllabus material and prepare for the examination.{% else %}Your focused study session for today — one clear objective at a time.{% endif %}</p>
+    <p class="section-description">{% if is_revision|default(false) %}Consolidate completed material for the exam.{% else %}One focused objective for today.{% endif %}</p>
 </section>
 
 {% if study_tip %}
@@ -38,7 +39,7 @@
                 {{ today_mission.title }}
             </h2>
             {% if active_study_plan %}
-            <p class="text-muted small mb-0 mt-2">Study plan: {{ active_study_plan.exam_name }}</p>
+            <p class="text-muted small mb-0 mt-2">{{ active_study_plan.exam_name }}</p>
             {% endif %}
         </div>
 
@@ -94,20 +95,23 @@
             <div>
                 {% if mission_narrative %}
                 <span class="mission-hero-why-label">Why you are studying this</span>
-                <p class="mission-hero-why-text mb-2">{{ mission_narrative.reason_for_selection }}</p>
-                <p class="small mb-1"><strong>Learning objective:</strong> {{ mission_narrative.educational_purpose }}</p>
                 <p class="small mb-2"><strong>Next step:</strong> {{ mission_narrative.next_action }}</p>
+                {% call learn_more('Session guidance') %}
+                <p class="mb-2">{{ mission_narrative.reason_for_selection }}</p>
+                <p class="mb-2"><strong>Learning objective:</strong> {{ mission_narrative.educational_purpose }}</p>
                 {% from "partials/educational_explainability.html" import explainability_block %}
                 {{ explainability_block(
                     observed_facts=mission_narrative.observed_facts,
                     estimates=mission_narrative.estimates
                 ) }}
                 {% if coverage_narrative %}
-                <p class="small text-muted mt-2 mb-0">{{ coverage_narrative.evidence_basis }}</p>
+                <p class="mb-0">{{ coverage_narrative.evidence_basis }}</p>
                 {% endif %}
+                {% endcall %}
                 {% else %}
                 <span class="mission-hero-why-label">Why you are studying this</span>
-                <p class="mission-hero-why-text">
+                {% call learn_more("How today's session is chosen") %}
+                <p class="mb-0">
                     {% if is_revision|default(false) %}
                     In Revision Mode, today's session consolidates the completed syllabus —
                     practice, mixed review, and examination readiness — not new Topic 1 coverage.
@@ -116,6 +120,7 @@
                     in this study plan — the next syllabus topic you have not yet completed studying.
                     {% endif %}
                 </p>
+                {% endcall %}
                 {% endif %}
             </div>
         </div>
@@ -134,9 +139,7 @@
                 <li class="small text-secondary mb-1">□ {{ activity }}</li>
                 {% endfor %}
             </ul>
-            <p class="small text-muted mt-3 mb-0">
-                These are study prompts — not scored practice. Question results can be added in a later step.
-            </p>
+            {{ help_tip('These are study prompts — not scored practice. Question results can be added in a later step.', 'Activity guidance') }}
         </div>
         {% endif %}
 
@@ -175,7 +178,7 @@
 {% if missions and missions|length > 0 %}
 <section class="mb-4">
     <div class="d-flex align-items-center justify-content-between mb-3">
-        <h2 class="card-section-header mb-0">Study Session History</h2>
+        <h2 class="card-section-header mb-0">Session History</h2>
         <span class="badge rounded-pill bg-light text-muted border">{{ missions|length }} total</span>
     </div>
 
@@ -215,8 +218,8 @@
         {% from "partials/empty_state.html" import educational_empty %}
         {% if active_study_plan %}
         {{ educational_empty(
-            "No Study Session Yet",
-            "Today's study session will appear here once available. Check back shortly, or open your study plan to review your curriculum roadmap.",
+            "No study session yet",
+            "Today's session will appear here shortly. Meanwhile, review your study plan.",
             "Open Study Plan",
             url_for("study_plan.index"),
             "mission"
@@ -224,7 +227,7 @@
         {% else %}
         {{ educational_empty(
             "No Study Plan",
-            "Create your first study plan to receive daily study sessions and track your progress.",
+            "Create a study plan to receive daily study sessions and personalised recommendations.",
             "Create Study Plan",
             url_for("study_plan.wizard_step", step=1),
             "mission"

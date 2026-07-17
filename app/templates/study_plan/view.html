@@ -2,18 +2,20 @@
 {% set title = 'Study Plan' %}
 
 {% block content %}
-<div class="container-md py-4">
-    <!-- Header -->
-    <div class="d-flex justify-content-between align-items-start mb-4">
+<section class="section-header">
+    <p class="section-eyebrow">{{ learning_workspace_label }}</p>
+    <div class="section-header-row">
         <div>
-            <h1 class="display-6 fw-bold mb-2">Study Plan</h1>
-            <p class="lead text-secondary mb-0">{{ study_plan.exam_name }} · {{ study_plan.exam_sitting }}</p>
+            <h1 class="section-title">{{ study_plan.exam_name }}</h1>
+            <p class="section-description mb-0">{{ study_plan.exam_sitting }}</p>
         </div>
         <span class="badge rounded-pill text-bg-{% if study_plan.active %}success{% else %}secondary{% endif %} fs-6 px-3 py-2">
             {% if study_plan.active %}Active{% else %}Inactive{% endif %}
         </span>
     </div>
+</section>
 
+<div class="container-md px-0">
     <!-- Summary Bar -->
     <div class="row g-3 mb-4">
         <div class="col-6 col-md-3">
@@ -233,29 +235,29 @@
     {% endif %}
 
     <!-- Actions -->
-    <div class="d-flex gap-2 flex-wrap mt-4">
+    <div class="page-actions mt-4 mb-2">
         <a href="{{ url_for('study_plan.edit_plan', study_plan_id=study_plan.id) }}" class="btn btn-primary">
-            Edit Plan
+            Edit
         </a>
         {% if not study_plan.active %}
         <form method="POST" action="{{ url_for('study_plan.set_active_plan', study_plan_id=study_plan.id) }}" class="d-inline">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-            <button type="submit" class="btn btn-success">Set Active</button>
+            <button type="submit" class="btn btn-outline-secondary">Set Active</button>
         </form>
         {% endif %}
         <form method="POST" action="{{ url_for('study_plan.archive_plan', study_plan_id=study_plan.id) }}" class="d-inline" onsubmit="return confirm('Archive this study plan? It will be removed from active scheduling but preserved for historical reference.');">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-            <button type="submit" class="btn btn-warning">Archive</button>
+            <button type="submit" class="btn btn-link-tertiary">Archive</button>
         </form>
         <form method="POST" action="{{ url_for('study_plan.delete_plan', study_plan_id=study_plan.id) }}" class="d-inline" onsubmit="return confirm('Delete this study plan\'s schedule and planning settings? Your learning progress and study history will be preserved. This cannot be undone for the plan itself.');">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-            <button type="submit" class="btn btn-danger">Delete</button>
+            <button type="submit" class="btn btn-link-tertiary">Delete</button>
         </form>
-        <a href="{{ url_for('study_plan.list_plans') }}" class="btn btn-secondary ms-auto">
-            All Study Plans
+        <a href="{{ url_for('study_plan.list_plans') }}" class="btn btn-link-tertiary ms-auto">
+            All Plans
         </a>
-        <a href="{{ url_for('dashboard.index') }}" class="btn btn-outline-primary">
-            Back to Dashboard
+        <a href="{{ url_for('dashboard.index') }}" class="btn btn-link-tertiary">
+            Dashboard
         </a>
     </div>
 </div>

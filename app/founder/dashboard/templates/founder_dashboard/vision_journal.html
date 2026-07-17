@@ -9,17 +9,17 @@
 
 <section class="section-header founder-header">
     <p class="section-eyebrow">{{ founder_command_centre_label }} / Vision Journal</p>
-    <h1 class="section-title">Vision Journal</h1>
-    <p class="section-description">
-        Structured strategic memory for product ideas — before architecture or implementation.
-    </p>
+    <div class="section-header-row">
+        <div>
+            <h1 class="section-title">Vision Journal</h1>
+            <p class="section-description mb-0">Strategic product ideas before architecture.</p>
+        </div>
+        <a class="btn btn-primary" href="{{ url_for('founder_dashboard.vision_new') }}">New entry</a>
+    </div>
 </section>
 
 <section class="mb-3 d-flex flex-wrap gap-2 align-items-center justify-content-between">
-    <div class="d-flex flex-wrap gap-2">
-        <a class="btn btn-sm btn-primary" href="{{ url_for('founder_dashboard.vision_new') }}">New entry</a>
-        <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('founder_dashboard.vision_timeline') }}">Timeline</a>
-    </div>
+    <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('founder_dashboard.vision_timeline') }}">Timeline</a>
     <div class="d-flex flex-wrap gap-2">
         <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('founder_dashboard.vision_export', fmt='markdown') }}{% if request.query_string %}?{{ request.query_string.decode('utf-8') }}{% endif %}">Export MD</a>
         <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('founder_dashboard.vision_export', fmt='json') }}{% if request.query_string %}?{{ request.query_string.decode('utf-8') }}{% endif %}">Export JSON</a>
@@ -119,7 +119,17 @@
     </ul>
     <p class="small text-muted mt-3 mb-0">{{ entries|length }} entr{% if entries|length == 1 %}y{% else %}ies{% endif %}</p>
     {% else %}
-    <p class="text-muted mb-0">No vision entries match these filters. Create the first idea to begin the strategic memory.</p>
+    <div class="empty-state py-4">
+        {% if request.args.get('q') or request.args.get('category') or request.args.get('status') or request.args.get('target_version') or request.args.get('tag') or request.args.get('author') %}
+        <h3 class="empty-title">No matching Vision entries</h3>
+        <p class="empty-description">Clear filters or create a new entry.</p>
+        <a class="btn btn-outline-secondary mt-3" href="{{ url_for('founder_dashboard.vision_journal') }}">Clear filters</a>
+        {% else %}
+        <h3 class="empty-title">No Vision entries yet</h3>
+        <p class="empty-description">Capture the first strategic idea to begin the Vision Journal.</p>
+        <a class="btn btn-primary mt-3" href="{{ url_for('founder_dashboard.vision_new') }}">New entry</a>
+        {% endif %}
+    </div>
     {% endif %}
 </section>
 {% endblock %}

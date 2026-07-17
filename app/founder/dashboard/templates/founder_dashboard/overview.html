@@ -11,8 +11,7 @@
     <p class="section-eyebrow">{{ founder_command_centre_label }} · Internal Alpha · v{{ overview.app_version }} · {{ overview.build_number }}</p>
     <h1 class="section-title">Overview</h1>
     <p class="section-description">
-        Last refreshed: {{ overview.refreshed_at }} · Timezone: {{ overview.timezone_policy }}
-        · Alpha {{ overview.alpha_version }}{% if not overview.alpha_enabled %} (disabled){% endif %}
+        Operational pulse · {{ overview.refreshed_at }} · {{ overview.timezone_policy }}
     </p>
 </section>
 
@@ -180,7 +179,7 @@
                 </div>
             </div>
             <p class="small text-muted mb-0 mt-3">
-                Source: live Product Check-in records.
+                Live Product Check-in records.
                 <a href="{{ url_for('founder_dashboard.internal_alpha') }}">Internal Alpha</a>
             </p>
         </div>
@@ -247,7 +246,7 @@
                         {% endfor %}
                     </ul>
                     {% else %}
-                    <p class="text-muted mb-0 small">No entries yet.</p>
+                    <p class="text-muted mb-0 small">No Vision entries yet. <a href="{{ url_for('founder_dashboard.vision_new') }}">New entry</a></p>
                     {% endif %}
                 </div>
             </div>
@@ -268,7 +267,7 @@
                         {% endfor %}
                     </ul>
                     {% else %}
-                    <p class="text-muted mb-0 small">None awaiting.</p>
+                    <p class="text-muted mb-0 small">None awaiting validation.</p>
                     {% endif %}
                 </div>
             </div>

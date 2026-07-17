@@ -5,14 +5,13 @@
 {% endblock %}
 
 {% block content %}
+{% from "partials/contextual_help.html" import learn_more %}
 {% include "founder_dashboard/_nav.html" %}
 
 <section class="section-header founder-header">
     <p class="section-eyebrow">{{ founder_command_centre_label }} / Internal Alpha</p>
     <h1 class="section-title">Internal Alpha</h1>
-    <p class="section-description">
-        Programme health from live Product Check-ins (operational source of truth).
-    </p>
+    <p class="section-description">Programme health from live Product Check-ins.</p>
 </section>
 
 <section class="mb-4" aria-label="Live programme metrics">
@@ -108,10 +107,13 @@
     <h2 class="founder-section-title">Offline week processing</h2>
     <div class="command-card">
         <div class="command-card-body">
-            <p class="text-muted mb-0">
+            <p class="mb-0">Programme metrics above use live Product Check-in records.</p>
+            {% call learn_more('About the offline pipeline') %}
+            <p class="mb-0">
                 Secondary filesystem week pipeline is not wired into HTTP.
                 Programme metrics above use live Product Check-in records only.
             </p>
+            {% endcall %}
         </div>
     </div>
 </section>

@@ -2979,3 +2979,108 @@ body.welcome-open {
         padding: var(--space-xl);
     }
 }
+
+/* ── Contextual help (V1SP-001E progressive disclosure) ──────────────── */
+.ctx-help {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 0.25rem;
+    vertical-align: middle;
+}
+
+.ctx-help-trigger {
+    align-items: center;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    color: var(--color-text-muted);
+    cursor: help;
+    display: inline-flex;
+    font-size: 0.85rem;
+    justify-content: center;
+    line-height: 1;
+    min-height: 1.5rem;
+    min-width: 1.5rem;
+    padding: 0.1rem;
+}
+
+.ctx-help-trigger:hover,
+.ctx-help-trigger:focus-visible {
+    border-color: var(--color-border);
+    color: var(--color-text-secondary);
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+}
+
+.ctx-help-glyph {
+    font-style: normal;
+    font-weight: var(--font-weight-semibold);
+}
+
+.ctx-learn-more {
+    margin-top: var(--space-sm);
+}
+
+.ctx-learn-more-summary {
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    font-size: var(--font-sm);
+    font-weight: var(--font-weight-medium);
+    list-style: none;
+}
+
+.ctx-learn-more-summary::-webkit-details-marker {
+    display: none;
+}
+
+.ctx-learn-more-summary::before {
+    content: "▸ ";
+    color: var(--color-text-muted);
+}
+
+.ctx-learn-more[open] > .ctx-learn-more-summary::before {
+    content: "▾ ";
+}
+
+.ctx-learn-more-summary:focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+}
+
+.ctx-learn-more-body {
+    color: var(--color-text-secondary);
+    font-size: var(--font-sm);
+    margin-top: var(--space-sm);
+    max-width: 40rem;
+}
+
+.section-header-row {
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    justify-content: space-between;
+}
+
+.section-header-row .section-title {
+    margin-bottom: var(--space-sm);
+}
+
+.page-actions {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+}
+
+.page-actions .btn-link-tertiary {
+    color: var(--color-text-secondary);
+    font-size: var(--font-sm);
+    text-decoration: none;
+}
+
+.page-actions .btn-link-tertiary:hover,
+.page-actions .btn-link-tertiary:focus-visible {
+    color: var(--color-brand);
+    text-decoration: underline;
+}

@@ -1,6 +1,7 @@
 {% extends "layouts/base.html" %}
 
 {% block content %}
+{% from "partials/contextual_help.html" import help_tip, learn_more %}
 {# PTP-004 Information Architecture — decision order, not visual redesign.
    1. Today's Study Session
    2. Progress through Study Plan
@@ -14,9 +15,9 @@
     <p class="section-eyebrow">{% if is_revision %}{{ revision_workspace_label }}{% else %}{{ learning_workspace_label }}{% endif %}</p>
     <h1 class="section-title">{{ student_dashboard_label }}</h1>
     {% if is_revision %}
-    <p class="section-description">Consolidate what you have studied and prepare for the examination.</p>
+    <p class="section-description">Consolidate what you studied and prepare for the exam.</p>
     {% else %}
-    <p class="section-description">What to study, whether you are on track, and whether anything needs attention.</p>
+    <p class="section-description">What to study today, and whether you are on track.</p>
     {% endif %}
 </section>
 
@@ -28,10 +29,12 @@
                 <span aria-hidden="true">✓</span> {{ lifecycle.acknowledgement_title }}
             </p>
             <p class="small mb-2" style="color: var(--color-text-secondary);">{{ lifecycle.acknowledgement_body }}</p>
-            <p class="small text-muted mb-3">{{ revision_intro }}</p>
-            <form method="POST" action="{{ url_for('dashboard.acknowledge_revision') }}" class="m-0">
+            {% call learn_more('About Revision') %}
+            <p class="mb-0">{{ revision_intro }}</p>
+            {% endcall %}
+            <form method="POST" action="{{ url_for('dashboard.acknowledge_revision') }}" class="m-0 mt-3">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                <button type="submit" class="btn btn-sm btn-outline-secondary">Continue</button>
+                <button type="submit" class="btn btn-sm btn-primary">Continue</button>
             </form>
         </div>
     </div>
@@ -74,8 +77,10 @@
                 <span class="command-metric-value">{{ today_mission.title }}</span>
             </div>
             {% if mission_narrative %}
-            <p class="small text-muted mb-0 mt-2">{{ mission_narrative.reason_for_selection }}</p>
-            <p class="small mb-0 mt-1"><strong>Next step:</strong> {{ mission_narrative.next_action }}</p>
+            <p class="small mb-0 mt-2"><strong>Next step:</strong> {{ mission_narrative.next_action }}</p>
+            {% call learn_more('Why this session') %}
+            <p class="mb-0">{{ mission_narrative.reason_for_selection }}</p>
+            {% endcall %}
             {% endif %}
             {% if active_study_plan %}
             <div class="command-metric mt-2">
@@ -90,7 +95,7 @@
                 {% if today_mission.status == 'In Progress' %}
                     Resume Study Session
                 {% elif today_mission.status == 'Completed' %}
-                    Review Today's Study Session
+                    Review Session
                 {% else %}
                     Start Study Session
                 {% endif %}
@@ -99,15 +104,14 @@
         {% elif active_study_plan %}
         <div class="command-card-body">
             <div class="empty-state py-3">
-                <p class="text-muted small mb-0">Today's study session will appear here once available.</p>
-                <a href="{{ url_for('mission.missions') }}" class="btn btn-primary mt-3" data-ptp004-cta="primary">Open Today's Study Session</a>
+                <p class="text-muted small mb-0">No study session yet for today.</p>
+                <a href="{{ url_for('mission.missions') }}" class="btn btn-primary mt-3" data-ptp004-cta="primary">Open Session</a>
             </div>
         </div>
         {% else %}
         <div class="command-card-body">
             <div class="empty-state py-3">
-                <p class="text-muted small mb-0">Today's study session will appear here once your study plan is ready.</p>
-                <a href="{{ url_for('study_plan.wizard_step', step=1) }}" class="btn btn-sm btn-primary mt-3">Create Study Plan</a>
+                <p class="text-muted small mb-0">Create a study plan to unlock today's session.</p>
             </div>
         </div>
         {% endif %}
@@ -146,7 +150,7 @@
                     <li class="mb-1">Revision Streak · {% if lifecycle.revision_metrics.revision_streak is not none %}{{ lifecycle.revision_metrics.revision_streak }} day{{ 's' if lifecycle.revision_metrics.revision_streak != 1 else '' }}{% else %}—{% endif %}</li>
                     <li class="mb-0">Mixed Quiz Attempts · {% if lifecycle.revision_metrics.mixed_quiz_attempts is not none %}{{ lifecycle.revision_metrics.mixed_quiz_attempts }}{% else %}—{% endif %}</li>
                 </ul>
-                <p class="small mt-2 mb-0 text-muted">Metrics show observed revision activity only. Em dashes mean no recorded activity yet.</p>
+                {{ help_tip('Metrics show observed revision activity only. Em dashes mean no recorded activity yet.', 'Revision metrics help') }}
             </div>
             {% elif readiness_summary %}
             <div class="command-card-body">
@@ -164,9 +168,9 @@
                 {% endif %}
                 {% if coverage_narrative %}
                 <p class="small mb-1" style="color: var(--color-text-secondary);">{{ coverage_narrative.explanation }}</p>
-                <p class="small mb-0 text-muted">{{ coverage_narrative.evidence_basis }}</p>
+                {{ help_tip(coverage_narrative.evidence_basis, 'Coverage basis') }}
                 {% else %}
-                <p class="small mt-2 mb-0 text-muted">{{ readiness_summary.explanation }}</p>
+                {{ help_tip(readiness_summary.explanation, 'Progress help') }}
                 {% endif %}
             </div>
             {% elif curriculum_summary %}
@@ -181,13 +185,12 @@
                 <p class="small mt-3 mb-1" style="color: var(--color-text-secondary);">
                     {{ curriculum_summary.completed_topics }} of {{ curriculum_summary.total_topics }} topics completed studying
                 </p>
-                <p class="small mb-0 text-muted">Study Progress from completed topics — not Estimated Knowledge.</p>
+                {{ help_tip('Study Progress from completed topics — not Estimated Knowledge.', 'Progress vs knowledge') }}
             </div>
             {% else %}
             <div class="command-card-body">
                 <div class="empty-state py-3">
-                    <p class="text-muted small mb-0">Create your first study plan to see progress through the syllabus.</p>
-                    <a href="{{ url_for('study_plan.wizard_step', step=1) }}" class="btn btn-sm btn-primary mt-3">Create Study Plan</a>
+                    <p class="text-muted small mb-0">No progress yet. Create a study plan to track syllabus coverage.</p>
                 </div>
             </div>
             {% endif %}
@@ -209,27 +212,31 @@
             <div class="command-card-body">
                 <div class="d-flex align-items-end gap-3 mb-3">
                     <span class="command-hero-value" style="color: var(--color-brand);" data-ptp004-metric="estimated-knowledge">{{ readiness.avg_mastery|int }}%</span>
-                    <span class="command-hero-label" style="margin-bottom: 4px;">Avg. Estimated Knowledge</span>
+                    <span class="command-hero-label" style="margin-bottom: 4px;">
+                        Avg. Estimated Knowledge
+                        {{ help_tip('Based on your recorded practice outcomes.', 'Estimated Knowledge basis') }}
+                    </span>
                 </div>
                 <div class="progress" role="progressbar" aria-valuenow="{{ readiness.avg_mastery|int }}" aria-valuemin="0" aria-valuemax="100" style="height: 10px;">
                     <div class="progress-bar" style="width: {{ readiness.avg_mastery }}%; background: var(--color-brand);"></div>
                 </div>
-                <p class="small mt-3 mb-1" style="color: var(--color-text-secondary);">
+                <p class="small mt-3 mb-0" style="color: var(--color-text-secondary);">
                     Across {{ readiness.topics_started }} topic{{ 's' if readiness.topics_started != 1 else '' }} with recorded practice.
                 </p>
-                <p class="small mb-0 text-muted">{{ pcs.ESTIMATED_KNOWLEDGE_BASIS }}</p>
             </div>
             {% elif readiness_narrative and readiness_narrative.can_estimate %}
             <div class="command-card-body">
                 <div class="d-flex align-items-end gap-3 mb-3">
                     <span class="command-hero-value" style="color: var(--color-brand);" data-ptp004-metric="estimated-readiness">{{ readiness_narrative.percentage|int }}%</span>
-                    <span class="command-hero-label" style="margin-bottom: 4px;">{{ readiness_narrative.label }}</span>
+                    <span class="command-hero-label" style="margin-bottom: 4px;">
+                        {{ readiness_narrative.label }}
+                        {{ help_tip(readiness_narrative.evidence_basis, 'Estimate basis') }}
+                    </span>
                 </div>
                 <div class="progress" role="progressbar" aria-valuenow="{{ readiness_narrative.percentage|int }}" aria-valuemin="0" aria-valuemax="100" style="height: 10px;">
                     <div class="progress-bar" style="width: {{ readiness_narrative.percentage }}%; background: var(--color-brand);"></div>
                 </div>
-                <p class="small mt-3 mb-1" style="color: var(--color-text-secondary);">{{ readiness_narrative.explanation }}</p>
-                <p class="small mb-0 text-muted">{{ readiness_narrative.evidence_basis }}</p>
+                <p class="small mt-3 mb-0" style="color: var(--color-text-secondary);">{{ readiness_narrative.explanation }}</p>
             </div>
             {% else %}
             <div class="command-card-body">
@@ -255,9 +262,9 @@
             <div>
                 <h2 class="h6 fw-semibold mb-1">
                     {% if burnout_status.risk_level == 'high' %}Study Pattern Notice{% else %}Study Load Notice{% endif %}
+                    {{ help_tip('Based on recent study activity patterns — not a prediction of burnout or exam outcome.', 'Study pattern notice') }}
                 </h2>
                 <p class="mb-2 small">{{ burnout_status.explanation }}</p>
-                <p class="mb-2 small text-muted">Based on recent study activity patterns — not a prediction of burnout or exam outcome.</p>
                 {% if burnout_status.indicators %}
                 <div>
                     {% for indicator in burnout_status.indicators %}
@@ -289,24 +296,25 @@
         {% if ei_card.subtitle %}
         <p class="ei-rec-subtitle">{{ ei_card.subtitle }}</p>
         {% endif %}
+        {% if ei_card.next_action %}
+        <p class="small mb-2"><strong>Next step:</strong> {{ ei_card.next_action }}</p>
+        {% endif %}
+        {% call learn_more('Why this recommendation') %}
         {% from "partials/educational_explainability.html" import explainability_block %}
         {{ explainability_block(
             observed_facts=ei_card.observed_facts,
             estimates=ei_card.estimates,
             educational_advice=ei_card.educational_advice or ei_card.reason_summary,
-            next_action=ei_card.next_action
+            next_action=none
         ) }}
+        {% endcall %}
         {% if ei_card.estimated_duration %}
         <p class="ei-rec-meta">{{ ei_card.estimated_duration }}</p>
         {% endif %}
         {% if ei_card.warning %}
         <p class="ei-rec-warning">{{ ei_card.warning }}</p>
         {% endif %}
-        {% if ei_card.show_start_button and ei_card.primary_action %}
-        <a href="{{ url_for('mission.missions') }}" class="btn btn-primary mt-2">
-            {{ ei_card.primary_action }}
-        </a>
-        {% endif %}
+        {# V1SP-001E: primary session CTA already opens missions — no duplicate button. #}
     </div>
 </div>
 {% endif %}
@@ -316,8 +324,8 @@
     <div class="card-body">
         {% from "partials/empty_state.html" import educational_empty %}
         {{ educational_empty(
-            "No Recommendations Yet",
-            "Complete your setup to receive your first recommendation.",
+            "No recommendations yet",
+            "Create a study plan to receive your first recommendation.",
             "Create Study Plan",
             url_for("study_plan.wizard_step", step=1),
             "recommendation"
@@ -340,19 +348,22 @@
                     </span>
                 </div>
                 <span class="badge rounded-pill bg-light text-secondary border small mb-2">{{ rec.category }}</span>
+                {% if rec.next_action %}
+                <p class="small mb-2"><strong>Next step:</strong> {{ rec.next_action }}</p>
+                {% endif %}
+                {% call learn_more('Details') %}
                 {% from "partials/educational_explainability.html" import explainability_block %}
                 {{ explainability_block(
                     observed_facts=rec.observed_facts,
                     estimates=rec.estimates,
                     educational_advice=rec.educational_advice or rec.reason,
-                    next_action=rec.next_action
+                    next_action=none
                 ) }}
                 {% if not rec.observed_facts and not rec.educational_advice %}
-                <div class="small text-muted">
-                    <p class="mb-1"><strong class="text-body">Why:</strong> {{ rec.reason }}</p>
-                    <p class="mb-0"><strong class="text-body">Benefit:</strong> {{ rec.expected_benefit }}</p>
-                </div>
+                <p class="mb-1"><strong class="text-body">Why:</strong> {{ rec.reason }}</p>
+                <p class="mb-0"><strong class="text-body">Benefit:</strong> {{ rec.expected_benefit }}</p>
                 {% endif %}
+                {% endcall %}
             </div>
             {% endfor %}
         </div>
@@ -427,8 +438,7 @@
             </div>
             {% else %}
             <div class="command-card-body">
-                <p class="text-muted small mb-0">Create your first study plan to see your exam timeline.</p>
-                <a href="{{ url_for('study_plan.wizard_step', step=1) }}" class="btn btn-sm btn-primary mt-3">Create Study Plan</a>
+                <p class="text-muted small mb-0">Exam timeline appears after you create a study plan.</p>
             </div>
             {% endif %}
         </div>
@@ -473,13 +483,13 @@
             {% elif active_study_plan %}
             <div class="command-card-body">
                 <div class="empty-state py-3">
-                    <p class="text-muted small mb-0">Time guidance will appear once your study plan is active.</p>
+                    <p class="text-muted small mb-0">Time status appears once your plan is active.</p>
                 </div>
             </div>
             {% else %}
             <div class="command-card-body">
                 <div class="empty-state py-3">
-                    <p class="text-muted small mb-0">Create a study plan to see how your study hours align with the exam.</p>
+                    <p class="text-muted small mb-0">Create a study plan to see remaining study hours.</p>
                 </div>
             </div>
             {% endif %}
@@ -514,7 +524,7 @@
                 </div>
                 {% else %}
                 <div class="empty-state py-3">
-                    <p class="text-muted small mb-0">Strong estimated knowledge appears here as practice results accumulate.</p>
+                    <p class="text-muted small mb-0">{{ pcs.ESTIMATED_KNOWLEDGE_EMPTY_STRONG }}</p>
                 </div>
                 {% endif %}
             </div>

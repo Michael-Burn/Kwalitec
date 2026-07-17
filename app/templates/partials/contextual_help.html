@@ -1,0 +1,28 @@
+{# V1SP-001E — Progressive disclosure helpers.
+   Prefer help_tip for one-sentence honesty / basis notes.
+   Prefer learn_more for multi-line guidance that must remain available.
+#}
+
+{% macro help_tip(text, label='More information') -%}
+<span class="ctx-help">
+    <button
+        type="button"
+        class="ctx-help-trigger"
+        aria-label="{{ label }}"
+        title="{{ text }}"
+    >
+        <span class="ctx-help-glyph" aria-hidden="true">ⓘ</span>
+    </button>
+    <span class="visually-hidden">{{ text }}</span>
+</span>
+{%- endmacro %}
+
+
+{% macro learn_more(summary='Learn more') -%}
+<details class="ctx-learn-more">
+    <summary class="ctx-learn-more-summary">{{ summary }}</summary>
+    <div class="ctx-learn-more-body">
+        {{ caller() }}
+    </div>
+</details>
+{%- endmacro %}
