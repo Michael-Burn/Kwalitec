@@ -36,6 +36,8 @@ Live learner event coordination delivered by **Learning Orchestrator** (`app/dom
 
 Founder curriculum readiness delivered by **Curriculum Studio** (`app/domain/curriculum_studio/`, `app/application/curriculum_studio/`) — thin orchestration over Management/Ingestion/Platform ports, workflow, checklist, preview, versioning, dashboard, and structural diffs (UI deferred); see [`CURRICULUM_STUDIO.md`](CURRICULUM_STUDIO.md).
 
+Production integration foundation delivered by **V2-017** (`app/infrastructure/`) — port adapters, persistence contracts, integration events, observability; see [`PRODUCTION_INTEGRATION.md`](PRODUCTION_INTEGRATION.md) · [`AUTHORITY_MATRIX.md`](AUTHORITY_MATRIX.md) · ADR-005/006/007.
+
 Documentation authority consolidated by **V2-013 P0.1 — Digital Twin Documentation Authority**.
 
 ---
@@ -52,6 +54,8 @@ knowledge/version2/
 ├── CURRICULUM_MANAGEMENT.md        ← Curriculum Management
 ├── CURRICULUM_INGESTION.md         ← Curriculum Ingestion
 ├── CURRICULUM_STUDIO.md            ← Curriculum Studio (Founder readiness)
+├── PRODUCTION_INTEGRATION.md       ← V2-017 infrastructure adapters / persistence
+├── AUTHORITY_MATRIX.md             ← Cross-context authority map
 ├── CURRICULUM_GRAPH.md / CURRICULUM_MODEL.md
 ├── STUDENT_DIGITAL_TWIN.md         ← Student Digital Twin (how)
 ├── DIGITAL_TWIN_PHILOSOPHY.md      ← Digital Twin Philosophy (why)
@@ -62,7 +66,10 @@ knowledge/version2/
 │   ├── ADR-001-Educational-Core.md
 │   ├── ADR-002-Instructional-Blueprint.md
 │   ├── ADR-003-Education-Platform.md
-│   └── ADR-004-Digital-Twin.md
+│   ├── ADR-004-Digital-Twin.md
+│   ├── ADR-005-Single-Next-Action-Authority.md
+│   ├── ADR-006-Authority-Boundaries.md
+│   └── ADR-007-Legacy-Retirement-Strategy.md
 ├── LEARNING_JOURNEY_*.md / LEARNING_SESSION_*.md / …
 └── … companion specs
 ```
@@ -86,10 +93,11 @@ Version 2
 │   └── Digital Twin Philosophy
 ├── Adaptive Decision Engine
 ├── Learning Orchestrator
+├── Production Integration (adapters / events / persistence)
 └── Architecture Decisions
 ```
 
-`ARCHITECTURE_DECISIONS/` is the Version 2 ADR folder (created by V2-013 P0.1). Do not invent parallel Twin law outside the Philosophy → Constitution → Architecture triad.
+`ARCHITECTURE_DECISIONS/` is the Version 2 ADR folder (created by V2-013 P0.1). Do not invent parallel Twin law outside the Philosophy → Constitution → Architecture triad. Next-action authority is ADR-005; cross-context ownership is [`AUTHORITY_MATRIX.md`](AUTHORITY_MATRIX.md).
 
 ---
 

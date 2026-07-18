@@ -33,10 +33,11 @@ PHASE I — CORE PLATFORM (COMPLETE)
 
 PHASE II — PRODUCT EXPERIENCE
   V2-016 Curriculum Studio
-  V2-017 Student Learning Experience
+  V2-017 Production Integration Foundation
+  V2-017B Student Learning Experience
 
 PHASE III — PRODUCTION
-  V2-018 Infrastructure Integration
+  V2-018 Infrastructure Deepening (ORM / cutover wiring)
 
 PHASE IV — INTELLIGENCE
   V2-019 Founder Intelligence
@@ -107,21 +108,51 @@ Authoring, review, and publication UI over Curriculum Management and Curriculum 
 
 ---
 
-### V2-017 — Student Learning Experience
+### V2-017 — Production Integration Foundation
 
 **Purpose**
 
-Student-facing product experience that exercises Journey, Session, Mission, Activity, Twin, and Orchestrator as one coherent learning path.
+Connect the framework-independent Version 2 application layer to production infrastructure through adapters, persistence contracts, integration events, and operational observability — without introducing educational logic into infrastructure.
+
+**Status:** ✓ Complete — [`PRODUCTION_INTEGRATION.md`](PRODUCTION_INTEGRATION.md), [`AUTHORITY_MATRIX.md`](AUTHORITY_MATRIX.md), ADR-005/006/007, `app/infrastructure/`
 
 **Depends on**
 
+- Phase I core engines (V2-003–015)
+- V2-016A/B Curriculum Studio application contracts
+
+**Expected outcomes**
+
+- Real port adapters under `app/infrastructure/adapters/`
+- Event model + schema versioning
+- Repository / unit-of-work / optimistic locking contracts
+- Authority Matrix + next-action authority (ADR-005)
+- Operational diagnostics (correlation, tracing, adapter metrics)
+
+**Must not**
+
+- Change domain educational algorithms or Twin/Adaptive policies
+- Introduce business rules into repositories
+- Bypass application ports from frameworks into engines
+
+---
+
+### V2-017B — Student Learning Experience
+
+**Purpose**
+
+Student-facing product experience that exercises Journey, Session, Mission, Activity, Twin, and Orchestrator as one coherent learning path — consuming V2-017 adapters.
+
+**Depends on**
+
+- V2-017 Production Integration Foundation
 - Phase I core engines (V2-003–015)
 - Product Strategy evidence gates
 
 **Expected outcomes**
 
 - Continuity of recommendation, session, and reflection
-- Explainable next-action surfaces grounded in Twin + Adaptive Decision outputs
+- Explainable next-action surfaces grounded in Twin state + Adaptive Decision authority (ADR-005)
 
 **Must not**
 
@@ -132,20 +163,21 @@ Student-facing product experience that exercises Journey, Session, Mission, Acti
 
 ## PHASE III — PRODUCTION
 
-### V2-018 — Infrastructure Integration
+### V2-018 — Infrastructure Deepening
 
 **Purpose**
 
-Wire Version 2 educational packages into persistence, application factory, and operational runtime so the core can run as a product service — still alongside Version 1 until explicit retirement.
+Deepen Version 2 persistence (ORM/Alembic where required), application factory wiring, and operational dual-run controls so the core runs as a product service alongside Version 1 until explicit retirement.
 
 **Depends on**
 
-- Phase I complete
-- Phase II product surfaces sufficiently defined for integration boundaries
+- V2-017 Production Integration Foundation
+- Phase II product surfaces sufficiently defined for cutover boundaries
 
 **Expected outcomes**
 
-- Persistence, startup, and deployment paths for Version 2 engines
+- Durable ORM mappings for priority aggregates
+- Startup / deployment paths for Version 2 engines
 - Safe dual-run / feature-flag coexistence with Version 1
 
 **Must not**
@@ -184,8 +216,8 @@ Explicit cutover from Version 1 educational runtime to Version 2 as the sole stu
 
 **Depends on**
 
-- V2-017 Student Learning Experience validated
-- V2-018 Infrastructure Integration production-ready
+- V2-017B Student Learning Experience validated
+- V2-017/V2-018 infrastructure dual-run production-ready
 - Product Strategy evidence gates
 
 **Expected outcomes**
