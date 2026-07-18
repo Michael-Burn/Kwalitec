@@ -45,6 +45,7 @@ knowledge/
 ├── releases/                 ← Implementation & verification reports (IAHF, V1SP, RC2)
 ├── research/                 ← Research Intelligence Programme
 ├── subsystems/               ← How major domains work
+├── version2/                 ← Version 2 Learning Journey educational architecture
 └── development/              ← Coding standards, AI workflow, glossary
 ```
 
@@ -52,6 +53,7 @@ knowledge/
 |---|---|
 | `architecture/` | Design Principles, POP-002 IA, ADRs — the **why** behind hard constraints |
 | `educational/` | Educational Constitution and governance law |
+| `version2/` | Version 2 Learning Journey architecture (V2-001+); concept authority for V2 implementation |
 | `product/roadmap/` | Product roadmap stub and post-RC2 planning artefacts (canonical path) |
 | `releases/` | Milestone implementation / verification reports for RC2 and IAHF |
 | `release/` | Version 1 RC1 certification and release-candidate records |

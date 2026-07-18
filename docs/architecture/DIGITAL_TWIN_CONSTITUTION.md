@@ -1,5 +1,31 @@
 # Constitution of the Kwalitec Digital Twin
 
+**Authority:** Normative  
+**Role:** Non-negotiable educational law for every Digital Twin implementation  
+
+---
+
+## Scope
+
+This Constitution governs every Digital Twin implementation described by:
+
+- [`DIGITAL_TWIN_PHILOSOPHY.md`](../../DIGITAL_TWIN_PHILOSOPHY.md) — philosophical foundation (*why*)
+- [`knowledge/version2/DIGITAL_TWIN_PHILOSOPHY.md`](../../knowledge/version2/DIGITAL_TWIN_PHILOSOPHY.md) — Version 2 canonical philosophy copy
+- [`knowledge/version2/STUDENT_DIGITAL_TWIN.md`](../../knowledge/version2/STUDENT_DIGITAL_TWIN.md) — Version 2 technical architecture (*how*)
+- [`STUDENT_DIGITAL_TWIN.md`](../../STUDENT_DIGITAL_TWIN.md) — Epic / canonical domain architecture specification
+
+All future Digital Twin development — domain packages, application engines, persistence, product surfaces, and adaptive capabilities — must comply with this Constitution.
+
+Where philosophy states purpose and architecture describes structure, this charter states **what must never be violated**.
+
+| Companion | Responsibility |
+|-----------|----------------|
+| Philosophy | Why the Twin exists |
+| This Constitution | What rules every implementation must obey |
+| Architecture specs | How a given Twin implementation is structured |
+
+---
+
 ## Preamble
 
 The Digital Twin exists so that Kwalitec may give better educational guidance.
