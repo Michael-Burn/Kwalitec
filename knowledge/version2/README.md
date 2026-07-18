@@ -34,6 +34,8 @@ Deterministic revision decisions delivered by **Adaptive Decision Engine** (`app
 
 Live learner event coordination delivered by **Learning Orchestrator** (`app/domain/learning_orchestrator/`, `app/application/learning_orchestrator/`) — Evidence → Twin → Adaptive Decision → Mission → Analytics via ports; see [`LEARNING_ORCHESTRATOR.md`](LEARNING_ORCHESTRATOR.md).
 
+Founder curriculum readiness delivered by **Curriculum Studio** (`app/domain/curriculum_studio/`, `app/application/curriculum_studio/`) — thin orchestration over Management/Ingestion/Platform ports, workflow, checklist, preview, versioning, dashboard, and structural diffs (UI deferred); see [`CURRICULUM_STUDIO.md`](CURRICULUM_STUDIO.md).
+
 Documentation authority consolidated by **V2-013 P0.1 — Digital Twin Documentation Authority**.
 
 ---
@@ -49,11 +51,13 @@ knowledge/version2/
 ├── EDUCATION_PLATFORM.md           ← Education Platform
 ├── CURRICULUM_MANAGEMENT.md        ← Curriculum Management
 ├── CURRICULUM_INGESTION.md         ← Curriculum Ingestion
+├── CURRICULUM_STUDIO.md            ← Curriculum Studio (Founder readiness)
 ├── CURRICULUM_GRAPH.md / CURRICULUM_MODEL.md
 ├── STUDENT_DIGITAL_TWIN.md         ← Student Digital Twin (how)
 ├── DIGITAL_TWIN_PHILOSOPHY.md      ← Digital Twin Philosophy (why)
 ├── ADAPTIVE_DECISION_ENGINE.md     ← Adaptive Decision Engine (revision phase)
 ├── LEARNING_ORCHESTRATOR.md        ← Learning Orchestrator (live events)
+├── V2_ARCHITECTURE_DESIGN_REVIEW.md ← Independent design critique (advisory)
 ├── ARCHITECTURE_DECISIONS/         ← Architecture Decision Records
 │   ├── ADR-001-Educational-Core.md
 │   ├── ADR-002-Instructional-Blueprint.md
@@ -129,6 +133,7 @@ Version 2 documentation uses consistent authority labels:
 | [MIGRATION_STRATEGY.md](MIGRATION_STRATEGY.md) | Informational | Version 1 → Version 2 concept mapping |
 | [VERSION2_ROADMAP.md](VERSION2_ROADMAP.md) | Informational | Implementation milestones V2-001 … V2-015 |
 | [DOMAIN_IMPLEMENTATION.md](DOMAIN_IMPLEMENTATION.md) | Informational | V2-002 code ↔ V2-001 architecture mapping |
+| [V2_ARCHITECTURE_DESIGN_REVIEW.md](V2_ARCHITECTURE_DESIGN_REVIEW.md) | Informational | Independent Core Platform + Studio Foundation critique (advisory; non-normative) |
 
 ### Architecture Decision Records
 

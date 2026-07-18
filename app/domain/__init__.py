@@ -13,7 +13,8 @@ operationalisation into Mission / MissionTask), ``learning_journey``
 (Version 2 Curriculum Graph educational knowledge model), and
 ``instructional_blueprint`` (Version 2 pedagogical HOW-to-teach strategies),
 ``curriculum_management`` (Version 2 curriculum asset / publication
-management), ``student_twin`` (Version 2 Student Digital Twin), and
+management), ``curriculum_studio`` (Version 2 Founder Curriculum Studio
+foundation), ``student_twin`` (Version 2 Student Digital Twin), and
 ``adaptive_learning`` (Version 2 Adaptive Decision Engine — Phase 1
 revision). Prefer explicit imports such as ``app.domain.mission`` over a
 facade re-export.

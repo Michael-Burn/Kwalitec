@@ -86,10 +86,19 @@ Authoring, review, and publication UI over Curriculum Management and Curriculum 
 - V2-011 Curriculum Management
 - V2-012 Curriculum Ingestion
 
+**Sub-milestones**
+
+| ID | Scope | Status |
+|----|-------|--------|
+| V2-016A | Foundation — domain/application contracts, workflow, checklist, versioning, diff, docs (no UI) | ✓ Complete — [`CURRICULUM_STUDIO.md`](CURRICULUM_STUDIO.md), `app/domain/curriculum_studio/`, `app/application/curriculum_studio/` |
+| V2-016B | Application services — Founder use-cases, port orchestration, dashboard projection, authority-safe DTOs (no UI) | ✓ Complete — [`CURRICULUM_STUDIO.md`](CURRICULUM_STUDIO.md) |
+| V2-016C+ | Founder UI surfaces (routes / templates / JS) | Pending |
+
 **Expected outcomes**
 
 - Studio surfaces for asset review, versioning, validation, and publication
 - Preview workflows aligned to management/ingestion snapshots
+- Authoritative readiness contracts from V2-016A before UI work
 
 **Must not**
 
