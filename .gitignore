@@ -10,6 +10,7 @@ venv/
 instance/*.sqlite3
 instance/*.sqlite3.*
 instance/*.db
+instance/*_harness_out.txt
 
 # Tooling
 .pytest_cache/

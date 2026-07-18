@@ -40,6 +40,7 @@ knowledge/
 ├── founder/                  ← Founder OS / FSI programme docs
 ├── investigations/           ← Audits (e.g. POP-001)
 ├── product/                  ← Product programmes (PTP, LXP, IA)
+│   └── roadmap/              ← Product roadmap (intentional path; not knowledge/roadmap/)
 ├── release/                  ← Version 1 RC1 / certification trail
 ├── releases/                 ← Implementation & verification reports (IAHF, V1SP, RC2)
 ├── research/                 ← Research Intelligence Programme
@@ -51,11 +52,14 @@ knowledge/
 |---|---|
 | `architecture/` | Design Principles, POP-002 IA, ADRs — the **why** behind hard constraints |
 | `educational/` | Educational Constitution and governance law |
+| `product/roadmap/` | Product roadmap stub and post-RC2 planning artefacts (canonical path) |
 | `releases/` | Milestone implementation / verification reports for RC2 and IAHF |
 | `release/` | Version 1 RC1 certification and release-candidate records |
 | `subsystems/` | The **how** of a domain before changing it |
 | `development/` | Style, AI process, history, or terminology |
 | `investigations/` | Pre-implementation audits (do not treat as live as-built without checking `releases/`) |
+
+**Do not create** `knowledge/roadmap/` — roadmap content is nested under `knowledge/product/roadmap/` by design.
 
 **Avoid duplication:** Prefer updating the authoritative programme doc (e.g. POP-002, Design Principles) over copying guidance into multiple status files. Historical investigation text may describe pre-fix state — check the matching implementation report for live behaviour.
 
