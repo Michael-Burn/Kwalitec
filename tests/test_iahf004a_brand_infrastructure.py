@@ -81,7 +81,7 @@ class TestBrandTemplateWiring:
         path = ROOT / "app/templates/partials/brand_meta.html"
         text = path.read_text(encoding="utf-8")
         assert "branding/favicon.ico" in text
-        assert "branding/logo-icon.svg" in text
+        assert "branding/favicon.svg" in text
         assert "branding/manifest.webmanifest" in text
         assert "branding/social-preview.png" in text
         assert 'content="#0D1B2A"' in text
@@ -108,7 +108,8 @@ class TestBrandHttpWiring:
         assert resp.status_code == 200
         html = resp.get_data(as_text=True)
         assert "branding/favicon.ico" in html
-        assert "branding/logo-icon.svg" in html
+        assert "branding/favicon.svg" in html
+        assert "branding/logo-icon.svg" in html  # login chrome mark
         assert "branding/manifest.webmanifest" in html
         assert "branding/social-preview.png" in html
         assert 'name="theme-color" content="#0D1B2A"' in html
@@ -121,12 +122,14 @@ class TestBrandHttpWiring:
         assert resp.status_code == 200
         html = resp.get_data(as_text=True)
         assert "branding/logo-icon.svg" in html
+        assert "branding/favicon.svg" in html
         assert "branding/favicon.ico" in html
         assert "sidebar-brand-mark" in html
 
     def test_static_brand_assets_are_servable(self, client) -> None:
         for filename in (
             "branding/favicon.ico",
+            "branding/favicon.svg",
             "branding/logo-icon.svg",
             "branding/manifest.webmanifest",
             "branding/social-preview.png",

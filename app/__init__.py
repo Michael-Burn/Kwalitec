@@ -285,14 +285,10 @@ def create_app(config_object: type | None = None) -> Flask:
 
     app.config.from_object(config_object)
 
-    from app.brand_identity import INTERNAL_ALPHA_BUILD_LABEL
-    from app.version import APP_VERSION
+    from app.version import STATIC_ASSET_VERSION
 
-    # Cache-bust query param for static url_for() calls (deployment fingerprint).
-    app.config.setdefault(
-        "STATIC_ASSET_VERSION",
-        f"{APP_VERSION}-{INTERNAL_ALPHA_BUILD_LABEL}",
-    )
+    # IAHF-005 — single source of truth for static cache-busting.
+    app.config.setdefault("STATIC_ASSET_VERSION", STATIC_ASSET_VERSION)
 
     _configure_logging(app)
     _validate_env_vars(config_object)
@@ -307,13 +303,16 @@ def create_app(config_object: type | None = None) -> Flask:
 
     @app.url_defaults
     def _static_cache_bust(endpoint: str | None, values: dict) -> None:
-        """Append ``v=`` fingerprint to static asset URLs."""
+        """Append ``v=`` fingerprint to static asset URLs (IAHF-005 safety net).
+
+        Templates should use ``versioned_static()``; this also covers any
+        remaining ``url_for('….static', …)`` calls in Python or Jinja.
+        """
         if not endpoint:
             return
         if endpoint != "static" and not endpoint.endswith(".static"):
             return
         values.setdefault("v", app.config["STATIC_ASSET_VERSION"])
-
 
     # Diagnose migration state at startup (read-only; never applies migrations)
     _log_migration_state(app)
@@ -377,6 +376,10 @@ def _init_extensions(app: Flask) -> None:
 
 def _register_template_context(app: Flask) -> None:
     """Inject shared presentation context into all templates."""
+    from app.static_assets import versioned_static
+
+    # IAHF-005 — reusable Jinja helper for cache-busted static URLs.
+    app.jinja_env.globals["versioned_static"] = versioned_static
 
     @app.context_processor
     def inject_global_template_context():
@@ -392,10 +395,11 @@ def _register_template_context(app: Flask) -> None:
         from app.services.product_communication_service import (
             ProductCommunicationService,
         )
-        from app.version import APP_VERSION, PRODUCT_TAGLINE
+        from app.version import APP_VERSION, PRODUCT_TAGLINE, STATIC_ASSET_VERSION
 
         return {
             "app_version": APP_VERSION,
+            "static_asset_version": STATIC_ASSET_VERSION,
             "product_tagline": PRODUCT_TAGLINE,
             "pcs": ProductCommunicationService,
             "internal_alpha_label": INTERNAL_ALPHA_LABEL,
@@ -405,6 +409,7 @@ def _register_template_context(app: Flask) -> None:
             "learning_workspace_label": LEARNING_WORKSPACE_LABEL,
             "revision_workspace_label": REVISION_WORKSPACE_LABEL,
             "student_dashboard_label": STUDENT_DASHBOARD_LABEL,
+            "versioned_static": versioned_static,
         }
 
 

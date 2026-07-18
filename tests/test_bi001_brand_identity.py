@@ -127,7 +127,9 @@ class TestBrandHttp:
         html = resp.get_data(as_text=True)
         assert "css/brand.css" in html
         assert "branding/logo-icon.svg" in html
+        assert "branding/favicon.svg" in html
         assert "#3B4FB8" in (BRANDING / "logo-icon.svg").read_text(encoding="utf-8")
+        assert "#0D1B2A" in (BRANDING / "favicon.svg").read_text(encoding="utf-8")
 
     @pytest.mark.parametrize(
         "path",

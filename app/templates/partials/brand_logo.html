@@ -26,7 +26,7 @@
 {% endif %}
 <img
     class="{{ _class }}"
-    src="{{ url_for('static', filename=_file) }}"
+    src="{{ versioned_static(_file) }}"
     alt="{{ _alt }}"
     decoding="async"
     {% if _width %}width="{{ _width }}"{% endif %}

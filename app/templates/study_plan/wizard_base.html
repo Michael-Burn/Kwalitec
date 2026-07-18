@@ -2,7 +2,7 @@
 {% extends "layouts/base.html" %}
 
 {% block extra_head %}
-<link href="{{ url_for('static', filename='css/wizard.css') }}" rel="stylesheet">
+<link href="{{ versioned_static('css/wizard.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
