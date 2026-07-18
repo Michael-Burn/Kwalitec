@@ -1,7 +1,6 @@
 # Version 2 Roadmap
 
 **Document ID:** V2-001-ROADMAP  
-**Milestone:** V2-001 — Learning Journey Domain Architecture  
 **Status:** Implementation sequencing reference  
 **Nature:** Milestone definitions — not a sprint backlog  
 
@@ -15,311 +14,149 @@ Version 2 is delivered as independently valuable milestones. Each milestone must
 ## Milestone Sequence
 
 ```
-V2-001 Architecture
-    ↓
-V2-002 Learning Journey Domain Foundation
-    ↓
-V2-003 Learning Journey Engine
-    ↓
-V2-004 Curriculum Graph / early Mission Engine parallel
-    ↓
-V2-005 Learning Session Engine
-    ↓
-V2-006 Mission Adapter
-    ↓
-V2-007 Mission Engine 2.0 (authoritative)
-    ↓
-V2-008 Educational Analytics
-    ↓
-V2-009 Founder Intelligence
-    ↓
-V2-010 Internal Alpha
+PHASE I — CORE PLATFORM (COMPLETE)
+  V2-001 Architecture
+  V2-002 Learning Journey Domain
+  V2-003 Learning Journey Engine
+  V2-004 Curriculum Graph
+  V2-005 Learning Session Runtime
+  V2-006 Mission Engine
+  V2-007 Learning Activity Engine
+  V2-008 Instructional Blueprint Engine
+  V2-009 Educational Composition Layer
+  V2-010 Education Platform
+  V2-011 Curriculum Management
+  V2-012 Curriculum Ingestion
+  V2-013 Student Digital Twin
+  V2-014 Adaptive Decision Engine
+  V2-015 Learning Orchestrator
+
+PHASE II — PRODUCT EXPERIENCE
+  V2-016 Curriculum Studio
+  V2-017 Student Learning Experience
+
+PHASE III — PRODUCTION
+  V2-018 Infrastructure Integration
+
+PHASE IV — INTELLIGENCE
+  V2-019 Founder Intelligence
+
+PHASE V — PRODUCTION RELEASE
+  V2-020 Version 1 Retirement
 ```
 
-**Note:** Curriculum Graph foundation shipped as a **parallel stream** under milestone id **V2-004 — Curriculum Graph Foundation** (`app/domain/curriculum/`, [`CURRICULUM_GRAPH.md`](CURRICULUM_GRAPH.md)). An early Mission Engine parallel package also exists at `app/application/mission_engine/`. Authoritative Mission Engine 2.0 is **V2-007** (`app/application/mission_engine_v2/`, [`MISSION_ENGINE_2.md`](MISSION_ENGINE_2.md)). Revision Engine (formerly listed as V2-007) is deferred to a subsequent stream after Twin signals land. Prefer document titles over bare ids when sequencing work.
+---
+
+## PHASE I — CORE PLATFORM
+
+**Status:** CORE PLATFORM COMPLETE
+
+| ID | Milestone | Status | Primary docs / packages |
+|----|-----------|--------|-------------------------|
+| V2-001 | Architecture | ✓ Complete | [`VERSION2_ARCHITECTURE.md`](VERSION2_ARCHITECTURE.md), `knowledge/version2/` |
+| V2-002 | Learning Journey Domain | ✓ Complete | [`LEARNING_JOURNEY_DOMAIN.md`](LEARNING_JOURNEY_DOMAIN.md), [`DOMAIN_IMPLEMENTATION.md`](DOMAIN_IMPLEMENTATION.md), `app/domain/learning_journey/` |
+| V2-003 | Learning Journey Engine | ✓ Complete | [`LEARNING_JOURNEY_ENGINE.md`](LEARNING_JOURNEY_ENGINE.md), `app/application/learning_journey/` |
+| V2-004 | Curriculum Graph | ✓ Complete | [`CURRICULUM_GRAPH.md`](CURRICULUM_GRAPH.md), `app/domain/curriculum/` |
+| V2-005 | Learning Session Runtime | ✓ Complete | [`LEARNING_SESSION_RUNTIME.md`](LEARNING_SESSION_RUNTIME.md), `app/application/learning_session/` |
+| V2-006 | Mission Engine | ✓ Complete | [`MISSION_ENGINE_2.md`](MISSION_ENGINE_2.md), [`MISSION_ADAPTER.md`](MISSION_ADAPTER.md), `app/application/mission_engine_v2/` |
+| V2-007 | Learning Activity Engine | ✓ Complete | [`LEARNING_ACTIVITY_ENGINE.md`](LEARNING_ACTIVITY_ENGINE.md), `app/application/learning_activity/` |
+| V2-008 | Instructional Blueprint Engine | ✓ Complete | ADR-002, `app/application/instructional_blueprint/` |
+| V2-009 | Educational Composition Layer | ✓ Complete | Composition spine for educational services |
+| V2-010 | Education Platform | ✓ Complete | [`EDUCATION_PLATFORM.md`](EDUCATION_PLATFORM.md), `app/application/education_platform/` |
+| V2-011 | Curriculum Management | ✓ Complete | [`CURRICULUM_MANAGEMENT.md`](CURRICULUM_MANAGEMENT.md), `app/domain/curriculum_management/`, `app/application/curriculum_management/` |
+| V2-012 | Curriculum Ingestion | ✓ Complete | [`CURRICULUM_INGESTION.md`](CURRICULUM_INGESTION.md), `app/application/curriculum_ingestion/` |
+| V2-013 | Student Digital Twin | ✓ Complete | [`STUDENT_DIGITAL_TWIN.md`](STUDENT_DIGITAL_TWIN.md), [`DIGITAL_TWIN_PHILOSOPHY.md`](DIGITAL_TWIN_PHILOSOPHY.md), `app/domain/student_twin/`, `app/application/student_twin/` |
+| V2-014 | Adaptive Decision Engine | ✓ Complete | [`ADAPTIVE_DECISION_ENGINE.md`](ADAPTIVE_DECISION_ENGINE.md), `app/application/adaptive_learning/` |
+| V2-015 | Learning Orchestrator | ✓ Complete | [`LEARNING_ORCHESTRATOR.md`](LEARNING_ORCHESTRATOR.md), `app/domain/learning_orchestrator/`, `app/application/learning_orchestrator/` |
+
+Phase I delivers the educational core: domain models, engines, composition, curriculum lifecycle, Twin, adaptive decisions, and live-event orchestration — without product UI or production cutover.
 
 ---
 
-## V2-001 — Architecture
+## PHASE II — PRODUCT EXPERIENCE
 
-**Status:** Complete (documentation)
-
-**Delivers**
-
-- Authoritative Version 2 educational architecture under `knowledge/version2/`
-- Learning Journey domain vocabulary and state machines
-- Educational principles, curriculum model, migration map, roadmap
-
-**Does not deliver**
-
-- Runtime behaviour, migrations, UI, APIs, feature flags
-
-**Exit criteria**
-
-- Future milestones can implement without redefining Journey, Session, Evidence, Reflection, or Topic Complete
-
----
-
-## V2-002 — Learning Journey Domain Foundation
-
-**Status:** Complete (domain code)
+### V2-016 — Curriculum Studio
 
 **Purpose**
 
-Introduce the pure Version 2 Learning Journey domain package that future engines build upon — without changing Version 1 behaviour.
+Authoring, review, and publication UI over Curriculum Management and Curriculum Ingestion — so curriculum assets can be operated without code changes.
 
 **Depends on**
 
-- V2-001 domain + state machine documentation
-- Existing Learning Evidence Model types (`app.domain.evidence`)
-
-**Delivers**
-
-- `app/domain/learning_journey/` entities, value objects, progress/validation services
-- `LearningJourneyRepository` contract (no implementation)
-- Pure domain unit tests
-- [`DOMAIN_IMPLEMENTATION.md`](DOMAIN_IMPLEMENTATION.md) code ↔ architecture map
-
-**Does not deliver**
-
-- Journey Engine runtime, persistence, migrations, UI, feature flags
-- Version 1 route / Mission / Recommendation / Dashboard changes
-- Curriculum Graph persistence
-
-**Exit criteria**
-
-- Domain objects map to V2-001 vocabulary
-- Session complete cannot complete a journey
-- Progress never invents mastery scores
-- Existing Version 1 suite remains green
-
----
-
-## V2-003 — Learning Journey Engine
-
-**Purpose**
-
-Operate Learning Journey aggregates: JourneyState transitions, JourneyProgress evaluation, completion criteria, and history spine — using the V2-002 domain package.
-
-**Depends on**
-
-- V2-001 domain + state machine
-- V2-002 domain foundation
-- Curriculum topic/objective identity (Curriculum Engine; graph enhancements optional)
+- V2-011 Curriculum Management
+- V2-012 Curriculum Ingestion
 
 **Expected outcomes**
 
-- Create/activate/pause/resume/defer/abandon/complete journeys
-- JourneyHistory spine usage in runtime flows
-- Dual-run reconciliation design with Version 1 Study Progress
+- Studio surfaces for asset review, versioning, validation, and publication
+- Preview workflows aligned to management/ingestion snapshots
 
 **Must not**
 
-- Auto-complete from mastery thresholds
-- Replace Twin belief stores
-- Bypass `app.domain.learning_journey` vocabulary
+- Embed educational decision math in the UI layer
+- Bypass Curriculum Management publication / approval policies
 
 ---
 
-## V2-004 — Mission Engine 2.0 (early parallel package)
-
-**Status:** Complete (early application orchestration — `app/application/mission_engine/`)
+### V2-017 — Student Learning Experience
 
 **Purpose**
 
-Replace isolated daily mission generation architecture with a Version 2 orchestration layer that schedules one executable learning session per mission — without educational decision-making.
+Student-facing product experience that exercises Journey, Session, Mission, Activity, Twin, and Orchestrator as one coherent learning path.
 
 **Depends on**
 
-- V2-003 Learning Journey Engine
-- V2-005 Learning Session Runtime (session phase for resume / continue delivery)
-- Curriculum Navigation Service (structural topic confirmation)
-- Explainability Standard / Learning Mode authority (cutover still deferred)
-
-**Delivered**
-
-- `app/application/mission_engine/` — early Mission Engine 2.0 parallel package
-- Deterministic scheduling (today / tomorrow / deferred / missed / revision)
-- Lifecycle: schedule → activate → start → complete → archive (+ defer / skip / miss)
-- Dashboard-ready DTOs + delivery payloads (no UI)
-- `V1MissionAdapter` for parallel-only Version 1 coexistence
-- Framework-independent unit suite (`tests/application/mission_engine/`)
-
-**Note:** Authoritative Mission Engine 2.0 for adapter-compatible orchestration is delivered under **V2-007** as `app/application/mission_engine_v2/` — see [`MISSION_ENGINE_2.md`](MISSION_ENGINE_2.md).
-
-**Must not**
-
-- Contain educational reasoning (progression, Topic Complete, mastery)
-- Silently override Learning Mode focus
-- Treat mission complete as Topic Complete
-- Replace Version 1 `MissionService` behaviour in this milestone
-
----
-
-## V2-005 — Learning Session Engine
-
-**Status:** Complete (application runtime — session execution layer)
-
-**Purpose**
-
-Run Learning Sessions as journey-scoped work with pause/resume, required reflection, and evidence emission.
-
-**Depends on**
-
-- V2-003, V2-004 (or interim recommendation adapter)
-- LXP-002 patterns as UX ancestry
+- Phase I core engines (V2-003–015)
+- Product Strategy evidence gates
 
 **Expected outcomes**
 
-- SessionState machine implementation
-- JourneyReflection capture
-- JourneyEvidence attribution on session close
-- Clear separation of session complete vs journey complete
-
-**Delivered**
-
-- `app/application/learning_session/` — Learning Session Runtime
-- Runtime phases PLANNED → READY → ACTIVE → PAUSED → COMPLETED → ARCHIVED
-- Framework-independent unit suite (`tests/application/learning_session/`)
-- [`LEARNING_SESSION_RUNTIME.md`](LEARNING_SESSION_RUNTIME.md)
+- Continuity of recommendation, session, and reflection
+- Explainable next-action surfaces grounded in Twin + Adaptive Decision outputs
 
 **Must not**
 
-- Skip reflection without explicit deferred policy
-- Write Estimated Mastery from bare completion
-- Complete journeys / mutate Version 1 / add persistence or UI
+- Ship without explainability and continuity invariants
+- Let UI invent mastery or Topic Complete outside engine authority
 
 ---
 
-## V2-006 — Student Digital Twin 2.0 (roadmap intent)
+## PHASE III — PRODUCTION
+
+### V2-018 — Infrastructure Integration
 
 **Purpose**
 
-Evolve Twin consumption and belief updates to prefer journey-attributed evidence and journey-aware planning inputs — without changing Twin constitutional authority.
+Wire Version 2 educational packages into persistence, application factory, and operational runtime so the core can run as a product service — still alongside Version 1 until explicit retirement.
 
 **Depends on**
 
-- Evidence Model + Twin specs
-- V2-003–005 evidence flows
+- Phase I complete
+- Phase II product surfaces sufficiently defined for integration boundaries
 
 **Expected outcomes**
 
-- Stronger linkage from journey evidence → Knowledge / Memory / Behaviour / Readiness
-- Journey-aware explanations
-- No competing learner-state store
+- Persistence, startup, and deployment paths for Version 2 engines
+- Safe dual-run / feature-flag coexistence with Version 1
 
 **Must not**
 
-- Let generative AI own Twin mutations
-- Collapse coverage into mastery in Twin narratives
-
-**Implementation note**
-
-The Version 2 bounded-context delivery for Twin philosophy responsibilities is **V2-013** (`app/domain/student_twin/`, `app/application/student_twin/`). V2-006 remains the product-integration intent for journey-attributed evidence into Twin authority.
+- Drop Version 1 data or silently cut over student traffic
+- Bypass Alembic / StartupService safety guarantees
 
 ---
 
-## V2-013 — Student Digital Twin 2.0 (domain + application)
+## PHASE IV — INTELLIGENCE
 
-**Status:** Complete (framework-independent domain + application)
-
-**Purpose**
-
-Implement a deterministic, evidence-driven Student Digital Twin that models the evolving educational state of a learner. Consumes evidence only — never curriculum, PDFs, or AI responses as Twin truth.
-
-**Depends on**
-
-- [`DIGITAL_TWIN_PHILOSOPHY.md`](DIGITAL_TWIN_PHILOSOPHY.md)
-- Version 2 educational principles
-
-**Expected outcomes**
-
-- `app/domain/student_twin/` — immutable aggregate, evidence events, state value objects
-- `app/application/student_twin/` — `StudentTwinEngine` + calculators / estimators / policies / DTOs
-- Deterministic mastery, confidence, retention, readiness, velocity, weaknesses, recommendations
-- Immutable snapshots, timeline evolution, explainable recommendations
-- Framework-independent test suite (`tests/domain/student_twin/`, `tests/application/student_twin/`)
-- Docs: [`STUDENT_DIGITAL_TWIN.md`](STUDENT_DIGITAL_TWIN.md), [`DIGITAL_TWIN_PHILOSOPHY.md`](DIGITAL_TWIN_PHILOSOPHY.md)
-
-**Must not**
-
-- Teach or generate educational content
-- Store curriculum / PDFs
-- Add Flask routes, persistence, UI, or migrations
-- Let AI determine learner state
-- Silently replace Epic Twin production paths (`app/domain/twin/`) without explicit cutover
-
----
-
-## V2-007 — Mission Engine 2.0
-
-**Status:** Complete (application orchestration — parallel with Version 1)
+### V2-019 — Founder Intelligence
 
 **Purpose**
 
-Implement Mission Engine 2.0 as a pure orchestration layer that composes a Daily Mission from Version 2 educational services — without educational decision-making.
+Extend founder operational insight with journey-level educational signals (inactive journeys, stalled completion, reflection gaps, recommendation thrash) while keeping Founder systems non-authoritative over student Learning Mode.
 
 **Depends on**
 
-- Mission Adapter contracts (`MissionEnginePort`)
-- Learning Journey Engine (injected port)
-- Learning Session Runtime (injected port)
-- Curriculum Navigation Service (injected port)
-
-**Delivered**
-
-- `app/application/mission_engine_v2/` — authoritative Mission Engine 2.0
-- Mission factory: Journey Snapshot → Topic → Session Plan → Recommendation → Mission DTO
-- Deterministic scheduling (today / deferred / revision / missed / future)
-- Lifecycle: PLANNED → READY → ACTIVE → PAUSED → COMPLETED → ARCHIVED
-- Workload balancer (structural signals only — never mastery)
-- Dashboard-ready DTOs (`DailyMission`, `MissionCard`, `MissionDashboard`, `MissionTimeline`, `MissionExecution`)
-- Adapter-compatible `MissionEnginePort` implementation
-- Framework-independent unit suite (`tests/application/mission_engine_v2/`, ~220–280 tests)
-- [`MISSION_ENGINE_2.md`](MISSION_ENGINE_2.md)
-
-**Must not**
-
-- Contain educational reasoning (progression, Topic Complete, mastery)
-- Modify Mission Adapter / Journey Engine / Session Runtime / Curriculum Graph / Version 1
-- Add persistence, Flask, SQLAlchemy, AI, or generated study content
-- Treat mission complete as Topic Complete
-
-**Deferred:** Revision Engine (previously listed under this id) awaits Twin memory signals in a later stream.
-
----
-
-## V2-008 — Educational Analytics
-
-**Purpose**
-
-Measure journey health, session patterns, reflection quality signals, recommendation continuity, and coverage vs understanding separately.
-
-**Depends on**
-
-- Stable journey/session evidence from prior milestones
-
-**Expected outcomes**
-
-- Analytics that respect claim hierarchy (facts vs estimates)
-- Cohort and individual views that support product learning
-
-**Must not**
-
-- Optimise vanity engagement over educational outcomes
-- Mix unlabeled mastery into coverage KPIs
-
----
-
-## V2-009 — Founder Intelligence
-
-**Purpose**
-
-Extend founder operational insight with journey-level educational signals (inactive journeys, stalled READY_FOR_COMPLETION, reflection gaps, recommendation thrash) while keeping Founder systems non-authoritative over student Learning Mode.
-
-**Depends on**
-
-- V2-008 analytics feeds / operational snapshots
+- Stable Phase I/II evidence and operational snapshots
 - Existing Founder OS patterns (advisory only)
 
 **Must not**
@@ -328,26 +165,29 @@ Extend founder operational insight with journey-level educational signals (inact
 
 ---
 
-## V2-010 — Internal Alpha
+## PHASE V — PRODUCTION RELEASE
+
+### V2-020 — Version 1 Retirement
 
 **Purpose**
 
-Validate Version 2 educational behaviour with invite-only learners under research and operational observation discipline.
+Explicit cutover from Version 1 educational runtime to Version 2 as the sole student path — after evidence gates and operational readiness are met.
 
 **Depends on**
 
-- Sufficient vertical slice of V2-003–007 for a coherent student experience
+- V2-017 Student Learning Experience validated
+- V2-018 Infrastructure Integration production-ready
 - Product Strategy evidence gates
 
 **Expected outcomes**
 
-- Observed journey behaviour, recommendation continuity, reflection adherence, educational trust signals
-- Evidence that feeds the next iteration cycle
+- Version 2 is the authoritative educational runtime
+- Version 1 paths retired under a controlled migration
 
 **Must not**
 
-- Ship Version 2 Internal Alpha without explainability and continuity invariants
-- Treat alpha novelty as proof of educational value without measurement
+- Retire Version 1 without explainability, continuity, and dual-run confidence
+- Treat novelty as proof of educational value without measurement
 
 ---
 
@@ -356,32 +196,13 @@ Validate Version 2 educational behaviour with invite-only learners under researc
 | Constraint | Applies to |
 |------------|------------|
 | No Constitution contradiction | All |
-| V1 runtime safe until explicit cutover | All implementation milestones |
-| Deterministic core paths | V2-003–007 |
-| Evidence before opinion | V2-004–008 |
+| V1 runtime safe until explicit cutover (V2-020) | All implementation milestones |
+| Deterministic core paths | Phase I engines |
+| Evidence before opinion | Phase I Twin / Adaptive / Orchestrator → Phase IV |
 | Documentation in `knowledge/version2/` remains concept authority | All |
-
----
-
-## Suggested Dependency Graph
-
-```
-V2-001
-  └── V2-002
-        └── V2-003
-              ├── V2-004
-              │     └── V2-005
-              │           ├── V2-006
-              │           │     └── V2-007
-              │           └── V2-008
-              │                 └── V2-009
-              └── V2-010 (requires coherent slice; not only V2-009)
-```
-
-V2-010 may begin on a vertical slice before V2-009 completes, but must not precede a minimal Journey + Recommendation + Session path.
 
 ---
 
 ## Closing
 
-This roadmap is the implementation sequence for Version 2. New milestones may be inserted only if they refine — not redefine — the Learning Journey architecture established in V2-001.
+This roadmap is the implementation sequence for Version 2. Phase I (Core Platform) is complete. New milestones may be inserted only if they refine — not redefine — the Learning Journey architecture established in V2-001. Remaining work is product experience, production integration, founder intelligence, and Version 1 retirement.
