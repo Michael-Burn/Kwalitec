@@ -167,11 +167,25 @@ This matrix names **authority** (who may lawfully decide or mutate) versus **con
 
 ---
 
+## Student Experience (Learner Product Projection)
+
+| | |
+|--|--|
+| **Authority** | Student Experience — presentation, workflow, projection, navigation only |
+| **Consumers** | Student UI (future), product ingress paths |
+| **Upstream** | Twin, Adaptive Decision, Mission, Journey, Orchestrator (via ports) |
+| **Downstream** | Home / Journey / Revision / History / Profile snapshots |
+
+**Constraint:** Does **not** own learner state, readiness calculations, recommendations, mission generation, journey progression, or evidence. See [`STUDENT_EXPERIENCE.md`](STUDENT_EXPERIENCE.md).
+
+---
+
 ## Explicit Non-Authorities
 
 | Capability | Must not claim authority |
 |------------|--------------------------|
 | UI / templates | Mastery, Topic Complete, publication law, next action |
+| Student Experience | Learner state, readiness math, next-action law, mission generation, journey progression, evidence |
 | Analytics adapters | Educational decisions |
 | Founder tools | Student Learning Mode mutation |
 | AI / LLM | Twin truth, next-action law, curriculum publication |

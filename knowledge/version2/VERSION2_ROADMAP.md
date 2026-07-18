@@ -149,15 +149,24 @@ Student-facing product experience that exercises Journey, Session, Mission, Acti
 - Phase I core engines (V2-003–015)
 - Product Strategy evidence gates
 
+**Sub-milestones**
+
+| ID | Scope | Status |
+|----|-------|--------|
+| V2-017B-A | Foundation — domain/application projections, navigation, explanations, ports/DTOs, docs (no UI) | ✓ Complete — [`STUDENT_EXPERIENCE.md`](STUDENT_EXPERIENCE.md), `app/domain/student_experience/`, `app/application/student_experience/` |
+| V2-017B-B+ | Student UI surfaces (routes / templates / JS) | Pending |
+
 **Expected outcomes**
 
 - Continuity of recommendation, session, and reflection
 - Explainable next-action surfaces grounded in Twin state + Adaptive Decision authority (ADR-005)
+- Framework-independent Student Experience model ready for UI (V2-017B-A)
 
 **Must not**
 
 - Ship without explainability and continuity invariants
 - Let UI invent mastery or Topic Complete outside engine authority
+- Duplicate Twin / Adaptive / Mission / Journey calculations in the experience layer
 
 ---
 
