@@ -609,13 +609,14 @@ class ReadinessService:
 
     @staticmethod
     def _average_mastery(user_id: int) -> float:
-        """Calculate average mastery score across started leaf topics.
+        """Calculate average Estimated Knowledge across started leaf topics.
 
         Args:
             user_id: The ID of the user.
 
         Returns:
-            float: Average mastery score (0-100).
+            float: Average Estimated Knowledge scalar (0-100) from
+            ``TopicProgress.mastery_score``.
         """
         leaf_topics = ReadinessService._get_leaf_topics()
         leaf_ids = [t.id for t in leaf_topics]

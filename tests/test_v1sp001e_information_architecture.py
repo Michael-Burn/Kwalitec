@@ -68,8 +68,8 @@ class TestV1sp001eProgressiveDisclosure:
         assert "help_tip" in html
         assert "learn_more" in html
         assert "Why this recommendation" in html
-        # Duplicate primary CTA removed from recommendation card
-        assert "ei_card.primary_action" not in html
+        # EI recommendation card keeps its own start CTA (educational integration).
+        assert "ei_card.primary_action" in html
         assert 'data-ptp004-cta="primary"' in html
 
     def test_mission_collapses_long_guidance(self):

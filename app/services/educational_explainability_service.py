@@ -255,7 +255,7 @@ class EducationalExplainabilityService:
             )
         estimates.append(
             "Revision consolidates completed material. Completing revision "
-            "sessions does not invent Estimated Mastery."
+            "sessions does not invent Estimated Knowledge."
         )
 
         if mission_status == "Completed":

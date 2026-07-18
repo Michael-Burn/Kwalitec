@@ -130,7 +130,7 @@ Examples: topics completed studying; mission completed; Current Learning Topic n
 
 Only evidence-backed estimates, clearly labelled.
 
-Examples: Estimated Knowledge; Estimated Mastery; Estimated readiness when a composite judgement is shown.
+Examples: Estimated Knowledge; Estimated readiness when a composite judgement is shown.
 
 If estimation is not yet lawful or history is empty, say so: readiness / knowledge cannot yet be estimated.
 
@@ -177,7 +177,7 @@ Across Dashboard, Mission, Recommendations, Study Plan, Analytics, Readiness, an
 |---------|--------|
 | Coverage | Completed studying, Study Progress, Learning Progress, syllabus coverage |
 | Daily commitment | Today’s Mission, today’s focus, Current Learning Topic |
-| Estimates | Estimated Knowledge, Estimated Mastery, Estimated readiness |
+| Estimates | Estimated Knowledge, Estimated readiness |
 | Advice | Suggested, Recommended, optional review (not today’s learning) |
 | Practice signals | Practice results, study checks, practice scores |
 | Continuity | Continue Learning, Start Today’s Session |
@@ -228,7 +228,7 @@ Syllabus coverage and composite estimated readiness must not silently share one 
 
 ### 7.4 Progress summaries / Analytics / Settings
 
-Progress and analytics copy must preserve Study Progress vs Estimated Mastery distinctions. Settings educational concepts (preferences, learning profile status) must stay educational and non-engineering.
+Progress and analytics copy must preserve Study Progress vs Estimated Knowledge distinctions. Settings educational concepts (preferences, learning profile status) must stay educational and non-engineering.
 
 ---
 
@@ -240,7 +240,7 @@ Progress and analytics copy must preserve Study Progress vs Estimated Mastery di
 |-----|------|
 | “Today’s Recommended Mission” (advice-shaped label on Learning Mode authority) | “Today’s Topic” / “Today’s Mission” |
 | No Why block | Why: Learning Mode follows your Current Learning Topic — the next syllabus topic you have not yet completed studying |
-| “Estimated Mastery grows from study evidence” | “Estimated Mastery grows from practice results over time” |
+| “Estimated Mastery grows from study evidence” | “Estimated Knowledge grows from practice results over time” |
 
 ### Recommendations
 
@@ -256,7 +256,7 @@ Progress and analytics copy must preserve Study Progress vs Estimated Mastery di
 | Bad | Good |
 |-----|------|
 | Bare “Readiness 42%” with no support | “Estimated readiness 42%. Based on syllabus coverage, estimated knowledge averages, and recent review habits.” |
-| Treating coverage % as mastery | “Syllabus coverage: you have completed studying topics representing 42% of official syllabus weighting. This is Study Progress — not Estimated Mastery.” |
+| Treating coverage % as mastery | “Syllabus coverage: you have completed studying topics representing 42% of official syllabus weighting. This is Study Progress — not Estimated Knowledge.” |
 | Inventing confidence when history is empty | “Readiness cannot yet be estimated. Complete study sessions so we can summarise coverage and practice results.” |
 
 ### Mastery language
@@ -264,7 +264,7 @@ Progress and analytics copy must preserve Study Progress vs Estimated Mastery di
 | Bad | Good |
 |-----|------|
 | “You have mastered this topic” after completion alone | “Completed studying” / “Study Progress recorded” |
-| Stage badge “Mastered” without authorised evidence framing | “Strong estimated knowledge” / show Estimated Mastery only when authorised |
+| Stage badge “Mastered” without authorised evidence framing | “Strong estimated knowledge” / show Estimated Knowledge only when authorised |
 
 ---
 

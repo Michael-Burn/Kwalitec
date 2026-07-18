@@ -64,7 +64,7 @@ class ProductCommunicationService:
         "These results reflect the answers you recorded after today's study session."
     )
     PRACTICE_RESULTS_NOT_MASTERY = (
-        "This is not a knowledge or mastery rating."
+        "This is not Estimated Knowledge."
     )
     ACCURACY_BASIS = (
         "Accuracy is calculated from practice results you recorded — "

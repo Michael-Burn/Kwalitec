@@ -89,7 +89,7 @@ gates, login marketing.
 | Syllabus coverage | Dashboard Progress through Study Plan, Mission | Derived Fact | Mild — can feel like readiness | Explain SP-derived; not Estimated Knowledge; single Dashboard progress % (PTP-004) |
 | Estimated readiness | Dashboard, Analytics | Estimated Value | Yes — looks like exam readiness | “Estimated”; provisional; evidence basis |
 | Readiness unavailable / empty | Dashboard, Analytics | Unavailable | Yes if blank | Why unavailable + what unlocks it |
-| Practice Results form | Mission Practice Outcome Capture | Observed Fact (self-reported) | Mild without “you recorded” | State results are self-recorded after today’s session; not mastery |
+| Practice Results form | Mission Practice Outcome Capture | Observed Fact (self-reported) | Mild without “you recorded” | State results are self-recorded after today’s session; not Estimated Knowledge |
 | Session feedback conclusions | Study Session Feedback | Observed / Unavailable | Low (already strong) | Preserve LXP-004 honesty |
 | Accuracy trend / weekly accuracy | Analytics | Derived Fact (self-reported inputs) | Yes — “Accuracy” ≈ grade | State calculated from recorded practice |
 | Syllabus coverage (single progress story) | Dashboard Progress through Study Plan | Derived Fact | Mild — can feel like readiness | One authoritative % only (PTP-004 removed sibling Curriculum/Weighted Coverage from Dashboard) |
@@ -237,7 +237,7 @@ We need more recorded practice before this estimate becomes available.
 ```
 How did practice go?
 These results reflect the answers you recorded after today's study session.
-This is not a knowledge or mastery rating.
+This is not Estimated Knowledge.
 ```
 
 ### Unsupported papers

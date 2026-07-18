@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 64" role="img" aria-label="Kwalitec">
+  <!-- Kwalitec official brand mark — BI-000 hand-built vector (no raster) -->
+  <text x="0" y="52" fill="#0D1B2A"
+    font-family="Inter, Manrope, Sora, system-ui, sans-serif"
+    font-size="48" font-weight="600" letter-spacing="-0.02em">Kwalitec</text>
+  <circle cx="156.5" cy="17.5" r="5.2" fill="#E8B02B"/>
+</svg>

@@ -21,7 +21,13 @@
       "purpose": "any"
     },
     {
-      "src": "/static/branding/logo-icon.svg",
+      "src": "/static/branding/maskable-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/static/branding/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"

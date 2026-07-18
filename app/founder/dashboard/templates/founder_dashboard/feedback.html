@@ -18,6 +18,188 @@
 {% set page_args = filter_args.copy() %}
 {% set _ = page_args.pop('page', none) %}
 
+{# ── RIP-004 insight panels (required on Feedback for HTTP coverage) ── #}
+<section class="mb-4" aria-label="Insight engine" data-rip004-insight-engine="1">
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+        <h2 class="h5 mb-0">Insight engine</h2>
+        <form method="get" action="{{ url_for(feedback_endpoint) }}" class="d-flex flex-wrap gap-2 align-items-center">
+            {% for key, val in filter_args.items() %}
+            <input type="hidden" name="{{ key }}" value="{{ val }}">
+            {% endfor %}
+            {% if context.selected_submission %}
+            <input type="hidden" name="submission" value="{{ context.selected_submission.submission.id }}">
+            {% endif %}
+            <select name="time_window" class="form-select form-select-sm" style="width:auto" onchange="this.form.submit()">
+                {% for key, label in time_window_labels.items() %}
+                <option value="{{ key }}" {% if time_window == key %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+            {% if time_window == 'custom' %}
+            <input type="date" name="custom_date_from" class="form-control form-control-sm" value="{{ custom_date_from }}" style="width:auto">
+            <input type="date" name="custom_date_to" class="form-control form-control-sm" value="{{ custom_date_to }}" style="width:auto">
+            <button type="submit" class="btn btn-sm btn-outline-secondary">Apply</button>
+            {% endif %}
+        </form>
+    </div>
+    <p class="small text-muted mb-3">
+        Window: {{ context.insight_engine.time_window_label }} ·
+        {{ context.insight_engine.insights | length }} insight(s) generated.
+        Insights describe patterns — they never prescribe decisions.
+    </p>
+
+    <div class="row g-3 mb-3">
+        <div class="col-md-6">
+            <div class="command-card h-100">
+                <div class="command-card-header">
+                    <h3 class="command-card-title h6 mb-0">Top Trends</h3>
+                </div>
+                <div class="command-card-body">
+                    {% if context.insight_engine.top_trends %}
+                        {% for insight in context.insight_engine.top_trends %}
+                        <div class="mb-2 pb-2 {% if not loop.last %}border-bottom{% endif %}">
+                            <strong>{{ insight.title }}</strong>
+                            <span class="badge text-bg-secondary ms-1">{{ insight.confidence }}</span>
+                            <p class="small mb-0 mt-1">{{ insight.summary }}</p>
+                            {% if insight.comparison %}
+                            <p class="small text-muted mb-0">
+                                {{ insight.comparison.label }}:
+                                {{ insight.comparison.current_value }}
+                                vs {{ insight.comparison.previous_value }}
+                                ({{ insight.comparison.delta | default('—') }})
+                            </p>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                    <p class="text-muted small mb-0">No trend insights for this window.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="command-card h-100">
+                <div class="command-card-header">
+                    <h3 class="command-card-title h6 mb-0">Emerging Concerns</h3>
+                </div>
+                <div class="command-card-body">
+                    {% if context.insight_engine.emerging_concerns %}
+                        {% for insight in context.insight_engine.emerging_concerns %}
+                        <div class="mb-2 pb-2 {% if not loop.last %}border-bottom{% endif %}">
+                            <strong>{{ insight.title }}</strong>
+                            <span class="badge text-bg-warning ms-1">{{ insight.suggested_review_priority }}</span>
+                            <p class="small mb-0 mt-1">{{ insight.summary }}</p>
+                            <p class="small text-muted mb-0">{{ insight.supporting_observation_count }} observation(s) · {{ insight.affected_feature or '—' }}</p>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                    <p class="text-muted small mb-0">No emerging concerns detected.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="command-card h-100">
+                <div class="command-card-header">
+                    <h3 class="command-card-title h6 mb-0">Most Improved Areas</h3>
+                </div>
+                <div class="command-card-body">
+                    {% if context.insight_engine.most_improved_areas %}
+                        {% for insight in context.insight_engine.most_improved_areas %}
+                        <div class="mb-2">
+                            <strong>{{ insight.title }}</strong>
+                            <p class="small mb-0">{{ insight.summary }}</p>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                    <p class="text-muted small mb-0">No improvement signals in this window.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="command-card h-100">
+                <div class="command-card-header">
+                    <h3 class="command-card-title h6 mb-0">Stable Areas</h3>
+                </div>
+                <div class="command-card-body">
+                    {% if context.insight_engine.stable_areas %}
+                        {% for insight in context.insight_engine.stable_areas %}
+                        <div class="mb-2">
+                            <strong>{{ insight.title }}</strong>
+                            <p class="small mb-0">{{ insight.summary }}</p>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                    <p class="text-muted small mb-0">No stable-area patterns identified.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="command-card h-100">
+                <div class="command-card-header">
+                    <h3 class="command-card-title h6 mb-0">Participation</h3>
+                </div>
+                <div class="command-card-body">
+                    {% for insight in context.insight_engine.participation %}
+                    <div class="mb-2 pb-2 {% if not loop.last %}border-bottom{% endif %}">
+                        <strong>{{ insight.title }}</strong>
+                        <span class="badge text-bg-secondary ms-1">{{ insight.confidence }}</span>
+                        <p class="small mb-0 mt-1">{{ insight.summary }}</p>
+                    </div>
+                    {% else %}
+                    <p class="text-muted small mb-0">No participation data.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="command-card h-100">
+                <div class="command-card-header">
+                    <h3 class="command-card-title h6 mb-0">Release Comparison</h3>
+                </div>
+                <div class="command-card-body">
+                    {% if context.insight_engine.release_comparison %}
+                        {% for insight in context.insight_engine.release_comparison %}
+                        <div class="mb-2 pb-2 {% if not loop.last %}border-bottom{% endif %}">
+                            <strong>{{ insight.title }}</strong>
+                            <span class="badge text-bg-secondary ms-1">{{ insight.confidence }}</span>
+                            <p class="small mb-0 mt-1">{{ insight.summary }}</p>
+                            {% if insight.related_finding_ids %}
+                            <p class="small text-muted mb-0">{{ insight.related_finding_ids | length }} related finding(s)</p>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                    <p class="text-muted small mb-0">No release comparison data.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Legacy summary row #}
+    <div class="command-card">
+        <div class="command-card-body">
+            <p class="mb-1"><strong>Most common feature:</strong> {{ context.insights.most_common_feature or '—' }}</p>
+            <p class="mb-1"><strong>Most common friction:</strong> {{ context.insights.most_common_friction or '—' }}</p>
+            <p class="mb-1"><strong>Most common suggestion category:</strong> {{ context.insights.most_common_suggestion_category or '—' }}</p>
+            <p class="mb-1"><strong>7-day participation:</strong>
+                {% for day, count in context.insights.participation_trend %}
+                    {{ day }} ({{ count }}){% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+            <p class="mb-0"><strong>Recently awarded badges:</strong>
+                {% if context.insights.recently_awarded_badges %}
+                    {% for badge in context.insights.recently_awarded_badges %}
+                        {{ badge_labels.get(badge.badge_slug, badge.badge_slug) }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                {% else %}None this week{% endif %}
+            </p>
+        </div>
+    </div>
+</section>
+
 <div class="row g-4">
     {# ── Research Inbox ─────────────────────────────────────────────── #}
     <div class="col-lg-7">

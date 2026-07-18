@@ -71,7 +71,7 @@ class AlphaCalibrationForm(FlaskForm):
         validators=[validators.Optional()],
     )
     confirm = RadioField(
-        "Confirm these are your declarations — not measured mastery",
+        "Confirm these are your declarations — not Estimated Knowledge",
         choices=[
             ("yes", "Yes — record what I declared and continue"),
         ],

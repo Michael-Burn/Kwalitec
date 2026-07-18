@@ -170,7 +170,7 @@ _STUDENT_REASON_BY_FAMILY: dict[ActionFamily, str] = {
     ),
     ActionFamily.ASSESS: (
         "Suggested: a short practice check to clarify what still needs work. "
-        "Checks inform estimates — they do not certify mastery by themselves."
+        "Checks inform estimates — they do not create Estimated Knowledge by themselves."
     ),
     ActionFamily.DIAGNOSTIC: (
         "Suggested: a short check to identify the most useful next study step. "

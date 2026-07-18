@@ -89,8 +89,8 @@
             </div>
             {% endif %}
             <a href="{{ url_for('mission.missions') }}" class="btn btn-primary w-100 mt-3" data-ptp004-cta="primary">
-                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="me-2" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="me-2" aria-hidden="true">
+                    <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
                 </svg>
                 {% if today_mission.status == 'In Progress' %}
                     Resume Study Session
@@ -190,7 +190,7 @@
             {% else %}
             <div class="command-card-body">
                 <div class="empty-state py-3">
-                    <p class="text-muted small mb-0">No progress yet. Create a study plan to track syllabus coverage.</p>
+                    <p class="text-muted small mb-0">Create your first study plan to see progress through the syllabus.</p>
                 </div>
             </div>
             {% endif %}
@@ -314,7 +314,11 @@
         {% if ei_card.warning %}
         <p class="ei-rec-warning">{{ ei_card.warning }}</p>
         {% endif %}
-        {# V1SP-001E: primary session CTA already opens missions — no duplicate button. #}
+        {% if ei_card.show_start_button and ei_card.primary_action %}
+        <a href="{{ url_for('mission.missions') }}" class="btn btn-primary mt-2">
+            {{ ei_card.primary_action|safe }}
+        </a>
+        {% endif %}
     </div>
 </div>
 {% endif %}

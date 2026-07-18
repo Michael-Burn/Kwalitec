@@ -184,7 +184,7 @@ different titles and framing:
 | Step | Heading | Ask | Evidence |
 |------|---------|-----|----------|
 | Study Plan Wizard step 4 | "Where are you currently?" | "Tell us what you have already completed studying" (tick topics done) | `wizard_step_4.html:3-4` |
-| Educational History | "Where are you starting from?" | "Tell us your educational history … declarations, not measured mastery" (tick sections covered) | `calibration/alpha.html:6-7` |
+| Educational History | "Where are you starting from?" | "Tell us your educational history … declarations, not Estimated Knowledge" (tick sections covered) | `calibration/alpha.html:6-7` |
 
 Both reviews called this out as the fastest way to erode trust that the tool is
 listening (Review v1: *"Being asked the same thing twice, back to back, is the fastest

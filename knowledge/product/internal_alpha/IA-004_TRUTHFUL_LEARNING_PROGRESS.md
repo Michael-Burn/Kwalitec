@@ -44,11 +44,11 @@ These concepts must never be conflated in UI copy, progress writes, or mission s
 - Study Progress
 - Learning Progress
 - Estimated Knowledge
-- Estimated Mastery
 
 ### Avoid (student-facing)
 
 - Mastered (as a completion checkbox or badge for study completion)
+- Estimated Mastery (Version 1 exposes Estimated Knowledge only — EIP-006)
 - Fully Learned
 - Finished Learning Forever
 - Evidence Creating / pipeline / Twin jargon on student surfaces
@@ -66,7 +66,7 @@ completion alone.
 1. I mark topics I have **completed studying**.
 2. Kwalitec advances my **Current Learning Topic** through the syllabus.
 3. Today's Mission follows that learning sequence (**Learning Mode**).
-4. Estimated Mastery appears only after study evidence exists.
+4. Estimated Knowledge appears only after study evidence exists.
 5. Review suggestions may appear as recommendations — they do not silently
    replace today's learning mission in v1.0.
 
@@ -80,7 +80,7 @@ completion alone.
 |---|---|---|
 | Edit copy | “check topics you've already **mastered**” | “check topics you have already **completed studying**” |
 | Wizard init | `completed=True`, `mastery_score=100`, `confidence=Mastered` | `completed=True`, `mastery_score=0`, `confidence=High` |
-| Roadmap metric | “Mastery 100%” from completion | No Estimated Mastery until attempt evidence; badge remains **Completed** |
+| Roadmap metric | “Mastery 100%” from completion | No Estimated Knowledge until attempt evidence; badge remains **Completed** |
 
 ### Mission completion
 
@@ -95,7 +95,7 @@ completion alone.
 |---|---|---|
 | Selection | Review due → weak topics → next incomplete | **Learning Mode:** Current Learning Topic (next incomplete) only |
 | Result | Completed weak topic 2.6 could replace learning topic 4.2 | Mission stays on the planned learning topic |
-| Why copy | Generic “recommended focus” | Explains Learning Mode + Study Progress vs Estimated Mastery |
+| Why copy | Generic “recommended focus” | Explains Learning Mode + Study Progress vs Estimated Knowledge |
 
 ---
 

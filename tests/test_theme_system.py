@@ -61,7 +61,7 @@ class TestThemeAssets:
         dark_block_start = css.index('[data-theme="dark"]')
         dark_block = css[dark_block_start : dark_block_start + 1600]
         assert "--chrome:" in dark_block
-        assert "--brand: #93c5fd" in dark_block
+        assert "--brand: #A5B4F0" in dark_block
         assert "--brand: #0f131a" not in dark_block
         assert "--on-primary: #0f131a" in dark_block
 

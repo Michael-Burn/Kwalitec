@@ -1,0 +1,64 @@
+/**
+ * Kwalitec Brand Theme — BI-001
+ * Single source of truth for official brand colours and semantic aliases.
+ * Derived from the approved logo / BI-000 colour specification.
+ *
+ * Icon system: Lucide (stroke 1.75–2, 24×24 viewBox) — geometric, not rounded/cartoon.
+ */
+
+:root {
+  /* Official palette */
+  --brand-blue: #3B4FB8;
+  --brand-blue-dark: #2F3F96;
+  --brand-navy: #0A1628;
+  --brand-midnight: #020D24;
+  --brand-primary-dark: #0D1B2A;
+  --brand-gold: #E8B02B;
+  --brand-gold-hover: #F0C040;
+  --brand-white: #FFFFFF;
+  --brand-text-secondary-on-dark: #8B93A7;
+  --brand-divider: #1E2A3D;
+
+  /* BI-000 aliases (docs / tooling) */
+  --brand-primary-blue: var(--brand-blue);
+  --brand-deep-navy: var(--brand-navy);
+
+  /* Surface system */
+  --surface: #ffffff;
+  --surface-alt: #f4f6f9;
+  --surface-elevated: #ffffff;
+  --text-primary: #1e2430;
+  --text-secondary: #4a5568;
+  --divider: #e6e9ef;
+
+  /* Semantic status (brand-aligned) */
+  --status-success: #0f766e;
+  --status-info: var(--brand-blue);
+  --status-warning: var(--brand-gold);
+  --status-danger: #c81e1e;
+
+  /* Chart palette */
+  --chart-blue: var(--brand-blue);
+  --chart-gold: var(--brand-gold);
+  --chart-midnight: var(--brand-midnight);
+  --chart-grey: #8B93A7;
+}
+
+[data-theme="dark"] {
+  --surface: #1c222d;
+  --surface-alt: #141820;
+  --surface-elevated: #242b38;
+  --text-primary: #eef1f6;
+  --text-secondary: #c2c9d4;
+  --divider: #2f3645;
+
+  --status-success: #2dd4bf;
+  --status-info: #8B9CE0;
+  --status-warning: var(--brand-gold-hover);
+  --status-danger: #f87171;
+
+  --chart-blue: #8B9CE0;
+  --chart-gold: var(--brand-gold);
+  --chart-midnight: #A8B0BD;
+  --chart-grey: #8B93A7;
+}

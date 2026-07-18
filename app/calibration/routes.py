@@ -281,7 +281,7 @@ def _persist_and_redirect(launch, declarations: AlphaCalibrationDeclarations):
     return _mark_welcome_and_go_dashboard(
         flash_message=(
             "Your study plan is ready. We've recorded what you shared about "
-            "your learning history — not measured mastery."
+            "your learning history — not Estimated Knowledge."
         ),
     )
 

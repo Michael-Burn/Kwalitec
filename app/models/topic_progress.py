@@ -72,7 +72,7 @@ class TopicProgress(db.Model):
         db.Float,
         default=0.0,
         nullable=False,
-        comment="Calculated mastery score from 0 to 100",
+        comment="Internal estimate scalar 0-100; Version 1 student meaning: Estimated Knowledge",
     )
     average_accuracy: float = db.Column(
         db.Float,

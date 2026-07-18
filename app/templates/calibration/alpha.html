@@ -4,7 +4,7 @@
 {% set total_steps = 1 %}
 {% set step_title = "Educational history" %}
 {% set wizard_question = "Confirm your educational history" %}
-{% set wizard_helper = "Tell us what you have already studied for this exam. This is the only place we ask about prior syllabus coverage — answers are declarations, not measured mastery." %}
+{% set wizard_helper = "Tell us what you have already studied for this exam. This is the only place we ask about prior syllabus coverage — answers are declarations, not Estimated Knowledge." %}
 {% set button_text = "Continue" %}
 
 {% block form_content %}
@@ -40,7 +40,7 @@
 
     <div class="wizard-field-group">
         <label class="form-label">{{ form.core_reading_completed.label.text }}</label>
-        <small class="wizard-field-hint">Declared coverage only — not a mastery score.</small>
+        <small class="wizard-field-hint">Declared coverage only — not Estimated Knowledge.</small>
         <div class="wizard-option-list">
             {% for subfield in form.core_reading_completed %}
             {% if subfield.type != 'CSRFTokenField' %}

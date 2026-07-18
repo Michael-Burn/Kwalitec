@@ -24,9 +24,11 @@ CONFIDENCE_NUMERIC = {
 class AdaptiveLearningService:
     """Service for adaptive learning calculations.
 
-    Provides deterministic mastery score calculations, review scheduling,
-    and topic detection (weak/mastered) based on stored learning data.
-    No external APIs or AI are used - all calculations are purely mathematical.
+    Provides deterministic estimate calculations (internal field
+    ``mastery_score``; Version 1 student meaning: Estimated Knowledge),
+    review scheduling, and topic detection (weak/strong) based on stored
+    learning data. No external APIs or AI are used — all calculations are
+    purely mathematical.
     """
 
     # ── Mastery Calculation ──────────────────────────────────────────
@@ -38,7 +40,12 @@ class AdaptiveLearningService:
         revision_count: int,
         unresolved_mistakes: int,
     ) -> float:
-        """Calculate a mastery score from 0 to 100 from authorised accuracy.
+        """Calculate an estimate scalar from 0 to 100 from authorised accuracy.
+
+        Version 1 student meaning of the returned scalar is Estimated Knowledge
+        (EIP-006). The method name and persistence field remain ``mastery_score``
+        for compatibility; this is not constitutionally sufficient Estimated
+        Mastery (EL-007).
 
         EIP-002: this formula may interpret authorised Structured Question
         Results (accuracy). It must not mint estimates from activity,
@@ -48,8 +55,8 @@ class AdaptiveLearningService:
         - Accuracy (required for a non-zero estimate write path): average
           percentage correct across authorised attempts
         - Confidence (30%): legacy parameter retained for compatibility —
-          EIP-001/EIP-002 forbid student confidence from authoring Estimated
-          Mastery; ``update_mastery_after_attempt`` always passes ``None``.
+          EIP-001/EIP-002 forbid student confidence from authoring estimates;
+          ``update_mastery_after_attempt`` always passes ``None``.
         - Consistency bonus: capped revision signal only when accuracy exists
         - Penalty: deduction for unresolved mistakes when accuracy exists
 
@@ -63,7 +70,8 @@ class AdaptiveLearningService:
             unresolved_mistakes: Number of unresolved mistakes.
 
         Returns:
-            float: Mastery score from 0 to 100, or 0.0 when accuracy is absent.
+            float: Estimated Knowledge scalar from 0 to 100, or 0.0 when
+            accuracy is absent.
         """
         # EIP-002: no authorised Educational Evidence ⇒ no artificial estimate.
         if accuracy is None:

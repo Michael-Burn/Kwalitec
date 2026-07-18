@@ -237,7 +237,7 @@ The student sees a plain-language summary of what they declared:
 - Core Reading / sections / attempts as stated;  
 - objective and sitting.
 
-The review must say, truthfully, that this is **self-declared history** the product will use as a starting point — not measured mastery or readiness.
+The review must say, truthfully, that this is **self-declared history** the product will use as a starting point — not Estimated Knowledge or readiness.
 
 The student may correct before confirming.
 
