@@ -1,0 +1,15 @@
+{% if page and page.shell %}
+<nav class="student-nav" aria-label="Student experience">
+    <ul class="student-nav-list">
+        {% for item in page.shell.navigation %}
+        <li class="student-nav-item">
+            <a
+                class="student-nav-link{% if item.active %} is-active{% endif %}"
+                href="{{ url_for(item.endpoint) }}"
+                {% if item.active %}aria-current="page"{% endif %}
+            >{{ item.label }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</nav>
+{% endif %}

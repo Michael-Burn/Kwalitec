@@ -229,19 +229,23 @@ class TestStaticAssetCaching:
 
 
 class TestBrandAssetOptimisation:
-    """H-9 — oversized brand rasters reduced; SVG remains canonical."""
+    """H-9 — brand rasters remain within size budgets; display logo is approved PNG."""
 
     def test_heavy_pngs_under_size_budget(self) -> None:
-        # Post-optimisation budgets (well below pre-RC2 multi-MB originals).
+        from app.brand_identity import APPROVED_LOGO_STATIC_PATH
+
+        # Favicon/social budgets; approved master logo is the intentional UI source.
         budgets = {
-            "logo-primary.png": 600_000,
-            "logo-white.png": 700_000,
-            "logo-icon.png": 200_000,
             "social-preview.png": 1_000_000,
         }
         for name, limit in budgets.items():
             size = (BRANDING / name).stat().st_size
             assert size <= limit, f"{name} is {size} bytes (budget {limit})"
+
+        approved = ROOT / "app" / "static" / APPROVED_LOGO_STATIC_PATH
+        assert approved.is_file()
+        # Master PNG (~1MB) is the single display source — keep under 1.5MB.
+        assert approved.stat().st_size <= 1_500_000
 
     def test_social_preview_is_og_dimensions(self) -> None:
         # Lightweight dimension check without Pillow dependency.

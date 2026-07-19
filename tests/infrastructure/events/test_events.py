@@ -150,8 +150,11 @@ def test_future_version_rejected(event_type):
 
 
 def test_event_types_tuple_stable():
-    assert len(EVENT_TYPES) == 7
+    assert len(EVENT_TYPES) >= 7
     assert EVENT_TYPES[0] == "EvidenceRecorded"
+    assert "StudentHomeViewed" in EVENT_TYPES
+    assert "LearningSessionStarted" in EVENT_TYPES
+    assert EVENT_TYPES.count("LearningSessionCompleted") == 1
 
 
 @pytest.mark.parametrize("event_type", EVENT_TYPE_LIST)

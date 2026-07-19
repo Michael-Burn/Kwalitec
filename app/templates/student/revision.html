@@ -1,0 +1,96 @@
+{% extends "student/base.html" %}
+{% from "student/components/explanation_card.html" import explanation_card %}
+
+{% block content %}
+{% if page.revision %}
+{% set revision = page.revision %}
+
+{% if revision.has_revision and revision.primary %}
+{% set primary = revision.primary %}
+<section class="student-card student-card--revision-primary" aria-labelledby="revision-title">
+    <p class="student-card-eyebrow">Today's best revision</p>
+    <h2 id="revision-title" class="student-card-title">{{ primary.topic_title }}</h2>
+    <dl class="student-meta-row">
+        {% if primary.priority_label %}
+        <div>
+            <dt>Priority</dt>
+            <dd><span class="student-badge">{{ primary.priority_label }}</span></dd>
+        </div>
+        {% endif %}
+        {% if primary.time_label %}
+        <div>
+            <dt>Estimated time</dt>
+            <dd>{{ primary.time_label }}</dd>
+        </div>
+        {% endif %}
+        {% if primary.expected_benefit %}
+        <div>
+            <dt>Expected educational benefit</dt>
+            <dd>{{ primary.expected_benefit }}</dd>
+        </div>
+        {% endif %}
+    </dl>
+    {% if form and revision.primary_cta_enabled %}
+    <form method="post" action="{{ url_for('student.begin_revision') }}" class="student-primary-action">
+        {{ form.hidden_tag() }}
+        {{ form.option_id() }}
+        {{ form.mission_id() }}
+        {{ form.session_id() }}
+        <button type="submit" class="btn student-btn-primary" data-student-cta="primary">
+            {{ revision.primary_cta_label }}
+        </button>
+    </form>
+    {% endif %}
+</section>
+
+{{ explanation_card(primary.explanation) }}
+
+{% if revision.alternatives %}
+<section class="student-stack" aria-labelledby="alt-revision-title">
+    <h2 id="alt-revision-title" class="student-section-title">Alternative revision options</h2>
+    {% for option in revision.alternatives %}
+    <article class="student-card student-card--revision-alt">
+        <h3 class="student-card-title student-card-title--sm">{{ option.topic_title }}</h3>
+        <dl class="student-meta-row">
+            {% if option.priority_label %}
+            <div>
+                <dt>Priority</dt>
+                <dd>{{ option.priority_label }}</dd>
+            </div>
+            {% endif %}
+            {% if option.time_label %}
+            <div>
+                <dt>Time</dt>
+                <dd>{{ option.time_label }}</dd>
+            </div>
+            {% endif %}
+            {% if option.expected_benefit %}
+            <div>
+                <dt>Benefit</dt>
+                <dd>{{ option.expected_benefit }}</dd>
+            </div>
+            {% endif %}
+        </dl>
+    </article>
+    {% endfor %}
+</section>
+{% endif %}
+
+{% else %}
+<section class="student-card">
+    <h2 class="student-card-title">No revision focus yet</h2>
+    <p class="student-card-body">{{ revision.empty_message }}</p>
+    <div class="student-primary-action">
+        <a class="btn student-btn-primary" href="{{ url_for('student.home') }}" data-student-cta="primary">
+            Return Home
+        </a>
+    </div>
+</section>
+{% endif %}
+{% else %}
+<section class="student-card">
+    <h2 class="student-card-title">Revision</h2>
+    <p class="student-card-body">Revision options will appear when available.</p>
+</section>
+{% endif %}
+{% endblock %}

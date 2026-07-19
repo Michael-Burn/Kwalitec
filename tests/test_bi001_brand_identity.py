@@ -6,11 +6,14 @@ from pathlib import Path
 
 import pytest
 
+from app.brand_identity import APPROVED_LOGO_STATIC_PATH
+
 ROOT = Path(__file__).resolve().parents[1]
 BRANDING = ROOT / "app" / "static" / "branding"
 ASSETS = ROOT / "app" / "static" / "assets" / "branding"
 BRAND_CSS = ROOT / "app" / "static" / "css" / "brand.css"
 APP_CSS = ROOT / "app" / "static" / "css" / "app.css"
+APPROVED_LOGO = ROOT / "app" / "static" / APPROVED_LOGO_STATIC_PATH
 
 
 class TestBrandThemeTokens:
@@ -51,13 +54,22 @@ class TestBrandThemeTokens:
             assert "css/brand.css" in text
             assert "@fontsource/inter" in text
 
+    def test_brand_css_preserves_logo_aspect_ratio(self) -> None:
+        css = BRAND_CSS.read_text(encoding="utf-8")
+        assert ".brand-logo" in css
+        assert "object-fit: contain" in css
+        assert "width: auto" in css
+        assert "height: auto" in css
+
 
 class TestOfficialAssetPack:
-    def test_master_original_present(self) -> None:
+    def test_approved_logo_is_single_display_source(self) -> None:
+        assert APPROVED_LOGO.is_file() and APPROVED_LOGO.stat().st_size > 0
+        assert APPROVED_LOGO.name == "approved-kwalitec-logo.png"
+        # Master archive remains available and shares the same bytes.
         original = ASSETS / "original" / "Approved-Kwalitec-Logo.png"
-        optimised = ASSETS / "original" / "Approved-Kwalitec-Logo-optimised.png"
-        assert original.is_file() and original.stat().st_size > 0
-        assert optimised.is_file() and optimised.stat().st_size > 0
+        assert original.is_file()
+        assert APPROVED_LOGO.read_bytes() == original.read_bytes()
 
     def test_runtime_icon_set_complete(self) -> None:
         for name in (
@@ -68,17 +80,14 @@ class TestOfficialAssetPack:
             "android-chrome-192.png",
             "android-chrome-512.png",
             "maskable-icon.png",
-            "logo-icon.svg",
         ):
             path = BRANDING / name
             assert path.is_file(), name
             assert path.stat().st_size > 0
 
-    def test_logo_svg_uses_official_colours(self) -> None:
-        svg = (BRANDING / "logo-icon.svg").read_text(encoding="utf-8")
-        assert "#3B4FB8" in svg
-        assert "#E8B02B" in svg
-        assert "#3950A2" not in svg
+    def test_runtime_branding_has_no_recreated_logo_svgs(self) -> None:
+        logo_svgs = list(BRANDING.glob("logo-*.svg"))
+        assert logo_svgs == [], f"obsolete logo SVGs still present: {logo_svgs}"
 
 
 class TestSidebarBrandChrome:
@@ -126,9 +135,8 @@ class TestBrandHttp:
         assert resp.status_code == 200
         html = resp.get_data(as_text=True)
         assert "css/brand.css" in html
-        assert "branding/logo-icon.svg" in html
+        assert APPROVED_LOGO_STATIC_PATH in html
         assert "branding/favicon.svg" in html
-        assert "#3B4FB8" in (BRANDING / "logo-icon.svg").read_text(encoding="utf-8")
         assert "#0D1B2A" in (BRANDING / "favicon.svg").read_text(encoding="utf-8")
 
     @pytest.mark.parametrize(
@@ -136,6 +144,7 @@ class TestBrandHttp:
         (
             "/static/branding/favicon-32.png",
             "/static/branding/maskable-icon.png",
+            f"/static/{APPROVED_LOGO_STATIC_PATH}",
             "/static/css/brand.css",
         ),
     )

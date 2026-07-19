@@ -7,17 +7,13 @@ from pathlib import Path
 
 import pytest
 
+from app.brand_identity import APPROVED_LOGO_STATIC_PATH
+
 ROOT = Path(__file__).resolve().parents[1]
 BRANDING = ROOT / "app" / "static" / "branding"
+APPROVED_LOGO = ROOT / "app" / "static" / APPROVED_LOGO_STATIC_PATH
 
 REQUIRED_ASSETS = (
-    "logo-primary.svg",
-    "logo-primary.png",
-    "logo-white.svg",
-    "logo-white.png",
-    "logo-monochrome.svg",
-    "logo-icon.svg",
-    "logo-icon.png",
     "favicon.ico",
     "apple-touch-icon.png",
     "android-chrome-192.png",
@@ -36,6 +32,10 @@ class TestBrandAssetInventory:
         path = BRANDING / filename
         assert path.is_file(), f"missing canonical brand asset: {filename}"
         assert path.stat().st_size > 0
+
+    def test_approved_logo_present(self) -> None:
+        assert APPROVED_LOGO.is_file()
+        assert APPROVED_LOGO.stat().st_size > 0
 
     def test_no_logo_assets_under_static_images(self) -> None:
         images = ROOT / "app" / "static" / "images"
@@ -92,14 +92,24 @@ class TestBrandTemplateWiring:
     def test_login_uses_canonical_logo_partial(self) -> None:
         text = (ROOT / "app/templates/auth/login.html").read_text(encoding="utf-8")
         assert "partials/brand_logo.html" in text
-        assert "brand_variant='icon'" in text
+        assert "brand_variant=" not in text
+        assert ">Kwalitec</span>" not in text
         assert "M12 2L2 7l10 5 10-5-10-5z" not in text
 
     def test_sidebar_uses_canonical_logo_partial(self) -> None:
         path = ROOT / "app/templates/partials/sidebar.html"
         text = path.read_text(encoding="utf-8")
         assert "partials/brand_logo.html" in text
-        assert "sidebar-brand-mark" in text
+        assert "sidebar-brand-logo" in text
+        assert ">Kwalitec</span>" not in text
+
+    def test_brand_logo_partial_uses_approved_png_only(self) -> None:
+        text = (ROOT / "app/templates/partials/brand_logo.html").read_text(
+            encoding="utf-8"
+        )
+        assert "approved-kwalitec-logo.png" in text
+        assert ".svg" not in text
+        assert "brand_variant" not in text
 
 
 class TestBrandHttpWiring:
@@ -109,7 +119,8 @@ class TestBrandHttpWiring:
         html = resp.get_data(as_text=True)
         assert "branding/favicon.ico" in html
         assert "branding/favicon.svg" in html
-        assert "branding/logo-icon.svg" in html  # login chrome mark
+        assert APPROVED_LOGO_STATIC_PATH in html
+        assert "logo-icon.svg" not in html
         assert "branding/manifest.webmanifest" in html
         assert "branding/social-preview.png" in html
         assert 'name="theme-color" content="#0D1B2A"' in html
@@ -121,16 +132,17 @@ class TestBrandHttpWiring:
         resp = logged_in_client.get("/dashboard/")
         assert resp.status_code == 200
         html = resp.get_data(as_text=True)
-        assert "branding/logo-icon.svg" in html
+        assert APPROVED_LOGO_STATIC_PATH in html
+        assert "logo-icon.svg" not in html
         assert "branding/favicon.svg" in html
         assert "branding/favicon.ico" in html
-        assert "sidebar-brand-mark" in html
+        assert "sidebar-brand-logo" in html
 
     def test_static_brand_assets_are_servable(self, client) -> None:
         for filename in (
             "branding/favicon.ico",
             "branding/favicon.svg",
-            "branding/logo-icon.svg",
+            APPROVED_LOGO_STATIC_PATH,
             "branding/manifest.webmanifest",
             "branding/social-preview.png",
             "branding/android-chrome-192.png",

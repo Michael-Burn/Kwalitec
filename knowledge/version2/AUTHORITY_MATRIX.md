@@ -1,9 +1,9 @@
 # Version 2 Authority Matrix
 
-**Document ID:** V2-017-AUTHORITY  
+**Document ID:** V2-017/018-AUTHORITY  
 **Status:** Architectural  
-**Milestone:** V2-017 — Production Integration Foundation  
-**Related:** [`ARCHITECTURE_DECISIONS/ADR-005-Single-Next-Action-Authority.md`](ARCHITECTURE_DECISIONS/ADR-005-Single-Next-Action-Authority.md) · [`ARCHITECTURE_DECISIONS/ADR-006-Authority-Boundaries.md`](ARCHITECTURE_DECISIONS/ADR-006-Authority-Boundaries.md) · [`PRODUCTION_INTEGRATION.md`](PRODUCTION_INTEGRATION.md)
+**Milestones:** V2-017 — Production Integration Foundation · V2-018 — Production Experience Integration  
+**Related:** [`ARCHITECTURE_DECISIONS/ADR-005-Single-Next-Action-Authority.md`](ARCHITECTURE_DECISIONS/ADR-005-Single-Next-Action-Authority.md) · [`ARCHITECTURE_DECISIONS/ADR-006-Authority-Boundaries.md`](ARCHITECTURE_DECISIONS/ADR-006-Authority-Boundaries.md) · [`PRODUCTION_INTEGRATION.md`](PRODUCTION_INTEGRATION.md) · [`STUDENT_EXPERIENCE.md`](STUDENT_EXPERIENCE.md)
 
 This matrix names **authority** (who may lawfully decide or mutate) versus **consumers** (who may read or request via ports). Upstream / downstream list integration dependencies only.
 
@@ -172,11 +172,15 @@ This matrix names **authority** (who may lawfully decide or mutate) versus **con
 | | |
 |--|--|
 | **Authority** | Student Experience — presentation, workflow, projection, navigation only |
-| **Consumers** | Student UI (future), product ingress paths |
-| **Upstream** | Twin, Adaptive Decision, Mission, Journey, Orchestrator (via ports) |
+| **Consumers** | Student UI (`app/presentation/student/`), product ingress paths |
+| **Upstream** | Twin, Adaptive Decision, Mission, Journey, Orchestrator via **production Experience adapters** (V2-018) |
 | **Downstream** | Home / Journey / Revision / History / Profile snapshots |
 
 **Constraint:** Does **not** own learner state, readiness calculations, recommendations, mission generation, journey progression, or evidence. See [`STUDENT_EXPERIENCE.md`](STUDENT_EXPERIENCE.md).
+
+**Infrastructure (V2-018):** `ExperienceTwinAdapter`, `ExperienceAdaptiveAdapter`, `ExperienceMissionAdapter`, `ExperienceJourneyAdapter`, `ExperienceOrchestratorAdapter` implement Experience ports only. Persistence of workspaces / sessions / projections is infrastructure-owned; educational law remains in engines.
+
+**Preview retirement:** Demonstration preview ports are removed; production adapters are the default wiring.
 
 ---
 

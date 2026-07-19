@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from app.infrastructure.events.base import IntegrationEvent
+from app.infrastructure.events.types.experience import EXPERIENCE_EVENT_TYPES
 
 EVIDENCE_RECORDED = "EvidenceRecorded"
 TWIN_UPDATED = "TwinUpdated"
@@ -12,14 +13,20 @@ CURRICULUM_PUBLISHED = "CurriculumPublished"
 CURRICULUM_VALIDATED = "CurriculumValidated"
 LEARNING_SESSION_COMPLETED = "LearningSessionCompleted"
 
-EVENT_TYPES: tuple[str, ...] = (
-    EVIDENCE_RECORDED,
-    TWIN_UPDATED,
-    ADAPTIVE_DECISION_GENERATED,
-    MISSION_UPDATED,
-    CURRICULUM_PUBLISHED,
-    CURRICULUM_VALIDATED,
-    LEARNING_SESSION_COMPLETED,
+# Core + Student Experience surface events (V2-017 / V2-018).
+EVENT_TYPES: tuple[str, ...] = tuple(
+    dict.fromkeys(
+        (
+            EVIDENCE_RECORDED,
+            TWIN_UPDATED,
+            ADAPTIVE_DECISION_GENERATED,
+            MISSION_UPDATED,
+            CURRICULUM_PUBLISHED,
+            CURRICULUM_VALIDATED,
+            LEARNING_SESSION_COMPLETED,
+            *EXPERIENCE_EVENT_TYPES,
+        )
+    )
 )
 
 

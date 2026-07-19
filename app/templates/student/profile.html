@@ -1,0 +1,132 @@
+{% extends "student/base.html" %}
+
+{% block content %}
+{% if page.profile %}
+{% set profile = page.profile %}
+
+<section class="student-card" aria-labelledby="exam-title">
+    <p class="student-card-eyebrow">Current examination</p>
+    <h2 id="exam-title" class="student-card-title">
+        {{ profile.examination_label or 'Not set' }}
+    </h2>
+    {% if profile.display_name %}
+    <p class="student-muted mb-0">{{ profile.display_name }}</p>
+    {% endif %}
+</section>
+
+<section class="student-card" aria-labelledby="prefs-title">
+    <p class="student-card-eyebrow">Learning preferences</p>
+    <h2 id="prefs-title" class="student-card-title student-card-title--sm">Study preferences</h2>
+    <dl class="student-meta-row">
+        {% if profile.preferences.preferred_session_minutes %}
+        <div>
+            <dt>Preferred session length</dt>
+            <dd>{{ profile.preferences.preferred_session_minutes }} minutes</dd>
+        </div>
+        {% endif %}
+        {% if profile.preferences_days_label %}
+        <div>
+            <dt>Preferred study days</dt>
+            <dd>{{ profile.preferences_days_label }}</dd>
+        </div>
+        {% endif %}
+        <div>
+            <dt>Reminders</dt>
+            <dd>{{ 'On' if profile.preferences.reminder_enabled else 'Off' }}</dd>
+        </div>
+        {% if profile.preferences.quiet_hours_label %}
+        <div>
+            <dt>Quiet hours</dt>
+            <dd>{{ profile.preferences.quiet_hours_label }}</dd>
+        </div>
+        {% endif %}
+    </dl>
+</section>
+
+{% if profile.goals %}
+<section class="student-stack" aria-labelledby="goals-title">
+    <h2 id="goals-title" class="student-section-title">Goals</h2>
+    {% for goal in profile.goals %}
+    <article class="student-card">
+        <h3 class="student-card-title student-card-title--sm">{{ goal.title }}</h3>
+        {% if goal.target_label %}
+        <p class="student-muted mb-0">{{ goal.target_label }}</p>
+        {% endif %}
+        <div class="student-progress mt-2" role="progressbar"
+             aria-valuenow="{{ (goal.progress_ratio * 100)|int }}"
+             aria-valuemin="0"
+             aria-valuemax="100"
+             aria-label="Goal progress">
+            <div class="student-progress-bar" style="width: {{ (goal.progress_ratio * 100)|int }}%"></div>
+        </div>
+    </article>
+    {% endfor %}
+</section>
+{% endif %}
+
+<section class="student-card" aria-labelledby="stats-title">
+    <p class="student-card-eyebrow">Learning statistics</p>
+    <h2 id="stats-title" class="student-card-title student-card-title--sm">Progress summary</h2>
+    <dl class="student-meta-row">
+        <div>
+            <dt>Total study time</dt>
+            <dd>{{ profile.total_study_label or '—' }}</dd>
+        </div>
+        <div>
+            <dt>Sessions completed</dt>
+            <dd>{{ profile.statistics.sessions_completed }}</dd>
+        </div>
+        <div>
+            <dt>Topics mastered</dt>
+            <dd>{{ profile.statistics.topics_mastered }}</dd>
+        </div>
+        {% if profile.readiness_percent_label %}
+        <div>
+            <dt>Exam readiness</dt>
+            <dd>{{ profile.readiness_percent_label }}</dd>
+        </div>
+        {% endif %}
+    </dl>
+</section>
+
+<section class="student-card" aria-labelledby="account-title">
+    <p class="student-card-eyebrow">Account settings</p>
+    <h2 id="account-title" class="student-card-title student-card-title--sm">Account</h2>
+    <dl class="student-meta-row">
+        {% if profile.account.email %}
+        <div>
+            <dt>Email</dt>
+            <dd>{{ profile.account.email }}</dd>
+        </div>
+        {% endif %}
+        <div>
+            <dt>Notifications</dt>
+            <dd>{{ 'Enabled' if profile.account.notifications_enabled else 'Disabled' }}</dd>
+        </div>
+        {% if profile.account.locale %}
+        <div>
+            <dt>Locale</dt>
+            <dd>{{ profile.account.locale }}</dd>
+        </div>
+        {% endif %}
+        {% if profile.account.timezone %}
+        <div>
+            <dt>Timezone</dt>
+            <dd>{{ profile.account.timezone }}</dd>
+        </div>
+        {% endif %}
+    </dl>
+</section>
+
+<div class="student-primary-action">
+    <a class="btn student-btn-primary" href="{{ url_for(profile.primary_cta_endpoint) }}" data-student-cta="primary">
+        {{ profile.primary_cta_label }}
+    </a>
+</div>
+{% else %}
+<section class="student-card">
+    <h2 class="student-card-title">Profile</h2>
+    <p class="student-card-body">Your profile will appear when learning insights are available.</p>
+</section>
+{% endif %}
+{% endblock %}

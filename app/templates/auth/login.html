@@ -6,10 +6,9 @@
     <section class="landing-hero" aria-label="Product introduction">
         <div class="landing-hero-inner">
             <a class="landing-logo" href="{{ url_for('auth.login') }}" aria-label="Kwalitec home">
-                {% with brand_variant='icon', brand_class='landing-logo-mark', brand_width=36, brand_height=36, brand_alt='' %}
+                {% with brand_class='landing-logo-img' %}
                     {% include "partials/brand_logo.html" %}
                 {% endwith %}
-                <span>Kwalitec</span>
             </a>
             <div class="landing-alpha-identity">
                 {% with alpha_badge_variant='full' %}

@@ -1,0 +1,88 @@
+{% extends "student/base.html" %}
+{% from "student/components/history_card.html" import history_card %}
+
+{% block content %}
+{% if page.history %}
+{% set history = page.history %}
+
+<section class="student-grid student-grid--stats" aria-label="Learning statistics">
+    <section class="student-card">
+        <p class="student-card-eyebrow">Study time</p>
+        <h2 class="student-card-title">{{ history.total_study_label }}</h2>
+        <p class="student-muted mb-0">{{ history.session_count }} completed sessions</p>
+    </section>
+    <section class="student-card">
+        <p class="student-card-eyebrow">Readiness trend</p>
+        <h2 class="student-card-title student-card-title--sm">{{ history.readiness_trend_label }}</h2>
+        {% if history.readiness_points %}
+        <ul class="student-trend-list">
+            {% for recorded_at, label in history.readiness_points %}
+            <li><span>{{ recorded_at }}</span> <strong>{{ label }}</strong></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </section>
+</section>
+
+<section class="student-stack" aria-labelledby="recent-sessions-title">
+    <h2 id="recent-sessions-title" class="student-section-title">Recent sessions</h2>
+    {% if history.sessions %}
+        {% for session in history.sessions %}
+            {{ history_card(session) }}
+        {% endfor %}
+    {% else %}
+    <p class="student-muted">No completed sessions yet.</p>
+    {% endif %}
+</section>
+
+{% if history.mastered_topics %}
+<section class="student-stack" aria-labelledby="completed-topics-history">
+    <h2 id="completed-topics-history" class="student-section-title">Completed topics</h2>
+    <ul class="student-plain-list">
+        {% for topic in history.mastered_topics %}
+        <li>{{ topic }}</li>
+        {% endfor %}
+    </ul>
+</section>
+{% endif %}
+
+{% if history.revision_history %}
+<section class="student-stack" aria-labelledby="revision-history-title">
+    <h2 id="revision-history-title" class="student-section-title">Revision history</h2>
+    <ul class="student-plain-list">
+        {% for item in history.revision_history %}
+        <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+</section>
+{% endif %}
+
+{% if history.achievements %}
+<section class="student-stack" aria-labelledby="achievements-title">
+    <h2 id="achievements-title" class="student-section-title">Achievements</h2>
+    {% for achievement in history.achievements %}
+    <article class="student-card">
+        <h3 class="student-card-title student-card-title--sm">{{ achievement.title }}</h3>
+        {% if achievement.description %}
+        <p class="student-card-body">{{ achievement.description }}</p>
+        {% endif %}
+        {% if achievement.earned_at %}
+        <p class="student-muted mb-0">{{ achievement.earned_at }}</p>
+        {% endif %}
+    </article>
+    {% endfor %}
+</section>
+{% endif %}
+
+<div class="student-primary-action">
+    <a class="btn student-btn-primary" href="{{ url_for('student.home') }}" data-student-cta="primary">
+        {{ history.primary_cta_label }}
+    </a>
+</div>
+{% else %}
+<section class="student-card">
+    <h2 class="student-card-title">History</h2>
+    <p class="student-card-body">Your educational progress will appear here.</p>
+</section>
+{% endif %}
+{% endblock %}

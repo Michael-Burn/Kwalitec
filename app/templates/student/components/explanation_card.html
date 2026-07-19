@@ -1,0 +1,24 @@
+{# Explanation Card — educational reasoning only; never internal engine names #}
+{% macro explanation_card(explanation) %}
+{% if explanation and explanation.has_content %}
+<section class="student-card student-card--explanation" aria-labelledby="explanation-title">
+    <p class="student-card-eyebrow">Why this recommendation</p>
+    <h2 id="explanation-title" class="student-card-title">
+        {{ explanation.summary or 'Educational reasoning' }}
+    </h2>
+    {% if explanation.why_recommended %}
+    <p class="student-card-body">{{ explanation.why_recommended }}</p>
+    {% endif %}
+    {% if explanation.evidence_points %}
+    <ul class="student-evidence-list">
+        {% for point in explanation.evidence_points %}
+        <li>{{ point }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% if explanation.expected_benefit %}
+    <p class="student-muted mb-0"><span class="student-label">Expected benefit</span> {{ explanation.expected_benefit }}</p>
+    {% endif %}
+</section>
+{% endif %}
+{% endmacro %}

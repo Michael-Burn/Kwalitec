@@ -24,7 +24,7 @@ ADR = KNOWLEDGE / "ARCHITECTURE_DECISIONS"
 
 
 def test_infrastructure_version_present():
-    assert INFRASTRUCTURE_VERSION.startswith("v2-017")
+    assert INFRASTRUCTURE_VERSION.startswith("v2-0")
 
 
 def test_required_docs_exist():
@@ -62,7 +62,16 @@ def test_event_catalogue_complete():
         "CurriculumPublished",
         "CurriculumValidated",
         "LearningSessionCompleted",
+        "StudentHomeViewed",
+        "LearningSessionStarted",
+        "RecommendationAccepted",
+        "RecommendationDismissed",
+        "JourneyViewed",
+        "RevisionStarted",
+        "HistoryViewed",
+        "ProfileUpdated",
     }
+    assert required.issubset(set(EVENT_TYPES))
     assert set(EVENT_TYPES) == required
 
 

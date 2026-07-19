@@ -1,0 +1,16 @@
+{# Countdown Card — exam countdown #}
+{% macro countdown_card(countdown) %}
+<section class="student-card student-card--countdown" aria-labelledby="countdown-title">
+    <p class="student-card-eyebrow">Exam countdown</p>
+    <h2 id="countdown-title" class="student-card-title">
+        {% if countdown.has_countdown %}
+            {{ countdown.label }}
+        {% else %}
+            Exam date not set
+        {% endif %}
+    </h2>
+    {% if countdown.examination_label %}
+    <p class="student-card-body mb-0">{{ countdown.examination_label }}</p>
+    {% endif %}
+</section>
+{% endmacro %}

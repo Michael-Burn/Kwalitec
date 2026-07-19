@@ -38,7 +38,9 @@ Founder curriculum readiness delivered by **Curriculum Studio** (`app/domain/cur
 
 Production integration foundation delivered by **V2-017** (`app/infrastructure/`) — port adapters, persistence contracts, integration events, observability; see [`PRODUCTION_INTEGRATION.md`](PRODUCTION_INTEGRATION.md) · [`AUTHORITY_MATRIX.md`](AUTHORITY_MATRIX.md) · ADR-005/006/007.
 
-Learner product projection delivered by **Student Experience** (`app/domain/student_experience/`, `app/application/student_experience/`) — Home / Journey / Revision / History / Profile orchestration over Twin, Adaptive Decision, Mission, Journey, and Orchestrator ports (UI deferred); see [`STUDENT_EXPERIENCE.md`](STUDENT_EXPERIENCE.md).
+Learner product projection delivered by **Student Experience** (`app/domain/student_experience/`, `app/application/student_experience/`) — Home / Journey / Revision / History / Profile orchestration over Twin, Adaptive Decision, Mission, Journey, and Orchestrator ports; see [`STUDENT_EXPERIENCE.md`](STUDENT_EXPERIENCE.md).
+
+Student Experience UI delivered by **V2-017B-B** (`app/presentation/student/`, `templates/student/`) — Flask / Jinja / Bootstrap shell that renders Experience snapshots only; see [`DESIGN_SYSTEM.md`](DESIGN_SYSTEM.md).
 
 Documentation authority consolidated by **V2-013 P0.1 — Digital Twin Documentation Authority**.
 
@@ -58,6 +60,7 @@ knowledge/version2/
 ├── CURRICULUM_STUDIO.md            ← Curriculum Studio (Founder readiness)
 ├── PRODUCTION_INTEGRATION.md       ← V2-017 infrastructure adapters / persistence
 ├── STUDENT_EXPERIENCE.md           ← Student Experience (learner projections)
+├── DESIGN_SYSTEM.md                ← Student Experience UI design system
 ├── AUTHORITY_MATRIX.md             ← Cross-context authority map
 ├── CURRICULUM_GRAPH.md / CURRICULUM_MODEL.md
 ├── STUDENT_DIGITAL_TWIN.md         ← Student Digital Twin (how)

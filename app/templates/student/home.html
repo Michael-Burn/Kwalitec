@@ -1,0 +1,32 @@
+{% extends "student/base.html" %}
+{% from "student/components/recommendation_card.html" import recommendation_card %}
+{% from "student/components/readiness_card.html" import readiness_card %}
+{% from "student/components/countdown_card.html" import countdown_card %}
+{% from "student/components/explanation_card.html" import explanation_card %}
+
+{% block content %}
+{% if page.home %}
+<section class="student-greeting" aria-label="Greeting">
+    <p class="student-greeting-text">{{ page.home.greeting }}</p>
+</section>
+
+<div class="student-grid student-grid--home">
+    {{ countdown_card(page.home.countdown) }}
+    {{ readiness_card(page.home.readiness) }}
+</div>
+
+<div class="student-stack student-stack--primary">
+    {{ recommendation_card(
+        page.home.recommendation,
+        form=form,
+        action_url=url_for('student.start_session')
+    ) }}
+    {{ explanation_card(page.home.explanation) }}
+</div>
+{% else %}
+<section class="student-card">
+    <h2 class="student-card-title">Welcome</h2>
+    <p class="student-card-body">Your home view will appear when learning insights are available.</p>
+</section>
+{% endif %}
+{% endblock %}

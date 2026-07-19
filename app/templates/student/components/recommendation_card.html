@@ -1,0 +1,44 @@
+{# Recommendation Card — recommendation, benefit, time, reason, CTA #}
+{% macro recommendation_card(rec, form=None, action_url=None) %}
+<section class="student-card student-card--recommendation" aria-labelledby="recommendation-title">
+    <p class="student-card-eyebrow">Today's Recommendation</p>
+    {% if rec.has_recommendation %}
+    <h2 id="recommendation-title" class="student-card-title">{{ rec.title }}</h2>
+    {% if rec.summary %}
+    <p class="student-card-body">{{ rec.summary }}</p>
+    {% endif %}
+    <dl class="student-meta-row">
+        {% if rec.time_label %}
+        <div>
+            <dt>Estimated study time</dt>
+            <dd>{{ rec.time_label }}</dd>
+        </div>
+        {% endif %}
+        {% if rec.benefit_label %}
+        <div>
+            <dt>Expected benefit</dt>
+            <dd>{{ rec.benefit_label }}</dd>
+        </div>
+        {% endif %}
+    </dl>
+    {% if rec.reason %}
+    <p class="student-reason"><span class="student-reason-label">Why</span> {{ rec.reason }}</p>
+    {% endif %}
+    {% if form and action_url and rec.cta_enabled %}
+    <form method="post" action="{{ action_url }}" class="student-primary-action">
+        {{ form.hidden_tag() }}
+        {{ form.mission_id() }}
+        {{ form.session_id() }}
+        <button type="submit" class="btn student-btn-primary" data-student-cta="primary">
+            {{ rec.cta_label }}
+        </button>
+    </form>
+    {% elif not rec.cta_enabled %}
+    <p class="student-muted mt-3 mb-0">A session will be ready when today's recommendation is available.</p>
+    {% endif %}
+    {% else %}
+    <h2 id="recommendation-title" class="student-card-title">No recommendation yet</h2>
+    <p class="student-card-body">Complete a study plan or return after your next session for today's focus.</p>
+    {% endif %}
+</section>
+{% endmacro %}

@@ -37,7 +37,7 @@ PHASE II — PRODUCT EXPERIENCE
   V2-017B Student Learning Experience
 
 PHASE III — PRODUCTION
-  V2-018 Infrastructure Deepening (ORM / cutover wiring)
+  V2-018 Production Experience Integration
 
 PHASE IV — INTELLIGENCE
   V2-019 Founder Intelligence
@@ -154,7 +154,7 @@ Student-facing product experience that exercises Journey, Session, Mission, Acti
 | ID | Scope | Status |
 |----|-------|--------|
 | V2-017B-A | Foundation — domain/application projections, navigation, explanations, ports/DTOs, docs (no UI) | ✓ Complete — [`STUDENT_EXPERIENCE.md`](STUDENT_EXPERIENCE.md), `app/domain/student_experience/`, `app/application/student_experience/` |
-| V2-017B-B+ | Student UI surfaces (routes / templates / JS) | Pending |
+| V2-017B-B | Student Experience UI (routes / templates / JS / design system) | Complete |
 
 **Expected outcomes**
 
@@ -172,27 +172,34 @@ Student-facing product experience that exercises Journey, Session, Mission, Acti
 
 ## PHASE III — PRODUCTION
 
-### V2-018 — Infrastructure Deepening
+### V2-018 — Production Experience Integration
 
 **Purpose**
 
-Deepen Version 2 persistence (ORM/Alembic where required), application factory wiring, and operational dual-run controls so the core runs as a product service alongside Version 1 until explicit retirement.
+Replace Student Experience preview wiring with production infrastructure adapters so the learner product runs against the Version 2 educational platform (Twin, Adaptive Decision, Mission, Journey, Orchestrator) while preserving authority boundaries and UI presentation.
 
 **Depends on**
 
 - V2-017 Production Integration Foundation
-- Phase II product surfaces sufficiently defined for cutover boundaries
+- V2-017B Student Learning Experience (domain / application / UI)
 
 **Expected outcomes**
 
-- Durable ORM mappings for priority aggregates
-- Startup / deployment paths for Version 2 engines
-- Safe dual-run / feature-flag coexistence with Version 1
+- Production Experience adapters for all five Experience ports
+- Preview ports / temporary wiring removed; production is default
+- Student Home / Journey / Revision / History / Profile powered by live ports
+- Start Session executes the Version 2 learning loop (Mission → evidence/orchestrator → Twin → Adaptive → updated Home)
+- Workspace / session / snapshot persistence foundations reuse V2-017 UoW / locking / stores
+- Experience observability events integrated with the V2-017 event catalogue
+- Dual-run safe; ORM/Alembic aggregate expansion remains additive follow-on
 
 **Must not**
 
-- Drop Version 1 data or silently cut over student traffic
-- Bypass Alembic / StartupService safety guarantees
+- Move educational logic into adapters or Flask
+- Compute readiness or recommendations in infrastructure
+- Duplicate Mission / Journey / Twin calculations
+- Redesign Student Experience presentation
+- Drop Version 1 data or silently cut over all student traffic (cutover remains V2-020)
 
 ---
 
@@ -226,7 +233,7 @@ Explicit cutover from Version 1 educational runtime to Version 2 as the sole stu
 **Depends on**
 
 - V2-017B Student Learning Experience validated
-- V2-017/V2-018 infrastructure dual-run production-ready
+- V2-017/V2-018 production Experience integration dual-run ready
 - Product Strategy evidence gates
 
 **Expected outcomes**

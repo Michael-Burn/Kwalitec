@@ -1,16 +1,18 @@
 # Student Experience
 
 **Document ID:** V2-017B-A-STUDENT-EXPERIENCE  
-**Milestone:** V2-017B-A — Student Experience Foundation  
-**Status:** Authoritative domain + application specification  
+**Milestone:** V2-017B-A — Student Experience Foundation · **V2-018 — Production Experience Integration**  
+**Status:** Authoritative domain + application specification; production adapters active  
 **Authority:** Architectural — source of truth for learner product projection  
 **Nature:** Framework-independent learner projection / orchestration layer  
 
 **Packages:**
 - `app/domain/student_experience/`
 - `app/application/student_experience/`
+- `app/presentation/student/` (thin UI)
+- `app/infrastructure/adapters/` (production Experience ports — V2-018)
 
-**Depends on:** optional injected ports only (Student Twin, Adaptive Decision, Mission, Learning Journey, Learning Orchestrator). Does **not** import or modify those packages.
+**Depends on:** injected ports only (Student Twin, Adaptive Decision, Mission, Learning Journey, Learning Orchestrator). Does **not** import or modify those educational packages.
 
 **Related:** [`AUTHORITY_MATRIX.md`](AUTHORITY_MATRIX.md) · [`ARCHITECTURE_DECISIONS/ADR-005-Single-Next-Action-Authority.md`](ARCHITECTURE_DECISIONS/ADR-005-Single-Next-Action-Authority.md) · [`PRODUCTION_INTEGRATION.md`](PRODUCTION_INTEGRATION.md) · [`VERSION2_ARCHITECTURE.md`](VERSION2_ARCHITECTURE.md) · [`VERSION2_ROADMAP.md`](VERSION2_ROADMAP.md)
 
@@ -43,21 +45,25 @@ The learner must never see internal concepts such as:
 | Projection, not ownership | Experience assembles learner-facing views; it does not own learner state |
 | Single next-action authority | Today's Recommendation comes only from Adaptive Decision (ADR-005) |
 | Educational language | Internal engine names are translated into student vocabulary |
-| Framework independence | No Flask, HTML, CSS, JavaScript, SQLAlchemy, or persistence in this milestone |
+| Framework independence | Domain + application remain free of Flask / SQLAlchemy |
 | Explainability | Every recommendation answers *why* using educational evidence |
 | Navigation ownership | Experience owns presentation, workflow, projection, and navigation only |
+| Production default | V2-018: production adapters are the default wiring; preview ports retired |
 
 ```text
-Learner (future UI)
+Learner UI (presentation)
         │
         ▼
-Student Experience (this package)
+Student Experience (application)
         │
         ├── ports → Student Twin          (Learning Insights / Exam Readiness)
         ├── ports → Adaptive Decision     (Today's Recommendation / Revision)
         ├── ports → Mission               (Today's Session)
         ├── ports → Learning Journey      (Journey progress)
         └── ports → Learning Orchestrator (Learning Activity status)
+                │
+                ▼
+Infrastructure Experience adapters (V2-018)
 ```
 
 ---
@@ -95,63 +101,89 @@ DTOs under `dto/` are frozen snapshots. Ports under `ports/` are Protocols retur
 
 ---
 
-## 4. Primary Experiences
+## 4. Production Adapters (V2-018)
+
+| Adapter | Port | Package |
+|---------|------|---------|
+| `ExperienceTwinAdapter` | `StudentTwinPort` | `adapters/student_twin/` |
+| `ExperienceAdaptiveAdapter` | `AdaptiveDecisionPort` | `adapters/adaptive/` |
+| `ExperienceMissionAdapter` | `MissionPort` | `adapters/mission/` |
+| `ExperienceJourneyAdapter` | `LearningJourneyPort` | `adapters/journey/` |
+| `ExperienceOrchestratorAdapter` | `LearningOrchestratorPort` | `adapters/orchestrator/` |
+
+Composition root: `StudentExperienceComposition` / `build_production_experience()` under `adapters/student_experience/`.
+
+**Adapter responsibilities**
+
+- Satisfy Experience ports with opaque documents from stores / optional engines
+- Persist workspace, session, and projection snapshots via V2-017 persistence
+- Emit Experience observability events
+- Run the learning loop on Start Session (Mission → evidence/orchestrator → Twin → Adaptive → updated Home)
+
+**Must not:** compute readiness, invent recommendations, duplicate Journey / Mission / Twin math, or couple Flask into educational kernels.
+
+**Preview retirement:** `preview_ports.py` removed. Production adapters are the default in `app/presentation/student/factory.py`.
+
+---
+
+## 5. Primary Experiences
 
 ### Student Home
 
-Represents: greeting, exam countdown, exam readiness, today's recommendation, estimated study time, expected readiness improvement, recommendation explanation, Start Session action.
+Greeting, exam countdown, exam readiness, today's recommendation, estimated study time, expected readiness improvement, recommendation explanation, Start Session — all from production ports.
 
 ### Journey
 
-Represents: current topic, completed topics, upcoming topics, prerequisite visibility (plain language), overall journey progress, estimated completion.
-
-Must not expose curriculum graph concepts (nodes, edges, graph).
+Current / completed / upcoming topics, progress, estimated completion — from Learning Journey port. No preview roadmap.
 
 ### Revision
 
-Represents: today's highest-value revision, priority, estimated study time, expected educational benefit, explanation, alternative options.
-
-Consumes **only** Adaptive Decision outputs.
+Highest-value revision, priority, benefit, duration, reasoning, alternatives — from Adaptive Decision only.
 
 ### History
 
-Represents: completed sessions, study time, readiness progression, mastered topics, revision history, recent achievements.
-
-No raw event logs.
+Completed sessions, readiness progression, revision history, statistics — from Twin insights / orchestrator activity observations.
 
 ### Profile
 
-Represents: current examination, study preferences, learning statistics, goals, account settings (presentation flags).
+Exam, goals, preferences, learning statistics — from Twin learner summary.
 
 ---
 
-## 5. Navigation
+## 6. Session Start Loop
 
-Canonical surfaces (owned by Experience):
+```text
+Student Home
+    → Start Today's Session
+    → Mission Engine (ExperienceMissionAdapter)
+    → Learning Session Runtime / Orchestrator cycle
+    → Evidence Recording
+    → Twin Update
+    → Adaptive Recalculation
+    → Updated Home
+```
 
-1. Home  
-2. Journey  
-3. Revision  
-4. History  
-5. Profile  
-
-`ExperienceWorkspace` holds `active_surface` and examination / display presentation context. Navigating surfaces is Experience workflow ownership — analogous to Curriculum Studio's Founder workflow stages, but for the learner product shell.
-
----
-
-## 6. Explanations
-
-Every recommendation must answer:
-
-> Why was this recommended?
-
-Explanations are built from educational evidence phrases provided by Adaptive Decision, then translated into student language via `recommendation_explanation.py`.
-
-Never mention Digital Twin, Adaptive Decision Engine, or Learning Orchestrator in learner-facing copy.
+Legacy numeric redirect to V1 `mission.session` is removed. The learner returns to Student Home with refreshed production projections.
 
 ---
 
-## 7. Authority Matrix
+## 7. Observability Events
+
+| Event | When |
+|-------|------|
+| `StudentHomeViewed` | Home surface loaded |
+| `JourneyViewed` | Journey surface loaded |
+| `HistoryViewed` | History surface loaded |
+| `LearningSessionStarted` | Mission start |
+| `LearningSessionCompleted` | Session completion in loop |
+| `RecommendationAccepted` | Recommendation accepted after loop |
+| `RecommendationDismissed` | Explicit dismiss |
+| `RevisionStarted` | Revision begin CTA |
+| `ProfileUpdated` | Twin projection updated from session outcome |
+
+---
+
+## 8. Authority Matrix
 
 | Capability | Owner | Student Experience role |
 |------------|-------|-------------------------|
@@ -165,12 +197,13 @@ Never mention Digital Twin, Adaptive Decision Engine, or Learning Orchestrator i
 | Journey progression | Learning Journey | Consume |
 | Evidence | Evidence spine / Twin intake | Never own |
 | Live pipeline order | Learning Orchestrator | Observe (Learning Activity) |
+| Persistence / events | Infrastructure | Owns stores and envelopes |
 
 **Explicit non-authority:** Student Experience must not invent mastery, Topic Complete, readiness scores, or next actions.
 
 ---
 
-## 8. Terminology Mapping
+## 9. Terminology Mapping
 
 | Internal | Student |
 |----------|---------|
@@ -182,35 +215,24 @@ Never mention Digital Twin, Adaptive Decision Engine, or Learning Orchestrator i
 
 ---
 
-## 9. Future UI Roadmap
-
-| Step | Scope |
-|------|-------|
-| V2-017B-A (this) | Domain + application foundation, ports, DTOs, explanations, tests |
-| V2-017B-B+ | Flask blueprints / templates / JS for Home → Profile shell |
-| Later | Session runtime UI, reflection UX, accessibility polish |
-
-UI must remain a thin renderer of Experience snapshots. Templates must not embed Twin, Adaptive, Mission, or Journey mathematics.
-
----
-
 ## 10. Constraints (must not)
 
-- Implement Flask / HTML / CSS / JavaScript in this milestone
-- Implement persistence
-- Duplicate Twin / Adaptive / Mission / Journey calculations
-- Modify educational algorithms
+- Move educational logic into adapters or Flask
+- Compute readiness in infrastructure
+- Compute recommendations outside Adaptive
+- Duplicate Mission / Journey / Twin calculations
+- Reintroduce preview ports as the production default
 - Expose internal architectural terminology to learners
 
 ---
 
 ## 11. Success Criteria
 
-- Student experience model established  
-- Navigation modelled  
-- Projection services complete  
-- Educational explanations translated  
-- Internal architecture hidden from learners  
+- Preview infrastructure removed  
+- Production adapters active  
+- Student Experience powered by live educational platform ports  
+- Complete learning loop operational  
 - Authority boundaries preserved  
-- Framework independent  
-- Ready for UI implementation  
+- Existing UI unchanged (no presentation redesign)  
+- Educational kernel remains framework independent  
+- Ready for further ORM / persistence expansion  

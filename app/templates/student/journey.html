@@ -1,0 +1,75 @@
+{% extends "student/base.html" %}
+{% from "student/components/progress_card.html" import progress_card %}
+
+{% block content %}
+{% if page.journey %}
+{% set journey = page.journey %}
+
+{{ progress_card(
+    journey.progress_percent,
+    journey.progress_label,
+    journey.estimated_completion_label
+) }}
+
+<section class="student-roadmap" aria-label="Learning roadmap">
+    {% if journey.current %}
+    <section class="student-card student-card--current" aria-labelledby="current-topic-title">
+        <p class="student-card-eyebrow">Current topic</p>
+        <h2 id="current-topic-title" class="student-card-title">{{ journey.current.title }}</h2>
+        {% if journey.current.prerequisite_note %}
+        <p class="student-muted mb-0">{{ journey.current.prerequisite_note }}</p>
+        {% endif %}
+    </section>
+    {% endif %}
+
+    {% if journey.completed %}
+    <section class="student-timeline-section" aria-labelledby="completed-topics-title">
+        <h2 id="completed-topics-title" class="student-section-title">Completed topics</h2>
+        <ol class="student-timeline">
+            {% for topic in journey.completed %}
+            <li class="student-timeline-item is-complete">
+                <span class="student-timeline-marker" aria-hidden="true"></span>
+                <div>
+                    <p class="student-timeline-title">{{ topic.title }}</p>
+                    {% if topic.status_label %}
+                    <p class="student-muted mb-0">{{ topic.status_label }}</p>
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}
+        </ol>
+    </section>
+    {% endif %}
+
+    {% if journey.upcoming %}
+    <section class="student-timeline-section" aria-labelledby="upcoming-topics-title">
+        <h2 id="upcoming-topics-title" class="student-section-title">Upcoming topics</h2>
+        <ol class="student-timeline">
+            {% for topic in journey.upcoming %}
+            <li class="student-timeline-item">
+                <span class="student-timeline-marker" aria-hidden="true"></span>
+                <div>
+                    <p class="student-timeline-title">{{ topic.title }}</p>
+                    {% if topic.prerequisite_note %}
+                    <p class="student-muted mb-0">{{ topic.prerequisite_note }}</p>
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}
+        </ol>
+    </section>
+    {% endif %}
+</section>
+
+<div class="student-primary-action">
+    <a class="btn student-btn-primary" href="{{ url_for('student.home') }}" data-student-cta="primary">
+        {{ journey.primary_cta_label }}
+    </a>
+</div>
+{% else %}
+<section class="student-card">
+    <h2 class="student-card-title">Journey</h2>
+    <p class="student-card-body">Your learning path will appear here.</p>
+</section>
+{% endif %}
+{% endblock %}

@@ -62,3 +62,19 @@
   --chart-midnight: #A8B0BD;
   --chart-grey: #8B93A7;
 }
+
+/**
+ * Approved logo PNG — always preserve native aspect ratio.
+ * Never set conflicting width and height. Never stretch or squash.
+ * Never apply filters, tint, brightness, or contrast.
+ */
+.brand-logo {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: left center;
+  image-rendering: auto;
+  -ms-interpolation-mode: bicubic;
+}

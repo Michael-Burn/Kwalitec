@@ -1,20 +1,25 @@
 # Kwalitec Official Brand Pack (BI-000 / BI-001)
 
-Permanent master brand assets. **Vector-first.** Hand-built SVG geometry from the approved logo (visual reference only — not auto-traced).
+Permanent master brand assets.
 
-**BI-001** wires these masters into the live application via `app/static/branding/` (runtime copies) and `app/static/css/brand.css` (tokens).
-
-## Quick start
+## Display logo (single source of truth)
 
 | Need | Use |
 |---|---|
-| App header on dark chrome | `svg/logo-primary-dark.svg` |
-| App header on light chrome | `svg/logo-primary-light.svg` |
-| Compact mark | `svg/logo-icon-dark.svg` or `logo-icon-light.svg` |
-| Favicon | `icons/favicon.svg` / `favicon.ico` |
+| **Any in-app logo** | `approved-kwalitec-logo.png` |
+| Historical archive copy | `original/Approved-Kwalitec-Logo.png` (same bytes) |
+
+The application must render `approved-kwalitec-logo.png` directly.
+Do not recreate, redraw, approximate, or typeset the logo in SVG/CSS/HTML.
+
+## Other pack contents
+
+| Need | Use |
+|---|---|
+| Favicon / PWA icons | `icons/` (runtime copies under `app/static/branding/`) |
 | Social preview | `social/og-logo.png` |
-| Approved master PNG | `original/Approved-Kwalitec-Logo.png` |
-| Print / embroidery | `print/` mono SVG or PNG |
+| Print / embroidery | `print/` (legacy derivatives — not for live UI) |
+| Legacy vector experiments | `svg/` (obsolete for app display — do not wire into templates) |
 
 ## Specs
 
@@ -26,6 +31,6 @@ Permanent master brand assets. **Vector-first.** Hand-built SVG geometry from th
 
 ## Rules
 
-- Do not embed PNG/JPG inside SVG masters.
-- Prefer live Inter for wordmarks in product UI; gold i-dot is a brand accent.
-- Runtime UI should consume tokens from `brand.css` / `app.css` — never hard-code Bootstrap blue.
+- Live UI logo = `approved-kwalitec-logo.png` only.
+- Do not apply CSS filters, tints, or aspect-ratio distortion to the logo.
+- Runtime colour tokens come from `brand.css` / `app.css` — never hard-code Bootstrap blue.

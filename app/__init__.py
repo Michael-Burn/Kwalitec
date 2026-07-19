@@ -384,6 +384,8 @@ def _register_template_context(app: Flask) -> None:
     @app.context_processor
     def inject_global_template_context():
         from app.brand_identity import (
+            APPROVED_LOGO_ALT,
+            APPROVED_LOGO_STATIC_PATH,
             FOUNDER_COMMAND_CENTRE_LABEL,
             FOUNDING_COHORT_LABEL,
             INTERNAL_ALPHA_BUILD_LABEL,
@@ -409,6 +411,8 @@ def _register_template_context(app: Flask) -> None:
             "learning_workspace_label": LEARNING_WORKSPACE_LABEL,
             "revision_workspace_label": REVISION_WORKSPACE_LABEL,
             "student_dashboard_label": STUDENT_DASHBOARD_LABEL,
+            "approved_logo_static_path": APPROVED_LOGO_STATIC_PATH,
+            "approved_logo_alt": APPROVED_LOGO_ALT,
             "versioned_static": versioned_static,
         }
 
@@ -436,6 +440,7 @@ def _register_blueprints(app: Flask) -> None:
     from app.dashboard.routes import dashboard_bp
     from app.founder.dashboard import founder_dashboard_bp
     from app.mission.routes import mission_bp
+    from app.presentation.student import load_routes, student_bp
     from app.research import research_bp
     from app.settings.routes import settings_bp
     from app.study_plan.routes import study_plan_bp
@@ -449,6 +454,11 @@ def _register_blueprints(app: Flask) -> None:
     app.register_blueprint(calibration_bp)
     app.register_blueprint(founder_dashboard_bp)
     app.register_blueprint(research_bp)
+
+    load_routes()
+    # Student Experience production adapters are wired lazily on first
+    # ``get_experience_service()`` call (see presentation factory).
+    app.register_blueprint(student_bp)
 
 
 def _register_routes(app: Flask) -> None:

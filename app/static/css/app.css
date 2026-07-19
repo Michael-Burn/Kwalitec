@@ -35,7 +35,7 @@ button.btn:hover,
 .sidebar{background:var(--color-chrome);color:var(--text-inverse);flex:0 0 var(--sidebar-width);min-height:100vh;position:sticky;top:0;z-index:1020;display:flex;flex-direction:column;border-right:1px solid var(--brand-divider, rgba(255, 255, 255, 0.06));}
 .sidebar-brand{padding:var(--space-xl) var(--space-xl) var(--space-lg);border-bottom:1px solid rgba(255, 255, 255, 0.08);}
 .sidebar-brand-link{display:inline-flex;align-items:center;gap:var(--space-sm);color:var(--text-inverse);font-size:var(--font-2xl);font-weight:var(--font-weight-semibold);letter-spacing:-0.02em;}
-.sidebar-brand-mark{display:block;flex-shrink:0;width:28px;height:28px;object-fit:contain;padding:1px;}
+.sidebar-brand-logo{display:block;flex-shrink:0;width:auto;height:auto;max-height:40px;max-width:min(100%,220px);object-fit:contain;}
 .sidebar-brand a{color:var(--text-inverse);font-size:var(--font-2xl);font-weight:var(--font-weight-semibold);letter-spacing:-0.02em;}
 .sidebar-brand a:hover{color:var(--text-inverse);opacity:0.9;}
 .sidebar-brand .tagline{color:var(--brand-text-secondary-on-dark, rgba(255, 255, 255, 0.5));font-size:var(--font-sm);margin-top:var(--space-xs);}
@@ -183,7 +183,7 @@ a.btn-danger:focus{filter:brightness(0.9);color:#f8fafc;}
 .landing-logo:hover{color:var(--color-text-inverse);opacity:0.9;}
 .landing-alpha-identity{margin:calc(-1 * var(--space-2xl)) 0 var(--space-2xl);}
 .landing-alpha-identity .alpha-identity{--alpha-identity-fg:rgba(255, 255, 255, 0.95);--alpha-identity-muted:rgba(255, 255, 255, 0.72);--alpha-identity-border:rgba(232, 176, 43, 0.6);--alpha-identity-bg:rgba(232, 176, 43, 0.14);}
-.landing-logo-mark{display:block;flex-shrink:0;width:36px;height:36px;object-fit:contain;}
+.landing-logo-img{display:block;flex-shrink:0;width:auto;height:auto;max-height:56px;max-width:min(100%,280px);object-fit:contain;}
 .landing-heading{color:var(--color-text-inverse);font-size:48px;font-weight:var(--font-weight-bold);line-height:1.1;letter-spacing:-0.03em;margin-bottom:var(--space-lg);}
 .landing-tagline{color:rgba(255, 255, 255, 0.85);font-size:20px;font-weight:var(--font-weight-medium);line-height:var(--line-height-tight);margin-bottom:var(--space-xl);}
 .landing-paragraph{color:rgba(255, 255, 255, 0.7);font-size:16px;line-height:var(--line-height-relaxed);margin-bottom:var(--space-2xl);max-width:460px;}
@@ -381,7 +381,7 @@ a.btn-mark-complete:focus-visible{color:var(--on-primary);text-decoration:none;}
 @media (max-width:575.98px){.landing-hero{padding:var(--space-xl) var(--space-lg);}
 .landing-heading{font-size:28px;}
 .landing-logo{font-size:var(--font-xl);margin-bottom:var(--space-2xl);}
-.landing-logo-mark{width:28px;height:28px;}
+.landing-logo-img{max-height:44px;max-width:min(100%,220px);}
 .landing-card{padding:var(--space-xl);box-shadow:var(--shadow-md);}
 .landing-card:hover{transform:none;}
 .landing-illustration .shape-1{width:200px;height:200px;}

@@ -1,0 +1,27 @@
+{# Journey Card — current topic, progress, next topic #}
+{% macro journey_card(card) %}
+<section class="student-card student-card--journey" aria-labelledby="journey-card-title">
+    <p class="student-card-eyebrow">Your journey</p>
+    <h2 id="journey-card-title" class="student-card-title">
+        {% if card.current_topic_title %}{{ card.current_topic_title }}{% else %}Getting started{% endif %}
+    </h2>
+    {% if card.has_journey %}
+    <div class="student-progress" role="progressbar"
+         aria-valuenow="{{ card.progress_percent }}"
+         aria-valuemin="0"
+         aria-valuemax="100"
+         aria-label="{{ card.progress_label }}">
+        <div class="student-progress-bar" style="width: {{ card.progress_percent }}%"></div>
+    </div>
+    <p class="student-muted">{{ card.progress_label }}</p>
+    {% if card.next_topic_title %}
+    <p class="student-card-body mb-0"><span class="student-label">Next</span> {{ card.next_topic_title }}</p>
+    {% endif %}
+    {% if card.estimated_completion_label %}
+    <p class="student-muted mb-0">Estimated completion: {{ card.estimated_completion_label }}</p>
+    {% endif %}
+    {% else %}
+    <p class="student-card-body mb-0">Your learning path will appear here.</p>
+    {% endif %}
+</section>
+{% endmacro %}

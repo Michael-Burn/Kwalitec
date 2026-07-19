@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from app.brand_identity import APPROVED_LOGO_STATIC_PATH
 from app.static_assets import versioned_static
 from app.version import STATIC_ASSET_VERSION
 
@@ -22,8 +23,8 @@ class TestStaticAssetVersionSource:
 class TestVersionedStaticHelper:
     def test_returns_static_url_with_configured_version(self, app) -> None:
         with app.test_request_context("/"):
-            url = versioned_static("branding/logo-icon.svg")
-        assert url.startswith("/static/branding/logo-icon.svg")
+            url = versioned_static(APPROVED_LOGO_STATIC_PATH)
+        assert url.startswith(f"/static/{APPROVED_LOGO_STATIC_PATH}")
         assert f"v={STATIC_ASSET_VERSION}" in url
 
     def test_supports_external_urls(self, app) -> None:
@@ -95,7 +96,7 @@ class TestRenderedAssetVersioning:
         assert resp.status_code == 200
         html = resp.get_data(as_text=True)
         version = app.config["STATIC_ASSET_VERSION"]
-        assert f"branding/logo-icon.svg?v={version}" in html
+        assert f"{APPROVED_LOGO_STATIC_PATH}?v={version}" in html
         assert f"branding/favicon.ico?v={version}" in html
         assert f"branding/favicon.svg?v={version}" in html
         assert f"css/brand.css?v={version}" in html
@@ -108,7 +109,7 @@ class TestRenderedAssetVersioning:
         assert resp.status_code == 200
         html = resp.get_data(as_text=True)
         version = app.config["STATIC_ASSET_VERSION"]
-        assert f"branding/logo-icon.svg?v={version}" in html
+        assert f"{APPROVED_LOGO_STATIC_PATH}?v={version}" in html
         assert f"js/theme.js?v={version}" in html
         assert f"js/app.js?v={version}" in html
 
@@ -116,7 +117,7 @@ class TestRenderedAssetVersioning:
         for filename in (
             "branding/favicon.ico",
             "branding/favicon.svg",
-            "branding/logo-icon.svg",
+            APPROVED_LOGO_STATIC_PATH,
             "branding/manifest.webmanifest",
             "branding/social-preview.png",
             "branding/android-chrome-192.png",

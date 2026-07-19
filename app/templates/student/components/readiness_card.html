@@ -1,0 +1,30 @@
+{# Readiness Card — current readiness, trend, confidence #}
+{% macro readiness_card(readiness) %}
+<section class="student-card student-card--readiness" aria-labelledby="readiness-title">
+    <p class="student-card-eyebrow">Exam Readiness</p>
+    <h2 id="readiness-title" class="student-card-title">
+        {% if readiness.has_readiness %}
+            {{ readiness.readiness_percent_label }}
+        {% else %}
+            Not available yet
+        {% endif %}
+    </h2>
+    {% if readiness.readiness_label %}
+    <p class="student-card-body">{{ readiness.readiness_label }}</p>
+    {% endif %}
+    <dl class="student-meta-row">
+        {% if readiness.trend_label %}
+        <div>
+            <dt>Trend</dt>
+            <dd>{{ readiness.trend_label }}</dd>
+        </div>
+        {% endif %}
+        {% if readiness.confidence_label %}
+        <div>
+            <dt>Confidence</dt>
+            <dd>{{ readiness.confidence_label }}</dd>
+        </div>
+        {% endif %}
+    </dl>
+</section>
+{% endmacro %}

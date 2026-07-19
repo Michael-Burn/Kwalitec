@@ -1,0 +1,17 @@
+{# Progress Card — overall progress indicator #}
+{% macro progress_card(percent, label, estimate='') %}
+<section class="student-card student-card--progress" aria-labelledby="progress-title">
+    <p class="student-card-eyebrow">Overall progress</p>
+    <h2 id="progress-title" class="student-card-title">{{ label or (percent ~ '% complete') }}</h2>
+    <div class="student-progress" role="progressbar"
+         aria-valuenow="{{ percent }}"
+         aria-valuemin="0"
+         aria-valuemax="100"
+         aria-label="{{ label or (percent ~ '% complete') }}">
+        <div class="student-progress-bar" style="width: {{ percent }}%"></div>
+    </div>
+    {% if estimate %}
+    <p class="student-muted mb-0">Estimated completion: {{ estimate }}</p>
+    {% endif %}
+</section>
+{% endmacro %}

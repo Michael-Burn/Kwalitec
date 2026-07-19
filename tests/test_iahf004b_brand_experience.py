@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from app.brand_identity import (
+    APPROVED_LOGO_STATIC_PATH,
     FOUNDER_COMMAND_CENTRE_LABEL,
     FOUNDING_COHORT_LABEL,
     INTERNAL_ALPHA_BUILD_LABEL,
@@ -105,7 +106,7 @@ class TestBrandExperienceHttp:
         assert INTERNAL_ALPHA_LABEL in html
         assert FOUNDING_COHORT_LABEL in html
         assert INTERNAL_ALPHA_BUILD_LABEL in html
-        assert "branding/logo-icon.svg" in html
+        assert APPROVED_LOGO_STATIC_PATH in html
         assert f"Kwalitec v{APP_VERSION}" in html
         assert "alpha-identity" in html
 
@@ -119,8 +120,8 @@ class TestBrandExperienceHttp:
         assert f"Build {INTERNAL_ALPHA_BUILD_LABEL}" in html
         assert STUDENT_DASHBOARD_LABEL in html
         assert LEARNING_WORKSPACE_LABEL in html
-        assert "branding/logo-icon.svg" in html
-        assert "sidebar-brand-mark" in html
+        assert APPROVED_LOGO_STATIC_PATH in html
+        assert "sidebar-brand-logo" in html
 
     def test_settings_and_checkin_keep_shell_identity(self, logged_in_client) -> None:
         for path in ("/settings/", "/research/checkin"):

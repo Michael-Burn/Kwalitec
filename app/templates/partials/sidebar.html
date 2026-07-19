@@ -1,10 +1,9 @@
 <aside class="sidebar">
     <div class="sidebar-brand">
-        <a class="text-decoration-none sidebar-brand-link" href="{{ url_for('dashboard.index') }}">
-            {% with brand_variant='icon', brand_class='sidebar-brand-mark', brand_width=28, brand_height=28, brand_alt='' %}
+        <a class="text-decoration-none sidebar-brand-link" href="{{ url_for('dashboard.index') }}" aria-label="Kwalitec home">
+            {% with brand_class='sidebar-brand-logo' %}
                 {% include "partials/brand_logo.html" %}
             {% endwith %}
-            <span>Kwalitec</span>
         </a>
         <div class="sidebar-brand-identity">
             {% include "partials/internal_alpha_badge.html" %}

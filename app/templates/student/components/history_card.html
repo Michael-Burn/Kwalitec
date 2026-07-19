@@ -1,0 +1,24 @@
+{# History Card — session summary, duration, outcome #}
+{% macro history_card(session) %}
+<article class="student-card student-card--history" aria-label="Completed session">
+    <h3 class="student-card-title student-card-title--sm">{{ session.topic_title }}</h3>
+    <dl class="student-meta-row">
+        {% if session.completed_at %}
+        <div>
+            <dt>Completed</dt>
+            <dd>{{ session.completed_at }}</dd>
+        </div>
+        {% endif %}
+        {% if session.duration_label %}
+        <div>
+            <dt>Duration</dt>
+            <dd>{{ session.duration_label }}</dd>
+        </div>
+        {% endif %}
+        <div>
+            <dt>Outcome</dt>
+            <dd>{{ session.outcome_label }}</dd>
+        </div>
+    </dl>
+</article>
+{% endmacro %}
