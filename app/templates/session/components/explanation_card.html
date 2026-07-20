@@ -1,0 +1,8 @@
+{% macro explanation_card(activity) %}
+{% if activity and activity.has_explanation %}
+<section class="session-card session-card--explanation" aria-labelledby="session-explanation-title">
+    <h2 id="session-explanation-title" class="session-card-title">Explanation</h2>
+    <p class="session-body-text">{{ activity.explanation }}</p>
+</section>
+{% endif %}
+{% endmacro %}

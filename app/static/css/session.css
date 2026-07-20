@@ -1,0 +1,355 @@
+/**
+ * Learning Session Experience — calm, focused study environment.
+ * Extends student/brand tokens. No side navigation. One primary action.
+ */
+
+:root {
+  --session-font-display: var(--student-font-display, var(--font-family));
+  --session-font-body: var(--student-font-body, var(--font-family));
+  --session-space-1: var(--student-space-1, var(--space-xs));
+  --session-space-2: var(--student-space-2, var(--space-sm));
+  --session-space-3: var(--student-space-3, var(--space-md));
+  --session-space-4: var(--student-space-4, var(--space-lg));
+  --session-space-5: var(--student-space-5, var(--space-xl));
+  --session-space-6: var(--student-space-6, var(--space-2xl));
+  --session-space-7: var(--student-space-7, var(--space-3xl));
+  --session-radius: var(--student-radius, var(--radius-lg));
+  --session-radius-input: var(--student-radius-input, var(--radius-md));
+  --session-max-width: 40rem;
+  --session-shell-max: 56rem;
+  --session-focus: var(--student-focus, var(--focus-ring));
+  --session-primary: var(--student-primary, var(--primary));
+  --session-primary-hover: var(--student-primary-hover, var(--primary-hover));
+  --session-muted: var(--student-muted, var(--text-secondary));
+  --session-bg: var(--student-bg, var(--background));
+  --session-surface: var(--student-surface, var(--surface));
+  --session-text: var(--student-text, var(--text-primary));
+  --session-border: var(--student-card-border, var(--divider));
+}
+
+.session-body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--session-font-body);
+  color: var(--session-text);
+  /* Quiet blue atmosphere only — gold reserved for achievement (UX-001) */
+  background:
+    radial-gradient(1000px 500px at 0% -10%, color-mix(in srgb, var(--brand-blue) 7%, transparent), transparent 55%),
+    var(--session-bg);
+}
+
+.session-skip-link {
+  position: absolute;
+  left: -9999px;
+  top: var(--session-space-3);
+  z-index: 1000;
+  padding: var(--session-space-2) var(--session-space-4);
+  background: var(--session-surface);
+  color: var(--session-text);
+  border-radius: var(--session-radius);
+}
+
+.session-skip-link:focus {
+  left: var(--session-space-4);
+  outline: none;
+  box-shadow: var(--session-focus);
+}
+
+.session-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.session-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(10px);
+  background: color-mix(in srgb, var(--session-surface) 90%, transparent);
+  border-bottom: 1px solid var(--session-border);
+}
+
+.session-topbar-inner {
+  max-width: var(--session-shell-max);
+  margin: 0 auto;
+  padding: var(--session-space-4) var(--session-space-5);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--session-space-4);
+}
+
+.session-brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--session-text);
+}
+
+.session-brand-logo {
+  display: block;
+  max-height: 2.25rem;
+  max-width: min(100%, 11rem);
+  object-fit: contain;
+}
+
+.session-flow {
+  width: 100%;
+  max-width: 100%;
+}
+
+.session-flow-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--session-space-2);
+}
+
+.session-flow-step {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--session-space-2);
+  padding: var(--session-space-1) var(--session-space-3);
+  border-radius: var(--session-radius);
+  color: var(--session-muted);
+  font-size: 0.8rem;
+}
+
+.session-flow-step.is-active {
+  color: var(--session-text);
+  background: color-mix(in srgb, var(--session-primary) 12%, transparent);
+}
+
+.session-flow-step.is-complete {
+  color: var(--session-text);
+}
+
+.session-flow-marker {
+  display: inline-grid;
+  place-items: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 999px;
+  border: 1px solid var(--session-border);
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.session-flow-step.is-active .session-flow-marker,
+.session-flow-step.is-complete .session-flow-marker {
+  border-color: var(--session-primary);
+  background: var(--session-primary);
+  color: #fff;
+}
+
+.session-main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--session-max-width);
+  margin: 0 auto;
+  padding: var(--session-space-6) var(--session-space-5) var(--session-space-7);
+}
+
+.session-page-header {
+  margin-bottom: var(--session-space-5);
+}
+
+.session-eyebrow {
+  margin: 0 0 var(--session-space-2);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--session-muted);
+}
+
+.session-page-title {
+  margin: 0;
+  font-family: var(--session-font-display);
+  font-weight: 600;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  line-height: 1.2;
+}
+
+.session-page-description {
+  margin: var(--session-space-3) 0 0;
+  color: var(--session-muted);
+  font-size: 1.05rem;
+}
+
+.session-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--session-space-5);
+}
+
+.session-card {
+  background: var(--session-surface);
+  border: 1px solid var(--session-border);
+  border-radius: var(--session-radius);
+  padding: var(--session-space-5);
+}
+
+.session-card-title {
+  margin: 0 0 var(--session-space-3);
+  font-family: var(--session-font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.session-subhead {
+  margin: 0 0 var(--session-space-2);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--session-muted);
+}
+
+.session-body-text,
+.session-muted,
+.session-meta {
+  margin: 0 0 var(--session-space-3);
+  line-height: 1.55;
+}
+
+.session-muted,
+.session-meta {
+  color: var(--session-muted);
+  font-size: 0.95rem;
+}
+
+.session-meta-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: var(--session-space-4);
+  margin: var(--session-space-4) 0;
+}
+
+.session-meta-row dt {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--session-muted);
+}
+
+.session-meta-row dd {
+  margin: var(--session-space-1) 0 0;
+  font-weight: 500;
+}
+
+.session-list {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.session-list li + li {
+  margin-top: var(--session-space-2);
+}
+
+.session-insight + .session-insight {
+  margin-top: var(--session-space-4);
+}
+
+.session-progress-track {
+  height: 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--session-primary) 12%, var(--session-border));
+  overflow: hidden;
+}
+
+.session-progress-fill {
+  height: 100%;
+  background: var(--session-primary);
+  border-radius: inherit;
+  transition: width 220ms ease;
+}
+
+.session-progress-label {
+  margin: var(--session-space-2) 0 0;
+  font-size: 0.9rem;
+  color: var(--session-muted);
+}
+
+.session-label {
+  display: block;
+  margin-bottom: var(--session-space-2);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.session-textarea,
+.session-input {
+  width: 100%;
+  padding: var(--session-space-3);
+  border: 1px solid var(--session-border);
+  border-radius: var(--session-radius);
+  background: var(--session-surface);
+  color: var(--session-text);
+  font: inherit;
+}
+
+.session-textarea:focus,
+.session-input:focus,
+.session-btn-primary:focus-visible {
+  outline: none;
+  box-shadow: var(--session-focus);
+}
+
+.session-primary-action {
+  margin-top: var(--session-space-4);
+}
+
+.session-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.65rem 1.35rem;
+  border: 0;
+  border-radius: var(--session-radius);
+  background: var(--session-primary);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.session-btn-primary:hover:not(:disabled) {
+  background: var(--session-primary-hover);
+}
+
+.session-btn-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.session-footer {
+  padding: var(--session-space-5);
+  text-align: center;
+}
+
+.session-footer-text {
+  margin: 0;
+  color: var(--session-muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 640px) {
+  .session-flow-label {
+    display: none;
+  }
+
+  .session-flow-step.is-active .session-flow-label {
+    display: inline;
+  }
+
+  .session-main {
+    padding: var(--session-space-5) var(--session-space-4) var(--session-space-6);
+  }
+}

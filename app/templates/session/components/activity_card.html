@@ -1,0 +1,17 @@
+{% macro activity_card(activity) %}
+{% if activity %}
+<section class="session-card session-card--activity" aria-labelledby="session-activity-title">
+    <p class="session-meta">{{ activity.position_label }}{% if activity.topic_title %} · {{ activity.topic_title }}{% endif %}</p>
+    <h2 id="session-activity-title" class="session-card-title">{{ activity.question or "Learning activity" }}</h2>
+    {% if activity.context %}
+    <p class="session-body-text">{{ activity.context }}</p>
+    {% endif %}
+    {% if activity.supporting_material %}
+    <div class="session-support">
+        <h3 class="session-subhead">Supporting material</h3>
+        <p class="session-body-text">{{ activity.supporting_material }}</p>
+    </div>
+    {% endif %}
+</section>
+{% endif %}
+{% endmacro %}

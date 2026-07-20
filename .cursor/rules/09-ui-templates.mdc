@@ -1,42 +1,79 @@
 ---
-description: Jinja, CSS, and JavaScript conventions for Kwalitec UI
+description: Jinja, CSS, JS — UX-001 + UI Guardian enforcement for product UI
 globs: "{app/templates/**,app/static/**}"
 alwaysApply: false
 ---
 
 # UI / Templates Rules
 
-## Jinja organisation
+Canonical sources (read before any UI work):
+1. `knowledge/design/BRAND_GUIDELINES.md` — identity
+2. `knowledge/design/UI_UX_IMPLEMENTATION_STANDARD.md` — UX-001 implementation
+3. `knowledge/design/UI_GUARDIAN.md` — enforcement / release gate
+
+UI quality is a **release blocker**. Brand guidelines define identity; UX-001 defines tokens and patterns; UI Guardian governs workflow and validation. Do not invent design tokens outside the system.
+
+## Mandatory workflow (before writing UI code)
+
+1. Read Brand Guidelines + UX-001 + UI Guardian.
+2. Inspect existing reusable components / partials / CSS tokens.
+3. Reuse whenever possible; create new components only when none fit.
+4. Verify the proposal against the design system — then implement.
+
+## Never invent
+
+Colours, spacing, typography, button styles, shadows, radii, animations, icons, layouts, component behaviour, responsive rules, or accessibility behaviour. Everything originates from the design system.
+
+## Brand colours (never invent new ones)
+
+| Token | HEX | Role |
+|---|---|---|
+| Primary Blue | `#3B4FB8` | Primary actions, links, focus, charts |
+| Primary Dark | `#0D1B2A` | Text / dark UI |
+| Deep Navy | `#0A1628` | Elevated dark chrome |
+| Midnight | `#020D24` | Dark canvases |
+| Gold | `#E8B02B` | Achievement / logo / awards only |
+| White | `#FFFFFF` | Surfaces / contrast |
+
+Gold is **not** a UI colour. Never use gold for buttons, nav, links, focus, or charts. Reject random blues/greys/gradients/accents.
+
+## Tokens (UX-001)
+
+- **Spacing (8-pt):** 4, 8, 12, 16, 24, 32, 48, 64, 96, 128 only.
+- **Type:** Inter only. Sizes: page 40 / section 28 / card 20 / body 16 / caption 14.
+- **Icons:** Lucide only; 20 / 24 / 32 px; never replace labels.
+- **Cards:** 16px radius, large padding, soft shadow, no gradients/decorative fills.
+- **Inputs:** 12px radius, visible labels, helper/errors below, blue focus ring; never placeholder-as-label.
+- **Buttons:** One dominant Brand Blue CTA; Secondary outlined; Ghost minimal. Hover lift 2px, press scale 98%, 200ms ease-out. No new variants without approval.
+- **Motion:** Communicative only — hover/fade/slide/scale. Reject bounce/flash/shake/spin/elastic/long transitions.
+- **Charts:** Brand Blue + neutrals; semantic colours only when meaningful.
+
+## Page / hierarchy gate
+
+Answer in under five seconds: What is this page? Most important action? Where should the eye go first? What next? Prefer less content, clearer hierarchy, intentional whitespace. Avoid equal emphasis, competing CTAs, and visual noise.
+
+## States (feature incomplete without them)
+
+Loading · Empty · Success · Failure · Permission denied · Offline (where applicable). Skeleton loaders preferred; calm microcopy (no blame, jargon, or stack traces).
+
+## A11y / responsive / performance
+
+WCAG AA, keyboard, visible focus, ARIA, semantic HTML, large targets — failures block release. Desktop → tablet → mobile: recompose, do not shrink. Avoid layout shift, heavy animation, oversized assets, duplicate libraries.
+
+## Jinja / CSS / JS
 
 ```
 app/templates/
-  layouts/     # base.html (app shell), auth_base.html
+  layouts/     # base.html, auth_base.html
   partials/    # sidebar, topnav, flash_messages
-  <feature>/   # auth, dashboard, mission, study_plan, analytics, settings, errors
+  <feature>/
 ```
 
-- Authenticated pages extend `layouts/base.html`.
-- Auth pages extend `layouts/auth_base.html`.
-- Keep feature templates in the matching folder; wizard steps stay under `study_plan/`.
-- Pass `title` for the document title block when practical.
-- Reuse partials instead of duplicating chrome.
+- Authenticated → `layouts/base.html`; auth → `layouts/auth_base.html`.
+- Reuse partials; no screen-local design systems. Business rules stay in services.
+- CSS: `app/static/css/app.css` (+ `wizard.css` via `extra_head`). Bootstrap 5.3 via CDN — no second framework without milestone approval.
+- JS: `app/static/js/app.js` + feature files; CSRF from `<meta name="csrf-token">`; progressive enhancement; respect CSP.
 
-## CSS
+## Release gate (UI Guardian)
 
-- Global styles: `app/static/css/app.css`.
-- Wizard-specific: `app/static/css/wizard.css` (include via `extra_head` when needed).
-- Prefer extending existing tokens/classes over introducing a parallel design system.
-- Bootstrap 5.3 is provided via CDN in the layout — do not vendor a second framework without a milestone decision.
-
-## JavaScript
-
-- Shared: `app/static/js/app.js`.
-- Feature-specific files (e.g. `mission.js`) for isolated behaviour.
-- Progressive enhancement: critical flows should not depend on fragile client-only state.
-- Read CSRF from `<meta name="csrf-token">` when posting via JS.
-
-## Do not
-
-- Embed large inline scripts in templates when a static file is clearer.
-- Bypass CSP assumptions casually (see security headers in `app/__init__.py`).
-- Put business rules (ordering, mastery math) in templates — compute in services/routes.
+Not complete until Brand + UX-001 + Guardian + a11y + responsive + performance pass. Self-review: Would Apple remove / Linear simplify / Notion make this easier to scan? If yes — implement the simpler solution.

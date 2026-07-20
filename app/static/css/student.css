@@ -4,25 +4,27 @@
  */
 
 :root {
-  --student-font-display: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", Palatino, serif;
-  --student-font-body: "DM Sans", "Segoe UI", sans-serif;
-  --student-space-1: 0.25rem;
-  --student-space-2: 0.5rem;
-  --student-space-3: 0.75rem;
-  --student-space-4: 1rem;
-  --student-space-5: 1.5rem;
-  --student-space-6: 2rem;
-  --student-space-7: 3rem;
-  --student-space-8: 4rem;
-  --student-radius: 0.5rem;
+  /* Alias shared tokens — one design system across shells (UI Guardian) */
+  --student-font-display: var(--font-family);
+  --student-font-body: var(--font-family);
+  --student-space-1: var(--space-xs);
+  --student-space-2: var(--space-sm);
+  --student-space-3: var(--space-md);
+  --student-space-4: var(--space-lg);
+  --student-space-5: var(--space-xl);
+  --student-space-6: var(--space-2xl);
+  --student-space-7: var(--space-3xl);
+  --student-space-8: var(--space-4xl);
+  --student-radius: var(--radius-lg);
+  --student-radius-input: var(--radius-md);
   --student-max-width: 44rem;
   --student-shell-max: 72rem;
-  --student-focus: 0 0 0 3px color-mix(in srgb, var(--brand-blue) 35%, transparent);
+  --student-focus: var(--focus-ring);
   --student-card-border: var(--divider);
-  --student-primary: var(--brand-blue);
-  --student-primary-hover: var(--brand-blue-dark);
+  --student-primary: var(--primary);
+  --student-primary-hover: var(--primary-hover);
   --student-muted: var(--text-secondary);
-  --student-bg: var(--surface-alt);
+  --student-bg: var(--background);
   --student-surface: var(--surface);
   --student-text: var(--text-primary);
 }
@@ -32,9 +34,9 @@
   min-height: 100vh;
   font-family: var(--student-font-body);
   color: var(--student-text);
+  /* Quiet blue atmosphere only — gold is achievement, not chrome (UX-001 / UI Guardian) */
   background:
     radial-gradient(1200px 600px at 10% -10%, color-mix(in srgb, var(--brand-blue) 8%, transparent), transparent 60%),
-    radial-gradient(900px 500px at 100% 0%, color-mix(in srgb, var(--brand-gold) 6%, transparent), transparent 55%),
     var(--student-bg);
 }
 

@@ -52,6 +52,7 @@ def test_infrastructure_package_exists():
         "events",
         "repositories",
         "diagnostics",
+        "session",
     ):
         assert (INFRA_ROOT / name).is_dir()
 

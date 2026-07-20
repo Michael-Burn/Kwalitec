@@ -29,7 +29,7 @@ This document does **not** define educational algorithms. Those live in Student 
 | Intent | Meaning |
 |--------|---------|
 | Calm | Large whitespace, one focus, quiet chrome |
-| Professional | Serif display + clean sans body; no cartoon UI |
+| Professional | Inter everywhere; weight and size create hierarchy |
 | Trustworthy | Explainable copy, accessible contrast, stable layout |
 | Purposeful | One primary action per screen |
 
@@ -44,18 +44,17 @@ This document does **not** define educational algorithms. Those live in Student 
 
 ## 3. Typography
 
-| Role | Family | Weight | Notes |
-|------|--------|--------|-------|
-| Display / titles | Source Serif 4 | 600 | Page titles, card titles |
-| Body / UI | DM Sans | 400–600 | Navigation, meta, buttons |
-| Eyebrows | DM Sans | 600 | Uppercase, tracked |
+Governed by `knowledge/design/UI_UX_IMPLEMENTATION_STANDARD.md` (UX-001) and Brand Guidelines.
 
-Scale (approximate):
+| Role | Family | Weight | Size |
+|------|--------|--------|------|
+| Page title | Inter | 600 | 40px |
+| Section title | Inter | 600 | 28px |
+| Card title | Inter | 600 | 20px |
+| Body / UI | Inter | 400–500 | 16px |
+| Caption / eyebrows | Inter | 500–600 | 14px |
 
-- Page title: `clamp(1.875rem, 4vw, 2.5rem)`
-- Card title: `1.5rem` (sm `1.15rem`)
-- Body: `1rem`–`1.05rem`
-- Meta labels: `0.75rem` uppercase
+Never introduce additional fonts. Hierarchy comes from size and weight only.
 
 Line length: content column max `44rem`.
 
@@ -82,7 +81,7 @@ Prefer vertical rhythm over dense grids. Home uses a short summary row, then one
 
 ## 5. Colour semantics
 
-Built on `brand.css`:
+Built on `brand.css` and governed by UX-001 / UI Guardian:
 
 | Semantic | Source |
 |----------|--------|
@@ -92,9 +91,9 @@ Built on `brand.css`:
 | Muted text | `--text-secondary` |
 | Surfaces | `--surface` / `--surface-alt` |
 | Borders | `--divider` |
-| Success / warning / danger | brand status tokens |
+| Success / warning / danger | brand status tokens (warning is amber — **not** brand gold) |
 
-Accent use of gold is atmospheric only (background wash) — not for CTA competition.
+Gold (`#E8B02B`) is reserved for logo, achievement, awards, and completion — never for CTAs, charts, warnings, or decorative washes.
 
 ---
 
@@ -102,7 +101,7 @@ Accent use of gold is atmospheric only (background wash) — not for CTA competi
 
 `.student-card` is the default content container:
 
-- Soft border, modest radius (`0.5rem`)
+- Soft border, 16px radius (`--student-radius`)
 - Generous padding (`1.5rem`)
 - Eyebrow + title + body pattern
 - Recommendation / primary revision cards get a subtle blue border emphasis

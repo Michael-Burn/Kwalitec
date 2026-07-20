@@ -1,0 +1,250 @@
+/**
+ * Kwalitec shared design tokens — UX-001 / UI Guardian
+ * Load after brand.css on every product shell (app, student, session).
+ * Do not invent colours, spacing, type, or radii outside this file.
+ */
+
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  --background: var(--surface-alt, #f4f6f9);
+  --surface: #ffffff;
+  --surface-elevated: #ffffff;
+  --border: #d5dae3;
+  --border-subtle: var(--divider, #e6e9ef);
+
+  --primary: var(--brand-blue, #3B4FB8);
+  --primary-hover: var(--brand-blue-dark, #2F3F96);
+  --secondary: #475569;
+
+  --text-primary: #1e2430;
+  --text-secondary: #4a5568;
+  --text-muted: #5c6570;
+  --text-inverse: #f8fafc;
+  --on-primary: #f8fafc;
+  --on-success: #f8fafc;
+
+  --success: var(--status-success, #0f766e);
+  --success-bg: #e6f7f5;
+  --warning: #A16207;
+  --warning-bg: rgba(161, 98, 7, 0.12);
+  --danger: var(--status-danger, #c81e1e);
+  --danger-bg: #fef1f1;
+  --info: var(--brand-blue, #3B4FB8);
+  --info-bg: rgba(59, 79, 184, 0.1);
+
+  --shadow: 0 1px 2px rgba(13, 27, 42, 0.05), 0 2px 10px rgba(13, 27, 42, 0.07);
+  --shadow-sm: 0 1px 2px rgba(13, 27, 42, 0.05);
+  --shadow-md: var(--shadow);
+  --shadow-lg: 0 4px 18px rgba(13, 27, 42, 0.09), 0 2px 4px rgba(13, 27, 42, 0.04);
+  --shadow-xl: 0 10px 32px rgba(13, 27, 42, 0.12);
+
+  --chrome: var(--brand-primary-dark, #0D1B2A);
+  --chrome-muted: #162536;
+  --brand: var(--brand-primary-dark, #0D1B2A);
+  --brand-muted: var(--brand-blue, #3B4FB8);
+  --brand-gold: #E8B02B;
+  --brand-gold-soft: rgba(232, 176, 43, 0.16);
+  --brand-gold-hover: #F0C040;
+  --accent: var(--brand-navy, #0A1628);
+  --accent-soft: var(--brand-blue, #3B4FB8);
+  --focus-ring: 0 0 0 3px rgba(59, 79, 184, 0.28);
+
+  /* Legacy color-* aliases */
+  --color-chrome: var(--chrome);
+  --color-chrome-muted: var(--chrome-muted);
+  --color-brand: var(--brand);
+  --color-brand-light: var(--brand-muted);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-soft);
+  --color-bg: var(--background);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-border-light: var(--border-subtle);
+  --color-text: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-inverse: var(--text-inverse);
+  --color-success: var(--success);
+  --color-success-bg: var(--success-bg);
+  --color-warning: var(--warning);
+  --color-warning-bg: var(--warning-bg);
+  --color-danger: var(--danger);
+  --color-danger-bg: var(--danger-bg);
+  --color-info: var(--info);
+  --color-info-bg: var(--info-bg);
+
+  /* 8-point spacing grid (UX-001) */
+  --space-xs: 0.25rem;   /* 4 */
+  --space-sm: 0.5rem;    /* 8 */
+  --space-md: 0.75rem;   /* 12 */
+  --space-lg: 1rem;      /* 16 */
+  --space-xl: 1.5rem;    /* 24 */
+  --space-2xl: 2rem;     /* 32 */
+  --space-3xl: 3rem;     /* 48 */
+  --space-4xl: 4rem;     /* 64 */
+
+  /* Typography — Inter only; hierarchy 40 / 28 / 20 / 16 / 14 */
+  --font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "SF Mono", "Fira Code", "Fira Mono", Menlo, Consolas, monospace;
+  --font-xs: 0.875rem;   /* 14 caption */
+  --font-sm: 0.875rem;   /* 14 */
+  --font-base: 1rem;     /* 16 body */
+  --font-lg: 1.25rem;    /* 20 card */
+  --font-xl: 1.25rem;    /* 20 */
+  --font-2xl: 1.75rem;   /* 28 section */
+  --font-3xl: 1.75rem;   /* 28 */
+  --font-4xl: 2.5rem;    /* 40 page */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.7;
+
+  /* Radii — inputs 12px, cards 16px */
+  --radius: 0.75rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  /* Motion (UX-001) */
+  --transition-fast: 150ms ease-out;
+  --transition-base: 200ms ease-out;
+  --transition-slow: 250ms ease-out;
+
+  --sidebar-width: 260px;
+  --topnav-height: 56px;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --background: #141820;
+  --surface: #1c222d;
+  --surface-elevated: #242b38;
+  --border: #3d4658;
+  --border-subtle: #2f3645;
+
+  --primary: #8B9CE0;
+  --primary-hover: #A5B4F0;
+  --secondary: #64748b;
+
+  --text-primary: #eef1f6;
+  --text-secondary: #c2c9d4;
+  --text-muted: #a8b0bd;
+  --text-inverse: #f8fafc;
+  --on-primary: #0f131a;
+  --on-success: #0f131a;
+
+  --success: #2dd4bf;
+  --success-bg: rgba(45, 212, 191, 0.16);
+  --warning: #D97706;
+  --warning-bg: rgba(217, 119, 6, 0.18);
+  --danger: #f87171;
+  --danger-bg: rgba(248, 113, 113, 0.16);
+  --info: #8B9CE0;
+  --info-bg: rgba(139, 156, 224, 0.16);
+
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.28), 0 4px 14px rgba(0, 0, 0, 0.32);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-md: var(--shadow);
+  --shadow-lg: 0 6px 20px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 12px 36px rgba(0, 0, 0, 0.5);
+
+  --radius: 0.75rem;
+  --chrome: var(--brand-primary-dark, #0D1B2A);
+  --chrome-muted: #121f2e;
+  --brand: #A5B4F0;
+  --brand-muted: #8B9CE0;
+  --brand-gold: #E8B02B;
+  --brand-gold-soft: rgba(232, 176, 43, 0.22);
+  --accent: #0A1628;
+  --accent-soft: #3B4FB8;
+  --focus-ring: 0 0 0 3px rgba(139, 156, 224, 0.35);
+}
+
+/* Skeleton loaders — preserve layout; never flash empty (UX-001) */
+@keyframes kw-skeleton-pulse {
+  0% { opacity: 0.55; }
+  50% { opacity: 1; }
+  100% { opacity: 0.55; }
+}
+
+.skeleton {
+  display: block;
+  background: color-mix(in srgb, var(--border) 65%, var(--surface));
+  border-radius: var(--radius-sm);
+  animation: kw-skeleton-pulse 1.2s ease-out infinite;
+  pointer-events: none;
+  user-select: none;
+}
+
+.skeleton--text {
+  height: 0.875rem;
+  width: 100%;
+  margin-bottom: var(--space-sm);
+}
+
+.skeleton--text-lg {
+  height: 1.25rem;
+  width: 70%;
+  margin-bottom: var(--space-md);
+}
+
+.skeleton--title {
+  height: 1.75rem;
+  width: 48%;
+  margin-bottom: var(--space-lg);
+}
+
+.skeleton--avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.skeleton--button {
+  height: 2.75rem;
+  width: 100%;
+  border-radius: var(--radius-md);
+}
+
+.skeleton--card {
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.skeleton--bar {
+  height: 0.5rem;
+  width: 100%;
+  border-radius: var(--radius-full);
+  margin: var(--space-md) 0;
+}
+
+.skeleton-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.skeleton-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+    opacity: 0.7;
+  }
+}

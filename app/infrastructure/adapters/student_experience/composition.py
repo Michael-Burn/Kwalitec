@@ -262,15 +262,37 @@ class StudentExperienceComposition:
 
 def build_production_experience(
     *,
-    seed_demo_learners: bool = True,
+    seed_demo_learners: bool | None = None,
     learning_loop: bool = True,
+    store: ExperienceProjectionStore | None = None,
+    flags: Any | None = None,
 ) -> tuple[StudentExperienceComposition, StudentExperienceService]:
     """Build production Student Experience composition + service."""
+    from app.application.config.v2_flags import resolve_v2_feature_flags
+    from app.infrastructure.composition import (
+        build_experience_projection_store,
+        build_opaque_engines,
+    )
+
+    active = flags or resolve_v2_feature_flags()
+    seed = (
+        active.SEED_DEMO_LEARNERS
+        if seed_demo_learners is None
+        else seed_demo_learners
+    )
+    projection_store = store or build_experience_projection_store(flags=active)
+    engines = build_opaque_engines(flags=active)
     composition = StudentExperienceComposition(
+        store=projection_store,
+        uow=projection_store.uow,
         learning_loop=None,
         enable_learning_loop=learning_loop,
-        seed_demo_learners=seed_demo_learners,
+        twin_engine=engines.get("twin_engine"),
+        decision_engine=engines.get("decision_engine"),
+        mission_engine=engines.get("mission_engine"),
+        journey_engine=engines.get("journey_engine"),
+        seed_demo_learners=seed,
     )
-    if seed_demo_learners:
+    if seed:
         composition.seed_learner("default", demo=True)
     return composition, composition.build_service()

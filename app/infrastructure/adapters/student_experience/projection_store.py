@@ -7,12 +7,15 @@ Never computes readiness, recommendations, mastery, or journey progression.
 from __future__ import annotations
 
 from copy import deepcopy
-from typing import Any
+from typing import Any, Callable
 
 from app.infrastructure.persistence.optimistic_locking import OptimisticLockGuard
 from app.infrastructure.persistence.snapshot_store import SnapshotStore
 from app.infrastructure.persistence.unit_of_work import UnitOfWork
+from app.infrastructure.repositories.contracts import AggregateRepository
 from app.infrastructure.repositories.in_memory import InMemoryAggregateRepository
+
+RepositoryFactory = Callable[..., AggregateRepository]
 
 
 class ExperienceProjectionStore:
@@ -36,60 +39,59 @@ class ExperienceProjectionStore:
         uow: UnitOfWork | None = None,
         snapshots: SnapshotStore | None = None,
         lock: OptimisticLockGuard | None = None,
+        repository_factory: RepositoryFactory | None = None,
+        durable_snapshots: bool = False,
     ) -> None:
         self.uow = uow or UnitOfWork()
         self.snapshots = snapshots or SnapshotStore()
         self.lock = lock or OptimisticLockGuard()
-        self.twin = InMemoryAggregateRepository(
-            repository_id="experience_twin",
-            aggregate_name=self.TWIN,
-            uow=self.uow,
-            lock=self.lock,
+        self._repository_factory = repository_factory
+        self._durable_snapshots = durable_snapshots
+        self.twin = self.make_repository(
+            repository_id="experience_twin", aggregate_name=self.TWIN
         )
-        self.adaptive = InMemoryAggregateRepository(
-            repository_id="experience_adaptive",
-            aggregate_name=self.ADAPTIVE,
-            uow=self.uow,
-            lock=self.lock,
+        self.adaptive = self.make_repository(
+            repository_id="experience_adaptive", aggregate_name=self.ADAPTIVE
         )
-        self.journey = InMemoryAggregateRepository(
-            repository_id="experience_journey",
-            aggregate_name=self.JOURNEY,
-            uow=self.uow,
-            lock=self.lock,
+        self.journey = self.make_repository(
+            repository_id="experience_journey", aggregate_name=self.JOURNEY
         )
-        self.mission = InMemoryAggregateRepository(
-            repository_id="experience_mission",
-            aggregate_name=self.MISSION,
-            uow=self.uow,
-            lock=self.lock,
+        self.mission = self.make_repository(
+            repository_id="experience_mission", aggregate_name=self.MISSION
         )
-        self.activity = InMemoryAggregateRepository(
-            repository_id="experience_activity",
-            aggregate_name=self.ACTIVITY,
-            uow=self.uow,
-            lock=self.lock,
+        self.activity = self.make_repository(
+            repository_id="experience_activity", aggregate_name=self.ACTIVITY
         )
-        self.workspaces = InMemoryAggregateRepository(
-            repository_id="experience_workspace",
-            aggregate_name=self.WORKSPACE,
-            uow=self.uow,
-            lock=self.lock,
+        self.workspaces = self.make_repository(
+            repository_id="experience_workspace", aggregate_name=self.WORKSPACE
         )
-        self.sessions = InMemoryAggregateRepository(
-            repository_id="experience_session",
-            aggregate_name=self.SESSION,
+        self.sessions = self.make_repository(
+            repository_id="experience_session", aggregate_name=self.SESSION
+        )
+
+    def make_repository(
+        self, *, repository_id: str, aggregate_name: str
+    ) -> AggregateRepository:
+        """Construct an aggregate repository for the given name."""
+        if self._repository_factory is not None:
+            return self._repository_factory(
+                repository_id=repository_id,
+                aggregate_name=aggregate_name,
+            )
+        return InMemoryAggregateRepository(
+            repository_id=repository_id,
+            aggregate_name=aggregate_name,
             uow=self.uow,
             lock=self.lock,
         )
 
-    def get(self, repo: InMemoryAggregateRepository, key: str) -> dict[str, Any] | None:
+    def get(self, repo: AggregateRepository, key: str) -> dict[str, Any] | None:
         """Load an opaque document."""
         return repo.get(key)
 
     def save(
         self,
-        repo: InMemoryAggregateRepository,
+        repo: AggregateRepository,
         key: str,
         document: dict[str, Any],
         *,
@@ -99,11 +101,25 @@ class ExperienceProjectionStore:
         """Persist an opaque document; optionally append a snapshot."""
         ack = repo.save(key, document, expected_version=expected_version)
         if snapshot:
-            self.snapshots.save(
-                repo.aggregate_name,
-                key,
-                deepcopy(document),
-                schema_version=1,
-                correlation_id=str(document.get("correlation_id") or ""),
-            )
+            aggregate_name = getattr(repo, "aggregate_name", "Aggregate")
+            if self._durable_snapshots:
+                from app.infrastructure.repositories.sqlalchemy import (
+                    SqlAlchemySnapshotRepository,
+                )
+
+                SqlAlchemySnapshotRepository(uow=self.uow).save_snapshot(
+                    aggregate_name,
+                    key,
+                    deepcopy(document),
+                    schema_version=1,
+                    correlation_id=str(document.get("correlation_id") or ""),
+                )
+            else:
+                self.snapshots.save(
+                    aggregate_name,
+                    key,
+                    deepcopy(document),
+                    schema_version=1,
+                    correlation_id=str(document.get("correlation_id") or ""),
+                )
         return ack

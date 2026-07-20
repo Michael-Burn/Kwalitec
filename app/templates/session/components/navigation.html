@@ -1,0 +1,13 @@
+{# Minimal linear session progress — not a dashboard nav. #}
+{% if page and page.shell.steps %}
+<nav class="session-flow" aria-label="Session progress">
+    <ol class="session-flow-list">
+        {% for step in page.shell.steps %}
+        <li class="session-flow-step{% if step.is_active %} is-active{% endif %}{% if step.is_complete %} is-complete{% endif %}">
+            <span class="session-flow-marker" aria-hidden="true">{{ step.step_number }}</span>
+            <span class="session-flow-label">{{ step.label }}</span>
+        </li>
+        {% endfor %}
+    </ol>
+</nav>
+{% endif %}

@@ -184,12 +184,28 @@ This matrix names **authority** (who may lawfully decide or mutate) versus **con
 
 ---
 
+## Learning Session Experience (Focused Study Workflow)
+
+| | |
+|--|--|
+| **Authority** | Learning Session Experience — workflow, navigation, presentation, progress projection, session presentation state only |
+| **Consumers** | Session UI (`app/presentation/session/`), Student Home Start Session hand-off |
+| **Upstream** | Learning Session Runtime, Learning Activity Engine, Mission, Twin, Adaptive Decision via **ports** |
+| **Downstream** | Overview / Activity / Reflection / Summary / Complete snapshots |
+
+**Constraint:** Does **not** own learning decisions, recommendations, evidence, mission generation, readiness, or journey calculations. See [`LEARNING_SESSION_EXPERIENCE.md`](LEARNING_SESSION_EXPERIENCE.md).
+
+**Flow:** Student Home → Overview → Activities → Reflection → Summary → Complete → Home (linear only).
+
+---
+
 ## Explicit Non-Authorities
 
 | Capability | Must not claim authority |
 |------------|--------------------------|
 | UI / templates | Mastery, Topic Complete, publication law, next action |
 | Student Experience | Learner state, readiness math, next-action law, mission generation, journey progression, evidence |
+| Learning Session Experience | Learning decisions, readiness math, recommendations, evidence storage, mission generation, journey math |
 | Analytics adapters | Educational decisions |
 | Founder tools | Student Learning Mode mutation |
 | AI / LLM | Twin truth, next-action law, curriculum publication |

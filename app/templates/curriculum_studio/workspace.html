@@ -1,0 +1,165 @@
+{% extends "layouts/base.html" %}
+
+{% macro action_btn(form_obj, action_key, default_class) -%}
+{%- set is_primary = page.primary_action == action_key -%}
+{%- set btn_class = 'btn founder-btn ' + ('btn-primary' if is_primary else default_class) -%}
+{{ form_obj.submit(class_=btn_class) }}
+{%- endmacro %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ versioned_static('css/founder_dashboard.css', endpoint='founder_dashboard.static') }}">
+{% endblock %}
+
+{% block content %}
+{% include "founder_dashboard/_nav.html" %}
+
+<nav class="founder-breadcrumb" aria-label="Breadcrumb">
+    <ol class="founder-breadcrumb-list">
+        {% for crumb in page.breadcrumbs %}
+        <li class="founder-breadcrumb-item">
+            {% if crumb.endpoint %}
+            <a href="{{ url_for(crumb.endpoint) }}">{{ crumb.label }}</a>
+            {% else %}
+            <span aria-current="page">{{ crumb.label }}</span>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ol>
+</nav>
+
+<section class="section-header founder-header">
+    <p class="section-eyebrow">Curriculum Studio · Workspace</p>
+    <h1 class="section-title">{{ page.workspace.subject_title or page.workspace.subject_code }}</h1>
+    <p class="section-description">
+        Stage: {{ page.stage_label }} · Status: {{ page.workspace.status|title }}
+        {% if page.workspace.version_label %} · Version {{ page.workspace.version_label }}{% endif %}
+    </p>
+</section>
+
+<section class="mb-4" aria-label="Suggested next step">
+    <div class="founder-next-action" role="status">
+        <p class="founder-next-action-label">Next step</p>
+        <p class="founder-next-action-text mb-0">{{ page.next_action_label }}</p>
+    </div>
+</section>
+
+<section class="mb-4" aria-label="Workflow stages">
+    <div class="command-card">
+        <div class="command-card-header"><h2 class="h5 mb-0">Workflow</h2></div>
+        <div class="command-card-body">
+            <ol class="founder-workflow list-unstyled mb-0" aria-label="Curriculum Studio workflow stages">
+                {% for value, label, active in page.workflow_stages %}
+                <li class="founder-workflow-step{% if active %} is-active{% endif %}">
+                    <span class="founder-workflow-marker" aria-hidden="true"></span>
+                    <span class="founder-workflow-label">{{ label }}</span>
+                    {% if active %}<span class="visually-hidden">(current)</span>{% endif %}
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+</section>
+
+<section class="mb-4" aria-label="Readiness">
+    <div class="row g-3">
+        <div class="col-md-4">
+            <div class="command-card h-100">
+                <div class="command-card-body">
+                    <span class="command-metric-label">Validation</span>
+                    <p class="mb-0">{{ page.validation_summary }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="command-card h-100">
+                <div class="command-card-body">
+                    <span class="command-metric-label">Preview</span>
+                    <p class="mb-0">{{ page.preview_summary }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="command-card h-100">
+                <div class="command-card-body">
+                    <span class="command-metric-label">Checklist</span>
+                    <p class="mb-0">{{ page.checklist_summary }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mb-4" aria-label="Studio actions">
+    <div class="command-card">
+        <div class="command-card-header"><h2 class="h5 mb-0">Actions</h2></div>
+        <div class="command-card-body">
+            <div class="founder-action-grid">
+                <form method="post" action="{{ url_for('curriculum_studio.advance', workspace_id=page.workspace.workspace_id) }}" class="founder-action-form">
+                    {{ advance_form.hidden_tag() }}{{ advance_form.workspace_id }}
+                    {{ action_btn(advance_form, 'advance', 'btn-outline-secondary') }}
+                </form>
+                <form method="post" action="{{ url_for('curriculum_studio.validate', workspace_id=page.workspace.workspace_id) }}" class="founder-action-form">
+                    {{ validate_form.hidden_tag() }}{{ validate_form.workspace_id }}
+                    {{ action_btn(validate_form, 'validate', 'btn-outline-secondary') }}
+                </form>
+                <form method="post" action="{{ url_for('curriculum_studio.preview', workspace_id=page.workspace.workspace_id) }}" class="founder-action-form">
+                    {{ preview_form.hidden_tag() }}{{ preview_form.workspace_id }}
+                    {{ action_btn(preview_form, 'preview', 'btn-outline-secondary') }}
+                </form>
+                <form method="post" action="{{ url_for('curriculum_studio.approve', workspace_id=page.workspace.workspace_id) }}" class="founder-action-form founder-action-form--wide">
+                    {{ approve_form.hidden_tag() }}{{ approve_form.workspace_id }}
+                    <label class="form-label visually-hidden" for="{{ approve_form.reason.id }}">{{ approve_form.reason.label.text }}</label>
+                    {{ approve_form.reason(class_='form-control founder-input') }}
+                    {{ action_btn(approve_form, 'approve', 'btn-outline-success') }}
+                </form>
+                <form method="post" action="{{ url_for('curriculum_studio.publish', workspace_id=page.workspace.workspace_id) }}" class="founder-action-form founder-action-form--wide">
+                    {{ publish_form.hidden_tag() }}{{ publish_form.workspace_id }}
+                    <label class="form-label visually-hidden" for="{{ publish_form.reason.id }}">{{ publish_form.reason.label.text }}</label>
+                    {{ publish_form.reason(class_='form-control founder-input') }}
+                    {{ action_btn(publish_form, 'publish', 'btn-outline-primary') }}
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mb-4" aria-label="Version history">
+    <div class="command-card">
+        <div class="command-card-header"><h2 class="h5 mb-0">Version history</h2></div>
+        <div class="command-card-body">
+            <form method="post" action="{{ url_for('curriculum_studio.assign_version', workspace_id=page.workspace.workspace_id) }}" class="founder-version-form mb-3">
+                {{ version_form.hidden_tag() }}{{ version_form.workspace_id }}
+                <div class="founder-version-fields">
+                    <div>
+                        <label class="form-label" for="{{ version_form.version_label.id }}">
+                            {{ version_form.version_label.label.text }}
+                            <span class="founder-required" aria-hidden="true">*</span>
+                        </label>
+                        {{ version_form.version_label(class_='form-control founder-input') }}
+                        {% for error in version_form.version_label.errors %}
+                        <p class="invalid-feedback d-block" role="alert">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {{ action_btn(version_form, 'version', 'btn-outline-secondary') }}
+                </div>
+            </form>
+            {% if page.has_version_history %}
+            <ul class="founder-version-list mb-0">
+                {% for line in page.version_history %}
+                <li>{{ line }}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <div class="founder-empty-state" role="status">
+                <p class="founder-empty-title mb-1">No versions yet</p>
+                <p class="mb-0 text-muted">{{ page.empty_version_message }}</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<p class="founder-back-link mb-0">
+    <a href="{{ url_for('curriculum_studio.index') }}">← Back to Curriculum Studio</a>
+</p>
+{% endblock %}

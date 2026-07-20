@@ -85,6 +85,8 @@ def test_start_session_post(student_client, experience_app):
     )
     assert response.status_code in {302, 303}
     assert mission.start_calls
+    location = response.headers.get("Location", "")
+    assert "/session/sess-1" in location
 
 
 def test_begin_revision_post(student_client, experience_app):
@@ -94,11 +96,15 @@ def test_begin_revision_post(student_client, experience_app):
         "/student/revision/begin",
         data={
             "option_id": "r1",
+            "mission_id": "m1",
+            "session_id": "sess-1",
             "submit": "Begin Revision",
         },
         follow_redirects=False,
     )
     assert response.status_code in {302, 303}
+    location = response.headers.get("Location", "")
+    assert "/session/" in location
 
 
 def test_start_session_unavailable_port(student_client, experience_app):

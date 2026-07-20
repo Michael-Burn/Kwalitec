@@ -1,0 +1,113 @@
+{% extends "layouts/base.html" %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ versioned_static('css/founder_dashboard.css', endpoint='founder_dashboard.static') }}">
+{% endblock %}
+
+{% block content %}
+{% include "founder_dashboard/_nav.html" %}
+
+<nav class="founder-breadcrumb" aria-label="Breadcrumb">
+    <ol class="founder-breadcrumb-list">
+        <li class="founder-breadcrumb-item">
+            <a href="{{ url_for('founder_dashboard.index') }}">Overview</a>
+        </li>
+        <li class="founder-breadcrumb-item">
+            <a href="{{ url_for('founder_dashboard.founder_intelligence') }}">Intelligence</a>
+        </li>
+        <li class="founder-breadcrumb-item">
+            <span aria-current="page">Evidence Gates</span>
+        </li>
+    </ol>
+</nav>
+
+<section class="section-header founder-header">
+    <p class="section-eyebrow">{{ founder_command_centre_label }} · Evidence Gates</p>
+    <h1 class="section-title">Evidence Gates</h1>
+    <p class="section-description">
+        Product Strategy checklist before V2 sole runtime.
+        Technical readiness is shown here; product evidence still requires Founder confirmation.
+        Dual-run: {{ dual_run.label }}
+    </p>
+</section>
+
+<section class="mb-4" aria-label="Suggested next step">
+    <div class="founder-next-action" role="status">
+        <p class="founder-next-action-label">Next step</p>
+        <p class="founder-next-action-text mb-0">
+            {% if report.cutover_blocked %}
+            Review each evidence gate below and gather what is listed before considering sole-runtime cutover.
+            {% else %}
+            Technical posture looks clear. Confirm product evidence, then follow the retirement runbook.
+            {% endif %}
+        </p>
+    </div>
+</section>
+
+<section class="mb-4" aria-label="Gate checklist">
+    <div class="command-card">
+        <div class="command-card-header"><h2 class="h5 mb-0">Gate checklist</h2></div>
+        <div class="command-card-body">
+            {% if report.items %}
+            <ul class="list-unstyled mb-0 founder-gate-list">
+                {% for item in report.items %}
+                <li class="founder-gate-item">
+                    <p class="mb-1 fw-semibold">
+                        <span class="founder-gate-status{% if item.technical_ready %} is-ready{% endif %}" aria-hidden="true">
+                            {% if item.technical_ready %}✓{% else %}○{% endif %}
+                        </span>
+                        {{ item.title }}
+                        <span class="visually-hidden">
+                            {% if item.technical_ready %}technically ready{% else %}awaiting evidence{% endif %}
+                        </span>
+                    </p>
+                    <p class="mb-1">{{ item.description }}</p>
+                    <p class="mb-0 small text-muted">Evidence required: {{ item.evidence_required }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <div class="founder-empty-state" role="status">
+                <p class="founder-empty-title mb-1">No evidence gates available</p>
+                <p class="mb-0 text-muted">
+                    Evidence gate definitions are not loaded. Check dual-run diagnostics and try again.
+                </p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<section class="mb-4" aria-label="Cutover notes">
+    <div class="command-card">
+        <div class="command-card-header"><h2 class="h5 mb-0">Cutover posture</h2></div>
+        <div class="command-card-body">
+            <p>Technical gates ready (excluding product evidence): {{ report.all_technical_ready }}</p>
+            <p>Sole runtime currently blocked until evidence and flag: {{ report.cutover_blocked }}</p>
+            {% if report.notes %}
+            <ul class="mb-3">
+                {% for note in report.notes %}
+                <li>{{ note }}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <div class="founder-empty-state mb-3" role="status">
+                <p class="mb-0 text-muted">No additional cutover notes right now.</p>
+            </div>
+            {% endif %}
+            <p class="mb-0 small text-muted">
+                Runbook: <code>knowledge/version2/V2_020_RETIREMENT_RUNBOOK.md</code>
+            </p>
+            <p class="mb-0 mt-3">
+                <a class="founder-btn-link" href="{{ url_for('founder_dashboard.founder_intelligence') }}">
+                    ← Founder Intelligence
+                </a>
+                <span class="text-muted mx-2" aria-hidden="true">·</span>
+                <a class="founder-btn-link" href="{{ url_for('curriculum_studio.index') }}">
+                    Curriculum Studio →
+                </a>
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}

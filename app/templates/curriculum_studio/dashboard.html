@@ -1,0 +1,177 @@
+{% extends "layouts/base.html" %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ versioned_static('css/founder_dashboard.css', endpoint='founder_dashboard.static') }}">
+{% endblock %}
+
+{% block content %}
+{% include "founder_dashboard/_nav.html" %}
+
+<nav class="founder-breadcrumb" aria-label="Breadcrumb">
+    <ol class="founder-breadcrumb-list">
+        {% for crumb in page.breadcrumbs %}
+        <li class="founder-breadcrumb-item">
+            {% if crumb.endpoint %}
+            <a href="{{ url_for(crumb.endpoint) }}">{{ crumb.label }}</a>
+            {% else %}
+            <span aria-current="page">{{ crumb.label }}</span>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ol>
+</nav>
+
+<section class="section-header founder-header">
+    <p class="section-eyebrow">{{ founder_command_centre_label }} · Curriculum Studio</p>
+    <h1 class="section-title">Curriculum Studio</h1>
+    <p class="section-description">
+        Review, validate, preview, approve, and publish curricula through one Founder workflow.
+    </p>
+</section>
+
+<section class="mb-4" aria-label="Suggested next step">
+    <div class="founder-next-action" role="status">
+        <p class="founder-next-action-label">Next step</p>
+        <p class="founder-next-action-text mb-0">{{ page.next_step_hint }}</p>
+    </div>
+</section>
+
+<section class="mb-4" aria-label="Studio readiness">
+    <div class="row g-3">
+        <div class="col-6 col-md-3">
+            <div class="command-card h-100">
+                <div class="command-card-body">
+                    <span class="command-metric-label">Published</span>
+                    <span class="command-metric-value">{{ page.published_count }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="command-card h-100">
+                <div class="command-card-body">
+                    <span class="command-metric-label">Drafts</span>
+                    <span class="command-metric-value">{{ page.draft_count }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="command-card h-100">
+                <div class="command-card-body">
+                    <span class="command-metric-label">Pending validation</span>
+                    <span class="command-metric-value">{{ page.pending_validation_count }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="command-card h-100">
+                <div class="command-card-body">
+                    <span class="command-metric-label">Pending approval</span>
+                    <span class="command-metric-value">{{ page.pending_approval_count }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mb-4" aria-label="Create Subject or workspace">
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="command-card h-100">
+                <div class="command-card-header"><h2 class="h5 mb-0">Create Subject</h2></div>
+                <div class="command-card-body">
+                    <form method="post" action="{{ url_for('curriculum_studio.create_subject') }}" class="founder-form" novalidate>
+                        {{ create_subject_form.hidden_tag() }}
+                        <div class="mb-3">
+                            <label class="form-label" for="{{ create_subject_form.subject_code.id }}">
+                                {{ create_subject_form.subject_code.label.text }}
+                                <span class="founder-required" aria-hidden="true">*</span>
+                            </label>
+                            {{ create_subject_form.subject_code(class_='form-control founder-input') }}
+                            <p id="help-subject-code" class="form-text mb-0">Use a short syllabus code such as CS1.</p>
+                            {% for error in create_subject_form.subject_code.errors %}
+                            <p class="invalid-feedback d-block" role="alert">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="{{ create_subject_form.title.id }}">
+                                {{ create_subject_form.title.label.text }}
+                            </label>
+                            {{ create_subject_form.title(class_='form-control founder-input') }}
+                        </div>
+                        {{ create_subject_form.submit(class_='btn btn-primary founder-btn') }}
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="command-card h-100">
+                <div class="command-card-header"><h2 class="h5 mb-0">Open Workspace</h2></div>
+                <div class="command-card-body">
+                    <form method="post" action="{{ url_for('curriculum_studio.create_workspace') }}" class="founder-form" novalidate>
+                        {{ create_workspace_form.hidden_tag() }}
+                        <div class="mb-3">
+                            <label class="form-label" for="{{ create_workspace_form.subject_code.id }}">
+                                {{ create_workspace_form.subject_code.label.text }}
+                                <span class="founder-required" aria-hidden="true">*</span>
+                            </label>
+                            {{ create_workspace_form.subject_code(class_='form-control founder-input') }}
+                            <p id="help-workspace-code" class="form-text mb-0">Open an existing subject code to continue its workflow.</p>
+                            {% for error in create_workspace_form.subject_code.errors %}
+                            <p class="invalid-feedback d-block" role="alert">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        {{ create_workspace_form.submit(class_='btn btn-primary founder-btn') }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mb-4" aria-label="Workspaces">
+    <div class="command-card">
+        <div class="command-card-header"><h2 class="h5 mb-0">Workspaces</h2></div>
+        <div class="command-card-body">
+            {% if page.has_workspaces %}
+            <ul class="founder-workspace-list list-unstyled mb-0">
+                {% for ws in page.workspaces %}
+                <li class="founder-workspace-item">
+                    <a class="founder-workspace-link" href="{{ url_for('curriculum_studio.workspace', workspace_id=ws.workspace_id) }}">
+                        <span class="founder-workspace-code">{{ ws.subject_code }}</span>
+                        <span class="founder-workspace-meta">
+                            {{ ws.version_label or 'Draft' }} · {{ ws.current_stage.replace('_', ' ')|title }}
+                        </span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <div class="founder-empty-state" role="status">
+                <p class="founder-empty-title mb-1">No workspaces yet</p>
+                <p class="mb-0 text-muted">{{ page.empty_workspaces_message }}</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<section class="mb-4" aria-label="Recent activity">
+    <div class="command-card">
+        <div class="command-card-header"><h2 class="h5 mb-0">Recent activity</h2></div>
+        <div class="command-card-body">
+            {% if page.has_activity %}
+            <ul class="founder-activity-list mb-0">
+                {% for line in page.recent_activity %}
+                <li>{{ line }}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <div class="founder-empty-state" role="status">
+                <p class="founder-empty-title mb-1">No activity yet</p>
+                <p class="mb-0 text-muted">{{ page.empty_activity_message }}</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

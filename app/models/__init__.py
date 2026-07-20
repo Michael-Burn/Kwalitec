@@ -24,6 +24,11 @@ from app.models.subject import Subject
 from app.models.topic_progress import TopicProgress
 from app.models.twin_snapshot import TwinSnapshot
 from app.models.user import User
+from app.models.v2_aggregate import (
+    V2AggregateDocument,
+    V2AggregateSnapshot,
+    V2EvidenceEvent,
+)
 from app.models.vision_journal import (
     RELATION_TYPES,
     TARGET_VERSIONS,
@@ -51,6 +56,9 @@ __all__ = [
     "Mistake",
     "Decision",
     "TwinSnapshot",
+    "V2AggregateDocument",
+    "V2AggregateSnapshot",
+    "V2EvidenceEvent",
     "ResearchFeedbackSubmission",
     "ResearchContribution",
     "ResearchContributorBadge",

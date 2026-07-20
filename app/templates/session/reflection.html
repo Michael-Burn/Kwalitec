@@ -1,0 +1,19 @@
+{% extends "session/base.html" %}
+{% from "session/components/reflection_card.html" import reflection_card %}
+
+{% block content %}
+<div class="session-stack">
+    {{ reflection_card(page.reflection) }}
+    {% if form %}
+    <div class="session-primary-action">
+        <form method="post" action="{{ url_for('session.reflection_continue', session_id=page.shell.session_id) }}">
+            {{ form.hidden_tag() }}
+            {{ form.session_id() }}
+            <label class="session-label" for="{{ form.reflection_note.id }}">Optional note</label>
+            {{ form.reflection_note(class_="session-input", autocomplete="off") }}
+            {{ form.submit(class_="session-btn-primary", **{"data-session-cta": "primary"}) }}
+        </form>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

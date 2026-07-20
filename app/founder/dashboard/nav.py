@@ -23,6 +23,15 @@ COMMAND_CENTRE_NAV: tuple[CommandCentreNavItem, ...] = (
         "Operational Health",
         "operational_health",
     ),
+    CommandCentreNavItem("curriculum_studio.index", "Studio", "studio"),
+    CommandCentreNavItem(
+        "founder_dashboard.founder_intelligence",
+        "Intelligence",
+        "intelligence",
+    ),
+    CommandCentreNavItem(
+        "founder_dashboard.evidence_gates", "Evidence Gates", "evidence_gates"
+    ),
     CommandCentreNavItem("founder_dashboard.feedback", "Feedback", "feedback"),
     CommandCentreNavItem("founder_dashboard.research", "Research", "research"),
     CommandCentreNavItem(
@@ -76,6 +85,21 @@ def active_section_id(endpoint: str | None) -> str:
         return "vision"
     if endpoint == "founder_dashboard.operational_health":
         return "operational_health"
+    if endpoint in {
+        "curriculum_studio.index",
+        "curriculum_studio.workspace",
+        "curriculum_studio.create_subject",
+        "curriculum_studio.create_workspace",
+        "curriculum_studio.advance",
+        "curriculum_studio.validate",
+        "curriculum_studio.preview",
+        "curriculum_studio.approve",
+        "curriculum_studio.publish",
+        "curriculum_studio.assign_version",
+    } or (endpoint and endpoint.startswith("curriculum_studio.")):
+        return "studio"
+    if endpoint == "founder_dashboard.founder_intelligence":
+        return "intelligence"
     if endpoint in {
         "founder_dashboard.operations",
         "founder_dashboard.attention",

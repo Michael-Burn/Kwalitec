@@ -16,8 +16,9 @@ operationalisation into Mission / MissionTask), ``learning_journey``
 management), ``curriculum_studio`` (Version 2 Founder Curriculum Studio
 foundation), ``student_twin`` (Version 2 Student Digital Twin),
 ``adaptive_learning`` (Version 2 Adaptive Decision Engine — Phase 1
-revision), and ``student_experience`` (Version 2 learner product
-projection / navigation). Prefer explicit imports such as
+revision), ``student_experience`` (Version 2 learner product
+projection / navigation), and ``session_experience`` (Version 2
+Learning Session focused study workflow). Prefer explicit imports such as
 ``app.domain.mission`` over a facade re-export.
 """
 

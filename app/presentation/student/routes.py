@@ -44,7 +44,7 @@ def home():
 @student_bp.get("/journey")
 @login_required
 def journey():
-    """Journey — roadmap without curriculum graph jargon."""
+    """Journey — topic progress toward exam readiness."""
     page = load_page(ExperienceSurface.JOURNEY)
     return render_template(
         "student/journey.html",
@@ -99,7 +99,10 @@ def start_session():
     """Primary Home CTA — start Today's Session via Experience."""
     form = StartSessionForm()
     if not form.validate_on_submit():
-        flash("Could not start today's session. Please try again.", "warning")
+        flash(
+            "We couldn't start today's session. Please try again.",
+            "warning",
+        )
         return redirect(url_for("student.home"))
     mission_id = (form.mission_id.data or "").strip() or None
     session_id = (form.session_id.data or "").strip() or None
@@ -115,13 +118,20 @@ def start_session():
         return redirect(url_for("student.home"))
     except StudentExperienceError as exc:
         logger.warning("Start session failed: %s", exc)
-        flash("Could not start today's session.", "warning")
+        flash(
+            "We couldn't start today's session. Please try again from Home.",
+            "warning",
+        )
         return redirect(url_for("student.home"))
 
     topic = handle.topic_title or "your topic"
-    flash(f"Session started: {topic}.", "success")
-    # Version 2 learning loop completes via Mission → Twin → Adaptive;
-    # return to Student Home with refreshed production projections.
+    flash(f"Session started: {topic}. Entering your study environment.", "success")
+    # Hand off into Session Experience (V2-019).
+    target_session_id = handle.session_id or session_id
+    if target_session_id:
+        return redirect(
+            url_for("session.overview", session_id=target_session_id)
+        )
     return redirect(url_for("student.home"))
 
 
@@ -131,7 +141,7 @@ def begin_revision():
     """Primary Revision CTA — begin revision via session start."""
     form = BeginRevisionForm()
     if not form.validate_on_submit():
-        flash("Could not begin revision. Please try again.", "warning")
+        flash("We couldn't begin revision. Please try again.", "warning")
         return redirect(url_for("student.revision"))
     mission_id = (form.mission_id.data or "").strip() or None
     session_id = (form.session_id.data or "").strip() or None
@@ -141,13 +151,16 @@ def begin_revision():
         )
     except PortUnavailable:
         flash(
-            "Revision session is temporarily unavailable. Please try again shortly.",
+            "Revision is temporarily unavailable. Please try again shortly.",
             "warning",
         )
         return redirect(url_for("student.revision"))
     except StudentExperienceError as exc:
         logger.warning("Begin revision failed: %s", exc)
-        flash("Could not begin revision.", "warning")
+        flash(
+            "We couldn't begin revision. Please try again from this page.",
+            "warning",
+        )
         return redirect(url_for("student.revision"))
 
     flash(
@@ -159,5 +172,10 @@ def begin_revision():
         composition.emit_revision_started(
             str(handle.student_id),
             option_id=(form.option_id.data or "").strip() or None,
+        )
+    target_session_id = handle.session_id or session_id
+    if target_session_id:
+        return redirect(
+            url_for("session.overview", session_id=target_session_id)
         )
     return redirect(url_for("student.home"))

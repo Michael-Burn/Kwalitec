@@ -64,7 +64,10 @@ def load_page(surface: ExperienceSurface | str) -> StudentPageViewModel:
         return _empty_page(surface_key)
     except StudentExperienceError as exc:
         logger.warning("Student experience error: %s", exc)
-        flash("We could not load this view right now.", "warning")
+        flash(
+            "We could not load this view right now. Please try again shortly.",
+            "warning",
+        )
         return _empty_page(surface_key)
 
 

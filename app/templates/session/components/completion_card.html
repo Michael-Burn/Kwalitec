@@ -1,0 +1,54 @@
+{% macro completion_card(completion) %}
+{% if completion %}
+<section class="session-card session-card--completion" aria-labelledby="session-completion-title">
+    <h2 id="session-completion-title" class="session-card-title">Session summary</h2>
+    <dl class="session-meta-row">
+        {% if completion.time_studied_label %}
+        <div>
+            <dt>Time studied</dt>
+            <dd>{{ completion.time_studied_label }}</dd>
+        </div>
+        {% endif %}
+        <div>
+            <dt>Activities</dt>
+            <dd>{{ completion.activities_completed_label }}</dd>
+        </div>
+        {% if completion.readiness_change_label %}
+        <div>
+            <dt>Exam readiness</dt>
+            <dd>{{ completion.readiness_change_label }}</dd>
+        </div>
+        {% endif %}
+    </dl>
+    {% if completion.topics_completed %}
+    <div class="session-insight">
+        <h3 class="session-subhead">Topics completed</h3>
+        <ul class="session-list">
+            {% for topic in completion.topics_completed %}
+            <li>{{ topic }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% if completion.learning_insights %}
+    <div class="session-insight">
+        <h3 class="session-subhead">Learning insights</h3>
+        <ul class="session-list">
+            {% for insight in completion.learning_insights %}
+            <li>{{ insight }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% if completion.next_recommendation %}
+    <div class="session-insight">
+        <h3 class="session-subhead">Next recommendation</h3>
+        <p class="session-body-text">{{ completion.next_recommendation }}</p>
+    </div>
+    {% endif %}
+    {% if completion.next_session_label %}
+    <p class="session-muted">{{ completion.next_session_label }}</p>
+    {% endif %}
+</section>
+{% endif %}
+{% endmacro %}

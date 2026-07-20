@@ -19,6 +19,13 @@
     {% else %}
     <p class="section-description">What to study today, and whether you are on track.</p>
     {% endif %}
+    {% if v2_flags and v2_flags.ENABLE_STUDENT_EXPERIENCE and not v2_flags.SOLE_RUNTIME %}
+    <p class="mt-2 mb-0">
+        <a class="btn btn-ghost btn-sm" href="{{ url_for('student.home') }}">
+            Open Version 2 Learning Experience
+        </a>
+    </p>
+    {% endif %}
 </section>
 
 {% if show_revision_acknowledgement %}
@@ -59,7 +66,7 @@
     <div class="command-card">
         <div class="command-card-header">
             <div class="command-card-icon" style="background: var(--color-success-bg); color: var(--color-success);">
-                <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
                     <polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
                 </svg>
             </div>
@@ -89,7 +96,7 @@
             </div>
             {% endif %}
             <a href="{{ url_for('mission.missions') }}" class="btn btn-primary w-100 mt-3" data-ptp004-cta="primary">
-                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="me-2" aria-hidden="true">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="me-2" aria-hidden="true">
                     <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
                 </svg>
                 {% if today_mission.status == 'In Progress' %}
@@ -128,7 +135,7 @@
         <div class="command-card h-100">
             <div class="command-card-header">
                 <div class="command-card-icon" style="background: var(--color-success-bg); color: var(--color-success);">
-                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
                     </svg>
                 </div>
@@ -202,7 +209,7 @@
         <div class="command-card h-100">
             <div class="command-card-header">
                 <div class="command-card-icon" style="background: var(--color-warning-bg); color: var(--color-warning);">
-                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/>
                     </svg>
                 </div>
@@ -315,7 +322,7 @@
         <p class="ei-rec-warning">{{ ei_card.warning }}</p>
         {% endif %}
         {% if ei_card.show_start_button and ei_card.primary_action %}
-        <a href="{{ url_for('mission.missions') }}" class="btn btn-primary mt-2">
+        <a href="{{ url_for('mission.missions') }}" class="btn btn-outline-primary mt-2">
             {{ ei_card.primary_action|safe }}
         </a>
         {% endif %}
@@ -343,7 +350,7 @@
     <div class="card-body">
         <h2 class="card-section-header mb-3">Recommendations needing attention</h2>
         <div>
-            {% for rec in all_recommendations %}
+            {% for rec in all_recommendations[:3] %}
             <div class="rec-card priority-{{ rec.priority | lower }} py-3 px-0{% if not loop.first %} border-top{% endif %}" style="border-top-color: var(--color-border-light) !important;">
                 <div class="d-flex justify-content-between align-items-start mb-1">
                     <div class="fw-medium">{{ rec.title }}</div>
@@ -380,7 +387,7 @@
     <div class="card-body">
         <h2 class="card-section-header mb-3">Topics needing more practice</h2>
         <div>
-            {% for topic in weakest_topics %}
+            {% for topic in weakest_topics[:3] %}
             <div class="topic-item{% if loop.first %} pt-0{% endif %}">
                 <div class="topic-info">
                     <div class="topic-name">{{ topic.topic_name }}</div>
@@ -399,16 +406,16 @@
 </section>
 
 {# ══════════════════════════════════════════════════════════════════════
-   5. Secondary exploration
+   5. Secondary exploration — Exam + schedule only (calm KPI row)
    ══════════════════════════════════════════════════════════════════════ #}
 <section class="row g-4 mb-4" aria-label="Secondary exploration" data-ptp004-slot="secondary">
 
     {# Exam context #}
-    <div class="col-12 col-md-6 col-xl-4">
+    <div class="col-12 col-md-6">
         <div class="command-card h-100">
             <div class="command-card-header">
                 <div class="command-card-icon" style="background: var(--color-info-bg); color: var(--color-info);">
-                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
                         <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
                     </svg>
                 </div>
@@ -449,11 +456,11 @@
     </div>
 
     {# Time status #}
-    <div class="col-12 col-md-6 col-xl-4">
+    <div class="col-12 col-md-6">
         <div class="command-card h-100">
             <div class="command-card-header">
                 <div class="command-card-icon" style="background: var(--color-warning-bg); color: var(--color-warning);">
-                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
                         <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
                     </svg>
                 </div>
@@ -499,48 +506,13 @@
             {% endif %}
         </div>
     </div>
-
-    {# Strongest estimated knowledge #}
-    <div class="col-12 col-md-6 col-xl-4">
-        <div class="command-card h-100">
-            <div class="command-card-header">
-                <div class="command-card-icon" style="background: var(--color-success-bg); color: var(--color-success);">
-                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/>
-                    </svg>
-                </div>
-                <h2 class="command-card-title">Strongest estimated knowledge</h2>
-            </div>
-            <div class="command-card-body">
-                {% if strongest_topics %}
-                <div>
-                    {% for topic in strongest_topics %}
-                    <div class="topic-item{% if loop.first %} pt-0{% endif %}">
-                        <div class="topic-info">
-                            <div class="topic-name">{{ topic.topic_name }}</div>
-                            <div class="topic-meta">{{ topic.stage_label or topic.stage }} · {{ topic.revision_count }} review{{ 's' if topic.revision_count != 1 else '' }}</div>
-                        </div>
-                        <span class="badge rounded-pill {% if topic.mastery_score >= 90 %}text-bg-success{% elif topic.mastery_score >= 70 %}bg-info text-white{% else %}text-bg-secondary{% endif %}" title="Based on your recorded practice outcomes.">
-                            {{ topic.mastery_score|int }}% est.
-                        </span>
-                    </div>
-                    {% endfor %}
-                </div>
-                {% else %}
-                <div class="empty-state py-3">
-                    <p class="text-muted small mb-0">{{ pcs.ESTIMATED_KNOWLEDGE_EMPTY_STRONG }}</p>
-                </div>
-                {% endif %}
-            </div>
-        </div>
-    </div>
 </section>
 
 {# Study tip — supporting coaching only; never recommendation authority #}
 {% if study_tip %}
 <section class="study-tip-card mb-4" aria-label="Study tip" data-ptp004-slot="supporting">
     <div class="study-tip-icon" aria-hidden="true">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 1 4 12.7V17H8v-2.3A7 7 0 0 1 12 2z"/>
         </svg>
     </div>

@@ -1,0 +1,33 @@
+{% extends "session/base.html" %}
+{% from "session/components/progress_bar.html" import progress_bar %}
+{% from "session/components/activity_card.html" import activity_card %}
+{% from "session/components/question_card.html" import question_card %}
+{% from "session/components/explanation_card.html" import explanation_card %}
+
+{% block content %}
+<div class="session-stack">
+    {{ progress_bar(page.progress) }}
+    {{ activity_card(page.activity) }}
+    {% if page.activity and page.activity.has_hints %}
+    <section class="session-card" aria-labelledby="session-hints-title">
+        <h2 id="session-hints-title" class="session-card-title">Hints</h2>
+        <ul class="session-list">
+            {% for hint in page.activity.hints %}
+            <li>{{ hint }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    {{ question_card(page.activity, form=answer_form, action_url=url_for('session.answer', session_id=page.shell.session_id)) }}
+    {{ explanation_card(page.activity) }}
+    {% if page.activity and page.activity.has_explanation and advance_form %}
+    <div class="session-primary-action">
+        <form method="post" action="{{ url_for('session.advance', session_id=page.shell.session_id) }}">
+            {{ advance_form.hidden_tag() }}
+            {{ advance_form.session_id() }}
+            {{ advance_form.submit(class_="session-btn-primary", **{"data-session-cta": "primary"}) }}
+        </form>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -82,7 +82,13 @@ def build_experience_service(
 
 def init_student_experience(flask_app: Flask) -> StudentExperienceService:
     """Register the production experience service on the Flask app."""
-    composition, service = build_production_experience()
+    from app.application.config.v2_flags import resolve_v2_feature_flags
+    from app.infrastructure.composition import build_experience_projection_store
+
+    flags = resolve_v2_feature_flags()
+    store = build_experience_projection_store(flags=flags)
+    flask_app.config["EXPERIENCE_PROJECTION_STORE"] = store
+    composition, service = build_production_experience(store=store, flags=flags)
     flask_app.config[_COMPOSITION_KEY] = composition
     flask_app.config[_CONFIG_KEY] = service
     return service

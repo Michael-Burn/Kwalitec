@@ -1,0 +1,18 @@
+{% extends "session/base.html" %}
+{% from "session/components/completion_card.html" import completion_card %}
+
+{% block content %}
+<div class="session-stack">
+    {{ completion_card(page.completion) }}
+    <p class="session-muted">Your Student Home already reflects updated readiness, recommendation, and journey progress.</p>
+    {% if form %}
+    <div class="session-primary-action">
+        <form method="post" action="{{ url_for('session.finish', session_id=page.shell.session_id) }}">
+            {{ form.hidden_tag() }}
+            {{ form.session_id() }}
+            {{ form.submit(class_="session-btn-primary", value=page.completion.return_home_label if page.completion else "Return Home", **{"data-session-cta": "primary"}) }}
+        </form>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

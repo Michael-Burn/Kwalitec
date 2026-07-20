@@ -35,12 +35,13 @@ PHASE II — PRODUCT EXPERIENCE
   V2-016 Curriculum Studio
   V2-017 Production Integration Foundation
   V2-017B Student Learning Experience
+  V2-019 Learning Session Experience
 
 PHASE III — PRODUCTION
   V2-018 Production Experience Integration
 
 PHASE IV — INTELLIGENCE
-  V2-019 Founder Intelligence
+  V2-021 Founder Intelligence
 
 PHASE V — PRODUCTION RELEASE
   V2-020 Version 1 Retirement
@@ -93,7 +94,7 @@ Authoring, review, and publication UI over Curriculum Management and Curriculum 
 |----|-------|--------|
 | V2-016A | Foundation — domain/application contracts, workflow, checklist, versioning, diff, docs (no UI) | ✓ Complete — [`CURRICULUM_STUDIO.md`](CURRICULUM_STUDIO.md), `app/domain/curriculum_studio/`, `app/application/curriculum_studio/` |
 | V2-016B | Application services — Founder use-cases, port orchestration, dashboard projection, authority-safe DTOs (no UI) | ✓ Complete — [`CURRICULUM_STUDIO.md`](CURRICULUM_STUDIO.md) |
-| V2-016C+ | Founder UI surfaces (routes / templates / JS) | Pending |
+| V2-016C+ | Founder UI surfaces (routes / templates / JS) | ✓ Complete — `/founder/studio` |
 
 **Expected outcomes**
 
@@ -174,6 +175,8 @@ Student-facing product experience that exercises Journey, Session, Mission, Acti
 
 ### V2-018 — Production Experience Integration
 
+**Status:** ✓ Complete (adapters + durable ORM/Alembic follow-on landed)
+
 **Purpose**
 
 Replace Student Experience preview wiring with production infrastructure adapters so the learner product runs against the Version 2 educational platform (Twin, Adaptive Decision, Mission, Journey, Orchestrator) while preserving authority boundaries and UI presentation.
@@ -205,7 +208,9 @@ Replace Student Experience preview wiring with production infrastructure adapter
 
 ## PHASE IV — INTELLIGENCE
 
-### V2-019 — Founder Intelligence
+### V2-021 — Founder Intelligence
+
+**Status:** ✓ Complete (advisory Founder Intelligence + Evidence Gates surfaces)
 
 **Purpose**
 
@@ -215,6 +220,7 @@ Extend founder operational insight with journey-level educational signals (inact
 
 - Stable Phase I/II evidence and operational snapshots
 - Existing Founder OS patterns (advisory only)
+- Learning Session Experience operational (V2-019)
 
 **Must not**
 
@@ -222,9 +228,44 @@ Extend founder operational insight with journey-level educational signals (inact
 
 ---
 
+## PHASE II ADDENDUM — LEARNING SESSION
+
+### V2-019 — Learning Session Experience
+
+**Purpose**
+
+Deliver the focused study environment that orchestrates existing educational services for one Learning Session — Overview → Activities → Reflection → Summary → Complete → Home — without owning educational law.
+
+**Depends on**
+
+- V2-005 Learning Session Runtime
+- V2-007/V2-008 Learning Activity Engine
+- V2-017B Student Learning Experience
+- V2-018 production Experience ports (Mission / Twin / Adaptive)
+
+**Packages**
+
+- `app/domain/session_experience/`
+- `app/application/session_experience/`
+- `app/presentation/session/`
+- [`LEARNING_SESSION_EXPERIENCE.md`](LEARNING_SESSION_EXPERIENCE.md)
+
+**Must not**
+
+- Compute readiness, recommendations, missions, or journey progress
+- Store evidence or duplicate Twin / Adaptive / Journey logic
+- Branch the session flow or expose engine terminology
+
+**Status:** ✓ Complete (domain + application + presentation)
+
+---
+
 ## PHASE V — PRODUCTION RELEASE
 
 ### V2-020 — Version 1 Retirement
+
+**Status:** Runbook ready — execute only after ADR-007 evidence gates  
+**Runbook:** [`V2_020_RETIREMENT_RUNBOOK.md`](V2_020_RETIREMENT_RUNBOOK.md)
 
 **Purpose**
 
@@ -262,4 +303,4 @@ Explicit cutover from Version 1 educational runtime to Version 2 as the sole stu
 
 ## Closing
 
-This roadmap is the implementation sequence for Version 2. Phase I (Core Platform) is complete. New milestones may be inserted only if they refine — not redefine — the Learning Journey architecture established in V2-001. Remaining work is product experience, production integration, founder intelligence, and Version 1 retirement.
+This roadmap is the implementation sequence for Version 2. Phase I–V milestones are complete for the Educational Operating System core and product experience tracks. **Version 2 is formally closed at `v2.0.0` by APP-004** (production readiness — configuration, observability, resilience, CI, release artefacts). Forward planning lives in [`ROADMAP_V3.md`](../../ROADMAP_V3.md). New milestones may be inserted only if they refine — not redefine — the Learning Journey architecture established in V2-001.

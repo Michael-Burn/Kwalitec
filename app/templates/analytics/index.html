@@ -277,7 +277,7 @@
             <ul class="list-unstyled mb-0">
                 {% for highlight in weekly_report.highlights %}
                 <li class="mb-1 small text-success">
-                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-1" viewBox="0 0 24 24" aria-hidden="true">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-1" viewBox="0 0 24 24" aria-hidden="true">
                         <polyline points="20 6 9 17 4 12"/>
                     </svg>
                     {{ highlight }}
@@ -293,7 +293,7 @@
             <ul class="list-unstyled mb-0">
                 {% for area in weekly_report.areas_for_improvement %}
                 <li class="mb-1 small text-warning">
-                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-1" viewBox="0 0 24 24" aria-hidden="true">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-1" viewBox="0 0 24 24" aria-hidden="true">
                         <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
                     </svg>
                     {{ area }}
@@ -360,7 +360,7 @@
     var primaryColor = cssToken("--chart-blue", cssToken("--primary", "#3B4FB8"));
     var successColor = cssToken("--success", "#0f766e");
     var dangerColor = cssToken("--danger", "#c81e1e");
-    var infoColor = cssToken("--chart-gold", cssToken("--brand-gold", "#E8B02B"));
+    var infoColor = cssToken("--chart-secondary", cssToken("--chart-grey", "#64748B"));
     var accentColor = cssToken("--chart-midnight", cssToken("--brand-midnight", "#020D24"));
     var greyColor = cssToken("--chart-grey", "#8B93A7");
 

@@ -1,0 +1,34 @@
+{% macro progress_bar(progress) %}
+{% if progress and progress.has_progress %}
+<section class="session-card session-card--progress" aria-labelledby="session-progress-title">
+    <h2 id="session-progress-title" class="session-card-title">Progress</h2>
+    <div class="session-progress" role="progressbar"
+         aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ progress.percent }}"
+         aria-label="{{ progress.label }}">
+        <div class="session-progress-track">
+            <div class="session-progress-fill" style="width: {{ progress.percent }}%;"></div>
+        </div>
+        <p class="session-progress-label">{{ progress.label }}</p>
+    </div>
+    <dl class="session-meta-row">
+        <div>
+            <dt>Completed</dt>
+            <dd>{{ progress.completed }}</dd>
+        </div>
+        <div>
+            <dt>Remaining</dt>
+            <dd>{{ progress.remaining }}</dd>
+        </div>
+        {% if progress.current_topic %}
+        <div>
+            <dt>Topic</dt>
+            <dd>{{ progress.current_topic }}</dd>
+        </div>
+        {% endif %}
+    </dl>
+    {% if progress.remaining_time_label %}
+    <p class="session-muted">{{ progress.remaining_time_label }}</p>
+    {% endif %}
+</section>
+{% endif %}
+{% endmacro %}

@@ -13,6 +13,11 @@ from app.infrastructure.repositories.in_memory import (
     InMemoryEvidenceRepository,
     InMemorySnapshotRepository,
 )
+from app.infrastructure.repositories.sqlalchemy import (
+    SqlAlchemyAggregateRepository,
+    SqlAlchemyEvidenceRepository,
+    SqlAlchemySnapshotRepository,
+)
 
 __all__ = [
     "AggregateRepository",
@@ -22,4 +27,7 @@ __all__ = [
     "InMemorySnapshotRepository",
     "Repository",
     "SnapshotRepository",
+    "SqlAlchemyAggregateRepository",
+    "SqlAlchemyEvidenceRepository",
+    "SqlAlchemySnapshotRepository",
 ]

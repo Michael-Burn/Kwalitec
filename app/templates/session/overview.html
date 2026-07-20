@@ -1,0 +1,63 @@
+{% extends "session/base.html" %}
+{% from "session/components/timer_card.html" import timer_card %}
+
+{% block content %}
+<div class="session-stack">
+    {% if page.overview %}
+    <section class="session-card session-card--overview" aria-labelledby="session-objective-title">
+        <h2 id="session-objective-title" class="session-card-title">{{ page.overview.objective }}</h2>
+        {% if page.overview.why_studying %}
+        <p class="session-body-text">{{ page.overview.why_studying }}</p>
+        {% endif %}
+        {% if page.overview.learning_goal %}
+        <div class="session-insight">
+            <h3 class="session-subhead">Learning goal</h3>
+            <p class="session-body-text">{{ page.overview.learning_goal }}</p>
+        </div>
+        {% endif %}
+        <dl class="session-meta-row">
+            {% if page.overview.estimated_duration_label %}
+            <div>
+                <dt>Duration</dt>
+                <dd>{{ page.overview.estimated_duration_label }}</dd>
+            </div>
+            {% endif %}
+            <div>
+                <dt>Activities</dt>
+                <dd>{{ page.overview.activity_count_label }}</dd>
+            </div>
+            {% if page.overview.expected_improvement_label %}
+            <div>
+                <dt>Readiness</dt>
+                <dd>{{ page.overview.expected_improvement_label }}</dd>
+            </div>
+            {% endif %}
+        </dl>
+        {% if page.overview.topics %}
+        <div class="session-insight">
+            <h3 class="session-subhead">Topics</h3>
+            <ul class="session-list">
+                {% for topic in page.overview.topics %}
+                <li>{{ topic }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% if form %}
+        <div class="session-primary-action">
+            <form method="post" action="{{ url_for('session.begin', session_id=page.shell.session_id) }}">
+                {{ form.hidden_tag() }}
+                {{ form.session_id() }}
+                {{ form.mission_id() }}
+                {{ form.submit(class_="session-btn-primary", disabled=not page.overview.begin_enabled, **{"data-session-cta": "primary"}) }}
+            </form>
+        </div>
+        {% endif %}
+    </section>
+    {{ timer_card(page.overview.estimated_duration_label) }}
+    {% else %}
+    {% from "partials/skeleton.html" import skeleton_card %}
+    {{ skeleton_card(lines=4, show_button=true, label='Preparing session') }}
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,125 @@
+{% extends "layouts/base.html" %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ versioned_static('css/founder_dashboard.css', endpoint='founder_dashboard.static') }}">
+{% endblock %}
+
+{% block content %}
+{% include "founder_dashboard/_nav.html" %}
+
+<nav class="founder-breadcrumb" aria-label="Breadcrumb">
+    <ol class="founder-breadcrumb-list">
+        <li class="founder-breadcrumb-item">
+            <a href="{{ url_for('founder_dashboard.index') }}">Overview</a>
+        </li>
+        <li class="founder-breadcrumb-item">
+            <span aria-current="page">Founder Intelligence</span>
+        </li>
+    </ol>
+</nav>
+
+<section class="section-header founder-header">
+    <p class="section-eyebrow">{{ founder_command_centre_label }} · Intelligence</p>
+    <h1 class="section-title">Founder Intelligence</h1>
+    <p class="section-description">
+        Advisory journey signals for monitoring Learning Mode health.
+        These signals never change learner recommendations.
+        Dual-run: {{ dual_run.label }}
+    </p>
+</section>
+
+<section class="mb-4" aria-label="Suggested next step">
+    <div class="founder-next-action" role="status">
+        <p class="founder-next-action-label">Next step</p>
+        <p class="founder-next-action-text mb-0">
+            {% if snapshot.signals %}
+            Review the signals below, then continue with Evidence Gates when you are ready to assess cutover readiness.
+            {% else %}
+            No intelligence signals yet. Confirm dual-run traffic is flowing, then return here to monitor journeys.
+            {% endif %}
+        </p>
+    </div>
+</section>
+
+<section class="mb-4" aria-label="Signal counts">
+    <div class="row g-3">
+        <div class="col-6 col-md-3">
+            <div class="command-card h-100"><div class="command-card-body">
+                <span class="command-metric-label">Inactive journeys</span>
+                <span class="command-metric-value">{{ snapshot.inactive_journeys }}</span>
+            </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="command-card h-100"><div class="command-card-body">
+                <span class="command-metric-label">Stalled completion</span>
+                <span class="command-metric-value">{{ snapshot.stalled_completions }}</span>
+            </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="command-card h-100"><div class="command-card-body">
+                <span class="command-metric-label">Reflection gaps</span>
+                <span class="command-metric-value">{{ snapshot.reflection_gaps }}</span>
+            </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="command-card h-100"><div class="command-card-body">
+                <span class="command-metric-label">Recommendation thrash</span>
+                <span class="command-metric-value">{{ snapshot.recommendation_thrash }}</span>
+            </div></div>
+        </div>
+    </div>
+</section>
+
+<section class="mb-4" aria-label="Signals">
+    <div class="command-card">
+        <div class="command-card-header"><h2 class="h5 mb-0">Signals</h2></div>
+        <div class="command-card-body">
+            {% if snapshot.signals %}
+            <ul class="founder-signal-list list-unstyled mb-0">
+                {% for signal in snapshot.signals %}
+                <li class="founder-signal-item">
+                    <p class="mb-1">
+                        <strong>{{ signal.title }}</strong>
+                        <span class="founder-signal-severity founder-signal-severity--{{ signal.severity }}">{{ signal.severity }}</span>
+                    </p>
+                    <p class="mb-0 text-muted">{{ signal.detail }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <div class="founder-empty-state" role="status">
+                <p class="founder-empty-title mb-1">No intelligence signals yet</p>
+                <p class="mb-0 text-muted">
+                    Enable the durable Experience store and dual-run cohort traffic.
+                    Signals will appear here when journey health needs attention.
+                </p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<section class="mb-4" aria-label="Dual-run flags">
+    <div class="command-card">
+        <div class="command-card-header"><h2 class="h5 mb-0">Dual-run status</h2></div>
+        <div class="command-card-body">
+            <ul class="founder-flag-list mb-3">
+                <li>Student Experience: {{ dual_run.student_experience_enabled }}</li>
+                <li>Durable store: {{ dual_run.durable_store }}</li>
+                <li>Engines injected: {{ dual_run.engines_injected }}</li>
+                <li>Seed demo: {{ dual_run.seed_demo }}</li>
+                <li>Sole runtime: {{ dual_run.sole_runtime }}</li>
+            </ul>
+            <p class="mb-0">
+                <a class="founder-btn-link" href="{{ url_for('founder_dashboard.evidence_gates') }}">
+                    Review Evidence →
+                </a>
+                <span class="text-muted mx-2" aria-hidden="true">·</span>
+                <a class="founder-btn-link" href="{{ url_for('curriculum_studio.index') }}">
+                    Curriculum Studio →
+                </a>
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}

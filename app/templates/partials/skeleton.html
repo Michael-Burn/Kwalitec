@@ -1,0 +1,42 @@
+{# Skeleton loaders — preserve layout while content loads (UX-001). #}
+{% macro skeleton_text(width='100%', size='text') %}
+<span class="skeleton skeleton--{{ size }}" style="width: {{ width }};" aria-hidden="true"></span>
+{% endmacro %}
+
+{% macro skeleton_card(lines=3, show_button=false, label='Loading') %}
+<div class="skeleton--card" role="status" aria-busy="true" aria-label="{{ label }}">
+    <span class="visually-hidden">{{ label }}</span>
+    <div class="skeleton skeleton--title" aria-hidden="true"></div>
+    <div class="skeleton-stack" aria-hidden="true">
+        {% for _ in range(lines) %}
+        <span class="skeleton skeleton--text" style="width: {{ 92 - (loop.index0 * 12) }}%;"></span>
+        {% endfor %}
+    </div>
+    <div class="skeleton skeleton--bar" aria-hidden="true"></div>
+    {% if show_button %}
+    <div class="skeleton skeleton--button mt-3" aria-hidden="true"></div>
+    {% endif %}
+</div>
+{% endmacro %}
+
+{% macro skeleton_dashboard(label='Loading dashboard') %}
+<div class="skeleton-stack" role="status" aria-busy="true" aria-label="{{ label }}">
+    <span class="visually-hidden">{{ label }}</span>
+    {{ skeleton_card(lines=2, show_button=true, label='') }}
+    <div class="row g-4">
+        <div class="col-12 col-lg-6">{{ skeleton_card(lines=3) }}</div>
+        <div class="col-12 col-lg-6">{{ skeleton_card(lines=3) }}</div>
+    </div>
+</div>
+{% endmacro %}
+
+{% macro skeleton_student_home(label='Preparing your learning overview') %}
+<div class="student-stack" role="status" aria-busy="true" aria-label="{{ label }}">
+    <span class="visually-hidden">{{ label }}</span>
+    <div class="student-grid student-grid--home" aria-hidden="true">
+        {{ skeleton_card(lines=2) }}
+        {{ skeleton_card(lines=2) }}
+    </div>
+    {{ skeleton_card(lines=4, show_button=true) }}
+</div>
+{% endmacro %}

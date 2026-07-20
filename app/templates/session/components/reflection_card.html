@@ -1,0 +1,32 @@
+{% macro reflection_card(reflection) %}
+{% if reflection %}
+<section class="session-card session-card--reflection" aria-labelledby="session-reflection-title">
+    <h2 id="session-reflection-title" class="session-card-title">Reflection</h2>
+    {% if reflection.topic_title %}
+    <p class="session-meta">{{ reflection.topic_title }}</p>
+    {% endif %}
+    {% if reflection.key_insight %}
+    <div class="session-insight">
+        <h3 class="session-subhead">Key insight</h3>
+        <p class="session-body-text">{{ reflection.key_insight }}</p>
+    </div>
+    {% endif %}
+    {% if reflection.concept_confidence %}
+    <div class="session-insight">
+        <h3 class="session-subhead">Concept confidence</h3>
+        <p class="session-body-text">{{ reflection.concept_confidence }}</p>
+    </div>
+    {% endif %}
+    {% if reflection.suggested_improvement %}
+    <div class="session-insight">
+        <h3 class="session-subhead">Suggested improvement</h3>
+        <p class="session-body-text">{{ reflection.suggested_improvement }}</p>
+    </div>
+    {% endif %}
+    <div class="session-insight">
+        <h3 class="session-subhead">Reflection prompt</h3>
+        <p class="session-body-text">{{ reflection.reflection_prompt }}</p>
+    </div>
+</section>
+{% endif %}
+{% endmacro %}

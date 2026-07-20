@@ -6,6 +6,38 @@ The format follows the principles of Keep a Changelog and Semantic Versioning.
 
 ---
 
+# [2.0.0] - 2026-07-20 — Educational Operating System (Version 2 Close)
+
+## Fingerprint
+
+| Field | Value |
+|---|---|
+| Product version | `2.0.0` |
+| Release tag | `v2.0.0` |
+| Release notes | `RELEASE_NOTES_V2.md` |
+| Forward roadmap | `ROADMAP_V3.md` |
+
+## Summary
+
+Version 2.0.0 closes the Educational Operating System. APP-004 delivers production operational readiness only — typed configuration, observability, resilience, security verification, CI gates, and release artefacts. No new educational functionality.
+
+## Added (operational)
+
+- Typed `AppSettings` / `AIProviderSettings` with fail-fast production validation
+- Provider selection via `AI_PROVIDER` without code changes (openai / anthropic / gemini / none)
+- Structured logging, pipeline execution timing, AI enrichment timing, success/failure metrics
+- AI provider timeout + retry with deterministic enrichment fallback
+- EOS health endpoints: `/health`, `/health/ready`
+- Release checklist and dependency audit under `docs/release/`
+- CI jobs: Architecture Governance, Unit, Integration, Lint, Release Build
+
+## Known limitations
+
+- Legacy `app/` product surfaces coexist; sole-runtime cutover remains an explicit later programme
+- Flask pin follow-ups tracked in `docs/release/DEPENDENCY_AUDIT_V2.md`
+
+---
+
 # [1.0.0] - July 2026 — Version1-RC2 (Internal Alpha)
 
 ## Fingerprint

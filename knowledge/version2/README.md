@@ -34,13 +34,15 @@ Deterministic revision decisions delivered by **Adaptive Decision Engine** (`app
 
 Live learner event coordination delivered by **Learning Orchestrator** (`app/domain/learning_orchestrator/`, `app/application/learning_orchestrator/`) — Evidence → Twin → Adaptive Decision → Mission → Analytics via ports; see [`LEARNING_ORCHESTRATOR.md`](LEARNING_ORCHESTRATOR.md).
 
-Founder curriculum readiness delivered by **Curriculum Studio** (`app/domain/curriculum_studio/`, `app/application/curriculum_studio/`) — thin orchestration over Management/Ingestion/Platform ports, workflow, checklist, preview, versioning, dashboard, and structural diffs (UI deferred); see [`CURRICULUM_STUDIO.md`](CURRICULUM_STUDIO.md).
+Founder curriculum readiness delivered by **Curriculum Studio** (`app/domain/curriculum_studio/`, `app/application/curriculum_studio/`, `app/presentation/curriculum_studio/`) — thin orchestration over Management/Ingestion/Platform ports plus Founder UI at `/founder/studio`; see [`CURRICULUM_STUDIO.md`](CURRICULUM_STUDIO.md).
 
 Production integration foundation delivered by **V2-017** (`app/infrastructure/`) — port adapters, persistence contracts, integration events, observability; see [`PRODUCTION_INTEGRATION.md`](PRODUCTION_INTEGRATION.md) · [`AUTHORITY_MATRIX.md`](AUTHORITY_MATRIX.md) · ADR-005/006/007.
 
 Learner product projection delivered by **Student Experience** (`app/domain/student_experience/`, `app/application/student_experience/`) — Home / Journey / Revision / History / Profile orchestration over Twin, Adaptive Decision, Mission, Journey, and Orchestrator ports; see [`STUDENT_EXPERIENCE.md`](STUDENT_EXPERIENCE.md).
 
 Student Experience UI delivered by **V2-017B-B** (`app/presentation/student/`, `templates/student/`) — Flask / Jinja / Bootstrap shell that renders Experience snapshots only; see [`DESIGN_SYSTEM.md`](DESIGN_SYSTEM.md).
+
+Focused study workflow delivered by **Learning Session Experience** (`app/domain/session_experience/`, `app/application/session_experience/`, `app/presentation/session/`) — Overview → Activity → Reflection → Summary → Complete; see [`LEARNING_SESSION_EXPERIENCE.md`](LEARNING_SESSION_EXPERIENCE.md).
 
 Documentation authority consolidated by **V2-013 P0.1 — Digital Twin Documentation Authority**.
 
@@ -54,13 +56,52 @@ knowledge/version2/
 ├── VERSION2_ARCHITECTURE.md        ← Architectural overview
 ├── VERSION2_ROADMAP.md
 ├── EDUCATIONAL_PRINCIPLES.md       ← Normative educational rules
+├── education/                      ← Educational Domain + Episode + Reasoning + Strategy + Subject Knowledge + Orchestration
+│   ├── EDUCATIONAL_DOMAIN_MODEL.md
+│   ├── LEARNING_MODEL.md / UNDERSTANDING_MODEL.md / TUTOR_MODEL.md
+│   ├── EDUCATIONAL_INVARIANTS.md / EDUCATIONAL_GLOSSARY.md
+│   ├── EDUCATIONAL_DIAGNOSIS_MODEL.md      ← Reasoning: what problem exists
+│   ├── EDUCATIONAL_HYPOTHESIS_MODEL.md     ← Reasoning: why it likely exists
+│   ├── TEACHING_INTENTION_MODEL.md         ← Reasoning: what change to seek next
+│   ├── EDUCATIONAL_REASONING_LOOP.md       ← Full tutor reasoning loop
+│   ├── EDUCATIONAL_PRIORITY_MODEL.md       ← Ordering competing diagnoses
+│   ├── EDUCATIONAL_REASONING_INVARIANTS.md ← Binding reasoning invariants (R1–R20)
+│   ├── TEACHING_STRATEGY_ARCHITECTURE.md  ← Strategy foundation (+ catalogue / principles / selection / composition / invariants)
+│   ├── LEARNING_EPISODE_ARCHITECTURE.md  ← Fundamental teaching unit
+│   ├── LEARNING_EPISODE_LIFECYCLE.md
+│   ├── LEARNING_EPISODE_TYPES.md
+│   ├── LEARNING_EPISODE_INVARIANTS.md
+│   ├── LEARNING_EPISODE_SEQUENCE.md
+│   ├── EDUCATIONAL_ATOMICITY.md
+│   ├── SUBJECT_KNOWLEDGE_MODEL.md      ← Subject Knowledge: teachable entities
+│   ├── CONCEPT_ARCHITECTURE.md         ← What makes a concept teachable
+│   ├── KNOWLEDGE_DEPENDENCY_MODEL.md   ← Educational dependency types
+│   ├── CONCEPT_NETWORK_MODEL.md        ← How concepts connect / tutor navigation
+│   ├── SUBJECT_INVARIANTS.md           ← Binding subject-knowledge rules (K1–K20)
+│   ├── SUBJECT_AUTHORING_MODEL.md      ← Subject Authoring: syllabus → educational knowledge
+│   ├── CONCEPT_DECOMPOSITION_MODEL.md  ← Decomposition pipeline stages
+│   ├── MISCONCEPTION_AUTHORING_MODEL.md← How misconceptions are authored
+│   ├── REPRESENTATION_MODEL.md         ← Educational representation categories
+│   ├── APPLICATION_AND_TRANSFER_MODEL.md ← Application / transfer contexts
+│   ├── AUTHORING_INVARIANTS.md         ← Binding authoring rules (A1–A20)
+│   ├── EDUCATIONAL_ORCHESTRATION_MODEL.md ← Orchestration: complete tutoring flow
+│   ├── EDUCATIONAL_DECISION_POINTS.md  ← Major educational decisions (D1–D15)
+│   ├── EDUCATIONAL_STATE_TRANSITIONS.md← Lawful educational state changes
+│   ├── SESSION_ASSEMBLY_MODEL.md       ← How episodes become sessions
+│   └── ORCHESTRATION_INVARIANTS.md     ← Binding orchestration rules (O1–O20)
 ├── EDUCATION_PLATFORM.md           ← Education Platform
 ├── CURRICULUM_MANAGEMENT.md        ← Curriculum Management
 ├── CURRICULUM_INGESTION.md         ← Curriculum Ingestion
 ├── CURRICULUM_STUDIO.md            ← Curriculum Studio (Founder readiness)
 ├── PRODUCTION_INTEGRATION.md       ← V2-017 infrastructure adapters / persistence
 ├── STUDENT_EXPERIENCE.md           ← Student Experience (learner projections)
+├── LEARNING_SESSION_EXPERIENCE.md  ← Learning Session focused study workflow
 ├── DESIGN_SYSTEM.md                ← Student Experience UI design system
+├── ALPHA_READINESS_FOUNDER_UX.md   ← ARP-002 Founder UX polish / Alpha readiness
+├── ALPHA_WORKFLOW_VALIDATION.md    ← ARP-003 end-to-end workflow validation
+├── PRODUCT_LANGUAGE_GUIDE.md       ← ARP-004 product voice / terminology
+├── INTERNAL_ALPHA_CHECKLIST.md     ← ARP-005 deploy / smoke / rollback readiness
+├── V2_020_RETIREMENT_RUNBOOK.md    ← V1→V2 sole-runtime cutover runbook
 ├── AUTHORITY_MATRIX.md             ← Cross-context authority map
 ├── CURRICULUM_GRAPH.md / CURRICULUM_MODEL.md
 ├── STUDENT_DIGITAL_TWIN.md         ← Student Digital Twin (how)
@@ -86,6 +127,7 @@ knowledge/version2/
 |----------|-----------|------|
 | [`../../docs/architecture/DIGITAL_TWIN_CONSTITUTION.md`](../../docs/architecture/DIGITAL_TWIN_CONSTITUTION.md) | Normative | Twin constitutional law (*what must be obeyed*) |
 | [`../../STUDENT_DIGITAL_TWIN.md`](../../STUDENT_DIGITAL_TWIN.md) | Architectural | Epic Twin domain architecture (canonical learner-state law) |
+| [`../releases/V2_DEPLOY_IMPLEMENTATION_REPORT.md`](../releases/V2_DEPLOY_IMPLEMENTATION_REPORT.md) | Informational | Detailed account of V2 deploy-remaining implementation (durable store, dual-run, Studio UI, Founder Intelligence, cutover gates) |
 
 **Hierarchy (conceptual):**
 
@@ -142,6 +184,18 @@ Version 2 documentation uses consistent authority labels:
 | [ARCHITECTURE_DECISIONS/](ARCHITECTURE_DECISIONS/) | Architectural | Version 2 Architecture Decision Records |
 | [STATE_MACHINE.md](STATE_MACHINE.md) | Normative | Lawful and invalid state transitions |
 | [EDUCATIONAL_PRINCIPLES.md](EDUCATIONAL_PRINCIPLES.md) | Normative | Binding Version 2 educational rules |
+| [education/LEARNING_EPISODE_ARCHITECTURE.md](education/LEARNING_EPISODE_ARCHITECTURE.md) | Architectural | Learning Episode — fundamental educational teaching unit |
+| [education/LEARNING_EPISODE_LIFECYCLE.md](education/LEARNING_EPISODE_LIFECYCLE.md) | Architectural | Episode lifecycle from diagnosis to next decision |
+| [education/LEARNING_EPISODE_TYPES.md](education/LEARNING_EPISODE_TYPES.md) | Architectural | Catalogue of educational episode categories |
+| [education/LEARNING_EPISODE_INVARIANTS.md](education/LEARNING_EPISODE_INVARIANTS.md) | Normative | Binding episode-grain educational rules |
+| [education/LEARNING_EPISODE_SEQUENCE.md](education/LEARNING_EPISODE_SEQUENCE.md) | Architectural | How episodes compose into sessions / journeys |
+| [education/EDUCATIONAL_ATOMICITY.md](education/EDUCATIONAL_ATOMICITY.md) | Foundational | One capability improvement per episode |
+| [education/EDUCATIONAL_DOMAIN_MODEL.md](education/EDUCATIONAL_DOMAIN_MODEL.md) | Architectural | Educational ubiquitous language (EDM) |
+| [education/SUBJECT_KNOWLEDGE_MODEL.md](education/SUBJECT_KNOWLEDGE_MODEL.md) | Architectural | Structure of teachable knowledge (discipline-independent) |
+| [education/CONCEPT_ARCHITECTURE.md](education/CONCEPT_ARCHITECTURE.md) | Architectural | Anatomy of a teachable concept |
+| [education/KNOWLEDGE_DEPENDENCY_MODEL.md](education/KNOWLEDGE_DEPENDENCY_MODEL.md) | Architectural | Educational dependency vs syllabus order |
+| [education/CONCEPT_NETWORK_MODEL.md](education/CONCEPT_NETWORK_MODEL.md) | Architectural | Concept relationship types and tutor navigation |
+| [education/SUBJECT_INVARIANTS.md](education/SUBJECT_INVARIANTS.md) | Normative | Binding subject-knowledge invariants (K1–K20) |
 | [CURRICULUM_MODEL.md](CURRICULUM_MODEL.md) | Architectural | Subject → Chapter → Topic structure and completion criteria |
 | [CURRICULUM_GRAPH.md](CURRICULUM_GRAPH.md) | Architectural | V2-004 Curriculum Graph model, algorithms, integration |
 | [MIGRATION_STRATEGY.md](MIGRATION_STRATEGY.md) | Informational | Version 1 → Version 2 concept mapping |

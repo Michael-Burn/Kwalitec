@@ -1,0 +1,21 @@
+{% macro question_card(activity, form=None, action_url=None) %}
+{% if activity %}
+<section class="session-card session-card--question" aria-labelledby="session-answer-title">
+    <h2 id="session-answer-title" class="session-card-title">{{ activity.answer_prompt }}</h2>
+    {% if form and action_url and not activity.has_explanation %}
+    <form method="post" action="{{ action_url }}" class="session-answer-form">
+        {{ form.hidden_tag() }}
+        {{ form.session_id() }}
+        {{ form.activity_id() }}
+        <label class="session-label" for="{{ form.response.id }}">{{ activity.answer_prompt }}</label>
+        {{ form.response(class_="session-textarea", rows="5", autocomplete="off") }}
+        <div class="session-primary-action">
+            {{ form.submit(class_="session-btn-primary", **{"data-session-cta": "primary"}) }}
+        </div>
+    </form>
+    {% elif activity.has_explanation %}
+    <p class="session-muted">Answer submitted. Review the explanation, then continue.</p>
+    {% endif %}
+</section>
+{% endif %}
+{% endmacro %}

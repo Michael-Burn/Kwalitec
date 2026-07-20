@@ -1,0 +1,8 @@
+{% macro timer_card(label) %}
+{% if label %}
+<section class="session-card session-card--timer" aria-labelledby="session-timer-title">
+    <h2 id="session-timer-title" class="session-card-title">Time</h2>
+    <p class="session-body-text">{{ label }}</p>
+</section>
+{% endif %}
+{% endmacro %}

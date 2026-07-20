@@ -156,14 +156,17 @@ Exam, goals, preferences, learning statistics — from Twin learner summary.
 Student Home
     → Start Today's Session
     → Mission Engine (ExperienceMissionAdapter)
-    → Learning Session Runtime / Orchestrator cycle
-    → Evidence Recording
+    → Learning Session Experience (`/session/<id>/overview`)
+    → Overview → Activities → Reflection → Summary → Complete
+    → Evidence Recording (via Session Runtime / Activity ports)
     → Twin Update
     → Adaptive Recalculation
     → Updated Home
 ```
 
-Legacy numeric redirect to V1 `mission.session` is removed. The learner returns to Student Home with refreshed production projections.
+`POST /student/session/start` hands off into **Learning Session Experience** (V2-019). See [`LEARNING_SESSION_EXPERIENCE.md`](LEARNING_SESSION_EXPERIENCE.md).
+
+Legacy numeric redirect to V1 `mission.session` remains removed.
 
 ---
 

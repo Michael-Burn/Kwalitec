@@ -31,15 +31,15 @@
   --text-secondary: #4a5568;
   --divider: #e6e9ef;
 
-  /* Semantic status (brand-aligned) */
+  /* Semantic status — gold is NOT a UI colour (UX-001); warning uses distinct amber */
   --status-success: #0f766e;
   --status-info: var(--brand-blue);
-  --status-warning: var(--brand-gold);
+  --status-warning: #A16207;
   --status-danger: #c81e1e;
 
-  /* Chart palette */
+  /* Chart palette — Brand Blue + neutrals only (no gold series) */
   --chart-blue: var(--brand-blue);
-  --chart-gold: var(--brand-gold);
+  --chart-secondary: #64748B;
   --chart-midnight: var(--brand-midnight);
   --chart-grey: #8B93A7;
 }
@@ -54,11 +54,11 @@
 
   --status-success: #2dd4bf;
   --status-info: #8B9CE0;
-  --status-warning: var(--brand-gold-hover);
+  --status-warning: #D97706;
   --status-danger: #f87171;
 
   --chart-blue: #8B9CE0;
-  --chart-gold: var(--brand-gold);
+  --chart-secondary: #94A3B8;
   --chart-midnight: #A8B0BD;
   --chart-grey: #8B93A7;
 }

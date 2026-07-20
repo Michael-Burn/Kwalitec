@@ -5,8 +5,8 @@ from __future__ import annotations
 import os
 from importlib.metadata import PackageNotFoundError, version
 
-# Canonical student-facing product version — keep in sync with pyproject.toml.
-_FALLBACK_VERSION = "1.0.0"
+# Canonical student-facing product version — keep in sync with VERSION / pyproject.toml.
+_FALLBACK_VERSION = "2.0.0"
 
 try:
     APP_VERSION = version("kwalitec")
@@ -22,7 +22,7 @@ PRODUCT_TAGLINE = (
 # Bump when shipping changes under app/static/ (or blueprint static folders)
 # so browsers refetch branding, CSS, JS, and icons after deploy.
 # Override with STATIC_ASSET_VERSION env var when needed.
-_DEFAULT_STATIC_ASSET_VERSION = f"{APP_VERSION}-RC2.1"
+_DEFAULT_STATIC_ASSET_VERSION = f"{APP_VERSION}"
 STATIC_ASSET_VERSION = os.getenv(
     "STATIC_ASSET_VERSION", _DEFAULT_STATIC_ASSET_VERSION
 ).strip() or _DEFAULT_STATIC_ASSET_VERSION

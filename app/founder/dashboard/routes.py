@@ -59,7 +59,11 @@ def inject_founder_nav() -> dict:
         "command_centre_nav": COMMAND_CENTRE_NAV,
         "command_centre_section": active_section_id(endpoint),
         "is_founder_command_centre": bool(
-            endpoint and endpoint.startswith("founder_dashboard.")
+            endpoint
+            and (
+                endpoint.startswith("founder_dashboard.")
+                or endpoint.startswith("curriculum_studio.")
+            )
         ),
     }
 
@@ -86,6 +90,51 @@ def operational_health():
         "founder_dashboard/operational_health.html",
         title="Operational Health",
         page=page,
+    )
+
+
+@founder_dashboard_bp.get("/intelligence")
+@founder_required
+def founder_intelligence():
+    """Founder Intelligence — advisory journey-level educational signals (V2-021)."""
+    from flask import current_app
+
+    from app.application.config.v2_flags import resolve_v2_feature_flags
+    from app.founder.intelligence import FounderIntelligenceService
+    from app.infrastructure.diagnostics.dual_run import build_dual_run_status
+
+    flags = resolve_v2_feature_flags()
+    dual = build_dual_run_status(flags=flags)
+    store = current_app.config.get("EXPERIENCE_PROJECTION_STORE")
+    snapshot = FounderIntelligenceService().build(
+        experience_store=store,
+        dual_run_label=dual.label,
+    )
+    return render_template(
+        "founder_dashboard/founder_intelligence.html",
+        title="Founder Intelligence",
+        snapshot=snapshot,
+        dual_run=dual,
+        flags=flags,
+    )
+
+
+@founder_dashboard_bp.get("/evidence-gates")
+@founder_required
+def evidence_gates():
+    """Product Strategy evidence gates checklist for V2 cutover."""
+    from app.infrastructure.diagnostics.dual_run import build_dual_run_status
+    from app.infrastructure.diagnostics.evidence_gates import (
+        build_evidence_gates_report,
+    )
+
+    dual = build_dual_run_status()
+    report = build_evidence_gates_report(dual_run=dual)
+    return render_template(
+        "founder_dashboard/evidence_gates.html",
+        title="Evidence Gates",
+        report=report,
+        dual_run=dual,
     )
 
 

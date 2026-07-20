@@ -10,9 +10,22 @@ Architecture Governance / Product Operations Programme (for POP artefacts)
 
 ## Status
 
-Active — Version 1 RC2 baseline
+Active — Version 2 closed (APP-004 production readiness); architecture governance (APP-003) remains binding
 
 ## Contents
+
+### Version 2 Educational OS governance (release artefacts)
+
+| Document | Role |
+|---|---|
+| [`docs/ARCHITECTURE_CONSTITUTION.md`](../../docs/ARCHITECTURE_CONSTITUTION.md) | Version 2 architectural law |
+| [`docs/ARCHITECTURE_OVERVIEW.md`](../../docs/ARCHITECTURE_OVERVIEW.md) | Layer and subsystem map |
+| [`docs/SYSTEM_CONTEXT.md`](../../docs/SYSTEM_CONTEXT.md) | Actors and trust boundaries |
+| [`docs/DEPENDENCY_RULES.md`](../../docs/DEPENDENCY_RULES.md) | Dependency direction law |
+| [`docs/adr/`](../../docs/adr/) | ADR-001 … ADR-010 (Educational OS) |
+| `tests/architecture/` | Mandatory CI architecture gates |
+
+### Design principles and historical ADRs
 
 | Document | Role |
 |---|---|

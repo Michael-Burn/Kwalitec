@@ -369,9 +369,19 @@ def _init_extensions(app: Flask) -> None:
         TopicProgress,
         TwinSnapshot,
         User,
+        V2AggregateDocument,
+        V2AggregateSnapshot,
+        V2EvidenceEvent,
         VisionEntry,
         WeekPlan,
     )
+
+
+def _resolve_v2_flags_for_templates():
+    """Resolve V2 feature flags for dual-run template links."""
+    from app.application.config.v2_flags import resolve_v2_feature_flags
+
+    return resolve_v2_feature_flags()
 
 
 def _register_template_context(app: Flask) -> None:
@@ -414,6 +424,7 @@ def _register_template_context(app: Flask) -> None:
             "approved_logo_static_path": APPROVED_LOGO_STATIC_PATH,
             "approved_logo_alt": APPROVED_LOGO_ALT,
             "versioned_static": versioned_static,
+            "v2_flags": _resolve_v2_flags_for_templates(),
         }
 
 
@@ -440,6 +451,8 @@ def _register_blueprints(app: Flask) -> None:
     from app.dashboard.routes import dashboard_bp
     from app.founder.dashboard import founder_dashboard_bp
     from app.mission.routes import mission_bp
+    from app.presentation.session import load_routes as load_session_routes
+    from app.presentation.session import session_bp
     from app.presentation.student import load_routes, student_bp
     from app.research import research_bp
     from app.settings.routes import settings_bp
@@ -456,9 +469,18 @@ def _register_blueprints(app: Flask) -> None:
     app.register_blueprint(research_bp)
 
     load_routes()
+    load_session_routes()
+    from app.presentation.curriculum_studio import load_routes as load_studio_routes
+    from app.presentation.curriculum_studio import studio_bp
+
+    load_studio_routes()
     # Student Experience production adapters are wired lazily on first
     # ``get_experience_service()`` call (see presentation factory).
+    # Session Experience service is wired lazily on first
+    # ``get_session_experience_service()`` call.
     app.register_blueprint(student_bp)
+    app.register_blueprint(session_bp)
+    app.register_blueprint(studio_bp)
 
 
 def _register_routes(app: Flask) -> None:
@@ -466,4 +488,9 @@ def _register_routes(app: Flask) -> None:
 
     @app.get("/")
     def index():
+        from app.application.config.v2_flags import resolve_v2_feature_flags
+
+        flags = resolve_v2_feature_flags()
+        if flags.SOLE_RUNTIME:
+            return redirect(url_for("student.home"))
         return redirect(url_for("dashboard.index"))

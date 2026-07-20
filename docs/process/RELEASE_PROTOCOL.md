@@ -92,12 +92,33 @@ git log -5 --oneline
 
 If uncommitted release-required files exist: stage only those files, create **one** release commit, re-verify clean tree.
 
+## Architecture governance artefacts
+
+Version 2 architecture documents are **release artefacts**. Confirm they are present and current for Architecture / Production ships (and any release that touches `src/` educational boundaries):
+
+| Artefact | Path |
+|---|---|
+| Architecture Constitution | `docs/ARCHITECTURE_CONSTITUTION.md` |
+| Architecture Overview | `docs/ARCHITECTURE_OVERVIEW.md` |
+| System Context | `docs/SYSTEM_CONTEXT.md` |
+| Dependency Rules | `docs/DEPENDENCY_RULES.md` |
+| ADRs ADR-001 … ADR-010 | `docs/adr/` |
+| Version file | `VERSION` |
+| Version 2 release notes | `RELEASE_NOTES_V2.md` |
+| Version 3 roadmap | `ROADMAP_V3.md` |
+| V2 release checklist | `docs/release/V2_RELEASE_CHECKLIST.md` |
+
+- [ ] Architecture governance documents present (APP-003 set)
+- [ ] Architecture ADR index current (`docs/adr/README.md`)
+- [ ] Production readiness artefacts present (APP-004 set)
 ## Tests
 
 ```
+python3 -m pytest tests/architecture/ -v
 python3 -m pytest
 ```
 
+- [ ] Architecture governance gates pass (`tests/architecture/` — mandatory CI gate)
 - [ ] pytest passes
 
 Ruff: run on modules modified in this release. Do not treat historical repository-wide Ruff debt as a blocker unless explicitly instructed.

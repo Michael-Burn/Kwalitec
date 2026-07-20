@@ -12,6 +12,7 @@ from flask_login import current_user, login_required
 from app.application.config import (
     build_twin_provider,
     resolve_feature_flags,
+    resolve_v2_feature_flags,
 )
 from app.application.dashboard import (
     DashboardCompositionContext,
@@ -321,6 +322,7 @@ def index():
         show_revision_acknowledgement=show_revision_acknowledgement,
         is_revision=lifecycle.stage == LearningLifecycle.REVISION,
         revision_intro=LearningLifecycleService.revision_intro_line(),
+        v2_flags=resolve_v2_feature_flags(),
     )
 
 

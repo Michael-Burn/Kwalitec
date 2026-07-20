@@ -1,0 +1,17 @@
+{% extends "session/base.html" %}
+{% from "session/components/completion_card.html" import completion_card %}
+
+{% block content %}
+<div class="session-stack">
+    {{ completion_card(page.completion) }}
+    {% if form %}
+    <div class="session-primary-action">
+        <form method="post" action="{{ url_for('session.finish', session_id=page.shell.session_id) }}">
+            {{ form.hidden_tag() }}
+            {{ form.session_id() }}
+            {{ form.submit(class_="session-btn-primary", **{"data-session-cta": "primary"}) }}
+        </form>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
