@@ -23,6 +23,7 @@ from infrastructure.ai.providers.ai_provider import AIProvider
 from infrastructure.composition.factories import ApplicationServices
 
 if TYPE_CHECKING:
+    from infrastructure.composition.product_factories import ProductServices
     from infrastructure.persistence.sqlalchemy.unit_of_work import SessionFactory
 
 
@@ -41,6 +42,7 @@ class ApplicationContainer:
     uuid_generator: UUIDGenerator
     event_publisher: ApplicationEventPublisher
     services: ApplicationServices
+    product: ProductServices
     mission_generator: type[MissionGenerator]
     recommendation_generator: type[RecommendationGenerator]
     study_planner: type[StudyPlanner]

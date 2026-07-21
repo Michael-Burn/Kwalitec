@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 from dataclasses import asdict, fields, is_dataclass
+from datetime import UTC, datetime
 from types import UnionType
 from typing import Any, Union, get_args, get_origin, get_type_hints
 
@@ -82,5 +83,12 @@ def _coerce(annotation: Any, raw: Any) -> Any:
                 f"expected mapping for {annotation!r}, got {type(raw)!r}"
             )
         return dto_from_column_values(annotation, raw)
+
+    if annotation is datetime and isinstance(raw, datetime):
+        # SQLite (and some drivers) return naive UTC timestamps. Domain and
+        # DTO equality require timezone-aware UTC datetimes.
+        if raw.tzinfo is None:
+            return raw.replace(tzinfo=UTC)
+        return raw.astimezone(UTC)
 
     return raw

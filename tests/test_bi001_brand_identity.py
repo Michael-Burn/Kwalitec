@@ -52,7 +52,10 @@ class TestBrandThemeTokens:
         ):
             text = (ROOT / relative).read_text(encoding="utf-8")
             assert "css/brand.css" in text
-            assert "@fontsource/inter" in text
+            # UX-001 self-hosts Inter via fonts.css (Fontsource files under
+            # static/fonts/inter). CDN @fontsource/inter must not appear in shells.
+            assert "css/fonts.css" in text
+            assert "@fontsource/inter" not in text
 
     def test_brand_css_preserves_logo_aspect_ratio(self) -> None:
         css = BRAND_CSS.read_text(encoding="utf-8")

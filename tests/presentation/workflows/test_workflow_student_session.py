@@ -36,7 +36,8 @@ def test_session_overview_from_home_handoff(student_client):
     assert response.status_code == 200
     html = response.get_data(as_text=True)
     assert "Begin Session" in html or "begin" in html.lower()
-    assert "Learning Session" in html
+    assert "Session · Step" in html
+    assert "Learning Session ·" not in html
 
 
 def test_begin_advances_to_activity(student_client):
@@ -94,7 +95,8 @@ def test_full_session_happy_path(student_client, app):
 @pytest.mark.parametrize("surface", list(STUDENT_SESSION_FLOW))
 def test_surface_page_meta_titles(surface):
     eyebrow, title, description = page_meta(surface)
-    assert "Learning Session" in eyebrow
+    assert eyebrow.startswith("Session · Step")
+    assert "Learning Session" not in eyebrow
     assert title
     assert description
 

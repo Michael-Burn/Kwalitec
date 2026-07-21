@@ -26,7 +26,7 @@ REQUIRED_TEMPLATES = (
 )
 
 REQUIRED_STATIC = (
-    "app/static/css/student.css",
+    "app/static/css/student/student.css",
     "app/static/js/student.js",
 )
 
@@ -79,7 +79,7 @@ def test_student_blueprint_registered(experience_app):
 
 
 def test_css_defines_primary_tokens():
-    css = Path("app/static/css/student.css").read_text(encoding="utf-8")
+    css = Path("app/static/css/student/student.css").read_text(encoding="utf-8")
     assert "--student-font-display" in css
     assert "--student-space-4" in css
     assert ".student-btn-primary" in css

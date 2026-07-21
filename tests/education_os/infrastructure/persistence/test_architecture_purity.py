@@ -62,6 +62,9 @@ EXPECTED_MAPPERS = {
     PACKAGE_ROOT / "mappers" / "teaching_strategy_mapper.py",
     PACKAGE_ROOT / "mappers" / "decision_mapper.py",
     PACKAGE_ROOT / "mappers" / "orchestrator_mapper.py",
+    PACKAGE_ROOT / "mappers" / "user_mapper.py",
+    PACKAGE_ROOT / "mappers" / "onboarding_mapper.py",
+    PACKAGE_ROOT / "mappers" / "checkpoint_mapper.py",
 }
 
 
@@ -165,17 +168,21 @@ def test_modules_use_future_annotations(path: Path) -> None:
 
 def test_mappers_expose_conversion_api() -> None:
     from infrastructure.persistence.mappers import (
+        AuthTokenMapper,
+        CheckpointMapper,
         DecisionMapper,
         DiagnosisMapper,
         DigitalTwinMapper,
         EvidenceMapper,
         HypothesisMapper,
         LearningEpisodeMapper,
+        OnboardingSessionMapper,
         OrchestratorMapper,
         PriorityMapper,
         SubjectKnowledgeMapper,
         TeachingIntentionMapper,
         TeachingStrategyMapper,
+        UserAccountMapper,
     )
 
     for mapper in (
@@ -190,6 +197,12 @@ def test_mappers_expose_conversion_api() -> None:
         TeachingStrategyMapper,
         DecisionMapper,
         OrchestratorMapper,
+        UserAccountMapper,
+        AuthTokenMapper,
+        OnboardingSessionMapper,
     ):
         assert hasattr(mapper, "to_persistence")
         assert hasattr(mapper, "to_domain")
+
+    assert hasattr(CheckpointMapper, "to_persistence")
+    assert hasattr(CheckpointMapper, "events_from_dto")

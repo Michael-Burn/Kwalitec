@@ -24,6 +24,9 @@
     {{ explanation_card(page.home.explanation) }}
 </div>
 {% else %}
+<section class="student-empty" aria-label="Home">
+    <p class="student-card-body">Your home will fill in as learning insights become available from your sessions.</p>
+</section>
 {% from "partials/skeleton.html" import skeleton_student_home %}
 {{ skeleton_student_home() }}
 {% endif %}

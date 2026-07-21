@@ -1,0 +1,21 @@
+{# Design System — Progress Bar #}
+<div
+  class="{{ class_name }}"
+  {% if style_attr %}style="{{ style_attr }}"{% endif %}
+  {% for name, value in a11y_attrs.items() if value is not none and value is not false %}
+  {{ name }}{% if value is not sameas true %}="{{ value }}"{% endif %}
+  {% endfor %}
+>
+  <div class="ds-progress-bar__label-row">
+    <span class="ds-progress-bar__label">{{ component.label }}</span>
+    {% if component.value_text %}
+    <span class="ds-progress-bar__value">{{ component.value_text }}</span>
+    {% endif %}
+  </div>
+  <div class="ds-progress-bar__track">
+    <div
+      class="ds-progress-bar__fill"
+      style="width: {{ percent }}%;"
+    ></div>
+  </div>
+</div>

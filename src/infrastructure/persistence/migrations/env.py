@@ -14,7 +14,10 @@ from infrastructure.persistence.sqlalchemy.metadata import metadata
 config = context.config
 
 if config.config_file_name is not None:
-    fileConfig(config.config_file_name)
+    # Keep application loggers (e.g. StartupService) enabled when Alembic
+    # configures its own handlers — disable_existing_loggers=True would
+    # silence them for the rest of the process.
+    fileConfig(config.config_file_name, disable_existing_loggers=False)
 
 target_metadata = metadata
 

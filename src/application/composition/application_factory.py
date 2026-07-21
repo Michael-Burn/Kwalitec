@@ -197,6 +197,16 @@ def assemble(
     # ApplicationContainer contract (APP-004 operational readiness).
     educational_pipeline.__dict__["pipeline_metrics"] = metrics
 
+    # Lazy import avoids circular import with application.composition package init.
+    from infrastructure.composition.product_factories import build_product_services
+
+    product = build_product_services(
+        session_factory,
+        events=resolved_event_publisher,
+        clock=resolved_clock,  # type: ignore[arg-type]
+        educational_pipeline=educational_pipeline,
+    )
+
     registry = _build_registry(
         session_factory=session_factory,
         unit_of_work=unit_of_work,
@@ -223,6 +233,7 @@ def assemble(
         uuid_generator=resolved_uuid_generator,
         event_publisher=resolved_event_publisher,
         services=services,
+        product=product,
         mission_generator=mission_generator,
         recommendation_generator=recommendation_generator,
         study_planner=study_planner,

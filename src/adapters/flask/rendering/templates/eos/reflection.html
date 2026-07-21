@@ -1,0 +1,37 @@
+{% extends "eos/base.html" %}
+{% block content %}
+{{ fragments.header|safe }}
+<p>{{ view.mission_title }}</p>
+{% if evidence_updated %}
+<p data-evidence-updated="true">Evidence recorded. Returning to your dashboard updates progress.</p>
+{% endif %}
+
+{{ fragments.confidence|safe }}
+{{ fragments.difficulty|safe }}
+{{ fragments.weak_concept|safe }}
+{{ fragments.student_notes|safe }}
+{{ fragments.summary|safe }}
+
+<form class="eos-form" method="post" action="{{ nav.reflection }}" aria-label="Reflection capture">
+  <input type="hidden" name="student_id" value="{{ student_id }}">
+  <input type="hidden" name="session_id" value="{{ session_id }}">
+  <input type="hidden" name="mission_id" value="{{ view.mission_title }}">
+  <input type="hidden" name="redirect" value="true">
+
+  <label for="confidence">Confidence</label>
+  <input id="confidence" name="confidence" value="{{ view.confidence.value_label }}">
+
+  <label for="difficulty">Difficulty</label>
+  <input id="difficulty" name="difficulty" value="{{ view.difficulty.value_label }}">
+
+  <label for="weak_concept">Weak concept</label>
+  <input id="weak_concept" name="weak_concept" value="{{ view.weak_concept.value }}">
+
+  <label for="student_notes">Notes</label>
+  <textarea id="student_notes" name="student_notes">{{ view.student_notes.value }}</textarea>
+
+  <div class="eos-cta-row">
+    <button type="submit">Save</button>
+  </div>
+</form>
+{% endblock %}

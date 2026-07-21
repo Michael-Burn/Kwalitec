@@ -74,6 +74,10 @@ EXPECTED_LAYOUT = {
     PACKAGE_ROOT / "models" / "teaching_strategy.py",
     PACKAGE_ROOT / "models" / "decision.py",
     PACKAGE_ROOT / "models" / "orchestrator.py",
+    PACKAGE_ROOT / "models" / "user_account.py",
+    PACKAGE_ROOT / "models" / "auth_token.py",
+    PACKAGE_ROOT / "models" / "onboarding_session.py",
+    PACKAGE_ROOT / "models" / "session_checkpoint.py",
 }
 
 MODEL_FILES = sorted((PACKAGE_ROOT / "models").glob("*.py"))

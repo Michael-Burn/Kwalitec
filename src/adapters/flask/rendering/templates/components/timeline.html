@@ -1,0 +1,26 @@
+{# Design System — Timeline #}
+<ol
+  class="{{ class_name }}"
+  {% if style_attr %}style="{{ style_attr }}"{% endif %}
+  {% for name, value in a11y_attrs.items() if value is not none and value is not false %}
+  {{ name }}{% if value is not sameas true %}="{{ value }}"{% endif %}
+  {% endfor %}
+>
+  {% for item in component.items %}
+  <li
+    class="ds-timeline__item{% if item.active %} is-active{% endif %}"
+    {% if item.active %}aria-current="step"{% endif %}
+  >
+    <div class="ds-timeline__marker" aria-hidden="true"></div>
+    <div class="ds-timeline__content">
+      <p class="ds-timeline__title">{{ item.title }}</p>
+      {% if item.detail %}
+      <p class="ds-timeline__detail">{{ item.detail }}</p>
+      {% endif %}
+      {% if item.timestamp_label %}
+      <time class="ds-timeline__time">{{ item.timestamp_label }}</time>
+      {% endif %}
+    </div>
+  </li>
+  {% endfor %}
+</ol>

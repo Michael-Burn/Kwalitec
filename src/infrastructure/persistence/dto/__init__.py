@@ -8,11 +8,16 @@ from infrastructure.persistence.dto.digital_twin import DigitalTwinDTO
 from infrastructure.persistence.dto.evidence import EvidenceRecordDTO
 from infrastructure.persistence.dto.hypothesis import HypothesisDTO
 from infrastructure.persistence.dto.learning_episode import LearningEpisodeDTO
+from infrastructure.persistence.dto.onboarding import (
+    OnboardingSessionDTO,
+    SessionCheckpointDTO,
+)
 from infrastructure.persistence.dto.orchestrator import OrchestratorDTO
 from infrastructure.persistence.dto.priority import PriorityDTO
 from infrastructure.persistence.dto.subject_knowledge import ConceptDTO
 from infrastructure.persistence.dto.teaching_intention import TeachingIntentionDTO
 from infrastructure.persistence.dto.teaching_strategy import TeachingStrategyDTO
+from infrastructure.persistence.dto.user import AuthTokenDTO, UserAccountDTO
 
 __all__ = [
     "DigitalTwinDTO",
@@ -26,4 +31,8 @@ __all__ = [
     "TeachingStrategyDTO",
     "DecisionDTO",
     "OrchestratorDTO",
+    "UserAccountDTO",
+    "AuthTokenDTO",
+    "OnboardingSessionDTO",
+    "SessionCheckpointDTO",
 ]

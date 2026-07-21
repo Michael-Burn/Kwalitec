@@ -10,6 +10,8 @@ from infrastructure.persistence.mappers.hypothesis_mapper import HypothesisMappe
 from infrastructure.persistence.mappers.learning_episode_mapper import (
     LearningEpisodeMapper,
 )
+from infrastructure.persistence.mappers.checkpoint_mapper import CheckpointMapper
+from infrastructure.persistence.mappers.onboarding_mapper import OnboardingSessionMapper
 from infrastructure.persistence.mappers.orchestrator_mapper import OrchestratorMapper
 from infrastructure.persistence.mappers.priority_mapper import PriorityMapper
 from infrastructure.persistence.mappers.subject_knowledge_mapper import (
@@ -21,6 +23,7 @@ from infrastructure.persistence.mappers.teaching_intention_mapper import (
 from infrastructure.persistence.mappers.teaching_strategy_mapper import (
     TeachingStrategyMapper,
 )
+from infrastructure.persistence.mappers.user_mapper import AuthTokenMapper, UserAccountMapper
 
 __all__ = [
     "DigitalTwinMapper",
@@ -34,4 +37,8 @@ __all__ = [
     "TeachingStrategyMapper",
     "DecisionMapper",
     "OrchestratorMapper",
+    "UserAccountMapper",
+    "AuthTokenMapper",
+    "OnboardingSessionMapper",
+    "CheckpointMapper",
 ]

@@ -12,6 +12,7 @@ from sqlalchemy import create_engine, inspect
 
 from infrastructure.persistence.sqlalchemy import metadata
 from infrastructure.persistence.sqlalchemy.models import (  # noqa: F401
+    AuthTokenModel,
     ConceptModel,
     DecisionModel,
     DiagnosisModel,
@@ -19,11 +20,14 @@ from infrastructure.persistence.sqlalchemy.models import (  # noqa: F401
     EvidenceModel,
     HypothesisModel,
     LearningEpisodeModel,
+    OnboardingSessionModel,
     OrchestratorModel,
     PriorityModel,
+    SessionCheckpointModel,
     TeachingIntentionModel,
     TeachingPlanModel,
     TeachingStrategyModel,
+    UserAccountModel,
 )
 
 SRC_ROOT = Path(__file__).resolve().parents[5] / "src"
@@ -63,6 +67,7 @@ class TestMigrationUpgrade:
             tables = set(inspector.get_table_names())
 
             expected = {
+                "eos_auth_tokens",
                 "eos_concepts",
                 "eos_decisions",
                 "eos_diagnoses",
@@ -70,11 +75,14 @@ class TestMigrationUpgrade:
                 "eos_evidence_records",
                 "eos_hypotheses",
                 "eos_learning_episodes",
+                "eos_onboarding_sessions",
                 "eos_orchestrators",
                 "eos_priorities",
+                "eos_session_checkpoints",
                 "eos_teaching_intentions",
                 "eos_teaching_plans",
                 "eos_teaching_strategies",
+                "eos_user_accounts",
             }
             assert expected.issubset(tables)
             eng.dispose()
@@ -151,7 +159,7 @@ class TestMigrationFileIntegrity:
 
     def test_initial_revision_exists(self) -> None:
         sd = ScriptDirectory(str(MIGRATIONS_DIR))
-        assert sd.get_current_head() == "202607200001"
+        assert sd.get_current_head() == "202607200002"
 
     def test_no_domain_imports_in_migration(self) -> None:
         """Migration files must not import domain or application modules."""

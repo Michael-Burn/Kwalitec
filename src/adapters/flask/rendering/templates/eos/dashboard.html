@@ -1,0 +1,26 @@
+{% extends "eos/base.html" %}
+{% block content %}
+{{ fragments.header|safe }}
+<p class="eos-greeting">{{ view.greeting_text }}</p>
+{{ fragments.greeting|safe }}
+<section data-mission>
+  {{ fragments.mission_card|safe }}
+</section>
+<div class="eos-cta-row">
+  <a href="{{ nav.begin_session }}" aria-label="Begin session">
+    {{ fragments.primary_action|safe }}
+  </a>
+  <a href="{{ nav.mission }}">Open mission</a>
+</div>
+{{ fragments.progress_bar|safe }}
+<section aria-label="Learning statistics">
+  {% for tile in fragments.statistics %}
+  {{ tile|safe }}
+  {% endfor %}
+</section>
+<section aria-label="Achievements">
+  {% for card in fragments.achievements %}
+  {{ card|safe }}
+  {% endfor %}
+</section>
+{% endblock %}

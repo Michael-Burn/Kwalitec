@@ -7,6 +7,7 @@ from dataclasses import fields, is_dataclass
 import pytest
 
 from infrastructure.persistence.dto import (
+    AuthTokenDTO,
     ConceptDTO,
     DecisionDTO,
     DiagnosisDTO,
@@ -14,23 +15,36 @@ from infrastructure.persistence.dto import (
     EvidenceRecordDTO,
     HypothesisDTO,
     LearningEpisodeDTO,
+    OnboardingSessionDTO,
     OrchestratorDTO,
     PriorityDTO,
+    SessionCheckpointDTO,
     TeachingIntentionDTO,
     TeachingStrategyDTO,
+    UserAccountDTO,
 )
 from infrastructure.persistence.mappers import (
+    AuthTokenMapper,
+    CheckpointMapper,
     DecisionMapper,
     DiagnosisMapper,
     DigitalTwinMapper,
     EvidenceMapper,
     HypothesisMapper,
     LearningEpisodeMapper,
+    OnboardingSessionMapper,
     OrchestratorMapper,
     PriorityMapper,
     SubjectKnowledgeMapper,
     TeachingIntentionMapper,
     TeachingStrategyMapper,
+    UserAccountMapper,
+)
+from tests.education_os.infrastructure.persistence.br004.conftest import (
+    build_auth_token,
+    build_onboarding_session,
+    build_user_account,
+    sample_checkpoint_events,
 )
 from tests.education_os.infrastructure.persistence.conftest import (
     build_concept,
@@ -58,6 +72,10 @@ ROOT_DTOS = (
     TeachingStrategyDTO,
     DecisionDTO,
     OrchestratorDTO,
+    UserAccountDTO,
+    AuthTokenDTO,
+    OnboardingSessionDTO,
+    SessionCheckpointDTO,
 )
 
 EXPECTED_FIELDS = {
@@ -221,6 +239,45 @@ EXPECTED_FIELDS = {
         "episode_references",
         "state",
     },
+    UserAccountDTO: {
+        "user_id",
+        "email",
+        "password_hash",
+        "status",
+        "email_verified",
+        "failed_login_attempts",
+        "locked_until",
+        "created_at",
+        "updated_at",
+        "password_changed_at",
+        "row_version",
+    },
+    AuthTokenDTO: {
+        "user_id",
+        "purpose",
+        "token_hash",
+        "expires_at",
+        "created_at",
+        "consumed_at",
+    },
+    OnboardingSessionDTO: {
+        "onboarding_id",
+        "student_id",
+        "status",
+        "current_step",
+        "payloads",
+        "saved_steps",
+        "created_at",
+        "updated_at",
+        "completed_at",
+        "row_version",
+    },
+    SessionCheckpointDTO: {
+        "session_id",
+        "events",
+        "updated_at",
+        "row_version",
+    },
 }
 
 
@@ -275,8 +332,16 @@ def test_mappers_cover_all_aggregates() -> None:
         (TeachingStrategyMapper, build_strategy),
         (DecisionMapper, build_decision),
         (OrchestratorMapper, build_orchestrator),
+        (UserAccountMapper, build_user_account),
+        (AuthTokenMapper, build_auth_token),
+        (OnboardingSessionMapper, build_onboarding_session),
     )
     for mapper, builder in pairs:
         dto = mapper.to_persistence(builder())
         restored = mapper.to_domain(dto)
         assert mapper.to_persistence(restored) == dto
+
+    checkpoint_dto = CheckpointMapper.to_persistence(
+        "session-map", sample_checkpoint_events()
+    )
+    assert CheckpointMapper.events_from_dto(checkpoint_dto) == sample_checkpoint_events()

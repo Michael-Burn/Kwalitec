@@ -5,17 +5,27 @@ from __future__ import annotations
 import pytest
 
 from infrastructure.persistence.mappers import (
+    AuthTokenMapper,
+    CheckpointMapper,
     DecisionMapper,
     DiagnosisMapper,
     DigitalTwinMapper,
     EvidenceMapper,
     HypothesisMapper,
     LearningEpisodeMapper,
+    OnboardingSessionMapper,
     OrchestratorMapper,
     PriorityMapper,
     SubjectKnowledgeMapper,
     TeachingIntentionMapper,
     TeachingStrategyMapper,
+    UserAccountMapper,
+)
+from tests.education_os.infrastructure.persistence.br004.conftest import (
+    build_auth_token,
+    build_onboarding_session,
+    build_user_account,
+    sample_checkpoint_events,
 )
 from tests.education_os.infrastructure.persistence.conftest import (
     build_concept,
@@ -43,6 +53,9 @@ ROUND_TRIPS = (
     ("teaching_strategy", TeachingStrategyMapper, build_strategy, "strategy_id"),
     ("decision", DecisionMapper, build_decision, "decision_id"),
     ("orchestrator", OrchestratorMapper, build_orchestrator, "orchestrator_id"),
+    ("user_account", UserAccountMapper, build_user_account, "user_id"),
+    ("auth_token", AuthTokenMapper, build_auth_token, "user_id"),
+    ("onboarding", OnboardingSessionMapper, build_onboarding_session, "onboarding_id"),
 )
 
 
@@ -69,3 +82,10 @@ def test_round_trip_is_lossless(label: str, mapper, builder, id_attr: str) -> No
     assert restored_id == original_id
     if hasattr(aggregate, "student_id"):
         assert restored.student_id == aggregate.student_id
+
+
+def test_checkpoint_mapper_round_trip() -> None:
+    events = sample_checkpoint_events()
+    dto = CheckpointMapper.to_persistence("session-001", events)
+    restored = CheckpointMapper.events_from_dto(dto)
+    assert restored == events

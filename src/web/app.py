@@ -8,7 +8,9 @@ from typing import Any
 
 from flask import Blueprint, Flask, current_app
 
+from adapters.flask import wire_adapter_layer
 from application.composition import ApplicationContainer, create_application
+from application.evidence_capture.captured_evidence import CapturedEvidence
 from infrastructure.config.settings import (
     AppSettings,
     ConfigurationError,
@@ -210,6 +212,16 @@ def create_app(
 
     register_middleware(app)
     register_blueprints(app)
+
+    def _update_evidence(captured: CapturedEvidence) -> object:
+        return resolved_container.product.evidence_update.update(captured)
+
+    app.extensions["eos_evidence_updater"] = _update_evidence
+    wire_adapter_layer(
+        app,
+        resolved_container,
+        update_evidence=_update_evidence,
+    )
 
     @app.get("/")
     def root() -> tuple[dict[str, str], int]:

@@ -106,4 +106,5 @@ def test_root_route_resolves_services_per_request(container, client) -> None:
     assert response.get_json() == {
         "status": "ok",
         "service": "LearningApplicationService",
+        "version": "2.0.0",
     }

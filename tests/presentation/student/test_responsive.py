@@ -10,13 +10,13 @@ from tests.presentation.student.helpers import STUDENT_ROUTES
 
 
 def test_css_has_breakpoints():
-    css = Path("app/static/css/student.css").read_text(encoding="utf-8")
+    css = Path("app/static/css/student/student.css").read_text(encoding="utf-8")
     assert "@media (min-width: 640px)" in css
     assert "@media (min-width: 480px)" in css
 
 
 def test_css_has_max_content_width():
-    css = Path("app/static/css/student.css").read_text(encoding="utf-8")
+    css = Path("app/static/css/student/student.css").read_text(encoding="utf-8")
     assert "--student-max-width" in css
 
 

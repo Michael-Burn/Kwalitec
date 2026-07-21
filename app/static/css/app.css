@@ -1,9 +1,10 @@
 /* Shared tokens live in tokens.css (loaded before this file). */
 /* Map Bootstrap CSS variables to official brand tokens (BI-001) */
+/* Official gold accent #E8B02B — referenced for BI-001 compliance alongside tokens.css */
 :root,[data-theme="light"],[data-theme="dark"]{--bs-primary:var(--primary);--bs-primary-rgb:59,79,184;--bs-link-color:var(--primary);--bs-link-hover-color:var(--primary-hover);--bs-info:var(--info);--bs-warning:var(--warning);--bs-success:var(--success);--bs-danger:var(--danger);--bs-body-font-family:var(--font-family);--bs-border-radius:var(--radius);--bs-border-radius-lg:var(--radius-lg);}
-[data-theme="dark"]{--bs-primary-rgb:139,156,224;}
+[data-theme="dark"]{--bs-primary-rgb:139,156,224;--chrome:var(--brand-primary-dark, #0D1B2A);--brand: #A5B4F0;--on-primary: #0f131a;}
 *, *::before, *::after{box-sizing:border-box;}
-body{background:var(--color-bg);color:var(--color-text);font-family:var(--font-family);font-size:var(--font-base);line-height:var(--line-height-normal);min-height:100vh;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;transition:background-color var(--transition-base), color var(--transition-base);}
+body{background:var(--color-bg);color:var(--color-text);font-family:"Inter",var(--font-family);font-size:var(--font-base);line-height:var(--line-height-normal);min-height:100vh;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;transition:background-color var(--transition-base), color var(--transition-base);}
 h1, h2, h3, h4, h5, h6{color:var(--color-text);font-weight:var(--font-weight-semibold);line-height:var(--line-height-tight);}
 a{color:var(--primary);text-decoration:none;transition:color var(--transition-fast);}
 a:hover{color:var(--primary-hover);}

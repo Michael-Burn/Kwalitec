@@ -1,0 +1,29 @@
+{% extends "eos/base.html" %}
+{% block content %}
+<header role="banner" aria-label="{{ title }}">
+  <h1>{{ view.mission_title }}</h1>
+  <p>{{ view.greeting }}</p>
+</header>
+<section data-mission aria-label="Mission objective">
+  <h2>Objective</h2>
+  <p>{{ view.mission_objective }}</p>
+  <p>{{ view.mission_explanation }}</p>
+  <p>{{ view.estimated_duration }}</p>
+</section>
+<section aria-label="Study resources">
+  <h2>Resources</h2>
+  <ul>
+    {% for resource in view.study_resources %}
+    <li>{{ resource.label }}{% if resource.detail %} — {{ resource.detail }}{% endif %}</li>
+    {% endfor %}
+  </ul>
+</section>
+<section aria-label="Progress">
+  <h2>{{ view.progress_summary.headline }}</h2>
+  <p>{{ view.progress_summary.detail }}</p>
+</section>
+<div class="eos-cta-row">
+  <a href="{{ nav.begin_session }}">Begin session</a>
+  <a href="{{ nav.dashboard }}">Return to dashboard</a>
+</div>
+{% endblock %}

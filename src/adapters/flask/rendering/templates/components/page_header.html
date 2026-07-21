@@ -1,0 +1,16 @@
+{# Design System — Page Header #}
+<header
+  class="{{ class_name }}"
+  {% if style_attr %}style="{{ style_attr }}"{% endif %}
+  {% for name, value in a11y_attrs.items() if value is not none and value is not false %}
+  {{ name }}{% if value is not sameas true %}="{{ value }}"{% endif %}
+  {% endfor %}
+>
+  {% if component.eyebrow %}
+  <p class="ds-eyebrow">{{ component.eyebrow }}</p>
+  {% endif %}
+  <h1 class="ds-page-header__title">{{ component.title }}</h1>
+  {% if component.description %}
+  <p class="ds-page-header__description">{{ component.description }}</p>
+  {% endif %}
+</header>

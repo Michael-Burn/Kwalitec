@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Login</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+      background:
+        radial-gradient(circle at top left, rgba(20, 90, 100, 0.08), transparent 40%),
+        linear-gradient(180deg, #f7f4ef 0%, #ebe4d8 100%);
+      color: var(--text, #1c1917);
+      min-height: 100vh;
+    }
+    .eos-shell {
+      max-width: 56rem;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3rem;
+    }
+    .eos-shell[data-width="wide"] { max-width: 72rem; }
+    .eos-shell[data-width="narrow"] { max-width: 28rem; }
+    .eos-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      margin-bottom: 1.5rem;
+      font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+      font-size: 0.95rem;
+    }
+    .eos-nav a { color: var(--primary, #0f5c66); text-decoration: none; }
+    .eos-nav a:focus-visible {
+      outline: 2px solid var(--focus-ring, #0f5c66);
+      outline-offset: 2px;
+    }
+    .eos-cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0; }
+    .eos-cta-row a { text-decoration: none; }
+    .eos-form label { display: block; margin: 0.75rem 0 0.25rem; font-family: "IBM Plex Sans", sans-serif; }
+    .eos-form input, .eos-form select, .eos-form textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0.55rem 0.7rem;
+      border: 1px solid var(--border, #d6d3d1);
+      border-radius: 0.4rem;
+      font: inherit;
+    }
+    .eos-stage {
+      font-family: "IBM Plex Sans", sans-serif;
+      margin: 0.75rem 0;
+    }
+    .eos-error { color: var(--danger, #b42318); font-family: "IBM Plex Sans", sans-serif; }
+  </style>
+</head>
+<body>
+  <div class="eos-shell" data-page="login" data-width="narrow">
+    <main id="main" role="main">
+<header role="banner" aria-label="Student Login">
+  <h1>Student Login</h1>
+  <p>Enter your student identity to open the learning dashboard.</p>
+  <p><a href="/eos/auth/login">Use production authentication</a></p>
+</header>
+<form class="eos-form" method="post" action="/eos/login/" aria-label="Student login">
+  <label for="student_id">Student ID</label>
+  <input id="student_id" name="student_id" value="" required autocomplete="username">
+  <div class="eos-cta-row">
+    <button type="submit">Continue to dashboard</button>
+  </div>
+</form>
+    </main>
+  </div>
+</body>
+</html>

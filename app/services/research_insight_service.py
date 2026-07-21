@@ -992,9 +992,9 @@ class ResearchInsightService:
             window_end=window_end,
             release_version=current_release,
         )
-        if not current_subs:
-            return ()
-
+        # Finding-centric release insights (New/Verified Findings) must still
+        # emit when the current app version has no version-matched submissions
+        # yet — e.g. after a release bump before feedback arrives.
         ids = ResearchInsightService._submission_ids(current_subs)
 
         resolved = sum(

@@ -16,7 +16,12 @@ TEMPLATE_ROOT = (
     Path(__file__).resolve().parents[3] / "app" / "templates" / "session"
 )
 CSS_PATH = (
-    Path(__file__).resolve().parents[3] / "app" / "static" / "css" / "session.css"
+    Path(__file__).resolve().parents[3]
+    / "app"
+    / "static"
+    / "css"
+    / "session"
+    / "session.css"
 )
 
 

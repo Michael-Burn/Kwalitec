@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Learning Dashboard</title>
+  <style data-ds-tokens>
+:root { --primary: #3B4FB8; --primary-hover: #2F3F96; --secondary: #475569; --success: #0F766E; --warning: #A16207; --danger: #C81E1E; --info: #3B4FB8; --surface: #FFFFFF; --surface-alt: #F4F6F9; --surface-elevated: #FFFFFF; --background: #F4F6F9; --border: #D5DAE3; --border-subtle: #E6E9EF; --text-primary: #1E2430; --text-secondary: #4A5568; --text-muted: #5C6570; --text-inverse: #F8FAFC; --on-primary: #F8FAFC; --on-success: #F8FAFC; --on-danger: #F8FAFC; --success-bg: #E6F7F5; --warning-bg: rgba(161, 98, 7, 0.12); --danger-bg: #FEF1F1; --info-bg: rgba(59, 79, 184, 0.1); --focus-ring: 0 0 0 3px rgba(59, 79, 184, 0.28); --brand-primary-blue: #3B4FB8; --brand-primary-dark: #0D1B2A; --brand-deep-navy: #0A1628; --brand-midnight: #020D24; --brand-gold: #E8B02B; --brand-gold-hover: #F0C040; --brand-white: #FFFFFF; --brand-text-secondary: #8B93A7; --brand-divider: #1E2A3D; --space-none: 0; --space-xs: 0.25rem; --space-sm: 0.5rem; --space-md: 0.75rem; --space-lg: 1rem; --space-xl: 1.5rem; --space-2xl: 2rem; --space-3xl: 3rem; --space-4xl: 4rem; --space-5xl: 6rem; --space-6xl: 8rem; --font-4xl: 2.5rem; --font-weight-semibold: 600; --font-2xl: 1.75rem; --font-lg: 1.25rem; --font-base: 1rem; --font-weight-normal: 400; --font-sm: 0.875rem; --font-weight-medium: 500; --shadow-none: none; --shadow-sm: 0 1px 2px rgba(13, 27, 42, 0.05); --shadow-md: 0 1px 2px rgba(13, 27, 42, 0.05), 0 2px 10px rgba(13, 27, 42, 0.07); --shadow-lg: 0 4px 18px rgba(13, 27, 42, 0.09), 0 2px 4px rgba(13, 27, 42, 0.04); --shadow-xl: 0 10px 32px rgba(13, 27, 42, 0.12); --radius-none: 0; --radius-sm: 0.5rem; --radius-md: 0.75rem; --radius-lg: 1rem; --radius-xl: 1rem; --radius-full: 9999px; --icon-size-sm: 20px; --icon-size-md: 24px; --icon-size-lg: 32px; --transition-fast: 150ms ease-out; --transition-base: 200ms ease-out; --transition-slow: 250ms ease-out; --transition-press: 100ms ease-out; --transition-lift: 200ms ease-out; --transition-skeleton: 1200ms ease-out; --container-narrow: 44rem; --container-content: 60rem; --container-wide: 72rem; --container-full: 100%; --ds-hover-lift: 2px; --ds-press-scale: 0.98; --ds-disabled-opacity: 0.5; --icon-stroke-width: 1.75; }
+.ds-container { width: 100%; margin-inline: auto; box-sizing: border-box; }
+.ds-container[data-width="narrow"] { max-width: var(--container-narrow); }
+.ds-container[data-width="content"] { max-width: var(--container-content); }
+.ds-container[data-width="wide"] { max-width: var(--container-wide); }
+.ds-container[data-width="full"] { max-width: var(--container-full); }
+@media (max-width: 767px) {
+  .ds-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-md); }
+  .ds-container { padding-inline: var(--space-lg); }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .ds-grid { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: var(--space-lg); }
+  .ds-container { padding-inline: var(--space-xl); }
+}
+@media (min-width: 1024px) {
+  .ds-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-xl); }
+  .ds-container { padding-inline: var(--space-2xl); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ds-component, .ds-component * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+      background:
+        radial-gradient(circle at top left, rgba(20, 90, 100, 0.08), transparent 40%),
+        linear-gradient(180deg, #f7f4ef 0%, #ebe4d8 100%);
+      color: var(--text, #1c1917);
+      min-height: 100vh;
+    }
+    .eos-shell {
+      max-width: 56rem;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3rem;
+    }
+    .eos-shell[data-width="wide"] { max-width: 72rem; }
+    .eos-shell[data-width="narrow"] { max-width: 28rem; }
+    .eos-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      margin-bottom: 1.5rem;
+      font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+      font-size: 0.95rem;
+    }
+    .eos-nav a { color: var(--primary, #0f5c66); text-decoration: none; }
+    .eos-nav a:focus-visible {
+      outline: 2px solid var(--focus-ring, #0f5c66);
+      outline-offset: 2px;
+    }
+    .eos-cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0; }
+    .eos-cta-row a { text-decoration: none; }
+    .eos-form label { display: block; margin: 0.75rem 0 0.25rem; font-family: "IBM Plex Sans", sans-serif; }
+    .eos-form input, .eos-form select, .eos-form textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0.55rem 0.7rem;
+      border: 1px solid var(--border, #d6d3d1);
+      border-radius: 0.4rem;
+      font: inherit;
+    }
+    .eos-stage {
+      font-family: "IBM Plex Sans", sans-serif;
+      margin: 0.75rem 0;
+    }
+    .eos-error { color: var(--danger, #b42318); font-family: "IBM Plex Sans", sans-serif; }
+  </style>
+</head>
+<body>
+  <div class="eos-shell" data-page="dashboard" data-width="wide">
+    <nav class="eos-nav" aria-label="Student journey">
+      <a href="/eos/dashboard/?student_id=student-ada">Dashboard</a>
+      <a href="/eos/mission/?student_id=student-ada">Mission</a>
+      <a href="/eos/session/?student_id=student-ada">Session</a>
+      <a href="/eos/reflection/?student_id=student-ada">Reflection</a>
+    </nav>
+    <main id="main" role="main">
+<header
+  class="ds-component ds-page-header"
+style="color: var(--text-primary); font-family: &#34;Inter&#34;, system-ui, -apple-system, &#34;Segoe UI&#34;, sans-serif; font-size: var(--font-4xl); font-weight: var(--font-weight-semibold); line-height: 1.2; letter-spacing: -0.02em; padding-block: var(--space-3xl); gap: var(--space-md)"  role="banner"  aria-label="Learning Dashboard"  data-reduced-motion="safe">
+  <p class="ds-eyebrow">Stay with the educational next step — consistent sittings compound without claiming mastery.</p>
+  <h1 class="ds-page-header__title">Learning Dashboard</h1>
+  <p class="ds-page-header__description">Address prerequisite gap using worked example: Pursue worked example as instructional approach</p>
+</header>
+<p class="eos-greeting">Stay with the educational next step — consistent sittings compound without claiming mastery.</p>
+<section
+  class="ds-component ds-section"
+style="color: var(--text-primary); font-family: &#34;Inter&#34;, system-ui, -apple-system, &#34;Segoe UI&#34;, sans-serif; font-size: var(--font-2xl); font-weight: var(--font-weight-semibold); line-height: 1.2; letter-spacing: -0.02em; padding-block: var(--space-2xl); gap: var(--space-sm)"  role="region"  aria-label="Greeting"  data-reduced-motion="safe">
+  <p class="ds-eyebrow">Dashboard</p>
+  <h2 class="ds-section__title">Greeting</h2>
+  <p class="ds-section__description">Stay with the educational next step — consistent sittings compound without claiming mastery.</p>
+</section>
+<section data-mission>
+  <article
+  class="ds-component ds-mission-card"
+style="background-color: var(--surface); color: var(--text-primary); border-color: var(--primary); border-style: solid; border-width: 1px; font-family: &#34;Inter&#34;, system-ui, -apple-system, &#34;Segoe UI&#34;, sans-serif; font-size: var(--font-lg); font-weight: var(--font-weight-semibold); line-height: 1.3; letter-spacing: -0.01em; padding-inline: var(--space-xl); padding-block: var(--space-xl); gap: var(--space-md); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: var(--transition-base)"  role="region"  aria-label="Address prerequisite gap using worked example: Pursue worked example as instructional approach"  data-reduced-motion="safe">
+  <p class="ds-eyebrow">Today&#39;s Mission</p>
+  <h2 class="ds-mission-card__title">Address prerequisite gap using worked example: Pursue worked example as instructional approach</h2>
+  <p class="ds-mission-card__body">Address prerequisite gap using worked example: Pursue worked example as instructional approach</p>
+  <div class="ds-mission-card__meta">
+    <span class="ds-mission-card__duration">13 minutes</span>
+    <span class="ds-mission-card__status">1 completed mission · 13 min planned</span>
+  </div>
+</article>
+</section>
+<div class="eos-cta-row">
+  <a href="/eos/session/?student_id=student-ada" aria-label="Begin session">
+    <button
+  class="ds-component ds-btn ds-btn-primary"
+style="background-color: var(--primary); color: var(--on-primary); border-color: var(--primary); border-style: solid; border-width: 1px; font-family: &#34;Inter&#34;, system-ui, -apple-system, &#34;Segoe UI&#34;, sans-serif; font-size: var(--font-base); font-weight: var(--font-weight-normal); line-height: 1.5; letter-spacing: 0; padding-inline: var(--space-xl); padding-block: var(--space-md); border-radius: var(--radius-md); box-shadow: var(--shadow-none); transition: var(--transition-base); --ds-hover-background: var(--primary-hover)"  role="button"  aria-label="Review Prerequisites"  tabindex="0"  data-reduced-motion="safe"  type="button">Review Prerequisites</button>
+  </a>
+  <a href="/eos/mission/?student_id=student-ada">Open mission</a>
+</div>
+<div
+  class="ds-component ds-progress-bar"
+style="background-color: var(--border-subtle); color: var(--primary); border-radius: var(--radius-full); transition: var(--transition-slow); height: var(--space-xs)"  role="progressbar"  aria-label="1 completed mission · 13 min planned"  aria-valuemin="0"  aria-valuemax="100"  aria-valuenow="33"  aria-valuetext="33%"  data-reduced-motion="safe">
+  <div class="ds-progress-bar__label-row">
+    <span class="ds-progress-bar__label">1 completed mission · 13 min planned</span>
+    <span class="ds-progress-bar__value">33%</span>
+  </div>
+  <div class="ds-progress-bar__track">
+    <div
+      class="ds-progress-bar__fill"
+      style="width: 33.3%;"
+    ></div>
+  </div>
+</div>
+<section aria-label="Learning statistics">
+  <div
+  class="ds-component ds-statistic-card"
+style="background-color: var(--surface); color: var(--text-primary); border-color: var(--border-subtle); border-style: solid; border-width: 1px; font-family: &#34;Inter&#34;, system-ui, -apple-system, &#34;Segoe UI&#34;, sans-serif; font-size: var(--font-2xl); font-weight: var(--font-weight-semibold); line-height: 1.2; letter-spacing: -0.02em; padding-inline: var(--space-xl); padding-block: var(--space-xl); gap: var(--space-xs); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: var(--transition-fast)"  role="group"  aria-label="Sessions completed"  data-reduced-motion="safe">
+  <p class="ds-statistic-card__label">Sessions completed</p>
+  <p class="ds-statistic-card__value">1</p>
+  <p class="ds-statistic-card__detail">Completed learning sessions</p>
+</div>
+  <div
+  class="ds-component ds-statistic-card"
+style="background-color: var(--surface); color: var(--text-primary); border-color: var(--border-subtle); border-style: solid; border-width: 1px; font-family: &#34;Inter&#34;, system-ui, -apple-system, &#34;Segoe UI&#34;, sans-serif; font-size: var(--font-2xl); font-weight: var(--font-weight-semibold); line-height: 1.2; letter-spacing: -0.02em; padding-inline: var(--space-xl); padding-block: var(--space-xl); gap: var(--space-xs); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: var(--transition-fast)"  role="group"  aria-label="Study minutes"  data-reduced-motion="safe">
+  <p class="ds-statistic-card__label">Study minutes</p>
+  <p class="ds-statistic-card__value">13</p>
+  <p class="ds-statistic-card__detail">Recorded or planned focus time</p>
+</div>
+</section>
+<section aria-label="Achievements">
+  <article
+  class="ds-component ds-achievement-card"
+style="background-color: var(--surface); color: var(--text-primary); border-color: var(--border-subtle); border-style: solid; border-width: 1px; font-family: &#34;Inter&#34;, system-ui, -apple-system, &#34;Segoe UI&#34;, sans-serif; font-size: var(--font-lg); font-weight: var(--font-weight-semibold); line-height: 1.3; letter-spacing: -0.01em; padding-inline: var(--space-xl); padding-block: var(--space-xl); gap: var(--space-md); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: var(--transition-base)"  role="region"  aria-label="First mission recognised"  data-reduced-motion="safe">
+  <div class="ds-achievement-card__badge"><span
+  class="ds-component ds-badge ds-badge--success"
+style="background-color: var(--success-bg); color: var(--success); font-family: &#34;Inter&#34;, system-ui, -apple-system, &#34;Segoe UI&#34;, sans-serif; font-size: var(--font-sm); font-weight: var(--font-weight-medium); line-height: 1.4; letter-spacing: 0.02em; padding-inline: var(--space-sm); padding-block: var(--space-xs); border-radius: var(--radius-sm)"  role="status"  aria-label="First mission"  data-reduced-motion="safe">First mission</span></div>
+  <p class="ds-eyebrow">First mission</p>
+  <h3 class="ds-achievement-card__title">First mission recognised</h3>
+  <p class="ds-achievement-card__message">You completed your first mission sitting on this plan.</p>
+</article>
+  <article
+  class="ds-component ds-achievement-card"
+style="background-color: var(--surface); color: var(--text-primary); border-color: var(--border-subtle); border-style: solid; border-width: 1px; font-family: &#34;Inter&#34;, system-ui, -apple-system, &#34;Segoe UI&#34;, sans-serif; font-size: var(--font-lg); font-weight: var(--font-weight-semibold); line-height: 1.3; letter-spacing: -0.01em; padding-inline: var(--space-xl); padding-block: var(--space-xl); gap: var(--space-md); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: var(--transition-base)"  role="region"  aria-label="Stable knowledge signal"  data-reduced-motion="safe">
+  <div class="ds-achievement-card__badge"><span
+  class="ds-component ds-badge ds-badge--success"
+style="background-color: var(--success-bg); color: var(--success); font-family: &#34;Inter&#34;, system-ui, -apple-system, &#34;Segoe UI&#34;, sans-serif; font-size: var(--font-sm); font-weight: var(--font-weight-medium); line-height: 1.4; letter-spacing: 0.02em; padding-inline: var(--space-sm); padding-block: var(--space-xs); border-radius: var(--radius-sm)"  role="status"  aria-label="Stable knowledge"  data-reduced-motion="safe">Stable knowledge</span></div>
+  <p class="ds-eyebrow">Stable knowledge</p>
+  <h3 class="ds-achievement-card__title">Stable knowledge signal</h3>
+  <p class="ds-achievement-card__message">Your progress report shows stable or durable knowledge.</p>
+</article>
+  <article
+  class="ds-component ds-achievement-card"
+style="background-color: var(--surface); color: var(--text-primary); border-color: var(--border-subtle); border-style: solid; border-width: 1px; font-family: &#34;Inter&#34;, system-ui, -apple-system, &#34;Segoe UI&#34;, sans-serif; font-size: var(--font-lg); font-weight: var(--font-weight-semibold); line-height: 1.3; letter-spacing: -0.01em; padding-inline: var(--space-xl); padding-block: var(--space-xl); gap: var(--space-md); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: var(--transition-base)"  role="region"  aria-label="Effective revision signal"  data-reduced-motion="safe">
+  <div class="ds-achievement-card__badge"><span
+  class="ds-component ds-badge ds-badge--success"
+style="background-color: var(--success-bg); color: var(--success); font-family: &#34;Inter&#34;, system-ui, -apple-system, &#34;Segoe UI&#34;, sans-serif; font-size: var(--font-sm); font-weight: var(--font-weight-medium); line-height: 1.4; letter-spacing: 0.02em; padding-inline: var(--space-sm); padding-block: var(--space-xs); border-radius: var(--radius-sm)"  role="status"  aria-label="Effective revision"  data-reduced-motion="safe">Effective revision</span></div>
+  <p class="ds-eyebrow">Effective revision</p>
+  <h3 class="ds-achievement-card__title">Effective revision signal</h3>
+  <p class="ds-achievement-card__message">Your progress report shows effective revision outcomes.</p>
+</article>
+</section>
+    </main>
+  </div>
+</body>
+</html>

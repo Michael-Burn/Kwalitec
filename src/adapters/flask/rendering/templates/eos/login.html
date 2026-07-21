@@ -1,0 +1,19 @@
+{% extends "eos/base.html" %}
+{% block nav %}{% endblock %}
+{% block content %}
+<header role="banner" aria-label="Student Login">
+  <h1>Student Login</h1>
+  <p>Enter your student identity to open the learning dashboard.</p>
+  <p><a href="/eos/auth/login">Use production authentication</a></p>
+</header>
+{% if error %}
+<p class="eos-error" role="alert">{{ error }}</p>
+{% endif %}
+<form class="eos-form" method="post" action="/eos/login/" aria-label="Student login">
+  <label for="student_id">Student ID</label>
+  <input id="student_id" name="student_id" value="{{ student_id }}" required autocomplete="username">
+  <div class="eos-cta-row">
+    <button type="submit">Continue to dashboard</button>
+  </div>
+</form>
+{% endblock %}

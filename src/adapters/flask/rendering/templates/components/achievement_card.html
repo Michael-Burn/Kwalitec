@@ -1,0 +1,19 @@
+{# Design System — Achievement Card #}
+<article
+  class="{{ class_name }}"
+  {% if style_attr %}style="{{ style_attr }}"{% endif %}
+  {% for name, value in a11y_attrs.items() if value is not none and value is not false %}
+  {{ name }}{% if value is not sameas true %}="{{ value }}"{% endif %}
+  {% endfor %}
+>
+  {% if badge_html %}
+  <div class="ds-achievement-card__badge">{{ badge_html|safe }}</div>
+  {% endif %}
+  {% if component.kind_label %}
+  <p class="ds-eyebrow">{{ component.kind_label }}</p>
+  {% endif %}
+  <h3 class="ds-achievement-card__title">{{ component.title }}</h3>
+  {% if component.message %}
+  <p class="ds-achievement-card__message">{{ component.message }}</p>
+  {% endif %}
+</article>

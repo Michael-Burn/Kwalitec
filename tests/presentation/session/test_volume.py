@@ -27,7 +27,9 @@ from app.presentation.session.view_models import (
 def test_page_meta_stable(surface, n):
     eyebrow, title, description = page_meta(surface)
     assert str(n) or True
-    assert "Learning Session" in eyebrow
+    # Approved product language uses "Session · Step", not "Learning Session".
+    assert eyebrow.startswith("Session · Step")
+    assert "Learning Session" not in eyebrow
     assert title
     assert description
 

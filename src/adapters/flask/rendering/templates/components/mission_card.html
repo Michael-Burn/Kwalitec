@@ -1,0 +1,24 @@
+{# Design System — Mission Card #}
+<article
+  class="{{ class_name }}"
+  {% if style_attr %}style="{{ style_attr }}"{% endif %}
+  {% for name, value in a11y_attrs.items() if value is not none and value is not false %}
+  {{ name }}{% if value is not sameas true %}="{{ value }}"{% endif %}
+  {% endfor %}
+>
+  {% if component.eyebrow %}
+  <p class="ds-eyebrow">{{ component.eyebrow }}</p>
+  {% endif %}
+  <h2 class="ds-mission-card__title">{{ component.title }}</h2>
+  {% if component.body %}
+  <p class="ds-mission-card__body">{{ component.body }}</p>
+  {% endif %}
+  <div class="ds-mission-card__meta">
+    {% if component.duration_label %}
+    <span class="ds-mission-card__duration">{{ component.duration_label }}</span>
+    {% endif %}
+    {% if component.status_label %}
+    <span class="ds-mission-card__status">{{ component.status_label }}</span>
+    {% endif %}
+  </div>
+</article>
