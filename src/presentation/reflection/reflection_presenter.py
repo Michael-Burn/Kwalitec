@@ -7,10 +7,12 @@ orchestrates learning, or calls AI.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from typing import Any
 
 from application.session_runtime import SessionStage, SessionState
 from presentation.design_system import ContainerWidth, PageHeader
+from presentation.provenance import ProvenanceMapper
 from presentation.reflection.reflection_mapper import ReflectionMapper
 from presentation.reflection.reflection_view_model import ReflectionViewModel
 from presentation.study_session.session_view_model import StudySessionViewModel
@@ -90,6 +92,12 @@ class ReflectionPresenter:
             student_notes=notes_field,
             reflection_prompt=reflection_prompt,
         )
+        provenance = ProvenanceMapper.for_reflection(
+            summary,
+            session=session,
+            weak_concept=weak_concept_field.value or None,
+        )
+        summary = replace(summary, provenance=provenance)
         primary = ReflectionMapper.primary_action(is_ready=is_ready)
 
         header_description = reflection_prompt or _DEFAULT_HEADER_DESCRIPTION
@@ -113,6 +121,7 @@ class ReflectionPresenter:
             mission_title=mission_title,
             stage_label=stage_label,
             is_ready=is_ready,
+            provenance=provenance,
         )
 
     @classmethod

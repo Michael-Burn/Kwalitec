@@ -37,7 +37,7 @@ class TestFounderAccess:
 
 class TestFounderDashboardAuth:
     def test_anonymous_redirects_to_login(self, client) -> None:
-        response = client.get("/founder/")
+        response = client.get("/console/")
         assert response.status_code == 302
         assert "/auth/login" in response.headers["Location"]
 
@@ -52,7 +52,7 @@ class TestFounderDashboardAuth:
             },
             follow_redirects=True,
         )
-        response = client.get("/founder/")
+        response = client.get("/console/")
         assert response.status_code == 403
 
     def test_founder_user_allowed(self, client, ctx, app) -> None:
@@ -66,7 +66,7 @@ class TestFounderDashboardAuth:
             },
             follow_redirects=True,
         )
-        response = client.get("/founder/")
+        response = client.get("/console/")
         assert response.status_code == 200
 
 
@@ -85,15 +85,14 @@ class TestFounderDashboardRoutes:
             },
             follow_redirects=True,
         )
-        response = client.get("/founder/")
+        response = client.get("/console/")
         assert response.status_code == 200
         html = response.data
-        assert b"Founder Command Centre" in html
-        assert b"Overview" in html
-        assert b"Needs action" in html
-        assert b"Operational alerts" in html
-        assert b"Recent feedback" in html
-        assert b"Programme pulse" in html
+        assert b"Kwalitec Console" in html
+        assert b"Console Home" in html
+        assert b"Attention Required" in html
+        assert b"Platform Summary" in html
+        assert b"Quick Actions" in html
 
     def test_operations_renders_system_sections(
         self, client, ctx, app, monkeypatch
@@ -113,7 +112,7 @@ class TestFounderDashboardRoutes:
         monkeypatch.setattr(
             ccs, "build_operations_page", lambda: make_service().build_page()
         )
-        response = client.get("/founder/operations")
+        response = client.get("/console/operations")
         assert response.status_code == 200
         html = response.data
         assert b"Operations" in html
@@ -122,6 +121,7 @@ class TestFounderDashboardRoutes:
         assert b"not wired" in html or b"Unavailable" in html
 
     def test_founder_nav_visible_only_to_founder(self, client, ctx, app) -> None:
+        """CONSOLE-001 — Console is a separate portal; Learning Workspace has no Console link."""
         app.config["FOUNDER_EMAILS"] = "founder@kwalitec.example"
         _make_user("founder@kwalitec.example")
         _make_user("student@kwalitec.example")
@@ -134,9 +134,14 @@ class TestFounderDashboardRoutes:
             },
             follow_redirects=True,
         )
-        founder_home = client.get("/dashboard/")
+        founder_home = client.get("/dashboard/", follow_redirects=True)
         assert founder_home.status_code == 200
-        assert b'href="/founder' in founder_home.data
+        # Portal separation: Learning Workspace must not surface Console chrome.
+        assert b"console-sidebar" not in founder_home.data
+        assert b">Founder<" not in founder_home.data
+        console_home = client.get("/console/")
+        assert console_home.status_code == 200
+        assert b"console-sidebar" in console_home.data
 
         client.post("/auth/logout", follow_redirects=True)
         client.post(
@@ -147,9 +152,10 @@ class TestFounderDashboardRoutes:
             },
             follow_redirects=True,
         )
-        ordinary_home = client.get("/dashboard/")
+        ordinary_home = client.get("/dashboard/", follow_redirects=True)
         assert ordinary_home.status_code == 200
-        assert b'href="/founder' not in ordinary_home.data
+        assert b'href="/console' not in ordinary_home.data
+        assert client.get("/console/").status_code == 403
 
     def test_legacy_research_founder_redirects(self, client, ctx, app) -> None:
         app.config["FOUNDER_EMAILS"] = "founder@kwalitec.example"
@@ -164,4 +170,4 @@ class TestFounderDashboardRoutes:
         )
         response = client.get("/research/founder", follow_redirects=False)
         assert response.status_code == 302
-        assert "/founder/feedback" in response.headers["Location"]
+        assert "/console/feedback" in response.headers["Location"]

@@ -1,5 +1,5 @@
 {#
-  Canonical Kwalitec logo — approved PNG only (single source of truth).
+  Canonical Kwalitec logo — approved PNG only (PX-001 single source of truth).
 
   Usage:
     {% include "partials/brand_logo.html" %}
@@ -7,8 +7,10 @@
       {% include "partials/brand_logo.html" %}
     {% endwith %}
 
-  Do not recreate this mark with SVG paths, CSS, or separate wordmark text.
-  Scale with max-height / CSS; never stretch with conflicting width+height.
+  Originates from Final Approved Kwalitec logo.png.
+  Do not recreate, redraw, recolour, crop, or stretch.
+  Do not wrap in sticker containers — clear space via CSS only.
+  Scale with max-height / CSS; never set conflicting width+height.
 #}
 {% set _class = brand_class|default('brand-logo') %}
 {% set _alt = brand_alt|default(approved_logo_alt|default('Kwalitec')) %}
@@ -17,6 +19,8 @@
     class="{{ _class }} brand-logo"
     src="{{ versioned_static(_path) }}"
     alt="{{ _alt }}"
+    width="1418"
+    height="372"
     decoding="async"
     loading="eager"
 >

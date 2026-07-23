@@ -25,12 +25,16 @@ from presentation.design_system import (
     Badge,
     Button,
     ButtonVariant,
+    EmptyState,
+    LoadingState,
     MissionCard,
     PageHeader,
     ProgressBar,
     Section,
+    Skeleton,
     StatisticTile,
     Timeline,
+    Toast,
     primary_button,
     secondary_button,
 )
@@ -38,6 +42,7 @@ from presentation.design_system.components.base import (
     AccessibilityContract,
     StyleContract,
 )
+from presentation.provenance import ProvenanceViewModel
 
 TEMPLATES_DIR = Path(__file__).resolve().parent / "templates"
 COMPONENT_TEMPLATE_DIR = TEMPLATES_DIR / "components"
@@ -53,6 +58,11 @@ COMPONENT_TEMPLATES = {
     "secondary_button": "components/secondary_button.html",
     "achievement_card": "components/achievement_card.html",
     "statistic_card": "components/statistic_card.html",
+    "empty_state": "components/empty_state.html",
+    "skeleton": "components/skeleton.html",
+    "toast": "components/toast.html",
+    "loading_state": "components/loading_state.html",
+    "provenance": "components/provenance.html",
 }
 
 
@@ -70,6 +80,7 @@ class ComponentRenderer:
         self.styles = style_renderer or StyleRenderer()
         self.a11y = accessibility_renderer or AccessibilityRenderer()
         self.tokens = token_renderer or TokenRenderer()
+        self._token_style_cache: str | None = None
         root = templates_dir or TEMPLATES_DIR
         self._env = Environment(
             loader=FileSystemLoader(str(root)),
@@ -98,6 +109,16 @@ class ComponentRenderer:
             return self.render_achievement_card(component)
         if isinstance(component, StatisticTile):
             return self.render_statistic_card(component)
+        if isinstance(component, EmptyState):
+            return self.render_empty_state(component)
+        if isinstance(component, Skeleton):
+            return self.render_skeleton(component)
+        if isinstance(component, Toast):
+            return self.render_toast(component)
+        if isinstance(component, LoadingState):
+            return self.render_loading_state(component)
+        if isinstance(component, ProvenanceViewModel):
+            return self.render_provenance(component)
         if isinstance(component, DashboardViewModel):
             return self.render_view_model(component)
         raise TypeError(
@@ -237,9 +258,60 @@ class ComponentRenderer:
             **self._chrome(tile, class_name="ds-statistic-card", label=tile.label),
         )
 
+    def render_empty_state(self, empty: EmptyState) -> str:
+        return self._render_template(
+            "empty_state",
+            component=empty,
+            **self._chrome(empty, class_name="ds-empty-state", label=empty.title),
+        )
+
+    def render_skeleton(self, skeleton: Skeleton) -> str:
+        return self._render_template(
+            "skeleton",
+            component=skeleton,
+            **self._chrome(
+                skeleton, class_name="ds-skeleton", label=skeleton.label
+            ),
+        )
+
+    def render_toast(self, toast: Toast) -> str:
+        return self._render_template(
+            "toast",
+            component=toast,
+            **self._chrome(toast, class_name="ds-toast", label=toast.message),
+        )
+
+    def render_loading_state(self, loading: LoadingState) -> str:
+        return self._render_template(
+            "loading_state",
+            component=loading,
+            **self._chrome(loading, class_name="ds-loading-state", label=loading.label),
+        )
+
+    def render_provenance(self, provenance: ProvenanceViewModel | None) -> str:
+        """Render expandable provenance reasons — empty string when unavailable."""
+        if provenance is None or not provenance.available:
+            return ""
+        accordion = provenance.as_accordion()
+        style = accordion.style()
+        a11y = accordion.accessibility()
+        return self._render_template(
+            "provenance",
+            provenance=provenance,
+            class_name=join_classes("ds-component", "eos-provenance"),
+            style_attr=self.styles.inline_style(style),
+            a11y_attrs=self.a11y.attributes(a11y, label=provenance.title),
+        )
+
     def token_style_tag(self) -> str:
-        """Expose Design System CSS variables for embedding beside components."""
-        return self.tokens.style_tag()
+        """Expose Design System CSS variables for embedding beside components.
+
+        Cached per renderer instance to avoid duplicate token stylesheet work
+        across fragment renders in one page assembly (PX-004).
+        """
+        if self._token_style_cache is None:
+            self._token_style_cache = self.tokens.style_tag()
+        return self._token_style_cache
 
     def template_path(self, key: str) -> Path:
         """Return the filesystem path for a named component template."""
@@ -250,15 +322,22 @@ class ComponentRenderer:
         parts = [
             self.token_style_tag(),
             self.render_page_header(view.header),
-            self.render_section(view.greeting),
-            self.render_mission_card(view.mission_card),
-            self.render_button(view.primary_action),
-            self.render_progress_bar(view.progress_bar),
         ]
-        for tile in view.learning_statistics:
-            parts.append(self.render_statistic_card(tile))
-        for achievement in view.achievements:
-            parts.append(self.render_achievement_card(achievement))
+        if view.greeting is not None:
+            parts.append(self.render_section(view.greeting))
+        mission = view.mission_card or (
+            view.hero.mission_card if view.hero is not None else None
+        )
+        if mission is not None:
+            parts.append(self.render_mission_card(mission))
+        action = view.primary_action or (
+            view.hero.primary_action if view.hero is not None else None
+        )
+        if action is not None:
+            parts.append(self.render_button(action))
+        if view.progress_bar is not None:
+            parts.append(self.render_progress_bar(view.progress_bar))
+        # PX-003: decision screen does not render statistic / achievement grids.
         return "\n".join(parts)
 
     def _chrome(
@@ -322,5 +401,10 @@ class ComponentRenderer:
             | Button
             | AchievementView
             | StatisticTile
+            | EmptyState
+            | Skeleton
+            | Toast
+            | LoadingState
+            | ProvenanceViewModel
             | DashboardViewModel,
         )

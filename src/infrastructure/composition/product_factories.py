@@ -16,6 +16,8 @@ from uuid import uuid4
 from application.auth.auth_service import AuthenticationService
 from application.auth.ports import (
     Clock as AuthClock,
+)
+from application.auth.ports import (
     EmailSender,
     PasswordHasher,
     RateLimiter,
@@ -25,14 +27,18 @@ from application.evidence_update.evidence_update_service import EvidenceUpdateSe
 from application.onboarding.onboarding_service import OnboardingService
 from application.onboarding.ports import (
     Clock as OnboardingClock,
+)
+from application.onboarding.ports import (
     OnboardingIdGenerator,
 )
 from application.ports.event_publisher import ApplicationEventPublisher
+from application.student_initialization.student_initialization_service import (
+    StudentInitializationService,
+)
 from domain.onboarding.ids import OnboardingId
 from infrastructure.persistence.product_checkpoint_store import ProductCheckpointStore
 from infrastructure.persistence.sqlalchemy.unit_of_work import SessionFactory
 from infrastructure.persistence.sqlalchemy_uow import SqlAlchemyProductUnitOfWork
-from infrastructure.security.argon2_password_hasher import Argon2PasswordHasher
 from infrastructure.security.auth_adapters import (
     HmacStubPasswordHasher,
     LoggingEmailSender,
@@ -65,6 +71,8 @@ def build_product_unit_of_work(
 def build_production_password_hasher() -> PasswordHasher:
     """Prefer Argon2; fall back only when the optional package is absent."""
     try:
+        from infrastructure.security.argon2_password_hasher import Argon2PasswordHasher
+
         return Argon2PasswordHasher()
     except Exception:  # pragma: no cover - import/runtime guard
         return HmacStubPasswordHasher()  # type: ignore[return-value]
@@ -199,16 +207,77 @@ class TransactionalOnboardingService:
         return self._run(lambda service: service.complete(request))
 
 
+class TransactionalStudentInitializationService:
+    """Open a product UoW for each Student Twin initialization."""
+
+    def __init__(
+        self,
+        session_factory: SessionFactory,
+        *,
+        events: ApplicationEventPublisher,
+        clock: Any,
+        pipeline: Any,
+    ) -> None:
+        self._session_factory = session_factory
+        self._events = events
+        self._clock = clock
+        self._pipeline = pipeline
+
+    def initialize(self, completed: Any) -> Any:
+        from application.student_initialization.student_initialization_service import (
+            EducationalPipelineAdapter,
+        )
+
+        uow = SqlAlchemyProductUnitOfWork(self._session_factory)
+        service = StudentInitializationService(
+            uow=uow,  # type: ignore[arg-type]
+            events=self._events,
+            clock=self._clock,
+            pipeline=self._pipeline
+            if isinstance(self._pipeline, EducationalPipelineAdapter)
+            else EducationalPipelineAdapter(self._pipeline),
+        )
+        return service.initialize(completed)
+
+
+class TransactionalEvidenceUpdateService:
+    """Open a product UoW for each evidence update."""
+
+    def __init__(
+        self,
+        session_factory: SessionFactory,
+        *,
+        events: ApplicationEventPublisher,
+        clock: Any,
+    ) -> None:
+        self._session_factory = session_factory
+        self._events = events
+        self._clock = clock
+
+    def update(self, request: Any) -> Any:
+        uow = SqlAlchemyProductUnitOfWork(self._session_factory)
+        service = EvidenceUpdateService(
+            uow,  # type: ignore[arg-type]
+            self._events,
+            self._clock,
+        )
+        return service.update(request)
+
+
 @dataclass(frozen=True, slots=True)
 class ProductServices:
     """Product-surface collaborators assembled on SqlAlchemyProductUnitOfWork."""
 
-    unit_of_work: SqlAlchemyProductUnitOfWork
+    session_factory: SessionFactory
     authentication: TransactionalAuthenticationService
     onboarding: TransactionalOnboardingService
-    student_initialization: Any
-    evidence_update: EvidenceUpdateService
+    student_initialization: TransactionalStudentInitializationService
+    evidence_update: TransactionalEvidenceUpdateService
     checkpoint_store: ProductCheckpointStore
+
+    def new_unit_of_work(self) -> SqlAlchemyProductUnitOfWork:
+        """Construct a fresh product unit of work for the shared session factory."""
+        return SqlAlchemyProductUnitOfWork(self.session_factory)
 
 
 def build_product_services(
@@ -231,27 +300,26 @@ def build_product_services(
     )
     from application.student_initialization.student_initialization_service import (
         EducationalPipelineAdapter,
-        StudentInitializationService,
     )
 
     resolved_clock = clock or UtcClock()
-    product_uow = build_product_unit_of_work(session_factory)
 
     if educational_pipeline is None:
         from application.pipeline.educational_pipeline import EducationalPipeline
 
         educational_pipeline = EducationalPipeline()
 
-    student_initialization = StudentInitializationService(
-        uow=product_uow,  # type: ignore[arg-type]
+    pipeline_adapter = EducationalPipelineAdapter(
+        educational_pipeline  # type: ignore[arg-type]
+    )
+    student_initialization = TransactionalStudentInitializationService(
+        session_factory,
         events=events,
         clock=resolved_clock,
-        pipeline=EducationalPipelineAdapter(
-            educational_pipeline  # type: ignore[arg-type]
-        ),
+        pipeline=pipeline_adapter,
     )
     twin_initializer = StudentTwinInitializerAdapter(
-        student_initialization,
+        student_initialization,  # type: ignore[arg-type]
         resolved_clock,
     )
 
@@ -271,15 +339,15 @@ def build_product_services(
         clock=resolved_clock,
         id_generator=UuidOnboardingIdGenerator(),
     )
-    evidence_update = EvidenceUpdateService(
-        product_uow,  # type: ignore[arg-type]
-        events,
-        resolved_clock,
+    evidence_update = TransactionalEvidenceUpdateService(
+        session_factory,
+        events=events,
+        clock=resolved_clock,
     )
     checkpoint_store = ProductCheckpointStore(session_factory)
 
     return ProductServices(
-        unit_of_work=product_uow,
+        session_factory=session_factory,
         authentication=authentication,
         onboarding=onboarding,
         student_initialization=student_initialization,
@@ -291,7 +359,9 @@ def build_product_services(
 __all__ = [
     "ProductServices",
     "TransactionalAuthenticationService",
+    "TransactionalEvidenceUpdateService",
     "TransactionalOnboardingService",
+    "TransactionalStudentInitializationService",
     "UtcClock",
     "UuidOnboardingIdGenerator",
     "build_product_services",

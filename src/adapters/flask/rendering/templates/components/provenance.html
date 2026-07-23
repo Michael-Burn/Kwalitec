@@ -1,0 +1,22 @@
+{# RR-001 — expandable educational provenance (presentation only) #}
+{% if provenance is defined and provenance and provenance.available %}
+<details
+  class="eos-provenance"
+  data-provenance="true"
+  data-provenance-surface="{{ provenance.surface or '' }}"
+  data-reason-count="{{ provenance.reason_count }}"
+  {% if provenance.open %}open{% endif %}
+>
+  <summary class="eos-provenance__summary">
+    <span class="eos-provenance__title">{{ provenance.title }}</span>
+    <span class="eos-provenance__hint">{{ provenance.reason_count }} reason{% if provenance.reason_count != 1 %}s{% endif %}</span>
+  </summary>
+  <ol class="eos-provenance__list" aria-label="{{ provenance.title }}">
+    {% for reason in provenance.reasons %}
+    <li class="eos-provenance__reason" data-provenance-kind="{{ reason.kind }}">
+      {{ reason.sentence }}
+    </li>
+    {% endfor %}
+  </ol>
+</details>
+{% endif %}

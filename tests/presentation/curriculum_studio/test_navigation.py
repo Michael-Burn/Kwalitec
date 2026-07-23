@@ -1,4 +1,4 @@
-"""Navigation and workflow consistency for Founder Studio UX."""
+"""Navigation and workflow consistency for Console Content / Studio UX."""
 
 from __future__ import annotations
 
@@ -18,30 +18,30 @@ from app.presentation.curriculum_studio.view_models import (
 from tests.presentation.curriculum_studio.helpers import make_workspace
 
 
-def test_studio_is_primary_nav_item():
+def test_content_is_primary_nav_item():
     labels = [item.label for item in COMMAND_CENTRE_NAV]
-    assert "Studio" in labels
-    studio = next(i for i in COMMAND_CENTRE_NAV if i.section_id == "studio")
-    assert studio.endpoint == "curriculum_studio.index"
+    assert "Content" in labels
+    content = next(i for i in COMMAND_CENTRE_NAV if i.section_id == "content")
+    assert content.endpoint == "curriculum_studio.index"
 
 
-def test_evidence_gates_primary_nav():
+def test_assessments_primary_nav():
     labels = [item.label for item in COMMAND_CENTRE_NAV]
-    assert "Evidence Gates" in labels
-    gates = next(i for i in COMMAND_CENTRE_NAV if i.section_id == "evidence_gates")
+    assert "Assessments" in labels
+    gates = next(i for i in COMMAND_CENTRE_NAV if i.section_id == "assessments")
     assert gates.endpoint == "founder_dashboard.evidence_gates"
     # Keep secondary list free of the alpha primary destinations.
     secondary_ids = [item.section_id for item in COMMAND_CENTRE_SECONDARY_NAV]
-    assert "evidence_gates" not in secondary_ids
+    assert "assessments" not in secondary_ids
 
 
 @pytest.mark.parametrize(
     ("endpoint", "expected"),
     (
-        ("curriculum_studio.index", "studio"),
-        ("curriculum_studio.workspace", "studio"),
-        ("founder_dashboard.founder_intelligence", "intelligence"),
-        ("founder_dashboard.evidence_gates", "evidence_gates"),
+        ("curriculum_studio.index", "content"),
+        ("curriculum_studio.workspace", "content"),
+        ("founder_dashboard.founder_intelligence", "learning"),
+        ("founder_dashboard.evidence_gates", "assessments"),
         ("founder_dashboard.index", "overview"),
     ),
 )

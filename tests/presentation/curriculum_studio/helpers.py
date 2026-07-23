@@ -18,11 +18,12 @@ from tests.application.curriculum_studio.helpers import (
 FOUNDER_EMAIL = "founder@kwalitec.example"
 
 STUDIO_TEMPLATE_MARKERS = (
+    "founder_dashboard/base.html",
     "founder-breadcrumb",
     "founder-next-action",
     "founder-empty-state",
-    "founder-btn",
-    "founder_dashboard.css",
+    "founder-required",
+    "btn-primary",
 )
 
 FORBIDDEN_FOUNDER_COPY = (

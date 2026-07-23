@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ product_tagline }}">
+    <meta name="description" content="{{ product_value_proposition }} · {{ product_descriptor }}">
     <meta name="csrf-token" content="{{ csrf_token() if csrf_token else '' }}">
     <meta name="color-scheme" content="light dark">
     <title>{{ title ~ ' · ' if title else '' }}Kwalitec</title>
@@ -19,11 +19,12 @@
     {% block extra_head %}{% endblock %}
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <div class="app-shell">
         {% include "partials/sidebar.html" %}
         <div class="app-main">
             {% include "partials/topnav.html" %}
-            <main class="container-fluid py-4 px-3 px-lg-4">
+            <main id="main-content" class="container-fluid py-4 px-3 px-lg-4" role="main" tabindex="-1">
                 {% include "partials/flash_messages.html" %}
                 {% block content %}{% endblock %}
             </main>

@@ -164,6 +164,8 @@ def test_alembic_head_and_migration_files():
     versions = REPO_ROOT / "migrations" / "versions"
     assert (versions / "202607190001_create_v2_aggregate_tables.py").is_file()
     assert (versions / "202607190002_merge_v2_aggregate_heads.py").is_file()
+    assert (versions / "202607230001_alpha_001_infrastructure.py").is_file()
+    assert (versions / "202607230002_pr001_rbac_identity.py").is_file()
 
 
 def test_secret_key_placeholder_documented():

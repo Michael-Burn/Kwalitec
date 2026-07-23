@@ -1,0 +1,22 @@
+<form
+    class="console-search"
+    role="search"
+    method="get"
+    action="{{ url_for('founder_dashboard.search') }}"
+    aria-label="Console search"
+>
+    <label class="visually-hidden" for="console-search-input">Search the Console</label>
+    <input
+        id="console-search-input"
+        class="console-search-input"
+        type="search"
+        name="q"
+        value="{{ console_search_query or '' }}"
+        placeholder="Search students, content, support…"
+        autocomplete="off"
+        enterkeyhint="search"
+    >
+    <button type="submit" class="console-btn console-btn--tertiary console-search-submit">
+        Search
+    </button>
+</form>

@@ -91,7 +91,7 @@ def test_invalid_workspace_flash_copy():
 
 def test_founder_invalid_workspace_redirect(founder_client):
     response = founder_client.get(
-        "/founder/studio/workspaces/missing-ws", follow_redirects=True
+        "/console/studio/workspaces/missing-ws", follow_redirects=True
     )
     assert response.status_code == 200
     html = response.get_data(as_text=True).lower()
@@ -106,16 +106,16 @@ def test_unauthenticated_session_redirects_to_login(client):
 
 def test_unauthenticated_studio_redirects(client, app):
     app.config["FOUNDER_EMAILS"] = "founder@kwalitec.example"
-    response = client.get("/founder/studio/", follow_redirects=False)
+    response = client.get("/console/studio/", follow_redirects=False)
     assert response.status_code in {302, 303}
 
 
 @pytest.mark.parametrize(
     "path",
     (
-        "/founder/intelligence",
-        "/founder/evidence-gates",
-        "/founder/studio/",
+        "/console/intelligence",
+        "/console/evidence-gates",
+        "/console/studio/",
     ),
 )
 def test_founder_pages_require_auth(client, app, path):

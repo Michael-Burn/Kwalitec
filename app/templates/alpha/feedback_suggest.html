@@ -1,0 +1,27 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<section class="section-header">
+    <p class="section-eyebrow">Support</p>
+    <h1 class="section-title">{{ title }}</h1>
+    <p class="section-description">Share one concrete idea that would make Internal Alpha better.</p>
+</section>
+
+<form method="post" class="alpha-feedback-form" style="max-width: 36rem;">
+    {{ form.hidden_tag() }}
+    {{ form.kind() }}
+    {{ form.mission_id() }}
+    {{ form.surface() }}
+    <div class="mb-3">
+        {{ form.message.label(class="form-label") }}
+        {{ form.message(class="form-control") }}
+        {% for error in form.message.errors %}
+        <p class="invalid-feedback d-block" role="alert">{{ error }}</p>
+        {% endfor %}
+    </div>
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Send suggestion</button>
+        <a class="btn btn-outline-secondary" href="{{ url_for('alpha.help_centre') }}">Cancel</a>
+    </div>
+</form>
+{% endblock %}

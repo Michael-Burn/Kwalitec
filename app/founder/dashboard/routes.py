@@ -1,7 +1,7 @@
-"""Founder Command Centre HTTP routes (IAHF-003 / POP-002).
+"""Kwalitec Console HTTP routes (CONSOLE-001).
 
-Single Founder operational home under ``/founder``. Legacy Research
-Command Centre URLs redirect here for compatibility.
+Operational portal under ``/console``. Legacy Research Command Centre URLs
+and ``/founder`` paths redirect here for compatibility.
 """
 
 from __future__ import annotations
@@ -21,6 +21,9 @@ from app.founder.dashboard.nav import COMMAND_CENTRE_NAV, active_section_id
 from app.founder.dashboard.services.command_centre_service import (
     CommandCentreService,
     build_operations_page,
+)
+from app.founder.dashboard.services.console_search_service import (
+    ConsoleSearchService,
 )
 from app.founder.dashboard.services.operational_health_service import (
     OperationalHealthService,
@@ -52,18 +55,29 @@ def _overview_service() -> CommandCentreService:
 
 @founder_dashboard_bp.app_context_processor
 def inject_founder_nav() -> dict:
-    """Expose Founder nav visibility and Command Centre section chrome."""
+    """Expose Console nav visibility and section chrome."""
     endpoint = request.endpoint if request else None
     return {
         "show_founder_nav": is_founder_user(),
+        "show_console_nav": is_founder_user(),
         "command_centre_nav": COMMAND_CENTRE_NAV,
         "command_centre_section": active_section_id(endpoint),
+        "is_kwalitec_console": bool(
+            endpoint
+            and (
+                endpoint.startswith("founder_dashboard.")
+                or endpoint.startswith("curriculum_studio.")
+            )
+        ),
         "is_founder_command_centre": bool(
             endpoint
             and (
                 endpoint.startswith("founder_dashboard.")
                 or endpoint.startswith("curriculum_studio.")
             )
+        ),
+        "console_search_query": (
+            (request.args.get("q") or "").strip() if request else ""
         ),
     }
 
@@ -72,23 +86,37 @@ def inject_founder_nav() -> dict:
 @founder_dashboard_bp.get("")
 @founder_required
 def index():
-    """Founder Command Centre Overview — the sole Founder home."""
+    """Console Home — executive briefing for operational decisions."""
     overview = _overview_service().build_overview()
     return render_template(
         "founder_dashboard/overview.html",
-        title="Founder Command Centre",
+        title="Console Home",
         overview=overview,
+    )
+
+
+@founder_dashboard_bp.get("/search")
+@founder_required
+def search():
+    """Global Console search across operational domains."""
+    query = (request.args.get("q") or "").strip()
+    result = ConsoleSearchService.search(query)
+    return render_template(
+        "founder_dashboard/search.html",
+        title="Console Search",
+        result=result,
+        console_search_query=query,
     )
 
 
 @founder_dashboard_bp.get("/operational-health")
 @founder_required
 def operational_health():
-    """Operational decision dashboard — Needs Attention / Healthy / Trends."""
+    """Operations — Needs Attention / Healthy / Trends."""
     page = OperationalHealthService().build_page()
     return render_template(
         "founder_dashboard/operational_health.html",
-        title="Operational Health",
+        title="Operations",
         page=page,
     )
 
@@ -96,7 +124,7 @@ def operational_health():
 @founder_dashboard_bp.get("/intelligence")
 @founder_required
 def founder_intelligence():
-    """Founder Intelligence — advisory journey-level educational signals (V2-021)."""
+    """Learning — advisory journey-level educational signals (V2-021)."""
     from flask import current_app
 
     from app.application.config.v2_flags import resolve_v2_feature_flags
@@ -112,7 +140,7 @@ def founder_intelligence():
     )
     return render_template(
         "founder_dashboard/founder_intelligence.html",
-        title="Founder Intelligence",
+        title="Learning",
         snapshot=snapshot,
         dual_run=dual,
         flags=flags,
@@ -122,7 +150,7 @@ def founder_intelligence():
 @founder_dashboard_bp.get("/evidence-gates")
 @founder_required
 def evidence_gates():
-    """Product Strategy evidence gates checklist for V2 cutover."""
+    """Assessments — product strategy evidence gates for V2 cutover."""
     from app.infrastructure.diagnostics.dual_run import build_dual_run_status
     from app.infrastructure.diagnostics.evidence_gates import (
         build_evidence_gates_report,
@@ -132,7 +160,7 @@ def evidence_gates():
     report = build_evidence_gates_report(dual_run=dual)
     return render_template(
         "founder_dashboard/evidence_gates.html",
-        title="Evidence Gates",
+        title="Assessments",
         report=report,
         dual_run=dual,
     )
@@ -141,11 +169,11 @@ def evidence_gates():
 @founder_dashboard_bp.get("/attention")
 @founder_required
 def attention():
-    """Triage queue: outstanding reviews and high-severity findings."""
+    """Attention Center — outstanding reviews and high-severity findings."""
     items = _overview_service().list_attention_items()
     return render_template(
         "founder_dashboard/attention.html",
-        title="Attention",
+        title="Attention Center",
         items=items,
     )
 
@@ -153,14 +181,14 @@ def attention():
 @founder_dashboard_bp.route("/feedback", methods=["GET", "POST"])
 @founder_required
 def feedback():
-    """Product Check-in inbox and submission workflow (live SoT)."""
+    """Support — Product Check-in inbox and submission workflow."""
     return handle_feedback_request()
 
 
 @founder_dashboard_bp.get("/findings")
 @founder_required
 def findings():
-    """Product Findings list."""
+    """Product Findings list (Support module)."""
     from app.research.forms import ProductFindingForm
 
     severity = (request.args.get("severity") or "").strip() or None
@@ -193,7 +221,7 @@ def finding_detail(finding_id: int):
 @founder_dashboard_bp.get("/research")
 @founder_required
 def research():
-    """Research insights and product health (read/decide)."""
+    """Analytics — research insights and product health."""
     time_window = (request.args.get("time_window") or TIME_WINDOW_7_DAYS).strip()
     if time_window not in TIME_WINDOW_LABELS:
         time_window = TIME_WINDOW_7_DAYS
@@ -203,7 +231,7 @@ def research():
     )
     return render_template(
         "founder_dashboard/research.html",
-        title="Research",
+        title="Analytics",
         context=context,
         time_window=time_window,
         time_window_labels=TIME_WINDOW_LABELS,
@@ -226,14 +254,38 @@ def internal_alpha():
     )
 
 
+@founder_dashboard_bp.get("/alpha-observability")
+@founder_required
+def alpha_observability():
+    """Platform Intelligence — presentation telemetry and lightweight feedback."""
+    from app.services.alpha_feedback_service import AlphaFeedbackService
+    from app.services.presentation_telemetry_service import (
+        PresentationTelemetryService,
+    )
+    from app.services.release_info_service import ReleaseInfoService
+
+    events = PresentationTelemetryService.recent(limit=40)
+    event_counts = PresentationTelemetryService.count_by_type()
+    feedback = AlphaFeedbackService.recent(limit=40)
+    release = ReleaseInfoService.current()
+    return render_template(
+        "founder_dashboard/alpha_observability.html",
+        title="Platform Intelligence",
+        events=events,
+        event_counts=event_counts,
+        feedback=feedback,
+        release=release,
+    )
+
+
 @founder_dashboard_bp.get("/participants")
 @founder_required
 def participants():
-    """Alpha participants roster and recognition."""
+    """Students — Alpha participants roster and recognition."""
     rows = _overview_service().list_participants()
     return render_template(
         "founder_dashboard/participants.html",
-        title="Participants",
+        title="Students",
         participants=rows,
     )
 
@@ -241,11 +293,11 @@ def participants():
 @founder_dashboard_bp.get("/operations")
 @founder_required
 def operations():
-    """System & engineering readiness (FOS Operational State)."""
+    """System operations — engineering readiness (FOS Operational State)."""
     page = build_operations_page()
     return render_template(
         "founder_dashboard/operations.html",
-        title="Operations",
+        title="System Operations",
         page=page,
         overview=page.overview,
     )
@@ -272,7 +324,7 @@ def releases():
 @founder_dashboard_bp.get("/vision")
 @founder_required
 def vision_journal():
-    """Founder Vision Journal — strategic memory of product ideas."""
+    """Vision Journal — strategic memory of product ideas."""
     return handle_vision_journal()
 
 
@@ -325,11 +377,11 @@ def vision_remove_relation(entry_id: int, relation_id: int):
 @founder_dashboard_bp.get("/settings")
 @founder_required
 def settings():
-    """Founder settings bridge to product Settings / Internal Alpha."""
+    """Console settings bridge to product Settings / Internal Alpha."""
     status = InternalAlphaStatusService.build_status(current_user.id)
     return render_template(
         "founder_dashboard/settings.html",
-        title="Founder Settings",
+        title="Console Settings",
         alpha_status=status,
         product_settings_url=url_for("settings.index"),
     )
@@ -348,5 +400,5 @@ def review_submission(submission_id: int):
 @founder_dashboard_bp.post("/participants/award-founders-circle/<int:user_id>")
 @founder_required
 def award_founders_circle(user_id: int):
-    """Award Founder's Circle from Participants."""
+    """Award Founder's Circle from Students."""
     return handle_award_founders_circle(user_id)

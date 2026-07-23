@@ -69,10 +69,19 @@ class TestOfficialAssetPack:
     def test_approved_logo_is_single_display_source(self) -> None:
         assert APPROVED_LOGO.is_file() and APPROVED_LOGO.stat().st_size > 0
         assert APPROVED_LOGO.name == "approved-kwalitec-logo.png"
-        # Master archive remains available and shares the same bytes.
-        original = ASSETS / "original" / "Approved-Kwalitec-Logo.png"
-        assert original.is_file()
-        assert APPROVED_LOGO.read_bytes() == original.read_bytes()
+        # Final Approved master remains archived; display lockup originates from it.
+        master = ASSETS / "original" / "Final-Approved-Kwalitec-Logo.png"
+        legacy = ASSETS / "original" / "Approved-Kwalitec-Logo.png"
+        assert master.is_file() and master.stat().st_size > 0
+        assert legacy.is_file() and legacy.read_bytes() == master.read_bytes()
+        # Display asset is transparent lockup derived from master (not a redraw).
+        from PIL import Image
+
+        display = Image.open(APPROVED_LOGO)
+        assert display.mode in {"RGBA", "LA", "PA"} or (
+            display.mode == "P" and "transparency" in display.info
+        )
+        assert display.size[0] > 0 and display.size[1] > 0
 
     def test_runtime_icon_set_complete(self) -> None:
         for name in (
@@ -91,6 +100,13 @@ class TestOfficialAssetPack:
     def test_runtime_branding_has_no_recreated_logo_svgs(self) -> None:
         logo_svgs = list(BRANDING.glob("logo-*.svg"))
         assert logo_svgs == [], f"obsolete logo SVGs still present: {logo_svgs}"
+
+    def test_favicon_svg_embeds_derived_mark_not_path_redraw(self) -> None:
+        text = (BRANDING / "favicon.svg").read_text(encoding="utf-8")
+        assert "#0D1B2A" in text
+        assert "data:image/png;base64," in text
+        assert 'id="k-mark"' not in text
+        assert "hand-built vector" not in text
 
 
 class TestSidebarBrandChrome:

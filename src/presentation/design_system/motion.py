@@ -26,6 +26,9 @@ class MotionToken(str, Enum):
     PRESS = "press"
     LIFT = "lift"
     SKELETON = "skeleton"
+    PAGE = "page"
+    SIDEBAR = "sidebar"
+    TOOLTIP = "tooltip"
 
 
 MOTION: Mapping[MotionToken, MotionValue] = {
@@ -44,6 +47,16 @@ MOTION: Mapping[MotionToken, MotionValue] = {
     ),
     MotionToken.SKELETON: MotionValue(
         1200, "ease-out", "--transition-skeleton", "Skeleton pulse"
+    ),
+    # UX-001 / PX-004 — continuous navigation without abrupt page cuts.
+    MotionToken.PAGE: MotionValue(
+        250, "ease-out", "--transition-page", "Page enter / surface continuity"
+    ),
+    MotionToken.SIDEBAR: MotionValue(
+        220, "ease-out", "--transition-sidebar", "Sidebar open / close"
+    ),
+    MotionToken.TOOLTIP: MotionValue(
+        120, "ease-out", "--transition-tooltip", "Tooltip appear"
     ),
 }
 

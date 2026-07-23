@@ -101,7 +101,21 @@ def index():
     Each service call is individually timed and guarded so that a slow
     or failing query never blocks the entire dashboard from rendering.
     """
+    from app.services.alpha_onboarding_service import AlphaOnboardingService
+    from app.services.presentation_telemetry_service import (
+        EVENT_DASHBOARD_OPENED,
+        PresentationTelemetryService,
+    )
+
+    if AlphaOnboardingService.should_show(current_user):
+        return redirect(url_for("alpha.onboarding"))
+
     user_id = current_user.id
+    PresentationTelemetryService.record(
+        EVENT_DASHBOARD_OPENED,
+        user_id=user_id,
+        path=request.path,
+    )
 
     # Essentials — needed for the core dashboard UX
     active_study_plan = _timed_call(

@@ -99,7 +99,7 @@ def test_session_primary_cta_language(student_client):
 
 
 def test_studio_primary_buttons_human_language(founder_client):
-    html = founder_client.get("/founder/studio/workspaces/ws-cs1").get_data(
+    html = founder_client.get("/console/studio/workspaces/ws-cs1").get_data(
         as_text=True
     )
     # Prefer product language over command jargon.
@@ -121,9 +121,9 @@ def test_student_page_titles(student_client):
 
 def test_founder_page_titles(founder_client):
     for path, needle in (
-        ("/founder/studio/", "Curriculum Studio"),
-        ("/founder/intelligence", "Founder Intelligence"),
-        ("/founder/evidence-gates", "Evidence Gates"),
+        ("/console/studio/", "Curriculum Studio"),
+        ("/console/intelligence", "Founder Intelligence"),
+        ("/console/evidence-gates", "Evidence Gates"),
     ):
         html = founder_client.get(path).get_data(as_text=True)
         assert needle in html
@@ -146,9 +146,9 @@ def test_no_duplicate_primary_nav_labels():
     from app.founder.dashboard.nav import COMMAND_CENTRE_NAV
 
     labels = [i.label for i in COMMAND_CENTRE_NAV]
-    assert labels.count("Studio") == 1
-    assert labels.count("Intelligence") == 1
-    assert labels.count("Evidence Gates") == 1
+    assert labels.count("Content") == 1
+    assert labels.count("Learning") == 1
+    assert labels.count("Assessments") == 1
 
 
 def test_publication_stage_ui_says_publish_not_publication():

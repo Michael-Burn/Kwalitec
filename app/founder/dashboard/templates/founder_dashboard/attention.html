@@ -1,36 +1,38 @@
-{% extends "layouts/base.html" %}
+{% extends "founder_dashboard/base.html" %}
 
-{% block extra_head %}
-<link rel="stylesheet" href="{{ versioned_static('css/founder_dashboard.css', endpoint='founder_dashboard.static') }}">
-{% endblock %}
+{% block console_content %}
+<article class="console-page" aria-labelledby="attention-title">
+    <header class="console-page-header">
+        <p class="console-eyebrow">{{ kwalitec_console_label }} · Attention Center</p>
+        <h1 id="attention-title" class="console-page-title">Attention Center</h1>
+        <p class="console-executive-summary">
+            Highest-priority operational work — reviews, findings, health notices, and student issues.
+        </p>
+        <div class="console-primary-action">
+            <a class="console-btn console-btn--primary" href="{{ url_for('founder_dashboard.feedback') }}">Open support inbox</a>
+            <a class="console-btn console-btn--secondary" href="{{ url_for('founder_dashboard.operational_health') }}">Operations</a>
+        </div>
+    </header>
 
-{% block content %}
-{% include "founder_dashboard/_nav.html" %}
-
-<section class="section-header founder-header">
-    <p class="section-eyebrow">{{ founder_command_centre_label }} / Attention</p>
-    <h1 class="section-title">Attention</h1>
-    <p class="section-description">Work requiring Founder action — outstanding reviews and high-severity findings.</p>
-</section>
-
-<section class="mb-4" aria-label="Attention queue">
-    {% if items %}
-    <ul class="list-unstyled">
-        {% for item in items %}
-        <li class="command-card mb-2">
-            <div class="command-card-body d-flex justify-content-between gap-3 align-items-center flex-wrap">
-                <div>
-                    <span class="founder-alert-severity founder-alert-severity--{{ item.urgency }}">{{ item.urgency }}</span>
-                    <strong>{{ item.title }}</strong>
-                    <span class="text-muted">· {{ item.detail }}</span>
+    <section class="console-section console-attention-center" aria-label="Attention queue">
+        {% if items %}
+        <ul class="console-attention-queue">
+            {% for item in items %}
+            <li class="console-card console-card--queue">
+                <div class="console-queue-row">
+                    <div>
+                        <span class="console-alert-severity console-alert-severity--{{ item.urgency }}">{{ item.urgency }}</span>
+                        <strong class="console-queue-title">{{ item.title }}</strong>
+                        <span class="console-queue-detail">{{ item.detail }}</span>
+                    </div>
+                    <a href="{{ item.href }}" class="console-btn console-btn--secondary">Open</a>
                 </div>
-                <a href="{{ item.href }}" class="btn btn-sm btn-outline-secondary">Open</a>
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p class="text-muted mb-0">Nothing needs action right now.</p>
-    {% endif %}
-</section>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p class="console-empty">Nothing needs action right now.</p>
+        {% endif %}
+    </section>
+</article>
 {% endblock %}

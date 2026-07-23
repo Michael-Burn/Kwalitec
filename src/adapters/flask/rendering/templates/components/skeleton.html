@@ -1,0 +1,12 @@
+{# Design System — Skeleton placeholder (PX-004) #}
+<div
+  class="{{ class_name }} ds-skeleton--{{ component.variant.value }}"
+  data-skeleton="{{ component.variant.value }}"
+  aria-busy="true"
+  {% if style_attr %}style="{{ style_attr }}"{% endif %}
+  {% for name, value in a11y_attrs.items() if value is not none and value is not false %}
+  {{ name }}{% if value is not sameas true %}="{{ value }}"{% endif %}
+  {% endfor %}
+>
+  <span class="ds-visually-hidden">{{ component.label }}</span>
+</div>

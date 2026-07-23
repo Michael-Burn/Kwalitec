@@ -1,4 +1,9 @@
-"""Founder / administrator access helpers for FOS-004."""
+"""Founder / Console access helpers — RBAC with legacy allowlist bridge (PR-001).
+
+Primary authorization is durable ``UserRole`` / ``UserCapability`` rows.
+``ADMIN_EMAIL`` ∪ ``FOUNDER_EMAILS`` remains a bootstrap bridge: matching
+emails are treated as Founder and synced onto the user record when checked.
+"""
 
 from __future__ import annotations
 
@@ -10,11 +15,20 @@ from typing import Any, TypeVar
 from flask import abort, current_app
 from flask_login import current_user, login_required
 
+from app.security.authorization import (
+    user_has_capability,
+    user_has_permission,
+    user_has_role,
+)
+from app.security.capabilities import Capability
+from app.security.permissions import Permission
+from app.security.roles import Role
+
 F = TypeVar("F", bound=Callable[..., Any])
 
 
 def founder_emails() -> frozenset[str]:
-    """Return normalised Founder / administrator email addresses.
+    """Return normalised bootstrap Founder email addresses.
 
     Sources (merged):
     - ``ADMIN_EMAIL`` (canonical bootstrap administrator)
@@ -42,19 +56,50 @@ def founder_emails() -> frozenset[str]:
     return frozenset(emails)
 
 
+def _email_on_legacy_allowlist(user: Any) -> bool:
+    email = str(getattr(user, "email", "") or "").strip().lower()
+    return bool(email) and email in founder_emails()
+
+
 def is_founder_user(user: Any | None = None) -> bool:
-    """Return whether ``user`` is an authorised Founder / administrator."""
+    """Return whether ``user`` may access Founder / Console surfaces.
+
+    Order of checks:
+    1. Durable Founder role
+    2. Console capability + console.access permission (admin / staff)
+    3. Legacy email allowlist (bootstrap; syncs Founder role when possible)
+    """
     candidate = user if user is not None else current_user
     if candidate is None or not getattr(candidate, "is_authenticated", False):
         return False
-    email = str(getattr(candidate, "email", "") or "").strip().lower()
-    if not email:
-        return False
-    return email in founder_emails()
+
+    if user_has_role(candidate, Role.FOUNDER):
+        return True
+
+    if user_has_capability(candidate, Capability.CONSOLE) and user_has_permission(
+        candidate, Permission.CONSOLE_ACCESS
+    ):
+        return True
+
+    if _email_on_legacy_allowlist(candidate):
+        try:
+            from app.services.identity_service import IdentityService
+
+            IdentityService.sync_legacy_founder_allowlist(
+                candidate, founder_emails()
+            )
+        except Exception:  # noqa: BLE001 — access check must not fail closed on sync
+            pass
+        return True
+
+    return False
 
 
 def founder_required(view: F) -> F:
-    """Require authentication and Founder / administrator access."""
+    """Require authentication and Founder / Console access (RBAC).
+
+    Prefer ``permission_required(Permission.CONSOLE_ACCESS)`` for new routes.
+    """
 
     @wraps(view)
     @login_required

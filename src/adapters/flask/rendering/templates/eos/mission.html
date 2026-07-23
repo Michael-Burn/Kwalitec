@@ -1,29 +1,66 @@
 {% extends "eos/base.html" %}
 {% block content %}
-<header role="banner" aria-label="{{ title }}">
-  <h1>{{ view.mission_title }}</h1>
-  <p>{{ view.greeting }}</p>
-</header>
-<section data-mission aria-label="Mission objective">
-  <h2>Objective</h2>
-  <p>{{ view.mission_objective }}</p>
-  <p>{{ view.mission_explanation }}</p>
-  <p>{{ view.estimated_duration }}</p>
-</section>
-<section aria-label="Study resources">
-  <h2>Resources</h2>
-  <ul>
-    {% for resource in view.study_resources %}
-    <li>{{ resource.label }}{% if resource.detail %} — {{ resource.detail }}{% endif %}</li>
-    {% endfor %}
-  </ul>
-</section>
-<section aria-label="Progress">
-  <h2>{{ view.progress_summary.headline }}</h2>
-  <p>{{ view.progress_summary.detail }}</p>
-</section>
-<div class="eos-cta-row">
-  <a href="{{ nav.begin_session }}">Begin session</a>
-  <a href="{{ nav.dashboard }}">Return to dashboard</a>
-</div>
+<article class="eos-mission-block" aria-labelledby="eos-mission-title">
+  <header role="banner" aria-label="{{ title }}">
+    <p class="eos-hero-eyebrow">Mission</p>
+    <h1 id="eos-mission-title" class="eos-hero-title">{{ view.mission_title }}</h1>
+    {% if view.greeting %}
+    <p class="eos-hero-greeting">{{ view.greeting }}</p>
+    {% endif %}
+  </header>
+
+  <section data-mission aria-labelledby="eos-objective-title">
+    <h2 id="eos-objective-title">Objective</h2>
+    {% if view.mission_objective %}
+    <p>{{ view.mission_objective }}</p>
+    {% if view.mission_explanation %}<p>{{ view.mission_explanation }}</p>{% endif %}
+    {% if view.estimated_duration %}<p class="eos-hero-duration">{{ view.estimated_duration }}</p>{% endif %}
+    {% if fragments.provenance %}{{ fragments.provenance|safe }}{% endif %}
+    {% else %}
+    <div class="eos-empty" role="status">
+      <p class="eos-empty__title">Mission objective not ready</p>
+      <p class="eos-empty__description">
+        An objective appears when today's mission has been prepared for this student.
+      </p>
+    </div>
+    {% endif %}
+  </section>
+
+  <section aria-labelledby="eos-resources-title">
+    <h2 id="eos-resources-title">Resources</h2>
+    {% if view.study_resources %}
+    <ul>
+      {% for resource in view.study_resources %}
+      <li>{{ resource.label }}{% if resource.detail %} — {{ resource.detail }}{% endif %}</li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <div class="eos-empty" role="status">
+      <p class="eos-empty__title">No study resources listed</p>
+      <p class="eos-empty__description">
+        Resources stay empty until the mission defines materials for this objective.
+      </p>
+    </div>
+    {% endif %}
+  </section>
+
+  <section aria-labelledby="eos-progress-title">
+    <h2 id="eos-progress-title">{{ view.progress_summary.headline if view.progress_summary else "Progress" }}</h2>
+    {% if view.progress_summary and view.progress_summary.detail %}
+    <p>{{ view.progress_summary.detail }}</p>
+    {% else %}
+    <div class="eos-empty" role="status">
+      <p class="eos-empty__title">Progress not available yet</p>
+      <p class="eos-empty__description">
+        Progress detail appears after you begin the session for this mission.
+      </p>
+    </div>
+    {% endif %}
+  </section>
+
+  <div class="eos-cta-row">
+    <a class="eos-btn-primary" href="{{ nav.begin_session }}" data-student-cta="primary">Begin session</a>
+    <a href="{{ nav.dashboard }}">Return to home</a>
+  </div>
+</article>
 {% endblock %}

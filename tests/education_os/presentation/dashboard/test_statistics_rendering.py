@@ -149,10 +149,12 @@ def test_presenter_composes_statistics_and_achievements(
         achievements=achievements,
     )
 
-    assert any(tile.label == "Sessions completed" for tile in view.learning_statistics)
+    assert view.learning_statistics == ()
     assert view.progress_bar.percent == 25.0
     assert view.current_streak.current_days == 1
     assert view.achievements[0].title == "Plan progress"
+    assert view.hero.mission_title
+    assert view.readiness.category_label
 
 
 def test_empty_statistics_remain_null_safe() -> None:

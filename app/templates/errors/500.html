@@ -5,14 +5,29 @@
     <div>
         <p class="error-code text-secondary">500</p>
         <p class="error-title text-muted">Something Went Wrong</p>
-        <p class="error-description">An unexpected error occurred. Please try again later.</p>
-        <a href="{{ url_for('dashboard.index') if current_user.is_authenticated else url_for('auth.login') }}" class="btn btn-primary">
-            {% if current_user.is_authenticated %}
-                Return to Dashboard
-            {% else %}
-                Sign In
+        <p class="error-description">
+            An unexpected error occurred. You can retry this page, or return home and continue.
+        </p>
+        {% if error_reference_id %}
+        <p class="error-reference small text-muted mb-3">
+            Reference ID: <code>{{ error_reference_id }}</code>
+        </p>
+        {% endif %}
+        <div class="d-flex flex-wrap gap-2 justify-content-center">
+            <a href="javascript:location.reload()" class="btn btn-primary">Try again</a>
+            <a href="{{ url_for('dashboard.index') if current_user.is_authenticated else url_for('auth.login') }}" class="btn btn-outline-secondary">
+                {% if current_user.is_authenticated %}
+                    Return to Dashboard
+                {% else %}
+                    Sign In
+                {% endif %}
+            </a>
+            {% if current_user.is_authenticated and error_reference_id %}
+            <a href="{{ url_for('alpha.feedback_report_problem', ref=error_reference_id) }}" class="btn btn-outline-secondary">
+                Report a problem
+            </a>
             {% endif %}
-        </a>
+        </div>
     </div>
 </main>
 {% endblock %}

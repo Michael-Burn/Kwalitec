@@ -121,23 +121,14 @@ class TestSidebarActiveState:
         from tests.test_iahf003_founder_command_centre import _login_founder
 
         _login_founder(client, app)
-        response = client.get("/founder/")
+        response = client.get("/console/")
         assert response.status_code == 200
         body = response.get_data(as_text=True)
-        # Founder Command Centre chrome is active.
-        assert "founder-cc-nav-link active" in body
-        # Student Dashboard link must not carry active while on Founder Overview.
-        assert 'href="/dashboard/"' in body or "Dashboard" in body
-        # The Dashboard nav-link should not be the active one beside Founder.
-        import re
-
-        dashboard_link = re.search(
-            r'<a class="nav-link([^"]*)"[^>]*>\s*<svg[^>]*>.*?</svg>\s*Dashboard',
-            body,
-            re.DOTALL,
-        )
-        assert dashboard_link is not None
-        assert "active" not in dashboard_link.group(1)
+        # Kwalitec Console chrome is active (independent portal shell).
+        assert "console-nav-link is-active" in body or 'aria-current="page"' in body
+        assert "console-sidebar" in body
+        # Learning Workspace student nav must not appear inside Console.
+        assert "Study Plan" not in body
 
 
 class TestFeedbackInboxCapacity:

@@ -537,10 +537,17 @@ class VisionJournalService:
             .all()
         )
         recently_promoted: list[tuple[VisionEntry, VisionEntryPromotion]] = []
+        entry_ids = [promo.entry_id for promo in promotions]
+        entries_by_id: dict[int, VisionEntry] = {}
+        if entry_ids:
+            entries_by_id = {
+                entry.id: entry
+                for entry in VisionEntry.query.filter(
+                    VisionEntry.id.in_(entry_ids)
+                ).all()
+            }
         for promo in promotions:
-            entry = VisionJournalService.get_entry(
-                promo.entry_id, include_deleted=True
-            )
+            entry = entries_by_id.get(promo.entry_id)
             if entry is not None and not entry.is_deleted:
                 recently_promoted.append((entry, promo))
         return VisionOverviewWidgets(

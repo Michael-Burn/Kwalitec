@@ -65,3 +65,27 @@ class AutomationService:
             )
 
         return self._executor.execute(workflow, context)
+
+    def run_with_retries(
+        self,
+        workflow_id: str,
+        context: AutomationContext | None = None,
+        *,
+        max_attempts: int = 3,
+    ):
+        """Execute ``workflow_id`` via JobRunner (retries + dead-letter).
+
+        Returns the underlying AutomationResult on success, or the JobResult
+        when dead-lettered.
+        """
+        from app.services.job_runner import JobRunner
+
+        runner = JobRunner(max_attempts=max_attempts)
+        job = runner.run(
+            f"automation:{workflow_id}",
+            lambda: self.run(workflow_id, context),
+            payload={"workflow_id": workflow_id},
+        )
+        if job.status == "succeeded":
+            return job.value
+        return job

@@ -18,6 +18,12 @@ from adapters.flask.dashboard.dependency_provider import (
     PipelineResultLoader,
 )
 from adapters.flask.dashboard.routes import dashboard_bp, register_dashboard
+from adapters.flask.experience import (
+    ExperienceGateway,
+    ExperienceSurfaceController,
+    experience_bp,
+    register_experience,
+)
 from adapters.flask.login import login_bp, register_login
 from adapters.flask.mission import MissionController, mission_bp, register_mission
 from adapters.flask.page_renderer import PageRenderer
@@ -61,6 +67,8 @@ __all__ = [
     "AuthController",
     "ComponentRenderer",
     "DashboardController",
+    "ExperienceGateway",
+    "ExperienceSurfaceController",
     "FlaskDependencyProvider",
     "MissionController",
     "PageRenderer",
@@ -73,12 +81,14 @@ __all__ = [
     "auth_bp",
     "configure_adapter_templates",
     "dashboard_bp",
+    "experience_bp",
     "login_bp",
     "mission_bp",
     "reflection_bp",
     "register_adapter_blueprints",
     "register_auth",
     "register_dashboard",
+    "register_experience",
     "register_login",
     "register_mission",
     "register_reflection",

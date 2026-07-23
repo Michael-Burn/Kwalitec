@@ -25,6 +25,7 @@ from adapters.flask.dashboard.dependency_provider import (
     flask_student_id_resolver,
 )
 from adapters.flask.dashboard.routes import register_dashboard
+from adapters.flask.experience.routes import register_experience
 from adapters.flask.login.routes import register_login
 from adapters.flask.mission.routes import register_mission
 from adapters.flask.onboarding.dependency_provider import OnboardingAdapterDependencies
@@ -73,11 +74,19 @@ def register_adapter_blueprints(
     auth_dependencies: AuthAdapterDependencies | None = None,
     onboarding_dependencies: OnboardingAdapterDependencies | None = None,
 ) -> None:
-    """Register student-flow blueprints including auth and onboarding."""
-    register_auth(app, dependencies=auth_dependencies)
-    register_onboarding(app, dependencies=onboarding_dependencies)
+    """Register student-flow blueprints including auth and onboarding.
+
+    Auth and onboarding blueprints register only when explicit dependencies are
+    supplied. Production ``wire_adapter_layer`` always provides SQLAlchemy-backed
+    collaborators; adapter unit tests may omit them.
+    """
+    if auth_dependencies is not None:
+        register_auth(app, dependencies=auth_dependencies)
+    if onboarding_dependencies is not None:
+        register_onboarding(app, dependencies=onboarding_dependencies)
     register_login(app)
     register_dashboard(app)
+    register_experience(app)
     register_mission(app)
     register_session(app)
     register_reflection(app)
@@ -109,11 +118,19 @@ def wire_adapter_layer(
         resolved_auth = AuthAdapterDependencies(
             auth_service=product.authentication,  # type: ignore[arg-type]
         )
+    if resolved_auth is None:
+        raise TypeError(
+            "auth_dependencies required when container.product is absent"
+        )
 
     resolved_onboarding = onboarding_dependencies
     if resolved_onboarding is None and product is not None:
         resolved_onboarding = OnboardingAdapterDependencies(
             onboarding_service=product.onboarding,  # type: ignore[arg-type]
+        )
+    if resolved_onboarding is None:
+        raise TypeError(
+            "onboarding_dependencies required when container.product is absent"
         )
 
     resolved_store = checkpoint_store

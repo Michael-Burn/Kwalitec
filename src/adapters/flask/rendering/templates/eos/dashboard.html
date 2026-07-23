@@ -1,26 +1,181 @@
 {% extends "eos/base.html" %}
 {% block content %}
-{{ fragments.header|safe }}
-<p class="eos-greeting">{{ view.greeting_text }}</p>
-{{ fragments.greeting|safe }}
-<section data-mission>
-  {{ fragments.mission_card|safe }}
+{# PX-003 hierarchy + PX-004 polish:
+   Primary: Today's Mission hero
+   Secondary: Readiness · Journey · Coach
+   Tertiary: Upcoming milestones · Quick actions
+   Continuity: Reflection → Journey → Readiness → Coach → Home
+#}
+
+{% if continuity %}
+<nav class="eos-continuity" aria-label="Learning continuity">
+  <p class="eos-continuity-label">After this session</p>
+  <ol class="eos-continuity-steps">
+    {% for step in continuity.steps %}
+    <li data-active="{{ 'true' if step == continuity.active_step else 'false' }}">{{ step }}</li>
+    {% endfor %}
+  </ol>
+</nav>
+{% endif %}
+
+{% if experience_success_message %}
+<p class="eos-success-banner" data-experience-success="true" role="status">{{ experience_success_message }}</p>
+{% elif fragments.success_toast %}
+{{ fragments.success_toast|safe }}
+{% endif %}
+{% if readiness_change_message %}
+<p class="eos-readiness-change" data-readiness-change="true" role="status">{{ readiness_change_message }}</p>
+{% endif %}
+
+<section
+  class="eos-hero"
+  data-dashboard-slot="primary"
+  aria-labelledby="eos-hero-title"
+>
+  <p class="eos-hero-greeting">{{ view.hero.greeting or view.greeting_text }}</p>
+  <p class="eos-hero-eyebrow">Today's Mission</p>
+  <h1 id="eos-hero-title" class="eos-hero-title">{{ view.hero.mission_title }}</h1>
+  {% if view.hero.duration_label %}
+  <p class="eos-hero-duration">{{ view.hero.duration_label }}</p>
+  {% endif %}
+  {% if view.hero.purpose %}
+  <p class="eos-hero-purpose">{{ view.hero.purpose }}</p>
+  {% endif %}
+  <div class="eos-cta-row eos-hero-cta">
+    <a
+      class="eos-btn-primary"
+      href="{{ primary_cta_href or nav.begin_session }}"
+      aria-label="{{ view.hero.cta_label }}"
+      data-student-cta="primary"
+      data-action-key="{{ view.hero.action_key or primary_action_key }}"
+    >
+      {{ view.hero.cta_label }}
+    </a>
+    <a href="{{ nav.mission }}">Open mission</a>
+  </div>
+  {% if fragments.hero_provenance %}
+  <div class="eos-hero-provenance" data-dashboard-provenance="hero">
+    {{ fragments.hero_provenance|safe }}
+  </div>
+  {% endif %}
+  {% if fragments.mission_card %}
+  <div class="eos-hero-card" data-mission hidden>
+    {{ fragments.mission_card|safe }}
+  </div>
+  {% endif %}
 </section>
-<div class="eos-cta-row">
-  <a href="{{ nav.begin_session }}" aria-label="Begin session">
-    {{ fragments.primary_action|safe }}
-  </a>
-  <a href="{{ nav.mission }}">Open mission</a>
-</div>
-{{ fragments.progress_bar|safe }}
-<section aria-label="Learning statistics">
-  {% for tile in fragments.statistics %}
-  {{ tile|safe }}
-  {% endfor %}
+
+<section class="eos-secondary" data-dashboard-slot="secondary" aria-label="Readiness, journey, and coach">
+  <article class="eos-panel" data-dashboard-panel="readiness" aria-labelledby="eos-readiness-title">
+    <p class="eos-panel-eyebrow">Readiness</p>
+    <h2 id="eos-readiness-title" class="eos-panel-title">{{ view.readiness.category_label }}</h2>
+    {% if view.readiness.percent_label %}
+    <p class="eos-panel-metric">{{ view.readiness.percent_label }}</p>
+    {% endif %}
+    <p class="eos-panel-trend">{{ view.readiness.trend_label }}</p>
+    <p class="eos-panel-body">{{ view.readiness.reason }}</p>
+    {% if fragments.readiness_provenance %}
+    <div data-dashboard-provenance="readiness">{{ fragments.readiness_provenance|safe }}</div>
+    {% endif %}
+    {% if view.readiness.action_label %}
+    <a
+      class="eos-panel-action"
+      href="{{ primary_cta_href or nav.begin_session }}"
+      data-action-key="{{ view.readiness.action_key }}"
+    >{{ view.readiness.action_label }}</a>
+    {% endif %}
+  </article>
+
+  <article class="eos-panel" data-dashboard-panel="journey" aria-labelledby="eos-journey-title">
+    <p class="eos-panel-eyebrow">Journey</p>
+    <h2 id="eos-journey-title" class="eos-panel-title">Learning journey</h2>
+    {% if view.journey.story %}
+    <p class="eos-panel-body eos-story">{{ view.journey.story }}</p>
+    {% if fragments.journey_provenance %}
+    <div data-dashboard-provenance="journey">{{ fragments.journey_provenance|safe }}</div>
+    {% endif %}
+    {% else %}
+    <div class="eos-empty" role="status">
+      <p class="eos-empty__title">Journey not visible yet</p>
+      <p class="eos-empty__description">
+        Your journey story appears after session outcomes and reflection update your learning record.
+      </p>
+    </div>
+    {% endif %}
+  </article>
+
+  <article class="eos-panel" data-dashboard-panel="coach" aria-labelledby="eos-coach-title">
+    <p class="eos-panel-eyebrow">Coach</p>
+    <h2 id="eos-coach-title" class="eos-panel-title">Coach insight</h2>
+    {% if view.coach.insight %}
+    <p class="eos-panel-body eos-coach-insight">{{ view.coach.insight }}</p>
+    {% if fragments.coach_provenance %}
+    <div data-dashboard-provenance="coach">{{ fragments.coach_provenance|safe }}</div>
+    {% endif %}
+    {% else %}
+    <div class="eos-empty" role="status">
+      <p class="eos-empty__title">Coach insight pending</p>
+      <p class="eos-empty__description">
+        Coach guidance stays quiet until there is enough session evidence to speak accurately.
+      </p>
+    </div>
+    {% endif %}
+  </article>
 </section>
-<section aria-label="Achievements">
-  {% for card in fragments.achievements %}
-  {{ card|safe }}
-  {% endfor %}
+
+<section class="eos-tertiary" data-dashboard-slot="tertiary" aria-label="Upcoming milestones and quick actions">
+  <div class="eos-panel eos-panel--quiet" data-dashboard-panel="milestones" aria-labelledby="eos-milestones-title">
+    <p class="eos-panel-eyebrow">Upcoming</p>
+    <h2 id="eos-milestones-title" class="eos-panel-title">Upcoming milestones</h2>
+    {% if view.upcoming_milestones and view.upcoming_milestones|length > 0 %}
+    <ul class="eos-milestone-list">
+      {% for milestone in view.upcoming_milestones %}
+      <li>
+        <span class="eos-milestone-title">{{ milestone.title }}</span>
+        {% if milestone.days_label %}<span class="eos-milestone-meta">{{ milestone.days_label }}</span>{% endif %}
+        {% if milestone.detail %}<span class="eos-milestone-detail">{{ milestone.detail }}</span>{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% if fragments.revision_provenance %}
+    <div data-dashboard-provenance="revision">{{ fragments.revision_provenance|safe }}</div>
+    {% endif %}
+    {% elif fragments.milestones_empty %}
+    {{ fragments.milestones_empty|safe }}
+    {% else %}
+    <div class="eos-empty" role="status">
+      <p class="eos-empty__title">No upcoming milestones yet</p>
+      <p class="eos-empty__description">
+        Milestones appear once a study plan is active and session outcomes start updating your journey.
+      </p>
+    </div>
+    {% endif %}
+  </div>
+
+  <nav class="eos-panel eos-panel--quiet" data-dashboard-panel="quick-actions" aria-label="Quick actions">
+    <p class="eos-panel-eyebrow">Quick actions</p>
+    <h2 class="eos-panel-title">Quick actions</h2>
+    {% if view.quick_actions %}
+    <ul class="eos-quick-actions">
+      {% for action in view.quick_actions %}
+      <li>
+        <a
+          href="{{ primary_cta_href if loop.first else (nav.mission if action.action_key != 'return_home' else nav.dashboard) }}"
+          data-action-key="{{ action.action_key }}"
+          {% if loop.first %}data-student-cta="secondary"{% endif %}
+        >{{ action.label }}</a>
+        {% if action.detail %}<span class="eos-quick-detail">{{ action.detail }}</span>{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <div class="eos-empty" role="status">
+      <p class="eos-empty__title">No quick actions yet</p>
+      <p class="eos-empty__description">
+        Actions appear when a mission or plan is available. Start from Today's Mission above when ready.
+      </p>
+    </div>
+    {% endif %}
+  </nav>
 </section>
 {% endblock %}

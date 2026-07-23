@@ -51,7 +51,7 @@ def test_founder_advisory_templates_include_empty_and_breadcrumb(name):
     assert "founder-breadcrumb" in text
     assert "founder-empty-state" in text
     assert "founder-next-action" in text
-    assert "founder_dashboard.css" in text
+    assert "founder_dashboard/base.html" in text
 
 
 def test_dashboard_empty_workspace_copy():

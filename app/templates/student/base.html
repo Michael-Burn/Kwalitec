@@ -31,7 +31,7 @@
             </div>
         </header>
 
-        <main id="student-main" class="student-main" role="main">
+        <main id="student-main" class="student-main page-enter" role="main" tabindex="-1">
             {% include "partials/flash_messages.html" %}
             <header class="student-page-header">
                 <p class="student-eyebrow">{{ page.shell.page_eyebrow }}</p>
@@ -42,6 +42,8 @@
             </header>
             {% block content %}{% endblock %}
         </main>
+
+        <div class="student-visually-hidden" aria-live="polite" id="student-live-region"></div>
 
         <footer class="student-footer" role="contentinfo">
             <p class="student-footer-text">Reduce decisions. Increase learning.</p>

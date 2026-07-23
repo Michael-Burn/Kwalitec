@@ -1,25 +1,25 @@
 # Current Milestone
 
-**ARCH-001**
+**GA-001**
 
 ## Objective
 
-Establish the permanent Cursor governance framework so future implementation work requires smaller prompts. Introduce governance documents only — no production behaviour changes.
+Prepare Kwalitec for Version 1.0 / General Availability operational readiness through validation, verification, resilience testing, and release preparation.
 
 ## Allowed modifications
 
-- `.cursor/` governance documents
-- `.cursor/rules/*.md` (this set)
+- GA readiness tests under `tests/ga/`
+- Production / GA documentation under `docs/production/`, `docs/ga/`
+- Release checklist and CI production-gates wiring
+- `.cursor/` governance updates required by GA-001 (checklist, current milestone)
 
 ## Forbidden
 
-- Application code (`app/`, `src/`)
-- Domain rules
-- Educational Pipeline
-- Presentation templates and components
-- Infrastructure and persistence
-- Database migrations
-- Refactors, package moves, or renames
+- New educational functionality
+- Student Experience redesign
+- Kwalitec Console redesign
+- Education OS behaviour changes
+- Recommendation logic changes
 
 ---
 

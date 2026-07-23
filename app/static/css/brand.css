@@ -64,9 +64,10 @@
 }
 
 /**
- * Approved logo PNG — always preserve native aspect ratio.
+ * Approved logo PNG — always preserve native aspect ratio (PX-001).
  * Never set conflicting width and height. Never stretch or squash.
  * Never apply filters, tint, brightness, or contrast.
+ * Never wrap in sticker boxes — clear space only via padding/margin.
  */
 .brand-logo {
   display: block;
@@ -77,4 +78,15 @@
   object-position: left center;
   image-rendering: auto;
   -ms-interpolation-mode: bicubic;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+/* Minimum clear space ≈ 0.5× mark height around the lockup */
+.brand-logo-clear {
+  display: inline-flex;
+  padding: 0.5em;
 }

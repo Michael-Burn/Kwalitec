@@ -1,9 +1,23 @@
 {% extends "eos/base.html" %}
 {% block content %}
 {{ fragments.header|safe }}
-<p>{{ view.mission_title }}</p>
+<p class="eos-hero-purpose">{{ view.mission_title }}</p>
+
 {% if evidence_updated %}
-<p data-evidence-updated="true">Evidence recorded. Returning to your dashboard updates progress.</p>
+<p class="eos-success-banner" data-evidence-updated="true" data-experience-success="true" role="status">
+  Reflection saved. Your learning journey, readiness, and coach context are updating —
+  returning home continues from your next step.
+</p>
+<nav class="eos-continuity" aria-label="Learning continuity">
+  <p class="eos-continuity-label">What happens next</p>
+  <ol class="eos-continuity-steps">
+    <li data-active="true">Reflection</li>
+    <li>Journey</li>
+    <li>Readiness</li>
+    <li>Coach</li>
+    <li>Home</li>
+  </ol>
+</nav>
 {% endif %}
 
 {{ fragments.confidence|safe }}
@@ -11,27 +25,55 @@
 {{ fragments.weak_concept|safe }}
 {{ fragments.student_notes|safe }}
 {{ fragments.summary|safe }}
+{% if fragments.provenance %}{{ fragments.provenance|safe }}{% endif %}
 
-<form class="eos-form" method="post" action="{{ nav.reflection }}" aria-label="Reflection capture">
+<form class="eos-form" method="post" action="{{ nav.reflection }}" aria-label="Reflection capture" novalidate>
   <input type="hidden" name="student_id" value="{{ student_id }}">
   <input type="hidden" name="session_id" value="{{ session_id }}">
   <input type="hidden" name="mission_id" value="{{ view.mission_title }}">
   <input type="hidden" name="redirect" value="true">
 
   <label for="confidence">Confidence</label>
-  <input id="confidence" name="confidence" value="{{ view.confidence.value_label }}">
+  <p class="eos-help" id="help-confidence">How sure you felt during the work — honest answers improve readiness.</p>
+  <input
+    id="confidence"
+    name="confidence"
+    value="{{ view.confidence.value_label }}"
+    aria-describedby="help-confidence"
+    autocomplete="off"
+  >
 
   <label for="difficulty">Difficulty</label>
-  <input id="difficulty" name="difficulty" value="{{ view.difficulty.value_label }}">
+  <p class="eos-help" id="help-difficulty">How hard the material felt in this session.</p>
+  <input
+    id="difficulty"
+    name="difficulty"
+    value="{{ view.difficulty.value_label }}"
+    aria-describedby="help-difficulty"
+    autocomplete="off"
+  >
 
   <label for="weak_concept">Weak concept</label>
-  <input id="weak_concept" name="weak_concept" value="{{ view.weak_concept.value }}">
+  <p class="eos-help" id="help-weak">Optional. Name the idea that still feels unsettled.</p>
+  <input
+    id="weak_concept"
+    name="weak_concept"
+    value="{{ view.weak_concept.value }}"
+    aria-describedby="help-weak"
+    autocomplete="off"
+  >
 
   <label for="student_notes">Notes</label>
-  <textarea id="student_notes" name="student_notes">{{ view.student_notes.value }}</textarea>
+  <p class="eos-help" id="help-notes">Optional short notes for your future self.</p>
+  <textarea
+    id="student_notes"
+    name="student_notes"
+    aria-describedby="help-notes"
+  >{{ view.student_notes.value }}</textarea>
 
   <div class="eos-cta-row">
-    <button type="submit">Save</button>
+    <button class="eos-btn-primary" type="submit" data-student-cta="primary">Save reflection</button>
+    <a href="{{ nav.dashboard }}">Return home without saving</a>
   </div>
 </form>
 {% endblock %}

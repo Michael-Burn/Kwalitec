@@ -1,24 +1,27 @@
-{# Explanation Card — educational reasoning only; never internal engine names #}
+{# RR-001 — collapsible recommendation provenance (max 3 reasons) #}
 {% macro explanation_card(explanation) %}
 {% if explanation and explanation.has_content %}
-<section class="student-card student-card--explanation" aria-labelledby="explanation-title">
-    <p class="student-card-eyebrow">Why this recommendation</p>
-    <h2 id="explanation-title" class="student-card-title">
-        {{ explanation.summary or 'Educational reasoning' }}
-    </h2>
+{% set points = (explanation.evidence_points or ())[:3] %}
+<details class="student-card student-card--explanation student-provenance" data-provenance="true">
+    <summary class="student-provenance__summary">
+        <span class="student-card-eyebrow">Why this recommendation</span>
+        <span class="student-card-title" id="explanation-title">
+            {{ explanation.summary or 'Why this guidance' }}
+        </span>
+    </summary>
     {% if explanation.why_recommended %}
     <p class="student-card-body">{{ explanation.why_recommended }}</p>
     {% endif %}
-    {% if explanation.evidence_points %}
-    <ul class="student-evidence-list">
-        {% for point in explanation.evidence_points %}
+    {% if points %}
+    <ol class="student-evidence-list" aria-label="Reasons">
+        {% for point in points %}
         <li>{{ point }}</li>
         {% endfor %}
-    </ul>
+    </ol>
     {% endif %}
     {% if explanation.expected_benefit %}
     <p class="student-muted mb-0"><span class="student-label">Expected benefit</span> {{ explanation.expected_benefit }}</p>
     {% endif %}
-</section>
+</details>
 {% endif %}
 {% endmacro %}

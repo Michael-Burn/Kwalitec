@@ -48,10 +48,13 @@ def load_page(surface: ExperienceSurface | str) -> StudentPageViewModel:
         composition.emit_surface_viewed(surface_key, sid)
     service = get_experience_service()
     try:
+        # Home reuses sibling XP snapshots (journey / history / revision)
+        # without duplicating educational projections.
+        include_all = surface_key == "home"
         dash = service.get_dashboard(
             sid,
             surface=surface_key,
-            include_all_surfaces=False,
+            include_all_surfaces=include_all,
         )
         return page_from_dashboard(dash, surface=surface_key)
     except PortUnavailable as exc:

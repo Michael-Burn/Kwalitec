@@ -1,12 +1,6 @@
-{% extends "layouts/base.html" %}
+{% extends "founder_dashboard/base.html" %}
 
-{% block extra_head %}
-<link rel="stylesheet" href="{{ versioned_static('css/founder_dashboard.css', endpoint='founder_dashboard.static') }}">
-{% endblock %}
-
-{% block content %}
-{% include "founder_dashboard/_nav.html" %}
-
+{% block console_content %}
 <nav class="founder-breadcrumb" aria-label="Breadcrumb">
     <ol class="founder-breadcrumb-list">
         {% for crumb in page.breadcrumbs %}
@@ -22,10 +16,10 @@
 </nav>
 
 <section class="section-header founder-header">
-    <p class="section-eyebrow">{{ founder_command_centre_label }} · Curriculum Studio</p>
+    <p class="section-eyebrow">{{ kwalitec_console_label }} · Curriculum Studio</p>
     <h1 class="section-title">Curriculum Studio</h1>
     <p class="section-description">
-        Review, validate, preview, approve, and publish curricula through one Founder workflow.
+        Review, validate, preview, approve, and publish curricula through one Console workflow.
     </p>
 </section>
 

@@ -198,6 +198,19 @@ class ProfilePageViewModel:
 
 
 @dataclass(frozen=True)
+class HomeMilestoneViewModel:
+    title: str = ""
+    detail: str = ""
+
+
+@dataclass(frozen=True)
+class HomeQuickActionViewModel:
+    label: str = ""
+    href: str = ""
+    detail: str = ""
+
+
+@dataclass(frozen=True)
 class HomePageViewModel:
     greeting: str = ""
     examination_label: str = ""
@@ -219,6 +232,15 @@ class HomePageViewModel:
     primary_cta_enabled: bool = False
     mission_id: str = ""
     session_id: str = ""
+    # PX-003 decision-screen projections (presentation only).
+    journey_story: str = (
+        "Your learning story will appear here as you complete sessions."
+    )
+    coach_insight: str = (
+        "Your coach insight will appear after your next study session."
+    )
+    milestones: tuple[HomeMilestoneViewModel, ...] = ()
+    quick_actions: tuple[HomeQuickActionViewModel, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -298,29 +320,36 @@ def explanation_vm(
 ) -> ExplanationViewModel | None:
     if snap is None:
         return None
+    evidence = tuple(snap.evidence_points or ())[:3]
     return ExplanationViewModel(
         summary=snap.summary,
         why_recommended=snap.why_recommended,
-        evidence_points=snap.evidence_points,
+        evidence_points=evidence,
         expected_benefit=snap.expected_benefit,
         confidence_label=snap.confidence_label,
         is_complete=snap.is_complete,
         has_content=bool(
             snap.summary
             or snap.why_recommended
-            or snap.evidence_points
+            or evidence
             or snap.expected_benefit
         ),
     )
 
 
-def home_vm(snap: HomeSnapshot) -> HomePageViewModel:
+def home_vm(
+    snap: HomeSnapshot,
+    *,
+    journey: JourneySnapshot | None = None,
+    history: HistorySnapshot | None = None,
+    revision: RevisionSnapshot | None = None,
+) -> HomePageViewModel:
     start = snap.start_session
     cta_enabled = bool(snap.can_start_session and start and start.enabled)
     cta_label = (
-        (start.label if start and start.label else "Start Today's Session")
+        (start.label if start and start.label else "Continue")
         if cta_enabled
-        else "Start Today's Session"
+        else "Continue"
     )
     benefit = format_benefit(
         snap.expected_readiness_improvement,
@@ -328,6 +357,9 @@ def home_vm(snap: HomeSnapshot) -> HomePageViewModel:
             snap.explanation.expected_benefit if snap.explanation else ""
         ),
     )
+    trend = ""
+    if history is not None:
+        trend = _readiness_trend_label(history.readiness_progression)
     return HomePageViewModel(
         greeting=snap.greeting or "Welcome back",
         examination_label=snap.examination_label,
@@ -342,7 +374,7 @@ def home_vm(snap: HomeSnapshot) -> HomePageViewModel:
             readiness_percent_label=format_readiness_percent(
                 snap.exam_readiness
             ),
-            trend_label="",
+            trend_label=trend,
             confidence_label=(
                 snap.explanation.confidence_label if snap.explanation else ""
             ),
@@ -369,6 +401,14 @@ def home_vm(snap: HomeSnapshot) -> HomePageViewModel:
         primary_cta_enabled=cta_enabled,
         mission_id=(start.mission_id or "") if start else "",
         session_id=(start.session_id or "") if start else "",
+        journey_story=_compose_journey_story(
+            snap, journey=journey, history=history
+        ),
+        coach_insight=_compose_coach_insight(snap),
+        milestones=_compose_milestones(journey=journey, revision=revision),
+        quick_actions=_compose_quick_actions(
+            snap, revision=revision, cta_enabled=cta_enabled
+        ),
     )
 
 
@@ -527,9 +567,18 @@ def page_from_dashboard(
         learning_activity_status=dash.learning_activity_status,
         navigation=dash.navigation,
     )
+    home = None
+    if dash.home is not None:
+        # Reuse sibling XP snapshots already loaded on the dashboard aggregate.
+        home = home_vm(
+            dash.home,
+            journey=dash.journey,
+            history=dash.history,
+            revision=dash.revision,
+        )
     return StudentPageViewModel(
         shell=shell,
-        home=home_vm(dash.home) if dash.home else None,
+        home=home,
         journey=journey_vm(dash.journey) if dash.journey else None,
         revision=revision_vm(dash.revision) if dash.revision else None,
         history=history_vm(dash.history) if dash.history else None,
@@ -594,3 +643,141 @@ def _readiness_trend_label(
     if last < first:
         return "Readiness needs attention"
     return "Readiness is steady"
+
+
+def _compose_journey_story(
+    snap: HomeSnapshot,
+    *,
+    journey: JourneySnapshot | None,
+    history: HistorySnapshot | None,
+) -> str:
+    """Project one journey story from existing XP snapshots — no new reasoning."""
+    parts: list[str] = []
+    if history and history.completed_sessions:
+        latest = history.completed_sessions[0]
+        topic = (latest.topic_title or "a study session").strip()
+        parts.append(f"You recently completed {topic}.")
+    if history and len(history.readiness_progression) >= 2:
+        trend = _readiness_trend_label(history.readiness_progression)
+        if trend:
+            parts.append(trend + ".")
+    if journey and journey.current_topic:
+        parts.append(f"You are now focused on {journey.current_topic.title}.")
+    elif snap.recommendation_title:
+        parts.append(f"Today's focus is {snap.recommendation_title}.")
+    if not parts:
+        return "Your learning story will appear here as you complete sessions."
+    return " ".join(parts[:3])
+
+
+def _compose_coach_insight(snap: HomeSnapshot) -> str:
+    """Single coach insight — maximum 2–3 sentences from existing explanation."""
+    explanation = snap.explanation
+    if explanation is None:
+        if snap.recommendation_summary:
+            return _clip_sentences(snap.recommendation_summary, 3)
+        return "Your coach insight will appear after your next study session."
+    chunks = [
+        explanation.summary,
+        explanation.why_recommended,
+        explanation.expected_benefit,
+    ]
+    text = " ".join(chunk.strip() for chunk in chunks if chunk and chunk.strip())
+    if not text:
+        return "Your coach insight will appear after your next study session."
+    return _clip_sentences(text, 3)
+
+
+def _compose_milestones(
+    *,
+    journey: JourneySnapshot | None,
+    revision: RevisionSnapshot | None,
+) -> tuple[HomeMilestoneViewModel, ...]:
+    milestones: list[HomeMilestoneViewModel] = []
+    if journey and journey.upcoming_topics:
+        topic = journey.upcoming_topics[0]
+        milestones.append(
+            HomeMilestoneViewModel(
+                title=topic.title,
+                detail=topic.status_label or "Upcoming topic",
+            )
+        )
+    if revision and revision.primary is not None:
+        milestones.append(
+            HomeMilestoneViewModel(
+                title=revision.primary.topic_title or "Revision",
+                detail=revision.primary.expected_benefit
+                or revision.primary.priority_label
+                or "Revision focus",
+            )
+        )
+    if journey and journey.estimated_completion_label:
+        milestones.append(
+            HomeMilestoneViewModel(
+                title="Estimated completion",
+                detail=journey.estimated_completion_label,
+            )
+        )
+    return tuple(milestones[:3])
+
+
+def _compose_quick_actions(
+    snap: HomeSnapshot,
+    *,
+    revision: RevisionSnapshot | None,
+    cta_enabled: bool,
+) -> tuple[HomeQuickActionViewModel, ...]:
+    actions: list[HomeQuickActionViewModel] = []
+    if cta_enabled:
+        actions.append(
+            HomeQuickActionViewModel(
+                label=snap.start_session.label
+                if snap.start_session and snap.start_session.label
+                else "Resume Mission",
+                href="/student/",
+                detail="Continue today's mission",
+            )
+        )
+    actions.append(
+        HomeQuickActionViewModel(
+            label="Review Reflection",
+            href="/student/history",
+            detail="Look back on recent study",
+        )
+    )
+    if revision and revision.has_revision:
+        actions.append(
+            HomeQuickActionViewModel(
+                label="Prepare Checkpoint",
+                href="/student/revision",
+                detail="Open revision focus",
+            )
+        )
+    actions.append(
+        HomeQuickActionViewModel(
+            label="Open Schedule",
+            href="/student/journey",
+            detail="See what comes next",
+        )
+    )
+    return tuple(actions[:4])
+
+
+def _clip_sentences(text: str, maximum: int) -> str:
+    cleaned = " ".join(text.split()).strip()
+    if not cleaned or maximum < 1:
+        return cleaned
+    sentences: list[str] = []
+    remainder = cleaned
+    while remainder and len(sentences) < maximum:
+        cut = -1
+        for separator in (". ", "! ", "? "):
+            index = remainder.find(separator)
+            if index != -1 and (cut == -1 or index < cut):
+                cut = index + 1
+        if cut == -1:
+            sentences.append(remainder.strip())
+            break
+        sentences.append(remainder[:cut].strip())
+        remainder = remainder[cut:].lstrip()
+    return " ".join(sentences)

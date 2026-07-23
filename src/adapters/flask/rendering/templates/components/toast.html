@@ -1,0 +1,11 @@
+{# Design System — Toast / success reward (PX-004) #}
+<div
+  class="{{ class_name }} ds-toast--{{ component.tone.value }}"
+  data-toast-tone="{{ component.tone.value }}"
+  {% if style_attr %}style="{{ style_attr }}"{% endif %}
+  {% for name, value in a11y_attrs.items() if value is not none and value is not false %}
+  {{ name }}{% if value is not sameas true %}="{{ value }}"{% endif %}
+  {% endfor %}
+>
+  <p class="ds-toast__message">{{ component.message }}</p>
+</div>

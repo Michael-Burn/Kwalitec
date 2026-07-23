@@ -9,13 +9,23 @@
             You do not have permission to view this page.
             If you followed a shared or expired link, return home and continue from there.
         </p>
-        {% if current_user.is_authenticated and v2_flags and v2_flags.SOLE_RUNTIME %}
-        <a href="{{ url_for('student.home') }}" class="btn btn-primary">Return Home</a>
-        {% elif current_user.is_authenticated %}
-        <a href="{{ url_for('dashboard.index') }}" class="btn btn-primary">Return to Dashboard</a>
-        {% else %}
-        <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Sign In</a>
+        {% if error_reference_id %}
+        <p class="error-reference small text-muted mb-3">
+            Reference ID: <code>{{ error_reference_id }}</code>
+        </p>
         {% endif %}
+        <div class="d-flex flex-wrap gap-2 justify-content-center">
+            {% if current_user.is_authenticated and v2_flags and v2_flags.SOLE_RUNTIME %}
+            <a href="{{ url_for('student.home') }}" class="btn btn-primary">Return Home</a>
+            {% elif current_user.is_authenticated %}
+            <a href="{{ url_for('dashboard.index') }}" class="btn btn-primary">Return to Dashboard</a>
+            {% else %}
+            <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Sign In</a>
+            {% endif %}
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('alpha.help_centre') }}" class="btn btn-outline-secondary">Help &amp; Support</a>
+            {% endif %}
+        </div>
     </div>
 </main>
 {% endblock %}

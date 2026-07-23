@@ -36,40 +36,85 @@
     body {
       margin: 0;
       font-family: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", Palatino, serif;
-      background:
-        radial-gradient(circle at top left, rgba(20, 90, 100, 0.08), transparent 40%),
-        linear-gradient(180deg, #f7f4ef 0%, #ebe4d8 100%);
-      color: var(--text, #1c1917);
+      background: var(--background, #F4F6F9);
+      color: var(--text-primary, #1E2430);
       min-height: 100vh;
     }
     .eos-shell {
       max-width: 56rem;
       margin: 0 auto;
-      padding: 1.5rem 1.25rem 3rem;
+      padding: 1.75rem 1.25rem 3.5rem;
     }
     .eos-shell[data-width="wide"] { max-width: 72rem; }
     .eos-shell[data-width="narrow"] { max-width: 28rem; }
+    .eos-shell[data-width="wide"][data-page="dashboard"] { max-width: 64rem; }
     .eos-nav {
       display: flex;
       flex-wrap: wrap;
       gap: 0.75rem 1.25rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
       font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
       font-size: 0.95rem;
     }
-    .eos-nav a { color: var(--primary, #0f5c66); text-decoration: none; }
-    .eos-nav a:focus-visible {
-      outline: 2px solid var(--focus-ring, #0f5c66);
+    .eos-nav a {
+      color: var(--primary, #3B4FB8);
+      text-decoration: none;
+      border-radius: 0.35rem;
+      transition: color var(--transition-fast, 150ms) ease-out,
+                  opacity var(--transition-fast, 150ms) ease-out;
+    }
+    .eos-nav a:focus-visible,
+    .eos-cta-row a:focus-visible,
+    .eos-btn-primary:focus-visible,
+    .eos-panel-action:focus-visible,
+    .eos-quick-actions a:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--primary, #3B4FB8) 45%, transparent);
       outline-offset: 2px;
     }
-    .eos-cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0; }
-    .eos-cta-row a { text-decoration: none; }
+    .eos-cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.25rem 0 0; align-items: center; }
+    .eos-cta-row a,
+    .eos-cta-row button {
+      text-decoration: none;
+      font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+      transition: transform var(--transition-press, 100ms) ease-out,
+                  opacity var(--transition-fast, 150ms) ease-out,
+                  box-shadow var(--transition-base, 200ms) ease-out;
+    }
+    .eos-cta-row a:hover,
+    .eos-cta-row button:hover {
+      transform: translateY(-1px);
+    }
+    .eos-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.85rem 1.4rem;
+      border-radius: 0.75rem;
+      background: var(--primary, #3B4FB8);
+      color: var(--on-primary, #F8FAFC);
+      font-weight: 600;
+      box-shadow: var(--shadow-sm, 0 1px 2px rgba(13, 27, 42, 0.05));
+      min-width: 12rem;
+    }
+    .eos-btn-primary:hover { opacity: 0.96; }
+    .eos-surface {
+      transition: opacity var(--transition-base, 200ms) ease-out;
+    }
+    .eos-success {
+      font-family: "IBM Plex Sans", sans-serif;
+      color: var(--success, #0F766E);
+      margin: 0.75rem 0;
+    }
+    .eos-readiness-change {
+      font-family: "IBM Plex Sans", sans-serif;
+      margin: 0.5rem 0 1rem;
+    }
     .eos-form label { display: block; margin: 0.75rem 0 0.25rem; font-family: "IBM Plex Sans", sans-serif; }
     .eos-form input, .eos-form select, .eos-form textarea {
       width: 100%;
       box-sizing: border-box;
       padding: 0.55rem 0.7rem;
-      border: 1px solid var(--border, #d6d3d1);
+      border: 1px solid var(--border, #D5DAE3);
       border-radius: 0.4rem;
       font: inherit;
     }
@@ -77,35 +122,206 @@
       font-family: "IBM Plex Sans", sans-serif;
       margin: 0.75rem 0;
     }
-    .eos-error { color: var(--danger, #b42318); font-family: "IBM Plex Sans", sans-serif; }
+    .eos-error { color: var(--danger, #C81E1E); font-family: "IBM Plex Sans", sans-serif; }
+    .eos-greeting { margin: 0.5rem 0 1rem; }
+    /* PX-003 decision screen */
+    .eos-hero {
+      margin: 0 0 2.5rem;
+      padding: 2rem 0 2.25rem;
+    }
+    .eos-hero-greeting {
+      margin: 0 0 1.25rem;
+      font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+      font-size: 1.05rem;
+      color: var(--text-secondary, #4A5568);
+    }
+    .eos-hero-eyebrow {
+      margin: 0 0 0.5rem;
+      font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted, #5C6570);
+    }
+    .eos-hero-title {
+      margin: 0 0 0.75rem;
+      font-size: clamp(2rem, 4.5vw, 2.85rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      max-width: 18ch;
+    }
+    .eos-hero-duration {
+      margin: 0 0 1rem;
+      font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+      font-size: 0.95rem;
+      color: var(--text-secondary, #4A5568);
+    }
+    .eos-hero-purpose {
+      margin: 0;
+      max-width: 36rem;
+      font-size: 1.15rem;
+      line-height: 1.55;
+      color: var(--text-secondary, #4A5568);
+    }
+    .eos-secondary {
+      display: grid;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .eos-tertiary {
+      display: grid;
+      gap: 1.25rem;
+    }
+    .eos-panel {
+      background: var(--surface, #FFFFFF);
+      border: 1px solid var(--border-subtle, #E6E9EF);
+      border-radius: 1rem;
+      padding: 1.35rem 1.4rem;
+      box-shadow: var(--shadow-sm, 0 1px 2px rgba(13, 27, 42, 0.05));
+      transition: box-shadow var(--transition-base, 200ms) ease-out;
+    }
+    .eos-panel--quiet {
+      box-shadow: none;
+    }
+    .eos-panel-eyebrow {
+      margin: 0 0 0.4rem;
+      font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--text-muted, #5C6570);
+    }
+    .eos-panel-title {
+      margin: 0 0 0.65rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+    }
+    .eos-panel-metric {
+      margin: 0 0 0.35rem;
+      font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--primary, #3B4FB8);
+    }
+    .eos-panel-trend,
+    .eos-panel-body,
+    .eos-story,
+    .eos-coach-insight {
+      margin: 0 0 0.65rem;
+      font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+      font-size: 0.98rem;
+      line-height: 1.55;
+      color: var(--text-secondary, #4A5568);
+    }
+    .eos-panel-action {
+      font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+      font-weight: 600;
+      color: var(--primary, #3B4FB8);
+      text-decoration: none;
+    }
+    .eos-milestone-list,
+    .eos-quick-actions {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+    }
+    .eos-milestone-title,
+    .eos-quick-actions a {
+      font-weight: 600;
+      color: var(--text-primary, #1E2430);
+      text-decoration: none;
+    }
+    .eos-milestone-meta,
+    .eos-milestone-detail,
+    .eos-quick-detail {
+      display: block;
+      margin-top: 0.2rem;
+      color: var(--text-secondary, #4A5568);
+      font-size: 0.9rem;
+    }
+    @media (min-width: 768px) {
+      .eos-shell { padding: 2.25rem 1.75rem 4rem; }
+      .eos-hero { padding: 2.5rem 0 2.75rem; }
+      .eos-secondary {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.5rem;
+      }
+      .eos-tertiary {
+        grid-template-columns: 1.2fr 1fr;
+        gap: 1.5rem;
+      }
+    }
+    @media (min-width: 1280px) {
+      .eos-shell[data-width="wide"][data-page="dashboard"] {
+        max-width: 72rem;
+      }
+      .eos-hero-title { max-width: 22ch; }
+    }
+    @media (max-width: 767px) {
+      .eos-btn-primary { width: 100%; }
+      .eos-hero { margin-bottom: 1.75rem; padding-bottom: 1.5rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .eos-nav a,
+      .eos-cta-row a,
+      .eos-cta-row button,
+      .eos-surface,
+      .eos-panel {
+        transition: none;
+      }
+      .eos-cta-row a:hover,
+      .eos-cta-row button:hover {
+        transform: none;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="eos-shell" data-page="dashboard" data-width="wide">
+  <div
+    class="eos-shell"
+    data-page="dashboard"
+    data-width="wide"
+    data-action-key="revisit_prerequisites"
+  >
     <nav class="eos-nav" aria-label="Student journey">
-      <a href="/eos/dashboard/?student_id=student-ada">Dashboard</a>
-      <a href="/eos/mission/?student_id=student-ada">Mission</a>
-      <a href="/eos/session/?student_id=student-ada">Session</a>
-      <a href="/eos/reflection/?student_id=student-ada">Reflection</a>
+      <a href="/eos/dashboard/?student_id=student-ada" data-journey-surface="home">Home</a>
+      <a href="/eos/mission/?student_id=student-ada" data-journey-surface="workspace">Mission</a>
+      <a href="/eos/session/?student_id=student-ada" data-journey-surface="workspace">Session</a>
+      <a href="/eos/reflection/?student_id=student-ada" data-journey-surface="reflection">Reflection</a>
     </nav>
     <main id="main" role="main">
-<header
-  class="ds-component ds-page-header"
-style="color: var(--text-primary); font-family: &#34;Inter&#34;, system-ui, -apple-system, &#34;Segoe UI&#34;, sans-serif; font-size: var(--font-4xl); font-weight: var(--font-weight-semibold); line-height: 1.2; letter-spacing: -0.02em; padding-block: var(--space-3xl); gap: var(--space-md)"  role="banner"  aria-label="Learning Dashboard"  data-reduced-motion="safe">
-  <p class="ds-eyebrow">Stay with the educational next step — consistent sittings compound without claiming mastery.</p>
-  <h1 class="ds-page-header__title">Learning Dashboard</h1>
-  <p class="ds-page-header__description">Address prerequisite gap using worked example: Pursue worked example as instructional approach</p>
-</header>
-<p class="eos-greeting">Stay with the educational next step — consistent sittings compound without claiming mastery.</p>
 <section
-  class="ds-component ds-section"
-style="color: var(--text-primary); font-family: &#34;Inter&#34;, system-ui, -apple-system, &#34;Segoe UI&#34;, sans-serif; font-size: var(--font-2xl); font-weight: var(--font-weight-semibold); line-height: 1.2; letter-spacing: -0.02em; padding-block: var(--space-2xl); gap: var(--space-sm)"  role="region"  aria-label="Greeting"  data-reduced-motion="safe">
-  <p class="ds-eyebrow">Dashboard</p>
-  <h2 class="ds-section__title">Greeting</h2>
-  <p class="ds-section__description">Stay with the educational next step — consistent sittings compound without claiming mastery.</p>
-</section>
-<section data-mission>
-  <article
+  class="eos-hero"
+  data-dashboard-slot="primary"
+  aria-labelledby="eos-hero-title"
+>
+  <p class="eos-hero-greeting">Stay with the educational next step — consistent sittings compound without claiming mastery.</p>
+  <p class="eos-hero-eyebrow">Today's Mission</p>
+  <h1 id="eos-hero-title" class="eos-hero-title">Address prerequisite gap using worked example: Pursue worked example as instructional approach</h1>
+  <p class="eos-hero-duration">13 minutes</p>
+  <p class="eos-hero-purpose">Address prerequisite gap using worked example: Pursue worked example as instructional approach</p>
+  <div class="eos-cta-row eos-hero-cta">
+    <a
+      class="eos-btn-primary"
+      href="/eos/dashboard/?student_id=student-ada"
+      aria-label="Review Prerequisites"
+      data-student-cta="primary"
+      data-action-key="revisit_prerequisites"
+    >
+      Review Prerequisites
+    </a>
+    <a href="/eos/mission/?student_id=student-ada">Open mission</a>
+  </div>
+  <div class="eos-hero-card" data-mission hidden>
+    <article
   class="ds-component ds-mission-card"
 style="background-color: var(--surface); color: var(--text-primary); border-color: var(--primary); border-style: solid; border-width: 1px; font-family: &#34;Inter&#34;, system-ui, -apple-system, &#34;Segoe UI&#34;, sans-serif; font-size: var(--font-lg); font-weight: var(--font-weight-semibold); line-height: 1.3; letter-spacing: -0.01em; padding-inline: var(--space-xl); padding-block: var(--space-xl); gap: var(--space-md); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: var(--transition-base)"  role="region"  aria-label="Address prerequisite gap using worked example: Pursue worked example as instructional approach"  data-reduced-motion="safe">
   <p class="ds-eyebrow">Today&#39;s Mission</p>
@@ -116,78 +332,139 @@ style="background-color: var(--surface); color: var(--text-primary); border-colo
     <span class="ds-mission-card__status">1 completed mission · 13 min planned</span>
   </div>
 </article>
-</section>
-<div class="eos-cta-row">
-  <a href="/eos/session/?student_id=student-ada" aria-label="Begin session">
-    <button
-  class="ds-component ds-btn ds-btn-primary"
-style="background-color: var(--primary); color: var(--on-primary); border-color: var(--primary); border-style: solid; border-width: 1px; font-family: &#34;Inter&#34;, system-ui, -apple-system, &#34;Segoe UI&#34;, sans-serif; font-size: var(--font-base); font-weight: var(--font-weight-normal); line-height: 1.5; letter-spacing: 0; padding-inline: var(--space-xl); padding-block: var(--space-md); border-radius: var(--radius-md); box-shadow: var(--shadow-none); transition: var(--transition-base); --ds-hover-background: var(--primary-hover)"  role="button"  aria-label="Review Prerequisites"  tabindex="0"  data-reduced-motion="safe"  type="button">Review Prerequisites</button>
-  </a>
-  <a href="/eos/mission/?student_id=student-ada">Open mission</a>
-</div>
-<div
-  class="ds-component ds-progress-bar"
-style="background-color: var(--border-subtle); color: var(--primary); border-radius: var(--radius-full); transition: var(--transition-slow); height: var(--space-xs)"  role="progressbar"  aria-label="1 completed mission · 13 min planned"  aria-valuemin="0"  aria-valuemax="100"  aria-valuenow="33"  aria-valuetext="33%"  data-reduced-motion="safe">
-  <div class="ds-progress-bar__label-row">
-    <span class="ds-progress-bar__label">1 completed mission · 13 min planned</span>
-    <span class="ds-progress-bar__value">33%</span>
   </div>
-  <div class="ds-progress-bar__track">
-    <div
-      class="ds-progress-bar__fill"
-      style="width: 33.3%;"
-    ></div>
-  </div>
-</div>
-<section aria-label="Learning statistics">
-  <div
-  class="ds-component ds-statistic-card"
-style="background-color: var(--surface); color: var(--text-primary); border-color: var(--border-subtle); border-style: solid; border-width: 1px; font-family: &#34;Inter&#34;, system-ui, -apple-system, &#34;Segoe UI&#34;, sans-serif; font-size: var(--font-2xl); font-weight: var(--font-weight-semibold); line-height: 1.2; letter-spacing: -0.02em; padding-inline: var(--space-xl); padding-block: var(--space-xl); gap: var(--space-xs); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: var(--transition-fast)"  role="group"  aria-label="Sessions completed"  data-reduced-motion="safe">
-  <p class="ds-statistic-card__label">Sessions completed</p>
-  <p class="ds-statistic-card__value">1</p>
-  <p class="ds-statistic-card__detail">Completed learning sessions</p>
-</div>
-  <div
-  class="ds-component ds-statistic-card"
-style="background-color: var(--surface); color: var(--text-primary); border-color: var(--border-subtle); border-style: solid; border-width: 1px; font-family: &#34;Inter&#34;, system-ui, -apple-system, &#34;Segoe UI&#34;, sans-serif; font-size: var(--font-2xl); font-weight: var(--font-weight-semibold); line-height: 1.2; letter-spacing: -0.02em; padding-inline: var(--space-xl); padding-block: var(--space-xl); gap: var(--space-xs); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: var(--transition-fast)"  role="group"  aria-label="Study minutes"  data-reduced-motion="safe">
-  <p class="ds-statistic-card__label">Study minutes</p>
-  <p class="ds-statistic-card__value">13</p>
-  <p class="ds-statistic-card__detail">Recorded or planned focus time</p>
-</div>
 </section>
-<section aria-label="Achievements">
-  <article
-  class="ds-component ds-achievement-card"
-style="background-color: var(--surface); color: var(--text-primary); border-color: var(--border-subtle); border-style: solid; border-width: 1px; font-family: &#34;Inter&#34;, system-ui, -apple-system, &#34;Segoe UI&#34;, sans-serif; font-size: var(--font-lg); font-weight: var(--font-weight-semibold); line-height: 1.3; letter-spacing: -0.01em; padding-inline: var(--space-xl); padding-block: var(--space-xl); gap: var(--space-md); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: var(--transition-base)"  role="region"  aria-label="First mission recognised"  data-reduced-motion="safe">
-  <div class="ds-achievement-card__badge"><span
-  class="ds-component ds-badge ds-badge--success"
-style="background-color: var(--success-bg); color: var(--success); font-family: &#34;Inter&#34;, system-ui, -apple-system, &#34;Segoe UI&#34;, sans-serif; font-size: var(--font-sm); font-weight: var(--font-weight-medium); line-height: 1.4; letter-spacing: 0.02em; padding-inline: var(--space-sm); padding-block: var(--space-xs); border-radius: var(--radius-sm)"  role="status"  aria-label="First mission"  data-reduced-motion="safe">First mission</span></div>
-  <p class="ds-eyebrow">First mission</p>
-  <h3 class="ds-achievement-card__title">First mission recognised</h3>
-  <p class="ds-achievement-card__message">You completed your first mission sitting on this plan.</p>
-</article>
-  <article
-  class="ds-component ds-achievement-card"
-style="background-color: var(--surface); color: var(--text-primary); border-color: var(--border-subtle); border-style: solid; border-width: 1px; font-family: &#34;Inter&#34;, system-ui, -apple-system, &#34;Segoe UI&#34;, sans-serif; font-size: var(--font-lg); font-weight: var(--font-weight-semibold); line-height: 1.3; letter-spacing: -0.01em; padding-inline: var(--space-xl); padding-block: var(--space-xl); gap: var(--space-md); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: var(--transition-base)"  role="region"  aria-label="Stable knowledge signal"  data-reduced-motion="safe">
-  <div class="ds-achievement-card__badge"><span
-  class="ds-component ds-badge ds-badge--success"
-style="background-color: var(--success-bg); color: var(--success); font-family: &#34;Inter&#34;, system-ui, -apple-system, &#34;Segoe UI&#34;, sans-serif; font-size: var(--font-sm); font-weight: var(--font-weight-medium); line-height: 1.4; letter-spacing: 0.02em; padding-inline: var(--space-sm); padding-block: var(--space-xs); border-radius: var(--radius-sm)"  role="status"  aria-label="Stable knowledge"  data-reduced-motion="safe">Stable knowledge</span></div>
-  <p class="ds-eyebrow">Stable knowledge</p>
-  <h3 class="ds-achievement-card__title">Stable knowledge signal</h3>
-  <p class="ds-achievement-card__message">Your progress report shows stable or durable knowledge.</p>
-</article>
-  <article
-  class="ds-component ds-achievement-card"
-style="background-color: var(--surface); color: var(--text-primary); border-color: var(--border-subtle); border-style: solid; border-width: 1px; font-family: &#34;Inter&#34;, system-ui, -apple-system, &#34;Segoe UI&#34;, sans-serif; font-size: var(--font-lg); font-weight: var(--font-weight-semibold); line-height: 1.3; letter-spacing: -0.01em; padding-inline: var(--space-xl); padding-block: var(--space-xl); gap: var(--space-md); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: var(--transition-base)"  role="region"  aria-label="Effective revision signal"  data-reduced-motion="safe">
-  <div class="ds-achievement-card__badge"><span
-  class="ds-component ds-badge ds-badge--success"
-style="background-color: var(--success-bg); color: var(--success); font-family: &#34;Inter&#34;, system-ui, -apple-system, &#34;Segoe UI&#34;, sans-serif; font-size: var(--font-sm); font-weight: var(--font-weight-medium); line-height: 1.4; letter-spacing: 0.02em; padding-inline: var(--space-sm); padding-block: var(--space-xs); border-radius: var(--radius-sm)"  role="status"  aria-label="Effective revision"  data-reduced-motion="safe">Effective revision</span></div>
-  <p class="ds-eyebrow">Effective revision</p>
-  <h3 class="ds-achievement-card__title">Effective revision signal</h3>
-  <p class="ds-achievement-card__message">Your progress report shows effective revision outcomes.</p>
-</article>
+<section class="eos-secondary" data-dashboard-slot="secondary" aria-label="Readiness, journey, and coach">
+  <article class="eos-panel" data-dashboard-panel="readiness" aria-labelledby="eos-readiness-title">
+    <p class="eos-panel-eyebrow">Readiness</p>
+    <h2 id="eos-readiness-title" class="eos-panel-title">Progress report for student student-ada (twin twin-001) evaluates 4 evidence record(s), 1 completed mission(s), and 1 study plan(s).</h2>
+    <p class="eos-panel-trend">Stable</p>
+    <p class="eos-panel-body">Progress report for student student-ada (twin twin-001) evaluates 4 evidence record(s), 1 completed mission(s), and 1 study plan(s). Mastery is stable (delta +33); learning velocity moderate; knowledge stability stable; revision effective; confidence medium. Intervention not required (none). Based on trajectory length 1, last point created:twin-created.</p>
+    <a
+      class="eos-panel-action"
+      href="/eos/dashboard/?student_id=student-ada"
+      data-action-key="begin_session"
+    >Continue learning</a>
+  </article>
+  <article class="eos-panel" data-dashboard-panel="journey" aria-labelledby="eos-journey-title">
+    <p class="eos-panel-eyebrow">Journey</p>
+    <h2 id="eos-journey-title" class="eos-panel-title">Learning journey</h2>
+    <p class="eos-panel-body eos-story">Progress report for student student-ada (twin twin-001) evaluates 4 evidence record(s), 1 completed mission(s), and 1 study plan(s). One active study day recognised from completed mission work on the active plan. Learner experience for student student-ada: streak 1 day(s), 3 achievement(s), 4 reminder(s), next focus revisit_prerequisites.</p>
+  </article>
+  <article class="eos-panel" data-dashboard-panel="coach" aria-labelledby="eos-coach-title">
+    <p class="eos-panel-eyebrow">Coach</p>
+    <h2 id="eos-coach-title" class="eos-panel-title">Coach insight</h2>
+    <p class="eos-panel-body eos-coach-insight">Stay with the educational next step — consistent sittings compound without claiming mastery.</p>
+  </article>
+</section>
+<section class="eos-tertiary" data-dashboard-slot="tertiary" aria-label="Upcoming milestones and quick actions">
+  <div class="eos-panel eos-panel--quiet" data-dashboard-panel="milestones" aria-labelledby="eos-milestones-title">
+    <p class="eos-panel-eyebrow">Upcoming</p>
+    <h2 id="eos-milestones-title" class="eos-panel-title">Upcoming milestones</h2>
+    <ul class="eos-milestone-list">
+      <li>
+        <span class="eos-milestone-title">Review window 1 for mission msn-twin-001-diag-001-prio-001-ts-001</span>
+        <span class="eos-milestone-meta">Day 2</span>
+        <span class="eos-milestone-detail">Day 2 · 5 minutes · Review</span>
+      </li>
+      <li>
+        <span class="eos-milestone-title">Review window 2 for mission msn-twin-001-diag-001-prio-001-ts-001</span>
+        <span class="eos-milestone-meta">Day 4</span>
+        <span class="eos-milestone-detail">Day 4 · 5 minutes · Review</span>
+      </li>
+    </ul>
+  </div>
+  <nav class="eos-panel eos-panel--quiet" data-dashboard-panel="quick-actions" aria-label="Quick actions">
+    <p class="eos-panel-eyebrow">Quick actions</p>
+    <h2 class="eos-panel-title">Quick actions</h2>
+    <ul class="eos-quick-actions">
+      <li>
+        <a
+          href="/eos/dashboard/?student_id=student-ada"
+          data-action-key="revisit_prerequisites"
+          data-student-cta="secondary"
+        >Review Prerequisites</a>
+        <span class="eos-quick-detail">Revisit supporting concepts first.</span>
+      </li>
+      <li>
+        <a
+          href="/eos/mission/?student_id=student-ada"
+          data-action-key="all_tasks_completed"
+        >Completion check</a>
+        <span class="eos-quick-detail">Complete all 1 required mission tasks in educational order</span>
+      </li>
+      <li>
+        <a
+          href="/eos/mission/?student_id=student-ada"
+          data-action-key="primary_strategy_engaged"
+        >Completion check</a>
+        <span class="eos-quick-detail">Engage primary strategy worked example</span>
+      </li>
+      <li>
+        <a
+          href="/eos/mission/?student_id=student-ada"
+          data-action-key="success_criteria_met"
+        >Completion check</a>
+        <span class="eos-quick-detail">Satisfy declared success criteria for the sitting</span>
+      </li>
+      <li>
+        <a
+          href="/eos/mission/?student_id=student-ada"
+          data-action-key="evidence_captured"
+        >Completion check</a>
+        <span class="eos-quick-detail">Capture educational evidence attributable to this mission</span>
+      </li>
+      <li>
+        <a
+          href="/eos/dashboard/?student_id=student-ada"
+          data-action-key="return_home"
+        >Return Home</a>
+        <span class="eos-quick-detail">Return to Home when you are finished.</span>
+      </li>
+      <li>
+        <a
+          href="/eos/mission/?student_id=student-ada"
+          data-action-key="review_window"
+        >Review window</a>
+        <span class="eos-quick-detail">Review reminder on plan day 1 (5 minutes).</span>
+      </li>
+      <li>
+        <a
+          href="/eos/mission/?student_id=student-ada"
+          data-action-key="next_session"
+        >Next session</a>
+        <span class="eos-quick-detail">Next work sitting scheduled on plan day 0.</span>
+      </li>
+      <li>
+        <a
+          href="/eos/mission/?student_id=student-ada"
+          data-action-key="revision_focus"
+        >Revision focus</a>
+        <span class="eos-quick-detail">Revision focus reminder from the educational recommendation (revisit_prerequisites).</span>
+      </li>
+    </ul>
+  </nav>
 </section>
     </main>
   </div>
+  <script>
+    (function () {
+      try {
+        var key = "eos-scroll:" + (location.pathname + location.search);
+        var saved = sessionStorage.getItem(key);
+        if (saved) {
+          var y = parseInt(saved, 10);
+          if (!isNaN(y)) {
+            window.scrollTo(0, y);
+          }
+        }
+        window.addEventListener("pagehide", function () {
+          sessionStorage.setItem(key, String(window.scrollY || 0));
+        });
+      } catch (e) {
+        /* scroll restoration is best-effort */
+      }
+    })();
+  </script>
 </body>
 </html>

@@ -76,6 +76,10 @@ def test_presenter_handles_partial_optional_inputs() -> None:
     )
 
     assert "Alex" in view.greeting_text
-    assert view.learning_statistics
+    # Decision screen suppresses metric grids; mapper cargo stays available.
+    assert view.learning_statistics == ()
+    assert view.hero.greeting
+    assert view.readiness.category_label
     assert view.achievements[0].title == "No achievements yet"
     assert view.upcoming_sessions
+    assert view.upcoming_milestones

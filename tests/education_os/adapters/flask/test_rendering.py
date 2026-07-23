@@ -71,6 +71,13 @@ def test_serialize_handles_nested_tuples_and_enums() -> None:
     assert isinstance(view, DashboardViewModel)
     payload = TemplateMapper.serialize(view)
     assert isinstance(payload["learning_statistics"], list)
+    assert payload["learning_statistics"] == []
+    assert isinstance(payload["hero"], dict)
+    assert isinstance(payload["readiness"], dict)
+    assert isinstance(payload["journey"], dict)
+    assert isinstance(payload["coach"], dict)
+    assert isinstance(payload["upcoming_milestones"], list)
+    assert isinstance(payload["quick_actions"], list)
     assert isinstance(payload["achievements"], list)
     assert isinstance(payload["container_width"], str)
 
@@ -83,9 +90,14 @@ def test_flask_rendering_uses_mapped_context(client) -> None:
     assert "<title>Learning Dashboard</title>" in html
     assert 'data-page="dashboard"' in html
     assert 'data-width="wide"' in html
-    assert "Learning Dashboard" in html
-    assert "ds-page-header" in html
-    assert "ds-mission-card" in html
+    assert "Learning Dashboard" in html or "Today's Mission" in html
+    assert 'data-dashboard-slot="primary"' in html
+    assert 'data-dashboard-slot="secondary"' in html
+    assert 'data-dashboard-slot="tertiary"' in html
+    assert "eos-hero" in html
+    assert 'data-student-cta="primary"' in html
+    assert "Learning statistics" not in html
+    assert "aria-label=\"Achievements\"" not in html
 
 
 def test_session_rendering_includes_objective(client) -> None:

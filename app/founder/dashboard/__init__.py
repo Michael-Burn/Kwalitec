@@ -1,7 +1,8 @@
-"""Founder Dashboard blueprint — Founder Command Centre (IAHF-003 / POP-002).
+"""Kwalitec Console blueprint — operational portal (CONSOLE-001).
 
-Single Founder operational home under ``/founder``. Historical FOS-004
-presentation lives under Operations; live Product Check-in ops under Feedback.
+Primary entry under ``/console``. Legacy ``/founder`` URLs redirect here.
+Historical FOS-004 presentation lives under System Operations; live Product
+Check-in ops under Support.
 """
 
 from __future__ import annotations
@@ -11,7 +12,7 @@ from flask import Blueprint
 founder_dashboard_bp = Blueprint(
     "founder_dashboard",
     __name__,
-    url_prefix="/founder",
+    url_prefix="/console",
     template_folder="templates",
     static_folder="static",
     static_url_path="/static",

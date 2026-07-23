@@ -1,6 +1,6 @@
-"""Curriculum Studio UI — Flask blueprint under ``/founder/studio``.
+"""Curriculum Studio UI — Flask blueprint under ``/console/studio``.
 
-Thin renderer of Curriculum Studio application snapshots for Founders.
+Thin renderer of Curriculum Studio application snapshots for the Console.
 Owns presentation only — no educational math or publication policy.
 """
 
@@ -11,7 +11,7 @@ from flask import Blueprint
 studio_bp = Blueprint(
     "curriculum_studio",
     __name__,
-    url_prefix="/founder/studio",
+    url_prefix="/console/studio",
 )
 
 

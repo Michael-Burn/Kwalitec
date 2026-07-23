@@ -1,14 +1,15 @@
-"""Build a default OnboardingService for the Flask adapter layer."""
+"""Build an OnboardingService for the Flask adapter layer.
+
+Production composition injects SQLAlchemy repositories and the Student Twin
+initializer via ``SqlAlchemyProductUnitOfWork``. This factory never constructs
+in-memory repositories or recording doubles — callers must supply those ports.
+"""
 
 from __future__ import annotations
 
-from application.onboarding.memory import (
-    FixedClock,
-    InMemoryOnboardingRepository,
-    RecordingTwinInitializer,
-    SequentialOnboardingIdGenerator,
-    SystemClock,
-)
+from uuid import uuid4
+
+from application.onboarding.memory import SystemClock
 from application.onboarding.onboarding_service import OnboardingService
 from application.onboarding.ports import (
     Clock,
@@ -16,29 +17,37 @@ from application.onboarding.ports import (
     OnboardingRepository,
     StudentTwinInitializer,
 )
+from domain.onboarding.ids import OnboardingId
+
+
+class UuidOnboardingIdGenerator(OnboardingIdGenerator):
+    """Allocate opaque onboarding identities for adapter-assembled services."""
+
+    def next_identity(self) -> OnboardingId:
+        return OnboardingId(f"ob-{uuid4().hex}")
 
 
 def build_onboarding_service(
     *,
-    repository: OnboardingRepository | None = None,
-    twin_initializer: StudentTwinInitializer | None = None,
+    repository: OnboardingRepository,
+    twin_initializer: StudentTwinInitializer,
     clock: Clock | None = None,
     id_generator: OnboardingIdGenerator | None = None,
 ) -> OnboardingService:
-    """Assemble an ``OnboardingService`` with in-memory defaults."""
+    """Assemble an ``OnboardingService`` from injected adapters.
+
+    Persistence and twin-initialization ports are required. No in-memory or
+    recording defaults are installed here.
+    """
     return OnboardingService(
-        repository=repository or InMemoryOnboardingRepository(),
-        twin_initializer=twin_initializer or RecordingTwinInitializer(),
+        repository=repository,
+        twin_initializer=twin_initializer,
         clock=clock or SystemClock(),
-        id_generator=id_generator or SequentialOnboardingIdGenerator(),
+        id_generator=id_generator or UuidOnboardingIdGenerator(),
     )
 
 
 __all__ = [
-    "FixedClock",
-    "InMemoryOnboardingRepository",
-    "RecordingTwinInitializer",
-    "SequentialOnboardingIdGenerator",
-    "SystemClock",
+    "UuidOnboardingIdGenerator",
     "build_onboarding_service",
 ]

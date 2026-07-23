@@ -17,6 +17,7 @@ from presentation.design_system import (
     PageHeader,
     Section,
 )
+from presentation.provenance import ProvenanceViewModel
 from presentation.reflection.confidence_scale import ConfidenceScaleView
 
 
@@ -80,6 +81,7 @@ class ReflectionSummaryFieldView:
     lines: tuple[str, ...]
     card: Card
     section: Section
+    provenance: ProvenanceViewModel | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -103,3 +105,4 @@ class ReflectionViewModel:
     mission_title: str = ""
     stage_label: str = ""
     is_ready: bool = False
+    provenance: ProvenanceViewModel | None = None

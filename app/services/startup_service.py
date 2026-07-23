@@ -201,12 +201,15 @@ class StartupService:
             )
             return
 
-        # Create the administrator
-        user = User(email=email, is_active_user=True)
+        # Create the administrator with Founder + Console RBAC (PR-001).
+        user = User(email=email.strip().lower(), is_active_user=True)
         user.set_password(password)
         db.session.add(user)
-        db.session.commit()
-        logger.info("Admin created.")
+        db.session.flush()
+        from app.services.identity_service import IdentityService
+
+        IdentityService.ensure_founder_admin(user)
+        logger.info("Admin created with Founder RBAC.")
 
 
     @staticmethod

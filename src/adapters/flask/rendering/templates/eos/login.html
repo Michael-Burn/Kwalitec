@@ -2,18 +2,28 @@
 {% block nav %}{% endblock %}
 {% block content %}
 <header role="banner" aria-label="Student Login">
-  <h1>Student Login</h1>
-  <p>Enter your student identity to open the learning dashboard.</p>
+  <p class="eos-hero-eyebrow">Kwalitec</p>
+  <h1 class="eos-hero-title">Student Login</h1>
+  <p class="eos-hero-purpose">Enter your student identity to open the learning dashboard.</p>
   <p><a href="/eos/auth/login">Use production authentication</a></p>
 </header>
 {% if error %}
-<p class="eos-error" role="alert">{{ error }}</p>
+<p class="eos-error" role="alert" id="login-error">{{ error }}</p>
 {% endif %}
-<form class="eos-form" method="post" action="/eos/login/" aria-label="Student login">
+<form class="eos-form" method="post" action="/eos/login/" aria-label="Student login" novalidate>
   <label for="student_id">Student ID</label>
-  <input id="student_id" name="student_id" value="{{ student_id }}" required autocomplete="username">
+  <p class="eos-help" id="help-student-id">Use the identity issued for your learning account.</p>
+  <input
+    id="student_id"
+    name="student_id"
+    value="{{ student_id }}"
+    required
+    autocomplete="username"
+    aria-describedby="help-student-id{% if error %} login-error{% endif %}"
+    {% if error %}aria-invalid="true"{% endif %}
+  >
   <div class="eos-cta-row">
-    <button type="submit">Continue to dashboard</button>
+    <button class="eos-btn-primary" type="submit">Continue to dashboard</button>
   </div>
 </form>
 {% endblock %}

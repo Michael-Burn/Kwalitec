@@ -1,4 +1,4 @@
-"""Accessibility contracts for Student Dashboard 2.0 chrome (V4-001)."""
+"""Accessibility contracts for Student Dashboard decision screen (PX-003)."""
 
 from __future__ import annotations
 
@@ -49,15 +49,21 @@ def test_core_chrome_declares_accessibility(
         view.primary_action,
         view.progress_summary,
         view.progress_bar,
+        view.hero.mission_card,
+        view.hero.primary_action,
+        view.readiness.card,
+        view.journey.card,
+        view.coach.card,
     ):
-        _assert_a11y(component)
+        if component is not None:
+            _assert_a11y(component)
 
     assert view.primary_action.accessibility().keyboard_focusable
     assert view.progress_bar.accessibility().role == "progressbar"
     assert 0.0 <= view.progress_bar.percent <= 100.0
 
 
-def test_statistics_streak_and_cards_are_accessible(
+def test_decision_panels_and_actions_are_accessible(
     pipeline_result: PipelineResult,
 ) -> None:
     statistics = SimpleNamespace(
@@ -68,36 +74,22 @@ def test_statistics_streak_and_cards_are_accessible(
         current_streak_days=4,
         longest_streak_days=4,
     )
-    achievements = (
-        SimpleNamespace(
-            title="Steady progress",
-            message="You kept going.",
-            kind="plan_progress",
-            sequence=1,
-        ),
-    )
     view = DashboardPresenter.present(
         pipeline_result,
         statistics=statistics,
-        achievements=achievements,
     )
 
-    for tile in view.learning_statistics:
-        _assert_a11y(tile)
-    assert view.current_streak.tile is not None
-    _assert_a11y(view.current_streak.tile)
-    if view.current_streak.badge is not None:
-        _assert_a11y(view.current_streak.badge)
+    assert view.learning_statistics == ()
+    assert view.readiness.card is not None
+    _assert_a11y(view.readiness.card)
+    assert view.journey.card is not None
+    _assert_a11y(view.journey.card)
+    assert view.coach.card is not None
+    _assert_a11y(view.coach.card)
 
-    for achievement in view.achievements:
-        assert achievement.card is not None
-        _assert_a11y(achievement.card)
-        if achievement.badge is not None:
-            _assert_a11y(achievement.badge)
-
-    for session in view.upcoming_sessions:
-        assert session.card is not None
-        _assert_a11y(session.card)
+    for milestone in view.upcoming_milestones:
+        if milestone.card is not None:
+            _assert_a11y(milestone.card)
 
     for action in view.quick_actions:
         assert action.button is not None
@@ -111,8 +103,8 @@ def test_empty_dashboard_chrome_remains_accessible() -> None:
     _assert_a11y(view.mission_card)
     _assert_a11y(view.progress_bar)
     _assert_a11y(view.primary_action)
-    for tile in view.learning_statistics:
-        _assert_a11y(tile)
+    assert view.hero.mission_card is not None
+    _assert_a11y(view.hero.mission_card)
 
 
 def test_dashboard_uses_wide_responsive_container(

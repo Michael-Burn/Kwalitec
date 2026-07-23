@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 import os
+from datetime import timedelta
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -76,13 +77,60 @@ def _sqlalchemy_driver_prefix(uri: str | None = None) -> str:
     return uri
 
 
+def _is_postgres_uri(uri: str | None = None) -> bool:
+    """Return True when the configured URI uses a PostgreSQL dialect."""
+    prefix = _sqlalchemy_driver_prefix(uri).lower()
+    return prefix.startswith("postgresql") or prefix.startswith("postgres")
+
+
+def _engine_options() -> dict:
+    """Return SQLAlchemy engine options (pool tuning for PostgreSQL)."""
+    if not _is_postgres_uri():
+        return {}
+    return {
+        "pool_pre_ping": True,
+        "pool_recycle": int(os.getenv("DB_POOL_RECYCLE", "1800")),
+        "pool_size": int(os.getenv("DB_POOL_SIZE", "5")),
+        "max_overflow": int(os.getenv("DB_MAX_OVERFLOW", "10")),
+    }
+
+
+def _env_int(name: str, default: int) -> int:
+    raw = os.getenv(name)
+    if raw is None or not str(raw).strip():
+        return default
+    try:
+        return int(raw)
+    except ValueError:
+        return default
+
+
 class BaseConfig:
     """Shared application configuration."""
 
     SECRET_KEY = os.getenv("SECRET_KEY", "dev-change-this-secret-key")
     SQLALCHEMY_DATABASE_URI = _database_uri()
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_ENGINE_OPTIONS = _engine_options()
     WTF_CSRF_ENABLED = True
+    WTF_CSRF_TIME_LIMIT = None  # session-bound tokens; audit in production docs
+
+    # Session defaults (overridden for production hardening).
+    SESSION_COOKIE_HTTPONLY = True
+    SESSION_COOKIE_SAMESITE = "Lax"
+    PERMANENT_SESSION_LIFETIME = timedelta(
+        hours=_env_int("SESSION_LIFETIME_HOURS", 12)
+    )
+
+    # Trusted reverse-proxy hop count (Render / nginx). 0 disables ProxyFix.
+    TRUSTED_PROXY_HOPS = _env_int("TRUSTED_PROXY_HOPS", 0)
+
+    # Prefer HTTPS URL generation when behind TLS termination.
+    PREFERRED_URL_SCHEME = os.getenv("PREFERRED_URL_SCHEME", "http")
+
+    # Observability thresholds (ms).
+    SLOW_REQUEST_THRESHOLD_MS = _env_int("SLOW_REQUEST_THRESHOLD_MS", 1000)
+    HEALTH_ALERT_DB_LATENCY_MS = _env_int("HEALTH_ALERT_DB_LATENCY_MS", 500)
 
 
 class DevelopmentConfig(BaseConfig):
@@ -92,10 +140,22 @@ class DevelopmentConfig(BaseConfig):
     PROPAGATE_EXCEPTIONS = True
 
 
+class TestingConfig(BaseConfig):
+    """Isolated configuration for automated tests."""
+
+    TESTING = True
+    DEBUG = False
+    WTF_CSRF_ENABLED = False
+    SQLALCHEMY_ENGINE_OPTIONS = {}
+    TRUSTED_PROXY_HOPS = 0
+
+
 class ProductionConfig(BaseConfig):
     """Production configuration."""
 
     DEBUG = False
+    PREFERRED_URL_SCHEME = "https"
+    TRUSTED_PROXY_HOPS = _env_int("TRUSTED_PROXY_HOPS", 1)
 
     # Session cookie hardening (HTTPS deployments; Render terminates TLS).
     SESSION_COOKIE_SECURE = True
@@ -115,4 +175,5 @@ class ProductionConfig(BaseConfig):
 config_by_name = {
     "development": DevelopmentConfig,
     "production": ProductionConfig,
+    "testing": TestingConfig,
 }

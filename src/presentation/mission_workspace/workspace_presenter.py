@@ -6,6 +6,7 @@ assembles display fields. Never diagnoses, recommends, persists, or calls AI.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from typing import Any
 
 from presentation.mission_workspace.mission_progress_mapper import (
@@ -18,6 +19,7 @@ from presentation.mission_workspace.workspace_view_model import (
     ReflectionStatusView,
     StudyResourceView,
 )
+from presentation.provenance import ProvenanceMapper
 
 _DEFAULT_GREETING = "Welcome back — ready for today's session."
 _DEFAULT_TITLE = "Today's Session"
@@ -82,29 +84,56 @@ class WorkspacePresenter:
     """Present one study session workspace from a ``PipelineResult``."""
 
     @classmethod
-    def present(cls, result: Any) -> MissionWorkspaceViewModel:
+    def present(
+        cls,
+        result: Any = None,
+        *,
+        experience: Any = None,
+    ) -> MissionWorkspaceViewModel:
         """Map a ``PipelineResult`` into an immutable workspace view model.
 
         Args:
             result: Complete Educational Pipeline cargo. Structural duck-typing
                 is accepted for tests; production callers pass ``PipelineResult``.
+            experience: Optional XP journey / workspace snapshot. When present,
+                greeting and reflection chrome prefer live experience projections.
 
         Returns:
             Immutable ``MissionWorkspaceViewModel`` with null-safe display fields.
         """
-        if result is None:
+        if result is None and experience is None:
             return cls._empty_workspace()
 
-        mission = getattr(result, "mission", None)
-        enhanced = getattr(result, "enhanced_mission", None)
-        explanation = getattr(result, "explanation", None)
-        recommendations = getattr(result, "recommendations", None)
-        enhanced_recs = getattr(result, "enhanced_recommendations", None)
-        experience = getattr(result, "student_experience", None)
+        mission = getattr(result, "mission", None) if result is not None else None
+        enhanced = (
+            getattr(result, "enhanced_mission", None) if result is not None else None
+        )
+        explanation = (
+            getattr(result, "explanation", None) if result is not None else None
+        )
+        recommendations = (
+            getattr(result, "recommendations", None) if result is not None else None
+        )
+        enhanced_recs = (
+            getattr(result, "enhanced_recommendations", None)
+            if result is not None
+            else None
+        )
+        pipeline_experience = (
+            getattr(result, "student_experience", None) if result is not None else None
+        )
 
-        greeting = cls._greeting(experience)
-        mission_title = cls._mission_title(mission, enhanced)
-        mission_objective = cls._mission_objective(mission)
+        greeting = cls._greeting_from_xp(experience) or cls._greeting(
+            pipeline_experience
+        )
+        if mission is not None or enhanced is not None:
+            mission_title = cls._mission_title(mission, enhanced)
+        else:
+            mission_title = cls._xp_mission_title(experience)
+        if mission is not None:
+            mission_objective = cls._mission_objective(mission)
+        else:
+            mission_objective = cls._xp_objective(experience)
         mission_explanation = cls._mission_explanation(
             explanation=explanation,
             mission=mission,
@@ -117,13 +146,15 @@ class WorkspacePresenter:
             recommendations=recommendations,
             enhanced_recs=enhanced_recs,
         )
-        reflection_status = cls._reflection_status(experience)
+        reflection_status = cls._reflection_status_from_xp(
+            experience
+        ) or cls._reflection_status(pipeline_experience)
         session_progress = MissionProgressMapper.map_session_progress(result)
         completion_actions = cls._completion_actions(
             mission=mission,
             recommendations=recommendations,
         )
-        return MissionWorkspaceViewModel(
+        workspace = MissionWorkspaceViewModel(
             greeting=greeting,
             mission_title=mission_title,
             mission_objective=mission_objective,
@@ -135,6 +166,12 @@ class WorkspacePresenter:
             reflection_status=reflection_status,
             session_progress=session_progress,
             completion_actions=completion_actions,
+        )
+        return replace(
+            workspace,
+            provenance=ProvenanceMapper.for_mission(
+                workspace, result=result, experience=experience
+            ),
         )
 
     @classmethod
@@ -166,6 +203,76 @@ class WorkspacePresenter:
                     action_key="return_home",
                 ),
             ),
+            provenance=ProvenanceMapper.for_mission(None),
+        )
+
+    @classmethod
+    def _greeting_from_xp(cls, experience: Any) -> str:
+        if experience is None:
+            return ""
+        workspace = getattr(experience, "workspace", None)
+        snap = getattr(experience, "workspace_snapshot", None)
+        for candidate in (
+            getattr(snap, "primary_focus_prompt", None),
+            getattr(
+                getattr(getattr(workspace, "focus", None), "primary", None),
+                "prompt",
+                None,
+            ),
+            getattr(getattr(experience, "home_snapshot", None), "focus_headline", None),
+        ):
+            text = _text(candidate)
+            if text:
+                return text
+        return ""
+
+    @classmethod
+    def _xp_mission_title(cls, experience: Any) -> str:
+        if experience is None:
+            return _DEFAULT_TITLE
+        snap = getattr(experience, "workspace_snapshot", None)
+        home = getattr(experience, "home_snapshot", None)
+        workspace = getattr(experience, "workspace", None)
+        session = getattr(workspace, "current_session", None) if workspace else None
+        return (
+            _text(getattr(snap, "mission_title", None))
+            or _text(getattr(session, "mission_title", None))
+            or _text(getattr(home, "focus_mission_title", None))
+            or _DEFAULT_TITLE
+        )
+
+    @classmethod
+    def _xp_objective(cls, experience: Any) -> str:
+        if experience is None:
+            return _DEFAULT_OBJECTIVE
+        snap = getattr(experience, "workspace_snapshot", None)
+        workspace = getattr(experience, "workspace", None)
+        focus = getattr(workspace, "focus", None) if workspace else None
+        primary = getattr(focus, "primary", None) if focus else None
+        return (
+            _text(getattr(snap, "current_objective_label", None))
+            or _text(getattr(primary, "prompt", None))
+            or _DEFAULT_OBJECTIVE
+        )
+
+    @classmethod
+    def _reflection_status_from_xp(cls, experience: Any) -> ReflectionStatusView | None:
+        if experience is None:
+            return None
+        workspace = getattr(experience, "workspace", None)
+        reflection = getattr(workspace, "reflection", None) if workspace else None
+        if reflection is None:
+            return None
+        label = _DEFAULT_REFLECTION_LABEL
+        detail = (
+            _text(getattr(reflection, "reflection_prompt", None))
+            or _text(getattr(reflection, "summary", None))
+            or _DEFAULT_REFLECTION_DETAIL
+        )
+        return ReflectionStatusView(
+            label=label,
+            detail=detail,
+            is_available=bool(getattr(reflection, "available", True)),
         )
 
     @classmethod

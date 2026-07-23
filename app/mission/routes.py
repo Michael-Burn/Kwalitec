@@ -261,12 +261,24 @@ def _session_context_for_mission(user_id: int, mission: Mission):
 @login_required
 def start_study_session(mission_id: int):
     """LXP-002: Start today's Study Session from Today's Mission."""
+    from app.services.presentation_telemetry_service import (
+        EVENT_MISSION_STARTED,
+        PresentationTelemetryService,
+    )
+
     try:
         mission = StudySessionService.start_session(mission_id, current_user.id)
     except ValueError as e:
         flash(str(e), "warning")
         return redirect(url_for("mission.missions"))
 
+    PresentationTelemetryService.record(
+        EVENT_MISSION_STARTED,
+        user_id=current_user.id,
+        resource_type="mission",
+        resource_id=mission.id,
+        path=request.path,
+    )
     return redirect(url_for("mission.study_session", mission_id=mission.id))
 
 
@@ -293,6 +305,18 @@ def study_session(mission_id: int):
         # Opening the session screen is an intentional start.
         try:
             mission = StudySessionService.start_session(mission.id, current_user.id)
+            from app.services.presentation_telemetry_service import (
+                EVENT_MISSION_STARTED,
+                PresentationTelemetryService,
+            )
+
+            PresentationTelemetryService.record(
+                EVENT_MISSION_STARTED,
+                user_id=current_user.id,
+                resource_type="mission",
+                resource_id=mission.id,
+                path=request.path,
+            )
         except ValueError as e:
             flash(str(e), "warning")
             return redirect(url_for("mission.missions"))
@@ -349,6 +373,18 @@ def finish_study_session(mission_id: int):
             flash(str(e), "warning")
             return redirect(url_for("mission.missions"))
 
+        from app.services.presentation_telemetry_service import (
+            EVENT_MISSION_COMPLETED,
+            PresentationTelemetryService,
+        )
+
+        PresentationTelemetryService.record(
+            EVENT_MISSION_COMPLETED,
+            user_id=current_user.id,
+            resource_type="mission",
+            resource_id=mission.id,
+            path=request.path,
+        )
         flash("Today's study session has been recorded.", "success")
         return redirect(
             url_for(
@@ -376,6 +412,18 @@ def finish_study_session(mission_id: int):
             flash(str(e), "warning")
             return redirect(url_for("mission.missions"))
 
+        from app.services.presentation_telemetry_service import (
+            EVENT_MISSION_COMPLETED,
+            PresentationTelemetryService,
+        )
+
+        PresentationTelemetryService.record(
+            EVENT_MISSION_COMPLETED,
+            user_id=current_user.id,
+            resource_type="mission",
+            resource_id=result.mission.id,
+            path=request.path,
+        )
         flash(PRACTICE_OUTCOME_SUCCESS_MESSAGE, "success")
         return redirect(
             url_for(

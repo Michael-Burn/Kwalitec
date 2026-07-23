@@ -46,7 +46,7 @@ class TestBrandIdentityConstants:
         assert INTERNAL_ALPHA_BUILD_LABEL == "RC2"
 
     def test_official_product_area_names(self) -> None:
-        assert FOUNDER_COMMAND_CENTRE_LABEL == "Founder Command Centre"
+        assert FOUNDER_COMMAND_CENTRE_LABEL == "Kwalitec Console"
         assert LEARNING_WORKSPACE_LABEL == "Learning Workspace"
         assert STUDENT_DASHBOARD_LABEL == "Student Dashboard"
 
@@ -143,7 +143,7 @@ class TestBrandExperienceHttp:
 class TestFounderCommandCentreNaming:
     def test_overview_uses_official_name(self, client, ctx, app) -> None:
         _login_founder(client, app)
-        resp = client.get("/founder/")
+        resp = client.get("/console/")
         assert resp.status_code == 200
         html = resp.get_data(as_text=True)
         assert FOUNDER_COMMAND_CENTRE_LABEL in html

@@ -1,15 +1,9 @@
-{% extends "layouts/base.html" %}
+{% extends "founder_dashboard/base.html" %}
 
-{% block extra_head %}
-<link rel="stylesheet" href="{{ versioned_static('css/founder_dashboard.css', endpoint='founder_dashboard.static') }}">
-{% endblock %}
-
-{% block content %}
+{% block console_content %}
 {% from "partials/contextual_help.html" import learn_more %}
-{% include "founder_dashboard/_nav.html" %}
-
 <section class="section-header founder-header">
-    <p class="section-eyebrow">{{ founder_command_centre_label }} / Internal Alpha</p>
+    <p class="section-eyebrow">{{ kwalitec_console_label }} / Internal Alpha</p>
     <h1 class="section-title">Internal Alpha</h1>
     <p class="section-description">Programme health from live Product Check-ins.</p>
 </section>

@@ -8,6 +8,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta
 
+from sqlalchemy.orm import joinedload
+
 from app.extensions import db
 from app.models.curriculum import Topic
 from app.models.learning import Mistake, StudyAttempt
@@ -379,7 +381,8 @@ class ReadinessService:
             list[dict]: Each dict has topic_name, mastery_score, stage, revision_count.
         """
         progress_list = (
-            TopicProgress.query.filter(
+            TopicProgress.query.options(joinedload(TopicProgress.topic))
+            .filter(
                 TopicProgress.user_id == user_id,
                 TopicProgress.revision_count > 0,
                 TopicProgress.average_accuracy.isnot(None),
@@ -417,7 +420,8 @@ class ReadinessService:
             list[dict]: Each dict has topic_name, mastery_score, stage, revision_count.
         """
         progress_list = (
-            TopicProgress.query.filter(
+            TopicProgress.query.options(joinedload(TopicProgress.topic))
+            .filter(
                 TopicProgress.user_id == user_id,
                 TopicProgress.revision_count > 0,
                 TopicProgress.average_accuracy.isnot(None),

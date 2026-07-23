@@ -34,7 +34,6 @@ from adapters.flask.onboarding.dependency_provider import (
     OnboardingDependencyProvider,
     get_onboarding_dependencies,
 )
-from adapters.flask.onboarding.factory import build_onboarding_service
 from adapters.flask.page_renderer import PageRenderer
 from application.onboarding.errors import OnboardingApplicationError
 from presentation.onboarding import OnboardingViewModel
@@ -323,19 +322,24 @@ def submit_onboarding() -> Any:
 def register_onboarding(
     app: Flask | object,
     *,
-    dependencies: OnboardingAdapterDependencies | None = None,
+    dependencies: OnboardingAdapterDependencies,
 ) -> None:
-    """Register the onboarding blueprint and bind default dependencies."""
+    """Register the onboarding blueprint and bind injected dependencies.
+
+    ``dependencies`` is required. Production wiring supplies services built on
+    ``SqlAlchemyProductUnitOfWork`` via ``wire_adapter_layer``; tests inject
+    explicit collaborators. No in-memory fallback is constructed here.
+    """
     register = getattr(app, "register_blueprint", None)
     if register is None:
         raise TypeError("app must support register_blueprint")
-    deps = dependencies
-    if deps is None or deps.onboarding_service is None:
-        deps = OnboardingAdapterDependencies(
-            onboarding_service=build_onboarding_service()
+    if dependencies.onboarding_service is None:
+        raise TypeError(
+            "OnboardingAdapterDependencies.onboarding_service is required; "
+            "wire production onboarding through application composition"
         )
     if isinstance(app, Flask):
-        OnboardingDependencyProvider.bind(app, deps)
+        OnboardingDependencyProvider.bind(app, dependencies)
     register(onboarding_bp)
 
 

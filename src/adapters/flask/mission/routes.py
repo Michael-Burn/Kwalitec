@@ -20,13 +20,20 @@ mission_bp = Blueprint(
 
 @mission_bp.get("/")
 def show_mission() -> Any:
-    """Render the mission workspace surface."""
+    """Render the mission workspace surface from the live experience."""
     deps = get_dependencies()
     controller = MissionController(deps)
     student_id = (request.args.get("student_id") or "").strip() or None
     view_model = controller.show(student_id)
+    experience = controller.current_experience(student_id)
     resolved = student_id or deps.student_id_resolver()
     context = PageRenderer().for_mission(view_model, student_id=resolved)
+    if experience is not None:
+        change = getattr(experience, "readiness_change", None)
+        if change is not None and getattr(change, "changed", False):
+            context["readiness_change_message"] = (
+                getattr(change, "message", None) or ""
+            ).strip() or None
     return render_template(MISSION_TEMPLATE, **context)
 
 

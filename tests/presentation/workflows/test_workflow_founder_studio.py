@@ -29,7 +29,7 @@ def founder_client(app, client, ctx):
 
 
 def test_studio_index_reachable(founder_client):
-    response = founder_client.get("/founder/studio/")
+    response = founder_client.get("/console/studio/")
     assert response.status_code == 200
     html = response.get_data(as_text=True)
     assert "Curriculum Studio" in html
@@ -37,7 +37,7 @@ def test_studio_index_reachable(founder_client):
 
 
 def test_workspace_reachable(founder_client):
-    response = founder_client.get("/founder/studio/workspaces/ws-cs1")
+    response = founder_client.get("/console/studio/workspaces/ws-cs1")
     assert response.status_code == 200
     html = response.get_data(as_text=True)
     assert "Next step" in html
@@ -93,13 +93,13 @@ def test_publish_warning_mentions_version():
 
 def test_missing_workspace_redirects_with_guidance(founder_client):
     response = founder_client.get(
-        "/founder/studio/workspaces/ws-does-not-exist",
+        "/console/studio/workspaces/ws-does-not-exist",
         follow_redirects=False,
     )
     assert response.status_code in {302, 303}
-    assert "/founder/studio" in response.headers.get("Location", "")
+    assert "/console/studio" in response.headers.get("Location", "")
     followed = founder_client.get(
-        "/founder/studio/workspaces/ws-does-not-exist",
+        "/console/studio/workspaces/ws-does-not-exist",
         follow_redirects=True,
     )
     html = followed.get_data(as_text=True).lower()
@@ -113,7 +113,7 @@ def test_missing_workspace_redirects_with_guidance(founder_client):
 )
 def test_workspace_action_posts_redirect_home_to_workspace(founder_client, action):
     response = founder_client.post(
-        f"/founder/studio/workspaces/ws-cs1/{action}",
+        f"/console/studio/workspaces/ws-cs1/{action}",
         data={"workspace_id": "ws-cs1", "submit": "Go"},
         follow_redirects=False,
     )
@@ -123,13 +123,13 @@ def test_workspace_action_posts_redirect_home_to_workspace(founder_client, actio
 
 
 def test_create_subject_form_on_dashboard(founder_client):
-    html = founder_client.get("/founder/studio/").get_data(as_text=True)
+    html = founder_client.get("/console/studio/").get_data(as_text=True)
     assert "subject" in html.lower()
     assert "workspace" in html.lower()
 
 
 def test_workspace_breadcrumb_includes_studio(founder_client):
-    html = founder_client.get("/founder/studio/workspaces/ws-cs1").get_data(
+    html = founder_client.get("/console/studio/workspaces/ws-cs1").get_data(
         as_text=True
     )
     assert "Curriculum Studio" in html

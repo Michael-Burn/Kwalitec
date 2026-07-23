@@ -1,7 +1,7 @@
 {
   "name": "Kwalitec",
   "short_name": "Kwalitec",
-  "description": "Adaptive study planner and honest practice tracker for professional exams.",
+  "description": "Kwalitec — Education Operating System. Know exactly what to study next.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

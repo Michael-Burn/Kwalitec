@@ -106,8 +106,8 @@ def test_page_meta_step_counts(surface):
 
 
 def test_founder_studio_and_workspace_share_css(founder_client):
-    index = founder_client.get("/founder/studio/").get_data(as_text=True)
-    workspace = founder_client.get("/founder/studio/workspaces/ws-cs1").get_data(
+    index = founder_client.get("/console/studio/").get_data(as_text=True)
+    workspace = founder_client.get("/console/studio/workspaces/ws-cs1").get_data(
         as_text=True
     )
     assert "founder_dashboard.css" in index
@@ -115,8 +115,9 @@ def test_founder_studio_and_workspace_share_css(founder_client):
 
 
 def test_intelligence_and_gates_share_nav_shell(founder_client):
-    intel = founder_client.get("/founder/intelligence").get_data(as_text=True)
-    gates = founder_client.get("/founder/evidence-gates").get_data(as_text=True)
-    assert "Evidence Gates" in intel
-    assert "Intelligence" in gates
-    assert "Studio" in intel and "Studio" in gates
+    intel = founder_client.get("/console/intelligence").get_data(as_text=True)
+    gates = founder_client.get("/console/evidence-gates").get_data(as_text=True)
+    assert "Assessments" in intel
+    assert "Learning" in gates
+    assert "Content" in intel and "Content" in gates
+    assert "console-sidebar" in intel and "console-sidebar" in gates

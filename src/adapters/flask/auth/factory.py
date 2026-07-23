@@ -1,18 +1,15 @@
-"""Build a default AuthenticationService for the Flask adapter layer."""
+"""Build an AuthenticationService for the Flask adapter layer.
+
+Production composition injects SQLAlchemy repositories via
+``SqlAlchemyProductUnitOfWork``. This factory never constructs in-memory
+repositories or recording doubles — callers must supply persistence ports.
+"""
 
 from __future__ import annotations
 
 from datetime import UTC, datetime
 
 from application.auth.auth_service import AuthenticationService
-from application.auth.memory import (
-    InMemoryAuthTokenRepository,
-    InMemoryRateLimiter,
-    InMemoryUserAccountRepository,
-    RecordingEmailSender,
-    Sha256TokenHasher,
-    StubPasswordHasher,
-)
 from application.auth.ports import (
     AuthTokenRepository,
     Clock,
@@ -21,6 +18,12 @@ from application.auth.ports import (
     RateLimiter,
     TokenHasher,
     UserAccountRepository,
+)
+from infrastructure.security.auth_adapters import (
+    HmacStubPasswordHasher,
+    LoggingEmailSender,
+    ProcessRateLimiter,
+    Sha256TokenHasher,
 )
 
 
@@ -33,8 +36,8 @@ class UtcClock(Clock):
 
 def build_authentication_service(
     *,
-    users: UserAccountRepository | None = None,
-    tokens: AuthTokenRepository | None = None,
+    users: UserAccountRepository,
+    tokens: AuthTokenRepository,
     hasher: PasswordHasher | None = None,
     token_hasher: TokenHasher | None = None,
     email_sender: EmailSender | None = None,
@@ -44,30 +47,33 @@ def build_authentication_service(
     expose_tokens: bool = False,
     use_argon2: bool = True,
 ) -> AuthenticationService:
-    """Assemble an ``AuthenticationService`` with sensible defaults.
+    """Assemble an ``AuthenticationService`` from injected adapters.
 
-    When ``use_argon2`` is True, prefers the infrastructure Argon2 hasher and
-    falls back to the stub hasher only if Argon2 is unavailable.
+    Persistence ports (``users``, ``tokens``) are required. Defaults for
+    non-persistence collaborators are production infrastructure adapters,
+    never recording or in-memory doubles.
     """
     resolved_hasher = hasher
     if resolved_hasher is None:
         if use_argon2:
             try:
-                from infrastructure.security import Argon2PasswordHasher
+                from infrastructure.security.argon2_password_hasher import (
+                    Argon2PasswordHasher,
+                )
 
                 resolved_hasher = Argon2PasswordHasher()
-            except ImportError:
-                resolved_hasher = StubPasswordHasher()
+            except Exception:  # pragma: no cover - optional dependency guard
+                resolved_hasher = HmacStubPasswordHasher()  # type: ignore[assignment]
         else:
-            resolved_hasher = StubPasswordHasher()
+            resolved_hasher = HmacStubPasswordHasher()  # type: ignore[assignment]
 
     return AuthenticationService(
-        users=users or InMemoryUserAccountRepository(),
-        tokens=tokens or InMemoryAuthTokenRepository(),
+        users=users,
+        tokens=tokens,
         hasher=resolved_hasher,
         token_hasher=token_hasher or Sha256TokenHasher(),
-        email_sender=email_sender or RecordingEmailSender(),
-        rate_limiter=rate_limiter or InMemoryRateLimiter(),
+        email_sender=email_sender or LoggingEmailSender(),
+        rate_limiter=rate_limiter or ProcessRateLimiter(),
         clock=clock or UtcClock(),
         require_verified_email=require_verified_email,
         expose_tokens=expose_tokens,

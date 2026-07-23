@@ -18,14 +18,40 @@ dashboard_bp = Blueprint(
 )
 
 
+def _experience_messages(experience: object | None) -> tuple[str | None, str | None]:
+    if experience is None:
+        return None, None
+    readiness = None
+    change = getattr(experience, "readiness_change", None)
+    if change is not None and getattr(change, "changed", False):
+        readiness = (getattr(change, "message", None) or "").strip() or None
+    success = None
+    for state in getattr(experience, "surface_states", ()) or ():
+        message = (getattr(state, "success_message", None) or "").strip()
+        if message:
+            success = message
+            break
+    return readiness, success
+
+
 @dashboard_bp.get("/")
 def show_dashboard() -> Any:
-    """Render the Student Dashboard 2.0 surface."""
+    """Render the Student Dashboard 2.0 surface from the live experience."""
     deps = get_dependencies()
     student_id = (request.args.get("student_id") or "").strip() or None
-    view_model = DashboardController(deps).show(student_id)
+    controller = DashboardController(deps)
+    view_model = controller.show(student_id)
+    experience = controller.current_experience(student_id)
     resolved = student_id or deps.student_id_resolver()
-    context = PageRenderer().for_dashboard(view_model, student_id=resolved)
+    readiness, success = _experience_messages(experience)
+    context = PageRenderer().for_dashboard(
+        view_model,
+        student_id=resolved,
+        from_surface=(request.args.get("from") or "").strip() or None,
+        updated=(request.args.get("updated") or "").strip() or None,
+        readiness_change_message=readiness,
+        experience_success_message=success,
+    )
     return render_template(DASHBOARD_TEMPLATE, **context)
 
 

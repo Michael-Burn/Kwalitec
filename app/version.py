@@ -13,16 +13,15 @@ try:
 except PackageNotFoundError:
     APP_VERSION = _FALLBACK_VERSION
 
-# Unified product identity line (PTP-000 §8.3 / PTP-005 F-4, F-5).
-PRODUCT_TAGLINE = (
-    "Adaptive study planner and honest practice tracker for professional exams."
-)
+# Unified product identity line (PTP-000 §8.3 / PTP-005 F-4, F-5 / PX-001).
+# Supporting product descriptor — brand name always dominates visually.
+PRODUCT_TAGLINE = "Education Operating System"
 
 # IAHF-005 — single cache-bust fingerprint for all static asset URLs.
 # Bump when shipping changes under app/static/ (or blueprint static folders)
 # so browsers refetch branding, CSS, JS, and icons after deploy.
 # Override with STATIC_ASSET_VERSION env var when needed.
-_DEFAULT_STATIC_ASSET_VERSION = f"{APP_VERSION}"
+_DEFAULT_STATIC_ASSET_VERSION = f"{APP_VERSION}-px001"
 STATIC_ASSET_VERSION = os.getenv(
     "STATIC_ASSET_VERSION", _DEFAULT_STATIC_ASSET_VERSION
 ).strip() or _DEFAULT_STATIC_ASSET_VERSION

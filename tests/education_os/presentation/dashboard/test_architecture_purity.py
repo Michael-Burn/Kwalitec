@@ -72,6 +72,7 @@ EXPECTED_FILES = {
     PACKAGE_ROOT / "progress_mapper.py",
     PACKAGE_ROOT / "statistics_mapper.py",
     PACKAGE_ROOT / "achievement_mapper.py",
+    PACKAGE_ROOT / "xp_mapper.py",
 }
 
 DESIGN_SYSTEM_IMPORT_PREFIX = "presentation.design_system"
@@ -177,6 +178,7 @@ def test_presenter_consumes_display_inputs_only() -> None:
             "progress_mapper.py",
             "statistics_mapper.py",
             "achievement_mapper.py",
+            "xp_mapper.py",
         )
     ]
     for source in sources:
@@ -212,6 +214,7 @@ def test_public_exports() -> None:
         MissionCardMapper,
         ProgressMapper,
         StatisticsMapper,
+        XpProjectionMapper,
     )
 
     assert DashboardPresenter is not None
@@ -221,3 +224,4 @@ def test_public_exports() -> None:
     assert StatisticsMapper is not None
     assert AchievementMapper is not None
     assert DashboardViewModel is not None
+    assert XpProjectionMapper is not None

@@ -1,0 +1,42 @@
+{% extends "eos/base.html" %}
+{% block title %}{{ title }} · Kwalitec{% endblock %}
+{% block content %}
+<header class="eos-page-header">
+  <h1>{{ view.title }}</h1>
+  {% if view.headline %}
+  <p class="eos-lede">{{ view.headline }}</p>
+  {% endif %}
+</header>
+
+{% if experience_success_message %}
+<p class="eos-success" role="status">{{ experience_success_message }}</p>
+{% endif %}
+{% if readiness_change_message %}
+<p class="eos-readiness-change" data-readiness-change="true" role="status">{{ readiness_change_message }}</p>
+{% endif %}
+{% if view.celebration_message %}
+<p class="eos-celebration" role="status">{{ view.celebration_message }}</p>
+{% endif %}
+
+{% if view.empty %}
+  {{ fragments.empty_state|safe }}
+{% else %}
+<section class="eos-panel" data-experience-surface="{{ view.surface }}" aria-labelledby="eos-surface-title">
+  <h2 id="eos-surface-title" class="eos-panel-title">{{ view.title }}</h2>
+  {% if view.body %}
+  <p class="eos-panel-body">{{ view.body }}</p>
+  {% endif %}
+  {% if view.detail %}
+  <p class="eos-panel-trend">{{ view.detail }}</p>
+  {% endif %}
+  {% if fragments.provenance %}{{ fragments.provenance|safe }}{% endif %}
+  {% if view.action_label and primary_cta_href %}
+  <a
+    class="eos-cta"
+    href="{{ primary_cta_href }}"
+    data-action-key="{{ view.action_key }}"
+  >{{ view.action_label }}</a>
+  {% endif %}
+</section>
+{% endif %}
+{% endblock %}

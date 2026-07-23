@@ -8,14 +8,22 @@ from __future__ import annotations
 
 from typing import Any
 
-from adapters.flask.navigation import student_flow_nav
+from adapters.flask.navigation import primary_cta_href, student_flow_nav
 from adapters.flask.rendering import ComponentRenderer
 from adapters.flask.template_mapper import TemplateMapper
 from presentation.dashboard.dashboard_view_model import DashboardViewModel
+from presentation.design_system import (
+    EmptyState,
+    Skeleton,
+    SkeletonVariant,
+    Toast,
+    ToastTone,
+)
 from presentation.mission_workspace.workspace_view_model import (
     MissionWorkspaceViewModel,
 )
 from presentation.onboarding.onboarding_view_model import OnboardingViewModel
+from presentation.polish import ContinuityBanner, continuity_from_query
 from presentation.reflection.reflection_view_model import ReflectionViewModel
 from presentation.study_session.session_view_model import StudySessionViewModel
 
@@ -25,6 +33,7 @@ class PageRenderer:
 
     def __init__(self, renderer: ComponentRenderer | None = None) -> None:
         self._renderer = renderer or ComponentRenderer()
+        self._chrome_cache: dict[tuple[str, str], dict[str, Any]] = {}
 
     @property
     def renderer(self) -> ComponentRenderer:
@@ -35,25 +44,106 @@ class PageRenderer:
         view_model: DashboardViewModel,
         *,
         student_id: str = "",
+        session_id: str = "",
+        primary_action_key: str | None = None,
+        readiness_change_message: str | None = None,
+        experience_success_message: str | None = None,
+        continuity: ContinuityBanner | None = None,
+        from_surface: str | None = None,
+        updated: str | None = None,
     ) -> dict[str, Any]:
         context = TemplateMapper.for_dashboard(view_model)
-        context.update(self._chrome(student_id=student_id))
+        context.update(self._chrome(student_id=student_id, session_id=session_id))
+        # PX-004: render only fragments the decision-screen template consumes.
+        mission_card = getattr(view_model, "mission_card", None) or getattr(
+            getattr(view_model, "hero", None), "mission_card", None
+        )
         context["fragments"] = {
-            "header": self._renderer.render_page_header(view_model.header),
-            "greeting": self._renderer.render_section(view_model.greeting),
-            "mission_card": self._renderer.render_mission_card(view_model.mission_card),
-            "primary_action": self._renderer.render_button(view_model.primary_action),
-            "progress_bar": self._renderer.render_progress_bar(view_model.progress_bar),
-            "statistics": tuple(
-                self._renderer.render_statistic_card(tile)
-                for tile in view_model.learning_statistics
+            "mission_card": (
+                self._renderer.render_mission_card(mission_card)
+                if mission_card is not None
+                else ""
             ),
-            "achievements": tuple(
-                self._renderer.render_achievement_card(item)
-                for item in view_model.achievements
+            "statistics": (),
+            "achievements": (),
+            "hero_provenance": self._renderer.render_provenance(
+                getattr(getattr(view_model, "hero", None), "provenance", None)
+            ),
+            "readiness_provenance": self._renderer.render_provenance(
+                getattr(getattr(view_model, "readiness", None), "provenance", None)
+            ),
+            "journey_provenance": self._renderer.render_provenance(
+                getattr(getattr(view_model, "journey", None), "provenance", None)
+            ),
+            "coach_provenance": self._renderer.render_provenance(
+                getattr(getattr(view_model, "coach", None), "provenance", None)
+            ),
+            "revision_provenance": self._renderer.render_provenance(
+                getattr(view_model, "revision_provenance", None)
             ),
         }
-        context["primary_action_key"] = "begin_session"
+        # Prefer hero action key, then continuous-journey / quick-action keys.
+        resolved_key = (primary_action_key or "").strip()
+        if not resolved_key:
+            hero = getattr(view_model, "hero", None)
+            resolved_key = (getattr(hero, "action_key", None) or "").strip()
+        if not resolved_key:
+            quick = tuple(getattr(view_model, "quick_actions", ()) or ())
+            for action in quick:
+                key = (getattr(action, "action_key", None) or "").strip()
+                if key and key != "return_home":
+                    resolved_key = key
+                    break
+            else:
+                resolved_key = "begin_session"
+        context["primary_action_key"] = resolved_key
+        context["primary_cta_href"] = primary_cta_href(
+            resolved_key,
+            student_id=student_id,
+            session_id=session_id,
+        )
+        banner = continuity or continuity_from_query(
+            from_surface=from_surface,
+            updated=updated,
+        )
+        success = (experience_success_message or "").strip() or None
+        readiness = (readiness_change_message or "").strip() or None
+        if banner is not None:
+            success = success or banner.success_message
+            readiness = readiness or (banner.readiness_hint or None)
+            context["continuity"] = banner
+            context["fragments"]["success_toast"] = self._renderer.render_toast(
+                Toast(message=banner.success_message, tone=ToastTone.SUCCESS)
+            )
+        else:
+            context["continuity"] = None
+        context["readiness_change_message"] = readiness
+        context["experience_success_message"] = success
+        milestones = tuple(getattr(view_model, "upcoming_milestones", ()) or ())
+        if not milestones or (
+            len(milestones) == 1
+            and "appear" in (getattr(milestones[0], "detail", "") or "").lower()
+        ):
+            context["fragments"]["milestones_empty"] = (
+                self._renderer.render_empty_state(
+                    EmptyState(
+                        title="No upcoming milestones yet",
+                        description=(
+                            "Milestones appear once a study plan is active and "
+                            "session outcomes start updating your journey."
+                        ),
+                        action_label="Continue today's mission to build this view.",
+                    )
+                )
+            )
+        else:
+            context["fragments"]["milestones_empty"] = ""
+        context["fragments"]["dashboard_skeleton"] = self._renderer.render_skeleton(
+            Skeleton(
+                variant=SkeletonVariant.CARD,
+                label="Preparing your learning overview",
+            )
+        )
         return context
 
     def for_mission(
@@ -64,6 +154,11 @@ class PageRenderer:
     ) -> dict[str, Any]:
         context = TemplateMapper.for_mission(view_model)
         context.update(self._chrome(student_id=student_id))
+        context["fragments"] = {
+            "provenance": self._renderer.render_provenance(
+                getattr(view_model, "provenance", None)
+            )
+        }
         return context
 
     def for_session(
@@ -121,11 +216,76 @@ class PageRenderer:
             "summary": self._renderer.render_section(
                 view_model.reflection_summary.section
             ),
+            "provenance": self._renderer.render_provenance(
+                getattr(view_model, "provenance", None)
+                or getattr(
+                    getattr(view_model, "reflection_summary", None),
+                    "provenance",
+                    None,
+                )
+            ),
         }
         if view_model.primary_button is not None:
             context["fragments"]["primary_button"] = self._renderer.render_button(
                 view_model.primary_button
             )
+        return context
+
+    def for_experience_surface(
+        self,
+        view_model: Any,
+        *,
+        student_id: str = "",
+        readiness_change_message: str | None = None,
+        experience_success_message: str | None = None,
+    ) -> dict[str, Any]:
+        """Build template context for Journey / Readiness / Coach pages."""
+        context = TemplateMapper.for_experience_surface(view_model)
+        context.update(self._chrome(student_id=student_id))
+        readiness = (readiness_change_message or "").strip() or None
+        success = (experience_success_message or "").strip() or None
+        if not readiness:
+            readiness = (
+                getattr(view_model, "readiness_change_message", None) or ""
+            ).strip() or None
+        if not success:
+            success = (
+                getattr(view_model, "success_message", None) or ""
+            ).strip() or None
+        context["readiness_change_message"] = readiness
+        context["experience_success_message"] = success
+        action_key = (getattr(view_model, "action_key", None) or "").strip()
+        context["primary_action_key"] = action_key or "return_home"
+        context["primary_cta_href"] = primary_cta_href(
+            context["primary_action_key"],
+            student_id=student_id,
+        )
+        if getattr(view_model, "empty", False):
+            context["fragments"] = {
+                "empty_state": self._renderer.render_empty_state(
+                    EmptyState(
+                        title=getattr(view_model, "title", None) or "Not ready yet",
+                        description=(
+                            getattr(view_model, "empty_reason", None)
+                            or "This view updates as you study."
+                        ),
+                        action_label=(
+                            getattr(view_model, "action_label", None) or ""
+                        ).strip()
+                        or "Return home",
+                    )
+                ),
+                "provenance": self._renderer.render_provenance(
+                    getattr(view_model, "provenance", None)
+                ),
+            }
+        else:
+            context["fragments"] = {
+                "empty_state": "",
+                "provenance": self._renderer.render_provenance(
+                    getattr(view_model, "provenance", None)
+                ),
+            }
         return context
 
     def for_onboarding(
@@ -165,8 +325,14 @@ class PageRenderer:
         student_id: str = "",
         session_id: str = "",
     ) -> dict[str, Any]:
-        return {
+        key = (student_id or "", session_id or "")
+        cached = self._chrome_cache.get(key)
+        if cached is not None:
+            return dict(cached)
+        chrome = {
             "token_css": self._renderer.token_style_tag(),
             "nav": student_flow_nav(student_id=student_id, session_id=session_id),
             "student_id": student_id,
         }
+        self._chrome_cache[key] = chrome
+        return dict(chrome)

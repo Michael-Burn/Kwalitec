@@ -199,5 +199,10 @@ def test_secure_cookies_applied_in_testing(auth_app) -> None:
 
 
 def test_factory_builds_service() -> None:
-    service = build_authentication_service(use_argon2=False, expose_tokens=True)
+    service = build_authentication_service(
+        users=InMemoryUserAccountRepository(),
+        tokens=InMemoryAuthTokenRepository(),
+        use_argon2=False,
+        expose_tokens=True,
+    )
     assert service is not None

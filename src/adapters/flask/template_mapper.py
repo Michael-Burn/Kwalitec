@@ -23,6 +23,7 @@ MISSION_TEMPLATE = "eos/mission.html"
 SESSION_TEMPLATE = "eos/session.html"
 REFLECTION_TEMPLATE = "eos/reflection.html"
 LOGIN_TEMPLATE = "eos/login.html"
+EXPERIENCE_SURFACE_TEMPLATE = "eos/experience_surface.html"
 
 
 class TemplateMapper:
@@ -84,6 +85,18 @@ class TemplateMapper:
             "container_width": _container_width(view_model),
             "session_id": getattr(view_model, "session_id", "") or "",
             "is_ready": bool(getattr(view_model, "is_ready", False)),
+        }
+
+    @classmethod
+    def for_experience_surface(cls, view_model: Any) -> dict[str, Any]:
+        """Build template context for Home/Journey/Readiness/Coach surfaces."""
+        surface = getattr(view_model, "surface", None) or "home"
+        return {
+            "page": str(surface),
+            "template_name": EXPERIENCE_SURFACE_TEMPLATE,
+            "view": cls.serialize(view_model),
+            "title": getattr(view_model, "title", None) or "Student experience",
+            "container_width": "content",
         }
 
     @classmethod

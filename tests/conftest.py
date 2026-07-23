@@ -100,6 +100,10 @@ def _make_user():
 
     u = User(email="test@kwalitec.example", is_active_user=True)
     u.set_password("password123")
+    # ALPHA-001 onboarding is covered in dedicated tests; default fixtures
+    # skip the redirect so existing route/dashboard coverage stays stable.
+    u.alpha_onboarding_completed = True
+    u.alpha_onboarding_skipped = False
     _db.session.add(u)
     _db.session.commit()
     return u

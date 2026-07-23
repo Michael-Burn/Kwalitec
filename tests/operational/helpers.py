@@ -49,9 +49,9 @@ ALPHA_ENV_VARS = (
 )
 
 FOUNDER_SMOKE_PATHS = (
-    "/founder/studio/",
-    "/founder/intelligence",
-    "/founder/evidence-gates",
+    "/console/studio/",
+    "/console/intelligence",
+    "/console/evidence-gates",
 )
 
 STUDENT_SMOKE_PATHS = (
@@ -97,7 +97,7 @@ REQUIRED_TEMPLATES = (
     "app/templates/errors/500.html",
 )
 
-ALEMBIC_HEAD = "202607190002"
+ALEMBIC_HEAD = "202607230002"
 
 ALPHA_HTTP_ROUTES = (
     "/health",
@@ -105,9 +105,9 @@ ALPHA_HTTP_ROUTES = (
     "/student/",
     "/student/journey",
     "/student/revision",
-    "/founder/studio/",
-    "/founder/intelligence",
-    "/founder/evidence-gates",
+    "/console/studio/",
+    "/console/intelligence",
+    "/console/evidence-gates",
     "/dashboard/",
     "/auth/login",
 )

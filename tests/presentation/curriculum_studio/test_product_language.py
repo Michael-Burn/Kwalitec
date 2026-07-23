@@ -69,8 +69,8 @@ def test_founder_nav_includes_approved_label(label):
 
 def test_founder_nav_labels_match_guide_order_core():
     labels = [item.label for item in COMMAND_CENTRE_NAV]
-    assert labels.index("Studio") < labels.index("Intelligence")
-    assert labels.index("Intelligence") < labels.index("Evidence Gates")
+    assert labels.index("Learning") < labels.index("Assessments")
+    assert labels.index("Assessments") < labels.index("Content")
 
 
 # --- Studio CTAs -----------------------------------------------------------
@@ -95,7 +95,7 @@ def test_studio_form_cta_title_case(app_ctx, form_cls, label):
 
 
 def test_studio_workspace_renders_publish_curriculum(founder_client):
-    html = founder_client.get("/founder/studio/workspaces/ws-cs1").get_data(
+    html = founder_client.get("/console/studio/workspaces/ws-cs1").get_data(
         as_text=True
     )
     assert "Publish Curriculum" in html
@@ -104,7 +104,7 @@ def test_studio_workspace_renders_publish_curriculum(founder_client):
 
 
 def test_studio_dashboard_headings_title_case(founder_client):
-    html = founder_client.get("/founder/studio/").get_data(as_text=True)
+    html = founder_client.get("/console/studio/").get_data(as_text=True)
     assert "Create Subject" in html
     assert "Open Workspace" in html
 
@@ -163,14 +163,14 @@ def test_approval_next_step_avoids_student_experience_jargon():
 
 
 def test_intelligence_review_evidence_cta(founder_client):
-    html = founder_client.get("/founder/intelligence").get_data(as_text=True)
+    html = founder_client.get("/console/intelligence").get_data(as_text=True)
     assert "Review Evidence" in html
     assert "Open Evidence Gates checklist" not in html
     assert "Open Curriculum Studio" not in html
 
 
 def test_evidence_gates_links_avoid_open_verb(founder_client):
-    html = founder_client.get("/founder/evidence-gates").get_data(as_text=True)
+    html = founder_client.get("/console/evidence-gates").get_data(as_text=True)
     assert "Evidence Gates" in html
     assert "Open Curriculum Studio" not in html
     assert "Curriculum Studio" in html
@@ -178,7 +178,7 @@ def test_evidence_gates_links_avoid_open_verb(founder_client):
 
 
 def test_intelligence_avoids_execute_launch(founder_client):
-    html = founder_client.get("/founder/intelligence").get_data(as_text=True).lower()
+    html = founder_client.get("/console/intelligence").get_data(as_text=True).lower()
     assert "execute" not in html
     assert "launch" not in html
 
@@ -208,7 +208,7 @@ def test_studio_presentation_avoids_learning_session_synonym():
 
 @pytest.mark.parametrize(
     "path",
-    ("/founder/studio/", "/founder/intelligence", "/founder/evidence-gates"),
+    ("/console/studio/", "/console/intelligence", "/console/evidence-gates"),
 )
 def test_founder_pages_avoid_rejected_product_synonyms(founder_client, path):
     html = founder_client.get(path).get_data(as_text=True).lower()

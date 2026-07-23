@@ -382,7 +382,7 @@ class TestInsightEngineHttp:
 
     def test_dashboard_shows_insight_panels(self, founder_client, user):
         _submit_checkin(user.id)
-        response = founder_client.get("/founder/feedback")
+        response = founder_client.get("/console/feedback")
         assert response.status_code == 200
         body = response.get_data(as_text=True)
         assert 'data-rip004-insight-engine="1"' in body
@@ -397,7 +397,7 @@ class TestInsightEngineHttp:
     def test_time_window_filter(self, founder_client, user):
         _submit_checkin(user.id)
         response = founder_client.get(
-            "/founder/feedback",
+            "/console/feedback",
             query_string={"time_window": TIME_WINDOW_TODAY},
         )
         assert response.status_code == 200

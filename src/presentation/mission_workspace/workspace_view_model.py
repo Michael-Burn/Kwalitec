@@ -9,6 +9,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from presentation.provenance import ProvenanceViewModel
+
 
 @dataclass(frozen=True, slots=True)
 class StudyResourceView:
@@ -91,3 +93,4 @@ class MissionWorkspaceViewModel:
     reflection_status: ReflectionStatusView
     session_progress: SessionProgressView
     completion_actions: tuple[CompletionActionView, ...]
+    provenance: ProvenanceViewModel | None = None

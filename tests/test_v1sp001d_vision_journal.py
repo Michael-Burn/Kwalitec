@@ -266,17 +266,17 @@ class TestVisionJournalRoutes:
             follow_redirects=True,
         )
         for path in (
-            "/founder/vision",
-            "/founder/vision/new",
-            "/founder/vision/timeline",
-            "/founder/vision/export/json",
+            "/console/vision",
+            "/console/vision/new",
+            "/console/vision/timeline",
+            "/console/vision/export/json",
         ):
             assert client.get(path).status_code == 403
 
     def test_create_edit_archive_via_http(self, client, ctx, app) -> None:
         founder = _login_founder(client, app)
         create = client.post(
-            "/founder/vision/new",
+            "/console/vision/new",
             data=_entry_payload(),
             follow_redirects=True,
         )
@@ -285,7 +285,7 @@ class TestVisionJournalRoutes:
         entry = VisionEntry.query.filter_by(author_user_id=founder.id).one()
 
         edit = client.post(
-            f"/founder/vision/{entry.id}/edit",
+            f"/console/vision/{entry.id}/edit",
             data=_entry_payload(
                 title="Learning Confidence Engine v2",
                 status="validated",
@@ -296,13 +296,13 @@ class TestVisionJournalRoutes:
         assert b"Learning Confidence Engine v2" in edit.data
         assert VisionJournalService.get_entry(entry.id).status == "validated"
 
-        detail = client.get(f"/founder/vision/{entry.id}")
+        detail = client.get(f"/console/vision/{entry.id}")
         assert detail.status_code == 200
         assert b"Promote to Development" in detail.data
         assert b"Timeline" in detail.data
 
         archive = client.post(
-            f"/founder/vision/{entry.id}",
+            f"/console/vision/{entry.id}",
             data={"archive-submit": "Archive"},
             follow_redirects=True,
         )
@@ -323,28 +323,28 @@ class TestVisionJournalRoutes:
             tags=["Security", "Founder"],
             status="planned",
         )
-        listed = client.get("/founder/vision?category=Security&status=planned")
+        listed = client.get("/console/vision?category=Security&status=planned")
         assert listed.status_code == 200
         assert b"Security Hardening" in listed.data
         assert b"Vision Journal" in listed.data
 
-        overview = client.get("/founder/")
+        overview = client.get("/console/")
         assert overview.status_code == 200
         body = overview.get_data(as_text=True)
-        assert "Vision Journal" in body
-        assert "Awaiting validation" in body or "Recent" in body
-        assert "Operational Health" in body
+        assert "Console Home" in body
+        assert "Attention Required" in body
+        assert "Operations" in body
 
-        export_json = client.get("/founder/vision/export/json")
+        export_json = client.get("/console/vision/export/json")
         assert export_json.status_code == 200
         assert export_json.mimetype == "application/json"
         assert b"Security Hardening" in export_json.data
 
-        export_md = client.get("/founder/vision/export/markdown")
+        export_md = client.get("/console/vision/export/markdown")
         assert export_md.status_code == 200
         assert b"# Kwalitec Vision Journal" in export_md.data
 
-        export_csv = client.get("/founder/vision/export/csv")
+        export_csv = client.get("/console/vision/export/csv")
         assert export_csv.status_code == 200
         assert b"Security Hardening" in export_csv.data
 
@@ -371,7 +371,7 @@ class TestVisionJournalRoutes:
             category="Educational Intelligence",
         )
         link = client.post(
-            f"/founder/vision/{dependent.id}",
+            f"/console/vision/{dependent.id}",
             data={
                 "rel-to_entry_id": str(base.id),
                 "rel-relation_type": "depends_on",
@@ -384,7 +384,7 @@ class TestVisionJournalRoutes:
         assert b"depends on" in link.data
 
         promote = client.post(
-            f"/founder/vision/{dependent.id}",
+            f"/console/vision/{dependent.id}",
             data={
                 "promo-placeholder_ref": "ARCH-LOM-CONFIDENCE",
                 "promo-notes": "Trace to architecture",
@@ -406,6 +406,6 @@ class TestVisionJournalRoutes:
             data={"email": student.email, "password": "password123"},
             follow_redirects=True,
         )
-        dashboard = client.get("/dashboard/")
+        dashboard = client.get("/dashboard/", follow_redirects=True)
         assert dashboard.status_code == 200
         assert b"Vision Journal" not in dashboard.data

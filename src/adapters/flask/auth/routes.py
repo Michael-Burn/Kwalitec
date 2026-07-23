@@ -31,7 +31,6 @@ from adapters.flask.auth.dependency_provider import (
     AuthDependencyProvider,
     get_auth_dependencies,
 )
-from adapters.flask.auth.factory import build_authentication_service
 from adapters.flask.auth.secure_cookies import apply_secure_cookie_config
 from adapters.flask.dashboard.dependency_provider import STUDENT_SESSION_KEY
 from adapters.flask.navigation import DASHBOARD_PATH, with_query
@@ -393,18 +392,25 @@ def enforce_session_timeout() -> None:
 def register_auth(
     app: Flask | object,
     *,
-    dependencies: AuthAdapterDependencies | None = None,
+    dependencies: AuthAdapterDependencies,
     secure_cookies: bool = True,
 ) -> None:
-    """Register the authentication blueprint and bind dependencies."""
+    """Register the authentication blueprint and bind dependencies.
+
+    ``dependencies`` is required. Production wiring supplies services built on
+    ``SqlAlchemyProductUnitOfWork`` via ``wire_adapter_layer``; tests inject
+    explicit collaborators. No in-memory fallback is constructed here.
+    """
     register = getattr(app, "register_blueprint", None)
     if register is None:
         raise TypeError("app must support register_blueprint")
-    deps = dependencies or AuthAdapterDependencies(
-        auth_service=build_authentication_service(expose_tokens=False)
-    )
+    if dependencies.auth_service is None:
+        raise TypeError(
+            "AuthAdapterDependencies.auth_service is required; "
+            "wire production auth through application composition"
+        )
     if isinstance(app, Flask):
-        AuthDependencyProvider.bind(app, deps)
+        AuthDependencyProvider.bind(app, dependencies)
         if secure_cookies and not app.config.get("TESTING"):
             apply_secure_cookie_config(app.config, secure=True)
         elif app.config.get("TESTING"):

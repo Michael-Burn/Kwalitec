@@ -1,9 +1,12 @@
-<nav class="founder-cc-nav" aria-label="Founder Command Centre">
+{# Legacy horizontal nav retained for compatibility; Console uses _sidebar.html. #}
+<nav class="founder-cc-nav" aria-label="{{ kwalitec_console_label }}">
     <ul class="founder-cc-nav-list">
         {% for item in command_centre_nav %}
         <li>
             <a class="founder-cc-nav-link{% if command_centre_section == item.section_id %} active{% endif %}"
-               href="{{ url_for(item.endpoint) }}">{{ item.label }}</a>
+               href="{{ url_for(item.endpoint) }}"
+               {% if command_centre_section == item.section_id %}aria-current="page"{% endif %}
+            >{{ item.label }}</a>
         </li>
         {% endfor %}
     </ul>

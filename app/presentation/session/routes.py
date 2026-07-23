@@ -222,6 +222,21 @@ def reflection_continue(session_id: str):
         logger.warning("Reflection continue failed: %s", exc)
         flash(FLASH_WARNING["reflection_failed"], "warning")
         return redirect(url_for("session.reflection", session_id=session_id))
+
+    from flask_login import current_user
+
+    from app.services.presentation_telemetry_service import (
+        EVENT_REFLECTION_COMPLETED,
+        PresentationTelemetryService,
+    )
+
+    PresentationTelemetryService.record(
+        EVENT_REFLECTION_COMPLETED,
+        user_id=current_user.id,
+        resource_type="session",
+        resource_id=session_id,
+        path=f"/session/{session_id}/reflection/continue",
+    )
     return redirect(url_for("session.summary", session_id=session_id))
 
 

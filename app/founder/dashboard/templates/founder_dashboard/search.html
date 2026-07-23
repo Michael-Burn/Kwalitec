@@ -1,0 +1,42 @@
+{% extends "founder_dashboard/base.html" %}
+
+{% block console_content %}
+<article class="console-page" aria-labelledby="search-title">
+    <header class="console-page-header">
+        <p class="console-eyebrow">{{ kwalitec_console_label }} · Search</p>
+        <h1 id="search-title" class="console-page-title">Console Search</h1>
+        <p class="console-executive-summary">
+            Discover students, support records, content, and platform objects.
+        </p>
+    </header>
+
+    <section class="console-section" aria-label="Search results">
+        {% if not result.query %}
+        <p class="console-empty">Enter a query to search the Console.</p>
+        {% elif not result.hits %}
+        <p class="console-empty">No results for “{{ result.query }}”.</p>
+        {% else %}
+        <p class="console-result-count">{{ result.hits|length }} result{% if result.hits|length != 1 %}s{% endif %} for “{{ result.query }}”</p>
+        <ul class="console-search-results">
+            {% for hit in result.hits %}
+            <li class="console-card console-card--queue">
+                <div class="console-queue-row">
+                    <div>
+                        <span class="console-card-kicker">{{ hit.domain }}</span>
+                        <a class="console-queue-title" href="{{ hit.href }}">{{ hit.title }}</a>
+                        {% if hit.detail %}
+                        <span class="console-queue-detail">{{ hit.detail }}</span>
+                        {% endif %}
+                    </div>
+                    <a href="{{ hit.href }}" class="console-btn console-btn--tertiary">Open</a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <p class="console-search-domains small text-muted mt-3 mb-0">
+            Domains: {{ result.domains_searched|join(' · ') }}
+        </p>
+    </section>
+</article>
+{% endblock %}

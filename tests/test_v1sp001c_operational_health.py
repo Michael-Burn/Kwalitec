@@ -115,7 +115,7 @@ def _submit_checkin(
 class TestOperationalHealthPermissions:
     def test_founder_can_open_page(self, client, ctx, app) -> None:
         _login_founder(client, app)
-        response = client.get("/founder/operational-health")
+        response = client.get("/console/operational-health")
         assert response.status_code == 200
         body = response.get_data(as_text=True)
         assert "Operational Health" in body
@@ -131,14 +131,14 @@ class TestOperationalHealthPermissions:
             data={"email": student.email, "password": "password123"},
             follow_redirects=True,
         )
-        assert client.get("/founder/operational-health").status_code == 403
+        assert client.get("/console/operational-health").status_code == 403
 
     def test_nav_includes_operational_health(self, client, ctx, app) -> None:
         _login_founder(client, app)
-        body = client.get("/founder/").get_data(as_text=True)
-        assert "Operational Health" in body
-        assert 'href="/founder/operational-health"' in body or \
-            "/founder/operational-health" in body
+        body = client.get("/console/").get_data(as_text=True)
+        assert "Operations" in body
+        assert 'href="/console/operational-health"' in body or \
+            "/console/operational-health" in body
 
 
 class TestNeedsAttentionRules:
@@ -156,7 +156,7 @@ class TestNeedsAttentionRules:
             c for c in page.needs_attention if c.rule_id == "plan_never_started"
         )
         assert card.count == 1
-        assert "/founder/participants" in card.href
+        assert "/console/participants" in card.href
 
     def test_inactive_and_prolonged(self, client, ctx, app) -> None:
         _login_founder(client, app)
@@ -259,7 +259,7 @@ class TestNeedsAttentionRules:
 
         by_id = {c.rule_id: c for c in page.needs_attention}
         assert by_id["vision_promoted_not_researched"].count == 1
-        assert "/founder/vision" in by_id["vision_promoted_not_researched"].href
+        assert "/console/vision" in by_id["vision_promoted_not_researched"].href
 
     def test_promoted_after_research_not_flagged(self, client, ctx, app) -> None:
         founder = _login_founder(client, app)
@@ -363,7 +363,7 @@ class TestHealthyActivityAndTrends:
 
     def test_page_renders_empty_attention_honestly(self, client, ctx, app) -> None:
         _login_founder(client, app)
-        response = client.get("/founder/operational-health")
+        response = client.get("/console/operational-health")
         assert response.status_code == 200
         body = response.get_data(as_text=True)
         assert "Nothing needs attention right now." in body
@@ -374,16 +374,16 @@ class TestHealthyActivityAndTrends:
 class TestRegression:
     def test_overview_still_loads_and_links_health(self, client, ctx, app) -> None:
         _login_founder(client, app)
-        response = client.get("/founder/")
+        response = client.get("/console/")
         assert response.status_code == 200
         body = response.get_data(as_text=True)
-        assert "Founder Command Centre" in body
-        assert "Needs action" in body
-        assert "/founder/operational-health" in body
+        assert "Kwalitec Console" in body
+        assert "Attention Required" in body
+        assert "/console/operational-health" in body
 
     def test_operations_route_still_available(self, client, ctx, app) -> None:
         _login_founder(client, app)
         # FOS Operations remains reachable (secondary destination).
         # May be unavailable in TESTING for Operational State — still 200.
-        response = client.get("/founder/operations")
+        response = client.get("/console/operations")
         assert response.status_code == 200

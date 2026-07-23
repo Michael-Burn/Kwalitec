@@ -112,13 +112,19 @@
   --radius-xl: 1rem;
   --radius-full: 9999px;
 
-  /* Motion (UX-001) */
+  /* Motion (UX-001 / PX-004) */
   --transition-fast: 150ms ease-out;
   --transition-base: 200ms ease-out;
   --transition-slow: 250ms ease-out;
+  --transition-page: 250ms ease-out;
+  --transition-press: 100ms ease-out;
+  --transition-sidebar: 220ms ease-out;
+  --transition-tooltip: 120ms ease-out;
+  --transition-skeleton: 1.2s ease-out;
 
   --sidebar-width: 260px;
   --topnav-height: 56px;
+  --touch-target-min: 2.75rem;
 }
 
 [data-theme="dark"] {
@@ -246,5 +252,37 @@
   .skeleton {
     animation: none;
     opacity: 0.7;
+  }
+}
+
+/* PX-004 — shared success reward + page enter */
+@keyframes kw-page-enter {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes kw-success-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.page-enter {
+  animation: kw-page-enter var(--transition-page, 250ms) ease-out;
+}
+
+.success-reward {
+  color: var(--success);
+  background: var(--success-bg);
+  border: 1px solid color-mix(in srgb, var(--success) 22%, transparent);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-xl);
+  animation: kw-success-in var(--transition-slow) ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter,
+  .success-reward {
+    animation: none;
   }
 }

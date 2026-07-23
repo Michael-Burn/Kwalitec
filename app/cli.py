@@ -111,13 +111,16 @@ def create_admin_command() -> None:
         logger.error("create-admin: %s", msg)
         sys.exit(1)
 
-    # Create the administrator
-    user = User(email=email, is_active_user=True)
+    # Create the administrator with Founder + Console RBAC (PR-001).
+    user = User(email=email.strip().lower(), is_active_user=True)
     user.set_password(password)
     db.session.add(user)
-    db.session.commit()
+    db.session.flush()
+    from app.services.identity_service import IdentityService
 
-    click.echo("Administrator created successfully.")
+    IdentityService.ensure_founder_admin(user)
+
+    click.echo("Administrator created successfully (Founder RBAC granted).")
     logger.info(
         "create-admin: administrator created for email=%s", email
     )
@@ -181,7 +184,10 @@ def create_test_user_command(name: str, email: str, password: str) -> None:
     user = User(email=normalized_email, is_active_user=True)
     user.set_password(password)
     db.session.add(user)
-    db.session.commit()
+    db.session.flush()
+    from app.services.identity_service import IdentityService
+
+    IdentityService.ensure_student_defaults(user)
 
     click.echo(
         f"Test user created successfully for {display_name} "

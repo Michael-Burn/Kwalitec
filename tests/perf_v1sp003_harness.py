@@ -331,7 +331,7 @@ def run_profile(app, *, label: str, iterations: int = 5) -> dict:
 
         # Founder overview (service build — ops FS skipped under TESTING)
         def founder_overview():
-            with app.test_request_context("/founder/"):
+            with app.test_request_context("/console/"):
                 login_user(admin)
                 CommandCentreService().build_overview()
 
@@ -339,7 +339,7 @@ def run_profile(app, *, label: str, iterations: int = 5) -> dict:
         metrics.append(summarise("founder_overview", t, c))
 
         def operational_health():
-            with app.test_request_context("/founder/operational-health"):
+            with app.test_request_context("/console/operational-health"):
                 login_user(admin)
                 OperationalHealthService().build_page(on_date=date.today())
 

@@ -1,4 +1,4 @@
-{% extends "layouts/base.html" %}
+{% extends "founder_dashboard/base.html" %}
 
 {% macro action_btn(form_obj, action_key, default_class) -%}
 {%- set is_primary = page.primary_action == action_key -%}
@@ -6,13 +6,7 @@
 {{ form_obj.submit(class_=btn_class) }}
 {%- endmacro %}
 
-{% block extra_head %}
-<link rel="stylesheet" href="{{ versioned_static('css/founder_dashboard.css', endpoint='founder_dashboard.static') }}">
-{% endblock %}
-
-{% block content %}
-{% include "founder_dashboard/_nav.html" %}
-
+{% block console_content %}
 <nav class="founder-breadcrumb" aria-label="Breadcrumb">
     <ol class="founder-breadcrumb-list">
         {% for crumb in page.breadcrumbs %}

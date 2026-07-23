@@ -65,13 +65,13 @@ STUDENT_NAV_LABELS: tuple[str, ...] = (
 
 FOUNDER_PRIMARY_NAV_LABELS: tuple[str, ...] = (
     "Overview",
-    "Operational Health",
-    "Studio",
-    "Intelligence",
-    "Evidence Gates",
-    "Feedback",
-    "Research",
-    "Vision Journal",
-    "Releases",
+    "Operations",
+    "Students",
+    "Learning",
+    "Assessments",
+    "Content",
+    "Analytics",
+    "Platform",
     "Settings",
+    "Support",
 )

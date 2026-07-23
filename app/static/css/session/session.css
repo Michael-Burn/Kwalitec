@@ -65,9 +65,9 @@
   position: sticky;
   top: 0;
   z-index: 20;
-  backdrop-filter: blur(10px);
-  background: color-mix(in srgb, var(--session-surface) 90%, transparent);
-  border-bottom: 1px solid var(--session-border);
+  background: var(--brand-primary-dark, #0D1B2A);
+  border-bottom: 1px solid var(--brand-divider, #1E2A3D);
+  backdrop-filter: none;
 }
 
 .session-topbar-inner {
@@ -85,14 +85,27 @@
   display: inline-flex;
   align-items: center;
   text-decoration: none;
-  color: var(--session-text);
+  color: var(--brand-white, #fff);
+  padding: var(--session-space-1) 0;
+}
+
+.session-brand:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(139, 156, 224, 0.45);
+  border-radius: var(--radius-sm);
 }
 
 .session-brand-logo {
   display: block;
-  max-height: 2.25rem;
-  max-width: min(100%, 11rem);
+  max-height: 2.5rem;
+  max-width: min(100%, 12rem);
+  width: auto;
+  height: auto;
   object-fit: contain;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .session-flow {
@@ -114,18 +127,18 @@
   align-items: center;
   gap: var(--session-space-2);
   padding: var(--session-space-1) var(--session-space-3);
-  border-radius: var(--session-radius);
-  color: var(--session-muted);
+  border-radius: var(--radius-md);
+  color: rgba(255, 255, 255, 0.62);
   font-size: 0.8rem;
 }
 
 .session-flow-step.is-active {
-  color: var(--session-text);
-  background: color-mix(in srgb, var(--session-primary) 12%, transparent);
+  color: var(--brand-white, #fff);
+  background: rgba(59, 79, 184, 0.35);
 }
 
 .session-flow-step.is-complete {
-  color: var(--session-text);
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .session-flow-marker {
@@ -134,9 +147,10 @@
   width: 1.25rem;
   height: 1.25rem;
   border-radius: 999px;
-  border: 1px solid var(--session-border);
+  border: 1px solid rgba(255, 255, 255, 0.28);
   font-size: 0.7rem;
   font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .session-flow-step.is-active .session-flow-marker,
@@ -353,3 +367,58 @@
     padding: var(--session-space-5) var(--session-space-4) var(--session-space-6);
   }
 }
+
+/* PX-004 — continuous, calm session chrome */
+.session-main {
+  animation: session-page-enter var(--transition-page, 250ms) ease-out;
+}
+
+@keyframes session-page-enter {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.session-btn-primary {
+  min-height: 2.75rem;
+  transition: transform var(--transition-press, 100ms) ease-out,
+              background-color var(--transition-base, 200ms) ease-out;
+}
+
+.session-btn-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.session-btn-primary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.session-success {
+  color: var(--success);
+  background: var(--success-bg);
+  border: 1px solid color-mix(in srgb, var(--success) 22%, transparent);
+  border-radius: var(--session-radius);
+  padding: var(--session-space-3) var(--session-space-4);
+  margin-bottom: var(--session-space-5);
+}
+
+.session-empty {
+  padding: var(--session-space-5);
+  border: 1px dashed var(--session-border);
+  border-radius: var(--session-radius);
+  color: var(--session-muted);
+  line-height: 1.55;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .session-main,
+  .session-btn-primary {
+    animation: none;
+    transition: none;
+  }
+
+  .session-btn-primary:hover:not(:disabled),
+  .session-btn-primary:active:not(:disabled) {
+    transform: none;
+  }
+}
+

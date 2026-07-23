@@ -14,13 +14,17 @@ Use this checklist before tagging or deploying any release. All items must pass 
 | 1 | **Architecture clean** | `pytest tests/architecture/ -v` green; no layer violations introduced |
 | 2 | **Tests passing** | `pytest tests/ -v` green |
 | 3 | **Ruff clean** | `ruff check app/ src/ tests/` |
-| 4 | **Security review** | No secrets committed; CSRF enabled; auth scoped; Argon2 in production wiring |
+| 4 | **Security review** | No secrets committed; CSRF enabled; auth scoped; Argon2 in production wiring; RBAC roles assigned (PR-001) |
 | 5 | **Accessibility review** | Contrast tokens valid; forms labelled; keyboard navigable (for UI changes) |
 | 6 | **Performance review** | No obvious N+1 queries; no unbounded loops in hot paths |
 | 7 | **Migration review** | Alembic head applied; upgrade path tested; backup taken before production migrate |
 | 8 | **Documentation updated** | ADRs, architecture docs, or governance docs updated if boundaries changed |
 | 9 | **No TODOs in production code** | No `TODO`/`FIXME`/`HACK` left in shipped paths |
 | 10 | **Version tagged** | Git tag matches `APP_VERSION`; release notes prepared |
+| 11 | **Health green** | `/health/live` and `/health/ready` return 200 on staging |
+| 12 | **Production gates CI** | `production-gates` job green (PR-001 + GA-001) |
+| 13 | **GA readiness** | `pytest tests/ga/ -v` green; [`docs/ga/RELEASE_CHECKLIST.md`](../docs/ga/RELEASE_CHECKLIST.md) completed for the deploy |
+| 14 | **GA certification** | [`docs/ga/CERTIFICATION_REPORT.md`](../docs/ga/CERTIFICATION_REPORT.md) reviewed; staging backup/restore acknowledged |
 
 ---
 
@@ -69,7 +73,10 @@ Report blockers; do not silently fix unrelated issues during a release.
 ```bash
 python -m pytest tests/ -v
 python -m pytest tests/architecture/ -v
+python -m pytest tests/ga/ -v
 ruff check app/ src/ tests/
 flask db current    # expect head
 flask db upgrade    # staging first
 ```
+
+Deploy operators: complete [`docs/ga/RELEASE_CHECKLIST.md`](../docs/ga/RELEASE_CHECKLIST.md) (Configuration, Database, Health, Telemetry, Background jobs, Console, Student portal, Rollback).

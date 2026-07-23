@@ -537,11 +537,17 @@ class CurriculumService:
             "Mastered": 0,
         }
 
+        leaf_ids = [topic.id for topic in leaf_topics]
+        progress_map: dict[int, TopicProgress] = {}
+        if leaf_ids:
+            progress_rows = TopicProgress.query.filter(
+                TopicProgress.user_id == user_id,
+                TopicProgress.topic_id.in_(leaf_ids),
+            ).all()
+            progress_map = {row.topic_id: row for row in progress_rows}
+
         for topic in leaf_topics:
-            progress = TopicProgress.query.filter_by(
-                user_id=user_id,
-                topic_id=topic.id,
-            ).first()
+            progress = progress_map.get(topic.id)
 
             if progress:
                 if progress.completed:

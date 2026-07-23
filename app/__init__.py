@@ -11,7 +11,12 @@ from alembic.migration import MigrationContext
 from alembic.script import ScriptDirectory
 from flask import Flask, jsonify, redirect, render_template, request, url_for
 
-from app.config import DevelopmentConfig, ProductionConfig, _sqlalchemy_driver_prefix
+from app.config import (
+    DevelopmentConfig,
+    ProductionConfig,
+    TestingConfig,
+    _sqlalchemy_driver_prefix,
+)
 from app.extensions import csrf, db, login_manager, migrate
 
 logger = logging.getLogger(__name__)
@@ -47,9 +52,11 @@ _INSECURE_SECRET_KEYS = frozenset(
     {
         "",
         "dev-change-this-secret-key",
+        "change-this-secret-key",
         "change-me",
         "secret",
         "changeme",
+        "test-secret-key-for-testing-only",
     }
 )
 
@@ -76,6 +83,10 @@ def _validate_env_vars(config_object: type) -> None:
                 "SECRET_KEY is using the default value. "
                 "Set a strong key for production use."
             )
+    elif is_production_config and len(secret_key.strip()) < 32:
+        issues.append(
+            "SECRET_KEY must be at least 32 characters in production."
+        )
 
     flask_env = os.getenv("FLASK_ENV", "development")
     app_env = os.getenv("APP_ENV", flask_env)
@@ -90,7 +101,29 @@ def _validate_env_vars(config_object: type) -> None:
     if database_url:
         logger.info("Using external database (DATABASE_URL is set)")
     else:
-        logger.info("Using local SQLite database (DATABASE_URL is not set)")
+        if is_production_config:
+            issues.append(
+                "DATABASE_URL is required when ProductionConfig is active "
+                "(SQLite is not supported for production)."
+            )
+        else:
+            logger.info("Using local SQLite database (DATABASE_URL is not set)")
+
+    if is_production_config:
+        admin_email = (os.getenv("ADMIN_EMAIL") or "").strip()
+        admin_password = (os.getenv("ADMIN_PASSWORD") or "").strip()
+        if not admin_email or not admin_password:
+            logger.warning(
+                "ADMIN_EMAIL / ADMIN_PASSWORD not fully set; "
+                "bootstrap admin creation may be skipped."
+            )
+        csrf_enabled = True
+        try:
+            csrf_enabled = bool(getattr(config_object, "WTF_CSRF_ENABLED", True))
+        except Exception:  # noqa: BLE001
+            csrf_enabled = True
+        if not csrf_enabled:
+            issues.append("WTF_CSRF_ENABLED must remain True in production.")
 
     # Temporary diagnostic: log only the SQLAlchemy driver prefix (no credentials)
     try:
@@ -166,48 +199,137 @@ def _register_error_handlers(app: Flask) -> None:
     are allowed to propagate so the interactive debugger can display the
     traceback instead of swallowing the error with a custom page.
     """
+    from app.infrastructure.diagnostics.http_observability import (
+        allocate_error_reference_id,
+    )
 
     @app.errorhandler(403)
     def forbidden(error):
-        logger.warning("403 Forbidden: %s %s", request.method, request.path)
-        return render_template("errors/403.html", title="Access Denied"), 403
+        reference_id = allocate_error_reference_id()
+        logger.warning(
+            "403 Forbidden: %s %s correlation_id=%s",
+            request.method,
+            request.path,
+            reference_id,
+        )
+        return (
+            render_template(
+                "errors/403.html",
+                title="Access Denied",
+                error_reference_id=reference_id,
+            ),
+            403,
+        )
 
     @app.errorhandler(404)
     def page_not_found(error):
-        logger.info("404 Not Found: %s %s", request.method, request.path)
-        return render_template("errors/404.html", title="Page Not Found"), 404
+        reference_id = allocate_error_reference_id()
+        logger.info(
+            "404 Not Found: %s %s correlation_id=%s",
+            request.method,
+            request.path,
+            reference_id,
+        )
+        return (
+            render_template(
+                "errors/404.html",
+                title="Page Not Found",
+                error_reference_id=reference_id,
+            ),
+            404,
+        )
 
     if not app.config.get("PROPAGATE_EXCEPTIONS", False):
 
         @app.errorhandler(500)
         def internal_server_error(error):
-            logger.exception("500 Internal Server Error at %s %s", request.method, request.path)
+            reference_id = allocate_error_reference_id()
+            logger.exception(
+                "500 Internal Server Error at %s %s correlation_id=%s",
+                request.method,
+                request.path,
+                reference_id,
+            )
             db.session.rollback()
-            return render_template("errors/500.html", title="Error"), 500
+            return (
+                render_template(
+                    "errors/500.html",
+                    title="Error",
+                    error_reference_id=reference_id,
+                ),
+                500,
+            )
 
 
 def _register_health_check(app: Flask) -> None:
-    """Register a health-check endpoint."""
+    """Register liveness, readiness, and detailed health endpoints (PR-001)."""
+    from app.services.health_service import HealthService
+    from app.services.job_runner import dead_letters
+    from app.services.release_info_service import ReleaseInfoService
+    from app.version import APP_VERSION
 
     @app.get("/health")
     def health_check():
-        db_status = "connected"
-        try:
-            db.session.execute(db.text("SELECT 1"))
-        except Exception as exc:
-            db_status = "error"
-            logger.error("Health check database error: %s", exc)
+        """Compatibility probe — application + database summary."""
+        payload = HealthService.aggregate(ready=False)
+        db_component = payload.get("components", {}).get("database", {})
+        db_status = db_component.get("status", "error")
+        # Historical contract: top-level status reflects DB connectivity.
+        if db_status == "ok":
+            payload["status"] = "ok"
+            payload["database"] = "connected"
+            status_code = 200
+        else:
+            payload["status"] = "degraded" if db_status == "degraded" else "error"
+            payload["database"] = "error"
+            status_code = 503
+        return jsonify(payload), status_code
 
-        from app.version import APP_VERSION
-
+    @app.get("/health/live")
+    def health_live():
+        """Process liveness — always 200 when the worker can answer."""
+        release = ReleaseInfoService.current()
         return jsonify(
             {
-                "status": "ok" if db_status == "connected" else "degraded",
-                "database": db_status,
+                "status": "ok",
                 "timestamp": datetime.now(timezone.utc).isoformat(),
                 "version": APP_VERSION,
+                "commit": release.commit,
             }
         )
+
+    @app.get("/health/ready")
+    def health_ready():
+        """Readiness — database connected and migrations at head."""
+        payload = HealthService.aggregate(ready=True)
+        ready = bool(payload.get("ready"))
+        status_code = 200 if ready else 503
+        return jsonify(payload), status_code
+
+    @app.get("/health/details")
+    def health_details():
+        """Operator-oriented health including dead-letter summary."""
+        payload = HealthService.aggregate(ready=True)
+        letters = dead_letters(limit=20)
+        payload["dead_letters"] = [
+            {
+                "job_name": item.job_name,
+                "attempts": item.attempts,
+                "error": item.error,
+                "failed_at": item.failed_at,
+            }
+            for item in letters
+        ]
+        payload["alerts"] = {
+            "slow_request_threshold_ms": app.config.get(
+                "SLOW_REQUEST_THRESHOLD_MS", 1000
+            ),
+            "db_latency_alert_ms": app.config.get(
+                "HEALTH_ALERT_DB_LATENCY_MS", 500
+            ),
+        }
+        status_code = 200 if payload["status"] != "error" else 503
+        return jsonify(payload), status_code
 
 
 def _is_static_response() -> bool:
@@ -299,6 +421,16 @@ def create_app(config_object: type | None = None) -> Flask:
     _register_routes(app)
     _register_error_handlers(app)
     _register_health_check(app)
+    from app.infrastructure.diagnostics.http_observability import (
+        register_http_observability,
+    )
+
+    register_http_observability(app)
+    from app.infrastructure.diagnostics.query_profiling import (
+        register_query_profiling,
+    )
+
+    register_query_profiling(app)
     app.after_request(_add_security_headers)
 
     @app.url_defaults
@@ -335,15 +467,39 @@ def _select_config() -> type:
 
     if app_env == "production":
         return ProductionConfig
+    if app_env in {"testing", "test"}:
+        return TestingConfig
 
     return DevelopmentConfig
 
 
+def _apply_proxy_fix(app: Flask) -> None:
+    """Trust ``X-Forwarded-*`` headers from the configured proxy hop count."""
+    hops = int(app.config.get("TRUSTED_PROXY_HOPS", 0) or 0)
+    if hops <= 0:
+        return
+    from werkzeug.middleware.proxy_fix import ProxyFix
+
+    app.wsgi_app = ProxyFix(  # type: ignore[method-assign]
+        app.wsgi_app,
+        x_for=hops,
+        x_proto=hops,
+        x_host=hops,
+        x_prefix=hops,
+    )
+    logger.info("Trusted proxy support enabled (hops=%s)", hops)
+
+
 def _init_extensions(app: Flask) -> None:
     """Initialize Flask extensions."""
+    preferred_scheme = app.config.get("PREFERRED_URL_SCHEME")
+    if preferred_scheme:
+        app.config.setdefault("PREFERRED_URL_SCHEME", preferred_scheme)
+
     db.init_app(app)
     migrate.init_app(app, db)
     csrf.init_app(app)
+    _apply_proxy_fix(app)
 
     login_manager.init_app(app)
     login_manager.login_view = "auth.login"
@@ -352,12 +508,14 @@ def _init_extensions(app: Flask) -> None:
 
     # Import models to register them with SQLAlchemy
     from app.models import (  # noqa: F401
+        AlphaFeedbackSubmission,
         Curriculum,
         Decision,
         LearningObjective,
         Mission,
         MissionTask,
         Mistake,
+        PresentationEvent,
         ResearchContribution,
         ResearchContributorBadge,
         ResearchFeedbackReview,
@@ -369,6 +527,8 @@ def _init_extensions(app: Flask) -> None:
         TopicProgress,
         TwinSnapshot,
         User,
+        UserCapability,
+        UserRole,
         V2AggregateDocument,
         V2AggregateSnapshot,
         V2EvidenceEvent,
@@ -396,28 +556,50 @@ def _register_template_context(app: Flask) -> None:
         from app.brand_identity import (
             APPROVED_LOGO_ALT,
             APPROVED_LOGO_STATIC_PATH,
+            CONSOLE_HOME_LABEL,
             FOUNDER_COMMAND_CENTRE_LABEL,
             FOUNDING_COHORT_LABEL,
             INTERNAL_ALPHA_BUILD_LABEL,
             INTERNAL_ALPHA_LABEL,
+            KWALITEC_CONSOLE_LABEL,
             LEARNING_WORKSPACE_LABEL,
+            PRODUCT_DESCRIPTOR,
+            PRODUCT_NAME,
+            PRODUCT_VALUE_PROPOSITION,
             REVISION_WORKSPACE_LABEL,
             STUDENT_DASHBOARD_LABEL,
         )
         from app.services.product_communication_service import (
             ProductCommunicationService,
         )
+        from app.services.release_info_service import ReleaseInfoService
         from app.version import APP_VERSION, PRODUCT_TAGLINE, STATIC_ASSET_VERSION
+
+        release_info = ReleaseInfoService.current()
+        from app.security.authorization import (
+            user_capabilities,
+            user_has_capability,
+            user_has_permission,
+            user_has_role,
+            user_permissions,
+            user_roles,
+        )
+        from flask_login import current_user
 
         return {
             "app_version": APP_VERSION,
             "static_asset_version": STATIC_ASSET_VERSION,
             "product_tagline": PRODUCT_TAGLINE,
+            "product_name": PRODUCT_NAME,
+            "product_descriptor": PRODUCT_DESCRIPTOR,
+            "product_value_proposition": PRODUCT_VALUE_PROPOSITION,
             "pcs": ProductCommunicationService,
             "internal_alpha_label": INTERNAL_ALPHA_LABEL,
             "founding_cohort_label": FOUNDING_COHORT_LABEL,
             "internal_alpha_build_label": INTERNAL_ALPHA_BUILD_LABEL,
             "founder_command_centre_label": FOUNDER_COMMAND_CENTRE_LABEL,
+            "kwalitec_console_label": KWALITEC_CONSOLE_LABEL,
+            "console_home_label": CONSOLE_HOME_LABEL,
             "learning_workspace_label": LEARNING_WORKSPACE_LABEL,
             "revision_workspace_label": REVISION_WORKSPACE_LABEL,
             "student_dashboard_label": STUDENT_DASHBOARD_LABEL,
@@ -425,6 +607,17 @@ def _register_template_context(app: Flask) -> None:
             "approved_logo_alt": APPROVED_LOGO_ALT,
             "versioned_static": versioned_static,
             "v2_flags": _resolve_v2_flags_for_templates(),
+            "release_info": release_info,
+            "support_contact": release_info.support_contact,
+            # PR-001 — permission helpers only; no auth logic in templates.
+            "can": lambda permission: user_has_permission(current_user, permission),
+            "has_role": lambda role: user_has_role(current_user, role),
+            "has_capability": lambda capability: user_has_capability(
+                current_user, capability
+            ),
+            "current_user_roles": user_roles(current_user),
+            "current_user_permissions": user_permissions(current_user),
+            "current_user_capabilities": user_capabilities(current_user),
         }
 
 
@@ -445,6 +638,7 @@ def _register_cli_commands(app: Flask) -> None:
 
 def _register_blueprints(app: Flask) -> None:
     """Register application blueprints."""
+    from app.alpha import alpha_bp
     from app.analytics.routes import analytics_bp
     from app.auth.routes import auth_bp
     from app.calibration import calibration_bp
@@ -467,6 +661,7 @@ def _register_blueprints(app: Flask) -> None:
     app.register_blueprint(calibration_bp)
     app.register_blueprint(founder_dashboard_bp)
     app.register_blueprint(research_bp)
+    app.register_blueprint(alpha_bp)
 
     load_routes()
     load_session_routes()
@@ -494,3 +689,13 @@ def _register_routes(app: Flask) -> None:
         if flags.SOLE_RUNTIME:
             return redirect(url_for("student.home"))
         return redirect(url_for("dashboard.index"))
+
+    # CONSOLE-001 — preserve bookmarks to the former /founder portal.
+    @app.route("/founder/", defaults={"path": ""}, methods=["GET", "POST"])
+    @app.route("/founder/<path:path>", methods=["GET", "POST"])
+    def legacy_founder_to_console(path: str):
+        target = f"/console/{path}" if path else "/console/"
+        qs = request.query_string.decode("utf-8") if request.query_string else ""
+        if qs:
+            target = f"{target}?{qs}"
+        return redirect(target, code=308)

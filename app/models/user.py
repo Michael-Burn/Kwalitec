@@ -30,6 +30,13 @@ class User(UserMixin, db.Model):
     # First-time welcome modal (Capability 4.4) — presentation only.
     welcome_eligible: bool = db.Column(db.Boolean, default=False, nullable=False)
     welcome_dismissed: bool = db.Column(db.Boolean, default=False, nullable=False)
+    # ALPHA-001 lightweight product onboarding — presentation only.
+    alpha_onboarding_completed: bool = db.Column(
+        db.Boolean, default=False, nullable=False
+    )
+    alpha_onboarding_skipped: bool = db.Column(
+        db.Boolean, default=False, nullable=False
+    )
 
     # Relationships — explicit back_populates matching child-side declarations
     subjects = db.relationship("Subject", back_populates="user", lazy=True)
@@ -38,6 +45,18 @@ class User(UserMixin, db.Model):
     study_attempts = db.relationship("StudyAttempt", back_populates="user", lazy=True)
     topic_progress = db.relationship("TopicProgress", back_populates="user", lazy=True)
     decisions = db.relationship("Decision", back_populates="user", lazy=True)
+    role_assignments = db.relationship(
+        "UserRole",
+        back_populates="user",
+        lazy="selectin",
+        cascade="all, delete-orphan",
+    )
+    capability_assignments = db.relationship(
+        "UserCapability",
+        back_populates="user",
+        lazy="selectin",
+        cascade="all, delete-orphan",
+    )
 
     def set_password(self, password: str) -> None:
         """Hash and store a plaintext password."""
@@ -51,6 +70,28 @@ class User(UserMixin, db.Model):
     def is_active(self) -> bool:  # type: ignore[override]
         """Return whether this user is active for Flask-Login."""
         return self.is_active_user
+
+    def get_roles(self):
+        """Return assigned RBAC roles as ``Role`` enums."""
+        from app.security.roles import normalize_role
+
+        roles = set()
+        for assignment in self.role_assignments or ():
+            role = normalize_role(assignment.role)
+            if role is not None:
+                roles.add(role)
+        return frozenset(roles)
+
+    def get_capabilities(self):
+        """Return assigned portal capabilities as ``Capability`` enums."""
+        from app.security.capabilities import normalize_capability
+
+        caps = set()
+        for assignment in self.capability_assignments or ():
+            cap = normalize_capability(assignment.capability)
+            if cap is not None:
+                caps.add(cap)
+        return frozenset(caps)
 
 
 @login_manager.user_loader

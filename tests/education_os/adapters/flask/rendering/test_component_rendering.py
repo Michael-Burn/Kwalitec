@@ -129,7 +129,9 @@ def test_render_view_model_dashboard(component_renderer: ComponentRenderer) -> N
     assert "ds-page-header" in html
     assert "ds-mission-card" in html
     assert "ds-progress-bar" in html
-    assert "ds-statistic-card" in html or "Learning statistics" in html
+    # PX-003 / PX-004: decision screen does not render statistic grids.
+    assert "ds-statistic-card" not in html
+    assert "ds-achievement-card" not in html
 
 
 def test_html_escapes_user_facing_text(component_renderer: ComponentRenderer) -> None:

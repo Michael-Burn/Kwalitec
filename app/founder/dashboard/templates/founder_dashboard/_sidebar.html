@@ -1,0 +1,27 @@
+<aside id="console-sidebar" class="console-sidebar" aria-label="{{ kwalitec_console_label }} navigation">
+    <div class="console-sidebar-brand">
+        <a class="console-brand-link" href="{{ url_for('founder_dashboard.index') }}" aria-label="{{ kwalitec_console_label }} home">
+            {% with brand_class='console-brand-logo' %}
+                {% include "partials/brand_logo.html" %}
+            {% endwith %}
+            <span class="console-brand-text">{{ kwalitec_console_label }}</span>
+        </a>
+        <p class="console-brand-tagline">Operational decisions</p>
+    </div>
+    <nav class="console-nav" aria-label="Console primary">
+        <ul class="console-nav-list">
+            {% for item in command_centre_nav %}
+            <li>
+                <a
+                    class="console-nav-link{% if command_centre_section == item.section_id %} is-active{% endif %}"
+                    href="{{ url_for(item.endpoint) }}"
+                    {% if command_centre_section == item.section_id %}aria-current="page"{% endif %}
+                >{{ item.label }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </nav>
+    <div class="console-sidebar-foot">
+        <a class="console-nav-link console-nav-link--muted" href="{{ url_for('founder_dashboard.search') }}">Search</a>
+    </div>
+</aside>

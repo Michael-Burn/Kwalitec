@@ -1,0 +1,61 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<section class="section-header">
+    <p class="section-eyebrow">{{ internal_alpha_label }}</p>
+    <h1 class="section-title">Help &amp; Support</h1>
+    <p class="section-description">
+        Release details, quick feedback, and how to reach the Internal Alpha team.
+    </p>
+</section>
+
+<section class="mb-4" aria-labelledby="release-info-title">
+    <h2 id="release-info-title" class="h5">Release information</h2>
+    <dl class="row small mb-0">
+        <dt class="col-sm-4">Application version</dt>
+        <dd class="col-sm-8">{{ release.app_version }}</dd>
+        <dt class="col-sm-4">Build date</dt>
+        <dd class="col-sm-8">{{ release.build_date }}</dd>
+        <dt class="col-sm-4">Environment</dt>
+        <dd class="col-sm-8">{{ release.environment }}</dd>
+        <dt class="col-sm-4">Build number</dt>
+        <dd class="col-sm-8">{{ release.build_number }}</dd>
+        <dt class="col-sm-4">Build label</dt>
+        <dd class="col-sm-8">{{ release.build_label }}</dd>
+        {% if release.commit %}
+        <dt class="col-sm-4">Commit</dt>
+        <dd class="col-sm-8"><code>{{ release.commit }}</code></dd>
+        {% endif %}
+        <dt class="col-sm-4">Support contact</dt>
+        <dd class="col-sm-8">
+            <a href="mailto:{{ release.support_contact }}">{{ release.support_contact }}</a>
+        </dd>
+    </dl>
+</section>
+
+<section class="mb-4" aria-labelledby="quick-feedback-title">
+    <h2 id="quick-feedback-title" class="h5">Quick feedback</h2>
+    <ul class="list-unstyled d-flex flex-wrap gap-2 mb-0">
+        <li>
+            <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('alpha.feedback_report_problem') }}">
+                Report a problem
+            </a>
+        </li>
+        <li>
+            <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('alpha.feedback_suggest') }}">
+                Suggest an improvement
+            </a>
+        </li>
+        <li>
+            <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('research.checkin', source='settings') }}">
+                Full Product Check-in
+            </a>
+        </li>
+        <li>
+            <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('alpha.onboarding') }}">
+                Revisit onboarding
+            </a>
+        </li>
+    </ul>
+</section>
+{% endblock %}

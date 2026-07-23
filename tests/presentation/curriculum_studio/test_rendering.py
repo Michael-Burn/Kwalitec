@@ -19,7 +19,7 @@ def test_studio_dashboard_renders_empty_friendly_when_no_workspaces(
 ):
     login_founder(client, app)
     wire_studio(app, with_workspace=False)
-    response = client.get("/founder/studio/")
+    response = client.get("/console/studio/")
     assert response.status_code == 200
     body = response.get_data(as_text=True)
     assert "Curriculum Studio" in body
@@ -29,7 +29,7 @@ def test_studio_dashboard_renders_empty_friendly_when_no_workspaces(
 
 
 def test_studio_dashboard_lists_workspace(founder_client):
-    response = founder_client.get("/founder/studio/")
+    response = founder_client.get("/console/studio/")
     assert response.status_code == 200
     body = response.get_data(as_text=True)
     assert "CS1" in body
@@ -37,7 +37,7 @@ def test_studio_dashboard_lists_workspace(founder_client):
 
 
 def test_workspace_page_renders_workflow_and_next_step(founder_client):
-    response = founder_client.get("/founder/studio/workspaces/ws-cs1")
+    response = founder_client.get("/console/studio/workspaces/ws-cs1")
     assert response.status_code == 200
     body = response.get_data(as_text=True)
     assert "Next step" in body
@@ -49,7 +49,7 @@ def test_workspace_page_renders_workflow_and_next_step(founder_client):
 
 def test_create_subject_flash_message(founder_client):
     response = founder_client.post(
-        "/founder/studio/subjects",
+        "/console/studio/subjects",
         data={"subject_code": "LANGMATH1", "title": "Language Math"},
         follow_redirects=True,
     )
@@ -64,7 +64,7 @@ def test_create_subject_flash_message(founder_client):
 
 def test_validate_flash_message(founder_client):
     response = founder_client.post(
-        "/founder/studio/workspaces/ws-cs1/validate",
+        "/console/studio/workspaces/ws-cs1/validate",
         data={"workspace_id": "ws-cs1"},
         follow_redirects=True,
     )
@@ -78,16 +78,16 @@ def test_validate_flash_message(founder_client):
 
 
 def test_intelligence_page_renders(founder_client):
-    response = founder_client.get("/founder/intelligence")
+    response = founder_client.get("/console/intelligence")
     assert response.status_code == 200
     body = response.get_data(as_text=True)
     assert "Founder Intelligence" in body
     assert "No intelligence signals yet" in body or "Signals" in body
-    assert "Evidence Gates" in body
+    assert "Evidence Gates" in body or "Assessments" in body
 
 
 def test_evidence_gates_page_renders(founder_client):
-    response = founder_client.get("/founder/evidence-gates")
+    response = founder_client.get("/console/evidence-gates")
     assert response.status_code == 200
     body = response.get_data(as_text=True)
     assert "Evidence Gates" in body
@@ -109,4 +109,4 @@ def test_non_founder_blocked_from_studio(client, ctx, app):
         data={"email": student.email, "password": "password123"},
         follow_redirects=True,
     )
-    assert client.get("/founder/studio/").status_code == 403
+    assert client.get("/console/studio/").status_code == 403

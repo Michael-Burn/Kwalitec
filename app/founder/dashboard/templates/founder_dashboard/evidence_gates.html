@@ -1,12 +1,6 @@
-{% extends "layouts/base.html" %}
+{% extends "founder_dashboard/base.html" %}
 
-{% block extra_head %}
-<link rel="stylesheet" href="{{ versioned_static('css/founder_dashboard.css', endpoint='founder_dashboard.static') }}">
-{% endblock %}
-
-{% block content %}
-{% include "founder_dashboard/_nav.html" %}
-
+{% block console_content %}
 <nav class="founder-breadcrumb" aria-label="Breadcrumb">
     <ol class="founder-breadcrumb-list">
         <li class="founder-breadcrumb-item">
@@ -22,7 +16,7 @@
 </nav>
 
 <section class="section-header founder-header">
-    <p class="section-eyebrow">{{ founder_command_centre_label }} · Evidence Gates</p>
+    <p class="section-eyebrow">{{ kwalitec_console_label }} · Evidence Gates</p>
     <h1 class="section-title">Evidence Gates</h1>
     <p class="section-description">
         Product Strategy checklist before V2 sole runtime.

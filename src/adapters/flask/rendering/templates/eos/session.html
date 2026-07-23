@@ -12,18 +12,21 @@
 <form class="eos-form" method="post" action="/eos/session/action" aria-label="Session actions">
   <input type="hidden" name="student_id" value="{{ student_id }}">
   <input type="hidden" name="session_id" value="{{ session_id }}">
-  <div class="eos-cta-row">
+  <p class="eos-help" id="eos-session-help">
+    Use these controls to move through the session. Completing a session opens reflection next.
+  </p>
+  <div class="eos-cta-row" role="group" aria-describedby="eos-session-help">
     <button type="submit" name="action" value="start">Start</button>
     <button type="submit" name="action" value="advance">Advance</button>
     <button type="submit" name="action" value="pause">Pause</button>
     <button type="submit" name="action" value="resume">Resume</button>
-    <button type="submit" name="action" value="complete">Complete</button>
+    <button class="eos-btn-primary" type="submit" name="action" value="complete" data-student-cta="primary">Complete</button>
     <button type="submit" name="action" value="cancel">Cancel</button>
   </div>
 </form>
 
 <div class="eos-cta-row">
-  <a href="{{ nav.reflection }}">Go to reflection</a>
+  <a href="{{ nav.reflection }}">Continue to reflection</a>
   <a href="{{ nav.mission }}">Back to mission</a>
 </div>
 {% endblock %}

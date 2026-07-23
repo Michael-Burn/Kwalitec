@@ -1,0 +1,17 @@
+{# Design System — EmptyState (PX-004) #}
+<div
+  class="{{ class_name }}"
+  data-empty-state="true"
+  {% if style_attr %}style="{{ style_attr }}"{% endif %}
+  {% for name, value in a11y_attrs.items() if value is not none and value is not false %}
+  {{ name }}{% if value is not sameas true %}="{{ value }}"{% endif %}
+  {% endfor %}
+>
+  <h2 class="ds-empty__title">{{ component.title }}</h2>
+  {% if component.description %}
+  <p class="ds-empty__description">{{ component.description }}</p>
+  {% endif %}
+  {% if component.action_label %}
+  <p class="ds-empty__action">{{ component.action_label }}</p>
+  {% endif %}
+</div>

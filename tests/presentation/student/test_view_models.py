@@ -110,12 +110,37 @@ def test_home_vm_primary_cta():
             is_complete=True,
         ),
     )
-    vm = home_vm(snap)
+    history = HistorySnapshot(
+        student_id="s1",
+        completed_sessions=(
+            CompletedSessionSnapshot("s1", "Revision session", "2026-07-22", 30),
+        ),
+        readiness_progression=(
+            ReadinessPointSnapshot("2026-06-01", 0.4),
+            ReadinessPointSnapshot("2026-07-01", 0.6),
+        ),
+        session_count=1,
+    )
+    journey = JourneySnapshot(
+        student_id="s1",
+        current_topic=JourneyTopicSnapshot("t2", "Probability", "Current"),
+        upcoming_topics=(JourneyTopicSnapshot("t3", "Checkpoint", "Upcoming"),),
+        progress_percent=40,
+        estimated_completion_label="8 weeks",
+        completed_count=1,
+        upcoming_count=1,
+    )
+    vm = home_vm(snap, journey=journey, history=history)
     assert vm.primary_cta_enabled is True
     assert vm.recommendation.has_recommendation is True
     assert vm.countdown.has_countdown is True
     assert vm.readiness.readiness_percent_label == "62%"
     assert "25" in vm.estimated_study_label
+    assert "Revision session" in vm.journey_story
+    assert "improving" in vm.readiness.trend_label.lower()
+    assert "High educational return" in vm.coach_insight
+    assert any(m.title == "Checkpoint" for m in vm.milestones)
+    assert any(a.label == "Open Schedule" for a in vm.quick_actions)
 
 
 def test_journey_vm_progress():

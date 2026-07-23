@@ -1,33 +1,136 @@
 {% extends "student/base.html" %}
-{% from "student/components/recommendation_card.html" import recommendation_card %}
-{% from "student/components/readiness_card.html" import readiness_card %}
-{% from "student/components/countdown_card.html" import countdown_card %}
-{% from "student/components/explanation_card.html" import explanation_card %}
 
 {% block content %}
 {% if page.home %}
-<section class="student-greeting" aria-label="Greeting">
-    <p class="student-greeting-text">{{ page.home.greeting }}</p>
+{# PX-003 — Decision screen: Mission → Readiness / Journey / Coach → Milestones / Actions #}
+
+<section
+  class="student-hero"
+  data-dashboard-slot="primary"
+  aria-labelledby="student-hero-title"
+>
+  <p class="student-hero-greeting">{{ page.home.greeting }}</p>
+  <p class="student-hero-eyebrow">Today's Mission</p>
+  <h2 id="student-hero-title" class="student-hero-title">
+    {% if page.home.recommendation.has_recommendation and page.home.recommendation.title %}
+      {{ page.home.recommendation.title }}
+    {% else %}
+      Today's Mission
+    {% endif %}
+  </h2>
+  {% if page.home.estimated_study_label %}
+  <p class="student-hero-duration">{{ page.home.estimated_study_label }}</p>
+  {% endif %}
+  {% if page.home.recommendation.summary or page.home.recommendation.reason %}
+  <p class="student-hero-purpose">
+    {{ page.home.recommendation.summary or page.home.recommendation.reason }}
+  </p>
+  {% elif page.home.expected_benefit_label %}
+  <p class="student-hero-purpose">{{ page.home.expected_benefit_label }}</p>
+  {% endif %}
+
+  {% if form and page.home.primary_cta_enabled %}
+  <form method="post" action="{{ url_for('student.start_session') }}" class="student-hero-cta">
+    {{ form.hidden_tag() }}
+    {{ form.mission_id() }}
+    {{ form.session_id() }}
+    <button type="submit" class="btn student-btn-primary" data-student-cta="primary">
+      {{ page.home.primary_cta_label }}
+    </button>
+  </form>
+  {% elif not page.home.primary_cta_enabled %}
+  <p class="student-muted student-hero-cta">A session will be ready when today's mission is available.</p>
+  {% endif %}
 </section>
 
-<div class="student-grid student-grid--home">
-    {{ countdown_card(page.home.countdown) }}
-    {{ readiness_card(page.home.readiness) }}
-</div>
+<section class="student-secondary" data-dashboard-slot="secondary" aria-label="Readiness, journey, and coach">
+  <article class="student-panel" data-dashboard-panel="readiness" aria-labelledby="student-readiness-title">
+    <p class="student-panel-eyebrow">Readiness</p>
+    <h2 id="student-readiness-title" class="student-panel-title">
+      {% if page.home.readiness.has_readiness %}
+        {{ page.home.readiness.readiness_label }}
+      {% else %}
+        Readiness
+      {% endif %}
+    </h2>
+    {% if page.home.readiness.has_readiness %}
+    <p class="student-panel-metric">{{ page.home.readiness.readiness_percent_label }}</p>
+    {% endif %}
+    {% if page.home.readiness.trend_label %}
+    <p class="student-panel-trend">{{ page.home.readiness.trend_label }}</p>
+    {% endif %}
+    <p class="student-panel-body">
+      {% if page.home.readiness.confidence_label %}
+        {{ page.home.readiness.confidence_label }}
+      {% elif page.home.countdown.has_countdown %}
+        {{ page.home.countdown.label }}
+      {% else %}
+        Readiness detail will appear as you study.
+      {% endif %}
+    </p>
+    <a class="student-panel-action" href="{{ url_for('student.journey') }}">Review journey</a>
+  </article>
 
-<div class="student-stack student-stack--primary">
-    {{ recommendation_card(
-        page.home.recommendation,
-        form=form,
-        action_url=url_for('student.start_session')
-    ) }}
-    {{ explanation_card(page.home.explanation) }}
-</div>
+  <article class="student-panel" data-dashboard-panel="journey" aria-labelledby="student-journey-title">
+    <p class="student-panel-eyebrow">Journey</p>
+    <h2 id="student-journey-title" class="student-panel-title">Learning journey</h2>
+    <p class="student-panel-body student-story">{{ page.home.journey_story }}</p>
+  </article>
+
+  <article class="student-panel" data-dashboard-panel="coach" aria-labelledby="student-coach-title">
+    <p class="student-panel-eyebrow">Coach</p>
+    <h2 id="student-coach-title" class="student-panel-title">Coach insight</h2>
+    <p class="student-panel-body student-coach-insight">{{ page.home.coach_insight }}</p>
+  </article>
+</section>
+
+<section class="student-tertiary" data-dashboard-slot="tertiary" aria-label="Upcoming milestones and quick actions">
+  <div class="student-panel student-panel--quiet" data-dashboard-panel="milestones" aria-labelledby="student-milestones-title">
+    <p class="student-panel-eyebrow">Upcoming</p>
+    <h2 id="student-milestones-title" class="student-panel-title">Upcoming milestones</h2>
+    {% if page.home.milestones %}
+    <ul class="student-milestone-list">
+      {% for milestone in page.home.milestones %}
+      <li>
+        <span class="student-milestone-title">{{ milestone.title }}</span>
+        {% if milestone.detail %}<span class="student-milestone-detail">{{ milestone.detail }}</span>{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <div class="student-empty" role="status">
+      <p class="student-empty-title">No upcoming milestones yet</p>
+      <p class="student-empty-description">
+        Milestones appear as your study plan unfolds and session outcomes update your journey.
+      </p>
+    </div>
+    {% endif %}
+  </div>
+
+  <nav class="student-panel student-panel--quiet" data-dashboard-panel="quick-actions" aria-label="Quick actions">
+    <p class="student-panel-eyebrow">Quick actions</p>
+    <h2 class="student-panel-title">Quick actions</h2>
+    <ul class="student-quick-actions">
+      {% for action in page.home.quick_actions %}
+      <li>
+        <a href="{{ action.href }}">{{ action.label }}</a>
+        {% if action.detail %}<span class="student-quick-detail">{{ action.detail }}</span>{% endif %}
+      </li>
+      {% else %}
+      <li><a href="{{ url_for('student.journey') }}">Open Schedule</a></li>
+      <li><a href="{{ url_for('student.revision') }}">Prepare Checkpoint</a></li>
+      <li><a href="{{ url_for('student.history') }}">Review Reflection</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+</section>
 {% else %}
-<section class="student-empty" aria-label="Home">
-    <p class="student-card-body">Your home will fill in as learning insights become available from your sessions.</p>
+<section class="student-empty" aria-label="Home" role="status">
+    <h2 class="student-empty-title">Home is waiting for your first insights</h2>
+    <p class="student-empty-description">
+      This overview stays empty until learning insights become available from your sessions.
+      Start a study session when a mission is ready — then readiness, journey, and coach detail fill in.
+    </p>
 </section>
-{% from "partials/skeleton.html" import skeleton_student_home %}
-{{ skeleton_student_home() }}
 {% endif %}
 {% endblock %}

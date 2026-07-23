@@ -28,7 +28,20 @@ logger = logging.getLogger(__name__)
 @login_required
 def home():
     """Student Home — what to do next, and why."""
+    from flask_login import current_user
+
+    from app.services.presentation_telemetry_service import (
+        EVENT_DASHBOARD_OPENED,
+        PresentationTelemetryService,
+    )
+
     page = load_page(ExperienceSurface.HOME)
+    PresentationTelemetryService.record(
+        EVENT_DASHBOARD_OPENED,
+        user_id=current_user.id,
+        path="/student/",
+        context={"surface": "home"},
+    )
     form = StartSessionForm()
     if page.home:
         form.mission_id.data = page.home.mission_id
@@ -45,7 +58,20 @@ def home():
 @login_required
 def journey():
     """Journey — topic progress toward exam readiness."""
+    from flask_login import current_user
+
+    from app.services.presentation_telemetry_service import (
+        EVENT_JOURNEY_OPENED,
+        PresentationTelemetryService,
+    )
+
     page = load_page(ExperienceSurface.JOURNEY)
+    PresentationTelemetryService.record(
+        EVENT_JOURNEY_OPENED,
+        user_id=current_user.id,
+        path="/student/journey",
+        context={"surface": "journey"},
+    )
     return render_template(
         "student/journey.html",
         title=page.shell.page_title,
@@ -123,6 +149,22 @@ def start_session():
             "warning",
         )
         return redirect(url_for("student.home"))
+
+    from flask_login import current_user
+
+    from app.services.presentation_telemetry_service import (
+        EVENT_MISSION_STARTED,
+        PresentationTelemetryService,
+    )
+
+    PresentationTelemetryService.record(
+        EVENT_MISSION_STARTED,
+        user_id=current_user.id,
+        resource_type="session",
+        resource_id=handle.session_id or session_id,
+        path="/student/session/start",
+        context={"mission_id": mission_id or ""},
+    )
 
     topic = handle.topic_title or "your topic"
     flash(f"Session started: {topic}. Entering your study environment.", "success")

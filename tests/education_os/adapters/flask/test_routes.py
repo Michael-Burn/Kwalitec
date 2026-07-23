@@ -11,6 +11,11 @@ from adapters.flask.session.routes import session_bp
 EXPECTED_ROUTES = {
     "/eos/login/",
     "/eos/dashboard/",
+    "/eos/home/",
+    "/eos/journey/",
+    "/eos/readiness/",
+    "/eos/coach/",
+    "/eos/workspace/",
     "/eos/mission/",
     "/eos/session/",
     "/eos/session/<session_id>",

@@ -1,5 +1,9 @@
 """Database models."""
 
+from app.models.alpha_infrastructure import (
+    AlphaFeedbackSubmission,
+    PresentationEvent,
+)
 from app.models.curriculum import Curriculum, Section, Topic
 from app.models.decision import Decision
 from app.models.learning import LearningObjective, Mistake, StudyAttempt
@@ -23,6 +27,7 @@ from app.models.study_plan import StudyPlan, WeekPlan
 from app.models.subject import Subject
 from app.models.topic_progress import TopicProgress
 from app.models.twin_snapshot import TwinSnapshot
+from app.models.identity import UserCapability, UserRole
 from app.models.user import User
 from app.models.v2_aggregate import (
     V2AggregateDocument,
@@ -42,6 +47,8 @@ from app.models.vision_journal import (
 
 __all__ = [
     "User",
+    "UserRole",
+    "UserCapability",
     "Subject",
     "Mission",
     "MissionTask",
@@ -59,6 +66,8 @@ __all__ = [
     "V2AggregateDocument",
     "V2AggregateSnapshot",
     "V2EvidenceEvent",
+    "PresentationEvent",
+    "AlphaFeedbackSubmission",
     "ResearchFeedbackSubmission",
     "ResearchContribution",
     "ResearchContributorBadge",

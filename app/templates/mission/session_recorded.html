@@ -56,6 +56,19 @@
 
         <div class="mission-hero-action d-flex flex-column gap-2" data-rip001-invite="1">
             <p class="small text-muted mb-1 px-1">
+                Quick Internal Alpha feedback (optional):
+            </p>
+            <div class="d-flex flex-wrap gap-2 px-1 mb-2">
+                <a class="btn btn-outline-secondary btn-sm"
+                   href="{{ url_for('alpha.feedback_mission_helpful', mission_id=mission.id) }}">
+                    Was this mission helpful?
+                </a>
+                <a class="btn btn-outline-secondary btn-sm"
+                   href="{{ url_for('alpha.feedback_explanation_clear', mission_id=mission.id) }}">
+                    Was this explanation clear?
+                </a>
+            </div>
+            <p class="small text-muted mb-1 px-1">
                 Optional next step: a short Product Check-in about using Kwalitec today — not about your learning.
             </p>
             <a class="btn btn-mark-complete w-100"

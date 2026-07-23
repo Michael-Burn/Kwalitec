@@ -1,14 +1,8 @@
-{% extends "layouts/base.html" %}
+{% extends "founder_dashboard/base.html" %}
 
-{% block extra_head %}
-<link rel="stylesheet" href="{{ versioned_static('css/founder_dashboard.css', endpoint='founder_dashboard.static') }}">
-{% endblock %}
-
-{% block content %}
-{% include "founder_dashboard/_nav.html" %}
-
+{% block console_content %}
 <section class="section-header founder-header">
-    <p class="section-eyebrow">{{ founder_command_centre_label }} / Releases</p>
+    <p class="section-eyebrow">{{ kwalitec_console_label }} / Releases</p>
     <h1 class="section-title">Releases</h1>
     <p class="section-description">Release identity and findings by target release.</p>
 </section>

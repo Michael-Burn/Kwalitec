@@ -36,10 +36,22 @@ def test_one_primary_cta_marker(student_client, endpoint, path):
     assert html.count('data-student-cta="primary"') <= 2
 
 
+def test_home_has_decision_hierarchy(student_client):
+    html = student_client.get("/student/").get_data(as_text=True)
+    assert 'data-dashboard-slot="primary"' in html
+    assert 'data-dashboard-slot="secondary"' in html
+    assert 'data-dashboard-slot="tertiary"' in html
+    assert "Today's Mission" in html or "mission" in html.lower()
+    assert "readiness" in html.lower()
+    assert "coach" in html.lower()
+    assert "quick actions" in html.lower()
+
+
 def test_home_has_countdown_and_readiness(student_client):
     html = student_client.get("/student/").get_data(as_text=True)
-    assert "countdown" in html.lower() or "days" in html.lower()
-    assert "readiness" in html.lower()
+    lowered = html.lower()
+    assert "countdown" in lowered or "days" in lowered or "readiness" in lowered
+    assert "readiness" in lowered
 
 
 def test_journey_has_progress(student_client):

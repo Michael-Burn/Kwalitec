@@ -1,0 +1,33 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<section class="section-header">
+    <p class="section-eyebrow">Support</p>
+    <h1 class="section-title">{{ title }}</h1>
+    <p class="section-description">
+        Describe what went wrong. Include an error reference if you have one.
+    </p>
+</section>
+
+<form method="post" class="alpha-feedback-form" style="max-width: 36rem;">
+    {{ form.hidden_tag() }}
+    {{ form.kind() }}
+    {{ form.mission_id() }}
+    {{ form.surface() }}
+    <div class="mb-3">
+        {{ form.reference_id.label(class="form-label") }}
+        {{ form.reference_id(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.message.label(class="form-label") }}
+        {{ form.message(class="form-control") }}
+        {% for error in form.message.errors %}
+        <p class="invalid-feedback d-block" role="alert">{{ error }}</p>
+        {% endfor %}
+    </div>
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Send report</button>
+        <a class="btn btn-outline-secondary" href="{{ url_for('alpha.help_centre') }}">Cancel</a>
+    </div>
+</form>
+{% endblock %}

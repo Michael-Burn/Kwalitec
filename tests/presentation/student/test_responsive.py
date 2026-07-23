@@ -13,6 +13,16 @@ def test_css_has_breakpoints():
     css = Path("app/static/css/student/student.css").read_text(encoding="utf-8")
     assert "@media (min-width: 640px)" in css
     assert "@media (min-width: 480px)" in css
+    assert "@media (min-width: 768px)" in css
+    assert "@media (min-width: 1280px)" in css
+
+
+def test_css_has_decision_screen_layout():
+    css = Path("app/static/css/student/student.css").read_text(encoding="utf-8")
+    assert ".student-hero" in css
+    assert ".student-secondary" in css
+    assert ".student-tertiary" in css
+    assert "prefers-reduced-motion" in css
 
 
 def test_css_has_max_content_width():
