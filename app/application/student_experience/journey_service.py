@@ -4,6 +4,10 @@ from __future__ import annotations
 
 from typing import Any
 
+from app.application.educational_state import (
+    EducationalStateService,
+    EducationalStateSnapshot,
+)
 from app.application.student_experience._snapshots import journey_snapshot
 from app.application.student_experience.dto.journey_snapshot import JourneySnapshot
 from app.application.student_experience.exceptions import (
@@ -23,22 +27,24 @@ from app.domain.student_experience.recommendation_explanation import (
 
 
 class JourneyService:
-    """Project the Journey surface from Learning Journey port data.
+    """Project the Journey surface from shared Educational State.
 
     Projection only. No journey progression authority.
     """
 
     def __init__(
-        self, *, learning_journey: LearningJourneyPort | None = None
+        self,
+        *,
+        learning_journey: LearningJourneyPort | None = None,
+        educational_state: EducationalStateService | None = None,
     ) -> None:
         self._journey = learning_journey
+        self._educational_state = educational_state
 
     def journey(self, student_id: str) -> JourneySnapshot:
         """Build the Journey projection for ``student_id``."""
         sid = _require_id(student_id)
-        port = self._require_journey()
-        progress = port.get_journey_progress(sid) or {}
-        topics = port.get_topic_list(sid)
+        progress, topics = self._progress_for(sid)
 
         current = None
         completed: list[JourneyTopicCard] = []
@@ -90,10 +96,29 @@ class JourneyService:
             raise JourneyError(str(exc)) from exc
         return journey_snapshot(projection)
 
+    def _progress_for(
+        self, student_id: str
+    ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+        if self._educational_state is not None:
+            state = self._educational_state.load(student_id)
+            if not state.journey_available:
+                raise PortUnavailable("learning_journey port unavailable")
+            return state.journey_progress, list(state.journey_topics)
+        port = self._require_journey()
+        return (
+            port.get_journey_progress(student_id) or {},
+            list(port.get_topic_list(student_id) or ()),
+        )
+
     def _require_journey(self) -> LearningJourneyPort:
         if self._journey is None or not self._journey.is_available():
             raise PortUnavailable("learning_journey port unavailable")
         return self._journey
+
+    def _state_snapshot(self, student_id: str) -> EducationalStateSnapshot | None:
+        if self._educational_state is None:
+            return None
+        return self._educational_state.load(student_id)
 
 
 def _topic_card(raw: dict[str, Any]) -> JourneyTopicCard:

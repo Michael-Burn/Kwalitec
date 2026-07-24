@@ -58,3 +58,13 @@ Product / Dashboard / future API
 - Twin integration should enter through explicit ports — not by embedding Twin math in the facade
 - Keep diagnostics/health separate from educational authority
 - Refuse feature flags that bypass EducationPlatform for production student flows without documented exception
+
+## Governance Alignment
+
+This decision must remain consistent with:
+
+- [Product Vision 2030](../../product/vision/PRODUCT_VISION_2030.md) — product constitution
+- [Product Blueprint](../../../PRODUCT_BLUEPRINT.md) — product strategy and operating model
+- [Educational Constitution](../../educational/KWALITEC_EDUCATIONAL_CONSTITUTION.md) — educational principles
+
+If a future change would conflict with those authorities, amend the governing documents first (see [`knowledge/GOVERNANCE.md`](../../GOVERNANCE.md)).

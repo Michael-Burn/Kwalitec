@@ -57,3 +57,13 @@ Services accept explicit arguments (`user_id`, model instances, dates) and retur
 - When adding recommendation or readiness signals, document explainability inputs in the service docstring, not only in the UI.
 
 **See also:** [ADR-002](ADR-002-blueprint-architecture.md), [coding-standards.md](../development/coding-standards.md), subsystem docs under [`../subsystems/`](../subsystems/).
+
+## Governance Alignment
+
+This decision must remain consistent with:
+
+- [Product Vision 2030](../product/vision/PRODUCT_VISION_2030.md) — product constitution
+- [Product Blueprint](../../PRODUCT_BLUEPRINT.md) — product strategy and operating model
+- [Educational Constitution](../educational/KWALITEC_EDUCATIONAL_CONSTITUTION.md) — educational principles
+
+If a future change would conflict with those authorities, amend the governing documents first (see [`knowledge/GOVERNANCE.md`](../GOVERNANCE.md)).

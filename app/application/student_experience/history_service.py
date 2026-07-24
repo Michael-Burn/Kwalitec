@@ -4,6 +4,10 @@ from __future__ import annotations
 
 from typing import Any
 
+from app.application.educational_state import (
+    EducationalStateService,
+    EducationalStateSnapshot,
+)
 from app.application.student_experience._snapshots import history_snapshot
 from app.application.student_experience.dto.history_snapshot import HistorySnapshot
 from app.application.student_experience.exceptions import (
@@ -26,19 +30,24 @@ from app.domain.student_experience.student_home import readiness_band_label
 
 
 class HistoryService:
-    """Project History from Twin learning insights.
+    """Project Analytics/History from shared Educational State (Twin insights).
 
-    Never surfaces raw event logs.
+    Never surfaces raw event logs. Never recomputes mastery independently.
     """
 
-    def __init__(self, *, student_twin: StudentTwinPort | None = None) -> None:
+    def __init__(
+        self,
+        *,
+        student_twin: StudentTwinPort | None = None,
+        educational_state: EducationalStateService | None = None,
+    ) -> None:
         self._twin = student_twin
+        self._educational_state = educational_state
 
     def history(self, student_id: str) -> HistorySnapshot:
         """Build the History projection for ``student_id``."""
         sid = _require_id(student_id)
-        twin = self._require_twin()
-        insights = twin.get_learning_insights(sid) or {}
+        insights = dict(self._insights_for(sid))
         # Reject raw event dumps if an adapter mistakenly supplies them.
         if "events" in insights or "raw_events" in insights or "event_log" in insights:
             insights = {
@@ -114,10 +123,25 @@ class HistoryService:
             raise HistoryError(str(exc)) from exc
         return history_snapshot(projection)
 
+    def _insights_for(self, student_id: str) -> dict[str, Any]:
+        if self._educational_state is not None:
+            state = self._educational_state.load(student_id)
+            if not state.twin_available:
+                raise PortUnavailable("student_twin port unavailable")
+            return state.learning_insights
+        twin = self._require_twin()
+        return twin.get_learning_insights(student_id) or {}
+
     def _require_twin(self) -> StudentTwinPort:
         if self._twin is None or not self._twin.is_available():
             raise PortUnavailable("student_twin port unavailable")
         return self._twin
+
+    # Retained for type checkers / tests that introspect Twin wiring.
+    def _state_snapshot(self, student_id: str) -> EducationalStateSnapshot | None:
+        if self._educational_state is None:
+            return None
+        return self._educational_state.load(student_id)
 
 
 def _require_id(value: str) -> str:

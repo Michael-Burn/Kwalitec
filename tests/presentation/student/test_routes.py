@@ -31,11 +31,13 @@ def test_student_routes_render_nav(student_client, endpoint, path):
     html = response.get_data(as_text=True)
     for _ep, label_path in STUDENT_ROUTES:
         assert label_path.rstrip("/") in html or label_path in html
-    assert "Home" in html
+    assert "Dashboard" in html
     assert "Journey" in html
     assert "Revision" in html
-    assert "History" in html
-    assert "Profile" in html
+    assert "Analytics" in html
+    assert "Settings" in html
+    assert "Study Plan" in html
+    assert "Help" in html
 
 
 def test_home_shows_recommendation(student_client):
@@ -62,13 +64,13 @@ def test_revision_shows_primary(student_client):
 def test_history_shows_progress(student_client):
     response = student_client.get("/student/history")
     html = response.get_data(as_text=True)
-    assert "History" in html or "sessions" in html.lower() or "Study" in html
+    assert "Analytics" in html or "sessions" in html.lower() or "Study" in html
 
 
 def test_profile_shows_examination(student_client):
     response = student_client.get("/student/profile")
     html = response.get_data(as_text=True)
-    assert "Profile" in html or "examination" in html.lower() or "CPA" in html
+    assert "Settings" in html or "examination" in html.lower() or "CPA" in html
 
 
 def test_start_session_post(student_client, experience_app):

@@ -32,6 +32,17 @@ logger = logging.getLogger(__name__)
 mission_bp = Blueprint("mission", __name__, url_prefix="/missions")
 
 
+def _sole_runtime_to_canonical():
+    """Under sole runtime, retire LXP presentation to Student Dashboard.
+
+    StudySessionService remains registered for dual-run rollback and evidence
+    authority; nested session chrome is not a live educational entry point.
+    """
+    from app.presentation.consolidation import redirect_if_sole_runtime
+
+    return redirect_if_sole_runtime("student.home")
+
+
 def _resolve_topic_for_mission(user_id: int, mission: Mission):
     """Best-effort topic linked to a mission for progress updates.
 
@@ -129,7 +140,17 @@ def _apply_mission_topic_progress(user_id: int, topic) -> None:
 @mission_bp.get("/")
 @login_required
 def missions():
-    """Daily mission page with full context."""
+    """Daily mission page with full context.
+
+    READY FOR MIGRATION: under sole runtime, Today's Session starts from
+    Student Dashboard (Home).
+    """
+    from app.presentation.consolidation import redirect_if_sole_runtime
+
+    sole = redirect_if_sole_runtime("student.home")
+    if sole is not None:
+        return sole
+
     user_id = current_user.id
 
     # Active study plan first — today's mission must belong to it (IA-001).
@@ -261,6 +282,10 @@ def _session_context_for_mission(user_id: int, mission: Mission):
 @login_required
 def start_study_session(mission_id: int):
     """LXP-002: Start today's Study Session from Today's Mission."""
+    sole = _sole_runtime_to_canonical()
+    if sole is not None:
+        return sole
+
     from app.services.presentation_telemetry_service import (
         EVENT_MISSION_STARTED,
         PresentationTelemetryService,
@@ -286,6 +311,10 @@ def start_study_session(mission_id: int):
 @login_required
 def study_session(mission_id: int):
     """LXP-002: Dedicated Study Session screen."""
+    sole = _sole_runtime_to_canonical()
+    if sole is not None:
+        return sole
+
     try:
         mission = StudySessionService.get_owned_mission(mission_id, current_user.id)
     except ValueError:
@@ -338,6 +367,10 @@ def study_session(mission_id: int):
 @login_required
 def finish_study_session(mission_id: int):
     """LXP-003: Practice Outcome Capture after Finish Study Session."""
+    sole = _sole_runtime_to_canonical()
+    if sole is not None:
+        return sole
+
     try:
         mission = StudySessionService.get_owned_mission(mission_id, current_user.id)
     except ValueError:
@@ -448,6 +481,10 @@ def finish_study_session(mission_id: int):
 @login_required
 def study_session_recorded(mission_id: int):
     """LXP-004 Study Session Feedback after Practice Outcome Capture."""
+    sole = _sole_runtime_to_canonical()
+    if sole is not None:
+        return sole
+
     try:
         mission = StudySessionService.get_owned_mission(mission_id, current_user.id)
     except ValueError:
@@ -559,6 +596,10 @@ def complete_mission(mission_id: int):
 
         Study Session → Practice Outcome Capture → Study Session Feedback
     """
+    sole = _sole_runtime_to_canonical()
+    if sole is not None:
+        return sole
+
     try:
         mission = StudySessionService.get_owned_mission(mission_id, current_user.id)
     except ValueError as e:
@@ -594,6 +635,10 @@ def review_mission(mission_id: int):
     The competing reflection form is no longer a student journey. Practice
     Outcome Capture and Study Session Feedback own the record / close day.
     """
+    sole = _sole_runtime_to_canonical()
+    if sole is not None:
+        return sole
+
     try:
         mission = StudySessionService.get_owned_mission(mission_id, current_user.id)
     except ValueError:
@@ -611,6 +656,10 @@ def submit_review(mission_id: int):
     POST bodies to the retired Reflect on Your Learning form are ignored for
     state mutation and redirected to the authoritative Study Session path.
     """
+    sole = _sole_runtime_to_canonical()
+    if sole is not None:
+        return sole
+
     try:
         mission = StudySessionService.get_owned_mission(mission_id, current_user.id)
     except ValueError:

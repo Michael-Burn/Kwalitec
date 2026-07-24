@@ -513,18 +513,21 @@ def shell_vm(
     learning_activity_status: str = "",
     navigation: tuple[NavigationItemSnapshot, ...] | None = None,
 ) -> StudentShellViewModel:
+    # Prefer the consolidated OS nav tree (primary + Study Plan + Help).
+    nav = build_navigation(active_surface)
     if navigation:
-        nav = tuple(
-            StudentNavItem(
-                surface=item.surface,
-                label=item.label,
-                endpoint=f"student.{item.surface}",
-                active=item.active,
+        # Preserve active highlighting from the dashboard aggregate when present.
+        active_keys = {item.surface for item in navigation if item.active}
+        if active_keys:
+            nav = tuple(
+                StudentNavItem(
+                    surface=item.surface,
+                    label=item.label,
+                    endpoint=item.endpoint,
+                    active=item.surface in active_keys,
+                )
+                for item in nav
             )
-            for item in navigation
-        )
-    else:
-        nav = build_navigation(active_surface)
     active_label = next(
         (item.label for item in nav if item.active),
         active_surface.title(),
@@ -554,11 +557,11 @@ def page_from_dashboard(
         "profile": "Examination, preferences, goals, and account.",
     }
     titles = {
-        "home": "Home",
+        "home": "Dashboard",
         "journey": "Journey",
         "revision": "Revision",
-        "history": "History",
-        "profile": "Profile",
+        "history": "Analytics",
+        "profile": "Settings",
     }
     shell = shell_vm(
         active_surface=surface,

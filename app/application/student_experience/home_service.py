@@ -4,6 +4,10 @@ from __future__ import annotations
 
 from typing import Any
 
+from app.application.educational_state import (
+    EducationalStateService,
+    EducationalStateSnapshot,
+)
 from app.application.student_experience._snapshots import home_snapshot
 from app.application.student_experience.dto.home_snapshot import HomeSnapshot
 from app.application.student_experience.exceptions import HomeError, PortUnavailable
@@ -25,9 +29,10 @@ from app.domain.student_experience.student_home import StudentHome
 
 
 class HomeService:
-    """Project the Student Home surface from Twin / Adaptive / Mission ports.
+    """Project the Student Home surface from shared Educational State.
 
-    Projection only. No educational ownership.
+    Projection only. No educational ownership. Prefer EducationalStateService
+    so Dashboard / Coach share the same Twin / Adaptive / Mission facts.
     """
 
     def __init__(
@@ -37,10 +42,12 @@ class HomeService:
         adaptive_decision: AdaptiveDecisionPort | None = None,
         mission: MissionPort | None = None,
         explanation: ExplanationService | None = None,
+        educational_state: EducationalStateService | None = None,
     ) -> None:
         self._twin = student_twin
         self._adaptive = adaptive_decision
         self._mission = mission
+        self._educational_state = educational_state
         self._explanation = explanation or ExplanationService(
             adaptive_decision=adaptive_decision
         )
@@ -48,16 +55,12 @@ class HomeService:
     def home(self, student_id: str) -> HomeSnapshot:
         """Build the Student Home projection for ``student_id``."""
         sid = _require_id(student_id)
-        twin = self._require_twin()
-        adaptive = self._require_adaptive()
-        learner = twin.get_learner_summary(sid) or {}
-        readiness = twin.get_readiness_summary(sid) or {}
-        recommendation = adaptive.get_todays_recommendation(sid) or {}
-        session = (
-            self._mission.get_todays_session(sid)
-            if self._mission is not None and self._mission.is_available()
-            else None
-        ) or {}
+        state = self._state_for(sid)
+        adaptive = self._require_adaptive(state)
+        learner = state.learner_summary
+        readiness = state.readiness_summary
+        recommendation = state.recommendation
+        session = state.todays_session
 
         try:
             explanation = None
@@ -118,15 +121,48 @@ class HomeService:
             raise HomeError(str(exc)) from exc
         return home_snapshot(home)
 
+    def _state_for(self, student_id: str) -> EducationalStateSnapshot:
+        if self._educational_state is not None:
+            state = self._educational_state.load(student_id)
+            if not state.twin_available:
+                raise PortUnavailable("student_twin port unavailable")
+            return state
+        twin = self._require_twin()
+        adaptive = self._require_adaptive()
+        session = (
+            self._mission.get_todays_session(student_id)
+            if self._mission is not None and self._mission.is_available()
+            else None
+        ) or {}
+        return EducationalStateSnapshot(
+            student_id=student_id,
+            learner_summary=dict(twin.get_learner_summary(student_id) or {}),
+            readiness_summary=dict(twin.get_readiness_summary(student_id) or {}),
+            recommendation=dict(
+                adaptive.get_todays_recommendation(student_id) or {}
+            ),
+            todays_session=dict(session),
+            twin_available=True,
+            adaptive_available=True,
+            mission_available=bool(session)
+            or (
+                self._mission is not None and self._mission.is_available()
+            ),
+        )
+
+    def _require_adaptive(
+        self, state: EducationalStateSnapshot | None = None
+    ) -> AdaptiveDecisionPort:
+        if state is not None and not state.adaptive_available:
+            raise PortUnavailable("adaptive_decision port unavailable")
+        if self._adaptive is None or not self._adaptive.is_available():
+            raise PortUnavailable("adaptive_decision port unavailable")
+        return self._adaptive
+
     def _require_twin(self) -> StudentTwinPort:
         if self._twin is None or not self._twin.is_available():
             raise PortUnavailable("student_twin port unavailable")
         return self._twin
-
-    def _require_adaptive(self) -> AdaptiveDecisionPort:
-        if self._adaptive is None or not self._adaptive.is_available():
-            raise PortUnavailable("adaptive_decision port unavailable")
-        return self._adaptive
 
 
 def _start_action(

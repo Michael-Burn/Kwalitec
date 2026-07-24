@@ -109,7 +109,7 @@ Avoid **Open**, **Launch**, **Execute**, and **Proceed** on primary CTAs unless 
 
 ### Student primary nav
 
-Home · Journey · Revision · History · Profile
+Dashboard · Journey · Revision · Analytics · Settings · Study Plan · Help
 
 ### Founder Command Centre (primary)
 

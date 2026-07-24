@@ -72,3 +72,13 @@ App-level routes (`/`, `/health`) stay on the application factory.
 - Preserve progressive enhancement: routes must not depend on fragile client-only state for core flows.
 
 **See also:** [authentication.md](../subsystems/authentication.md), [`ARCHITECTURE.md`](../../ARCHITECTURE.md).
+
+## Governance Alignment
+
+This decision must remain consistent with:
+
+- [Product Vision 2030](../product/vision/PRODUCT_VISION_2030.md) — product constitution
+- [Product Blueprint](../../PRODUCT_BLUEPRINT.md) — product strategy and operating model
+- [Educational Constitution](../educational/KWALITEC_EDUCATIONAL_CONSTITUTION.md) — educational principles
+
+If a future change would conflict with those authorities, amend the governing documents first (see [`knowledge/GOVERNANCE.md`](../GOVERNANCE.md)).

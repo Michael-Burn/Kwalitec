@@ -4,6 +4,14 @@
 
 Architecture Decision Records freeze binding structural choices. Version 2 Educational Operating System ADRs live under `docs/adr/` (APP-003). Historical ADRs remain under this tree and `docs/architecture/`.
 
+Every ADR must remain consistent with:
+
+- [Product Vision 2030](../../product/vision/PRODUCT_VISION_2030.md)
+- [Product Blueprint](../../../PRODUCT_BLUEPRINT.md)
+- [Educational Constitution](../../educational/KWALITEC_EDUCATIONAL_CONSTITUTION.md)
+
+Process: [`knowledge/GOVERNANCE.md`](../../GOVERNANCE.md).
+
 ## Owner
 
 Architecture Governance
@@ -32,6 +40,8 @@ Index: [`docs/adr/README.md`](../../../docs/adr/README.md)
 | ADR-010 | Educational Pipeline |
 
 ### Historical (this directory)
+
+Each file includes a **Governance Alignment** section (2026-07-23).
 
 | Document | Role |
 |---|---|

@@ -37,11 +37,11 @@ CANONICAL_SURFACES: tuple[ExperienceSurface, ...] = (
 )
 
 SURFACE_LABELS: dict[ExperienceSurface, str] = {
-    ExperienceSurface.HOME: "Home",
+    ExperienceSurface.HOME: "Dashboard",
     ExperienceSurface.JOURNEY: "Journey",
     ExperienceSurface.REVISION: "Revision",
-    ExperienceSurface.HISTORY: "History",
-    ExperienceSurface.PROFILE: "Profile",
+    ExperienceSurface.HISTORY: "Analytics",
+    ExperienceSurface.PROFILE: "Settings",
 }
 
 

@@ -109,11 +109,11 @@ def test_studio_primary_buttons_human_language(founder_client):
 
 def test_student_page_titles(student_client):
     for path, needle in (
-        ("/student/", "Home"),
+        ("/student/", "Dashboard"),
         ("/student/journey", "Journey"),
         ("/student/revision", "Revision"),
-        ("/student/history", "History"),
-        ("/student/profile", "Profile"),
+        ("/student/history", "Analytics"),
+        ("/student/profile", "Settings"),
     ):
         html = student_client.get(path).get_data(as_text=True)
         assert needle in html

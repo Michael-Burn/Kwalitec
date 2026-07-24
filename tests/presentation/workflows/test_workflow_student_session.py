@@ -28,7 +28,7 @@ def test_student_home_reachable(student_client):
     response = student_client.get("/student/")
     assert response.status_code == 200
     html = response.get_data(as_text=True)
-    assert "Home" in html or "home" in html.lower()
+    assert "Dashboard" in html or "dashboard" in html.lower() or "Home" in html
 
 
 def test_session_overview_from_home_handoff(student_client):
@@ -137,7 +137,15 @@ def test_session_chrome_has_brand_exit(student_client):
 
 def test_student_nav_surfaces_present(student_client):
     html = student_client.get("/student/").get_data(as_text=True)
-    for label in ("Home", "Journey", "Revision", "History", "Profile"):
+    for label in (
+        "Dashboard",
+        "Journey",
+        "Revision",
+        "Analytics",
+        "Settings",
+        "Study Plan",
+        "Help",
+    ):
         assert label in html
 
 

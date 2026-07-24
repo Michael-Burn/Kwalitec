@@ -4,6 +4,11 @@ from app.models.alpha_infrastructure import (
     AlphaFeedbackSubmission,
     PresentationEvent,
 )
+from app.models.analytics_events import (
+    AnalyticsAuditLogRecord,
+    AnalyticsEventRecord,
+    AnalyticsOutboxRecord,
+)
 from app.models.curriculum import Curriculum, Section, Topic
 from app.models.decision import Decision
 from app.models.learning import LearningObjective, Mistake, StudyAttempt
@@ -68,6 +73,9 @@ __all__ = [
     "V2EvidenceEvent",
     "PresentationEvent",
     "AlphaFeedbackSubmission",
+    "AnalyticsEventRecord",
+    "AnalyticsOutboxRecord",
+    "AnalyticsAuditLogRecord",
     "ResearchFeedbackSubmission",
     "ResearchContribution",
     "ResearchContributorBadge",

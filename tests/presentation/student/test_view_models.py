@@ -224,10 +224,11 @@ def test_profile_vm_days():
 
 
 def test_shell_vm_navigation():
-    shell = shell_vm(active_surface="home", page_title="Home")
+    shell = shell_vm(active_surface="home", page_title="Dashboard")
     assert shell.active_surface == "home"
-    assert len(shell.navigation) == 5
+    assert len(shell.navigation) == 7
     assert sum(1 for n in shell.navigation if n.active) == 1
+    assert shell.navigation[0].label == "Dashboard"
 
 
 @pytest.mark.parametrize(

@@ -25,6 +25,7 @@ from tests.perf_v1sp003_harness import count_queries, measure_static_assets
 def _make_user(email: str) -> User:
     user = User(email=email, is_active_user=True)
     user.set_password("password123")
+    user.alpha_onboarding_completed = True
     db.session.add(user)
     db.session.commit()
     return user

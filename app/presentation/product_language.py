@@ -56,11 +56,13 @@ FOUNDER_STUDIO_CTAS: tuple[str, ...] = (
 )
 
 STUDENT_NAV_LABELS: tuple[str, ...] = (
-    "Home",
+    "Dashboard",
     "Journey",
     "Revision",
-    "History",
-    "Profile",
+    "Analytics",
+    "Settings",
+    "Study Plan",
+    "Help",
 )
 
 FOUNDER_PRIMARY_NAV_LABELS: tuple[str, ...] = (

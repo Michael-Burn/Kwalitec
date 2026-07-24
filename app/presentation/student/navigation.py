@@ -1,7 +1,8 @@
 """Student Experience navigation chrome.
 
-Maps Experience surfaces to Flask endpoints. Navigation ownership only —
-no educational authority.
+One canonical navigation tree for the Education Operating System.
+Maps Experience surfaces and system destinations to Flask endpoints.
+Navigation ownership only — no educational authority.
 """
 
 from __future__ import annotations
@@ -33,11 +34,25 @@ SURFACE_ENDPOINTS: dict[ExperienceSurface, str] = {
     ExperienceSurface.PROFILE: "student.profile",
 }
 
+# System destinations that complete the single OS nav tree (Phase 1).
+# Study Plan wizard and Help remain shared blueprints — not competing products.
+SYSTEM_NAV_ITEMS: tuple[tuple[str, str, str], ...] = (
+    ("study_plan", "Study Plan", "study_plan.index"),
+    ("help", "Help", "alpha.help_centre"),
+)
+
 
 def build_navigation(
     active_surface: ExperienceSurface | str | None = None,
+    *,
+    include_system: bool = True,
+    active_endpoint: str | None = None,
 ) -> tuple[StudentNavItem, ...]:
-    """Return canonical student nav items with active highlighting."""
+    """Return the canonical student nav tree with active highlighting.
+
+    Order: Dashboard · Journey · Revision · Analytics · Settings · Study Plan · Help.
+    Today's Session and Coach live on Dashboard (workflow, not duplicate products).
+    """
     active = _resolve(active_surface) if active_surface else None
     items: list[StudentNavItem] = []
     for surface in CANONICAL_SURFACES:
@@ -49,6 +64,20 @@ def build_navigation(
                 active=active is surface,
             )
         )
+    if include_system:
+        for surface_key, label, endpoint in SYSTEM_NAV_ITEMS:
+            items.append(
+                StudentNavItem(
+                    surface=surface_key,
+                    label=label,
+                    endpoint=endpoint,
+                    active=bool(
+                        active_endpoint and active_endpoint.startswith(
+                            endpoint.rsplit(".", 1)[0]
+                        )
+                    ),
+                )
+            )
     return tuple(items)
 
 

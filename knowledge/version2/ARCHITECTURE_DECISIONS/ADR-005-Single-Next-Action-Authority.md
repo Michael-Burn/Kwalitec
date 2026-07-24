@@ -58,3 +58,13 @@ Rules:
 
 - Student Learning Experience (roadmap student UX) must bind next-action UI to Adaptive Decision payloads
 - Legacy V1 recommendation services remain dual-run until ADR-007 exit criteria; they must not silently override Adaptive Decision on V2 paths
+
+## Governance Alignment
+
+This decision must remain consistent with:
+
+- [Product Vision 2030](../../product/vision/PRODUCT_VISION_2030.md) — product constitution
+- [Product Blueprint](../../../PRODUCT_BLUEPRINT.md) — product strategy and operating model
+- [Educational Constitution](../../educational/KWALITEC_EDUCATIONAL_CONSTITUTION.md) — educational principles
+
+If a future change would conflict with those authorities, amend the governing documents first (see [`knowledge/GOVERNANCE.md`](../../GOVERNANCE.md)).

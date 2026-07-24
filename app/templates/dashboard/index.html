@@ -19,13 +19,6 @@
     {% else %}
     <p class="section-description">What to study today, and whether you are on track.</p>
     {% endif %}
-    {% if v2_flags and v2_flags.ENABLE_STUDENT_EXPERIENCE and not v2_flags.SOLE_RUNTIME %}
-    <p class="mt-2 mb-0">
-        <a class="btn btn-ghost btn-sm" href="{{ url_for('student.home') }}">
-            Open Version 2 Learning Experience
-        </a>
-    </p>
-    {% endif %}
 </section>
 
 {% if show_revision_acknowledgement %}

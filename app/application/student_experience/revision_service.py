@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import Any
 
+from app.application.educational_state import EducationalStateService
 from app.application.student_experience._snapshots import revision_snapshot
 from app.application.student_experience.dto.revision_snapshot import RevisionSnapshot
 from app.application.student_experience.exceptions import (
@@ -36,8 +37,10 @@ class RevisionService:
         *,
         adaptive_decision: AdaptiveDecisionPort | None = None,
         explanation: ExplanationService | None = None,
+        educational_state: EducationalStateService | None = None,
     ) -> None:
         self._adaptive = adaptive_decision
+        self._educational_state = educational_state
         self._explanation = explanation or ExplanationService(
             adaptive_decision=adaptive_decision
         )
@@ -45,8 +48,7 @@ class RevisionService:
     def revision(self, student_id: str) -> RevisionSnapshot:
         """Build the Revision projection for ``student_id``."""
         sid = _require_id(student_id)
-        port = self._require_adaptive()
-        options = port.get_revision_options(sid)
+        options = self._options_for(sid)
         if not options:
             return revision_snapshot(RevisionProjection.create(sid))
 
@@ -62,6 +64,15 @@ class RevisionService:
         except ValueError as exc:
             raise RevisionError(str(exc)) from exc
         return revision_snapshot(projection)
+
+    def _options_for(self, student_id: str) -> list[dict[str, Any]]:
+        if self._educational_state is not None:
+            state = self._educational_state.load(student_id)
+            if not state.adaptive_available:
+                raise PortUnavailable("adaptive_decision port unavailable")
+            return list(state.revision_options)
+        port = self._require_adaptive()
+        return list(port.get_revision_options(student_id) or ())
 
     def _require_adaptive(self) -> AdaptiveDecisionPort:
         if self._adaptive is None or not self._adaptive.is_available():

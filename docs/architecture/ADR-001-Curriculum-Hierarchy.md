@@ -119,3 +119,13 @@ The V2 hierarchy maps directly to the official professional examination syllabus
 | `docs/reviews/CURRICULUM_ARCHITECTURE_REVIEW.md` | Detailed architecture review of Epic 1 |
 | `docs/reviews/EPIC_1_COMPLETION_REVIEW.md` | Completion review for Epic 1 |
 | `docs/TECHNICAL_DEBT_REGISTER.md` | Known technical debt introduced or deferred during Epic 1 |
+
+## Governance Alignment
+
+This decision must remain consistent with:
+
+- [Product Vision 2030](../../knowledge/product/vision/PRODUCT_VISION_2030.md) — product constitution
+- [Product Blueprint](../../PRODUCT_BLUEPRINT.md) — product strategy and operating model
+- [Educational Constitution](../../knowledge/educational/KWALITEC_EDUCATIONAL_CONSTITUTION.md) — educational principles
+
+If a future change would conflict with those authorities, amend the governing documents first (see [`knowledge/GOVERNANCE.md`](../../knowledge/GOVERNANCE.md)).

@@ -100,7 +100,10 @@ def index():
 
     Each service call is individually timed and guarded so that a slow
     or failing query never blocks the entire dashboard from rendering.
+
+    READY FOR MIGRATION: under sole runtime, learners use Student Home.
     """
+    from app.presentation.consolidation import redirect_if_sole_runtime
     from app.services.alpha_onboarding_service import AlphaOnboardingService
     from app.services.presentation_telemetry_service import (
         EVENT_DASHBOARD_OPENED,
@@ -109,6 +112,10 @@ def index():
 
     if AlphaOnboardingService.should_show(current_user):
         return redirect(url_for("alpha.onboarding"))
+
+    sole = redirect_if_sole_runtime("student.home")
+    if sole is not None:
+        return sole
 
     user_id = current_user.id
     PresentationTelemetryService.record(

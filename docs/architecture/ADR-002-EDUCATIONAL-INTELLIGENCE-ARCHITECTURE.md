@@ -336,3 +336,13 @@ Residual conditions from Epic 2 Completion Review remain program obligations for
 ---
 
 *End of ADR-002.*
+
+## Governance Alignment
+
+This decision must remain consistent with:
+
+- [Product Vision 2030](../../knowledge/product/vision/PRODUCT_VISION_2030.md) — product constitution
+- [Product Blueprint](../../PRODUCT_BLUEPRINT.md) — product strategy and operating model
+- [Educational Constitution](../../knowledge/educational/KWALITEC_EDUCATIONAL_CONSTITUTION.md) — educational principles
+
+If a future change would conflict with those authorities, amend the governing documents first (see [`knowledge/GOVERNANCE.md`](../../knowledge/GOVERNANCE.md)).

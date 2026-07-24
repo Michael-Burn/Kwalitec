@@ -19,7 +19,14 @@ def test_student_vocabulary_present(student_client, endpoint, path):
     # At least one student-facing concept appears somewhere in the shell.
     assert any(
         word in html
-        for word in ("Home", "Journey", "Revision", "History", "Profile", "Kwalitec")
+        for word in (
+            "Dashboard",
+            "Journey",
+            "Revision",
+            "Analytics",
+            "Settings",
+            "Kwalitec",
+        )
     )
 
 

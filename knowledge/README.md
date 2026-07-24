@@ -9,8 +9,15 @@ This knowledge base complements (does not replace):
 | [`PROJECT_CONTEXT.md`](../PROJECT_CONTEXT.md) | Product thesis, stack, current status |
 | [`ARCHITECTURE.md`](../ARCHITECTURE.md) | Structural map and layer diagrams |
 | [`CONTRIBUTING.md`](../CONTRIBUTING.md) | Branching, commits, PRs, milestones |
-| [`PRODUCT_BLUEPRINT.md`](../PRODUCT_BLUEPRINT.md) | Long-term product vision |
-| [`docs/process/RELEASE_PROTOCOL.md`](../docs/process/RELEASE_PROTOCOL.md) | Release procedure |
+| [`product/vision/PRODUCT_VISION_2030.md`](product/vision/PRODUCT_VISION_2030.md) | Executive product constitution (why / north star) |
+| [`PRODUCT_BLUEPRINT.md`](../PRODUCT_BLUEPRINT.md) | Product strategy, model, roadmap (how) |
+| [`GOVERNANCE.md`](GOVERNANCE.md) | Document & decision hierarchy |
+| [`ENGINEERING_STANDARDS.md`](ENGINEERING_STANDARDS.md) | PR bar / Definition of Done |
+| [`QUALITY_MANUAL.md`](QUALITY_MANUAL.md) | Quality, a11y, perf, security, release policy |
+| [`RELEASE_PLAYBOOK.md`](RELEASE_PLAYBOOK.md) | Operator release summary |
+| [`VERSION_1_READINESS.md`](VERSION_1_READINESS.md) | V1.0 readiness tracker |
+| [`product/ep001_product_validation/`](product/ep001_product_validation/) | EP-001 — educational validation, analytics, Twin expansion, V1 exit |
+| [`docs/process/RELEASE_PROTOCOL.md`](../docs/process/RELEASE_PROTOCOL.md) | Detailed release procedure |
 | [`.cursor/rules/`](../.cursor/rules/) | Enforceable agent conventions |
 | [`prompts/`](../prompts/) | Task-start templates |
 
@@ -40,7 +47,17 @@ knowledge/
 ├── founder/                  ← Founder OS / FSI programme docs
 ├── investigations/           ← Audits (e.g. POP-001)
 ├── product/                  ← Product programmes (PTP, LXP, IA)
+│   ├── vision/               ← PRODUCT_VISION_2030 (executive constitution)
+│   ├── analytics/            ← Product analytics architecture (design)
+│   ├── ep001_product_validation/ ← EP-001 Product Validation & Intelligence
+│   ├── private_beta/         ← Private beta preparation
 │   └── roadmap/              ← Product roadmap (intentional path; not knowledge/roadmap/)
+├── prd/                      ← Product Requirements Documents
+├── GOVERNANCE.md             ← Permanent governance hierarchy
+├── ENGINEERING_STANDARDS.md  ← Engineering / PR standards
+├── QUALITY_MANUAL.md         ← Quality platform
+├── RELEASE_PLAYBOOK.md       ← Release operator summary
+├── VERSION_1_READINESS.md    ← Version 1.0 readiness board
 ├── release/                  ← Version 1 RC1 / certification trail
 ├── releases/                 ← Implementation & verification reports (IAHF, V1SP, RC2)
 ├── research/                 ← Research Intelligence Programme

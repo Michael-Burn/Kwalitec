@@ -19,7 +19,16 @@ analytics_bp = Blueprint("analytics", __name__, url_prefix="/analytics")
 @analytics_bp.get("/")
 @login_required
 def index():
-    """Render the analytics dashboard with charts and performance data."""
+    """Render the analytics dashboard with charts and performance data.
+
+    READY FOR MIGRATION: under sole runtime, learners use Student Analytics.
+    """
+    from app.presentation.consolidation import redirect_if_sole_runtime
+
+    sole = redirect_if_sole_runtime("student.history")
+    if sole is not None:
+        return sole
+
     user_id = current_user.id
 
     # Readiness

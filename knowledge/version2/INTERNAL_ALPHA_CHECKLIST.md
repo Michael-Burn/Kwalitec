@@ -1,24 +1,24 @@
 # Internal Alpha Launch Checklist (ARP-005)
 
 **Authority:** Operational (Internal Alpha readiness)  
-**Status:** Ready for Internal Alpha dual-run  
-**Scope:** Deploy, exercise, observe, and roll back Version 2 coexistence — **no new features**.  
-**Related:** [`ALPHA_WORKFLOW_VALIDATION.md`](ALPHA_WORKFLOW_VALIDATION.md) · [`ALPHA_READINESS_FOUNDER_UX.md`](ALPHA_READINESS_FOUNDER_UX.md) · [`V2_020_RETIREMENT_RUNBOOK.md`](V2_020_RETIREMENT_RUNBOOK.md) · [`V2_DEPLOY_IMPLEMENTATION_REPORT.md`](../releases/V2_DEPLOY_IMPLEMENTATION_REPORT.md)
+**Status:** Superseded for production by **V2-023 RC-1** sole-runtime activation  
+**Scope:** Local dual-run soak remains available; production Render runs sole runtime.  
+**Related:** [`V2_023_RELEASE_CANDIDATE.md`](../../docs/architecture/V2_023_RELEASE_CANDIDATE.md) · [`V2_020_RETIREMENT_RUNBOOK.md`](V2_020_RETIREMENT_RUNBOOK.md) · [`ALPHA_WORKFLOW_VALIDATION.md`](ALPHA_WORKFLOW_VALIDATION.md)
 
-Internal Alpha means **trusted operators and invited learners** exercise Version 2 beside Version 1. It does **not** mean Version 1 retirement or public launch.
+Internal Alpha originally meant **trusted operators and invited learners** exercise Version 2 beside Version 1. **V2-023** promotes the Education Operating System as the sole production student runtime via `KWALITEC_V2_SOLE_RUNTIME=1` on Render.
 
 ---
 
-## Alpha posture (confirmed)
+## Alpha / RC posture
 
-| Concern | Expected Internal Alpha posture |
-|---------|----------------------------------|
-| Home (`/`) | Version 1 dashboard (`dashboard.index`) |
-| Student path | Available at `/student` when dual-run flags are on |
-| Session path | Available at `/session/...` |
-| Sole runtime | **Off** — do not set `KWALITEC_V2_SOLE_RUNTIME` |
-| Persistence | Durable SQLAlchemy stores when `KWALITEC_V2_DURABLE_STORE=1` |
-| Evidence gates | Surfaced at `/founder/evidence-gates`; product evidence still open |
+| Concern | Local dual-run (soak / rollback) | Production RC-1 (Render) |
+|---------|----------------------------------|---------------------------|
+| Home (`/`) | Version 1 dashboard (`dashboard.index`) | Student Dashboard (`student.home`) |
+| Student path | `/student` when dual-run flags on | Default home |
+| Session path | `/session/...` | Only live session UX |
+| Sole runtime | **Off** unless explicitly set | **On** (`KWALITEC_V2_SOLE_RUNTIME=1`) |
+| Persistence | Durable SQLAlchemy stores when `KWALITEC_V2_DURABLE_STORE=1` | Same |
+| Evidence gates | Surfaced at `/founder/evidence-gates` | Product evidence still operator-recorded |
 
 ---
 
@@ -35,9 +35,9 @@ Complete before inviting the alpha cohort.
 | D3 | `DATABASE_URL` points at production Postgres | Host env / `render.yaml` |
 | D4 | `APP_ENV=production` (or equivalent ProductionConfig selection) | Host env |
 | D5 | `.env` is **not** committed; secrets never appear in git | `git status` / repo hygiene |
-| D6 | Dual-run flags match Render defaults (below) | Compare host env ↔ `render.yaml` |
+| D6 | Production flags match Render defaults (below) | Compare host env ↔ `render.yaml` |
 
-**Required dual-run environment (Internal Alpha):**
+**Production RC-1 environment (Render):**
 
 ```bash
 KWALITEC_V2_STUDENT_EXPERIENCE=1
@@ -45,12 +45,23 @@ KWALITEC_V2_DURABLE_STORE=1
 KWALITEC_V2_INJECT_ENGINES=1
 KWALITEC_V2_SEED_DEMO=0
 KWALITEC_V2_FOUNDER_INTELLIGENCE=1
-# Do NOT set KWALITEC_V2_SOLE_RUNTIME
+KWALITEC_V2_SOLE_RUNTIME=1
+```
+
+**Local dual-run soak (optional — sole runtime off):**
+
+```bash
+KWALITEC_V2_STUDENT_EXPERIENCE=1
+KWALITEC_V2_DURABLE_STORE=1
+KWALITEC_V2_INJECT_ENGINES=1
+KWALITEC_V2_SEED_DEMO=0
+KWALITEC_V2_FOUNDER_INTELLIGENCE=1
+# Leave KWALITEC_V2_SOLE_RUNTIME unset for dual-run soak
 ```
 
 Optional (separate from V2): `KWALITEC_EI_INTERNAL_ALPHA=1` enables the V1 Educational Intelligence dashboard card only.
 
-Documented in [`.env.example`](../../.env.example); production defaults sketched in [`render.yaml`](../../render.yaml).
+Documented in [`.env.example`](../../.env.example); production defaults in [`render.yaml`](../../render.yaml).
 
 ### 1.2 Database
 
@@ -76,23 +87,34 @@ flask db current   # expect 202607230002 (head)
 | D14 | Curriculum import idempotent (V1 + V2 loadable) | Startup curriculum log: imported/skipped, no fatal errors |
 | D15 | Blueprints registered | `auth`, `dashboard`, `student`, `session`, `curriculum_studio`, `founder_dashboard`, … |
 | D16 | `GET /health` returns `status: ok`, `database: connected` | HTTP smoke |
-| D17 | `GET /` redirects to `/dashboard/` (sole runtime off) | HTTP smoke |
+| D17 | `GET /` → `/student/` when sole runtime on; `/dashboard/` when off | HTTP smoke |
 | D18 | Static assets resolve (session CSS, founder CSS) | Browser network / curl versioned URLs |
 | D19 | 403 / 404 / 500 templates render | Hit a protected/missing path; no bare Werkzeug HTML in prod |
-| D20 | Founder Intelligence dual-run label = `dual-run-active` | `/founder/intelligence` |
+| D20 | Founder Intelligence dual-run label = `sole-runtime-v2` (RC) or `dual-run-active` (soak) | `/founder/intelligence` |
 
 ### 1.4 Feature-flag / behaviour alignment
 
 | Flag | Application behaviour |
 |------|------------------------|
-| `KWALITEC_V2_STUDENT_EXPERIENCE` | Dashboard dual-run CTA; Student shell “Back to Dashboard” when sole runtime off |
+| `KWALITEC_V2_STUDENT_EXPERIENCE` | Enables Student Experience surfaces |
 | `KWALITEC_V2_DURABLE_STORE` | Experience/Session stores use SQLAlchemy; implies engine injection |
 | `KWALITEC_V2_INJECT_ENGINES` | Opaque Phase I bridges wired into adapters |
 | `KWALITEC_V2_SEED_DEMO` | Explicit override; defaults **off** when durable is on |
 | `KWALITEC_V2_FOUNDER_INTELLIGENCE` | Founder Intelligence surface enablement |
-| `KWALITEC_V2_SOLE_RUNTIME` | `/` → Student Home — **forbidden for Internal Alpha** |
+| `KWALITEC_V2_SOLE_RUNTIME` | `/` → Student Home; legacy list + nested LXP session routes redirect |
 
 Resolver: `app/application/config/v2_flags.py` → `resolve_v2_feature_flags()`.
+
+---
+
+## Rollback
+
+1. Unset `KWALITEC_V2_SOLE_RUNTIME` (or set to `0`) on the host / Render.
+2. Redeploy / restart.
+3. Confirm `/` redirects to Version 1 `/dashboard/`.
+4. Leave durable V2 tables intact (do not drop).
+
+See also [`V2_020_RETIREMENT_RUNBOOK.md`](V2_020_RETIREMENT_RUNBOOK.md) § Rollback.
 
 ---
 
@@ -183,11 +205,12 @@ Follow [`V2_020_RETIREMENT_RUNBOOK.md`](V2_020_RETIREMENT_RUNBOOK.md) § Rollbac
 
 ---
 
-## 5. Known limitations (accepted for Internal Alpha)
+## 5. Known limitations (accepted for Internal Alpha / RC soak)
 
 ### Intentionally deferred
 
-- Version 1 sole-runtime retirement (`KWALITEC_V2_SOLE_RUNTIME`) — gated on ADR-007 product evidence
+- Full deletion of legacy dashboard / analytics / LXP templates (kept as redirect shells for soak + rollback)
+- Analytics chart parity: Twin History vs V1 `/analytics/` charts
 - Public / open registration and broad cohort marketing
 - Dedicated Content Sources upload UI in Studio (stage still advances; upload remains port-level)
 - Labelled “Resume Session” Home CTA (resume works via workspace redirect)
@@ -200,32 +223,33 @@ Follow [`V2_020_RETIREMENT_RUNBOOK.md`](V2_020_RETIREMENT_RUNBOOK.md) § Rollbac
 - Studio UI covers dashboard + workspace actions; richer source/blueprint UX may follow alpha feedback
 - Product Strategy **product_evidence** gate cannot auto-pass from code — requires real observation
 - Cosmetic `datetime.utcnow` deprecation warnings on some ORM defaults
+- `StudySessionService` retained for dual-run rollback; not deleted under V2-023
 
 ### Operational caveats
 
 - Enabling durable flags **without** `flask db upgrade` to `202607230002` will fail writes
 - `/student` routes remain registered even when the student flag is off; the flag mainly gates entry CTA and dual-run chrome
 - Session create-on-open binds unbound `session_id`s to the current user; foreign workspaces return 403
-- Internal Alpha is **not** educational proof that Version 2 outperforms Version 1
+- Production RC enables sole runtime; local soak may leave it unset
 
 ---
 
 ## 6. Success criteria
 
-Internal Alpha is ready when **all** of the following are true:
+Internal Alpha / RC-1 is ready when **all** of the following are true:
 
-1. Deployment checklist §1 complete (secrets, flags, migrations, health, sole runtime off)
+1. Deployment checklist §1 complete (secrets, flags, migrations, health)
 2. Automated operational tests in `tests/operational/` pass
 3. Founder smoke §2.1 pass (create → publish, Intelligence, Evidence Gates)
 4. Student smoke §2.2 pass (home → session → complete, including resume)
-5. Rollback path §3 understood and soft-rollback verified in staging (or documented dry-run)
-6. Operators know limitations §5 and will not enable sole runtime until evidence gates pass
+5. Rollback path § Rollback / §3 understood and verified in staging (or documented dry-run)
+6. Operators know limitations §5
 
 When the above hold, mark:
 
-> **Internal Alpha ready** — dual-run coexistence for invited operators and learners.
+> **RC-1 ready** — Education Operating System sole runtime on production; dual-run available for local soak / rollback.
 
-Sole-runtime cutover remains a **separate** programme under [`V2_020_RETIREMENT_RUNBOOK.md`](V2_020_RETIREMENT_RUNBOOK.md).
+Cutover programme: [`V2_020_RETIREMENT_RUNBOOK.md`](V2_020_RETIREMENT_RUNBOOK.md) · [`V2_023_RELEASE_CANDIDATE.md`](../../docs/architecture/V2_023_RELEASE_CANDIDATE.md).
 
 ---
 
@@ -234,10 +258,12 @@ Sole-runtime cutover remains a **separate** programme under [`V2_020_RETIREMENT_
 | Surface | URL |
 |---------|-----|
 | Health | `GET /health` |
-| V1 home | `GET /` → `/dashboard/` |
-| Student Home | `/student/` |
+| Home (sole on) | `GET /` → `/student/` |
+| Home (sole off) | `GET /` → `/dashboard/` |
+| Student Dashboard | `/student/` |
 | Journey | `/student/journey` |
-| Learning Insights | `/student/revision` |
+| Revision | `/student/revision` |
+| Analytics | `/student/history` |
 | Session | `/session/<id>/overview` … `/complete` |
 | Curriculum Studio | `/founder/studio/` |
 | Founder Intelligence | `/founder/intelligence` |
