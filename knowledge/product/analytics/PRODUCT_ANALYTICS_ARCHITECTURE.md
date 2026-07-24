@@ -76,20 +76,19 @@ This document specifies **what** to track, **where** truth lives, and **constrai
 
 ---
 
-## 5. Event sketch (not implemented)
+## 5. Event sketch (Phases B–E)
 
-Illustrative event names for a future instrumentation PRD:
-
-| Event | Payload (minimal) | Notes |
+| Event | Payload (minimal) | Status |
 |---|---|---|
-| `session.started` / `session.completed` | user_id, session_id, mission_id, timestamps | Duration derived |
-| `recommendation.shown` / `.accepted` / `.dismissed` | recommendation_id, reason_codes | Acceptance rate |
-| `revision.planned` / `.completed` | window_id, topic_ids | Adherence |
-| `journey.milestone_reached` | journey_id, milestone_id | Journey completion |
-| `reflection.completed` | reflection_id | Reflection completion |
-| `educational_state.snapshot` | snapshot_id, schema_version, hash | Evolution tracking (careful with PII) |
+| `session.started` / `session.completed` | user_id, session_id, mission_id, timestamps; completed adds `completion_status` | **Phase B — registered + emitted (flag OFF)** |
+| `reflection.submitted` / `reflection.completed` | reflection_id; submitted adds session_id, student_id, reflection_type; completed adds processing_status | **Phase C — registered + emitted (flag OFF)** |
+| `educational_state.snapshot` | snapshot_id, schema_version, content_hash | **Phase D — registered + emitted (flag OFF); hash + metadata only** |
+| `journey.progressed` | journey_id, curriculum_node_id, transition_id | **Phase E — registered; production emit deferred (ADR-026)** |
+| `twin.evolved` | twin_snapshot_id, twin_version, evolution_reason, snapshot_hash | **Phase E — registered + emitted (flag OFF); hash + metadata only** |
+| `recommendation.shown` / `.accepted` / `.dismissed` | recommendation_id, reason_codes | Future PRD (O8) |
+| `revision.planned` / `.completed` | window_id, topic_ids | Future PRD (O3) |
 
-Schema versioning and retention policies are **TBD** in a future PRD (privacy review required).
+Canonical catalogue: [`EVENT_CATALOGUE.md`](EVENT_CATALOGUE.md). Abandon / cancel uses `session.completed` + `abandoned_after_start` (no `session.cancelled`). Phase E journey event name is `journey.progressed` (ADR-026; supersedes PRD draft `journey.milestone_reached`).
 
 ---
 

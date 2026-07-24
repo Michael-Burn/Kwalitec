@@ -128,6 +128,7 @@ class TwinRepository:
                 )
 
             when = persisted_at or datetime.now(UTC)
+            twin_payload = encode_twin(twin)
             row = TwinSnapshot(
                 snapshot_id=new_id,
                 student_id=resolved_scope.student_id,
@@ -136,7 +137,7 @@ class TwinRepository:
                 sequence=1,
                 format_version=SNAPSHOT_FORMAT_VERSION_1_0,
                 authorship=TwinAuthorship.BIRTH.value,
-                twin_payload=encode_twin(twin),
+                twin_payload=twin_payload,
                 provenance_payload=encode_provenance(provenance),
                 persisted_at=self._naive_utc(when),
             )
@@ -158,12 +159,14 @@ class TwinRepository:
                 detail="Twin storage unavailable",
             )
 
-        return PersistAcknowledgement(
+        ack = PersistAcknowledgement(
             snapshot_id=new_id,
             sequence=1,
             scope=resolved_scope,
             authorship=TwinAuthorship.BIRTH,
         )
+        self._observe_twin_evolved(ack, twin_payload)
+        return ack
 
     def retrieve_current_twin(
         self,
@@ -301,6 +304,7 @@ class TwinRepository:
 
             sequence = current.sequence + 1
             when = persisted_at or datetime.now(UTC)
+            twin_payload = encode_twin(twin)
             # Prior rows stay untouched — only insert successor.
             row = TwinSnapshot(
                 snapshot_id=new_id,
@@ -310,7 +314,7 @@ class TwinRepository:
                 sequence=sequence,
                 format_version=SNAPSHOT_FORMAT_VERSION_1_0,
                 authorship=TwinAuthorship.SUCCESSOR.value,
-                twin_payload=encode_twin(twin),
+                twin_payload=twin_payload,
                 provenance_payload=encode_provenance(provenance),
                 persisted_at=self._naive_utc(when),
             )
@@ -332,12 +336,14 @@ class TwinRepository:
                 detail="Twin storage unavailable",
             )
 
-        return PersistAcknowledgement(
+        ack = PersistAcknowledgement(
             snapshot_id=new_id,
             sequence=sequence,
             scope=resolved_scope,
             authorship=TwinAuthorship.SUCCESSOR,
         )
+        self._observe_twin_evolved(ack, twin_payload)
+        return ack
 
     def retrieve_snapshot_history(
         self,
@@ -571,6 +577,21 @@ class TwinRepository:
                 detail="snapshot identity already exists",
             )
         return normalized
+
+    @staticmethod
+    def _observe_twin_evolved(
+        ack: PersistAcknowledgement,
+        encoded_twin_payload: str,
+    ) -> None:
+        """PRD-001 Phase E — observe Twin succession after durable commit."""
+        from app.application.twin_repository.observation import (
+            observe_twin_evolved_after_persist,
+        )
+
+        observe_twin_evolved_after_persist(
+            ack,
+            encoded_twin_payload=encoded_twin_payload,
+        )
 
     @staticmethod
     def _naive_utc(value: datetime) -> datetime:

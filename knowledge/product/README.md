@@ -19,6 +19,8 @@ Active
 | [`vision/`](vision/) | PRODUCT_VISION_2030 — executive constitution |
 | [`prd/`](../prd/) | Feature PRD template and future PRDs |
 | [`analytics/`](analytics/) | Product analytics architecture (design only) |
+| [`ep001_product_validation/`](ep001_product_validation/) | EP-001 educational validation framework |
+| [`ep003_educational_effectiveness/`](ep003_educational_effectiveness/) | EP-003 educational effectiveness validation (metrics, beta protocol, Go / No-Go) |
 | [`private_beta/`](private_beta/) | Private beta preparation |
 | [`roadmap/`](roadmap/) | Post-RC2 product strategy |
 | PTP / LXP / IA docs | Trust, learning experience, internal alpha programmes |

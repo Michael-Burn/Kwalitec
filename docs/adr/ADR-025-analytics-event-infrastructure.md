@@ -106,12 +106,74 @@ Purge job **skeleton** only in Phase A (callable, batch-sized, audited). Enforce
 
 **Rollback:** Leave flag off (default). Do not drop Twin / ESS / mission tables.
 
+## Phase B amendment (2026-07-24)
+
+Phase B registers and emits **Study Session** events only:
+
+| Event | Authoritative lifecycle point | Notes |
+|---|---|---|
+| `session.started` | After `StudySessionService.start_session` Pending→In Progress commit | Idempotent start does not re-emit |
+| `session.completed` | After `finish_session` / `record_practice_outcome` persistence | `completion_status`: `completed` \| `abandoned_after_start` |
+
+Canonical cancel / abandon form is **`session.completed` + `abandoned_after_start`** (PRD-001 §7.4). No `session.cancelled` type.
+
+Emit path remains fail-open and flag-gated. Educational algorithms, Twin, EducationalState, and recommendation engine are unchanged. Builders live in `app/infrastructure/analytics/session_events.py`.
+
+## Phase C amendment (2026-07-24)
+
+Phase C registers and emits **Reflection** events only (in addition to Phase B Session events):
+
+| Event | Authoritative lifecycle point | Notes |
+|---|---|---|
+| `reflection.submitted` | After `ReflectionManager.capture` succeeds | Metadata only — no body text; `student_id` is opaque int |
+| `reflection.completed` | Same successful capture transaction | `processing_status`: `completed` |
+
+Emit requires an opaque integer `user_id` passed into capture / `collect_reflection` (analytics identity only). Educational reflection algorithms, Twin, EducationalState, and recommendation engine are unchanged. Builders live in `app/infrastructure/analytics/reflection_events.py`.
+
+## Phase D amendment (2026-07-24)
+
+Phase D registers and emits **Educational State snapshot** observation only (in addition to Phases B–C):
+
+| Event | Authoritative lifecycle point | Notes |
+|---|---|---|
+| `educational_state.snapshot` | After `EducationalStateService.load` fresh `_assemble` when content hash changes | Payload: `snapshot_id` + `content_hash` only (PRD-001 §7.4) |
+
+EducationalStateService remains the sole Educational State authority. Content hashing runs inside the ESS package; analytics never imports ESS and never stores Educational State / Twin / Learning Evidence / recommendation payloads. Emit is fail-open and flag-gated. Material-change gating uses a process-scoped last-emitted hash so identical page views do not re-emit. Twin algorithms, recommendation engine, Study Session, and Reflection are unchanged. Builders live in `app/infrastructure/analytics/educational_state_events.py`.
+
+## Phase E amendment (2026-07-24)
+
+Phase E registers Journey + Twin evolution observation (in addition to Phases B–D):
+
+| Event | Authoritative lifecycle point | Notes |
+|---|---|---|
+| `twin.evolved` | After `TwinRepository.persist_birth_twin` / `persist_successor_twin` commit | Payload: `twin_snapshot_id`, `twin_version`, `evolution_reason` (`birth`\|`successor`), `snapshot_hash` — Twin payload FORBIDDEN |
+| `journey.progressed` | After durable `LearningJourneyRepository.save` (when adapter exists) | Payload: `journey_id`, `curriculum_node_id`, `transition_id`. Production emit deferred (ADR-026) |
+
+Twin snapshot hashing runs at the Twin persist boundary over codec JSON; analytics receives digest only. Journey builders ship; engine is not hooked (no persistence). See [`ADR-026`](ADR-026-phase-e-journey-twin-observation.md). Educational algorithms, EducationalState, recommendations, Session, and Reflection are unchanged. Builders live in `twin_events.py` / `journey_events.py`.
+
+## EP-002 amendment (2026-07-24)
+
+EP-002 adds **operational readiness** without enabling the flag:
+
+| Capability | Implementation |
+|---|---|
+| Durable SQL outbox | `sqlalchemy_store.SqlOutboxSink` |
+| Retry worker + DLQ | `worker.AnalyticsOutboxWorker` |
+| Replay | `replay.AnalyticsReplayService` + CLI |
+| Retention / cleanup | `cleanup.AnalyticsRetentionEnforcer` |
+| Privacy ops | `privacy.AnalyticsPrivacyService` (delete / export / consent / audit) |
+| Infra metrics | `metrics.AnalyticsOperationalMetrics` |
+| Ops CLI | `analytics-worker-once`, `analytics-replay`, `analytics-retention`, `analytics-delete-user`, `analytics-export-user`, `analytics-export-audit`, `analytics-metrics`, `analytics-verify-consent` |
+
+`ANALYTICS_EVENTS_V1` remains **OFF** by default. Educational behaviour unchanged. Runbooks: `knowledge/product/analytics/ep002/`.
+
 ## Related
 
 - PRD-001 v1.1 §§7–11, §16 Phase A, §19
 - [`PRODUCT_ANALYTICS_ARCHITECTURE.md`](../../knowledge/product/analytics/PRODUCT_ANALYTICS_ARCHITECTURE.md)
 - Implementation: `app/infrastructure/analytics/`
 - Tests: `tests/infrastructure/analytics/`, `tests/architecture/test_analytics_import_guard.py`
+- EP-002: [`knowledge/product/analytics/ep002/`](../../knowledge/product/analytics/ep002/)
 
 ## Governance Alignment
 

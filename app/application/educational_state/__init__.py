@@ -7,14 +7,27 @@ readiness, mastery, or progress independently.
 Educational authority remains in Twin / Adaptive / Journey / Mission ports.
 This package only assembles an opaque read model for presentation.
 
+PRD-001 Phase D: after a fresh assembly, analytics may observe a
+``educational_state.snapshot`` event (hash + metadata only) when the
+content hash changes. Analytics never derives or stores Educational State.
+
 Note: port collaborators are duck-typed to avoid import cycles with
 ``app.application.student_experience``.
 """
 
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass, field
 from typing import Any
+from uuid import uuid4
+
+logger = logging.getLogger(__name__)
+
+# Process-scoped last-emitted content hash per student (material-change gate).
+# Not cleared by ``clear_cache`` — request-boundary cache must not re-emit
+# identical Educational State on every page view.
+_last_emitted_content_hash: dict[str, str] = {}
 
 
 @dataclass(frozen=True)
@@ -70,6 +83,8 @@ class EducationalStateService:
         if cached is not None:
             return cached
         snapshot = self._assemble(sid)
+        # Analytics observes assembly success only — never before, never derives.
+        EducationalStateService._observe_snapshot_if_material(snapshot)
         self._cache[sid] = snapshot
         return snapshot
 
@@ -132,8 +147,65 @@ class EducationalStateService:
             journey_available=journey_ok,
         )
 
+    @staticmethod
+    def _observe_snapshot_if_material(snapshot: EducationalStateSnapshot) -> None:
+        """Emit ``educational_state.snapshot`` on material content-hash change.
+
+        Fail-open: analytics errors never affect Educational State assembly.
+        Hash + metadata only — Educational State payload is never passed to
+        analytics.
+        """
+        try:
+            sid = (snapshot.student_id or "").strip()
+            if not sid:
+                return
+            try:
+                user_id = int(sid)
+            except (TypeError, ValueError):
+                # Analytics identity is opaque integer user id only.
+                return
+
+            from app.application.educational_state.content_hash import (
+                compute_educational_state_content_hash,
+            )
+
+            content_hash = compute_educational_state_content_hash(snapshot)
+            previous = _last_emitted_content_hash.get(sid)
+            if previous == content_hash:
+                return
+
+            snapshot_id = uuid4().hex
+            from app.infrastructure.analytics.dispatcher import DispatchStatus
+            from app.infrastructure.analytics.educational_state_events import (
+                emit_educational_state_snapshot,
+            )
+
+            result = emit_educational_state_snapshot(
+                user_id=user_id,
+                snapshot_id=snapshot_id,
+                content_hash=content_hash,
+            )
+            # Gate only after intentional outcomes — FAILED/REJECTED may retry.
+            if result.status in (
+                DispatchStatus.ENQUEUED,
+                DispatchStatus.DUPLICATE,
+                DispatchStatus.DISABLED,
+            ):
+                _last_emitted_content_hash[sid] = content_hash
+        except Exception:  # noqa: BLE001 — analytics must never break learning
+            logger.exception(
+                "analytics.emit_failed educational_state.snapshot student=%s",
+                getattr(snapshot, "student_id", ""),
+            )
+
+
+def reset_snapshot_observation_state() -> None:
+    """Clear process-scoped material-change memory (tests only)."""
+    _last_emitted_content_hash.clear()
+
 
 __all__ = [
     "EducationalStateService",
     "EducationalStateSnapshot",
+    "reset_snapshot_observation_state",
 ]

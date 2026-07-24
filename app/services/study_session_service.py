@@ -191,13 +191,95 @@ class StudySessionService:
         if mission.status == "Completed":
             raise ValueError("This study session has already been recorded.")
         if mission.status == "Pending":
-            return MissionService.update_mission_status(
+            mission = MissionService.update_mission_status(
                 mission_id=mission.id,
                 user_id=user_id,
                 status="In Progress",
             )
+            # Analytics observes success only — never before persistence.
+            StudySessionService._observe_session_started(
+                user_id=user_id,
+                mission_id=mission.id,
+            )
+            return mission
         return mission
 
+    @staticmethod
+    def _observe_session_started(
+        *,
+        user_id: int,
+        mission_id: int,
+        curriculum_node_id: int | None = None,
+    ) -> None:
+        """Emit ``session.started`` after a successful Pending→In Progress transition.
+
+        Fail-open: analytics errors never affect the Study Session.
+        """
+        try:
+            from app.infrastructure.analytics.session_events import emit_session_started
+
+            emit_session_started(
+                user_id=user_id,
+                mission_id=mission_id,
+                curriculum_node_id=curriculum_node_id,
+            )
+        except Exception:  # noqa: BLE001 — analytics must never break learning
+            logger.exception(
+                "analytics.emit_failed session.started mission=%s user=%s",
+                mission_id,
+                user_id,
+            )
+
+    @staticmethod
+    def _observe_session_completed(
+        *,
+        user_id: int,
+        mission_id: int,
+        session_completion: str,
+        topic_id: int | None = None,
+        duration_minutes: int | None = None,
+        abandon_reason: str | None = None,
+    ) -> None:
+        """Emit ``session.completed`` after a successful session close.
+
+        Maps LXP completion labels to PRD analytics statuses:
+        - yes / partially → ``completed``
+        - no → ``abandoned_after_start`` (canonical cancel / abandon)
+
+        Fail-open: analytics errors never affect the Study Session.
+        """
+        try:
+            from app.infrastructure.analytics.session_events import (
+                COMPLETION_ABANDONED_AFTER_START,
+                COMPLETION_COMPLETED,
+                emit_session_completed,
+            )
+
+            if session_completion == COMPLETION_NO:
+                analytics_status = COMPLETION_ABANDONED_AFTER_START
+                reason = abandon_reason or "completion_no"
+            else:
+                analytics_status = COMPLETION_COMPLETED
+                reason = None
+
+            duration_seconds = None
+            if duration_minutes is not None and duration_minutes > 0:
+                duration_seconds = int(duration_minutes) * 60
+
+            emit_session_completed(
+                user_id=user_id,
+                mission_id=mission_id,
+                completion_status=analytics_status,
+                topic_id=topic_id,
+                duration_seconds=duration_seconds,
+                abandon_reason=reason,
+            )
+        except Exception:  # noqa: BLE001 — analytics must never break learning
+            logger.exception(
+                "analytics.emit_failed session.completed mission=%s user=%s",
+                mission_id,
+                user_id,
+            )
     @staticmethod
     def _format_session_notes(completion_status: str, notes: str | None) -> str:
         label = COMPLETION_LABELS.get(completion_status, completion_status)
@@ -275,6 +357,13 @@ class StudySessionService:
             completion_status,
             mission_completed,
             study_progress_updated,
+        )
+        # Analytics observes success only — never before persistence.
+        StudySessionService._observe_session_completed(
+            user_id=user_id,
+            mission_id=mission.id,
+            session_completion=completion_status,
+            topic_id=topic_id,
         )
         return StudySessionFinishResult(
             mission=mission,
@@ -428,6 +517,15 @@ class StudySessionService:
             questions_attempted,
             questions_correct,
             authorised,
+        )
+        # Analytics observes success only — never before persistence.
+        # Idempotent with finish_session on the same mission (same entity key).
+        StudySessionService._observe_session_completed(
+            user_id=user_id,
+            mission_id=mission.id,
+            session_completion=COMPLETION_YES,
+            topic_id=topic_id if topic_id is not None else study_attempt.topic_id,
+            duration_minutes=duration_minutes,
         )
         return PracticeOutcomeResult(
             mission=mission,

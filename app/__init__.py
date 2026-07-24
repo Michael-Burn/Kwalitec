@@ -629,11 +629,29 @@ def _register_cli_commands(app: Flask) -> None:
         create_test_user_command,
         internal_alpha_reset_command,
     )
+    from app.infrastructure.analytics.cli import (
+        analytics_delete_user_command,
+        analytics_export_audit_command,
+        analytics_export_user_command,
+        analytics_metrics_command,
+        analytics_replay_command,
+        analytics_retention_command,
+        analytics_verify_consent_command,
+        analytics_worker_once_command,
+    )
 
     app.cli.add_command(create_admin_command)
     app.cli.add_command(create_test_user_command)
     app.cli.add_command(backfill_sections_command)
     app.cli.add_command(internal_alpha_reset_command)
+    app.cli.add_command(analytics_worker_once_command)
+    app.cli.add_command(analytics_replay_command)
+    app.cli.add_command(analytics_retention_command)
+    app.cli.add_command(analytics_delete_user_command)
+    app.cli.add_command(analytics_export_user_command)
+    app.cli.add_command(analytics_export_audit_command)
+    app.cli.add_command(analytics_metrics_command)
+    app.cli.add_command(analytics_verify_consent_command)
 
 
 def _register_blueprints(app: Flask) -> None:

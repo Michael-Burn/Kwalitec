@@ -284,8 +284,13 @@ class LearningSessionRuntime:
         questions_remaining: list[str] | tuple[str, ...] | None = None,
         confidence: ReflectionConfidence | str = ReflectionConfidence.UNSURE,
         next_intention: str | None = None,
+        user_id: int | None = None,
     ) -> tuple[SessionHandle, ReflectionSummary]:
-        """Capture structured student reflection onto a completed session."""
+        """Capture structured student reflection onto a completed session.
+
+        ``user_id`` is optional analytics identity only — when provided,
+        passive reflection events are observed after successful capture.
+        """
         if handle.phase == RuntimePhase.ARCHIVED:
             raise SessionAlreadyArchived(
                 f"Session {handle.session.session_id} is archived"
@@ -301,6 +306,7 @@ class LearningSessionRuntime:
             questions_remaining=questions_remaining,
             confidence=confidence,
             next_intention=next_intention,
+            user_id=user_id,
         )
         return (
             SessionHandle(session=session, phase=handle.phase, plan=handle.plan),

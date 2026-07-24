@@ -2,7 +2,7 @@
 
 **Version:** 1.0  
 **Status:** Active tracker  
-**Updated:** 2026-07-23  
+**Updated:** 2026-07-24  
 **Governance:** `knowledge/GOVERNANCE.md`  
 **Vision:** `knowledge/product/vision/PRODUCT_VISION_2030.md`
 
@@ -23,10 +23,10 @@ This tracker does not redesign the application or change educational algorithms.
 | Performance | IN PROGRESS | CI soft budgets encoded; production cohort load test open. |
 | Testing | IN PROGRESS | Broad suite + GA package; continuous green required for tag. |
 | Documentation | IN PROGRESS | Vision/Blueprint/Governance/Standards/PRD/Quality/Playbook landed; knowledge stubs remain elsewhere. |
-| Analytics | IN PROGRESS | PRD-001 Approved v1.1; instrumentation not started. |
-| Educational validation | IN PROGRESS | Framework complete (`ep001_product_validation/`); measurement pending instrumentation + beta. |
+| Analytics | COMPLETE (ops ready; flag OFF) | PRD-001 Phases A–E + EP-002 operational readiness; Journey production emit deferred (ADR-026). |
+| Educational validation | IN PROGRESS | EP-001 framework + EP-003 metrics/Go-No-Go complete; cohort measurement pending. |
 | Support | IN PROGRESS | Private beta support workflow prepared; not staffed as a function yet. |
-| Beta | IN PROGRESS | Private beta prep docs ready; cohort expansion pending privacy sign-off. |
+| Beta | IN PROGRESS | EP-003 Private Beta Protocol + prep docs ready; cohort expansion pending privacy sign-off. |
 | Commercial readiness | NOT STARTED | No public launch; no public registration. |
 
 ---
@@ -109,12 +109,13 @@ This tracker does not redesign the application or change educational algorithms.
 | Analytics architecture design | COMPLETE | `knowledge/product/analytics/` |
 | EP-001 educational validation framework | COMPLETE | `knowledge/product/ep001_product_validation/EDUCATIONAL_VALIDATION_FRAMEWORK.md` |
 | Phase 1 instrumentation PRD | COMPLETE | `knowledge/prd/PRD-001_LEARNING_ANALYTICS_PHASE1.md` (**Approved** v1.1) |
-| Instrumentation implementation | NOT STARTED | Milestone + Phase A ADR required; no runtime work in revision |
+| Instrumentation implementation | COMPLETE (flag OFF) | Phase A–E emits shipped; EP-002 durable outbox / privacy / runbooks — `knowledge/product/analytics/ep002/` |
+| Operational readiness (EP-002) | COMPLETE | Flag OFF; staged activation via go-live checklist |
 | Pass-rate measurement methodology | NOT STARTED | Open question (Framework O9) |
 
 ---
 
-## Educational validation (EP-001)
+## Educational validation (EP-001 + EP-003)
 
 | Item | Status | Evidence |
 |---|---|---|
@@ -123,6 +124,13 @@ This tracker does not redesign the application or change educational algorithms.
 | Twin V2 metric expansion design | COMPLETE | `TWIN_V2_METRIC_EXPANSION.md` (implementation gated) |
 | Product dashboard spec | COMPLETE | `PRODUCT_DASHBOARD_SPEC.md` (implementation gated) |
 | V1 exit criteria (EP-001) | IN PROGRESS | `V1_EXIT_CRITERIA.md` |
+| EP-003 Educational Metrics (M1–M9) | COMPLETE | `knowledge/product/ep003_educational_effectiveness/EDUCATIONAL_METRICS.md` |
+| EP-003 Private Beta Protocol | COMPLETE | `PRIVATE_BETA_PROTOCOL.md` (cohort ops pending) |
+| EP-003 Experiment Framework | COMPLETE | `EXPERIMENT_FRAMEWORK.md` |
+| EP-003 Product Scorecard | COMPLETE | `PRODUCT_SCORECARD.md` (values pending cohort) |
+| EP-003 Executive Dashboard Spec | COMPLETE | `EXECUTIVE_DASHBOARD_SPEC.md` (spec only) |
+| EP-003 Version 1 Educational Review | COMPLETE | `VERSION_1_EDUCATIONAL_REVIEW.md` (qualitative baseline) |
+| EP-003 Educational Go / No-Go | IN PROGRESS | Framework COMPLETE; verdict PENDING EVIDENCE |
 | Cohort measurement report | NOT STARTED | Requires private beta + Phase 1 events |
 
 ---
@@ -144,6 +152,7 @@ This tracker does not redesign the application or change educational algorithms.
 | Onboarding process | COMPLETE | Process doc |
 | Feedback system | COMPLETE | Process doc |
 | Release notes policy | COMPLETE | Process doc |
+| EP-003 Private Beta Protocol | COMPLETE | `ep003_educational_effectiveness/PRIVATE_BETA_PROTOCOL.md` |
 | Privacy review sign-off | IN PROGRESS | Checklist pending signatures |
 | Expanded private cohort | NOT STARTED | After privacy sign-off |
 

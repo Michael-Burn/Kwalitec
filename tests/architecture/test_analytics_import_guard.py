@@ -93,22 +93,67 @@ def test_analytics_no_educational_math_symbols(path: Path) -> None:
         assert needle not in source, f"{path} contains forbidden symbol {needle}"
 
 
-def test_phase_a_has_no_domain_emit_hooks() -> None:
-    """Phase A must not wire Session/reflection/journey/ESS/Twin emits.
+def test_phase_e_allows_authorised_emits_only() -> None:
+    """Phase E may emit session/reflection/ESS/journey/twin events on allowlist.
 
-    Match quoted event-type literals only so attribute access like
-    ``session.started_at`` does not false-positive.
+    ``session.cancelled`` and legacy ``journey.milestone_reached`` remain forbidden.
     """
     root = Path(__file__).resolve().parents[2] / "app"
-    forbidden_emit_markers = (
+    allowed_session_markers = (
         "session.started",
         "session.completed",
-        "reflection.completed",
-        "journey.milestone_reached",
-        "educational_state.snapshot",
-        "twin.evolved",
     )
-    # Only scan application / services / presentation — not docs or tests.
+    allowed_reflection_markers = (
+        "reflection.submitted",
+        "reflection.completed",
+    )
+    allowed_ess_markers = ("educational_state.snapshot",)
+    allowed_journey_markers = ("journey.progressed",)
+    allowed_twin_markers = ("twin.evolved",)
+    deferred_emit_markers = (
+        "journey.milestone_reached",
+        "session.cancelled",
+    )
+    allowed_session_emit_paths = frozenset(
+        {
+            "services/study_session_service.py",
+            "infrastructure/analytics/session_events.py",
+            "infrastructure/analytics/registry.py",
+            "infrastructure/analytics/__init__.py",
+        }
+    )
+    allowed_reflection_emit_paths = frozenset(
+        {
+            "application/learning_session/reflection_manager.py",
+            "infrastructure/analytics/reflection_events.py",
+            "infrastructure/analytics/registry.py",
+            "infrastructure/analytics/__init__.py",
+        }
+    )
+    allowed_ess_emit_paths = frozenset(
+        {
+            "application/educational_state/__init__.py",
+            "infrastructure/analytics/educational_state_events.py",
+            "infrastructure/analytics/registry.py",
+            "infrastructure/analytics/__init__.py",
+        }
+    )
+    allowed_journey_emit_paths = frozenset(
+        {
+            "application/learning_journey/journey_observation.py",
+            "infrastructure/analytics/journey_events.py",
+            "infrastructure/analytics/registry.py",
+            "infrastructure/analytics/__init__.py",
+        }
+    )
+    allowed_twin_emit_paths = frozenset(
+        {
+            "application/twin_repository/observation.py",
+            "infrastructure/analytics/twin_events.py",
+            "infrastructure/analytics/registry.py",
+            "infrastructure/analytics/__init__.py",
+        }
+    )
     scan_roots = (
         root / "application",
         root / "services",
@@ -116,17 +161,52 @@ def test_phase_a_has_no_domain_emit_hooks() -> None:
         root / "domain",
         root / "mission",
         root / "dashboard",
+        root / "infrastructure",
     )
     for scan_root in scan_roots:
         if not scan_root.exists():
             continue
         for path in scan_root.rglob("*.py"):
             text = path.read_text(encoding="utf-8")
-            for marker in forbidden_emit_markers:
+            rel = str(path.relative_to(root)).replace("\\", "/")
+            for marker in deferred_emit_markers:
                 quoted = (f'"{marker}"', f"'{marker}'")
                 assert not any(q in text for q in quoted), (
-                    f"Phase A domain emit leak: {marker} in {path}"
+                    f"Phase E deferred emit leak: {marker} in {path}"
                 )
+            for marker in allowed_session_markers:
+                quoted = (f'"{marker}"', f"'{marker}'")
+                if any(q in text for q in quoted):
+                    assert rel in allowed_session_emit_paths, (
+                        f"session emit outside authorised path: {marker} in {path}"
+                    )
+            for marker in allowed_reflection_markers:
+                quoted = (f'"{marker}"', f"'{marker}'")
+                if any(q in text for q in quoted):
+                    assert rel in allowed_reflection_emit_paths, (
+                        f"reflection emit outside authorised path: "
+                        f"{marker} in {path}"
+                    )
+            for marker in allowed_ess_markers:
+                quoted = (f'"{marker}"', f"'{marker}'")
+                if any(q in text for q in quoted):
+                    assert rel in allowed_ess_emit_paths, (
+                        f"ESS snapshot emit outside authorised path: "
+                        f"{marker} in {path}"
+                    )
+            for marker in allowed_journey_markers:
+                quoted = (f'"{marker}"', f"'{marker}'")
+                if any(q in text for q in quoted):
+                    assert rel in allowed_journey_emit_paths, (
+                        f"journey emit outside authorised path: "
+                        f"{marker} in {path}"
+                    )
+            for marker in allowed_twin_markers:
+                quoted = (f'"{marker}"', f"'{marker}'")
+                if any(q in text for q in quoted):
+                    assert rel in allowed_twin_emit_paths, (
+                        f"twin emit outside authorised path: {marker} in {path}"
+                    )
 
 
 def test_adr_025_exists() -> None:
@@ -140,3 +220,17 @@ def test_adr_025_exists() -> None:
     text = adr.read_text(encoding="utf-8")
     assert "ANALYTICS_EVENTS_V1" in text
     assert "observe" in text.lower()
+
+
+def test_adr_026_exists() -> None:
+    adr = (
+        Path(__file__).resolve().parents[2]
+        / "docs"
+        / "adr"
+        / "ADR-026-phase-e-journey-twin-observation.md"
+    )
+    assert adr.is_file()
+    text = adr.read_text(encoding="utf-8")
+    assert "journey.progressed" in text
+    assert "twin.evolved" in text
+    assert "LearningJourneyRepository" in text

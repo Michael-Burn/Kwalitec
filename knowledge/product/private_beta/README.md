@@ -41,9 +41,11 @@ Move from Internal Alpha dogfooding toward a **closed private beta** with discip
 
 Private beta readiness feeds `knowledge/VERSION_1_READINESS.md` (Beta + Support + Commercial readiness rows).
 
-Educational measurement during beta follows EP-001:
+Educational measurement during beta follows EP-001 + EP-003:
 
 - [`../ep001_product_validation/EDUCATIONAL_VALIDATION_FRAMEWORK.md`](../ep001_product_validation/EDUCATIONAL_VALIDATION_FRAMEWORK.md)
 - [`../ep001_product_validation/V1_EXIT_CRITERIA.md`](../ep001_product_validation/V1_EXIT_CRITERIA.md)
+- [`../ep003_educational_effectiveness/PRIVATE_BETA_PROTOCOL.md`](../ep003_educational_effectiveness/PRIVATE_BETA_PROTOCOL.md) — governing protocol
+- [`../ep003_educational_effectiveness/EDUCATIONAL_METRICS.md`](../ep003_educational_effectiveness/EDUCATIONAL_METRICS.md) — KPI catalogue (M1–M9)
 
-Objectives: observe, measure, interview, improve — do not chase feature requests; solve genuine educational problems mapped to outcome IDs O1–O9.
+Objectives: observe, measure, interview, improve — do not chase feature requests; solve genuine educational problems mapped to outcome IDs O1–O9 and metric IDs M1–M9.

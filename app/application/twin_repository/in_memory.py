@@ -16,6 +16,7 @@ import uuid
 from datetime import UTC, datetime
 from typing import Any
 
+from app.application.twin_repository.codec import encode_twin
 from app.application.twin_repository.types import (
     SNAPSHOT_FORMAT_VERSION_1_0,
     CurrentSnapshotRef,
@@ -127,12 +128,14 @@ class InMemoryTwinRepository:
         self._histories[key] = [record]
         self._snapshot_ids.add(new_id)
 
-        return PersistAcknowledgement(
+        ack = PersistAcknowledgement(
             snapshot_id=new_id,
             sequence=1,
             scope=resolved_scope,
             authorship=TwinAuthorship.BIRTH,
         )
+        self._observe_twin_evolved(ack, encode_twin(twin))
+        return ack
 
     def retrieve_current_twin(
         self,
@@ -276,12 +279,14 @@ class InMemoryTwinRepository:
         self._histories[key] = history
         self._snapshot_ids.add(new_id)
 
-        return PersistAcknowledgement(
+        ack = PersistAcknowledgement(
             snapshot_id=new_id,
             sequence=sequence,
             scope=resolved_scope,
             authorship=TwinAuthorship.SUCCESSOR,
         )
+        self._observe_twin_evolved(ack, encode_twin(twin))
+        return ack
 
     def retrieve_snapshot_history(
         self,
@@ -458,3 +463,18 @@ class InMemoryTwinRepository:
                 detail="snapshot identity already exists",
             )
         return normalized
+
+    @staticmethod
+    def _observe_twin_evolved(
+        ack: PersistAcknowledgement,
+        encoded_twin_payload: str,
+    ) -> None:
+        """PRD-001 Phase E — observe Twin succession after in-memory persist."""
+        from app.application.twin_repository.observation import (
+            observe_twin_evolved_after_persist,
+        )
+
+        observe_twin_evolved_after_persist(
+            ack,
+            encoded_twin_payload=encoded_twin_payload,
+        )

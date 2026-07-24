@@ -90,6 +90,14 @@ EP-001 succeeds when product decisions and release readiness are driven by **val
 
 ---
 
+## Successor programme
+
+**EP-003 — Educational Effectiveness Validation** operationalises KPI governance, private-beta protocol, experiment PRD gates, scorecard, executive dashboard spec, educational surface review, and Go / No-Go:
+
+→ [`../ep003_educational_effectiveness/README.md`](../ep003_educational_effectiveness/README.md)
+
+---
+
 ## How to update
 
 1. Change workstream status only when evidence exists (doc path, PR, test, cohort report).

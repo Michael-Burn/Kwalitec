@@ -92,6 +92,79 @@ def test_registry_phase_a_knows_probe_only() -> None:
     assert not registry.is_known("session.started")
 
 
+def test_registry_phase_b_knows_session_events() -> None:
+    registry = AnalyticsEventRegistry.phase_b_default()
+    assert registry.is_known(INFRASTRUCTURE_PROBE)
+    assert registry.is_known("session.started")
+    assert registry.is_known("session.completed")
+    assert not registry.is_known("reflection.completed")
+    assert not registry.is_known("reflection.submitted")
+    assert registry.get("session.started").required_payload_keys == (
+        "session_id",
+        "mission_id",
+    )
+    assert registry.get("session.completed").required_payload_keys == (
+        "session_id",
+        "mission_id",
+        "completion_status",
+    )
+
+
+def test_registry_phase_c_knows_reflection_events() -> None:
+    registry = AnalyticsEventRegistry.phase_c_default()
+    assert registry.is_known(INFRASTRUCTURE_PROBE)
+    assert registry.is_known("session.started")
+    assert registry.is_known("session.completed")
+    assert registry.is_known("reflection.submitted")
+    assert registry.is_known("reflection.completed")
+    assert not registry.is_known("journey.progressed")
+    assert not registry.is_known("educational_state.snapshot")
+    assert registry.get("reflection.submitted").required_payload_keys == (
+        "reflection_id",
+        "session_id",
+        "student_id",
+        "reflection_type",
+    )
+    assert registry.get("reflection.completed").required_payload_keys == (
+        "reflection_id",
+        "processing_status",
+    )
+
+
+def test_registry_phase_d_knows_educational_state_snapshot() -> None:
+    registry = AnalyticsEventRegistry.phase_d_default()
+    assert registry.is_known(INFRASTRUCTURE_PROBE)
+    assert registry.is_known("session.started")
+    assert registry.is_known("reflection.completed")
+    assert registry.is_known("educational_state.snapshot")
+    assert not registry.is_known("journey.progressed")
+    assert not registry.is_known("twin.evolved")
+    assert registry.get("educational_state.snapshot").required_payload_keys == (
+        "snapshot_id",
+        "content_hash",
+    )
+
+
+def test_registry_phase_e_knows_journey_and_twin_events() -> None:
+    registry = AnalyticsEventRegistry.phase_e_default()
+    assert registry.is_known(INFRASTRUCTURE_PROBE)
+    assert registry.is_known("educational_state.snapshot")
+    assert registry.is_known("journey.progressed")
+    assert registry.is_known("twin.evolved")
+    assert not registry.is_known("journey.milestone_reached")
+    assert registry.get("journey.progressed").required_payload_keys == (
+        "journey_id",
+        "curriculum_node_id",
+        "transition_id",
+    )
+    assert registry.get("twin.evolved").required_payload_keys == (
+        "twin_snapshot_id",
+        "twin_version",
+        "evolution_reason",
+        "snapshot_hash",
+    )
+
+
 def test_registry_register_custom_type() -> None:
     registry = AnalyticsEventRegistry()
     registry.register(

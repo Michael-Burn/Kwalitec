@@ -17,6 +17,10 @@ from app.infrastructure.analytics.feature_flag import (
     AnalyticsFeatureFlag,
     resolve_analytics_feature_flag,
 )
+from app.infrastructure.analytics.metrics import (
+    ANALYTICS_METRICS,
+    AnalyticsOperationalMetrics,
+)
 from app.infrastructure.analytics.outbox import (
     AnalyticsOutboxPort,
     MemoryOutboxSink,
@@ -66,8 +70,9 @@ class AnalyticsEventDispatcher:
         serializer: AnalyticsEventSerializer | None = None,
         outbox: AnalyticsOutboxPort | None = None,
         feature_flag: AnalyticsFeatureFlag | None = None,
+        metrics: AnalyticsOperationalMetrics | None = None,
     ) -> None:
-        self._registry = registry or AnalyticsEventRegistry.phase_a_default()
+        self._registry = registry or AnalyticsEventRegistry.phase_e_default()
         self._validator = validator or AnalyticsEventValidator(self._registry)
         self._serializer = serializer or AnalyticsEventSerializer()
         self._feature_flag = (
@@ -75,6 +80,7 @@ class AnalyticsEventDispatcher:
             if feature_flag is not None
             else resolve_analytics_feature_flag()
         )
+        self._metrics = metrics if metrics is not None else ANALYTICS_METRICS
         if outbox is not None:
             self._outbox = outbox
         elif self._feature_flag.enabled:
@@ -106,11 +112,15 @@ class AnalyticsEventDispatcher:
         started = time.perf_counter()
         try:
             if not self._feature_flag.enabled:
-                return DispatchResult(
+                result = DispatchResult(
                     status=DispatchStatus.DISABLED,
                     event_id=event.event_id,
                     elapsed_ms=_elapsed_ms(started),
                 )
+                self._metrics.record_dispatch(
+                    status=result.status.value, elapsed_ms=result.elapsed_ms
+                )
+                return result
 
             # Ensure correlation id for observability.
             correlation_id = event.correlation_id or new_correlation_id()
@@ -129,12 +139,16 @@ class AnalyticsEventDispatcher:
 
             validation = self._validator.validate(event)
             if not validation.ok:
-                return DispatchResult(
+                result = DispatchResult(
                     status=DispatchStatus.REJECTED,
                     event_id=event.event_id,
                     errors=validation.errors,
                     elapsed_ms=_elapsed_ms(started),
                 )
+                self._metrics.record_dispatch(
+                    status=result.status.value, elapsed_ms=result.elapsed_ms
+                )
+                return result
 
             stamped = AnalyticsEvent.create(
                 event.event_type,
@@ -163,24 +177,32 @@ class AnalyticsEventDispatcher:
                 if key in before_keys
                 else DispatchStatus.ENQUEUED
             )
-            return DispatchResult(
+            result = DispatchResult(
                 status=status,
                 event_id=stamped.event_id,
                 outbox_id=record.outbox_id,
                 elapsed_ms=_elapsed_ms(started),
             )
+            self._metrics.record_dispatch(
+                status=result.status.value, elapsed_ms=result.elapsed_ms
+            )
+            return result
         except Exception:  # noqa: BLE001 — fail-open for educational UX
             logger.exception(
                 "analytics.emit_failed event_id=%s type=%s",
                 getattr(event, "event_id", ""),
                 getattr(event, "event_type", ""),
             )
-            return DispatchResult(
+            result = DispatchResult(
                 status=DispatchStatus.FAILED,
                 event_id=getattr(event, "event_id", ""),
                 errors=("analytics.emit_failed",),
                 elapsed_ms=_elapsed_ms(started),
             )
+            self._metrics.record_dispatch(
+                status=result.status.value, elapsed_ms=result.elapsed_ms
+            )
+            return result
 
 
 def _elapsed_ms(started: float) -> float:
