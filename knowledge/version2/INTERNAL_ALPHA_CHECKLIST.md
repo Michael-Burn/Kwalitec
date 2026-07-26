@@ -68,13 +68,13 @@ Documented in [`.env.example`](../../.env.example); production defaults in [`ren
 | # | Check | How |
 |---|--------|-----|
 | D7 | Backup Postgres before upgrade | Provider snapshot / `pg_dump` |
-| D8 | `flask db upgrade` to Alembic head | Head must be `202607230002` |
+| D8 | `flask db upgrade` to Alembic head | Head must be `202607260001` |
 | D9 | V2 aggregate tables exist | `v2_aggregate_documents`, `v2_aggregate_snapshots`, `v2_evidence_events` |
 | D10 | Startup log shows Alembic current == head | Look for `Alembic: database is up to date.` |
 
 ```bash
 flask db upgrade
-flask db current   # expect 202607230002 (head)
+flask db current   # expect 202607260001 (head)
 ```
 
 ### 1.3 Application startup
@@ -227,7 +227,7 @@ Follow [`V2_020_RETIREMENT_RUNBOOK.md`](V2_020_RETIREMENT_RUNBOOK.md) § Rollbac
 
 ### Operational caveats
 
-- Enabling durable flags **without** `flask db upgrade` to `202607230002` will fail writes
+- Enabling durable flags **without** `flask db upgrade` to `202607260001` will fail writes
 - `/student` routes remain registered even when the student flag is off; the flag mainly gates entry CTA and dual-run chrome
 - Session create-on-open binds unbound `session_id`s to the current user; foreign workspaces return 403
 - Production RC enables sole runtime; local soak may leave it unset
