@@ -10,6 +10,10 @@ from flask_login import current_user, login_user, logout_user
 from app.application.config.internal_alpha import is_internal_alpha_enabled
 from app.auth.forms import LoginForm
 from app.models import User
+from app.presentation.consolidation import (
+    canonical_home_url,
+    redirect_to_canonical_home,
+)
 
 auth_bp = Blueprint("auth", __name__, url_prefix="/auth")
 
@@ -18,7 +22,8 @@ auth_bp = Blueprint("auth", __name__, url_prefix="/auth")
 def login():
     """Display and process the login form."""
     if current_user.is_authenticated:
-        return redirect(url_for("dashboard.index"))
+        # EP-007.1: land on the single authoritative home (no dual-home bounce).
+        return redirect_to_canonical_home()
 
     form = LoginForm()
     is_redirected = request.args.get("next") is not None
@@ -30,6 +35,17 @@ def login():
             login_user(user, remember=form.remember_me.data)
             flash("Welcome back to Kwalitec.", "success")
 
+            # B8 (PX-003 release blockers): onboarding must be guaranteed for
+            # every first-time student regardless of entry path. Checked here,
+            # before the study-plan-wizard branch below, so a brand-new
+            # student sees "what Kwalitec is" before being asked to configure
+            # a plan — not after a multi-step wizard they might abandon
+            # without ever reaching the `student.home` onboarding gate.
+            from app.services.alpha_onboarding_service import AlphaOnboardingService
+
+            if AlphaOnboardingService.should_show(user):
+                return redirect(url_for("alpha.onboarding"))
+
             # Check if user has an active study plan
             from app.services.study_plan_service import StudyPlanService
             active_plan = StudyPlanService.get_user_active_plan(user.id)
@@ -38,7 +54,7 @@ def login():
                 # Redirect to study plan wizard if no active plan
                 return redirect(url_for("study_plan.wizard_step", step=1))
 
-            return redirect(_safe_next_url() or url_for("dashboard.index"))
+            return redirect(_safe_next_url() or canonical_home_url())
 
         flash("Invalid email or password.", "danger")
 

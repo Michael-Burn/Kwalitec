@@ -1,0 +1,77 @@
+id: SV-018
+
+name: Rebecca Lawson
+
+age: 28
+
+country: United Kingdom
+
+exam: CS1
+
+attempt: Second Sitting
+
+weeks_to_exam: 5
+
+occupation: Senior Actuarial Analyst
+
+educational_hypothesis: Workflow essentiality after sustained use
+
+central_question: "Has Kwalitec become an essential part of the student's study workflow?"
+
+primary_dimension: Workflow
+
+background:
+  - You have now used Kwalitec almost every weekday for two months.
+  - Opening it before studying has become part of your routine.
+  - Today, imagine that Kwalitec suddenly becomes unavailable for the next week.
+  - Your task is to decide what you would genuinely miss.
+
+task:
+  - Think back over two months of regular use.
+  - Imagine beginning tomorrow without access to Kwalitec.
+  - >
+    Continually ask yourself:
+  - >
+    "What would become harder without it?"
+
+evaluation_focus:
+  - Student-only perspective
+  - Ignore engineering documentation
+  - Ignore implementation notes
+  - Ignore visual polish except where it blocks study
+  - >
+    Answer only the central question: Has Kwalitec become an essential part of the
+    student's study workflow?
+  - Do not compare with other reviewers
+  - Do not synthesise programme-level findings
+
+questions:
+  - Which daily habit would disappear without Kwalitec?
+  - What would I replace it with?
+  - Which feature would I miss most?
+  - Which feature would I barely notice disappearing?
+  - Would my study quality decline? Why?
+  - Would my organisation decline? Why?
+  - Would my confidence decline? Why?
+  - Would I actively look for another product to replace Kwalitec?
+  - Has Kwalitec become part of my study routine or merely an optional aid?
+  - If I permanently lost access today, how disappointed would I honestly be?
+
+scoring:
+  - Habit Formation
+  - Workflow Integration
+  - Daily Value
+  - Replaceability
+  - Long-Term Dependence
+  - Overall
+
+filter_tags:
+  - cs1
+  - second_sitting
+  - workflow
+
+review_package: knowledge/reviews/V1_REVIEW_PACKAGE/
+
+baseline_audit: knowledge/product/ep004_private_beta/REVIEW_BASELINE_AUDIT.md
+
+output: knowledge/product/ep004_private_beta/blind_reviews/SV-018.md

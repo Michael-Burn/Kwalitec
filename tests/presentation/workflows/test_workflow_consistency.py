@@ -113,7 +113,7 @@ def test_student_page_titles(student_client):
         ("/student/journey", "Journey"),
         ("/student/revision", "Revision"),
         ("/student/history", "History"),
-        ("/student/profile", "Profile"),
+        ("/student/profile", "Settings"),
     ):
         html = student_client.get(path).get_data(as_text=True)
         assert needle in html

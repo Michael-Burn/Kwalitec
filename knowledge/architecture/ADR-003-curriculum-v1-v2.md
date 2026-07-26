@@ -74,3 +74,13 @@ JSON under `app/curriculum/data/{org}/{paper}/{year}.json` remains the syllabus 
 - Keep engine dataclasses distinct from ORM models; convert explicitly on import.
 
 **See also:** [curriculum-engine.md](../subsystems/curriculum-engine.md), [`app/curriculum/README.md`](../../app/curriculum/README.md).
+
+## Governance Alignment
+
+This decision must remain consistent with:
+
+- [Product Vision 2030](../product/vision/PRODUCT_VISION_2030.md) — product constitution
+- [Product Blueprint](../../PRODUCT_BLUEPRINT.md) — product strategy and operating model
+- [Educational Constitution](../educational/KWALITEC_EDUCATIONAL_CONSTITUTION.md) — educational principles
+
+If a future change would conflict with those authorities, amend the governing documents first (see [`knowledge/GOVERNANCE.md`](../GOVERNANCE.md)).

@@ -37,10 +37,12 @@ Blueprints are registered in `_register_blueprints()` inside `app/__init__.py`.
 ```
 app/
 ├── auth/                 Blueprint("auth", url_prefix="/auth")
-├── dashboard/            Blueprint("dashboard", ...)
-├── mission/              Blueprint("mission", url_prefix="/missions")
+├── presentation/student/ Blueprint("student", url_prefix="/student")   # canonical Dashboard
+├── presentation/session/ Blueprint("session", url_prefix="/session")   # Session Experience
+├── dashboard/            Blueprint("dashboard", ...)   # legacy shell → redirects under sole runtime
+├── mission/              Blueprint("mission", url_prefix="/missions")  # legacy LXP shell
 ├── study_plan/           Blueprint("study_plan", url_prefix="/study-plan")
-├── analytics/            Blueprint("analytics", ...)
+├── analytics/            Blueprint("analytics", ...)   # legacy shell → History under sole runtime
 ├── settings/             Blueprint("settings", ...)
 ├── research/             Blueprint("research", url_prefix="/research")
 ├── calibration/          Blueprint("calibration", ...)
@@ -50,8 +52,9 @@ app/
 | Blueprint | Audience | Notes |
 |---|---|---|
 | `auth` | All | Invite-only login; no public registration |
-| `dashboard` / `mission` / `study_plan` / `analytics` | Students | Learning Workspace |
-| `settings` | Authenticated | Includes Internal Alpha status |
+| `student` / `session` | Students | **Canonical Education Operating System** (V2-023 sole runtime) |
+| `dashboard` / `mission` / `analytics` | Students | Legacy presentation shells; redirect under `KWALITEC_V2_SOLE_RUNTIME` |
+| `study_plan` / `settings` | Authenticated | Shared workflow surfaces (Study Plan wizard, account settings) |
 | `research` | Students | Product Check-in intake (`/research/checkin`) |
 | `founder_dashboard` | Founders | Command Centre — Overview, **Operational Health**, Feedback, Vision Journal, Research, Releases |
 | `calibration` | Operators | Calibration workflows |
@@ -192,8 +195,7 @@ Conventions:
 ```
 app/static/js/
 ├── app.js              # Shared behaviours
-├── mission.js          # Mission-specific interactions
-├── study_session.js    # Study session interactions
+├── study_session.js    # Study session interactions (legacy dual-run soak)
 └── theme.js            # Appearance / theme
 ```
 

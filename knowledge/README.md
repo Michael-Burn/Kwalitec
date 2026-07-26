@@ -9,8 +9,21 @@ This knowledge base complements (does not replace):
 | [`PROJECT_CONTEXT.md`](../PROJECT_CONTEXT.md) | Product thesis, stack, current status |
 | [`ARCHITECTURE.md`](../ARCHITECTURE.md) | Structural map and layer diagrams |
 | [`CONTRIBUTING.md`](../CONTRIBUTING.md) | Branching, commits, PRs, milestones |
-| [`PRODUCT_BLUEPRINT.md`](../PRODUCT_BLUEPRINT.md) | Long-term product vision |
-| [`docs/process/RELEASE_PROTOCOL.md`](../docs/process/RELEASE_PROTOCOL.md) | Release procedure |
+| [`product/vision/PRODUCT_VISION_2030.md`](product/vision/PRODUCT_VISION_2030.md) | Executive product constitution (why / north star) |
+| [`product/p001_1_ksi_baseline/`](product/p001_1_ksi_baseline/) | P-001.1 — KSI Product Success Framework (Version 1 usefulness ≥ 80) |
+| [`product/p001_2_explainability_standard/`](product/p001_2_explainability_standard/) | P-001.2 — Explainability Standard (schema, levels, review gate) |
+| [`product/p001_3_recommendation_quality_standard/`](product/p001_3_recommendation_quality_standard/) | P-001.3 — Recommendation Quality Standard (principles, decision frame, scorecard, review gate) |
+| [`product/p002_1_version_1_release_framework/`](product/p002_1_version_1_release_framework/) | P-002.1 — Version 1 Release Framework (production-ready gates, evidence, go / no-go) |
+| [`product/p003_1_version1_release_dossier/`](product/p003_1_version1_release_dossier/) | P-003.1 — Version 1 Release Dossier (board reference; recommendation **NO GO**) |
+| [`PRODUCT_BLUEPRINT.md`](../PRODUCT_BLUEPRINT.md) | Product strategy, model, roadmap (how) |
+| [`GOVERNANCE.md`](GOVERNANCE.md) | Document & decision hierarchy |
+| [`educational_validation/`](educational_validation/) | Educational Validation Framework (EVF) — educational release gate |
+| [`ENGINEERING_STANDARDS.md`](ENGINEERING_STANDARDS.md) | PR bar / Definition of Done |
+| [`QUALITY_MANUAL.md`](QUALITY_MANUAL.md) | Quality, a11y, perf, security, release policy |
+| [`RELEASE_PLAYBOOK.md`](RELEASE_PLAYBOOK.md) | Operator release summary |
+| [`VERSION_1_READINESS.md`](VERSION_1_READINESS.md) | V1.0 readiness tracker |
+| [`product/ep001_product_validation/`](product/ep001_product_validation/) | EP-001 — educational validation, analytics, Twin expansion, V1 exit |
+| [`docs/process/RELEASE_PROTOCOL.md`](../docs/process/RELEASE_PROTOCOL.md) | Detailed release procedure |
 | [`.cursor/rules/`](../.cursor/rules/) | Enforceable agent conventions |
 | [`prompts/`](../prompts/) | Task-start templates |
 
@@ -36,11 +49,31 @@ knowledge/
 ├── README.md                 ← you are here
 ├── architecture/             ← ADRs, Design Principles, Founder IA
 ├── educational/              ← Educational Constitution & governance
+├── educational_validation/   ← EVF — educational quality release authority
+├── orchestration/            ← Programme VII — workflow, authority, recommendations
 ├── engineering/              ← Handbook, patterns, standards
 ├── founder/                  ← Founder OS / FSI programme docs
 ├── investigations/           ← Audits (e.g. POP-001)
 ├── product/                  ← Product programmes (PTP, LXP, IA)
+│   ├── vision/               ← PRODUCT_VISION_2030 (executive constitution)
+│   ├── p001_1_ksi_baseline/  ← P-001.1 KSI Product Success Framework
+│   ├── p001_2_explainability_standard/ ← P-001.2 Explainability Standard
+│   ├── p001_3_recommendation_quality_standard/ ← P-001.3 Recommendation Quality Standard
+│   ├── p002_1_version_1_release_framework/ ← P-002.1 Version 1 Release Framework
+│   ├── p003_1_version1_release_dossier/ ← P-003.1 Version 1 Release Dossier (board)
+│   ├── analytics/            ← Product analytics architecture (design)
+│   ├── ep001_product_validation/ ← EP-001 Product Validation & Intelligence
+│   ├── ep003_educational_effectiveness/ ← EP-003 educational effectiveness
+│   ├── ep003_* / ep004_* / ep005_* / ep006_* / ep007_* ← Runtime A quality, personalisation, KSI validation, MES, journey
+│   ├── ep004_private_beta/   ← EP-004 private beta execution
+│   ├── private_beta/         ← Private beta preparation
 │   └── roadmap/              ← Product roadmap (intentional path; not knowledge/roadmap/)
+├── prd/                      ← Product Requirements Documents
+├── GOVERNANCE.md             ← Permanent governance hierarchy
+├── ENGINEERING_STANDARDS.md  ← Engineering / PR standards
+├── QUALITY_MANUAL.md         ← Quality platform
+├── RELEASE_PLAYBOOK.md       ← Release operator summary
+├── VERSION_1_READINESS.md    ← Version 1.0 readiness board
 ├── release/                  ← Version 1 RC1 / certification trail
 ├── releases/                 ← Implementation & verification reports (IAHF, V1SP, RC2)
 ├── research/                 ← Research Intelligence Programme
@@ -53,6 +86,8 @@ knowledge/
 |---|---|
 | `architecture/` | Design Principles, POP-002 IA, ADRs — the **why** behind hard constraints |
 | `educational/` | Educational Constitution and governance law |
+| `educational_validation/` | Educational Validation Framework — release gate for educational trust |
+| `orchestration/` | Programme VII — workflow orchestration, authority, and educational recommendation constitutional law |
 | `version2/` | Version 2 Learning Journey architecture (V2-001+); concept authority for V2 implementation |
 | `product/roadmap/` | Product roadmap stub and post-RC2 planning artefacts (canonical path) |
 | `releases/` | Milestone implementation / verification reports for RC2 and IAHF |

@@ -11,14 +11,12 @@
         </p>
         {% if error_reference_id %}
         <p class="error-reference small text-muted mb-3">
-            Reference ID: <code>{{ error_reference_id }}</code>
+            Reference ID <code>{{ error_reference_id }}</code> — include this if you contact support.
         </p>
         {% endif %}
         <div class="d-flex flex-wrap gap-2 justify-content-center">
-            {% if current_user.is_authenticated and v2_flags and v2_flags.SOLE_RUNTIME %}
-            <a href="{{ url_for('student.home') }}" class="btn btn-primary">Return Home</a>
-            {% elif current_user.is_authenticated %}
-            <a href="{{ url_for('dashboard.index') }}" class="btn btn-primary">Return to Dashboard</a>
+            {% if current_user.is_authenticated %}
+            <a href="{{ canonical_home_url }}" class="btn btn-primary">Return Home</a>
             {% else %}
             <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Sign In</a>
             {% endif %}

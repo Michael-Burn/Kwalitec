@@ -1,0 +1,9 @@
+EP-007.2 cold-start / thin-path residual (honest limitations)
+
+When mission/recommendation schema is incomplete:
+- Home may still show weaker why/next speech (EP-006.3 PERC-02 / EP-006.5 RDY-PERC-01 adjacency)
+- Duration still resolves via preferred minutes when a plan exists
+- Entry remains Student Home (dual-home cleared regardless of MES completeness)
+
+Thin Session Overview historically showed "Core methods" / "No activities" on wrong path —
+under sole runtime the student stays on /session/* Education OS path rather than competing Workspace overview.

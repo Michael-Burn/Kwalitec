@@ -1,0 +1,83 @@
+id: SV-016
+
+name: Emily Foster
+
+age: 24
+
+country: United Kingdom
+
+exam: CS1
+
+attempt: First Sitting
+
+weeks_to_exam: 8
+
+occupation: Graduate Actuarial Analyst
+
+educational_hypothesis: Cognitive load / organisational burden
+
+central_question: Does Kwalitec reduce the mental effort required to manage studying?
+
+primary_dimension: Workflow
+
+background:
+  - You enjoy studying.
+  - Your biggest frustration is not the syllabus.
+  - It is the constant mental effort of organising yourself.
+  - >
+    Before every study session you ask yourself:
+  - >
+    • Where should I start? • Should I continue yesterday? • Should I practise? • Am I
+    forgetting something? • Have I neglected another topic?
+  - By the time you begin studying, you already feel mentally tired.
+  - You are looking for a system that reduces that burden.
+
+task:
+  - Complete a normal study session.
+  - >
+    Throughout the session, continually ask yourself:
+  - >
+    "Did Kwalitec reduce the amount of thinking I had to do about organising my study?"
+
+evaluation_focus:
+  - Student-only perspective
+  - Ignore engineering documentation
+  - Ignore implementation notes
+  - Ignore visual polish except where it blocks study
+  - >
+    Answer only the central question: Does Kwalitec reduce the mental effort required to
+    manage studying?
+  - Do not compare with other reviewers
+  - Do not synthesise programme-level findings
+
+questions:
+  - Did I know what to do within a few moments of opening the app?
+  - Did I spend less time planning than I normally would?
+  - Did I ever stop to wonder what I should do next?
+  - Which screen removed the most uncertainty?
+  - Which screen created new uncertainty?
+  - Did the application make studying feel mentally lighter?
+  - >
+    Which decision still felt like my responsibility rather than Kwalitec's?
+  - If I had only 45 minutes after work, would the app help me use them well?
+  - After closing the session, did I feel mentally organised for tomorrow?
+  - Would using Kwalitec every day reduce the mental effort of managing my studies? Why?
+
+scoring:
+  - Cognitive Load Reduction
+  - Session Clarity
+  - Organisational Support
+  - Mental Effort Saved
+  - Daily Practical Value
+  - Overall
+
+filter_tags:
+  - cs1
+  - first_sitting
+  - workflow
+
+review_package: knowledge/reviews/V1_REVIEW_PACKAGE/
+
+baseline_audit: knowledge/product/ep004_private_beta/REVIEW_BASELINE_AUDIT.md
+
+output: knowledge/product/ep004_private_beta/blind_reviews/SV-016.md

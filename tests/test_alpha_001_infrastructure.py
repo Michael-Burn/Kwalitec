@@ -290,7 +290,7 @@ class TestAccessibilityBasics:
         body = client.get("/alpha/onboarding").get_data(as_text=True)
         assert "<h1" in body
         assert "<h2" in body
-        assert "Continue to Dashboard" in body
+        assert "Continue to Home" in body
 
     def test_feedback_form_exposes_labels(self, client, ctx):
         _make_alpha_user(onboarding_done=True)

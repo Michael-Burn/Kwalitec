@@ -1,0 +1,10 @@
+EP-007.2 Session Overview capture (post–EP-007.1 duration resolver)
+
+Route: /session/<id>/overview
+Estimated duration label: 30 minutes
+Topic: Review CM1-A: Cash flow models
+Objective: Complete tonight's study session on cash flow models.
+Actions: Begin session → Activity → Reflection → Summary → Complete → Student Home
+
+Duration agreement with Home: YES (30 minutes on both Home mission and Session Overview when preferred_session_minutes=30).
+Pre-consolidation: Home often showed 30 while Learning Workspace Session showed 90 for the same day.

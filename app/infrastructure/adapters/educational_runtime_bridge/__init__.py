@@ -1,0 +1,216 @@
+"""Educational Runtime Bridge adapters (MS-001 / MS-002).
+
+Mission Read Adapter (Directive 003), Mission Start Adapter (Directive 004),
+Mission Resume Adapter (Directive 005), Session Completion Adapter
+(Directive 006), Recommendation Read Adapter (Directive 007),
+Journey Read Adapter (MS-002 Directive 002), and History Read Adapter
+(MS-002 Directive 003).
+"""
+
+from __future__ import annotations
+
+from .completion_telemetry import (
+    SESSION_COMPLETION_BRIDGE_EVENT_TYPES,
+    SESSION_COMPLETION_BRIDGE_FAILURE,
+    SESSION_COMPLETION_BRIDGE_LATENCY,
+    SESSION_COMPLETION_BRIDGE_REQUESTED,
+    SESSION_COMPLETION_BRIDGE_SUCCESS,
+)
+from .contracts import (
+    AUTHORITY_HISTORY_BRIDGE,
+    AUTHORITY_JOURNEY_BRIDGE,
+    AUTHORITY_PLANNING_SERVICE,
+    AUTHORITY_RECOMMENDATION_BRIDGE,
+    AUTHORITY_RECOMMENDATION_SERVICE,
+    AUTHORITY_STUDY_SESSION_SERVICE,
+    BRIDGE_ERROR_CODES,
+    EVIDENCE_REJECTED,
+    FORBIDDEN,
+    INVALID_STATE,
+    NO_ACTIVE_PLAN,
+    NOT_FOUND,
+    OUTSIDE_PLAN_WINDOW,
+    UNAVAILABLE,
+    BridgeResult,
+    HistoryBridge,
+    JourneyBridge,
+    MissionReadBridge,
+    MissionResumeBridge,
+    MissionStartBridge,
+    RecommendationBridge,
+    SessionCompletionBridge,
+)
+from .history_adapter import HistoryAdapter
+from .history_mapper import (
+    DEFAULT_PAGE_LIMIT,
+    HARD_MAX_PAGE_LIMIT,
+    UNAVAILABLE_SERIES,
+    clamp_limit,
+    empty_authentic_history,
+    map_achievement,
+    map_completed_session,
+    map_history_to_projection,
+    map_page_meta,
+    map_readiness_point,
+    session_trace_for_mission,
+)
+from .history_telemetry import (
+    HISTORY_BRIDGE_EVENT_TYPES,
+    HISTORY_BRIDGE_FAILURE,
+    HISTORY_BRIDGE_LATENCY,
+    HISTORY_BRIDGE_REQUESTED,
+    HISTORY_BRIDGE_SUCCESS,
+)
+from .journey_adapter import JourneyAdapter
+from .journey_mapper import (
+    NOT_APPLICABLE_RECOMMENDATION,
+    UNAVAILABLE_RECOMMENDATION,
+    build_trace_ref,
+    empty_authentic_journey,
+    map_journey_to_projection,
+    map_timeline_item,
+    map_topic_card,
+    map_topic_status,
+)
+from .journey_telemetry import (
+    JOURNEY_BRIDGE_EVENT_TYPES,
+    JOURNEY_BRIDGE_FAILURE,
+    JOURNEY_BRIDGE_LATENCY,
+    JOURNEY_BRIDGE_REQUESTED,
+    JOURNEY_BRIDGE_SUCCESS,
+)
+from .mission_mapper import (
+    map_mission_status,
+    map_mission_tasks,
+    map_mission_to_completion_result,
+    map_mission_to_resume_result,
+    map_mission_to_start_result,
+    map_mission_to_todays_session,
+)
+from .mission_read_adapter import MissionReadAdapter
+from .mission_resume_adapter import MissionResumeAdapter
+from .mission_start_adapter import MissionStartAdapter
+from .recommendation_adapter import RecommendationAdapter
+from .recommendation_mapper import map_recommendation_to_projection
+from .recommendation_telemetry import (
+    RECOMMENDATION_BRIDGE_EVENT_TYPES,
+    RECOMMENDATION_BRIDGE_FAILURE,
+    RECOMMENDATION_BRIDGE_LATENCY,
+    RECOMMENDATION_BRIDGE_REQUESTED,
+    RECOMMENDATION_BRIDGE_SUCCESS,
+)
+from .resume_telemetry import (
+    MISSION_RESUME_BRIDGE_EVENT_TYPES,
+    MISSION_RESUME_BRIDGE_FAILURE,
+    MISSION_RESUME_BRIDGE_LATENCY,
+    MISSION_RESUME_BRIDGE_REQUESTED,
+    MISSION_RESUME_BRIDGE_SUCCESS,
+)
+from .session_completion_adapter import SessionCompletionAdapter
+from .start_telemetry import (
+    MISSION_START_BRIDGE_EVENT_TYPES,
+    MISSION_START_BRIDGE_FAILURE,
+    MISSION_START_BRIDGE_LATENCY,
+    MISSION_START_BRIDGE_REQUESTED,
+    MISSION_START_BRIDGE_SUCCESS,
+)
+from .telemetry import (
+    MISSION_BRIDGE_EVENT_TYPES,
+    MISSION_BRIDGE_FAILURE,
+    MISSION_BRIDGE_LATENCY,
+    MISSION_BRIDGE_REQUESTED,
+    MISSION_BRIDGE_SUCCESS,
+)
+
+__all__ = [
+    "AUTHORITY_HISTORY_BRIDGE",
+    "AUTHORITY_JOURNEY_BRIDGE",
+    "AUTHORITY_PLANNING_SERVICE",
+    "AUTHORITY_RECOMMENDATION_BRIDGE",
+    "AUTHORITY_RECOMMENDATION_SERVICE",
+    "AUTHORITY_STUDY_SESSION_SERVICE",
+    "BRIDGE_ERROR_CODES",
+    "DEFAULT_PAGE_LIMIT",
+    "EVIDENCE_REJECTED",
+    "FORBIDDEN",
+    "HARD_MAX_PAGE_LIMIT",
+    "HISTORY_BRIDGE_EVENT_TYPES",
+    "HISTORY_BRIDGE_FAILURE",
+    "HISTORY_BRIDGE_LATENCY",
+    "HISTORY_BRIDGE_REQUESTED",
+    "HISTORY_BRIDGE_SUCCESS",
+    "INVALID_STATE",
+    "JOURNEY_BRIDGE_EVENT_TYPES",
+    "JOURNEY_BRIDGE_FAILURE",
+    "JOURNEY_BRIDGE_LATENCY",
+    "JOURNEY_BRIDGE_REQUESTED",
+    "JOURNEY_BRIDGE_SUCCESS",
+    "MISSION_BRIDGE_EVENT_TYPES",
+    "MISSION_BRIDGE_FAILURE",
+    "MISSION_BRIDGE_LATENCY",
+    "MISSION_BRIDGE_REQUESTED",
+    "MISSION_BRIDGE_SUCCESS",
+    "MISSION_RESUME_BRIDGE_EVENT_TYPES",
+    "MISSION_RESUME_BRIDGE_FAILURE",
+    "MISSION_RESUME_BRIDGE_LATENCY",
+    "MISSION_RESUME_BRIDGE_REQUESTED",
+    "MISSION_RESUME_BRIDGE_SUCCESS",
+    "MISSION_START_BRIDGE_EVENT_TYPES",
+    "MISSION_START_BRIDGE_FAILURE",
+    "MISSION_START_BRIDGE_LATENCY",
+    "MISSION_START_BRIDGE_REQUESTED",
+    "MISSION_START_BRIDGE_SUCCESS",
+    "NOT_APPLICABLE_RECOMMENDATION",
+    "RECOMMENDATION_BRIDGE_EVENT_TYPES",
+    "RECOMMENDATION_BRIDGE_FAILURE",
+    "RECOMMENDATION_BRIDGE_LATENCY",
+    "RECOMMENDATION_BRIDGE_REQUESTED",
+    "RECOMMENDATION_BRIDGE_SUCCESS",
+    "SESSION_COMPLETION_BRIDGE_EVENT_TYPES",
+    "SESSION_COMPLETION_BRIDGE_FAILURE",
+    "SESSION_COMPLETION_BRIDGE_LATENCY",
+    "SESSION_COMPLETION_BRIDGE_REQUESTED",
+    "SESSION_COMPLETION_BRIDGE_SUCCESS",
+    "UNAVAILABLE_RECOMMENDATION",
+    "UNAVAILABLE_SERIES",
+    "HistoryAdapter",
+    "HistoryBridge",
+    "JourneyAdapter",
+    "JourneyBridge",
+    "MissionReadAdapter",
+    "MissionReadBridge",
+    "MissionResumeAdapter",
+    "MissionResumeBridge",
+    "MissionStartAdapter",
+    "MissionStartBridge",
+    "NO_ACTIVE_PLAN",
+    "NOT_FOUND",
+    "OUTSIDE_PLAN_WINDOW",
+    "RecommendationAdapter",
+    "RecommendationBridge",
+    "SessionCompletionAdapter",
+    "SessionCompletionBridge",
+    "UNAVAILABLE",
+    "BridgeResult",
+    "build_trace_ref",
+    "clamp_limit",
+    "empty_authentic_history",
+    "empty_authentic_journey",
+    "map_achievement",
+    "map_completed_session",
+    "map_history_to_projection",
+    "map_journey_to_projection",
+    "map_mission_status",
+    "map_mission_tasks",
+    "map_mission_to_completion_result",
+    "map_mission_to_resume_result",
+    "map_mission_to_start_result",
+    "map_mission_to_todays_session",
+    "map_page_meta",
+    "map_readiness_point",
+    "map_recommendation_to_projection",
+    "map_timeline_item",
+    "map_topic_card",
+    "map_topic_status",
+    "session_trace_for_mission",
+]

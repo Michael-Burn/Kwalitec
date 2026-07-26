@@ -38,6 +38,19 @@
             <h2 class="mission-hero-topic-title">
                 {{ today_mission.title }}
             </h2>
+            {% if recommendation_coherence_label %}
+            <p class="text-muted small mb-0 mt-2" data-mes-field="plan_coherence" data-mes-level="1">
+                {{ recommendation_coherence_label }}
+            </p>
+            {% endif %}
+            {% if commitment_echo %}
+            <p class="text-muted small mb-0 mt-2" data-commitment="mission-echo">
+                Today's commitment: {{ commitment_echo }}
+            </p>
+            {% if commitment_continuity %}
+            <p class="text-muted small mb-0" data-commitment="continuity">{{ commitment_continuity }}</p>
+            {% endif %}
+            {% endif %}
             {% if active_study_plan %}
             <p class="text-muted small mb-0 mt-2">{{ active_study_plan.exam_name }}</p>
             {% endif %}
@@ -53,15 +66,11 @@
                 <div class="mission-hero-metric-text">
                     <span class="mission-hero-metric-label">Estimated Time</span>
                     <span class="mission-hero-metric-value">
-                        {% if session_context and session_context.estimated_minutes %}
-                            {{ session_context.estimated_minutes }} min
-                        {% elif active_study_plan %}
-                            {% set day = today_mission.mission_date %}
-                            {% if day.weekday() >= 5 %}
-                                {{ active_study_plan.weekend_study_minutes }} min
-                            {% else %}
-                                {{ active_study_plan.weekday_study_minutes }} min
-                            {% endif %}
+                        {# B3 (PX-003): single canonical duration, resolved once in
+                           the route via the shared resolver — never a template-local
+                           fallback chain that can disagree with Home/Session. #}
+                        {% if estimated_minutes is not none %}
+                            {{ estimated_minutes|format_minutes }}
                         {% else %}
                             &mdash;
                         {% endif %}
@@ -99,11 +108,25 @@
                 {% call learn_more('Session guidance') %}
                 <p class="mb-2">{{ mission_narrative.reason_for_selection }}</p>
                 <p class="mb-2"><strong>Learning objective:</strong> {{ mission_narrative.educational_purpose }}</p>
+                {% if mission_narrative.expected_benefit %}
+                <p class="mb-2" data-mes-field="expected_benefit"><strong>Expected benefit:</strong> {{ mission_narrative.expected_benefit }}</p>
+                {% endif %}
                 {% from "partials/educational_explainability.html" import explainability_block %}
                 {{ explainability_block(
                     observed_facts=mission_narrative.observed_facts,
                     estimates=mission_narrative.estimates
                 ) }}
+                {% if mission_narrative.plan_drivers %}
+                <p class="mb-1"><strong>Plan drivers</strong></p>
+                <ul class="small mb-2" data-mes-field="plan_drivers">
+                    {% for driver in mission_narrative.plan_drivers %}
+                    <li>{{ driver }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% if mission_narrative.review_point %}
+                <p class="mb-2" data-mes-field="review_point"><strong>Review point:</strong> {{ mission_narrative.review_point }}</p>
+                {% endif %}
                 {% if coverage_narrative %}
                 <p class="mb-0">{{ coverage_narrative.evidence_basis }}</p>
                 {% endif %}

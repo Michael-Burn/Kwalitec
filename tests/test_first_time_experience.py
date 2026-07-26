@@ -35,6 +35,25 @@ class TestWelcomeService:
         assert "Start Today's Session" in body
         assert "welcome-modal" in body
 
+    def test_welcome_modal_has_accessible_dialog_markup(self, logged_in_client, user):
+        """B4 (PX-003): the Welcome dialog must carry a full ARIA contract —
+        role, aria-modal, an accessible name, and an accessible description —
+        so assistive technology announces it correctly on open."""
+        WelcomeService.mark_eligible(user.id)
+        response = logged_in_client.get("/dashboard/")
+        body = response.get_data(as_text=True)
+        assert 'id="welcome-modal"' in body
+        assert 'role="dialog"' in body
+        assert 'aria-modal="true"' in body
+        assert 'aria-labelledby="welcome-modal-title"' in body
+        assert 'aria-describedby="welcome-modal-lead welcome-modal-desc"' in body
+        assert 'id="welcome-modal-title"' in body
+        assert 'id="welcome-modal-lead"' in body
+        assert 'id="welcome-modal-desc"' in body
+        # The card is the documented focus-entry target (tabindex="-1" makes
+        # it programmatically focusable without adding it to the Tab order).
+        assert 'class="welcome-modal-card" tabindex="-1"' in body
+
     def test_dashboard_hides_welcome_when_dismissed(self, logged_in_client, user):
         WelcomeService.mark_eligible(user.id)
         WelcomeService.dismiss(user.id)

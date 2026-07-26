@@ -36,3 +36,13 @@ Composition is the only production site that wires `EducationalPipeline`, missio
 
 - [DEPENDENCY_RULES.md](../DEPENDENCY_RULES.md)
 - Tests: `tests/architecture/test_composition_root.py`
+
+## Governance Alignment
+
+This decision must remain consistent with:
+
+- [Product Vision 2030](../../knowledge/product/vision/PRODUCT_VISION_2030.md) — product constitution
+- [Product Blueprint](../../PRODUCT_BLUEPRINT.md) — product strategy and operating model
+- [Educational Constitution](../../knowledge/educational/KWALITEC_EDUCATIONAL_CONSTITUTION.md) — educational principles
+
+If a future change would conflict with those authorities, amend the governing documents first (see [`knowledge/GOVERNANCE.md`](../../knowledge/GOVERNANCE.md)).

@@ -370,6 +370,8 @@ class AnalyticsService:
                 - strongest_topics: list of strongest topics
                 - highlights: list of achievement strings
                 - areas_for_improvement: list of focus area strings
+                - is_new_account: True when the week has zero recorded
+                  activity — presentation should soften "improvement" framing
         """
         today = date.today()
         days_since_monday = today.weekday()
@@ -466,27 +468,40 @@ class AnalyticsService:
         if days_studied >= 5:
             highlights.append(f"Consistent effort: studied {days_studied} out of 7 days")
 
-        # Areas for improvement
-        areas = []
-        if weakest_topics:
-            weakest_names = ", ".join(t["topic_name"] for t in weakest_topics[:2])
-            areas.append(f"Focus on weakest topics: {weakest_names}")
-        if mission_completion_rate is not None and mission_completion_rate < 70:
-            areas.append(f"Mission completion rate at {mission_completion_rate}% — aim for 100%")
-        if accuracy is not None and accuracy < 60:
-            areas.append(f"Accuracy at {accuracy}% — review mistakes carefully")
-        if days_studied < 4:
-            areas.append(f"Only studied {days_studied} day{'s' if days_studied != 1 else ''} — try for at least 5 days")
-        if study_hours < 1 and total_missions > 0:
-            areas.append("Track study duration to better measure effort")
-        if len(areas) == 0:
-            areas.append("Keep up the consistent effort. No critical areas identified this week.")
+        # PX-002A T2-3: a brand-new account has no week of activity to judge —
+        # per-metric "needs improvement" framing (below) would read as a list
+        # of failures on day one, contradicting the "calm the student"
+        # philosophy. Skip those checks entirely for a zero-history week and
+        # show a single, encouraging next step instead.
+        is_new_account = total_missions == 0 and len(attempts_this_week) == 0
 
-        # If no data at all
-        if total_missions == 0 and len(attempts_this_week) == 0:
-            highlights.append("No study activity recorded this week. Start your first mission!")
+        areas = []
+        if is_new_account:
+            highlights.append("No study activity recorded this week yet.")
+            areas.append(
+                "Set up a study plan and begin your first mission to start tracking progress."
+            )
+        else:
+            if weakest_topics:
+                weakest_names = ", ".join(t["topic_name"] for t in weakest_topics[:2])
+                areas.append(f"Focus on weakest topics: {weakest_names}")
+            if mission_completion_rate is not None and mission_completion_rate < 70:
+                areas.append(
+                    f"Mission completion rate at {mission_completion_rate}% — aim for 100%"
+                )
+            if accuracy is not None and accuracy < 60:
+                areas.append(f"Accuracy at {accuracy}% — review mistakes carefully")
+            if days_studied < 4:
+                day_word = "s" if days_studied != 1 else ""
+                areas.append(
+                    f"Only studied {days_studied} day{day_word} — try for at least 5 days"
+                )
+            if study_hours < 1 and total_missions > 0:
+                areas.append("Track study duration to better measure effort")
             if len(areas) == 0:
-                areas.append("Set up a study plan and begin your first mission to start tracking progress.")
+                areas.append(
+                    "Keep up the consistent effort. No critical areas identified."
+                )
 
         return {
             "week_start": week_start.isoformat(),
@@ -508,6 +523,7 @@ class AnalyticsService:
             "strongest_topics": strongest_topics,
             "highlights": highlights,
             "areas_for_improvement": areas,
+            "is_new_account": is_new_account,
         }
 
     # ── Lifetime Summary ──────────────────────────────────────────────

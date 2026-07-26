@@ -107,6 +107,41 @@ def test_mission_start_emits_session_and_updates_twin(learner_id):
     assert "RecommendationAccepted" in types
 
 
+def test_start_session_normalizes_opaque_engine_without_experience_id():
+    """Home → Start Session 500: opaque start_opaque omitted experience_session_id."""
+
+    class IncompleteOpaqueEngine:
+        def start_opaque(self, student_id, **kwargs):
+            return {
+                "student_id": student_id,
+                "session_id": kwargs.get("session_id") or "sess-x",
+                "mission_id": kwargs.get("mission_id") or "mission-x",
+                "status": "ready",
+                "authority": "mission_engine",
+            }
+
+    adapter = ExperienceMissionAdapter(mission_engine=IncompleteOpaqueEngine())
+    result = adapter.start_session(
+        "stu-home-start",
+        mission_id="mission-29",
+        session_id="sess-29",
+    )
+    assert result["session_id"] == "sess-29"
+    assert result["mission_id"] == "mission-29"
+    assert result["experience_session_id"] == "es-sess-29"
+    assert result["status"] == "ready"  # opaque overlay preserved
+    assert result["student_id"] == "stu-home-start"
+
+
+def test_start_session_with_mission_opaque_bridge():
+    from app.infrastructure.engines.opaque_bridges import MissionOpaqueBridge
+
+    adapter = ExperienceMissionAdapter(mission_engine=MissionOpaqueBridge())
+    result = adapter.start_session("stu-bridge", session_id="sess-bridge")
+    assert result["experience_session_id"]
+    assert result["session_id"] == "sess-bridge"
+
+
 @pytest.mark.parametrize("learner_id", LEARNERS[:4])
 def test_adaptive_accept_dismiss(learner_id):
     composition = make_composition(seed_demo_learners=False)

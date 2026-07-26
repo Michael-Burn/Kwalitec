@@ -1,16 +1,20 @@
 # Kwalitec Technical Debt Register
 
-**Version:** v0.5.0
+**Version:** v0.6.0
 
-**Last Updated:** 12 July 2026
+**Last Updated:** 23 July 2026
 
-**Status:** Active (post–Epic 2)
+**Status:** Active (post–Architecture Consolidation)
+
+**Governance:** `knowledge/GOVERNANCE.md` · Vision: `knowledge/product/vision/PRODUCT_VISION_2030.md`
 
 ---
 
 # Purpose
 
 This document records **intentional technical debt** within the Kwalitec codebase.
+
+**Rule (post-consolidation):** No removals of legacy adapters, redirect shells, or deprecated services unless proven safe. Prefer register + recommend over deletion.
 
 Technical debt differs from defects.
 
@@ -596,20 +600,155 @@ Epic 2 High residuals are Stage A dual truth, legacy service cutover, orchestrat
 
 ---
 
-# Overall Assessment
+# Post-Consolidation Debt (Architecture Consolidation COMPLETE)
 
-**Epic 2 leaves no known architectural defects.**
+EOS is the canonical runtime. The following items are **inventory for safe retirement**, not invitations to redesign Twin, EducationalStateService, or educational algorithms under a “cleanup” cover.
 
-Remaining debt is primarily **planned integration** (Stage A dual truth, service orchestration, persistence, Evidence/Decision journal loops) and **intentionally deferred product / educational evolution** (Confidence, calibrated scoring, UI warrant and explanation binding).
+## PC-001 — Sole-runtime redirect shells
 
-Pre-Epic 2 framework and maintainability items (TD-001–TD-007) remain open and unchanged.
+**Priority:** Medium  
+**Category:** Legacy surface  
+**Removal:** Only when proven safe  
 
-None of the residual items reopen ADR-002 or block starting Epic 3 Product Integration under the Epic 2 Completion Review binding conditions.
+### Description
 
-The Educational Intelligence domain architecture remains stable, layered, and explainable.
+Legacy learner shells remain registered and redirect under `KWALITEC_V2_SOLE_RUNTIME` via `app.presentation.consolidation.redirect_if_sole_runtime`:
+
+- `app/dashboard/routes.py` → Student Home
+- `app/analytics/routes.py` → Student History
+- `app/mission/routes.py` → Student Home / session entry
+
+Marked READY FOR MIGRATION in code comments.
+
+### Impact
+
+Extra routes and templates to maintain; risk of bookmarks hitting redirects forever.
+
+### Recommendation
+
+Keep redirects until analytics of inbound legacy URLs is near-zero and beta communication complete; then remove behind an ADR.
+
+### Target
+
+Post–private-beta hardening (not a governance-docs programme).
 
 ---
 
-**Status:** Approved (post–Epic 2 review)
+## PC-002 — Temporary consolidation helper
 
-**Next Review:** End of Epic 3
+**Priority:** Low  
+**Category:** Compatibility shim  
+
+### Description
+
+`app/presentation/consolidation.py` exists specifically for sole-runtime gating.
+
+### Recommendation
+
+Retain while PC-001 shells exist; delete only with shells.
+
+---
+
+## PC-003 — Mission Adapter / dual mission engines
+
+**Priority:** High  
+**Category:** Dual authority (historical Stage A)  
+
+### Description
+
+`app/application/mission_adapter/` and parallel `mission_engine` / `mission_engine_v2` packages remain part of the cutover story. Related Epic 2 residuals: E2-PI-01…04, E2-PX-01.
+
+### Recommendation
+
+Do not remove until product Twin-first / single next-action authority is proven on live paths. Track under Epic 3-class integration — not opportunistic deletion.
+
+---
+
+## PC-004 — Legacy readiness / analytics / planning services
+
+**Priority:** High  
+**Category:** Dual truth residual  
+
+### Description
+
+`ReadinessService`, `AnalyticsService`, `PlanningService` (and related) remain in `app/services/` for coexistence / ops. See E2-PI-02…04.
+
+### Recommendation
+
+Freeze deepening; cut over consumers; remove only with proof no live authority remains.
+
+---
+
+## PC-005 — ProfileService Educational State bypass
+
+**Priority:** High  
+**Category:** One Educational State  
+
+### Description
+
+Validation / consolidation docs have flagged ProfileService paths that may bypass Educational State projections.
+
+### Recommendation
+
+STOP → Document → Recommend before changing Twin or EducationalStateService. Fix via authorised programme only.
+
+---
+
+## PC-006 — Deprecated founder research URLs
+
+**Priority:** Low  
+**Category:** Redirect  
+
+### Description
+
+`app/research/routes.py` and founder feedback handlers keep deprecated `/research/founder*` redirects to Founder Command Centre.
+
+### Recommendation
+
+Retain until inbound traffic is negligible.
+
+---
+
+## PC-007 — Deprecated static branding assets
+
+**Priority:** Low  
+**Category:** Dead assets  
+
+### Description
+
+`app/static/images/DEPRECATED.md` documents deprecated branding locations.
+
+### Recommendation
+
+Remove assets only after confirming no template references.
+
+---
+
+## PC-008 — TODO / FIXME hygiene
+
+**Priority:** Low  
+**Category:** Maintainability  
+
+### Description
+
+Post-consolidation scan: few `TODO`/`FIXME` markers in `app/`/`src/` hot paths relative to READY FOR MIGRATION comments. Debt is primarily structural (above), not comment sprawl.
+
+### Recommendation
+
+When encountering new TODOs that accept educational or security risk, promote them to numbered register entries.
+
+---
+
+# Overall Assessment
+
+**Epic 2** left no known architectural defects in the domain Educational Intelligence stack; residuals were planned integration and deferred evolution.
+
+**Architecture Consolidation** established EOS as canonical runtime. Remaining debt is primarily **safe-retirement inventory** (redirect shells, adapters, Stage A dual authorities) plus pre-existing TD-001–TD-007 and Epic 2 residual tables above.
+
+None of the PC-* items authorise Twin redesign, EducationalStateService redesign, or educational algorithm changes in a documentation-only programme.
+
+---
+
+**Status:** Approved (post–Architecture Consolidation governance update)
+
+**Next Review:** End of Epic 3 or next major release (earlier if sole-runtime shell removal is proposed)

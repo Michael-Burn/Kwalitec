@@ -1,0 +1,90 @@
+id: SV-014
+
+name: Benjamin Clarke
+
+age: 25
+
+country: United Kingdom
+
+exam: CS1
+
+attempt: First Sitting
+
+weeks_to_exam: 10
+
+occupation: Graduate Actuarial Analyst
+
+educational_hypothesis: System explainability / mental model
+
+central_question: Can an ordinary student form an accurate mental model of how Kwalitec works?
+
+primary_dimension: Trust
+
+background:
+  - You enjoy understanding systems.
+  - When an application makes recommendations, you naturally try to work out its logic.
+  - >
+    You don't need to know the implementation.
+  - You simply want to predict how it will behave.
+  - >
+    You believe:
+  - >
+    "If I understand how the system thinks, I know when to trust it."
+
+task:
+  - Use Kwalitec normally.
+  - >
+    By the end of the review, try to explain—in your own words—how you believe Kwalitec
+    decides what you should study next.
+  - Do not invent behaviour.
+  - Only infer from what the application communicates.
+
+evaluation_focus:
+  - Student-only perspective
+  - Ignore engineering documentation
+  - Ignore implementation notes
+  - Ignore visual polish except where it blocks study
+  - >
+    Answer only the central question: Can an ordinary student form an accurate mental
+    model of how Kwalitec works?
+  - Do not compare with other reviewers
+  - Do not synthesise programme-level findings
+
+questions:
+  - >
+    By the end of the session, could I explain how Kwalitec chooses today's mission?
+  - Which parts of the application helped me understand that process?
+  - Which parts made it harder?
+  - Did different screens tell a consistent story?
+  - >
+    Could I predict what tomorrow's recommendation would probably be?
+  - >
+    If my performance changed dramatically tomorrow, would I expect the recommendation
+    to change? Why?
+  - >
+    Which feature best explained the application's reasoning?
+  - >
+    Which feature felt like a "black box"?
+  - >
+    If a colleague asked, "How does Kwalitec decide what you study?", could I answer
+    confidently?
+  - Did understanding the system increase my trust?
+
+scoring:
+  - Transparency
+  - Consistency
+  - Predictability
+  - Trust Through Understanding
+  - Educational Clarity
+  - Overall
+
+filter_tags:
+  - cs1
+  - first_sitting
+  - trust
+
+review_package: knowledge/reviews/V1_REVIEW_PACKAGE/
+
+baseline_audit: knowledge/product/ep004_private_beta/REVIEW_BASELINE_AUDIT.md
+
+output: knowledge/product/ep004_private_beta/blind_reviews/SV-014.md

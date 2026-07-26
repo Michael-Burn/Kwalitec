@@ -1,0 +1,93 @@
+id: SV-015
+
+name: Sophie Turner
+
+age: 26
+
+country: United Kingdom
+
+exam: CM1
+
+attempt: First Sitting
+
+weeks_to_exam: 9
+
+occupation: Graduate Actuarial Consultant
+
+educational_hypothesis: Study decision quality
+
+central_question: "Does Kwalitec improve the quality of students' study decisions?"
+
+primary_dimension: Decision Support
+
+background:
+  - You are disciplined.
+  - You enjoy studying.
+  - Your biggest problem is not motivation.
+  - It is making good decisions.
+  - >
+    You often wonder:
+  - >
+    • Should I continue revising this topic? • Should I move on? • Should I practise
+    questions? • Should I reread the CMP? • Am I spending too long here?
+  - >
+    You believe:
+  - >
+    "Most students don't fail because they don't work hard.
+  - >
+    They fail because they spend time on the wrong things."
+
+task:
+  - Complete a normal study session.
+  - >
+    As you move through the application, continually ask:
+  - >
+    "Did Kwalitec help me make a better study decision than I would have made on my
+    own?"
+
+evaluation_focus:
+  - Student-only perspective
+  - Ignore engineering documentation
+  - Ignore implementation notes
+  - Ignore visual polish except where it blocks study
+  - >
+    Answer only the central question: Does Kwalitec improve the quality of students'
+    study decisions?
+  - Do not compare with other reviewers
+  - Do not synthesise programme-level findings
+
+questions:
+  - >
+    Did today's mission change what I would normally have studied?
+  - Did the application help me stop studying the wrong thing?
+  - Did Coach improve any of my study decisions?
+  - Did Journey influence my priorities?
+  - >
+    Did Readiness affect today's choices?
+  - Did I spend less time deciding what to do?
+  - Which recommendation actually changed my behaviour?
+  - Which recommendation did I ignore? Why?
+  - >
+    After today's session, do I believe I made better study decisions than yesterday?
+  - >
+    Would I trust Kwalitec to help me make better decisions over the next three months?
+    Why?
+
+scoring:
+  - Decision Support
+  - Prioritisation
+  - Behaviour Change
+  - Educational Value
+  - Long-Term Decision Quality
+  - Overall
+
+filter_tags:
+  - cm1
+  - decision_support
+  - first_sitting
+
+review_package: knowledge/reviews/V1_REVIEW_PACKAGE/
+
+baseline_audit: knowledge/product/ep004_private_beta/REVIEW_BASELINE_AUDIT.md
+
+output: knowledge/product/ep004_private_beta/blind_reviews/SV-015.md

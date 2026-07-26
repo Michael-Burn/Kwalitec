@@ -42,12 +42,19 @@ class TestStudyTipsService:
 
 class TestInternalAlphaSettings:
     def test_internal_alpha_page_renders(self, logged_in_client):
+        """B10 (PX-003): page renamed from "Internal Alpha Status" to
+        "Account Status"; internal build-track version moved behind the
+        "Diagnostic information" disclosure (still present, just not the
+        first thing a student sees); "Learning profile status" renamed to
+        "Personalised recommendations"."""
         response = logged_in_client.get("/settings/internal-alpha")
         assert response.status_code == 200
         body = response.get_data(as_text=True)
-        assert "Internal Alpha Status" in body
+        assert "Account Status" in body
+        assert "Internal Alpha Status" not in body
         assert INTERNAL_ALPHA_VERSION in body
-        assert "Learning profile status" in body
+        assert "Personalised recommendations" in body
+        assert "Learning profile status" not in body
         assert "Current curriculum" in body
         assert 'data-appearance-option="light"' in body
 

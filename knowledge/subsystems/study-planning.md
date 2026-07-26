@@ -70,6 +70,28 @@ Wizard input (exam, availability, curriculum)
 - New distribution heuristics: keep them in `PlanningService`, document explainability (why a topic landed in a week).
 - Catalogue / sitting updates: `examination_catalogue.py` / `exam_timeline.py`.
 - Rebalancing after progress changes: extend `PlanningService` without touching route math.
+- **EP-001.2 Adaptive Study Planner:** when `KWALITEC_DIGITAL_TWIN=1`,
+  `PlanningService.build_daily_study_plan` consumes EP-001.1
+  `CanonicalLearnerState` (via `adaptive_study_planner` consumer) for today's
+  mission slots, revision priorities, topic ordering, and recommended workload.
+  Learner state remains Twin-owned — do not add mastery/streak stores here.
+  Legacy `generate_today_mission` remains the ORM persistence path.
+- **EP-003.3 Planning quality contract:** `PlanningService` applies
+  `planning_quality` (mandatory explanation schema, readiness-informed
+  workload notes, recommendation-aware coherence labels, recovery framing)
+  to daily plans and dashboard mission surfaces. See
+  [`PLANNING_SERVICE_QUALITY_CONTRACT.md`](../architecture/PLANNING_SERVICE_QUALITY_CONTRACT.md)
+  and [`ep003_3_adaptive_planning_enhancement/`](../product/ep003_3_adaptive_planning_enhancement/).
+  Presentation must pass through schema-complete plans — never invent planning
+  rationale.
+- **EP-004.3 Planning personalisation:** when Personal Learning Profile is
+  enabled, `PlanningService` may apply bounded, explainable adaptations
+  (session duration, pacing, recovery/revision emphasis, equivalent repair
+  topic) from profile evidence — educational slot order unchanged. See
+  [`ep004_3_adaptive_planning_personalisation/`](../product/ep004_3_adaptive_planning_personalisation/)
+  and the personalisation section of the planning quality contract.
+  Presentation must pass through personalisation fields — never inspect the
+  profile.
 
 ## Common Pitfalls
 

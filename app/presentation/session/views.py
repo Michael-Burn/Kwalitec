@@ -129,9 +129,13 @@ def advance_activity(*, session_id: str) -> ActivitySnapshot | None:
     return service().advance_activity(student_id(), session_id=session_id)
 
 
-def continue_reflection(*, session_id: str) -> ReflectionSnapshot:
+def continue_reflection(
+    *, session_id: str, note: str | None = None
+) -> ReflectionSnapshot:
     assert_session_owned(session_id)
-    return service().continue_from_reflection(student_id(), session_id=session_id)
+    return service().continue_from_reflection(
+        student_id(), session_id=session_id, note=note
+    )
 
 
 def complete_and_return(*, session_id: str) -> CompletionSnapshot:

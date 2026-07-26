@@ -1,0 +1,94 @@
+id: SV-002
+
+name: Sarah Mitchell
+
+age: 35
+
+country: United Kingdom
+
+exam: CM1
+
+attempt: First Sitting
+
+weeks_to_exam: 14
+
+occupation: Actuarial Analyst
+
+educational_hypothesis: Weeknight time efficiency
+
+central_question: Can Kwalitec protect scarce weeknight study time?
+
+primary_dimension: Workflow
+
+background:
+  - >
+    Study routine: Works full time; Married; Two young children; Studies
+    Monday–Thursday; 45–60 minutes per evening; Longer sessions only on Sunday
+  - >
+    Technology confidence: Above average
+  - >
+    Personality: Practical; Disciplined; Time-conscious; Slightly sceptical; Not easily
+    impressed
+  - >
+    Biggest frustration: "I waste too much time deciding what to study."
+  - >
+    Biggest fear: "I'll spend an hour in a study app and only 20 minutes actually
+    studying."
+  - >
+    Biggest hope: "I want an app that helps me start studying immediately."
+
+task:
+  - Imagine you have just finished work.
+  - >
+    It is 7:30 PM.
+  - You have exactly one hour before you need to sleep.
+  - Open Kwalitec for the first time.
+  - >
+    Proceed through:
+  - >
+    1. Landing 2. Login 3. Dashboard 4. Mission 5. Start Session 6. Study Experience 7.
+    Reflection 8. Journey 9. Coach 10. Readiness 11. Settings
+  - >
+    Think continuously:
+  - >
+    "Is this helping me spend more of my hour studying?"
+
+evaluation_focus:
+  - Student-only perspective
+  - Ignore engineering documentation
+  - Ignore implementation notes
+  - Ignore visual polish except where it blocks study
+  - >
+    Answer only the central question: Can Kwalitec protect scarce weeknight study time?
+  - Do not compare with other reviewers
+  - Do not synthesise programme-level findings
+
+questions:
+  - Did I know what to do immediately?
+  - Did Kwalitec reduce planning time?
+  - Did anything waste my limited study time?
+  - Did today’s mission feel appropriate?
+  - Did I finish feeling I had used my hour well?
+  - Would I feel comfortable opening Kwalitec every evening?
+  - Which feature saved me the most time?
+  - Which feature cost me unnecessary time?
+  - Would Kwalitec make my weekday study routine easier?
+  - Would I commit to using Kwalitec throughout this exam sitting?
+
+scoring:
+  - Time Efficiency
+  - Organisational Support
+  - Session Clarity
+  - Daily Practical Value
+  - Overall
+
+filter_tags:
+  - cm1
+  - first_sitting
+  - workflow
+
+review_package: knowledge/reviews/V1_REVIEW_PACKAGE/
+
+baseline_audit: knowledge/product/ep004_private_beta/REVIEW_BASELINE_AUDIT.md
+
+output: knowledge/product/ep004_private_beta/blind_reviews/SV-002.md

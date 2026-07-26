@@ -31,9 +31,8 @@ services:
       - key: KWALITEC_EI_INTERNAL_ALPHA
         value: "1"
 
-      # Version 2 dual-run (not sole runtime). Enable durable Experience/Session
-      # persistence and student path for alpha coexistence. Do not set
-      # KWALITEC_V2_SOLE_RUNTIME until ADR-007 evidence gates pass.
+      # V2-023 sole-runtime activation: Education Operating System is the only
+      # student runtime. Rollback: unset KWALITEC_V2_SOLE_RUNTIME (or set to 0).
       - key: KWALITEC_V2_STUDENT_EXPERIENCE
         value: "1"
       - key: KWALITEC_V2_DURABLE_STORE
@@ -43,6 +42,8 @@ services:
       - key: KWALITEC_V2_SEED_DEMO
         value: "0"
       - key: KWALITEC_V2_FOUNDER_INTELLIGENCE
+        value: "1"
+      - key: KWALITEC_V2_SOLE_RUNTIME
         value: "1"
 
 databases:

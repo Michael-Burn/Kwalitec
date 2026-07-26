@@ -212,7 +212,7 @@ def reflection_continue(session_id: str):
         flash(FLASH_WARNING["continue_invalid"], "warning")
         return redirect(url_for("session.reflection", session_id=session_id))
     try:
-        continue_reflection(session_id=session_id)
+        continue_reflection(session_id=session_id, note=form.reflection_note.data)
     except SessionOwnershipError as exc:
         return _guard_ownership(exc)
     except PortUnavailable:

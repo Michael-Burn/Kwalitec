@@ -5,6 +5,11 @@
     {% if reflection.topic_title %}
     <p class="session-meta">{{ reflection.topic_title }}</p>
     {% endif %}
+    {# PX-002A T1-3: value framing — why this takes a minute, what it does,
+       and what happens to it. Matches the sanctioned onboarding language. #}
+    <p class="session-muted session-reflection-framing">
+        One minute, closes the loop: this keeps tomorrow's guidance honest and stays with your session record.
+    </p>
     {% if reflection.key_insight %}
     <div class="session-insight">
         <h3 class="session-subhead">Key insight</h3>

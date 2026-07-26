@@ -61,6 +61,7 @@ def default_reflection(
         "reflection_prompt": "What still feels unclear about today's topic?",
         "topic_title": "Core methods",
         "next_action_label": "Continue to Summary",
+        "student_note": "",
         "authority": "learning_session_runtime",
     }
 

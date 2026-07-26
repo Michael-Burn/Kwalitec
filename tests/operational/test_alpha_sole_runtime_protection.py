@@ -15,14 +15,19 @@ def test_alpha_env_keeps_sole_runtime_off():
     assert flags.SOLE_RUNTIME is False
 
 
-def test_render_and_checklist_forbid_sole_runtime():
+def test_render_enables_sole_runtime_for_rc():
+    """V2-023 RC-1: production Render activates sole runtime."""
     from tests.operational.helpers import render_env_map
 
-    assert "KWALITEC_V2_SOLE_RUNTIME" not in render_env_map()
+    assert render_env_map().get("KWALITEC_V2_SOLE_RUNTIME") == "1"
+
+
+def test_local_alpha_checklist_documents_rollback():
     checklist = (
         REPO_ROOT / "knowledge/version2/INTERNAL_ALPHA_CHECKLIST.md"
     ).read_text(encoding="utf-8")
-    assert "Do NOT set" in checklist or "forbidden for Internal Alpha" in checklist
+    assert "KWALITEC_V2_SOLE_RUNTIME" in checklist
+    assert "Rollback" in checklist or "unset" in checklist.lower()
 
 
 def test_dual_run_label_for_alpha_posture():

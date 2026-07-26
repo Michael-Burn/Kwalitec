@@ -48,9 +48,9 @@ def test_render_sets_dual_run_flags():
         assert actual == value, f"{key} mismatch: {actual!r}"
 
 
-def test_render_does_not_set_sole_runtime():
-    # Comment may mention the flag; it must not be an active env key.
-    assert "KWALITEC_V2_SOLE_RUNTIME" not in render_env_map()
+def test_render_sets_sole_runtime_for_rc():
+    # V2-023 RC-1 production cutover — sole runtime is the active Render flag.
+    assert render_env_map().get("KWALITEC_V2_SOLE_RUNTIME") == "1"
 
 
 def test_render_generates_secret_key():

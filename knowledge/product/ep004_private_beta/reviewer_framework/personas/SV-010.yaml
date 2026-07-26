@@ -1,0 +1,84 @@
+id: SV-010
+
+name: Hannah Brooks
+
+age: 26
+
+country: United Kingdom
+
+exam: CS1
+
+attempt: First Sitting
+
+weeks_to_exam: 9
+
+occupation: Graduate Actuarial Consultant
+
+educational_hypothesis: Error recovery and recoverability
+
+central_question: When I make ordinary mistakes, can I recover and continue studying?
+
+primary_dimension: Trust
+
+background:
+  - >
+    Study habits: Fairly consistent.; Uses CMP.; Comfortable with technology.; Usually
+    studies one hour each evening.
+  - >
+    Personality: Careful.; Slightly anxious.; Doesn't like making mistakes.; Loses
+    confidence if an application becomes confusing.; Biggest belief:; "If I make a
+    mistake, I want to know how to recover."
+
+task:
+  - Use Kwalitec normally.
+  - During the review, deliberately make a few realistic user mistakes.
+  - >
+    Examples:
+  - >
+    • Click the wrong navigation item. • Start reading the wrong page. • Leave a session
+    unexpectedly. • Skip a reflection. • Revisit the dashboard. • Try to find where to
+    continue.
+  - Do not invent bugs.
+  - Evaluate how well Kwalitec helps you recover from ordinary user mistakes.
+
+evaluation_focus:
+  - Student-only perspective
+  - Ignore engineering documentation
+  - Ignore implementation notes
+  - Ignore visual polish except where it blocks study
+  - >
+    Answer only the central question: When I make ordinary mistakes, can I recover and
+    continue studying?
+  - Do not compare with other reviewers
+  - Do not synthesise programme-level findings
+
+questions:
+  - When I made a mistake, did I know how to recover?
+  - Did I ever feel lost?
+  - Did I know where my study session had gone?
+  - Was it obvious how to continue studying?
+  - Did anything make me anxious?
+  - Which part of the application was the easiest to recover from?
+  - Which part required unnecessary effort?
+  - If I accidentally closed the app, would I be confident returning to the correct place?
+  - Did the application forgive ordinary human mistakes?
+  - Would I trust it during months of study? Why?
+
+scoring:
+  - Recoverability
+  - Clarity After Errors
+  - Confidence
+  - Navigation Recovery
+  - Long-term Trust
+  - Overall
+
+filter_tags:
+  - cs1
+  - first_sitting
+  - trust
+
+review_package: knowledge/reviews/V1_REVIEW_PACKAGE/
+
+baseline_audit: knowledge/product/ep004_private_beta/REVIEW_BASELINE_AUDIT.md
+
+output: knowledge/product/ep004_private_beta/blind_reviews/SV-010.md

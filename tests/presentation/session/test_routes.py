@@ -99,6 +99,33 @@ def test_reflection_continue_to_summary(session_client, session_app):
         follow_redirects=False,
     )
     assert cont.status_code in {302, 303}
+
+
+def test_reflection_note_is_persisted_via_runtime_port(session_client, session_app):
+    """B1 (PX-003): a submitted reflection note must reach session storage,
+    not be silently discarded — the screen promises it "stays with your
+    session record"."""
+    svc = wire_session_experience(session_app)
+    overview = svc.open_session("1", session_id="sess-1")
+    assert overview.session_id == "sess-1"
+    ws = svc.registry.get_workspace_for_session("sess-1")
+    assert ws is not None
+    svc.registry.put_workspace(ws.navigate_to(SessionSurface.REFLECTION))
+    session_client.get("/session/sess-1/reflection")
+    cont = session_client.post(
+        "/session/sess-1/reflection/continue",
+        data={
+            "session_id": "sess-1",
+            "reflection_note": "I still find deferred tax tricky.",
+            "submit": "Continue to Summary",
+        },
+        follow_redirects=False,
+    )
+    assert cont.status_code in {302, 303}
+    runtime_port = svc.reflection._runtime
+    assert runtime_port.reflection_note_calls == [
+        ("1", "sess-1", "I still find deferred tax tricky.")
+    ]
     assert "/summary" in cont.headers.get("Location", "")
 
 

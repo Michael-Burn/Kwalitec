@@ -6,6 +6,7 @@ intention. Never invents student content. Never estimates mastery.
 
 from __future__ import annotations
 
+import logging
 from datetime import UTC, datetime
 
 from app.application.learning_session.dto.reflection_summary import ReflectionSummary
@@ -23,6 +24,8 @@ from app.domain.learning_journey.entities.journey_reflection import (
 )
 from app.domain.learning_journey.entities.learning_session import LearningSession
 from app.domain.learning_journey.value_objects.session_state import SessionState
+
+logger = logging.getLogger(__name__)
 
 
 class ReflectionManager:
@@ -63,6 +66,7 @@ class ReflectionManager:
         questions_remaining: list[str] | tuple[str, ...] | None = None,
         confidence: ReflectionConfidence | str = ReflectionConfidence.UNSURE,
         next_intention: str | None = None,
+        user_id: int | None = None,
     ) -> tuple[LearningSession, ReflectionSummary]:
         """Capture structured student reflection onto a completed session.
 
@@ -70,6 +74,9 @@ class ReflectionManager:
         - summary → what_was_learned
         - challenges → uncertainty
         - questions_remaining / next_intention → questions_remaining
+
+        When ``user_id`` is provided, analytics observes the successful capture
+        **after** the reflection is attached (fail-open; never affects capture).
 
         Raises:
             InvalidSessionState / ReflectionRequired (content blockers).
@@ -119,7 +126,43 @@ class ReflectionManager:
                 captured_at=self._clock(),
             )
         updated = session.with_reflection(captured)
-        return updated, self.summarise(updated, next_intention=intention)
+        summary_dto = self.summarise(updated, next_intention=intention)
+        # Analytics observes success only — never before capture completes.
+        if user_id is not None and updated.reflection is not None:
+            ReflectionManager._observe_reflection_captured(
+                user_id=user_id,
+                reflection_id=updated.reflection.reflection_id,
+                session_id=updated.session_id,
+            )
+        return updated, summary_dto
+
+    @staticmethod
+    def _observe_reflection_captured(
+        *,
+        user_id: int,
+        reflection_id: str,
+        session_id: str,
+    ) -> None:
+        """Emit reflection.submitted + reflection.completed after capture.
+
+        Fail-open: analytics errors never affect reflection processing.
+        """
+        try:
+            from app.infrastructure.analytics.reflection_events import (
+                emit_reflection_lifecycle,
+            )
+
+            emit_reflection_lifecycle(
+                user_id=user_id,
+                reflection_id=reflection_id,
+                session_id=session_id,
+            )
+        except Exception:  # noqa: BLE001 — analytics must never break learning
+            logger.exception(
+                "analytics.emit_failed reflection capture reflection=%s user=%s",
+                reflection_id,
+                user_id,
+            )
 
     def defer(self, session: LearningSession) -> LearningSession:
         """Move PENDING reflection to DEFERRED_CAPTURE under policy.

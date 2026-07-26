@@ -10,7 +10,6 @@ from flask import (
     redirect,
     render_template,
     request,
-    url_for,
 )
 from flask_login import current_user, login_required
 
@@ -21,6 +20,10 @@ from app.alpha.forms import (
     ReportProblemForm,
     SuggestImprovementForm,
     TelemetryIngestForm,
+)
+from app.presentation.consolidation import (
+    canonical_home_url,
+    redirect_to_canonical_home,
 )
 from app.services.alpha_feedback_service import (
     KIND_EXPLANATION_CLEAR,
@@ -60,7 +63,7 @@ def onboarding_complete():
     """Mark product onboarding complete."""
     AlphaOnboardingService.complete(current_user.id)
     flash("You're set — open today's mission when you're ready.", "success")
-    return redirect(url_for("dashboard.index"))
+    return redirect_to_canonical_home()
 
 
 @alpha_bp.post("/onboarding/skip")
@@ -68,7 +71,7 @@ def onboarding_complete():
 def onboarding_skip():
     """Skip onboarding; still reachable from Help."""
     AlphaOnboardingService.skip(current_user.id)
-    return redirect(url_for("dashboard.index"))
+    return redirect_to_canonical_home()
 
 
 @alpha_bp.get("/help")
@@ -218,13 +221,13 @@ def _handle_feedback(
             context={"kind": kind},
         )
         flash("Thank you — your feedback helps Internal Alpha.", "success")
-        next_url = request.args.get("next") or url_for("dashboard.index")
+        next_url = request.args.get("next") or canonical_home_url()
         if (
             isinstance(next_url, str)
             and next_url.startswith("/")
             and not next_url.startswith("//")
         ):
             return redirect(next_url)
-        return redirect(url_for("dashboard.index"))
+        return redirect_to_canonical_home()
 
     return render_template(template, title=title, form=form)

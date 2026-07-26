@@ -21,3 +21,10 @@ htmlcov/
 .DS_Store
 .vscode/
 .alpha_participant_credentials.txt
+
+# Stage 1 private ops (PII — never commit)
+ops/*.local.md
+ops/*.local.txt
+ops/STAGE1_CREDENTIALS.local.txt
+ops/STAGE1_PILOT_MAP.local.md
+ops/STAGE1_CONSENT_LOG.local.md

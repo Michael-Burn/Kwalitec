@@ -4,10 +4,16 @@ from app.models.alpha_infrastructure import (
     AlphaFeedbackSubmission,
     PresentationEvent,
 )
+from app.models.analytics_events import (
+    AnalyticsAuditLogRecord,
+    AnalyticsEventRecord,
+    AnalyticsOutboxRecord,
+)
 from app.models.curriculum import Curriculum, Section, Topic
 from app.models.decision import Decision
 from app.models.learning import LearningObjective, Mistake, StudyAttempt
 from app.models.mission import Mission, MissionTask
+from app.models.recommendation_commitment import RecommendationCommitment
 from app.models.research_feedback import (
     FEATURE_AREA_CHOICES,
     FINDING_STATUSES,
@@ -62,12 +68,16 @@ __all__ = [
     "LearningObjective",
     "Mistake",
     "Decision",
+    "RecommendationCommitment",
     "TwinSnapshot",
     "V2AggregateDocument",
     "V2AggregateSnapshot",
     "V2EvidenceEvent",
     "PresentationEvent",
     "AlphaFeedbackSubmission",
+    "AnalyticsEventRecord",
+    "AnalyticsOutboxRecord",
+    "AnalyticsAuditLogRecord",
     "ResearchFeedbackSubmission",
     "ResearchContribution",
     "ResearchContributorBadge",

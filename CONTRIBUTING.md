@@ -183,8 +183,9 @@ Unless the brief says otherwise, completion typically requires:
    - Architecture Compliance
    - Technical Debt
    - Known Limitations
-4. Stage and commit as specified by the milestone.
-5. **STOP** — do not start the next milestone unless asked.
+4. **For EP / P programmes:** also include Student Impact Assessment, Estimated KSI contribution, Evidence collected, and Lessons learned for student value (see `knowledge/product/p001_1_ksi_baseline/STUDENT_IMPACT_ASSESSMENT_TEMPLATE.md` and `knowledge/GOVERNANCE.md` §4.1). For programmes affecting student-facing intelligence, also complete the Explainability Review Checklist (`knowledge/product/p001_2_explainability_standard/EXPLAINABILITY_REVIEW_CHECKLIST.md`; `knowledge/GOVERNANCE.md` §4.2). For programmes affecting student-facing recommendations, also complete the Recommendation Review Checklist (`knowledge/product/p001_3_recommendation_quality_standard/RECOMMENDATION_REVIEW_CHECKLIST.md`; `knowledge/GOVERNANCE.md` §4.3). For programmes that claim progress toward Version 1 production-ready, cite residual open gates from `knowledge/product/p002_1_version_1_release_framework/` (`knowledge/GOVERNANCE.md` §4.4); estimated ΔKSI alone does not satisfy validated-KSI Gate G1.
+5. Stage and commit as specified by the milestone.
+6. **STOP** — do not start the next milestone unless asked.
 
 ### Documentation-only milestones
 

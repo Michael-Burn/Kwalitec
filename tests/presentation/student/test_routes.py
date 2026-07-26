@@ -35,7 +35,9 @@ def test_student_routes_render_nav(student_client, endpoint, path):
     assert "Journey" in html
     assert "Revision" in html
     assert "History" in html
-    assert "Profile" in html
+    assert "Settings" in html
+    assert "Study Plan" in html
+    assert "Help" in html
 
 
 def test_home_shows_recommendation(student_client):
@@ -68,7 +70,7 @@ def test_history_shows_progress(student_client):
 def test_profile_shows_examination(student_client):
     response = student_client.get("/student/profile")
     html = response.get_data(as_text=True)
-    assert "Profile" in html or "examination" in html.lower() or "CPA" in html
+    assert "Settings" in html or "examination" in html.lower() or "CPA" in html
 
 
 def test_start_session_post(student_client, experience_app):
@@ -87,6 +89,42 @@ def test_start_session_post(student_client, experience_app):
     assert mission.start_calls
     location = response.headers.get("Location", "")
     assert "/session/sess-1" in location
+
+
+def test_start_session_opaque_engine_missing_experience_id(
+    student_client, experience_app
+):
+    """Regression: injected opaque engines omit experience_session_id → was HTTP 500."""
+    from app.infrastructure.adapters.mission import ExperienceMissionAdapter
+
+    class IncompleteOpaqueEngine:
+        def start_opaque(self, student_id, **kwargs):
+            return {
+                "student_id": student_id,
+                "session_id": kwargs.get("session_id") or "sess-x",
+                "mission_id": kwargs.get("mission_id") or "mission-x",
+                "status": "ready",
+                "authority": "mission_engine",
+            }
+
+    wire_experience(
+        experience_app,
+        mission=ExperienceMissionAdapter(
+            mission_engine=IncompleteOpaqueEngine()
+        ),
+    )
+    response = student_client.post(
+        "/student/session/start",
+        data={
+            "mission_id": "mission-29",
+            "session_id": "sess-29",
+            "submit": "Start Today's Session",
+        },
+        follow_redirects=False,
+    )
+    assert response.status_code in {302, 303}
+    assert b"Internal Server Error" not in response.data
+    assert "/session/sess-29" in response.headers.get("Location", "")
 
 
 def test_begin_revision_post(student_client, experience_app):

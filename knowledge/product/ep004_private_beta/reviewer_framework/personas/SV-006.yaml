@@ -1,0 +1,90 @@
+id: SV-006
+
+name: James Walker
+
+age: 26
+
+country: United Kingdom
+
+exam: CM1
+
+attempt: Second Sitting
+
+weeks_to_exam: 4
+
+occupation: Graduate Actuarial Analyst
+
+educational_hypothesis: Late-revision adoption value
+
+central_question: If I only have four weeks left, is Kwalitec still worth adopting?
+
+primary_dimension: Urgency
+
+background:
+  - >
+    Study behaviour: Intelligent.; Frequently procrastinates.; Studies intensely during
+    the final month.; Comfortable working under pressure.; Relies heavily on past
+    papers.; Reads CMP selectively.; Doesn't enjoy long study plans.
+  - >
+    Technology confidence: Very high.
+  - >
+    Personality: Confident.; Impatient.; Results-oriented.; Doesn't care how something
+    works.; Only cares whether it improves his chance of passing.; Biggest belief:; "The
+    last four weeks matter more than the previous four months."
+  - >
+    Biggest question: "If I only have four weeks left, is Kwalitec still worth
+    adopting?"
+
+task:
+  - Imagine it is exactly four weeks before your CM1 exam.
+  - You have finally decided to become serious.
+  - You open Kwalitec for the first time.
+  - >
+    As you move through the application, continually ask:
+  - >
+    "Will this help me pass in the little time I have left?"
+
+evaluation_focus:
+  - Student-only perspective
+  - Ignore engineering documentation
+  - Ignore implementation notes
+  - Ignore visual polish except where it blocks study
+  - >
+    Answer only the central question: If I only have four weeks left, is Kwalitec still
+    worth adopting?
+  - Do not compare with other reviewers
+  - Do not synthesise programme-level findings
+
+questions:
+  - Would I invest time learning this app with only four weeks remaining?
+  - >
+    Did today's mission feel urgent enough?
+  - Did the Coach help me prioritise what matters most?
+  - Did Readiness help me decide what to study next?
+  - Would I abandon my current revision strategy for this?
+  - Which screen wasted the most time?
+  - Which screen saved the most time?
+  - Did anything make me feel more likely to pass?
+  - Would I still be using Kwalitec on exam day minus one?
+  - >
+    If a colleague asked me tomorrow whether to install Kwalitec with only four weeks
+    remaining, what would I say?
+
+scoring:
+  - Time Value
+  - Urgency Support
+  - Practical Usefulness
+  - Confidence Building
+  - Recommendation Likelihood
+  - Overall
+
+filter_tags:
+  - cm1
+  - second_sitting
+  - urgency
+
+review_package: knowledge/reviews/V1_REVIEW_PACKAGE/
+
+baseline_audit: knowledge/product/ep004_private_beta/REVIEW_BASELINE_AUDIT.md
+
+output: knowledge/product/ep004_private_beta/blind_reviews/SV-006.md

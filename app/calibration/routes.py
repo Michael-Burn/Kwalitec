@@ -31,6 +31,10 @@ from app.application.twin_repository import (
 from app.calibration import calibration_bp
 from app.calibration.forms import AlphaCalibrationForm
 from app.models.study_plan import StudyPlan
+from app.presentation.consolidation import (
+    canonical_home_url,
+    redirect_to_canonical_home,
+)
 from app.services.curriculum_engine_service import CurriculumEngineService
 from app.services.study_plan_service import StudyPlanService
 
@@ -113,7 +117,7 @@ def start(study_plan_id: int):
             from app.services.welcome_service import WelcomeService
 
             WelcomeService.mark_eligible(current_user.id)
-            return redirect(url_for("dashboard.index", welcome=1))
+            return redirect(canonical_home_url(welcome=1))
         flash(
             "Calibration needs a successfully created study plan first.",
             "info",
@@ -125,7 +129,7 @@ def start(study_plan_id: int):
             "Your study profile already includes declared history for this plan.",
             "info",
         )
-        return redirect(url_for("dashboard.index"))
+        return redirect_to_canonical_home()
 
     form = AlphaCalibrationForm()
     form.completed_sections.choices = _section_choices(plan)
@@ -153,7 +157,7 @@ def submit(study_plan_id: int):
             "Calibration cannot complete without curriculum scope.",
             "info",
         )
-        return redirect(url_for("dashboard.index"))
+        return redirect_to_canonical_home()
 
     form = AlphaCalibrationForm()
     form.completed_sections.choices = _section_choices(plan)
@@ -170,7 +174,7 @@ def submit(study_plan_id: int):
             "guidance will start honestly from a fresh beginning.",
             "info",
         )
-        return redirect(url_for("dashboard.index"))
+        return redirect_to_canonical_home()
 
     if not form.validate_on_submit():
         return render_template(
@@ -223,12 +227,12 @@ def submit(study_plan_id: int):
 
 
 def _mark_welcome_and_go_dashboard(*, flash_message: str, category: str = "success"):
-    """Mark first-time welcome eligible, then open the dashboard."""
+    """Mark first-time welcome eligible, then open the canonical home."""
     from app.services.welcome_service import WelcomeService
 
     WelcomeService.mark_eligible(current_user.id)
     flash(flash_message, category)
-    return redirect(url_for("dashboard.index", welcome=1))
+    return redirect(canonical_home_url(welcome=1))
 
 
 def _finish_beginner_skip(launch):

@@ -56,11 +56,15 @@ FOUNDER_STUDIO_CTAS: tuple[str, ...] = (
 )
 
 STUDENT_NAV_LABELS: tuple[str, ...] = (
+    # PX-002A T1-1 / terminology standard: "Home" (not "Dashboard") and
+    # "History" (not "Analytics") — see TERMINOLOGY_STANDARD.md.
     "Home",
     "Journey",
     "Revision",
     "History",
-    "Profile",
+    "Settings",
+    "Study Plan",
+    "Help",
 )
 
 FOUNDER_PRIMARY_NAV_LABELS: tuple[str, ...] = (

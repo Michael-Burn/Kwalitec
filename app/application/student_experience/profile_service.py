@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import Any
 
+from app.application.educational_state import EducationalStateService
 from app.application.student_experience._snapshots import profile_snapshot
 from app.application.student_experience.dto.profile_snapshot import ProfileSnapshot
 from app.application.student_experience.exceptions import (
@@ -26,21 +27,26 @@ from app.domain.student_experience.recommendation_explanation import (
 
 
 class ProfileService:
-    """Project the Profile surface from Twin learner summaries.
+    """Project the Profile surface from shared Educational State.
 
-    Account settings are presentation flags only — no auth/persistence.
+    Prefer EducationalStateService so Settings/Profile share the same Twin
+    learner / readiness / insights snapshot as Dashboard and Analytics.
+    Account settings remain presentation flags only — no auth/persistence.
     """
 
-    def __init__(self, *, student_twin: StudentTwinPort | None = None) -> None:
+    def __init__(
+        self,
+        *,
+        student_twin: StudentTwinPort | None = None,
+        educational_state: EducationalStateService | None = None,
+    ) -> None:
         self._twin = student_twin
+        self._educational_state = educational_state
 
     def profile(self, student_id: str) -> ProfileSnapshot:
         """Build the Profile projection for ``student_id``."""
         sid = _require_id(student_id)
-        twin = self._require_twin()
-        learner = twin.get_learner_summary(sid) or {}
-        readiness = twin.get_readiness_summary(sid) or {}
-        insights = twin.get_learning_insights(sid) or {}
+        learner, readiness, insights = self._facts_for(sid)
 
         prefs_raw = learner.get("preferences") or {}
         account_raw = learner.get("account") or {}
@@ -109,6 +115,25 @@ class ProfileService:
         except ValueError as exc:
             raise ProfileError(str(exc)) from exc
         return profile_snapshot(projection)
+
+    def _facts_for(
+        self, student_id: str
+    ) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
+        if self._educational_state is not None:
+            state = self._educational_state.load(student_id)
+            if not state.twin_available:
+                raise PortUnavailable("student_twin port unavailable")
+            return (
+                dict(state.learner_summary),
+                dict(state.readiness_summary),
+                dict(state.learning_insights),
+            )
+        twin = self._require_twin()
+        return (
+            dict(twin.get_learner_summary(student_id) or {}),
+            dict(twin.get_readiness_summary(student_id) or {}),
+            dict(twin.get_learning_insights(student_id) or {}),
+        )
 
     def _require_twin(self) -> StudentTwinPort:
         if self._twin is None or not self._twin.is_available():

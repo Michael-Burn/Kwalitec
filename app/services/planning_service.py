@@ -67,11 +67,381 @@ _TOPIC_TITLE_VERB_PREFIXES: tuple[str, ...] = (
 
 class PlanningService:
     """Service for automatic mission planning from study plans.
-    
+
     This service handles deterministic, idempotent mission generation based on
     a user's active study plan. It ensures that missions are generated only for
     the current day and that refreshing never creates duplicates.
+
+    EP-001.2: ``build_daily_study_plan`` consumes EP-001.1 Canonical Learner
+    State when Digital Twin Foundation is enabled. Learner state is never
+    duplicated here — Twin owns mastery / progress / behaviour / streaks;
+    this service owns planning outputs and mission persistence.
+
+    EP-003.3: planning quality contract (explanation schema, readiness-informed
+    labels, recommendation-aware coherence) is applied here only — presentation
+    must not invent planning rationale.
     """
+
+    @staticmethod
+    def build_daily_study_plan(
+        user_id: int,
+        today: date | None = None,
+        *,
+        foundation: object | None = None,
+        canonical_state: object | None = None,
+    ) -> dict | None:
+        """Build an adaptive daily study plan from Canonical Learner State.
+
+        When Digital Twin Foundation is unavailable (flag OFF or assemble
+        failure), returns ``None`` so callers continue using
+        ``generate_today_mission`` (legacy path). Does not invent learner
+        state and does not persist missions.
+
+        Args:
+            user_id: The ID of the user.
+            today: Plan date (defaults to today).
+            foundation: Optional injected ``StudentDigitalTwinFoundation``.
+            canonical_state: Optional already-assembled
+                ``CanonicalLearnerState`` (EP-002.2 shared DI). When provided,
+                Foundation.assemble is skipped for this call.
+
+        Returns:
+            Serialisable daily plan dict, or None when Twin is unavailable /
+            there is no active study plan.
+        """
+        from app.infrastructure.adapters.consumer_chain import (
+            API_BUILD_DAILY_STUDY_PLAN,
+            SERVICE_PLANNING,
+            observe_build_api,
+        )
+
+        return observe_build_api(
+            service_name=SERVICE_PLANNING,
+            api_name=API_BUILD_DAILY_STUDY_PLAN,
+            user_id=user_id,
+            call=lambda: PlanningService._build_daily_study_plan_body(
+                user_id,
+                today=today,
+                foundation=foundation,
+                canonical_state=canonical_state,
+            ),
+        )
+
+    @staticmethod
+    def _build_daily_study_plan_body(
+        user_id: int,
+        today: date | None = None,
+        *,
+        foundation: object | None = None,
+        canonical_state: object | None = None,
+    ) -> dict | None:
+        """Internal planner body (observability wraps the public API)."""
+        if today is None:
+            today = date.today()
+
+        twin_foundation = foundation
+        if twin_foundation is None:
+            twin_foundation = PlanningService._resolve_twin_foundation()
+        if twin_foundation is None or not getattr(
+            twin_foundation, "is_enabled", lambda: False
+        )():
+            return None
+
+        active_plan = StudyPlanService.get_user_active_plan(user_id)
+        if not active_plan:
+            logger.info(
+                "No active study plan for user %s; skipping adaptive daily plan",
+                user_id,
+            )
+            return None
+
+        from app.infrastructure.adapters.adaptive_study_planner import (
+            build_canonical_planner_consumer,
+            build_daily_study_plan_assembler,
+        )
+        from app.infrastructure.adapters.consumer_chain import (
+            API_BUILD_DAILY_STUDY_PLAN,
+            SERVICE_PLANNING,
+            assemble_shared_canonical_state,
+        )
+        from app.infrastructure.adapters.digital_twin.contracts import (
+            AVAILABILITY_AVAILABLE,
+        )
+
+        state = assemble_shared_canonical_state(
+            twin_foundation,
+            str(user_id),
+            canonical_state=canonical_state,
+            service_name=SERVICE_PLANNING,
+            api_name=API_BUILD_DAILY_STUDY_PLAN,
+        )
+        inputs = build_canonical_planner_consumer().project(state)
+        if inputs.availability != AVAILABILITY_AVAILABLE:
+            logger.debug(
+                "Canonical Learner State unavailable for user %s (%s)",
+                user_id,
+                inputs.unavailable_reason,
+            )
+            return None
+
+        day_type = PlanningService._get_day_type(today)
+        available_minutes = (
+            active_plan.weekday_study_minutes
+            if day_type == DayType.WEEKDAY
+            else active_plan.weekend_study_minutes
+        )
+        projection = build_daily_study_plan_assembler().assemble(
+            inputs,
+            plan_date=today,
+            available_study_minutes=int(available_minutes or 0),
+        )
+        payload = projection.to_dict()
+        payload["study_plan_id"] = active_plan.id
+        from app.services.planning_quality import apply_planning_quality_to_daily_plan
+
+        profile_view = PlanningService.consume_personal_learning_profile(user_id)
+        result = apply_planning_quality_to_daily_plan(
+            user_id, payload, profile_view=profile_view
+        )
+        PlanningService._emit_daily_plan_feedback(user_id, result)
+        return result
+
+    @staticmethod
+    def _emit_daily_plan_feedback(
+        user_id: int,
+        daily_plan: dict | None,
+    ) -> None:
+        """EP-003.4: emit missed-session / recovery observations (fail-open).
+
+        Plan build records observed recovery signals only. Revision adherence is
+        recorded on mission completion — offering a review slot is not adherence.
+        """
+        if not isinstance(daily_plan, dict):
+            return
+        try:
+            from app.infrastructure.adapters.learning_feedback import (
+                emit_planning_recovery_feedback,
+            )
+
+            explain = daily_plan.get("explainability") or {}
+            if not isinstance(explain, dict):
+                explain = {}
+            missed = int(explain.get("mission_missed_count") or 0)
+            recovery = bool(explain.get("recovery_mode"))
+            if missed > 0 or recovery:
+                emit_planning_recovery_feedback(
+                    user_id=user_id,
+                    mission_missed_count=missed,
+                    recovery_mode=recovery,
+                    correlation_id=str(daily_plan.get("study_plan_id") or ""),
+                )
+        except Exception:  # noqa: BLE001 — feedback must never break planning
+            logger.debug(
+                "learning_feedback_plan_emit_failed user_id=%s",
+                user_id,
+                exc_info=True,
+            )
+
+    @staticmethod
+    def consume_personal_learning_profile(
+        user_id: int,
+        *,
+        declared_session_minutes: int | None = None,
+    ) -> dict | None:
+        """EP-004.1/EP-004.3: optional Personal Learning Profile input (fail-open).
+
+        Returns observed behavioural attributes for bounded planning
+        personalisation (pacing, duration, recovery/revision emphasis,
+        equivalent repair-topic preference). The profile summarises evidence
+        only — PlanningService remains sole planning authority and never
+        delegates educational priorities to the profile.
+        """
+        try:
+            from app.infrastructure.adapters.personal_learning_profile import (
+                consume_personal_learning_profile,
+            )
+
+            return consume_personal_learning_profile(
+                student_id=user_id,
+                declared_session_minutes=declared_session_minutes,
+            )
+        except Exception:  # noqa: BLE001 — profile must never break planning
+            logger.debug(
+                "personal_learning_profile_consume_failed user_id=%s",
+                user_id,
+                exc_info=True,
+            )
+            return None
+
+    @staticmethod
+    def record_plan_completion_feedback(
+        user_id: int,
+        *,
+        mission_id: int | None = None,
+        study_plan_id: int | None = None,
+        mission_title: str = "",
+        revision_adhered: bool | None = None,
+        revision_slot_count: int = 0,
+    ) -> None:
+        """EP-003.4: record plan/mission completion evidence (fail-open).
+
+        Called from MissionService after lawful completion. Planning owns the
+        feedback claim boundary; MissionService does not interpret educationally.
+        """
+        try:
+            from app.infrastructure.adapters.learning_feedback import (
+                emit_plan_completed_feedback,
+                emit_revision_feedback,
+            )
+
+            emit_plan_completed_feedback(
+                user_id=user_id,
+                mission_id=mission_id,
+                study_plan_id=study_plan_id,
+                mission_title=mission_title,
+                correlation_id=str(mission_id or ""),
+            )
+            if revision_adhered is not None:
+                emit_revision_feedback(
+                    user_id=user_id,
+                    adhered=bool(revision_adhered),
+                    slot_count=revision_slot_count,
+                    correlation_id=str(mission_id or ""),
+                )
+        except Exception:  # noqa: BLE001 — feedback must never break missions
+            logger.debug(
+                "learning_feedback_plan_completion_emit_failed user_id=%s",
+                user_id,
+                exc_info=True,
+            )
+
+    @staticmethod
+    def _resolve_twin_foundation() -> object | None:
+        """Resolve EP-001.1 Foundation when Digital Twin flag is ON."""
+        from app.infrastructure.adapters.consumer_chain import (
+            resolve_enabled_twin_foundation,
+        )
+
+        return resolve_enabled_twin_foundation()
+
+    @staticmethod
+    def get_dashboard_mission_surface(
+        user_id: int,
+        today: date | None = None,
+    ) -> dict:
+        """Dashboard/mission surface with EP-002.7 gated daily-plan cutover.
+
+        Eligible non-production requests may receive a Twin
+        ``build_daily_study_plan`` projection into the mission surface DTO.
+        Otherwise returns the legacy mission from ``generate_today_mission``.
+        Fail-open: Twin failures and blocking limitations fall back to legacy.
+
+        Experience bridges and MissionStartAdapter must continue calling
+        ``generate_today_mission`` directly — this facade is HTTP-surface only.
+        MissionOptimizer is never consulted.
+        """
+        import time
+
+        from app.infrastructure.adapters.consumer_chain.daily_plan_cutover import (
+            is_daily_plan_cutover_active,
+            is_daily_plan_cutover_eligible,
+            run_daily_plan_http_cutover,
+        )
+        from app.services.mission_service import MissionService
+        from app.services.planning_quality import apply_planning_quality_contract
+        from app.services.study_plan_service import StudyPlanService
+
+        profile_view = PlanningService.consume_personal_learning_profile(user_id)
+
+        if is_daily_plan_cutover_eligible() or is_daily_plan_cutover_active():
+            surface = run_daily_plan_http_cutover(user_id, today=today)
+            return apply_planning_quality_contract(
+                user_id, surface, profile_view=profile_view
+            )
+
+        started = time.perf_counter()
+        mission = PlanningService.generate_today_mission(user_id, today)
+        if mission is None:
+            active_plan = StudyPlanService.get_user_active_plan(user_id)
+            if active_plan is not None:
+                mission = MissionService.get_today_mission(
+                    user_id,
+                    study_plan_id=active_plan.id,
+                )
+        surface = {
+            "today_mission": mission,
+            "source_authority": "legacy",
+            "daily_plan": None,
+            "today_missions_slots": [],
+            "recommended_workload": {},
+            "topic_ordering": [],
+            "revision_priorities": [],
+            "limitations_codes": [],
+            "explainability": {},
+            "plan_date": None,
+            "availability": None,
+        }
+        PlanningService._maybe_daily_plan_dual_run(
+            user_id,
+            surface,
+            today=today,
+            legacy_latency_ms=(time.perf_counter() - started) * 1000.0,
+        )
+        return apply_planning_quality_contract(
+            user_id, surface, profile_view=profile_view
+        )
+
+    @staticmethod
+    def _maybe_daily_plan_dual_run(
+        user_id: int,
+        surface: dict,
+        *,
+        today: date | None = None,
+        legacy_latency_ms: float | None = None,
+    ) -> None:
+        """EP-002.7 fail-open Daily Plan dual-run (diagnostic only).
+
+        Never mutates ``surface``. Skipped when cutover is eligible or active.
+        Never calls MissionOptimizer.
+        """
+        try:
+            from app.infrastructure.adapters.consumer_chain.daily_plan_cutover import (
+                is_daily_plan_cutover_active,
+                is_daily_plan_cutover_eligible,
+            )
+
+            if is_daily_plan_cutover_active() or is_daily_plan_cutover_eligible():
+                return
+
+            from app.infrastructure.adapters.consumer_chain.daily_plan_dual_run import (
+                run_daily_plan_dual_run,
+            )
+
+            run_daily_plan_dual_run(
+                user_id,
+                surface,
+                today=today,
+                legacy_latency_ms=legacy_latency_ms,
+            )
+        except Exception:  # noqa: BLE001 — dual-run must never break student path
+            logger.debug(
+                "daily_plan_dual_run_hook_failed user_id=%s",
+                user_id,
+                exc_info=True,
+            )
+
+    @staticmethod
+    def _weak_topic_label_from_canonical(user_id: int) -> str | None:
+        """Prefer Canonical revision priorities for Revision mission copy."""
+        plan = PlanningService.build_daily_study_plan(user_id)
+        if not plan:
+            return None
+        priorities = plan.get("revision_priorities") or []
+        if not priorities:
+            return None
+        top = priorities[0]
+        name = str(top.get("topic_name") or "").strip()
+        return name or None
 
     @staticmethod
     def _topic_study_label(
@@ -445,7 +815,11 @@ class PlanningService:
         ]
         day_name = target_date.strftime("%A")
         date_str = target_date.strftime("%b %d")
-        weak_label = LearningLifecycleService.weakest_completed_topic_label(user_id)
+        weak_label = PlanningService._weak_topic_label_from_canonical(user_id)
+        if weak_label is None:
+            weak_label = LearningLifecycleService.weakest_completed_topic_label(
+                user_id
+            )
         title, tasks_data = PlanningService._revision_mission_content(
             kind=kind,
             study_minutes=study_minutes,

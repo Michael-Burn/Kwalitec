@@ -174,7 +174,7 @@ jobs:
           head = scripts.get_current_head()
           assert head, "No Alembic head"
           print("Alembic head:", head)
-          assert head == "202607230002", head
+          assert head == "202607260001", head
           PY
 
       - name: Security dependency scan

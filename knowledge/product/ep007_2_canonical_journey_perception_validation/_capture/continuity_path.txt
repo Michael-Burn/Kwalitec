@@ -1,0 +1,11 @@
+EP-007.2 today's study continuity path (sole runtime)
+
+1. Login → Student Home
+2. Home shows Today's Mission + duration + Start / Resume
+3. Start Study Session → Session Overview (same duration)
+4. Begin → Activity (Q&A progression)
+5. Reflection → Summary → Complete
+6. Return → Student Home (same entry)
+
+Resume: active_surface resumes mid-session without forcing a second home choice.
+Legacy /dashboard and /missions URLs redirect to Student Home — student cannot land on competing home via bookmark under sole runtime.

@@ -86,6 +86,12 @@
             <h2 class="h5 mb-0">Curriculum Roadmap</h2>
             <small class="text-muted">{{ sorted_topics|length }} topics</small>
         </div>
+        {# PX-002A T2-6: one note for the whole roadmap instead of repeating
+           the same placeholder on every topic card. #}
+        <p class="roadmap-outcomes-note text-muted small mb-3">
+            <span class="roadmap-outcomes-label">Learning Outcomes</span>
+            <span class="roadmap-outcomes-placeholder">Not available yet</span> for topics below.
+        </p>
 
         {% if curriculum_sections %}
             {% for section in curriculum_sections %}
@@ -138,8 +144,9 @@
                             <h3 class="roadmap-card-title">{{ topic.name }}</h3>
                             <div class="roadmap-card-metrics">
                                 <div class="roadmap-metric">
-                                    <span class="roadmap-metric-label">Est. Hours</span>
-                                    <span class="roadmap-metric-value">{{ ((topic.recommended_minutes or 0) / 60)|round(1) }}h</span>
+                                    <span class="roadmap-metric-label">Estimated time</span>
+                                    <span class="roadmap-metric-value">{{ topic.recommended_minutes | format_minutes }}</span>
+                                    <span class="roadmap-metric-basis small text-muted">Time to study this topic — a different number from today's session length on Home and Mission.</span>
                                 </div>
                                 {% if tp and tp.has_estimated_knowledge %}
                                 <div class="roadmap-metric">
@@ -149,10 +156,6 @@
                                 </div>
                                 {% endif %}
                             </div>
-                        </div>
-                        <div class="roadmap-card-outcomes">
-                            <span class="roadmap-outcomes-label">Learning Outcomes</span>
-                            <span class="roadmap-outcomes-placeholder">Not available yet</span>
                         </div>
                     </div>
                     {% endfor %}
@@ -199,8 +202,9 @@
                             <span class="roadmap-metric-value">{{ '%g'|format(topic.syllabus_weight or 0) }}%</span>
                         </div>
                         <div class="roadmap-metric">
-                            <span class="roadmap-metric-label">Est. Hours</span>
-                            <span class="roadmap-metric-value">{{ ((topic.recommended_minutes or 0) / 60)|round(1) }}h</span>
+                            <span class="roadmap-metric-label">Estimated time</span>
+                            <span class="roadmap-metric-value">{{ topic.recommended_minutes | format_minutes }}</span>
+                            <span class="roadmap-metric-basis small text-muted">Time to study this topic — a different number from today's session length on Home and Mission.</span>
                         </div>
                         {% if tp and tp.has_estimated_knowledge %}
                         <div class="roadmap-metric">
@@ -210,10 +214,6 @@
                         </div>
                         {% endif %}
                     </div>
-                </div>
-                <div class="roadmap-card-outcomes">
-                    <span class="roadmap-outcomes-label">Learning Outcomes</span>
-                    <span class="roadmap-outcomes-placeholder">Not available yet</span>
                 </div>
             </div>
             {% endfor %}
@@ -244,19 +244,31 @@
             <button type="submit" class="btn btn-outline-secondary">Set Active</button>
         </form>
         {% endif %}
-        <form method="POST" action="{{ url_for('study_plan.archive_plan', study_plan_id=study_plan.id) }}" class="d-inline" onsubmit="return confirm('Archive this study plan? It will be removed from active scheduling but preserved for historical reference.');">
+        {# PX-002A T2-4: styled confirmation modal, not a native confirm(). #}
+        <form method="POST" action="{{ url_for('study_plan.archive_plan', study_plan_id=study_plan.id) }}" class="d-inline">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-            <button type="submit" class="btn btn-link-tertiary">Archive</button>
+            <button type="button" class="btn btn-link-tertiary" data-confirm-trigger
+                    data-confirm-title="Archive this study plan?"
+                    data-confirm-body="It will be removed from active scheduling but preserved for historical reference."
+                    data-confirm-label="Archive plan">
+                Archive
+            </button>
         </form>
-        <form method="POST" action="{{ url_for('study_plan.delete_plan', study_plan_id=study_plan.id) }}" class="d-inline" onsubmit="return confirm('Delete this study plan\'s schedule and planning settings? Your learning progress and study history will be preserved. This cannot be undone for the plan itself.');">
+        <form method="POST" action="{{ url_for('study_plan.delete_plan', study_plan_id=study_plan.id) }}" class="d-inline">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-            <button type="submit" class="btn btn-link-tertiary">Delete</button>
+            <button type="button" class="btn btn-link-tertiary" data-confirm-trigger
+                    data-confirm-title="Delete this study plan?"
+                    data-confirm-body="Its schedule and planning settings will be removed. Your learning progress and study history are preserved. This cannot be undone for the plan itself."
+                    data-confirm-label="Delete plan"
+                    data-confirm-variant="danger">
+                Delete
+            </button>
         </form>
         <a href="{{ url_for('study_plan.list_plans') }}" class="btn btn-link-tertiary ms-auto">
             All Plans
         </a>
         <a href="{{ url_for('dashboard.index') }}" class="btn btn-link-tertiary">
-            Dashboard
+            Home
         </a>
     </div>
 </div>

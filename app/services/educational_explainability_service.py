@@ -4,10 +4,16 @@ EIP-003: shapes educational communication only. Does not redesign Learning Mode,
 recommendations ranking, Educational Evidence, Educational Intelligence, or the
 Digital Twin. Does not invent scores or mastery.
 
+EP-002.8: On Runtime A dashboard / analytics / mission index surfaces this
+service is the **legacy presentation adapter**, invoked via
+``RuntimeAPresentationAdapter`` when ``source_authority`` is legacy / fail-open.
+Twin-served surfaces own their communication fields; do not re-narrate them here.
+
 Governing refs:
 - EDUCATIONAL_EXPLAINABILITY_STANDARD.md
 - Constitution Articles II, III, VII
 - EL-008, EL-009, EL-010
+- knowledge/architecture/ep002_8_presentation_consolidation/
 """
 
 from __future__ import annotations
@@ -37,6 +43,10 @@ class MissionNarrative:
     next_action: str
     observed_facts: tuple[str, ...]
     estimates: tuple[str, ...]
+    # EP-006.2 MES delivery — progressive disclosure fields.
+    plan_drivers: tuple[str, ...] = ()
+    review_point: str = ""
+    expected_benefit: str = ""
 
 
 @dataclass(frozen=True)
@@ -61,6 +71,16 @@ class ReadinessNarrative:
     evidence_basis: str
     can_estimate: bool
     is_estimate: bool
+    # EP-006.2 MES delivery — progressive disclosure fields.
+    readiness_drivers: tuple[str, ...] = ()
+    review_point: str = ""
+    expected_benefit: str = ""
+    supporting_evidence: tuple[str, ...] = ()
+    suggested_next_action: str = ""
+    why_this_estimate: str = ""
+    confidence_label: str = ""
+    # EP-006.4: optional lexical basis for confidence (pass-through only).
+    confidence_basis: str = ""
 
 
 @dataclass(frozen=True)
@@ -79,6 +99,10 @@ class EducationalExplainabilityService:
 
     Presentation / narration only. Input values come from authorised services;
     this service never recalculates readiness, mastery, or recommendations.
+
+    EP-002.8 role: legacy presentation adapter under RuntimeAPresentationAdapter
+    for fail-open / non-Twin Runtime A cohorts. Coverage and session feedback
+    may call this service directly (ORM-backed paths without Twin cutover).
     """
 
     @staticmethod

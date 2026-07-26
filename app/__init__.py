@@ -516,6 +516,7 @@ def _init_extensions(app: Flask) -> None:
         MissionTask,
         Mistake,
         PresentationEvent,
+        RecommendationCommitment,
         ResearchContribution,
         ResearchContributorBadge,
         ResearchFeedbackReview,
@@ -544,12 +545,30 @@ def _resolve_v2_flags_for_templates():
     return resolve_v2_feature_flags()
 
 
+def _canonical_home_url_for_templates() -> str:
+    """Authoritative student home URL (EP-007.1 dual-home consolidation)."""
+    from app.presentation.consolidation import canonical_home_url
+
+    return canonical_home_url()
+
+
+def _canonical_session_entry_url_for_templates() -> str:
+    """Primary study-start / continue URL for templates."""
+    from app.presentation.consolidation import canonical_session_entry_url
+
+    return canonical_session_entry_url()
+
+
 def _register_template_context(app: Flask) -> None:
     """Inject shared presentation context into all templates."""
+    from app.presentation.formatting import format_minutes
     from app.static_assets import versioned_static
 
     # IAHF-005 — reusable Jinja helper for cache-busted static URLs.
     app.jinja_env.globals["versioned_static"] = versioned_static
+    # PX-002B — one duration phrase everywhere (e.g. study-plan roadmap
+    # hour estimates), instead of ad hoc decimal-hour rounding per template.
+    app.jinja_env.filters["format_minutes"] = format_minutes
 
     @app.context_processor
     def inject_global_template_context():
@@ -607,6 +626,8 @@ def _register_template_context(app: Flask) -> None:
             "approved_logo_alt": APPROVED_LOGO_ALT,
             "versioned_static": versioned_static,
             "v2_flags": _resolve_v2_flags_for_templates(),
+            "canonical_home_url": _canonical_home_url_for_templates(),
+            "canonical_session_entry_url": _canonical_session_entry_url_for_templates(),
             "release_info": release_info,
             "support_contact": release_info.support_contact,
             # PR-001 — permission helpers only; no auth logic in templates.
@@ -629,11 +650,29 @@ def _register_cli_commands(app: Flask) -> None:
         create_test_user_command,
         internal_alpha_reset_command,
     )
+    from app.infrastructure.analytics.cli import (
+        analytics_delete_user_command,
+        analytics_export_audit_command,
+        analytics_export_user_command,
+        analytics_metrics_command,
+        analytics_replay_command,
+        analytics_retention_command,
+        analytics_verify_consent_command,
+        analytics_worker_once_command,
+    )
 
     app.cli.add_command(create_admin_command)
     app.cli.add_command(create_test_user_command)
     app.cli.add_command(backfill_sections_command)
     app.cli.add_command(internal_alpha_reset_command)
+    app.cli.add_command(analytics_worker_once_command)
+    app.cli.add_command(analytics_replay_command)
+    app.cli.add_command(analytics_retention_command)
+    app.cli.add_command(analytics_delete_user_command)
+    app.cli.add_command(analytics_export_user_command)
+    app.cli.add_command(analytics_export_audit_command)
+    app.cli.add_command(analytics_metrics_command)
+    app.cli.add_command(analytics_verify_consent_command)
 
 
 def _register_blueprints(app: Flask) -> None:

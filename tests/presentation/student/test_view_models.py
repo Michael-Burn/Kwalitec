@@ -223,11 +223,37 @@ def test_profile_vm_days():
     assert vm.display_name == "Alex"
 
 
+def test_profile_vm_examination_label_agrees_with_active_study_plan(
+    ctx, study_plan
+):
+    """B2 (PX-003): Profile must never show "Not set" while Dashboard,
+    Study Plan, and Settings show an active plan — all must agree, sourced
+    from the same ``StudyPlanService.get_user_active_plan`` call."""
+    snap = ProfileSnapshot(
+        student_id=str(study_plan.user_id),
+        display_name="Alex",
+        examination_label="",  # Simulates the Twin projection's known-empty path.
+    )
+    vm = profile_vm(snap)
+    assert vm.examination_label == study_plan.exam_name == "IFoA CM1"
+
+
+def test_profile_vm_falls_back_when_no_active_plan_or_non_numeric_id():
+    snap = ProfileSnapshot(
+        student_id="s1",
+        display_name="Alex",
+        examination_label="CPA",
+    )
+    vm = profile_vm(snap)
+    assert vm.examination_label == "CPA"
+
+
 def test_shell_vm_navigation():
     shell = shell_vm(active_surface="home", page_title="Home")
     assert shell.active_surface == "home"
-    assert len(shell.navigation) == 5
+    assert len(shell.navigation) == 7
     assert sum(1 for n in shell.navigation if n.active) == 1
+    assert shell.navigation[0].label == "Home"
 
 
 @pytest.mark.parametrize(

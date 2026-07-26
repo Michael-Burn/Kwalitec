@@ -10,14 +10,14 @@
         </p>
         {% if error_reference_id %}
         <p class="error-reference small text-muted mb-3">
-            Reference ID: <code>{{ error_reference_id }}</code>
+            Reference ID <code>{{ error_reference_id }}</code> — include this if you contact support.
         </p>
         {% endif %}
         <div class="d-flex flex-wrap gap-2 justify-content-center">
             <a href="javascript:location.reload()" class="btn btn-primary">Try again</a>
-            <a href="{{ url_for('dashboard.index') if current_user.is_authenticated else url_for('auth.login') }}" class="btn btn-outline-secondary">
+            <a href="{{ canonical_home_url if current_user.is_authenticated else url_for('auth.login') }}" class="btn btn-outline-secondary">
                 {% if current_user.is_authenticated %}
-                    Return to Dashboard
+                    Return Home
                 {% else %}
                     Sign In
                 {% endif %}

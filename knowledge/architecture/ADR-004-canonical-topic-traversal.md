@@ -78,3 +78,13 @@ else:
 - Document any intentional non-canonical sort (e.g. urgency ranking of mission *tasks*) as ranking **after** canonical topic identity is resolved — not as a replacement for syllabus order.
 
 **See also:** [curriculum-engine.md](../subsystems/curriculum-engine.md), [study-planning.md](../subsystems/study-planning.md), [missions.md](../subsystems/missions.md).
+
+## Governance Alignment
+
+This decision must remain consistent with:
+
+- [Product Vision 2030](../product/vision/PRODUCT_VISION_2030.md) — product constitution
+- [Product Blueprint](../../PRODUCT_BLUEPRINT.md) — product strategy and operating model
+- [Educational Constitution](../educational/KWALITEC_EDUCATIONAL_CONSTITUTION.md) — educational principles
+
+If a future change would conflict with those authorities, amend the governing documents first (see [`knowledge/GOVERNANCE.md`](../GOVERNANCE.md)).

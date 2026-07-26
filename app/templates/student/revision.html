@@ -1,4 +1,5 @@
 {% extends "student/base.html" %}
+{% set title = page.shell.page_title %}
 {% from "student/components/explanation_card.html" import explanation_card %}
 
 {% block content %}
@@ -49,7 +50,7 @@
 <section class="student-stack" aria-labelledby="alt-revision-title">
     <h2 id="alt-revision-title" class="student-section-title">Alternative revision options</h2>
     {% for option in revision.alternatives %}
-    <article class="student-card student-card--revision-alt">
+    <article class="student-card student-card--revision-alt" data-mes-field="revision_alternative">
         <h3 class="student-card-title student-card-title--sm">{{ option.topic_title }}</h3>
         <dl class="student-meta-row">
             {% if option.priority_label %}
@@ -71,6 +72,13 @@
             </div>
             {% endif %}
         </dl>
+        {% if option.explanation and option.explanation.has_content %}
+        {{ explanation_card(option.explanation) }}
+        {% elif option.explanation and option.explanation.why_recommended %}
+        <p class="student-card-body" data-mes-field="why_recommended">
+            <span class="student-label">Why</span> {{ option.explanation.why_recommended }}
+        </p>
+        {% endif %}
     </article>
     {% endfor %}
 </section>
@@ -88,9 +96,16 @@
 </section>
 {% endif %}
 {% else %}
-<section class="student-card">
-    <h2 class="student-card-title">Revision</h2>
-    <p class="student-card-body">Revision options will appear when available.</p>
+<section class="student-empty" aria-label="Revision" role="status">
+    <h2 class="student-empty-title">Revision opens up after your first session</h2>
+    <p class="student-empty-description">
+        Once you've studied a topic, we'll surface the revision that will help you the most.
+    </p>
+    <div class="student-primary-action">
+        <a class="btn student-btn-primary" href="{{ url_for('student.home') }}" data-student-cta="primary">
+            Go to Home
+        </a>
+    </div>
 </section>
 {% endif %}
 {% endblock %}

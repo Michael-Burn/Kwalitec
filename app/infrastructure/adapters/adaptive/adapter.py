@@ -25,16 +25,25 @@ class ExperienceAdaptiveAdapter:
     """Production adapter implementing Student Experience AdaptiveDecisionPort.
 
     Sole next-action authority bridge (ADR-005). Never invents recommendations.
+    When ``recommendation_read`` is wired, projects exclusively from Runtime A
+    via the Recommendation Read Bridge (no ``seeded_demo_adaptive``).
+
+    MS-003 A4: when ``adaptive_port_router`` cutover is active (Engine + Shadow
+    + Authority flags), eligible adaptive recommendations may be served first;
+    every adaptive failure / ineligibility falls back to RecommendationService
+    (or the prior seed path when the Recommendation Bridge is off).
     """
 
     ADAPTER_ID = "experience_adaptive"
-    ADAPTER_VERSION = "1.0.0"
+    ADAPTER_VERSION = "1.1.0-a4"
 
     def __init__(
         self,
         *,
         store: ExperienceProjectionStore | None = None,
         decision_engine: Any | None = None,
+        recommendation_read: Any | None = None,
+        adaptive_port_router: Any | None = None,
         events: EventRegistry | None = None,
         diagnostics: AdapterDiagnostics | None = None,
         available: bool = True,
@@ -42,10 +51,13 @@ class ExperienceAdaptiveAdapter:
     ) -> None:
         self._store = store or ExperienceProjectionStore()
         self._engine = decision_engine
+        self._recommendation_read = recommendation_read
+        self._adaptive_port_router = adaptive_port_router
         self._events = events or EventRegistry()
         self._diagnostics = diagnostics or AdapterDiagnostics()
         self._available = available
-        self._auto_provision = auto_provision
+        # Bridge path must never auto-provision demo adaptive documents.
+        self._auto_provision = bool(auto_provision) and recommendation_read is None
         self._diagnostics.record_health(
             self.ADAPTER_ID,
             available=available,
@@ -84,11 +96,43 @@ class ExperienceAdaptiveAdapter:
         self, student_id: str
     ) -> dict[str, Any] | None:
         self._diagnostics.record_call(self.ADAPTER_ID)
+        # A4: eligible adaptive first when authority cutover is active.
+        router = self._adaptive_port_router
+        if router is not None and getattr(router, "cutover_active", False):
+            adaptive = router.try_adaptive_recommendation(student_id)
+            if adaptive is not None:
+                return dict(adaptive)
+        return self._recommendation_service_fallback(student_id)
+
+    def _recommendation_service_fallback(
+        self, student_id: str
+    ) -> dict[str, Any] | None:
+        """RecommendationService / prior Experience path (A4 fallback)."""
+        if self._recommendation_read is not None:
+            return self._read_via_bridge(student_id)
         doc = self._load(student_id)
         if doc is None:
             return None
         recommendation = doc.get("recommendation")
         return None if recommendation is None else dict(recommendation)
+
+    def _read_via_bridge(self, student_id: str) -> dict[str, Any] | None:
+        """Recommendation Read Bridge path — Runtime A only; never demo seed."""
+        sid = student_id.strip()
+        bridge = self._recommendation_read
+        if hasattr(bridge, "get_todays_recommendation"):
+            result = bridge.get_todays_recommendation(sid)
+            if hasattr(result, "ok"):
+                if not result.ok:
+                    return None
+                return None if result.value is None else dict(result.value)
+            if isinstance(result, dict):
+                return dict(result)
+            return None
+        if hasattr(bridge, "get_todays_recommendation_opaque"):
+            projected = bridge.get_todays_recommendation_opaque(sid)
+            return None if projected is None else dict(projected)
+        return None
 
     def get_revision_options(
         self, student_id: str

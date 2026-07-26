@@ -7,6 +7,15 @@ from dataclasses import dataclass, field
 from app.application.student_experience.dto.explanation_snapshot import (
     ExplanationSnapshot,
 )
+from app.application.student_experience.dto.readiness_explanation_snapshot import (
+    ReadinessExplanationSnapshot,
+)
+from app.application.student_experience.dto.recommendation_alternative_snapshot import (
+    RecommendationAlternativeSnapshot,
+)
+from app.application.student_experience.dto.recommendation_commitment_snapshot import (
+    RecommendationCommitmentSnapshot,
+)
 
 
 @dataclass(frozen=True)
@@ -37,7 +46,16 @@ class HomeSnapshot:
     estimated_study_minutes: int | None = None
     expected_readiness_improvement: float | None = None
     explanation: ExplanationSnapshot | None = None
+    # EP-006.4: authored readiness MES for Home (drivers / review / next).
+    readiness_explanation: ReadinessExplanationSnapshot | None = None
     start_session: StartSessionActionSnapshot | None = None
     has_recommendation: bool = False
     can_start_session: bool = False
     metadata: tuple[tuple[str, str], ...] = field(default_factory=tuple)
+    # EP-008.1 — Recommendation Trust.
+    recommendation_alternatives: tuple[
+        RecommendationAlternativeSnapshot, ...
+    ] = field(default_factory=tuple)
+    trust_state: str = ""
+    # EP-008.3 — Recommendation Commitment (preference / intent only).
+    commitment: RecommendationCommitmentSnapshot | None = None

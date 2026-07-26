@@ -19,13 +19,6 @@
     {% else %}
     <p class="section-description">What to study today, and whether you are on track.</p>
     {% endif %}
-    {% if v2_flags and v2_flags.ENABLE_STUDENT_EXPERIENCE and not v2_flags.SOLE_RUNTIME %}
-    <p class="mt-2 mb-0">
-        <a class="btn btn-ghost btn-sm" href="{{ url_for('student.home') }}">
-            Open Version 2 Learning Experience
-        </a>
-    </p>
-    {% endif %}
 </section>
 
 {% if show_revision_acknowledgement %}
@@ -469,9 +462,11 @@
             {% if time_summary and schedule_kpi_status %}
             {% set surplus = time_summary.hours_surplus_or_deficit %}
             <div class="command-card-body">
+                {# PX-002A T2-6: display-only rounding — hides false precision
+                   (e.g. "199.98") without changing the underlying stored value. #}
                 <div class="command-metric mb-2">
                     <span class="command-metric-label">Remaining Study Hours</span>
-                    <span class="command-metric-value" style="color: var(--color-info);">{{ time_summary.remaining_hours }}</span>
+                    <span class="command-metric-value" style="color: var(--color-info);">{{ time_summary.remaining_hours|round|int }}</span>
                 </div>
                 <div
                     class="command-time-badge kpi-status-panel kpi-status-panel--{{ schedule_kpi_status.audience }} mt-2 p-3 rounded-3 d-flex align-items-center gap-3"
@@ -483,9 +478,9 @@
                         <div class="fw-semibold small kpi-status-label-text">{{ schedule_kpi_status.label }}</div>
                         <div class="small text-muted">
                             {% if surplus >= 0 %}
-                                {{ surplus }} hours surplus vs planned study time
+                                {{ surplus|round|int }} hours surplus vs planned study time
                             {% else %}
-                                {{ (surplus * -1) }} hours deficit vs planned study time
+                                {{ (surplus * -1)|round|int }} hours deficit vs planned study time
                             {% endif %}
                         </div>
                     </div>

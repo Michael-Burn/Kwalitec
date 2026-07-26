@@ -37,11 +37,16 @@ CANONICAL_SURFACES: tuple[ExperienceSurface, ...] = (
 )
 
 SURFACE_LABELS: dict[ExperienceSurface, str] = {
+    # PX-002A T1-1: "Dashboard" retired for this surface — it collided with
+    # the legacy Learning Workspace home, which keeps "Dashboard" since it is
+    # the genuine multi-metric overview screen.
     ExperienceSurface.HOME: "Home",
     ExperienceSurface.JOURNEY: "Journey",
     ExperienceSurface.REVISION: "Revision",
+    # PX-002A: renamed from "Analytics" — that label was reused verbatim by
+    # the legacy Analytics KPI dashboard for a structurally different screen.
     ExperienceSurface.HISTORY: "History",
-    ExperienceSurface.PROFILE: "Profile",
+    ExperienceSurface.PROFILE: "Settings",
 }
 
 

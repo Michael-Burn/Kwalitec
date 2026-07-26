@@ -11,6 +11,7 @@ from app.application.session_experience.dto.overview_snapshot import (
     OverviewSnapshot,
 )
 from app.domain.session_experience.session_workspace import SessionSurface
+from app.presentation.formatting import format_duration_estimate
 from app.presentation.session.navigation import SURFACE_ENDPOINTS, build_session_steps
 from app.presentation.session.view_models import overview_vm
 
@@ -45,7 +46,9 @@ def test_overview_duration_labels(minutes):
             begin_action=BeginSessionActionSnapshot(session_id="sess-1"),
         )
     )
-    assert str(minutes) in vm.estimated_duration_label
+    # PX-002A T1-2: Session Overview shares the same duration-formatting
+    # helper as Home/Mission, so the two screens never disagree.
+    assert vm.estimated_duration_label == format_duration_estimate(minutes)
 
 
 @pytest.mark.parametrize("count", range(0, 16))

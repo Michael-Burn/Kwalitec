@@ -19,6 +19,10 @@ from app.application.session_experience.dto.reflection_snapshot import (
 )
 from app.application.session_experience.facade import SessionFlowSnapshot
 from app.domain.session_experience.session_workspace import SessionSurface
+from app.presentation.formatting import (
+    format_duration_estimate,
+    format_remaining_minutes,
+)
 from app.presentation.session.navigation import (
     SessionNavStep,
     build_session_steps,
@@ -170,8 +174,9 @@ def page_from_flow(flow: SessionFlowSnapshot) -> SessionPageViewModel:
 
 
 def overview_vm(snap: OverviewSnapshot) -> OverviewViewModel:
-    minutes = snap.estimated_minutes
-    duration = "" if minutes is None else f"About {minutes} minutes"
+    # PX-002A T1-2: shared duration formatting — matches Home/Mission wording
+    # so the same estimate never reads differently on different screens.
+    duration = format_duration_estimate(snap.estimated_minutes)
     activities = (
         "No activities listed"
         if snap.activity_count <= 0
@@ -221,9 +226,7 @@ def activity_vm(snap: ActivitySnapshot) -> ActivityViewModel:
 
 
 def progress_vm(snap: ProgressSnapshot) -> ProgressBarViewModel:
-    remaining = ""
-    if snap.estimated_remaining_minutes is not None:
-        remaining = f"About {snap.estimated_remaining_minutes} minutes remaining"
+    remaining = format_remaining_minutes(snap.estimated_remaining_minutes)
     return ProgressBarViewModel(
         percent=snap.progress_percent,
         label=f"{snap.progress_percent}% complete",

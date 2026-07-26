@@ -2,6 +2,10 @@
 
 Translates educational evidence into explanations learners can act on.
 Never exposes internal architectural terminology.
+
+EP-006.2: when Runtime A attaches a schema-complete Meaningful Explanation
+Schema (MES), presentation must pass authored fields through — reason-code
+re-narration is fallback only for incomplete / cold-start payloads.
 """
 
 from __future__ import annotations
@@ -51,6 +55,15 @@ class RecommendationExplanation:
     evidence_points: tuple[str, ...] = field(default_factory=tuple)
     expected_benefit: str = ""
     confidence_label: str = ""
+    suggested_next_action: str = ""
+    review_point: str = ""
+    confidence_basis: str = ""
+    # EP-008.1 — Recommendation Trust (pass-through / composed presentation).
+    plan_coherence: str = ""
+    plan_coherence_label: str = ""
+    honest_refusal: bool = False
+    timeliness_line: str = ""
+    completion_loop_line: str = ""
 
     @classmethod
     def create(
@@ -61,6 +74,14 @@ class RecommendationExplanation:
         evidence_points: list[str] | tuple[str, ...] | None = None,
         expected_benefit: str = "",
         confidence_label: str = "",
+        suggested_next_action: str = "",
+        review_point: str = "",
+        confidence_basis: str = "",
+        plan_coherence: str = "",
+        plan_coherence_label: str = "",
+        honest_refusal: bool = False,
+        timeliness_line: str = "",
+        completion_loop_line: str = "",
     ) -> RecommendationExplanation:
         """Build an explanation after translating and validating copy."""
         points = tuple(
@@ -78,6 +99,28 @@ class RecommendationExplanation:
             ),
             confidence_label=assert_student_safe(
                 translate_to_student_language(confidence_label)
+            ),
+            suggested_next_action=assert_student_safe(
+                translate_to_student_language(suggested_next_action)
+            ),
+            review_point=assert_student_safe(
+                translate_to_student_language(review_point)
+            ),
+            confidence_basis=assert_student_safe(
+                translate_to_student_language(confidence_basis)
+            ),
+            plan_coherence=assert_student_safe(
+                translate_to_student_language(plan_coherence)
+            ),
+            plan_coherence_label=assert_student_safe(
+                translate_to_student_language(plan_coherence_label)
+            ),
+            honest_refusal=bool(honest_refusal),
+            timeliness_line=assert_student_safe(
+                translate_to_student_language(timeliness_line)
+            ),
+            completion_loop_line=assert_student_safe(
+                translate_to_student_language(completion_loop_line)
             ),
         )
 
@@ -135,11 +178,24 @@ def build_explanation(
     expected_benefit: str = "",
     priority_band: str = "",
     confidence: str = "",
+    suggested_next_action: str = "",
+    review_point: str = "",
+    confidence_basis: str = "",
+    why_recommended: str = "",
+    summary: str = "",
+    plan_coherence: str = "",
+    plan_coherence_label: str = "",
+    honest_refusal: bool = False,
+    timeliness_line: str = "",
+    completion_loop_line: str = "",
 ) -> RecommendationExplanation:
     """Compose a student explanation from educational evidence phrases.
 
     Does not calculate educational signals — only projects provided evidence
     into learner language.
+
+    When ``why_recommended`` is already authored (schema-complete MES), pass it
+    through instead of synthesising from reason codes.
     """
     topic = (topic_title or "").strip() or "this topic"
     codes = tuple(reason_codes or ())
@@ -149,34 +205,55 @@ def build_explanation(
         if str(p).strip()
     ]
 
-    why_parts: list[str] = []
-    for code in codes:
-        key = str(code).strip().lower()
-        why_parts.append(_reason_code_to_phrase(key, topic))
-    if not why_parts and phrases:
-        why_parts.append(phrases[0])
-    if not why_parts:
-        why_parts.append(
-            f"This is the highest-value next step for {topic} based on "
-            "your recent learning evidence."
+    authored_why = translate_to_student_language(why_recommended)
+    if authored_why:
+        why_text = authored_why
+    else:
+        why_parts: list[str] = []
+        for code in codes:
+            key = str(code).strip().lower()
+            why_parts.append(_reason_code_to_phrase(key, topic))
+        if not why_parts and phrases:
+            why_parts.append(phrases[0])
+        if not why_parts:
+            why_parts.append(
+                f"This is the highest-value next step for {topic} based on "
+                "your recent learning evidence."
+            )
+        why_text = " ".join(why_parts)
+
+    authored_summary = translate_to_student_language(summary)
+    if authored_summary:
+        summary_text = authored_summary
+    else:
+        summary_text = f"Focus on {topic} next."
+        if priority_band:
+            band = translate_to_student_language(priority_band)
+            summary_text = f"{band.capitalize()} priority: focus on {topic}."
+
+    benefit = translate_to_student_language(expected_benefit)
+    if not benefit and not honest_refusal:
+        benefit = (
+            f"Studying {topic} now is expected to strengthen your exam readiness."
         )
-
-    summary = f"Focus on {topic} next."
-    if priority_band:
-        band = translate_to_student_language(priority_band)
-        summary = f"{band.capitalize()} priority: focus on {topic}."
-
-    benefit = translate_to_student_language(expected_benefit) or (
-        f"Studying {topic} now is expected to strengthen your exam readiness."
-    )
     confidence_label = translate_to_student_language(confidence)
+    review = translate_to_student_language(review_point)
+    loop_line = translate_to_student_language(completion_loop_line) or review
 
     return RecommendationExplanation.create(
-        summary=summary,
-        why_recommended=" ".join(why_parts),
+        summary=summary_text,
+        why_recommended=why_text,
         evidence_points=tuple(phrases),
         expected_benefit=benefit,
         confidence_label=confidence_label,
+        suggested_next_action=translate_to_student_language(suggested_next_action),
+        review_point=review,
+        confidence_basis=translate_to_student_language(confidence_basis),
+        plan_coherence=translate_to_student_language(plan_coherence),
+        plan_coherence_label=translate_to_student_language(plan_coherence_label),
+        honest_refusal=bool(honest_refusal),
+        timeliness_line=translate_to_student_language(timeliness_line),
+        completion_loop_line=loop_line,
     )
 
 

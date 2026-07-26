@@ -1,4 +1,9 @@
-"""Workflow 5 — Dual-run Dashboard ↔ Student Experience navigation."""
+"""Workflow 5 — Dual-run Dashboard ↔ Student Experience navigation.
+
+Phase 1 consolidation: student-visible Version 2 / competing-experience CTAs
+are removed. Dual-run remains via flags and direct URLs; sole runtime redirects
+legacy surfaces to the canonical Student Experience.
+"""
 
 from __future__ import annotations
 
@@ -40,35 +45,30 @@ def test_v1_primary_when_student_flag_off():
     assert status.label == "v1-primary"
 
 
-def test_dashboard_dual_run_cta(app, client, ctx, user):
+def test_dashboard_has_no_version_terminology(app, client, ctx, user):
     login_student(client)
     with patch(
         "app.dashboard.routes.resolve_v2_feature_flags",
         return_value=dual_run_flags(),
     ):
         response = client.get("/")
-        # May redirect to dashboard.index
         if response.status_code in {302, 303}:
             response = client.get(response.headers["Location"])
         html = response.get_data(as_text=True)
-        assert "Version 2 Learning Experience" in html or "/student/" in html
+        assert "Version 2" not in html
+        assert "Learning Experience V2" not in html
+        assert "Alternative Experience" not in html
+        assert "Beta Experience" not in html
 
 
-def test_student_back_to_dashboard_when_dual_run(student_client, app):
-    with patch(
-        "app.__init__._resolve_v2_flags_for_templates",
-        return_value=dual_run_flags(),
-    ):
-        # Re-hit context via request; patch the resolve used by context processor.
-        pass
+def test_student_has_no_competing_experience_cta(student_client):
     with patch(
         "app.application.config.v2_flags.resolve_v2_feature_flags",
         return_value=dual_run_flags(),
     ):
-        response = student_client.get("/student/")
-        html = response.get_data(as_text=True)
-        assert "Back to Dashboard" in html
-        assert "/dashboard" in html or 'href="/"' in html or "dashboard.index" in html
+        html = student_client.get("/student/").get_data(as_text=True)
+        assert "Back to Dashboard" not in html
+        assert "Version 2" not in html
 
 
 def test_student_hides_back_link_in_sole_runtime(student_client):
@@ -80,16 +80,58 @@ def test_student_hides_back_link_in_sole_runtime(student_client):
         assert "Back to Dashboard" not in html
 
 
-def test_student_hides_back_link_when_flag_off(student_client):
+def test_legacy_dashboard_redirects_under_sole_runtime(app, client, ctx, user):
+    login_student(client)
     with patch(
-        "app.application.config.v2_flags.resolve_v2_feature_flags",
-        return_value=dual_run_flags(ENABLE_STUDENT_EXPERIENCE=False),
+        "app.presentation.consolidation.resolve_v2_feature_flags",
+        return_value=dual_run_flags(SOLE_RUNTIME=True),
     ):
-        html = student_client.get("/student/").get_data(as_text=True)
-        assert "Back to Dashboard" not in html
+        response = client.get("/dashboard/", follow_redirects=False)
+        assert response.status_code in {302, 303}
+        assert "/student" in response.headers.get("Location", "")
 
 
-def test_round_trip_dashboard_student_dashboard(app, client, ctx, user):
+def test_legacy_analytics_redirects_under_sole_runtime(app, client, ctx, user):
+    login_student(client)
+    with patch(
+        "app.presentation.consolidation.resolve_v2_feature_flags",
+        return_value=dual_run_flags(SOLE_RUNTIME=True),
+    ):
+        response = client.get("/analytics/", follow_redirects=False)
+        assert response.status_code in {302, 303}
+        assert "/student/history" in response.headers.get("Location", "")
+
+
+def test_legacy_missions_redirect_under_sole_runtime(app, client, ctx, user):
+    login_student(client)
+    with patch(
+        "app.presentation.consolidation.resolve_v2_feature_flags",
+        return_value=dual_run_flags(SOLE_RUNTIME=True),
+    ):
+        response = client.get("/missions/", follow_redirects=False)
+        assert response.status_code in {302, 303}
+        assert "/student" in response.headers.get("Location", "")
+
+
+def test_nested_legacy_session_redirects_under_sole_runtime(app, client, ctx, user):
+    """V2-023: nested LXP session chrome must not remain live under sole runtime."""
+    login_student(client)
+    with patch(
+        "app.presentation.consolidation.resolve_v2_feature_flags",
+        return_value=dual_run_flags(SOLE_RUNTIME=True),
+    ):
+        for path in (
+            "/missions/1/session",
+            "/missions/1/session/finish",
+            "/missions/1/session/recorded",
+            "/missions/review/1",
+        ):
+            response = client.get(path, follow_redirects=False)
+            assert response.status_code in {302, 303}, path
+            assert "/student" in response.headers.get("Location", ""), path
+
+
+def test_dual_run_keeps_legacy_dashboard_reachable(app, client, ctx, user):
     login_student(client)
     with patch(
         "app.application.config.v2_flags.resolve_v2_feature_flags",
@@ -99,9 +141,6 @@ def test_round_trip_dashboard_student_dashboard(app, client, ctx, user):
         assert dash.status_code == 200
         student = client.get("/student/")
         assert student.status_code == 200
-        assert "Back to Dashboard" in student.get_data(as_text=True)
-        back = client.get("/dashboard/")
-        assert back.status_code == 200
 
 
 def test_session_brand_returns_to_student_home(student_client):
@@ -115,9 +154,7 @@ def test_root_redirect_not_forced_to_student_in_dual_run(app, client, ctx, user)
         "app.application.config.v2_flags.resolve_v2_feature_flags",
         return_value=dual_run_flags(SOLE_RUNTIME=False),
     ):
-        # Dual-run keeps V1 dashboard as default home.
         response = client.get("/", follow_redirects=False)
-        # Either dashboard or a redirect toward dashboard — not sole student.
         if response.status_code in {302, 303}:
             loc = response.headers.get("Location", "")
             assert "/student" not in loc or "dashboard" in loc.lower()

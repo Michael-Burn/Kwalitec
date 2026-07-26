@@ -42,12 +42,14 @@ def test_student_home_journey_and_insights(student_client):
 
 
 def test_dual_run_back_link_visibility(student_client):
+    """Phase 1: competing-experience CTAs are removed from student chrome."""
     with patch(
         "app.application.config.v2_flags.resolve_v2_feature_flags",
         return_value=alpha_flags(SOLE_RUNTIME=False),
     ):
         dual = student_client.get("/student/").get_data(as_text=True)
-    assert "Back to Dashboard" in dual
+    assert "Back to Dashboard" not in dual
+    assert "Version 2" not in dual
     with patch(
         "app.application.config.v2_flags.resolve_v2_feature_flags",
         return_value=alpha_flags(SOLE_RUNTIME=True),

@@ -301,10 +301,14 @@ class TestIa003StudentSurfacesRegression:
     def test_settings_learning_profile_not_digital_twin(
         self, logged_in_client
     ) -> None:
+        """B10 (PX-003): "Learning profile status" itself named an internal
+        Digital Twin engine-state concept — renamed to "Personalised
+        recommendations", a concept meaningful to students."""
         response = logged_in_client.get("/settings/internal-alpha")
         assert response.status_code == 200
         body = response.get_data(as_text=True)
-        assert "Learning profile status" in body
+        assert "Personalised recommendations" in body
+        assert "Learning profile status" not in body
         assert "Digital Twin status" not in body
         assert "Educational Intelligence behaviour" not in body
 
