@@ -81,7 +81,24 @@ def _delete_user_records(model_class, user_id):
 @settings_bp.get("/")
 @login_required
 def index():
-    """Render the settings overview page."""
+    """Render the settings overview page.
+
+    READY FOR MIGRATION: under sole runtime, the canonical Settings surface
+    is Student Profile (see `partials/sidebar.html`'s "Settings" nav item).
+    This bare landing ("general" tab — version/support/diagnostics/about) is
+    fully superseded by `alpha.help_centre`'s own "Diagnostic information"
+    disclosure, so redirecting it closes a duplicate-experience entry point
+    (B9, PX-003 release blockers) with no loss of reachable content. The
+    functional sub-pages below (profile/preferences/data/internal-alpha)
+    are not yet migrated and stay reachable — including from Student
+    Profile's own "Open account settings" CTA.
+    """
+    from app.presentation.consolidation import redirect_if_sole_runtime
+
+    sole = redirect_if_sole_runtime("student.profile")
+    if sole is not None:
+        return sole
+
     return render_template("settings/index.html", title="Settings", section="general")
 
 
@@ -132,13 +149,20 @@ def share_feedback():
 @settings_bp.get("/internal-alpha")
 @login_required
 def internal_alpha():
-    """Render Internal Alpha informational status (presentation only)."""
+    """Render account/personalisation status (presentation only).
+
+    B10 (PX-003): page title and on-screen labels use student-meaningful
+    language ("Account Status", "Personalised recommendations") rather than
+    internal engine-state terms ("Internal Alpha", "Learning profile
+    status", "Digital Twin"). Route path/endpoint name kept stable — only
+    the URL slug is legacy, not a student-visible label.
+    """
     from app.services.internal_alpha_status_service import InternalAlphaStatusService
 
     status = InternalAlphaStatusService.build_status(current_user.id)
     return render_template(
         "settings/index.html",
-        title="Internal Alpha",
+        title="Account Status",
         section="internal-alpha",
         alpha_status=status,
     )

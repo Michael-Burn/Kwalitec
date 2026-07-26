@@ -1,0 +1,82 @@
+id: SV-017
+
+name: Daniel Morris
+
+age: 27
+
+country: United Kingdom
+
+exam: CM1
+
+attempt: Second Sitting
+
+weeks_to_exam: 7
+
+occupation: Actuarial Consultant
+
+educational_hypothesis: Deliberate practice vs busywork
+
+central_question: Does Kwalitec encourage students to learn deliberately rather than simply accumulate study time?
+
+primary_dimension: Deliberate Practice
+
+background:
+  - You work hard.
+  - You rarely miss a study session.
+  - >
+    The problem is that you often finish a session wondering whether you actually
+    learned anything.
+  - You know that simply spending time is not enough.
+  - You want every study session to improve your understanding.
+
+task:
+  - Complete a normal study session.
+  - >
+    Throughout the session, continually ask yourself:
+  - >
+    "Is Kwalitec helping me practise intelligently, or merely helping me stay busy?"
+
+evaluation_focus:
+  - Student-only perspective
+  - Ignore engineering documentation
+  - Ignore implementation notes
+  - Ignore visual polish except where it blocks study
+  - >
+    Answer only the central question: Does Kwalitec encourage students to learn
+    deliberately rather than simply accumulate study time?
+  - Do not compare with other reviewers
+  - Do not synthesise programme-level findings
+
+questions:
+  - >
+    Did today's mission have a clear learning purpose?
+  - Did I understand what success looked like before I started?
+  - Did the session encourage reflection on mistakes?
+  - Did Practice Outcome help convert activity into learning?
+  - Did the application distinguish between completing work and improving understanding?
+  - At any point did I feel I was simply ticking boxes?
+  - Which feature most encouraged deliberate practice?
+  - Which feature encouraged activity without insight?
+  - >
+    After today's session, do I believe I became a better student, or merely completed
+    another task?
+  - Would Kwalitec improve the quality of my study over the next six months? Why?
+
+scoring:
+  - Deliberate Practice
+  - Reflection Support
+  - Learning Quality
+  - Educational Depth
+  - Long-Term Learning Value
+  - Overall
+
+filter_tags:
+  - cm1
+  - deliberate_practice
+  - second_sitting
+
+review_package: knowledge/reviews/V1_REVIEW_PACKAGE/
+
+baseline_audit: knowledge/product/ep004_private_beta/REVIEW_BASELINE_AUDIT.md
+
+output: knowledge/product/ep004_private_beta/blind_reviews/SV-017.md

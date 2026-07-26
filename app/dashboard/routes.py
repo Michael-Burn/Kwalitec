@@ -19,6 +19,7 @@ from app.application.dashboard import (
     DashboardViewModel,
     EducationalDashboardComposer,
 )
+from app.presentation.intelligence_surface import RuntimeAPresentationAdapter
 from app.services.burnout_monitor import BurnoutMonitor
 from app.services.curriculum_engine_service import (
     CurriculumEngineService,
@@ -129,42 +130,50 @@ def index():
         "active_study_plan", StudyPlanService.get_user_active_plan, user_id
     )
 
-    # Auto-generate today's mission if needed (idempotent, active-plan scoped)
-    if active_study_plan:
+    # Auto-generate / resolve today's mission (EP-002.7 gated cutover —
+    # legacy generate_today_mission remains fail-open).
+    mission_surface = (
         _timed_call(
-            "generate_today_mission",
-            PlanningService.generate_today_mission,
+            "mission_surface",
+            PlanningService.get_dashboard_mission_surface,
             user_id,
         )
+        if active_study_plan
+        else {
+            "today_mission": None,
+            "source_authority": "legacy",
+            "explainability": {},
+        }
+    ) or {
+        "today_mission": None,
+        "source_authority": "legacy",
+        "explainability": {},
+    }
+    today_mission = mission_surface.get("today_mission")
 
-    from app.services.mission_service import MissionService
-
-    today_mission = _timed_call(
-        "today_mission",
-        MissionService.get_today_mission,
+    # Readiness (EP-002.6 gated cutover — legacy fail-open)
+    readiness_surface = _timed_call(
+        "readiness_surface",
+        ReadinessService.get_dashboard_readiness_surface,
         user_id,
-        None,
-        active_study_plan.id if active_study_plan else None,
-    )
-
-    # Readiness
-    readiness = _timed_call(
-        "readiness", ReadinessService.get_overall_readiness, user_id
-    )
+        weak_limit=3,
+        strong_limit=3,
+    ) or {
+        "readiness": {},
+        "weakest_topics": [],
+        "strongest_topics": [],
+        "source_authority": "legacy",
+        "explainability": {},
+    }
+    readiness = readiness_surface.get("readiness") or {}
     review_backlog = _timed_call(
         "review_backlog", ReadinessService.get_review_backlog, user_id
     )
 
-    # Topic highlights (only 3 each) — student-safe stage labels (EIP-003)
-    weakest_topics = EducationalExplainabilityService.enrich_topic_rows(
-        _timed_call(
-            "weakest_topics", ReadinessService.get_weakest_topics, user_id, 3
-        )
-    )
-    strongest_topics = EducationalExplainabilityService.enrich_topic_rows(
-        _timed_call(
-            "strongest_topics", ReadinessService.get_strongest_topics, user_id, 3
-        )
+    # Topic highlights (only 3 each) — EP-002.8 presentation adapter selects
+    # Twin area rows vs EIP-003 stage labels by source_authority.
+    weakest_topics, strongest_topics = RuntimeAPresentationAdapter.topic_rows(
+        readiness_surface
     )
 
     # Educational Intelligence (Stage A / Internal Alpha) — Application only.
@@ -191,22 +200,22 @@ def index():
     if not ei_recommendation_active:
         today_recommendation = _timed_call(
             "today_recommendation",
-            RecommendationService.generate_today_recommendation,
+            RecommendationService.get_dashboard_today_recommendation,
             user_id,
         )
         all_recommendations = _timed_call(
             "all_recommendations",
-            RecommendationService.generate_recommendations,
+            RecommendationService.get_dashboard_recommendations,
             user_id,
             5,
         )
-        if today_recommendation:
-            enriched_today = EducationalExplainabilityService.enrich_recommendations(
-                [today_recommendation]
+        # EP-002.8: Study Insights own communication when served; legacy uses
+        # EducationalExplainability as presentation adapter.
+        today_recommendation, all_recommendations = (
+            RuntimeAPresentationAdapter.enrich_recommendations_if_needed(
+                all_recommendations,
+                today_recommendation=today_recommendation,
             )
-            today_recommendation = enriched_today[0] if enriched_today else None
-        all_recommendations = EducationalExplainabilityService.enrich_recommendations(
-            all_recommendations
         )
 
     # Optional widgets still rendered by the template
@@ -282,9 +291,9 @@ def index():
     study_tip = StudyTipsService.tip_for_day()
     show_welcome = WelcomeService.should_show(current_user)
 
-    # EIP-003 readiness narratives (communication only — no score redesign)
-    readiness_narrative = EducationalExplainabilityService.explain_composite_readiness(
-        readiness
+    # EP-002.8: readiness speech selected by source_authority (closes TD-RI-02).
+    readiness_narrative = RuntimeAPresentationAdapter.readiness_narrative(
+        readiness_surface
     )
     coverage_narrative = None
     if readiness_summary is not None:
@@ -295,25 +304,23 @@ def index():
             )
         )
 
-    mission_narrative = None
-    if today_mission is not None:
-        syllabus_pct = None
-        completed_topics = None
-        total_topics = None
-        if curriculum_summary is not None:
-            completed_topics = getattr(curriculum_summary, "completed_topics", None)
-            total_topics = getattr(curriculum_summary, "total_topics", None)
-        if readiness_summary is not None:
-            syllabus_pct = readiness_summary.readiness_percentage * 100
-        mission_narrative = EducationalExplainabilityService.build_mission_narrative(
-            mission_title=today_mission.title,
-            mission_status=today_mission.status,
-            exam_name=active_study_plan.exam_name if active_study_plan else None,
-            completed_topics=completed_topics,
-            total_topics=total_topics,
-            syllabus_coverage_pct=syllabus_pct,
-            is_revision=lifecycle.stage == LearningLifecycle.REVISION,
-        )
+    syllabus_pct = None
+    completed_topics = None
+    total_topics = None
+    if curriculum_summary is not None:
+        completed_topics = getattr(curriculum_summary, "completed_topics", None)
+        total_topics = getattr(curriculum_summary, "total_topics", None)
+    if readiness_summary is not None:
+        syllabus_pct = readiness_summary.readiness_percentage * 100
+    mission_narrative = RuntimeAPresentationAdapter.mission_narrative(
+        today_mission=today_mission,
+        mission_surface=mission_surface,
+        exam_name=(active_study_plan.exam_name if active_study_plan else None),
+        completed_topics=completed_topics,
+        total_topics=total_topics,
+        syllabus_coverage_pct=syllabus_pct,
+        is_revision=lifecycle.stage == LearningLifecycle.REVISION,
+    )
 
     return render_template(
         "dashboard/index.html",
@@ -351,13 +358,17 @@ def index():
 @login_required
 def dismiss_welcome():
     """Permanently dismiss the first-time welcome modal."""
+    from app.presentation.consolidation import (
+        canonical_home_url,
+        redirect_to_canonical_home,
+    )
     from app.services.welcome_service import WelcomeService
 
     WelcomeService.dismiss(current_user.id)
-    next_url = request.form.get("next") or url_for("dashboard.index")
+    next_url = request.form.get("next") or canonical_home_url()
     # Only allow local relative redirects
     if not next_url.startswith("/"):
-        next_url = url_for("dashboard.index")
+        return redirect_to_canonical_home()
     return redirect(next_url)
 
 
@@ -365,7 +376,8 @@ def dismiss_welcome():
 @login_required
 def acknowledge_revision():
     """Dismiss the one-time syllabus-complete acknowledgement."""
+    from app.presentation.consolidation import redirect_to_canonical_home
     from app.services.learning_lifecycle_service import LearningLifecycleService
 
     LearningLifecycleService.acknowledge_revision(current_user.id)
-    return redirect(url_for("dashboard.index"))
+    return redirect_to_canonical_home()

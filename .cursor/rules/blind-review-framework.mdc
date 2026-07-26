@@ -1,0 +1,32 @@
+---
+description: Execute permanent Kwalitec blind reviews (Run reviewer SV-XXX, Repeat SV-XXX, Run all/CM1/workflow/trust reviewers) using the reviewer_framework — do not recreate prompts.
+alwaysApply: false
+---
+
+# Blind Review Framework Execution
+
+When the user asks to run, repeat, or batch blind reviewers (for example `Run reviewer SV-011`, `Repeat SV-007`, `Run all reviewers`, `Run only CM1 reviewers`, `Run only workflow reviewers`, `Run only trust reviewers`), treat that short instruction as sufficient.
+
+## Mandatory load order
+
+1. `knowledge/product/ep004_private_beta/reviewer_framework/REVIEW_PROTOCOL.md`
+2. `knowledge/product/ep004_private_beta/reviewer_framework/REVIEW_TEMPLATE.md`
+3. Matching `knowledge/product/ep004_private_beta/reviewer_framework/personas/SV-XXX.yaml` (or each YAML in a filtered batch)
+4. Verify `knowledge/reviews/V1_REVIEW_PACKAGE/` and `knowledge/product/ep004_private_beta/REVIEW_BASELINE_AUDIT.md` when present
+5. Write `knowledge/product/ep004_private_beta/blind_reviews/SV-XXX.md`
+
+Follow `REVIEW_EXECUTION_GUIDE.md` for selection filters and batch rules.
+
+## Hard rules
+
+- One persona at a time; sequential batches only
+- Student-only perspective; ignore engineering documentation and code
+- Answer only that persona’s hypothesis / central question
+- No comparison with other reviewers
+- No interim synthesis or product recommendations inside the review
+- Scores: only dimensions listed in the persona YAML (see `REVIEW_SCORING_GUIDE.md`)
+- Do not recreate mega-prompts; parameters live in the YAML
+
+## Registry
+
+Use `knowledge/product/ep004_private_beta/reviewer_framework/REVIEWER_REGISTRY.md` to resolve IDs, exams, hypotheses, and dimensions.

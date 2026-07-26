@@ -3,6 +3,10 @@
 READY FOR MIGRATION shells stay registered but send learners to the
 canonical Student Experience when ``KWALITEC_V2_SOLE_RUNTIME`` is set.
 Protected educational engines and V1 data paths are not deleted.
+
+EP-007.1 — Student Journey Consolidation: helpers resolve the single
+authoritative home endpoint so login, completion, and chrome never present
+two competing homes under sole runtime.
 """
 
 from __future__ import annotations
@@ -11,12 +15,59 @@ from flask import redirect, url_for
 
 from app.application.config.v2_flags import resolve_v2_feature_flags
 
+# Canonical student journey entry (Education OS Home).
+CANONICAL_HOME_ENDPOINT = "student.home"
+# Legacy dual-run home (Learning Workspace Dashboard).
+LEGACY_HOME_ENDPOINT = "dashboard.index"
 
-def redirect_if_sole_runtime(endpoint: str = "student.home", **values):
+
+def is_sole_runtime() -> bool:
+    """True when dual-home presentation is retired for this process."""
+    return bool(resolve_v2_feature_flags().SOLE_RUNTIME)
+
+
+def canonical_home_endpoint() -> str:
+    """Return the authoritative home Flask endpoint for the current flags.
+
+    Under sole runtime: ``student.home`` (dual-home removed).
+    Otherwise: ``dashboard.index`` (dual-run soak / Internal Alpha rollback).
+    """
+    if is_sole_runtime():
+        return CANONICAL_HOME_ENDPOINT
+    return LEGACY_HOME_ENDPOINT
+
+
+def canonical_home_url(**values) -> str:
+    """URL for the authoritative student home."""
+    return url_for(canonical_home_endpoint(), **values)
+
+
+def redirect_to_canonical_home(**values):
+    """Redirect to the authoritative home for the current flag posture."""
+    return redirect(canonical_home_url(**values))
+
+
+def redirect_if_sole_runtime(endpoint: str = CANONICAL_HOME_ENDPOINT, **values):
     """Return a redirect to the canonical surface when sole runtime is on.
 
     Returns None when dual-run / legacy default is active so callers continue.
     """
-    if resolve_v2_feature_flags().SOLE_RUNTIME:
+    if is_sole_runtime():
         return redirect(url_for(endpoint, **values))
     return None
+
+
+def canonical_session_entry_endpoint() -> str:
+    """Primary study-start surface for the current flag posture.
+
+    Sole runtime: Student Home (session start is POST from Home).
+    Dual-run: legacy mission hub (Dashboard → Missions path).
+    """
+    if is_sole_runtime():
+        return CANONICAL_HOME_ENDPOINT
+    return "mission.missions"
+
+
+def canonical_session_entry_url(**values) -> str:
+    """URL for the primary study-start / continue surface."""
+    return url_for(canonical_session_entry_endpoint(), **values)

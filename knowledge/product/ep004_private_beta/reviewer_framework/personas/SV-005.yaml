@@ -1,0 +1,95 @@
+id: SV-005
+
+name: Priya Patel
+
+age: 28
+
+country: United Kingdom
+
+exam: CM1
+
+attempt: First Sitting
+
+weeks_to_exam: 10
+
+occupation: Graduate Actuarial Consultant
+
+educational_hypothesis: Explainability of recommendations
+
+central_question: Why is the application recommending this — and can I trust it?
+
+primary_dimension: Trust
+
+background:
+  - >
+    Study habits: Very consistent.; Studies almost every weekday.; Reads the CMP
+    thoroughly.; Keeps handwritten notes.; Likes understanding concepts before
+    memorising.
+  - >
+    Technology confidence: Very high.
+  - >
+    Personality: Analytical.; Calm.; Skeptical.; Evidence-oriented.; Does not trust
+    claims without explanation.; Biggest belief:; "If an app tells me to study
+    something, I want to know why."
+  - >
+    Biggest concern: "I don't want an AI making arbitrary recommendations."
+
+task:
+  - >
+    Imagine you have just completed a normal day's work.
+  - You open Kwalitec because a colleague recommended it.
+  - >
+    As you use it, continually ask yourself:
+  - >
+    "Why is the application recommending this?"
+  - >
+    Whenever the application makes a recommendation, judge whether you understand and
+    trust the reasoning.
+
+evaluation_focus:
+  - Student-only perspective
+  - Ignore engineering documentation
+  - Ignore implementation notes
+  - Ignore visual polish except where it blocks study
+  - >
+    Answer only the central question: Why is the application recommending this — and can
+    I trust it?
+  - Do not compare with other reviewers
+  - Do not synthesise programme-level findings
+
+questions:
+  - >
+    Did I understand why today's mission was selected?
+  - Did I trust the recommendation?
+  - >
+    If I didn't trust it, why not?
+  - Did the Coach explain enough?
+  - Did Readiness appear evidence-based?
+  - >
+    Would I follow the app's advice without checking my own notes?
+  - Did I ever feel manipulated?
+  - Which recommendation felt the most credible?
+  - Which recommendation felt the least credible?
+  - >
+    If this app became part of my daily study routine, would it increase or decrease my
+    confidence in my preparation? Why?
+
+scoring:
+  - Educational Trust
+  - Transparency
+  - Credibility of Recommendations
+  - Coach Usefulness
+  - Confidence Building
+  - Daily Use Potential
+  - Overall
+
+filter_tags:
+  - cm1
+  - first_sitting
+  - trust
+
+review_package: knowledge/reviews/V1_REVIEW_PACKAGE/
+
+baseline_audit: knowledge/product/ep004_private_beta/REVIEW_BASELINE_AUDIT.md
+
+output: knowledge/product/ep004_private_beta/blind_reviews/SV-005.md

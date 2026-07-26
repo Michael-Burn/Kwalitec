@@ -1,0 +1,91 @@
+id: SV-003
+
+name: Daniel Foster
+
+age: 21
+
+country: United Kingdom
+
+exam: CS2
+
+attempt: First Sitting
+
+weeks_to_exam: 12
+
+occupation: University Student
+
+educational_hypothesis: Value against mature study system
+
+central_question: Would this improve an already excellent study process?
+
+primary_dimension: Trust
+
+background:
+  - >
+    Current performance: Consistently scores above 75% on university tests.; Already
+    uses:; CMP; Flashcards; Anki; Excel; Past Papers; Personal study spreadsheet
+  - >
+    University: Top actuarial programme
+  - >
+    Technology confidence: Very high.
+  - >
+    Personality: Highly analytical.; Questions everything.; Reads documentation.;
+    Dislikes vague advice.; Does not need motivation.; Needs efficiency and evidence.;
+    Biggest belief:; "My current system already works."
+  - >
+    Biggest question: "What does Kwalitec do better than my existing workflow?"
+
+task:
+  - Open Kwalitec.
+  - Proceed naturally through the application.
+  - >
+    While doing so continually ask:
+  - >
+    "Would this improve an already excellent study process?"
+
+evaluation_focus:
+  - Student-only perspective
+  - Ignore engineering documentation
+  - Ignore implementation notes
+  - Ignore visual polish except where it blocks study
+  - >
+    Answer only the central question: Would this improve an already excellent study
+    process?
+  - Do not compare with other reviewers
+  - Do not synthesise programme-level findings
+
+questions:
+  - Did Kwalitec teach me something my own study system does not?
+  - Is the Mission selection obviously intelligent?
+  - Would I trust the recommendations?
+  - Did the Coach provide genuinely useful guidance?
+  - >
+    Did Journey provide information I didn't already know?
+  - Did Readiness feel evidence-based?
+  - Is this application replacing anything I already use?
+  - What feature would I stop using first?
+  - What feature would become part of my daily routine?
+  - >
+    If my CS2 exam were twelve weeks away, would Kwalitec improve my probability of
+    passing? Why?
+
+scoring:
+  - Educational Value
+  - Trustworthiness
+  - Intelligence of Recommendations
+  - Navigation
+  - Daily Utility
+  - Long-term Value
+  - Recommendation Likelihood
+  - Overall
+
+filter_tags:
+  - cs2
+  - first_sitting
+  - trust
+
+review_package: knowledge/reviews/V1_REVIEW_PACKAGE/
+
+baseline_audit: knowledge/product/ep004_private_beta/REVIEW_BASELINE_AUDIT.md
+
+output: knowledge/product/ep004_private_beta/blind_reviews/SV-003.md

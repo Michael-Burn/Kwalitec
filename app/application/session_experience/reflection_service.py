@@ -76,10 +76,21 @@ class ReflectionService:
         return reflection_snapshot(domain)
 
     def continue_to_summary(
-        self, student_id: str, *, session_id: str
+        self, student_id: str, *, session_id: str, note: str | None = None
     ) -> ReflectionSnapshot:
-        """Acknowledge reflection and move workspace to Summary."""
+        """Acknowledge reflection and move workspace to Summary.
+
+        When ``note`` is a non-empty string, it is persisted onto the session's
+        reflection record via the Session Runtime port before navigating —
+        this is what backs the "stays with your session record" promise made
+        on the Reflection screen (see B1, PX-003 release blockers).
+        """
         snap = self.reflection(student_id, session_id=session_id)
+        if note is not None and note.strip():
+            runtime = self._require_runtime()
+            sid = _require_id(student_id)
+            sess = _require_id(session_id, field="session_id")
+            runtime.record_reflection_note(sid, session_id=sess, note=note.strip())
         if self._registry is not None:
             workspace = self._registry.get_workspace_for_session(session_id)
             if workspace is not None:

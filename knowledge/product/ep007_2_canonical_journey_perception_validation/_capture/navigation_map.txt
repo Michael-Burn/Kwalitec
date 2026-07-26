@@ -1,0 +1,11 @@
+EP-007.2 navigation map (KWALITEC_V2_SOLE_RUNTIME=ON / W-PROD)
+
+Login success → /student/ (Student Home) — no Dashboard bounce
+GET / → /student/
+GET /dashboard/ → /student/ (redirect shell)
+GET /missions/ → /student/ (redirect shell)
+GET /analytics/ → student history surface
+Student Home primary CTA → Start / Resume Study Session → /session/...
+Session complete → /student/
+
+Dual-run (SOLE_RUNTIME=OFF) still lands on Dashboard — out of W-PROD claim window.

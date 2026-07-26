@@ -46,6 +46,9 @@ Which Educational Principles does it reinforce (consistency, feedback, reflectio
 | North Star: contributes to pass probability via better learning decisions? | |
 | Violates Never Build list? | Yes / No |
 | AI recommendations explainable / evidence-based? | Yes / No / N/A |
+| Aligns with Explainability Standard (levels + schema)? | Yes / No / N/A — see P-001.2 |
+| Aligns with Recommendation Quality Standard (principles + decision frame)? | Yes / No / N/A — see P-001.3 |
+| Affects Version 1 production-ready gates (P-002.1 G1–G12)? | Yes / No / N/A — cite residual gates if claiming V1 progress |
 | Links | Vision 2030 §… ; Blueprint §… |
 
 If Final Test is No → **do not build**.
@@ -83,8 +86,17 @@ List testable criteria. Prefer observable student or system outcomes.
 | Metric | Baseline | Target | How measured |
 |---|---|---|---|
 | (from Vision success metrics where applicable) | | | |
+| Estimated KSI contribution (ΔKSI; categories K1–K8) | | | See Product Success Framework |
+| Explainability Review required? | Yes / No / N/A | | See P-001.2 checklist if student-facing intelligence |
+| Recommendation Quality Review required? | Yes / No / N/A | | See P-001.3 checklist if student-facing recommendations |
+| Version 1 gate impact (P-002.1)? | None / Cite G# | | See Version 1 Release Framework if claiming V1 readiness progress |
 
 Activity vanity metrics are not sufficient on their own.
+
+Reference: `knowledge/product/p001_1_ksi_baseline/PRODUCT_SUCCESS_FRAMEWORK.md`.  
+Explainability: `knowledge/product/p001_2_explainability_standard/EXPLAINABILITY_STANDARD.md`.  
+Recommendation quality: `knowledge/product/p001_3_recommendation_quality_standard/RECOMMENDATION_QUALITY_STANDARD.md`.  
+Version 1 production-ready gates: `knowledge/product/p002_1_version_1_release_framework/VERSION_1_RELEASE_FRAMEWORK.md`.
 
 ---
 

@@ -1,0 +1,87 @@
+id: SV-008
+
+name: Rachel Evans
+
+age: 27
+
+country: United Kingdom
+
+exam: CM1
+
+attempt: Second Sitting (possible)
+
+weeks_to_exam: results_day
+
+occupation: Graduate Actuarial Consultant
+
+educational_hypothesis: Emotional recovery after failure
+
+central_question: Could this help me avoid failing again?
+
+primary_dimension: Trust
+
+background:
+  - >
+    Current situation: This morning the IFoA released results.; You failed.; Your mark
+    was 56%.; You spent six months preparing.; You genuinely believed you had passed.;
+    You have not yet decided whether to start studying again.
+  - >
+    Technology confidence: High
+  - >
+    Personality: Quiet; Self-critical; Disciplined; Emotionally exhausted; You do not
+    want motivation.; You want evidence that another attempt will be different.; Biggest
+    thought:; "I can't go through another six months of the same thing."
+
+task:
+  - Imagine it is 8 PM on results day.
+  - You reluctantly open Kwalitec.
+  - You are not excited.
+  - You are not hopeful.
+  - >
+    You simply want to know:
+  - >
+    "Could this help me avoid failing again?"
+  - Proceed through the normal study flow.
+
+evaluation_focus:
+  - Student-only perspective
+  - Ignore engineering documentation
+  - Ignore implementation notes
+  - Ignore visual polish except where it blocks study
+  - >
+    Answer only the central question: Could this help me avoid failing again?
+  - Do not compare with other reviewers
+  - Do not synthesise programme-level findings
+
+questions:
+  - Did Kwalitec make me feel understood?
+  - At any point did I feel judged?
+  - Did the application acknowledge that students sometimes fail?
+  - >
+    Did today's mission feel achievable after such a disappointing day?
+  - Did the Coach make me feel more hopeful?
+  - Did Readiness increase or reduce my anxiety?
+  - Did Journey make restarting feel possible?
+  - At what moment did I feel most encouraged?
+  - >
+    At what moment did I think, "This won't change anything."
+  - After one session, would I commit to another CM1 attempt using Kwalitec? Why?
+
+scoring:
+  - Emotional Safety
+  - Encouragement
+  - Trust
+  - Willingness to Restart
+  - Daily Use Potential
+  - Overall
+
+filter_tags:
+  - cm1
+  - second_sitting
+  - trust
+
+review_package: knowledge/reviews/V1_REVIEW_PACKAGE/
+
+baseline_audit: knowledge/product/ep004_private_beta/REVIEW_BASELINE_AUDIT.md
+
+output: knowledge/product/ep004_private_beta/blind_reviews/SV-008.md

@@ -7,10 +7,8 @@ import json
 from flask import Blueprint, render_template
 from flask_login import current_user, login_required
 
+from app.presentation.intelligence_surface import RuntimeAPresentationAdapter
 from app.services.analytics_service import AnalyticsService
-from app.services.educational_explainability_service import (
-    EducationalExplainabilityService,
-)
 from app.services.readiness_service import ReadinessService
 
 analytics_bp = Blueprint("analytics", __name__, url_prefix="/analytics")
@@ -31,22 +29,23 @@ def index():
 
     user_id = current_user.id
 
-    # Readiness
-    readiness = ReadinessService.get_overall_readiness(user_id)
-    readiness_narrative = EducationalExplainabilityService.explain_composite_readiness(
-        readiness
+    # Readiness (EP-002.6 gated cutover — legacy fail-open)
+    readiness_surface = ReadinessService.get_dashboard_readiness_surface(
+        user_id, weak_limit=5, strong_limit=5
+    )
+    readiness = readiness_surface.get("readiness") or {}
+    # EP-002.8: unified presentation selection by source_authority
+    weakest_topics, strongest_topics = RuntimeAPresentationAdapter.topic_rows(
+        readiness_surface
+    )
+    readiness_narrative = RuntimeAPresentationAdapter.readiness_narrative(
+        readiness_surface
     )
     curriculum_coverage = ReadinessService.get_curriculum_coverage(user_id)
     review_backlog = ReadinessService.get_review_backlog(user_id)
     review_completion = ReadinessService.get_review_completion_rate(user_id)
     current_streak = ReadinessService.get_current_streak(user_id)
     longest_streak = ReadinessService.get_longest_streak(user_id)
-    weakest_topics = EducationalExplainabilityService.enrich_topic_rows(
-        ReadinessService.get_weakest_topics(user_id, limit=5)
-    )
-    strongest_topics = EducationalExplainabilityService.enrich_topic_rows(
-        ReadinessService.get_strongest_topics(user_id, limit=5)
-    )
 
     # Time-series analytics
     readiness_trend = AnalyticsService.get_readiness_over_time(user_id, weeks=12)

@@ -1,10 +1,15 @@
-{# RR-001 — collapsible recommendation provenance (max 3 reasons) #}
-{% macro explanation_card(explanation) %}
+{# EP-006.2 — MES progressive disclosure for recommendations.
+   Level 1 summary stays in the parent surface; this card is Level 2.
+   Pass-through only — does not invent educational meaning.
+   EP-008.1 — alternatives + review/completion loop in disclosure.
+#}
+{% macro explanation_card(explanation, alternatives=None, show_l1_benefit_again=True) %}
 {% if explanation and explanation.has_content %}
-{% set points = (explanation.evidence_points or ())[:3] %}
-<details class="student-card student-card--explanation student-provenance" data-provenance="true">
+{% set points = explanation.evidence_points or () %}
+{% set alts = alternatives if alternatives is not none else () %}
+<details class="student-card student-card--explanation student-provenance" data-provenance="true" data-mes-level="2"{% if explanation.honest_refusal %} data-trust-state="refusal"{% endif %}>
     <summary class="student-provenance__summary">
-        <span class="student-card-eyebrow">Why this recommendation</span>
+        <span class="student-card-eyebrow">Why this tip?</span>
         <span class="student-card-title" id="explanation-title">
             {{ explanation.summary or 'Why this guidance' }}
         </span>
@@ -12,15 +17,38 @@
     {% if explanation.why_recommended %}
     <p class="student-card-body">{{ explanation.why_recommended }}</p>
     {% endif %}
+    {% if explanation.suggested_next_action %}
+    <p class="student-card-body"><span class="student-label">Next</span> {{ explanation.suggested_next_action }}</p>
+    {% endif %}
     {% if points %}
-    <ol class="student-evidence-list" aria-label="Reasons">
+    <ol class="student-evidence-list" aria-label="Supporting evidence" data-mes-field="supporting_evidence">
         {% for point in points %}
         <li>{{ point }}</li>
         {% endfor %}
     </ol>
     {% endif %}
-    {% if explanation.expected_benefit %}
-    <p class="student-muted mb-0"><span class="student-label">Expected benefit</span> {{ explanation.expected_benefit }}</p>
+    {% if explanation.confidence_label %}
+    <p class="student-muted mb-0" data-mes-field="confidence_level"><span class="student-label">Confidence</span> {{ explanation.confidence_label }}{% if explanation.confidence_basis %} — {{ explanation.confidence_basis }}{% endif %}</p>
+    {% endif %}
+    {% if show_l1_benefit_again and explanation.expected_benefit %}
+    <p class="student-muted mb-0" data-mes-field="expected_benefit" data-mes-level="2"><span class="student-label">Expected benefit</span> {{ explanation.expected_benefit }}</p>
+    {% endif %}
+    {% if explanation.review_point or explanation.completion_loop_line %}
+    <p class="student-muted mb-0" data-mes-field="review_point"><span class="student-label">After you complete this</span> {{ explanation.completion_loop_line or explanation.review_point }}</p>
+    {% endif %}
+    {% if alts and not explanation.honest_refusal %}
+    <div class="student-trust-alternatives" data-mes-field="alternatives" data-mes-level="2">
+        <p class="student-label mb-1">Other options considered</p>
+        <ul class="student-evidence-list" aria-label="Other options considered">
+            {% for alt in alts %}
+            <li>
+                <strong>{{ alt.title }}</strong>
+                {% if alt.why_recommended %} — {{ alt.why_recommended }}{% endif %}
+                {% if alt.expected_benefit %} <span class="student-muted">({{ alt.expected_benefit }})</span>{% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
     {% endif %}
 </details>
 {% endif %}

@@ -148,7 +148,7 @@ Exit of an **individual** participant: withdrawal of consent, exam completion, o
 | This protocol | `PRIVATE_BETA_PROTOCOL.md` (EP-003) |
 | Onboarding / feedback / support / privacy | `knowledge/product/private_beta/` |
 | KPI definitions | [`EDUCATIONAL_METRICS.md`](EDUCATIONAL_METRICS.md) |
-| Cohort measurement report | *To be written after cohort window* (not part of EP-003 doc freeze) |
+| Cohort measurement report | EP-004 execution pack: `../ep004_private_beta/` (Stage 0 filed; Stage 1–2 pending privacy) |
 
 ---
 

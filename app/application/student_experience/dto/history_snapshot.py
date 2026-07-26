@@ -4,6 +4,10 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
+from app.application.student_experience.dto.recommendation_narrative_entry_snapshot import (  # noqa: E501
+    RecommendationNarrativeEntrySnapshot,
+)
+
 
 @dataclass(frozen=True)
 class CompletedSessionSnapshot:
@@ -53,3 +57,8 @@ class HistorySnapshot:
     )
     session_count: int = 0
     mastered_count: int = 0
+    # EP-008.3 — educational recommendation narrative (not audit log).
+    recommendation_narrative: tuple[
+        RecommendationNarrativeEntrySnapshot, ...
+    ] = field(default_factory=tuple)
+    recommendation_narrative_header: str = ""

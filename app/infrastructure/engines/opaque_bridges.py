@@ -118,6 +118,7 @@ class MissionOpaqueBridge:
             "student_id": sid,
             "session_id": session_id,
             "mission_id": mission_id,
+            "experience_session_id": f"es-{session_id}",
             "objective": kwargs.get("objective") or "Complete today's learning session",
             "topics": tuple(kwargs.get("topics") or ("Core methods",)),
             "estimated_minutes": kwargs.get("estimated_minutes") or 30,

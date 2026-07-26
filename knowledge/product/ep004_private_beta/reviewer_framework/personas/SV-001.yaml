@@ -1,0 +1,81 @@
+id: SV-001
+
+name: Emma Wilson
+
+age: 22
+
+country: United Kingdom
+
+exam: CS1
+
+attempt: First Sitting
+
+weeks_to_exam: 12
+
+occupation: University Graduate
+
+educational_hypothesis: First-use clarity
+
+central_question: Can a brand-new student confidently begin studying?
+
+primary_dimension: Adoption
+
+background:
+  - You have just started studying for CS1.
+  - You have never used Kwalitec before.
+  - You have no expectations.
+  - >
+    You have only one question:
+  - >
+    "Can this application help me understand what I should do next?"
+
+task:
+  - Imagine this is your first ever visit to Kwalitec.
+  - Explore naturally.
+  - Complete one realistic study session.
+  - Do not attempt to test every feature.
+  - Behave exactly like a genuine first-time CS1 student.
+
+evaluation_focus:
+  - Student-only perspective
+  - Ignore engineering documentation
+  - Ignore implementation notes
+  - Ignore visual polish except where it blocks study
+  - >
+    Answer only the central question: Can a brand-new student confidently begin
+    studying?
+  - Do not compare with other reviewers
+  - Do not synthesise programme-level findings
+
+questions:
+  - What was my first impression?
+  - Did I understand what Kwalitec wanted me to do?
+  - >
+    Was today's study task obvious?
+  - Did I ever feel lost?
+  - Which screen made the most sense?
+  - Which screen confused me?
+  - >
+    Did I understand why today's mission was chosen?
+  - Would I know how to begin tomorrow?
+  - Would I return tomorrow? Why?
+  - If another new CS1 student asked whether to try Kwalitec, what would I tell them?
+
+scoring:
+  - First Impression
+  - Clarity
+  - Ease of Starting
+  - Educational Confidence
+  - Return Likelihood
+  - Overall
+
+filter_tags:
+  - adoption
+  - cs1
+  - first_sitting
+
+review_package: knowledge/reviews/V1_REVIEW_PACKAGE/
+
+baseline_audit: knowledge/product/ep004_private_beta/REVIEW_BASELINE_AUDIT.md
+
+output: knowledge/product/ep004_private_beta/blind_reviews/SV-001.md

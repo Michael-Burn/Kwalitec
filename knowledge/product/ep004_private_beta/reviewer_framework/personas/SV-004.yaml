@@ -1,0 +1,95 @@
+id: SV-004
+
+name: Michael Dube
+
+age: 24
+
+country: Zimbabwe
+
+exam: CS1
+
+attempt: Second Sitting
+
+weeks_to_exam: 9
+
+occupation: Actuarial Student
+
+educational_hypothesis: Restart after missed study days
+
+central_question: Does this make me want to keep studying tonight?
+
+primary_dimension: Motivation
+
+background:
+  - >
+    Current status: Failed CS1 once.; Owns all the CMP material.; Knows what he SHOULD
+    study.; Rarely follows his own plan.
+  - >
+    Study behaviour: Misses several study days each week.; Often studies only after
+    feeling guilty.; Starts enthusiastically but loses momentum.; Easily distracted by
+    YouTube, WhatsApp and social media.; Frequently tells himself:; "I'll study properly
+    tomorrow."
+  - >
+    Technology confidence: High.
+  - >
+    Personality: Intelligent.; Self-aware.; Inconsistent.; Motivated by visible
+    progress.; Loses interest quickly if an app feels repetitive.
+  - >
+    Biggest frustration: "I always fall behind my own timetable."
+  - >
+    Biggest hope: "I want something that helps me keep showing up."
+
+task:
+  - Imagine it is Monday evening.
+  - You have skipped studying for the last four days.
+  - You feel guilty.
+  - You reluctantly open Kwalitec.
+  - Go through the normal study flow.
+  - >
+    While doing so, constantly ask:
+  - >
+    "Does this make me want to keep studying tonight?"
+
+evaluation_focus:
+  - Student-only perspective
+  - Ignore engineering documentation
+  - Ignore implementation notes
+  - Ignore visual polish except where it blocks study
+  - >
+    Answer only the central question: Does this make me want to keep studying tonight?
+  - Do not compare with other reviewers
+  - Do not synthesise programme-level findings
+
+questions:
+  - Did Kwalitec reduce my resistance to starting?
+  - >
+    Did today's mission feel achievable after several missed days?
+  - Did I feel judged or encouraged?
+  - Did the app make me feel like I could recover from falling behind?
+  - >
+    Would I complete today's session?
+  - Would I open the app again tomorrow?
+  - What moment increased my motivation the most?
+  - What moment made me think about closing the app?
+  - If I missed another three study days, would I still come back?
+  - What single change would most increase my consistency?
+
+scoring:
+  - Motivation
+  - Psychological Safety
+  - Ease of Restarting
+  - Educational Trust
+  - Daily Use Potential
+  - Would Help Me Stay Consistent
+  - Overall
+
+filter_tags:
+  - cs1
+  - motivation
+  - second_sitting
+
+review_package: knowledge/reviews/V1_REVIEW_PACKAGE/
+
+baseline_audit: knowledge/product/ep004_private_beta/REVIEW_BASELINE_AUDIT.md
+
+output: knowledge/product/ep004_private_beta/blind_reviews/SV-004.md

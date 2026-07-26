@@ -21,13 +21,19 @@ Protect educational integrity and beta trust. Prefer STOP over silent unrelated 
 
 Vision alignment: shipping must not introduce unexplained recommendations, dual educational truths, or activity-theatre metrics as “success”.
 
+**Educational quality (mandatory for student-facing educational claims):**  
+Engineering safety alone is not sufficient. The Educational Validation Framework (`knowledge/educational_validation/`) answers whether educational quality justifies release. Obtain an Educational Release Gate outcome (**APPROVED** or **CONDITIONAL APPROVAL** with holds) via `EDUCATIONAL_RELEASE_GATE.md` and file the Version Approval Report under `educational_validation/release_reports/` before claiming educational trust for the version. Blind Review remains intact as a research input; EVF consumes it and does not replace it.
+
+**Version 1 production-ready declaration (mandatory for V1 claims):**  
+Release Playbook execution alone does not authorise “Version 1 is production-ready.” Complete the Version 1 Release Framework gates and evidence package (`knowledge/product/p002_1_version_1_release_framework/`) and record a go / no-go decision before using that claim language. Validated KSI ≥ 80 is necessary but not sufficient.
+
 ---
 
 ## 2. Release process (summary)
 
 1. **Classify** — hotfixes / feature / architecture / migration / alpha / production (Protocol §2).
 2. **Pre-verify** — clean tree, architecture artefacts present, tests, ruff, config, DB, curriculum as required.
-3. **Governance artefacts** — Vision, Blueprint, ADR index, Engineering Standards, Quality Manual current for the change type.
+3. **Governance artefacts** — Vision, Blueprint, ADR index, Engineering Standards, Quality Manual current for the change type; for educational releases, EVF Version Approval Report / Gate outcome as required.
 4. **Stage** — one intentional release commit if needed; no secrets.
 5. **Tag / push** — per Protocol; never force-push `main`.
 6. **Deploy** — Render (or host) per `docs/production/DEPLOYMENT.md`.

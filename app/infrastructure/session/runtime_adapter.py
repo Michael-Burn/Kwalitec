@@ -244,6 +244,40 @@ class SessionRuntimeAdapter:
             default_reflection,
         )
 
+    def record_reflection_note(
+        self, student_id: str, *, session_id: str, note: str
+    ) -> dict[str, Any]:
+        """Persist the student's free-text reflection note onto the session record.
+
+        Stored under the same reflection document namespace (``NS_REFLECTION``)
+        used by ``get_reflection`` — durable via ``SessionDocumentStore`` when
+        ``ENABLE_DURABLE_STORE`` is on (production), process-local memory
+        otherwise. Never scores or interprets the note.
+        """
+        self._diagnostics.record_call(self.ADAPTER_ID)
+        sid = student_id.strip()
+        sess = session_id.strip()
+        cleaned = note.strip()
+        if self._engine is not None and hasattr(
+            self._engine, "record_reflection_note_opaque"
+        ):
+            recorded = self._engine.record_reflection_note_opaque(
+                sid, session_id=sess, note=cleaned
+            )
+            if isinstance(recorded, dict):
+                return dict(recorded)
+        existing = self.get_reflection(sid, session_id=sess) or default_reflection(
+            sid, session_id=sess
+        )
+        updated = {**existing, "student_note": cleaned}
+        self._store.save(self.NS_REFLECTION, self._key(sid, sess), updated)
+        return {
+            "recorded": True,
+            "student_id": sid,
+            "session_id": sess,
+            "authority": "learning_session_runtime",
+        }
+
     def get_completion_summary(
         self, student_id: str, *, session_id: str
     ) -> dict[str, Any] | None:

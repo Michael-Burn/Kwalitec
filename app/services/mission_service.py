@@ -272,4 +272,24 @@ class MissionService:
         mission.status = "Completed"
         db.session.commit()
         logger.info("Mission %d marked complete for user %s", mission_id, user_id)
+        try:
+            from app.services.planning_service import PlanningService
+
+            title = str(mission.title or "")
+            revision_hint = "revision" in title.lower() or "review" in title.lower()
+            PlanningService.record_plan_completion_feedback(
+                user_id,
+                mission_id=mission.id,
+                study_plan_id=mission.study_plan_id,
+                mission_title=title,
+                revision_adhered=True if revision_hint else None,
+                revision_slot_count=1 if revision_hint else 0,
+            )
+        except Exception:  # noqa: BLE001 — feedback must never break completion
+            logger.debug(
+                "plan_completion_feedback_hook_failed mission=%s user=%s",
+                mission_id,
+                user_id,
+                exc_info=True,
+            )
         return mission

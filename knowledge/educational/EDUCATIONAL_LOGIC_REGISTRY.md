@@ -1388,6 +1388,22 @@ The following logics are **reserved placeholders**. They are recognised constitu
 
 **Reserved.** Operator/founder educational insight overlays that consume governed educational state for product stewardship. Must not redefine student-facing educational meaning, invent mastery, or bypass Twin invisibility and messaging rules. Integration details are out of Version 1.0 Learning Mode scope.
 
+### FEL-006 — Educational Strategy (Master Planner)
+
+**Reserved / specified educationally in Programme VI MS003.** Named overall educational approach chosen from the Student Educational Profile before long-term plan construction. Authoritative meaning lives in `knowledge/educational/strategy/`. Operational elevation into Runtime A selection logic requires Registry expansion and does not authorise plan generation, scoring formulae, or silent Learning Mode override by itself.
+
+### FEL-007 — Planning Decision Engine (Master Planner)
+
+**Reserved / specified educationally in Programme VI MS004.** Educational reasoning that transforms Student Educational Profile + Educational Strategy + Educational Planning Model into a structured Planning Decision Package before any timetable or study-plan generation. Authoritative meaning lives in `knowledge/educational/planning_engine/`. Operational elevation into Runtime A planning services requires Registry expansion and does not authorise scheduling algorithms, numeric weighting schemes, or silent Learning Mode override by itself.
+
+### FEL-008 — Planning Blueprint (Master Planner)
+
+**Reserved / specified educationally in Programme VI MS005.** Educational organisation of a Planning Decision Package into a date-independent study journey structure (phases, components, progression) before any calendar allocation. Authoritative meaning lives in `knowledge/educational/planning_blueprint/`. Operational elevation into Runtime A planning services requires Registry expansion and does not authorise scheduling algorithms, date calculations, numeric weighting schemes, new educational reasoning beyond package organisation, or silent Learning Mode override by itself.
+
+### FEL-009 — Scheduling Engine (Master Planner)
+
+**Reserved / specified in Programme VI MS006.** Allocation mechanics that place an approved Planning Blueprint onto a student’s real calendar (weeks, days, sessions, study blocks) while honouring declared availability, leave, holidays, and blueprint protections. Authoritative meaning lives in `knowledge/educational/scheduling/`. Performs allocation only — introduces no new educational reasoning. Operational elevation into Runtime A planning services requires Registry expansion and does not authorise inventing phases, intensity, revision law, numeric optimisation schemes that violate educational constraints, or silent Learning Mode override by itself.
+
 ---
 
 ## Cross References
@@ -1401,7 +1417,8 @@ The following logics are **reserved placeholders**. They are recognised constitu
 - Internal Alpha: IA-001 Mission Recommendation Integrity; IA-003 Student-Centred Educational Messaging; IA-004 Truthful Learning Progress;
 - `knowledge/product/EDUCATIONAL_PHILOSOPHY_AUDIT.md` (diagnostic relative to educational law);
 - Educational Intelligence and Digital Twin architectures under `docs/architecture/` and Twin constitutions;
-- Knowledge educational subtree folders: philosophy, policies, recommendation, digital_twin.
+- Knowledge educational subtree folders: philosophy, policies, recommendation, digital_twin;
+- Programme VI Master Planner educational corpora: `knowledge/educational/planning/` (MS001), `knowledge/educational/student_profile/` (MS002), `knowledge/educational/strategy/` (MS003 / FEL-006), `knowledge/educational/planning_engine/` (MS004 / FEL-007), `knowledge/educational/planning_blueprint/` (MS005 / FEL-008), `knowledge/educational/scheduling/` (MS006 / FEL-009).
 
 ---
 

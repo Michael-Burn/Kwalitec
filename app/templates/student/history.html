@@ -1,9 +1,26 @@
 {% extends "student/base.html" %}
+{% set title = page.shell.page_title %}
 {% from "student/components/history_card.html" import history_card %}
 
 {% block content %}
 {% if page.history %}
 {% set history = page.history %}
+
+{% if history.recommendation_narrative %}
+<section class="student-stack" aria-labelledby="recent-study-choices" data-commitment="history">
+    <h2 id="recent-study-choices" class="student-section-title">Recent study choices</h2>
+    {% if history.recommendation_narrative_header %}
+    <p class="student-muted">{{ history.recommendation_narrative_header }}</p>
+    {% endif %}
+    <ul class="student-narrative-list">
+        {% for entry in history.recommendation_narrative %}
+        <li class="student-narrative-entry" data-narrative-kind="{{ entry.kind }}">
+            {{ entry.summary_line }}
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endif %}
 
 <section class="student-grid student-grid--stats" aria-label="Learning statistics">
     <section class="student-card">
@@ -31,7 +48,12 @@
             {{ history_card(session) }}
         {% endfor %}
     {% else %}
-    <p class="student-muted">No completed sessions yet.</p>
+    <div class="student-empty" role="status">
+        <p class="student-empty-title">No sessions completed yet</p>
+        <p class="student-empty-description">
+            Finish a study session and it will show up here, with what you covered and how it went.
+        </p>
+    </div>
     {% endif %}
 </section>
 
@@ -80,9 +102,16 @@
     </a>
 </div>
 {% else %}
-<section class="student-card">
-    <h2 class="student-card-title">History</h2>
-    <p class="student-card-body">Your educational progress will appear here.</p>
+<section class="student-empty" aria-label="History" role="status">
+    <h2 class="student-empty-title">Your history starts with your first session</h2>
+    <p class="student-empty-description">
+        Study time, readiness trends, and completed topics will appear here as you go.
+    </p>
+    <div class="student-primary-action">
+        <a class="btn student-btn-primary" href="{{ url_for('student.home') }}" data-student-cta="primary">
+            Go to Home
+        </a>
+    </div>
 </section>
 {% endif %}
 {% endblock %}

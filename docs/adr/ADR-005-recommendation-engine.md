@@ -36,6 +36,8 @@ Rules:
 
 - [ADR-006](ADR-006-explainability-engine.md), [ADR-008](ADR-008-ai-enrichment-boundary.md)
 - Package: `src/domain/recommendation/`
+- Runtime A quality contract (EP-003.1): [`knowledge/architecture/RECOMMENDATION_SERVICE_QUALITY_CONTRACT.md`](../../knowledge/architecture/RECOMMENDATION_SERVICE_QUALITY_CONTRACT.md)
+- Implementation: `app/services/recommendation_service.py` + `app/services/recommendation_quality.py`
 
 ## Governance Alignment
 

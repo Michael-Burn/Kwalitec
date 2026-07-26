@@ -516,6 +516,7 @@ def _init_extensions(app: Flask) -> None:
         MissionTask,
         Mistake,
         PresentationEvent,
+        RecommendationCommitment,
         ResearchContribution,
         ResearchContributorBadge,
         ResearchFeedbackReview,
@@ -544,12 +545,30 @@ def _resolve_v2_flags_for_templates():
     return resolve_v2_feature_flags()
 
 
+def _canonical_home_url_for_templates() -> str:
+    """Authoritative student home URL (EP-007.1 dual-home consolidation)."""
+    from app.presentation.consolidation import canonical_home_url
+
+    return canonical_home_url()
+
+
+def _canonical_session_entry_url_for_templates() -> str:
+    """Primary study-start / continue URL for templates."""
+    from app.presentation.consolidation import canonical_session_entry_url
+
+    return canonical_session_entry_url()
+
+
 def _register_template_context(app: Flask) -> None:
     """Inject shared presentation context into all templates."""
+    from app.presentation.formatting import format_minutes
     from app.static_assets import versioned_static
 
     # IAHF-005 — reusable Jinja helper for cache-busted static URLs.
     app.jinja_env.globals["versioned_static"] = versioned_static
+    # PX-002B — one duration phrase everywhere (e.g. study-plan roadmap
+    # hour estimates), instead of ad hoc decimal-hour rounding per template.
+    app.jinja_env.filters["format_minutes"] = format_minutes
 
     @app.context_processor
     def inject_global_template_context():
@@ -607,6 +626,8 @@ def _register_template_context(app: Flask) -> None:
             "approved_logo_alt": APPROVED_LOGO_ALT,
             "versioned_static": versioned_static,
             "v2_flags": _resolve_v2_flags_for_templates(),
+            "canonical_home_url": _canonical_home_url_for_templates(),
+            "canonical_session_entry_url": _canonical_session_entry_url_for_templates(),
             "release_info": release_info,
             "support_contact": release_info.support_contact,
             # PR-001 — permission helpers only; no auth logic in templates.

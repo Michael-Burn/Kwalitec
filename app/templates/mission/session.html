@@ -38,7 +38,7 @@
                     <span class="mission-hero-metric-label">Estimated duration</span>
                     <span class="mission-hero-metric-value">
                         {% if session_context.estimated_minutes %}
-                            {{ session_context.estimated_minutes }} min
+                            {{ session_context.estimated_minutes|format_minutes }}
                         {% else %}
                             &mdash;
                         {% endif %}

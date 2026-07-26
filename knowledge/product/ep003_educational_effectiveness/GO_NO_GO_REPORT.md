@@ -59,9 +59,9 @@ All five must be **Yes** (with linked evidence) for educational **GO**. Any **No
 | **NO-GO** | Do not claim educational effectiveness; continue measurement / fix blockers |
 | **PENDING EVIDENCE** | Framework ready; cohort measurement not yet complete |
 
-**Current programme verdict:** **PENDING EVIDENCE**
+**Current programme verdict:** **PENDING EVIDENCE** (educational effectiveness claims)
 
-Rationale: EP-003 documentation and governance gates (G1, G3, G4 review, G6 spec, G9, G10) are complete. Live cohort KPI fill (G5, G7) and Q1–Q5 evidence (G8) are not yet available. Privacy signatures for expanded cohort remain open (G2 partial).
+Rationale: EP-003 documentation and governance gates (G1, G3, G4 review, G6 spec, G9, G10) are complete. EP-004 Stage 0 execution filed Week 0 scorecards as exploratory (external N=0); G5/G7/G8 remain open for effectiveness **GO**. Privacy signatures for expanded cohort remain open (G2 partial). Execution decision (continue staged beta): see [`../ep004_private_beta/GO_NO_GO_DECISION.md`](../ep004_private_beta/GO_NO_GO_DECISION.md) — **GO WITH CONDITIONS**.
 
 ---
 

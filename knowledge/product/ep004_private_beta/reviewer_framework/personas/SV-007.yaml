@@ -1,0 +1,84 @@
+id: SV-007
+
+name: Emily Roberts
+
+age: 25
+
+country: United Kingdom
+
+exam: CS1
+
+attempt: First Sitting
+
+weeks_to_exam: 10
+
+occupation: Graduate Actuarial Consultant
+
+educational_hypothesis: Habit retention after novelty
+
+central_question: After two weeks of daily use, what remains useful?
+
+primary_dimension: Habit
+
+background:
+  - >
+    Study behaviour: Has used Kwalitec every day for the last 14 days.; Completes almost
+    every assigned study session.; Occasionally skips reflections.; Has become familiar
+    with the interface.; The excitement of trying something new has disappeared.
+  - >
+    Technology confidence: High.
+  - >
+    Personality: Consistent.; Reflective.; Patient.; Likes routine.; Not easily
+    distracted.
+  - >
+    Biggest question: "After two weeks... does this still make studying better?"
+
+task:
+  - Imagine it is the evening of your 14th consecutive day using Kwalitec.
+  - Open the app as you normally would.
+  - You are no longer discovering features.
+  - You are judging whether the routine still has value.
+
+evaluation_focus:
+  - Student-only perspective
+  - Ignore engineering documentation
+  - Ignore implementation notes
+  - Ignore visual polish except where it blocks study
+  - >
+    Answer only the central question: After two weeks of daily use, what remains useful?
+  - Do not compare with other reviewers
+  - Do not synthesise programme-level findings
+
+questions:
+  - Has Kwalitec become part of my study habit?
+  - Which feature do I now use automatically?
+  - Which feature have I quietly stopped using?
+  - >
+    Do today's recommendations still feel useful after two weeks?
+  - Has the Coach become more valuable or less valuable?
+  - Do I still read Journey?
+  - Do I still care about Readiness?
+  - Has anything become repetitive?
+  - If Kwalitec disappeared tomorrow, what would I miss most?
+  - What would I not miss at all?
+  - Would I continue using Kwalitec for another two months? Why?
+
+scoring:
+  - Habit Formation
+  - Long-term Usefulness
+  - Recommendation Quality
+  - Coach Value
+  - Routine Sustainability
+  - Overall
+
+filter_tags:
+  - cs1
+  - first_sitting
+  - habit
+  - workflow
+
+review_package: knowledge/reviews/V1_REVIEW_PACKAGE/
+
+baseline_audit: knowledge/product/ep004_private_beta/REVIEW_BASELINE_AUDIT.md
+
+output: knowledge/product/ep004_private_beta/blind_reviews/SV-007.md

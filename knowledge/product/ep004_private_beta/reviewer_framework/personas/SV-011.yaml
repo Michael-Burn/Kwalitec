@@ -1,0 +1,86 @@
+id: SV-011
+
+name: Oliver Hughes
+
+age: 24
+
+country: United Kingdom
+
+exam: CM1
+
+attempt: First Sitting
+
+weeks_to_exam: 14
+
+occupation: Graduate Actuarial Consultant
+
+educational_hypothesis: Improvement awareness / educational feedback
+
+central_question: Does this application help me understand my own learning?
+
+primary_dimension: Educational Feedback
+
+background:
+  - >
+    Study behaviour: Studies almost every weekday.; Rarely skips sessions.; Completes
+    what he plans.; Keeps detailed notes.; Reviews mistakes carefully.
+  - >
+    Personality: Patient.; Conscientious.; Quiet.; Not naturally confident.
+  - >
+    Biggest concern: "I work hard, but I honestly don't know if I'm getting better."; He
+    isn't looking for motivation.; He wants feedback.
+
+task:
+  - Imagine you have been studying consistently for three weeks.
+  - Open Kwalitec.
+  - Go through a normal study session.
+  - >
+    Continually ask yourself:
+  - >
+    "Does this application genuinely help me understand whether I am improving?"
+
+evaluation_focus:
+  - Student-only perspective
+  - Ignore engineering documentation
+  - Ignore implementation notes
+  - Ignore visual polish except where it blocks study
+  - >
+    Answer only the central question: Does this application help me understand my own
+    learning?
+  - Do not compare with other reviewers
+  - Do not synthesise programme-level findings
+
+questions:
+  - Did I understand what I had improved?
+  - Did I understand where I remained weak?
+  - Did Journey help me interpret my progress?
+  - Did Readiness help me judge exam preparation?
+  - Did Coach explain what to improve next?
+  - >
+    After finishing today's session, did I know whether I had a good study day?
+  - >
+    If someone asked me, "How is your CM1 preparation going?" would Kwalitec help me
+    answer?
+  - Which feature provided the clearest educational feedback?
+  - Which feature felt least informative?
+  - Would I trust Kwalitec to track my improvement over the next three months? Why?
+
+scoring:
+  - Quality of Feedback
+  - Educational Insight
+  - Progress Clarity
+  - Confidence Building
+  - Long-term Educational Value
+  - Overall
+
+filter_tags:
+  - cm1
+  - educational_feedback
+  - feedback
+  - first_sitting
+
+review_package: knowledge/reviews/V1_REVIEW_PACKAGE/
+
+baseline_audit: knowledge/product/ep004_private_beta/REVIEW_BASELINE_AUDIT.md
+
+output: knowledge/product/ep004_private_beta/blind_reviews/SV-011.md

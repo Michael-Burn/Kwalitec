@@ -8,6 +8,7 @@ from datetime import date
 from flask import Blueprint, flash, redirect, render_template, request, session, url_for
 from flask_login import current_user, login_required
 
+from app.presentation.consolidation import redirect_to_canonical_home
 from app.services import examination_catalogue as catalogue
 from app.services.curriculum_engine_service import CurriculumEngineService
 from app.services.study_plan_service import StudyPlanService
@@ -1257,4 +1258,4 @@ def set_active_plan(study_plan_id: int):
         flash(str(e), "danger")
         return redirect(url_for("study_plan.list_plans"))
 
-    return redirect(url_for("dashboard.index"))
+    return redirect_to_canonical_home()

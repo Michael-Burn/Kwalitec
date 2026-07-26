@@ -239,7 +239,7 @@ class ProfilePageViewModel:
     total_study_label: str = ""
     primary_cta_label: str = "Update Study Preferences"
     primary_cta_enabled: bool = True
-    primary_cta_endpoint: str = "settings.index"
+    primary_cta_endpoint: str = "settings.preferences"
 
 
 @dataclass(frozen=True)
@@ -1263,12 +1263,34 @@ def history_vm(snap: HistorySnapshot) -> HistoryPageViewModel:
     )
 
 
+def _authoritative_examination_label(student_id: str) -> str:
+    """Resolve "Current Examination" from the same source of truth used by
+    Dashboard, Study Plan, and Settings -> Internal Alpha
+    (``StudyPlanService.get_user_active_plan``), so Profile can never show
+    "Not set" while those screens show an active plan (B2, PX-003 release
+    blockers). Returns "" — letting the Twin-derived value or "Not set"
+    apply — for non-persisted identities (e.g. test doubles) or students
+    with no active plan.
+    """
+    if not student_id.isdigit():
+        return ""
+    from app.services.study_plan_service import StudyPlanService
+
+    plan = StudyPlanService.get_user_active_plan(int(student_id))
+    if plan is None:
+        return ""
+    return str(plan.exam_name or "")
+
+
 def profile_vm(snap: ProfileSnapshot) -> ProfilePageViewModel:
     prefs = snap.preferences
     days = ", ".join(prefs.preferred_study_days) if prefs.preferred_study_days else ""
     return ProfilePageViewModel(
         display_name=snap.display_name,
-        examination_label=snap.examination_label,
+        examination_label=(
+            _authoritative_examination_label(snap.student_id)
+            or snap.examination_label
+        ),
         preferences=prefs,
         statistics=snap.statistics,
         goals=snap.goals,
@@ -1280,7 +1302,12 @@ def profile_vm(snap: ProfileSnapshot) -> ProfilePageViewModel:
         total_study_label=format_minutes(snap.statistics.total_study_minutes),
         primary_cta_label="Open account settings",
         primary_cta_enabled=True,
-        primary_cta_endpoint="settings.index",
+        # B9 (PX-003): "settings.index" (bare `/settings/`) now redirects to
+        # this very page under sole runtime — pointing here instead avoids a
+        # CTA that appears to do nothing, and lands on preferences, which
+        # (per `alpha/help.html`'s own guidance) is the first genuinely
+        # distinct, not-yet-migrated settings capability.
+        primary_cta_endpoint="settings.preferences",
     )
 
 

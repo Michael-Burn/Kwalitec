@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
 from typing import Any
 
 from app.application.educational_state import (
@@ -20,6 +21,16 @@ from app.application.student_experience.ports.adaptive_decision_port import (
 from app.application.student_experience.ports.mission_port import MissionPort
 from app.application.student_experience.ports.student_twin_port import (
     StudentTwinPort,
+)
+from app.application.student_experience.readiness_explanation import (
+    load_home_readiness_explanation,
+)
+from app.application.student_experience.recommendation_commitment import (
+    RecommendationCommitmentService,
+)
+from app.application.student_experience.recommendation_trust import (
+    map_recommendation_alternatives,
+    resolve_trust_state,
 )
 from app.domain.student_experience.experience_session import StartSessionAction
 from app.domain.student_experience.recommendation_explanation import (
@@ -66,15 +77,39 @@ class HomeService:
             explanation = None
             if recommendation:
                 decision_id = recommendation.get("decision_id")
-                explanation = self._explanation.from_opaque(
-                    recommendation.get("explanation")
-                    or adaptive.get_decision_explanation(
+                # EP-006.2: prefer the full recommendation row (MES keys at
+                # top level + nested explanation) so authored fields are not
+                # lost when the bridge explanation dict is thin.
+                opaque = dict(recommendation)
+                nested = recommendation.get("explanation")
+                if isinstance(nested, dict):
+                    for key, value in nested.items():
+                        if key not in opaque or opaque.get(key) in (
+                            None,
+                            "",
+                            (),
+                            [],
+                        ):
+                            opaque[key] = value
+                if not (
+                    opaque.get("why_recommended")
+                    or opaque.get("supporting_evidence")
+                    or opaque.get("suggested_next_action")
+                ):
+                    port_payload = adaptive.get_decision_explanation(
                         sid,
                         decision_id=(
                             None if decision_id is None else str(decision_id)
                         ),
                     )
-                    or recommendation
+                    if port_payload:
+                        opaque = {**opaque, **dict(port_payload)}
+                explanation = self._explanation.from_opaque(
+                    opaque,
+                    exam_countdown_days=_first_present_int(
+                        readiness.get("exam_countdown_days"),
+                        learner.get("exam_countdown_days"),
+                    ),
                 )
             home = StudentHome.create(
                 sid,
@@ -119,7 +154,52 @@ class HomeService:
             )
         except ValueError as exc:
             raise HomeError(str(exc)) from exc
-        return home_snapshot(home)
+        snap = home_snapshot(home)
+        # EP-006.4: attach authored readiness MES (drivers / review / next)
+        # from the same Runtime A surface Analytics uses — fail-open.
+        readiness_expl = load_home_readiness_explanation(sid)
+        if readiness_expl is not None:
+            snap = replace(snap, readiness_explanation=readiness_expl)
+        # EP-008.1: trust alternatives + trust_state from Runtime A projection.
+        honest_refusal = bool(
+            (recommendation or {}).get("honest_refusal")
+            or (explanation.honest_refusal if explanation else False)
+        )
+        alternatives = map_recommendation_alternatives(
+            (recommendation or {}).get("alternatives"),
+            honest_refusal=honest_refusal,
+        )
+        trust_state = resolve_trust_state(
+            honest_refusal=honest_refusal,
+            is_complete=bool(explanation and explanation.is_complete),
+        )
+        snap = replace(
+            snap,
+            recommendation_alternatives=alternatives,
+            trust_state=trust_state,
+        )
+        # EP-008.3: preference/intent commitment chrome (fail-open).
+        try:
+            uid = int(sid)
+        except (TypeError, ValueError):
+            uid = None
+        if uid is not None:
+            try:
+                schema_complete = bool(
+                    explanation
+                    and explanation.is_complete
+                    and not honest_refusal
+                )
+                commitment = RecommendationCommitmentService.snapshot_for_home(
+                    uid,
+                    tip=dict(recommendation or {}),
+                    trust_state=trust_state,
+                    schema_complete=schema_complete,
+                )
+                snap = replace(snap, commitment=commitment)
+            except Exception:  # noqa: BLE001 — presentation fail-open
+                pass
+        return snap
 
     def _state_for(self, student_id: str) -> EducationalStateSnapshot:
         if self._educational_state is not None:

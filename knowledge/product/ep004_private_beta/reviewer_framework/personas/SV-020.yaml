@@ -1,0 +1,89 @@
+id: SV-020
+
+name: Michael Edwards
+
+age: 27
+
+country: United Kingdom
+
+exam: CS1
+
+attempt: First Sitting
+
+weeks_to_exam: 12
+
+occupation: Graduate Actuarial Consultant
+
+educational_hypothesis: Bounded commitment as study companion
+
+central_question: Would I trust this product enough to make it part of my exam journey?
+
+primary_dimension: Adoption
+
+background:
+  - >
+    You have just been invited into Kwalitec's private beta.
+  - You know nothing about the team.
+  - You have no loyalty to the product.
+  - Your only objective is to maximise your chance of passing CS1.
+  - >
+    After exploring Kwalitec thoroughly and completing several representative study
+    sessions, you must make one decision:
+  - >
+    "Will I commit to using this until my exam?"
+
+task:
+  - Evaluate Kwalitec as your primary study companion for the next 12 weeks.
+  - >
+    Assume you have access to all your usual study materials (CMP, past papers, notes,
+    etc.).
+  - >
+    Ask yourself throughout:
+  - >
+    "Does Kwalitec deserve a permanent place in my preparation?"
+
+evaluation_focus:
+  - Student-only perspective
+  - Ignore engineering documentation
+  - Ignore implementation notes
+  - Ignore visual polish except where it blocks study
+  - >
+    Answer only the central question: Would I trust this product enough to make it part
+    of my exam journey?
+  - Do not compare with other reviewers
+  - Do not synthesise programme-level findings
+
+questions:
+  - What role would Kwalitec play in my study routine?
+  - Which feature would make me return tomorrow?
+  - Which feature would I probably ignore?
+  - What is the strongest educational reason to keep using Kwalitec?
+  - What is the strongest educational reason to stop using it?
+  - Would I recommend it to another CS1 student today? Why?
+  - What would I still rely on outside Kwalitec?
+  - Did Kwalitec make me believe it understands how people learn?
+  - >
+    If I had to choose only one study companion alongside the official IFoA material,
+    would I choose Kwalitec? Why?
+  - >
+    Would I personally commit to using Kwalitec until my exam? Explain your decision
+    honestly.
+
+scoring:
+  - Educational Value
+  - Trust
+  - Daily Usefulness
+  - Commitment
+  - Recommendation Likelihood
+  - Overall
+
+filter_tags:
+  - adoption
+  - cs1
+  - first_sitting
+
+review_package: knowledge/reviews/V1_REVIEW_PACKAGE/
+
+baseline_audit: knowledge/product/ep004_private_beta/REVIEW_BASELINE_AUDIT.md
+
+output: knowledge/product/ep004_private_beta/blind_reviews/SV-020.md

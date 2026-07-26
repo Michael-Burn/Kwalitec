@@ -1,0 +1,804 @@
+{
+  "breakpoints": {
+    "320": {
+      "tier": "mobile",
+      "screens": {
+        "home": {
+          "path": "/student/",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-320px-home.png"
+        },
+        "journey": {
+          "path": "/student/journey",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-320px-journey.png"
+        },
+        "revision": {
+          "path": "/student/revision",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-320px-revision.png"
+        },
+        "history": {
+          "path": "/student/history",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-320px-history.png"
+        },
+        "profile": {
+          "path": "/student/profile",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-320px-profile.png"
+        },
+        "study-plan": {
+          "path": "/study-plan/",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-320px-study-plan.png"
+        },
+        "settings-profile": {
+          "path": "/settings/profile",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-320px-settings-profile.png"
+        },
+        "settings-preferences": {
+          "path": "/settings/preferences",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-320px-settings-preferences.png"
+        },
+        "settings-data": {
+          "path": "/settings/data",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-320px-settings-data.png"
+        },
+        "settings-account-status": {
+          "path": "/settings/internal-alpha",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-320px-settings-account-status.png"
+        },
+        "help": {
+          "path": "/alpha/help",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-320px-help.png"
+        }
+      },
+      "touch_target_hamburger": {
+        "x": 16,
+        "y": 1.5,
+        "width": 46,
+        "height": 44
+      }
+    },
+    "375": {
+      "tier": "mobile",
+      "screens": {
+        "home": {
+          "path": "/student/",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-375px-home.png"
+        },
+        "journey": {
+          "path": "/student/journey",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-375px-journey.png"
+        },
+        "revision": {
+          "path": "/student/revision",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-375px-revision.png"
+        },
+        "history": {
+          "path": "/student/history",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-375px-history.png"
+        },
+        "profile": {
+          "path": "/student/profile",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-375px-profile.png"
+        },
+        "study-plan": {
+          "path": "/study-plan/",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-375px-study-plan.png"
+        },
+        "settings-profile": {
+          "path": "/settings/profile",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-375px-settings-profile.png"
+        },
+        "settings-preferences": {
+          "path": "/settings/preferences",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-375px-settings-preferences.png"
+        },
+        "settings-data": {
+          "path": "/settings/data",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-375px-settings-data.png"
+        },
+        "settings-account-status": {
+          "path": "/settings/internal-alpha",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-375px-settings-account-status.png"
+        },
+        "help": {
+          "path": "/alpha/help",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-375px-help.png"
+        }
+      },
+      "touch_target_hamburger": {
+        "x": 16,
+        "y": 1.5,
+        "width": 46,
+        "height": 44
+      }
+    },
+    "390": {
+      "tier": "mobile",
+      "screens": {
+        "home": {
+          "path": "/student/",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-390px-home.png"
+        },
+        "journey": {
+          "path": "/student/journey",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-390px-journey.png"
+        },
+        "revision": {
+          "path": "/student/revision",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-390px-revision.png"
+        },
+        "history": {
+          "path": "/student/history",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-390px-history.png"
+        },
+        "profile": {
+          "path": "/student/profile",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-390px-profile.png"
+        },
+        "study-plan": {
+          "path": "/study-plan/",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-390px-study-plan.png"
+        },
+        "settings-profile": {
+          "path": "/settings/profile",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-390px-settings-profile.png"
+        },
+        "settings-preferences": {
+          "path": "/settings/preferences",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-390px-settings-preferences.png"
+        },
+        "settings-data": {
+          "path": "/settings/data",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-390px-settings-data.png"
+        },
+        "settings-account-status": {
+          "path": "/settings/internal-alpha",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-390px-settings-account-status.png"
+        },
+        "help": {
+          "path": "/alpha/help",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-390px-help.png"
+        }
+      },
+      "touch_target_hamburger": {
+        "x": 16,
+        "y": 1.5,
+        "width": 46,
+        "height": 44
+      }
+    },
+    "414": {
+      "tier": "mobile",
+      "screens": {
+        "home": {
+          "path": "/student/",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-414px-home.png"
+        },
+        "journey": {
+          "path": "/student/journey",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-414px-journey.png"
+        },
+        "revision": {
+          "path": "/student/revision",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-414px-revision.png"
+        },
+        "history": {
+          "path": "/student/history",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-414px-history.png"
+        },
+        "profile": {
+          "path": "/student/profile",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-414px-profile.png"
+        },
+        "study-plan": {
+          "path": "/study-plan/",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-414px-study-plan.png"
+        },
+        "settings-profile": {
+          "path": "/settings/profile",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-414px-settings-profile.png"
+        },
+        "settings-preferences": {
+          "path": "/settings/preferences",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-414px-settings-preferences.png"
+        },
+        "settings-data": {
+          "path": "/settings/data",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-414px-settings-data.png"
+        },
+        "settings-account-status": {
+          "path": "/settings/internal-alpha",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-414px-settings-account-status.png"
+        },
+        "help": {
+          "path": "/alpha/help",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/mobile-414px-help.png"
+        }
+      },
+      "touch_target_hamburger": {
+        "x": 16,
+        "y": 1.5,
+        "width": 46,
+        "height": 44
+      }
+    },
+    "768": {
+      "tier": "tablet",
+      "screens": {
+        "home": {
+          "path": "/student/",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/tablet-768px-home.png"
+        },
+        "journey": {
+          "path": "/student/journey",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/tablet-768px-journey.png"
+        },
+        "revision": {
+          "path": "/student/revision",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/tablet-768px-revision.png"
+        },
+        "history": {
+          "path": "/student/history",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/tablet-768px-history.png"
+        },
+        "profile": {
+          "path": "/student/profile",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/tablet-768px-profile.png"
+        },
+        "study-plan": {
+          "path": "/study-plan/",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/tablet-768px-study-plan.png"
+        },
+        "settings-profile": {
+          "path": "/settings/profile",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/tablet-768px-settings-profile.png"
+        },
+        "settings-preferences": {
+          "path": "/settings/preferences",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/tablet-768px-settings-preferences.png"
+        },
+        "settings-data": {
+          "path": "/settings/data",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/tablet-768px-settings-data.png"
+        },
+        "settings-account-status": {
+          "path": "/settings/internal-alpha",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/tablet-768px-settings-account-status.png"
+        },
+        "help": {
+          "path": "/alpha/help",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/tablet-768px-help.png"
+        }
+      }
+    },
+    "820": {
+      "tier": "tablet",
+      "screens": {
+        "home": {
+          "path": "/student/",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/tablet-820px-home.png"
+        },
+        "journey": {
+          "path": "/student/journey",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/tablet-820px-journey.png"
+        },
+        "revision": {
+          "path": "/student/revision",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/tablet-820px-revision.png"
+        },
+        "history": {
+          "path": "/student/history",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/tablet-820px-history.png"
+        },
+        "profile": {
+          "path": "/student/profile",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/tablet-820px-profile.png"
+        },
+        "study-plan": {
+          "path": "/study-plan/",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/tablet-820px-study-plan.png"
+        },
+        "settings-profile": {
+          "path": "/settings/profile",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/tablet-820px-settings-profile.png"
+        },
+        "settings-preferences": {
+          "path": "/settings/preferences",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/tablet-820px-settings-preferences.png"
+        },
+        "settings-data": {
+          "path": "/settings/data",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/tablet-820px-settings-data.png"
+        },
+        "settings-account-status": {
+          "path": "/settings/internal-alpha",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/tablet-820px-settings-account-status.png"
+        },
+        "help": {
+          "path": "/alpha/help",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/tablet-820px-help.png"
+        }
+      }
+    },
+    "1024": {
+      "tier": "desktop",
+      "screens": {
+        "home": {
+          "path": "/student/",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1024px-home.png"
+        },
+        "journey": {
+          "path": "/student/journey",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1024px-journey.png"
+        },
+        "revision": {
+          "path": "/student/revision",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1024px-revision.png"
+        },
+        "history": {
+          "path": "/student/history",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1024px-history.png"
+        },
+        "profile": {
+          "path": "/student/profile",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1024px-profile.png"
+        },
+        "study-plan": {
+          "path": "/study-plan/",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1024px-study-plan.png"
+        },
+        "settings-profile": {
+          "path": "/settings/profile",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1024px-settings-profile.png"
+        },
+        "settings-preferences": {
+          "path": "/settings/preferences",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1024px-settings-preferences.png"
+        },
+        "settings-data": {
+          "path": "/settings/data",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1024px-settings-data.png"
+        },
+        "settings-account-status": {
+          "path": "/settings/internal-alpha",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1024px-settings-account-status.png"
+        },
+        "help": {
+          "path": "/alpha/help",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1024px-help.png"
+        }
+      }
+    },
+    "1280": {
+      "tier": "desktop",
+      "screens": {
+        "home": {
+          "path": "/student/",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1280px-home.png"
+        },
+        "journey": {
+          "path": "/student/journey",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1280px-journey.png"
+        },
+        "revision": {
+          "path": "/student/revision",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1280px-revision.png"
+        },
+        "history": {
+          "path": "/student/history",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1280px-history.png"
+        },
+        "profile": {
+          "path": "/student/profile",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1280px-profile.png"
+        },
+        "study-plan": {
+          "path": "/study-plan/",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1280px-study-plan.png"
+        },
+        "settings-profile": {
+          "path": "/settings/profile",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1280px-settings-profile.png"
+        },
+        "settings-preferences": {
+          "path": "/settings/preferences",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1280px-settings-preferences.png"
+        },
+        "settings-data": {
+          "path": "/settings/data",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1280px-settings-data.png"
+        },
+        "settings-account-status": {
+          "path": "/settings/internal-alpha",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1280px-settings-account-status.png"
+        },
+        "help": {
+          "path": "/alpha/help",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1280px-help.png"
+        }
+      }
+    },
+    "1440": {
+      "tier": "desktop",
+      "screens": {
+        "home": {
+          "path": "/student/",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1440px-home.png"
+        },
+        "journey": {
+          "path": "/student/journey",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1440px-journey.png"
+        },
+        "revision": {
+          "path": "/student/revision",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1440px-revision.png"
+        },
+        "history": {
+          "path": "/student/history",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1440px-history.png"
+        },
+        "profile": {
+          "path": "/student/profile",
+          "shell": "student",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1440px-profile.png"
+        },
+        "study-plan": {
+          "path": "/study-plan/",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1440px-study-plan.png"
+        },
+        "settings-profile": {
+          "path": "/settings/profile",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1440px-settings-profile.png"
+        },
+        "settings-preferences": {
+          "path": "/settings/preferences",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1440px-settings-preferences.png"
+        },
+        "settings-data": {
+          "path": "/settings/data",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1440px-settings-data.png"
+        },
+        "settings-account-status": {
+          "path": "/settings/internal-alpha",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1440px-settings-account-status.png"
+        },
+        "help": {
+          "path": "/alpha/help",
+          "shell": "legacy",
+          "status": "ok",
+          "overflow_px": 0,
+          "screenshot": "screens/desktop-1440px-help.png"
+        }
+      }
+    }
+  },
+  "checks": {
+    "b8_onboarding_gate": {
+      "landed_on_onboarding": true,
+      "url": "http://127.0.0.1:5099/alpha/onboarding"
+    },
+    "b4_welcome_modal": {
+      "modal_present": true,
+      "initial_focus_class": "welcome-modal-card",
+      "focus_on_card": true,
+      "tab_stayed_trapped": true,
+      "escape_closed_modal": true,
+      "escape_landed_url": "http://127.0.0.1:5099/student/"
+    },
+    "b5_nav_drawer": {
+      "aria_expanded_before": "false",
+      "aria_controls": "app-sidebar",
+      "aria_expanded_after_open": "true",
+      "sidebar_role_when_open": "dialog",
+      "focus_entered_drawer": true,
+      "tab_stayed_trapped": true,
+      "aria_expanded_after_escape": "false",
+      "focus_returned_to_toggle": true
+    },
+    "b9_b10": {
+      "settings_index_final_url": "http://127.0.0.1:5099/student/profile",
+      "redirected_to_profile": true,
+      "settings_index_status": 200,
+      "account_status_heading_present": true,
+      "learning_profile_status_absent": true,
+      "personalised_recommendations_present": true
+    },
+    "session_flow": {
+      "start_cta_present": true,
+      "overview_url": "http://127.0.0.1:5099/session/sess-1/activity",
+      "reached_reflection": false
+    }
+  },
+  "errors": []
+}

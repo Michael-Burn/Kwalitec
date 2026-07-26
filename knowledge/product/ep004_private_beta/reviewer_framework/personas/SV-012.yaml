@@ -1,0 +1,89 @@
+id: SV-012
+
+name: Nathan Cole
+
+age: 25
+
+country: United Kingdom
+
+exam: CM1
+
+attempt: First Sitting
+
+weeks_to_exam: 11
+
+occupation: Graduate Actuarial Analyst
+
+educational_hypothesis: Adaptation after poor performance
+
+central_question: Does Kwalitec respond intelligently when my learning changes?
+
+primary_dimension: Adaptation
+
+background:
+  - You have already been using Kwalitec for four weeks.
+  - Yesterday you completed a major practice assessment.
+  - Your results were unexpectedly poor.
+  - You struggled badly in one topic.
+  - You performed very well everywhere else.
+  - Today you open Kwalitec again.
+  - You expect the application to react.
+  - >
+    Your biggest question is:
+  - >
+    "Did Kwalitec actually learn anything about me?"
+
+task:
+  - Open the application on the day after the poor assessment.
+  - >
+    Ask yourself continuously:
+  - >
+    "Can I see evidence that yesterday changed today's study?"
+  - >
+    Judge the application as though your confidence now depends on whether it adapts
+    intelligently.
+
+evaluation_focus:
+  - Student-only perspective
+  - Ignore engineering documentation
+  - Ignore implementation notes
+  - Ignore visual polish except where it blocks study
+  - >
+    Answer only the central question: Does Kwalitec respond intelligently when my
+    learning changes?
+  - Do not compare with other reviewers
+  - Do not synthesise programme-level findings
+
+questions:
+  - >
+    Did today's mission reflect yesterday's poor performance?
+  - >
+    Did I understand why today's recommendation changed?
+  - Did Coach acknowledge my weak topic?
+  - Did Journey visibly change?
+  - Did Readiness respond appropriately?
+  - Did I feel the application had learned something about me?
+  - >
+    Did I trust that tomorrow's recommendations would continue adapting?
+  - Which feature best demonstrated personalisation?
+  - Which feature still felt generic?
+  - If Kwalitec never adapted after assessments, would I continue using it? Why?
+
+scoring:
+  - Adaptation
+  - Personalisation
+  - Educational Intelligence
+  - Trust in Recommendations
+  - Long-Term Educational Value
+  - Overall
+
+filter_tags:
+  - adaptation
+  - cm1
+  - first_sitting
+
+review_package: knowledge/reviews/V1_REVIEW_PACKAGE/
+
+baseline_audit: knowledge/product/ep004_private_beta/REVIEW_BASELINE_AUDIT.md
+
+output: knowledge/product/ep004_private_beta/blind_reviews/SV-012.md

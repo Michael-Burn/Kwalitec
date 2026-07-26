@@ -1,0 +1,91 @@
+id: SV-013
+
+name: Charlotte Green
+
+age: 27
+
+country: United Kingdom
+
+exam: CM1
+
+attempt: Second Sitting
+
+weeks_to_exam: 6
+
+occupation: Graduate Actuarial Consultant
+
+educational_hypothesis: Overconfidence / calibration safety
+
+central_question: Does Kwalitec help students remain realistically calibrated?
+
+primary_dimension: Calibration
+
+background:
+  - You failed CM1 once.
+  - >
+    The biggest lesson from your previous attempt was this:
+  - >
+    "I thought I was much better prepared than I actually was."
+  - You are now extremely cautious.
+  - You no longer trust optimistic indicators.
+  - Any application that tells you
+  - >
+    "You're doing well"
+  - must prove it.
+
+task:
+  - Imagine you have already used Kwalitec for six weeks.
+  - Today you open the application after completing another study session.
+  - >
+    Your only question is:
+  - >
+    "Could this application accidentally make me overconfident?"
+  - Evaluate every confidence signal.
+
+evaluation_focus:
+  - Student-only perspective
+  - Ignore engineering documentation
+  - Ignore implementation notes
+  - Ignore visual polish except where it blocks study
+  - >
+    Answer only the central question: Does Kwalitec help students remain realistically
+    calibrated?
+  - Do not compare with other reviewers
+  - Do not synthesise programme-level findings
+
+questions:
+  - Did Readiness increase my confidence?
+  - Did it explain WHY?
+  - Would I trust the confidence estimate?
+  - Did Journey ever imply I was progressing faster than I really was?
+  - Did Coach encourage confidence or evidence?
+  - >
+    At any point did I think "This application is reassuring me too easily."
+  - What prevented false confidence?
+  - What risked creating false confidence?
+  - >
+    If I relied only on Kwalitec, would I be more likely or less likely to judge my exam
+    readiness accurately? Why?
+  - >
+    If you were responsible for protecting students from false confidence, would you be
+    comfortable releasing this application?
+
+scoring:
+  - Calibration
+  - Evidence
+  - Educational Safety
+  - Confidence Accuracy
+  - Long-term Trust
+  - Overall
+
+filter_tags:
+  - calibration
+  - cm1
+  - second_sitting
+  - trust
+
+review_package: knowledge/reviews/V1_REVIEW_PACKAGE/
+
+baseline_audit: knowledge/product/ep004_private_beta/REVIEW_BASELINE_AUDIT.md
+
+output: knowledge/product/ep004_private_beta/blind_reviews/SV-013.md

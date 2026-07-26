@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import pytest
 
+from app.services.welcome_service import WelcomeService
 from tests.presentation.student.helpers import STUDENT_ROUTES
 
 
@@ -49,3 +50,34 @@ def test_progressbar_attributes_on_journey(student_client):
         assert "aria-valuenow" in html
         assert "aria-valuemin" in html
         assert "aria-valuemax" in html
+
+
+class TestWelcomeModalOnCanonicalStudentHome:
+    """B4 (PX-003): the Welcome dialog is only ever included by
+    ``student/home.html`` (see ``partials/welcome_modal.html``'s single call
+    site) — the canonical, always-on-under-``SOLE_RUNTIME`` Student
+    Experience home, not the legacy ``dashboard/index.html`` shell. A
+    server-rendered ARIA contract is necessary but not sufficient: this shell
+    must also load the script (``app.js``) that gives the dialog its focus
+    entry/trap/return and Escape behaviour, or the markup is inert."""
+
+    def test_welcome_modal_renders_with_aria_contract(self, student_client, user):
+        WelcomeService.mark_eligible(user.id)
+        body = student_client.get("/student/").get_data(as_text=True)
+        assert 'id="welcome-modal"' in body
+        assert 'role="dialog"' in body
+        assert 'aria-modal="true"' in body
+        assert 'aria-labelledby="welcome-modal-title"' in body
+        assert 'aria-describedby="welcome-modal-lead welcome-modal-desc"' in body
+        assert 'class="welcome-modal-card" tabindex="-1"' in body
+
+    def test_shell_loads_the_script_that_wires_focus_behaviour(
+        self, student_client, user
+    ):
+        """Regression for a real gap found during RC-001 evidence capture:
+        this shell previously loaded only ``student.js``, which has no
+        welcome-modal handling at all — the dialog appeared with focus left
+        on <body>, no trap, and Escape doing nothing."""
+        WelcomeService.mark_eligible(user.id)
+        body = student_client.get("/student/").get_data(as_text=True)
+        assert "js/app.js" in body

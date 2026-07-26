@@ -105,15 +105,20 @@ class StudySessionService:
         mission: Mission,
         study_plan: StudyPlan | None,
     ) -> int | None:
-        """Approximate duration from the active plan's day-type minutes."""
-        if study_plan is None:
-            return None
-        day = mission.mission_date
-        if day is None:
-            return study_plan.weekday_study_minutes
-        if day.weekday() >= 5:
-            return study_plan.weekend_study_minutes
-        return study_plan.weekday_study_minutes
+        """Canonical planned session length (EP-007.1 / REM-03).
+
+        Prefer ``preferred_session_minutes`` so Home / Mission / Session agree;
+        fall back to day-type weekday/weekend minutes only when preferred is
+        absent. Does not change PlanningService educational math.
+        """
+        from app.application.student_experience.session_duration import (
+            resolve_planned_session_minutes,
+        )
+
+        return resolve_planned_session_minutes(
+            study_plan,
+            mission_date=getattr(mission, "mission_date", None),
+        )
 
     @staticmethod
     def build_session_context(

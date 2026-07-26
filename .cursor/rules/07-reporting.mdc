@@ -33,6 +33,33 @@ Honest leftover risk or follow-ups introduced by this work (or “None”).
 ### Known Limitations
 Boundaries of what this milestone did not solve.
 
+## Required sections for EP / P programmes
+
+Every future **EP** or **P** programme completion report must **also** include:
+
+### Student Impact Assessment
+Completed assessment using `knowledge/product/p001_1_ksi_baseline/STUDENT_IMPACT_ASSESSMENT_TEMPLATE.md` (or equivalent sections with a link to that template). Cover student problem, student benefit, learning benefit, success metrics, risks, and assumptions. Architectural blast-radius tables may supplement but do not replace student-value sections.
+
+### Estimated KSI contribution
+Category deltas for K1–K8 and net ΔKSI per `knowledge/product/p001_1_ksi_baseline/PRODUCT_SUCCESS_FRAMEWORK.md`. Infra/docs-only work may record ΔKSI = 0 with rationale.
+
+### Evidence collected
+Paths to tests, reviews, metrics, interviews, dogfood, or other evidence supporting claims.
+
+### Lessons learned for student value
+What the programme taught about educational usefulness — including what failed to move perceived student value.
+
+### Explainability Review (when in scope)
+If the programme affects student-facing intelligence (recommendations, predictions, planning, readiness, Coach/Insights, or related Runtime A guidance), complete `knowledge/product/p001_2_explainability_standard/EXPLAINABILITY_REVIEW_CHECKLIST.md` per `knowledge/GOVERNANCE.md` §4.2. Docs/infra-only work may record N/A with rationale. K8 claims require checklist Pass (or waiver).
+
+### Recommendation Quality Review (when in scope)
+If the programme affects student-facing recommendations (ranking, selection, Coach/Insights/Mission tips, revision/recovery/workload recommendations, or Runtime A primary-recommendation consolidation), complete `knowledge/product/p001_3_recommendation_quality_standard/RECOMMENDATION_REVIEW_CHECKLIST.md` per `knowledge/GOVERNANCE.md` §4.3. Docs/infra-only work may record N/A with rationale. K2 claims require checklist Pass (or waiver).
+
+### Version 1 readiness residual (when claiming V1 progress)
+If the programme claims progress toward **Version 1 production-ready**, cite residual open gates from `knowledge/product/p002_1_version_1_release_framework/VERSION_1_RELEASE_FRAMEWORK.md` (G1–G12). Docs/governance programmes that only define release law may record N/A. Estimated ΔKSI alone does not satisfy Gate G1 (validated KSI required for declaration).
+
+Version 1 product-success claims require **KSI ≥ 80** under the Product Success Framework. Version 1 **production-ready** declaration additionally requires the P-002.1 Release Framework gates and evidence package. KSI does not replace Vision 2030’s north star.
+
 ## Rules
 
 - Be specific to Kwalitec — no placeholder lorem.

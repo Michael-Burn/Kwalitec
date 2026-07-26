@@ -153,6 +153,10 @@ A change is **Done** when:
 6. Documentation and ADR/index updates (if needed) are merged with the change.
 7. Technical debt newly accepted is recorded in `docs/TECHNICAL_DEBT_REGISTER.md`.
 8. Completion report produced when the milestone requires it.
+9. For **EP / P programmes:** Student Impact Assessment, Estimated KSI contribution, Evidence collected, and Lessons learned for student value are included (see `knowledge/product/p001_1_ksi_baseline/` and `knowledge/GOVERNANCE.md` §4.1).
+10. For **EP / P programmes** affecting student-facing intelligence: Explainability Review Checklist completed (see `knowledge/product/p001_2_explainability_standard/` and `knowledge/GOVERNANCE.md` §4.2); N/A with rationale when out of scope.
+11. For **EP / P programmes** affecting student-facing recommendations: Recommendation Review Checklist completed (see `knowledge/product/p001_3_recommendation_quality_standard/` and `knowledge/GOVERNANCE.md` §4.3); N/A with rationale when out of scope.
+12. For **Version 1 production-ready declaration:** P-002.1 gates G1–G12, evidence package, and go / no-go decision completed (see `knowledge/product/p002_1_version_1_release_framework/` and `knowledge/GOVERNANCE.md` §4.4). Programme completions that only claim incremental V1 progress should cite residual open gates; estimated ΔKSI alone is insufficient for Gate G1.
 
 Handbook detail: ENG-001 Chapter 16.
 

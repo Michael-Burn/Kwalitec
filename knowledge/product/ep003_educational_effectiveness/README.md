@@ -62,6 +62,7 @@ This programme introduces **no architectural changes**. It defines success metri
 | **EP-001** | Outcome catalogue (O1–O9), instrumentation PRD-001, Twin expansion design, recommendation validation framework |
 | **EP-002** | Analytics operational readiness (durable outbox, privacy, runbooks); flag OFF until go-live |
 | **EP-003** | Canonical KPI catalogue for effectiveness, private-beta protocol, experiment governance, scorecard, dashboard spec, educational usefulness review, V1 educational Go / No-Go |
+| **EP-004** | Private beta **execution** — cohort, staged rollout, analytics activation, weekly scorecards, feedback register, Go / No-Go decision (`../ep004_private_beta/`) |
 
 EP-003 **does not replace** EP-001. Metric formulae that overlap with EP-001 must remain consistent; EP-003 adds operational fields (Owner, Review Frequency, Target) and product/executive surfaces.
 
@@ -94,7 +95,7 @@ EP-003 **does not replace** EP-001. Metric formulae that overlap with EP-001 mus
 | Go / No-Go framework complete | COMPLETE |
 | Version 1 educational readiness documented | COMPLETE (decision = PENDING EVIDENCE) |
 
-**Not claimed by this programme alone:** measured learning-outcome improvement in a live cohort. That requires private-beta execution + analytics activation under EP-002 go-live + measurement reports against these definitions.
+**Not claimed by this programme alone:** measured learning-outcome improvement in a live cohort. That requires private-beta execution (EP-004) + analytics activation under EP-002 go-live + measurement reports against these definitions.
 
 ---
 

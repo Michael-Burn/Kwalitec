@@ -19,6 +19,8 @@ class ExperienceJourneyAdapter:
     """Production adapter implementing Student Experience LearningJourneyPort.
 
     Projects journey progress. Never invents Topic Complete.
+    When ``journey_read`` is wired, projects exclusively from Runtime A via
+    the Journey Read Bridge (no ``seeded_demo_journey``).
     """
 
     ADAPTER_ID = "experience_journey"
@@ -29,6 +31,7 @@ class ExperienceJourneyAdapter:
         *,
         store: ExperienceProjectionStore | None = None,
         journey_engine: Any | None = None,
+        journey_read: Any | None = None,
         events: EventRegistry | None = None,
         diagnostics: AdapterDiagnostics | None = None,
         available: bool = True,
@@ -36,10 +39,12 @@ class ExperienceJourneyAdapter:
     ) -> None:
         self._store = store or ExperienceProjectionStore()
         self._engine = journey_engine
+        self._journey_read = journey_read
         self._events = events or EventRegistry()
         self._diagnostics = diagnostics or AdapterDiagnostics()
         self._available = available
-        self._auto_provision = auto_provision
+        # Bridge path must never auto-provision demo journey documents.
+        self._auto_provision = bool(auto_provision) and journey_read is None
         self._diagnostics.record_health(
             self.ADAPTER_ID,
             available=available,
@@ -75,6 +80,12 @@ class ExperienceJourneyAdapter:
 
     def get_journey_progress(self, student_id: str) -> dict[str, Any] | None:
         self._diagnostics.record_call(self.ADAPTER_ID)
+        if self._journey_read is not None:
+            doc = self._read_via_bridge(student_id)
+            if doc is None:
+                return None
+            progress = doc.get("progress")
+            return None if progress is None else dict(progress)
         doc = self._load(student_id)
         if doc is None:
             return None
@@ -83,11 +94,36 @@ class ExperienceJourneyAdapter:
 
     def get_topic_list(self, student_id: str) -> tuple[dict[str, Any], ...]:
         self._diagnostics.record_call(self.ADAPTER_ID)
+        if self._journey_read is not None:
+            doc = self._read_via_bridge(student_id)
+            if doc is None:
+                return ()
+            topics = doc.get("topics") or ()
+            return tuple(dict(item) for item in topics)
         doc = self._load(student_id)
         if doc is None:
             return ()
         topics = doc.get("topics") or ()
         return tuple(dict(item) for item in topics)
+
+    def _read_via_bridge(self, student_id: str) -> dict[str, Any] | None:
+        """Journey Read Bridge path — Runtime A only; never demo seed."""
+        sid = student_id.strip()
+        bridge = self._journey_read
+        if hasattr(bridge, "project_journey"):
+            result = bridge.project_journey(sid)
+            if hasattr(result, "ok"):
+                # Empty authentic projections are successful translations.
+                if result.value is None:
+                    return None
+                return dict(result.value)
+            if isinstance(result, dict):
+                return dict(result)
+            return None
+        if hasattr(bridge, "get_journey_progress_opaque"):
+            projected = bridge.get_journey_progress_opaque(sid)
+            return None if projected is None else dict(projected)
+        return None
 
     def _load(self, student_id: str) -> dict[str, Any] | None:
         sid = student_id.strip()

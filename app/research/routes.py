@@ -12,6 +12,7 @@ from flask import flash, redirect, render_template, request, session, url_for
 from flask_login import current_user, login_required
 
 from app.founder.dashboard.access import founder_required
+from app.presentation.consolidation import redirect_to_canonical_home
 from app.research import research_bp
 from app.research.forms import ProductCheckinForm
 from app.services.contributor_recognition_service import (
@@ -62,7 +63,7 @@ def checkin():
                 "Product Check-in is available after some study activity today.",
                 "info",
             )
-            return redirect(url_for("dashboard.index"))
+            return redirect_to_canonical_home()
         if mission_id is None and eligibility.mission is not None:
             mission_id = eligibility.mission.id
         if study_plan_id is None and eligibility.study_plan is not None:
@@ -132,7 +133,7 @@ def thank_you():
 @login_required
 def dismiss():
     """Skip the optional Product Check-in without penalty."""
-    return redirect(url_for("dashboard.index"))
+    return redirect_to_canonical_home()
 
 
 @research_bp.route("/founder", methods=["GET", "POST"])

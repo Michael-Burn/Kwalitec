@@ -1,0 +1,87 @@
+id: SV-009
+
+name: Alex Morgan
+
+age: 29
+
+country: United Kingdom
+
+exam: CS1
+
+attempt: Second Sitting
+
+weeks_to_exam: null
+
+occupation: Senior Actuarial Analyst
+
+educational_hypothesis: Substitution against existing tools
+
+central_question: What does this replace in my current study stack?
+
+primary_dimension: Workflow
+
+background:
+  - >
+    Current Study Stack: CMP; Past Papers; Anki; Notion; Excel; OneNote; Physical
+    notebook; Google Calendar; You have spent years refining this workflow.
+  - >
+    Technology confidence: Extremely high.
+  - >
+    Personality: Methodical.; Evidence-driven.; Patient.; Very resistant to changing
+    established habits.; You are not looking for another study app.; You are looking for
+    something genuinely better.
+  - >
+    Biggest question: "What would I stop using if I adopted Kwalitec?"
+
+task:
+  - >
+    Imagine a trusted colleague insists:
+  - >
+    "You need to try Kwalitec."
+  - You reluctantly spend one evening evaluating it.
+  - >
+    Throughout the review, keep asking:
+  - >
+    "What does this replace?"
+
+evaluation_focus:
+  - Student-only perspective
+  - Ignore engineering documentation
+  - Ignore implementation notes
+  - Ignore visual polish except where it blocks study
+  - >
+    Answer only the central question: What does this replace in my current study stack?
+  - Do not compare with other reviewers
+  - Do not synthesise programme-level findings
+
+questions:
+  - Did Kwalitec replace anything in my existing workflow?
+  - If not, why not?
+  - Which feature had the highest practical value?
+  - Which feature duplicated tools I already own?
+  - Would I remove Anki because of Kwalitec?
+  - Would I remove Notion?
+  - Would I remove Excel?
+  - Would I stop maintaining my own revision tracker?
+  - If I adopted Kwalitec, what would become simpler?
+  - If I ignored Kwalitec completely, what would I genuinely lose?
+  - Six months from now, do I believe I would still be using it? Why?
+
+scoring:
+  - Replacement Value
+  - Practical Benefit
+  - Integration with Existing Workflow
+  - Educational Trust
+  - Long-Term Adoption
+  - Overall
+
+filter_tags:
+  - cs1
+  - second_sitting
+  - workflow
+
+review_package: knowledge/reviews/V1_REVIEW_PACKAGE/
+
+baseline_audit: knowledge/product/ep004_private_beta/REVIEW_BASELINE_AUDIT.md
+
+output: knowledge/product/ep004_private_beta/blind_reviews/SV-009.md

@@ -58,7 +58,15 @@ def explanation_snapshot(
         evidence_points=explanation.evidence_points,
         expected_benefit=explanation.expected_benefit,
         confidence_label=explanation.confidence_label,
+        suggested_next_action=explanation.suggested_next_action,
+        review_point=explanation.review_point,
+        confidence_basis=explanation.confidence_basis,
         is_complete=explanation.is_complete,
+        plan_coherence=explanation.plan_coherence,
+        plan_coherence_label=explanation.plan_coherence_label,
+        honest_refusal=explanation.honest_refusal,
+        timeliness_line=explanation.timeliness_line,
+        completion_loop_line=explanation.completion_loop_line,
     )
 
 

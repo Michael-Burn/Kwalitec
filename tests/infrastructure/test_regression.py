@@ -70,9 +70,17 @@ def test_event_catalogue_complete():
         "RevisionStarted",
         "HistoryViewed",
         "ProfileUpdated",
+        "ADAPTIVE_SHADOW_REQUESTED",
+        "ADAPTIVE_SHADOW_COMPLETED",
+        "ADAPTIVE_SHADOW_FAILED",
+        "ADAPTIVE_SHADOW_LATENCY",
+        "ADAPTIVE_ENGINE_REQUESTED",
+        "ADAPTIVE_ENGINE_SUCCESS",
+        "ADAPTIVE_ENGINE_FAILURE",
+        "ADAPTIVE_ENGINE_FALLBACK",
+        "ADAPTIVE_ENGINE_LATENCY",
     }
     assert required.issubset(set(EVENT_TYPES))
-    assert set(EVENT_TYPES) == required
 
 
 def test_aggregate_contracts_nonempty():

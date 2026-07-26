@@ -1,4 +1,11 @@
-"""ExplanationService — student-safe recommendation explanations."""
+"""ExplanationService — student-safe recommendation explanations.
+
+EP-006.2: prefer authored Runtime A MES fields; reason-code synthesis is
+fallback only when the payload is schema-incomplete.
+
+EP-008.1: map trust fields (coherence, refusal, timeliness, completion loop)
+from authored fragments — presentation composition only.
+"""
 
 from __future__ import annotations
 
@@ -14,6 +21,10 @@ from app.application.student_experience.exceptions import (
 )
 from app.application.student_experience.ports.adaptive_decision_port import (
     AdaptiveDecisionPort,
+)
+from app.application.student_experience.recommendation_trust import (
+    compose_completion_loop_line,
+    compose_timeliness_line,
 )
 from app.domain.student_experience.recommendation_explanation import (
     RecommendationExplanation,
@@ -56,39 +67,164 @@ class ExplanationService:
         assert snap is not None
         return snap
 
-    def from_opaque(self, payload: dict[str, Any]) -> RecommendationExplanation:
-        """Map an opaque Adaptive Decision explanation payload."""
+    def from_opaque(
+        self,
+        payload: dict[str, Any],
+        *,
+        exam_countdown_days: int | None = None,
+    ) -> RecommendationExplanation:
+        """Map an opaque Adaptive Decision / Runtime A explanation payload.
+
+        When authored MES keys are present (``why_recommended``, supporting
+        evidence, next action, …), pass them through. Reason-code re-narration
+        applies only for incomplete / cold-start payloads.
+        """
+        view = _flatten_explanation_payload(payload)
         topic = str(
-            payload.get("topic_title")
-            or payload.get("title")
-            or payload.get("topic")
+            view.get("topic_title")
+            or view.get("title")
+            or view.get("topic")
             or ""
         )
-        reason_codes = payload.get("reason_codes") or payload.get("reasons") or ()
-        evidence = (
-            payload.get("evidence_points")
-            or payload.get("evidence_considered")
-            or payload.get("evidence_phrases")
-            or ()
+        evidence = _evidence_phrases(view)
+        confidence = str(
+            view.get("confidence_level")
+            or view.get("confidence")
+            or view.get("confidence_label")
+            or ""
         )
+        next_action = str(
+            view.get("suggested_next_action")
+            or view.get("next_action")
+            or ""
+        )
+        review_point = str(view.get("review_point") or "")
+        confidence_basis = str(
+            view.get("confidence_basis")
+            or view.get("confidence_rationale")
+            or ""
+        )
+        authored_why = str(view.get("why_recommended") or "").strip()
+        authored_summary = str(
+            view.get("summary")
+            or view.get("explanation_summary")
+            or ""
+        ).strip()
+        plan_coherence = str(view.get("plan_coherence") or "").strip()
+        plan_coherence_label = str(
+            view.get("plan_coherence_label") or ""
+        ).strip()
+        honest_refusal = bool(view.get("honest_refusal"))
+        authored_reason = str(view.get("reason") or "").strip()
+        category = str(view.get("category") or "").strip()
+
+        # Schema-complete or authored-why path: no reason-code rewrite.
+        if authored_why or _looks_schema_complete(view) or honest_refusal:
+            reason_codes: tuple[str, ...] = ()
+        else:
+            reason_codes = tuple(
+                str(c)
+                for c in (
+                    view.get("reason_codes") or view.get("reasons") or ()
+                )
+            )
+
+        timeliness = compose_timeliness_line(
+            reason=authored_reason,
+            why_recommended=authored_why,
+            category=category,
+            plan_coherence_label=plan_coherence_label,
+            plan_coherence=plan_coherence,
+            exam_countdown_days=exam_countdown_days,
+            honest_refusal=honest_refusal,
+        )
+        completion_loop = compose_completion_loop_line(
+            review_point=review_point
+        )
+
         return build_explanation(
             topic_title=translate_to_student_language(topic),
-            reason_codes=tuple(str(c) for c in reason_codes),
-            evidence_phrases=tuple(
-                translate_to_student_language(str(p)) for p in evidence
-            ),
+            reason_codes=reason_codes,
+            evidence_phrases=evidence,
             expected_benefit=str(
-                payload.get("expected_benefit")
-                or payload.get("expected_educational_benefit")
+                view.get("expected_benefit")
+                or view.get("expected_educational_benefit")
                 or ""
             ),
             priority_band=str(
-                payload.get("priority_band") or payload.get("priority") or ""
+                view.get("priority_band") or view.get("priority") or ""
             ),
-            confidence=str(payload.get("confidence") or ""),
+            confidence=confidence,
+            suggested_next_action=next_action,
+            review_point=review_point,
+            confidence_basis=confidence_basis,
+            why_recommended=authored_why,
+            summary=authored_summary,
+            plan_coherence=plan_coherence,
+            plan_coherence_label=plan_coherence_label,
+            honest_refusal=honest_refusal,
+            timeliness_line=timeliness,
+            completion_loop_line=completion_loop,
         )
 
     def _require_adaptive(self) -> AdaptiveDecisionPort:
         if self._adaptive is None or not self._adaptive.is_available():
             raise PortUnavailable("adaptive_decision port unavailable")
         return self._adaptive
+
+
+def _flatten_explanation_payload(payload: dict[str, Any]) -> dict[str, Any]:
+    """Merge nested ``explanation`` dict under top-level keys (top wins)."""
+    nested = payload.get("explanation")
+    if not isinstance(nested, dict):
+        return dict(payload)
+    merged = {**nested}
+    for key, value in payload.items():
+        if key == "explanation":
+            continue
+        if value is None or value == "" or value == () or value == []:
+            continue
+        merged[key] = value
+    if "honest_refusal" in payload:
+        merged["honest_refusal"] = bool(payload.get("honest_refusal"))
+    return merged
+
+
+def _evidence_phrases(view: dict[str, Any]) -> tuple[str, ...]:
+    raw = (
+        view.get("supporting_evidence")
+        or view.get("evidence_points")
+        or view.get("evidence_considered")
+        or view.get("evidence_phrases")
+        or view.get("observed_facts")
+        or ()
+    )
+    if isinstance(raw, str):
+        text = raw.strip()
+        return (translate_to_student_language(text),) if text else ()
+    return tuple(
+        translate_to_student_language(str(p))
+        for p in raw
+        if str(p).strip()
+    )
+
+
+def _looks_schema_complete(view: dict[str, Any]) -> bool:
+    """Prefer service gate when importable; otherwise key heuristic."""
+    try:
+        from app.services.recommendation_quality import (
+            has_complete_explanation_schema,
+        )
+
+        if has_complete_explanation_schema(view):
+            return True
+    except Exception:
+        pass
+    return bool(
+        str(view.get("why_recommended") or "").strip()
+        and (
+            view.get("supporting_evidence")
+            or view.get("suggested_next_action")
+            or view.get("next_action")
+        )
+    )

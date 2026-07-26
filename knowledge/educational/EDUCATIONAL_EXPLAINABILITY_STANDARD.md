@@ -278,6 +278,7 @@ Progress and analytics copy must preserve Study Progress vs Estimated Knowledge 
 | EDUCATIONAL_EVIDENCE_MODEL.md | What may lawfully support estimates |
 | EDUCATIONAL_STATE_AUTHORITY_MATRIX.md | Ownership; students never own Estimated Mastery as editable verified truth |
 | EDUCATIONAL_INTEGRITY_PROGRAMME_BLUEPRINT.md | Capability 3 — EIP-003 |
+| `knowledge/product/p001_2_explainability_standard/EXPLAINABILITY_STANDARD.md` | Product levels, mandatory schema, patterns, and EP/P review gate (specialises this Standard; does not replace it) |
 
 ---
 

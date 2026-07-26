@@ -89,6 +89,16 @@ Unless the brief says otherwise:
    - Technical Debt  
    - Known Limitations  
 
+   For **EP / P programmes**, also include:
+
+   - Student Impact Assessment (`knowledge/product/p001_1_ksi_baseline/STUDENT_IMPACT_ASSESSMENT_TEMPLATE.md`)
+   - Estimated KSI contribution (K1–K8 deltas + net ΔKSI)
+   - Evidence collected
+   - Lessons learned for student value
+   - Explainability Review Checklist when the programme affects student-facing intelligence (`knowledge/product/p001_2_explainability_standard/EXPLAINABILITY_REVIEW_CHECKLIST.md`; N/A with rationale otherwise)
+   - Recommendation Review Checklist when the programme affects student-facing recommendations (`knowledge/product/p001_3_recommendation_quality_standard/RECOMMENDATION_REVIEW_CHECKLIST.md`; N/A with rationale otherwise)
+   - Version 1 readiness residual gates when claiming progress toward Version 1 production-ready (`knowledge/product/p002_1_version_1_release_framework/`; N/A for docs/governance-only law programmes)
+
 4. Stage and commit with the milestone’s mandated message when required.
 5. Include the commit hash in the report when a commit was made.
 6. **STOP** — do not start the next milestone unless asked.

@@ -13,6 +13,7 @@ class FakeSessionRuntimePort:
         self.begin_calls: list[tuple] = []
         self.response_calls: list[tuple] = []
         self.complete_calls: list[str] = []
+        self.reflection_note_calls: list[tuple] = []
 
     @property
     def component_id(self) -> str:
@@ -83,6 +84,12 @@ class FakeSessionRuntimePort:
             "reflection_prompt": "What still feels unclear about influence?",
             "topic_title": "Equity method",
         }
+
+    def record_reflection_note(
+        self, student_id: str, *, session_id: str, note: str
+    ) -> dict[str, Any]:
+        self.reflection_note_calls.append((student_id, session_id, note))
+        return {"recorded": True, "session_id": session_id}
 
     def get_completion_summary(
         self, student_id: str, *, session_id: str

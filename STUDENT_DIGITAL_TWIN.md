@@ -534,6 +534,29 @@ Recommendations / Plans / Missions regenerated as needed
 3. Twin domain updates are **functions of evidence + prior Twin state** — deterministic for core paths.
 4. Analytics and AI Coach may *read* evidence; they must not invent evidence.
 
+### Learning Feedback Loop (EP-003.4)
+
+Runtime A may record **observed behavioural feedback** (plan completion, recommendation accept/dismiss, missed sessions, recovery application, revision adherence signals, study consistency) into the Learning Feedback buffer (`knowledge/architecture/LEARNING_FEEDBACK_ARCHITECTURE.md`).
+
+Binding rules for Twin:
+
+1. Learning Feedback events are **not** Twin Knowledge Evidence by default.
+2. Recommendation accept/dismiss remains **preference / Decision Journal** signal — it must not mutate Estimated Knowledge (Educational Constitution Art. V §2).
+3. EP-003.4 does **not** write Twin facets; future Twin intake requires a separate authorised Evidence → Twin path and architecture review.
+4. Do not confuse Learning Feedback with Experience Feedback (Home factual display) or product research forms.
+
+### Personal Learning Profile (EP-004.1)
+
+Runtime A may aggregate Learning Feedback observations into a **Personal Learning Profile** — a long-term, explainable summary of observed behaviours and preferences (`knowledge/architecture/PERSONAL_LEARNING_PROFILE_ARCHITECTURE.md`).
+
+Binding rules for Twin:
+
+1. The Personal Learning Profile is **not** the Student Digital Twin and must not become a competing learner-state store.
+2. Profile attributes summarise observed evidence (with confidence and provenance); they do **not** invent mastery, readiness, or “study next”.
+3. EP-004.1 does **not** write Twin Knowledge State or Twin facets.
+4. RecommendationService, ReadinessService, and PlanningService may **consume** profile attributes as optional inputs but must not delegate constitutional authority to the profile.
+5. Student-facing language may say “learning profile” (IA-003); engineering must keep Twin vs Personal Learning Profile boundaries explicit.
+
 ---
 
 # Twin Lifecycle

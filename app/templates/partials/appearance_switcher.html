@@ -1,0 +1,48 @@
+{#
+  Shared appearance (Light/Dark/System) switcher (PX-002B — Design
+  Standardisation). Previously the top nav rendered icon+label buttons while
+  Settings rendered text-only buttons for the identical control — two
+  implementations of one choice. Per the "choose the better one, standardise
+  the rest" rule, the more complete (icon + label) treatment is now the one
+  implementation, reused everywhere. `theme.js` only reads
+  `[data-appearance-option]` / `[data-appearance-select]`, so this refactor
+  changes no behaviour.
+
+  Usage:
+    {% from "partials/appearance_switcher.html" import appearance_switcher %}
+    {{ appearance_switcher() }}
+    {{ appearance_switcher(group_aria_label='Appearance', show_switcher_label=true) }}
+    {{ appearance_switcher(show_select=true) }}
+#}
+{% from "partials/icons.html" import icon %}
+{% macro appearance_switcher(group_aria_label='Appearance preference', show_switcher_label=false, show_select=false) %}
+<div class="appearance-switcher" role="group" aria-label="{{ group_aria_label }}">
+    {% if show_switcher_label %}
+    <span class="appearance-switcher-label" id="appearance-label">Appearance</span>
+    {% endif %}
+    {# PX-002B: an explicit aria-label on every button keeps its accessible
+       name stable even when the visible text is hidden at narrow widths
+       (icon-only layout) — aria-labelledby to a shared label would give all
+       three buttons the same name. #}
+    <button type="button" class="appearance-option" data-appearance-option="light" aria-pressed="false" aria-label="Light" title="Light">
+        {{ icon('sun') }}
+        <span>Light</span>
+    </button>
+    <button type="button" class="appearance-option" data-appearance-option="dark" aria-pressed="false" aria-label="Dark" title="Dark">
+        {{ icon('moon') }}
+        <span>Dark</span>
+    </button>
+    <button type="button" class="appearance-option" data-appearance-option="system" aria-pressed="false" aria-label="System" title="System">
+        {{ icon('monitor') }}
+        <span>System</span>
+    </button>
+</div>
+{% if show_select %}
+<label class="form-label mt-3 d-block" for="appearance-select">Or select from the list</label>
+<select id="appearance-select" class="appearance-select form-select" data-appearance-select style="max-width: 12rem;">
+    <option value="light">Light</option>
+    <option value="dark">Dark</option>
+    <option value="system">System</option>
+</select>
+{% endif %}
+{% endmacro %}

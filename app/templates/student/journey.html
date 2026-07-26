@@ -1,4 +1,5 @@
 {% extends "student/base.html" %}
+{% set title = page.shell.page_title %}
 {% from "student/components/progress_card.html" import progress_card %}
 
 {% block content %}
@@ -67,9 +68,16 @@
     </a>
 </div>
 {% else %}
-<section class="student-card">
-    <h2 class="student-card-title">Journey</h2>
-    <p class="student-card-body">Your learning path will appear here.</p>
+<section class="student-empty" aria-label="Journey" role="status">
+    <h2 class="student-empty-title">Your journey will take shape after your first session</h2>
+    <p class="student-empty-description">
+        Once you complete a study session, we'll map your path — current topic, what's done, and what's next.
+    </p>
+    <div class="student-primary-action">
+        <a class="btn student-btn-primary" href="{{ url_for('student.home') }}" data-student-cta="primary">
+            Go to Home
+        </a>
+    </div>
 </section>
 {% endif %}
 {% endblock %}

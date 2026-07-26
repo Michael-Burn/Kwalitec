@@ -10,6 +10,7 @@ from flask_login import current_user, login_required
 from app.mission.forms import PracticeOutcomeCaptureForm
 from app.models.mission import Mission
 from app.models.topic_progress import TopicProgress
+from app.presentation.intelligence_surface import RuntimeAPresentationAdapter
 from app.services.curriculum_engine_service import (
     CurriculumEngineService,
 )
@@ -41,6 +42,96 @@ def _sole_runtime_to_canonical():
     from app.presentation.consolidation import redirect_if_sole_runtime
 
     return redirect_if_sole_runtime("student.home")
+
+
+def _recommendation_coherence_for_mission(
+    user_id: int, *, mission_title: str = ""
+) -> str:
+    """Pass-through recommendation plan_coherence_label when tip ≠ mission.
+
+    Presentation only (EP-008.1). Fail-open; never re-ranks.
+    """
+    try:
+        from app.services.recommendation_service import RecommendationService
+
+        tip = RecommendationService.get_dashboard_today_recommendation(user_id)
+    except Exception:
+        logger.debug(
+            "EP-008.1 mission coherence lookup failed for user %s",
+            user_id,
+            exc_info=True,
+        )
+        return ""
+    if not isinstance(tip, dict) or tip.get("honest_refusal"):
+        return ""
+    label = str(tip.get("plan_coherence_label") or "").strip()
+    if not label:
+        return ""
+    tip_title = str(tip.get("title") or tip.get("topic_title") or "").strip()
+    coherence = str(tip.get("plan_coherence") or "").strip().lower()
+    mission = (mission_title or "").strip()
+    diverges = bool(
+        tip_title
+        and mission
+        and tip_title.lower() != mission.lower()
+    )
+    if diverges or coherence in {"advisory", "contextual", "wellbeing"}:
+        return label
+    return ""
+
+
+def _commitment_echo_for_mission(user_id: int) -> tuple[str, str]:
+    """EP-008.3: committed tip title + continuity for Mission chrome (fail-open)."""
+    try:
+        from app.application.student_experience.recommendation_commitment import (
+            CONTINUITY_COMMIT,
+            STATE_COMMITTED,
+            STATE_IN_SESSION,
+            RecommendationCommitmentService,
+        )
+        from app.services.recommendation_service import RecommendationService
+
+        tip = RecommendationService.get_dashboard_today_recommendation(user_id)
+        if not isinstance(tip, dict):
+            tip = {}
+        snap = RecommendationCommitmentService.snapshot_for_home(
+            user_id,
+            tip=tip,
+            schema_complete=True,
+        )
+        if snap.state in {STATE_COMMITTED, STATE_IN_SESSION} and snap.title:
+            return snap.title, snap.continuity_line or CONTINUITY_COMMIT
+    except Exception:
+        logger.debug(
+            "EP-008.3 mission commitment echo failed for user %s",
+            user_id,
+            exc_info=True,
+        )
+    return "", ""
+
+
+def _link_commitment_completion(user_id: int, *, mission_title: str = "") -> None:
+    """EP-008.3: link session completion to commitment (preference only)."""
+    try:
+        from app.application.student_experience.recommendation_commitment import (
+            RecommendationCommitmentService,
+        )
+        from app.services.recommendation_service import RecommendationService
+
+        tip = RecommendationService.get_dashboard_today_recommendation(user_id)
+        if not isinstance(tip, dict):
+            tip = {"title": mission_title} if mission_title else {}
+        RecommendationCommitmentService.mark_completed(
+            user_id,
+            tip=tip,
+            session_topic=mission_title,
+        )
+    except Exception:
+        logger.debug(
+            "EP-008.3 commitment completion link failed for user %s",
+            user_id,
+            exc_info=True,
+        )
 
 
 def _resolve_topic_for_mission(user_id: int, mission: Mission):
@@ -156,20 +247,24 @@ def missions():
     # Active study plan first — today's mission must belong to it (IA-001).
     active_study_plan = StudyPlanService.get_user_active_plan(user_id)
 
-    # Ensure a plan-scoped mission exists before launch/display.
-    if active_study_plan is not None:
-        from app.services.planning_service import PlanningService
+    # Ensure / resolve today's mission (EP-002.7 gated cutover —
+    # legacy generate_today_mission remains fail-open).
+    from app.services.planning_service import PlanningService
 
-        PlanningService.generate_today_mission(user_id)
+    mission_surface = (
+        PlanningService.get_dashboard_mission_surface(user_id)
+        if active_study_plan is not None
+        else {
+            "today_mission": None,
+            "source_authority": "legacy",
+            "today_missions_slots": [],
+        }
+    )
+    today_mission = mission_surface.get("today_mission")
 
     missions_list = Mission.query.filter_by(user_id=user_id).order_by(
         Mission.mission_date.desc()
     ).all()
-
-    today_mission = MissionService.get_today_mission(
-        user_id,
-        study_plan_id=active_study_plan.id if active_study_plan else None,
-    )
 
     # Curriculum summary (coverage / readiness widgets only — not mission topic)
     curriculum_summary = None
@@ -198,7 +293,6 @@ def missions():
                 exc_info=True,
             )
 
-    mission_narrative = None
     session_context = None
     from app.services.learning_lifecycle_service import (
         LearningLifecycle,
@@ -210,26 +304,30 @@ def missions():
     )
     is_revision = lifecycle.stage == LearningLifecycle.REVISION
 
+    syllabus_pct = None
+    completed_topics = None
+    total_topics = None
+    if curriculum_summary is not None:
+        completed_topics = getattr(curriculum_summary, "completed_topics", None)
+        total_topics = getattr(curriculum_summary, "total_topics", None)
+    if readiness_summary is not None:
+        syllabus_pct = readiness_summary.readiness_percentage * 100
+
+    # EP-002.8: unified mission narration (Twin slots vs EIP-003 legacy).
+    mission_narrative = RuntimeAPresentationAdapter.mission_narrative(
+        today_mission=today_mission,
+        mission_surface=mission_surface,
+        exam_name=(active_study_plan.exam_name if active_study_plan else None),
+        completed_topics=completed_topics,
+        total_topics=total_topics,
+        syllabus_coverage_pct=syllabus_pct,
+        is_revision=is_revision,
+    )
     if today_mission is not None:
-        syllabus_pct = None
-        completed_topics = None
-        total_topics = None
-        if curriculum_summary is not None:
-            completed_topics = getattr(curriculum_summary, "completed_topics", None)
-            total_topics = getattr(curriculum_summary, "total_topics", None)
-        if readiness_summary is not None:
-            syllabus_pct = readiness_summary.readiness_percentage * 100
-        mission_narrative = EducationalExplainabilityService.build_mission_narrative(
-            mission_title=today_mission.title,
-            mission_status=today_mission.status,
-            exam_name=active_study_plan.exam_name if active_study_plan else None,
-            completed_topics=completed_topics,
-            total_topics=total_topics,
-            syllabus_coverage_pct=syllabus_pct,
-            is_revision=is_revision,
-        )
+        # Session context needs the ORM mission (proxy unwraps via __getattr__).
+        session_mission = getattr(today_mission, "_mission", today_mission)
         session_context = StudySessionService.build_session_context(
-            today_mission,
+            session_mission,
             active_study_plan,
             why_studying=(
                 mission_narrative.reason_for_selection if mission_narrative else None
@@ -238,6 +336,29 @@ def missions():
                 mission_narrative.educational_purpose if mission_narrative else None
             ),
         )
+
+    # B3 (PX-003): one canonical planned-duration number for this screen,
+    # via the same resolver Home and Session use — never a template-local
+    # fallback chain that can disagree with them.
+    if session_context is not None:
+        estimated_minutes = session_context.estimated_minutes
+    else:
+        from datetime import date as _date
+
+        from app.application.student_experience.session_duration import (
+            resolve_planned_session_minutes,
+        )
+
+        estimated_minutes = resolve_planned_session_minutes(
+            active_study_plan, mission_date=_date.today()
+        )
+
+    # EP-008.1: show authored plan-coherence when tip diverges from mission.
+    recommendation_coherence_label = _recommendation_coherence_for_mission(
+        user_id,
+        mission_title=str(getattr(today_mission, "title", "") or ""),
+    )
+    commitment_echo, commitment_continuity = _commitment_echo_for_mission(user_id)
 
     return render_template(
         "mission/index.html",
@@ -250,9 +371,13 @@ def missions():
         coverage_narrative=coverage_narrative,
         mission_narrative=mission_narrative,
         session_context=session_context,
+        estimated_minutes=estimated_minutes,
         study_tip=StudyTipsService.tip_for_day(),
         is_revision=is_revision,
         lifecycle=lifecycle,
+        recommendation_coherence_label=recommendation_coherence_label,
+        commitment_echo=commitment_echo,
+        commitment_continuity=commitment_continuity,
     )
 
 
@@ -418,6 +543,10 @@ def finish_study_session(mission_id: int):
             resource_id=mission.id,
             path=request.path,
         )
+        _link_commitment_completion(
+            current_user.id,
+            mission_title=str(getattr(mission, "title", "") or ""),
+        )
         flash("Today's study session has been recorded.", "success")
         return redirect(
             url_for(
@@ -456,6 +585,10 @@ def finish_study_session(mission_id: int):
             resource_type="mission",
             resource_id=result.mission.id,
             path=request.path,
+        )
+        _link_commitment_completion(
+            current_user.id,
+            mission_title=str(getattr(result.mission, "title", "") or ""),
         )
         flash(PRACTICE_OUTCOME_SUCCESS_MESSAGE, "success")
         return redirect(

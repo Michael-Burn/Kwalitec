@@ -51,6 +51,16 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    {# B4 (PX-003): the Welcome dialog's focus entry/trap/return + Escape
+       behaviour lives in app.js. This canonical Student Experience shell
+       renders that same dialog (see student/home.html's include of
+       partials/welcome_modal.html) but previously loaded only student.js,
+       so the dialog appeared with no keyboard/focus behaviour at all on the
+       one screen it actually ships on. app.js's sidebar-drawer code is
+       guarded by `if (sidebar && toggle)` and is a no-op here since this
+       shell has no `.sidebar` element — only its welcome-modal handling is
+       active on this page. #}
+    <script src="{{ versioned_static('js/app.js') }}"></script>
     <script src="{{ versioned_static('js/student.js') }}"></script>
     {% block extra_scripts %}{% endblock %}
 </body>

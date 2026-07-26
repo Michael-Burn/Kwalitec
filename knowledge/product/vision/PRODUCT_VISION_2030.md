@@ -10,7 +10,8 @@ It defines **why** Kwalitec exists, **what success means**, and **what we will n
 
 Operational product strategy (audiences, roadmap, educational model pillars, Digital Twin role) lives in [`PRODUCT_BLUEPRINT.md`](../../../PRODUCT_BLUEPRINT.md).  
 Educational law lives in [`KWALITEC_EDUCATIONAL_CONSTITUTION.md`](../../educational/KWALITEC_EDUCATIONAL_CONSTITUTION.md).  
-Document hierarchy: [`knowledge/GOVERNANCE.md`](../../GOVERNANCE.md).
+Document hierarchy: [`knowledge/GOVERNANCE.md`](../../GOVERNANCE.md).  
+Founder-operated approval authority (capacities; evidence unchanged): [`../gp001_founder_governance_model/FOUNDER_GOVERNANCE_MODEL.md`](../gp001_founder_governance_model/FOUNDER_GOVERNANCE_MODEL.md).
 
 ---
 

@@ -1,0 +1,7 @@
+EP-007.2 duration consistency capture
+preferred_session_minutes=30
+weekday_study_minutes=90
+resolve_planned_session_minutes (Home/bridges) = 30
+StudySessionService.estimated_minutes_for_mission (legacy path) = 30
+match=True
+pre-consolidation theme: Home 30 vs Session 90 — RESOLVED when preferred set

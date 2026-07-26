@@ -65,6 +65,14 @@ class SessionRuntimePort(Protocol):
     ) -> dict[str, Any] | None:
         """Return opaque reflection guidance facts."""
 
+    def record_reflection_note(
+        self, student_id: str, *, session_id: str, note: str
+    ) -> dict[str, Any]:
+        """Persist the student's free-text reflection note onto the session record.
+
+        Returns an opaque acknowledgement. Never scores or interprets the note.
+        """
+
     def get_completion_summary(
         self, student_id: str, *, session_id: str
     ) -> dict[str, Any] | None:

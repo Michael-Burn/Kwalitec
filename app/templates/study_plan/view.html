@@ -144,8 +144,9 @@
                             <h3 class="roadmap-card-title">{{ topic.name }}</h3>
                             <div class="roadmap-card-metrics">
                                 <div class="roadmap-metric">
-                                    <span class="roadmap-metric-label">Est. Hours</span>
-                                    <span class="roadmap-metric-value">{{ ((topic.recommended_minutes or 0) / 60)|round(1) }}h</span>
+                                    <span class="roadmap-metric-label">Estimated time</span>
+                                    <span class="roadmap-metric-value">{{ topic.recommended_minutes | format_minutes }}</span>
+                                    <span class="roadmap-metric-basis small text-muted">Time to study this topic — a different number from today's session length on Home and Mission.</span>
                                 </div>
                                 {% if tp and tp.has_estimated_knowledge %}
                                 <div class="roadmap-metric">
@@ -201,8 +202,9 @@
                             <span class="roadmap-metric-value">{{ '%g'|format(topic.syllabus_weight or 0) }}%</span>
                         </div>
                         <div class="roadmap-metric">
-                            <span class="roadmap-metric-label">Est. Hours</span>
-                            <span class="roadmap-metric-value">{{ ((topic.recommended_minutes or 0) / 60)|round(1) }}h</span>
+                            <span class="roadmap-metric-label">Estimated time</span>
+                            <span class="roadmap-metric-value">{{ topic.recommended_minutes | format_minutes }}</span>
+                            <span class="roadmap-metric-basis small text-muted">Time to study this topic — a different number from today's session length on Home and Mission.</span>
                         </div>
                         {% if tp and tp.has_estimated_knowledge %}
                         <div class="roadmap-metric">

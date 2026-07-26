@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Any
+
 from app.application.educational_state import EducationalStateService
 from app.application.student_experience._registry import ExperienceRegistry
 from app.application.student_experience.dashboard_service import (
@@ -71,6 +73,7 @@ class StudentExperienceService:
         learning_journey: LearningJourneyPort | None = None,
         learning_orchestrator: LearningOrchestratorPort | None = None,
         registry: ExperienceRegistry | None = None,
+        history_read: Any | None = None,
     ) -> None:
         self._registry = registry or ExperienceRegistry()
         self._ports = {
@@ -108,6 +111,7 @@ class StudentExperienceService:
         self._history = HistoryService(
             student_twin=student_twin,
             educational_state=self._educational_state,
+            history_read=history_read,
         )
         self._profile = ProfileService(
             student_twin=student_twin,

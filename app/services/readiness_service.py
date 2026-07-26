@@ -1,12 +1,24 @@
 """Service for calculating exam readiness and performance analytics.
 
 All calculations are deterministic. No AI or external APIs are used.
+
+EP-001.3: ``build_readiness_intelligence`` consumes EP-001.1 Canonical
+Learner State and optional EP-001.2 planner outputs when Digital Twin
+Foundation is enabled. Twin owns learner state; Planner owns planning;
+this service owns readiness evaluation. Legacy getters remain unchanged
+so ``ReadinessCollector`` does not recurse through Foundation.
+
+EP-003.2: student-facing readiness surfaces and intelligence assessments
+attach the P-001.2 explanation schema (drivers, confidence, evidence,
+change reasoning, next action) via ``readiness_quality``.
 """
 
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta
+from typing import Any
 
 from sqlalchemy.orm import joinedload
 
@@ -15,6 +27,8 @@ from app.models.curriculum import Topic
 from app.models.learning import Mistake, StudyAttempt
 from app.models.mission import Mission
 from app.models.topic_progress import TopicProgress
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass(frozen=True)
@@ -50,7 +64,327 @@ class ReadinessService:
     - Review Backlog
     - Current & Longest Streak
     - Weakest & Strongest Topics
+
+    EP-001.3: ``build_readiness_intelligence`` packages score, confidence,
+    strongest/weakest areas, drivers, and recommended next actions from
+    Canonical Learner State (+ optional planner daily plan).
+
+    EP-003.2: student-facing surfaces and assessments attach the P-001.2
+    readiness explanation schema via ``readiness_quality`` (drivers,
+    confidence labels, evidence, change reasoning, next action).
     """
+
+    # ── Readiness Intelligence (EP-001.3) ─────────────────────────────
+
+    @staticmethod
+    def build_readiness_intelligence(
+        user_id: int,
+        *,
+        foundation: object | None = None,
+        canonical_state: object | None = None,
+        daily_plan: dict[str, Any] | None = None,
+        include_planner: bool = True,
+    ) -> dict[str, Any] | None:
+        """Build a readiness intelligence assessment from Canonical Learner State.
+
+        When Digital Twin Foundation is unavailable (flag OFF or assemble
+        failure), returns ``None`` so callers continue using legacy getters
+        (``get_overall_readiness``, weak/strong topics). Does not invent
+        learner state, does not plan missions, and does not alter
+        ``get_overall_readiness`` (collector recursion safety).
+
+        Args:
+            user_id: The ID of the user.
+            foundation: Optional injected ``StudentDigitalTwinFoundation``.
+            canonical_state: Optional already-assembled
+                ``CanonicalLearnerState`` (EP-002.2 shared DI).
+            daily_plan: Optional injected EP-001.2 daily plan dict.
+            include_planner: When True and ``daily_plan`` is omitted, attempt
+                ``PlanningService.build_daily_study_plan`` for next actions.
+
+        Returns:
+            Serialisable readiness intelligence dict, or None when Twin is
+            unavailable.
+        """
+        from app.infrastructure.adapters.consumer_chain import (
+            API_BUILD_READINESS_INTELLIGENCE,
+            SERVICE_READINESS,
+            observe_build_api,
+        )
+
+        return observe_build_api(
+            service_name=SERVICE_READINESS,
+            api_name=API_BUILD_READINESS_INTELLIGENCE,
+            user_id=user_id,
+            call=lambda: ReadinessService._build_readiness_intelligence_body(
+                user_id,
+                foundation=foundation,
+                canonical_state=canonical_state,
+                daily_plan=daily_plan,
+                include_planner=include_planner,
+            ),
+        )
+
+    @staticmethod
+    def _build_readiness_intelligence_body(
+        user_id: int,
+        *,
+        foundation: object | None = None,
+        canonical_state: object | None = None,
+        daily_plan: dict[str, Any] | None = None,
+        include_planner: bool = True,
+    ) -> dict[str, Any] | None:
+        """Internal readiness intelligence body (observability wraps public API)."""
+        twin_foundation = foundation
+        if twin_foundation is None:
+            twin_foundation = ReadinessService._resolve_twin_foundation()
+        if twin_foundation is None or not getattr(
+            twin_foundation, "is_enabled", lambda: False
+        )():
+            return None
+
+        from app.infrastructure.adapters.consumer_chain import (
+            API_BUILD_READINESS_INTELLIGENCE,
+            SERVICE_READINESS,
+            assemble_shared_canonical_state,
+        )
+        from app.infrastructure.adapters.digital_twin.contracts import (
+            AVAILABILITY_AVAILABLE,
+        )
+        from app.infrastructure.adapters.readiness_intelligence import (
+            build_canonical_readiness_consumer,
+            build_readiness_assessment_assembler,
+        )
+
+        state = assemble_shared_canonical_state(
+            twin_foundation,
+            str(user_id),
+            canonical_state=canonical_state,
+            service_name=SERVICE_READINESS,
+            api_name=API_BUILD_READINESS_INTELLIGENCE,
+        )
+        plan_payload = daily_plan
+        if plan_payload is None and include_planner:
+            plan_payload = ReadinessService._resolve_daily_plan(
+                user_id,
+                foundation=twin_foundation,
+                canonical_state=state,
+            )
+
+        inputs = build_canonical_readiness_consumer().project(
+            state, daily_plan=plan_payload
+        )
+        if inputs.availability != AVAILABILITY_AVAILABLE:
+            logger.debug(
+                "Canonical Learner State unavailable for readiness user %s (%s)",
+                user_id,
+                inputs.unavailable_reason,
+            )
+            return None
+
+        assessment = build_readiness_assessment_assembler().assemble(inputs)
+        payload = assessment.to_dict()
+        from app.services.readiness_quality import (
+            apply_readiness_quality_to_assessment,
+        )
+
+        result = apply_readiness_quality_to_assessment(user_id, payload)
+        ReadinessService._emit_consistency_feedback(user_id)
+        return result
+
+    @staticmethod
+    def get_dashboard_readiness_surface(
+        user_id: int,
+        *,
+        weak_limit: int = 3,
+        strong_limit: int = 3,
+    ) -> dict[str, Any]:
+        """Dashboard/analytics readiness surface with EP-002.6 gated cutover.
+
+        Eligible non-production requests may receive a Twin Readiness
+        Intelligence projection (score + weak/strong topic lists). Otherwise
+        returns the legacy surface. Fail-open: Twin failures and blocking
+        limitations fall back to legacy getters.
+
+        Collectors and Adaptive TwinInput must continue calling
+        ``get_overall_readiness`` directly — this facade is HTTP-surface only.
+        """
+        import time
+
+        from app.infrastructure.adapters.consumer_chain.readiness_cutover import (
+            is_readiness_cutover_active,
+            is_readiness_intelligence_cutover_eligible,
+            run_readiness_intelligence_http_cutover,
+        )
+        from app.services.readiness_quality import apply_readiness_quality_contract
+
+        if (
+            is_readiness_intelligence_cutover_eligible()
+            or is_readiness_cutover_active()
+        ):
+            surface = run_readiness_intelligence_http_cutover(
+                user_id,
+                weak_limit=weak_limit,
+                strong_limit=strong_limit,
+            )
+            result = apply_readiness_quality_contract(user_id, surface)
+            ReadinessService._emit_consistency_feedback(user_id)
+            return result
+
+        started = time.perf_counter()
+        surface = {
+            "readiness": dict(ReadinessService.get_overall_readiness(user_id) or {}),
+            "weakest_topics": list(
+                ReadinessService.get_weakest_topics(user_id, limit=weak_limit) or []
+            ),
+            "strongest_topics": list(
+                ReadinessService.get_strongest_topics(user_id, limit=strong_limit)
+                or []
+            ),
+            "source_authority": "legacy",
+            "confidence_level": "",
+            "limitations_codes": [],
+            "readiness_drivers": [],
+            "recommended_next_actions": [],
+            "explainability": {},
+        }
+        ReadinessService._maybe_readiness_dual_run(
+            user_id,
+            surface,
+            legacy_latency_ms=(time.perf_counter() - started) * 1000.0,
+        )
+        result = apply_readiness_quality_contract(user_id, surface)
+        ReadinessService._emit_consistency_feedback(user_id)
+        ReadinessService.consume_personal_learning_profile(user_id)
+        return result
+
+    @staticmethod
+    def _emit_consistency_feedback(user_id: int) -> None:
+        """EP-003.4: emit study-consistency observation (fail-open).
+
+        Dashboard surface only — ``get_overall_readiness`` remains collector-safe
+        and does not emit feedback.
+        """
+        try:
+            from app.infrastructure.adapters.learning_feedback import (
+                emit_study_consistency_feedback,
+            )
+
+            current = int(ReadinessService.get_current_streak(user_id) or 0)
+            longest = int(ReadinessService.get_longest_streak(user_id) or 0)
+            emit_study_consistency_feedback(
+                user_id=user_id,
+                current_streak=current,
+                longest_streak=longest,
+            )
+        except Exception:  # noqa: BLE001 — feedback must never break readiness
+            logger.debug(
+                "learning_feedback_consistency_emit_failed user_id=%s",
+                user_id,
+                exc_info=True,
+            )
+
+    @staticmethod
+    def consume_personal_learning_profile(
+        user_id: int,
+        *,
+        declared_session_minutes: int | None = None,
+    ) -> dict | None:
+        """EP-004.1: optional Personal Learning Profile input (fail-open).
+
+        Returns observed behavioural attributes for optional personalisation
+        inputs. Never changes readiness scores, drivers, or collector paths —
+        profile summarises evidence only. ``get_overall_readiness`` does not
+        call this method (collector-safe).
+        """
+        try:
+            from app.infrastructure.adapters.personal_learning_profile import (
+                consume_personal_learning_profile,
+            )
+
+            return consume_personal_learning_profile(
+                student_id=user_id,
+                declared_session_minutes=declared_session_minutes,
+            )
+        except Exception:  # noqa: BLE001 — profile must never break readiness
+            logger.debug(
+                "personal_learning_profile_consume_failed user_id=%s",
+                user_id,
+                exc_info=True,
+            )
+            return None
+
+    @staticmethod
+    def _maybe_readiness_dual_run(
+        user_id: int,
+        surface: dict[str, Any],
+        *,
+        legacy_latency_ms: float | None = None,
+    ) -> None:
+        """EP-002.6 fail-open Readiness Intelligence dual-run (diagnostic only).
+
+        Never mutates ``surface``. Skipped when cutover is eligible or active.
+        """
+        try:
+            from app.infrastructure.adapters.consumer_chain.readiness_cutover import (
+                is_readiness_cutover_active,
+                is_readiness_intelligence_cutover_eligible,
+            )
+
+            if (
+                is_readiness_cutover_active()
+                or is_readiness_intelligence_cutover_eligible()
+            ):
+                return
+
+            from app.infrastructure.adapters.consumer_chain.readiness_dual_run import (
+                run_readiness_intelligence_dual_run,
+            )
+
+            run_readiness_intelligence_dual_run(
+                user_id,
+                surface,
+                legacy_latency_ms=legacy_latency_ms,
+            )
+        except Exception:  # noqa: BLE001 — dual-run must never break student path
+            logger.debug(
+                "readiness_dual_run_hook_failed user_id=%s",
+                user_id,
+                exc_info=True,
+            )
+
+    @staticmethod
+    def _resolve_twin_foundation() -> object | None:
+        """Resolve EP-001.1 Foundation when Digital Twin flag is ON."""
+        from app.infrastructure.adapters.consumer_chain import (
+            resolve_enabled_twin_foundation,
+        )
+
+        return resolve_enabled_twin_foundation()
+
+    @staticmethod
+    def _resolve_daily_plan(
+        user_id: int,
+        *,
+        foundation: object | None = None,
+        canonical_state: object | None = None,
+    ) -> dict[str, Any] | None:
+        """Best-effort EP-001.2 daily plan for next-action grounding."""
+        try:
+            from app.services.planning_service import PlanningService
+
+            return PlanningService.build_daily_study_plan(
+                user_id,
+                foundation=foundation,
+                canonical_state=canonical_state,
+            )
+        except Exception:  # noqa: BLE001
+            logger.debug(
+                "Planner outputs unavailable for readiness user %s",
+                user_id,
+                exc_info=True,
+            )
+            return None
 
     # ── Overall Readiness Score ───────────────────────────────────────
 
@@ -60,7 +394,8 @@ class ReadinessService:
 
         The readiness score is a weighted composite of:
         - Curriculum Coverage (50%): percentage of leaf topics started
-        - Average Estimated Knowledge (30%): mean evidence-backed estimate across started topics
+        - Average Estimated Knowledge (30%): mean evidence-backed estimate
+          across started topics
         - Review Discipline (20%): based on review completion rate
 
         Args:
@@ -477,7 +812,9 @@ class ReadinessService:
         total_questions = sum(a.questions_attempted or 0 for a in attempts)
         total_correct = sum(a.questions_correct or 0 for a in attempts)
 
-        accuracy = (total_correct / total_questions * 100) if total_questions > 0 else None
+        accuracy = (
+            (total_correct / total_questions * 100) if total_questions > 0 else None
+        )
 
         return {
             "topic_id": topic_id,
