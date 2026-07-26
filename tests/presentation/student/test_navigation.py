@@ -52,10 +52,10 @@ def test_navigation_labels_student_facing():
     nav = build_navigation("home")
     labels = {item.label for item in nav}
     assert labels == {
-        "Dashboard",
+        "Home",
         "Journey",
         "Revision",
-        "Analytics",
+        "History",
         "Settings",
         "Study Plan",
         "Help",
@@ -66,9 +66,9 @@ def test_primary_nav_without_system_items():
     nav = build_navigation("home", include_system=False)
     assert len(nav) == 5
     assert {item.label for item in nav} == {
-        "Dashboard",
+        "Home",
         "Journey",
         "Revision",
-        "Analytics",
+        "History",
         "Settings",
     }

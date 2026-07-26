@@ -9,8 +9,10 @@
 </section>
 
 {# ── Key Metrics Row ──────────────────────────────────────────────────── #}
-<section class="row g-3 mb-4">
-    <div class="col-6 col-md-4 col-lg-2">
+{# PX-002A T2-3: max four tiles per row (product rule UX-001 §22) — six
+   tiles in one row on desktop read as a wall of numbers, not a summary. #}
+<section class="row g-3 mb-3">
+    <div class="col-6 col-md-3">
         <div class="stat-card">
             {% if readiness_narrative and readiness_narrative.can_estimate and readiness_narrative.percentage is not none %}
             <div class="stat-value text-primary">{{ readiness_narrative.percentage|int }}%</div>
@@ -24,31 +26,33 @@
             {% endif %}
         </div>
     </div>
-    <div class="col-6 col-md-4 col-lg-2">
+    <div class="col-6 col-md-3">
         <div class="stat-card">
             <div class="stat-value text-success">{{ curriculum_coverage.coverage_percentage|int }}%</div>
             <div class="stat-label">Syllabus coverage</div>
         </div>
     </div>
-    <div class="col-6 col-md-4 col-lg-2">
+    <div class="col-6 col-md-3">
         <div class="stat-card">
             <div class="stat-value text-info">{{ readiness.topics_started }}</div>
             <div class="stat-label">Topics Started</div>
         </div>
     </div>
-    <div class="col-6 col-md-4 col-lg-2">
+    <div class="col-6 col-md-3">
         <div class="stat-card">
             <div class="stat-value text-warning">{{ review_backlog.total_backlog }}</div>
             <div class="stat-label">Review Backlog</div>
         </div>
     </div>
-    <div class="col-6 col-md-4 col-lg-2">
+</section>
+<section class="row g-3 mb-4">
+    <div class="col-6 col-md-3">
         <div class="stat-card">
             <div class="stat-value text-danger">{{ current_streak }}</div>
             <div class="stat-label">Day Streak</div>
         </div>
     </div>
-    <div class="col-6 col-md-4 col-lg-2">
+    <div class="col-6 col-md-3">
         <div class="stat-card">
             <div class="stat-value" style="color: var(--color-brand);">{{ review_completion.completion_rate|int }}%</div>
             <div class="stat-label">Study Sessions Done</div>
@@ -57,11 +61,37 @@
 </section>
 
 {% if readiness_narrative %}
-<section class="card border-0 mb-4" data-eip003-readiness="1">
+<section class="card border-0 mb-4" data-eip003-readiness="1" data-mes-surface="readiness">
     <div class="card-body py-3">
         <h2 class="card-section-header mb-2">{{ readiness_narrative.label }}</h2>
-        <p class="small mb-1">{{ readiness_narrative.explanation }}</p>
+        <p class="small mb-1" data-mes-field="why_this_estimate">{{ readiness_narrative.explanation }}</p>
+        {% if readiness_narrative.suggested_next_action %}
+        <p class="small mb-1" data-mes-field="suggested_next_action"><strong>Next:</strong> {{ readiness_narrative.suggested_next_action }}</p>
+        {% endif %}
+        {% if readiness_narrative.readiness_drivers %}
+        <p class="small mb-1"><strong>What drives this estimate</strong></p>
+        <ul class="small mb-2" data-mes-field="readiness_drivers">
+            {% for driver in readiness_narrative.readiness_drivers %}
+            <li>{{ driver }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% if readiness_narrative.supporting_evidence %}
+        <p class="small mb-1"><strong>Evidence</strong></p>
+        <ul class="small mb-2" data-mes-field="supporting_evidence">
+            {% for item in readiness_narrative.supporting_evidence %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
         <p class="small text-muted mb-0">{{ readiness_narrative.evidence_basis }}</p>
+        {% endif %}
+        {% if readiness_narrative.review_point %}
+        <p class="small mb-0 mt-2" data-mes-field="review_point"><strong>Review point:</strong> {{ readiness_narrative.review_point }}</p>
+        {% endif %}
+        {% if readiness_narrative.confidence_label %}
+        <p class="small text-muted mb-0 mt-1" data-mes-field="confidence_level">Confidence: {{ readiness_narrative.confidence_label }}</p>
+        {% endif %}
     </div>
 </section>
 {% endif %}
@@ -289,15 +319,26 @@
 
         {% if weekly_report.areas_for_improvement %}
         <div>
-            <h3 class="h6 fw-semibold mb-2">Areas for Improvement</h3>
+            {# PX-002A T2-3: a brand-new account gets a neutral heading and
+               icon here — there's no history yet to call a "weak area". #}
+            <h3 class="h6 fw-semibold mb-2">{{ "Get started" if weekly_report.is_new_account else "Areas for Improvement" }}</h3>
             <ul class="list-unstyled mb-0">
                 {% for area in weekly_report.areas_for_improvement %}
+                {% if weekly_report.is_new_account %}
+                <li class="mb-1 small text-info">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-1" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/>
+                    </svg>
+                    {{ area }}
+                </li>
+                {% else %}
                 <li class="mb-1 small text-warning">
                     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-1" viewBox="0 0 24 24" aria-hidden="true">
                         <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
                     </svg>
                     {{ area }}
                 </li>
+                {% endif %}
                 {% endfor %}
             </ul>
         </div>

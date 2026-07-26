@@ -25,6 +25,7 @@ Use **one** product term everywhere in the UI. Prefer consistency over variety.
 | **Curriculum Studio** | Founder curriculum readiness workspace | Curriculum Manager, CMS, Pipeline |
 | **Evidence Gates** | Cutover evidence checklist | Gates checklist, Cutover blockers (as page title) |
 | **Home** | Student landing surface | Dashboard (learner UI) |
+| **History** | Student study-history / progress-over-time surface | Analytics (learner UI) |
 
 ### Internal terms — never show to learners
 
@@ -109,7 +110,9 @@ Avoid **Open**, **Launch**, **Execute**, and **Proceed** on primary CTAs unless 
 
 ### Student primary nav
 
-Dashboard · Journey · Revision · Analytics · Settings · Study Plan · Help
+Home · Journey · Revision · History · Settings · Study Plan · Help
+
+_(PX-002A T1-1: this table previously said "Dashboard · ... · Analytics," contradicting §1's own "Home" entry above. "Home" and "History" are now applied consistently in code — see `app/presentation/product_language.py:STUDENT_NAV_LABELS` and `knowledge/product/px002a/TERMINOLOGY_STANDARD.md`.)_
 
 ### Founder Command Centre (primary)
 

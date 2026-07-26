@@ -138,10 +138,10 @@ def test_session_chrome_has_brand_exit(student_client):
 def test_student_nav_surfaces_present(student_client):
     html = student_client.get("/student/").get_data(as_text=True)
     for label in (
-        "Dashboard",
+        "Home",
         "Journey",
         "Revision",
-        "Analytics",
+        "History",
         "Settings",
         "Study Plan",
         "Help",

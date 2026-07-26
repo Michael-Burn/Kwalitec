@@ -20,10 +20,10 @@ def test_student_vocabulary_present(student_client, endpoint, path):
     assert any(
         word in html
         for word in (
-            "Dashboard",
+            "Home",
             "Journey",
             "Revision",
-            "Analytics",
+            "History",
             "Settings",
             "Kwalitec",
         )

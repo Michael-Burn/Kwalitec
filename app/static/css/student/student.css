@@ -241,8 +241,128 @@
   line-height: 1.55;
 }
 
+.student-hero-purpose-label {
+  display: block;
+  margin-bottom: var(--student-space-2);
+  font-size: 0.72rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--student-muted);
+}
+
+.student-hero-outcome,
+.student-hero-summary {
+  margin: var(--student-space-3) 0 0;
+  max-width: 36rem;
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.student-mission-status {
+  margin: 0 0 var(--student-space-3);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--brand-navy);
+}
+
+.student-mission-status[data-status="complete"] {
+  color: var(--brand-blue);
+}
+
+.student-mission-timeline {
+  margin-top: var(--student-space-6);
+  max-width: 22rem;
+}
+
+.student-journey-feedback {
+  margin: var(--student-space-6) 0 0;
+  max-width: 36rem;
+}
+
+.student-journey-feedback-period {
+  margin: 0 0 var(--student-space-3);
+  font-size: 0.92rem;
+}
+
+.student-journey-feedback-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--student-space-4);
+}
+
+.student-journey-feedback-item {
+  margin: 0;
+}
+
+.student-journey-feedback-label {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--student-muted, inherit);
+}
+
+.student-journey-feedback-value {
+  margin: var(--student-space-1) 0 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.student-journey-feedback-source,
+.student-journey-feedback-footnote {
+  margin: var(--student-space-1) 0 0;
+  font-size: 0.85rem;
+}
+
+.student-secondary--subordinate {
+  opacity: 0.92;
+}
+
 .student-hero-cta {
   margin-top: var(--student-space-5);
+}
+
+.student-reflection {
+  margin-top: var(--student-space-4);
+  max-width: 36rem;
+}
+
+.student-reflection-prompts {
+  margin: var(--student-space-4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.student-reflection-prompt {
+  margin: 0 0 var(--student-space-4);
+}
+
+.student-reflection-prompt-text {
+  margin: 0 0 var(--student-space-2);
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.student-reflection-options,
+.student-reflection-note-placeholder {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+.student-reflection-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--student-space-3);
+}
+
+/* PX-002A T1-3/a11y: preview-only label — deliberately not button-styled so
+   it never misrepresents itself as an operable control (see home.html). */
+.student-reflection-preview {
+  font-weight: 600;
+  color: var(--student-text);
 }
 
 .student-secondary,
@@ -585,6 +705,15 @@
 
 .student-timeline-item.is-complete .student-timeline-marker {
   background: var(--brand-blue);
+}
+
+.student-timeline-item.is-current .student-timeline-marker {
+  background: color-mix(in srgb, var(--brand-blue) 35%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand-blue) 22%, transparent);
+}
+
+.student-timeline-item.is-current .student-timeline-title {
+  color: var(--brand-navy);
 }
 
 .student-timeline-title {

@@ -386,7 +386,7 @@ class TestCheckinHttpFlow:
         body = response.get_data(as_text=True)
         assert "Thank you for helping improve Kwalitec" in body
         assert 'data-rip001-thank-you="1"' in body
-        assert "Return to Dashboard" in body
+        assert "Return Home" in body
 
         submission = ResearchFeedbackSubmission.query.filter_by(user_id=user.id).one()
         assert submission.experience_rating == "Good"

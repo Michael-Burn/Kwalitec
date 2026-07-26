@@ -67,15 +67,23 @@
                             </button>
                         </form>
                         {% endif %}
-                        <form method="POST" action="{{ url_for('study_plan.archive_plan', study_plan_id=plan.id) }}" class="d-inline" onsubmit="return confirm('Archive this study plan? You can find it later in archived plans.');">
+                        {# PX-002A T2-4: styled confirmation modal, not a native confirm(). #}
+                        <form method="POST" action="{{ url_for('study_plan.archive_plan', study_plan_id=plan.id) }}" class="d-inline">
                             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                            <button type="submit" class="btn btn-sm btn-outline-warning">
+                            <button type="button" class="btn btn-sm btn-outline-warning" data-confirm-trigger
+                                    data-confirm-title="Archive this study plan?"
+                                    data-confirm-body="You can find it later in archived plans."
+                                    data-confirm-label="Archive plan">
                                 Archive
                             </button>
                         </form>
-                        <form method="POST" action="{{ url_for('study_plan.delete_plan', study_plan_id=plan.id) }}" class="d-inline" onsubmit="return confirm('Permanently delete this study plan? This cannot be undone.');">
+                        <form method="POST" action="{{ url_for('study_plan.delete_plan', study_plan_id=plan.id) }}" class="d-inline">
                             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                            <button type="button" class="btn btn-sm btn-outline-danger" data-confirm-trigger
+                                    data-confirm-title="Delete this study plan?"
+                                    data-confirm-body="This cannot be undone."
+                                    data-confirm-label="Delete plan"
+                                    data-confirm-variant="danger">
                                 Delete
                             </button>
                         </form>
