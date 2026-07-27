@@ -4,6 +4,7 @@ services:
     env: python
     plan: free
     buildCommand: "pip install -r requirements.txt"
+    releaseCommand: "flask db upgrade"
     startCommand: "waitress-serve --port=$PORT wsgi:app"
 
     envVars:
