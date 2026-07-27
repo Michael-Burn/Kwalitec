@@ -116,6 +116,8 @@ def validation_snapshot(summary: ValidationSummary) -> ValidationSnapshot:
             section_id=f.section_id,
             topic_id=f.topic_id,
             is_blocking=f.is_blocking,
+            why_it_matters=getattr(f, "why_it_matters", "") or "",
+            recovery_action=getattr(f, "recovery_action", "") or "",
         )
 
     return ValidationSnapshot(

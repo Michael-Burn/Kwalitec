@@ -21,7 +21,7 @@ STAGE_LABELS: dict[str, str] = {
 # Suggested primary CTA key → button/form identity for templates.
 PRIMARY_ACTION_BY_STAGE: dict[str, str] = {
     WorkflowStage.SUBJECT.value: "advance",
-    WorkflowStage.CONTENT_SOURCES.value: "validate",
+    WorkflowStage.CONTENT_SOURCES.value: "upload",
     WorkflowStage.VALIDATION.value: "preview",
     WorkflowStage.PREVIEW.value: "approve",
     WorkflowStage.APPROVAL.value: "publish",
@@ -33,7 +33,7 @@ NEXT_ACTION_BY_STAGE: dict[str, str] = {
         "Confirm the subject, then advance to Content Sources."
     ),
     WorkflowStage.CONTENT_SOURCES.value: (
-        "When sources are in place, validate the curriculum."
+        "Upload CMP and syllabus references, then validate the curriculum."
     ),
     WorkflowStage.VALIDATION.value: (
         "Validation looks ready — build a student-facing preview."
@@ -81,44 +81,59 @@ FLASH_SUCCESS = {
     "approved": "We've approved your curriculum successfully.",
     "published": "We've published your curriculum successfully.",
     "version_assigned": "We've assigned the version successfully.",
+    "sources_uploaded": "We've recorded your curriculum sources successfully.",
 }
 
 FLASH_WARNING = {
     "subject_create": (
-        "We couldn't create this subject. "
-        "Check the required fields and try again."
+        "We couldn't create this subject. Incomplete or invalid details "
+        "block a clean publishing history. Check the required fields, "
+        "then try again."
     ),
     "workspace_open": (
-        "We couldn't open this workspace. "
-        "Check the subject code and try again."
+        "We couldn't open this workspace. Workspaces must bind to a known "
+        "subject code. Check the subject code, create the subject if needed, "
+        "then try again."
     ),
     "advance": (
-        "We couldn't advance the workflow. "
-        "Complete the current stage and try again."
+        "We couldn't advance the workflow. Skipping incomplete stages risks "
+        "publishing unfinished curriculum. Complete the current stage, "
+        "then try again."
     ),
     "validate": (
-        "We couldn't complete validation. "
-        "Review the curriculum and try again."
+        "We couldn't complete validation. Blocking findings prevent a safe "
+        "student curriculum. Review the Validation findings, fix CMP or "
+        "syllabus issues, then try again."
     ),
     "preview": (
-        "We couldn't build this preview. "
-        "Validate the curriculum first, then try again."
+        "We couldn't build this preview. Preview requires a validated "
+        "curriculum so students see accurate structure. Validate the "
+        "curriculum first, then try again."
     ),
     "approve": (
-        "We couldn't approve this curriculum. Assign a version label, "
-        "complete preview, and try again."
+        "We couldn't approve this curriculum. Approval without a version "
+        "and preview risks publishing the wrong package. Assign a version "
+        "label, complete preview, then try again."
     ),
     "publish": (
-        "We couldn't publish this curriculum. Assign a version label, "
-        "complete approval, and try again."
+        "We couldn't publish this curriculum. Publication without approval "
+        "and a version would expose incomplete material to students. "
+        "Assign a version label, complete approval, then try again."
     ),
     "version": (
-        "We couldn't assign this version. "
-        "Enter a valid version label and try again."
+        "We couldn't assign this version. Clear version labels keep "
+        "publication history immutable. Enter a valid version label "
+        "(for example 1.0.0), then try again."
+    ),
+    "upload": (
+        "We couldn't upload sources. CMP and syllabus references are "
+        "required to derive student curriculum. Assign a version, provide "
+        "a CMP and/or syllabus reference, then try again."
     ),
     "workspace_missing": (
-        "That workspace could not be found. "
-        "Return to Curriculum Studio, select a valid workspace, and try again."
+        "That workspace could not be found. Opening a missing workspace "
+        "would lose your place in the publishing flow. Return to Curriculum "
+        "Studio, select a valid workspace, then try again."
     ),
 }
 
@@ -128,6 +143,18 @@ class BreadcrumbItem:
     label: str
     endpoint: str | None = None
     url_kwargs: tuple[tuple[str, str], ...] = ()
+
+
+@dataclass(frozen=True)
+class ValidationFindingView:
+    """Founder-facing validation finding with recovery guidance."""
+
+    code: str
+    message: str
+    severity: str
+    is_blocking: bool
+    why_it_matters: str
+    recovery_action: str
 
 
 @dataclass(frozen=True)
@@ -160,6 +187,8 @@ class WorkspacePageView:
     next_action_label: str
     primary_action: str
     breadcrumbs: tuple[BreadcrumbItem, ...]
+    validation_findings: tuple[ValidationFindingView, ...] = ()
+    has_validation_findings: bool = False
 
 
 def _dashboard_breadcrumbs() -> tuple[BreadcrumbItem, ...]:
@@ -216,6 +245,7 @@ def workspace_page(
     preview_summary: str = "",
     checklist_summary: str = "",
     version_history: tuple[str, ...] = (),
+    validation_findings: tuple[ValidationFindingView, ...] = (),
 ) -> WorkspacePageView:
     stages = []
     current = (workspace.current_stage or "").strip().lower()
@@ -224,6 +254,7 @@ def workspace_page(
             (stage.value, STAGE_LABELS[stage.value], stage.value == current)
         )
     history = tuple(version_history)
+    findings = tuple(validation_findings)
     return WorkspacePageView(
         workspace=workspace,
         stage_label=STAGE_LABELS.get(current, workspace.current_stage),
@@ -240,6 +271,8 @@ def workspace_page(
         ),
         primary_action=PRIMARY_ACTION_BY_STAGE.get(current, "advance"),
         breadcrumbs=_workspace_breadcrumbs(workspace),
+        validation_findings=findings,
+        has_validation_findings=bool(findings),
     )
 
 

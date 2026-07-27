@@ -14,6 +14,7 @@ from app.presentation.curriculum_studio.view_models import (
     EMPTY_PREVIEW_SUMMARY,
     EMPTY_VALIDATION_SUMMARY,
     StudioDashboardView,
+    ValidationFindingView,
     WorkspacePageView,
     dashboard_view,
     friendly_checklist_summary,
@@ -44,12 +45,24 @@ def load_workspace(workspace_id: str) -> WorkspacePageView:
     validation = EMPTY_VALIDATION_SUMMARY
     preview = EMPTY_PREVIEW_SUMMARY
     checklist = EMPTY_CHECKLIST_SUMMARY
+    findings: list[ValidationFindingView] = []
     try:
         snap = svc.validation.summarise(workspace_id)
         validation = friendly_validation_summary(
             readiness=snap.readiness,
             passed=bool(snap.passed),
         )
+        for item in (*snap.errors, *snap.warnings):
+            findings.append(
+                ValidationFindingView(
+                    code=item.code,
+                    message=item.message,
+                    severity=item.severity,
+                    is_blocking=bool(item.is_blocking),
+                    why_it_matters=item.why_it_matters or "",
+                    recovery_action=item.recovery_action or "",
+                )
+            )
     except Exception:
         pass
     try:
@@ -82,4 +95,5 @@ def load_workspace(workspace_id: str) -> WorkspacePageView:
         preview_summary=preview,
         checklist_summary=checklist,
         version_history=tuple(history),
+        validation_findings=tuple(findings),
     )

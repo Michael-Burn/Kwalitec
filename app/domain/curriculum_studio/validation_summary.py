@@ -38,6 +38,8 @@ class ValidationFinding:
     severity: ValidationFindingSeverity = ValidationFindingSeverity.WARNING
     section_id: str | None = None
     topic_id: str | None = None
+    why_it_matters: str = ""
+    recovery_action: str = ""
 
     @classmethod
     def create(
@@ -48,6 +50,8 @@ class ValidationFinding:
         severity: ValidationFindingSeverity | str = ValidationFindingSeverity.WARNING,
         section_id: str | None = None,
         topic_id: str | None = None,
+        why_it_matters: str = "",
+        recovery_action: str = "",
     ) -> ValidationFinding:
         """Construct a finding after validating invariants."""
         resolved = (
@@ -67,6 +71,8 @@ class ValidationFinding:
             topic_id=(
                 None if topic_id is None else _require_non_empty(topic_id, "topic_id")
             ),
+            why_it_matters=(why_it_matters or "").strip(),
+            recovery_action=(recovery_action or "").strip(),
         )
 
     @property

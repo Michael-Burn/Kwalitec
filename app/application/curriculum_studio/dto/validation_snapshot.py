@@ -15,6 +15,8 @@ class ValidationFindingSnapshot:
     section_id: str | None = None
     topic_id: str | None = None
     is_blocking: bool = False
+    why_it_matters: str = ""
+    recovery_action: str = ""
 
 
 @dataclass(frozen=True)

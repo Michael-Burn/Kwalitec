@@ -13,7 +13,13 @@ class CreateSubjectForm(FlaskForm):
     subject_code = StringField(
         "Subject code",
         validators=[
-            DataRequired(message="Subject code is required."),
+            DataRequired(
+                message=(
+                    "Subject code is required. Without a code students cannot "
+                    "enrol against this subject. Enter a short syllabus code "
+                    "such as CS1, then try again."
+                )
+            ),
             Length(max=64),
         ],
         render_kw={
@@ -94,7 +100,13 @@ class AssignVersionForm(FlaskForm):
     version_label = StringField(
         "Version label",
         validators=[
-            DataRequired(message="Version label is required."),
+            DataRequired(
+                message=(
+                    "Version label is required. Published packages need an "
+                    "immutable label for history and rollback. Enter a label "
+                    "such as 1.0.0, then try again."
+                )
+            ),
             Length(max=64),
         ],
         render_kw={
@@ -104,3 +116,28 @@ class AssignVersionForm(FlaskForm):
         },
     )
     submit = SubmitField("Assign Version")
+
+
+class UploadSourcesForm(FlaskForm):
+    """Upload CMP / syllabus document references (PI-001A foundation)."""
+
+    workspace_id = HiddenField(validators=[DataRequired()])
+    cmp_reference = StringField(
+        "CMP reference",
+        validators=[Optional(), Length(max=1024)],
+        render_kw={
+            "placeholder": "ref://cmp/subject-2026",
+            "autocomplete": "off",
+            "aria-describedby": "help-cmp-ref",
+        },
+    )
+    syllabus_reference = StringField(
+        "Syllabus reference",
+        validators=[Optional(), Length(max=1024)],
+        render_kw={
+            "placeholder": "ref://syllabus/subject-2026",
+            "autocomplete": "off",
+            "aria-describedby": "help-syllabus-ref",
+        },
+    )
+    submit = SubmitField("Upload Sources")

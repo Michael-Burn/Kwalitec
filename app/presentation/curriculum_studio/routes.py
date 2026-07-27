@@ -20,8 +20,10 @@ from app.presentation.curriculum_studio.forms import (
     CreateWorkspaceForm,
     PreviewWorkspaceForm,
     PublishWorkspaceForm,
+    UploadSourcesForm,
     ValidateWorkspaceForm,
 )
+from app.presentation.curriculum_studio.operator_guidance import recover_flash
 from app.presentation.curriculum_studio.view_models import FLASH_SUCCESS, FLASH_WARNING
 from app.presentation.curriculum_studio.views import (
     actor_id,
@@ -68,7 +70,7 @@ def create_subject():
         flash(FLASH_SUCCESS["subject_created"], "success")
     except Exception as exc:
         logger.warning("Create subject failed: %s", exc)
-        flash(FLASH_WARNING["subject_create"], "warning")
+        flash(recover_flash(exc, "subject_create"), "warning")
     return redirect(url_for("curriculum_studio.index"))
 
 
@@ -89,7 +91,7 @@ def create_workspace():
         )
     except Exception as exc:
         logger.warning("Create workspace failed: %s", exc)
-        flash(FLASH_WARNING["workspace_open"], "warning")
+        flash(recover_flash(exc, "workspace_open"), "warning")
         return redirect(url_for("curriculum_studio.index"))
 
 
@@ -113,6 +115,8 @@ def workspace(workspace_id: str):
     publish.workspace_id.data = workspace_id
     version = AssignVersionForm()
     version.workspace_id.data = workspace_id
+    upload = UploadSourcesForm()
+    upload.workspace_id.data = workspace_id
     return render_template(
         "curriculum_studio/workspace.html",
         title=f"Workspace · {page.workspace.subject_code}",
@@ -123,6 +127,7 @@ def workspace(workspace_id: str):
         approve_form=approve,
         publish_form=publish,
         version_form=version,
+        upload_form=upload,
     )
 
 
@@ -138,7 +143,7 @@ def advance(workspace_id: str):
         flash(FLASH_SUCCESS["workflow_advanced"], "success")
     except Exception as exc:
         logger.warning("Advance workflow failed: %s", exc)
-        flash(FLASH_WARNING["advance"], "warning")
+        flash(recover_flash(exc, "advance"), "warning")
     return _workspace_redirect(workspace_id)
 
 
@@ -154,7 +159,7 @@ def validate(workspace_id: str):
         flash(FLASH_SUCCESS["validation_ok"], "success")
     except Exception as exc:
         logger.warning("Validation failed: %s", exc)
-        flash(FLASH_WARNING["validate"], "warning")
+        flash(recover_flash(exc, "validate"), "warning")
     return _workspace_redirect(workspace_id)
 
 
@@ -170,7 +175,7 @@ def preview(workspace_id: str):
         flash(FLASH_SUCCESS["preview_ok"], "success")
     except Exception as exc:
         logger.warning("Preview failed: %s", exc)
-        flash(FLASH_WARNING["preview"], "warning")
+        flash(recover_flash(exc, "preview"), "warning")
     return _workspace_redirect(workspace_id)
 
 
@@ -190,7 +195,7 @@ def approve(workspace_id: str):
         flash(FLASH_SUCCESS["approved"], "success")
     except Exception as exc:
         logger.warning("Approve failed: %s", exc)
-        flash(FLASH_WARNING["approve"], "warning")
+        flash(recover_flash(exc, "approve"), "warning")
     return _workspace_redirect(workspace_id)
 
 
@@ -209,7 +214,33 @@ def publish(workspace_id: str):
         flash(FLASH_SUCCESS["published"], "success")
     except Exception as exc:
         logger.warning("Publish failed: %s", exc)
-        flash(FLASH_WARNING["publish"], "warning")
+        flash(recover_flash(exc, "publish"), "warning")
+    return _workspace_redirect(workspace_id)
+
+
+@studio_bp.post("/workspaces/<workspace_id>/upload")
+@founder_required
+def upload_sources(workspace_id: str):
+    """Upload CMP / syllabus references (PI-001A foundation path)."""
+    form = UploadSourcesForm()
+    if not form.validate_on_submit():
+        flash(FLASH_WARNING["upload"], "warning")
+        return _workspace_redirect(workspace_id)
+    cmp_ref = (form.cmp_reference.data or "").strip() or None
+    syl_ref = (form.syllabus_reference.data or "").strip() or None
+    if not cmp_ref and not syl_ref:
+        flash(FLASH_WARNING["upload"], "warning")
+        return _workspace_redirect(workspace_id)
+    try:
+        service().workspaces.upload_sources(
+            workspace_id,
+            cmp_reference=cmp_ref,
+            syllabus_reference=syl_ref,
+        )
+        flash(FLASH_SUCCESS["sources_uploaded"], "success")
+    except Exception as exc:
+        logger.warning("Upload sources failed: %s", exc)
+        flash(recover_flash(exc, "upload"), "warning")
     return _workspace_redirect(workspace_id)
 
 
@@ -228,5 +259,5 @@ def assign_version(workspace_id: str):
         flash(FLASH_SUCCESS["version_assigned"], "success")
     except Exception as exc:
         logger.warning("Assign version failed: %s", exc)
-        flash(FLASH_WARNING["version"], "warning")
+        flash(recover_flash(exc, "version"), "warning")
     return _workspace_redirect(workspace_id)

@@ -83,6 +83,62 @@
     </div>
 </section>
 
+{% if page.has_validation_findings %}
+<section class="mb-4" aria-label="Validation findings">
+    <div class="command-card">
+        <div class="command-card-header"><h2 class="h5 mb-0">Validation findings</h2></div>
+        <div class="command-card-body">
+            <ul class="list-unstyled mb-0">
+                {% for finding in page.validation_findings %}
+                <li class="mb-3{% if not loop.last %} border-bottom pb-3{% endif %}">
+                    <p class="mb-1">
+                        <strong>{{ finding.message }}</strong>
+                        {% if finding.is_blocking %}
+                        <span class="text-danger">(blocking)</span>
+                        {% endif %}
+                    </p>
+                    {% if finding.why_it_matters %}
+                    <p class="mb-1 text-muted"><span class="visually-hidden">Why it matters: </span>{{ finding.why_it_matters }}</p>
+                    {% endif %}
+                    {% if finding.recovery_action %}
+                    <p class="mb-0"><strong>What to do:</strong> {{ finding.recovery_action }}</p>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<section class="mb-4" aria-label="Content sources">
+    <div class="command-card">
+        <div class="command-card-header"><h2 class="h5 mb-0">Content Sources</h2></div>
+        <div class="command-card-body">
+            <form method="post" action="{{ url_for('curriculum_studio.upload_sources', workspace_id=page.workspace.workspace_id) }}" class="founder-version-form">
+                {{ upload_form.hidden_tag() }}{{ upload_form.workspace_id }}
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label" for="{{ upload_form.cmp_reference.id }}">
+                            {{ upload_form.cmp_reference.label.text }}
+                        </label>
+                        {{ upload_form.cmp_reference(class_='form-control founder-input') }}
+                        <p id="help-cmp-ref" class="form-text mb-0">Reference only — do not paste PDF bytes.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="{{ upload_form.syllabus_reference.id }}">
+                            {{ upload_form.syllabus_reference.label.text }}
+                        </label>
+                        {{ upload_form.syllabus_reference(class_='form-control founder-input') }}
+                        <p id="help-syllabus-ref" class="form-text mb-0">Official syllabus reference for this version.</p>
+                    </div>
+                </div>
+                {{ action_btn(upload_form, 'upload', 'btn-outline-secondary') }}
+            </form>
+        </div>
+    </div>
+</section>
+
 <section class="mb-4" aria-label="Studio actions">
     <div class="command-card">
         <div class="command-card-header"><h2 class="h5 mb-0">Actions</h2></div>

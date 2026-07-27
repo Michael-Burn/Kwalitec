@@ -22,6 +22,10 @@ from app.application.curriculum_studio.ports.curriculum_ingestion_port import (
 from app.application.curriculum_studio.ports.curriculum_management_port import (
     CurriculumManagementPort,
 )
+from app.application.curriculum_studio.validation_guidance import (
+    enrich_finding,
+    guided_finding,
+)
 from app.domain.curriculum_studio.publication_checklist import (
     WorkspacePublicationFacts,
 )
@@ -79,21 +83,9 @@ class ValidationService:
 
         if readiness is ValidationReadiness.NOT_STARTED:
             if not workspace.facts.cmp_uploaded:
-                errors.append(
-                    ValidationFinding.create(
-                        "missing_cmp",
-                        "CMP source not present",
-                        severity=ValidationFindingSeverity.BLOCKING,
-                    )
-                )
+                errors.append(guided_finding("missing_cmp"))
             if not workspace.facts.official_syllabus_uploaded:
-                errors.append(
-                    ValidationFinding.create(
-                        "missing_syllabus",
-                        "Official syllabus source not present",
-                        severity=ValidationFindingSeverity.BLOCKING,
-                    )
-                )
+                errors.append(guided_finding("missing_syllabus"))
             if errors:
                 readiness = ValidationReadiness.FAILED
             elif workspace.facts.validation_passed:
@@ -111,8 +103,8 @@ class ValidationService:
             detected_sections=workspace.section_ids,
             detected_objectives=workspace.objective_ids,
             detected_prerequisites=workspace.prerequisite_edges,
-            warnings=warnings,
-            errors=errors,
+            warnings=tuple(enrich_finding(w) for w in warnings),
+            errors=tuple(enrich_finding(e) for e in errors),
             readiness=readiness,
         )
         return validation_snapshot(summary)
@@ -249,35 +241,47 @@ def _map_report(
     for issue in report.get("errors") or report.get("blocking_issues") or ():
         if isinstance(issue, dict):
             errors.append(
-                ValidationFinding.create(
-                    str(issue.get("code") or "ingestion_error"),
-                    str(issue.get("message") or "Validation error"),
-                    severity=ValidationFindingSeverity.BLOCKING,
+                enrich_finding(
+                    ValidationFinding.create(
+                        str(issue.get("code") or "ingestion_error"),
+                        str(issue.get("message") or "Validation error"),
+                        severity=ValidationFindingSeverity.BLOCKING,
+                        why_it_matters=str(issue.get("why_it_matters") or ""),
+                        recovery_action=str(issue.get("recovery_action") or ""),
+                    )
                 )
             )
         else:
             errors.append(
-                ValidationFinding.create(
-                    "ingestion_error",
-                    str(issue),
-                    severity=ValidationFindingSeverity.BLOCKING,
+                enrich_finding(
+                    ValidationFinding.create(
+                        "ingestion_error",
+                        str(issue),
+                        severity=ValidationFindingSeverity.BLOCKING,
+                    )
                 )
             )
     for issue in report.get("warnings") or ():
         if isinstance(issue, dict):
             warnings.append(
-                ValidationFinding.create(
-                    str(issue.get("code") or "ingestion_warning"),
-                    str(issue.get("message") or "Validation warning"),
-                    severity=ValidationFindingSeverity.WARNING,
+                enrich_finding(
+                    ValidationFinding.create(
+                        str(issue.get("code") or "ingestion_warning"),
+                        str(issue.get("message") or "Validation warning"),
+                        severity=ValidationFindingSeverity.WARNING,
+                        why_it_matters=str(issue.get("why_it_matters") or ""),
+                        recovery_action=str(issue.get("recovery_action") or ""),
+                    )
                 )
             )
         else:
             warnings.append(
-                ValidationFinding.create(
-                    "ingestion_warning",
-                    str(issue),
-                    severity=ValidationFindingSeverity.WARNING,
+                enrich_finding(
+                    ValidationFinding.create(
+                        "ingestion_warning",
+                        str(issue),
+                        severity=ValidationFindingSeverity.WARNING,
+                    )
                 )
             )
     if errors:
