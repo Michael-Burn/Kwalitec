@@ -1,0 +1,191 @@
+/**
+ * Assessment Delivery — calm study chrome extensions.
+ * Reuses session tokens; formative check (not exam) tone.
+ */
+
+.assessment-body {
+  /* Inherit session atmosphere */
+}
+
+.assessment-topbar-note {
+  margin: 0;
+  color: color-mix(in srgb, #fff 70%, transparent);
+  font-size: 0.875rem;
+}
+
+.assessment-stack {
+  gap: var(--session-space-4);
+}
+
+.assessment-muted {
+  color: var(--session-muted);
+}
+
+.assessment-promise-list {
+  margin: var(--session-space-4) 0;
+  padding-left: 1.25rem;
+}
+
+.assessment-promise-list li {
+  margin-bottom: var(--session-space-2);
+}
+
+.assessment-progress {
+  margin-bottom: var(--session-space-3);
+}
+
+.assessment-progress-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--session-space-3);
+  margin-bottom: var(--session-space-2);
+}
+
+.assessment-progress-current,
+.assessment-progress-remaining {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--session-muted);
+}
+
+.assessment-progress-track {
+  height: 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--session-border) 80%, transparent);
+  overflow: hidden;
+}
+
+.assessment-progress-fill {
+  height: 100%;
+  background: var(--session-primary);
+  border-radius: inherit;
+  transition: width 200ms ease;
+}
+
+.assessment-sequence {
+  margin: 0 0 var(--session-space-2);
+  font-size: 0.875rem;
+  color: var(--session-muted);
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.assessment-fieldset {
+  border: 0;
+  margin: var(--session-space-4) 0;
+  padding: 0;
+}
+
+.assessment-option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--session-space-3);
+  padding: var(--session-space-3);
+  margin-bottom: var(--session-space-2);
+  border: 1px solid var(--session-border);
+  border-radius: var(--session-radius-input);
+  cursor: pointer;
+}
+
+.assessment-option:focus-within {
+  box-shadow: var(--session-focus);
+}
+
+.assessment-option-inline {
+  display: inline-flex;
+  margin-right: var(--session-space-2);
+}
+
+.assessment-input-label {
+  display: block;
+  margin-bottom: var(--session-space-2);
+  font-weight: 600;
+}
+
+.assessment-input,
+.assessment-textarea,
+.assessment-select {
+  width: 100%;
+  max-width: 100%;
+  padding: var(--session-space-3);
+  border: 1px solid var(--session-border);
+  border-radius: var(--session-radius-input);
+  background: var(--session-surface);
+  color: var(--session-text);
+  font: inherit;
+}
+
+.assessment-input:focus,
+.assessment-textarea:focus,
+.assessment-select:focus {
+  outline: none;
+  box-shadow: var(--session-focus);
+}
+
+.assessment-hint {
+  margin: var(--session-space-3) 0;
+  padding: var(--session-space-3);
+  border-left: 3px solid var(--session-primary);
+  background: color-mix(in srgb, var(--session-primary) 6%, transparent);
+}
+
+.assessment-hint-label {
+  margin: 0 0 var(--session-space-2);
+  font-weight: 600;
+}
+
+.assessment-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--session-space-3);
+  align-items: center;
+}
+
+.assessment-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--session-space-3);
+}
+
+.session-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--session-space-3) var(--session-space-4);
+  border: 1px solid var(--session-border);
+  border-radius: var(--session-radius-input);
+  background: transparent;
+  color: var(--session-text);
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.session-btn-secondary:focus {
+  outline: none;
+  box-shadow: var(--session-focus);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: path(inset(50%));
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 640px) {
+  .assessment-progress-meta {
+    flex-direction: column;
+  }
+
+  .assessment-nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

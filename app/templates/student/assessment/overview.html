@@ -1,0 +1,41 @@
+{% extends "student/assessment/base.html" %}
+
+{% block content %}
+<div class="session-stack assessment-stack">
+    <section class="session-card" aria-labelledby="assessment-overview-why">
+        <h2 id="assessment-overview-why" class="session-card-title">Why this check?</h2>
+        <p>{{ page.purpose_explanation }}</p>
+        <p class="assessment-muted">{{ page.after_completion }}</p>
+        {% if page.progress.total_questions %}
+        <p class="assessment-muted">
+            About {{ page.progress.total_questions }} short prompts.
+            Take your time.
+        </p>
+        {% endif %}
+    </section>
+
+    <div class="session-primary-action assessment-actions">
+        {% if begin_form %}
+        <form method="post" action="{{ url_for('assessment.begin', session_id=page.shell.session_id) }}">
+            {{ begin_form.hidden_tag() }}
+            {{ begin_form.session_id() }}
+            {{ begin_form.submit(class_="session-btn-primary", **{"data-assessment-cta": "primary"}) }}
+        </form>
+        {% endif %}
+        {% if resume_form %}
+        <form method="post" action="{{ url_for('assessment.resume', session_id=page.shell.session_id) }}">
+            {{ resume_form.hidden_tag() }}
+            {{ resume_form.session_id() }}
+            {{ resume_form.submit(class_="session-btn-primary", **{"data-assessment-cta": "primary"}) }}
+        </form>
+        {% endif %}
+        {% if cancel_form %}
+        <form method="post" action="{{ url_for('assessment.cancel', session_id=page.shell.session_id) }}">
+            {{ cancel_form.hidden_tag() }}
+            {{ cancel_form.session_id() }}
+            {{ cancel_form.submit(class_="session-btn-secondary") }}
+        </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

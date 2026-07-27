@@ -1,0 +1,16 @@
+{% macro progress_bar(progress) %}
+<section class="assessment-progress" aria-labelledby="assessment-progress-label">
+    <div class="assessment-progress-meta">
+        <p id="assessment-progress-label" class="assessment-progress-current">{{ progress.current_label }}</p>
+        <p class="assessment-progress-remaining">{{ progress.remaining_label }}</p>
+    </div>
+    <div class="assessment-progress-track"
+         role="progressbar"
+         aria-valuemin="0"
+         aria-valuemax="100"
+         aria-valuenow="{{ progress.percent_complete }}"
+         aria-label="Learning check progress">
+        <div class="assessment-progress-fill" style="width: {{ progress.percent_complete }}%;"></div>
+    </div>
+</section>
+{% endmacro %}

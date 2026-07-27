@@ -1,0 +1,79 @@
+{% macro question_fields(question, form) %}
+{% if question.renderer == 'multiple_choice' %}
+<fieldset class="assessment-fieldset" role="radiogroup" aria-labelledby="assessment-stem">
+    <legend class="visually-hidden">Choose one option</legend>
+    {% for option in question.options %}
+    <label class="assessment-option">
+        <input type="radio"
+               name="selected_option"
+               value="{{ option.option_id }}"
+               {% if loop.first %}required{% endif %}>
+        <span>{{ option.label }}</span>
+    </label>
+    {% endfor %}
+</fieldset>
+{% elif question.renderer == 'multiple_response' %}
+<fieldset class="assessment-fieldset" aria-labelledby="assessment-stem">
+    <legend class="visually-hidden">Choose all that apply</legend>
+    {% for option in question.options %}
+    <label class="assessment-option">
+        <input type="checkbox"
+               name="{{ 'linked_concepts' if question.item_type == 'concept_linking' else 'selected_options' }}"
+               value="{{ option.option_id }}">
+        <span>{{ option.label }}</span>
+    </label>
+    {% endfor %}
+</fieldset>
+{% elif question.renderer == 'numeric' %}
+<label class="assessment-input-label" for="assessment-entered-value">
+    Your number{% if question.unit_label %} ({{ question.unit_label }}){% endif %}
+</label>
+<input class="assessment-input"
+       id="assessment-entered-value"
+       name="entered_value"
+       type="text"
+       inputmode="decimal"
+       placeholder="{{ question.placeholder or '' }}"
+       required
+       aria-describedby="assessment-stem">
+{% elif question.renderer == 'confidence' %}
+<fieldset class="assessment-fieldset" role="radiogroup" aria-labelledby="assessment-stem">
+    <legend class="visually-hidden">Confidence from 1 to 5</legend>
+    {% for level in range(1, 6) %}
+    <label class="assessment-option assessment-option-inline">
+        <input type="radio" name="confidence" value="{{ level }}" {% if loop.first %}required{% endif %}>
+        <span>{{ level }}</span>
+    </label>
+    {% endfor %}
+</fieldset>
+{% else %}
+{% set field_name = question.input_name %}
+<label class="assessment-input-label" for="assessment-text-response">Your response</label>
+<textarea class="assessment-textarea"
+          id="assessment-text-response"
+          name="{{ field_name }}"
+          rows="4"
+          placeholder="{{ question.placeholder or '' }}"
+          required
+          aria-describedby="assessment-stem"></textarea>
+{% endif %}
+
+{% if question.invite_confidence and not question.is_confidence_only %}
+<div class="assessment-confidence">
+    <label class="assessment-input-label" for="assessment-confidence-optional">
+        Optional: how sure do you feel?{% if question.require_confidence %} (needed for this check){% endif %}
+    </label>
+    <select class="assessment-select"
+            id="assessment-confidence-optional"
+            name="confidence"
+            {% if question.require_confidence %}required{% endif %}>
+        <option value="">Prefer not to say</option>
+        <option value="1">1 — Not sure</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 — Very sure</option>
+    </select>
+</div>
+{% endif %}
+{% endmacro %}

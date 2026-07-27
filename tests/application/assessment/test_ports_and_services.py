@@ -1,4 +1,4 @@
-"""Application-layer assessment foundation tests."""
+"""Application-layer assessment foundation and delivery tests."""
 
 from __future__ import annotations
 
@@ -10,17 +10,14 @@ import pytest
 from application.assessment import (
     AssessmentInstrumentBuilder,
     AssessmentInstrumentRepository,
-    AssessmentInstrumentService,
     AssessmentObservationRepository,
-    AssessmentObservationService,
     AssessmentRepository,
     AssessmentResultRepository,
-    AssessmentService,
     AssessmentSessionBuilder,
     AssessmentSessionRepository,
-    AssessmentSessionService,
     CreateAssessmentSessionCommand,
     GetAssessmentSessionQuery,
+    StartAssessmentSessionCommand,
     to_instrument_dto,
     to_session_dto,
 )
@@ -40,6 +37,7 @@ from domain.assessment.factories import (
     AssessmentInstrumentFactory,
     AssessmentSessionFactory,
 )
+from infrastructure.assessment.composition import build_assessment_delivery
 
 REPOSITORY_PORTS = [
     AssessmentRepository,
@@ -68,60 +66,17 @@ def test_ports_cannot_be_instantiated(port: type) -> None:
 
 
 def test_services_construct_with_ports() -> None:
-    class FakeSessionRepo(AssessmentSessionRepository):
-        def get(self, session_id):  # type: ignore[no-untyped-def]
-            return None
-
-        def list_by_student(self, student_id):  # type: ignore[no-untyped-def]
-            return []
-
-        def save(self, session):  # type: ignore[no-untyped-def]
-            return None
-
-    class FakeInstrumentRepo(AssessmentInstrumentRepository):
-        def get(self, instrument_id):  # type: ignore[no-untyped-def]
-            return None
-
-        def list_by_purpose(self, purpose):  # type: ignore[no-untyped-def]
-            return []
-
-        def save(self, instrument):  # type: ignore[no-untyped-def]
-            return None
-
-    class FakeObservationRepo(AssessmentObservationRepository):
-        def get(self, observation_id):  # type: ignore[no-untyped-def]
-            return None
-
-        def list_by_session(self, session_id):  # type: ignore[no-untyped-def]
-            return []
-
-        def save(self, observation):  # type: ignore[no-untyped-def]
-            return None
-
-    sessions = FakeSessionRepo()
-    instruments = FakeInstrumentRepo()
-    observations = FakeObservationRepo()
-
-    service = AssessmentService(sessions, instruments, observations)
-    session_service = AssessmentSessionService(sessions)
-    observation_service = AssessmentObservationService(observations, sessions)
-    instrument_service = AssessmentInstrumentService(instruments)
+    composition = build_assessment_delivery(seed=True)
+    service = composition.assessment_service
+    session_service = composition.session_service
+    observation_service = composition.observation_service
+    instrument_service = composition.instrument_service
 
     assert service is not None
     assert session_service is not None
     assert observation_service is not None
     assert instrument_service is not None
-
-    with pytest.raises(NotImplementedError):
-        service.create_session(
-            CreateAssessmentSessionCommand(
-                session_id="s",
-                student_id="u",
-                instrument_id="i",
-            )
-        )
-    with pytest.raises(NotImplementedError):
-        session_service.get(GetAssessmentSessionQuery(session_id="s"))
+    assert session_service.get(GetAssessmentSessionQuery(session_id="missing")) is None
 
 
 def test_mappers_do_not_expose_domain_entities() -> None:
@@ -153,3 +108,20 @@ def test_mappers_do_not_expose_domain_entities() -> None:
     assert instrument_dto.instrument_id == "inst-1"
     assert session_dto.status == "draft"
     assert instrument_dto.questions[0].question_id == "q-1"
+
+
+def test_session_service_create_start_commit_submit() -> None:
+    composition = build_assessment_delivery(seed=True)
+    session_service = composition.session_service
+    created = session_service.create(
+        CreateAssessmentSessionCommand(
+            session_id="sess-app-1",
+            student_id="student-1",
+            instrument_id=composition.default_instrument_id,
+        )
+    )
+    assert created.status == "ready"
+    started = session_service.start(
+        StartAssessmentSessionCommand(session_id="sess-app-1")
+    )
+    assert started.status == "in_progress"

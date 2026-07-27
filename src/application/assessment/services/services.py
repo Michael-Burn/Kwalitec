@@ -1,7 +1,7 @@
-"""Assessment application service skeletons (AP-002A).
+"""Assessment application services (AP-002B delivery implementations).
 
-Methods that belong to later milestones raise ``NotImplementedError``.
-No Twin updates, Reasoning, Mission, Tutor, or delivery logic.
+Observation packaging beyond local facts remains AP-002C.
+No Twin updates, Reasoning, Mission, or Tutor behaviour.
 """
 
 from __future__ import annotations
@@ -13,15 +13,23 @@ from application.assessment.commands.commands import (
     StartAssessmentSessionCommand,
     SubmitAssessmentSessionCommand,
 )
+from application.assessment.delivery.exceptions import SessionNotFoundError
 from application.assessment.dto.models import (
     AssessmentAttemptDTO,
     AssessmentInstrumentDTO,
     AssessmentObservationDTO,
     AssessmentSessionDTO,
 )
+from application.assessment.mappers.mappers import (
+    to_attempt_dto,
+    to_instrument_dto,
+    to_observation_dto,
+    to_session_dto,
+)
 from application.assessment.ports.repositories import (
     AssessmentInstrumentRepository,
     AssessmentObservationRepository,
+    AssessmentSessionBuilder,
     AssessmentSessionRepository,
 )
 from application.assessment.queries.queries import (
@@ -30,67 +38,156 @@ from application.assessment.queries.queries import (
     ListObservationsForSessionQuery,
     ListStudentAssessmentSessionsQuery,
 )
+from domain.assessment.enums import EvidenceSource, ObservationKind
+from domain.assessment.factories import AssessmentObservationFactory
+from domain.assessment.value_objects.ids import (
+    InstrumentId,
+    ObservationId,
+    QuestionId,
+    SessionId,
+)
+from domain.assessment.value_objects.levels import ConfidenceLevel
 
 
 class AssessmentService:
-    """Facade coordinating assessment application use cases (skeleton)."""
+    """Facade coordinating assessment application use cases."""
 
     def __init__(
         self,
         sessions: AssessmentSessionRepository,
         instruments: AssessmentInstrumentRepository,
         observations: AssessmentObservationRepository,
+        *,
+        session_builder: AssessmentSessionBuilder | None = None,
     ) -> None:
         self._sessions = sessions
         self._instruments = instruments
         self._observations = observations
+        self._session_service = AssessmentSessionService(
+            sessions, instruments=instruments, session_builder=session_builder
+        )
+        self._instrument_service = AssessmentInstrumentService(instruments)
 
     def create_session(
         self, command: CreateAssessmentSessionCommand
     ) -> AssessmentSessionDTO:
-        raise NotImplementedError("AP-002B: session creation / delivery")
+        return self._session_service.create(command)
 
     def get_session(self, query: GetAssessmentSessionQuery) -> AssessmentSessionDTO:
-        raise NotImplementedError("AP-002B: session read model")
+        dto = self._session_service.get(query)
+        if dto is None:
+            raise SessionNotFoundError(f"session not found: {query.session_id}")
+        return dto
 
 
 class AssessmentSessionService:
-    """Session lifecycle application service (skeleton)."""
+    """Session lifecycle application service."""
 
-    def __init__(self, sessions: AssessmentSessionRepository) -> None:
+    def __init__(
+        self,
+        sessions: AssessmentSessionRepository,
+        *,
+        instruments: AssessmentInstrumentRepository | None = None,
+        session_builder: AssessmentSessionBuilder | None = None,
+    ) -> None:
         self._sessions = sessions
+        self._instruments = instruments
+        self._session_builder = session_builder
 
     def create(
         self, command: CreateAssessmentSessionCommand
     ) -> AssessmentSessionDTO:
-        raise NotImplementedError("AP-002B: construct session from instrument")
+        if self._instruments is None or self._session_builder is None:
+            raise RuntimeError(
+                "AssessmentSessionService.create requires "
+                "instruments and session_builder"
+            )
+        instrument = self._instruments.get(InstrumentId(command.instrument_id))
+        if instrument is None:
+            raise SessionNotFoundError(
+                f"instrument not found: {command.instrument_id}"
+            )
+        session = self._session_builder.build_from_instrument(
+            session_id=SessionId(command.session_id),
+            student_id=command.student_id,
+            instrument=instrument,
+            twin_id=command.twin_id,
+            mission_id=command.mission_id,
+        )
+        session.mark_ready()
+        self._sessions.save(session)
+        session.pull_events()
+        return to_session_dto(session)
 
     def start(self, command: StartAssessmentSessionCommand) -> AssessmentSessionDTO:
-        raise NotImplementedError("AP-002B: start session delivery")
+        session = self._require(command.session_id)
+        from domain.assessment.enums import AssessmentStatus
+
+        if session.status.value == AssessmentStatus.READY.value:
+            session.start()
+        elif session.status.value == AssessmentStatus.PAUSED.value:
+            session.resume()
+        self._sessions.save(session)
+        session.pull_events()
+        return to_session_dto(session)
 
     def commit_response(
         self, command: CommitAssessmentResponseCommand
     ) -> AssessmentAttemptDTO:
-        raise NotImplementedError("AP-002B: commit response capture")
+        session = self._require(command.session_id)
+        confidence = (
+            ConfidenceLevel(command.confidence)
+            if command.confidence is not None
+            else None
+        )
+        attempt = session.commit_response(
+            QuestionId(command.question_id),
+            response_payload=command.response_payload,
+            confidence=confidence,
+            response_time_ms=command.response_time_ms,
+            hints_used=command.hints_used,
+            retries=command.retries,
+            abandoned=command.abandoned,
+            skipped=command.skipped,
+        )
+        self._sessions.save(session)
+        session.pull_events()
+        return to_attempt_dto(attempt)
 
     def submit(
         self, command: SubmitAssessmentSessionCommand
     ) -> AssessmentSessionDTO:
-        raise NotImplementedError("AP-002B: submit session for observation emission")
+        session = self._require(command.session_id)
+        session.submit()
+        self._sessions.save(session)
+        session.pull_events()
+        return to_session_dto(session)
 
     def get(self, query: GetAssessmentSessionQuery) -> AssessmentSessionDTO | None:
-        raise NotImplementedError("AP-002B: load session DTO")
+        session = self._sessions.get(SessionId(query.session_id))
+        return to_session_dto(session) if session is not None else None
 
     def list_for_student(
         self, query: ListStudentAssessmentSessionsQuery
     ) -> list[AssessmentSessionDTO]:
-        raise NotImplementedError("AP-002B: list student sessions")
+        return [
+            to_session_dto(session)
+            for session in self._sessions.list_by_student(query.student_id)
+        ]
+
+    def _require(self, session_id: str):
+        session = self._sessions.get(SessionId(session_id))
+        if session is None:
+            raise SessionNotFoundError(f"session not found: {session_id}")
+        return session
 
 
 class AssessmentObservationService:
-    """Observation recording application service (skeleton).
+    """Observation recording application service.
 
-    Does not update the Student Digital Twin or invoke Educational Reasoning.
+    Records local AssessmentObservation facts only. Does not update the
+    Student Digital Twin or invoke Educational Reasoning. Rich packaging /
+    AP-001 emission remains AP-002C.
     """
 
     def __init__(
@@ -104,16 +201,38 @@ class AssessmentObservationService:
     def record(
         self, command: RecordAssessmentObservationCommand
     ) -> AssessmentObservationDTO:
-        raise NotImplementedError("AP-002C: observation packaging / AP-001 emission")
+        session = self._sessions.get(SessionId(command.session_id))
+        if session is None:
+            raise SessionNotFoundError(f"session not found: {command.session_id}")
+        observation = AssessmentObservationFactory.create(
+            observation_id=ObservationId(command.observation_id),
+            session_id=SessionId(command.session_id),
+            kind=ObservationKind(command.kind),
+            evidence_source=EvidenceSource.ASSESSMENT_ENGINE,
+            question_id=(
+                QuestionId(command.question_id) if command.question_id else None
+            ),
+            provenance=command.provenance,
+        )
+        self._observations.save(observation)
+        session.record_observation(observation)
+        self._sessions.save(session)
+        session.pull_events()
+        return to_observation_dto(observation)
 
     def list_for_session(
         self, query: ListObservationsForSessionQuery
     ) -> list[AssessmentObservationDTO]:
-        raise NotImplementedError("AP-002C: list session observations")
+        return [
+            to_observation_dto(observation)
+            for observation in self._observations.list_by_session(
+                SessionId(query.session_id)
+            )
+        ]
 
 
 class AssessmentInstrumentService:
-    """Instrument catalogue application service (skeleton)."""
+    """Instrument catalogue application service."""
 
     def __init__(self, instruments: AssessmentInstrumentRepository) -> None:
         self._instruments = instruments
@@ -121,4 +240,5 @@ class AssessmentInstrumentService:
     def get(
         self, query: GetAssessmentInstrumentQuery
     ) -> AssessmentInstrumentDTO | None:
-        raise NotImplementedError("AP-002B: instrument catalogue reads")
+        instrument = self._instruments.get(InstrumentId(query.instrument_id))
+        return to_instrument_dto(instrument) if instrument is not None else None

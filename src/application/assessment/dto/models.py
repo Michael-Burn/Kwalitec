@@ -78,3 +78,58 @@ class AssessmentResultDTO:
     session_id: str
     observation_ids: tuple[str, ...] = ()
     evidence_strength: str | None = None
+
+
+@dataclass(frozen=True, slots=True)
+class DeliveryProgressDTO:
+    current_index: int
+    total_questions: int
+    answered_count: int
+    remaining_count: int
+    percent_complete: int
+    current_question_id: str | None = None
+    can_go_previous: bool = False
+    can_go_next: bool = False
+    can_complete: bool = False
+    is_complete: bool = False
+
+
+@dataclass(frozen=True, slots=True)
+class QuestionDeliveryDTO:
+    question_id: str
+    item_type: str
+    stem: str
+    version: str
+    sequence_index: int
+    options: tuple[dict[str, str], ...] = ()
+    hints: tuple[str, ...] = ()
+    placeholder: str | None = None
+    unit_label: str | None = None
+    accessibility_note: str | None = None
+    input_name: str = "response"
+    allows_multiple: bool = False
+    is_numeric: bool = False
+    is_text: bool = False
+    is_confidence_only: bool = False
+    invite_confidence: bool = True
+    require_confidence: bool = False
+    hints_available: bool = False
+    hints_requested: int = 0
+    already_answered: bool = False
+    visited: bool = False
+
+
+@dataclass(frozen=True, slots=True)
+class AssessmentDeliveryDTO:
+    """Composite read model for student delivery surfaces."""
+
+    session: AssessmentSessionDTO
+    progress: DeliveryProgressDTO
+    instrument_title: str
+    purpose_label: str
+    purpose_explanation: str
+    allow_pause: bool
+    status: str
+    question: QuestionDeliveryDTO | None = None
+    result: AssessmentResultDTO | None = None
+    observation_count: int = 0

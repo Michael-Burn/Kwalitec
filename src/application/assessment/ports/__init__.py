@@ -10,6 +10,8 @@ from application.assessment.ports.repositories import (
     AssessmentResultRepository,
     AssessmentSessionBuilder,
     AssessmentSessionRepository,
+    QuestionContentRepository,
+    SessionDeliveryStateRepository,
 )
 
 __all__ = [
@@ -20,4 +22,6 @@ __all__ = [
     "AssessmentResultRepository",
     "AssessmentSessionBuilder",
     "AssessmentSessionRepository",
+    "QuestionContentRepository",
+    "SessionDeliveryStateRepository",
 ]

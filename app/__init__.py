@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 import os
+import sys
 from datetime import UTC, datetime, timezone
 from pathlib import Path
 
@@ -20,6 +21,18 @@ from app.config import (
 from app.extensions import csrf, db, login_manager, migrate
 
 logger = logging.getLogger(__name__)
+
+
+def _ensure_src_on_path() -> None:
+    """Make Education OS packages under ``src/`` importable at runtime."""
+    root = Path(__file__).resolve().parents[1]
+    src = root / "src"
+    src_str = str(src)
+    if src.is_dir() and src_str not in sys.path:
+        sys.path.insert(0, src_str)
+
+
+_ensure_src_on_path()
 
 
 def _configure_logging(app: Flask) -> None:
@@ -761,6 +774,10 @@ def _register_blueprints(app: Flask) -> None:
     from app.dashboard.routes import dashboard_bp
     from app.founder.dashboard import founder_dashboard_bp
     from app.mission.routes import mission_bp
+    from app.presentation.assessment import assessment_bp
+    from app.presentation.assessment import (
+        load_routes as load_assessment_delivery_routes,
+    )
     from app.presentation.session import load_routes as load_session_routes
     from app.presentation.session import session_bp
     from app.presentation.student import load_routes, student_bp
@@ -781,6 +798,7 @@ def _register_blueprints(app: Flask) -> None:
 
     load_routes()
     load_session_routes()
+    load_assessment_delivery_routes()
     from app.presentation.adaptive_mission import adaptive_mission_diagnostics_bp
     from app.presentation.adaptive_mission import load_routes as load_mission_routes
     from app.presentation.assessment_pipeline import (
@@ -819,6 +837,7 @@ def _register_blueprints(app: Flask) -> None:
     # ``get_session_experience_service()`` call.
     app.register_blueprint(student_bp)
     app.register_blueprint(session_bp)
+    app.register_blueprint(assessment_bp)
     app.register_blueprint(studio_bp)
     app.register_blueprint(twin_diagnostics_bp)
     app.register_blueprint(reasoning_diagnostics_bp)

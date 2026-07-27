@@ -7,6 +7,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
+from typing import Any
 
 from domain.assessment.entities.assessment_instrument import AssessmentInstrument
 from domain.assessment.entities.assessment_observation import AssessmentObservation
@@ -122,7 +123,7 @@ class AssessmentInstrumentBuilder(ABC):
         *,
         configuration: AssessmentConfiguration | None = None,
     ) -> AssessmentInstrument:
-        """Build a validated instrument (implementation deferred)."""
+        """Build a validated instrument."""
 
 
 class AssessmentSessionBuilder(ABC):
@@ -138,4 +139,28 @@ class AssessmentSessionBuilder(ABC):
         twin_id: str | None = None,
         mission_id: str | None = None,
     ) -> AssessmentSession:
-        """Build a session from a catalogue instrument (implementation deferred)."""
+        """Build a session from a catalogue instrument."""
+
+
+class QuestionContentRepository(ABC):
+    """Persistence boundary for renderable question content (stems / options)."""
+
+    @abstractmethod
+    def get(self, question_id: str) -> Any | None:
+        """Load question content by id, or ``None`` if absent."""
+
+    @abstractmethod
+    def save(self, content: Any) -> None:
+        """Persist (insert or replace) question content."""
+
+
+class SessionDeliveryStateRepository(ABC):
+    """Persistence boundary for delivery cursor / resume state."""
+
+    @abstractmethod
+    def get(self, session_id: str) -> Any | None:
+        """Load delivery state, or ``None`` if absent."""
+
+    @abstractmethod
+    def save(self, state: Any) -> None:
+        """Persist delivery state."""

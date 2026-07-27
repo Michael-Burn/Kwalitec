@@ -1,4 +1,4 @@
-"""Assessment application layer — ports, DTOs, and service skeletons (AP-002A)."""
+"""Assessment application layer — delivery orchestration (AP-002B)."""
 
 from __future__ import annotations
 

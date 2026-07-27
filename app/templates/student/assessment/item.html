@@ -1,0 +1,86 @@
+{% extends "student/assessment/base.html" %}
+{% from "student/assessment/components/progress.html" import progress_bar %}
+{% from "student/assessment/components/question.html" import question_fields %}
+
+{% block content %}
+<div class="session-stack assessment-stack">
+    {{ progress_bar(page.progress) }}
+
+    {% if page.question %}
+    <section class="session-card assessment-question-card" aria-labelledby="assessment-stem">
+        <p class="assessment-sequence">{{ page.question.sequence_label }}</p>
+        <h2 id="assessment-stem" class="session-card-title">{{ page.question.stem }}</h2>
+        {% if page.question.accessibility_note %}
+        <p class="assessment-muted">{{ page.question.accessibility_note }}</p>
+        {% endif %}
+
+        {% if page.question.hints %}
+        <aside class="assessment-hint" aria-label="Hint">
+            <p class="assessment-hint-label">Hint</p>
+            <ul>
+                {% for hint in page.question.hints %}
+                <li>{{ hint }}</li>
+                {% endfor %}
+            </ul>
+        </aside>
+        {% endif %}
+
+        <form method="post"
+              action="{{ url_for('assessment.respond', session_id=page.shell.session_id) }}"
+              class="assessment-response-form"
+              data-assessment-response="true">
+            {{ respond_form.hidden_tag() }}
+            {{ respond_form.session_id() }}
+            {{ respond_form.question_id() }}
+            <input type="hidden" name="response_time_ms" id="assessment-response-time" value="">
+            {{ question_fields(page.question, respond_form) }}
+            <div class="session-primary-action">
+                {{ respond_form.submit(class_="session-btn-primary", **{"data-assessment-cta": "primary"}) }}
+            </div>
+        </form>
+
+        {% if page.question.hints_available and not page.question.hints %}
+        <form method="post" action="{{ url_for('assessment.hint', session_id=page.shell.session_id) }}">
+            {{ hint_form.hidden_tag() }}
+            {{ hint_form.session_id() }}
+            {{ hint_form.question_id() }}
+            {{ hint_form.submit(class_="session-btn-secondary") }}
+        </form>
+        {% endif %}
+    </section>
+    {% endif %}
+
+    <nav class="assessment-nav" aria-label="Check navigation">
+        {% if page.progress.can_go_previous %}
+        <form method="post" action="{{ url_for('assessment.navigate_route', session_id=page.shell.session_id) }}">
+            {{ nav_prev.hidden_tag() }}
+            {{ nav_prev.session_id() }}
+            {{ nav_prev.direction() }}
+            <button type="submit" class="session-btn-secondary" name="submit" value="1">Previous</button>
+        </form>
+        {% endif %}
+        {% if page.progress.can_go_next %}
+        <form method="post" action="{{ url_for('assessment.navigate_route', session_id=page.shell.session_id) }}">
+            {{ nav_next.hidden_tag() }}
+            {{ nav_next.session_id() }}
+            {{ nav_next.direction() }}
+            <button type="submit" class="session-btn-secondary" name="submit" value="1">Next</button>
+        </form>
+        {% endif %}
+        {% if page.shell.allow_pause %}
+        <form method="post" action="{{ url_for('assessment.pause', session_id=page.shell.session_id) }}">
+            {{ pause_form.hidden_tag() }}
+            {{ pause_form.session_id() }}
+            {{ pause_form.submit(class_="session-btn-secondary") }}
+        </form>
+        {% endif %}
+        {% if page.progress.can_complete %}
+        <form method="post" action="{{ url_for('assessment.complete', session_id=page.shell.session_id) }}">
+            {{ complete_form.hidden_tag() }}
+            {{ complete_form.session_id() }}
+            {{ complete_form.submit(class_="session-btn-primary") }}
+        </form>
+        {% endif %}
+    </nav>
+</div>
+{% endblock %}

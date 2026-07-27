@@ -45,3 +45,30 @@ class RecordAssessmentObservationCommand:
     kind: str
     question_id: str | None = None
     provenance: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass(frozen=True, slots=True)
+class PauseAssessmentSessionCommand:
+    session_id: str
+
+
+@dataclass(frozen=True, slots=True)
+class ResumeAssessmentSessionCommand:
+    session_id: str
+
+
+@dataclass(frozen=True, slots=True)
+class CancelAssessmentSessionCommand:
+    session_id: str
+
+
+@dataclass(frozen=True, slots=True)
+class NavigateAssessmentSessionCommand:
+    session_id: str
+    direction: str  # "next" | "previous"
+
+
+@dataclass(frozen=True, slots=True)
+class RequestAssessmentHintCommand:
+    session_id: str
+    question_id: str
