@@ -4,7 +4,8 @@
 **Milestone:** AP-002B — Assessment Delivery Foundation  
 **Date:** 2026-07-27  
 **Status:** Complete  
-**Commit message:** `feat(ap-002b): implement assessment delivery foundation`
+**Commit message:** `feat(ap-002b): implement assessment delivery foundation`  
+**Commit:** `53c8952`
 
 ---
 
