@@ -16,7 +16,7 @@ Founder
 ```
 
 PDFs are inputs. Knowledge is the output. Validation & provenance are CIP-002.
-Embeddings are CIP-003.
+Evidence retrieval (embeddings + graph + trust signals) is CIP-003.
 
 ## Bounded contexts
 

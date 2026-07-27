@@ -972,3 +972,258 @@ def intelligence_knowledge_graph(workspace_id: str):
             ],
         }
     )
+
+
+@studio_bp.get("/workspaces/<workspace_id>/intelligence/evidence/search")
+@founder_required
+def intelligence_evidence_search(workspace_id: str):
+    """Concept / evidence search via CurriculumRetrievalService."""
+    from app.application.curriculum_retrieval.curriculum_retrieval_service import (
+        CurriculumRetrievalService,
+    )
+    from app.domain.curriculum_retrieval.profile import RetrievalProfile
+    from app.domain.curriculum_retrieval.query import RetrievalQuery
+    from app.presentation.curriculum_studio.intelligence_serializers import (
+        retrieval_result_public,
+    )
+
+    try:
+        service().get_workspace(workspace_id)
+    except Exception:
+        return _json_error(
+            DocumentUploadError("Workspace not found.", code="workspace_missing"),
+            status=404,
+        )
+    text = (request.args.get("q") or "").strip()
+    if not text:
+        return _json_error(
+            DocumentUploadError("Query text is required.", code="query_required"),
+            status=400,
+        )
+    profile_raw = (request.args.get("profile") or "founder_explorer").strip()
+    try:
+        profile = RetrievalProfile(profile_raw)
+    except ValueError:
+        profile = RetrievalProfile.FOUNDER_EXPLORER
+    limit = min(50, max(1, request.args.get("limit", 10, type=int) or 10))
+    result = CurriculumRetrievalService().retrieve(
+        RetrievalQuery(
+            text=text,
+            workspace_id=workspace_id,
+            profile=profile,
+            limit=limit,
+            include_diagnostics=True,
+        )
+    )
+    from app.extensions import db
+
+    db.session.commit()
+    return jsonify({"ok": True, "retrieval": retrieval_result_public(result)})
+
+
+@studio_bp.get("/workspaces/<workspace_id>/intelligence/evidence/retrieve")
+@founder_required
+def intelligence_evidence_retrieve(workspace_id: str):
+    """Full evidence retrieval with optional filters (Founder / diagnostics)."""
+    from app.application.curriculum_retrieval.curriculum_retrieval_service import (
+        CurriculumRetrievalService,
+    )
+    from app.domain.curriculum_retrieval.intent import QueryIntent
+    from app.domain.curriculum_retrieval.profile import RetrievalProfile
+    from app.domain.curriculum_retrieval.query import RetrievalQuery
+    from app.presentation.curriculum_studio.intelligence_serializers import (
+        retrieval_result_public,
+    )
+
+    try:
+        service().get_workspace(workspace_id)
+    except Exception:
+        return _json_error(
+            DocumentUploadError("Workspace not found.", code="workspace_missing"),
+            status=404,
+        )
+    text = (request.args.get("q") or "").strip()
+    if not text:
+        return _json_error(
+            DocumentUploadError("Query text is required.", code="query_required"),
+            status=400,
+        )
+    profile_raw = (request.args.get("profile") or "founder_explorer").strip()
+    try:
+        profile = RetrievalProfile(profile_raw)
+    except ValueError:
+        profile = RetrievalProfile.FOUNDER_EXPLORER
+    intent = None
+    intent_raw = (request.args.get("intent") or "").strip()
+    if intent_raw:
+        try:
+            intent = QueryIntent(intent_raw)
+        except ValueError:
+            intent = None
+    kinds_raw = (request.args.get("kinds") or "").strip()
+    kinds = tuple(k.strip() for k in kinds_raw.split(",") if k.strip())
+    limit = min(50, max(1, request.args.get("limit", 10, type=int) or 10))
+    document_id = request.args.get("document_id", type=int)
+    require_verified = (request.args.get("verified") or "").lower() in {
+        "1",
+        "true",
+        "yes",
+    }
+    result = CurriculumRetrievalService().retrieve(
+        RetrievalQuery(
+            text=text,
+            workspace_id=workspace_id,
+            profile=profile,
+            intent=intent,
+            document_id=document_id,
+            entity_kinds=kinds,
+            require_verified=require_verified,
+            limit=limit,
+            include_diagnostics=True,
+        )
+    )
+    from app.extensions import db
+
+    db.session.commit()
+    return jsonify({"ok": True, "retrieval": retrieval_result_public(result)})
+
+
+@studio_bp.get(
+    "/workspaces/<workspace_id>/intelligence/entities/<entity_id>/neighbours"
+)
+@founder_required
+def intelligence_entity_neighbours(workspace_id: str, entity_id: str):
+    """Knowledge graph neighbours for an entity."""
+    from app.application.curriculum_retrieval.curriculum_retrieval_service import (
+        CurriculumRetrievalService,
+    )
+    from app.models.curriculum_intelligence import CipCurriculumEntity
+    from app.models.curriculum_studio_foundation import StudioFoundationDocument
+
+    try:
+        service().get_workspace(workspace_id)
+    except Exception:
+        return _json_error(
+            DocumentUploadError("Workspace not found.", code="workspace_missing"),
+            status=404,
+        )
+    doc_ids = {
+        d.id
+        for d in StudioFoundationDocument.query.filter_by(
+            workspace_id=workspace_id
+        ).all()
+    }
+    entity = CipCurriculumEntity.query.filter_by(entity_id=entity_id).first()
+    if entity is None or entity.document_id not in doc_ids:
+        return _json_error(
+            DocumentUploadError("Entity not found.", code="entity_missing"),
+            status=404,
+        )
+    hops = min(3, max(1, request.args.get("hops", 1, type=int) or 1))
+    neighbours = CurriculumRetrievalService().neighbours(
+        entity_id, workspace_id=workspace_id, max_hops=hops
+    )
+    return jsonify({"ok": True, "entity_id": entity_id, "neighbours": neighbours})
+
+
+@studio_bp.get(
+    "/workspaces/<workspace_id>/intelligence/entities/<entity_id>/related"
+)
+@founder_required
+def intelligence_entity_related(workspace_id: str, entity_id: str):
+    """Related concepts for an entity."""
+    from app.application.curriculum_retrieval.curriculum_retrieval_service import (
+        CurriculumRetrievalService,
+    )
+    from app.models.curriculum_intelligence import CipCurriculumEntity
+    from app.models.curriculum_studio_foundation import StudioFoundationDocument
+
+    try:
+        service().get_workspace(workspace_id)
+    except Exception:
+        return _json_error(
+            DocumentUploadError("Workspace not found.", code="workspace_missing"),
+            status=404,
+        )
+    doc_ids = {
+        d.id
+        for d in StudioFoundationDocument.query.filter_by(
+            workspace_id=workspace_id
+        ).all()
+    }
+    entity = CipCurriculumEntity.query.filter_by(entity_id=entity_id).first()
+    if entity is None or entity.document_id not in doc_ids:
+        return _json_error(
+            DocumentUploadError("Entity not found.", code="entity_missing"),
+            status=404,
+        )
+    related = CurriculumRetrievalService().related_concepts(
+        entity_id, workspace_id=workspace_id
+    )
+    return jsonify({"ok": True, "entity_id": entity_id, "related": related})
+
+
+@studio_bp.get("/workspaces/<workspace_id>/intelligence/embeddings/status")
+@founder_required
+def intelligence_embedding_status(workspace_id: str):
+    """Embedding index status for the workspace (no vector payloads)."""
+    from app.application.curriculum_retrieval.curriculum_retrieval_service import (
+        CurriculumRetrievalService,
+    )
+
+    try:
+        service().get_workspace(workspace_id)
+    except Exception:
+        return _json_error(
+            DocumentUploadError("Workspace not found.", code="workspace_missing"),
+            status=404,
+        )
+    status = CurriculumRetrievalService().embedding_status(workspace_id)
+    return jsonify({"ok": True, "status": status})
+
+
+@studio_bp.get("/workspaces/<workspace_id>/intelligence/retrieval/diagnostics")
+@founder_required
+def intelligence_retrieval_diagnostics(workspace_id: str):
+    """Retrieval diagnostics for Evidence Explorer ranking inspection."""
+    from app.application.curriculum_retrieval.curriculum_retrieval_service import (
+        CurriculumRetrievalService,
+    )
+    from app.domain.curriculum_retrieval.profile import RetrievalProfile
+    from app.domain.curriculum_retrieval.query import RetrievalQuery
+    from app.presentation.curriculum_studio.intelligence_serializers import (
+        retrieval_result_public,
+    )
+
+    try:
+        service().get_workspace(workspace_id)
+    except Exception:
+        return _json_error(
+            DocumentUploadError("Workspace not found.", code="workspace_missing"),
+            status=404,
+        )
+    text = (request.args.get("q") or "").strip()
+    if not text:
+        return _json_error(
+            DocumentUploadError("Query text is required.", code="query_required"),
+            status=400,
+        )
+    profile_raw = (request.args.get("profile") or "founder_explorer").strip()
+    try:
+        profile = RetrievalProfile(profile_raw)
+    except ValueError:
+        profile = RetrievalProfile.FOUNDER_EXPLORER
+    result = CurriculumRetrievalService().diagnostics_for_query(
+        RetrievalQuery(
+            text=text,
+            workspace_id=workspace_id,
+            profile=profile,
+            limit=min(20, max(1, request.args.get("limit", 10, type=int) or 10)),
+            seed_entity_id=(request.args.get("seed") or "").strip() or None,
+        )
+    )
+    from app.extensions import db
+
+    db.session.commit()
+    return jsonify({"ok": True, "retrieval": retrieval_result_public(result)})
+

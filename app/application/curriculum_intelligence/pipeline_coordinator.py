@@ -25,7 +25,6 @@ from app.application.curriculum_intelligence.knowledge_graph_builder import (
 from app.application.curriculum_intelligence.persistence import CipPersistenceService
 from app.application.curriculum_intelligence.ports.pdf_extraction_port import (
     EmbeddingExtensionPort,
-    NullEmbeddingExtension,
     PdfExtractionPort,
 )
 from app.application.curriculum_intelligence.processing_job_service import (
@@ -52,6 +51,15 @@ from app.models.curriculum_intelligence import CipProcessingJob
 from app.models.curriculum_studio_foundation import StudioFoundationDocument
 
 logger = logging.getLogger(__name__)
+
+
+def _default_embeddings() -> EmbeddingExtensionPort:
+    """CIP-003 default: index educational entities for evidence retrieval."""
+    from app.infrastructure.adapters.curriculum_retrieval import (
+        get_retrieval_embedding_extension,
+    )
+
+    return get_retrieval_embedding_extension()
 
 
 def _utc_now() -> datetime:
@@ -84,7 +92,9 @@ class PipelineCoordinator:
         self._mapper = mapper or CurriculumMappingService()
         self._graph = graph_builder or KnowledgeGraphBuilder()
         self._persistence = persistence or CipPersistenceService()
-        self._embeddings = embeddings or NullEmbeddingExtension()
+        self._embeddings = (
+            embeddings if embeddings is not None else _default_embeddings()
+        )
         self._validation_bridge = validation_bridge or ValidationProvenanceBridge()
 
     def run_job(self, job_id: str) -> CipProcessingJob:

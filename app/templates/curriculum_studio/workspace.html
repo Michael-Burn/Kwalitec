@@ -215,11 +215,15 @@
          data-review-url="{{ url_for('curriculum_studio.intelligence_review_queue', workspace_id=page.workspace.workspace_id) }}"
          data-metrics-url="{{ url_for('curriculum_studio.intelligence_metrics', workspace_id=page.workspace.workspace_id) }}"
          data-graph-url="{{ url_for('curriculum_studio.intelligence_knowledge_graph', workspace_id=page.workspace.workspace_id) }}"
-         data-audit-url="{{ url_for('curriculum_studio.intelligence_audit', workspace_id=page.workspace.workspace_id) }}">
+         data-audit-url="{{ url_for('curriculum_studio.intelligence_audit', workspace_id=page.workspace.workspace_id) }}"
+         data-evidence-search-url="{{ url_for('curriculum_studio.intelligence_evidence_search', workspace_id=page.workspace.workspace_id) }}"
+         data-evidence-retrieve-url="{{ url_for('curriculum_studio.intelligence_evidence_retrieve', workspace_id=page.workspace.workspace_id) }}"
+         data-embedding-status-url="{{ url_for('curriculum_studio.intelligence_embedding_status', workspace_id=page.workspace.workspace_id) }}"
+         data-retrieval-diagnostics-url="{{ url_for('curriculum_studio.intelligence_retrieval_diagnostics', workspace_id=page.workspace.workspace_id) }}">
     <div class="command-card">
         <div class="command-card-header">
             <h2 class="h5 mb-0">Curriculum Intelligence</h2>
-            <span class="text-muted" data-cip-overview-badge>Validation &amp; provenance</span>
+            <span class="text-muted" data-cip-overview-badge>Validation, provenance &amp; evidence retrieval</span>
         </div>
         <div class="command-card-body">
             <nav class="cip-intel-tabs" aria-label="Intelligence views">
@@ -227,6 +231,7 @@
                 <button type="button" class="cip-intel-tab" data-cip-tab="documents">Documents</button>
                 <button type="button" class="cip-intel-tab" data-cip-tab="pipeline">Pipeline</button>
                 <button type="button" class="cip-intel-tab" data-cip-tab="graph">Knowledge Graph</button>
+                <button type="button" class="cip-intel-tab" data-cip-tab="evidence">Evidence Explorer</button>
                 <button type="button" class="cip-intel-tab" data-cip-tab="validation">Validation</button>
                 <button type="button" class="cip-intel-tab" data-cip-tab="review">Review Queue</button>
                 <button type="button" class="cip-intel-tab" data-cip-tab="metrics">Metrics</button>
@@ -256,6 +261,39 @@
             <div class="cip-intel-panel" data-cip-panel="graph" hidden>
                 <p class="text-muted mb-2"><span data-cip-graph-summary>Loading graph…</span></p>
                 <ul class="list-unstyled mb-0" data-cip-graph-nodes></ul>
+            </div>
+
+            <div class="cip-intel-panel" data-cip-panel="evidence" hidden>
+                <p class="text-muted mb-2">Search educational evidence via the canonical retrieval layer. Results expose concepts, confidence, provenance, and ranking — not vector internals.</p>
+                <div class="cip-evidence-search mb-3">
+                    <label class="form-label" for="cip-evidence-q">Search concepts</label>
+                    <div class="cip-entity-lookup">
+                        <input type="text" class="form-control founder-input" id="cip-evidence-q" data-cip-evidence-input placeholder="e.g. Bayes theorem definition">
+                        <button type="button" class="btn btn-outline-secondary btn-sm" data-cip-evidence-search>Search</button>
+                    </div>
+                    <label class="form-label mt-2" for="cip-evidence-profile">Retrieval profile</label>
+                    <select class="form-select founder-input" id="cip-evidence-profile" data-cip-evidence-profile>
+                        <option value="founder_explorer">Founder Explorer</option>
+                        <option value="knowledge_search">Knowledge Search</option>
+                        <option value="tutor">Tutor</option>
+                        <option value="mission_engine">Mission Engine</option>
+                        <option value="revision_planner">Revision Planner</option>
+                        <option value="analytics">Analytics</option>
+                    </select>
+                </div>
+                <div class="row g-3 mb-3" data-cip-embed-status>
+                    <div class="col-md-3"><div class="cip-metric"><span class="command-metric-label">Indexed</span><p class="mb-0" data-cip-embed-indexed>—</p></div></div>
+                    <div class="col-md-3"><div class="cip-metric"><span class="command-metric-label">Failed</span><p class="mb-0" data-cip-embed-failed>—</p></div></div>
+                    <div class="col-md-3"><div class="cip-metric"><span class="command-metric-label">Model</span><p class="mb-0" data-cip-embed-model>—</p></div></div>
+                    <div class="col-md-3"><div class="cip-metric"><span class="command-metric-label">Vectors</span><p class="mb-0" data-cip-embed-vectors>—</p></div></div>
+                </div>
+                <div data-cip-evidence-results>
+                    <p class="text-muted mb-0">Enter a query to inspect ranked educational evidence.</p>
+                </div>
+                <div class="mt-3" data-cip-evidence-neighbours hidden>
+                    <h3 class="h6">Graph neighbours</h3>
+                    <ul class="list-unstyled mb-0" data-cip-evidence-neighbours-list></ul>
+                </div>
             </div>
 
             <div class="cip-intel-panel" data-cip-panel="validation" hidden>

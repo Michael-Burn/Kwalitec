@@ -25,7 +25,7 @@ class PdfExtractionPort(ABC):
 
 
 class EmbeddingExtensionPort(ABC):
-    """CIP-003 extension point — intentionally a no-op until embeddings land."""
+    """CIP-003 extension point — index educational entities for retrieval."""
 
     @abstractmethod
     def on_ready_for_embeddings(
@@ -39,7 +39,7 @@ class EmbeddingExtensionPort(ABC):
 
 
 class NullEmbeddingExtension(EmbeddingExtensionPort):
-    """Default stub — records nothing, embeds nothing (CIP-003 later)."""
+    """No-op stub for tests that intentionally skip indexing."""
 
     def on_ready_for_embeddings(
         self,

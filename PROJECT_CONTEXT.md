@@ -133,11 +133,13 @@ Business logic lives in `app/services/`. Representative services:
 | `burnout_monitor.py` | Workload intensity signals |
 | `startup_service.py` | Production-only migrate + admin bootstrap |
 
-Application-layer curriculum intelligence (CIP-001 / CIP-002) lives under
+Application-layer curriculum intelligence (CIP-001 / CIP-002 / CIP-003) lives under
 `app/application/curriculum_intelligence/` (extraction → parse → map → graph,
-plus provenance, confidence, validation, Founder review, and audit).
-It extends Founder document upload; it does not replace `CurriculumService` or
-the JSON Curriculum Engine. Embeddings belong to CIP-003.
+plus provenance, confidence, validation, Founder review, and audit) and
+`app/application/curriculum_retrieval/` (canonical evidence retrieval via
+`CurriculumRetrievalService`). It extends Founder document upload; it does not
+replace `CurriculumService` or the JSON Curriculum Engine. Consumers must not
+query the vector store directly.
 
 **Rule:** Prefer calling `CurriculumService` traversal helpers (`get_sections`, `get_topics_for_section`, `get_all_topics_ordered`) over ad-hoc topic queries so V1/V2 ordering stays consistent.
 

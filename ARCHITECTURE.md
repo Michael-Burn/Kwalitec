@@ -429,33 +429,39 @@ CI matrix: Python 3.11 / 3.12 / 3.13 + ruff + deploy dry-run on `main`.
 
 ---
 
-## Curriculum Intelligence Pipeline (CIP-001 / CIP-002)
+## Curriculum Intelligence Pipeline (CIP-001 / CIP-002 / CIP-003)
 
 Founder-uploaded curriculum PDFs (CS-DOC-001) feed a deterministic pipeline that
 produces structured educational knowledge for the Student Digital Twin roadmap.
 
 CIP-002 adds provenance, confidence, graph validation, Founder review, audit,
-and quality metrics on top of CIP-001 artefacts. Embeddings / retrieval are
-**CIP-003**.
+and quality metrics on top of CIP-001 artefacts. CIP-003 adds the canonical
+**evidence retrieval** layer (`CurriculumRetrievalService`) — embeddings are
+one strategy behind `VectorStorePort`; consumers never query vectors directly.
 
 ```
 Upload (CS-DOC-001)
   → Verify → Extract → Normalize → Structural Parse
   → Curriculum Map → Knowledge Graph → Ready for Embeddings
        ↘ CIP-002 evidence: provenance · confidence · validation · review · audit
+       ↘ CIP-003 index: entity embeddings → CurriculumRetrievalService
 ```
 
 | Concern | Location |
 |---|---|
 | Domain contracts / state machine | `app/domain/curriculum_intelligence/` |
+| Evidence retrieval domain | `app/domain/curriculum_retrieval/` |
 | Application services | `app/application/curriculum_intelligence/` |
+| Retrieval services | `app/application/curriculum_retrieval/` |
 | pypdf + processing adapter | `app/infrastructure/adapters/curriculum_intelligence/` |
+| Vector / embedding adapters | `app/infrastructure/adapters/curriculum_retrieval/` |
 | Normalised tables | `app/models/curriculum_intelligence.py` |
 | CIP-001 design notes | `knowledge/product/cip001/ARCHITECTURE.md` |
 | CIP-002 design notes | `knowledge/product/cip002/ARCHITECTURE.md` |
+| CIP-003 design notes | `knowledge/product/cip003/ARCHITECTURE.md` |
 
 Invariant: extraction artefacts never write directly into student Topic/Mission
-entities; OCR/LLM/embeddings are out of scope through CIP-002.
+entities; OCR/LLM remain out of scope. Vector technology stays behind ports.
 
 ---
 

@@ -1,6 +1,6 @@
 /**
- * Curriculum Intelligence (CIP-002) Founder workspace tabs.
- * Educational concepts only — no storage keys or implementation details.
+ * Curriculum Intelligence (CIP-002 / CIP-003) Founder workspace tabs.
+ * Educational concepts only — no storage keys, vector ids, or model internals.
  */
 (function () {
   "use strict";
@@ -410,6 +410,180 @@
     });
   }
 
+  function renderEmbeddingStatus(root, data) {
+    var s = (data && data.status) || {};
+    var set = function (sel, val) {
+      var el = qs(root, sel);
+      if (el) el.textContent = val;
+    };
+    set("[data-cip-embed-indexed]", s.indexed != null ? s.indexed : "—");
+    set("[data-cip-embed-failed]", s.failed != null ? s.failed : "—");
+    set("[data-cip-embed-model]", s.model_name || "—");
+    set("[data-cip-embed-vectors]", s.vector_count != null ? s.vector_count : "—");
+  }
+
+  function bindEntityOpeners(root, host) {
+    qsa(host, "[data-cip-open-entity]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var id = btn.getAttribute("data-cip-open-entity");
+        activateTab(root, "entity");
+        var input = qs(root, "[data-cip-entity-input]");
+        if (input) input.value = id || "";
+        loadEntity(root, id);
+      });
+    });
+  }
+
+  function renderEvidence(root, data) {
+    var host = qs(root, "[data-cip-evidence-results]");
+    if (!host) return;
+    var retrieval = data.retrieval || {};
+    var results = retrieval.results || [];
+    var diag = retrieval.diagnostics || {};
+    if (!results.length) {
+      host.innerHTML =
+        '<p class="text-muted mb-0">No educational evidence matched this query.</p>';
+      return;
+    }
+    var diagLine =
+      "<p class='text-muted small mb-2'>Intent " +
+      escapeHtml(retrieval.intent || "") +
+      " · profile " +
+      escapeHtml(retrieval.profile || "") +
+      " · vector hits " +
+      (diag.vector_hit_count != null ? diag.vector_hit_count : "—") +
+      " · ranked " +
+      (diag.ranked_count != null ? diag.ranked_count : results.length) +
+      "</p>";
+    host.innerHTML =
+      diagLine +
+      results
+        .map(function (r) {
+          var ranking = r.ranking || {};
+          return (
+            '<div class="cip-evidence-item mb-3">' +
+            "<p class='mb-1'><button type='button' class='btn btn-link p-0' data-cip-open-entity='" +
+            escapeAttr(r.entity_id) +
+            "' data-cip-evidence-entity='" +
+            escapeAttr(r.entity_id) +
+            "'>" +
+            escapeHtml(r.title || r.entity_id) +
+            "</button> · " +
+            escapeHtml(r.kind || "") +
+            " · rank " +
+            (r.rank_score != null ? Number(r.rank_score).toFixed(3) : "—") +
+            " · conf " +
+            pct(r.confidence) +
+            (r.verified ? " · verified" : "") +
+            "</p>" +
+            "<p class='small text-muted mb-1'>" +
+            escapeHtml((r.body || "").slice(0, 180)) +
+            "</p>" +
+            "<p class='small mb-0'>Ranking: semantic " +
+            (ranking.semantic_similarity != null
+              ? Number(ranking.semantic_similarity).toFixed(3)
+              : "—") +
+            " · graph " +
+            (ranking.graph_proximity != null
+              ? Number(ranking.graph_proximity).toFixed(3)
+              : "—") +
+            " · confidence " +
+            (ranking.confidence != null ? Number(ranking.confidence).toFixed(3) : "—") +
+            " · verification " +
+            (ranking.founder_verification != null
+              ? Number(ranking.founder_verification).toFixed(3)
+              : "—") +
+            "</p>" +
+            (r.provenance_id
+              ? "<p class='small mb-0'>Provenance " +
+                escapeHtml(r.provenance_id) +
+                "</p>"
+              : "") +
+            "</div>"
+          );
+        })
+        .join("");
+    bindEntityOpeners(root, host);
+    qsa(host, "[data-cip-evidence-entity]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        loadNeighbours(root, btn.getAttribute("data-cip-evidence-entity"));
+      });
+    });
+  }
+
+  function loadNeighbours(root, entityId) {
+    if (!entityId) return;
+    var base =
+      "/console/studio/workspaces/" +
+      encodeURIComponent(root.getAttribute("data-workspace-id")) +
+      "/intelligence/entities/" +
+      encodeURIComponent(entityId) +
+      "/neighbours";
+    var wrap = qs(root, "[data-cip-evidence-neighbours]");
+    var list = qs(root, "[data-cip-evidence-neighbours-list]");
+    if (!wrap || !list) return;
+    wrap.removeAttribute("hidden");
+    list.innerHTML = "<li class='text-muted'>Loading neighbours…</li>";
+    fetchJson(base)
+      .then(function (body) {
+        var items = body.neighbours || [];
+        if (!items.length) {
+          list.innerHTML = "<li class='text-muted'>No neighbours.</li>";
+          return;
+        }
+        list.innerHTML = items
+          .map(function (n) {
+            return (
+              "<li>" +
+              escapeHtml(n.title || n.entity_id) +
+              " · " +
+              escapeHtml(n.relation_type || "") +
+              " · hop " +
+              (n.distance != null ? n.distance : "—") +
+              "</li>"
+            );
+          })
+          .join("");
+      })
+      .catch(function (err) {
+        list.innerHTML =
+          '<li class="text-danger">' + escapeHtml(err.message) + "</li>";
+      });
+  }
+
+  function loadEmbeddingStatus(root) {
+    var url = root.getAttribute("data-embedding-status-url");
+    if (!url) return Promise.resolve();
+    return fetchJson(url).then(function (body) {
+      renderEmbeddingStatus(root, body);
+    });
+  }
+
+  function runEvidenceSearch(root) {
+    var input = qs(root, "[data-cip-evidence-input]");
+    var profile = qs(root, "[data-cip-evidence-profile]");
+    var q = input && input.value.trim();
+    if (!q) return;
+    var url =
+      root.getAttribute("data-evidence-search-url") +
+      "?q=" +
+      encodeURIComponent(q) +
+      "&profile=" +
+      encodeURIComponent((profile && profile.value) || "founder_explorer");
+    var host = qs(root, "[data-cip-evidence-results]");
+    if (host) host.innerHTML = "<p class='text-muted mb-0'>Searching…</p>";
+    fetchJson(url)
+      .then(function (body) {
+        renderEvidence(root, body);
+      })
+      .catch(function (err) {
+        if (host) {
+          host.innerHTML =
+            '<p class="text-danger mb-0">' + escapeHtml(err.message) + "</p>";
+        }
+      });
+  }
+
   function escapeHtml(value) {
     return String(value == null ? "" : value)
       .replace(/&/g, "&amp;")
@@ -433,6 +607,9 @@
         if (name === "graph") loadGraph(root);
         if (name === "pipeline") loadAudit(root);
         if (name === "overview") loadOverview(root);
+        if (name === "evidence") {
+          loadEmbeddingStatus(root).catch(function () {});
+        }
       });
     });
     var loadBtn = qs(root, "[data-cip-entity-load]");
@@ -440,6 +617,21 @@
       loadBtn.addEventListener("click", function () {
         var input = qs(root, "[data-cip-entity-input]");
         loadEntity(root, input && input.value.trim());
+      });
+    }
+    var searchBtn = qs(root, "[data-cip-evidence-search]");
+    if (searchBtn) {
+      searchBtn.addEventListener("click", function () {
+        runEvidenceSearch(root);
+      });
+    }
+    var evidenceInput = qs(root, "[data-cip-evidence-input]");
+    if (evidenceInput) {
+      evidenceInput.addEventListener("keydown", function (ev) {
+        if (ev.key === "Enter") {
+          ev.preventDefault();
+          runEvidenceSearch(root);
+        }
       });
     }
     loadOverview(root).catch(function () {});

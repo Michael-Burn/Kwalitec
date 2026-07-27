@@ -1,7 +1,8 @@
 """Knowledge graph relationship contracts for CIP-001.
 
 The graph is the canonical educational model extension point for the
-Student Digital Twin. Embeddings attach in CIP-003 — not here.
+Student Digital Twin. CIP-003 attaches embeddings and retrieval on top —
+consumers use CurriculumRetrievalService, not the vector store.
 """
 
 from __future__ import annotations

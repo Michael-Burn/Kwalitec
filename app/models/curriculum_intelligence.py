@@ -1,11 +1,14 @@
-"""ORM models for Curriculum Intelligence Pipeline (CIP-001 / CIP-002).
+"""ORM models for Curriculum Intelligence Pipeline (CIP-001 / CIP-002 / CIP-003).
 
 CIP-001: processing jobs, extraction, structural parse, curriculum entities,
 and knowledge-graph relations.
 
 CIP-002: provenance, confidence, review, validation, audit, quality metrics.
 
-PDF bytes remain in DocumentStorage — never here. Embeddings are CIP-003.
+CIP-003: embedding metadata, local vector payloads, retrieval logs.
+
+PDF bytes remain in DocumentStorage — never here. Vector technology details
+live only in infrastructure adapters (local vector table is adapter-owned).
 """
 
 from __future__ import annotations
@@ -524,4 +527,89 @@ class CipQualityMetrics(db.Model):
     entity_count: int = db.Column(db.Integer, nullable=False, default=0)
     relation_count: int = db.Column(db.Integer, nullable=False, default=0)
     validation_error_count: int = db.Column(db.Integer, nullable=False, default=0)
+    created_at: datetime = db.Column(db.DateTime, nullable=False, default=_utc_now)
+
+
+# ---------------------------------------------------------------------------
+# CIP-003 — Embedding metadata, local vector store, retrieval logs
+# ---------------------------------------------------------------------------
+
+
+class CipEmbeddingRecord(db.Model):
+    """Metadata for one educational-entity embedding (no vector payload)."""
+
+    __tablename__ = "cip_embedding_records"
+    __table_args__ = (
+        db.Index("ix_cip_embed_entity", "entity_id"),
+        db.Index("ix_cip_embed_document", "document_id"),
+        db.Index("ix_cip_embed_workspace", "workspace_id"),
+        db.Index("ix_cip_embed_status", "status"),
+        db.UniqueConstraint(
+            "entity_id",
+            "embedding_version",
+            name="uq_cip_embed_entity_ver",
+        ),
+    )
+
+    id: int = db.Column(db.Integer, primary_key=True)
+    embedding_id: str = db.Column(
+        db.String(64), nullable=False, unique=True, index=True
+    )
+    entity_id: str = db.Column(db.String(64), nullable=False)
+    entity_kind: str = db.Column(db.String(64), nullable=False, default="")
+    document_id: int = db.Column(db.Integer, nullable=False, default=0)
+    workspace_id: str = db.Column(db.String(128), nullable=False, default="")
+    vector_id: str = db.Column(db.String(64), nullable=False, unique=True, index=True)
+    model_name: str = db.Column(db.String(128), nullable=False, default="")
+    embedding_version: str = db.Column(db.String(32), nullable=False, default="1")
+    dimensions: int = db.Column(db.Integer, nullable=False, default=0)
+    status: str = db.Column(db.String(32), nullable=False, default="pending")
+    content_fingerprint: str = db.Column(db.String(64), nullable=False, default="")
+    provenance_id: str | None = db.Column(db.String(64), nullable=True)
+    graph_id: str = db.Column(db.String(64), nullable=False, default="")
+    job_id: str = db.Column(db.String(64), nullable=False, default="")
+    error_message: str = db.Column(db.Text, nullable=False, default="")
+    created_at: datetime = db.Column(db.DateTime, nullable=False, default=_utc_now)
+    updated_at: datetime = db.Column(
+        db.DateTime, nullable=False, default=_utc_now, onupdate=_utc_now
+    )
+
+
+class CipLocalVectorEntry(db.Model):
+    """Infrastructure-owned local vector payload (LocalVectorStoreAdapter only)."""
+
+    __tablename__ = "cip_local_vector_entries"
+    __table_args__ = (db.Index("ix_cip_local_vec_dims", "dimensions"),)
+
+    id: int = db.Column(db.Integer, primary_key=True)
+    vector_id: str = db.Column(db.String(64), nullable=False, unique=True, index=True)
+    dimensions: int = db.Column(db.Integer, nullable=False, default=0)
+    vector_json: str = db.Column(db.Text, nullable=False, default="[]")
+    metadata_json: str = db.Column(db.Text, nullable=False, default="{}")
+    created_at: datetime = db.Column(db.DateTime, nullable=False, default=_utc_now)
+    updated_at: datetime = db.Column(
+        db.DateTime, nullable=False, default=_utc_now, onupdate=_utc_now
+    )
+
+
+class CipRetrievalLog(db.Model):
+    """Append-only retrieval request log for diagnostics and auditability."""
+
+    __tablename__ = "cip_retrieval_logs"
+    __table_args__ = (
+        db.Index("ix_cip_retrieval_workspace", "workspace_id"),
+        db.Index("ix_cip_retrieval_profile", "profile"),
+        db.Index("ix_cip_retrieval_created", "created_at"),
+    )
+
+    id: int = db.Column(db.Integer, primary_key=True)
+    log_id: str = db.Column(db.String(64), nullable=False, unique=True, index=True)
+    workspace_id: str = db.Column(db.String(128), nullable=False, default="")
+    profile: str = db.Column(db.String(64), nullable=False, default="")
+    intent: str = db.Column(db.String(64), nullable=False, default="")
+    query_text: str = db.Column(db.Text, nullable=False, default="")
+    document_id: int | None = db.Column(db.Integer, nullable=True)
+    result_count: int = db.Column(db.Integer, nullable=False, default=0)
+    top_entity_ids_csv: str = db.Column(db.Text, nullable=False, default="")
+    diagnostics_json: str = db.Column(db.Text, nullable=False, default="{}")
     created_at: datetime = db.Column(db.DateTime, nullable=False, default=_utc_now)
