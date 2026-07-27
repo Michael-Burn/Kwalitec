@@ -72,3 +72,9 @@ class ReflectionAckForm(FlaskForm):
 
     recommendation_key = HiddenField(validators=[Optional()])
     submit = SubmitField("Got it")
+
+
+class ExplainMissionTutorForm(FlaskForm):
+    """TUTOR-001 — ask the Tutor to explain today's mission (evidence-backed)."""
+
+    submit = SubmitField("Explain today's mission")

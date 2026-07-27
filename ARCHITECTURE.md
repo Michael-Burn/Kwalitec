@@ -465,6 +465,195 @@ entities; OCR/LLM remain out of scope. Vector technology stays behind ports.
 
 ---
 
+## Student Digital Twin Foundation (SDT-001)
+
+Canonical representation of the learner — the sole source of truth for evolving
+educational state. Complements Curriculum Intelligence (WHAT) with the Twin
+(WHO). Facts (observations) are append-only; inferences are reproducible via
+`StudentReasoningService`, which **delegates educational logic** to the
+Educational Reasoning Engine (SDT-002). Curriculum evidence is retrieved
+exclusively through `CurriculumRetrievalService` (never vector store / graph /
+embeddings directly).
+
+```
+Observation (fact)
+  → Educational Reasoning Engine (SDT-002 rules)
+       → Mastery · Confidence · Momentum · Consistency · Readiness
+       → Knowledge Gaps / Prerequisites (via CurriculumRetrievalService)
+       → Recommendations
+  → StudentDigitalTwin aggregate
+```
+
+| Concern | Location |
+|---|---|
+| Domain aggregate | `app/domain/student_digital_twin/` |
+| Application / Twin orchestration | `app/application/student_digital_twin/` |
+| ORM tables | `app/models/student_digital_twin.py` |
+| Founder diagnostics | `/founder/twin/*` (`app/presentation/student_digital_twin/`) |
+| Design notes | `knowledge/product/sdt001/ARCHITECTURE.md` |
+
+No LLM. No student-facing Twin UX in SDT-001. Future Adaptive Mission Engine,
+Revision Planner, and Tutor must consume this Twin rather than inventing
+parallel learner models.
+
+---
+
+## Educational Reasoning Engine (SDT-002)
+
+Deterministic, explainable educational inference pipeline. Every educational
+decision that updates the Student Digital Twin must be produced by this engine.
+Independent of UI, missions, tutoring, and LLMs.
+
+```
+Observation
+  → Retrieve Supporting Curriculum Evidence (CIP-003)
+  → Apply Educational Rules (RuleRegistry)
+  → Generate Educational Inference
+  → Update Student Digital Twin
+  → Record Reasoning History (immutable)
+```
+
+| Concern | Location |
+|---|---|
+| Domain (rules, registry, engine) | `app/domain/educational_reasoning/` |
+| Application (evidence, persistence) | `app/application/educational_reasoning/` |
+| ORM metadata tables | `app/models/educational_reasoning.py` |
+| Founder diagnostics | `/founder/reasoning/*` |
+| Design notes | `knowledge/product/sdt002/ARCHITECTURE.md` |
+
+Rule types: mastery update, confidence adjustment, knowledge gap detection,
+prerequisite analysis, recommendation, learning momentum, consistency,
+readiness contribution. New rules are pluggable via `RuleRegistry` without
+modifying existing rules. Reasoning history tables store metadata only — they
+do not duplicate Twin inference rows. Prerequisite / recovery rules prefer
+Learning Graph traversal when a graph is attached to `ReasoningContext`
+(SDT-003).
+
+---
+
+## Learning Graph (SDT-003)
+
+Canonical representation of how a learner's knowledge is interconnected.
+Complements Curriculum Intelligence (WHAT) and the Student Digital Twin (WHO)
+with relational prerequisite / dependency structure. One Learning Graph exists
+per Twin. Twin mastery remains the source of truth; the graph stores structure
+and mastery links, not duplicated inference rows.
+
+```
+Curriculum evidence (CIP-003)
+  → Sync Learning Graph (nodes from Twin, edges from retrieval)
+  → Educational Reasoning rules traverse prerequisites / recovery paths
+  → Update Student Digital Twin
+  → Refresh graph mastery projections
+```
+
+| Concern | Location |
+|---|---|
+| Domain aggregate + traversal | `app/domain/learning_graph/` |
+| Application (sync, traversal) | `app/application/learning_graph/` |
+| ORM structure tables | `app/models/learning_graph.py` |
+| Founder diagnostics | `/founder/learning-graph/*` |
+| Design notes | `knowledge/product/sdt003/ARCHITECTURE.md` |
+
+No LLM. No student-facing Learning Graph UX in SDT-003. The Adaptive Mission
+Engine (AME-001), Revision Planner, and Tutor must use this graph for
+prerequisite reasoning rather than inventing isolated concept heuristics.
+
+---
+
+## Adaptive Mission Engine (AME-001)
+
+Transforms educational decisions into one actionable daily learning mission.
+Consumes Student Digital Twin state, Educational Reasoning decisions, Learning
+Graph recovery structure, and Curriculum Retrieval evidence. Never performs
+educational reasoning itself. Not a timetable — today's optimal learning plan.
+
+```
+Student Digital Twin
+  → Educational Reasoning decisions (already on Twin)
+  → Learning Graph recovery / prerequisites
+  → Curriculum Retrieval (evidence enrichment)
+  → Prioritise → Construct → Validate
+  → Daily Adaptive Mission (one active per learner)
+```
+
+| Concern | Location |
+|---|---|
+| Domain aggregate + prioritisation / validation | `app/domain/adaptive_mission/` |
+| Application orchestration | `app/application/adaptive_mission/` |
+| ORM tables | `app/models/adaptive_mission.py` |
+| Founder diagnostics | `/founder/missions/*` |
+| Design notes | `knowledge/product/ame001/ARCHITECTURE.md` |
+
+No LLM. Student Mission card UX unchanged in AME-001; `as_mission_card()`
+provides a simple projection for future integration.
+
+---
+
+## Assessment & Learning Feedback Pipeline (AP-001)
+
+Closes the adaptive learning loop: learner activity becomes structured
+educational evidence that updates the Student Digital Twin. Never performs
+educational reasoning — delegates Twin updates to `StudentReasoningService`.
+
+```
+Learner Activity
+  → Validation → Assessment Event
+  → Observation (SDT-001 fact)
+  → StudentReasoningService / Educational Reasoning Engine
+  → Student Digital Twin Update
+  → Learning Feedback
+  → Mission Refresh Trigger (AME-001)
+```
+
+| Concern | Location |
+|---|---|
+| Domain (events, feedback, validation) | `app/domain/assessment_pipeline/` |
+| Application orchestration | `app/application/assessment_pipeline/` |
+| ORM tables | `app/models/assessment_pipeline.py` |
+| Founder diagnostics | `/founder/assessment/*` |
+| Design notes | `knowledge/product/ap001/ARCHITECTURE.md` |
+
+Mission progress/completion emits assessment events via
+`AdaptiveMissionService` hooks. Future Tutor, Revision Planner, Exam Readiness
+Forecasting, and Educational Analytics must consume the evolving Twin rather
+than inventing parallel learner state. No LLM. Student dashboard unchanged.
+
+---
+
+## Evidence-Backed Intelligent Tutor (TUTOR-001)
+
+Transforms educational intelligence into personalised, explainable guidance.
+The Tutor **explains** decisions already produced by Educational Reasoning,
+the Student Digital Twin, Learning Graph, Adaptive Missions, and Assessment
+Feedback — it never becomes another reasoning engine.
+
+```
+Student Question
+  → Student Digital Twin
+  → Educational Reasoning decisions (already on Twin)
+  → Learning Graph
+  → Curriculum Retrieval (TUTOR profile)
+  → Evidence Assembly → Explanation Builder
+  → TutorGenerationPort (deterministic V1 placeholder)
+  → Tutor Response
+```
+
+| Concern | Location |
+|---|---|
+| Domain (session, context, evidence, response) | `app/domain/intelligent_tutor/` |
+| Application orchestration + generation port | `app/application/intelligent_tutor/` |
+| ORM conversation tables | `app/models/intelligent_tutor.py` |
+| Founder diagnostics | `/founder/tutor/*` |
+| Student surface | Home Coach preview + `/student/tutor/explain-mission` |
+| Design notes | `knowledge/product/tutor001/ARCHITECTURE.md` |
+
+Conversation memory is session-scoped only. Twin remains the learner-state
+system of record. Future LLM adapters replace `DeterministicTutorGeneration`
+behind `TutorGenerationPort` without changing Tutor architecture.
+
+---
+
 ## Related Rules
 
 | Rule file | Topic |

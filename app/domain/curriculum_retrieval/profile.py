@@ -15,6 +15,7 @@ class RetrievalProfile(StrEnum):
     KNOWLEDGE_SEARCH = "knowledge_search"
     ANALYTICS = "analytics"
     FOUNDER_EXPLORER = "founder_explorer"
+    STUDENT_DIGITAL_TWIN = "student_digital_twin"
 
 
 @dataclass(frozen=True)
@@ -117,6 +118,16 @@ PROFILE_WEIGHTS: dict[RetrievalProfile, RankingWeights] = {
         entity_freshness=0.05,
         relationship_strength=0.10,
         evidence_count=0.07,
+    ),
+    RetrievalProfile.STUDENT_DIGITAL_TWIN: RankingWeights(
+        semantic_similarity=0.16,
+        graph_distance=0.24,
+        confidence=0.20,
+        founder_verification=0.16,
+        document_version=0.06,
+        entity_freshness=0.04,
+        relationship_strength=0.10,
+        evidence_count=0.04,
     ),
 }
 

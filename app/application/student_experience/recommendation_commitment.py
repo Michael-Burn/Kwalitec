@@ -19,12 +19,26 @@ from app.application.student_experience.dto.recommendation_commitment_snapshot i
 from app.application.student_experience.dto.recommendation_narrative_entry_snapshot import (  # noqa: E501
     RecommendationNarrativeEntrySnapshot,
 )
+from app.application.student_experience.ports.commitment_port import (
+    CommitmentPersistencePort,
+    CommitmentRecord,
+    DecisionJournalPort,
+    LearningFeedbackPort,
+    get_commitment_persistence_port,
+    get_decision_journal_port,
+    get_learning_feedback_port,
+)
 from app.domain.student_experience.recommendation_explanation import (
     translate_to_student_language,
 )
-from app.extensions import db
 
 logger = logging.getLogger(__name__)
+
+# Learning-feedback claim boundaries / source authority (mirrors the
+# infrastructure contract constants without importing infrastructure here).
+_CLAIM_PREFERENCE_JOURNAL = "preference_journal"
+_CLAIM_OBSERVED_BEHAVIOUR = "observed_behaviour"
+_SOURCE_RECOMMENDATION = "recommendation_service"
 
 # Commitment states (ENGINEERING_DESIGN §6.1).
 STATE_OFFERED = "offered"
@@ -178,30 +192,27 @@ def _emit_observational(
     user_id: int,
     event_type: str,
     payload: dict[str, Any],
+    feedback_port: LearningFeedbackPort | None = None,
 ) -> None:
     """Research-only learning-feedback emit (fail-open). Never raises."""
     try:
-        from app.infrastructure.adapters.learning_feedback import (
-            CLAIM_OBSERVED_BEHAVIOUR,
-            CLAIM_PREFERENCE_JOURNAL,
-            SOURCE_RECOMMENDATION,
-            emit_learning_feedback,
-        )
-
+        port = feedback_port or get_learning_feedback_port()
+        if port is None:
+            return
         claim = (
-            CLAIM_PREFERENCE_JOURNAL
+            _CLAIM_PREFERENCE_JOURNAL
             if event_type
             in {
                 "commitment_confirmed",
                 "commitment_deferred",
                 "commitment_completed",
             }
-            else CLAIM_OBSERVED_BEHAVIOUR
+            else _CLAIM_OBSERVED_BEHAVIOUR
         )
-        emit_learning_feedback(
+        port.emit(
             student_id=user_id,
             event_type=event_type,
-            source_authority=SOURCE_RECOMMENDATION,
+            source_authority=_SOURCE_RECOMMENDATION,
             claim_boundary=claim,
             payload=payload,
         )
@@ -330,13 +341,12 @@ class RecommendationCommitmentService:
         now = datetime.utcnow()
         row = RecommendationCommitmentService._active_row(user_id, key)
         if row is None:
-            row = RecommendationCommitmentService._new_row(
+            row = RecommendationCommitmentService._new_record(
                 user_id=user_id,
                 tip=tip,
                 key=key,
                 title=title,
             )
-            db.session.add(row)
 
         if row.state in {STATE_COMPLETED, STATE_REFLECTED}:
             return RecommendationCommitmentService.snapshot_for_home(
@@ -363,7 +373,7 @@ class RecommendationCommitmentService:
         if decision_id is not None:
             row.decision_id = decision_id
 
-        db.session.commit()
+        RecommendationCommitmentService._persistence().save(row)
         _emit_observational(
             user_id=user_id,
             event_type="commitment_confirmed",
@@ -403,13 +413,12 @@ class RecommendationCommitmentService:
         now = datetime.utcnow()
         row = RecommendationCommitmentService._active_row(user_id, key)
         if row is None:
-            row = RecommendationCommitmentService._new_row(
+            row = RecommendationCommitmentService._new_record(
                 user_id=user_id,
                 tip=tip,
                 key=key,
                 title=title,
             )
-            db.session.add(row)
 
         row.state = STATE_DEFERRED
         row.deferred_at = now
@@ -430,7 +439,7 @@ class RecommendationCommitmentService:
         if decision_id is not None:
             row.decision_id = decision_id
 
-        db.session.commit()
+        RecommendationCommitmentService._persistence().save(row)
         _emit_observational(
             user_id=user_id,
             event_type="commitment_deferred",
@@ -463,7 +472,7 @@ class RecommendationCommitmentService:
         if session_id:
             row.session_id = str(session_id)
         row.session_started_at = row.session_started_at or datetime.utcnow()
-        db.session.commit()
+        RecommendationCommitmentService._persistence().save(row)
 
     @staticmethod
     def mark_completed(
@@ -479,28 +488,13 @@ class RecommendationCommitmentService:
         row = None
         if key:
             row = RecommendationCommitmentService._active_row(user_id, key)
-        from app.models.recommendation_commitment import RecommendationCommitment
+        persistence = RecommendationCommitmentService._persistence()
 
         if row is None and session_id:
-            row = (
-                RecommendationCommitment.query.filter_by(
-                    user_id=user_id, session_id=str(session_id)
-                )
-                .order_by(RecommendationCommitment.id.desc())
-                .first()
-            )
+            row = persistence.find_by_session(user_id, str(session_id))
         if row is None:
             # Complete the most recent open commitment for the user.
-            row = (
-                RecommendationCommitment.query.filter(
-                    RecommendationCommitment.user_id == user_id,
-                    RecommendationCommitment.state.in_(
-                        [STATE_COMMITTED, STATE_IN_SESSION]
-                    ),
-                )
-                .order_by(RecommendationCommitment.id.desc())
-                .first()
-            )
+            row = persistence.find_latest_open(user_id)
         if row is None:
             return None
 
@@ -527,7 +521,7 @@ class RecommendationCommitmentService:
             completed=True,
             outcome_summary="commitment_completed",
         )
-        db.session.commit()
+        RecommendationCommitmentService._persistence().save(row)
         _emit_observational(
             user_id=user_id,
             event_type="commitment_completed",
@@ -554,21 +548,15 @@ class RecommendationCommitmentService:
             row = RecommendationCommitmentService._active_row(
                 user_id, recommendation_key
             )
-        from app.models.recommendation_commitment import RecommendationCommitment
-
         if row is None:
-            row = (
-                RecommendationCommitment.query.filter_by(
-                    user_id=user_id, state=STATE_COMPLETED
-                )
-                .order_by(RecommendationCommitment.id.desc())
-                .first()
+            row = RecommendationCommitmentService._persistence().find_latest_completed(
+                user_id
             )
         if row is None:
             return None
         row.state = STATE_REFLECTED
         row.reflected_at = datetime.utcnow()
-        db.session.commit()
+        RecommendationCommitmentService._persistence().save(row)
         _emit_observational(
             user_id=user_id,
             event_type="reflection_viewed",
@@ -603,26 +591,18 @@ class RecommendationCommitmentService:
         within_days: int = NARRATIVE_DAYS,
     ) -> tuple[RecommendationNarrativeEntrySnapshot, ...]:
         """Lightweight educational narrative (≤10 / ~14 days)."""
-        from app.models.recommendation_commitment import RecommendationCommitment
-
         since = datetime.utcnow() - timedelta(days=max(1, within_days))
-        rows = (
-            RecommendationCommitment.query.filter(
-                RecommendationCommitment.user_id == user_id,
-                RecommendationCommitment.created_at >= since,
-                RecommendationCommitment.state.in_(
-                    [
-                        STATE_COMPLETED,
-                        STATE_REFLECTED,
-                        STATE_DEFERRED,
-                        STATE_COMMITTED,
-                        STATE_IN_SESSION,
-                    ]
-                ),
-            )
-            .order_by(RecommendationCommitment.updated_at.desc())
-            .limit(max(1, limit))
-            .all()
+        rows = RecommendationCommitmentService._persistence().find_recent(
+            user_id,
+            since=since,
+            states=(
+                STATE_COMPLETED,
+                STATE_REFLECTED,
+                STATE_DEFERRED,
+                STATE_COMMITTED,
+                STATE_IN_SESSION,
+            ),
+            limit=max(1, limit),
         )
         entries: list[RecommendationNarrativeEntrySnapshot] = []
         for row in rows:
@@ -681,30 +661,22 @@ class RecommendationCommitmentService:
         return ("", "", "", "")
 
     @staticmethod
-    def _active_row(user_id: int, key: str) -> Any | None:
+    def _active_row(user_id: int, key: str) -> CommitmentRecord | None:
         if not key:
             return None
-        from app.models.recommendation_commitment import RecommendationCommitment
-
-        return (
-            RecommendationCommitment.query.filter_by(
-                user_id=user_id, recommendation_key=key
-            )
-            .order_by(RecommendationCommitment.id.desc())
-            .first()
+        return RecommendationCommitmentService._persistence().find_active(
+            user_id, key
         )
 
     @staticmethod
-    def _new_row(
+    def _new_record(
         *,
         user_id: int,
         tip: dict[str, Any],
         key: str,
         title: str,
-    ) -> Any:
-        from app.models.recommendation_commitment import RecommendationCommitment
-
-        return RecommendationCommitment(
+    ) -> CommitmentRecord:
+        return CommitmentRecord(
             user_id=user_id,
             recommendation_key=key,
             title=title,
@@ -717,6 +689,18 @@ class RecommendationCommitmentService:
         )
 
     @staticmethod
+    def _persistence(
+        port: CommitmentPersistencePort | None = None,
+    ) -> CommitmentPersistencePort:
+        active = port or get_commitment_persistence_port()
+        if active is None:
+            raise RuntimeError(
+                "RecommendationCommitmentService requires a "
+                "CommitmentPersistencePort bound via infrastructure composition"
+            )
+        return active
+
+    @staticmethod
     def _record_decision(
         user_id: int,
         tip: dict[str, Any],
@@ -724,19 +708,20 @@ class RecommendationCommitmentService:
         accepted: bool,
         completed: bool,
         outcome_summary: str | None = None,
+        journal: DecisionJournalPort | None = None,
     ) -> int | None:
         """Call existing Decision Journal API — never edit ranking."""
         try:
-            from app.services.recommendation_service import RecommendationService
-
-            decision = RecommendationService.record_decision(
+            port = journal or get_decision_journal_port()
+            if port is None:
+                return None
+            return port.record_decision(
                 user_id,
                 _tip_for_decision(tip),
                 accepted=accepted,
                 completed=completed,
                 outcome_summary=outcome_summary,
             )
-            return getattr(decision, "id", None)
         except Exception:  # noqa: BLE001 — preference journal fail-open
             logger.warning(
                 "commitment_record_decision_failed user_id=%s",

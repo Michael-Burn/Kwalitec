@@ -15,6 +15,13 @@ from __future__ import annotations
 
 from typing import Any
 
+from app.application.student_experience.dto.readiness_explanation_snapshot import (
+    ReadinessExplanationSnapshot,
+)
+from app.application.student_experience.readiness_explanation import (
+    bind_readiness_surface_port,
+    readiness_explanation_from_narrative,
+)
 from app.services.educational_explainability_service import (
     EducationalExplainabilityService,
     MissionNarrative,
@@ -374,6 +381,7 @@ class RuntimeAPresentationAdapter:
             return RuntimeAPresentationAdapter._schema_mission_narrative(
                 today_mission=today_mission,
                 mission_surface=surface,
+                is_revision=is_revision,
             )
 
         if _authority(surface) == SOURCE_AUTHORITY_DAILY_STUDY_PLAN:
@@ -397,8 +405,15 @@ class RuntimeAPresentationAdapter:
         *,
         today_mission: Any,
         mission_surface: dict[str, Any],
+        is_revision: bool = False,
     ) -> MissionNarrative:
-        """Pass-through student speech from PlanningService quality schema."""
+        """Pass-through student speech from PlanningService quality schema.
+
+        EIP-003 / IA-004: even pass-through surfaces must keep the Learning
+        Mode / Current Learning Topic story that anchors the student's
+        educational mental model. Presentation only appends this fixed
+        framing sentence — it never re-plans or overrides authored fields.
+        """
         title = (
             str(getattr(today_mission, "title", "") or "").strip()
             or "Today's focus"
@@ -416,6 +431,14 @@ class RuntimeAPresentationAdapter:
             or mission_surface.get("explanation_summary")
             or _TWIN_MISSION_REASON_FALLBACK
         ).strip()
+        mode_sentence = (
+            "In Revision Mode, today's mission consolidates the completed "
+            "syllabus — not new Current Learning Topic coverage."
+            if is_revision
+            else "In Learning Mode, today's mission follows your Current "
+            "Learning Topic in this study plan."
+        )
+        why_with_mode = f"{why} {mode_sentence}".strip()
         next_action = str(
             mission_surface.get("suggested_next_action")
             or mission_surface.get("next_action")
@@ -426,6 +449,13 @@ class RuntimeAPresentationAdapter:
             for item in (mission_surface.get("supporting_evidence") or [])
             if str(item).strip()
         ]
+        evidence.append(
+            "Study Progress advances one syllabus topic at a time in "
+            "Revision Mode."
+            if is_revision
+            else "Study Progress advances one syllabus topic at a time in "
+            "Learning Mode."
+        )
         confidence = str(mission_surface.get("confidence_level") or "").strip()
         estimates: list[str] = []
         if confidence:
@@ -433,6 +463,13 @@ class RuntimeAPresentationAdapter:
         change = str(mission_surface.get("change_reasoning") or "").strip()
         if change:
             estimates.append(change)
+        estimates.append(
+            "Revision consolidates completed material — it does not invent "
+            "Estimated Knowledge."
+            if is_revision
+            else "Estimated Knowledge is separate from Study Progress and "
+            "grows from practice results over time."
+        )
         plan_drivers = tuple(
             _driver_evidence(mission_surface.get("plan_drivers"))[:3]
         )
@@ -443,8 +480,8 @@ class RuntimeAPresentationAdapter:
 
         return MissionNarrative(
             topic_title=title,
-            educational_purpose=why,
-            reason_for_selection=why,
+            educational_purpose=why_with_mode,
+            reason_for_selection=why_with_mode,
             educational_position=str(
                 mission_surface.get("judgement") or "Authorised study plan for today"
             ).strip(),
@@ -494,3 +531,32 @@ class RuntimeAPresentationAdapter:
             observed_facts=tuple(observed[:6]),
             estimates=(),
         )
+
+
+class _RuntimeAReadinessSurfaceAdapter:
+    """Default ReadinessSurfacePort — Runtime A dashboard surface pass-through.
+
+    EP-006.4 composition: fetches the same ReadinessService surface Analytics
+    uses, maps it via RuntimeAPresentationAdapter, then delegates DTO shaping
+    back to the application layer (``readiness_explanation_from_narrative``).
+    """
+
+    def load_readiness_explanation(
+        self, user_id: int
+    ) -> ReadinessExplanationSnapshot | None:
+        from app.services.readiness_quality import (
+            has_complete_readiness_explanation_schema,
+        )
+        from app.services.readiness_service import ReadinessService
+
+        surface = ReadinessService.get_dashboard_readiness_surface(user_id)
+        if not isinstance(surface, dict) or not surface:
+            return None
+        narrative = RuntimeAPresentationAdapter.readiness_narrative(surface)
+        return readiness_explanation_from_narrative(
+            narrative,
+            schema_complete=has_complete_readiness_explanation_schema(surface),
+        )
+
+
+bind_readiness_surface_port(_RuntimeAReadinessSurfaceAdapter())

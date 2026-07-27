@@ -22,7 +22,7 @@ from __future__ import annotations
 
 from flask import redirect, url_for
 
-from app.application.config.v2_flags import resolve_v2_feature_flags
+from app.application.config import v2_flags as _v2_flags
 
 # Canonical student journey entry (Education OS Home).
 CANONICAL_HOME_ENDPOINT = "student.home"
@@ -30,6 +30,11 @@ CANONICAL_HOME_ENDPOINT = "student.home"
 LEGACY_HOME_ENDPOINT = "dashboard.index"
 # Kwalitec Console (Founder Operating System) home.
 CONSOLE_HOME_ENDPOINT = "founder_dashboard.index"
+
+
+def resolve_v2_feature_flags(*args, **kwargs):
+    """Proxy so patches on this module or on ``v2_flags`` both apply."""
+    return _v2_flags.resolve_v2_feature_flags(*args, **kwargs)
 
 
 def is_sole_runtime() -> bool:

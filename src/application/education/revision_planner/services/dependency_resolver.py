@@ -33,7 +33,7 @@ class DependencyResolver:
     ) -> tuple[Mission, ...]:
         """Return missions in dependency-safe scheduling order."""
         if not honour_dependencies:
-            return OrderingRules.prioritise(missions)
+            return OrderingRules.order_for_execution(missions)
         ordered = OrderingRules.ensure_prerequisites_before_dependents(missions)
         return DependencyResolver._stabilize_subject_prerequisites(ordered)
 

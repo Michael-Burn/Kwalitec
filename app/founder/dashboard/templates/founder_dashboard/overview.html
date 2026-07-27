@@ -6,7 +6,7 @@
         <p class="console-eyebrow">{{ kwalitec_console_label }} · {{ internal_alpha_label }} · v{{ overview.app_version }}</p>
         <h1 id="console-home-title" class="console-page-title">{{ console_home_label }}</h1>
         <p class="console-executive-summary">
-            What needs attention today · {{ overview.refreshed_at }} · {{ overview.timezone_policy }}
+            Operational pulse — what needs attention today · {{ overview.refreshed_at }} · {{ overview.timezone_policy }}
         </p>
         {% if overview.needs_action_count > 0 %}
         <div class="console-primary-action">
@@ -172,6 +172,24 @@
                 </ul>
                 {% else %}
                 <p class="console-empty">Nothing needs action right now.</p>
+                {% endif %}
+            </div>
+            <div class="console-card">
+                <div class="console-card-header">
+                    <h3 class="console-card-heading">Vision Journal</h3>
+                    <a class="console-link" href="{{ url_for('founder_dashboard.vision_journal') }}">Open</a>
+                </div>
+                {% if overview.vision_recent %}
+                <ul class="console-activity-list">
+                    {% for item in overview.vision_recent %}
+                    <li>
+                        <a href="{{ url_for('founder_dashboard.vision_entry', entry_id=item.entry_id) }}">{{ item.title }}</a>
+                        · {{ item.status_label }}
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p class="console-empty">No Vision entries yet. <a href="{{ url_for('founder_dashboard.vision_new') }}">New entry</a></p>
                 {% endif %}
             </div>
         </div>

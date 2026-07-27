@@ -50,6 +50,17 @@ from app.services.readiness_service import ReadinessService
 
 logger = logging.getLogger(__name__)
 
+
+def _generation_timestamp() -> str:
+    """Return a second-precision UTC timestamp for recommendation rows.
+
+    Truncating microseconds keeps ``generated_at`` stable when the same
+    request is served twice within the same second (e.g. dual-run
+    comparisons), without weakening the freshness of the timestamp.
+    """
+    return datetime.utcnow().replace(microsecond=0).isoformat()
+
+
 CATEGORY_REVIEW = "Review"
 CATEGORY_WEAK_TOPIC = "Weak Topic"
 CATEGORY_NEW_TOPIC = "New Topic"
@@ -882,7 +893,7 @@ class RecommendationService:
 
         recs: list[dict] = []
         weak_label = LearningLifecycleService.weakest_completed_topic_label(user_id)
-        now = datetime.utcnow().isoformat()
+        now = _generation_timestamp()
 
         if weak_label:
             recs.append({
@@ -975,7 +986,7 @@ class RecommendationService:
                 "expected_benefit": (
                     "Restore retention on overdue topics and keep review rhythm steady."
                 ),
-                "generated_at": datetime.utcnow().isoformat(),
+                "generated_at": _generation_timestamp(),
             })
         elif backlog["topics_due_today"] > 0:
             recs.append({
@@ -988,7 +999,7 @@ class RecommendationService:
                 "expected_benefit": (
                     "Maintain your review rhythm and keep topics from becoming overdue."
                 ),
-                "generated_at": datetime.utcnow().isoformat(),
+                "generated_at": _generation_timestamp(),
             })
 
         return recs
@@ -1016,7 +1027,7 @@ class RecommendationService:
                 "expected_benefit": (
                     "Strengthen foundational Estimated Knowledge through practice."
                 ),
-                "generated_at": datetime.utcnow().isoformat(),
+                "generated_at": _generation_timestamp(),
             })
             return recs
 
@@ -1032,7 +1043,7 @@ class RecommendationService:
                     "Targeted practice on lower-estimate areas often helps most."
                 ),
                 "expected_benefit": "Bring these topics into a stronger estimated range.",
-                "generated_at": datetime.utcnow().isoformat(),
+                "generated_at": _generation_timestamp(),
             })
 
         return recs
@@ -1071,7 +1082,7 @@ class RecommendationService:
                 "expected_benefit": (
                     "Increase syllabus coverage — Study Progress, not Estimated Knowledge."
                 ),
-                "generated_at": datetime.utcnow().isoformat(),
+                "generated_at": _generation_timestamp(),
             })
 
         if 30 <= coverage["coverage_percentage"] < 70:
@@ -1097,7 +1108,7 @@ class RecommendationService:
                 "expected_benefit": (
                     "Sustained curriculum progression builds broad knowledge."
                 ),
-                "generated_at": datetime.utcnow().isoformat(),
+                "generated_at": _generation_timestamp(),
             })
 
         if coverage["coverage_percentage"] >= 70 and coverage["topics_not_started"] > 0:
@@ -1125,7 +1136,7 @@ class RecommendationService:
                 "expected_benefit": (
                     "Finish remaining syllabus topics so Study Progress is complete."
                 ),
-                "generated_at": datetime.utcnow().isoformat(),
+                "generated_at": _generation_timestamp(),
             })
 
         return recs
@@ -1171,7 +1182,7 @@ class RecommendationService:
                 "expected_benefit": (
                     "Reveal remaining gaps and build exam-day familiarity."
                 ),
-                "generated_at": datetime.utcnow().isoformat(),
+                "generated_at": _generation_timestamp(),
             })
         elif readiness["score"] >= 40:
             recs.append({
@@ -1185,7 +1196,7 @@ class RecommendationService:
                 "expected_benefit": (
                     "Early exposure to exam-style questions builds familiarity."
                 ),
-                "generated_at": datetime.utcnow().isoformat(),
+                "generated_at": _generation_timestamp(),
             })
 
         return recs
@@ -1204,7 +1215,7 @@ class RecommendationService:
                 "expected_benefit": (
                     "Recovery, clearer focus, and steadier progress over the week."
                 ),
-                "generated_at": datetime.utcnow().isoformat(),
+                "generated_at": _generation_timestamp(),
             })
         elif burnout["risk_level"] == "moderate":
             recs.append({
@@ -1213,7 +1224,7 @@ class RecommendationService:
                 "priority": PRIORITY_MEDIUM,
                 "reason": f"{burnout['explanation']} A lighter day helps maintain momentum while recovering.",
                 "expected_benefit": "Protect focus while keeping study momentum.",
-                "generated_at": datetime.utcnow().isoformat(),
+                "generated_at": _generation_timestamp(),
             })
 
         return recs
@@ -1241,7 +1252,7 @@ class RecommendationService:
                 "expected_benefit": (
                     "Focused revision in the final weeks maximises retention."
                 ),
-                "generated_at": datetime.utcnow().isoformat(),
+                "generated_at": _generation_timestamp(),
             })
 
         if 14 <= days_remaining <= 45 and coverage >= 60:
@@ -1254,7 +1265,7 @@ class RecommendationService:
                     "you should be in the mock exam phase."
                 ),
                 "expected_benefit": "Regular mock exams build stamina and reveal weak points.",
-                "generated_at": datetime.utcnow().isoformat(),
+                "generated_at": _generation_timestamp(),
             })
 
         return recs
@@ -1286,7 +1297,7 @@ class RecommendationService:
                 "expected_benefit": (
                     "Better exam technique can add 5-15% to your score."
                 ),
-                "generated_at": datetime.utcnow().isoformat(),
+                "generated_at": _generation_timestamp(),
             })
 
         return recs

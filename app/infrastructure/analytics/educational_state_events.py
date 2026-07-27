@@ -132,3 +132,21 @@ def _require_content_hash(value: str) -> str:
             "content_hash must be a 64-character lowercase SHA-256 hex digest"
         )
     return digest
+
+
+class InfrastructureEducationalStateAnalyticsPort:
+    """Default EducationalStateAnalyticsPort — dispatches via this module."""
+
+    def emit_snapshot(
+        self, *, user_id: int, snapshot_id: str, content_hash: str
+    ) -> bool:
+        result = emit_educational_state_snapshot(
+            user_id=user_id,
+            snapshot_id=snapshot_id,
+            content_hash=content_hash,
+        )
+        return result.status in (
+            DispatchStatus.ENQUEUED,
+            DispatchStatus.DUPLICATE,
+            DispatchStatus.DISABLED,
+        )

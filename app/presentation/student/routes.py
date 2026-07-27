@@ -25,6 +25,7 @@ from app.presentation.student.forms import (
     BeginRevisionForm,
     CompleteRuntimeMissionForm,
     DeferCommitmentForm,
+    ExplainMissionTutorForm,
     ReflectionAckForm,
     StartSessionForm,
 )
@@ -106,6 +107,7 @@ def home():
     complete_form = CompleteRuntimeMissionForm()
     defer_form = DeferCommitmentForm()
     reflection_form = ReflectionAckForm()
+    tutor_form = ExplainMissionTutorForm()
     if page.home:
         form.mission_id.data = page.home.mission_id
         form.session_id.data = page.home.session_id
@@ -128,8 +130,58 @@ def home():
         complete_form=complete_form,
         defer_form=defer_form,
         reflection_form=reflection_form,
+        tutor_form=tutor_form,
         show_welcome=WelcomeService.should_show(current_user),
     )
+
+
+@student_bp.post("/tutor/explain-mission")
+@login_required
+def tutor_explain_mission():
+    """TUTOR-001 — evidence-backed explanation of today's mission.
+
+    Explains Adaptive Mission / Twin decisions. Does not invent educational
+    reasoning. Soft-fails when no Twin is available for the learner.
+    """
+    form = ExplainMissionTutorForm()
+    if not form.validate_on_submit():
+        flash("Please try explaining today's mission again.", "warning")
+        return redirect(url_for("student.home"))
+
+    from app.application.intelligent_tutor.intelligent_tutor_service import (
+        IntelligentTutorService,
+    )
+    from app.application.student_digital_twin.student_digital_twin_service import (
+        StudentDigitalTwinService,
+    )
+
+    twins = StudentDigitalTwinService().list_twins_for_student(str(current_user.id))
+    if not twins:
+        flash(
+            "Tutor guidance will appear once your learning Twin is available.",
+            "info",
+        )
+        return redirect(url_for("student.home"))
+
+    try:
+        response = IntelligentTutorService().explain_mission(
+            twins[0].twin_id,
+            persist=True,
+            enrich_evidence=True,
+        )
+    except ValueError as exc:
+        logger.warning("tutor_explain_mission_failed: %s", exc)
+        flash(
+            "The Tutor could not explain today's mission just now. "
+            "Please try again shortly.",
+            "warning",
+        )
+        return redirect(url_for("student.home"))
+
+    flash(response.explanation.summary, "success")
+    if response.suggested_next_action:
+        flash(response.suggested_next_action, "info")
+    return redirect(url_for("student.home"))
 
 
 @student_bp.get("/journey")

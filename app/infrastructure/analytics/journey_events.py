@@ -19,6 +19,9 @@ import logging
 from datetime import UTC, datetime
 from typing import Any
 
+from app.application.learning_journey.journey_observation import (
+    bind_journey_analytics_port,
+)
 from app.infrastructure.analytics.contracts import AnalyticsEvent
 from app.infrastructure.analytics.correlation import new_correlation_id
 from app.infrastructure.analytics.dispatcher import (
@@ -158,3 +161,27 @@ def _require_transition_id(value: str) -> str:
             "transition_id must be a canonical Journey transition identifier"
         )
     return transition
+
+
+class _InfrastructureJourneyAnalyticsPort:
+    """Default JourneyAnalyticsPort — dispatches via this module."""
+
+    def emit_progressed(
+        self,
+        *,
+        user_id: int,
+        journey_id: str,
+        curriculum_node_id: str,
+        transition_id: str,
+        entity_key: str,
+    ) -> None:
+        emit_journey_progressed(
+            user_id=user_id,
+            journey_id=journey_id,
+            curriculum_node_id=curriculum_node_id,
+            transition_id=transition_id,
+            entity_key=entity_key,
+        )
+
+
+bind_journey_analytics_port(_InfrastructureJourneyAnalyticsPort())

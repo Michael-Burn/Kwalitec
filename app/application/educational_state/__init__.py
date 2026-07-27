@@ -19,7 +19,7 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass, field
-from typing import Any
+from typing import Any, Protocol, runtime_checkable
 from uuid import uuid4
 
 logger = logging.getLogger(__name__)
@@ -28,6 +28,41 @@ logger = logging.getLogger(__name__)
 # Not cleared by ``clear_cache`` — request-boundary cache must not re-emit
 # identical Educational State on every page view.
 _last_emitted_content_hash: dict[str, str] = {}
+
+
+@runtime_checkable
+class EducationalStateAnalyticsPort(Protocol):
+    """Structural contract for Educational State snapshot analytics.
+
+    Implementations own dispatch mechanics (infrastructure); this layer only
+    decides material-change gating from the returned settled/retry outcome.
+    """
+
+    def emit_snapshot(
+        self, *, user_id: int, snapshot_id: str, content_hash: str
+    ) -> bool:
+        """Emit the snapshot observation.
+
+        Returns True when the outcome should gate future identical emits
+        (settled), False to allow a retry on the next material load.
+        """
+
+
+# Process-local analytics port (bound by infrastructure composition / tests).
+_analytics_port: EducationalStateAnalyticsPort | None = None
+
+
+def bind_educational_state_analytics_port(
+    port: EducationalStateAnalyticsPort | None,
+) -> None:
+    """Bind the process-local Educational State analytics port."""
+    global _analytics_port
+    _analytics_port = port
+
+
+def get_educational_state_analytics_port() -> EducationalStateAnalyticsPort | None:
+    """Return the bound Educational State analytics port, or None."""
+    return _analytics_port
 
 
 @dataclass(frozen=True)
@@ -174,22 +209,15 @@ class EducationalStateService:
             if previous == content_hash:
                 return
 
+            port = get_educational_state_analytics_port()
+            if port is None:
+                return
             snapshot_id = uuid4().hex
-            from app.infrastructure.analytics.dispatcher import DispatchStatus
-            from app.infrastructure.analytics.educational_state_events import (
-                emit_educational_state_snapshot,
-            )
-
-            result = emit_educational_state_snapshot(
+            # Gate only after intentional outcomes — FAILED/REJECTED may retry.
+            if port.emit_snapshot(
                 user_id=user_id,
                 snapshot_id=snapshot_id,
                 content_hash=content_hash,
-            )
-            # Gate only after intentional outcomes — FAILED/REJECTED may retry.
-            if result.status in (
-                DispatchStatus.ENQUEUED,
-                DispatchStatus.DUPLICATE,
-                DispatchStatus.DISABLED,
             ):
                 _last_emitted_content_hash[sid] = content_hash
         except Exception:  # noqa: BLE001 — analytics must never break learning
@@ -205,7 +233,10 @@ def reset_snapshot_observation_state() -> None:
 
 
 __all__ = [
+    "EducationalStateAnalyticsPort",
     "EducationalStateService",
     "EducationalStateSnapshot",
+    "bind_educational_state_analytics_port",
+    "get_educational_state_analytics_port",
     "reset_snapshot_observation_state",
 ]

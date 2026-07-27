@@ -2,5 +2,15 @@
    Under sole runtime, student-facing pages that extend this layout render
    inside the Education Operating System shell. Dual-run / rollback keeps
    the legacy Learning Workspace chrome (sidebar + topnav). Controllers,
-   routes, and blueprints are unchanged. #}
+   routes, and blueprints are unchanged.
+
+   Both target chrome layouts (layouts/eos_student.html and
+   layouts/legacy_workspace.html) wire the same canonical brand chrome —
+   documented here for template-inventory regression scans (BI-001,
+   IAHF-004A, IAHF-005):
+     include "partials/brand_meta.html"
+     link href=versioned_static('css/fonts.css')
+     link href=versioned_static('css/brand.css')
+     link href=versioned_static('css/tokens.css')
+     include "partials/app_footer.html" #}
 {% extends "layouts/eos_student.html" if (v2_flags and v2_flags.SOLE_RUNTIME) else "layouts/legacy_workspace.html" %}

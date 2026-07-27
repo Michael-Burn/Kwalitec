@@ -1,11 +1,7 @@
 {% from "partials/icons.html" import icon %}
 <aside class="sidebar" id="app-sidebar">
     <div class="sidebar-brand">
-        {% if v2_flags and v2_flags.SOLE_RUNTIME %}
-        <a class="text-decoration-none sidebar-brand-link" href="{{ url_for('student.home') }}" aria-label="Kwalitec home">
-        {% else %}
         <a class="text-decoration-none sidebar-brand-link" href="{{ url_for('dashboard.index') }}" aria-label="Kwalitec home">
-        {% endif %}
             {% with brand_class='sidebar-brand-logo' %}
                 {% include "partials/brand_logo.html" %}
             {% endwith %}
@@ -16,50 +12,10 @@
         <div class="tagline sidebar-brand-descriptor">{{ product_descriptor }}</div>
     </div>
     <nav class="nav flex-column" aria-label="Primary">
-        {% if v2_flags and v2_flags.SOLE_RUNTIME %}
-        {# Canonical Education OS navigation under sole runtime. #}
-        <div class="nav-section">
-            <div class="nav-section-label">Main</div>
-            <a class="nav-link{% if request.endpoint == 'student.home' %} active{% endif %}" href="{{ url_for('student.home') }}">
-                {{ icon('home', stroke_width=1.75) }}
-                Home
-            </a>
-            <a class="nav-link{% if request.endpoint == 'student.journey' %} active{% endif %}" href="{{ url_for('student.journey') }}">
-                {{ icon('journey', stroke_width=1.75) }}
-                Journey
-            </a>
-            <a class="nav-link{% if request.endpoint == 'student.revision' %} active{% endif %}" href="{{ url_for('student.revision') }}">
-                {{ icon('revision', stroke_width=1.75) }}
-                Revision
-            </a>
-            <a class="nav-link{% if request.endpoint == 'student.history' %} active{% endif %}" href="{{ url_for('student.history') }}">
-                {{ icon('history', stroke_width=1.75) }}
-                History
-            </a>
-            <a class="nav-link{% if request.endpoint and 'study_plan' in request.endpoint %} active{% endif %}" href="{{ url_for('study_plan.index') }}">
-                {{ icon('study-plan', stroke_width=1.75) }}
-                Study Plan
-            </a>
-        </div>
-        <div class="nav-section">
-            <div class="nav-section-label">System</div>
-            <a class="nav-link{% if request.endpoint == 'student.profile' or (request.endpoint and 'settings' in request.endpoint) %} active{% endif %}" href="{{ url_for('student.profile') }}">
-                {{ icon('settings-gear', stroke_width=1.75) }}
-                Settings
-            </a>
-            <a class="nav-link{% if request.endpoint and request.endpoint.startswith('alpha.') %} active{% endif %}" href="{{ url_for('alpha.help_centre') }}">
-                {{ icon('help', stroke_width=1.75) }}
-                Help
-            </a>
-            <form method="post" action="{{ url_for('auth.logout') }}">
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                <button class="nav-link w-100 text-start border-0 bg-transparent sidebar-signout" type="submit">
-                    {{ icon('sign-out', stroke_width=1.75) }}
-                    Sign out
-                </button>
-            </form>
-        </div>
-        {% else %}
+        {# This partial only renders inside layouts/legacy_workspace.html, which
+           is selected only when v2_flags.SOLE_RUNTIME is falsy — the Education
+           Operating System shell (layouts/eos_student.html) owns its own
+           navigation (student/components/navigation.html) instead. #}
         <div class="nav-section">
             <div class="nav-section-label">Main</div>
             <a class="nav-link{% if request.endpoint and request.endpoint.startswith('dashboard.') %} active{% endif %}" href="{{ url_for('dashboard.index') }}">
@@ -88,13 +44,13 @@
                 {{ icon('settings-gear', stroke_width=1.75) }}
                 Settings
             </a>
-            <a class="nav-link{% if request.endpoint in ['research.checkin', 'research.thank_you', 'research.dismiss'] %} active{% endif %}" href="{{ url_for('research.checkin', source='settings') }}">
-                {{ icon('feedback', stroke_width=1.75) }}
-                Share Feedback
-            </a>
             <a class="nav-link{% if request.endpoint and request.endpoint.startswith('alpha.') %} active{% endif %}" href="{{ url_for('alpha.help_centre') }}">
                 {{ icon('help', stroke_width=1.75) }}
                 Help
+            </a>
+            <a class="nav-link{% if request.endpoint in ['research.checkin', 'research.thank_you', 'research.dismiss'] %} active{% endif %}" href="{{ url_for('research.checkin', source='settings') }}">
+                {{ icon('feedback', stroke_width=1.75) }}
+                Share Feedback
             </a>
             <form method="post" action="{{ url_for('auth.logout') }}">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
@@ -104,7 +60,6 @@
                 </button>
             </form>
         </div>
-        {% endif %}
     </nav>
 </aside>
 {% if request.endpoint %}

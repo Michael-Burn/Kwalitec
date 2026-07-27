@@ -8,9 +8,41 @@ directly for production observation.
 from __future__ import annotations
 
 import logging
-from typing import Any
+from typing import Any, Protocol, runtime_checkable
 
 logger = logging.getLogger(__name__)
+
+
+@runtime_checkable
+class JourneyAnalyticsPort(Protocol):
+    """Structural contract for Journey progression analytics."""
+
+    def emit_progressed(
+        self,
+        *,
+        user_id: int,
+        journey_id: str,
+        curriculum_node_id: str,
+        transition_id: str,
+        entity_key: str,
+    ) -> None:
+        """Emit ``journey.progressed`` (fail-open; dispatch mechanics owned
+        by the infrastructure implementation)."""
+
+
+# Process-local analytics port (bound by infrastructure composition / tests).
+_analytics_port: JourneyAnalyticsPort | None = None
+
+
+def bind_journey_analytics_port(port: JourneyAnalyticsPort | None) -> None:
+    """Bind the process-local Journey analytics port."""
+    global _analytics_port
+    _analytics_port = port
+
+
+def get_journey_analytics_port() -> JourneyAnalyticsPort | None:
+    """Return the bound Journey analytics port, or None."""
+    return _analytics_port
 
 
 def observe_journey_progressed(
@@ -51,9 +83,10 @@ def observe_journey_progressed(
         entries = getattr(history, "entries", ()) or ()
         key = entity_key or f"{journey_id}:{transition_id}:{len(entries)}"
 
-        from app.infrastructure.analytics.journey_events import emit_journey_progressed
-
-        emit_journey_progressed(
+        port = get_journey_analytics_port()
+        if port is None:
+            return
+        port.emit_progressed(
             user_id=int(resolved_user_id),
             journey_id=journey_id,
             curriculum_node_id=topic_id,

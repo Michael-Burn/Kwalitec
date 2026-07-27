@@ -7,6 +7,7 @@ metadata + snapshot_hash into analytics — never Twin aggregates.
 from __future__ import annotations
 
 import logging
+from typing import Protocol, runtime_checkable
 
 from app.application.twin_repository.content_hash import compute_twin_snapshot_hash
 from app.application.twin_repository.types import (
@@ -15,6 +16,37 @@ from app.application.twin_repository.types import (
 )
 
 logger = logging.getLogger(__name__)
+
+
+@runtime_checkable
+class TwinAnalyticsPort(Protocol):
+    """Structural contract for Twin evolution analytics."""
+
+    def emit_evolved(
+        self,
+        *,
+        user_id: int,
+        twin_snapshot_id: str,
+        twin_version: str,
+        evolution_reason: str,
+        snapshot_hash: str,
+    ) -> None:
+        """Emit ``twin.evolved`` (fail-open; dispatch owned by infra)."""
+
+
+# Process-local analytics port (bound by infrastructure composition / tests).
+_analytics_port: TwinAnalyticsPort | None = None
+
+
+def bind_twin_analytics_port(port: TwinAnalyticsPort | None) -> None:
+    """Bind the process-local Twin analytics port."""
+    global _analytics_port
+    _analytics_port = port
+
+
+def get_twin_analytics_port() -> TwinAnalyticsPort | None:
+    """Return the bound Twin analytics port, or None."""
+    return _analytics_port
 
 
 def observe_twin_evolved_after_persist(
@@ -44,9 +76,10 @@ def observe_twin_evolved_after_persist(
             else "successor"
         )
 
-        from app.infrastructure.analytics.twin_events import emit_twin_evolved
-
-        emit_twin_evolved(
+        port = get_twin_analytics_port()
+        if port is None:
+            return
+        port.emit_evolved(
             user_id=user_id,
             twin_snapshot_id=ack.snapshot_id,
             twin_version=str(ack.sequence),

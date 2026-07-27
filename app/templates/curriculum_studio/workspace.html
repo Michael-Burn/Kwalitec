@@ -1,5 +1,7 @@
 {% extends "founder_dashboard/base.html" %}
 
+{# founder_dashboard/base.html (via layouts/console_base.html) loads
+   founder_dashboard.css for this Console surface. #}
 {% macro action_btn(form_obj, action_key, default_class) -%}
 {%- set is_primary = page.primary_action == action_key -%}
 {%- set btn_class = 'btn founder-btn ' + ('btn-primary' if is_primary else default_class) -%}
@@ -407,6 +409,6 @@
 {% endblock %}
 
 {% block extra_scripts %}
-<script src="{{ versioned_static('js/document_upload.js') }}"></script>
-<script src="{{ versioned_static('js/curriculum_intelligence.js') }}"></script>
+<script src="{{ versioned_static('js/curriculum_studio/document_upload.js') }}"></script>
+<script src="{{ versioned_static('js/curriculum_studio/curriculum_intelligence.js') }}"></script>
 {% endblock %}

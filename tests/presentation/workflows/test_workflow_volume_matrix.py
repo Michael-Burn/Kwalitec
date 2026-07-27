@@ -83,6 +83,7 @@ def test_primary_action_keys_stable(stage, primary):
     assert stage
     assert primary in {
         "advance",
+        "upload",
         "validate",
         "preview",
         "approve",

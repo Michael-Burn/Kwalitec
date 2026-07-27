@@ -49,3 +49,22 @@ class NullEmbeddingExtension(EmbeddingExtensionPort):
         graph_id: str,
     ) -> None:
         _ = (document_id, job_id, graph_id)
+
+
+# Process-local default embedding extension (bound by infrastructure
+# composition / tests). Falls back to a no-op when unbound so pipeline
+# stages that omit ``embeddings`` injection still complete safely.
+_default_embedding_extension: EmbeddingExtensionPort | None = None
+
+
+def bind_default_embedding_extension_port(
+    port: EmbeddingExtensionPort | None,
+) -> None:
+    """Bind the process-local default embedding extension port."""
+    global _default_embedding_extension
+    _default_embedding_extension = port
+
+
+def get_default_embedding_extension_port() -> EmbeddingExtensionPort:
+    """Return the bound default embedding extension, or a no-op stub."""
+    return _default_embedding_extension or NullEmbeddingExtension()

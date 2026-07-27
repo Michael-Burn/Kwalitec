@@ -498,6 +498,26 @@
     {% else %}
     <p class="student-panel-body student-coach-insight" data-mes-field="coach_insight">{{ page.home.coach_insight }}</p>
     {% endif %}
+    {% if page.home.tutor_available and page.home.tutor_guidance %}
+    <div class="student-tutor-guidance" data-tutor="mission-preview">
+      <p class="student-label">Tutor</p>
+      <p class="student-panel-body">{{ page.home.tutor_guidance }}</p>
+      {% if page.home.tutor_next_action %}
+      <p class="student-muted">{{ page.home.tutor_next_action }}</p>
+      {% endif %}
+      {% if tutor_form %}
+      <form method="post" action="{{ url_for('student.tutor_explain_mission') }}" class="student-tutor-form">
+        {{ tutor_form.hidden_tag() }}
+        {{ tutor_form.submit(class_="btn btn-link btn-sm px-0") }}
+      </form>
+      {% endif %}
+    </div>
+    {% elif tutor_form %}
+    <form method="post" action="{{ url_for('student.tutor_explain_mission') }}" class="student-tutor-form">
+      {{ tutor_form.hidden_tag() }}
+      {{ tutor_form.submit(class_="btn btn-link btn-sm px-0") }}
+    </form>
+    {% endif %}
   </article>
 </section>
 

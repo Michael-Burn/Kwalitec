@@ -49,7 +49,11 @@ class OrderingRules:
         )
 
     @staticmethod
-    def prioritise(missions: Sequence[Mission]) -> tuple[Mission, ...]:
+    def order_for_execution(missions: Sequence[Mission]) -> tuple[Mission, ...]:
+        """Deterministically order missions for execution.
+
+        Planning order only — not recommendation ranking.
+        """
         ordered = sorted(missions, key=OrderingRules.sort_key)
         ranked: list[Mission] = []
         for index, mission in enumerate(ordered, start=1):
@@ -69,4 +73,4 @@ class OrderingRules:
         Already covered by sort_key type tie-break; re-exported for the
         milestone vocabulary (StudyPrerequisite rule).
         """
-        return OrderingRules.prioritise(missions)
+        return OrderingRules.order_for_execution(missions)

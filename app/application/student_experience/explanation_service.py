@@ -210,16 +210,14 @@ def _evidence_phrases(view: dict[str, Any]) -> tuple[str, ...]:
 
 
 def _looks_schema_complete(view: dict[str, Any]) -> bool:
-    """Prefer service gate when importable; otherwise key heuristic."""
-    try:
-        from app.services.recommendation_quality import (
-            has_complete_explanation_schema,
-        )
+    """True when the explanation payload carries the full authored schema.
 
-        if has_complete_explanation_schema(view):
-            return True
-    except Exception:
-        pass
+    Mirrors ``app.services.recommendation_quality.has_complete_explanation_schema``
+    (a pure dict predicate) inline — presentation composition must not import
+    services.
+    """
+    if _has_complete_explanation_schema(view):
+        return True
     return bool(
         str(view.get("why_recommended") or "").strip()
         and (
@@ -228,3 +226,39 @@ def _looks_schema_complete(view: dict[str, Any]) -> bool:
             or view.get("next_action")
         )
     )
+
+
+def _has_complete_explanation_schema(row: dict[str, Any]) -> bool:
+    """True when a recommendation row carries the mandatory explanation schema."""
+    if not isinstance(row, dict):
+        return False
+    if row.get("honest_refusal"):
+        return all(
+            str(row.get(key) or "").strip()
+            for key in (
+                "title",
+                "reason",
+                "confidence_level",
+                "why_recommended",
+                "suggested_next_action",
+            )
+        )
+    required = (
+        "title",
+        "reason",
+        "expected_benefit",
+        "confidence_level",
+        "why_recommended",
+        "suggested_next_action",
+        "supporting_evidence",
+        "explanation_schema_version",
+    )
+    for key in required:
+        value = row.get(key)
+        if value is None:
+            return False
+        if isinstance(value, list | tuple) and len(value) == 0:
+            return False
+        if isinstance(value, str) and not value.strip():
+            return False
+    return True

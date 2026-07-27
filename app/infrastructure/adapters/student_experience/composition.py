@@ -19,6 +19,9 @@ from app.application.student_experience.student_experience_service import (
 )
 from app.infrastructure.adapters.adaptive import ExperienceAdaptiveAdapter
 from app.infrastructure.adapters.journey import ExperienceJourneyAdapter
+from app.infrastructure.adapters.student_experience import (  # noqa: F401
+    commitment_persistence as _commitment_persistence,
+)
 from app.infrastructure.adapters.mission.experience_adapter import (
     ExperienceMissionAdapter,
 )

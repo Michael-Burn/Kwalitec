@@ -80,3 +80,32 @@ class VectorStorePort(ABC):
     @abstractmethod
     def count(self, *, filter_metadata: dict[str, str] | None = None) -> int:
         """Count indexed vectors, optionally filtered by metadata."""
+
+
+# Process-local default ports (bound by infrastructure composition / tests).
+# Application services fall back to these when no port is explicitly injected
+# so existing call sites keep working without importing infrastructure here.
+_default_embedding_model: EmbeddingModelPort | None = None
+_default_vector_store: VectorStorePort | None = None
+
+
+def bind_default_embedding_model_port(port: EmbeddingModelPort | None) -> None:
+    """Bind the process-local default embedding model (composition / tests)."""
+    global _default_embedding_model
+    _default_embedding_model = port
+
+
+def get_default_embedding_model_port() -> EmbeddingModelPort | None:
+    """Return the bound default embedding model port, or None when unbound."""
+    return _default_embedding_model
+
+
+def bind_default_vector_store_port(port: VectorStorePort | None) -> None:
+    """Bind the process-local default vector store (composition / tests)."""
+    global _default_vector_store
+    _default_vector_store = port
+
+
+def get_default_vector_store_port() -> VectorStorePort | None:
+    """Return the bound default vector store port, or None when unbound."""
+    return _default_vector_store

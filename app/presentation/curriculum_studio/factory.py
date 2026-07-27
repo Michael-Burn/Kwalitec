@@ -12,6 +12,9 @@ from app.application.curriculum_studio.curriculum_studio_service import (
 from app.application.curriculum_studio.document_upload_service import (
     DocumentUploadService,
 )
+from app.application.curriculum_studio.ports.document_metadata_port import (
+    bind_document_metadata_port,
+)
 from app.infrastructure.adapters.curriculum_ingestion import (
     CurriculumIngestionAdapter,
 )
@@ -23,6 +26,9 @@ from app.infrastructure.adapters.curriculum_management import (
 )
 from app.infrastructure.adapters.document_storage import (
     LocalDocumentStorageAdapter,
+)
+from app.infrastructure.adapters.document_storage.metadata import (
+    SqlAlchemyDocumentMetadataAdapter,
 )
 
 _CONFIG_KEY = "CURRICULUM_STUDIO_SERVICE"
@@ -57,6 +63,8 @@ def build_document_upload_service(
     max_bytes = int(app.config.get("DOCUMENT_MAX_BYTES", 25 * 1024 * 1024))
     auto_run = bool(app.config.get("CIP_AUTO_RUN", True))
     storage = LocalDocumentStorageAdapter(root)
+    metadata = SqlAlchemyDocumentMetadataAdapter()
+    bind_document_metadata_port(metadata)
     return DocumentUploadService(
         studio=studio or get_studio_service(),
         storage=storage,
@@ -64,6 +72,7 @@ def build_document_upload_service(
             storage,
             auto_run=auto_run,
         ),
+        metadata=metadata,
         max_bytes=max_bytes,
     )
 

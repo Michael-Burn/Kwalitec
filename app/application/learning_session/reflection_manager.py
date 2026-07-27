@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import logging
 from datetime import UTC, datetime
+from typing import Protocol, runtime_checkable
 
 from app.application.learning_session.dto.reflection_summary import ReflectionSummary
 from app.application.learning_session.exceptions import (
@@ -26,6 +27,31 @@ from app.domain.learning_journey.entities.learning_session import LearningSessio
 from app.domain.learning_journey.value_objects.session_state import SessionState
 
 logger = logging.getLogger(__name__)
+
+
+@runtime_checkable
+class ReflectionAnalyticsPort(Protocol):
+    """Structural contract for Reflection capture analytics."""
+
+    def emit_captured(
+        self, *, user_id: int, reflection_id: str, session_id: str
+    ) -> None:
+        """Emit reflection.submitted + reflection.completed (fail-open)."""
+
+
+# Process-local analytics port (bound by infrastructure composition / tests).
+_analytics_port: ReflectionAnalyticsPort | None = None
+
+
+def bind_reflection_analytics_port(port: ReflectionAnalyticsPort | None) -> None:
+    """Bind the process-local Reflection analytics port."""
+    global _analytics_port
+    _analytics_port = port
+
+
+def get_reflection_analytics_port() -> ReflectionAnalyticsPort | None:
+    """Return the bound Reflection analytics port, or None."""
+    return _analytics_port
 
 
 class ReflectionManager:
@@ -148,11 +174,10 @@ class ReflectionManager:
         Fail-open: analytics errors never affect reflection processing.
         """
         try:
-            from app.infrastructure.analytics.reflection_events import (
-                emit_reflection_lifecycle,
-            )
-
-            emit_reflection_lifecycle(
+            port = get_reflection_analytics_port()
+            if port is None:
+                return
+            port.emit_captured(
                 user_id=user_id,
                 reflection_id=reflection_id,
                 session_id=session_id,

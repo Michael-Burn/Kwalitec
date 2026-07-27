@@ -1,6 +1,3 @@
-/* Shared tokens live in tokens.css (loaded before this file). */
-/* Map Bootstrap CSS variables to official brand tokens (BI-001) */
-/* Official gold accent #E8B02B — referenced for BI-001 compliance alongside tokens.css */
 :root,[data-theme="light"],[data-theme="dark"]{--bs-primary:var(--primary);--bs-primary-rgb:59,79,184;--bs-link-color:var(--primary);--bs-link-hover-color:var(--primary-hover);--bs-info:var(--info);--bs-warning:var(--warning);--bs-success:var(--success);--bs-danger:var(--danger);--bs-body-font-family:var(--font-family);--bs-border-radius:var(--radius);--bs-border-radius-lg:var(--radius-lg);}
 [data-theme="dark"]{--bs-primary-rgb:139,156,224;--chrome:var(--brand-primary-dark, #0D1B2A);--brand: #A5B4F0;--on-primary: #0f131a;}
 *, *::before, *::after{box-sizing:border-box;}
@@ -15,7 +12,6 @@ a.btn:active,
 button.btn:hover,
 .nav-link:hover{text-decoration:none;}
 
-/* Typography hierarchy (Inter) */
 .type-app-name,.sidebar-brand-link,.landing-logo{font-weight:var(--font-weight-semibold);letter-spacing:-0.02em;}
 .type-section-title,.section-header .section-title{font-size:var(--font-3xl);font-weight:var(--font-weight-semibold);letter-spacing:-0.02em;}
 .type-card-title,.card-header,.card-section-header{font-weight:var(--font-weight-semibold);}
@@ -26,7 +22,6 @@ button.btn:hover,
 .app-shell{display:flex;min-height:100vh;}
 .app-main{flex:1;min-width:0;display:flex;flex-direction:column;}
 .app-main > main{flex:1;}
-/* PR-001 accessibility — skip link for keyboard users */
 .skip-link{position:absolute;left:var(--space-md);top:-100px;z-index:2000;padding:var(--space-sm) var(--space-md);background:var(--color-surface);color:var(--color-text);border:1px solid var(--color-border);border-radius:var(--radius-sm);font-weight:var(--font-weight-medium);transition:top var(--transition-fast);}
 .skip-link:focus,.skip-link:focus-visible{top:var(--space-md);outline:none;box-shadow:var(--focus-ring);}
 #main-content:focus{outline:none;}
@@ -232,7 +227,6 @@ color:var(--color-text-inverse);display:flex;align-items:center;justify-content:
 .landing-onboarding-note{background:var(--color-info-bg);border:1px solid rgba(59, 79, 184, 0.18);border-radius:var(--radius-md);margin-top:var(--space-2xl);padding:var(--space-lg) var(--space-xl);}
 .landing-onboarding-title{color:var(--color-text-primary);font-size:var(--font-sm);font-weight:var(--font-weight-semibold);margin:0 0 var(--space-sm);}
 .landing-onboarding-text{color:var(--color-text-secondary);font-size:var(--font-sm);line-height:var(--line-height-normal);margin-bottom:var(--space-md);}
-/* Legacy class hooks kept for older CSS references */
 .landing-heading,.landing-tagline,.landing-paragraph{display:none;}
 .error-page{flex:1;display:flex;align-items:center;justify-content:center;padding:var(--space-4xl) var(--space-xl);text-align:center;}
 .error-page .error-code{font-size:96px;font-weight:var(--font-weight-bold);line-height:1;letter-spacing:-0.04em;margin-bottom:var(--space-sm);}
@@ -542,9 +536,6 @@ a.btn-secondary:focus{background:var(--background);border-color:var(--border);co
 *::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important;}}
 @media (max-width:575.98px){.appearance-switcher-label{display:none;}
 .appearance-option span{display:none;}
-/* B7 (PX-003): icon-only at this width, so the tap target itself must meet
-   --touch-target-min (44px) rather than shrinking to the icon's own box —
-   padding alone (0.45rem + ~20px icon) measured ~36px, below the token. */
 .appearance-option{padding:0.45rem;min-width:var(--touch-target-min, 2.75rem);min-height:var(--touch-target-min, 2.75rem);justify-content:center;}}
 .briefing-card{background:var(--info-bg);border-left:3px solid var(--info);color:var(--text-primary);}
 .briefing-card svg{flex-shrink:0;margin-top:2px;}

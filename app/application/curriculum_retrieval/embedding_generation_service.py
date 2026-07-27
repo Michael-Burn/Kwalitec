@@ -9,6 +9,8 @@ import uuid
 from app.application.curriculum_retrieval.ports.vector_store_port import (
     EmbeddingModelPort,
     VectorStorePort,
+    get_default_embedding_model_port,
+    get_default_vector_store_port,
 )
 from app.domain.curriculum_intelligence.curriculum_entity import CurriculumEntityKind
 from app.domain.curriculum_retrieval.embedding import (
@@ -17,12 +19,6 @@ from app.domain.curriculum_retrieval.embedding import (
     EmbeddingRecord,
 )
 from app.extensions import db
-from app.infrastructure.adapters.curriculum_retrieval.hashing_embedding_model import (
-    HashingEmbeddingModel,
-)
-from app.infrastructure.adapters.curriculum_retrieval.local_vector_store import (
-    LocalVectorStoreAdapter,
-)
 from app.models.curriculum_intelligence import (
     CipCurriculumEntity,
     CipEmbeddingRecord,
@@ -34,7 +30,12 @@ logger = logging.getLogger(__name__)
 
 
 class EmbeddingGenerationService:
-    """Build entity text → embedding metadata + vector upsert."""
+    """Build entity text → embedding metadata + vector upsert.
+
+    ``model`` / ``store`` must be injected by the caller's composition root.
+    When omitted, the process-local default ports bound by infrastructure
+    composition are used (see ``ports.vector_store_port``).
+    """
 
     def __init__(
         self,
@@ -42,8 +43,16 @@ class EmbeddingGenerationService:
         model: EmbeddingModelPort | None = None,
         store: VectorStorePort | None = None,
     ) -> None:
-        self._model = model or HashingEmbeddingModel()
-        self._store = store or LocalVectorStoreAdapter()
+        resolved_model = model or get_default_embedding_model_port()
+        resolved_store = store or get_default_vector_store_port()
+        if resolved_model is None or resolved_store is None:
+            raise RuntimeError(
+                "EmbeddingGenerationService requires an EmbeddingModelPort and "
+                "VectorStorePort — inject them or bind process-local defaults "
+                "via infrastructure composition"
+            )
+        self._model = resolved_model
+        self._store = resolved_store
 
     @property
     def model(self) -> EmbeddingModelPort:

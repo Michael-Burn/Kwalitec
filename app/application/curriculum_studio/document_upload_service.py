@@ -28,14 +28,21 @@ from app.application.curriculum_studio.dto.document_metadata import (
     WorkspaceDocumentsStatus,
 )
 from app.application.curriculum_studio.exceptions import WorkspaceNotFound
+from app.application.curriculum_studio.ports.document_metadata_port import (
+    DocumentMetadataPort,
+    DocumentRecord,
+    get_document_metadata_port,
+)
 from app.application.curriculum_studio.ports.document_processing_port import (
     DocumentProcessingPort,
 )
 from app.application.curriculum_studio.ports.document_storage_port import (
     DocumentStoragePort,
 )
+from app.application.curriculum_studio_foundation.dto import VersionSnapshot
 from app.application.curriculum_studio_foundation.exceptions import (
     SubjectAlreadyExists,
+    SubjectNotFound,
     VersionAlreadyExists,
 )
 from app.application.curriculum_studio_foundation.service import (
@@ -49,19 +56,16 @@ from app.domain.curriculum_documents.processing_stage import (
     DocumentProcessingStage,
     founder_label,
 )
-from app.extensions import db
-from app.models.curriculum_studio_foundation import (
-    StudioFoundationDocument,
-    StudioFoundationSubject,
-    StudioFoundationVersion,
-    _utc_now,
-)
 
 logger = logging.getLogger(__name__)
 
 _PDF_MAGIC = b"%PDF"
 _SAFE_FILENAME_RE = re.compile(r"[^A-Za-z0-9._-]+")
 _DEFAULT_MAX_BYTES = 25 * 1024 * 1024
+
+
+def _utc_now() -> datetime:
+    return datetime.now(UTC).replace(tzinfo=None)
 
 
 class DocumentUploadService:
@@ -75,6 +79,7 @@ class DocumentUploadService:
         processing: DocumentProcessingPort,
         foundation: CurriculumStudioFoundationService | None = None,
         registry: DocumentTypeRegistry | None = None,
+        metadata: DocumentMetadataPort | None = None,
         max_bytes: int = _DEFAULT_MAX_BYTES,
     ) -> None:
         self._studio = studio
@@ -82,7 +87,17 @@ class DocumentUploadService:
         self._processing = processing
         self._foundation = foundation or CurriculumStudioFoundationService()
         self._registry = registry or default_document_type_registry()
+        self._metadata_port = metadata
         self._max_bytes = max(1, int(max_bytes))
+
+    def _metadata(self) -> DocumentMetadataPort:
+        port = self._metadata_port or get_document_metadata_port()
+        if port is None:
+            raise DocumentUploadError(
+                "Document storage is not configured.",
+                code="metadata_port_missing",
+            )
+        return port
 
     # ------------------------------------------------------------------ public
 
@@ -128,14 +143,12 @@ class DocumentUploadService:
                     code="kind_mismatch",
                 )
             next_version = int(prior.version_number or 1) + 1
-            prior.is_active = False
-            db.session.flush()
+            self._metadata().deactivate(prior.id)
         else:
             active = self._active_document(workspace_id, type_def.kind)
             if active is not None:
                 next_version = int(active.version_number or 1) + 1
-                active.is_active = False
-                db.session.flush()
+                self._metadata().deactivate(active.id)
 
         storage_key = self._build_storage_key(
             subject_code=workspace.subject_code,
@@ -155,28 +168,28 @@ class DocumentUploadService:
             version_number=next_version,
         )
 
-        doc = StudioFoundationDocument(
-            version_id=foundation_version.id,
-            kind=type_def.kind,
-            reference=opaque_ref,
-            title=type_def.label,
-            uploaded_by=(actor_id or "").strip(),
-            uploaded_at=_utc_now(),
-            workspace_id=workspace_id,
-            original_filename=self._safe_filename(filename),
-            content_type=stored.content_type,
-            byte_size=stored.byte_size,
-            checksum_sha256=stored.checksum_sha256,
-            storage_key=stored.storage_key,
-            version_number=next_version,
-            is_active=True,
-            processing_stage=DocumentProcessingStage.UPLOADED.value,
+        doc = self._metadata().create(
+            DocumentRecord(
+                workspace_id=workspace_id,
+                version_id=foundation_version.version_id,
+                kind=type_def.kind,
+                reference=opaque_ref,
+                title=type_def.label,
+                uploaded_by=(actor_id or "").strip(),
+                uploaded_at=_utc_now(),
+                original_filename=self._safe_filename(filename),
+                content_type=stored.content_type,
+                byte_size=stored.byte_size,
+                checksum_sha256=stored.checksum_sha256,
+                storage_key=stored.storage_key,
+                version_number=next_version,
+                is_active=True,
+                processing_stage=DocumentProcessingStage.UPLOADED.value,
+            )
         )
-        db.session.add(doc)
-        db.session.flush()
 
+        self._metadata().update_stage(doc.id, DocumentProcessingStage.STORED.value)
         doc.processing_stage = DocumentProcessingStage.STORED.value
-        db.session.flush()
 
         self._link_workspace_sources(
             workspace_id,
@@ -191,8 +204,10 @@ class DocumentUploadService:
             workspace_id=workspace_id,
             subject_code=workspace.subject_code,
         )
-        doc.processing_stage = handle.stage or DocumentProcessingStage.QUEUED.value
-        db.session.commit()
+        final_stage = handle.stage or DocumentProcessingStage.QUEUED.value
+        self._metadata().update_stage(doc.id, final_stage)
+        doc.processing_stage = final_stage
+        self._metadata().commit()
 
         logger.info(
             "Document uploaded workspace=%s kind=%s id=%s version=%s job=%s",
@@ -234,8 +249,9 @@ class DocumentUploadService:
                 "This document is already archived.",
                 code="already_archived",
             )
+        self._metadata().deactivate(doc.id)
+        self._metadata().commit()
         doc.is_active = False
-        db.session.commit()
         self._refresh_workspace_checklist(workspace_id)
         type_def = self._registry.get(doc.kind)
         label = type_def.label if type_def else doc.kind
@@ -265,13 +281,7 @@ class DocumentUploadService:
     def status(self, workspace_id: str) -> WorkspaceDocumentsStatus:
         """Return Founder-safe status for all active workspace documents."""
         self._require_workspace(workspace_id)
-        rows = (
-            StudioFoundationDocument.query.filter_by(
-                workspace_id=workspace_id, is_active=True
-            )
-            .order_by(StudioFoundationDocument.kind, StudioFoundationDocument.id)
-            .all()
-        )
+        rows = self._metadata().list_active(workspace_id)
         views = []
         pipeline_jobs: list[dict] = []
         for row in rows:
@@ -366,10 +376,7 @@ class DocumentUploadService:
         if entity is None:
             return
         active = {
-            d.kind
-            for d in StudioFoundationDocument.query.filter_by(
-                workspace_id=workspace_id, is_active=True
-            ).all()
+            d.kind for d in self._metadata().list_active(workspace_id)
         }
         facts = WorkspacePublicationFacts.create(
             cmp_uploaded="cmp" in active,
@@ -401,8 +408,10 @@ class DocumentUploadService:
 
     def _ensure_workspace_version(self, workspace_id: str) -> str:
         from app.application.curriculum_studio.exceptions import (
-            SubjectAlreadyExists,
-            SubjectNotFound,
+            SubjectAlreadyExists as StudioSubjectAlreadyExists,
+        )
+        from app.application.curriculum_studio.exceptions import (
+            SubjectNotFound as StudioSubjectNotFound,
         )
 
         workspace = self._require_workspace(workspace_id)
@@ -411,13 +420,13 @@ class DocumentUploadService:
         label = workspace.version_label or self._default_version_label()
         try:
             self._studio.subjects.get_subject(workspace.subject_code)
-        except SubjectNotFound:
+        except StudioSubjectNotFound:
             try:
                 self._studio.create_subject(
                     workspace.subject_code,
                     title=workspace.subject_title or workspace.subject_code,
                 )
-            except SubjectAlreadyExists:
+            except StudioSubjectAlreadyExists:
                 pass
         except Exception:
             pass
@@ -437,53 +446,36 @@ class DocumentUploadService:
         subject_code: str,
         version_label: str,
         actor_id: str,
-    ) -> StudioFoundationVersion:
+    ) -> VersionSnapshot:
         code = subject_code.strip().upper()
         label = self._foundation_version_label(version_label)
-        subject = StudioFoundationSubject.query.filter_by(subject_code=code).first()
-        if subject is None:
+        try:
+            self._foundation.get_subject(code)
+        except SubjectNotFound:
             try:
                 self._foundation.create_subject(
                     code, title=code, actor_id=actor_id
                 )
             except SubjectAlreadyExists:
                 pass
-            subject = StudioFoundationSubject.query.filter_by(subject_code=code).first()
-        if subject is None:
-            raise DocumentUploadError(
-                "We couldn't prepare this subject for document storage.",
-                code="subject_missing",
+        try:
+            return self._foundation.create_version(
+                code, label, actor_id=actor_id
             )
-        version = StudioFoundationVersion.query.filter_by(
-            subject_id=subject.id, version_label=label
-        ).first()
-        if version is None:
-            try:
-                snap = self._foundation.create_version(
-                    code, label, actor_id=actor_id
-                )
-                version = db.session.get(StudioFoundationVersion, snap.version_id)
-            except VersionAlreadyExists:
-                version = StudioFoundationVersion.query.filter_by(
-                    subject_id=subject.id, version_label=label
-                ).first()
-        if version is None:
-            raise DocumentUploadError(
-                "We couldn't prepare a curriculum version for this upload.",
-                code="version_missing",
-            )
-        return version
+        except VersionAlreadyExists:
+            for snap in self._foundation.list_versions(code):
+                if snap.version_label == label:
+                    return snap
+        raise DocumentUploadError(
+            "We couldn't prepare a curriculum version for this upload.",
+            code="version_missing",
+        )
 
     def _reject_duplicate(
         self, *, workspace_id: str, kind: str, checksum: str
     ) -> None:
-        existing = (
-            StudioFoundationDocument.query.filter_by(
-                workspace_id=workspace_id,
-                kind=kind,
-                checksum_sha256=checksum,
-                is_active=True,
-            ).first()
+        existing = self._metadata().find_by_checksum(
+            workspace_id, kind, checksum
         )
         if existing is not None:
             raise DuplicateDocumentError(
@@ -493,19 +485,13 @@ class DocumentUploadService:
 
     def _active_document(
         self, workspace_id: str, kind: str
-    ) -> StudioFoundationDocument | None:
-        return (
-            StudioFoundationDocument.query.filter_by(
-                workspace_id=workspace_id, kind=kind, is_active=True
-            )
-            .order_by(StudioFoundationDocument.version_number.desc())
-            .first()
-        )
+    ) -> DocumentRecord | None:
+        return self._metadata().find_active(workspace_id, kind)
 
     def _require_document(
         self, document_id: int, workspace_id: str
-    ) -> StudioFoundationDocument:
-        doc = db.session.get(StudioFoundationDocument, document_id)
+    ) -> DocumentRecord:
+        doc = self._metadata().get(document_id)
         if doc is None or doc.workspace_id != workspace_id:
             raise DocumentNotFoundError("Document not found.")
         return doc
@@ -632,7 +618,7 @@ class DocumentUploadService:
 
     @staticmethod
     def _metadata_view(
-        doc: StudioFoundationDocument,
+        doc: DocumentRecord,
         *,
         label: str,
         job_id: str | None = None,
@@ -640,7 +626,7 @@ class DocumentUploadService:
     ) -> DocumentMetadataView:
         stage = doc.processing_stage or DocumentProcessingStage.UPLOADED.value
         return DocumentMetadataView(
-            document_id=doc.id,
+            document_id=int(doc.id or 0),
             kind=doc.kind,
             label=label,
             filename=doc.original_filename or "",

@@ -509,6 +509,22 @@ def _init_extensions(app: Flask) -> None:
     # Import models to register them with SQLAlchemy
     from app.models import (  # noqa: F401
         AlphaFeedbackSubmission,
+        AmeAdaptiveMission,
+        AmeMissionCompletion,
+        AmeMissionFeedback,
+        AmeMissionHistory,
+        AmeMissionProgress,
+        AmeMissionStep,
+        ApActivityAttempt,
+        ApAssessmentEvent,
+        ApAssessmentResult,
+        ApLearningFeedback,
+        ApMissionAssessmentLink,
+        ApPerformanceSummary,
+        TutorExplanationRow,
+        TutorFeedbackRow,
+        TutorMessageRow,
+        TutorSessionRow,
         CipCurriculumEntity,
         CipExtractedBlock,
         CipExtractedDocument,
@@ -519,17 +535,34 @@ def _init_extensions(app: Flask) -> None:
         CipStructuralNode,
         Curriculum,
         Decision,
+        DecisionRecord,
+        EducationalReasoningRun,
+        EducationalRuleExecution,
         LearningObjective,
+        LgGraphEdge,
+        LgGraphNode,
+        LgGraphSnapshot,
+        LgGraphUpdateHistory,
+        LgLearningGraph,
         Mission,
         MissionTask,
         Mistake,
         PresentationEvent,
         PublishedCurriculumPackage,
+        ReasoningExplanation,
         RecommendationCommitment,
         ResearchContribution,
         ResearchContributorBadge,
         ResearchFeedbackReview,
         ResearchFeedbackSubmission,
+        SdtKnowledgeGap,
+        SdtLearningStateSnapshot,
+        SdtMasteryRecord,
+        SdtObservation,
+        SdtPrediction,
+        SdtReasoningHistory,
+        SdtRecommendation,
+        SdtStudentDigitalTwin,
         StudioFoundationAuditEvent,
         StudioFoundationDocument,
         StudioFoundationSubject,
@@ -748,10 +781,38 @@ def _register_blueprints(app: Flask) -> None:
 
     load_routes()
     load_session_routes()
+    from app.presentation.adaptive_mission import adaptive_mission_diagnostics_bp
+    from app.presentation.adaptive_mission import load_routes as load_mission_routes
+    from app.presentation.assessment_pipeline import (
+        assessment_pipeline_diagnostics_bp,
+    )
+    from app.presentation.assessment_pipeline import (
+        load_routes as load_assessment_routes,
+    )
     from app.presentation.curriculum_studio import load_routes as load_studio_routes
     from app.presentation.curriculum_studio import studio_bp
+    from app.presentation.educational_reasoning import (
+        load_routes as load_reasoning_routes,
+    )
+    from app.presentation.educational_reasoning import reasoning_diagnostics_bp
+    from app.presentation.intelligent_tutor import (
+        intelligent_tutor_diagnostics_bp,
+    )
+    from app.presentation.intelligent_tutor import (
+        load_routes as load_tutor_routes,
+    )
+    from app.presentation.learning_graph import learning_graph_diagnostics_bp
+    from app.presentation.learning_graph import load_routes as load_graph_routes
+    from app.presentation.student_digital_twin import load_routes as load_twin_routes
+    from app.presentation.student_digital_twin import twin_diagnostics_bp
 
     load_studio_routes()
+    load_twin_routes()
+    load_reasoning_routes()
+    load_graph_routes()
+    load_mission_routes()
+    load_assessment_routes()
+    load_tutor_routes()
     # Student Experience production adapters are wired lazily on first
     # ``get_experience_service()`` call (see presentation factory).
     # Session Experience service is wired lazily on first
@@ -759,6 +820,12 @@ def _register_blueprints(app: Flask) -> None:
     app.register_blueprint(student_bp)
     app.register_blueprint(session_bp)
     app.register_blueprint(studio_bp)
+    app.register_blueprint(twin_diagnostics_bp)
+    app.register_blueprint(reasoning_diagnostics_bp)
+    app.register_blueprint(learning_graph_diagnostics_bp)
+    app.register_blueprint(adaptive_mission_diagnostics_bp)
+    app.register_blueprint(assessment_pipeline_diagnostics_bp)
+    app.register_blueprint(intelligent_tutor_diagnostics_bp)
 
 
 def _register_routes(app: Flask) -> None:

@@ -16,6 +16,7 @@ import re
 from datetime import UTC, datetime
 from typing import Any
 
+from app.application.twin_repository.observation import bind_twin_analytics_port
 from app.infrastructure.analytics.contracts import AnalyticsEvent
 from app.infrastructure.analytics.correlation import new_correlation_id
 from app.infrastructure.analytics.dispatcher import (
@@ -157,3 +158,27 @@ def _require_snapshot_hash(value: str) -> str:
             "snapshot_hash must be a 64-character lowercase SHA-256 hex digest"
         )
     return digest
+
+
+class _InfrastructureTwinAnalyticsPort:
+    """Default TwinAnalyticsPort — dispatches via this module."""
+
+    def emit_evolved(
+        self,
+        *,
+        user_id: int,
+        twin_snapshot_id: str,
+        twin_version: str,
+        evolution_reason: str,
+        snapshot_hash: str,
+    ) -> None:
+        emit_twin_evolved(
+            user_id=user_id,
+            twin_snapshot_id=twin_snapshot_id,
+            twin_version=twin_version,
+            evolution_reason=evolution_reason,
+            snapshot_hash=snapshot_hash,
+        )
+
+
+bind_twin_analytics_port(_InfrastructureTwinAnalyticsPort())

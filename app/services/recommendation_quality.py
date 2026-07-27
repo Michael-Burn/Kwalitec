@@ -511,7 +511,9 @@ def _passes_hard_gates(row: dict[str, Any], evidence_density: str) -> bool:
 
 
 def _honest_refusal_row(authorised_focus: str | None) -> dict[str, Any]:
-    now = datetime.now(UTC).isoformat()
+    # Truncate microseconds so repeated calls within the same second (e.g.
+    # dual-run comparisons) produce a stable generated_at value.
+    now = datetime.now(UTC).replace(microsecond=0).isoformat()
     focus_note = (
         f" Keep following Today’s Mission ({authorised_focus}) meanwhile."
         if authorised_focus

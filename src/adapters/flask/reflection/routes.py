@@ -87,6 +87,11 @@ def submit_reflection() -> Any:
                 **{"from": "reflection", "updated": "1"},
             )
         )
+    return _render_submit_result(result, student_id, session_id)
+
+
+def _render_submit_result(result: Any, student_id: str, session_id: str) -> Any:
+    """Attach experience messages and render the reflection template."""
     context = PageRenderer().for_reflection(
         result.view_model,
         student_id=student_id,

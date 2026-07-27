@@ -1,5 +1,21 @@
 """Database models."""
 
+from app.models.adaptive_mission import (
+    AmeAdaptiveMission,
+    AmeMissionCompletion,
+    AmeMissionFeedback,
+    AmeMissionHistory,
+    AmeMissionProgress,
+    AmeMissionStep,
+)
+from app.models.assessment_pipeline import (
+    ApActivityAttempt,
+    ApAssessmentEvent,
+    ApAssessmentResult,
+    ApLearningFeedback,
+    ApMissionAssessmentLink,
+    ApPerformanceSummary,
+)
 from app.models.alpha_infrastructure import (
     AlphaFeedbackSubmission,
     PresentationEvent,
@@ -40,16 +56,35 @@ from app.models.curriculum_studio_foundation import (
     StudioFoundationVersion,
 )
 from app.models.decision import Decision
+from app.models.educational_reasoning import (
+    DecisionRecord,
+    EducationalReasoningRun,
+    EducationalRuleExecution,
+    ReasoningExplanation,
+)
 from app.models.educational_runtime_engine import (
     RuntimeEducationalEvent,
     RuntimeEnrolment,
     RuntimeMissionInstance,
     RuntimeStudyPlanInstance,
 )
-from app.models.platform_integration import RuntimeEnrolmentRoutingAudit
 from app.models.identity import UserCapability, UserRole
+from app.models.intelligent_tutor import (
+    TutorExplanationRow,
+    TutorFeedbackRow,
+    TutorMessageRow,
+    TutorSessionRow,
+)
 from app.models.learning import LearningObjective, Mistake, StudyAttempt
+from app.models.learning_graph import (
+    LgGraphEdge,
+    LgGraphNode,
+    LgGraphSnapshot,
+    LgGraphUpdateHistory,
+    LgLearningGraph,
+)
 from app.models.mission import Mission, MissionTask
+from app.models.platform_integration import RuntimeEnrolmentRoutingAudit
 from app.models.recommendation_commitment import RecommendationCommitment
 from app.models.research_feedback import (
     FEATURE_AREA_CHOICES,
@@ -65,6 +100,16 @@ from app.models.research_feedback import (
     ResearchProductFinding,
     ResearchProductFindingLink,
     ResearchProductFindingStatusTransition,
+)
+from app.models.student_digital_twin import (
+    SdtKnowledgeGap,
+    SdtLearningStateSnapshot,
+    SdtMasteryRecord,
+    SdtObservation,
+    SdtPrediction,
+    SdtReasoningHistory,
+    SdtRecommendation,
+    SdtStudentDigitalTwin,
 )
 from app.models.study_plan import StudyPlan, WeekPlan
 from app.models.subject import Subject
@@ -124,6 +169,39 @@ __all__ = [
     "CipEmbeddingRecord",
     "CipLocalVectorEntry",
     "CipRetrievalLog",
+    "SdtStudentDigitalTwin",
+    "SdtObservation",
+    "SdtMasteryRecord",
+    "SdtKnowledgeGap",
+    "SdtLearningStateSnapshot",
+    "SdtRecommendation",
+    "SdtPrediction",
+    "SdtReasoningHistory",
+    "EducationalReasoningRun",
+    "EducationalRuleExecution",
+    "ReasoningExplanation",
+    "DecisionRecord",
+    "LgLearningGraph",
+    "LgGraphNode",
+    "LgGraphEdge",
+    "LgGraphSnapshot",
+    "LgGraphUpdateHistory",
+    "AmeAdaptiveMission",
+    "AmeMissionStep",
+    "AmeMissionProgress",
+    "AmeMissionHistory",
+    "AmeMissionFeedback",
+    "AmeMissionCompletion",
+    "ApAssessmentEvent",
+    "ApAssessmentResult",
+    "ApLearningFeedback",
+    "ApMissionAssessmentLink",
+    "ApActivityAttempt",
+    "ApPerformanceSummary",
+    "TutorSessionRow",
+    "TutorMessageRow",
+    "TutorExplanationRow",
+    "TutorFeedbackRow",
     "RuntimeEnrolment",
     "RuntimeStudyPlanInstance",
     "RuntimeMissionInstance",

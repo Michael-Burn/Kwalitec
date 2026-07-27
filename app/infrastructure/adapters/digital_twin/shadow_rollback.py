@@ -70,15 +70,17 @@ class TwinRollbackVerifier:
 
         Does not mutate Runtime A. Does not enable Experience Twin authority.
         """
-        from app.infrastructure.adapters.student_experience.composition import (
-            build_production_experience,
-        )
+        factory = self._composition_factory
+        if factory is None:
+            from app.infrastructure.adapters.twin_rollback_defaults import (
+                default_composition_factory,
+            )
 
-        factory = self._composition_factory or build_production_experience
+            factory = default_composition_factory
         base = dict(base_environ or {})
         details: list[str] = []
 
-        # Twin ON baseline — Twin DI present; ExperienceTwinAdapter still UX SoT.
+        # Twin ON baseline — Twin DI present; Experience Twin port remains UX SoT.
         on_env = {
             **base,
             "KWALITEC_DIGITAL_TWIN": "1",

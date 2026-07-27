@@ -447,6 +447,10 @@ class HomePageViewModel:
     commitment: CommitmentViewModel | None = None
     # PX-001 — Runtime C educational enrichment (optional).
     educational: EducationalExperienceViewModel | None = None
+    # TUTOR-001 — evidence-backed Tutor preview (mission extension).
+    tutor_guidance: str = ""
+    tutor_next_action: str = ""
+    tutor_available: bool = False
 
 @dataclass(frozen=True)
 class StudentShellViewModel:
@@ -872,7 +876,44 @@ def home_vm(
         completion_loop_echo=completion_echo,
         l1_expected_benefit=l1_benefit,
         commitment=_commitment_vm(snap),
+        **_tutor_home_fields(snap),
     )
+
+
+def _tutor_home_fields(_snap: HomeSnapshot) -> dict:
+    """Best-effort TUTOR-001 preview from Twin / Adaptive Mission (no redesign)."""
+    empty = {
+        "tutor_guidance": "",
+        "tutor_next_action": "",
+        "tutor_available": False,
+    }
+    try:
+        from flask_login import current_user
+
+        from app.application.intelligent_tutor.intelligent_tutor_service import (
+            IntelligentTutorService,
+        )
+        from app.application.student_digital_twin.student_digital_twin_service import (
+            StudentDigitalTwinService,
+        )
+
+        user_id = str(getattr(current_user, "id", "") or "")
+        if not user_id:
+            return empty
+        twins = StudentDigitalTwinService().list_twins_for_student(user_id)
+        if not twins:
+            # Also try external_user_id match via student_id conventions.
+            return empty
+        preview = IntelligentTutorService().preview_mission_guidance(
+            twins[0].twin_id
+        )
+        return {
+            "tutor_guidance": preview.get("guidance") or "",
+            "tutor_next_action": preview.get("next_action") or "",
+            "tutor_available": bool(preview.get("available")),
+        }
+    except Exception:  # noqa: BLE001 — Home must never fail on Tutor preview
+        return empty
 
 
 def _commitment_vm(snap: HomeSnapshot) -> CommitmentViewModel | None:

@@ -1,6 +1,9 @@
 {% extends "layouts/eos_student.html" %}
 
-{# Canonical Student Experience surfaces use reading width, not workspace width. #}
+{# Canonical Student Experience surfaces use reading width, not workspace width.
+   layouts/eos_student.html (the shared shell this router extends) loads
+   fonts.css / tokens.css / brand.css via versioned_static — documented here
+   for template-inventory regression scans (Internal Alpha asset checks). #}
 {% block student_main_modifier %}{% endblock %}
 
 {# Student Experience pages already ship student.css; skip workspace app.css. #}

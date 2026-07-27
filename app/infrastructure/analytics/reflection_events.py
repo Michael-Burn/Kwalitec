@@ -16,6 +16,9 @@ import logging
 from datetime import UTC, datetime
 from typing import Any
 
+from app.application.learning_session.reflection_manager import (
+    bind_reflection_analytics_port,
+)
 from app.infrastructure.analytics.contracts import AnalyticsEvent
 from app.infrastructure.analytics.correlation import new_correlation_id
 from app.infrastructure.analytics.dispatcher import (
@@ -233,3 +236,19 @@ def _require_entity_id(value: str, field_name: str) -> str:
     if not isinstance(value, str) or not value.strip():
         raise ValueError(f"{field_name} must be a non-empty string")
     return value.strip()
+
+
+class _InfrastructureReflectionAnalyticsPort:
+    """Default ReflectionAnalyticsPort — dispatches via this module."""
+
+    def emit_captured(
+        self, *, user_id: int, reflection_id: str, session_id: str
+    ) -> None:
+        emit_reflection_lifecycle(
+            user_id=user_id,
+            reflection_id=reflection_id,
+            session_id=session_id,
+        )
+
+
+bind_reflection_analytics_port(_InfrastructureReflectionAnalyticsPort())

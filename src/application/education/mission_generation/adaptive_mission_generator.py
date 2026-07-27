@@ -126,11 +126,11 @@ class AdaptiveMissionGenerator:
             missions,
             maximum_mission_minutes=constraints.maximum_mission_minutes,
         )
-        missions = AdaptiveMissionGenerator.prioritise(missions)
+        missions = AdaptiveMissionGenerator.order_for_execution(missions)
         missions = AdaptiveMissionGenerator._apply_time_cap(
             missions, constraints.effective_daily_cap_minutes()
         )
-        missions = AdaptiveMissionGenerator.prioritise(missions)
+        missions = AdaptiveMissionGenerator.order_for_execution(missions)
 
         plan_constraints = ConstraintRules.aggregate(
             ConstraintRules.from_recommendation_constraints(
@@ -203,9 +203,9 @@ class AdaptiveMissionGenerator:
     # --- behaviours ---------------------------------------------------------
 
     @staticmethod
-    def prioritise(missions: Sequence[Mission]) -> tuple[Mission, ...]:
-        """Deterministically order missions for execution."""
-        return OrderingRules.prioritise(missions)
+    def order_for_execution(missions: Sequence[Mission]) -> tuple[Mission, ...]:
+        """Deterministically order missions for execution (planning, not ranking)."""
+        return OrderingRules.order_for_execution(missions)
 
     @staticmethod
     def estimate_duration(

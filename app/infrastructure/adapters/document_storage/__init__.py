@@ -3,6 +3,9 @@
 from app.infrastructure.adapters.document_storage.local_store import (
     LocalDocumentStorageAdapter,
 )
+from app.infrastructure.adapters.document_storage.metadata import (
+    SqlAlchemyDocumentMetadataAdapter,
+)
 from app.infrastructure.adapters.document_storage.queued_processing import (
     QueuedDocumentProcessingAdapter,
 )
@@ -10,4 +13,5 @@ from app.infrastructure.adapters.document_storage.queued_processing import (
 __all__ = [
     "LocalDocumentStorageAdapter",
     "QueuedDocumentProcessingAdapter",
+    "SqlAlchemyDocumentMetadataAdapter",
 ]

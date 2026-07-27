@@ -8,13 +8,42 @@ adapter pass-through; fail open when the surface is unavailable.
 from __future__ import annotations
 
 import logging
-from typing import Any
+from typing import Any, Protocol, runtime_checkable
 
 from app.application.student_experience.dto.readiness_explanation_snapshot import (
     ReadinessExplanationSnapshot,
 )
 
 logger = logging.getLogger(__name__)
+
+
+@runtime_checkable
+class ReadinessSurfacePort(Protocol):
+    """Structural contract for the Runtime A readiness explanation surface.
+
+    Implementations own fetching + narrative mapping (services/presentation);
+    this layer only decides Home-projection fallback / logging.
+    """
+
+    def load_readiness_explanation(
+        self, user_id: int
+    ) -> ReadinessExplanationSnapshot | None:
+        """Return the readiness explanation for ``user_id``, or None."""
+
+
+# Process-local port (bound by presentation composition / tests).
+_readiness_surface_port: ReadinessSurfacePort | None = None
+
+
+def bind_readiness_surface_port(port: ReadinessSurfacePort | None) -> None:
+    """Bind the process-local ReadinessSurfacePort."""
+    global _readiness_surface_port
+    _readiness_surface_port = port
+
+
+def get_readiness_surface_port() -> ReadinessSurfacePort | None:
+    """Return the bound ReadinessSurfacePort, or None when unbound."""
+    return _readiness_surface_port
 
 
 def readiness_explanation_from_narrative(
@@ -70,32 +99,23 @@ def readiness_explanation_from_narrative(
 
 def load_home_readiness_explanation(
     student_id: str,
+    *,
+    port: ReadinessSurfacePort | None = None,
 ) -> ReadinessExplanationSnapshot | None:
     """Load authored readiness MES for Home; fail-open to None.
 
-    Uses the same ReadinessService dashboard surface as Analytics so Home and
-    Analytics share Runtime A readiness speech without a second narrator.
+    Delegates to the same ReadinessService dashboard surface as Analytics
+    (via the injected/bound ``ReadinessSurfacePort``) so Home and Analytics
+    share Runtime A readiness speech without a second narrator.
     """
     user_id = _as_user_id(student_id)
     if user_id is None:
         return None
+    active_port = port or get_readiness_surface_port()
+    if active_port is None:
+        return None
     try:
-        from app.presentation.intelligence_surface.adapter import (
-            RuntimeAPresentationAdapter,
-        )
-        from app.services.readiness_quality import (
-            has_complete_readiness_explanation_schema,
-        )
-        from app.services.readiness_service import ReadinessService
-
-        surface = ReadinessService.get_dashboard_readiness_surface(user_id)
-        if not isinstance(surface, dict) or not surface:
-            return None
-        narrative = RuntimeAPresentationAdapter.readiness_narrative(surface)
-        return readiness_explanation_from_narrative(
-            narrative,
-            schema_complete=has_complete_readiness_explanation_schema(surface),
-        )
+        return active_port.load_readiness_explanation(user_id)
     except Exception:
         logger.debug(
             "home readiness explanation unavailable for student_id=%s",

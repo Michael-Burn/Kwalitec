@@ -18,12 +18,12 @@ from app.application.curriculum_studio.ports.education_platform_port import (
     EducationPlatformPort,
 )
 
+# Studio facade health matrix — document storage/processing are upload-service
+# ports (wired on DocumentUploadService), not CurriculumStudioService ports.
 PORT_NAMES: tuple[str, ...] = (
     "curriculum_management",
     "curriculum_ingestion",
     "education_platform",
-    "document_storage",
-    "document_processing",
 )
 
 __all__ = [

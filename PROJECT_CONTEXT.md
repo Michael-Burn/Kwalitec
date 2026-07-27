@@ -141,6 +141,39 @@ plus provenance, confidence, validation, Founder review, and audit) and
 replace `CurriculumService` or the JSON Curriculum Engine. Consumers must not
 query the vector store directly.
 
+The Student Digital Twin foundation (SDT-001) lives under
+`app/domain/student_digital_twin/` and
+`app/application/student_digital_twin/`. It is the canonical learner-state
+aggregate. Educational reasoning is produced by the Educational Reasoning
+Engine (SDT-002) under `app/domain/educational_reasoning/` and
+`app/application/educational_reasoning/`. `StudentReasoningService` delegates
+to the rule registry rather than implementing educational logic directly.
+Curriculum evidence for gaps must come from `CurriculumRetrievalService`.
+The Learning Graph (SDT-003) under `app/domain/learning_graph/` and
+`app/application/learning_graph/` is the canonical representation of how each
+learner's knowledge is interconnected (prerequisites, dependencies, recovery
+paths). Educational reasoning traverses the Learning Graph rather than treating
+concepts as isolated. The Adaptive Mission Engine (AME-001) under
+`app/domain/adaptive_mission/` and `app/application/adaptive_mission/` converts
+Twin decisions + Learning Graph structure into one actionable daily mission
+per learner — it never performs educational reasoning itself. The Assessment
+& Learning Feedback Pipeline (AP-001) under `app/domain/assessment_pipeline/`
+and `app/application/assessment_pipeline/` records learner activity as
+immutable assessment events / observations and updates the Twin only through
+`StudentReasoningService`. Mission progress/completion emits assessment
+evidence automatically. The Evidence-Backed Intelligent Tutor (TUTOR-001)
+under `app/domain/intelligent_tutor/` and
+`app/application/intelligent_tutor/` explains educational decisions already
+produced by Twin / Reasoning / Graph / Missions / Assessment — it never
+performs educational reasoning itself. Response prose is generated behind
+`TutorGenerationPort` (deterministic placeholder in V1; future LLM adapters
+are replaceable without changing Tutor architecture). Conversation memory is
+session-scoped only; the Twin remains the learner-state system of record.
+Founder diagnostics: `/founder/twin/*` (Twin),
+`/founder/reasoning/*` (engine audit), `/founder/learning-graph/*` (graph),
+`/founder/missions/*` (adaptive missions), `/founder/assessment/*`
+(assessment pipeline), `/founder/tutor/*` (Intelligent Tutor).
+
 **Rule:** Prefer calling `CurriculumService` traversal helpers (`get_sections`, `get_topics_for_section`, `get_all_topics_ordered`) over ad-hoc topic queries so V1/V2 ordering stays consistent.
 
 ---
