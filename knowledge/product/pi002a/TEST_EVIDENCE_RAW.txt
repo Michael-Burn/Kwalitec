@@ -1,0 +1,46 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.6, pytest-8.3.4, pluggy-1.6.0 -- /Library/Frameworks/Python.framework/Versions/3.14/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/kwalitec/Developer/kwalitec
+configfile: pyproject.toml
+collecting ... collected 28 items
+
+tests/application/platform_integration/test_bridge.py::test_flags_default_off PASSED [  3%]
+tests/application/platform_integration/test_bridge.py::test_flags_umbrella_enables_both PASSED [  7%]
+tests/application/platform_integration/test_bridge.py::test_flags_allowlist_parsed PASSED [ 10%]
+tests/application/platform_integration/test_bridge.py::test_discovery_hidden_when_flag_off PASSED [ 14%]
+tests/application/platform_integration/test_bridge.py::test_discovery_lists_published_when_flag_on PASSED [ 17%]
+tests/application/platform_integration/test_bridge.py::test_routing_defaults_to_runtime_a_when_enrolment_disabled PASSED [ 21%]
+tests/application/platform_integration/test_bridge.py::test_routing_published_category_to_runtime_c PASSED [ 25%]
+tests/application/platform_integration/test_bridge.py::test_routing_legacy_catalogue_stays_runtime_a_even_if_published PASSED [ 28%]
+tests/application/platform_integration/test_bridge.py::test_routing_allowlist_selects_runtime_c PASSED [ 32%]
+tests/application/platform_integration/test_bridge.py::test_subject_support_published_enrolable PASSED [ 35%]
+tests/application/platform_integration/test_bridge.py::test_subject_support_published_discovery_only PASSED [ 39%]
+tests/application/platform_integration/test_bridge.py::test_bridge_enrols_runtime_c_with_audit PASSED [ 42%]
+tests/application/platform_integration/test_bridge.py::test_bridge_blocks_when_discovery_disabled PASSED [ 46%]
+tests/application/platform_integration/test_bridge.py::test_bridge_blocks_when_enrolment_disabled PASSED [ 50%]
+tests/application/platform_integration/test_bridge.py::test_runtime_a_enrolment_unchanged_and_audited PASSED [ 53%]
+tests/application/platform_integration/test_bridge.py::test_coexistence_runtime_c_and_runtime_a_parallel PASSED [ 57%]
+tests/application/platform_integration/test_e2e_demo.py::test_e2e_founder_publish_to_student_enrolment_demo PASSED [ 60%]
+tests/application/educational_runtime_engine/test_integration.py::test_coexistence_prefers_published_when_available PASSED [ 64%]
+tests/application/educational_runtime_engine/test_integration.py::test_enrolment_requires_published_curriculum PASSED [ 67%]
+tests/application/educational_runtime_engine/test_integration.py::test_enrol_instantiates_study_plan_from_template PASSED [ 71%]
+tests/application/educational_runtime_engine/test_integration.py::test_daily_mission_from_derived_template_and_completion_advances PASSED [ 75%]
+tests/application/educational_runtime_engine/test_integration.py::test_readiness_and_ek_inputs_without_duplicating_state PASSED [ 78%]
+tests/application/educational_runtime_engine/test_integration.py::test_json_runtime_unaffected_by_published_runtime_enrolment PASSED [ 82%]
+tests/application/educational_runtime_engine/test_integration.py::test_end_to_end_enrolment_to_syllabus_complete PASSED [ 85%]
+tests/certification/test_cs12_coexistence.py::TestRuntimeCoexistence::test_cs12_1_unpublished_resolves_to_json PASSED [ 89%]
+tests/certification/test_cs12_coexistence.py::TestRuntimeCoexistence::test_cs12_2_published_resolves_to_curriculum PASSED [ 92%]
+tests/certification/test_cs12_coexistence.py::TestRuntimeCoexistence::test_cs12_3_json_runtime_unaffected PASSED [ 96%]
+tests/certification/test_cs12_coexistence.py::TestRuntimeCoexistence::test_cs12_4_json_runtime_remains_default PASSED [100%]
+
+=============================== warnings summary ===============================
+tests/application/platform_integration/test_bridge.py: 278 warnings
+tests/application/platform_integration/test_e2e_demo.py: 139 warnings
+tests/application/educational_runtime_engine/test_integration.py: 139 warnings
+tests/certification/test_cs12_coexistence.py: 139 warnings
+  /Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/sqlalchemy/sql/schema.py:3623: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================= 28 passed, 695 warnings in 2.24s =======================

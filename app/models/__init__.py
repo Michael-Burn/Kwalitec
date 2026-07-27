@@ -10,7 +10,22 @@ from app.models.analytics_events import (
     AnalyticsOutboxRecord,
 )
 from app.models.curriculum import Curriculum, Section, Topic
+from app.models.curriculum_studio_foundation import (
+    PublishedCurriculumPackage,
+    StudioFoundationAuditEvent,
+    StudioFoundationDocument,
+    StudioFoundationSubject,
+    StudioFoundationVersion,
+)
 from app.models.decision import Decision
+from app.models.educational_runtime_engine import (
+    RuntimeEducationalEvent,
+    RuntimeEnrolment,
+    RuntimeMissionInstance,
+    RuntimeStudyPlanInstance,
+)
+from app.models.platform_integration import RuntimeEnrolmentRoutingAudit
+from app.models.identity import UserCapability, UserRole
 from app.models.learning import LearningObjective, Mistake, StudyAttempt
 from app.models.mission import Mission, MissionTask
 from app.models.recommendation_commitment import RecommendationCommitment
@@ -33,7 +48,6 @@ from app.models.study_plan import StudyPlan, WeekPlan
 from app.models.subject import Subject
 from app.models.topic_progress import TopicProgress
 from app.models.twin_snapshot import TwinSnapshot
-from app.models.identity import UserCapability, UserRole
 from app.models.user import User
 from app.models.v2_aggregate import (
     V2AggregateDocument,
@@ -63,6 +77,16 @@ __all__ = [
     "Curriculum",
     "Section",
     "Topic",
+    "StudioFoundationSubject",
+    "StudioFoundationVersion",
+    "StudioFoundationDocument",
+    "StudioFoundationAuditEvent",
+    "PublishedCurriculumPackage",
+    "RuntimeEnrolment",
+    "RuntimeStudyPlanInstance",
+    "RuntimeMissionInstance",
+    "RuntimeEducationalEvent",
+    "RuntimeEnrolmentRoutingAudit",
     "TopicProgress",
     "StudyAttempt",
     "LearningObjective",

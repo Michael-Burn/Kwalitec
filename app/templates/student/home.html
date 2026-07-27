@@ -1,10 +1,12 @@
 {% extends "student/base.html" %}
 {% set title = page.shell.page_title %}
 {% from "student/components/explanation_card.html" import explanation_card %}
+{% from "student/components/educational_experience.html" import educational_experience_panel %}
 {% from "partials/contextual_help.html" import learn_more %}
 
 {% block content %}
 {% if page.home %}
+{% set edu = page.educational or page.home.educational %}
 {# P2-MS003–005 — Daily Mission → Guided Session → Reflection: one continuous journey. #}
 {# EP-006.2 — authored MES L1 (why + next) visible; L2 via explanation_card. #}
 {# EP-008.1 — Recommendation Trust: why now, L1 benefit, coherence, refusal, alts. #}
@@ -243,6 +245,15 @@
     </p>
     <p class="student-muted">Reflection is optional and stays with you — nothing is saved yet.</p>
   </div>
+  {% elif complete_form and page.home.primary_cta_enabled and page.home.session_control == 'complete_runtime_c' %}
+  <form method="post" action="{{ url_for('student.complete_runtime_mission') }}" class="student-hero-cta" data-pilot-cta="complete-mission">
+    {{ complete_form.hidden_tag() }}
+    {{ complete_form.mission_id() }}
+    <button type="submit" class="btn student-btn-primary" data-student-cta="primary" data-session-control="complete_runtime_c">
+      {{ page.home.primary_cta_label or 'Mark mission complete' }}
+    </button>
+  </form>
+  <p class="student-muted">Study the topic using your materials, then mark the mission complete when you meet the “Done when” criteria.</p>
   {% elif form and page.home.primary_cta_enabled and page.home.session_control in ('start', 'resume', '') %}
   <form method="post" action="{{ url_for('student.start_session') }}" class="student-hero-cta">
     {{ form.hidden_tag() }}
@@ -286,6 +297,11 @@
   {% elif page.home.day_complete or (page.home.unified_journey_enabled and page.home.completion_status == 'complete') %}
   <p class="student-muted student-hero-cta" data-mission-complete="true" data-day-complete="true">
     Today's learning day is complete.
+    {% if page.educational and page.educational.unlocks_next %}
+      Next up: {{ page.educational.unlocks_next }}
+    {% else %}
+      Return tomorrow for your next mission, or open Journey to review progress.
+    {% endif %}
   </p>
   {% if page.home.completion_loop_echo %}
   <p class="student-muted" data-mes-field="review_point" data-mes-level="completion">
@@ -293,7 +309,13 @@
   </p>
   {% endif %}
   {% elif not page.home.primary_cta_enabled %}
-  <p class="student-muted student-hero-cta">A session will be ready when today's mission is available.</p>
+  <p class="student-muted student-hero-cta">
+    {% if page.educational and page.educational.active %}
+      Today's mission will appear here when your published syllabus is ready.
+    {% else %}
+      A session will be ready when today's mission is available.
+    {% endif %}
+  </p>
   {% endif %}
 
   {% if page.home.explanation and page.home.explanation.has_disclosure and not page.home.reflection_active %}
@@ -343,6 +365,10 @@
   <p class="student-muted student-journey-feedback-footnote">{{ page.home.experience_feedback_source }}</p>
   {% endif %}
 </section>
+{% endif %}
+
+{% if edu and edu.active %}
+{{ educational_experience_panel(edu, surface='home') }}
 {% endif %}
 
 <section

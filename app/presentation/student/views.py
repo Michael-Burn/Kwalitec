@@ -35,7 +35,12 @@ def student_id() -> str:
 
 
 def load_page(surface: ExperienceSurface | str) -> StudentPageViewModel:
-    """Load a surface page via Student Experience dashboard projection."""
+    """Load a surface page via Student Experience dashboard projection.
+
+    PX-001: when the student has an active Runtime C enrolment, Home and
+    Journey are projected from Runtime C educational outputs (EQ-001).
+    Runtime A remains the default path for students without Runtime C.
+    """
     surface_key = (
         surface.value
         if isinstance(surface, ExperienceSurface)
@@ -46,6 +51,11 @@ def load_page(surface: ExperienceSurface | str) -> StudentPageViewModel:
     if composition is not None:
         composition.ensure_learner(sid)
         composition.emit_surface_viewed(surface_key, sid)
+
+    runtime_c_page = _try_runtime_c_page(sid, surface_key)
+    if runtime_c_page is not None:
+        return runtime_c_page
+
     service = get_experience_service()
     try:
         # Home reuses sibling XP snapshots (journey / history / revision)
@@ -72,6 +82,39 @@ def load_page(surface: ExperienceSurface | str) -> StudentPageViewModel:
             "warning",
         )
         return _empty_page(surface_key)
+
+
+def _try_runtime_c_page(
+    sid: str, surface_key: str
+) -> StudentPageViewModel | None:
+    """Return a Runtime C educational page when the student is enrolled."""
+    if surface_key not in {"home", "journey"}:
+        return None
+    try:
+        user_id = int(sid)
+    except (TypeError, ValueError):
+        return None
+    try:
+        from app.application.educational_experience import (
+            EducationalExperienceService,
+        )
+        from app.presentation.student.educational_view_models import (
+            page_from_educational_experience,
+        )
+
+        experience = EducationalExperienceService().load_for_user(user_id)
+        if experience is None:
+            return None
+        return page_from_educational_experience(
+            experience, surface=surface_key
+        )
+    except Exception:  # noqa: BLE001 — fail open to Runtime A
+        logger.warning(
+            "runtime_c_educational_page_failed surface=%s",
+            surface_key,
+            exc_info=True,
+        )
+        return None
 
 
 def start_todays_session(

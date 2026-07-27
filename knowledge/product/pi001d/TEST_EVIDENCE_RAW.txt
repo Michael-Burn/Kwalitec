@@ -1,0 +1,22 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.6, pytest-8.3.4, pluggy-1.6.0
+rootdir: /Users/kwalitec/Developer/kwalitec
+configfile: pyproject.toml
+collected 47 items
+
+tests/certification/test_cs01_founder_onboarding.py .....                [ 10%]
+tests/certification/test_cs02_publication.py ...                         [ 17%]
+tests/certification/test_cs03_derivation.py ....                         [ 25%]
+tests/certification/test_cs04_to_cs08_runtime.py ...............         [ 57%]
+tests/certification/test_cs09_journey_e2e.py ....                        [ 65%]
+tests/certification/test_cs10_cs11_inputs.py ...                         [ 72%]
+tests/certification/test_cs12_coexistence.py ....                        [ 80%]
+tests/certification/test_runtime_parity.py .........                     [100%]
+
+=============================== warnings summary ===============================
+tests/certification/test_cs12_coexistence.py: 139 warnings
+  /Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/sqlalchemy/sql/schema.py:3623: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================= 47 passed, 139 warnings in 3.33s =======================

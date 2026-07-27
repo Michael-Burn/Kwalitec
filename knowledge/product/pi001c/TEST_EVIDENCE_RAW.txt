@@ -1,0 +1,33 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.6, pytest-8.3.4, pluggy-1.6.0 -- /Library/Frameworks/Python.framework/Versions/3.14/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/kwalitec/Developer/kwalitec
+configfile: pyproject.toml
+collecting ... collected 18 items
+
+tests/domain/educational_runtime_engine/test_lifecycle.py::test_derive_progress_starts_at_first_topic PASSED [  5%]
+tests/domain/educational_runtime_engine/test_lifecycle.py::test_derive_progress_advances_after_topic_completed_events PASSED [ 11%]
+tests/domain/educational_runtime_engine/test_lifecycle.py::test_derive_progress_marks_syllabus_complete PASSED [ 16%]
+tests/domain/educational_runtime_engine/test_lifecycle.py::test_mission_completion_events_do_not_count_as_topic_progress PASSED [ 22%]
+tests/domain/educational_runtime_engine/test_lifecycle.py::test_state_transitions_enforce_legality PASSED [ 27%]
+tests/domain/educational_runtime_engine/test_lifecycle.py::test_next_journey_stage_helper PASSED [ 33%]
+tests/application/educational_runtime_engine/test_integration.py::test_coexistence_prefers_published_when_available PASSED [ 38%]
+tests/application/educational_runtime_engine/test_integration.py::test_enrolment_requires_published_curriculum PASSED [ 44%]
+tests/application/educational_runtime_engine/test_integration.py::test_enrol_instantiates_study_plan_from_template PASSED [ 50%]
+tests/application/educational_runtime_engine/test_integration.py::test_daily_mission_from_derived_template_and_completion_advances PASSED [ 55%]
+tests/application/educational_runtime_engine/test_integration.py::test_readiness_and_ek_inputs_without_duplicating_state PASSED [ 61%]
+tests/application/educational_runtime_engine/test_integration.py::test_json_runtime_unaffected_by_published_runtime_enrolment PASSED [ 66%]
+tests/application/educational_runtime_engine/test_integration.py::test_end_to_end_enrolment_to_syllabus_complete PASSED [ 72%]
+tests/application/educational_engine_foundation/test_equivalence.py::test_cs1_equivalence_against_existing_json_behaviour PASSED [ 77%]
+tests/application/educational_engine_foundation/test_service.py::test_service_derives_artefacts_from_active_published_subject PASSED [ 83%]
+tests/application/curriculum_studio_foundation/test_integration.py::test_end_to_end_foundation_lifecycle_persists PASSED [ 88%]
+tests/application/curriculum_studio_foundation/test_integration.py::test_studio_upload_route_records_sources PASSED [ 94%]
+tests/application/curriculum_studio_foundation/test_integration.py::test_workspace_page_includes_upload_form PASSED [100%]
+
+=============================== warnings summary ===============================
+tests/application/educational_runtime_engine/test_integration.py: 139 warnings
+  /Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/sqlalchemy/sql/schema.py:3623: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================= 18 passed, 139 warnings in 1.82s =======================

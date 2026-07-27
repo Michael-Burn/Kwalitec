@@ -25,6 +25,17 @@ class StartSessionForm(FlaskForm):
     submit = SubmitField("Start Today's Session")
 
 
+class CompleteRuntimeMissionForm(FlaskForm):
+    """PR-001B — mark today's Runtime C mission complete from Home.
+
+    Pilot study loop write-back only. Does not start Guided Session or
+    change educational algorithms.
+    """
+
+    mission_id = HiddenField(validators=[Optional()])
+    submit = SubmitField("Mark mission complete")
+
+
 class BeginRevisionForm(FlaskForm):
     """Primary Revision CTA — begin the highest-value revision option."""
 

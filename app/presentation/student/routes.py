@@ -23,6 +23,7 @@ from app.presentation.student import student_bp
 from app.presentation.student.factory import get_experience_composition
 from app.presentation.student.forms import (
     BeginRevisionForm,
+    CompleteRuntimeMissionForm,
     DeferCommitmentForm,
     ReflectionAckForm,
     StartSessionForm,
@@ -102,11 +103,13 @@ def home():
         context={"surface": "home"},
     )
     form = StartSessionForm()
+    complete_form = CompleteRuntimeMissionForm()
     defer_form = DeferCommitmentForm()
     reflection_form = ReflectionAckForm()
     if page.home:
         form.mission_id.data = page.home.mission_id
         form.session_id.data = page.home.session_id
+        complete_form.mission_id.data = page.home.mission_id
         if page.home.commitment:
             form.recommendation_key.data = (
                 page.home.commitment.recommendation_key or ""
@@ -122,6 +125,7 @@ def home():
         title=page.shell.page_title,
         page=page,
         form=form,
+        complete_form=complete_form,
         defer_form=defer_form,
         reflection_form=reflection_form,
         show_welcome=WelcomeService.should_show(current_user),
@@ -189,6 +193,87 @@ def profile():
         title=page.shell.page_title,
         page=page,
     )
+
+
+@student_bp.post("/mission/complete")
+@login_required
+def complete_runtime_mission():
+    """PR-001B — complete today's Runtime C mission from Home.
+
+    Does not start Guided Session or cut over Runtime A. Writes progress
+    through the educational runtime engine only.
+    """
+    form = CompleteRuntimeMissionForm()
+    if not form.validate_on_submit():
+        flash(
+            "We couldn't mark that mission complete. Please try again from Home.",
+            "warning",
+        )
+        return redirect(url_for("student.home"))
+
+    mission_id = (form.mission_id.data or "").strip()
+    if not mission_id:
+        flash(
+            "Today's mission was not available to complete. "
+            "Refresh Home and try again.",
+            "warning",
+        )
+        return redirect(url_for("student.home"))
+
+    from app.application.educational_experience import (
+        EducationalExperienceService,
+    )
+    from app.application.educational_runtime_engine.exceptions import (
+        IllegalRuntimeState,
+        MissionAlreadyCompleted,
+        MissionInstanceNotFound,
+    )
+
+    try:
+        snap = EducationalExperienceService().complete_mission(
+            user_id=current_user.id,
+            mission_instance_id=mission_id,
+        )
+    except MissionAlreadyCompleted:
+        flash(
+            "That mission is already complete. Your progress is saved — "
+            "return tomorrow for the next topic, or open Journey to review.",
+            "info",
+        )
+        return redirect(url_for("student.home"))
+    except MissionInstanceNotFound:
+        flash(
+            "We could not find that mission. Refresh Home and try again.",
+            "warning",
+        )
+        return redirect(url_for("student.home"))
+    except IllegalRuntimeState as exc:
+        logger.warning("runtime_c_mission_complete_illegal: %s", exc)
+        flash(
+            "That mission cannot be completed right now. "
+            "Refresh Home, or open Journey to see your place in the syllabus.",
+            "warning",
+        )
+        return redirect(url_for("student.home"))
+    except Exception:  # noqa: BLE001 — fail closed with recovery copy
+        logger.exception("runtime_c_mission_complete_failed")
+        flash(
+            "We could not save mission completion just now. Please try again shortly.",
+            "warning",
+        )
+        return redirect(url_for("student.home"))
+
+    topic = ""
+    if snap is not None and snap.mission is not None:
+        topic = snap.mission.topic_title or snap.mission.title
+    if topic:
+        flash(
+            f"Mission complete: {topic}. Your journey progress is updated.",
+            "success",
+        )
+    else:
+        flash("Mission complete. Your journey progress is updated.", "success")
+    return redirect(url_for("student.home"))
 
 
 @student_bp.post("/session/start")

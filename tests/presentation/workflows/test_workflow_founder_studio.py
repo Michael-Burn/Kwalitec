@@ -53,7 +53,7 @@ def test_workflow_stage_label_present(stage_label):
     ("stage", "primary"),
     (
         ("subject", "advance"),
-        ("content_sources", "validate"),
+        ("content_sources", "upload"),
         ("validation", "preview"),
         ("preview", "approve"),
         ("approval", "publish"),

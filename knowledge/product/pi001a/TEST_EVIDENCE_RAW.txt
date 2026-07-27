@@ -1,0 +1,12 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.6, pytest-8.3.4, pluggy-1.6.0
+rootdir: /Users/kwalitec/Developer/kwalitec
+configfile: pyproject.toml
+collected 23 items
+
+tests/domain/curriculum_studio_foundation/test_lifecycle.py ...........  [ 47%]
+tests/application/curriculum_studio_foundation/test_integration.py ...   [ 60%]
+tests/application/curriculum_studio_foundation/test_lifecycle.py ....... [ 91%]
+..                                                                       [100%]
+
+============================== 23 passed in 1.22s ==============================

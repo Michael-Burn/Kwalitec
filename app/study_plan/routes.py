@@ -8,6 +8,24 @@ from datetime import date
 from flask import Blueprint, flash, redirect, render_template, request, session, url_for
 from flask_login import current_user, login_required
 
+from app.application.educational_runtime_engine.coexistence import (
+    RuntimeAuthority,
+)
+from app.application.educational_runtime_engine.exceptions import (
+    EnrolmentAlreadyExists,
+)
+from app.application.platform_integration.discovery import (
+    PUBLISHED_CATEGORY_CODE,
+    PublishedSubjectDiscoveryService,
+)
+from app.application.platform_integration.enrolment_bridge import (
+    FounderStudentEnrolmentBridge,
+)
+from app.application.platform_integration.exceptions import (
+    BridgeEnrolmentBlocked,
+    PublishedSubjectNotDiscoverable,
+)
+from app.application.platform_integration.routing import RuntimeRoutingService
 from app.presentation.consolidation import redirect_to_canonical_home
 from app.services import examination_catalogue as catalogue
 from app.services.curriculum_engine_service import CurriculumEngineService
@@ -127,9 +145,13 @@ def _resolve_curriculum_version(
 
     Returns:
         * ``str`` — curriculum version to use (e.g. ``"2026"``).
+        * ``"published"`` — founder-published subject (Runtime C; no JSON syllabus).
         * ``None`` — no curriculum is associated with this exam; proceed normally.
         * ``False`` — a curriculum was discovered but could not be verified on disk.
     """
+    if (category_code or "").strip() == PUBLISHED_CATEGORY_CODE:
+        return "published"
+
     version = _discover_curriculum_version(category_code, paper_code)
     if version is None:
         return None  # No on-disk syllabus — continue without curriculum binding.
@@ -236,6 +258,33 @@ def wizard_step_post(step: int):
 # ─────────────────────────────────────────────────────────────────────────────
 
 
+def _discovery() -> PublishedSubjectDiscoveryService:
+    """Return the PI-002A discovery service (flag-gated)."""
+    return PublishedSubjectDiscoveryService()
+
+
+def _wizard_categories():
+    """Examination categories including published subjects when discovery is on."""
+    return _discovery().augmented_categories()
+
+
+def _resolve_wizard_category(category_code: str):
+    """Resolve a wizard category including the virtual Published category."""
+    return _discovery().get_category(category_code) or catalogue.get_category(
+        category_code
+    )
+
+
+def _wizard_paper_choices(category_code: str) -> list[tuple[str, str]]:
+    return _discovery().get_paper_choices(category_code)
+
+
+def _prepare_category_form(form: ExamCategoryForm) -> ExamCategoryForm:
+    """Bind dynamic category choices (includes Published when flagged)."""
+    form.exam_category.choices = _discovery().get_category_choices()
+    return form
+
+
 def _wizard_selection_support(wizard_data: dict):
     """Resolve PTP-001 support status for the current wizard selection."""
     category_code = wizard_data.get("exam_category", "")
@@ -277,11 +326,11 @@ def _require_supported_selection():
 
 def _handle_step_1():
     """Display exam category selection form."""
-    form = ExamCategoryForm()
+    form = _prepare_category_form(ExamCategoryForm())
     wizard_data = session.get("wizard_data", {})
     if "exam_category" in wizard_data:
         form.exam_category.data = wizard_data["exam_category"]
-    categories = catalogue.get_categories()
+    categories = _wizard_categories()
     return render_template(
         "study_plan/wizard_step_1.html",
         form=form,
@@ -295,7 +344,7 @@ def _handle_step_1():
 
 def _handle_step_1_post():
     """Process exam category selection form."""
-    form = ExamCategoryForm()
+    form = _prepare_category_form(ExamCategoryForm())
     if form.validate_on_submit():
         session["wizard_data"]["exam_category"] = form.exam_category.data
         # Clear downstream data when category changes
@@ -304,7 +353,7 @@ def _handle_step_1_post():
             session["wizard_data"].pop(key, None)
         session.modified = True
         return redirect(url_for("study_plan.wizard_step", step=2))
-    categories = catalogue.get_categories()
+    categories = _wizard_categories()
     return render_template(
         "study_plan/wizard_step_1.html",
         form=form,
@@ -345,13 +394,13 @@ def _handle_step_2():
         return redirect(url_for("study_plan.wizard_step", step=1))
 
     form = ExamPaperForm()
-    category = catalogue.get_category(category_code)
+    category = _resolve_wizard_category(category_code)
     if not category:
         flash("Invalid examination category. Please start again.", "warning")
         return redirect(url_for("study_plan.wizard_step", step=1))
 
     if not category.free_text_subject:
-        form.exam_paper.choices = catalogue.get_paper_choices(category_code)
+        form.exam_paper.choices = _wizard_paper_choices(category_code)
         if "exam_paper" in wizard_data:
             form.exam_paper.data = wizard_data["exam_paper"]
     if "free_text_subject" in wizard_data:
@@ -373,7 +422,7 @@ def _handle_step_2_post():
         return redirect(url_for("study_plan.wizard_step", step=1))
 
     form = ExamPaperForm()
-    category = catalogue.get_category(category_code)
+    category = _resolve_wizard_category(category_code)
     if not category:
         flash("Invalid examination category. Please start again.", "warning")
         return redirect(url_for("study_plan.wizard_step", step=1))
@@ -397,7 +446,7 @@ def _handle_step_2_post():
             return redirect(url_for("study_plan.wizard_step", step=3))
         form.free_text_subject.errors = ["Please enter your subject."]
     else:
-        form.exam_paper.choices = catalogue.get_paper_choices(category_code)
+        form.exam_paper.choices = _wizard_paper_choices(category_code)
         if form.exam_paper.validate(form) and form.exam_paper.data:
             paper_code = form.exam_paper.data
             support = SubjectSupportService.resolve(category_code, paper_code)
@@ -866,7 +915,7 @@ def review_post():
             flash(support.explanation, "warning")
             return redirect(url_for("study_plan.wizard_step", step=2))
 
-        # Create the study plan
+        # Create the study plan / enrolment
         try:
             exam_date_str = wizard_data["exam_date"]
             if isinstance(exam_date_str, str):
@@ -879,6 +928,56 @@ def review_post():
             completed_curriculum_topics = wizard_data.get(
                 "completed_curriculum_topics", []
             )
+
+            bridge = FounderStudentEnrolmentBridge()
+            if bridge.should_use_bridge(
+                category_code=category_code, subject_code=paper_or_subject
+            ):
+                try:
+                    result = bridge.enrol(
+                        user_id=current_user.id,
+                        category_code=category_code,
+                        subject_code=paper_or_subject,
+                        exam_date=exam_date,
+                    )
+                except (BridgeEnrolmentBlocked, PublishedSubjectNotDiscoverable) as exc:
+                    flash(str(exc), "warning")
+                    return redirect(url_for("study_plan.wizard_step", step=2))
+                except EnrolmentAlreadyExists:
+                    flash(
+                        "You are already enrolled in this published curriculum.",
+                        "info",
+                    )
+                    session.pop("wizard_data", None)
+                    return redirect_to_canonical_home()
+
+                session.pop("wizard_data", None)
+                logger.info(
+                    "PI-002A bridge enrolment user=%s subject=%s runtime=%s audit=%s",
+                    current_user.id,
+                    paper_or_subject,
+                    result.runtime_authority.value,
+                    result.audit_id,
+                )
+                flash(result.message, "success")
+                if (
+                    result.runtime_authority
+                    == RuntimeAuthority.PUBLISHED_CURRICULUM
+                ):
+                    return redirect_to_canonical_home()
+                if result.study_plan_id is not None:
+                    return redirect(
+                        url_for(
+                            "calibration.start",
+                            study_plan_id=result.study_plan_id,
+                        )
+                    )
+                return redirect_to_canonical_home()
+
+            # Runtime A — existing JSON study-plan path (unchanged behaviour).
+            if curriculum_version == "published":
+                flash(support.explanation, "warning")
+                return redirect(url_for("study_plan.wizard_step", step=2))
 
             study_plan = StudyPlanService.create_study_plan(
                 user_id=current_user.id,
@@ -894,6 +993,18 @@ def review_post():
                 curriculum_version=curriculum_version,
                 curriculum_topic_code=curriculum_topic_code,
                 completed_curriculum_topics=completed_curriculum_topics,
+            )
+
+            # Auditable Runtime A selection (default production path).
+            router = RuntimeRoutingService()
+            decision = router.resolve(
+                subject_code=paper_or_subject, category_code=category_code
+            )
+            router.record_decision(
+                user_id=current_user.id,
+                decision=decision,
+                study_plan_id=study_plan.id,
+                commit=True,
             )
 
             session.pop("wizard_data", None)
@@ -925,7 +1036,7 @@ def review_post():
 def _build_review_data(wizard_data: dict) -> dict:
     """Build a structured dict for the review template sections."""
     category_code = wizard_data.get("exam_category", "")
-    category = catalogue.get_category(category_code)
+    category = _resolve_wizard_category(category_code)
 
     # Paper / subject display
     if catalogue.is_free_text_subject(category_code):

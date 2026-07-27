@@ -22,6 +22,13 @@ from __future__ import annotations
 from dataclasses import dataclass
 from enum import Enum
 
+from app.application.platform_integration.discovery import (
+    PUBLISHED_CATEGORY_CODE,
+    PublishedSubjectDiscoveryService,
+)
+from app.application.platform_integration.flags import (
+    resolve_founder_student_bridge_flags,
+)
 from app.services import examination_catalogue as catalogue
 from app.services.curriculum_engine_service import CurriculumEngineService
 
@@ -158,6 +165,11 @@ class SubjectSupportService:
                 alternatives=alternatives,
             )
 
+        # PI-002A: founder-published subjects (virtual Published category).
+        published = cls._resolve_published(org, paper_code, alternatives)
+        if published is not None:
+            return published
+
         if cls.has_curriculum(org, paper_code):
             display = catalogue.format_exam_name(org, paper_code)
             return SubjectSupportInfo(
@@ -228,11 +240,94 @@ class SubjectSupportService:
         ).allows_plan_creation
 
     @classmethod
+    def _resolve_published(
+        cls,
+        organisation: str,
+        paper_code: str,
+        alternatives: tuple[tuple[str, str], ...],
+    ) -> SubjectSupportInfo | None:
+        """Resolve support for the PI-002A Published category, or None."""
+        if organisation != PUBLISHED_CATEGORY_CODE:
+            return None
+
+        flags = resolve_founder_student_bridge_flags()
+        discovery = PublishedSubjectDiscoveryService(flags=flags)
+        display = (
+            f"{PUBLISHED_CATEGORY_CODE} {paper_code}".strip()
+            if paper_code
+            else PUBLISHED_CATEGORY_CODE
+        )
+
+        if not flags.ENABLE_PUBLISHED_SUBJECT_DISCOVERY:
+            return SubjectSupportInfo(
+                status=SupportStatus.NOT_SUPPORTED,
+                organisation=organisation,
+                paper=paper_code,
+                label=_STATUS_LABELS[SupportStatus.NOT_SUPPORTED],
+                title=f"{display} is not available",
+                explanation=(
+                    "Founder-published curricula are not enabled for student "
+                    "discovery in this environment."
+                ),
+                allows_plan_creation=False,
+                alternatives=alternatives,
+            )
+
+        offer = discovery.get_offer(paper_code) if paper_code else None
+        if offer is None:
+            return SubjectSupportInfo(
+                status=SupportStatus.NOT_SUPPORTED,
+                organisation=organisation,
+                paper=paper_code,
+                label=_STATUS_LABELS[SupportStatus.NOT_SUPPORTED],
+                title=f"{display} is not published",
+                explanation=(
+                    "No active published curriculum package is available for "
+                    "this subject. Choose a supported examination instead."
+                ),
+                allows_plan_creation=False,
+                alternatives=alternatives,
+            )
+
+        if not flags.ENABLE_RUNTIME_C_ENROLMENT:
+            return SubjectSupportInfo(
+                status=SupportStatus.COMING_SOON,
+                organisation=organisation,
+                paper=paper_code,
+                label=_STATUS_LABELS[SupportStatus.COMING_SOON],
+                title=f"{offer.title} is visible but not open for enrolment",
+                explanation=(
+                    f"{offer.title} ({offer.version_label}) is published, but "
+                    "Runtime C enrolment is not enabled in this environment yet."
+                ),
+                allows_plan_creation=False,
+                alternatives=alternatives,
+            )
+
+        return SubjectSupportInfo(
+            status=SupportStatus.SUPPORTED,
+            organisation=organisation,
+            paper=paper_code,
+            label=_STATUS_LABELS[SupportStatus.SUPPORTED],
+            title=f"{offer.title} is supported",
+            explanation=(
+                f"{offer.title} was published by founders "
+                f"(version {offer.version_label}) and can be enrolled via "
+                "the curriculum-driven educational runtime."
+            ),
+            allows_plan_creation=True,
+            alternatives=(),
+        )
+
+    @classmethod
     def paper_statuses_for_category(
         cls, category_code: str
     ) -> dict[str, SubjectSupportInfo]:
         """Map each catalogue paper code to its support verdict."""
-        category = catalogue.get_category(category_code)
+        discovery = PublishedSubjectDiscoveryService()
+        category = discovery.get_category(category_code) or catalogue.get_category(
+            category_code
+        )
         if not category:
             return {}
         if category.free_text_subject:
@@ -247,7 +342,10 @@ class SubjectSupportService:
     @classmethod
     def category_summary(cls, category_code: str) -> CategorySupportSummary:
         """Summarise support for an examining body (wizard step 1)."""
-        category = catalogue.get_category(category_code)
+        discovery = PublishedSubjectDiscoveryService()
+        category = discovery.get_category(category_code) or catalogue.get_category(
+            category_code
+        )
         if not category:
             return CategorySupportSummary(
                 organisation=category_code or "",
@@ -308,9 +406,10 @@ class SubjectSupportService:
     @classmethod
     def category_summaries(cls) -> dict[str, CategorySupportSummary]:
         """Return support summaries keyed by category code."""
+        discovery = PublishedSubjectDiscoveryService()
         return {
             category.code: cls.category_summary(category.code)
-            for category in catalogue.get_categories()
+            for category in discovery.augmented_categories()
         }
 
     @classmethod
@@ -322,4 +421,20 @@ class SubjectSupportService:
             description = catalogue.get_paper_description(org, paper)
             label = f"{display} — {description}" if description else display
             alternatives.append((f"{org}:{paper}", label))
+
+        # PI-002A: include enrolable published subjects when flags allow.
+        flags = resolve_founder_student_bridge_flags()
+        if (
+            flags.ENABLE_PUBLISHED_SUBJECT_DISCOVERY
+            and flags.ENABLE_RUNTIME_C_ENROLMENT
+        ):
+            discovery = PublishedSubjectDiscoveryService(flags=flags)
+            for offer in discovery.list_active_offers():
+                label = (
+                    f"{PUBLISHED_CATEGORY_CODE} {offer.subject_code} — "
+                    f"{offer.title}"
+                )
+                alternatives.append(
+                    (f"{PUBLISHED_CATEGORY_CODE}:{offer.subject_code}", label)
+                )
         return tuple(alternatives)

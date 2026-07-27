@@ -1,0 +1,139 @@
+{# PX-001 — Runtime C educational information (information architecture only). #}
+{% macro educational_experience_panel(edu, surface='home') %}
+{% if edu and edu.active %}
+<section
+  class="student-panel student-panel--quiet"
+  data-educational-experience="runtime-c"
+  data-surface="{{ surface }}"
+  aria-labelledby="educational-experience-title"
+>
+  <p class="student-panel-eyebrow">Published syllabus</p>
+  <h2 id="educational-experience-title" class="student-panel-title">
+    Educational context
+  </h2>
+
+  {% if edu.today_topic_title %}
+  <p class="student-panel-body" data-edu-field="today_topic">
+    <span class="student-label">Today's topic</span>
+    {{ edu.today_topic_title }}{% if edu.today_topic_code %} ({{ edu.today_topic_code }}){% endif %}
+  </p>
+  {% endif %}
+
+  {% if edu.section_title or edu.position_label %}
+  <p class="student-panel-body" data-edu-field="curriculum_position">
+    <span class="student-label">Curriculum position</span>
+    {% if edu.section_title %}{{ edu.section_title }} · {% endif %}{{ edu.position_label }}
+  </p>
+  {% endif %}
+
+  {% if edu.learning_objectives %}
+  <div class="student-panel-body" data-edu-field="learning_objectives">
+    <p class="student-label mb-1">Learning objectives</p>
+    <ul class="mb-0">
+      {% for objective in edu.learning_objectives %}
+      <li>{{ objective }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  {% if edu.mission_rationale or edu.why_this_mission %}
+  <p class="student-panel-body" data-edu-field="mission_rationale">
+    <span class="student-label">Why this mission</span>
+    {{ edu.why_this_mission or edu.mission_rationale }}
+  </p>
+  {% endif %}
+
+  {% if edu.estimated_duration_label %}
+  <p class="student-panel-body" data-edu-field="estimated_duration">
+    <span class="student-label">Estimated duration</span>
+    {{ edu.estimated_duration_label }}
+  </p>
+  {% endif %}
+
+  {% if edu.completion_definition %}
+  <p class="student-panel-body" data-edu-field="completion_definition">
+    <span class="student-label">Done when</span>
+    {{ edu.completion_definition }}
+  </p>
+  {% endif %}
+
+  {% if edu.suggested_next_action or edu.unlocks_next %}
+  <p class="student-panel-body" data-edu-field="what_comes_next">
+    <span class="student-label">What comes next</span>
+    {{ edu.suggested_next_action or edu.unlocks_next }}
+  </p>
+  {% endif %}
+
+  {% if edu.prerequisite_status_label %}
+  <p class="student-panel-body" data-edu-field="prerequisite_status"{% if not edu.prerequisite_satisfied %} data-prereq="blocked"{% endif %}>
+    <span class="student-label">Prerequisites</span>
+    {{ edu.prerequisite_status_label }}
+  </p>
+  {% endif %}
+
+  {% if edu.why_today or edu.why_previous_complete or edu.unlocks_next %}
+  <div class="student-panel-body" data-edu-field="journey_explanation">
+    <p class="student-label mb-1">Journey</p>
+    {% if edu.why_today %}
+    <p class="mb-1" data-edu-field="why_today"><span class="student-label">Why today</span> {{ edu.why_today }}</p>
+    {% endif %}
+    {% if edu.why_previous_complete %}
+    <p class="mb-1" data-edu-field="why_previous_complete"><span class="student-label">Previous topic</span> {{ edu.why_previous_complete }}</p>
+    {% endif %}
+    {% if edu.unlocks_next %}
+    <p class="mb-0" data-edu-field="unlocks_next"><span class="student-label">Unlocks next</span> {{ edu.unlocks_next }}</p>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  {% if edu.progress_label or edu.coverage_label %}
+  <p class="student-panel-body" data-edu-field="progress">
+    <span class="student-label">Progress</span>
+    {{ edu.progress_label or edu.coverage_label }}
+  </p>
+  {% endif %}
+
+  {% if edu.pacing_summary or edu.feasibility_label %}
+  <div class="student-panel-body" data-edu-field="exam_pacing">
+    <p class="student-label mb-1">Exam pacing</p>
+    {% if edu.exam_date_label %}
+    <p class="mb-1 student-muted">Exam date: {{ edu.exam_date_label }}</p>
+    {% endif %}
+    {% if edu.pacing_summary %}
+    <p class="mb-1">{{ edu.pacing_summary }}</p>
+    {% endif %}
+    {% if edu.feasibility_label %}
+    <p class="mb-0" data-edu-field="feasibility">{{ edu.feasibility_label }}</p>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  {% if edu.supporting_evidence or edu.journey_evidence %}
+  <details class="student-explainability" data-edu-field="explainability">
+    <summary>Why the system chose this</summary>
+    {% if edu.confidence_label %}
+    <p class="student-muted"><span class="student-label">Confidence</span> {{ edu.confidence_label }}</p>
+    {% endif %}
+    {% if edu.expected_benefit %}
+    <p><span class="student-label">You’ll work toward</span> {{ edu.expected_benefit }}</p>
+    {% endif %}
+    {% if edu.suggested_next_action %}
+    <p><span class="student-label">Next</span> {{ edu.suggested_next_action }}</p>
+    {% endif %}
+    {% if edu.review_point %}
+    <p class="student-muted"><span class="student-label">Review</span> {{ edu.review_point }}</p>
+    {% endif %}
+    <ul>
+      {% for item in edu.supporting_evidence %}
+      <li>{{ item }}</li>
+      {% endfor %}
+      {% for item in edu.journey_evidence %}
+      <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+  </details>
+  {% endif %}
+</section>
+{% endif %}
+{% endmacro %}

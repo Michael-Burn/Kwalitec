@@ -66,7 +66,7 @@ def test_workflow_order_matches_founder_journey():
     ("stage", "primary"),
     (
         ("subject", "advance"),
-        ("content_sources", "validate"),
+        ("content_sources", "upload"),
         ("validation", "preview"),
         ("preview", "approve"),
         ("approval", "publish"),

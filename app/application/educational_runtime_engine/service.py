@@ -1,0 +1,914 @@
+"""Educational Runtime Engine — curriculum-driven student journey (PI-001C).
+
+Consumes PI-001B derived artefacts (study-plan template, mission templates,
+progress model, journey). Does not recreate curriculum logic or author
+subject-specific educational content.
+"""
+
+from __future__ import annotations
+
+import json
+import uuid
+from datetime import UTC, date, datetime
+from typing import Any
+
+from app.application.curriculum_studio_foundation.authority import (
+    PublishedCurriculumAuthority,
+)
+from app.application.educational_engine_foundation.dto import (
+    EducationalArtefactSnapshot,
+    MissionTemplateSnapshot,
+)
+from app.application.educational_engine_foundation.service import (
+    EducationalEngineFoundationService,
+)
+from app.application.educational_quality.certifier import EducationalQualityCertifier
+from app.application.educational_quality.dto import (
+    JourneyExplanationSnapshot,
+    StudyPlanPacingSnapshot,
+)
+from app.application.educational_runtime_engine.coexistence import (
+    RuntimeAuthority,
+    RuntimeCoexistencePolicy,
+)
+from app.application.educational_runtime_engine.dto import (
+    EducationalEventSnapshot,
+    EnrolmentSnapshot,
+    EstimatedKnowledgeRuntimeInputs,
+    MissionInstanceSnapshot,
+    ProgressSnapshot,
+    ReadinessRuntimeInputs,
+    RuntimeJourneySnapshot,
+    StudyPlanInstanceSnapshot,
+)
+from app.application.educational_runtime_engine.exceptions import (
+    EnrolmentAlreadyExists,
+    EnrolmentNotFound,
+    IllegalRuntimeState,
+    MissionAlreadyCompleted,
+    MissionInstanceNotFound,
+    PublishedCurriculumUnavailable,
+    StudyPlanInstanceNotFound,
+    SyllabusAlreadyComplete,
+)
+from app.domain.educational_runtime_engine.events import (
+    EducationalEventRecord,
+    EducationalEventType,
+)
+from app.domain.educational_runtime_engine.progress import (
+    ProgressModelSpec,
+    ProgressTopicSpec,
+    derive_progress,
+)
+from app.domain.educational_runtime_engine.state import (
+    EnrolmentStatus,
+    MissionStatus,
+    PlanInstanceStatus,
+    assert_mission_transition,
+    assert_plan_transition,
+)
+from app.extensions import db
+from app.models.educational_runtime_engine import (
+    RuntimeEducationalEvent,
+    RuntimeEnrolment,
+    RuntimeMissionInstance,
+    RuntimeStudyPlanInstance,
+)
+
+
+def _utc_now() -> datetime:
+    return datetime.now(UTC).replace(tzinfo=None)
+
+
+def _new_id(prefix: str) -> str:
+    return f"{prefix}_{uuid.uuid4().hex}"
+
+
+class EducationalRuntimeEngineService:
+    """Instantiate and advance personalised journeys from published artefacts."""
+
+    SERVICE_ID = "educational_runtime_engine"
+    SERVICE_VERSION = "1.0.0"
+
+    def __init__(
+        self,
+        *,
+        authority: PublishedCurriculumAuthority | None = None,
+        artefacts: EducationalEngineFoundationService | None = None,
+        coexistence: RuntimeCoexistencePolicy | None = None,
+        quality: EducationalQualityCertifier | None = None,
+    ) -> None:
+        self._authority = authority or PublishedCurriculumAuthority()
+        self._artefacts = artefacts or EducationalEngineFoundationService(
+            authority=self._authority
+        )
+        self._coexistence = coexistence or RuntimeCoexistencePolicy(
+            authority=self._authority
+        )
+        self._quality = quality or EducationalQualityCertifier()
+
+    # ── Enrolment ─────────────────────────────────────────────────────────
+
+    def enrol_student(
+        self,
+        *,
+        user_id: int,
+        subject_code: str,
+        exam_date: date | None = None,
+        auto_instantiate_plan: bool = True,
+    ) -> RuntimeJourneySnapshot:
+        """Enrol a student against the active published curriculum.
+
+        Automatically instantiates a study-plan instance from the derived
+        study-plan template when ``auto_instantiate_plan`` is True.
+        """
+        code = (subject_code or "").strip().upper()
+        if not code:
+            raise PublishedCurriculumUnavailable("subject_code is required")
+
+        if (
+            self._coexistence.resolve_for_enrolment(code)
+            != RuntimeAuthority.PUBLISHED_CURRICULUM
+        ):
+            raise PublishedCurriculumUnavailable(
+                f"no active published curriculum for subject {code}"
+            )
+
+        package = self._authority.get_active(code)
+        if package is None:
+            raise PublishedCurriculumUnavailable(
+                f"no active published curriculum for subject {code}"
+            )
+
+        snapshot = self._artefacts.derive_from_package(package.package)
+        identity = snapshot.curriculum_identity
+
+        existing = RuntimeEnrolment.query.filter_by(
+            user_id=user_id,
+            curriculum_identity=identity,
+        ).first()
+        if existing is not None:
+            raise EnrolmentAlreadyExists(
+                f"user {user_id} already enrolled in {identity}"
+            )
+
+        enrolment = RuntimeEnrolment(
+            enrolment_id=_new_id("enr"),
+            user_id=user_id,
+            subject_code=code,
+            curriculum_identity=identity,
+            published_package_id=package.package_id,
+            version_label=snapshot.version_label,
+            status=EnrolmentStatus.ACTIVE.value,
+            exam_date=exam_date,
+        )
+        db.session.add(enrolment)
+        self._append_event(
+            event_type=EducationalEventType.STUDENT_ENROLLED,
+            user_id=user_id,
+            curriculum_identity=identity,
+            enrolment_id=enrolment.enrolment_id,
+            payload={
+                "subject_code": code,
+                "version_label": snapshot.version_label,
+                "published_package_id": package.package_id,
+            },
+        )
+        db.session.flush()
+
+        if auto_instantiate_plan:
+            self._instantiate_study_plan(
+                enrolment=enrolment,
+                artefacts=snapshot,
+            )
+        db.session.commit()
+        return self.get_journey(user_id=user_id, subject_code=code)
+
+    # ── Study plan ────────────────────────────────────────────────────────
+
+    def instantiate_study_plan(
+        self,
+        *,
+        user_id: int,
+        subject_code: str,
+    ) -> StudyPlanInstanceSnapshot:
+        """Create a study-plan instance from the derived template (idempotent)."""
+        enrolment = self._require_active_enrolment(user_id, subject_code)
+        existing = RuntimeStudyPlanInstance.query.filter_by(
+            enrolment_id=enrolment.enrolment_id,
+            status=PlanInstanceStatus.ACTIVE.value,
+        ).first()
+        if existing is not None:
+            return self._plan_snapshot(existing)
+
+        artefacts = self._load_artefacts(enrolment.subject_code)
+        plan = self._instantiate_study_plan(enrolment=enrolment, artefacts=artefacts)
+        db.session.commit()
+        return self._plan_snapshot(plan, artefacts=artefacts)
+
+    def _instantiate_study_plan(
+        self,
+        *,
+        enrolment: RuntimeEnrolment,
+        artefacts: EducationalArtefactSnapshot,
+    ) -> RuntimeStudyPlanInstance:
+        progress_model = self._progress_model_spec(artefacts)
+        events = self._event_records(
+            user_id=enrolment.user_id,
+            curriculum_identity=enrolment.curriculum_identity,
+        )
+        derived = derive_progress(progress_model, events)
+
+        plan = RuntimeStudyPlanInstance(
+            plan_instance_id=_new_id("plan"),
+            enrolment_id=enrolment.enrolment_id,
+            user_id=enrolment.user_id,
+            subject_code=enrolment.subject_code,
+            curriculum_identity=enrolment.curriculum_identity,
+            version_label=enrolment.version_label,
+            status=PlanInstanceStatus.ACTIVE.value,
+            current_topic_id=derived.current_topic_id
+            or (
+                artefacts.progress_model.topic_ids[0]
+                if artefacts.progress_model and artefacts.progress_model.topic_ids
+                else None
+            ),
+        )
+        db.session.add(plan)
+        self._append_event(
+            event_type=EducationalEventType.STUDY_PLAN_INSTANTIATED,
+            user_id=enrolment.user_id,
+            curriculum_identity=enrolment.curriculum_identity,
+            enrolment_id=enrolment.enrolment_id,
+            plan_instance_id=plan.plan_instance_id,
+            topic_id=plan.current_topic_id,
+            payload={
+                "topic_template_count": len(
+                    artefacts.study_plan_template.topic_templates
+                    if artefacts.study_plan_template
+                    else ()
+                ),
+                "current_topic_id": plan.current_topic_id,
+            },
+        )
+        db.session.flush()
+        return plan
+
+    # ── Daily missions ────────────────────────────────────────────────────
+
+    def generate_daily_mission(
+        self,
+        *,
+        user_id: int,
+        subject_code: str,
+        mission_date: date | None = None,
+    ) -> MissionInstanceSnapshot:
+        """Generate (idempotently) today's mission from derived mission templates."""
+        day = mission_date or date.today()
+        enrolment = self._require_enrolment(user_id, subject_code)
+        artefacts = self._load_artefacts(enrolment.subject_code)
+        progress = self._derive_progress_for(enrolment, artefacts)
+        if progress.syllabus_complete or progress.current_topic_id is None:
+            raise SyllabusAlreadyComplete(
+                f"syllabus complete for {enrolment.curriculum_identity}"
+            )
+        if enrolment.status != EnrolmentStatus.ACTIVE.value:
+            raise IllegalRuntimeState(
+                f"enrolment {enrolment.enrolment_id} is {enrolment.status}"
+            )
+        plan = self._require_active_plan(enrolment)
+
+        existing = RuntimeMissionInstance.query.filter_by(
+            plan_instance_id=plan.plan_instance_id,
+            mission_date=day,
+        ).first()
+        if existing is not None:
+            return self._mission_snapshot(
+                existing,
+                artefacts=artefacts,
+                completed_topic_ids=progress.completed_topic_ids,
+            )
+
+        template = self._mission_template_for_topic(
+            artefacts, progress.current_topic_id
+        )
+        if template is None:
+            raise IllegalRuntimeState(
+                f"no mission template for topic {progress.current_topic_id}"
+            )
+
+        # EQ-M07: refuse generation when prerequisites are not satisfied
+        topic = next(
+            (t for t in artefacts.topics if t["topic_id"] == template.topic_id),
+            {},
+        )
+        required = tuple(
+            template.prerequisite_ids
+            or tuple(topic.get("prerequisite_ids") or ())
+        )
+        completed = set(progress.completed_topic_ids)
+        missing = [pid for pid in required if pid not in completed]
+        if missing:
+            raise IllegalRuntimeState(
+                f"cannot generate mission for {template.topic_id}; "
+                f"unsatisfied prerequisites: {missing}"
+            )
+
+        mission = RuntimeMissionInstance(
+            mission_instance_id=_new_id("msn"),
+            plan_instance_id=plan.plan_instance_id,
+            user_id=user_id,
+            curriculum_identity=enrolment.curriculum_identity,
+            template_id=template.template_id,
+            topic_id=template.topic_id,
+            topic_code=template.topic_code,
+            title=template.title,
+            task_descriptions_json=json.dumps(list(template.task_descriptions)),
+            mission_date=day,
+            status=MissionStatus.GENERATED.value,
+        )
+        db.session.add(mission)
+        plan.current_topic_id = template.topic_id
+        self._append_event(
+            event_type=EducationalEventType.MISSION_GENERATED,
+            user_id=user_id,
+            curriculum_identity=enrolment.curriculum_identity,
+            enrolment_id=enrolment.enrolment_id,
+            plan_instance_id=plan.plan_instance_id,
+            topic_id=template.topic_id,
+            mission_instance_id=mission.mission_instance_id,
+            payload={
+                "template_id": template.template_id,
+                "mission_date": day.isoformat(),
+                "title": template.title,
+                "objective_ids": list(template.objective_ids),
+                "estimated_duration_minutes": template.estimated_duration_minutes,
+            },
+        )
+        db.session.commit()
+        return self._mission_snapshot(
+            mission,
+            artefacts=artefacts,
+            completed_topic_ids=progress.completed_topic_ids,
+        )
+
+    def complete_mission(
+        self,
+        *,
+        user_id: int,
+        mission_instance_id: str,
+    ) -> RuntimeJourneySnapshot:
+        """Record mission completion as immutable events and advance journey."""
+        mission = RuntimeMissionInstance.query.filter_by(
+            mission_instance_id=mission_instance_id,
+            user_id=user_id,
+        ).first()
+        if mission is None:
+            raise MissionInstanceNotFound(mission_instance_id)
+
+        if mission.status == MissionStatus.COMPLETED.value:
+            raise MissionAlreadyCompleted(mission_instance_id)
+
+        try:
+            assert_mission_transition(mission.status, MissionStatus.COMPLETED)
+        except ValueError as exc:
+            raise IllegalRuntimeState(str(exc)) from exc
+
+        plan = RuntimeStudyPlanInstance.query.filter_by(
+            plan_instance_id=mission.plan_instance_id
+        ).first()
+        if plan is None:
+            raise StudyPlanInstanceNotFound(mission.plan_instance_id)
+
+        enrolment = RuntimeEnrolment.query.filter_by(
+            enrolment_id=plan.enrolment_id
+        ).first()
+        if enrolment is None:
+            raise EnrolmentNotFound(plan.enrolment_id)
+
+        artefacts = self._load_artefacts(enrolment.subject_code)
+        now = _utc_now()
+        mission.status = MissionStatus.COMPLETED.value
+        mission.completed_at = now
+
+        self._append_event(
+            event_type=EducationalEventType.MISSION_COMPLETED,
+            user_id=user_id,
+            curriculum_identity=enrolment.curriculum_identity,
+            enrolment_id=enrolment.enrolment_id,
+            plan_instance_id=plan.plan_instance_id,
+            topic_id=mission.topic_id,
+            mission_instance_id=mission.mission_instance_id,
+            payload={
+                "template_id": mission.template_id,
+                "mission_date": mission.mission_date.isoformat(),
+            },
+            occurred_at=now,
+        )
+        self._append_event(
+            event_type=EducationalEventType.TOPIC_COMPLETED,
+            user_id=user_id,
+            curriculum_identity=enrolment.curriculum_identity,
+            enrolment_id=enrolment.enrolment_id,
+            plan_instance_id=plan.plan_instance_id,
+            topic_id=mission.topic_id,
+            mission_instance_id=mission.mission_instance_id,
+            payload={"source": "mission_completion"},
+            occurred_at=now,
+        )
+        db.session.flush()
+
+        progress = self._derive_progress_for(enrolment, artefacts)
+        previous_topic = mission.topic_id
+        plan.current_topic_id = progress.current_topic_id
+
+        self._append_event(
+            event_type=EducationalEventType.JOURNEY_ADVANCED,
+            user_id=user_id,
+            curriculum_identity=enrolment.curriculum_identity,
+            enrolment_id=enrolment.enrolment_id,
+            plan_instance_id=plan.plan_instance_id,
+            topic_id=progress.current_topic_id,
+            mission_instance_id=mission.mission_instance_id,
+            payload={
+                "from_topic_id": previous_topic,
+                "to_topic_id": progress.current_topic_id,
+                "journey_stage": progress.journey_stage.value,
+                "coverage_ratio": progress.coverage_ratio,
+            },
+            occurred_at=now,
+        )
+
+        if progress.syllabus_complete:
+            self._append_event(
+                event_type=EducationalEventType.SYLLABUS_COMPLETED,
+                user_id=user_id,
+                curriculum_identity=enrolment.curriculum_identity,
+                enrolment_id=enrolment.enrolment_id,
+                plan_instance_id=plan.plan_instance_id,
+                payload={"completed_topic_count": len(progress.completed_topic_ids)},
+                occurred_at=now,
+            )
+            try:
+                assert_plan_transition(plan.status, PlanInstanceStatus.COMPLETED)
+                plan.status = PlanInstanceStatus.COMPLETED.value
+            except ValueError:
+                pass
+            enrolment.status = EnrolmentStatus.COMPLETED.value
+
+        db.session.commit()
+        return self.get_journey(user_id=user_id, subject_code=enrolment.subject_code)
+
+    # ── Progress / readiness / EK projections ─────────────────────────────
+
+    def get_progress(
+        self,
+        *,
+        user_id: int,
+        subject_code: str,
+    ) -> ProgressSnapshot:
+        enrolment = self._require_enrolment(user_id, subject_code)
+        artefacts = self._load_artefacts(enrolment.subject_code)
+        derived = self._derive_progress_for(enrolment, artefacts)
+        return self._progress_snapshot(derived)
+
+    def get_readiness_inputs(
+        self,
+        *,
+        user_id: int,
+        subject_code: str,
+    ) -> ReadinessRuntimeInputs:
+        enrolment = self._require_enrolment(user_id, subject_code)
+        artefacts = self._load_artefacts(enrolment.subject_code)
+        derived = self._derive_progress_for(enrolment, artefacts)
+        return ReadinessRuntimeInputs(
+            curriculum_identity=derived.curriculum_identity,
+            subject_code=enrolment.subject_code,
+            topic_ids=derived.topic_ids,
+            completed_topic_ids=derived.completed_topic_ids,
+            coverage_ratio=derived.coverage_ratio,
+            current_topic_id=derived.current_topic_id,
+            syllabus_complete=derived.syllabus_complete,
+            journey_stage=derived.journey_stage.value,
+        )
+
+    def get_estimated_knowledge_inputs(
+        self,
+        *,
+        user_id: int,
+        subject_code: str,
+    ) -> EstimatedKnowledgeRuntimeInputs:
+        enrolment = self._require_enrolment(user_id, subject_code)
+        artefacts = self._load_artefacts(enrolment.subject_code)
+        derived = self._derive_progress_for(enrolment, artefacts)
+        completed = set(derived.completed_topic_ids)
+        topics = tuple(
+            {
+                "topic_id": topic_id,
+                "completed": topic_id in completed,
+                "has_estimated_knowledge": False,
+                "average_accuracy": None,
+                "mastery_score": None,
+            }
+            for topic_id in derived.topic_ids
+        )
+        return EstimatedKnowledgeRuntimeInputs(
+            curriculum_identity=derived.curriculum_identity,
+            subject_code=enrolment.subject_code,
+            topic_ids=derived.topic_ids,
+            completed_topic_ids=derived.completed_topic_ids,
+            topics=topics,
+        )
+
+    def get_journey(
+        self,
+        *,
+        user_id: int,
+        subject_code: str,
+    ) -> RuntimeJourneySnapshot:
+        enrolment = self._require_enrolment(user_id, subject_code)
+        artefacts = self._load_artefacts(enrolment.subject_code)
+        plan = RuntimeStudyPlanInstance.query.filter_by(
+            enrolment_id=enrolment.enrolment_id,
+        ).order_by(RuntimeStudyPlanInstance.id.desc()).first()
+        if plan is None:
+            raise StudyPlanInstanceNotFound(
+                f"no study plan for enrolment {enrolment.enrolment_id}"
+            )
+        derived = self._derive_progress_for(enrolment, artefacts)
+        open_mission = (
+            RuntimeMissionInstance.query.filter_by(
+                plan_instance_id=plan.plan_instance_id,
+                status=MissionStatus.GENERATED.value,
+            )
+            .order_by(RuntimeMissionInstance.mission_date.desc())
+            .first()
+        )
+        return RuntimeJourneySnapshot(
+            enrolment=self._enrolment_snapshot(enrolment),
+            study_plan=self._plan_snapshot(plan, artefacts=artefacts),
+            progress=self._progress_snapshot(derived),
+            readiness_inputs=ReadinessRuntimeInputs(
+                curriculum_identity=derived.curriculum_identity,
+                subject_code=enrolment.subject_code,
+                topic_ids=derived.topic_ids,
+                completed_topic_ids=derived.completed_topic_ids,
+                coverage_ratio=derived.coverage_ratio,
+                current_topic_id=derived.current_topic_id,
+                syllabus_complete=derived.syllabus_complete,
+                journey_stage=derived.journey_stage.value,
+            ),
+            estimated_knowledge_inputs=self.get_estimated_knowledge_inputs(
+                user_id=user_id,
+                subject_code=subject_code,
+            ),
+            open_mission=(
+                self._mission_snapshot(
+                    open_mission,
+                    artefacts=artefacts,
+                    completed_topic_ids=derived.completed_topic_ids,
+                )
+                if open_mission
+                else None
+            ),
+            runtime_authority=RuntimeAuthority.PUBLISHED_CURRICULUM.value,
+        )
+
+    def get_journey_explanation(
+        self,
+        *,
+        user_id: int,
+        subject_code: str,
+    ) -> JourneyExplanationSnapshot:
+        """Explain why today / why previous complete / what unlocks next (EQ-001)."""
+        enrolment = self._require_enrolment(user_id, subject_code)
+        artefacts = self._load_artefacts(enrolment.subject_code)
+        progress = self._progress_snapshot(
+            self._derive_progress_for(enrolment, artefacts)
+        )
+        previous_topic_id = self._previous_completed_topic(
+            user_id=user_id,
+            curriculum_identity=enrolment.curriculum_identity,
+        )
+        return self._quality.build_journey_explanation_snapshot(
+            artefacts=artefacts,
+            progress=progress,
+            previous_topic_id=previous_topic_id,
+        )
+
+    def project_pacing(
+        self,
+        *,
+        user_id: int,
+        subject_code: str,
+        as_of: date | None = None,
+        weekday_minutes: int = 90,
+        weekend_minutes: int = 120,
+    ) -> StudyPlanPacingSnapshot:
+        """Read-only pacing projection with exam-date awareness and revision share."""
+        enrolment = self._require_enrolment(user_id, subject_code)
+        artefacts = self._load_artefacts(enrolment.subject_code)
+        return self._quality.build_pacing_snapshot(
+            artefacts=artefacts,
+            exam_date=enrolment.exam_date,
+            as_of=as_of or date.today(),
+            weekday_minutes=weekday_minutes,
+            weekend_minutes=weekend_minutes,
+        )
+
+    def list_events(
+        self,
+        *,
+        user_id: int,
+        subject_code: str | None = None,
+    ) -> tuple[EducationalEventSnapshot, ...]:
+        query = RuntimeEducationalEvent.query.filter_by(user_id=user_id)
+        if subject_code:
+            enrolment = self._require_enrolment(user_id, subject_code)
+            query = query.filter_by(
+                curriculum_identity=enrolment.curriculum_identity
+            )
+        rows = query.order_by(
+            RuntimeEducationalEvent.occurred_at.asc(),
+            RuntimeEducationalEvent.id.asc(),
+        ).all()
+        return tuple(self._event_snapshot(row) for row in rows)
+
+    # ── Internals ─────────────────────────────────────────────────────────
+
+    def _load_artefacts(self, subject_code: str) -> EducationalArtefactSnapshot:
+        snapshot = self._artefacts.derive_active(subject_code)
+        if snapshot is None:
+            raise PublishedCurriculumUnavailable(
+                f"no active published curriculum for subject {subject_code}"
+            )
+        return snapshot
+
+    def _require_enrolment(self, user_id: int, subject_code: str) -> RuntimeEnrolment:
+        code = (subject_code or "").strip().upper()
+        enrolment = (
+            RuntimeEnrolment.query.filter_by(user_id=user_id, subject_code=code)
+            .order_by(RuntimeEnrolment.id.desc())
+            .first()
+        )
+        if enrolment is None:
+            raise EnrolmentNotFound(f"user {user_id} not enrolled in {code}")
+        return enrolment
+
+    def _require_active_enrolment(
+        self, user_id: int, subject_code: str
+    ) -> RuntimeEnrolment:
+        enrolment = self._require_enrolment(user_id, subject_code)
+        if enrolment.status != EnrolmentStatus.ACTIVE.value:
+            raise IllegalRuntimeState(
+                f"enrolment {enrolment.enrolment_id} is {enrolment.status}"
+            )
+        return enrolment
+
+    def _require_active_plan(
+        self, enrolment: RuntimeEnrolment
+    ) -> RuntimeStudyPlanInstance:
+        plan = RuntimeStudyPlanInstance.query.filter_by(
+            enrolment_id=enrolment.enrolment_id,
+            status=PlanInstanceStatus.ACTIVE.value,
+        ).first()
+        if plan is None:
+            raise StudyPlanInstanceNotFound(
+                f"no active study plan for enrolment {enrolment.enrolment_id}"
+            )
+        return plan
+
+    def _progress_model_spec(
+        self, artefacts: EducationalArtefactSnapshot
+    ) -> ProgressModelSpec:
+        model = artefacts.progress_model
+        if model is None:
+            raise IllegalRuntimeState("artefacts missing progress_model")
+        topics = tuple(
+            ProgressTopicSpec(
+                topic_id=str(topic["topic_id"]),
+                topic_code=str(topic.get("topic_code") or ""),
+                objective_ids=tuple(topic.get("objective_ids") or ()),
+                prerequisite_ids=tuple(topic.get("prerequisite_ids") or ()),
+            )
+            for topic in model.topics
+        )
+        return ProgressModelSpec(
+            curriculum_identity=model.curriculum_identity,
+            topic_ids=tuple(model.topic_ids),
+            topics=topics,
+        )
+
+    def _derive_progress_for(
+        self,
+        enrolment: RuntimeEnrolment,
+        artefacts: EducationalArtefactSnapshot,
+    ):
+        return derive_progress(
+            self._progress_model_spec(artefacts),
+            self._event_records(
+                user_id=enrolment.user_id,
+                curriculum_identity=enrolment.curriculum_identity,
+            ),
+        )
+
+    def _event_records(
+        self,
+        *,
+        user_id: int,
+        curriculum_identity: str,
+    ) -> tuple[EducationalEventRecord, ...]:
+        rows = (
+            RuntimeEducationalEvent.query.filter_by(
+                user_id=user_id,
+                curriculum_identity=curriculum_identity,
+            )
+            .order_by(
+                RuntimeEducationalEvent.occurred_at.asc(),
+                RuntimeEducationalEvent.id.asc(),
+            )
+            .all()
+        )
+        return tuple(
+            EducationalEventRecord(
+                event_id=row.event_id,
+                event_type=EducationalEventType(row.event_type),
+                user_id=row.user_id,
+                curriculum_identity=row.curriculum_identity,
+                enrolment_id=row.enrolment_id,
+                plan_instance_id=row.plan_instance_id,
+                topic_id=row.topic_id,
+                mission_instance_id=row.mission_instance_id,
+                payload=json.loads(row.payload_json or "{}"),
+                occurred_at=row.occurred_at,
+            )
+            for row in rows
+        )
+
+    def _mission_template_for_topic(
+        self,
+        artefacts: EducationalArtefactSnapshot,
+        topic_id: str,
+    ) -> MissionTemplateSnapshot | None:
+        for template in artefacts.mission_templates:
+            if template.topic_id == topic_id:
+                return template
+        return None
+
+    def _append_event(
+        self,
+        *,
+        event_type: EducationalEventType,
+        user_id: int,
+        curriculum_identity: str,
+        enrolment_id: str | None = None,
+        plan_instance_id: str | None = None,
+        topic_id: str | None = None,
+        mission_instance_id: str | None = None,
+        payload: dict[str, Any] | None = None,
+        occurred_at: datetime | None = None,
+    ) -> RuntimeEducationalEvent:
+        row = RuntimeEducationalEvent(
+            event_id=_new_id("evt"),
+            event_type=event_type.value,
+            user_id=user_id,
+            enrolment_id=enrolment_id,
+            plan_instance_id=plan_instance_id,
+            curriculum_identity=curriculum_identity,
+            topic_id=topic_id,
+            mission_instance_id=mission_instance_id,
+            payload_json=json.dumps(payload or {}),
+            occurred_at=occurred_at or _utc_now(),
+        )
+        db.session.add(row)
+        return row
+
+    def _enrolment_snapshot(self, row: RuntimeEnrolment) -> EnrolmentSnapshot:
+        return EnrolmentSnapshot(
+            enrolment_id=row.enrolment_id,
+            user_id=row.user_id,
+            subject_code=row.subject_code,
+            curriculum_identity=row.curriculum_identity,
+            version_label=row.version_label,
+            published_package_id=row.published_package_id,
+            status=row.status,
+            exam_date=row.exam_date,
+            created_at=row.created_at,
+        )
+
+    def _plan_snapshot(
+        self,
+        row: RuntimeStudyPlanInstance,
+        *,
+        artefacts: EducationalArtefactSnapshot | None = None,
+    ) -> StudyPlanInstanceSnapshot:
+        topic_ids: tuple[str, ...] = ()
+        if artefacts and artefacts.study_plan_template:
+            topic_ids = tuple(
+                str(t["topic_id"])
+                for t in artefacts.study_plan_template.topic_templates
+            )
+        return StudyPlanInstanceSnapshot(
+            plan_instance_id=row.plan_instance_id,
+            enrolment_id=row.enrolment_id,
+            user_id=row.user_id,
+            subject_code=row.subject_code,
+            curriculum_identity=row.curriculum_identity,
+            version_label=row.version_label,
+            status=row.status,
+            current_topic_id=row.current_topic_id,
+            topic_template_ids=topic_ids,
+            created_at=row.created_at,
+        )
+
+    def _mission_snapshot(
+        self,
+        row: RuntimeMissionInstance,
+        *,
+        artefacts: EducationalArtefactSnapshot | None = None,
+        completed_topic_ids: tuple[str, ...] | set[str] | None = None,
+    ) -> MissionInstanceSnapshot:
+        tasks = tuple(json.loads(row.task_descriptions_json or "[]"))
+        quality = None
+        if artefacts is not None:
+            template = next(
+                (
+                    t
+                    for t in artefacts.mission_templates
+                    if t.template_id == row.template_id
+                ),
+                None,
+            )
+            if template is not None:
+                quality = self._quality.build_mission_quality_envelope(
+                    template=template,
+                    artefacts=artefacts,
+                    completed_topic_ids=completed_topic_ids or (),
+                )
+        return MissionInstanceSnapshot(
+            mission_instance_id=row.mission_instance_id,
+            plan_instance_id=row.plan_instance_id,
+            user_id=row.user_id,
+            curriculum_identity=row.curriculum_identity,
+            template_id=row.template_id,
+            topic_id=row.topic_id,
+            topic_code=row.topic_code,
+            title=row.title,
+            task_descriptions=tasks,
+            mission_date=row.mission_date,
+            status=row.status,
+            created_at=row.created_at,
+            completed_at=row.completed_at,
+            quality=quality,
+        )
+
+    def _previous_completed_topic(
+        self,
+        *,
+        user_id: int,
+        curriculum_identity: str,
+    ) -> str | None:
+        rows = (
+            RuntimeEducationalEvent.query.filter_by(
+                user_id=user_id,
+                curriculum_identity=curriculum_identity,
+                event_type=EducationalEventType.TOPIC_COMPLETED.value,
+            )
+            .order_by(
+                RuntimeEducationalEvent.occurred_at.desc(),
+                RuntimeEducationalEvent.id.desc(),
+            )
+            .all()
+        )
+        for row in rows:
+            if row.topic_id:
+                return row.topic_id
+        return None
+
+    @staticmethod
+    def _progress_snapshot(derived) -> ProgressSnapshot:
+        return ProgressSnapshot(
+            curriculum_identity=derived.curriculum_identity,
+            topic_ids=derived.topic_ids,
+            completed_topic_ids=derived.completed_topic_ids,
+            incomplete_topic_ids=derived.incomplete_topic_ids,
+            current_topic_id=derived.current_topic_id,
+            coverage_ratio=derived.coverage_ratio,
+            journey_stage=derived.journey_stage.value,
+            syllabus_complete=derived.syllabus_complete,
+        )
+
+    @staticmethod
+    def _event_snapshot(row: RuntimeEducationalEvent) -> EducationalEventSnapshot:
+        return EducationalEventSnapshot(
+            event_id=row.event_id,
+            event_type=row.event_type,
+            user_id=row.user_id,
+            curriculum_identity=row.curriculum_identity,
+            enrolment_id=row.enrolment_id,
+            plan_instance_id=row.plan_instance_id,
+            topic_id=row.topic_id,
+            mission_instance_id=row.mission_instance_id,
+            payload=json.loads(row.payload_json or "{}"),
+            occurred_at=row.occurred_at,
+        )

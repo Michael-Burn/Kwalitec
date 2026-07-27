@@ -46,12 +46,24 @@ def login():
             if AlphaOnboardingService.should_show(user):
                 return redirect(url_for("alpha.onboarding"))
 
-            # Check if user has an active study plan
+            # Check if user has an active study plan (Runtime A) or an
+            # active Runtime C enrolment. Runtime C pilots have no StudyPlan
+            # row; sending them back to the wizard on every login blocks
+            # consecutive study sessions (PR-001B).
             from app.services.study_plan_service import StudyPlanService
-            active_plan = StudyPlanService.get_user_active_plan(user.id)
 
+            active_plan = StudyPlanService.get_user_active_plan(user.id)
             if not active_plan:
-                # Redirect to study plan wizard if no active plan
+                from app.application.educational_experience import (
+                    EducationalExperienceService,
+                )
+
+                if EducationalExperienceService().has_runtime_c_enrolment(
+                    user.id
+                ):
+                    return redirect(
+                        _safe_next_url() or canonical_home_url()
+                    )
                 return redirect(url_for("study_plan.wizard_step", step=1))
 
             return redirect(_safe_next_url() or canonical_home_url())

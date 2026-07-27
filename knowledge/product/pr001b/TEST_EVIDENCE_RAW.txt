@@ -1,0 +1,33 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.6, pytest-8.3.4, pluggy-1.6.0 -- /Library/Frameworks/Python.framework/Versions/3.14/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/kwalitec/Developer/kwalitec
+configfile: pyproject.toml
+collecting ... collected 17 items
+
+tests/certification/test_pr001b_student_pilot.py::TestFirstDayExperience::test_discover_published_subject_via_bridge PASSED [  5%]
+tests/certification/test_pr001b_student_pilot.py::TestFirstDayExperience::test_home_shows_mission_and_clarity PASSED [ 11%]
+tests/certification/test_pr001b_student_pilot.py::TestFirstDayExperience::test_complete_mission_updates_progress PASSED [ 17%]
+tests/certification/test_pr001b_student_pilot.py::TestLoginReturnPath::test_login_lands_on_home_not_wizard PASSED [ 23%]
+tests/certification/test_pr001b_student_pilot.py::TestInterruptedAndMissedDay::test_interrupted_session_keeps_same_mission PASSED [ 29%]
+tests/certification/test_pr001b_student_pilot.py::TestInterruptedAndMissedDay::test_missed_day_return_still_shows_current_topic PASSED [ 35%]
+tests/certification/test_pr001b_student_pilot.py::TestConsecutiveSessionsAndMultipleMissions::test_next_day_advances_after_completion PASSED [ 41%]
+tests/certification/test_pr001b_student_pilot.py::TestConsecutiveSessionsAndMultipleMissions::test_multiple_missions_across_days PASSED [ 47%]
+tests/certification/test_pr001b_student_pilot.py::TestEducationalClarityAnswers::test_four_clarity_questions PASSED [ 52%]
+tests/certification/test_pr001b_student_pilot.py::TestOperationalRecovery::test_duplicate_complete_is_recoverable PASSED [ 58%]
+tests/certification/test_pr001b_student_pilot.py::TestOperationalRecovery::test_coexistence_runtime_a_unchanged PASSED [ 64%]
+tests/certification/test_pr001b_student_pilot.py::TestOperationalRecovery::test_journey_shows_advancement_after_complete PASSED [ 70%]
+tests/application/educational_experience/test_acceptance.py::test_educational_experience_surfaces_eq001_fields PASSED [ 76%]
+tests/application/educational_experience/test_acceptance.py::test_runtime_a_student_has_no_educational_experience PASSED [ 82%]
+tests/application/educational_experience/test_acceptance.py::test_page_view_model_carries_educational_panel PASSED [ 88%]
+tests/application/educational_experience/test_acceptance.py::test_home_and_journey_http_render_educational_fields PASSED [ 94%]
+tests/application/educational_experience/test_acceptance.py::test_coexistence_runtime_a_home_unchanged_without_runtime_c PASSED [100%]
+
+=============================== warnings summary ===============================
+tests/certification/test_pr001b_student_pilot.py::TestOperationalRecovery::test_coexistence_runtime_a_unchanged
+tests/application/educational_experience/test_acceptance.py::test_coexistence_runtime_a_home_unchanged_without_runtime_c
+  /Users/kwalitec/Developer/kwalitec/app/application/student_experience/recommendation_commitment.py:608: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    since = datetime.utcnow() - timedelta(days=max(1, within_days))
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 17 passed, 2 warnings in 2.95s ========================

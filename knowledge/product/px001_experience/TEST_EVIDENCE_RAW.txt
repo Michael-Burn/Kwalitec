@@ -1,0 +1,20 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.6, pytest-8.3.4, pluggy-1.6.0 -- /Library/Frameworks/Python.framework/Versions/3.14/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/kwalitec/Developer/kwalitec
+configfile: pyproject.toml
+collecting ... collected 5 items
+
+tests/application/educational_experience/test_acceptance.py::test_educational_experience_surfaces_eq001_fields PASSED [ 20%]
+tests/application/educational_experience/test_acceptance.py::test_runtime_a_student_has_no_educational_experience PASSED [ 40%]
+tests/application/educational_experience/test_acceptance.py::test_page_view_model_carries_educational_panel PASSED [ 60%]
+tests/application/educational_experience/test_acceptance.py::test_home_and_journey_http_render_educational_fields PASSED [ 80%]
+tests/application/educational_experience/test_acceptance.py::test_coexistence_runtime_a_home_unchanged_without_runtime_c PASSED [100%]
+
+=============================== warnings summary ===============================
+tests/application/educational_experience/test_acceptance.py::test_coexistence_runtime_a_home_unchanged_without_runtime_c
+  /Users/kwalitec/Developer/kwalitec/app/application/student_experience/recommendation_commitment.py:608: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    since = datetime.utcnow() - timedelta(days=max(1, within_days))
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+========================= 5 passed, 1 warning in 1.39s =========================

@@ -154,6 +154,45 @@ class JourneyCardViewModel:
 
 
 @dataclass(frozen=True)
+class EducationalExperienceViewModel:
+    """Student-visible Runtime C educational information (PX-001)."""
+
+    active: bool = False
+    subject_code: str = ""
+    examination_label: str = ""
+    today_topic_title: str = ""
+    today_topic_code: str = ""
+    section_title: str = ""
+    position_label: str = ""
+    coverage_percent: int = 0
+    coverage_label: str = ""
+    mission_title: str = ""
+    mission_rationale: str = ""
+    learning_objectives: tuple[str, ...] = ()
+    estimated_duration_label: str = ""
+    completion_definition: str = ""
+    prerequisite_status_label: str = ""
+    prerequisite_satisfied: bool = True
+    task_descriptions: tuple[str, ...] = ()
+    why_this_mission: str = ""
+    supporting_evidence: tuple[str, ...] = ()
+    confidence_label: str = ""
+    expected_benefit: str = ""
+    suggested_next_action: str = ""
+    review_point: str = ""
+    why_today: str = ""
+    why_previous_complete: str = ""
+    unlocks_next: str = ""
+    journey_evidence: tuple[str, ...] = ()
+    progress_percent: int = 0
+    progress_label: str = ""
+    pacing_summary: str = ""
+    feasibility_label: str = ""
+    exam_date_label: str = ""
+    syllabus_complete: bool = False
+
+
+@dataclass(frozen=True)
 class JourneyPageViewModel:
     examination_label: str = ""
     current: JourneyTopicViewModel | None = None
@@ -167,6 +206,8 @@ class JourneyPageViewModel:
     upcoming_count: int = 0
     primary_cta_label: str = "Continue Journey"
     primary_cta_enabled: bool = False
+    # PX-001 — Runtime C educational enrichment (optional).
+    educational: EducationalExperienceViewModel | None = None
 
 
 @dataclass(frozen=True)
@@ -404,6 +445,8 @@ class HomePageViewModel:
     l1_expected_benefit: str = ""
     # EP-008.3 — Recommendation Commitment.
     commitment: CommitmentViewModel | None = None
+    # PX-001 — Runtime C educational enrichment (optional).
+    educational: EducationalExperienceViewModel | None = None
 
 @dataclass(frozen=True)
 class StudentShellViewModel:
@@ -430,6 +473,8 @@ class StudentPageViewModel:
     revision: RevisionPageViewModel | None = None
     history: HistoryPageViewModel | None = None
     profile: ProfilePageViewModel | None = None
+    # PX-001 — Runtime C educational experience (when enrolled).
+    educational: EducationalExperienceViewModel | None = None
 
 
 # PX-002A T1-2: re-exported from the shared helper so Home, Mission and

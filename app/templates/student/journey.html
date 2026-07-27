@@ -1,16 +1,22 @@
 {% extends "student/base.html" %}
 {% set title = page.shell.page_title %}
 {% from "student/components/progress_card.html" import progress_card %}
+{% from "student/components/educational_experience.html" import educational_experience_panel %}
 
 {% block content %}
 {% if page.journey %}
 {% set journey = page.journey %}
+{% set edu = page.educational or journey.educational %}
 
 {{ progress_card(
     journey.progress_percent,
     journey.progress_label,
     journey.estimated_completion_label
 ) }}
+
+{% if edu and edu.active %}
+{{ educational_experience_panel(edu, surface='journey') }}
+{% endif %}
 
 <section class="student-journey-map" aria-label="Learning journey">
     {% if journey.current %}

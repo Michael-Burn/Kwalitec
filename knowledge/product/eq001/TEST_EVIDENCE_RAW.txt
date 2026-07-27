@@ -1,0 +1,21 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.6, pytest-8.3.4, pluggy-1.6.0 -- /Library/Frameworks/Python.framework/Versions/3.14/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/kwalitec/Developer/kwalitec
+configfile: pyproject.toml
+collecting ... collected 12 items
+
+tests/certification/test_eq001_educational_quality.py::test_eq_m_artefact_mission_quality_rules PASSED [  8%]
+tests/certification/test_eq001_educational_quality.py::test_eq_p_study_plan_quality_rules PASSED [ 16%]
+tests/certification/test_eq001_educational_quality.py::test_eq_m06_m07_generated_mission_quality_envelope PASSED [ 25%]
+tests/certification/test_eq001_educational_quality.py::test_eq_j_journey_explainability PASSED [ 33%]
+tests/certification/test_eq001_educational_quality.py::test_eq_p04_p06_exam_aware_pacing_and_revision PASSED [ 41%]
+tests/certification/test_eq001_educational_quality.py::test_eq_end_to_end_published_subject_quality PASSED [ 50%]
+tests/certification/test_eq001_educational_quality.py::test_eq_prerequisite_gate_blocks_illegal_mission PASSED [ 58%]
+tests/domain/educational_quality/test_rules.py::test_mission_rationale_avoids_mastery_claims PASSED [ 66%]
+tests/domain/educational_quality/test_rules.py::test_prerequisite_validation PASSED [ 75%]
+tests/domain/educational_quality/test_rules.py::test_journey_explanation_answers_three_questions PASSED [ 83%]
+tests/domain/educational_quality/test_rules.py::test_pacing_revision_and_honest_shortfall PASSED [ 91%]
+tests/domain/educational_engine_foundation/test_derivation.py::test_deriver_builds_all_required_artefacts PASSED [100%]
+
+============================== 12 passed in 1.35s ==============================
