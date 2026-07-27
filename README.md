@@ -170,10 +170,27 @@ cp .env.example .env        # set SECRET_KEY, ADMIN_EMAIL, ADMIN_PASSWORD
 export FLASK_APP=run.py
 flask db upgrade
 flask create-admin
-flask run                   # or: python run.py
+flask run                   # or: python run.py  (defaults to port 5001)
 ```
 
-Then open `http://127.0.0.1:5000` and sign in with the admin credentials from `.env`.
+Then open `http://127.0.0.1:5001` and sign in with the admin credentials from `.env`.
+
+> **macOS note:** System Settings → AirPlay Receiver often binds **TCP 5000**. Requests to `http://127.0.0.1:5000/...` then hit AirTunes (HTTP 403, empty body) — a completely blank page — not Flask. Use port **5001** (`FLASK_RUN_PORT` in `.env`) or disable AirPlay Receiver.
+
+## Synchronising Local Admin
+
+When local `.env` credentials and the SQLite database drift apart (for example after changing `ADMIN_PASSWORD` without recreating the database), synchronise explicitly:
+
+```bash
+export ADMIN_EMAIL=ctshumba01@gmail.com
+export ADMIN_PASSWORD=my-password
+
+flask sync-admin
+```
+
+`flask sync-admin` updates the password for the user matching `ADMIN_EMAIL`, ensures Founder / Administrator / Student RBAC, and creates the administrator if that email does not yet exist. It is idempotent and intended for **local development**.
+
+Production startup still creates an admin only when **no users exist**; it never overwrites passwords automatically. Use `flask sync-admin` only when you deliberately want to align the database with the current environment.
 
 | Step | Command / note |
 |---|---|

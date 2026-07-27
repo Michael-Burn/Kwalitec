@@ -65,7 +65,7 @@ kwalitec/
 │   ├── extensions.py        # db, migrate, login_manager, csrf
 │   ├── brand_identity.py    # Internal Alpha / Command Centre labels
 │   ├── version.py           # APP_VERSION source of truth
-│   ├── cli.py               # flask create-admin
+│   ├── cli.py               # flask create-admin / sync-admin / create-test-user
 │   ├── auth/                # Login / logout blueprint
 │   ├── dashboard/           # Student dashboard blueprint
 │   ├── mission/             # Study sessions blueprint
@@ -132,6 +132,12 @@ Business logic lives in `app/services/`. Representative services:
 | `exam_timeline.py` | Sitting dates and timeline helpers |
 | `burnout_monitor.py` | Workload intensity signals |
 | `startup_service.py` | Production-only migrate + admin bootstrap |
+
+Application-layer curriculum intelligence (CIP-001 / CIP-002) lives under
+`app/application/curriculum_intelligence/` (extraction → parse → map → graph,
+plus provenance, confidence, validation, Founder review, and audit).
+It extends Founder document upload; it does not replace `CurriculumService` or
+the JSON Curriculum Engine. Embeddings belong to CIP-003.
 
 **Rule:** Prefer calling `CurriculumService` traversal helpers (`get_sections`, `get_topics_for_section`, `get_all_topics_ordered`) over ad-hoc topic queries so V1/V2 ordering stays consistent.
 

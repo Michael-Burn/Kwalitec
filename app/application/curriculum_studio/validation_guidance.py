@@ -22,26 +22,24 @@ class FindingGuidance:
 
 VALIDATION_FINDING_GUIDANCE: dict[str, FindingGuidance] = {
     "missing_cmp": FindingGuidance(
-        issue="CMP source is not present.",
+        issue="Official CMP is not present.",
         why_it_matters=(
-            "Without a Curriculum Master Pack reference the Studio cannot "
-            "derive sections, topics, or learning objectives for students."
+            "Without an Official CMP the Studio cannot derive sections, "
+            "topics, or learning objectives for students."
         ),
         recovery_action=(
-            "Assign a version label, enter a CMP reference "
-            "(for example ref://cmp/subject-2026), then upload sources "
-            "and run Validate Curriculum again."
+            "Upload the Official CMP PDF in Content Sources, then run "
+            "Validate Curriculum again."
         ),
     ),
     "missing_syllabus": FindingGuidance(
-        issue="Official syllabus source is not present.",
+        issue="Official syllabus is not present.",
         why_it_matters=(
             "Publication must stay grounded in the official syllabus so "
             "student journeys follow authorised curriculum order."
         ),
         recovery_action=(
-            "Enter a syllabus reference (for example "
-            "ref://syllabus/subject-2026), upload sources, then run "
+            "Upload the Official Syllabus PDF in Content Sources, then run "
             "Validate Curriculum again."
         ),
     ),
@@ -52,8 +50,8 @@ VALIDATION_FINDING_GUIDANCE: dict[str, FindingGuidance] = {
             "is unsafe to preview or publish."
         ),
         recovery_action=(
-            "Check CMP and syllabus references, re-upload corrected "
-            "sources, then run Validate Curriculum again."
+            "Check the Official CMP and Official Syllabus PDFs, replace "
+            "them if needed, then run Validate Curriculum again."
         ),
     ),
     "ingestion_warning": FindingGuidance(

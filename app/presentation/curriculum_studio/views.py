@@ -8,7 +8,10 @@ from app.application.curriculum_studio.curriculum_studio_service import (
     CurriculumStudioService,
 )
 from app.application.curriculum_studio.exceptions import WorkspaceNotFound
-from app.presentation.curriculum_studio.factory import get_studio_service
+from app.presentation.curriculum_studio.factory import (
+    get_document_upload_service,
+    get_studio_service,
+)
 from app.presentation.curriculum_studio.view_models import (
     EMPTY_CHECKLIST_SUMMARY,
     EMPTY_PREVIEW_SUMMARY,
@@ -26,6 +29,10 @@ from app.presentation.curriculum_studio.view_models import (
 
 def service() -> CurriculumStudioService:
     return get_studio_service()
+
+
+def document_upload_service():
+    return get_document_upload_service()
 
 
 def actor_id() -> str:

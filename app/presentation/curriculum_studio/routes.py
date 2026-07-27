@@ -1,15 +1,23 @@
 """HTTP routes for Curriculum Studio (V2-016C).
 
-Thin Flask layer: founder auth → views → templates.
+Thin Flask layer: founder auth → views → templates / JSON.
 Publication / validation authority stay on Management / Studio services.
+Document bytes are handled only via DocumentUploadService.
 """
 
 from __future__ import annotations
 
 import logging
+from io import BytesIO
 
-from flask import flash, redirect, render_template, url_for
+from flask import flash, jsonify, redirect, render_template, request, send_file, url_for
 
+from app.application.curriculum_studio.document_upload_exceptions import (
+    DocumentNotFoundError,
+    DocumentUploadError,
+    DocumentValidationError,
+    DuplicateDocumentError,
+)
 from app.founder.dashboard.access import founder_required
 from app.presentation.curriculum_studio import studio_bp
 from app.presentation.curriculum_studio.forms import (
@@ -20,13 +28,13 @@ from app.presentation.curriculum_studio.forms import (
     CreateWorkspaceForm,
     PreviewWorkspaceForm,
     PublishWorkspaceForm,
-    UploadSourcesForm,
     ValidateWorkspaceForm,
 )
 from app.presentation.curriculum_studio.operator_guidance import recover_flash
 from app.presentation.curriculum_studio.view_models import FLASH_SUCCESS, FLASH_WARNING
 from app.presentation.curriculum_studio.views import (
     actor_id,
+    document_upload_service,
     load_dashboard,
     load_workspace,
     service,
@@ -36,9 +44,13 @@ logger = logging.getLogger(__name__)
 
 
 def _workspace_redirect(workspace_id: str):
-    return redirect(
-        url_for("curriculum_studio.workspace", workspace_id=workspace_id)
-    )
+    return redirect(url_for("curriculum_studio.workspace", workspace_id=workspace_id))
+
+
+def _json_error(exc: Exception, *, status: int = 400):
+    if isinstance(exc, DocumentUploadError):
+        return jsonify({"ok": False, "error": exc.message, "code": exc.code}), status
+    return jsonify({"ok": False, "error": str(exc), "code": "error"}), status
 
 
 @studio_bp.get("/")
@@ -115,8 +127,8 @@ def workspace(workspace_id: str):
     publish.workspace_id.data = workspace_id
     version = AssignVersionForm()
     version.workspace_id.data = workspace_id
-    upload = UploadSourcesForm()
-    upload.workspace_id.data = workspace_id
+    upload_svc = document_upload_service()
+    doc_status = upload_svc.status(workspace_id)
     return render_template(
         "curriculum_studio/workspace.html",
         title=f"Workspace · {page.workspace.subject_code}",
@@ -127,7 +139,10 @@ def workspace(workspace_id: str):
         approve_form=approve,
         publish_form=publish,
         version_form=version,
-        upload_form=upload,
+        document_slots=upload_svc.upload_slots(),
+        document_status=doc_status,
+        documents_by_kind={d.kind: d for d in doc_status.documents},
+        intelligence_workspace_id=workspace_id,
     )
 
 
@@ -218,32 +233,6 @@ def publish(workspace_id: str):
     return _workspace_redirect(workspace_id)
 
 
-@studio_bp.post("/workspaces/<workspace_id>/upload")
-@founder_required
-def upload_sources(workspace_id: str):
-    """Upload CMP / syllabus references (PI-001A foundation path)."""
-    form = UploadSourcesForm()
-    if not form.validate_on_submit():
-        flash(FLASH_WARNING["upload"], "warning")
-        return _workspace_redirect(workspace_id)
-    cmp_ref = (form.cmp_reference.data or "").strip() or None
-    syl_ref = (form.syllabus_reference.data or "").strip() or None
-    if not cmp_ref and not syl_ref:
-        flash(FLASH_WARNING["upload"], "warning")
-        return _workspace_redirect(workspace_id)
-    try:
-        service().workspaces.upload_sources(
-            workspace_id,
-            cmp_reference=cmp_ref,
-            syllabus_reference=syl_ref,
-        )
-        flash(FLASH_SUCCESS["sources_uploaded"], "success")
-    except Exception as exc:
-        logger.warning("Upload sources failed: %s", exc)
-        flash(recover_flash(exc, "upload"), "warning")
-    return _workspace_redirect(workspace_id)
-
-
 @studio_bp.post("/workspaces/<workspace_id>/version")
 @founder_required
 def assign_version(workspace_id: str):
@@ -261,3 +250,725 @@ def assign_version(workspace_id: str):
         logger.warning("Assign version failed: %s", exc)
         flash(recover_flash(exc, "version"), "warning")
     return _workspace_redirect(workspace_id)
+
+
+# ------------------------------------------------------------------ documents
+
+
+@studio_bp.post("/workspaces/<workspace_id>/documents")
+@founder_required
+def upload_document(workspace_id: str):
+    """Upload a curriculum PDF (multipart). Returns metadata JSON only."""
+    kind = (request.form.get("kind") or "").strip()
+    file = request.files.get("file")
+    if not kind or file is None or not file.filename:
+        return _json_error(
+            DocumentValidationError(
+                "Choose a PDF document to upload.",
+                code="missing_file",
+            )
+        )
+    try:
+        payload = file.read()
+        view = document_upload_service().upload(
+            workspace_id,
+            kind=kind,
+            filename=file.filename,
+            data=payload,
+            content_type=file.mimetype or "application/pdf",
+            actor_id=actor_id(),
+        )
+        status = document_upload_service().status(workspace_id)
+        return jsonify(
+            {
+                "ok": True,
+                "document": view.to_dict(),
+                "status": status.to_dict(),
+                "message": "Document uploaded successfully.",
+            }
+        )
+    except DuplicateDocumentError as exc:
+        return _json_error(exc, status=409)
+    except DocumentValidationError as exc:
+        return _json_error(exc, status=400)
+    except DocumentUploadError as exc:
+        return _json_error(exc, status=400)
+    except Exception as exc:
+        logger.warning("Document upload failed: %s", exc)
+        return _json_error(
+            DocumentUploadError(
+                "We couldn't upload this document. Please try again.",
+            ),
+            status=500,
+        )
+
+
+@studio_bp.post("/workspaces/<workspace_id>/documents/<int:document_id>/replace")
+@founder_required
+def replace_document(workspace_id: str, document_id: int):
+    file = request.files.get("file")
+    if file is None or not file.filename:
+        return _json_error(
+            DocumentValidationError(
+                "Choose a PDF document to replace the current file.",
+                code="missing_file",
+            )
+        )
+    try:
+        view = document_upload_service().replace(
+            workspace_id,
+            document_id,
+            filename=file.filename,
+            data=file.read(),
+            content_type=file.mimetype or "application/pdf",
+            actor_id=actor_id(),
+        )
+        status = document_upload_service().status(workspace_id)
+        return jsonify(
+            {
+                "ok": True,
+                "document": view.to_dict(),
+                "status": status.to_dict(),
+                "message": "Document replaced successfully.",
+            }
+        )
+    except DuplicateDocumentError as exc:
+        return _json_error(exc, status=409)
+    except DocumentNotFoundError as exc:
+        return _json_error(exc, status=404)
+    except DocumentValidationError as exc:
+        return _json_error(exc, status=400)
+    except DocumentUploadError as exc:
+        return _json_error(exc, status=400)
+    except Exception as exc:
+        logger.warning("Document replace failed: %s", exc)
+        return _json_error(
+            DocumentUploadError(
+                "We couldn't replace this document. Please try again.",
+            ),
+            status=500,
+        )
+
+
+@studio_bp.get("/workspaces/<workspace_id>/documents/<int:document_id>/download")
+@founder_required
+def download_document(workspace_id: str, document_id: int):
+    try:
+        payload, filename, content_type = document_upload_service().download(
+            workspace_id, document_id
+        )
+        return send_file(
+            BytesIO(payload),
+            mimetype=content_type,
+            as_attachment=True,
+            download_name=filename,
+        )
+    except DocumentNotFoundError as exc:
+        flash(exc.message, "warning")
+        return _workspace_redirect(workspace_id)
+    except Exception as exc:
+        logger.warning("Document download failed: %s", exc)
+        flash("We couldn't download this document.", "warning")
+        return _workspace_redirect(workspace_id)
+
+
+@studio_bp.delete("/workspaces/<workspace_id>/documents/<int:document_id>")
+@founder_required
+def remove_document(workspace_id: str, document_id: int):
+    try:
+        view = document_upload_service().remove(workspace_id, document_id)
+        status = document_upload_service().status(workspace_id)
+        return jsonify(
+            {
+                "ok": True,
+                "document": view.to_dict(),
+                "status": status.to_dict(),
+                "message": "Document removed from the active workspace.",
+            }
+        )
+    except DocumentNotFoundError as exc:
+        return _json_error(exc, status=404)
+    except DocumentUploadError as exc:
+        return _json_error(exc, status=400)
+    except Exception as exc:
+        logger.warning("Document remove failed: %s", exc)
+        return _json_error(
+            DocumentUploadError(
+                "We couldn't remove this document. Please try again.",
+            ),
+            status=500,
+        )
+
+
+@studio_bp.get("/workspaces/<workspace_id>/documents/status")
+@founder_required
+def documents_status(workspace_id: str):
+    try:
+        status = document_upload_service().status(workspace_id)
+        return jsonify({"ok": True, "status": status.to_dict()})
+    except DocumentUploadError as exc:
+        return _json_error(exc, status=404)
+    except Exception as exc:
+        logger.warning("Document status failed: %s", exc)
+        return _json_error(
+            DocumentUploadError("We couldn't load document status."),
+            status=500,
+        )
+
+
+@studio_bp.get("/workspaces/<workspace_id>/documents/<int:document_id>/pipeline")
+@founder_required
+def document_pipeline(workspace_id: str, document_id: int):
+    """Inspect CIP processing job for a document."""
+    from app.application.curriculum_intelligence.exceptions import JobNotFoundError
+    from app.application.curriculum_intelligence.processing_job_service import (
+        ProcessingJobService,
+    )
+
+    try:
+        document_upload_service()._require_document(document_id, workspace_id)
+        job = ProcessingJobService().get_latest_for_document(document_id)
+        if job is None:
+            return _json_error(
+                DocumentUploadError(
+                    "No processing job found for this document.",
+                    code="no_job",
+                ),
+                status=404,
+            )
+        return jsonify(
+            {"ok": True, "job": ProcessingJobService().to_view(job).to_dict()}
+        )
+    except DocumentNotFoundError as exc:
+        return _json_error(exc, status=404)
+    except JobNotFoundError as exc:
+        return _json_error(DocumentUploadError(str(exc), code=exc.code), status=404)
+    except Exception as exc:
+        logger.warning("Pipeline inspect failed: %s", exc)
+        return _json_error(
+            DocumentUploadError("We couldn't load processing details."),
+            status=500,
+        )
+
+
+@studio_bp.post("/workspaces/<workspace_id>/documents/<int:document_id>/pipeline/retry")
+@founder_required
+def document_pipeline_retry(workspace_id: str, document_id: int):
+    """Retry a failed CIP job for a document."""
+    from app.application.curriculum_intelligence.exceptions import (
+        CurriculumIntelligenceError,
+    )
+    from app.application.curriculum_intelligence.pipeline_coordinator import (
+        PipelineCoordinator,
+    )
+    from app.application.curriculum_intelligence.processing_job_service import (
+        ProcessingJobService,
+    )
+    from app.infrastructure.adapters.curriculum_intelligence.pypdf_extractor import (
+        PyPdfExtractionAdapter,
+    )
+    from app.presentation.curriculum_studio.factory import get_document_upload_service
+
+    try:
+        document_upload_service()._require_document(document_id, workspace_id)
+        jobs = ProcessingJobService()
+        job = jobs.get_latest_for_document(document_id)
+        if job is None:
+            return _json_error(
+                DocumentUploadError(
+                    "No processing job found for this document.",
+                    code="no_job",
+                ),
+                status=404,
+            )
+        upload_svc = get_document_upload_service()
+        coordinator = PipelineCoordinator(
+            storage=upload_svc._storage,
+            extractor_port=PyPdfExtractionAdapter(),
+            jobs=jobs,
+        )
+        from_scratch = (request.json or {}).get("from_scratch") is True
+        updated = coordinator.retry(job.job_id, from_scratch=from_scratch)
+        status = document_upload_service().status(workspace_id)
+        return jsonify(
+            {
+                "ok": True,
+                "job": jobs.to_view(updated).to_dict(),
+                "status": status.to_dict(),
+                "message": "Processing retry started.",
+            }
+        )
+    except DocumentNotFoundError as exc:
+        return _json_error(exc, status=404)
+    except CurriculumIntelligenceError as exc:
+        return _json_error(DocumentUploadError(str(exc), code=exc.code), status=400)
+    except Exception as exc:
+        logger.warning("Pipeline retry failed: %s", exc)
+        return _json_error(
+            DocumentUploadError("We couldn't retry processing."),
+            status=500,
+        )
+
+
+@studio_bp.post(
+    "/workspaces/<workspace_id>/documents/<int:document_id>/pipeline/cancel"
+)
+@founder_required
+def document_pipeline_cancel(workspace_id: str, document_id: int):
+    """Cancel an in-flight CIP job."""
+    from app.application.curriculum_intelligence.exceptions import (
+        CurriculumIntelligenceError,
+    )
+    from app.application.curriculum_intelligence.processing_job_service import (
+        ProcessingJobService,
+    )
+
+    try:
+        document_upload_service()._require_document(document_id, workspace_id)
+        jobs = ProcessingJobService()
+        job = jobs.get_latest_for_document(document_id)
+        if job is None:
+            return _json_error(
+                DocumentUploadError(
+                    "No processing job found for this document.",
+                    code="no_job",
+                ),
+                status=404,
+            )
+        updated = jobs.request_cancel(job.job_id)
+        status = document_upload_service().status(workspace_id)
+        return jsonify(
+            {
+                "ok": True,
+                "job": jobs.to_view(updated).to_dict(),
+                "status": status.to_dict(),
+                "message": "Processing cancelled.",
+            }
+        )
+    except DocumentNotFoundError as exc:
+        return _json_error(exc, status=404)
+    except CurriculumIntelligenceError as exc:
+        return _json_error(DocumentUploadError(str(exc), code=exc.code), status=400)
+    except Exception as exc:
+        logger.warning("Pipeline cancel failed: %s", exc)
+        return _json_error(
+            DocumentUploadError("We couldn't cancel processing."),
+            status=500,
+        )
+
+
+# ---------------------------------------------------------------------------
+# CIP-002 — Validation, provenance, review, metrics APIs
+# ---------------------------------------------------------------------------
+
+
+@studio_bp.get("/workspaces/<workspace_id>/intelligence/overview")
+@founder_required
+def intelligence_overview(workspace_id: str):
+    """Founder overview of CIP validation & provenance for a workspace."""
+    from app.application.curriculum_intelligence.founder_review_service import (
+        FounderReviewService,
+    )
+    from app.application.curriculum_intelligence.graph_validation_service import (
+        GraphValidationService,
+    )
+    from app.application.curriculum_intelligence.pipeline_metrics_service import (
+        PipelineMetricsService,
+    )
+    from app.models.curriculum_intelligence import CipCurriculumEntity
+    from app.models.curriculum_studio_foundation import StudioFoundationDocument
+
+    try:
+        service().get_workspace(workspace_id)
+    except Exception:
+        return _json_error(
+            DocumentUploadError("Workspace not found.", code="workspace_missing"),
+            status=404,
+        )
+    docs = StudioFoundationDocument.query.filter_by(workspace_id=workspace_id).all()
+    doc_ids = [d.id for d in docs]
+    entity_count = 0
+    if doc_ids:
+        entity_count = CipCurriculumEntity.query.filter(
+            CipCurriculumEntity.document_id.in_(doc_ids)
+        ).count()
+    queue = FounderReviewService().review_queue(workspace_id=workspace_id)
+    metrics = PipelineMetricsService().workspace_summary(workspace_id)
+    reports = GraphValidationService().latest_for_workspace(workspace_id)
+    return jsonify(
+        {
+            "ok": True,
+            "overview": {
+                "document_count": len(docs),
+                "entity_count": entity_count,
+                "review_queue_count": len(queue),
+                "validation_reports": len(reports),
+                "validation_errors": sum(r.error_count for r in reports),
+                "metrics": metrics,
+            },
+        }
+    )
+
+
+@studio_bp.get("/workspaces/<workspace_id>/intelligence/validation")
+@founder_required
+def intelligence_validation(workspace_id: str):
+    from app.application.curriculum_intelligence.graph_validation_service import (
+        GraphValidationService,
+    )
+    from app.presentation.curriculum_studio.intelligence_serializers import (
+        validation_report_public,
+    )
+
+    try:
+        service().get_workspace(workspace_id)
+    except Exception:
+        return _json_error(
+            DocumentUploadError("Workspace not found.", code="workspace_missing"),
+            status=404,
+        )
+    reports = GraphValidationService().latest_for_workspace(workspace_id)
+    return jsonify(
+        {
+            "ok": True,
+            "reports": [validation_report_public(r) for r in reports],
+        }
+    )
+
+
+@studio_bp.get("/workspaces/<workspace_id>/intelligence/review-queue")
+@founder_required
+def intelligence_review_queue(workspace_id: str):
+    from app.application.curriculum_intelligence.founder_review_service import (
+        FounderReviewService,
+    )
+
+    try:
+        service().get_workspace(workspace_id)
+    except Exception:
+        return _json_error(
+            DocumentUploadError("Workspace not found.", code="workspace_missing"),
+            status=404,
+        )
+    items = FounderReviewService().review_queue(workspace_id=workspace_id)
+    return jsonify({"ok": True, "items": items})
+
+
+@studio_bp.post(
+    "/workspaces/<workspace_id>/intelligence/entities/<entity_id>/approve"
+)
+@founder_required
+def intelligence_approve_entity(workspace_id: str, entity_id: str):
+    from app.application.curriculum_intelligence.exceptions import (
+        CurriculumIntelligenceError,
+    )
+    from app.application.curriculum_intelligence.founder_review_service import (
+        FounderReviewService,
+    )
+    from app.extensions import db
+
+    try:
+        service().get_workspace(workspace_id)
+        payload = request.get_json(silent=True) or {}
+        record = FounderReviewService().approve(
+            entity_id=entity_id,
+            actor_id=actor_id(),
+            workspace_id=workspace_id,
+            reason=str(payload.get("reason") or ""),
+        )
+        db.session.commit()
+        return jsonify(
+            {
+                "ok": True,
+                "review_id": record.review_id,
+                "status": record.review_status.value,
+                "message": "Entity approved.",
+            }
+        )
+    except CurriculumIntelligenceError as exc:
+        db.session.rollback()
+        return _json_error(DocumentUploadError(str(exc), code=exc.code), status=400)
+    except Exception as exc:
+        db.session.rollback()
+        logger.warning("Approve entity failed: %s", exc)
+        return _json_error(
+            DocumentUploadError("We couldn't approve this entity."),
+            status=500,
+        )
+
+
+@studio_bp.post(
+    "/workspaces/<workspace_id>/intelligence/entities/<entity_id>/reject"
+)
+@founder_required
+def intelligence_reject_entity(workspace_id: str, entity_id: str):
+    from app.application.curriculum_intelligence.exceptions import (
+        CurriculumIntelligenceError,
+    )
+    from app.application.curriculum_intelligence.founder_review_service import (
+        FounderReviewService,
+    )
+    from app.extensions import db
+
+    try:
+        service().get_workspace(workspace_id)
+        payload = request.get_json(silent=True) or {}
+        record = FounderReviewService().reject(
+            entity_id=entity_id,
+            actor_id=actor_id(),
+            workspace_id=workspace_id,
+            reason=str(payload.get("reason") or ""),
+        )
+        db.session.commit()
+        return jsonify(
+            {
+                "ok": True,
+                "review_id": record.review_id,
+                "status": record.review_status.value,
+                "message": "Entity rejected.",
+            }
+        )
+    except CurriculumIntelligenceError as exc:
+        db.session.rollback()
+        return _json_error(DocumentUploadError(str(exc), code=exc.code), status=400)
+    except Exception as exc:
+        db.session.rollback()
+        logger.warning("Reject entity failed: %s", exc)
+        return _json_error(
+            DocumentUploadError("We couldn't reject this entity."),
+            status=500,
+        )
+
+
+@studio_bp.post(
+    "/workspaces/<workspace_id>/intelligence/entities/<entity_id>/remap"
+)
+@founder_required
+def intelligence_remap_entity(workspace_id: str, entity_id: str):
+    from app.application.curriculum_intelligence.exceptions import (
+        CurriculumIntelligenceError,
+    )
+    from app.application.curriculum_intelligence.founder_review_service import (
+        FounderReviewService,
+    )
+    from app.extensions import db
+
+    try:
+        service().get_workspace(workspace_id)
+        payload = request.get_json(silent=True) or {}
+        record = FounderReviewService().remap(
+            entity_id=entity_id,
+            actor_id=actor_id(),
+            workspace_id=workspace_id,
+            remap_target_id=str(payload.get("remap_target_id") or ""),
+            reason=str(payload.get("reason") or ""),
+            suggested_learning_objective=str(
+                payload.get("suggested_learning_objective") or ""
+            ),
+        )
+        db.session.commit()
+        return jsonify(
+            {
+                "ok": True,
+                "review_id": record.review_id,
+                "status": record.review_status.value,
+                "message": "Entity remapped.",
+            }
+        )
+    except CurriculumIntelligenceError as exc:
+        db.session.rollback()
+        return _json_error(DocumentUploadError(str(exc), code=exc.code), status=400)
+    except Exception as exc:
+        db.session.rollback()
+        logger.warning("Remap entity failed: %s", exc)
+        return _json_error(
+            DocumentUploadError("We couldn't remap this entity."),
+            status=500,
+        )
+
+
+@studio_bp.get("/workspaces/<workspace_id>/intelligence/entities/<entity_id>")
+@founder_required
+def intelligence_entity_details(workspace_id: str, entity_id: str):
+    from app.application.curriculum_intelligence.founder_review_service import (
+        FounderReviewService,
+    )
+    from app.extensions import db
+    from app.models.curriculum_studio_foundation import StudioFoundationDocument
+
+    try:
+        service().get_workspace(workspace_id)
+        details = FounderReviewService().entity_details(entity_id)
+        if details is None:
+            return _json_error(
+                DocumentUploadError("Entity not found.", code="entity_not_found"),
+                status=404,
+            )
+        doc = db.session.get(StudioFoundationDocument, details["document_id"])
+        if doc is None or doc.workspace_id != workspace_id:
+            return _json_error(
+                DocumentUploadError("Entity not found.", code="entity_not_found"),
+                status=404,
+            )
+        return jsonify({"ok": True, "entity": details})
+    except Exception as exc:
+        logger.warning("Entity details failed: %s", exc)
+        return _json_error(
+            DocumentUploadError("We couldn't load entity details."),
+            status=500,
+        )
+
+
+@studio_bp.get(
+    "/workspaces/<workspace_id>/intelligence/entities/<entity_id>/provenance"
+)
+@founder_required
+def intelligence_entity_provenance(workspace_id: str, entity_id: str):
+    from app.application.curriculum_intelligence.provenance_service import (
+        ProvenanceService,
+    )
+    from app.domain.curriculum_intelligence.provenance import ProvenanceSubjectKind
+    from app.extensions import db
+    from app.models.curriculum_intelligence import CipCurriculumEntity
+    from app.models.curriculum_studio_foundation import StudioFoundationDocument
+    from app.presentation.curriculum_studio.intelligence_serializers import (
+        provenance_public,
+    )
+
+    try:
+        service().get_workspace(workspace_id)
+        entity = CipCurriculumEntity.query.filter_by(entity_id=entity_id).first()
+        if entity is None:
+            return _json_error(
+                DocumentUploadError("Entity not found.", code="entity_not_found"),
+                status=404,
+            )
+        doc = db.session.get(StudioFoundationDocument, entity.document_id)
+        if doc is None or doc.workspace_id != workspace_id:
+            return _json_error(
+                DocumentUploadError("Entity not found.", code="entity_not_found"),
+                status=404,
+            )
+        prov = ProvenanceService().get_for_subject(
+            subject_kind=ProvenanceSubjectKind.ENTITY.value, subject_id=entity_id
+        )
+        if prov is None:
+            return _json_error(
+                DocumentUploadError(
+                    "No provenance recorded for this entity.",
+                    code="provenance_missing",
+                ),
+                status=404,
+            )
+        payload = provenance_public(prov)
+        payload["chain"] = ProvenanceService().chain_for_entity(entity_id)
+        return jsonify({"ok": True, "provenance": payload})
+    except Exception as exc:
+        logger.warning("Entity provenance failed: %s", exc)
+        return _json_error(
+            DocumentUploadError("We couldn't load provenance."),
+            status=500,
+        )
+
+
+@studio_bp.get("/workspaces/<workspace_id>/intelligence/audit")
+@founder_required
+def intelligence_audit(workspace_id: str):
+    from app.application.curriculum_intelligence.audit_service import AuditService
+    from app.presentation.curriculum_studio.intelligence_serializers import (
+        audit_event_public,
+    )
+
+    try:
+        service().get_workspace(workspace_id)
+    except Exception:
+        return _json_error(
+            DocumentUploadError("Workspace not found.", code="workspace_missing"),
+            status=404,
+        )
+    limit = 100
+    try:
+        limit = int(request.args.get("limit") or 100)
+    except ValueError:
+        limit = 100
+    events = AuditService().history_for_workspace(
+        workspace_id=workspace_id, limit=limit
+    )
+    return jsonify(
+        {"ok": True, "events": [audit_event_public(e) for e in events]}
+    )
+
+
+@studio_bp.get("/workspaces/<workspace_id>/intelligence/metrics")
+@founder_required
+def intelligence_metrics(workspace_id: str):
+    from app.application.curriculum_intelligence.pipeline_metrics_service import (
+        PipelineMetricsService,
+    )
+
+    try:
+        service().get_workspace(workspace_id)
+    except Exception:
+        return _json_error(
+            DocumentUploadError("Workspace not found.", code="workspace_missing"),
+            status=404,
+        )
+    summary = PipelineMetricsService().workspace_summary(workspace_id)
+    return jsonify({"ok": True, "metrics": summary})
+
+
+@studio_bp.get("/workspaces/<workspace_id>/intelligence/knowledge-graph")
+@founder_required
+def intelligence_knowledge_graph(workspace_id: str):
+    """Educational graph projection for the Knowledge Graph tab."""
+    from app.models.curriculum_intelligence import (
+        CipCurriculumEntity,
+        CipKnowledgeRelation,
+    )
+    from app.models.curriculum_studio_foundation import StudioFoundationDocument
+
+    try:
+        service().get_workspace(workspace_id)
+    except Exception:
+        return _json_error(
+            DocumentUploadError("Workspace not found.", code="workspace_missing"),
+            status=404,
+        )
+    docs = StudioFoundationDocument.query.filter_by(workspace_id=workspace_id).all()
+    doc_ids = [d.id for d in docs]
+    if not doc_ids:
+        return jsonify({"ok": True, "nodes": [], "edges": []})
+    entities = CipCurriculumEntity.query.filter(
+        CipCurriculumEntity.document_id.in_(doc_ids)
+    ).all()
+    relations = CipKnowledgeRelation.query.filter(
+        CipKnowledgeRelation.document_id.in_(doc_ids)
+    ).all()
+    return jsonify(
+        {
+            "ok": True,
+            "nodes": [
+                {
+                    "entity_id": e.entity_id,
+                    "kind": e.kind,
+                    "title": e.title,
+                    "confidence": e.confidence,
+                    "needs_review": e.needs_review,
+                    "document_id": e.document_id,
+                    "version_label": e.version_label,
+                }
+                for e in entities
+            ],
+            "edges": [
+                {
+                    "relation_id": r.relation_id,
+                    "type": r.relation_type,
+                    "from_entity_id": r.from_entity_id,
+                    "to_entity_id": r.to_entity_id,
+                    "confidence": r.confidence,
+                    "needs_review": r.needs_review,
+                }
+                for r in relations
+            ],
+        }
+    )

@@ -91,6 +91,67 @@ def test_canonical_home_endpoint_dual_run_compat():
         assert canonical_session_entry_endpoint() == "mission.missions"
 
 
+def test_canonical_home_endpoint_founder_prefers_console(app, client, ctx):
+    """Founder / Console RBAC users land on Kwalitec Console, not student home."""
+    from app.presentation.consolidation import CONSOLE_HOME_ENDPOINT
+    from tests.presentation.curriculum_studio.helpers import login_founder
+
+    login_founder(client, app)
+    with client:
+        # Keep request context so flask-login can resolve current_user.
+        client.get("/console/")
+        with patch(
+            "app.presentation.consolidation.resolve_v2_feature_flags",
+            return_value=dual_run_flags(SOLE_RUNTIME=True),
+        ):
+            assert canonical_home_endpoint() == CONSOLE_HOME_ENDPOINT
+            # Session-start remains the student study surface even for founders.
+            assert canonical_session_entry_endpoint() == CANONICAL_HOME_ENDPOINT
+
+
+def test_founder_login_lands_on_console(app, client, ctx):
+    """Post-login redirect for founders is Console Home (not student / wizard)."""
+    from tests.presentation.curriculum_studio.helpers import make_founder_user
+
+    app.config["FOUNDER_EMAILS"] = "founder@kwalitec.example"
+    make_founder_user()
+    response = client.post(
+        "/auth/login",
+        data={
+            "email": "founder@kwalitec.example",
+            "password": "password123",
+        },
+        follow_redirects=False,
+    )
+    assert response.status_code in {302, 303}
+    location = response.headers.get("Location", "")
+    assert location.endswith("/console/") or "/console/" in location
+    assert "/student" not in location
+    assert "/study-plan" not in location
+
+
+def test_founder_root_redirects_to_console(app, client, ctx):
+    from tests.presentation.curriculum_studio.helpers import login_founder
+
+    login_founder(client, app)
+    response = client.get("/", follow_redirects=False)
+    assert response.status_code in {302, 303}
+    location = response.headers.get("Location", "")
+    assert location.endswith("/console/") or "/console/" in location
+
+
+def test_console_home_exposes_curriculum_studio_nav(app, client, ctx):
+    from tests.presentation.curriculum_studio.helpers import login_founder
+
+    login_founder(client, app)
+    response = client.get("/console/")
+    assert response.status_code == 200
+    html = response.get_data(as_text=True)
+    assert "console-sidebar" in html
+    assert "/console/studio" in html
+    assert "Content" in html
+
+
 # ---------------------------------------------------------------------------
 # Dual-home removed under sole runtime (navigation)
 # ---------------------------------------------------------------------------
@@ -99,7 +160,7 @@ def test_canonical_home_endpoint_dual_run_compat():
 def test_root_redirects_to_student_under_sole_runtime(app, client, ctx, user):
     login_student(client)
     with patch(
-        "app.application.config.v2_flags.resolve_v2_feature_flags",
+        "app.presentation.consolidation.resolve_v2_feature_flags",
         return_value=dual_run_flags(SOLE_RUNTIME=True),
     ):
         response = client.get("/", follow_redirects=False)

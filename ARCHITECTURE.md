@@ -329,7 +329,8 @@ Curriculum
 
 | Command | Purpose |
 |---|---|
-| `flask create-admin` | Create initial admin from `ADMIN_EMAIL`/`ADMIN_PASSWORD` env vars |
+| `flask create-admin` | Create initial admin from `ADMIN_EMAIL`/`ADMIN_PASSWORD` (skips if any user exists) |
+| `flask sync-admin` | Sync admin password + Founder RBAC from env (explicit; local/dev QoL) |
 | `flask backfill-sections` | Backfill Section rows + `Topic.section_id` for legacy V2 curricula |
 | `flask db upgrade` | Apply Alembic migrations |
 
@@ -425,6 +426,36 @@ tests/
 ```
 
 CI matrix: Python 3.11 / 3.12 / 3.13 + ruff + deploy dry-run on `main`.
+
+---
+
+## Curriculum Intelligence Pipeline (CIP-001 / CIP-002)
+
+Founder-uploaded curriculum PDFs (CS-DOC-001) feed a deterministic pipeline that
+produces structured educational knowledge for the Student Digital Twin roadmap.
+
+CIP-002 adds provenance, confidence, graph validation, Founder review, audit,
+and quality metrics on top of CIP-001 artefacts. Embeddings / retrieval are
+**CIP-003**.
+
+```
+Upload (CS-DOC-001)
+  → Verify → Extract → Normalize → Structural Parse
+  → Curriculum Map → Knowledge Graph → Ready for Embeddings
+       ↘ CIP-002 evidence: provenance · confidence · validation · review · audit
+```
+
+| Concern | Location |
+|---|---|
+| Domain contracts / state machine | `app/domain/curriculum_intelligence/` |
+| Application services | `app/application/curriculum_intelligence/` |
+| pypdf + processing adapter | `app/infrastructure/adapters/curriculum_intelligence/` |
+| Normalised tables | `app/models/curriculum_intelligence.py` |
+| CIP-001 design notes | `knowledge/product/cip001/ARCHITECTURE.md` |
+| CIP-002 design notes | `knowledge/product/cip002/ARCHITECTURE.md` |
+
+Invariant: extraction artefacts never write directly into student Topic/Mission
+entities; OCR/LLM/embeddings are out of scope through CIP-002.
 
 ---
 

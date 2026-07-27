@@ -209,20 +209,18 @@ class TestOperationalErrorRecovery:
         assert "already exists" in html or "couldn't create" in html
         assert "try again" in html
 
-    def test_upload_without_sources_warns(self, app, client, ctx):
+    def test_upload_without_file_returns_validation_error(self, app, client, ctx):
         wire_studio(app, with_workspace=True)
         login_founder(client, app)
         response = client.post(
-            "/console/studio/workspaces/ws-cs1/upload",
-            data={
-                "workspace_id": "ws-cs1",
-                "cmp_reference": "",
-                "syllabus_reference": "",
-            },
-            follow_redirects=True,
+            "/console/studio/workspaces/ws-cs1/documents",
+            data={"kind": "cmp"},
+            content_type="multipart/form-data",
         )
-        html = response.get_data(as_text=True).lower()
-        assert "couldn't upload" in html or "try again" in html
+        payload = response.get_json()
+        assert response.status_code == 400
+        assert payload["ok"] is False
+        assert "pdf" in payload["error"].lower() or "choose" in payload["error"].lower()
 
     def test_publish_without_readiness_recovers(self, app, client, ctx):
         wire_studio(app, with_workspace=True)

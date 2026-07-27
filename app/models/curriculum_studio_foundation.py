@@ -91,9 +91,10 @@ class StudioFoundationVersion(db.Model):
 
 
 class StudioFoundationDocument(db.Model):
-    """Uploaded curriculum document reference (CMP / syllabus / supporting).
+    """Uploaded curriculum document metadata (CMP / syllabus / supporting).
 
-    Stores references and abstract structure payloads — never PDF bytes.
+    Stores opaque references, file metadata, and processing stage — never PDF
+    bytes. Bytes live exclusively in DocumentStorage.
     """
 
     __tablename__ = "studio_foundation_documents"
@@ -102,6 +103,12 @@ class StudioFoundationDocument(db.Model):
             "ix_studio_foundation_documents_version_kind",
             "version_id",
             "kind",
+        ),
+        db.Index(
+            "ix_studio_foundation_documents_workspace_kind_active",
+            "workspace_id",
+            "kind",
+            "is_active",
         ),
     )
 
@@ -119,10 +126,26 @@ class StudioFoundationDocument(db.Model):
     uploaded_by: str = db.Column(db.String(128), nullable=False, default="")
     uploaded_at: datetime = db.Column(db.DateTime, nullable=False, default=_utc_now)
 
+    # File metadata (Phase 1 document-first upload). PDF bytes are never stored.
+    workspace_id: str | None = db.Column(db.String(128), nullable=True, index=True)
+    original_filename: str | None = db.Column(db.String(512), nullable=True)
+    content_type: str | None = db.Column(db.String(128), nullable=True)
+    byte_size: int | None = db.Column(db.Integer, nullable=True)
+    checksum_sha256: str | None = db.Column(db.String(64), nullable=True, index=True)
+    storage_key: str | None = db.Column(db.String(1024), nullable=True)
+    version_number: int = db.Column(db.Integer, nullable=False, default=1)
+    is_active: bool = db.Column(db.Boolean, nullable=False, default=True, index=True)
+    processing_stage: str | None = db.Column(
+        db.String(64), nullable=True, default="uploaded"
+    )
+
     version = db.relationship("StudioFoundationVersion", back_populates="documents")
 
     def __repr__(self) -> str:
-        return f"<StudioFoundationDocument kind={self.kind} id={self.id}>"
+        return (
+            f"<StudioFoundationDocument kind={self.kind} id={self.id} "
+            f"v={self.version_number} active={self.is_active}>"
+        )
 
 
 class StudioFoundationAuditEvent(db.Model):

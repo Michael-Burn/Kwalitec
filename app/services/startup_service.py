@@ -163,11 +163,17 @@ class StartupService:
         """Create the initial admin user if none exists.
 
         If any ``User`` record already exists the method returns immediately
-        (idempotent — never recreates existing users). If no user exists but
-        ``ADMIN_EMAIL`` or ``ADMIN_PASSWORD`` is missing, a warning is logged
-        and startup continues without crashing.
+        (idempotent — never recreates or re-hashes existing users). Password
+        synchronisation is **not** performed here; use ``flask sync-admin``
+        explicitly. If no user exists but ``ADMIN_EMAIL`` or
+        ``ADMIN_PASSWORD`` is missing, a warning is logged and startup
+        continues without crashing.
         """
         from app.models.user import User
+        from app.services.admin_bootstrap_service import (
+            AdminBootstrapError,
+            AdminBootstrapService,
+        )
 
         # Check whether any user already exists
         try:
@@ -183,33 +189,18 @@ class StartupService:
             logger.info("Admin already exists.")
             return
 
-        # Read credentials from the environment
-        email = os.getenv("ADMIN_EMAIL")
-        password = os.getenv("ADMIN_PASSWORD")
-
-        if not email or not password:
-            missing: list[str] = []
-            if not email:
-                missing.append("ADMIN_EMAIL")
-            if not password:
-                missing.append("ADMIN_PASSWORD")
+        try:
+            user = AdminBootstrapService.create_initial_admin_if_empty()
+        except AdminBootstrapError as exc:
             logger.warning(
-                "No admin user exists and missing environment variable(s): "
-                "%s. Skipping admin creation. Set these variables and "
-                "restart to create the admin user.",
-                ", ".join(missing),
+                "No admin user exists and %s Skipping admin creation. "
+                "Set these variables and restart to create the admin user.",
+                str(exc),
             )
             return
 
-        # Create the administrator with Founder + Console RBAC (PR-001).
-        user = User(email=email.strip().lower(), is_active_user=True)
-        user.set_password(password)
-        db.session.add(user)
-        db.session.flush()
-        from app.services.identity_service import IdentityService
-
-        IdentityService.ensure_founder_admin(user)
-        logger.info("Admin created with Founder RBAC.")
+        if user is not None:
+            logger.info("Admin created.")
 
 
     @staticmethod

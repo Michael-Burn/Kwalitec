@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from io import BytesIO
+
 from app.application.curriculum_studio_foundation.authority import (
     PublishedCurriculumAuthority,
 )
@@ -79,32 +81,42 @@ def test_end_to_end_foundation_lifecycle_persists(ctx):
     assert len(events) >= 6
 
 
-def test_studio_upload_route_records_sources(client, ctx, app):
+def test_studio_document_upload_route_records_sources(client, ctx, app, tmp_path):
+    pdf = b"%PDF-1.4\n1 0 obj<<>>endobj\ntrailer<<>>\n%%EOF\n"
+    app.config["DOCUMENT_STORAGE_ROOT"] = str(tmp_path / "docs")
     login_founder(client, app)
     studio, _, _, _ = make_studio_with_ports()
-    seed_workspace(studio, workspace_id="ws-up1")
+    seed_workspace(studio, workspace_id="ws-up1", subject_code="CS1")
+    studio.create_subject("CS1", title="Core Statistics")
     studio.versions.assign_version("ws-up1", "2026.1", version_id="ver-up1")
     set_studio_service(studio, app=app)
 
     response = client.post(
-        "/console/studio/workspaces/ws-up1/upload",
+        "/console/studio/workspaces/ws-up1/documents",
         data={
-            "workspace_id": "ws-up1",
-            "cmp_reference": "ref://cmp/up1",
-            "syllabus_reference": "ref://syllabus/up1",
-            "submit": "Upload Sources",
+            "kind": "cmp",
+            "file": (BytesIO(pdf), "cmp.pdf"),
         },
-        follow_redirects=True,
+        content_type="multipart/form-data",
     )
     assert response.status_code == 200
-    body = response.get_data(as_text=True)
-    assert "sources" in body.lower() or "Curriculum Studio" in body
+    assert response.get_json()["ok"] is True
+    other = pdf + b" \n%%EOF\n"
+    response = client.post(
+        "/console/studio/workspaces/ws-up1/documents",
+        data={
+            "kind": "syllabus",
+            "file": (BytesIO(other), "syllabus.pdf"),
+        },
+        content_type="multipart/form-data",
+    )
+    assert response.status_code == 200
     facts = studio.registry.get_workspace("ws-up1").facts
     assert facts.cmp_uploaded is True
     assert facts.official_syllabus_uploaded is True
 
 
-def test_workspace_page_includes_upload_form(client, ctx, app):
+def test_workspace_page_includes_document_upload_cards(client, ctx, app):
     login_founder(client, app)
     studio, _, _, _ = make_studio_with_ports()
     seed_workspace(studio, workspace_id="ws-form1")
@@ -112,6 +124,7 @@ def test_workspace_page_includes_upload_form(client, ctx, app):
     response = client.get("/console/studio/workspaces/ws-form1")
     assert response.status_code == 200
     text = response.get_data(as_text=True)
-    assert "CMP reference" in text
-    assert "Syllabus reference" in text
-    assert 'action="/console/studio/workspaces/ws-form1/upload"' in text
+    assert "Official CMP" in text
+    assert "Official Syllabus" in text
+    assert "CMP reference" not in text
+    assert "data-document-upload" in text

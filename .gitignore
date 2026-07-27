@@ -11,6 +11,7 @@ instance/*.sqlite3
 instance/*.sqlite3.*
 instance/*.db
 instance/*_harness_out.txt
+instance/curriculum_documents/
 
 # Tooling
 .pytest_cache/

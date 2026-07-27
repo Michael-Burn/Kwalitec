@@ -12,6 +12,10 @@ DEP-003 — Student Experience Unification: under sole runtime,
 ``layouts/base.html`` routes student-facing templates into
 ``layouts/eos_student.html`` (EOS chrome). Dual-run keeps
 ``layouts/legacy_workspace.html``. Controllers and engines unchanged.
+
+Role-aware landing: Founder / Console users land on the Kwalitec Console
+(``founder_dashboard.index``) via RBAC (``is_founder_user``), not the
+student product. Students keep the Education OS / legacy home as before.
 """
 
 from __future__ import annotations
@@ -24,6 +28,8 @@ from app.application.config.v2_flags import resolve_v2_feature_flags
 CANONICAL_HOME_ENDPOINT = "student.home"
 # Legacy dual-run home (Learning Workspace Dashboard).
 LEGACY_HOME_ENDPOINT = "dashboard.index"
+# Kwalitec Console (Founder Operating System) home.
+CONSOLE_HOME_ENDPOINT = "founder_dashboard.index"
 
 
 def is_sole_runtime() -> bool:
@@ -32,24 +38,37 @@ def is_sole_runtime() -> bool:
 
 
 def canonical_home_endpoint() -> str:
-    """Return the authoritative home Flask endpoint for the current flags.
+    """Return the authoritative home Flask endpoint for the current user/flags.
 
-    Under sole runtime: ``student.home`` (dual-home removed).
+    Founder / Console users: ``founder_dashboard.index`` (Kwalitec Console).
+    Under sole runtime (students): ``student.home`` (dual-home removed).
     Otherwise: ``dashboard.index`` (dual-run soak / Internal Alpha rollback).
     """
+    if _current_user_is_founder():
+        return CONSOLE_HOME_ENDPOINT
     if is_sole_runtime():
         return CANONICAL_HOME_ENDPOINT
     return LEGACY_HOME_ENDPOINT
 
 
 def canonical_home_url(**values) -> str:
-    """URL for the authoritative student home."""
+    """URL for the authoritative home (Console for founders, student otherwise)."""
     return url_for(canonical_home_endpoint(), **values)
 
 
 def redirect_to_canonical_home(**values):
-    """Redirect to the authoritative home for the current flag posture."""
+    """Redirect to the authoritative home for the current user and flag posture."""
     return redirect(canonical_home_url(**values))
+
+
+def _current_user_is_founder() -> bool:
+    """Safe RBAC check — False outside a request or when unauthenticated."""
+    try:
+        from app.founder.dashboard.access import is_founder_user
+
+        return bool(is_founder_user())
+    except RuntimeError:
+        return False
 
 
 def redirect_if_sole_runtime(endpoint: str = CANONICAL_HOME_ENDPOINT, **values):

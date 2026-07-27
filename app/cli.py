@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import logging
-import os
 import sys
 
 import click
@@ -50,7 +49,8 @@ def create_admin_command() -> None:
 
     Reads ADMIN_EMAIL and ADMIN_PASSWORD from the environment. If any
     User record already exists the command exits successfully without
-    modifying the database.
+    modifying the database (does **not** update passwords — use
+    ``flask sync-admin`` for that).
 
     If the ``users`` table does not yet exist (migrations have not been
     applied) the command logs a warning and exits successfully, assuming
@@ -65,6 +65,11 @@ def create_admin_command() -> None:
         0 – Administrator already exists, was created, or migrations are pending
         1 – Required environment variable is missing
     """
+    from app.services.admin_bootstrap_service import (
+        AdminBootstrapError,
+        AdminBootstrapService,
+    )
+
     logger.info("Starting create-admin command")
 
     # If the schema is not present yet, do not crash the deploy.
@@ -80,7 +85,7 @@ def create_admin_command() -> None:
         )
         return
 
-    # Check whether any users already exist
+    # Check whether any users already exist — never overwrite passwords here.
     user_count: int = db.session.query(User).count()
     if user_count > 0:
         click.echo("Administrator already exists.")
@@ -90,40 +95,98 @@ def create_admin_command() -> None:
         )
         return
 
-    # Read credentials from the environment
-    email: str | None = os.getenv("ADMIN_EMAIL")
-    password: str | None = os.getenv("ADMIN_PASSWORD")
-
-    # Validate that both are present
-    missing: list[str] = []
-    if not email:
-        missing.append("ADMIN_EMAIL")
-    if not password:
-        missing.append("ADMIN_PASSWORD")
-
-    if missing:
-        msg = (
-            "Missing required environment variable(s): "
-            + ", ".join(missing)
-            + ". Set these variables and retry."
-        )
-        click.echo(f"Error: {msg}", err=True)
-        logger.error("create-admin: %s", msg)
+    try:
+        user = AdminBootstrapService.create_initial_admin_if_empty()
+    except AdminBootstrapError as exc:
+        click.echo(f"Error: {exc}", err=True)
+        logger.error("create-admin: %s", exc)
         sys.exit(1)
 
-    # Create the administrator with Founder + Console RBAC (PR-001).
-    user = User(email=email.strip().lower(), is_active_user=True)
-    user.set_password(password)
-    db.session.add(user)
-    db.session.flush()
-    from app.services.identity_service import IdentityService
+    if user is None:
+        # Race / concurrent create — treat as already exists.
+        click.echo("Administrator already exists.")
+        return
 
-    IdentityService.ensure_founder_admin(user)
-
-    click.echo("Administrator created successfully (Founder RBAC granted).")
+    click.echo("Administrator created successfully.")
     logger.info(
-        "create-admin: administrator created for email=%s", email
+        "create-admin: administrator created for email=%s", user.email
     )
+
+
+@click.command("sync-admin")
+def sync_admin_command() -> None:
+    """Synchronise the bootstrap administrator from environment variables.
+
+    Finds the user matching ``ADMIN_EMAIL``. When present, updates the
+    password from ``ADMIN_PASSWORD`` and ensures Founder RBAC. When absent,
+    creates the administrator (same as first-run ``create-admin``).
+
+    Intended for local development when ``.env`` credentials and the local
+    database diverge. Does **not** run during production startup — operators
+    must invoke this command explicitly.
+
+    Environment Variables:
+        ADMIN_EMAIL:    Administrator email address (required)
+        ADMIN_PASSWORD: Administrator plaintext password (required)
+
+    Exit codes:
+        0 – Administrator synchronised or created
+        1 – Required environment variable missing, or schema not ready
+    """
+    from app.services.admin_bootstrap_service import (
+        AdminBootstrapError,
+        AdminBootstrapService,
+    )
+
+    logger.info("Starting sync-admin command")
+
+    if not _users_table_exists():
+        click.echo(
+            "users table not found – run `flask db upgrade` first.",
+            err=True,
+        )
+        logger.error("sync-admin: users table missing; aborting.")
+        sys.exit(1)
+
+    try:
+        result = AdminBootstrapService.sync_admin()
+    except AdminBootstrapError as exc:
+        click.echo(f"Error: {exc}", err=True)
+        logger.error("sync-admin: %s", exc)
+        sys.exit(1)
+
+    if result.created:
+        click.echo("Administrator created successfully.")
+        logger.info(
+            "sync-admin: administrator created for email=%s", result.email
+        )
+    else:
+        click.echo("Administrator synchronised successfully.")
+        click.echo("  - password updated")
+        click.echo(
+            "  - founder role verified"
+            if result.founder_role_verified
+            else "  - founder role MISSING"
+        )
+        click.echo(
+            "  - administrator role verified"
+            if result.administrator_role_verified
+            else "  - administrator role MISSING"
+        )
+        click.echo(
+            "  - student role verified"
+            if result.student_role_verified
+            else "  - student role MISSING"
+        )
+        logger.info(
+            "sync-admin: synchronised email=%s password_updated=%s "
+            "founder=%s administrator=%s student=%s",
+            result.email,
+            result.password_updated,
+            result.founder_role_verified,
+            result.administrator_role_verified,
+            result.student_role_verified,
+        )
 
 
 @click.command("create-test-user")

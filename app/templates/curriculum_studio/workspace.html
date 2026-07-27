@@ -111,30 +111,184 @@
 </section>
 {% endif %}
 
-<section class="mb-4" aria-label="Content sources">
+<section class="mb-4" aria-label="Content sources"
+         data-document-upload
+         data-workspace-id="{{ page.workspace.workspace_id }}"
+         data-upload-url="{{ url_for('curriculum_studio.upload_document', workspace_id=page.workspace.workspace_id) }}"
+         data-status-url="{{ url_for('curriculum_studio.documents_status', workspace_id=page.workspace.workspace_id) }}"
+         data-cta-state="{{ document_status.cta_state }}">
     <div class="command-card">
-        <div class="command-card-header"><h2 class="h5 mb-0">Content Sources</h2></div>
+        <div class="command-card-header">
+            <h2 class="h5 mb-0">Content Sources</h2>
+            <span class="doc-upload-cta-badge" data-doc-cta-badge>
+                {% if document_status.cta_state == 'uploaded' %}
+                Documents Uploaded
+                {% elif document_status.cta_state == 'replace' %}
+                Replace Documents
+                {% else %}
+                Upload Documents
+                {% endif %}
+            </span>
+        </div>
         <div class="command-card-body">
-            <form method="post" action="{{ url_for('curriculum_studio.upload_sources', workspace_id=page.workspace.workspace_id) }}" class="founder-version-form">
-                {{ upload_form.hidden_tag() }}{{ upload_form.workspace_id }}
-                <div class="row g-3 mb-3">
-                    <div class="col-md-6">
-                        <label class="form-label" for="{{ upload_form.cmp_reference.id }}">
-                            {{ upload_form.cmp_reference.label.text }}
-                        </label>
-                        {{ upload_form.cmp_reference(class_='form-control founder-input') }}
-                        <p id="help-cmp-ref" class="form-text mb-0">Reference only — do not paste PDF bytes.</p>
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label" for="{{ upload_form.syllabus_reference.id }}">
-                            {{ upload_form.syllabus_reference.label.text }}
-                        </label>
-                        {{ upload_form.syllabus_reference(class_='form-control founder-input') }}
-                        <p id="help-syllabus-ref" class="form-text mb-0">Official syllabus reference for this version.</p>
-                    </div>
+            <p class="text-muted mb-3">
+                Upload the official curriculum PDFs for this subject. Kwalitec stores
+                and links them automatically — you never need to manage internal file IDs.
+            </p>
+            <div class="row g-3" data-doc-upload-slots>
+                {% for slot in document_slots %}
+                {% set doc = documents_by_kind.get(slot.kind) %}
+                {% include "curriculum_studio/_document_upload_card.html" %}
+                {% endfor %}
+            </div>
+            <div class="doc-processing-panel mt-4" aria-label="Processing status">
+                <h3 class="h6 mb-2">Curriculum Intelligence Pipeline</h3>
+                <ol class="doc-processing-stages list-unstyled mb-0" data-doc-processing-stages>
+                    {% set stages = [
+                        ('queued', 'Processing'),
+                        ('verified', 'Verified'),
+                        ('extracted', 'Extracted'),
+                        ('parsed', 'Parsed'),
+                        ('mapped', 'Mapped'),
+                        ('graph_built', 'Knowledge Graph Built'),
+                        ('ready_for_embeddings', 'Ready'),
+                    ] %}
+                    {% set active_stages = documents_by_kind.values() | map(attribute='processing_stage') | list %}
+                    {% for stage_key, stage_label in stages %}
+                    <li class="doc-processing-stage{% if stage_key in active_stages %} is-complete{% endif %}"
+                        data-stage="{{ stage_key }}">
+                        <span class="doc-processing-marker" aria-hidden="true"></span>
+                        <span>{{ stage_label }}</span>
+                    </li>
+                    {% endfor %}
+                </ol>
+                <div class="doc-pipeline-jobs mt-3" data-doc-pipeline-jobs>
+                    {% for job in document_status.pipeline_jobs %}
+                    <article class="doc-pipeline-job" data-pipeline-job data-document-id="{{ job.document_id }}" data-job-id="{{ job.job_id }}">
+                        <header class="doc-pipeline-job-header">
+                            <strong>Document {{ job.document_id }}</strong>
+                            <span data-job-status>{{ job.status_label }}</span>
+                        </header>
+                        {% if job.last_error %}
+                        <p class="text-danger mb-2" data-job-error>{{ job.last_error }}</p>
+                        {% endif %}
+                        <ul class="doc-pipeline-events list-unstyled mb-2" data-job-events>
+                            {% for event in job.events[-6:] %}
+                            <li class="doc-pipeline-event">
+                                <span>{{ event.stage_label }}</span>
+                                <span class="text-muted">{{ event.status }}</span>
+                                {% if event.duration_ms is not none %}
+                                <span class="text-muted">{{ event.duration_ms }} ms</span>
+                                {% endif %}
+                                {% if event.error_message %}
+                                <span class="text-danger">{{ event.error_message }}</span>
+                                {% endif %}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="doc-pipeline-actions">
+                            {% if job.can_retry %}
+                            <button type="button" class="btn btn-outline-secondary btn-sm" data-pipeline-retry>
+                                Retry
+                            </button>
+                            {% endif %}
+                            {% if job.can_cancel %}
+                            <button type="button" class="btn btn-outline-danger btn-sm" data-pipeline-cancel>
+                                Cancel
+                            </button>
+                            {% endif %}
+                        </div>
+                    </article>
+                    {% endfor %}
                 </div>
-                {{ action_btn(upload_form, 'upload', 'btn-outline-secondary') }}
-            </form>
+            </div>
+            <div class="visually-hidden" role="status" aria-live="polite" data-doc-upload-live></div>
+        </div>
+    </div>
+</section>
+
+<section class="mb-4" aria-label="Curriculum intelligence"
+         data-cip-intelligence
+         data-workspace-id="{{ page.workspace.workspace_id }}"
+         data-overview-url="{{ url_for('curriculum_studio.intelligence_overview', workspace_id=page.workspace.workspace_id) }}"
+         data-validation-url="{{ url_for('curriculum_studio.intelligence_validation', workspace_id=page.workspace.workspace_id) }}"
+         data-review-url="{{ url_for('curriculum_studio.intelligence_review_queue', workspace_id=page.workspace.workspace_id) }}"
+         data-metrics-url="{{ url_for('curriculum_studio.intelligence_metrics', workspace_id=page.workspace.workspace_id) }}"
+         data-graph-url="{{ url_for('curriculum_studio.intelligence_knowledge_graph', workspace_id=page.workspace.workspace_id) }}"
+         data-audit-url="{{ url_for('curriculum_studio.intelligence_audit', workspace_id=page.workspace.workspace_id) }}">
+    <div class="command-card">
+        <div class="command-card-header">
+            <h2 class="h5 mb-0">Curriculum Intelligence</h2>
+            <span class="text-muted" data-cip-overview-badge>Validation &amp; provenance</span>
+        </div>
+        <div class="command-card-body">
+            <nav class="cip-intel-tabs" aria-label="Intelligence views">
+                <button type="button" class="cip-intel-tab is-active" data-cip-tab="overview">Overview</button>
+                <button type="button" class="cip-intel-tab" data-cip-tab="documents">Documents</button>
+                <button type="button" class="cip-intel-tab" data-cip-tab="pipeline">Pipeline</button>
+                <button type="button" class="cip-intel-tab" data-cip-tab="graph">Knowledge Graph</button>
+                <button type="button" class="cip-intel-tab" data-cip-tab="validation">Validation</button>
+                <button type="button" class="cip-intel-tab" data-cip-tab="review">Review Queue</button>
+                <button type="button" class="cip-intel-tab" data-cip-tab="metrics">Metrics</button>
+                <button type="button" class="cip-intel-tab" data-cip-tab="entity">Entity Details</button>
+            </nav>
+
+            <div class="cip-intel-panel is-active" data-cip-panel="overview">
+                <p class="text-muted mb-3">Evidence-backed curriculum knowledge for this workspace.</p>
+                <div class="row g-3" data-cip-overview-metrics>
+                    <div class="col-md-3"><div class="cip-metric"><span class="command-metric-label">Documents</span><p class="mb-0" data-cip-ov-docs>—</p></div></div>
+                    <div class="col-md-3"><div class="cip-metric"><span class="command-metric-label">Entities</span><p class="mb-0" data-cip-ov-entities>—</p></div></div>
+                    <div class="col-md-3"><div class="cip-metric"><span class="command-metric-label">Needs review</span><p class="mb-0" data-cip-ov-review>—</p></div></div>
+                    <div class="col-md-3"><div class="cip-metric"><span class="command-metric-label">Validation errors</span><p class="mb-0" data-cip-ov-errors>—</p></div></div>
+                </div>
+            </div>
+
+            <div class="cip-intel-panel" data-cip-panel="documents" hidden>
+                <p class="text-muted mb-2">Official curriculum documents appear in Content Sources above. Use Pipeline and Review Queue after processing.</p>
+                <ul class="list-unstyled mb-0" data-cip-documents-list></ul>
+            </div>
+
+            <div class="cip-intel-panel" data-cip-panel="pipeline" hidden>
+                <p class="text-muted mb-2">Pipeline stage history is shown in Content Sources. Audit trail of intelligence actions:</p>
+                <ul class="list-unstyled mb-0" data-cip-audit-list></ul>
+            </div>
+
+            <div class="cip-intel-panel" data-cip-panel="graph" hidden>
+                <p class="text-muted mb-2"><span data-cip-graph-summary>Loading graph…</span></p>
+                <ul class="list-unstyled mb-0" data-cip-graph-nodes></ul>
+            </div>
+
+            <div class="cip-intel-panel" data-cip-panel="validation" hidden>
+                <div data-cip-validation-list>
+                    <p class="text-muted mb-0">No validation reports yet. Run the intelligence pipeline on uploaded documents.</p>
+                </div>
+            </div>
+
+            <div class="cip-intel-panel" data-cip-panel="review" hidden>
+                <div data-cip-review-list>
+                    <p class="text-muted mb-0">No entities awaiting review.</p>
+                </div>
+            </div>
+
+            <div class="cip-intel-panel" data-cip-panel="metrics" hidden>
+                <div class="row g-3 mb-3" data-cip-metrics-summary>
+                    <div class="col-md-4"><div class="cip-metric"><span class="command-metric-label">Mean mapping confidence</span><p class="mb-0" data-cip-met-conf>—</p></div></div>
+                    <div class="col-md-4"><div class="cip-metric"><span class="command-metric-label">Graph completeness</span><p class="mb-0" data-cip-met-complete>—</p></div></div>
+                    <div class="col-md-4"><div class="cip-metric"><span class="command-metric-label">Founder approvals</span><p class="mb-0" data-cip-met-approvals>—</p></div></div>
+                </div>
+                <ul class="list-unstyled mb-0" data-cip-metrics-docs></ul>
+            </div>
+
+            <div class="cip-intel-panel" data-cip-panel="entity" hidden>
+                <label class="form-label" for="cip-entity-id">Entity id</label>
+                <div class="cip-entity-lookup mb-3">
+                    <input type="text" class="form-control founder-input" id="cip-entity-id" data-cip-entity-input placeholder="ent-…">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-cip-entity-load>Load</button>
+                </div>
+                <div data-cip-entity-detail>
+                    <p class="text-muted mb-0">Select an entity from the Review Queue or enter an entity id.</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -212,4 +366,9 @@
 <p class="founder-back-link mb-0">
     <a href="{{ url_for('curriculum_studio.index') }}">← Back to Curriculum Studio</a>
 </p>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ versioned_static('js/document_upload.js') }}"></script>
+<script src="{{ versioned_static('js/curriculum_intelligence.js') }}"></script>
 {% endblock %}

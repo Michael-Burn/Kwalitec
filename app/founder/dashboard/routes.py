@@ -83,10 +83,14 @@ def inject_founder_nav() -> dict:
 
 
 @founder_dashboard_bp.get("/")
-@founder_dashboard_bp.get("")
 @founder_required
 def index():
-    """Console Home — executive briefing for operational decisions."""
+    """Console Home — executive briefing for operational decisions.
+
+    Registered only at ``/console/`` (trailing slash) so ``url_for`` does
+    not emit bare ``/console``, which collides with Werkzeug's debug
+    interactive console when ``flask run --debug`` is active.
+    """
     overview = _overview_service().build_overview()
     return render_template(
         "founder_dashboard/overview.html",

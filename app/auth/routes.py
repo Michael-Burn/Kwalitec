@@ -35,6 +35,15 @@ def login():
             login_user(user, remember=form.remember_me.data)
             flash("Welcome back to Kwalitec.", "success")
 
+            # Founders land on the Kwalitec Console (Founder OS). Do not divert
+            # them into student onboarding or the study-plan wizard — those
+            # remain available when dogfooding via Student Role, but are not
+            # the post-login product for Console operators.
+            from app.founder.dashboard.access import is_founder_user
+
+            if is_founder_user(user):
+                return redirect(_safe_next_url() or canonical_home_url())
+
             # B8 (PX-003 release blockers): onboarding must be guaranteed for
             # every first-time student regardless of entry path. Checked here,
             # before the study-plan-wizard branch below, so a brand-new

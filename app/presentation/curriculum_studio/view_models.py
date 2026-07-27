@@ -33,7 +33,8 @@ NEXT_ACTION_BY_STAGE: dict[str, str] = {
         "Confirm the subject, then advance to Content Sources."
     ),
     WorkflowStage.CONTENT_SOURCES.value: (
-        "Upload CMP and syllabus references, then validate the curriculum."
+        "Upload the Official CMP and Official Syllabus PDFs, then validate "
+        "the curriculum."
     ),
     WorkflowStage.VALIDATION.value: (
         "Validation looks ready — build a student-facing preview."
@@ -81,7 +82,7 @@ FLASH_SUCCESS = {
     "approved": "We've approved your curriculum successfully.",
     "published": "We've published your curriculum successfully.",
     "version_assigned": "We've assigned the version successfully.",
-    "sources_uploaded": "We've recorded your curriculum sources successfully.",
+    "sources_uploaded": "We've uploaded your curriculum documents successfully.",
 }
 
 FLASH_WARNING = {
@@ -126,9 +127,9 @@ FLASH_WARNING = {
         "(for example 1.0.0), then try again."
     ),
     "upload": (
-        "We couldn't upload sources. CMP and syllabus references are "
-        "required to derive student curriculum. Assign a version, provide "
-        "a CMP and/or syllabus reference, then try again."
+        "We couldn't upload documents. Official CMP and Official Syllabus "
+        "PDFs are required before validation. Choose valid PDF files, "
+        "then try again."
     ),
     "workspace_missing": (
         "That workspace could not be found. Opening a missing workspace "

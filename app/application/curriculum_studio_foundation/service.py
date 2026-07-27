@@ -669,17 +669,15 @@ class CurriculumStudioFoundationService:
 
     @staticmethod
     def _normalize_kind(kind: str) -> str:
-        token = (kind or "").strip().lower().replace("-", "_")
-        allowed = {
-            "cmp",
-            "syllabus",
-            "learning_objectives",
-            "formula_sheet",
-            "supporting_document",
-        }
-        if token not in allowed:
-            raise IllegalStageTransition(f"Unsupported document kind: {kind!r}")
-        return token
+        from app.domain.curriculum_documents.document_type_registry import (
+            default_document_type_registry,
+        )
+
+        registry = default_document_type_registry()
+        try:
+            return registry.require(kind).kind
+        except ValueError as exc:
+            raise IllegalStageTransition(f"Unsupported document kind: {kind!r}") from exc
 
     @staticmethod
     def _reject_embedded_bytes(reference: str) -> str:

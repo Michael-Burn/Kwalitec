@@ -4,12 +4,12 @@ from __future__ import annotations
 
 import logging
 import os
-from datetime import datetime, timezone
+from datetime import UTC, datetime, timezone
 from pathlib import Path
 
 from alembic.migration import MigrationContext
 from alembic.script import ScriptDirectory
-from flask import Flask, jsonify, redirect, render_template, request, url_for
+from flask import Flask, jsonify, redirect, render_template, request
 
 from app.config import (
     DevelopmentConfig,
@@ -292,7 +292,7 @@ def _register_health_check(app: Flask) -> None:
         return jsonify(
             {
                 "status": "ok",
-                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "timestamp": datetime.now(UTC).isoformat(),
                 "version": APP_VERSION,
                 "commit": release.commit,
             }
@@ -509,6 +509,14 @@ def _init_extensions(app: Flask) -> None:
     # Import models to register them with SQLAlchemy
     from app.models import (  # noqa: F401
         AlphaFeedbackSubmission,
+        CipCurriculumEntity,
+        CipExtractedBlock,
+        CipExtractedDocument,
+        CipExtractedPage,
+        CipKnowledgeRelation,
+        CipProcessingEvent,
+        CipProcessingJob,
+        CipStructuralNode,
         Curriculum,
         Decision,
         LearningObjective,
@@ -551,7 +559,7 @@ def _resolve_v2_flags_for_templates():
 
 
 def _canonical_home_url_for_templates() -> str:
-    """Authoritative student home URL (EP-007.1 dual-home consolidation)."""
+    """Authoritative home URL (Console for founders; student otherwise)."""
     from app.presentation.consolidation import canonical_home_url
 
     return canonical_home_url()
@@ -625,6 +633,8 @@ def _register_template_context(app: Flask) -> None:
         from app.version import APP_VERSION, PRODUCT_TAGLINE, STATIC_ASSET_VERSION
 
         release_info = ReleaseInfoService.current()
+        from flask_login import current_user
+
         from app.security.authorization import (
             user_capabilities,
             user_has_capability,
@@ -633,7 +643,6 @@ def _register_template_context(app: Flask) -> None:
             user_permissions,
             user_roles,
         )
-        from flask_login import current_user
 
         return {
             "app_version": APP_VERSION,
@@ -682,6 +691,7 @@ def _register_cli_commands(app: Flask) -> None:
         create_admin_command,
         create_test_user_command,
         internal_alpha_reset_command,
+        sync_admin_command,
     )
     from app.infrastructure.analytics.cli import (
         analytics_delete_user_command,
@@ -695,6 +705,7 @@ def _register_cli_commands(app: Flask) -> None:
     )
 
     app.cli.add_command(create_admin_command)
+    app.cli.add_command(sync_admin_command)
     app.cli.add_command(create_test_user_command)
     app.cli.add_command(backfill_sections_command)
     app.cli.add_command(internal_alpha_reset_command)
@@ -755,12 +766,9 @@ def _register_routes(app: Flask) -> None:
 
     @app.get("/")
     def index():
-        from app.application.config.v2_flags import resolve_v2_feature_flags
+        from app.presentation.consolidation import redirect_to_canonical_home
 
-        flags = resolve_v2_feature_flags()
-        if flags.SOLE_RUNTIME:
-            return redirect(url_for("student.home"))
-        return redirect(url_for("dashboard.index"))
+        return redirect_to_canonical_home()
 
     # CONSOLE-001 — preserve bookmarks to the former /founder portal.
     @app.route("/founder/", defaults={"path": ""}, methods=["GET", "POST"])

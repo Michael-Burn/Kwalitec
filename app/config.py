@@ -132,6 +132,22 @@ class BaseConfig:
     SLOW_REQUEST_THRESHOLD_MS = _env_int("SLOW_REQUEST_THRESHOLD_MS", 1000)
     HEALTH_ALERT_DB_LATENCY_MS = _env_int("HEALTH_ALERT_DB_LATENCY_MS", 500)
 
+    # Curriculum Studio document upload (Phase 1). PDF bytes never enter SQL.
+    DOCUMENT_STORAGE_ROOT = Path(
+        os.getenv(
+            "DOCUMENT_STORAGE_ROOT",
+            str(INSTANCE_DIR / "curriculum_documents"),
+        )
+    )
+    DOCUMENT_MAX_BYTES = _env_int("DOCUMENT_MAX_BYTES", 25 * 1024 * 1024)
+    # CIP-001: run verify→graph pipeline synchronously after upload (dev/default).
+    CIP_AUTO_RUN = os.getenv("CIP_AUTO_RUN", "true").strip().lower() in {
+        "1",
+        "true",
+        "yes",
+        "on",
+    }
+
 
 class DevelopmentConfig(BaseConfig):
     """Development configuration."""

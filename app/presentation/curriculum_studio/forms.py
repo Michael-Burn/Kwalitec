@@ -116,28 +116,3 @@ class AssignVersionForm(FlaskForm):
         },
     )
     submit = SubmitField("Assign Version")
-
-
-class UploadSourcesForm(FlaskForm):
-    """Upload CMP / syllabus document references (PI-001A foundation)."""
-
-    workspace_id = HiddenField(validators=[DataRequired()])
-    cmp_reference = StringField(
-        "CMP reference",
-        validators=[Optional(), Length(max=1024)],
-        render_kw={
-            "placeholder": "ref://cmp/subject-2026",
-            "autocomplete": "off",
-            "aria-describedby": "help-cmp-ref",
-        },
-    )
-    syllabus_reference = StringField(
-        "Syllabus reference",
-        validators=[Optional(), Length(max=1024)],
-        render_kw={
-            "placeholder": "ref://syllabus/subject-2026",
-            "autocomplete": "off",
-            "aria-describedby": "help-syllabus-ref",
-        },
-    )
-    submit = SubmitField("Upload Sources")
