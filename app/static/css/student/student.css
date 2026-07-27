@@ -155,6 +155,29 @@
   padding: var(--student-space-7) var(--student-space-5) var(--student-space-8);
 }
 
+/* Shared student routes (Study Plan, Help, Settings) need workspace width. */
+.student-main--workspace {
+  max-width: var(--student-shell-max);
+}
+
+.student-topbar-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--student-space-2);
+}
+
+.student-signout-form {
+  margin: 0;
+}
+
+button.student-signout {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+}
+
 .student-page-header {
   margin-bottom: var(--student-space-6);
 }

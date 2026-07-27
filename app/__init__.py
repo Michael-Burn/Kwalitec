@@ -559,6 +559,31 @@ def _canonical_session_entry_url_for_templates() -> str:
     return canonical_session_entry_url()
 
 
+def _eos_navigation_for_templates():
+    """Canonical EOS nav tree for templates without a Student ``page`` model."""
+    from flask import request
+
+    from app.presentation.student.navigation import build_navigation_for_request
+
+    return build_navigation_for_request(getattr(request, "endpoint", None))
+
+
+def _eos_active_surface_for_templates() -> str:
+    """Active surface key for ``data-student-surface`` on shared EOS pages."""
+    from flask import request
+
+    from app.presentation.student.navigation import surface_for_endpoint
+
+    endpoint = getattr(request, "endpoint", None)
+    if not endpoint:
+        return ""
+    if endpoint.startswith("study_plan."):
+        return "study_plan"
+    if endpoint.startswith("alpha."):
+        return "help" if "help" in endpoint else "alpha"
+    return surface_for_endpoint(endpoint).value
+
+
 def _register_template_context(app: Flask) -> None:
     """Inject shared presentation context into all templates."""
     from app.presentation.formatting import format_minutes
@@ -628,6 +653,9 @@ def _register_template_context(app: Flask) -> None:
             "v2_flags": _resolve_v2_flags_for_templates(),
             "canonical_home_url": _canonical_home_url_for_templates(),
             "canonical_session_entry_url": _canonical_session_entry_url_for_templates(),
+            # DEP-003 — EOS chrome for shared student pages (Study Plan, Help, …).
+            "eos_navigation": _eos_navigation_for_templates(),
+            "eos_active_surface": _eos_active_surface_for_templates(),
             "release_info": release_info,
             "support_contact": release_info.support_contact,
             # PR-001 — permission helpers only; no auth logic in templates.

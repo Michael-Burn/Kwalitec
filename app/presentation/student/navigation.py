@@ -101,6 +101,9 @@ def surface_for_endpoint(endpoint: str | None) -> ExperienceSurface:
     """Map a Flask endpoint back to an experience surface."""
     if not endpoint:
         return ExperienceSurface.HOME
+    # Settings subpages share the Profile / Settings nav destination.
+    if endpoint.startswith("settings."):
+        return ExperienceSurface.PROFILE
     for surface, ep in SURFACE_ENDPOINTS.items():
         if ep == endpoint:
             return surface
@@ -111,6 +114,38 @@ def surface_for_endpoint(endpoint: str | None) -> ExperienceSurface:
         except ValueError:
             pass
     return ExperienceSurface.HOME
+
+
+def build_navigation_for_request(
+    endpoint: str | None,
+    *,
+    include_system: bool = True,
+    unified_journey: bool | None = None,
+) -> tuple[StudentNavItem, ...]:
+    """Build EOS nav with active highlighting for any student-facing endpoint.
+
+    Used by the global template context so Study Plan / Help / Settings pages
+    that lack a Student Experience ``page`` view-model still render the
+    canonical Education OS navigation (DEP-003).
+    """
+    active_surface: ExperienceSurface | None = None
+    active_endpoint = endpoint
+    if endpoint:
+        if endpoint.startswith("student.") or endpoint.startswith("settings."):
+            active_surface = surface_for_endpoint(endpoint)
+            if endpoint.startswith("settings."):
+                # Highlight Settings; do not also mark Study Plan/Help.
+                active_endpoint = SURFACE_ENDPOINTS[ExperienceSurface.PROFILE]
+        elif endpoint.startswith("study_plan.") or endpoint.startswith("alpha."):
+            active_surface = None
+        else:
+            active_surface = surface_for_endpoint(endpoint)
+    return build_navigation(
+        active_surface,
+        include_system=include_system,
+        active_endpoint=active_endpoint,
+        unified_journey=unified_journey,
+    )
 
 
 def _build_feature_navigation(

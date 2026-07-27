@@ -7,6 +7,11 @@ Protected educational engines and V1 data paths are not deleted.
 EP-007.1 — Student Journey Consolidation: helpers resolve the single
 authoritative home endpoint so login, completion, and chrome never present
 two competing homes under sole runtime.
+
+DEP-003 — Student Experience Unification: under sole runtime,
+``layouts/base.html`` routes student-facing templates into
+``layouts/eos_student.html`` (EOS chrome). Dual-run keeps
+``layouts/legacy_workspace.html``. Controllers and engines unchanged.
 """
 
 from __future__ import annotations

@@ -1,67 +1,21 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="What should I do next — and why?">
-    <meta name="csrf-token" content="{{ csrf_token() if csrf_token else '' }}">
-    <meta name="color-scheme" content="light dark">
-    <title>{{ title ~ ' · ' if title else '' }}Kwalitec</title>
-    {% include "partials/brand_meta.html" %}
-    <script src="{{ versioned_static('js/theme.js') }}"></script>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link href="{{ versioned_static('css/fonts.css') }}" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{ versioned_static('css/brand.css') }}" rel="stylesheet">
-    <link href="{{ versioned_static('css/tokens.css') }}" rel="stylesheet">
-    <link href="{{ versioned_static('css/student/student.css') }}" rel="stylesheet">
-    {% block extra_head %}{% endblock %}
-</head>
-<body class="student-body" data-student-surface="{{ page.shell.active_surface if page else '' }}">
-    <a class="student-skip-link" href="#student-main">Skip to content</a>
-    <div class="student-shell">
-        <header class="student-topbar" role="banner">
-            <div class="student-topbar-inner">
-                <a class="student-brand" href="{{ url_for('student.home') }}" aria-label="Kwalitec home">
-                    {% with brand_class='student-brand-logo' %}
-                        {% include "partials/brand_logo.html" %}
-                    {% endwith %}
-                </a>
-                {% include "student/components/navigation.html" %}
-            </div>
-        </header>
+{% extends "layouts/eos_student.html" %}
 
-        <main id="student-main" class="student-main page-enter" role="main" tabindex="-1">
-            {% include "partials/flash_messages.html" %}
-            <header class="student-page-header">
-                <p class="student-eyebrow">{{ page.shell.page_eyebrow }}</p>
-                <h1 class="student-page-title">{{ page.shell.page_title }}</h1>
-                {% if page.shell.page_description %}
-                <p class="student-page-description">{{ page.shell.page_description }}</p>
-                {% endif %}
-            </header>
-            {% block content %}{% endblock %}
-        </main>
+{# Canonical Student Experience surfaces use reading width, not workspace width. #}
+{% block student_main_modifier %}{% endblock %}
 
-        <div class="student-visually-hidden" aria-live="polite" id="student-live-region"></div>
+{# Student Experience pages already ship student.css; skip workspace app.css. #}
+{% block eos_content_css %}{% endblock %}
 
-        <footer class="student-footer" role="contentinfo">
-            <p class="student-footer-text">Reduce decisions. Increase learning.</p>
-        </footer>
-    </div>
+{% block page_header %}
+{% if page and page.shell %}
+<header class="student-page-header">
+    <p class="student-eyebrow">{{ page.shell.page_eyebrow }}</p>
+    <h1 class="student-page-title">{{ page.shell.page_title }}</h1>
+    {% if page.shell.page_description %}
+    <p class="student-page-description">{{ page.shell.page_description }}</p>
+    {% endif %}
+</header>
+{% endif %}
+{% endblock %}
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    {# B4 (PX-003): the Welcome dialog's focus entry/trap/return + Escape
-       behaviour lives in app.js. This canonical Student Experience shell
-       renders that same dialog (see student/home.html's include of
-       partials/welcome_modal.html) but previously loaded only student.js,
-       so the dialog appeared with no keyboard/focus behaviour at all on the
-       one screen it actually ships on. app.js's sidebar-drawer code is
-       guarded by `if (sidebar && toggle)` and is a no-op here since this
-       shell has no `.sidebar` element — only its welcome-modal handling is
-       active on this page. #}
-    <script src="{{ versioned_static('js/app.js') }}"></script>
-    <script src="{{ versioned_static('js/student.js') }}"></script>
-    {% block extra_scripts %}{% endblock %}
-</body>
-</html>
+{% block eos_modals %}{% endblock %}

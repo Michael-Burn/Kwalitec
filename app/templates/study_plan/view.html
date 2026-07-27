@@ -3,7 +3,7 @@
 
 {% block content %}
 <section class="section-header">
-    <p class="section-eyebrow">{{ learning_workspace_label }}</p>
+    <p class="section-eyebrow">{% if v2_flags and v2_flags.SOLE_RUNTIME %}{{ product_descriptor }}{% else %}{{ learning_workspace_label }}{% endif %}</p>
     <div class="section-header-row">
         <div>
             <h1 class="section-title">{{ study_plan.exam_name }}</h1>

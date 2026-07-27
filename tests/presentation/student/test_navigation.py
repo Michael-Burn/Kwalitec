@@ -11,6 +11,7 @@ from app.domain.student_experience.experience_workspace import (
 from app.presentation.student.navigation import (
     SURFACE_ENDPOINTS,
     build_navigation,
+    build_navigation_for_request,
     endpoint_for,
     surface_for_endpoint,
 )
@@ -40,12 +41,35 @@ def test_build_navigation_active(surface):
         ("student.revision", ExperienceSurface.REVISION),
         ("student.history", ExperienceSurface.HISTORY),
         ("student.profile", ExperienceSurface.PROFILE),
+        ("settings.profile", ExperienceSurface.PROFILE),
+        ("settings.preferences", ExperienceSurface.PROFILE),
         (None, ExperienceSurface.HOME),
         ("other.thing", ExperienceSurface.HOME),
     ],
 )
 def test_surface_for_endpoint(endpoint, expected):
     assert surface_for_endpoint(endpoint) is expected
+
+
+def test_build_navigation_for_request_study_plan_active():
+    nav = build_navigation_for_request("study_plan.wizard_step")
+    active = [item for item in nav if item.active]
+    assert len(active) == 1
+    assert active[0].surface == "study_plan"
+
+
+def test_build_navigation_for_request_help_active():
+    nav = build_navigation_for_request("alpha.help_centre")
+    active = [item for item in nav if item.active]
+    assert len(active) == 1
+    assert active[0].surface == "help"
+
+
+def test_build_navigation_for_request_settings_maps_to_profile():
+    nav = build_navigation_for_request("settings.preferences")
+    active = [item for item in nav if item.active]
+    assert len(active) == 1
+    assert active[0].surface == ExperienceSurface.PROFILE.value
 
 
 def test_navigation_labels_student_facing():

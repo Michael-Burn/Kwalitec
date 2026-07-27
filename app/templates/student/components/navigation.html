@@ -1,7 +1,8 @@
-{% if page and page.shell %}
+{% set nav_items = page.shell.navigation if page and page.shell else eos_navigation %}
+{% if nav_items %}
 <nav class="student-nav" aria-label="Student experience">
     <ul class="student-nav-list">
-        {% for item in page.shell.navigation %}
+        {% for item in nav_items %}
         <li class="student-nav-item">
             <a
                 class="student-nav-link{% if item.active %} is-active{% endif %}"

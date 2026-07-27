@@ -34,7 +34,8 @@ class TestAuthBrandHierarchy:
     def test_login_template_brand_hierarchy(self) -> None:
         text = (ROOT / "app/templates/auth/login.html").read_text(encoding="utf-8")
         assert "partials/brand_logo.html" in text
-        assert "landing-brand-name" in text
+        # Logo lockup is the sole wordmark; no second product_name headline.
+        assert "landing-brand-name" not in text
         assert "landing-descriptor" in text
         assert "landing-value" in text
         assert "product_descriptor" in text
@@ -52,8 +53,9 @@ class TestAuthBrandHierarchy:
         assert PRODUCT_DESCRIPTOR in html
         assert PRODUCT_VALUE_PROPOSITION in html
         assert "Disciplined Exam Preparation" not in html
-        # Brand stack appears before the sign-in card title.
-        brand_idx = html.index("landing-brand-name")
+        # Logo + descriptor stack appear before the sign-in card title.
+        assert "landing-brand-name" not in html
+        brand_idx = html.index("landing-brand-stack")
         signin_idx = html.index("landing-card-title")
         assert brand_idx < signin_idx
         # Outcome-oriented capabilities, not implementation labels.
