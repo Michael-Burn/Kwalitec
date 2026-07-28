@@ -4,7 +4,7 @@
 **Date:** 2026-07-28  
 **Status:** Complete — documentation / architecture only  
 **Change class:** Architecture & Product Design  
-**Commit:** *(filled at commit)* — `docs(si-001): establish long-term student intelligence roadmap`  
+**Commit:** `e974a8e` — `docs(si-001): establish long-term student intelligence roadmap`  
 **Authority:** DG-001 · RR-002 · ER-002 · OA-001 · Vision 2030 · Student Digital Twin · Product Blueprint  
 
 ---
