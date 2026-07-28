@@ -4,7 +4,7 @@
 **Work Package:** EI-001.1 — CI Integrity & Release Evidence  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commit:** (filled after mandated commit)  
+**Commit:** `623ee3f` — `chore(ei-001.1): strengthen CI integrity and release evidence`  
 **Governance stance:** Educational baselines frozen — no educational / product behaviour changes  
 **Findings closed:** ER-RB-01 · ER-RB-05 (process)
 
