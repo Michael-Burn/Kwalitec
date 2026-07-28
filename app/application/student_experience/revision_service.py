@@ -1,7 +1,13 @@
-"""RevisionService — Revision experience from Adaptive Decision only."""
+"""RevisionService — Revision experience (Preferred Authority when available).
+
+VP-001 / RI-001: prefer Educational Intelligence Experience Models via
+Runtime Integration. Adaptive Decision remains Temporary compatibility.
+Does not calculate revision priority or educational ROI.
+"""
 
 from __future__ import annotations
 
+import logging
 from typing import Any
 
 from app.application.educational_state import EducationalStateService
@@ -25,9 +31,11 @@ from app.domain.student_experience.revision_projection import (
     RevisionProjection,
 )
 
+logger = logging.getLogger(__name__)
+
 
 class RevisionService:
-    """Project Revision from Adaptive Decision outputs only.
+    """Project Revision from Preferred Authority or Adaptive Decision.
 
     Does not calculate revision priority or educational ROI.
     """
@@ -66,6 +74,9 @@ class RevisionService:
         return revision_snapshot(projection)
 
     def _options_for(self, student_id: str) -> list[dict[str, Any]]:
+        ei_options = _try_educational_intelligence_revision(student_id)
+        if ei_options is not None:
+            return ei_options
         if self._educational_state is not None:
             state = self._educational_state.load(student_id)
             if not state.adaptive_available:
@@ -78,6 +89,60 @@ class RevisionService:
         if self._adaptive is None or not self._adaptive.is_available():
             raise PortUnavailable("adaptive_decision port unavailable")
         return self._adaptive
+
+
+def _try_educational_intelligence_revision(
+    student_id: str,
+) -> list[dict[str, Any]] | None:
+    """Return Revision Planner options from RIS when Preferred Authority wins."""
+    try:
+        user_id = int(str(student_id).strip())
+    except (TypeError, ValueError):
+        return None
+    try:
+        from app.application.runtime_integration import (
+            AuthoritySource,
+            build_runtime_integration_service,
+            map_revision_entry,
+        )
+        from app.application.runtime_integration.dto import IntegrationSurface
+
+        result = build_runtime_integration_service().resolve_for_surface(
+            user_id,
+            IntegrationSurface.REVISION_PLANNER,
+            runtime_a_fallback=lambda _sid, _surface: None,
+        )
+        if result.authority is not AuthoritySource.EDUCATIONAL_INTELLIGENCE:
+            return None
+        if result.experience is None:
+            return None
+        mapped = map_revision_entry(result.experience.surfaces.revision_entry)
+        return [
+            {
+                "option_id": mapped.get("decision_id") or mapped.get("experience_id"),
+                "decision_id": mapped.get("decision_id"),
+                "title": mapped.get("entry_title") or mapped.get("title"),
+                "topic_title": mapped.get("entry_title") or mapped.get("title"),
+                "priority_label": mapped.get("urgency") or "Priority revision",
+                "estimated_minutes": mapped.get("estimated_minutes"),
+                "expected_benefit": mapped.get("expected_outcome") or "",
+                "rationale": mapped.get("educational_why") or mapped.get("summary"),
+                "explanation": {
+                    "rationale": mapped.get("educational_why") or "",
+                    "expected_benefit": mapped.get("expected_outcome") or "",
+                    "source_authority": mapped.get("source_authority"),
+                },
+                "authority": mapped.get("authority"),
+                "source_authority": mapped.get("source_authority"),
+            }
+        ]
+    except Exception:  # noqa: BLE001 — Temporary compatibility
+        logger.debug(
+            "VP-001 revision Preferred Authority unavailable for student=%s",
+            student_id,
+            exc_info=True,
+        )
+        return None
 
 
 def _option(

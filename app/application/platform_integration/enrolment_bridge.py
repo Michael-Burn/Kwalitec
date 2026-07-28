@@ -152,6 +152,17 @@ class FounderStudentEnrolmentBridge:
             study_plan_id=None,
             commit=True,
         )
+        # VP-001: materialise SCI + decisions + experience when a published
+        # CKG edition exists for this subject (LP-001 fail-open).
+        from app.infrastructure.adapters.learner_lifecycle import (
+            onboard_after_enrolment,
+        )
+
+        onboard_after_enrolment(
+            student_id=user_id,
+            subject_code=decision.subject_code,
+            correlation_id=f"vp001-bridge-c-{journey.enrolment.enrolment_id}",
+        )
         return EnrolmentBridgeResult(
             runtime_authority=RuntimeAuthority.PUBLISHED_CURRICULUM,
             routing=decision,
@@ -187,6 +198,17 @@ class FounderStudentEnrolmentBridge:
             enrolment_id=None,
             study_plan_id=study_plan.id,
             commit=True,
+        )
+        # VP-001: when a published CKG edition exists, onboard for Preferred
+        # Authority even on the Runtime A study-plan path (LP-001 fail-open).
+        from app.infrastructure.adapters.learner_lifecycle import (
+            onboard_after_enrolment,
+        )
+
+        onboard_after_enrolment(
+            student_id=user_id,
+            subject_code=decision.subject_code,
+            correlation_id=f"vp001-bridge-a-{study_plan.id}",
         )
         return EnrolmentBridgeResult(
             runtime_authority=RuntimeAuthority.JSON_BUNDLED,

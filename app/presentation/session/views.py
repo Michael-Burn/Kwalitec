@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from dataclasses import replace
 
 from flask import redirect, url_for
 from flask_login import current_user
@@ -99,7 +100,8 @@ def load_page(
             f"session {session_id} is not owned by student {student_id()}"
         )
     flow = svc.get_flow(student_id(), session_id=session_id)
-    return page_from_flow(flow)
+    page = page_from_flow(flow)
+    return _apply_ri001_session_briefing(page)
 
 
 def open_overview(
@@ -120,12 +122,18 @@ def submit_answer(
     *, session_id: str, activity_id: str, response: str
 ) -> ActivitySnapshot:
     assert_session_owned(session_id)
-    return service().submit_response(
+    snap = service().submit_response(
         student_id(),
         session_id=session_id,
         activity_id=activity_id,
         response=response,
     )
+    _vp001_record_evidence(
+        session_id=session_id,
+        activity_id=activity_id,
+        event="practice_attempt",
+    )
+    return snap
 
 
 def advance_activity(*, session_id: str) -> ActivitySnapshot | None:
@@ -152,6 +160,11 @@ def complete_and_return(*, session_id: str) -> CompletionSnapshot:
     """
     assert_session_owned(session_id)
     snap = service().complete_session(student_id(), session_id=session_id)
+    _vp001_record_evidence(
+        session_id=session_id,
+        event="study_session",
+        metadata={"topics": list(getattr(snap, "topics_completed", ()) or ())},
+    )
     _link_commitment_completion(
         int(current_user.id),
         session_id=session_id,
@@ -167,6 +180,100 @@ def _session_topic_hint(snap: CompletionSnapshot) -> str:
         return str(topics[0])
     next_rec = getattr(snap, "next_recommendation", "") or ""
     return str(next_rec).strip()
+
+
+def _apply_ri001_session_briefing(
+    page: SessionPageViewModel,
+) -> SessionPageViewModel:
+    """Overlay Study Session Experience Model framing when Preferred Authority wins."""
+    if page.overview is None:
+        return page
+    briefing = _ri001_session_briefing(int(current_user.id))
+    if not briefing:
+        return page
+    why = str(
+        briefing.get("educational_why")
+        or briefing.get("why_studying")
+        or briefing.get("summary")
+        or ""
+    ).strip()
+    objective = str(
+        briefing.get("expected_outcome")
+        or briefing.get("learning_objective")
+        or briefing.get("briefing_title")
+        or ""
+    ).strip()
+    title = str(briefing.get("briefing_title") or briefing.get("title") or "").strip()
+    overview = page.overview
+    if why:
+        overview = replace(overview, why_studying=why)
+    if objective:
+        overview = replace(
+            overview,
+            objective=objective,
+            learning_goal=objective or overview.learning_goal,
+        )
+    shell = page.shell
+    if title:
+        shell = replace(shell, topic_title=title)
+    return replace(page, overview=overview, shell=shell)
+
+
+def _ri001_session_briefing(user_id: int) -> dict | None:
+    """Return Study Session Experience adapter when Preferred Authority wins."""
+    try:
+        from app.application.runtime_integration import (
+            AuthoritySource,
+            build_runtime_integration_service,
+            map_session_briefing,
+        )
+        from app.application.runtime_integration.dto import IntegrationSurface
+
+        result = build_runtime_integration_service().resolve_for_surface(
+            user_id,
+            IntegrationSurface.STUDY_SESSION,
+            runtime_a_fallback=lambda _sid, _surface: None,
+        )
+        if result.authority is not AuthoritySource.EDUCATIONAL_INTELLIGENCE:
+            return None
+        if result.experience is None:
+            return None
+        return map_session_briefing(result.experience.surfaces.session_briefing)
+    except Exception:  # noqa: BLE001 — Temporary compatibility
+        logger.debug(
+            "VP-001 session Preferred Authority unavailable for user=%s",
+            user_id,
+            exc_info=True,
+        )
+        return None
+
+
+def _vp001_record_evidence(
+    *,
+    session_id: str,
+    activity_id: str | None = None,
+    event: str = "practice_attempt",
+    metadata: dict | None = None,
+) -> None:
+    """Fail-open LP-001 evidence refresh after session activity."""
+    try:
+        from app.infrastructure.adapters.learner_lifecycle import (
+            record_session_evidence,
+        )
+
+        record_session_evidence(
+            student_id=int(current_user.id),
+            session_id=session_id,
+            activity_id=activity_id,
+            event=event,
+            metadata=metadata,
+        )
+    except Exception:  # noqa: BLE001 — never break session UX
+        logger.debug(
+            "VP-001 session evidence hook failed session=%s",
+            session_id,
+            exc_info=True,
+        )
 
 
 def _link_commitment_completion(

@@ -36,6 +36,8 @@ _STUDENT_SURFACE_MODULES = (
     Path("app/dashboard/routes.py"),
     Path("app/mission/routes.py"),
     Path("app/presentation/student/views.py"),
+    Path("app/presentation/session/views.py"),
+    Path("app/application/student_experience/revision_service.py"),
     Path("app/infrastructure/adapters/educational_runtime_bridge/recommendation_adapter.py"),
 )
 

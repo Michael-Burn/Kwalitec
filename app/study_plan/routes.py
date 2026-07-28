@@ -1010,6 +1010,17 @@ def review_post():
             session.pop("wizard_data", None)
 
             logger.info("Study plan %d created for user %s", study_plan.id, current_user.id)
+            # VP-001: LP-001 onboard when a published CKG edition exists so
+            # RI-001 Preferred Authority can serve Experience Models.
+            from app.infrastructure.adapters.learner_lifecycle import (
+                onboard_after_enrolment,
+            )
+
+            onboard_after_enrolment(
+                student_id=current_user.id,
+                subject_code=paper_or_subject,
+                correlation_id=f"vp001-wizard-{study_plan.id}",
+            )
             # Product law (Capability 3.6.3 / 3.8.1): Calibration begins
             # immediately after Study Plan success — not login / settings /
             # dashboard. Birth Twin is authored on the Calibration path.
