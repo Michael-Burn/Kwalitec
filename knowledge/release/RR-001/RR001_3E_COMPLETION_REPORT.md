@@ -4,7 +4,7 @@
 **Work Package:** RR-001.3E — Governance Closure & Release Readiness  
 **Date:** 2026-07-28  
 **Status:** Complete — Governance closed; RP-002 intake ready  
-**Commit:** *(set after commit)* — `docs(rr-001.3e): complete governance closure and release readiness`  
+**Commit:** `b682e1c` — `docs(rr-001.3e): complete governance closure and release readiness`  
 **Governance authority:** DG-001.1 · DG-001.2 · DG-001.3 · DG-001.4 · EGC-001 · RR-001.3A–3D  
 **Constraint:** Governance documentation only — no product behaviour changes
 
