@@ -344,6 +344,17 @@ def _register_health_check(app: Flask) -> None:
         status_code = 200 if payload["status"] != "error" else 503
         return jsonify(payload), status_code
 
+    @app.get("/health/educational-intelligence")
+    def health_educational_intelligence():
+        """Educational Intelligence Platform readiness (PR-001 operational)."""
+        from app.application.educational_intelligence_pipeline.health import (
+            EducationalPlatformHealth,
+        )
+
+        report = EducationalPlatformHealth.check()
+        status_code = 200 if report.ready else 503
+        return jsonify(report.to_dict()), status_code
+
 
 def _is_static_response() -> bool:
     """Return True when the current request serves a static asset."""
