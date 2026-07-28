@@ -4,7 +4,7 @@
 **Date:** 2026-07-28  
 **Status:** Complete — documentation / architecture only  
 **Change class:** Architecture & Product Capability  
-**Commit:** *(set on commit)* — `docs(cp-001): establish decision journal capability architecture`  
+**Commit:** `178261f` — `docs(cp-001): establish decision journal capability architecture`  
 **Authority:** Vision 2030 · OA-001 · SI-001 · OM-001 · Recommendation Quality Standard · Explainability Standard · Student Digital Twin Constitution  
 
 ---
