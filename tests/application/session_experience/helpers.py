@@ -32,7 +32,7 @@ class FakeSessionRuntimePort:
         return {
             "objective": "Strengthen equity method recall",
             "learning_goal": "Explain influence vs control",
-            "why_studying": "High value for exam readiness",
+            "why_studying": "This Session is today's recommended next step.",
             "estimated_minutes": 30,
             "activity_count": 3,
             "topics": ("Equity method", "Associates"),

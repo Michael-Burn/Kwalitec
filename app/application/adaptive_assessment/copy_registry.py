@@ -129,7 +129,7 @@ _COPY: tuple[AdaptiveAssessmentCopy, ...] = (
     AdaptiveAssessmentCopy(
         key="explain.why_body",
         default=(
-            "This check helps gather evidence so today's plan stays accurate. "
+            "This check helps keep today's plan accurate. "
             "Your answers inform what to study next — they are not a grade."
         ),
         description="Default why-framing body",
@@ -432,7 +432,7 @@ _COPY: tuple[AdaptiveAssessmentCopy, ...] = (
     AdaptiveAssessmentCopy(
         key="framing.context.purpose",
         default=(
-            "This Quick Check gathers a little evidence so today's Mission "
+            "This Quick Check gathers a little signal so today's Mission "
             "can stay accurate for {focus}."
         ),
         description="Context Card purpose",
@@ -440,7 +440,7 @@ _COPY: tuple[AdaptiveAssessmentCopy, ...] = (
     AdaptiveAssessmentCopy(
         key="framing.context.benefit",
         default=(
-            "Clearer evidence means more supportive next steps — not a grade."
+            "A clearer signal means more supportive next steps — not a grade."
         ),
         description="Context Card expected benefit",
     ),

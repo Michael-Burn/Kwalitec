@@ -112,7 +112,7 @@
   </p>
   {% elif not habit_resume and page.home.unified_journey_enabled and page.home.why_it_matters %}
   <p class="student-hero-purpose">
-    <span class="student-hero-purpose-label">Why it matters</span>
+    <span class="student-hero-purpose-label">Why</span>
     {{ page.home.why_it_matters }}
   </p>
   {% elif not habit_resume and (page.home.recommendation.summary or page.home.recommendation.reason) %}
@@ -130,6 +130,17 @@
   <p class="student-mission-status" data-status="in_progress" data-habit="resume">
     Session in progress — continue where you left off
   </p>
+  {% if page.home.explanation and page.home.explanation.why_recommended %}
+  <p class="student-hero-purpose" data-habit="resume-why" data-mes-field="why_recommended">
+    <span class="student-hero-purpose-label">Still on this because</span>
+    {{ page.home.explanation.why_recommended }}
+  </p>
+  {% elif page.home.recommendation.summary or page.home.recommendation.reason %}
+  <p class="student-hero-purpose" data-habit="resume-why">
+    <span class="student-hero-purpose-label">Still on this because</span>
+    {{ page.home.recommendation.summary or page.home.recommendation.reason }}
+  </p>
+  {% endif %}
   {% endif %}
 
   {% if page.home.explanation and page.home.explanation.timeliness_line and not page.home.guided_session_active and not page.home.reflection_active and not habit_resume %}
@@ -589,14 +600,14 @@
       </ul>
       {% endif %}
       {% if page.home.readiness.supporting_evidence %}
-      <p class="student-label mb-1">Evidence</p>
+      <p class="student-label mb-1">What this is based on</p>
       <ul class="student-evidence-list" data-mes-field="supporting_evidence">
         {% for point in page.home.readiness.supporting_evidence %}
         <li>{{ point }}</li>
         {% endfor %}
       </ul>
       {% elif page.home.explanation and page.home.explanation.evidence_points %}
-      <p class="student-label mb-1">Evidence</p>
+      <p class="student-label mb-1">What this is based on</p>
       <ul class="student-evidence-list">
         {% for point in page.home.explanation.evidence_points %}
         <li>{{ point }}</li>
@@ -660,9 +671,28 @@
     <p class="student-muted" data-commitment="continuity">{{ page.home.commitment.continuity_line }}</p>
     {% endif %}
     {% elif page.home.coach_trust and page.home.coach_trust.has_content %}
+    {# CQ-005: when Mission card already shows Why/Why now/Next, Guidance
+       surfaces trust extras (basis / alternatives) instead of an empty pointer. #}
+    {% if page.home.recommendation_alternatives %}
+    <p class="student-panel-body" data-mes-field="coach_insight" data-trust-coach="alternatives">
+      <span class="student-label">Also considered</span>
+      {{ page.home.recommendation_alternatives[0].title }}{% if page.home.recommendation_alternatives[0].why_recommended %} — {{ page.home.recommendation_alternatives[0].why_recommended }}{% endif %}
+    </p>
+    {% elif page.home.explanation and page.home.explanation.evidence_points %}
+    <p class="student-panel-body" data-mes-field="coach_insight" data-trust-coach="basis">
+      <span class="student-label">What this is based on</span>
+      {{ page.home.explanation.evidence_points[0] }}
+    </p>
+    {% elif page.home.mission_intelligence and page.home.mission_intelligence.why_not_something_else %}
+    <p class="student-panel-body" data-mes-field="coach_insight" data-trust-coach="why-not">
+      <span class="student-label">Why not something else</span>
+      {{ page.home.mission_intelligence.why_not_something_else }}
+    </p>
+    {% else %}
     <p class="student-panel-body student-coach-insight" data-mes-field="coach_insight" data-trust-coach="pointer">
       Today's why, timing, and next step are covered in the Mission card above.
     </p>
+    {% endif %}
     {% else %}
     <p class="student-panel-body student-coach-insight" data-mes-field="coach_insight">{{ page.home.coach_insight }}</p>
     {% endif %}

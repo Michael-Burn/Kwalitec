@@ -21,7 +21,7 @@
     <p class="student-card-body"><span class="student-label">Next</span> {{ explanation.suggested_next_action }}</p>
     {% endif %}
     {% if points %}
-    <ol class="student-evidence-list" aria-label="Supporting evidence" data-mes-field="supporting_evidence">
+    <ol class="student-evidence-list" aria-label="What this is based on" data-mes-field="supporting_evidence">
         {% for point in points %}
         <li>{{ point }}</li>
         {% endfor %}

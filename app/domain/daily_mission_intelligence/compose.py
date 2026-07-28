@@ -147,7 +147,7 @@ def compose_daily_mission(
         if inp.honest_refusal:
             reason = (
                 inp.confidence_label
-                or "Evidence is not strong enough to name a confident Mission."
+                or "There isn't enough recent practice yet to name a confident Mission."
             )
         return empty_mission_brief(reason=reason)
 
@@ -159,7 +159,7 @@ def compose_daily_mission(
     )
     why_today = _first_nonempty(
         inp.timeliness_line,
-        "It is the highest-value next step given your plan and recent evidence.",
+        "It is the highest-value next step given your plan and recent practice.",
     )
     why_not = _why_not_something_else(inp)
     evidence_points = tuple(
@@ -175,7 +175,7 @@ def compose_daily_mission(
     after = _first_nonempty(
         inp.completion_loop_line,
         inp.review_point,
-        "Mission complete — evidence from today's loop is recorded.",
+        "Mission complete — today's practice updates what we suggest next.",
     )
     confidence = _first_nonempty(
         inp.confidence_label,
@@ -298,7 +298,7 @@ def _why_not_something_else(inp: DailyMissionEvidenceInput) -> str:
         return (
             f"Other options such as {listed} remain available, "
             "but today's Mission is the highest-value focus given "
-            "current evidence."
+            "what we know today."
         )
     return (
         "Other syllabus work can wait — this Mission is the clearest "

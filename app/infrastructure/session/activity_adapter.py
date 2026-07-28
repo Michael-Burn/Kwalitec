@@ -85,6 +85,7 @@ class SessionActivityAdapter:
         sid = student_id.strip()
         sess = session_id.strip()
         topic = self._topic_for(sid, sess)
+        why = self._why_for(sid, sess)
         if self._engine is not None and hasattr(
             self._engine, "get_current_activity_opaque"
         ):
@@ -97,7 +98,9 @@ class SessionActivityAdapter:
                     sid, session_id=sess
                 )
             if isinstance(projected, dict):
-                enriched = self._enrich_activity(projected, topic=topic)
+                enriched = self._enrich_activity(
+                    projected, topic=topic, why_studying=why
+                )
                 self._store.save(self.NS_CURRENT, self._key(sid, sess), enriched)
                 return deepcopy(enriched)
         seq = self._ensure_sequence(sid, sess)
@@ -106,7 +109,12 @@ class SessionActivityAdapter:
         if index > total:
             return None
         activity = default_activity(
-            sid, session_id=sess, index=index, total=total, topic_title=topic
+            sid,
+            session_id=sess,
+            index=index,
+            total=total,
+            topic_title=topic,
+            why_studying=why,
         )
         self._store.save(self.NS_CURRENT, self._key(sid, sess), activity)
         return deepcopy(activity)
@@ -123,6 +131,7 @@ class SessionActivityAdapter:
         sid = student_id.strip()
         sess = session_id.strip()
         topic = self._topic_for(sid, sess)
+        why = self._why_for(sid, sess)
         if self._engine is not None and hasattr(
             self._engine, "submit_response_opaque"
         ):
@@ -142,7 +151,9 @@ class SessionActivityAdapter:
                     response=response,
                 )
             if isinstance(submitted, dict):
-                return self._enrich_activity(dict(submitted), topic=topic)
+                return self._enrich_activity(
+                    dict(submitted), topic=topic, why_studying=why
+                )
         seq = self._ensure_sequence(sid, sess)
         index = int(seq.get("index") or 1)
         total = int(seq.get("total") or self._activity_count)
@@ -181,7 +192,10 @@ class SessionActivityAdapter:
                 return None
             if isinstance(advanced, dict):
                 topic = self._topic_for(sid, sess)
-                enriched = self._enrich_activity(advanced, topic=topic)
+                why = self._why_for(sid, sess)
+                enriched = self._enrich_activity(
+                    advanced, topic=topic, why_studying=why
+                )
                 self._store.save(self.NS_CURRENT, self._key(sid, sess), enriched)
                 return deepcopy(enriched)
         seq = self._ensure_sequence(sid, sess)
@@ -243,8 +257,23 @@ class SessionActivityAdapter:
                 return value
         return "today's topic"
 
+    def _why_for(self, student_id: str, session_id: str) -> str:
+        """Best-effort mission why from runtime overview — presentation only."""
+        overview = self._store.get(self.NS_OVERVIEW, self._key(student_id, session_id))
+        if not isinstance(overview, dict):
+            return ""
+        for key in ("why_studying", "rationale", "why"):
+            value = str(overview.get(key) or "").strip()
+            if value:
+                return value
+        return ""
+
     def _enrich_activity(
-        self, opaque: dict[str, Any], *, topic: str
+        self,
+        opaque: dict[str, Any],
+        *,
+        topic: str,
+        why_studying: str = "",
     ) -> dict[str, Any]:
         """Normalize bridge/default activity facts for learner-facing substance."""
         enriched = dict(opaque)
@@ -264,6 +293,7 @@ class SessionActivityAdapter:
         if not str(enriched.get("topic_title") or "").strip():
             enriched["topic_title"] = topic
         resolved_topic = str(enriched.get("topic_title") or topic).strip()
+        why = (why_studying or "").strip()
         prompt = str(enriched.get("question") or enriched.get("prompt") or "").strip()
         if not prompt or prompt.lower().startswith("practice item"):
             seeded = default_activity(
@@ -272,6 +302,7 @@ class SessionActivityAdapter:
                 index=index,
                 total=total,
                 topic_title=resolved_topic,
+                why_studying=why,
             )
             for key in (
                 "question",
@@ -285,6 +316,14 @@ class SessionActivityAdapter:
             if not prompt or prompt.lower().startswith("practice item"):
                 enriched["question"] = seeded["question"]
                 enriched["context"] = seeded["context"]
+        # CQ-005: prefer mission-why context when overview already carries it.
+        if why and (
+            not str(enriched.get("context") or "").strip()
+            or str(enriched.get("context") or "")
+            .lower()
+            .startswith("focused practice on")
+        ):
+            enriched["context"] = f"You're practising {resolved_topic} because {why}"
         explanation = enriched.get("explanation")
         if isinstance(explanation, dict):
             enriched["explanation"] = str(

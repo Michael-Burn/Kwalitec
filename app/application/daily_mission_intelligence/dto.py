@@ -35,7 +35,7 @@ class DailyMissionIntelligenceSnapshot:
     eyebrow: str = "Today's Mission"
     focus_question: str = "What should I focus on today?"
     explainability_heading: str = "Why this Mission"
-    evidence_heading: str = "Supporting evidence"
+    evidence_heading: str = "What this is based on"
     after_heading: str = "After you finish"
     reflection_heading: str = "Sensei reflection"
     skip_heading: str = "If you skip today"

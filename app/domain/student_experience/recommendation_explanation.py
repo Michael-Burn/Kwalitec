@@ -218,7 +218,7 @@ def build_explanation(
         if not why_parts:
             why_parts.append(
                 f"This is the highest-value next step for {topic} based on "
-                "your recent learning evidence."
+                "your recent practice."
             )
         why_text = " ".join(why_parts)
 
@@ -288,5 +288,5 @@ def _reason_code_to_phrase(code: str, topic: str) -> str:
     }
     return mapping.get(
         code,
-        f"Your learning evidence points to {topic} as the best next step.",
+        f"Your recent practice points to {topic} as the best next step.",
     )

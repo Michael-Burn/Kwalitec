@@ -113,6 +113,12 @@ class SessionExperienceComposition:
                     today.get("objective") or overview["objective"]
                 )
             overview["estimated_minutes"] = today.get("estimated_minutes") or 30
+            # CQ-005: echo Home recommendation rationale into Session Overview.
+            overview["why_studying"] = _why_studying_from_recommendation(
+                self.adaptive.get_todays_recommendation(sid),
+                topic=topic,
+                fallback=str(overview.get("why_studying") or ""),
+            )
             self.runtime.put_overview(sid, session_id=session_id, document=overview)
         else:
             self.mission.get_todays_session(sid)
@@ -134,6 +140,37 @@ class SessionExperienceComposition:
             student_twin=self.twin,
             adaptive_decision=self.adaptive,
         )
+
+
+def _why_studying_from_recommendation(
+    recommendation: dict[str, Any] | None,
+    *,
+    topic: str = "",
+    fallback: str = "",
+) -> str:
+    """Presentation continuity: surface existing recommendation why on Overview.
+
+    Uses authored Adaptive recommendation fields only — never invents ranking.
+    """
+    rec = recommendation or {}
+    expl = rec.get("explanation") if isinstance(rec.get("explanation"), dict) else {}
+    for candidate in (
+        expl.get("why_recommended"),
+        rec.get("why_recommended"),
+        rec.get("summary"),
+        expl.get("expected_benefit"),
+        rec.get("expected_benefit"),
+    ):
+        text = str(candidate or "").strip()
+        if text:
+            return text
+    topic_label = (topic or "").strip()
+    if topic_label:
+        return f"Today's Session focuses on {topic_label} — the recommended next step."
+    return (
+        fallback.strip()
+        or "This Session is today's recommended next step."
+    )
 
 
 def build_production_session_experience(

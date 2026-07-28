@@ -21,7 +21,8 @@ def default_session_overview(
         "experience_session_id": f"es-{session_id}",
         "objective": "Strengthen today's focus topic",
         "learning_goal": "Build confident recall for the examination",
-        "why_studying": "High value for exam readiness",
+        # CQ-005: humble default — composition threads recommendation why.
+        "why_studying": "This Session is today's recommended next step.",
         "estimated_minutes": 30,
         "activity_count": 3,
         "topics": ("Core methods",),
@@ -102,13 +103,16 @@ def default_activity(
     index: int = 1,
     total: int = 3,
     topic_title: str = "Core methods",
+    why_studying: str = "",
 ) -> dict[str, Any]:
     """Opaque current activity facts.
 
     Topic-threaded prompts keep the activity coherent with today's Mission
-    without inventing new educational content (CQ-004).
+    without inventing new educational content (CQ-004). CQ-005 echoes the
+    mission why into context when already present on the overview.
     """
     topic = (topic_title or "today's topic").strip() or "today's topic"
+    why = (why_studying or "").strip()
     is_final = index >= total
     prompts = (
         f"In your own words, explain one key idea from {topic}.",
@@ -116,12 +120,16 @@ def default_activity(
         f"What still feels unclear about {topic}, and how would you check it?",
     )
     question = prompts[(index - 1) % len(prompts)]
+    if why:
+        context = f"You're practising {topic} because {why}"
+    else:
+        context = f"Focused practice on {topic}"
     return {
         "student_id": student_id,
         "session_id": session_id,
         "activity_id": f"act-{index}",
         "question": question,
-        "context": f"Focused practice on {topic}",
+        "context": context,
         "supporting_material": (
             f"Review the core definition for {topic} and one worked example"
         ),
