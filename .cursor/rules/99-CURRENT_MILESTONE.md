@@ -1,36 +1,35 @@
 # Current Milestone
 
-**EI-007** — Educational Reasoning Engine (**Active delivery**)
+**EX-001** — Educational Experience Engine (**Active delivery**)
 
 ## Objective
 
-Determine highest-value educational actions for a Student Curriculum Instance from published curriculum, Twin beliefs, and evidence references. Produce ordered, explainable decisions only — no mission text or student UI.
+Transform Educational Decisions (EI-007) into consistent, explainable, UI-agnostic experience models for Daily Mission, Coach, Dashboard, Revision Planner, and study session surfaces. Presentation and communication only — no educational reasoning.
 
 ## Allowed modifications
 
-- `app/domain/educational_reasoning_engine/`
-- `app/application/educational_reasoning_engine/`
-- `app/models/educational_reasoning_engine.py` and model registration
-- Alembic migration for EI-007 decision tables
-- `tests/domain/educational_reasoning_engine/` · `tests/application/educational_reasoning_engine/`
-- `knowledge/educational_intelligence/ei007_educational_reasoning_engine/`
-- Programme dashboard / milestone pointers for EI-007
+- `app/domain/educational_experience_engine/`
+- `app/application/educational_experience_engine/`
+- `tests/domain/educational_experience_engine/` · `tests/application/educational_experience_engine/`
+- `knowledge/educational_experience/ex001_educational_experience_engine/`
+- Programme dashboard / milestone pointers for EX-001
 
 ## Forbidden
 
-- Daily Missions / Coach responses / student UI
-- Mutating Learning Evidence, Twin beliefs, or published curriculum
-- Probabilistic AI / LLM reasoning in core learning paths
+- Modifying Educational Decisions, Twin Beliefs, or Learning Evidence
+- Introducing new educational reasoning or bypassing EI-007
+- Student HTTP / template wiring beyond defined integration contracts
+- Generative AI / LLM presentation in core experience paths
 
 ## Parallel note
 
-FV-001 Founder Validation remains the commercial dogfood track. EI-007 does not reopen CQ engineering or Founder Validated CRI claims. Legacy `app.domain.educational_reasoning` is untouched.
+FV-001 Founder Validation remains the commercial dogfood track. EX-001 does not reopen CQ engineering or Founder Validated CRI claims. Legacy PX-001 `educational_experience` and EXP-001 `student_experience` packages are untouched.
 
 ## Authoritative artefacts
 
-- Architecture: `knowledge/educational_intelligence/ei007_educational_reasoning_engine/ARCHITECTURE.md`
-- Completion: `knowledge/educational_intelligence/ei007_educational_reasoning_engine/EI007_COMPLETION_REPORT.md`
-- Prior: EI-001 CKG · EI-002 Extraction · EI-003 Publishing · EI-004 Binding · EI-005 Evidence · EI-006 Twin Inference
+- Architecture: `knowledge/educational_experience/ex001_educational_experience_engine/ARCHITECTURE.md`
+- Completion: `knowledge/educational_experience/ex001_educational_experience_engine/EX001_COMPLETION_REPORT.md`
+- Upstream: EI-007 Educational Reasoning Engine
 
 ---
 
