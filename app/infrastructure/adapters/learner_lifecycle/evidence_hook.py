@@ -106,7 +106,13 @@ def record_session_evidence(
     if metadata:
         payload.update(metadata)
 
+    correlation = f"vp001-session-{session_id}"
     try:
+        from app.application.founder_validation.telemetry import (
+            DEFAULT_FV_TELEMETRY,
+            decision_refresh_ms_from_result,
+            total_duration_ms_from_result,
+        )
         from app.application.learner_lifecycle import LearnerLifecycleOrchestrator
 
         result = LearnerLifecycleOrchestrator().process_evidence(
@@ -115,7 +121,17 @@ def record_session_evidence(
             evidence_type=evidence_type,
             source=EvidenceSource.SESSION_RUNTIME.value,
             metadata=payload,
-            correlation_id=f"vp001-session-{session_id}",
+            correlation_id=correlation,
+        )
+        DEFAULT_FV_TELEMETRY.record_lifecycle_outcome(
+            kind="evidence",
+            succeeded=bool(result.succeeded),
+            student_id=sid,
+            operation_type="evidence_refresh",
+            duration_ms=total_duration_ms_from_result(result),
+            decision_refresh_ms=decision_refresh_ms_from_result(result),
+            failure_cause=result.failure_cause,
+            correlation_id=correlation,
         )
         if result.succeeded:
             logger.info(
@@ -132,7 +148,20 @@ def record_session_evidence(
                 result.status,
             )
         return result
-    except Exception:  # noqa: BLE001 — session UX must not fail open
+    except Exception as exc:  # noqa: BLE001 — session UX must not fail open
+        try:
+            from app.application.founder_validation.telemetry import (
+                DEFAULT_FV_TELEMETRY,
+            )
+
+            DEFAULT_FV_TELEMETRY.record_system_failure(
+                kind="evidence",
+                student_id=sid,
+                cause=exc.__class__.__name__,
+                correlation_id=correlation,
+            )
+        except Exception:  # noqa: BLE001 — telemetry must never raise
+            pass
         logger.exception(
             "VP-001 evidence failed open student=%s session=%s",
             sid,

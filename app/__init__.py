@@ -772,6 +772,7 @@ def _register_template_context(app: Flask) -> None:
 
 def _register_cli_commands(app: Flask) -> None:
     """Register custom CLI commands."""
+    from app.application.founder_validation.cli import fv_metrics_command
     from app.cli import (
         backfill_sections_command,
         create_admin_command,
@@ -803,6 +804,7 @@ def _register_cli_commands(app: Flask) -> None:
     app.cli.add_command(analytics_export_audit_command)
     app.cli.add_command(analytics_metrics_command)
     app.cli.add_command(analytics_verify_consent_command)
+    app.cli.add_command(fv_metrics_command)
 
 
 def _register_blueprints(app: Flask) -> None:

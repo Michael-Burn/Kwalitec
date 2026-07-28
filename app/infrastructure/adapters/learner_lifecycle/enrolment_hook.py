@@ -74,12 +74,27 @@ def onboard_after_enrolment(
         return None
 
     try:
+        from app.application.founder_validation.telemetry import (
+            DEFAULT_FV_TELEMETRY,
+            decision_refresh_ms_from_result,
+            total_duration_ms_from_result,
+        )
         from app.application.learner_lifecycle import LearnerLifecycleOrchestrator
 
         result = LearnerLifecycleOrchestrator().onboard_student(
             student_id=sid,
             edition_id=resolved,
             subject_code=subject_code,
+            correlation_id=correlation_id,
+        )
+        DEFAULT_FV_TELEMETRY.record_lifecycle_outcome(
+            kind="onboard",
+            succeeded=bool(result.succeeded),
+            student_id=sid,
+            operation_type="onboard",
+            duration_ms=total_duration_ms_from_result(result),
+            decision_refresh_ms=decision_refresh_ms_from_result(result),
+            failure_cause=result.failure_cause,
             correlation_id=correlation_id,
         )
         if result.succeeded:
@@ -100,7 +115,20 @@ def onboard_after_enrolment(
                 result.failed_stage,
             )
         return result
-    except Exception:  # noqa: BLE001 — enrolment must not fail open
+    except Exception as exc:  # noqa: BLE001 — enrolment must not fail open
+        try:
+            from app.application.founder_validation.telemetry import (
+                DEFAULT_FV_TELEMETRY,
+            )
+
+            DEFAULT_FV_TELEMETRY.record_system_failure(
+                kind="onboard",
+                student_id=sid,
+                cause=exc.__class__.__name__,
+                correlation_id=correlation_id,
+            )
+        except Exception:  # noqa: BLE001 — telemetry must never raise
+            pass
         logger.exception(
             "VP-001 lifecycle onboard failed open student=%s edition=%s",
             sid,
