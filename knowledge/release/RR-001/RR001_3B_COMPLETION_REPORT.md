@@ -4,7 +4,7 @@
 **Work Package:** RR-001.3B — Educational Orientation & Reflection Coherence  
 **Date:** 2026-07-28  
 **Status:** Complete — Certified Pass (in-scope)  
-**Commit:** `feat(rr-001.3b): implement educational orientation and reflection coherence`
+**Commit:** `27ad497` — `feat(rr-001.3b): implement educational orientation and reflection coherence`
 **Governance authority:** DG-001.3 · DG-001.4 · EGC-001  
 **Remediation packages:** EGC-R03 · EGC-R04 · EGC-R05
 
