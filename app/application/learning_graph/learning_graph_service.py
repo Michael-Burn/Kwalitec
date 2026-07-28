@@ -10,9 +10,14 @@ from app.application.learning_graph.graph_builder_service import (
     project_mastery_onto_graph,
 )
 from app.application.learning_graph.persistence import LearningGraphPersistenceService
+from app.application.learning_graph.projections.twin_projection_service import (
+    TwinProjectionService,
+)
 from app.domain.educational_reasoning.reasoning_context import CurriculumEvidenceBundle
 from app.domain.learning_graph.graph_update import GraphUpdate, GraphUpdateKind
 from app.domain.learning_graph.learning_graph import LearningGraph
+from app.domain.learning_graph.projections.result import ProjectionResult
+from app.domain.reasoning.decisions.decision_set import EducationalDecisionSet
 from app.domain.student_digital_twin.student_digital_twin import StudentDigitalTwin
 from app.extensions import db
 from app.models.learning_graph import LgLearningGraph
@@ -29,9 +34,11 @@ class LearningGraphService:
         *,
         persistence: LearningGraphPersistenceService | None = None,
         builder: LearningGraphBuilderService | None = None,
+        twin_projection: TwinProjectionService | None = None,
     ) -> None:
         self._persistence = persistence or LearningGraphPersistenceService()
         self._builder = builder or LearningGraphBuilderService()
+        self._twin_projection = twin_projection or TwinProjectionService()
 
     def create_for_twin(
         self,
@@ -135,6 +142,67 @@ class LearningGraphService:
             self._persistence.replace_structure(updated)
             db.session.flush()
         return updated
+
+    def project_twin_decisions(
+        self,
+        twin: StudentDigitalTwin,
+        decision_set: EducationalDecisionSet,
+        *,
+        computed_at: datetime | None = None,
+        persist: bool = True,
+        refresh_mastery_cache: bool = True,
+    ) -> ProjectionResult:
+        """Project validated Twin decisions into Learning Graph relationships.
+
+        AP-002D4 entry point. Stores educational relationships only — Twin remains
+        the authority for mastery belief. Does not invoke Reasoning, Mission, or Tutor.
+        """
+        graph = self.get_or_create_for_twin(twin, persist=persist)
+        result = self._twin_projection.project(
+            twin,
+            decision_set,
+            graph=graph,
+            projected_at=computed_at,
+            persist=True,
+            allow_idempotent_skip=True,
+        )
+
+        when = computed_at or result.projected_at
+        update = GraphUpdate(
+            update_id=(
+                f"lgu-proj-{result.graph_projection.projection_id}"[:64]
+            ),
+            graph_id=graph.graph_id,
+            twin_id=graph.twin_id,
+            kind=GraphUpdateKind.PROJECT_FROM_TWIN_DECISIONS,
+            summary=(
+                f"Projected Twin decisions: relationships={result.relationship_count} "
+                f"created={result.created_count} skipped={result.skipped_count}"
+            ),
+            created_at=when,
+            payload=(
+                ("projection_id", result.graph_projection.projection_id),
+                ("relationship_count", str(result.relationship_count)),
+                ("decision_set_id", decision_set.set_id),
+                ("twin_version", str(twin.version)),
+                ("projection_version", result.context.projection_version),
+            ),
+        )
+        graph = graph.with_structure(update=update, updated_at=when)
+
+        if refresh_mastery_cache:
+            # Cache Twin belief for traversal only — Twin remains SoT.
+            graph = project_mastery_onto_graph(
+                graph,
+                twin.mastery,
+                observations=twin.observations,
+                computed_at=when,
+            )
+
+        if persist:
+            self._persistence.replace_structure(graph)
+            db.session.flush()
+        return result
 
     def list_for_student(self, student_id: str) -> list[LearningGraph]:
         rows = LgLearningGraph.query.filter_by(student_id=student_id).all()

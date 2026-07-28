@@ -15,6 +15,7 @@ class GraphUpdateKind(StrEnum):
     EDGE_UPSERT = "edge_upsert"
     SYNC_FROM_TWIN = "sync_from_twin"
     SYNC_FROM_EVIDENCE = "sync_from_evidence"
+    PROJECT_FROM_TWIN_DECISIONS = "project_from_twin_decisions"
     SNAPSHOT = "snapshot"
 
 
