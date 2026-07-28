@@ -493,8 +493,44 @@ class IntelligentTutorService:
             metadata={
                 "engine_version": self.ENGINE_VERSION,
                 "generation_backend": self._generation.backend_name,
+                **self._ri001_coach_metadata(twin.student.student_id),
             },
         )
+
+    def _ri001_coach_metadata(self, student_id: str) -> dict[str, Any]:
+        """Attach EX-001 CoachConversationContext when Preferred Authority wins.
+
+        Presentation mapping only — never creates educational decisions.
+        """
+        try:
+            user_id = int(str(student_id).strip())
+        except (TypeError, ValueError):
+            return {}
+        try:
+            from app.application.runtime_integration import (
+                AuthoritySource,
+                build_runtime_integration_service,
+                map_coach_context,
+            )
+            from app.application.runtime_integration.dto import IntegrationSurface
+
+            result = build_runtime_integration_service().resolve_for_surface(
+                user_id,
+                IntegrationSurface.COACH,
+                runtime_a_fallback=lambda _sid, _surface: None,
+            )
+            if result.authority is not AuthoritySource.EDUCATIONAL_INTELLIGENCE:
+                return {"ri001_authority": result.authority.value}
+            if result.experience is None:
+                return {"ri001_authority": result.authority.value}
+            coach = map_coach_context(result.experience.surfaces.coach)
+            return {
+                "ri001_authority": AuthoritySource.EDUCATIONAL_INTELLIGENCE.value,
+                "educational_experience_coach": coach,
+                "educational_decision_id": result.decision_id,
+            }
+        except Exception:  # noqa: BLE001 — Tutor must remain available
+            return {}
 
     def diagnostics_for_twin(self, twin_id: str) -> dict[str, Any]:
         """Founder diagnostics for Tutor state."""

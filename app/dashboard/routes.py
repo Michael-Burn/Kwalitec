@@ -63,6 +63,54 @@ def _timed_call(label: str, fn, *args, **kwargs):
         return None
 
 
+def _runtime_integration_recommendations(
+    user_id: int,
+) -> tuple[dict | None, list | None]:
+    """RI-001 Preferred Authority recommendations for the dashboard template.
+
+    Controllers consume Experience Models via RuntimeIntegrationService only —
+    no educational ranking here. Returns (None, None) when Runtime A
+    compatibility should supply recommendations.
+    """
+    try:
+        from app.application.runtime_integration import (
+            AuthoritySource,
+            build_runtime_integration_service,
+            map_dashboard_recommendation,
+        )
+        from app.application.runtime_integration.dto import IntegrationSurface
+        from app.services.study_plan_service import StudyPlanService
+
+        subject = None
+        plan = StudyPlanService.get_user_active_plan(user_id)
+        if plan is not None:
+            for attr in ("subject_code", "exam_code", "paper_code"):
+                raw = getattr(plan, attr, None)
+                if raw:
+                    subject = str(raw).strip().upper() or None
+                    break
+
+        result = build_runtime_integration_service().resolve_for_surface(
+            user_id,
+            IntegrationSurface.DASHBOARD,
+            subject_code=subject,
+            runtime_a_fallback=lambda _sid, _surface: None,
+        )
+        if result.authority is not AuthoritySource.EDUCATIONAL_INTELLIGENCE:
+            return None, None
+        if result.experience is None:
+            return None, None
+        today = map_dashboard_recommendation(result.experience.surfaces)
+        return today, [today]
+    except Exception as exc:  # noqa: BLE001 — fail open to Temporary compatibility
+        logger.warning(
+            "ri001_dashboard_preferred_authority_failed user_id=%s: %s",
+            user_id,
+            exc,
+        )
+        return None, None
+
+
 def _compose_educational_dashboard(
     user_id: int,
     active_study_plan,
@@ -177,10 +225,12 @@ def index():
     )
 
     # Educational Intelligence (Stage A / Internal Alpha) — Application only.
-    # Flags default off; missing curriculum / composition → None fallback.
+    # RI-001: Preferred Authority — EI-007 → EX-001 when SCI+decisions exist.
+    # Stage A orchestrator / Runtime A remain Temporary compatibility only.
+    ri_today, ri_all = _runtime_integration_recommendations(user_id)
     ei_flags = resolve_feature_flags()
     dashboard_view_model = None
-    if ei_flags.ENABLE_EDUCATIONAL_ORCHESTRATOR:
+    if ri_today is None and ei_flags.ENABLE_EDUCATIONAL_ORCHESTRATOR:
         dashboard_view_model = _timed_call(
             "educational_dashboard",
             _compose_educational_dashboard,
@@ -188,15 +238,17 @@ def index():
             active_study_plan,
         )
 
-    # Legacy recommendations remain default authority and silent fallback when
-    # EI cannot produce a truthful Experience. When the EI card is present,
-    # legacy recommendation lists stay out of the template (invisible dual path).
+    # Preferred Authority recommendations win when present. Otherwise Stage A
+    # card or legacy RecommendationService Temporary compatibility.
     ei_recommendation_active = bool(
-        dashboard_view_model is not None
-        and dashboard_view_model.recommendation_card is not None
+        ri_today is not None
+        or (
+            dashboard_view_model is not None
+            and dashboard_view_model.recommendation_card is not None
+        )
     )
-    today_recommendation = None
-    all_recommendations = None
+    today_recommendation = ri_today
+    all_recommendations = ri_all
     if not ei_recommendation_active:
         today_recommendation = _timed_call(
             "today_recommendation",
@@ -217,6 +269,10 @@ def index():
                 today_recommendation=today_recommendation,
             )
         )
+    elif ri_today is not None:
+        # Keep Stage A view model out of the dual path when RIS already won.
+        dashboard_view_model = None
+
 
     # Optional widgets still rendered by the template
     exam_timeline = _timed_call(

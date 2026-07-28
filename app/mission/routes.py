@@ -389,6 +389,66 @@ def _session_context_for_mission(user_id: int, mission: Mission):
     if plan is None:
         plan = StudyPlanService.get_user_active_plan(user_id)
 
+    # RI-001: prefer Experience Models for educational framing when available.
+    ri_mission, ri_session = _ri001_mission_session_framing(user_id)
+    if ri_mission is not None:
+        from dataclasses import replace
+
+        title = str(
+            ri_mission.get("mission_title")
+            or ri_mission.get("title")
+            or mission.title
+        )
+        why = str(
+            ri_mission.get("reason_for_selection")
+            or ri_mission.get("why_this_mission")
+            or ""
+        )
+        objective = str(
+            ri_mission.get("educational_purpose")
+            or ri_mission.get("expected_outcome")
+            or ""
+        )
+        mission_narrative = EducationalExplainabilityService.build_mission_narrative(
+            mission_title=title,
+            mission_status=mission.status,
+            exam_name=plan.exam_name if plan else None,
+        )
+        if mission_narrative is not None and (why or objective):
+            mission_narrative = replace(
+                mission_narrative,
+                reason_for_selection=why or mission_narrative.reason_for_selection,
+                educational_purpose=(
+                    objective or mission_narrative.educational_purpose
+                ),
+                expected_benefit=objective or mission_narrative.expected_benefit,
+            )
+        session_why = (
+            (ri_session or {}).get("why_studying")
+            or why
+            or (
+                mission_narrative.reason_for_selection
+                if mission_narrative is not None
+                else None
+            )
+        )
+        session_objective = (
+            (ri_session or {}).get("learning_objective")
+            or objective
+            or (
+                mission_narrative.educational_purpose
+                if mission_narrative is not None
+                else None
+            )
+        )
+        session_context = StudySessionService.build_session_context(
+            mission,
+            plan,
+            why_studying=session_why,
+            learning_objective=session_objective,
+        )
+        return plan, mission_narrative, session_context
+
     mission_narrative = EducationalExplainabilityService.build_mission_narrative(
         mission_title=mission.title,
         mission_status=mission.status,
@@ -401,6 +461,36 @@ def _session_context_for_mission(user_id: int, mission: Mission):
         learning_objective=mission_narrative.educational_purpose,
     )
     return plan, mission_narrative, session_context
+
+
+def _ri001_mission_session_framing(
+    user_id: int,
+) -> tuple[dict | None, dict | None]:
+    """Return mission/session Experience adapters when Preferred Authority wins."""
+    try:
+        from app.application.runtime_integration import (
+            AuthoritySource,
+            build_runtime_integration_service,
+            map_daily_mission,
+            map_session_briefing,
+        )
+        from app.application.runtime_integration.dto import IntegrationSurface
+
+        result = build_runtime_integration_service().resolve_for_surface(
+            user_id,
+            IntegrationSurface.DAILY_MISSION,
+            runtime_a_fallback=lambda _sid, _surface: None,
+        )
+        if result.authority is not AuthoritySource.EDUCATIONAL_INTELLIGENCE:
+            return None, None
+        if result.experience is None:
+            return None, None
+        return (
+            map_daily_mission(result.experience.surfaces.daily_mission),
+            map_session_briefing(result.experience.surfaces.session_briefing),
+        )
+    except Exception:  # noqa: BLE001 — Temporary compatibility
+        return None, None
 
 
 @mission_bp.post("/<int:mission_id>/session/start")

@@ -87,12 +87,20 @@ def load_page(surface: ExperienceSurface | str) -> StudentPageViewModel:
 def _try_runtime_c_page(
     sid: str, surface_key: str
 ) -> StudentPageViewModel | None:
-    """Return a Runtime C educational page when the student is enrolled."""
+    """Return a Runtime C educational page when the student is enrolled.
+
+    RI-001: when Educational Intelligence Preferred Authority is available,
+    skip Runtime C educational selection and let Runtime A/Home consume
+    Experience Models via the recommendation bridge. Runtime C remains
+    Temporary compatibility only — no new educational reasoning here.
+    """
     if surface_key not in {"home", "journey"}:
         return None
     try:
         user_id = int(sid)
     except (TypeError, ValueError):
+        return None
+    if _ri001_preferred_authority_available(user_id):
         return None
     try:
         from app.application.educational_experience import (
@@ -115,6 +123,20 @@ def _try_runtime_c_page(
             exc_info=True,
         )
         return None
+
+
+def _ri001_preferred_authority_available(user_id: int) -> bool:
+    """True when SCI + Educational Decisions exist for Preferred Authority."""
+    try:
+        from app.application.runtime_integration import (
+            build_runtime_integration_service,
+        )
+
+        return build_runtime_integration_service().has_educational_intelligence(
+            user_id
+        )
+    except Exception:  # noqa: BLE001
+        return False
 
 
 def start_todays_session(

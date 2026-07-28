@@ -205,6 +205,21 @@ class Version2FeatureFlags:
     ENABLE_EVIDENCE_REVIEW: bool = False
     SOLE_RUNTIME: bool = False
     ENABLE_FOUNDER_INTELLIGENCE: bool = False
+    # RI-001: Preferred Authority routing (default ON). Explicitly set
+    # KWALITEC_RUNTIME_INTEGRATION=0/false/off to force Runtime A only.
+    ENABLE_RUNTIME_INTEGRATION: bool = True
+
+
+_FALSY = frozenset({"0", "false", "no", "off"})
+
+
+def _env_default_true(name: str, *, environ: dict[str, str] | None = None) -> bool:
+    """Truthy by default; only False when explicitly set to a falsy token."""
+    env = environ if environ is not None else os.environ
+    raw = env.get(name)
+    if raw is None or str(raw).strip() == "":
+        return True
+    return str(raw).strip().lower() not in _FALSY
 
 
 def resolve_v2_feature_flags(
@@ -467,6 +482,9 @@ def resolve_v2_feature_flags(
         SOLE_RUNTIME=sole,
         ENABLE_FOUNDER_INTELLIGENCE=_env_truthy(
             "KWALITEC_V2_FOUNDER_INTELLIGENCE", environ=environ
+        ),
+        ENABLE_RUNTIME_INTEGRATION=_env_default_true(
+            "KWALITEC_RUNTIME_INTEGRATION", environ=environ
         ),
     )
 

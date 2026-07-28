@@ -110,6 +110,29 @@ class RecommendationAdapter:
                 self._finish(sid, result, started, failure=True)
                 return result
 
+            # RI-001: Preferred Authority — EI-007 → EX-001 when SCI+decisions exist.
+            ei_projection = self._try_educational_intelligence(
+                user_id,
+                mission_projection=mission_projection,
+                as_of_date=as_of_date,
+            )
+            if ei_projection is not None:
+                result = BridgeResult(
+                    ok=True,
+                    value=ei_projection,
+                    fallback_used=False,
+                )
+                self._finish(
+                    sid,
+                    result,
+                    started,
+                    failure=False,
+                    decision_id=str(ei_projection.get("decision_id") or "") or None,
+                    mission_id=ei_projection.get("mission_id"),
+                    mission_aligned=bool(ei_projection.get("mission_aligned")),
+                )
+                return result
+
             resolved_date = as_of_date or date.today()
             mission = self._resolve_mission(
                 user_id,
@@ -208,6 +231,75 @@ class RecommendationAdapter:
         if not result.ok:
             return None
         return result.value
+
+    def _try_educational_intelligence(
+        self,
+        user_id: int,
+        *,
+        mission_projection: dict[str, Any] | None,
+        as_of_date: date | None,
+    ) -> dict[str, Any] | None:
+        """Return Experience-Model projection when preferred authority wins.
+
+        Returns None so Runtime A compatibility runs when SCI/decisions are
+        missing or integration is disabled. Never invents recommendations.
+        """
+        try:
+            from app.application.runtime_integration import (
+                AuthoritySource,
+                build_runtime_integration_service,
+                map_dashboard_recommendation,
+            )
+            from app.application.runtime_integration.dto import IntegrationSurface
+
+            ris = build_runtime_integration_service()
+            subject = self._subject_hint(user_id)
+            result = ris.resolve_for_surface(
+                user_id,
+                IntegrationSurface.RECOMMENDATION,
+                subject_code=subject,
+                runtime_a_fallback=lambda _sid, _surface: None,
+            )
+            if result.authority is not AuthoritySource.EDUCATIONAL_INTELLIGENCE:
+                return None
+            if result.experience is None:
+                return None
+            projection = map_dashboard_recommendation(result.experience.surfaces)
+            projection["student_id"] = str(user_id)
+            resolved_date = as_of_date or date.today()
+            estimated = self._estimated_minutes(user_id, mission_date=resolved_date)
+            if estimated is not None:
+                projection["estimated_minutes"] = estimated
+            if isinstance(mission_projection, dict):
+                mid = mission_projection.get("mission_id") or mission_projection.get(
+                    "session_id"
+                )
+                if mid:
+                    projection["mission_id"] = str(mid)
+                    projection["mission_aligned"] = True
+            return projection
+        except Exception:  # noqa: BLE001 — fail open to Runtime A
+            logger.warning(
+                "ri001_recommendation_preferred_authority_failed user_id=%s",
+                user_id,
+                exc_info=True,
+            )
+            return None
+
+    def _subject_hint(self, user_id: int) -> str | None:
+        """Best-effort subject from active study plan — no educational math."""
+        try:
+            plan = self._resolve_study_plan_service().get_user_active_plan(user_id)
+            if plan is None:
+                return None
+            for attr in ("subject_code", "exam_code", "paper_code"):
+                raw = getattr(plan, attr, None)
+                if raw:
+                    return str(raw).strip().upper() or None
+            exam = str(getattr(plan, "exam_name", "") or "").strip()
+            return exam.upper() if exam else None
+        except Exception:  # noqa: BLE001
+            return None
 
     def _finish(
         self,
