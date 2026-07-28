@@ -3,7 +3,7 @@
 **Programme:** CQ-007 — Commercial Quality Programme  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commit:** `docs(cq-007): publish founder adoption readiness assessment` (this documentation commit)  
+**Commit:** `24ceb89` (`docs(cq-007): publish founder adoption readiness assessment`)  
 
 ---
 
