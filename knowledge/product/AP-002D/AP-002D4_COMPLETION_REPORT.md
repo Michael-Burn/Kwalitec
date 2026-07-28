@@ -4,7 +4,8 @@
 **Milestone:** AP-002D4 — Learning Graph Projection  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commit message:** `feat(ap-002d4): project twin decisions into learning graph`
+**Commit message:** `feat(ap-002d4): project twin decisions into learning graph`  
+**Commit:** `8653fee`
 
 ---
 
