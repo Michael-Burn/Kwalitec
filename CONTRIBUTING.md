@@ -82,11 +82,23 @@ Do not merge with failing CI without an explicit, documented exception.
 | Persistence | SQLAlchemy models + Alembic |
 | Templates | Jinja2 under `app/templates/` mirroring feature folders |
 
+### Educational presentation runtime (RR-002.3)
+
+| Rule | Detail |
+|---|---|
+| Authoritative runtime | Education OS under `KWALITEC_V2_SOLE_RUNTIME` — `app/presentation/student/` + `app/presentation/session/` |
+| Certified templates | `app/templates/student/`, `app/templates/session/`, `layouts/eos_student.html` |
+| Do not extend | Legacy Contained shells: `dashboard/`, `mission/` LXP, `analytics/` presentation (redirect soak only) |
+| Chrome router | `layouts/base.html` (DEP-003) selects EOS vs `legacy_workspace` — do not invent a third shell |
+| Lexicon / authority | Follow DG-001 (`CANONICAL_EDUCATIONAL_LEXICON.md`, `EDUCATIONAL_AUTHORITY_MODEL.md`) |
+| Inventory | `knowledge/release/RR-002/RR002_3_LEGACY_INVENTORY.md` · ownership `RR002_3_RUNTIME_OWNERSHIP.md` |
+
 Avoid:
 
 - Drive-by refactors unrelated to the task
 - New dependencies without a clear need
 - Editing generated or cache directories (`.venv`, `__pycache__`, `.pytest_cache`)
+- Building new student educational UI on legacy Runtime A templates
 
 Detailed rules: `.cursor/rules/02-python.mdc`, `03-flask.mdc`, `04-services.mdc`.
 

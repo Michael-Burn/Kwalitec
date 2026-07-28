@@ -165,16 +165,20 @@ Curriculum
 ```
 app/templates/
 ├── layouts/
-│   ├── base.html          # Authenticated shell (sidebar + topnav)
-│   └── auth_base.html     # Unauthenticated layout
-├── partials/              # sidebar, topnav, brand_*, flash, etc.
+│   ├── base.html              # DEP-003 router → EOS or legacy workspace
+│   ├── eos_student.html       # Certified Education OS shell (sole runtime)
+│   ├── legacy_workspace.html  # Legacy Contained shell (dual-run soak)
+│   └── auth_base.html         # Unauthenticated layout
+├── partials/                  # brand_*, flash, explainability, legacy sidebar/topnav
+├── student/                   # Certified Home / Journey / Revision / History / …
+├── session/                   # Certified Session Experience
 ├── auth/
-├── dashboard/
-├── mission/
-├── study_plan/
-├── analytics/
+├── dashboard/                 # Legacy Contained — READY FOR MIGRATION
+├── mission/                   # Legacy LXP Contained — READY FOR MIGRATION
+├── study_plan/                # Shared workflow (chrome via base router)
+├── analytics/                 # Legacy Contained — READY FOR MIGRATION
 ├── settings/
-├── research/              # Product Check-in (student)
+├── research/                  # Product Check-in (student)
 ├── calibration/
 ├── errors/
 └── (Founder) app/founder/dashboard/templates/founder_dashboard/
@@ -182,11 +186,14 @@ app/templates/
 
 Conventions:
 
-- Extend `layouts/base.html` for authenticated pages.
+- **Authoritative student presentation** is the Education OS under `KWALITEC_V2_SOLE_RUNTIME` (`student` + `session` templates). See `knowledge/release/RR-002/RR002_3_RUNTIME_OWNERSHIP.md`.
+- Extend `layouts/base.html` for authenticated pages that must follow DEP-003 chrome routing (EOS vs legacy).
+- Do **not** extend legacy `dashboard/`, `mission/`, or `analytics/` templates for new educational features — they redirect under sole runtime and are Contained soak only.
 - Keep feature templates in the matching folder name.
 - Prefer partials for repeated chrome; avoid duplicating nav markup.
 - Pass a `title` into the layout when possible.
 - User-facing Founder / workspace labels come from `app/brand_identity.py` (e.g. Founder Command Centre, Learning Workspace, Revision Workspace, Operational Health).
+- Legacy inventory and cleanup candidates: `knowledge/release/RR-002/RR002_3_LEGACY_INVENTORY.md`.
 
 ---
 

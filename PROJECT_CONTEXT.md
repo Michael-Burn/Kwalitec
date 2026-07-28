@@ -67,10 +67,14 @@ kwalitec/
 │   ├── version.py           # APP_VERSION source of truth
 │   ├── cli.py               # flask create-admin / sync-admin / create-test-user
 │   ├── auth/                # Login / logout blueprint
-│   ├── dashboard/           # Student dashboard blueprint
-│   ├── mission/             # Study sessions blueprint
-│   ├── study_plan/          # Study plan list + wizard blueprint
-│   ├── analytics/           # Learning analytics blueprint
+│   ├── presentation/
+│   │   ├── student/         # Canonical Education OS (/student) — sole-runtime home
+│   │   ├── session/         # Canonical Session Experience (/session)
+│   │   └── consolidation.py # Sole-runtime redirects + canonical home helpers
+│   ├── dashboard/           # Legacy Contained dashboard (redirects under sole runtime)
+│   ├── mission/             # Legacy Contained LXP missions (redirects under sole runtime)
+│   ├── study_plan/          # Study plan list + wizard blueprint (shared workflow)
+│   ├── analytics/           # Legacy Contained analytics (redirects → History)
 │   ├── settings/            # User settings blueprint
 │   ├── research/            # Product Check-in (student intake)
 │   ├── calibration/         # Calibration workflows
@@ -79,10 +83,11 @@ kwalitec/
 │   ├── services/            # Business logic (no HTTP)
 │   ├── curriculum/          # In-memory Curriculum Engine (JSON → dataclasses)
 │   │   └── data/            # Bundled syllabus JSON (e.g. ifoa/cs1/2026.json)
-│   ├── templates/           # Jinja2 (layouts, partials, feature folders)
+│   ├── templates/           # Jinja2 (student/, session/ certified; dashboard/mission/analytics legacy)
 │   ├── static/              # css/, js/, branding/
 │   └── utils/               # Shared helpers
 ├── knowledge/               # Architecture, investigations, release reports
+│   └── release/RR-002/      # Runtime ownership + legacy inventory (RR-002.3)
 ├── migrations/              # Alembic revision scripts
 ├── tests/                   # pytest suite
 ├── run.py                   # Local development entry
@@ -183,16 +188,20 @@ Founder diagnostics: `/founder/twin/*` (Twin),
 | Blueprint | URL prefix | Purpose |
 |---|---|---|
 | `auth` | `/auth` | Login / logout (registration is not public) |
-| `dashboard` | `/dashboard` | Student Learning Workspace home |
-| `mission` | `/missions` | Study sessions and review |
-| `study_plan` | `/study-plan` | Plan list and multi-step wizard |
-| `analytics` | `/analytics` | Performance analytics |
+| `student` | `/student` | **Canonical** Education OS (Home, Journey, Revision, History, …) |
+| `session` | `/session` | **Canonical** Session Experience workflow |
+| `dashboard` | `/dashboard` | Legacy Contained home — redirects to `student.home` under sole runtime |
+| `mission` | `/missions` | Legacy Contained LXP sessions — redirects under sole runtime |
+| `study_plan` | `/study-plan` | Plan list and multi-step wizard (shared workflow) |
+| `analytics` | `/analytics` | Legacy Contained charts — redirects to History under sole runtime |
 | `settings` | `/settings` | User preferences / backup / Internal Alpha status |
 | `research` | `/research` | Student Product Check-in intake |
 | `calibration` | `/calibration` | Calibration workflows |
 | `founder_dashboard` | `/founder` | Founder Command Centre (Overview + sections) |
 
-App-level routes: `/` → dashboard redirect; `/health` public health check.
+**Authoritative student presentation runtime** is the Education OS under `KWALITEC_V2_SOLE_RUNTIME=1` (`student` + `session`). Do not extend legacy `dashboard` / `mission` / `analytics` shells for new educational features. Ownership and inventory: `knowledge/release/RR-002/RR002_3_RUNTIME_OWNERSHIP.md`, `RR002_3_LEGACY_INVENTORY.md`.
+
+App-level routes: `/` → canonical home (sole runtime) or legacy dashboard redirect; `/health` public health check.
 
 Blueprints are registered in `app/__init__.py` via `_register_blueprints()`.
 
