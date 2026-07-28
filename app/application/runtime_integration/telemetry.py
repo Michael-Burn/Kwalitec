@@ -1,7 +1,7 @@
-"""Fallback / adoption telemetry for Runtime Integration (RI-001).
+"""Fallback / adoption telemetry for Runtime Integration (RI-001 / RI-002).
 
 Process-scoped observational store. Never mutates educational state.
-Aggregation methods support RI-005 readiness measurement.
+Aggregation methods support RI-002 adoption monitoring and RI-005 readiness.
 """
 
 from __future__ import annotations
@@ -15,6 +15,7 @@ from app.application.runtime_integration.dto import (
     FallbackEvent,
     FallbackReason,
     IntegrationSurface,
+    SurfaceUsageStats,
     TelemetrySnapshot,
 )
 
@@ -23,6 +24,14 @@ logger = logging.getLogger(__name__)
 
 def _utc_now_iso() -> str:
     return datetime.now(UTC).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
+def _day_key(timestamp: str) -> str:
+    """Extract YYYY-MM-DD from an ISO timestamp (best-effort)."""
+    text = (timestamp or "").strip()
+    if len(text) >= 10 and text[4] == "-" and text[7] == "-":
+        return text[:10]
+    return "unknown"
 
 
 class RuntimeIntegrationTelemetry:
@@ -108,6 +117,30 @@ class RuntimeIntegrationTelemetry:
             key = event.reason.value
             by_reason[key] = by_reason.get(key, 0) + 1
 
+        by_surface: dict[str, SurfaceUsageStats] = {}
+        daily_ei: dict[str, int] = {}
+        daily_fb: dict[str, int] = {}
+
+        for event in adoptions:
+            surface = event.surface.value
+            stats = by_surface.get(surface)
+            if stats is None:
+                stats = SurfaceUsageStats(surface=surface)
+                by_surface[surface] = stats
+            stats.educational_intelligence_count += 1
+            day = _day_key(event.timestamp)
+            daily_ei[day] = daily_ei.get(day, 0) + 1
+
+        for event in fallbacks:
+            surface = event.surface.value
+            stats = by_surface.get(surface)
+            if stats is None:
+                stats = SurfaceUsageStats(surface=surface)
+                by_surface[surface] = stats
+            stats.fallback_count += 1
+            day = _day_key(event.timestamp)
+            daily_fb[day] = daily_fb.get(day, 0) + 1
+
         return TelemetrySnapshot(
             total_requests=len(fallbacks) + len(adoptions),
             educational_intelligence_count=len(adoptions),
@@ -115,6 +148,9 @@ class RuntimeIntegrationTelemetry:
             migrated_users=frozenset(e.student_id for e in adoptions),
             fallback_users=frozenset(e.student_id for e in fallbacks),
             fallback_by_reason=by_reason,
+            by_surface=by_surface,
+            daily_ei_counts=daily_ei,
+            daily_fallback_counts=daily_fb,
         )
 
     def fallback_rate(self) -> float:
@@ -126,6 +162,12 @@ class RuntimeIntegrationTelemetry:
     def educational_intelligence_adoption_pct(self) -> float:
         return self.snapshot().educational_intelligence_adoption_pct
 
+    def route_level_usage(self) -> tuple[SurfaceUsageStats, ...]:
+        snap = self.snapshot()
+        return tuple(
+            snap.by_surface[key] for key in sorted(snap.by_surface.keys())
+        )
+
     def reset(self) -> None:
         """Clear process-scoped counters (tests only)."""
         with self._lock:
@@ -133,5 +175,5 @@ class RuntimeIntegrationTelemetry:
             self._adoptions.clear()
 
 
-# Shared process default for production wiring / RI-005 aggregation.
+# Shared process default for production wiring / RI-002 / RI-005 aggregation.
 DEFAULT_TELEMETRY = RuntimeIntegrationTelemetry()

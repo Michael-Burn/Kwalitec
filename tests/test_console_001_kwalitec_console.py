@@ -77,6 +77,7 @@ class TestConsoleNavigation:
         )
         assert active_section_id("curriculum_studio.index") == "content"
         assert active_section_id("founder_dashboard.attention") == "operations"
+        assert active_section_id("founder_dashboard.runtime_health") == "operations"
 
 
 class TestConsoleRouting:
@@ -112,6 +113,20 @@ class TestConsoleRouting:
         body = response.get_data(as_text=True)
         assert "Platform Intelligence" in body
         assert "console-sidebar" in body
+
+    def test_runtime_health_page(self, client, ctx, app) -> None:
+        _login_founder(client, app)
+        response = client.get("/console/runtime-health")
+        assert response.status_code == 200
+        body = response.get_data(as_text=True)
+        assert "Runtime Health" in body
+        assert "Retirement gates" in body
+        assert "Runtime inventory" in body
+        assert "Educational Intelligence" in body
+
+    def test_runtime_health_gated_for_students(self, client, ctx, app) -> None:
+        _login_student(client, app)
+        assert client.get("/console/runtime-health").status_code == 403
 
     def test_attention_center_page(self, client, ctx, app) -> None:
         _login_founder(client, app)

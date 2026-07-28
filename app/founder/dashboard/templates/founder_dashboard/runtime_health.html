@@ -1,0 +1,230 @@
+{% extends "founder_dashboard/base.html" %}
+
+{% block console_content %}
+<article class="console-page" aria-labelledby="runtime-health-title">
+    <header class="console-page-header">
+        <p class="console-eyebrow">{{ kwalitec_console_label }} · Operations</p>
+        <h1 id="runtime-health-title" class="console-page-title">Runtime Health</h1>
+        <p class="console-executive-summary">
+            Educational Intelligence adoption and Runtime A retirement readiness.
+            Operator surface only — no student scores or recommendation payloads.
+        </p>
+        <p class="small text-muted mb-0">Assessed {{ health.assessed_at }}</p>
+        <div class="console-primary-action">
+            <a class="console-btn console-btn--secondary"
+               href="{{ url_for('founder_dashboard.operational_health') }}">Operational Health</a>
+            <a class="console-btn console-btn--tertiary"
+               href="{{ url_for('founder_dashboard.operations') }}">System Operations</a>
+        </div>
+    </header>
+
+    <section class="console-section" aria-labelledby="adoption-title">
+        <h2 id="adoption-title" class="console-section-title">Request authority mix</h2>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="console-card" data-rh-metric="ei_pct">
+                    <p class="console-card-detail mb-1">Educational Intelligence</p>
+                    <p class="h3 mb-0">{{ "%.1f"|format(health.ei_request_pct) }}%</p>
+                    <p class="small text-muted mb-0">
+                        {{ health.total_requests }} RIS requests ·
+                        {{ health.migrated_user_count }} migrated user(s)
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="console-card" data-rh-metric="fallback_pct">
+                    <p class="console-card-detail mb-1">Runtime A fallback</p>
+                    <p class="h3 mb-0">{{ "%.1f"|format(health.fallback_pct) }}%</p>
+                    <p class="small text-muted mb-0">
+                        Experience Model rate
+                        {{ "%.1f"|format(health.experience_model_generation_rate * 100) }}%
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="console-card" data-rh-metric="retirement">
+                    <p class="console-card-detail mb-1">Retirement readiness</p>
+                    <p class="h3 mb-0">
+                        {% if health.ready_for_retirement %}Ready{% else %}Not ready{% endif %}
+                    </p>
+                    <p class="small text-muted mb-0">
+                        {{ health.passed_gate_count }} /
+                        {{ health.total_gate_count }} gates passed
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="console-section" aria-labelledby="coverage-title">
+        <h2 id="coverage-title" class="console-section-title">Coverage metrics</h2>
+        <div class="row g-3">
+            {% for metric in [
+                health.sci_coverage,
+                health.published_curriculum_coverage,
+                health.educational_decision_coverage
+            ] %}
+            <div class="col-md-4">
+                <div class="console-card" data-rh-coverage="{{ metric.metric_id }}">
+                    <p class="console-card-detail mb-1">{{ metric.label }}</p>
+                    <p class="h4 mb-1">{{ "%.1f"|format(metric.pct) }}%</p>
+                    <p class="small mb-1">
+                        {{ metric.numerator }} / {{ metric.denominator }}
+                    </p>
+                    <p class="small text-muted mb-0">{{ metric.definition }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="console-section" aria-labelledby="reasons-title">
+        <h2 id="reasons-title" class="console-section-title">Fallback reasons</h2>
+        <div class="console-card">
+            {% if health.fallback_by_reason %}
+            <ul class="console-activity-list mb-0">
+                {% for reason, count in health.fallback_by_reason.items() %}
+                <li><code>{{ reason }}</code> — {{ count }}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="console-empty mb-0">No Runtime A fallbacks recorded in this process.</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="console-section" aria-labelledby="surfaces-title">
+        <h2 id="surfaces-title" class="console-section-title">Migration progress by surface</h2>
+        <div class="console-card">
+            {% if health.route_level_usage %}
+            <div class="table-responsive">
+                <table class="table table-sm align-middle console-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Surface</th>
+                            <th scope="col">EI</th>
+                            <th scope="col">Fallback</th>
+                            <th scope="col">EI %</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in health.route_level_usage %}
+                        <tr data-rh-surface="{{ row.surface }}">
+                            <td><code>{{ row.surface }}</code></td>
+                            <td>{{ row.educational_intelligence_count }}</td>
+                            <td>{{ row.fallback_count }}</td>
+                            <td>{{ "%.1f"|format(row.ei_usage_pct) }}%</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p class="console-empty mb-0">No route-level RIS traffic yet.</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="console-section" aria-labelledby="trends-title">
+        <h2 id="trends-title" class="console-section-title">Adoption trends</h2>
+        <div class="console-card">
+            {% if health.trend_labels %}
+            <div class="table-responsive">
+                <table class="table table-sm align-middle console-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Day</th>
+                            <th scope="col">EI</th>
+                            <th scope="col">Fallback</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for label in health.trend_labels %}
+                        <tr>
+                            <td>{{ label }}</td>
+                            <td>{{ health.trend_ei[loop.index0] }}</td>
+                            <td>{{ health.trend_fallback[loop.index0] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p class="console-empty mb-0">No daily trend samples yet.</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="console-section" aria-labelledby="gates-title">
+        <h2 id="gates-title" class="console-section-title">Retirement gates</h2>
+        <div class="console-card">
+            <div class="table-responsive">
+                <table class="table table-sm align-middle console-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Gate</th>
+                            <th scope="col">Threshold</th>
+                            <th scope="col">Observed</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Evidence</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in health.gates %}
+                        <tr data-rh-gate="{{ item.gate.gate_id }}">
+                            <td>{{ item.gate.title }}</td>
+                            <td>
+                                <code>{{ item.gate.operator }} {{ item.gate.threshold }}</code>
+                            </td>
+                            <td>{{ "%.4f"|format(item.observed) }}</td>
+                            <td>{% if item.passed %}Pass{% else %}Fail{% endif %}</td>
+                            <td class="small">{{ item.evidence }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="console-section" aria-labelledby="inventory-title">
+        <h2 id="inventory-title" class="console-section-title">Runtime inventory</h2>
+        <p class="small text-muted">
+            Status counts —
+            active {{ health.inventory_counts.get('active', 0) }},
+            deprecated {{ health.inventory_counts.get('deprecated', 0) }},
+            removable {{ health.inventory_counts.get('removable', 0) }},
+            blocked {{ health.inventory_counts.get('blocked', 0) }}
+        </p>
+        <div class="console-card">
+            <div class="table-responsive">
+                <table class="table table-sm align-middle console-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Component</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Blocks retirement</th>
+                            <th scope="col">Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for entry in health.inventory_entries %}
+                        <tr data-rh-inventory="{{ entry.entry_id }}">
+                            <td>
+                                {{ entry.component }}
+                                <div class="small text-muted"><code>{{ entry.path }}</code></div>
+                            </td>
+                            <td><code>{{ entry.category }}</code></td>
+                            <td>{{ entry.status }}</td>
+                            <td>{% if entry.blocks_retirement %}Yes{% else %}No{% endif %}</td>
+                            <td class="small">{{ entry.notes }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</article>
+{% endblock %}

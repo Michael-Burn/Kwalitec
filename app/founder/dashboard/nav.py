@@ -55,6 +55,9 @@ COMMAND_CENTRE_NAV: tuple[CommandCentreNavItem, ...] = (
 # Secondary operational destinations kept reachable (not primary nav).
 COMMAND_CENTRE_SECONDARY_NAV: tuple[CommandCentreNavItem, ...] = (
     CommandCentreNavItem("founder_dashboard.attention", "Attention", "attention"),
+    CommandCentreNavItem(
+        "founder_dashboard.runtime_health", "Runtime Health", "runtime_health"
+    ),
     CommandCentreNavItem("founder_dashboard.findings", "Findings", "findings"),
     CommandCentreNavItem(
         "founder_dashboard.internal_alpha", "Internal Alpha", "internal_alpha"
@@ -99,6 +102,7 @@ def active_section_id(endpoint: str | None) -> str:
         "founder_dashboard.operational_health",
         "founder_dashboard.operations",
         "founder_dashboard.attention",
+        "founder_dashboard.runtime_health",
     }:
         return "operations"
     if endpoint == "founder_dashboard.participants":

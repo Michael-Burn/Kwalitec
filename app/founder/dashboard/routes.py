@@ -125,6 +125,22 @@ def operational_health():
     )
 
 
+@founder_dashboard_bp.get("/runtime-health")
+@founder_required
+def runtime_health():
+    """Runtime Health — Educational Intelligence adoption (operators only)."""
+    from app.application.runtime_integration.readiness_service import (
+        RuntimeReadinessService,
+    )
+
+    health = RuntimeReadinessService().health_dashboard_payload()
+    return render_template(
+        "founder_dashboard/runtime_health.html",
+        title="Runtime Health",
+        health=health,
+    )
+
+
 @founder_dashboard_bp.get("/intelligence")
 @founder_required
 def founder_intelligence():
