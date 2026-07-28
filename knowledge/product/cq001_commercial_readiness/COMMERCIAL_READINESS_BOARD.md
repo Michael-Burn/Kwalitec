@@ -13,14 +13,14 @@
 
 | Field | Value |
 |---|---|
-| **Current CRI** | **45%** |
+| **Current CRI** | **47%** |
 | **Validation** | **Provisional** |
 | **As of** | 2026-07-28 |
-| **Trend** | Up (+2) after CQ-002 |
-| **Prior CRI** | 43% (CQ-001 baseline) |
-| **Nearest tag** | `cri-45` — composite met provisionally; **tag not created** (validation required) |
-| **Current highest-priority programme** | **CQ-002** — completing |
-| **Next recommended programme** | **CQ-003 — Daily Habit Fit** (proposed; targets CR2, with residual CR1 polish if justified) |
+| **Trend** | Up (+2) after CQ-003 |
+| **Prior CRI** | 45% (CQ-002) |
+| **Nearest tag** | `cri-45` — composite exceeded provisionally; **tag not created** (validation required) |
+| **Current highest-priority programme** | **CQ-003** — completing |
+| **Next recommended programme** | **CQ-004 — Session Substance** (proposed; targets CR4, with residual CR2 Strong polish if justified) |
 
 ---
 
@@ -28,17 +28,17 @@
 
 | ID | Domain | Weight | Score | Band | Blockers (active) |
 |---|---|---:|---:|---|---|
-| CR1 | Core Study Loop | 18 | 56 | Emerging | Hero density; scarce-time continuity not yet Strong |
-| CR2 | Daily Habit Fit | 14 | 44 | Weak | Restart / continuity friction; habit fit not yet Strong |
+| CR1 | Core Study Loop | 18 | 58 | Emerging | Hero density; scarce-time continuity not yet Strong |
+| CR2 | Daily Habit Fit | 14 | 54 | Emerging | Fresh-start density; preferred-minutes echo; not yet Strong |
 | CR4 | Session Substance | 14 | 45 | Emerging | Uneven session educational substance vs activity |
 | CR3 | Guidance Trust | 12 | 50 | Emerging | Strong-band K2 / observational follow-through open |
-| CR5 | Experience Cohesion | 10 | 45 | Emerging | Cross-surface OS cohesion improved; residual dual-run / density |
+| CR5 | Experience Cohesion | 10 | 48 | Emerging | Cross-surface OS cohesion improved; residual dual-run / density |
 | CR6 | Premium Craft | 8 | 35 | Weak | Craft not consistently premium |
 | CR8 | Evidence Confidence | 10 | 25 | Weak | G1 FAIL; effectiveness NO-GO; N_external = 0 |
 | CR7 | Operational Reliability | 8 | 68 | Strong | Maintain; G7 HOLD + ER2 residuals constrain claim class |
 | CR9 | Commercial Envelope | 6 | 12 | Broken | Freezes; public registration/launch/pricing NOT STARTED |
 
-**Composite:** 44.50 → **45%** (provisional).
+**Composite:** 46.56 → **47%** (provisional).
 
 ---
 
@@ -48,6 +48,7 @@
 |---|---:|---:|---|---|---|
 | 2026-07-28 | 43% | — | Provisional | CQ-001 | Baseline board opened |
 | 2026-07-28 | 45% | +2 | Provisional | CQ-002 | Core loop polish; no `cri-45` tag |
+| 2026-07-28 | 47% | +2 | Provisional | CQ-003 | Habit resume / Continue; no `cri-*` tag |
 
 ---
 
@@ -55,8 +56,9 @@
 
 | ID | Blocker | Caps | Clearance path |
 |---|---|---|---|
-| B-CR1-01 | CR1 still Emerging (density / scarce-time continuity) | CR1 Strong | Follow-on CR1 polish or CQ-003 habit work |
-| B-CR2-01 | Habit fit Weak | CR2 | CQ-003 (proposed) |
+| B-CR1-01 | CR1 still Emerging (density / scarce-time continuity) | CR1 Strong | Follow-on CR1 polish or session-substance programme |
+| B-CR2-02 | Habit fit Emerging — fresh-start density / prefs echo | CR2 Strong | Residual CR2 polish or CQ-004 adjacency |
+| B-CR4-01 | Session substance Emerging | CR4 | **CQ-004** (proposed) |
 | B-CR8-01 | Validated KSI 64; Gate G1 FAIL | CR8 | Educational evidence / Stage 1 path (not CR9 work) |
 | B-CR8-02 | Effectiveness NO-GO; external N = 0 | CR8 | Privacy + Stage 1 enrollment when HOLD clears |
 | B-CR7-01 | G7 performance HOLD | CR7 claims | Load evidence programme when justified |
@@ -68,8 +70,8 @@
 
 | Role | Programme | Domains | Expected ΔCRI | Status |
 |---|---|---|---|---|
-| Completing | CQ-002 Core Study Loop Reliability | **CR1** (+CR2/CR5 natural) | **+2 provisional** | Completing |
-| Next recommended | CQ-003 Daily Habit Fit | **CR2** (primary) | TBD at intake | Proposed — not started |
+| Completing | CQ-003 Daily Habit Fit | **CR2** (+CR1/CR5 natural) | **+2 provisional** | Completing |
+| Next recommended | CQ-004 Session Substance | **CR4** (primary) | TBD at intake | Proposed — not started |
 | Deferred | Non-CRI / V2 ideas | — | — | [`VERSION_2_BACKLOG.md`](VERSION_2_BACKLOG.md) |
 
 ---
@@ -78,7 +80,7 @@
 
 | Tag | Threshold | Ready? | Notes |
 |---|---:|---|---|
-| `cri-45` | 45% validated | **No** | Composite 45% **provisional only** |
+| `cri-45` | 45% validated | **No** | Composite ≥45% **provisional only** |
 | `cri-50` | 50% validated | No | |
 | `cri-60` | 60% validated | No | |
 | `cri-70` | 70% validated | No | |
