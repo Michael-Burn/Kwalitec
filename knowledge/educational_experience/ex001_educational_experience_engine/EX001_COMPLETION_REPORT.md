@@ -3,7 +3,7 @@
 **Programme:** EX-001 — Educational Experience Engine (Educational Experience Programme)  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commits:** `af77fe9` (`feat(ex-001)`) · _(pending)_ (`docs(ex-001)`)
+**Commits:** `af77fe9` (`feat(ex-001)`) · a11d99c (`docs(ex-001)`)
 
 ---
 
