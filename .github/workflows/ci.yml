@@ -1,3 +1,5 @@
+# Sole GitHub Actions authority for Kwalitec (EI-001.1 / ER-RB-01).
+# Do not add parallel test workflows; see docs/production/RELEASE_CANDIDATE_FINGERPRINT.md.
 name: Kwalitec CI
 
 on:

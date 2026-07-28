@@ -113,13 +113,16 @@ Version 2 architecture documents are **release artefacts**. Confirm they are pre
 - [ ] Production readiness artefacts present (APP-004 set)
 ## Tests
 
+**Sole CI authority:** `.github/workflows/ci.yml` (`Kwalitec CI`). Release Candidate fingerprints: `docs/production/RELEASE_CANDIDATE_FINGERPRINT.md` (EI-001.1 / G11).
+
 ```
 python3 -m pytest tests/architecture/ -v
 python3 -m pytest
 ```
 
-- [ ] Architecture governance gates pass (`tests/architecture/` — mandatory CI gate)
+- [ ] Architecture governance gates pass (`tests/architecture/` — mandatory CI gate, including CI integrity)
 - [ ] pytest passes
+- [ ] For RC / Version 1 claim packages: fingerprinted SHA has green canonical `ci.yml` (all required jobs); fingerprint record filed
 
 Ruff: run on modules modified in this release. Do not treat historical repository-wide Ruff debt as a blocker unless explicitly instructed.
 

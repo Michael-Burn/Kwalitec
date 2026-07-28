@@ -1,7 +1,8 @@
 # Release Process
 
 **Programme:** PR-001  
-**Canonical protocol:** [`docs/process/RELEASE_PROTOCOL.md`](../process/RELEASE_PROTOCOL.md)
+**Canonical protocol:** [`docs/process/RELEASE_PROTOCOL.md`](../process/RELEASE_PROTOCOL.md)  
+**RC fingerprint (G11):** [`RELEASE_CANDIDATE_FINGERPRINT.md`](RELEASE_CANDIDATE_FINGERPRINT.md) (EI-001.1)
 
 ## Production quality gates (must all pass)
 
@@ -14,15 +15,17 @@
 7. Health endpoints green on staging (`/health/live`, `/health/ready`)
 8. Version tag matches `VERSION` / `APP_VERSION`
 
-CI enforces architecture, unit, integration, lint, and release-build jobs. The **production-gates** job fails the pipeline when critical gates fail.
+**Sole CI authority:** `.github/workflows/ci.yml` (`Kwalitec CI`). Do not cite retired or parallel workflows. CI enforces architecture, unit, integration, educational-intelligence certification, lint, production-gates, and release-build. The **production-gates** job fails the pipeline when critical gates fail.
 
 ## Tagging
 
 ```bash
-# After gates pass on main
+# After gates pass on main (canonical ci.yml green on the intended SHA)
 git tag -a "v$(tr -d '[:space:]' < VERSION)" -m "Release $(tr -d '[:space:]' < VERSION)"
 git push origin "v$(tr -d '[:space:]' < VERSION)"
 ```
+
+After tagging, file an **RC fingerprint** per [`RELEASE_CANDIDATE_FINGERPRINT.md`](RELEASE_CANDIDATE_FINGERPRINT.md) (commit SHA, tag, Actions run URL, required jobs).
 
 See [Versioning Policy](VERSIONING_POLICY.md).
 
@@ -30,4 +33,5 @@ See [Versioning Policy](VERSIONING_POLICY.md).
 
 - `VERSION`
 - Release notes under `docs/release/` or root `RELEASE_NOTES_*.md`
+- RC / engineering fingerprint record (commit + tag + CI run)
 - Deploy fingerprint via `KWALITEC_GIT_COMMIT` / platform commit env

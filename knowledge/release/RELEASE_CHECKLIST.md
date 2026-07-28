@@ -23,14 +23,17 @@ Use this checklist before promoting a build that depends on the certified Educat
 
 ## CI gates that must pass
 
+Sole authority: `.github/workflows/ci.yml` (`Kwalitec CI`). See `docs/production/RELEASE_CANDIDATE_FINGERPRINT.md`.
+
 1. Architecture Governance
 2. Unit Tests
 3. Integration Tests
 4. **Educational Intelligence Certification** (`educational-intelligence-certification`)
 5. Lint
 6. Production Gates
+7. Release Build (when claiming a fingerprinted RC)
 
-Certification failure **blocks merge**.
+Certification failure **blocks merge**. For a Version 1 / RC claim package, record commit SHA + tag + Actions run URL per the fingerprint process.
 
 ---
 

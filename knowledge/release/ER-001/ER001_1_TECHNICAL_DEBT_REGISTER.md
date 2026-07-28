@@ -20,7 +20,7 @@ IDs use `ER-TD-*` for ER-001.1 inventory; cross-references to TD / E2 / PC / V1S
 
 | ID | Item | Why Critical | Owner | Proposed resolution | Target |
 |----|------|--------------|-------|---------------------|--------|
-| **ER-TD-C01** | Stale `.github/workflows/tests.yml` (Python 3.14, unscoped pytest, no ruff/cert/production gates) conflicts with canonical `ci.yml` | CI integrity; false green/red; unsupported Python vs `requires-python >=3.11` / CONTRIBUTING 3.11–3.13 | Engineering | Retire `tests.yml` or align triggers/jobs/Python with `ci.yml` | Immediate (before V1 RC tag) |
+| **ER-TD-C01** | Stale `.github/workflows/tests.yml` (Python 3.14, unscoped pytest, no ruff/cert/production gates) conflicts with canonical `ci.yml` | CI integrity; false green/red; unsupported Python vs `requires-python >=3.11` / CONTRIBUTING 3.11–3.13 | Engineering | Retire `tests.yml` or align triggers/jobs/Python with `ci.yml` | **Closed** (EI-001.1) |
 
 ---
 
@@ -35,7 +35,7 @@ IDs use `ER-TD-*` for ER-001.1 inventory; cross-references to TD / E2 / PC / V1S
 | **ER-TD-H05** | G7 incomplete — no staging/production operator sample / load evidence | P-002.1 G7 | Engineering + Release | Record operator sample; optional HOLD with claim restriction | Before V1 declaration |
 | **ER-TD-H06** | G8 incomplete — rollback drill + backup acknowledgement for claim class | P-002.1 G8 | Engineering + Release | File drill note + BACKUP_AND_RECOVERY ack | Before V1 declaration |
 | **ER-TD-H07** | G10 incomplete — privacy signatures + dependency critical policy for tag | P-002.1 G10 · V1SP-004 | Security | Close privacy pack for claim class; policy for pip-audit | Before Stage 1 expansion / V1 |
-| **ER-TD-H08** | G11 — continuous green on fingerprinted RC required | P-002.1 G11 | Engineering + Release | Tag RC; enforce `ci.yml` green only | Before V1 declaration |
+| **ER-TD-H08** | G11 — continuous green on fingerprinted RC required | P-002.1 G11 | Engineering + Release | Tag RC; enforce `ci.yml` green only — **process/methodology Closed** (EI-001.1 fingerprint); tag execution remains Release operator step | Before V1 declaration (tag) |
 | **ER-TD-H09** | G12 — Version 1 flag matrix not published | P-002.1 G12 · RP-001 FEATURE_FLAG_REGISTER | Product + Release + Engineering | Publish matrix: default ON/OFF, owner, rollback, kill-switch; align `.env.example` / `render.yaml` | Before V1 declaration |
 | **ER-TD-H10** | CI unit job excludes `tests/application/`, `tests/infrastructure/`, many root suites | `ci.yml` | Engineering | Expand unit matrix or document intentional deferral to integration only | Next CI hygiene WP |
 | **ER-TD-H11** | SQLAlchemy 2.x legacy APIs (`Query.get()`, etc.) | TD-001 · TD-005 | Engineering | Sweep to `Session.get` / 2.x style | Maintenance sprint |

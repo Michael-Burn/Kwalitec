@@ -25,7 +25,7 @@ Every risk has a named **Owner**.
 
 | ID | Risk | Likelihood | Impact | Class | Owner | Mitigation / discipline | Status |
 |----|------|------------|--------|-------|-------|-------------------------|--------|
-| **ER-R-01** | Dual CI workflows produce contradictory signals; unsupported Python 3.14 in `tests.yml` | Medium | High | Critical | Engineering | Retire/align `tests.yml`; treat `ci.yml` as sole authority | Open |
+| **ER-R-01** | Dual CI workflows produce contradictory signals; unsupported Python 3.14 in `tests.yml` | Medium | High | Critical | Engineering | Retire/align `tests.yml`; treat `ci.yml` as sole authority | **Closed** (EI-001.1) |
 | **ER-R-02** | Version 1 declared without G7–G12 engineering evidence | Medium | Critical | High | Release + Product | Enforce P-002.1 board; ER-RB-02…06 | Open |
 | **ER-R-03** | Known dependency advisory ships (Flask pin) via soft pip-audit | Medium | High | High | Security | Hard-fail Criticals; bump Flask; HOLD policy | Open |
 | **ER-R-04** | Wrong runtime claimed (`src/web` vs sole-runtime `app/`) | Medium | High | High | Product + Architecture | RR-002.3 ownership; release checklist | Contained |

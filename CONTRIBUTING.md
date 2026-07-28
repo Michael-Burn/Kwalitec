@@ -58,11 +58,11 @@ Every PR should include:
 4. **Migration notes** — if Alembic revisions are included (or “none”).
 5. **Architecture notes** — especially for curriculum V1/V2 impact.
 
-CI expectations (see `.github/workflows/ci.yml`):
+CI expectations (sole authority: `.github/workflows/ci.yml` — `Kwalitec CI`):
 
-- `pytest` on Python 3.11, 3.12, 3.13
-- `ruff check app/ tests/`
-- Deploy dry-run checks on `main`
+- Architecture, unit (Python 3.11 / 3.12 / 3.13), integration, educational-intelligence certification, lint, production-gates, release-build
+- `ruff check app/ src/ tests/` (CI ignore policy: `F401` only where configured)
+- Do not add parallel workflow files; RC fingerprints cite this workflow only (`docs/production/RELEASE_CANDIDATE_FINGERPRINT.md`)
 
 Do not merge with failing CI without an explicit, documented exception.
 
