@@ -3,7 +3,7 @@
 **Programme:** LP-001 — Learner Lifecycle Orchestration  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commits:** `93632eb` (`feat(lp-001)`) · *(docs commit follows)*
+**Commits:** `93632eb` (`feat(lp-001)`) · `520ca81` (`docs(lp-001)`)
 
 ---
 
