@@ -4,7 +4,8 @@
 **Milestone:** AP-002D6 — Tutor Explainability Integration  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commit message:** `feat(ap-002d6): integrate tutor explainability with educational provenance`
+**Commit message:** `feat(ap-002d6): integrate tutor explainability with educational provenance`  
+**Commit:** `0bf8185`
 
 ---
 
