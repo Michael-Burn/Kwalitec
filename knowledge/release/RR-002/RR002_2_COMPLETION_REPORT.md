@@ -4,7 +4,7 @@
 **Work Package:** RR-002.2 — Educational Chrome & Presentation Convergence  
 **Date:** 2026-07-28  
 **Status:** Complete — Certified Pass (in-scope)  
-**Commit:** *(see git after mandated commit)* — `feat(rr-002.2): converge educational chrome and presentation consistency`  
+**Commit:** `32d9a08` — `feat(rr-002.2): converge educational chrome and presentation consistency`  
 **Governance authority:** DG-001.1 · DG-001.2 · DG-001.3 · DG-001.4 · RP-002  
 **Findings closed:** Contained NCR-005 · NCR-006 · NCR-007 (RP002-NCR-005–007)
 
