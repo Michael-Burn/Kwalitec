@@ -98,6 +98,11 @@ def to_observation_dto(
 
 
 def to_result_dto(result: AssessmentResult) -> AssessmentResultDTO:
+    from application.assessment.evidence.mapper import to_evidence_bundle_dto
+
+    evidence_bundle = None
+    if result.evidence_bundle is not None:
+        evidence_bundle = to_evidence_bundle_dto(result.evidence_bundle)
     return AssessmentResultDTO(
         result_id=result.result_id.value,
         session_id=result.session_id.value,
@@ -105,4 +110,8 @@ def to_result_dto(result: AssessmentResult) -> AssessmentResultDTO:
         evidence_strength=(
             result.evidence_strength.band.value if result.evidence_strength else None
         ),
+        evidence_bundle=evidence_bundle,
+        correctness_counts={
+            key.value: value for key, value in result.correctness_counts
+        },
     )

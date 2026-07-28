@@ -42,6 +42,7 @@ from application.assessment.dto.models import (
     DeliveryProgressDTO,
     QuestionDeliveryDTO,
 )
+from application.assessment.evidence.packaging_service import EvidencePackagingService
 from application.assessment.mappers.mappers import (
     to_attempt_dto,
     to_result_dto,
@@ -69,13 +70,12 @@ from domain.assessment.exceptions import (
 )
 from domain.assessment.factories import (
     AssessmentObservationFactory,
-    AssessmentResultFactory,
 )
+from domain.assessment.packaging.builder import enrich_dimensions_from_observation
 from domain.assessment.value_objects.ids import (
     InstrumentId,
     ObservationId,
     QuestionId,
-    ResultId,
     SessionId,
 )
 from domain.assessment.value_objects.levels import ConfidenceLevel
@@ -140,6 +140,13 @@ class AssessmentDeliveryService:
         self._clock = clock or (lambda: datetime.now(UTC))
         self._id_factory = id_factory or (
             lambda prefix: f"{prefix}-{uuid.uuid4().hex[:12]}"
+        )
+        self._evidence_packaging = EvidencePackagingService(
+            sessions=sessions,
+            observations=observations,
+            results=results,
+            instruments=instruments,
+            id_factory=self._id_factory,
         )
 
     @property
@@ -384,6 +391,7 @@ class AssessmentDeliveryService:
             raise SessionStateError(str(exc)) from exc
 
         observation_ids: list[ObservationId] = []
+        recorded: list = []
         for attempt in session.attempts:
             if not attempt.committed:
                 continue
@@ -404,13 +412,28 @@ class AssessmentDeliveryService:
                     "attempt_number": attempt.attempt_number.value,
                     "abandoned": attempt.abandoned,
                     "skipped": attempt.skipped,
+                    "outcome": (
+                        attempt.outcome.value if attempt.outcome else None
+                    ),
                     "engine": "assessment_delivery",
-                    "milestone": "AP-002B",
+                    "milestone": "AP-002C",
                 },
             )
+            dimensions = enrich_dimensions_from_observation(observation)
+            if dimensions is not None:
+                observation = AssessmentObservationFactory.create(
+                    observation_id=observation.observation_id,
+                    session_id=observation.session_id,
+                    kind=observation.kind,
+                    evidence_source=observation.evidence_source,
+                    question_id=observation.question_id,
+                    provenance=observation.provenance,
+                    dimensions=dimensions,
+                )
             self._observations.save(observation)
             session.record_observation(observation)
             observation_ids.append(observation.observation_id)
+            recorded.append(observation)
 
         quiz_observation = AssessmentObservationFactory.create(
             observation_id=ObservationId(self._id_factory("obs")),
@@ -421,19 +444,37 @@ class AssessmentDeliveryService:
                 "attempt_count": len(session.attempts),
                 "observation_count": len(observation_ids),
                 "engine": "assessment_delivery",
-                "milestone": "AP-002B",
+                "milestone": "AP-002C",
             },
         )
         self._observations.save(quiz_observation)
         session.record_observation(quiz_observation)
         observation_ids.append(quiz_observation.observation_id)
+        recorded.append(quiz_observation)
 
-        result = AssessmentResultFactory.create(
-            result_id=ResultId(self._id_factory("result")),
-            session_id=session.session_id,
-            observation_ids=observation_ids,
+        instrument = self._instruments.get(session.instrument_id)
+        learning_objectives = (
+            instrument.learning_objectives if instrument is not None else ()
         )
-        self._results.save(result)
+        result, _packaging_dto = self._evidence_packaging.package_observations(
+            recorded,
+            session_id=session.session_id.value,
+            result_id=self._id_factory("result"),
+            instrument_id=session.instrument_id.value,
+            purpose=session.purpose.value,
+            assessment_type=session.assessment_type.value,
+            student_id=session.student_id,
+            expected_question_count=len(session.questions),
+            learning_objectives=learning_objectives,
+            collected_at=self._clock(),
+            extra={
+                "engine": "assessment_delivery",
+                "milestone": "AP-002C",
+                "learning_objective_count": len(learning_objectives),
+            },
+            persist_result=True,
+        )
+        _ = result
         self._sessions.save(session)
         session.pull_events()
         return self.get_delivery(session.session_id.value, student_id=student_id)

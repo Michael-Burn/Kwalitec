@@ -10,6 +10,7 @@ from application.assessment.ports.repositories import (
     AssessmentResultRepository,
     AssessmentSessionBuilder,
     AssessmentSessionRepository,
+    EvidenceBundleRepository,
     QuestionContentRepository,
     SessionDeliveryStateRepository,
 )
@@ -22,6 +23,7 @@ __all__ = [
     "AssessmentResultRepository",
     "AssessmentSessionBuilder",
     "AssessmentSessionRepository",
+    "EvidenceBundleRepository",
     "QuestionContentRepository",
     "SessionDeliveryStateRepository",
 ]

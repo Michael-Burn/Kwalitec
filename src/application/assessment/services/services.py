@@ -1,6 +1,6 @@
-"""Assessment application services (AP-002B delivery implementations).
+"""Assessment application services (AP-002B delivery + AP-002C evidence packaging).
 
-Observation packaging beyond local facts remains AP-002C.
+Evidence packaging is handled by ``EvidencePackagingService``.
 No Twin updates, Reasoning, Mission, or Tutor behaviour.
 """
 
@@ -186,8 +186,9 @@ class AssessmentObservationService:
     """Observation recording application service.
 
     Records local AssessmentObservation facts only. Does not update the
-    Student Digital Twin or invoke Educational Reasoning. Rich packaging /
-    AP-001 emission remains AP-002C.
+    Student Digital Twin or invoke Educational Reasoning. Rich packaging is
+    performed by EvidencePackagingService (AP-002C); AP-001 emission remains
+    deferred to AP-002D.
     """
 
     def __init__(

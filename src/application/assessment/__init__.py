@@ -1,4 +1,4 @@
-"""Assessment application layer — delivery orchestration (AP-002B)."""
+"""Assessment application layer — delivery + evidence packaging (AP-002B/C)."""
 
 from __future__ import annotations
 
@@ -17,6 +17,12 @@ from application.assessment.dto import (
     AssessmentSessionDTO,
     QuestionReferenceDTO,
 )
+from application.assessment.evidence import (
+    EvidenceBundleDTO,
+    EvidenceMapper,
+    EvidencePackagingResultDTO,
+    EvidencePackagingService,
+)
 from application.assessment.mappers import (
     to_attempt_dto,
     to_instrument_dto,
@@ -33,6 +39,7 @@ from application.assessment.ports import (
     AssessmentResultRepository,
     AssessmentSessionBuilder,
     AssessmentSessionRepository,
+    EvidenceBundleRepository,
 )
 from application.assessment.queries import (
     GetAssessmentInstrumentQuery,
@@ -66,6 +73,11 @@ __all__ = [
     "AssessmentSessionService",
     "CommitAssessmentResponseCommand",
     "CreateAssessmentSessionCommand",
+    "EvidenceBundleDTO",
+    "EvidenceBundleRepository",
+    "EvidenceMapper",
+    "EvidencePackagingResultDTO",
+    "EvidencePackagingService",
     "GetAssessmentInstrumentQuery",
     "GetAssessmentSessionQuery",
     "ListObservationsForSessionQuery",

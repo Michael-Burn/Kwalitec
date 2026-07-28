@@ -75,8 +75,8 @@ class DifficultyLevel(EducationalValueObject):
 class EvidenceStrength(EducationalValueObject):
     """Quality/density band of an observation bundle (evidence packaging).
 
-    Exact thresholds for deriving strength belong to later milestones;
-    this value object only holds a declared band.
+    Declared band only — derivation lives in ``domain.assessment.packaging.strength``.
+    Strength reflects observation quality, never mastery or educational certainty.
     """
 
     band: EvidenceStrengthBand

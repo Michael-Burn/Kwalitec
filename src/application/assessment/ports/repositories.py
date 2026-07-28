@@ -164,3 +164,19 @@ class SessionDeliveryStateRepository(ABC):
     @abstractmethod
     def save(self, state: Any) -> None:
         """Persist delivery state."""
+
+
+class EvidenceBundleRepository(ABC):
+    """Persistence / export boundary for packaged EvidenceBundle artefacts."""
+
+    @abstractmethod
+    def get(self, bundle_id: Any) -> Any | None:
+        """Load a packaged evidence bundle by identity, or ``None`` if absent."""
+
+    @abstractmethod
+    def get_by_session(self, session_id: SessionId) -> Any | None:
+        """Load the packaged evidence bundle for a session, or ``None``."""
+
+    @abstractmethod
+    def save(self, bundle: Any) -> None:
+        """Persist (insert or replace) a packaged evidence bundle."""

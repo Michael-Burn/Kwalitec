@@ -10,6 +10,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from domain.assessment.enums import AttemptOutcome
+from domain.assessment.evidence.models import EvidenceBundle
 from domain.assessment.exceptions import AssessmentInvariantViolation
 from domain.assessment.value_objects.ids import ObservationId, ResultId, SessionId
 from domain.assessment.value_objects.levels import EvidenceStrength
@@ -20,7 +21,9 @@ from domain.education.foundation.base import EducationalEntity
 class AssessmentResult(EducationalEntity):
     """Evidence-only rollup linking a session to recorded observations.
 
-    Must not duplicate Twin mastery rows or invent readiness percentages.
+    Exposes packaged ``EvidenceBundle`` for future AP-001 consumption.
+    Must not duplicate Twin mastery rows, invent readiness percentages,
+    or invoke Educational Reasoning.
     """
 
     result_id: ResultId
@@ -28,6 +31,7 @@ class AssessmentResult(EducationalEntity):
     observation_ids: tuple[ObservationId, ...] = ()
     correctness_counts: tuple[tuple[AttemptOutcome, int], ...] = ()
     evidence_strength: EvidenceStrength | None = None
+    evidence_bundle: EvidenceBundle | None = None
 
     @property
     def entity_id(self) -> ResultId:
@@ -83,6 +87,41 @@ class AssessmentResult(EducationalEntity):
                 "evidence_strength must be an EvidenceStrength when provided",
                 invariant="AssessmentResult.evidence_strength.type",
             )
+        if self.evidence_bundle is not None and not isinstance(
+            self.evidence_bundle, EvidenceBundle
+        ):
+            raise AssessmentInvariantViolation(
+                "evidence_bundle must be an EvidenceBundle when provided",
+                invariant="AssessmentResult.evidence_bundle.type",
+            )
+        if self.evidence_bundle is not None:
+            if self.evidence_bundle.context.session_id != self.session_id:
+                raise AssessmentInvariantViolation(
+                    "evidence_bundle session_id must match AssessmentResult",
+                    invariant="AssessmentResult.evidence_bundle.session",
+                )
+            if self.evidence_strength is None:
+                object.__setattr__(
+                    self, "evidence_strength", self.evidence_bundle.strength
+                )
+            elif self.evidence_strength != self.evidence_bundle.strength:
+                raise AssessmentInvariantViolation(
+                    "evidence_strength must match evidence_bundle.strength",
+                    invariant="AssessmentResult.evidence_strength.match",
+                )
+            bundle_obs = {
+                oid.value for oid in self.evidence_bundle.observation_ids()
+            }
+            result_obs = {oid.value for oid in self.observation_ids}
+            if bundle_obs and result_obs and bundle_obs != result_obs:
+                raise AssessmentInvariantViolation(
+                    "evidence_bundle observation_ids must match AssessmentResult",
+                    invariant="AssessmentResult.evidence_bundle.observations",
+                )
 
     def correctness_count_map(self) -> dict[AttemptOutcome, int]:
         return dict(self.correctness_counts)
+
+    def packaged_evidence(self) -> EvidenceBundle | None:
+        """Expose packaged evidence for AP-001 consumption (no invocation)."""
+        return self.evidence_bundle

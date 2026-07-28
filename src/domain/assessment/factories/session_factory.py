@@ -126,6 +126,7 @@ class AssessmentResultFactory:
         observation_ids: Sequence[ObservationId] = (),
         correctness_counts: dict[AttemptOutcome, int] | None = None,
         evidence_strength: EvidenceStrength | None = None,
+        evidence_bundle=None,
     ) -> AssessmentResult:
         counts = tuple((k, v) for k, v in (correctness_counts or {}).items())
         return AssessmentResult(
@@ -134,4 +135,5 @@ class AssessmentResultFactory:
             observation_ids=tuple(observation_ids),
             correctness_counts=counts,
             evidence_strength=evidence_strength,
+            evidence_bundle=evidence_bundle,
         )

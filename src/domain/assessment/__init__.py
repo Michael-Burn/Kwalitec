@@ -1,4 +1,4 @@
-"""Assessment Engine bounded context — domain foundation (AP-002A).
+"""Assessment Engine bounded context — domain foundation (AP-002A/C).
 
 Pure educational domain model for assessment as evidence collection.
 No persistence, Flask, SQLAlchemy, Twin writes, Reasoning, Mission, Tutor,
@@ -7,6 +7,7 @@ or delivery UX.
 
 from __future__ import annotations
 
+from domain.assessment.aggregation import ObservationAggregator, ObservationCollection
 from domain.assessment.entities import (
     AssessmentAttempt,
     AssessmentInstrument,
@@ -31,12 +32,27 @@ from domain.assessment.enums import (
     RetryPolicy,
 )
 from domain.assessment.events import (
+    AssessmentEvidenceCreated,
     AssessmentObservationRecorded,
     AssessmentResponseCommitted,
     AssessmentSessionClosed,
     AssessmentSessionConstructed,
     AssessmentSessionStarted,
     AssessmentSessionSubmitted,
+    EvidencePackaged,
+    EvidenceValidated,
+)
+from domain.assessment.evidence import (
+    PACKAGING_VERSION,
+    EvidenceBundle,
+    EvidenceBundleId,
+    EvidenceContext,
+    EvidenceItem,
+    EvidenceItemId,
+    EvidenceMetadata,
+    EvidencePackagingResult,
+    EvidenceReference,
+    EvidenceSummary,
 )
 from domain.assessment.exceptions import (
     AssessmentDomainError,
@@ -52,6 +68,14 @@ from domain.assessment.factories import (
     AssessmentObservationFactory,
     AssessmentResultFactory,
     AssessmentSessionFactory,
+)
+from domain.assessment.packaging import (
+    EvidenceBundleBuilder,
+    EvidencePackager,
+    EvidenceStrengthFactors,
+    calculate_evidence_strength,
+    derive_strength_factors,
+    package_observations,
 )
 from domain.assessment.validation import (
     ALLOWED_TRANSITIONS,
@@ -81,9 +105,11 @@ from domain.assessment.value_objects import (
 
 __all__ = [
     "ALLOWED_TRANSITIONS",
+    "PACKAGING_VERSION",
     "AssessmentAttempt",
     "AssessmentConfiguration",
     "AssessmentDomainError",
+    "AssessmentEvidenceCreated",
     "AssessmentId",
     "AssessmentInstrument",
     "AssessmentInstrumentFactory",
@@ -114,10 +140,24 @@ __all__ = [
     "DifficultyBand",
     "DifficultyLevel",
     "DuplicateQuestionReferenceError",
+    "EvidenceBundle",
+    "EvidenceBundleBuilder",
+    "EvidenceBundleId",
+    "EvidenceContext",
     "EvidenceDimensions",
+    "EvidenceItem",
+    "EvidenceItemId",
+    "EvidenceMetadata",
+    "EvidencePackaged",
+    "EvidencePackager",
+    "EvidencePackagingResult",
+    "EvidenceReference",
     "EvidenceSource",
     "EvidenceStrength",
     "EvidenceStrengthBand",
+    "EvidenceStrengthFactors",
+    "EvidenceSummary",
+    "EvidenceValidated",
     "HintPolicy",
     "InstrumentId",
     "InvalidAssessmentStateTransition",
@@ -128,6 +168,8 @@ __all__ = [
     "LearningObjectiveId",
     "LearningObjectiveReference",
     "MissingLearningObjectiveError",
+    "ObservationAggregator",
+    "ObservationCollection",
     "ObservationId",
     "ObservationKind",
     "QuestionId",
@@ -136,5 +178,8 @@ __all__ = [
     "RetryPolicy",
     "SessionId",
     "assert_can_transition",
+    "calculate_evidence_strength",
     "can_transition",
+    "derive_strength_factors",
+    "package_observations",
 ]

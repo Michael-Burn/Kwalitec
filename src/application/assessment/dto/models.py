@@ -78,6 +78,8 @@ class AssessmentResultDTO:
     session_id: str
     observation_ids: tuple[str, ...] = ()
     evidence_strength: str | None = None
+    evidence_bundle: Any | None = None
+    correctness_counts: dict[str, int] = field(default_factory=dict)
 
 
 @dataclass(frozen=True, slots=True)

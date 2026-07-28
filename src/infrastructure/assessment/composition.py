@@ -5,12 +5,14 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from application.assessment.delivery.delivery_service import AssessmentDeliveryService
+from application.assessment.evidence import EvidencePackagingService
 from application.assessment.services.services import (
     AssessmentInstrumentService,
     AssessmentObservationService,
     AssessmentService,
     AssessmentSessionService,
 )
+from domain.assessment.packaging.ids import sequential_id_factory
 from infrastructure.assessment.catalogue_seed import (
     DEFAULT_INSTRUMENT_ID,
     seed_delivery_catalogue,
@@ -22,6 +24,7 @@ from infrastructure.assessment.in_memory import (
     InMemoryAssessmentObservationRepository,
     InMemoryAssessmentResultRepository,
     InMemoryAssessmentSessionRepository,
+    InMemoryEvidenceBundleRepository,
     InMemoryQuestionContentRepository,
     InMemorySessionDeliveryStateRepository,
 )
@@ -35,6 +38,7 @@ class AssessmentDeliveryComposition:
     instruments: InMemoryAssessmentInstrumentRepository
     observations: InMemoryAssessmentObservationRepository
     results: InMemoryAssessmentResultRepository
+    evidence_bundles: InMemoryEvidenceBundleRepository
     question_content: InMemoryQuestionContentRepository
     delivery_state: InMemorySessionDeliveryStateRepository
     session_builder: DomainAssessmentSessionBuilder
@@ -45,6 +49,7 @@ class AssessmentDeliveryComposition:
     instrument_service: AssessmentInstrumentService
     observation_service: AssessmentObservationService
     assessment_service: AssessmentService
+    evidence_packaging_service: EvidencePackagingService
 
 
 def build_assessment_delivery(
@@ -55,6 +60,7 @@ def build_assessment_delivery(
     instruments = InMemoryAssessmentInstrumentRepository()
     observations = InMemoryAssessmentObservationRepository()
     results = InMemoryAssessmentResultRepository()
+    evidence_bundles = InMemoryEvidenceBundleRepository()
     question_content = InMemoryQuestionContentRepository()
     delivery_state = InMemorySessionDeliveryStateRepository()
     session_builder = DomainAssessmentSessionBuilder()
@@ -85,11 +91,20 @@ def build_assessment_delivery(
         observations,
         session_builder=session_builder,
     )
+    evidence_packaging_service = EvidencePackagingService(
+        sessions=sessions,
+        observations=observations,
+        results=results,
+        instruments=instruments,
+        evidence_bundles=evidence_bundles,
+        id_factory=sequential_id_factory(),
+    )
     return AssessmentDeliveryComposition(
         sessions=sessions,
         instruments=instruments,
         observations=observations,
         results=results,
+        evidence_bundles=evidence_bundles,
         question_content=question_content,
         delivery_state=delivery_state,
         session_builder=session_builder,
@@ -100,4 +115,5 @@ def build_assessment_delivery(
         instrument_service=instrument_service,
         observation_service=observation_service,
         assessment_service=assessment_service,
+        evidence_packaging_service=evidence_packaging_service,
     )

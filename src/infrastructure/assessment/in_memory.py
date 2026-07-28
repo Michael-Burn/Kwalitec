@@ -14,6 +14,7 @@ from application.assessment.ports.repositories import (
     AssessmentResultRepository,
     AssessmentSessionBuilder,
     AssessmentSessionRepository,
+    EvidenceBundleRepository,
     QuestionContentRepository,
     SessionDeliveryStateRepository,
 )
@@ -22,6 +23,8 @@ from domain.assessment.entities.assessment_observation import AssessmentObservat
 from domain.assessment.entities.assessment_result import AssessmentResult
 from domain.assessment.entities.assessment_session import AssessmentSession
 from domain.assessment.enums import AssessmentPurpose, AssessmentType
+from domain.assessment.evidence.ids import EvidenceBundleId
+from domain.assessment.evidence.models import EvidenceBundle
 from domain.assessment.factories import (
     AssessmentInstrumentFactory,
     AssessmentSessionFactory,
@@ -115,6 +118,29 @@ class InMemoryAssessmentResultRepository(AssessmentResultRepository):
     def save(self, result: AssessmentResult) -> None:
         self._by_id[result.result_id.value] = result
         self._by_session[result.session_id.value] = result.result_id.value
+
+
+class InMemoryEvidenceBundleRepository(EvidenceBundleRepository):
+    def __init__(self) -> None:
+        self._by_id: dict[str, EvidenceBundle] = {}
+        self._by_session: dict[str, str] = {}
+
+    def get(self, bundle_id: EvidenceBundleId) -> EvidenceBundle | None:  # type: ignore[override]
+        if isinstance(bundle_id, EvidenceBundleId):
+            key = bundle_id.value
+        else:
+            key = str(bundle_id)
+        return self._by_id.get(key)
+
+    def get_by_session(self, session_id: SessionId) -> EvidenceBundle | None:
+        bundle_id = self._by_session.get(session_id.value)
+        if bundle_id is None:
+            return None
+        return self._by_id.get(bundle_id)
+
+    def save(self, bundle: EvidenceBundle) -> None:  # type: ignore[override]
+        self._by_id[bundle.bundle_id.value] = bundle
+        self._by_session[bundle.context.session_id.value] = bundle.bundle_id.value
 
 
 class InMemoryQuestionContentRepository(QuestionContentRepository):

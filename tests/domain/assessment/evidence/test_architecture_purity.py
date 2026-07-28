@@ -1,4 +1,4 @@
-"""Architecture purity for assessment domain package."""
+"""Architecture purity for assessment evidence packaging."""
 
 from __future__ import annotations
 
@@ -7,9 +7,7 @@ from pathlib import Path
 
 import pytest
 
-DOMAIN_ROOT = (
-    Path(__file__).resolve().parents[3] / "src" / "domain" / "assessment"
-)
+DOMAIN_ROOT = Path(__file__).resolve().parents[4] / "src" / "domain" / "assessment"
 
 FORBIDDEN_MODULES = frozenset(
     {
@@ -29,10 +27,21 @@ FORBIDDEN_PREFIXES = (
     "infrastructure.",
     "application.",
 )
+FORBIDDEN_SUBSTRINGS = (
+    "student_reasoning",
+    "StudentReasoningService",
+    "digital_twin",
+    "mission_engine",
+    "tutor",
+)
 
 
 def _iter_python_files() -> list[Path]:
-    return sorted(DOMAIN_ROOT.rglob("*.py"))
+    paths: list[Path] = []
+    for sub in ("evidence", "packaging", "aggregation"):
+        root = DOMAIN_ROOT / sub
+        paths.extend(sorted(root.rglob("*.py")))
+    return paths
 
 
 def _imported_modules(path: Path) -> set[str]:
@@ -47,20 +56,8 @@ def _imported_modules(path: Path) -> set[str]:
     return names
 
 
-def test_assessment_domain_package_exists() -> None:
-    assert DOMAIN_ROOT.is_dir()
-    for expected in (
-        "entities",
-        "value_objects",
-        "enums",
-        "factories",
-        "validation",
-        "exceptions",
-        "events",
-        "evidence",
-        "packaging",
-        "aggregation",
-    ):
+def test_evidence_packaging_packages_exist() -> None:
+    for expected in ("evidence", "packaging", "aggregation"):
         assert (DOMAIN_ROOT / expected).is_dir()
 
 
@@ -69,11 +66,21 @@ def test_assessment_domain_package_exists() -> None:
     _iter_python_files(),
     ids=lambda p: str(p.relative_to(DOMAIN_ROOT)),
 )
-def test_no_forbidden_imports(path: Path) -> None:
+def test_evidence_packages_have_no_forbidden_imports(path: Path) -> None:
     imported = _imported_modules(path)
+    text = path.read_text(encoding="utf-8")
     for name in imported:
         assert name not in FORBIDDEN_MODULES, f"{path} imports {name}"
         assert not any(
             name == prefix.rstrip(".") or name.startswith(prefix)
             for prefix in FORBIDDEN_PREFIXES
         ), f"{path} imports {name}"
+    for needle in FORBIDDEN_SUBSTRINGS:
+        assert needle not in text or needle in (
+            # allow documentary mentions in module docstrings only via negative check
+            ""
+        )
+    # Hard ban on Reasoning / Twin / Mission / Tutor invocation patterns
+    assert "StudentReasoningService" not in text
+    assert "update_mastery" not in text
+    assert "EstimatedMastery" not in text

@@ -40,4 +40,8 @@ def test_delivery_service_stops_before_reasoning() -> None:
     text = path.read_text(encoding="utf-8")
     assert "mark_reasoned" not in text
     assert "StudentReasoningService" not in text
-    assert "AssessmentResultFactory" in text
+    assert "EvidencePackagingService" in text
+    assert "export_for_ap001" not in text or "Does not invoke" in text
+    # Packaging exposes evidence only; delivery must not call Reasoning.
+    assert "StudentDigitalTwin" not in text
+    assert "mission_engine" not in text

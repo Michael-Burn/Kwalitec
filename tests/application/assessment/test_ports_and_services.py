@@ -21,6 +21,7 @@ from application.assessment import (
     to_instrument_dto,
     to_session_dto,
 )
+from application.assessment.ports import EvidenceBundleRepository
 from domain.assessment import (
     AssessmentMetadata,
     AssessmentPurpose,
@@ -45,6 +46,7 @@ REPOSITORY_PORTS = [
     AssessmentInstrumentRepository,
     AssessmentObservationRepository,
     AssessmentResultRepository,
+    EvidenceBundleRepository,
 ]
 
 BUILDER_PORTS = [
