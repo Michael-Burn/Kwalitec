@@ -44,7 +44,7 @@
             <a class="settings-nav-link{% if current_section == 'share-feedback' %} active{% endif %}"
                href="{{ url_for('settings.share_feedback') }}">
                 {{ icon('feedback', class='me-2') }}
-                Share Feedback
+                Product Check-in
             </a>
         </div>
     </div>
@@ -181,7 +181,7 @@
                     </div>
                     <p class="text-muted small mt-3 mb-0">{{ research_journey.appreciation_message }}</p>
                     <a class="btn student-btn-secondary btn-sm mt-3" href="{{ url_for('settings.share_feedback') }}">
-                        Share Feedback
+                        Product Check-in
                     </a>
                 </div>
         </div>

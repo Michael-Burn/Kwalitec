@@ -363,7 +363,8 @@ class TestCheckinHttpFlow:
         response = logged_in_client.get("/dashboard/")
         assert response.status_code == 200
         body = response.get_data(as_text=True)
-        assert "Share Feedback" in body
+        assert "Product Check-in" in body
+        assert "Share Feedback" not in body
         assert "/research/checkin" in body
 
     def test_submit_checkin_creates_contribution_and_thank_you(

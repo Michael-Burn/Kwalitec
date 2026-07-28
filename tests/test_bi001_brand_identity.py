@@ -111,19 +111,19 @@ class TestOfficialAssetPack:
 
 class TestSidebarBrandChrome:
     def test_sign_out_follows_share_feedback(self) -> None:
-        """BI-001A: Sign Out sits immediately under Share Feedback (not viewport-pinned)."""
+        """BI-001A: Sign Out sits immediately under Product Check-in (not viewport-pinned)."""
         import re
 
         text = (ROOT / "app/templates/partials/sidebar.html").read_text(
             encoding="utf-8"
         )
-        feedback_idx = text.index("Share Feedback")
+        feedback_idx = text.index("Product Check-in")
         signout_idx = text.index("Sign out")
         assert feedback_idx < signout_idx
         assert "mt-auto" not in text
-        # Logout form must be the next interactive block after Share Feedback.
+        # Logout form must be the next interactive block after Product Check-in.
         assert re.search(
-            r"Share Feedback\s*</a>\s*<form method=\"post\"[^>]*url_for\('auth\.logout'\)",
+            r"Product Check-in\s*</a>\s*<form method=\"post\"[^>]*url_for\('auth\.logout'\)",
             text,
             re.DOTALL,
         )

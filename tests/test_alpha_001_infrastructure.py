@@ -76,6 +76,8 @@ class TestAlphaOnboarding:
         assert "Why recommendations are explainable" in body
         assert "How Reflections work" in body
         assert "How Study Sensei remembers" in body
+        assert "6 ideas" in body
+        assert "five ideas" not in body
         assert "Product Check-in is feedback for the product team" in body
         assert "Decision Journal is Study Sensei’s durable educational memory" in body
         assert "reasons Study Sensei used" in body

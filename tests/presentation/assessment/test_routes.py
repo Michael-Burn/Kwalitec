@@ -21,6 +21,8 @@ def test_full_delivery_flow(assessment_app, assessment_client, ctx, user):
     assert entry.status_code == 200
     assert b"Learning Check" in entry.data
     assert b"No grades" in entry.data
+    assert b"help Study Sensei" in entry.data
+    assert b"help Kwalitec" not in entry.data
 
     start = assessment_client.post("/assessment/start", follow_redirects=False)
     assert start.status_code == 302

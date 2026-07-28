@@ -50,7 +50,7 @@
             </a>
             <a class="nav-link{% if request.endpoint in ['research.checkin', 'research.thank_you', 'research.dismiss'] %} active{% endif %}" href="{{ url_for('research.checkin', source='settings') }}">
                 {{ icon('feedback', stroke_width=1.75) }}
-                Share Feedback
+                Product Check-in
             </a>
             <form method="post" action="{{ url_for('auth.logout') }}">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
