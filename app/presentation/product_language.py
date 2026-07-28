@@ -8,6 +8,8 @@ RR-001.3A reconciles Mission (focus) vs Session (practice) without
 retiring Session CTAs.
 RR-001.3B publishes reflection-family and orientation constants
 (DG-001.3 / EGC-R03–R05).
+RR-001.3C publishes educational memory coherence constants
+(DG-001.2-D06 / EGC-R06 / EGC-R12).
 """
 
 from __future__ import annotations
@@ -31,6 +33,7 @@ APPROVED_TERMS: tuple[str, ...] = (
     "Home",
     "Decision Journal",
     "Educational Timeline",
+    "History",
     "Session reflection",
     "Commitment reflection",
     "Sensei reflection",
@@ -48,6 +51,26 @@ REFLECTION_FAMILY_MAP_SENTENCE: str = (
     "learn whether guidance was useful. "
     "The Educational Timeline asks deeper questions about your learning story. "
     "Product Check-in is feedback for the product team — not educational reflection."
+)
+
+# DG-001.2-D06 / EGC-R06 — one coherent educational memory model.
+EDUCATIONAL_MEMORY_MODEL_SENTENCE: str = (
+    "The Decision Journal is Study Sensei’s durable educational memory of "
+    "significant guidance, your choices, and what followed. "
+    "The Educational Timeline is the chronological learning story drawn from "
+    "that Journal — not a second memory store and not a scoreboard. "
+    "History keeps practice archives and progress stats as context; "
+    "educational meaning lives in the Journal and Timeline. "
+    "After a Reflection, Session notes stay with the Session; optional Sensei "
+    "reflection deepens Journal memory that Timeline can later interpret."
+)
+
+HISTORY_EPISTEMOLOGY_BRIDGE: str = (
+    "History shows what you practiced — completed Sessions, study time, and "
+    "readiness trends. Those numbers orient you; they are not Study Sensei’s "
+    "mentor narrative. What happened educationally, why it mattered, what was "
+    "learned, and how that shapes future guidance live in the Decision Journal "
+    "and Educational Timeline."
 )
 
 # Rejected learner-facing synonyms (lowercase match).

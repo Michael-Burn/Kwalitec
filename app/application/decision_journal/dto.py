@@ -57,18 +57,23 @@ class DecisionJournalTimelineSnapshot:
     page_title: str = "Decision Journal"
     page_eyebrow: str = "Study Sensei"
     page_description: str = (
-        "A calm record of guidance we shared, the choices you made, "
-        "and what we learned afterwards."
+        "Study Sensei’s durable educational memory — significant guidance, "
+        "the choices you made, and what was learned afterwards."
     )
     empty_title: str = "Your journal starts with the next guidance"
     empty_description: str = (
-        "When the Study Sensei offers a Mission tip, Quick Check, or "
-        "revision suggestion — and you respond — it will appear here."
+        "When Study Sensei offers Mission guidance or a revision suggestion "
+        "— and you respond — it will appear here as durable educational "
+        "memory. The Educational Timeline will later read these entries as "
+        "your learning story; History keeps practice archives separately."
     )
     primary_cta_label: str = "Back to Home"
     intro_line: str = (
-        "This journal remembers previous guidance honestly. "
-        "It never rewrites history, and it never shames a choice."
+        "The Decision Journal is Study Sensei’s durable educational memory. "
+        "It records significant guidance, your choices, and what followed. "
+        "It never rewrites past entries, and it never shames a choice. "
+        "The Educational Timeline interprets this Journal; History keeps "
+        "practice stats as context only."
     )
 
 

@@ -105,7 +105,11 @@ def page_from_educational_experience(
         "home": "What you should study today, and why.",
         "journey": "Where you are on the published syllabus path.",
         "revision": "Revision guidance will appear after first-pass coverage.",
-        "history": "Your educational progress over time.",
+        "history": (
+            "Practice archives and progress context — not Study Sensei’s "
+            "learning story. Educational meaning lives in the Decision "
+            "Journal and Educational Timeline."
+        ),
         "profile": "Examination, preferences, goals, and account.",
     }
     shell = StudentShellViewModel(

@@ -2,15 +2,21 @@
 {% set title = page.shell.page_title %}
 
 {% block content %}
-<section class="student-stack" aria-labelledby="decision-journal-intro">
+<section class="student-stack" aria-labelledby="decision-journal-intro" data-educational-memory="journal">
     <p id="decision-journal-intro" class="student-muted">{{ journal.intro_line }}</p>
 </section>
 
 {% if journal.empty %}
-<section class="student-empty" aria-label="Decision Journal" role="status">
+<section class="student-empty" aria-label="Decision Journal" role="status" data-educational-memory="journal-empty">
     <h2 class="student-empty-title">{{ journal.empty_title }}</h2>
     <p class="student-empty-description">{{ journal.empty_description }}</p>
     <div class="student-primary-action">
+        <a class="btn student-btn-secondary" href="{{ url_for('student.educational_timeline') }}">
+            Educational Timeline
+        </a>
+        <a class="btn student-btn-secondary" href="{{ url_for('student.history') }}">
+            Open History
+        </a>
         <a class="btn student-btn-primary" href="{{ url_for('student.home') }}" data-student-cta="primary">
             {{ journal.primary_cta_label }}
         </a>
@@ -194,7 +200,7 @@
 
 <div class="student-primary-action">
     <a class="btn student-btn-secondary" href="{{ url_for('student.history') }}">
-        Back to History
+        Open History
     </a>
     <a class="btn student-btn-secondary" href="{{ url_for('student.educational_timeline') }}">
         Educational Timeline

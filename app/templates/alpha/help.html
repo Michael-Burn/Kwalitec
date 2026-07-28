@@ -3,7 +3,8 @@
 
 {% block content %}
 {# RR-001.2 / XR-01 / XR-11 — EOS header, panel, and labelled search.
-   RR-001.3B / EGC-R03 / EGC-R04 — educational orientation + reflection map. #}
+   RR-001.3B / EGC-R03 / EGC-R04 — educational orientation + reflection map.
+   RR-001.3C / EGC-R06 / EGC-R12 — educational memory coherence. #}
 <header class="student-page-header">
     <p class="student-eyebrow">{{ internal_alpha_label }}</p>
     <h1 class="student-page-title">Help &amp; Support</h1>
@@ -21,7 +22,7 @@
         type="search"
         id="help-search"
         class="form-control student-input help-search-input"
-        placeholder="Search Help — try “reflection”, “Mission”, “Decision Journal”…"
+        placeholder="Search Help — try “Decision Journal”, “Timeline”, “History”…"
         data-help-search
         autocomplete="off"
         aria-describedby="help-search-hint"
@@ -43,10 +44,26 @@
         <li class="mb-2"><strong>Mission</strong> — what deserves your attention today.</li>
         <li class="mb-2"><strong>Study Session</strong> — the practice workflow for that Mission.</li>
         <li class="mb-2"><strong>Reflection</strong> — a short pause that closes practice or calibrates guidance (see the Reflection map below).</li>
-        <li class="mb-2"><strong>Decision Journal</strong> — Study Sensei’s durable memory of significant guidance and your choices.</li>
-        <li class="mb-2"><strong>Educational Timeline</strong> — the story of how your learning has evolved, drawn from the Journal.</li>
-        <li class="mb-0"><strong>Study Sensei</strong> — the mentor voice across Mission, Session, Journal, and Timeline.</li>
+        <li class="mb-2"><strong>Decision Journal</strong> — Study Sensei’s durable educational memory of significant guidance and your choices.</li>
+        <li class="mb-2"><strong>Educational Timeline</strong> — the chronological learning story drawn from the Journal — not a second memory store.</li>
+        <li class="mb-2"><strong>History</strong> — practice archives and progress stats as context; meaning lives in Journal and Timeline.</li>
+        <li class="mb-0"><strong>Study Sensei</strong> — the mentor voice across Mission, Session, Journal, Timeline, and guidance that History only bridges to.</li>
     </ol>
+</section>
+
+<section class="student-panel student-panel--quiet mb-4" aria-labelledby="memory-model-title" data-help-orientation="memory-model">
+    <p class="student-panel-eyebrow">Educational memory</p>
+    <h2 id="memory-model-title" class="student-panel-title">One educational memory system</h2>
+    <p class="mb-0" data-help-field="memory-model-sentence">
+        The Decision Journal is Study Sensei’s durable educational memory of
+        significant guidance, your choices, and what followed. The Educational
+        Timeline is the chronological learning story drawn from that Journal —
+        not a second memory store and not a scoreboard. History keeps practice
+        archives and progress stats as context; educational meaning lives in the
+        Journal and Timeline. After a Reflection, Session notes stay with the
+        Session; optional Sensei reflection deepens Journal memory that Timeline
+        can later interpret.
+    </p>
 </section>
 
 <section class="student-panel student-panel--quiet mb-4" aria-labelledby="reflection-map-title" data-help-orientation="reflection-map">
@@ -80,9 +97,11 @@
         <dt class="student-label">Reflection</dt>
         <dd class="mb-2">A family of short pauses for judgement — after practice, on commitment, in the Journal, or on the Timeline. Never Product Check-in.</dd>
         <dt class="student-label">Decision Journal</dt>
-        <dd class="mb-2">Where Study Sensei remembers significant guidance, your choices, and optional Sensei reflection.</dd>
+        <dd class="mb-2">Study Sensei’s durable educational memory — significant guidance, your choices, outcomes, and optional Sensei reflection.</dd>
         <dt class="student-label">Educational Timeline</dt>
-        <dd class="mb-2">A calm reading of your learning story from the Journal — not from vanity scores.</dd>
+        <dd class="mb-2">Your chronological educational record — a learning story from the Journal, not from scores and not a duplicate of History.</dd>
+        <dt class="student-label">History</dt>
+        <dd class="mb-2">Practice archives and progress context (Sessions, study time, readiness trends). Numbers orient; meaning lives in Journal and Timeline.</dd>
         <dt class="student-label">Study Sensei</dt>
         <dd class="mb-2">Your educational mentor inside Kwalitec for focus, reasons, memory, and next steps.</dd>
         <dt class="student-label">Product Check-in</dt>
@@ -111,14 +130,24 @@
              "The Decision Journal is Study Sensei’s durable memory of guidance and choices. Sensei reflection is an optional form inside that Journal. Session reflection closes practice and stays with the Session record — it is not the Journal itself."),
             ("What does Product Check-in do?",
              "Product Check-in is optional feedback about using Kwalitec as a product. It is not educational reflection, does not write to the Decision Journal or Timeline, and does not change Missions, Sessions, or Study Sensei guidance."),
+            ("What is the Decision Journal?",
+             "The Decision Journal is Study Sensei’s durable educational memory. It stores significant guidance, your choices, what happened afterwards, and optional Sensei reflection — without rewriting the past."),
+            ("What is the Educational Timeline?",
+             "The Educational Timeline is your chronological educational record. It interprets Decision Journal memories as a learning story — growth, recovery, and consistency — and is not a second memory store."),
+            ("How are Decision Journal and Timeline different?",
+             "The Journal stores durable educational memories entry by entry. The Timeline reads those same memories as a chronological learning story. Neither duplicates History’s practice stats."),
+            ("Why does History exist?",
+             "History keeps practice archives and progress context — completed Sessions, study time, and readiness trends. Those numbers orient you; they are not Study Sensei’s mentor narrative."),
             ("Where does Study Sensei remember my learning?",
              "Significant guidance and choices live in the Decision Journal. The Educational Timeline interprets that Journal as a learning story. History shows practice archives and stats as context — meaning lives in Journal and Timeline."),
+            ("What happens after I complete a Reflection?",
+             "Session reflection stays with the Session record and closes practice. Optional Sensei reflection in the Decision Journal deepens educational memory; the Educational Timeline can later interpret that Journal. Product Check-in never writes educational memory."),
             ("What does Exam Readiness mean?",
-             "Readiness is an estimate of how prepared you are for your exam right now, based on completed Sessions and recent accuracy. It updates as you study — it isn't a final grade."),
+             "Readiness is an estimate of how prepared you are for your exam right now, based on completed Sessions and recent accuracy. It updates as you study — it isn't a final grade, and it is History/context — not Timeline meaning."),
             ("How do I change my Study Plan?",
              "Open Study Plan from the main navigation. You can adjust your exam date, weekly hours, and priority subjects — your next Session updates automatically."),
             ("Where can I see my past Sessions?",
-             "History shows every completed Session, your accuracy over time, and topic-level progress. For educational meaning, open the Decision Journal or Educational Timeline."),
+             "History shows completed Sessions, study time, and topic-level progress as practice context. For educational meaning — what guidance meant and what was learned — open the Decision Journal or Educational Timeline."),
             ("How do I switch appearance (Light / Dark)?",
              "Open Settings → Preferences and choose Light, Dark, or System. Your choice is saved in this browser."),
             ("How do I export or back up my data?",

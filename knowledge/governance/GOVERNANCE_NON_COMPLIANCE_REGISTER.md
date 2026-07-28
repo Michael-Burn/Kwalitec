@@ -21,6 +21,10 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 
 **RR-001.3A (2026-07-28):** Closed NCR-001, NCR-004, NCR-014 (Runtime C system narrator), NCR-015 (in-scope identity surfaces), NCR-016, NCR-018 (handoff + Home/Session), NCR-020 (in-scope). Evidence: `RR001_3A_COMPLETION_REPORT.md`, `test_rr001_3a_educational_identity.py`.
 
+**RR-001.3B (2026-07-28):** Closed NCR-011, NCR-017, NCR-022. Evidence: `RR001_3B_COMPLETION_REPORT.md`.
+
+**RR-001.3C (2026-07-28):** Closed NCR-006, NCR-007, NCR-010, NCR-019, NCR-021. Evidence: `RR001_3C_COMPLETION_REPORT.md`, `test_rr001_3c_educational_memory.py`.
+
 ---
 
 ## Summary
@@ -32,11 +36,11 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | NCR-003 | Mission Intelligence engineering chrome | PC | Medium | P1 | EGC-R08; R02 | ED-10; ED-15 |
 | NCR-004 | Commitment continuity “tip” | **Closed** | Medium | P1 | EGC-R02 | ED-06 |
 | NCR-005 | Session readiness overclaim; Session/Mission CTA mix | PC | Medium | P1 | EGC-R02; R10 | ED-02; ED-16 |
-| NCR-006 | Journal empty “Mission tip” / QC mention | PC | Medium | P1 | EGC-R02; R12 | ED-14; DEP-01 |
-| NCR-007 | Timeline tip wording + stats tension | PC | Medium | P1 | EGC-R02; R06 | ED-05; DEP-01 |
+| NCR-006 | Journal empty “Mission tip” / QC mention | **Closed** | Medium | P1 | EGC-R02; R12 | ED-14; DEP-01 |
+| NCR-007 | Timeline tip wording + stats tension | **Closed** | Medium | P1 | EGC-R02; R06 | ED-05; DEP-01 |
 | NCR-008 | Feedback Loop not taught in Help | **Advanced*** | Medium | P1 | EGC-R03; R04 | ED-04; OQ-03 |
 | NCR-009 | Revision vs Mission competing focus | PC | Medium | P2 | EGC-R09 | ED-13 |
-| NCR-010 | History lacks Sensei/meaning bridge | NC | Medium | P1 | EGC-R06 | ED-05; AC-03 |
+| NCR-010 | History lacks Sensei/meaning bridge | **Closed** | Medium | P1 | EGC-R06 | ED-05; AC-03 |
 | NCR-011 | Help omits Sensei memory map; anxiety phrasing | **Closed** | High | P0 | EGC-R03 | ED-04; ED-08; AC-04 |
 | NCR-012 | Success states mix praise / readiness claims | PC | Low–Med | P2 | EGC-R10 | AC-15; ED-16 |
 | NCR-013 | Empty states reintroduce deprecated / gated nouns | PC | Medium | P1 | EGC-R12 | ED-12; ED-14 |
@@ -45,12 +49,12 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | NCR-016 | Explanation eyebrow “Why this tip?” + KW reasons | **Closed** | High | P0 | EGC-R02; R01 | ED-07; ED-20 |
 | NCR-017 | Reflection not one student system | **Closed** | High | P0 | EGC-R04; R05 | ED-03; AC-07 |
 | NCR-018 | Hidden narrator transitions | **Closed*** | High | P0 | EGC-R01; R08 | ED-01; AC-01/04/05 |
-| NCR-019 | Authority ownership incorrect in live speech | PC / residual | High | P0 | EGC-R01; R03; R06 | AC-* |
+| NCR-019 | Authority ownership incorrect in live speech | **Closed*** | High | P0 | EGC-R01; R03; R06 | AC-* |
 | NCR-020 | Terminology not lexicon-applied | **Closed*** | High | P0 | EGC-R02 | ED-02; CP-03 |
-| NCR-021 | Educational memory not introduced at orientation | **Advanced*** | High | P0 | EGC-R03; R01 | ED-04; D04 |
+| NCR-021 | Educational memory not introduced at orientation | **Closed** | High | P0 | EGC-R03; R01 | ED-04; D04 |
 | NCR-022 | Product Check-in titled as Reflection | **Closed** | Medium | P1 | EGC-R05 | ED-18; D05 |
 
-\*Closed for RR-001.3A **in-scope** educational identity surfaces where noted. RR-001.3B closes NCR-011 / NCR-017 / NCR-022. NCR-008 / NCR-021 advanced via Help Sensei reflection + memory map (OQ-03 FL jargon name still open). Named residuals: Journal/Timeline tip empties (NCR-006/007); QC empty ads (NCR-013); Home naming density Watch (NCR-002 / EGC-R08); History bridge (NCR-010).
+\*Closed for RR-001.3A **in-scope** educational identity surfaces where noted. RR-001.3B closes NCR-011 / NCR-017 / NCR-022. RR-001.3C closes NCR-006 / NCR-007 / NCR-010 / NCR-019 / NCR-021. NCR-008 remains Advanced (OQ-03 FL jargon name). Named residuals: QC empty ads outside memory (NCR-013); Home naming density Watch (NCR-002 / EGC-R08).
 
 \*P0 before any Runtime C enablement.
 
@@ -101,13 +105,50 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | **Capability** | History |
 | **Observed** | Accuracy/progress culture in Help/History vs Timeline not-from-scores |
 | **Clause** | DG-001.2-D06; CP-07; CP-08 |
-| **Compliance** | Non-Compliant |
+| **Compliance** | **Closed** — RR-001.3C |
 | **Risk** | Medium |
 | **Student impact** | Numbers feel like educational truth |
 | **Required remediation** | History intro: context only; meaning in Journal/Timeline |
 | **Priority** | P1 |
 | **Implementation dependency** | EGC-R06 |
 | **Evidence** | Help FAQ “accuracy over time”; Timeline narrative culture; ED-05 |
+| **Closure** | History page bridge + shell description + Help FAQ; `test_rr001_3c_educational_memory.py`; `RR001_3C_COMPLETION_REPORT.md` |
+
+---
+
+### NCR-006 — Journal empty tip / QC honesty
+
+| Field | Detail |
+|-------|--------|
+| **Capability** | Decision Journal |
+| **Observed** | Empty description used “Mission tip” and advertised Quick Check |
+| **Clause** | DEP-01; ED-14; DG-001.2-D07 |
+| **Compliance** | **Closed** — RR-001.3C |
+| **Risk** | Medium |
+| **Student impact** | Deprecated tip noun + gated capability ad on first visit |
+| **Required remediation** | Lexicon empty state; no QC ad while OFF |
+| **Priority** | P1 |
+| **Implementation dependency** | EGC-R12 |
+| **Evidence** | `app/application/decision_journal/dto.py` |
+| **Closure** | Mission guidance / revision wording; no tip/QC; 3C tests |
+
+---
+
+### NCR-007 — Timeline tip wording + stats tension
+
+| Field | Detail |
+|-------|--------|
+| **Capability** | Educational Timeline |
+| **Observed** | Narrative “Mission tip”; epistemology tension with History stats |
+| **Clause** | DEP-01; ED-05; DG-001.2-D06 |
+| **Compliance** | **Closed** — RR-001.3C |
+| **Risk** | Medium |
+| **Student impact** | Tip noun + numbers competing with learning story |
+| **Required remediation** | Tip retirement; History bridge |
+| **Priority** | P1 |
+| **Implementation dependency** | EGC-R06; EGC-R02 |
+| **Evidence** | `narrative.py`; Timeline DTO |
+| **Closure** | Guidance noun in narrative; Timeline empty distinguishes History; 3C tests |
 
 ---
 
@@ -136,14 +177,14 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | **Capability** | Feature flag messaging |
 | **Observed** | Runtime C “the system” contained OFF; Journal empty may advertise QC while OFF |
 | **Clause** | DG-001.2-D07; DEP-04; Constitution §11 |
-| **Compliance** | **Closed** (Runtime C system narrator — RR-001.3A); **Contained** residual QC empty ads → NCR-013 / EGC-R12 |
+| **Compliance** | **Closed** (Runtime C system narrator — RR-001.3A); Journal empty QC ad **Closed** RR-001.3C; **Contained** residual other QC empty ads → NCR-013 |
 | **Risk** | High if Runtime C enabled as-is |
 | **Student impact** | Robotic mentor / false gated affordances |
 | **Required remediation** | Rename before enable; empty-state flag honesty |
 | **Priority** | P0 before enable; P1 empty honesty |
 | **Implementation dependency** | EGC-R07; EGC-R12 |
 | **Evidence** | ED-11; ED-14; AC-02 |
-| **Closure** | Runtime C summary → “Why this Mission?”; flag still OFF; QC empty honesty deferred |
+| **Closure** | Runtime C summary → “Why this Mission?”; flag still OFF; Journal empty QC honesty closed RR-001.3C |
 
 ---
 
@@ -154,7 +195,7 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | **Capability** | Educational copy |
 | **Observed** | “Why this tip?”; Study Tip cards; Mission tip; Today's Session as focus synonym |
 | **Clause** | DG-001.1-D02; DEP-01; DEP-02; CP-03; CI-01 |
-| **Compliance** | **Closed** (in-scope identity surfaces — RR-001.3A); Journal/Timeline tip residuals remain NCR-006/007 |
+| **Compliance** | **Closed** (in-scope identity surfaces — RR-001.3A); Journal/Timeline tip residuals **Closed** RR-001.3C |
 | **Risk** | High |
 | **Student impact** | Cannot transfer “today's decision” across surfaces |
 | **Required remediation** | Apply lexicon; PX reconciliation (OQ-01) |
@@ -226,13 +267,14 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | **Capability** | Authority ownership |
 | **Observed** | Educational judgement speech on KW surfaces; felt multi-authority via tip/Session; History soft alternate |
 | **Clause** | DG-001.2-D01–D10; Constitution §11.1–11.3 |
-| **Compliance** | Non-Compliant |
+| **Compliance** | **Closed** (memory / History AC-03 + tip empties — RR-001.3C); Home density Watch remains NCR-002 |
 | **Risk** | High |
 | **Student impact** | Unclear who teaches / remembers / reports facts |
 | **Required remediation** | Implement authority matrix in copy |
 | **Priority** | P0 |
 | **Implementation dependency** | EGC-R01; EGC-R03; EGC-R06 |
 | **Evidence** | Authority Conflict Register AC-01–AC-07 |
+| **Closure** | History bridge (D06); Journal durable memory / Timeline chronological record ownership speech; tip empties retired; `RR001_3C_COMPLETION_REPORT.md` |
 
 ---
 
@@ -261,14 +303,14 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | **Capability** | Educational memory |
 | **Observed** | Journal host compliant; Help/onboarding omit introduction |
 | **Clause** | DG-001.1-D04; DG-001.3-D02; ED-04 |
-| **Compliance** | **Advanced** — Help + onboarding introduce Journal / Timeline (RR-001.3B); residual Watch if other surfaces omit |
+| **Compliance** | **Closed** — RR-001.3C |
 | **Risk** | High (discoverability) |
 | **Student impact** | Durable memory unused / unknown |
-| **Required remediation** | First-introduction in Help + onboarding |
+| **Required remediation** | First-introduction in Help + onboarding + memory empties |
 | **Priority** | P0 |
-| **Implementation dependency** | EGC-R03; EGC-R01 |
-| **Evidence** | help.html topics; onboarding steps |
-| **Progress** | Journey map + glossary + reflection map name Decision Journal and Educational Timeline |
+| **Implementation dependency** | EGC-R03; EGC-R01; EGC-R06 |
+| **Evidence** | help.html topics; onboarding steps; Journal/Timeline empties |
+| **Closure** | Onboarding memory step + Help memory model + glossary History + empty intros; `test_rr001_3c_educational_memory.py` |
 
 ---
 
@@ -290,9 +332,9 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 
 ---
 
-### Condensed residuals (NCR-003–009, 012–013)
+### Condensed residuals (NCR-003–005, 008–009, 012–013)
 
-Full narrative for these PC items lives in the Audit §5. Shared pattern: **governance resolved; product copy open**. Each cites DEP/ED and maps to EGC-R* in the summary table. Escalate any to Critical only if a future programme claims ED closure without fixing the cited strings.
+Full narrative for these PC items lives in the Audit §5. Shared pattern: **governance resolved; product copy open** (except NCR-006/007 closed RR-001.3C). Each cites DEP/ED and maps to EGC-R* in the summary table. Escalate any to Critical only if a future programme claims ED closure without fixing the cited strings.
 
 ---
 

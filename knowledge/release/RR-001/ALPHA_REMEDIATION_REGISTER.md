@@ -1,8 +1,8 @@
 # RR-001 — Alpha Remediation Register
 
 **Programme:** RR-001 — Alpha Readiness Remediation Register  
-**Work Packages:** RR-001.1 — Critical Findings Resolution · RR-001.2 — Premium Experience Remediation · **RR-001.3A — Educational Identity & Narrator Consistency** · **RR-001.3B — Educational Orientation & Reflection Coherence**  
-**Date:** 2026-07-28 (updated RR-001.3B)  
+**Work Packages:** RR-001.1 — Critical Findings Resolution · RR-001.2 — Premium Experience Remediation · **RR-001.3A — Educational Identity & Narrator Consistency** · **RR-001.3B — Educational Orientation & Reflection Coherence** · **RR-001.3C — Educational Memory & History Coherence**  
+**Date:** 2026-07-28 (updated RR-001.3C)  
 **Sources:** RP-001.1 Product Inventory · RP-001.2 End-to-End Journey · RP-001.3 Study Sensei Identity & Voice · **RP-001.4 Premium Experience Certification**  
 **Status legend:** `Resolved` · `Open` · `Deferred` · `Contained` (process / flag / ops mitigation) · `Merged` (see canonical ID)
 
@@ -74,7 +74,7 @@ Single remediation register for every certification finding from RP-001.1–RP-0
 | RR-H09 | R-18 / JR-12 | Defer ≠ ranking change | Contained | Disclose preference-only (by design) |
 | RR-H10 | R-06 / JR-13 | Thin Revision surface | Contained | Adaptive authority OFF disclosed |
 | RR-H11 | IR-01 | Dual narrator (Kwalitec vs Study Sensei) | **Resolved** (RR-001.3A + Help RR-001.3B) | Handoff T04 + Home/Session Sensei naming + Help Sensei teaching |
-| RR-H12 | IR-02 | Mission / Session / tip synonym storm | **Resolved** (RR-001.3A in-scope) | Lexicon on educational identity surfaces; Journal tip empty → EGC-R12 |
+| RR-H12 | IR-02 | Mission / Session / tip synonym storm | **Resolved** (RR-001.3A + Journal/Timeline empties RR-001.3C) | Lexicon on educational identity surfaces; Journal tip empty closed EGC-R12 |
 | RR-H13 | R-14 | Runtime C dual educational context | Contained | Flags OFF |
 | RR-H14 | R-20 | Curriculum V1/V2 breakage via unrelated change | Contained | Architecture invariant + CI |
 
@@ -113,7 +113,7 @@ Single remediation register for every certification finding from RP-001.1–RP-0
 | Canonical | Source IDs | Title | Status |
 |-----------|------------|-------|--------|
 | RR-L01 | IR-13 | Streak language in legacy/settings export | Contained |
-| RR-L02 | IR-14 | Journal empty mentions QC while OFF | Open |
+| RR-L02 | IR-14 | Journal empty mentions QC while OFF | **Resolved** (RR-001.3C) | Journal empty no longer advertises Quick Check |
 | RR-L03 | IR-17 | Assessment flash brands Kwalitec | Deferred |
 | RR-L04 | IR-18 | “Optimising for {axis}” engineering tone | **Resolved** (RR-001.3A) | Home MI chrome → “Focusing on …” |
 | RR-L05 | IR-19 | Default benefit “strengthen your exam readiness” | Open |
@@ -165,7 +165,7 @@ Capability readiness calls from RP-001.1 are unchanged by RR-001.1 except where 
 
 ## Document control
 
-- Implementation packages: RR-001.1 · RR-001.2 · **RR-001.3A**  
+- Implementation packages: RR-001.1 · RR-001.2 · **RR-001.3A** · **RR-001.3B** · **RR-001.3C**  
 - Companion matrix: `CRITICAL_FINDINGS_MATRIX.md`  
-- Completions: `RR001_1_COMPLETION_REPORT.md` · `RR001_2_COMPLETION_REPORT.md` · `RR001_3A_COMPLETION_REPORT.md` · `RR001_3A_IMPLEMENTATION_REPORT.md`  
+- Completions: `RR001_1_COMPLETION_REPORT.md` · `RR001_2_COMPLETION_REPORT.md` · `RR001_3A_COMPLETION_REPORT.md` · `RR001_3B_COMPLETION_REPORT.md` · `RR001_3C_COMPLETION_REPORT.md`  
 - Do not treat this register as Version 1 production-ready declaration

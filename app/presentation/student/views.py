@@ -140,7 +140,11 @@ def _empty_page(surface: str) -> StudentPageViewModel:
         "home": "What you should do next, and why.",
         "journey": "Where you are on the path to exam readiness.",
         "revision": "The highest-value revision for today.",
-        "history": "Your educational progress over time.",
+        "history": (
+            "Practice archives and progress context — not Study Sensei’s "
+            "learning story. Educational meaning lives in the Decision "
+            "Journal and Educational Timeline."
+        ),
         "profile": "Examination, preferences, goals, and account.",
     }
     titles = {

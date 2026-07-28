@@ -3,6 +3,26 @@
 {% from "student/components/history_card.html" import history_card %}
 
 {% block content %}
+{# RR-001.3C / EGC-R06 / DG-001.2-D06 — History is context; meaning in Journal/Timeline. #}
+<section class="student-stack" aria-labelledby="history-memory-bridge" data-educational-memory="history-bridge">
+    <h2 id="history-memory-bridge" class="student-section-title">What History shows</h2>
+    <p class="student-muted" data-educational-memory="epistemology-bridge">
+        History shows what you practiced — completed Sessions, study time, and
+        readiness trends. Those numbers orient you; they are not Study Sensei’s
+        mentor narrative. What happened educationally, why it mattered, what was
+        learned, and how that shapes future guidance live in the Decision Journal
+        and Educational Timeline.
+    </p>
+    <p>
+        <a class="btn student-btn-secondary" href="{{ url_for('student.decision_journal') }}">
+            Open Decision Journal
+        </a>
+        <a class="btn student-btn-secondary" href="{{ url_for('student.educational_timeline') }}">
+            Educational Timeline
+        </a>
+    </p>
+</section>
+
 {% if page.history %}
 {% set history = page.history %}
 
@@ -20,30 +40,10 @@
         {% endfor %}
     </ul>
     <p class="student-muted">
-        <a href="{{ url_for('student.decision_journal') }}">
-            Open your Decision Journal
-        </a>
-        — a fuller record of guidance, choices, and outcomes.
-        Or read your
-        <a href="{{ url_for('student.educational_timeline') }}">
-            Educational Timeline
-        </a>
-        — how those memories form a learning story.
-    </p>
-</section>
-{% else %}
-<section class="student-stack" aria-labelledby="decision-journal-link-title">
-    <h2 id="decision-journal-link-title" class="student-section-title">Decision Journal</h2>
-    <p class="student-muted">
-        Review previous educational guidance, what you chose, and what happened afterwards.
-    </p>
-    <p>
-        <a class="btn student-btn-secondary" href="{{ url_for('student.decision_journal') }}">
-            Open Decision Journal
-        </a>
-        <a class="btn student-btn-secondary" href="{{ url_for('student.educational_timeline') }}">
-            Educational Timeline
-        </a>
+        For the fuller educational memory — guidance, choices, and outcomes — open your
+        <a href="{{ url_for('student.decision_journal') }}">Decision Journal</a>.
+        For the chronological learning story, open your
+        <a href="{{ url_for('student.educational_timeline') }}">Educational Timeline</a>.
     </p>
 </section>
 {% endif %}
@@ -77,7 +77,9 @@
     <div class="student-empty" role="status">
         <p class="student-empty-title">No sessions completed yet</p>
         <p class="student-empty-description">
-            Finish a study session and it will show up here, with what you covered and how it went.
+            Finish a Study Session and it will show up here as practice context —
+            what you covered and how it went. Educational meaning still lives in
+            the Decision Journal and Educational Timeline.
         </p>
     </div>
     {% endif %}
@@ -131,7 +133,9 @@
 <section class="student-empty" aria-label="History" role="status">
     <h2 class="student-empty-title">Your history starts with your first session</h2>
     <p class="student-empty-description">
-        Study time, readiness trends, and completed topics will appear here as you go.
+        Study time, readiness trends, and completed topics will appear here as
+        practice context. For Study Sensei’s educational memory, open the
+        Decision Journal or Educational Timeline when guidance is recorded.
     </p>
     <div class="student-primary-action">
         <a class="btn student-btn-primary" href="{{ url_for('student.home') }}" data-student-cta="primary">

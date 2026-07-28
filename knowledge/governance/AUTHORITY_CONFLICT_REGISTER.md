@@ -36,10 +36,10 @@ Status: **Resolved (governance)** / **Open (implementation)** / **Contained**
 |----|----------|------|----------|------------|------------|----------------|
 | AC-01 | Dual narrator KW vs SS without handoff | Competing / gap | High | Likely | **Resolved** D01/D02/D04 | **Closed** RR-001.3A (T04); Help closed RR-001.3B (AC-04) |
 | AC-02 | “The system / algorithm” as mentor substitute | Inappropriate ownership | High | Possible (High if Runtime C ON) | **Resolved** D01/D03/D07 | **Closed** Runtime C rename RR-001.3A; flag Contained OFF |
-| AC-03 | History stats vs Timeline narrative | Competing epistemology | Medium | Possible | **Resolved** D06 | Open (ED-05 copy) |
+| AC-03 | History stats vs Timeline narrative | Competing epistemology | Medium | Possible | **Resolved** D06 | **Closed** RR-001.3C (ED-05 copy) |
 | AC-04 | Help / Onboarding teach KW; memory teaches SS | Hidden transition / gap | High | Likely | **Resolved** D04/D10 | **Closed** — onboarding RR-001.3A; Help RR-001.3B |
 | AC-05 | Home educational speech often unnamed | Hidden attribution | Medium | Likely | **Resolved** D01/D05; density OQ | **Partial** — Sensei named RR-001.3A; OQ-02 Watch |
-| AC-06 | Mission / Session / tip noun storm as false multi-authority | Duplicated concept → felt authority | High | Likely | Lexicon DG-001.1; authority D09 | **Partial** — in-scope Closed RR-001.3A; Journal/Timeline Open |
+| AC-06 | Mission / Session / tip noun storm as false multi-authority | Duplicated concept → felt authority | High | Likely | Lexicon DG-001.1; authority D09 | **Closed** tip empties RR-001.3C; Home density Watch NCR-002 |
 | AC-07 | Multiple reflection systems without map | Overlap / gap | High | Likely | Lexicon + D10 | **Closed** RR-001.3B (Help map + Check-in rename) |
 | AC-08 | Revision vs Mission competing focus | Overlap | Medium | Possible | D09 + Mission primacy | Open (ED-13) |
 | AC-09 | MI + MES hero duplication | Authority noise | Medium | Possible | D05 | Mitigated disclosure (RR-001.2); watch |
@@ -49,7 +49,7 @@ Status: **Resolved (governance)** / **Open (implementation)** / **Contained**
 | AC-13 | Notifications marketing as Sensei | Overlap / inappropriate | Medium | Possible | **Resolved** D08 | Open until notification programme |
 | AC-14 | Study Plan pacing advice unsigned | Gap / overlap | Low | Possible | Matrix: KW structure; SS if advising | Clarify in copy programmes |
 | AC-15 | Success states mixing account praise with educational judgement | Overlap | Low | Possible | Matrix success rows | Audit residual |
-| AC-16 | Journal empty mentions gated QC while OFF | Flag honesty / KW duty | Low | Possible | D07 | Open (ED-14) |
+| AC-16 | Journal empty mentions gated QC while OFF | Flag honesty / KW duty | Low | Possible | D07 | **Closed** RR-001.3C |
 | AC-17 | Latent MissionOptimizer as mission-shaped authority | Competing decision narration risk | High if surfaced | Unlikely (unrendered) | D01; cores remain singular | Contained (EGI quarantine residual) |
 
 ---
@@ -103,7 +103,7 @@ Status: **Resolved (governance)** / **Open (implementation)** / **Contained**
 | **RP link** | ED-05 |
 | **Board resolution** | D06 — History = SY+KW context; SS bridges only; meaning in Journal/Timeline |
 | **Implementation residual** | Copy programme: bridge language; no mentor claims on stats |
-| **Status** | Governance resolved; copy open |
+| **Status** | **Closed** — History bridge + Help FAQ RR-001.3C |
 
 ### AC-04 — Orientation lag / hidden handoff
 

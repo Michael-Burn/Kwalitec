@@ -644,7 +644,7 @@ def _section_mission_milestones(
                     or "Mission-related guidance was recorded."
                 ),
                 pattern=(
-                    f"Mission tip marked as "
+                    f"Mission guidance marked as "
                     f"“{_lifecycle_phrase(entry.lifecycle_status)}”"
                     + (
                         f"; outcome: {entry.outcome_summary}"
@@ -811,7 +811,7 @@ def _section_learning_momentum(
             "Earlier entries show more accepted guidance than the most "
             "recent fortnight — rhythm may have slowed.",
             "Accepted guidance appears less frequent recently than earlier; "
-            "this may simply reflect fewer recorded tips.",
+            "this may simply reflect fewer recorded guidance moments.",
         )
         meaning = (
             "A quieter period in the journal is not a judgement — it is "
