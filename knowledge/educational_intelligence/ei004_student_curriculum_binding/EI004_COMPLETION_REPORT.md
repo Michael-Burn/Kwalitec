@@ -3,7 +3,7 @@
 **Programme:** EI-004 — Student Curriculum Binding (Educational Intelligence)  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commits:** `efe8d52` (`feat(ei-004)`) · _(docs commit pending)_
+**Commits:** `efe8d52` (`feat(ei-004)`) · `4604b2d` (`docs(ei-004)`)
 
 ---
 
