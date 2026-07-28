@@ -4,7 +4,7 @@
 **Work Package:** RR-002.1 — Navigation & Educational Consistency  
 **Date:** 2026-07-28  
 **Status:** Complete — Certified Pass (in-scope)  
-**Commit:** *(set at commit)* — `feat(rr-002.1): remediate educational navigation and terminology findings`  
+**Commit:** `a34bf99` — `feat(rr-002.1): remediate educational navigation and terminology findings`  
 **Governance authority:** DG-001.1 · DG-001.2 · DG-001.3 · DG-001.4 · RP-002  
 **Findings closed:** PC-001 · PC-002 · PC-003 · PC-004 (RP002-NCR-001–004)
 
