@@ -55,6 +55,7 @@ Detail always lives in the cited authoritative artefacts. If this Dashboard conf
 | **RR-002** | Governance Convergence | Complete (in-scope Pass) | Sole-runtime path documented; legacy Contained | `knowledge/release/RR-002/` |
 | **EI-001** | Engineering Improvement | Complete (historical provenance) | CI / dependency / G-pack improvements | `knowledge/release/EI-001/` |
 | **EI-001** | Curriculum Knowledge Graph Foundation | **Complete** | Additive educational SoT (domain + `ckg_*` ORM); distinct from Engineering EI-001 | `knowledge/educational_intelligence/ei001_curriculum_knowledge_graph/` |
+| **EI-002** | Curriculum Extraction Pipeline | **Complete** | CSD → Draft CKG with provenance, confidence, validation; `publication_state=draft` | `knowledge/educational_intelligence/ei002_curriculum_extraction_pipeline/` |
 | **ER-002** | Engineering Recertification | Complete | **Engineering Conditional GO** | `knowledge/release/ER-002/` |
 | **OA-001** | Operational Architecture | Complete | Permanent operating model | `knowledge/operations/oa001/` |
 | **CQ-001** | Commercial Readiness First | Complete (docs/governance) | CRI framework; baseline **43%** provisional; living board | `knowledge/product/cq001_commercial_readiness/` |
