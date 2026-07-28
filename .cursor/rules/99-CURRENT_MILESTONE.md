@@ -1,35 +1,37 @@
 # Current Milestone
 
-**EX-001** — Educational Experience Engine (**Active delivery**)
+**RI-001** — Educational Runtime Integration (**Active delivery**)
 
 ## Objective
 
-Transform Educational Decisions (EI-007) into consistent, explainable, UI-agnostic experience models for Daily Mission, Coach, Dashboard, Revision Planner, and study session surfaces. Presentation and communication only — no educational reasoning.
+Integrate the Educational Intelligence Core into the live runtime with Preferred Authority cutover: EI-007 → EX-001 Experience Models whenever an active SCI has Educational Decisions; instrumented Runtime A Temporary compatibility otherwise.
 
 ## Allowed modifications
 
-- `app/domain/educational_experience_engine/`
-- `app/application/educational_experience_engine/`
-- `tests/domain/educational_experience_engine/` · `tests/application/educational_experience_engine/`
-- `knowledge/educational_experience/ex001_educational_experience_engine/`
-- Programme dashboard / milestone pointers for EX-001
+- `app/application/runtime_integration/`
+- Wiring into Recommendation Bridge, Dashboard, Mission/Session, Tutor, Student Home Runtime C fork
+- `app/application/config/v2_flags.py` (`ENABLE_RUNTIME_INTEGRATION`)
+- `tests/application/runtime_integration/`
+- `knowledge/runtime_integration/ri001_educational_runtime_integration/`
+- Programme dashboard / milestone pointers for RI-001
 
 ## Forbidden
 
-- Modifying Educational Decisions, Twin Beliefs, or Learning Evidence
-- Introducing new educational reasoning or bypassing EI-007
-- Student HTTP / template wiring beyond defined integration contracts
-- Generative AI / LLM presentation in core experience paths
+- Modifying EI-007 reasoning, Twin beliefs, Learning Evidence, or CKG
+- Introducing new educational reasoning or bypassing EX-001
+- Adding educational logic to controllers or Runtime C
+- New educational features on Runtime A
 
 ## Parallel note
 
-FV-001 Founder Validation remains the commercial dogfood track. EX-001 does not reopen CQ engineering or Founder Validated CRI claims. Legacy PX-001 `educational_experience` and EXP-001 `student_experience` packages are untouched.
+FV-001 Founder Validation remains the commercial dogfood track. RI-001 does not reopen CQ engineering or Founder Validated CRI claims.
 
 ## Authoritative artefacts
 
-- Architecture: `knowledge/educational_experience/ex001_educational_experience_engine/ARCHITECTURE.md`
-- Completion: `knowledge/educational_experience/ex001_educational_experience_engine/EX001_COMPLETION_REPORT.md`
-- Upstream: EI-007 Educational Reasoning Engine
+- Architecture: `knowledge/runtime_integration/ri001_educational_runtime_integration/ARCHITECTURE.md`
+- Audit: `knowledge/runtime_integration/ri001_educational_runtime_integration/RUNTIME_AUDIT.md`
+- Completion: `knowledge/runtime_integration/ri001_educational_runtime_integration/RI001_COMPLETION_REPORT.md`
+- Upstream: EI-007 · EX-001
 
 ---
 
