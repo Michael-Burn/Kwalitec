@@ -3,7 +3,7 @@
 **Programme:** EI-005 — Learning Evidence Engine (Educational Intelligence)  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commits:** `cd25f92` (`feat(ei-005)`) · _(docs commit follows)_
+**Commits:** `cd25f92` (`feat(ei-005)`) · `4a20617` (`docs(ei-005)`)
 
 ---
 
