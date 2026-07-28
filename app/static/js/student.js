@@ -19,8 +19,8 @@
     }
     // Keep the first primary CTA as the sole visual primary on the page.
     for (var i = 1; i < ctas.length; i += 1) {
-      ctas[i].classList.add("btn-outline-secondary");
-      ctas[i].classList.remove("student-btn-primary", "btn-primary");
+      ctas[i].classList.add("student-btn-secondary");
+      ctas[i].classList.remove("student-btn-primary", "btn-primary", "btn-outline-secondary");
     }
   }
 

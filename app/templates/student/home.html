@@ -4,6 +4,9 @@
 {% from "student/components/educational_experience.html" import educational_experience_panel %}
 {% from "partials/contextual_help.html" import learn_more %}
 
+{# CQ-006: hero owns the page title — suppress competing shell header. #}
+{% block page_header %}{% endblock %}
+
 {% block content %}
 {% if page.home %}
 {% set edu = page.educational or page.home.educational %}
@@ -43,7 +46,7 @@
   {# CQ-003 / CR2: resume path keeps the hero light (title, duration, Continue). #}
   {% set habit_resume = page.home.session_control == 'resume' %}
   <p class="student-hero-greeting">{{ page.home.greeting }}</p>
-  <p class="student-muted" data-narrator="study-sensei">Study Sensei</p>
+  <p class="student-narrator" data-narrator="study-sensei">Study Sensei</p>
   <p class="student-hero-eyebrow">
     {% if page.home.reflection_active %}
       Guided Reflection preview
@@ -214,8 +217,7 @@
   </div>
   {% elif page.home.commitment and page.home.commitment.show_commit_affordance and not page.home.guided_session_active and not page.home.reflection_active and not habit_resume %}
   <p class="student-muted" data-commitment="confirm">
-    I’m doing this next.
-    <span class="student-muted">Starting means you’re doing this next.</span>
+    Starting means you’re doing this next.
   </p>
   {% if page.home.commitment.continuity_line %}
   <p class="student-muted" data-commitment="continuity">{{ page.home.commitment.continuity_line }}</p>
@@ -529,7 +531,7 @@
   aria-labelledby="student-journey-feedback-title"
 >
   <p class="student-panel-eyebrow">Your Journey</p>
-  <h2 id="student-journey-feedback-title" class="student-panel-title">Your Journey</h2>
+  <h2 id="student-journey-feedback-title" class="student-panel-title">This week</h2>
   {% if page.home.experience_feedback_period_label %}
   <p class="student-muted student-journey-feedback-period">{{ page.home.experience_feedback_period_label }}</p>
   {% endif %}

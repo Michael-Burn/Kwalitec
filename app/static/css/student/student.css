@@ -338,14 +338,33 @@ button.student-signout {
   line-height: 1.55;
 }
 
+/* CQ-006 — stacked MES / purpose lines need vertical rhythm. */
+.student-hero-purpose + .student-hero-purpose,
+.student-hero-purpose + .student-muted,
+.student-hero-purpose + .student-session-next,
+.student-muted + .student-hero-purpose,
+.student-muted + .student-session-next,
+.student-hero-duration + .student-hero-purpose,
+.student-mission-status + .student-hero-purpose {
+  margin-top: var(--student-space-3);
+}
+
 .student-hero-purpose-label {
   display: block;
   margin-bottom: var(--student-space-2);
-  font-size: 0.72rem;
-  letter-spacing: 0.07em;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   font-weight: 600;
   color: var(--student-muted);
+}
+
+.student-session-next {
+  margin: var(--student-space-3) 0 0;
+  max-width: 36rem;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--student-text);
 }
 
 .student-hero-outcome,
@@ -354,6 +373,16 @@ button.student-signout {
   max-width: 36rem;
   font-size: 0.98rem;
   line-height: 1.5;
+}
+
+.student-narrator,
+.student-hero [data-narrator="study-sensei"] {
+  margin: 0 0 var(--student-space-2);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--student-muted);
 }
 
 .student-mission-status {
@@ -466,12 +495,12 @@ button.student-signout {
 }
 
 .student-secondary--subordinate {
-  opacity: 0.92;
   margin-top: var(--student-space-2);
 }
 
 .student-secondary--subordinate .student-panel {
   background: color-mix(in srgb, var(--student-surface) 92%, var(--student-bg));
+  border-color: color-mix(in srgb, var(--student-card-border) 85%, transparent);
 }
 
 /* RR-001.2 / XR-02 — disclosure for density without removing educational fields. */
@@ -564,7 +593,8 @@ button.student-signout {
   max-width: 36rem;
 }
 
-.student-flash-stack .student-success {
+.student-flash-stack .student-success,
+.student-flash-stack .student-flash {
   position: relative;
   padding-right: 2.75rem;
 }
@@ -573,6 +603,32 @@ button.student-signout {
   position: absolute;
   top: 0.85rem;
   right: 0.85rem;
+}
+
+.student-flash {
+  border-radius: var(--student-radius);
+  padding: var(--student-space-3) var(--student-space-4);
+  margin-bottom: var(--student-space-3);
+  border: 1px solid transparent;
+}
+
+.student-flash--warning {
+  color: var(--warning);
+  background: var(--warning-bg);
+  border-color: color-mix(in srgb, var(--warning) 22%, transparent);
+}
+
+.student-flash--danger {
+  color: var(--danger);
+  background: var(--danger-bg);
+  border-color: color-mix(in srgb, var(--danger) 22%, transparent);
+}
+
+.student-flash--info,
+.student-flash--message {
+  color: var(--info);
+  background: var(--info-bg);
+  border-color: color-mix(in srgb, var(--info) 22%, transparent);
 }
 
 .student-input:focus-visible,
@@ -1442,6 +1498,342 @@ button.student-signout {
   .educational-timeline-nav__list {
     flex-direction: column;
     gap: var(--student-space-2);
+  }
+}
+
+/* =========================================================================
+   CQ-006 — Premium Craft (EOS-local shared chrome)
+   Welcome modal / contextual help / outline buttons previously lived only in
+   app.css, which the student shell intentionally does not load.
+   ========================================================================= */
+
+body.welcome-open {
+  overflow: hidden;
+}
+
+.welcome-modal-backdrop {
+  align-items: center;
+  background: rgba(20, 24, 32, 0.55);
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  padding: var(--space-xl);
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 2000;
+  animation: welcome-fade-in 180ms ease;
+}
+
+.welcome-modal-card {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  max-width: 440px;
+  padding: var(--space-2xl);
+  width: 100%;
+  animation: welcome-rise 180ms ease;
+}
+
+.welcome-modal-card:focus {
+  outline: none;
+  box-shadow: var(--shadow-xl), var(--focus-ring);
+}
+
+.welcome-modal-eyebrow {
+  color: var(--text-muted);
+  font-size: var(--font-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-sm);
+  text-transform: uppercase;
+}
+
+.welcome-modal-title {
+  color: var(--text-primary);
+  font-size: var(--font-2xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-sm);
+}
+
+.welcome-modal-lead {
+  color: var(--text-primary);
+  font-size: var(--font-lg);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-lg);
+}
+
+.welcome-modal-body p {
+  color: var(--text-secondary);
+  font-size: var(--font-base);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-md);
+}
+
+.welcome-modal-body p:last-child {
+  margin-bottom: 0;
+}
+
+.welcome-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-top: var(--space-2xl);
+}
+
+.welcome-modal-actions .btn {
+  flex: 1 1 auto;
+  justify-content: center;
+  min-width: 8rem;
+}
+
+.btn-outline,
+a.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.btn-outline:hover,
+.btn-outline:focus,
+a.btn-outline:hover,
+a.btn-outline:focus {
+  background: var(--background);
+  border-color: var(--border);
+  color: var(--text-primary);
+}
+
+.ctx-help {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.25rem;
+  vertical-align: middle;
+}
+
+.ctx-help-trigger {
+  align-items: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  cursor: help;
+  display: inline-flex;
+  font-size: 0.85rem;
+  justify-content: center;
+  line-height: 1;
+  min-height: 1.5rem;
+  min-width: 1.5rem;
+  padding: 0.1rem;
+}
+
+.ctx-help-trigger:hover,
+.ctx-help-trigger:focus-visible {
+  border-color: var(--border);
+  color: var(--text-secondary);
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.ctx-help-glyph {
+  font-style: normal;
+  font-weight: var(--font-weight-semibold);
+}
+
+.ctx-learn-more {
+  margin-top: var(--space-sm);
+}
+
+.ctx-learn-more-summary {
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: var(--font-sm);
+  font-weight: var(--font-weight-medium);
+  list-style: none;
+}
+
+.ctx-learn-more-summary::-webkit-details-marker {
+  display: none;
+}
+
+.ctx-learn-more-summary::before {
+  content: "▸ ";
+  color: var(--text-muted);
+}
+
+.ctx-learn-more[open] > .ctx-learn-more-summary::before {
+  content: "▾ ";
+}
+
+.ctx-learn-more-summary:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.ctx-learn-more-body {
+  color: var(--text-secondary);
+  font-size: var(--font-sm);
+  margin-top: var(--space-sm);
+  max-width: 40rem;
+}
+
+.student-commitment-reflection,
+.student-commitment-chrome {
+  margin: var(--student-space-4) 0 0;
+  max-width: 36rem;
+  padding: var(--student-space-4);
+  border: 1px solid var(--student-card-border);
+  border-radius: var(--student-radius);
+  background: color-mix(in srgb, var(--student-surface) 94%, var(--student-bg));
+}
+
+.student-commitment-reflection > p,
+.student-commitment-chrome > p {
+  margin: 0 0 var(--student-space-2);
+}
+
+.student-commitment-reflection > p:last-child,
+.student-commitment-chrome > p:last-child {
+  margin-bottom: 0;
+}
+
+.student-commitment-reflection-detail {
+  margin: var(--student-space-3) 0;
+}
+
+.student-commitment-reflection-detail > summary {
+  cursor: pointer;
+  color: var(--student-muted);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.student-commitment-defer {
+  margin-top: var(--student-space-3);
+  max-width: 36rem;
+}
+
+.student-commitment-defer > summary {
+  cursor: pointer;
+  list-style: none;
+  font-weight: 600;
+}
+
+.student-commitment-defer > summary::-webkit-details-marker {
+  display: none;
+}
+
+.student-defer-form {
+  margin-top: var(--student-space-3);
+  padding: var(--student-space-4);
+  border: 1px solid var(--student-card-border);
+  border-radius: var(--student-radius);
+  background: var(--student-surface);
+  display: flex;
+  flex-direction: column;
+  gap: var(--student-space-3);
+}
+
+.student-defer-option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--student-space-2);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.student-coach-trust {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--student-space-3);
+}
+
+.student-coach-trust li {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.student-trust-alternatives,
+.student-tutor-guidance,
+.student-hero-explanation {
+  margin: var(--student-space-3) 0 0;
+  max-width: 36rem;
+  line-height: 1.55;
+}
+
+.student-journey-map {
+  display: flex;
+  flex-direction: column;
+  gap: var(--student-space-5);
+  margin: var(--student-space-5) 0 0;
+}
+
+.student-card--current {
+  border-color: color-mix(in srgb, var(--brand-blue) 42%, var(--student-card-border));
+  box-shadow: inset 3px 0 0 var(--brand-blue);
+}
+
+.student-timeline-section {
+  margin: 0;
+}
+
+.student-narrative-list {
+  list-style: none;
+  margin: var(--student-space-3) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--student-space-2);
+}
+
+.student-narrative-entry {
+  margin: 0;
+  padding: var(--student-space-3) var(--student-space-4);
+  border: 1px solid var(--student-card-border);
+  border-radius: var(--student-radius);
+  background: var(--student-surface);
+  line-height: 1.5;
+}
+
+.student-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--student-space-3);
+  margin: var(--student-space-3) 0 0;
+}
+
+body[data-nav-pending="true"] .student-main {
+  opacity: 0.72;
+  transition: opacity var(--transition-fast, 150ms) ease-out;
+}
+
+@keyframes welcome-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes welcome-rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 575.98px) {
+  .welcome-modal-card {
+    padding: var(--space-xl);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome-modal-backdrop,
+  .welcome-modal-card,
+  body[data-nav-pending="true"] .student-main {
+    animation: none;
+    transition: none;
   }
 }
 

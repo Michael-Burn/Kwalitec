@@ -409,15 +409,81 @@
   line-height: 1.55;
 }
 
+/* CQ-006 — secondary buttons must live on the session shell (QC/Overview
+   do not load assessment.css). */
+.session-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: var(--session-space-3) var(--session-space-4);
+  border: 1px solid var(--session-border);
+  border-radius: var(--session-radius-input);
+  background: transparent;
+  color: var(--session-text);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color var(--transition-fast, 150ms) ease-out,
+              background-color var(--transition-fast, 150ms) ease-out,
+              transform var(--transition-press, 100ms) ease-out;
+}
+
+.session-btn-secondary:hover:not(:disabled) {
+  border-color: var(--session-primary);
+  background: color-mix(in srgb, var(--session-surface) 80%, var(--session-bg));
+}
+
+.session-btn-secondary:focus,
+.session-btn-secondary:focus-visible {
+  outline: none;
+  box-shadow: var(--session-focus);
+}
+
+.session-progress {
+  height: 0.5rem;
+  margin: var(--session-space-3) 0;
+}
+
+.session-support {
+  margin-top: var(--session-space-4);
+  padding: var(--session-space-4);
+  border-top: 1px solid var(--session-border);
+  background: color-mix(in srgb, var(--session-surface) 88%, var(--session-bg));
+  border-radius: 0 0 var(--session-radius) var(--session-radius);
+}
+
+.session-reflection-framing {
+  margin: 0 0 var(--session-space-4);
+  padding: var(--session-space-3) var(--session-space-4);
+  border-left: 3px solid color-mix(in srgb, var(--session-primary) 45%, transparent);
+  background: color-mix(in srgb, var(--session-surface) 90%, var(--session-bg));
+  border-radius: 0 var(--session-radius-input) var(--session-radius-input) 0;
+  line-height: 1.5;
+}
+
+.session-why-label {
+  display: block;
+  margin: 0 0 var(--session-space-2);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--session-muted);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .session-main,
-  .session-btn-primary {
+  .session-btn-primary,
+  .session-btn-secondary {
     animation: none;
     transition: none;
   }
 
   .session-btn-primary:hover:not(:disabled),
-  .session-btn-primary:active:not(:disabled) {
+  .session-btn-primary:active:not(:disabled),
+  .session-btn-secondary:hover:not(:disabled) {
     transform: none;
   }
 }
