@@ -4,7 +4,7 @@
 **Work Package:** EI-001.2 — Dependency Assurance & Security Controls  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commit:** (see git — `chore(ei-001.2): strengthen dependency assurance and engineering security controls`)  
+**Commit:** `514551c` — `chore(ei-001.2): strengthen dependency assurance and engineering security controls`  
 **Governance stance:** Educational baselines frozen — no educational / product behaviour changes  
 **Findings closed:** ER-RB-07
 
