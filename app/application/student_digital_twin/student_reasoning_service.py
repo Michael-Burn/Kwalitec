@@ -115,6 +115,42 @@ class StudentReasoningService:
 
         return updated
 
+    def accept_assessment_evidence(
+        self,
+        twin: StudentDigitalTwin,
+        *,
+        bundle,
+        correlation_id: str,
+        reasoning_request_id: str | None = None,
+        persist: bool = True,
+        submissions=None,
+    ):
+        """AP-002D1 ingress: accept Assessment EvidenceBundle via AP-001 boundary.
+
+        Validates the evidence contract, maps facts onto Twin observations through
+        existing ObservationService pathways, then delegates to ``reason()``.
+        No new educational algorithms.
+        """
+        from app.application.assessment_pipeline.evidence_ingress import (
+            EvidenceIngressRequest,
+            EvidenceIngressService,
+        )
+
+        return EvidenceIngressService(
+            reasoning=self,
+            submissions=submissions,
+        ).accept(
+            EvidenceIngressRequest(
+                twin_id=twin.twin_id,
+                bundle=bundle,
+                correlation_id=correlation_id,
+                reasoning_request_id=reasoning_request_id,
+            ),
+            twin=twin,
+            persist=persist,
+            reason=True,
+        )
+
 
     def _apply_engine_result(
         self,
