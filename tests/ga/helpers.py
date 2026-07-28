@@ -89,6 +89,11 @@ REQUIRED_PRODUCTION_DOCS = (
     "docs/production/CONSOLE_OPERATIONS.md",
     "docs/production/BACKUP_AND_RECOVERY.md",
     "docs/production/ACCESSIBILITY_AUDIT.md",
+    "docs/production/RELEASE_CANDIDATE_FINGERPRINT.md",
+    "docs/production/VERSION_1_FLAG_MATRIX.md",
+    "docs/production/G7_PERFORMANCE_HOLD.md",
+    "docs/production/G8_RELIABILITY_EVIDENCE.md",
+    "docs/production/G10_OPERATIONAL_EVIDENCE.md",
 )
 
 REQUIRED_GA_DOCS = (

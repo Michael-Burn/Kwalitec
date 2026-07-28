@@ -2,7 +2,7 @@
 
 **Version:** 1.0  
 **Status:** Active tracker  
-**Updated:** 2026-07-26 (GP-001 Founder Governance Model; PB-001 Stage 1 Go/No-Go Review — HOLD)  
+**Updated:** 2026-07-28 (EI-001.3 release operations evidence; GP-001 Founder Governance Model; PB-001 Stage 1 Go/No-Go Review — HOLD)  
 **Governance:** `knowledge/GOVERNANCE.md` (§1a Founder-operated approval)  
 **Vision:** `knowledge/product/vision/PRODUCT_VISION_2030.md`  
 **Founder model:** `knowledge/product/gp001_founder_governance_model/`
@@ -57,7 +57,7 @@ This tracker does not redesign the application or change educational algorithms.
 | Architecture | COMPLETE | EOS canonical runtime; consolidation programme complete. Residual migration shells remain as debt. |
 | Security | IN PROGRESS | GA security review pass with accepted CSP residual; dependency scan soft gate. |
 | Accessibility | IN PROGRESS | Baseline shells pass; residual chart/contrast/wizard gaps. |
-| Performance | IN PROGRESS | CI soft budgets encoded; production cohort load test open. |
+| Performance | HOLD (EI-001.3) | CI soft budgets green; G7.2 operator sample / load test open under formal HOLD — no high-traffic claims. |
 | Testing | IN PROGRESS | Broad suite + GA package; continuous green required for tag. |
 | Documentation | IN PROGRESS | Vision/Blueprint/Governance/Standards/PRD/Quality/Playbook landed; P-003.1 Release Dossier filed; knowledge stubs remain elsewhere. |
 | Analytics | COMPLETE (ops ready; flag OFF) | PRD-001 Phases A–E + EP-002 operational readiness; Journey production emit deferred (ADR-026). |
@@ -89,6 +89,8 @@ This tracker does not redesign the application or change educational algorithms.
 | Secrets / production key validation | COMPLETE | Factory validation |
 | CSP hardening beyond `'unsafe-inline'` | NOT STARTED | Accepted residual |
 | Critical dependency policy for every tag | COMPLETE (EI-001.2) | Hard `scripts/dependency_audit.sh` + Security HOLD register; Flask pin bump residual ER-TD-M04 |
+| G10 operational ack (secrets / startup / no-secrets-in-artefacts) | COMPLETE (EI-001.3) | `docs/production/G10_OPERATIONAL_EVIDENCE.md` |
+| Privacy Review signatures (Stage 1 claim class) | IN PROGRESS | ER-RB-04 residual — blocks Stage 1 / V1 claim class |
 
 ---
 
@@ -108,8 +110,8 @@ This tracker does not redesign the application or change educational algorithms.
 | Item | Status | Evidence |
 |---|---|---|
 | Soft CI budgets | COMPLETE | Performance Baseline + GA tests |
-| Staging operator baseline under concurrency | NOT STARTED | Open in GA certification |
-| Production load test | NOT STARTED | Before marketing push |
+| Staging operator baseline under concurrency | HOLD (EI-001.3) | Formal HOLD — `docs/production/G7_PERFORMANCE_HOLD.md`; sample procedure documented |
+| Production load test | NOT STARTED | Required to lift G7 HOLD before high-traffic marketing |
 
 ---
 

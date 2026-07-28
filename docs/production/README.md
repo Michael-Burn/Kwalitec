@@ -39,3 +39,13 @@
 ## Remaining blockers
 
 See [GA certification § Remaining GA blockers](../ga/CERTIFICATION_REPORT.md#remaining-ga-blockers) — primarily staging health, backup/restore drill, and dependency-scan review (operator gates).
+
+## EI-001.3 release operations (Version 1 engineering evidence)
+
+| Artefact | Path |
+|---|---|
+| G12 flag matrix | [`VERSION_1_FLAG_MATRIX.md`](VERSION_1_FLAG_MATRIX.md) |
+| G7 performance HOLD | [`G7_PERFORMANCE_HOLD.md`](G7_PERFORMANCE_HOLD.md) |
+| G8 reliability pack | [`G8_RELIABILITY_EVIDENCE.md`](G8_RELIABILITY_EVIDENCE.md) |
+| G10 operational evidence | [`G10_OPERATIONAL_EVIDENCE.md`](G10_OPERATIONAL_EVIDENCE.md) |
+| RC fingerprint | [`RELEASE_CANDIDATE_FINGERPRINT.md`](RELEASE_CANDIDATE_FINGERPRINT.md) |

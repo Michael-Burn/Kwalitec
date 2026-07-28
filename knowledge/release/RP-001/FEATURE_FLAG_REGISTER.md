@@ -128,4 +128,5 @@ Always available to authenticated students when routes are reachable:
 ## Related
 
 - DEP-002 audit: `knowledge/product/dep002/FEATURE_FLAG_AUDIT.md`  
-- Capability mapping: `CAPABILITY_MATRIX.md`
+- Capability mapping: `CAPABILITY_MATRIX.md`  
+- **Version 1 G12 matrix (EI-001.3):** `docs/production/VERSION_1_FLAG_MATRIX.md`

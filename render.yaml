@@ -34,6 +34,7 @@ services:
 
       # V2-023 sole-runtime activation: Education Operating System is the only
       # student runtime. Rollback: unset KWALITEC_V2_SOLE_RUNTIME (or set to 0).
+      # G12 matrix: docs/production/VERSION_1_FLAG_MATRIX.md (EI-001.3).
       - key: KWALITEC_V2_STUDENT_EXPERIENCE
         value: "1"
       - key: KWALITEC_V2_DURABLE_STORE

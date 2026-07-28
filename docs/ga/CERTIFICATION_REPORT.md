@@ -51,7 +51,7 @@ See [PERFORMANCE_BASELINE.md](PERFORMANCE_BASELINE.md).
 | Production cohort load test | Open — recommended before large marketing push |
 | Memory SLO in CI | Not asserted (host monitoring) |
 
-**Verdict:** Performance is **conditionally ready** — CI soft budgets pass; operators should baseline staging under expected concurrency.
+**Verdict:** Performance is **conditionally ready under G7 HOLD** — CI soft budgets pass; staging/production operator sample and load test remain open. High-traffic claims restricted per `docs/production/G7_PERFORMANCE_HOLD.md` (EI-001.3).
 
 ---
 

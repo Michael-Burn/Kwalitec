@@ -55,9 +55,13 @@ Release Playbook execution alone does not authorise “Version 1 is production-r
 
 Record rollback in the release report. Do not destroy evidence needed for postmortem.
 
+Tabletop / claim-window evidence: `docs/production/G8_RELIABILITY_EVIDENCE.md` (EI-001.3). Live restore drills remain recommended before high-stakes GA claims.
+
 ---
 
-## 4. Validation
+## 3a. Feature flags (G12)
+
+Before claiming Version 1 / Alpha behaviour, confirm production defaults against `docs/production/VERSION_1_FLAG_MATRIX.md`. Do not market OFF educational flags as live. Kill-switch: unset flag + redeploy same tag.
 
 Minimum before declaring success:
 

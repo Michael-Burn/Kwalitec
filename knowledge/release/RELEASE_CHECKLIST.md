@@ -37,6 +37,13 @@ Certification failure **blocks merge**. For a Version 1 / RC claim package, reco
 
 Dependency assurance (EI-001.2 / G10.5): `production-gates` and `release-build` run `./scripts/dependency_audit.sh` as a **hard gate**. File Security HOLD citations from `docs/security/DEPENDENCY_ACCEPTED_FINDINGS.md` with the tag evidence pack when accepted Medium/Low findings remain.
 
+Release operations evidence (EI-001.3):
+
+- G12 flag matrix: `docs/production/VERSION_1_FLAG_MATRIX.md`
+- G7 HOLD (if applicable): `docs/production/G7_PERFORMANCE_HOLD.md`
+- G8 reliability pack: `docs/production/G8_RELIABILITY_EVIDENCE.md`
+- G10 operational ack: `docs/production/G10_OPERATIONAL_EVIDENCE.md`
+
 ---
 
 ## Post-deploy smoke

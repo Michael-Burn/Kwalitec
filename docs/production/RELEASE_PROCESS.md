@@ -35,3 +35,7 @@ See [Versioning Policy](VERSIONING_POLICY.md).
 - Release notes under `docs/release/` or root `RELEASE_NOTES_*.md`
 - RC / engineering fingerprint record (commit + tag + CI run)
 - Deploy fingerprint via `KWALITEC_GIT_COMMIT` / platform commit env
+- Version 1 flag matrix: [`VERSION_1_FLAG_MATRIX.md`](VERSION_1_FLAG_MATRIX.md) (EI-001.3 / G12)
+- G7 HOLD (if load sample not filed): [`G7_PERFORMANCE_HOLD.md`](G7_PERFORMANCE_HOLD.md)
+- G8 reliability pack: [`G8_RELIABILITY_EVIDENCE.md`](G8_RELIABILITY_EVIDENCE.md)
+- G10 operational ack: [`G10_OPERATIONAL_EVIDENCE.md`](G10_OPERATIONAL_EVIDENCE.md)

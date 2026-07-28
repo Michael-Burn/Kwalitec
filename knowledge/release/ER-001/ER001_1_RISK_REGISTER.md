@@ -26,7 +26,7 @@ Every risk has a named **Owner**.
 | ID | Risk | Likelihood | Impact | Class | Owner | Mitigation / discipline | Status |
 |----|------|------------|--------|-------|-------|-------------------------|--------|
 | **ER-R-01** | Dual CI workflows produce contradictory signals; unsupported Python 3.14 in `tests.yml` | Medium | High | Critical | Engineering | Retire/align `tests.yml`; treat `ci.yml` as sole authority | **Closed** (EI-001.1) |
-| **ER-R-02** | Version 1 declared without G7–G12 engineering evidence | Medium | Critical | High | Release + Product | Enforce P-002.1 board; ER-RB-02…06 | Open |
+| **ER-R-02** | Version 1 declared without G7–G12 engineering evidence | Medium | Critical | High | Release + Product | Enforce P-002.1 board; ER-RB-02…06 | **Contained** (EI-001.3 — G7 HOLD + G8/G12 packs; ER-RB-04 privacy residual + G11 tag still block unqualified GO) |
 | **ER-R-03** | Known dependency advisory ships (Flask pin) via soft pip-audit | Medium | High | High | Security | Hard-fail Criticals; bump Flask; HOLD policy | **Contained** (EI-001.2 — hard gate + Security HOLD; Flask bump residual ER-TD-M04) |
 | **ER-R-04** | Wrong runtime claimed (`src/web` vs sole-runtime `app/`) | Medium | High | High | Product + Architecture | RR-002.3 ownership; release checklist | Contained |
 | **ER-R-05** | Dual educational code authorities diverge → inconsistent student outcomes | Medium | High | High | Engineering + Product | Consumer-chain map; Contained Alpha defaults; consolidation epic | Contained |
@@ -34,7 +34,7 @@ Every risk has a named **Owner**.
 | **ER-R-07** | Public registration accidentally exposed | Low | Critical | High | Security + Product | No register routes; review gate (RR-C05) | Contained |
 | **ER-R-08** | Analytics flag ON without cron → silent outbox backlog | Medium | High | High | Release | Cron or worker before enablement | Watch |
 | **ER-R-09** | Cohort expansion without rate limiting / privacy pack | Medium | High | High | Security | Close ER-RB-04; add throttle before Stage 1 | Open |
-| **ER-R-10** | G12 flags ON without soak → dual educational speech | Medium | High | High | Product + Release | Publish matrix; keep OFF until certified | Open |
+| **ER-R-10** | G12 flags ON without soak → dual educational speech | Medium | High | High | Product + Release | Publish matrix; keep OFF until certified | **Contained** (EI-001.3 — matrix published; OFF educational flags remain OFF) |
 
 ---
 

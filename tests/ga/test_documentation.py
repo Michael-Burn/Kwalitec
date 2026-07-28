@@ -23,6 +23,10 @@ PRODUCTION_SECTION_MARKERS = {
     "docs/production/BACKUP_AND_RECOVERY.md": ("pg_dump", "restore"),
     "docs/production/ACCESSIBILITY_AUDIT.md": ("WCAG", "skip"),
     "docs/production/ENVIRONMENT.md": ("SECRET_KEY", "DATABASE_URL"),
+    "docs/production/VERSION_1_FLAG_MATRIX.md": ("G12", "kill-switch", "SOLE_RUNTIME"),
+    "docs/production/G7_PERFORMANCE_HOLD.md": ("HOLD", "high-traffic", "G7"),
+    "docs/production/G8_RELIABILITY_EVIDENCE.md": ("G8.4", "G8.5", "rollback"),
+    "docs/production/G10_OPERATIONAL_EVIDENCE.md": ("G10.5", "privacy", "SECRET_KEY"),
 }
 
 

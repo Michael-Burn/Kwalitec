@@ -48,9 +48,11 @@ curl -fsS "$BASE_URL/health/ready"
 | Soft budgets encoded & tested | Pass when `pytest tests/ga/test_performance_benchmarks.py` is green |
 | N+1 hot-path work from PR-001 | Retained (dashboard/console) |
 | Production load test under cohort traffic | **Open** — run before high-traffic marketing launch |
+| G7.2 operator sample / HOLD | **HOLD filed** (EI-001.3) — `docs/production/G7_PERFORMANCE_HOLD.md`; high-traffic claims restricted until sample + load evidence |
 
 ## Known limitations
 
 - CI timings are not production SLOs.
 - In-process SQLite test harness under-represents Postgres latency and pool behaviour.
 - Memory budgets are operational (host monitoring), not pytest assertions.
+- Invite-only Alpha may proceed under G7 HOLD; do not claim high-traffic readiness.

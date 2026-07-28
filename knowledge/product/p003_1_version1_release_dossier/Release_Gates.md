@@ -112,11 +112,11 @@ Missing declaration artefacts are labelled **Evidence currently unavailable.**
 
 | Field | Value |
 |---|---|
-| **Current status** | **IN PROGRESS** |
-| **Evidence** | CI soft budgets green (`tests/ga/test_performance_benchmarks.py` / Performance Baseline) |
-| **Outstanding work** | Staging/production operator sample; production load test **NOT STARTED** |
-| **Risk** | High-traffic claims without load evidence |
-| **Board recommendation** | HOLD acceptable only with claim restrictions per P-002.1; else complete before GO |
+| **Current status** | **HOLD** (claim-restricted; EI-001.3) |
+| **Evidence** | CI soft budgets green (`tests/ga/test_performance_benchmarks.py` / Performance Baseline); formal HOLD `docs/production/G7_PERFORMANCE_HOLD.md` |
+| **Outstanding work** | Staging/production operator sample; production load test **NOT STARTED** (required to lift HOLD) |
+| **Risk** | High-traffic claims without load evidence — **restricted by HOLD** |
+| **Board recommendation** | Accept HOLD for invite-only / low-concurrency claims only; lift before high-traffic marketing |
 
 ---
 
@@ -124,11 +124,11 @@ Missing declaration artefacts are labelled **Evidence currently unavailable.**
 
 | Field | Value |
 |---|---|
-| **Current status** | **IN PROGRESS** |
-| **Evidence** | Health live/ready; production smoke posture; GA retained (EP-004 Stage 0 GREEN) |
-| **Outstanding work** | Claim-window Sev-1 review; rollback drill note; backup/recovery acknowledgement for release class |
-| **Risk** | Declaring without verified rollback record |
-| **Board recommendation** | Require packaged reliability evidence |
+| **Current status** | **Partially met** (EI-001.3 procedure pack filed) |
+| **Evidence** | Health/smoke procedures; `docs/production/G8_RELIABILITY_EVIDENCE.md` (G8.4 tabletop rollback drill; G8.5 backup/recovery ack) |
+| **Outstanding work** | Tagged-deploy health/smoke fingerprint in Version 1 Evidence Package; optional live restore drill before GA marketing |
+| **Risk** | Declaring without tagged-deploy fingerprint |
+| **Board recommendation** | Credit procedure pack; require fingerprint at declaration |
 
 ---
 
@@ -148,9 +148,9 @@ Missing declaration artefacts are labelled **Evidence currently unavailable.**
 
 | Field | Value |
 |---|---|
-| **Current status** | **IN PROGRESS** |
-| **Evidence** | GA security review pass with accepted CSP residual; factory SECRET_KEY validation; CSRF/session/headers |
-| **Outstanding work** | Privacy Review signatures for Stage 1; CSP hardening residual; dependency critical policy for tag |
+| **Current status** | **IN PROGRESS** (G10.5 closed EI-001.2; ops ack EI-001.3; privacy residual open) |
+| **Evidence** | GA security review; factory SECRET_KEY; hard dependency audit; `docs/production/G10_OPERATIONAL_EVIDENCE.md` |
+| **Outstanding work** | Privacy Review signatures for Stage 1; CSP hardening residual |
 | **Risk** | Expanding cohort without privacy sign-off |
 | **Board recommendation** | Block Stage 1 expansion until C1; do not declare while privacy open for intended claim class |
 
@@ -172,11 +172,11 @@ Missing declaration artefacts are labelled **Evidence currently unavailable.**
 
 | Field | Value |
 |---|---|
-| **Current status** | **Not scored** — declaration matrix **Evidence currently unavailable** |
-| **Evidence** | Architecture baseline lists defaults OFF; `.env.example` exists in repo; personalisation/feedback OFF in W-PROD |
-| **Outstanding work** | Published Version 1 flag matrix with owners, rollback, claim language; kill-switch docs |
+| **Current status** | **PASS** (invite-only / engineering claim class; EI-001.3) |
+| **Evidence** | Published matrix `docs/production/VERSION_1_FLAG_MATRIX.md`; aligned with `render.yaml` + `.env.example`; RP-001 register |
+| **Outstanding work** | Re-score before any production-OFF educational flag is flipped ON; Product/Release acknowledgement at declaration |
 | **Risk** | Marketing OFF flags as live; unsafe ON without soak |
-| **Board recommendation** | Require G12 pack before any flag-ON Version 1 defaults |
+| **Board recommendation** | Keep OFF educational flags OFF; refresh matrix on any default change |
 
 ---
 
