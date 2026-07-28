@@ -1374,6 +1374,31 @@ def decision_journal_page_vm(timeline) -> StudentPageViewModel:
     return StudentPageViewModel(shell=shell)
 
 
+def educational_timeline_page_vm(timeline) -> StudentPageViewModel:
+    """Build shell for the ILE-003 Educational Timeline page."""
+    from app.domain.student_experience.experience_workspace import (
+        ExperienceSurface,
+    )
+
+    shell = shell_vm(
+        active_surface=ExperienceSurface.HISTORY.value,
+        page_title=timeline.page_title,
+        page_description=timeline.page_description,
+    )
+    shell = StudentShellViewModel(
+        active_surface=shell.active_surface,
+        active_label=shell.active_label,
+        navigation=shell.navigation,
+        page_title=timeline.page_title,
+        page_eyebrow=timeline.page_eyebrow,
+        page_description=timeline.page_description,
+        learning_activity_status=shell.learning_activity_status,
+        journey_stage=shell.journey_stage,
+        unified_journey_enabled=shell.unified_journey_enabled,
+    )
+    return StudentPageViewModel(shell=shell)
+
+
 def _authoritative_examination_label(student_id: str) -> str:
     """Resolve "Current Examination" from the same source of truth used by
     Dashboard, Study Plan, and Settings -> Internal Alpha

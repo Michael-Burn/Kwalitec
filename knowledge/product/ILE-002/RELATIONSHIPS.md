@@ -35,3 +35,8 @@
 | Decision Engine (`app/domain/decision/`) | Next-action selection — not journal |
 | Product Decision Register | Board/product decisions — not learner memory |
 | Analytics / telemetry | Observability — not educational continuity |
+| Educational Timeline (ILE-003) | Interprets journal memories into a reflective story — does not store entries |
+
+## Downstream
+
+**ILE-003 — Educational Timeline** reads Decision Journal evidence to produce Observation → Pattern → Meaning → Reflection narratives. Journal remains the sole educational memory store.

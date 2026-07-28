@@ -258,6 +258,29 @@ def decision_journal():
     )
 
 
+@student_bp.get("/educational-timeline")
+@login_required
+def educational_timeline():
+    """ILE-003 — Educational Timeline (reflective narrative over journal)."""
+    from app.application.educational_timeline import (
+        EducationalTimelineApplicationService,
+    )
+    from app.presentation.student.view_models import (
+        educational_timeline_page_vm,
+    )
+
+    timeline = EducationalTimelineApplicationService.timeline(
+        int(current_user.id)
+    )
+    page = educational_timeline_page_vm(timeline)
+    return render_template(
+        "student/educational_timeline.html",
+        title=page.shell.page_title,
+        page=page,
+        timeline=timeline,
+    )
+
+
 @student_bp.get("/profile")
 @login_required
 def profile():

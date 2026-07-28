@@ -1013,3 +1013,108 @@ button.student-signout {
   outline-offset: 2px;
 }
 
+/* ILE-003 — Educational Timeline narrative */
+.educational-timeline-intro {
+  margin-bottom: var(--student-space-2);
+}
+
+.educational-timeline-nav {
+  margin: var(--student-space-4) 0 var(--student-space-5);
+  padding: var(--student-space-3) 0;
+  border-top: 1px solid var(--student-card-border);
+  border-bottom: 1px solid var(--student-card-border);
+}
+
+.educational-timeline-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--student-space-2) var(--student-space-4);
+}
+
+.educational-timeline-nav__list a {
+  color: var(--brand-navy, var(--student-text));
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  font-size: 0.95rem;
+}
+
+.educational-timeline-nav__list a:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--brand-blue) 45%, transparent);
+  outline-offset: 2px;
+}
+
+.educational-timeline-count {
+  margin-bottom: var(--student-space-5);
+}
+
+.educational-timeline-section {
+  margin-bottom: var(--student-space-6);
+  scroll-margin-top: 5rem;
+}
+
+.educational-timeline-section:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--brand-blue) 45%, transparent);
+  outline-offset: 4px;
+}
+
+.educational-timeline-moment {
+  display: flex;
+  flex-direction: column;
+  gap: var(--student-space-3);
+  padding-bottom: var(--student-space-5);
+  border-bottom: 1px solid var(--student-card-border);
+}
+
+.educational-timeline .student-timeline-item:last-child .educational-timeline-moment {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.educational-timeline-moment__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--student-space-1);
+}
+
+.educational-timeline-arc {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--student-space-3);
+}
+
+.educational-timeline-arc__item dt {
+  margin: 0;
+  font-weight: 600;
+  color: var(--student-text);
+  letter-spacing: 0.01em;
+}
+
+.educational-timeline-arc__item dd {
+  margin: var(--student-space-1) 0 0;
+  color: var(--student-muted);
+  line-height: 1.6;
+  font-size: 1.02rem;
+}
+
+.educational-timeline-arc__item--reflect dd {
+  color: var(--student-text);
+}
+
+.educational-timeline-question {
+  margin: 0;
+  font-style: italic;
+  line-height: 1.55;
+}
+
+@media (max-width: 640px) {
+  .educational-timeline-nav__list {
+    flex-direction: column;
+    gap: var(--student-space-2);
+  }
+}
+
+

@@ -1,0 +1,109 @@
+{% extends "student/base.html" %}
+{% set title = page.shell.page_title %}
+
+{% block content %}
+<section class="student-stack educational-timeline-intro" aria-labelledby="educational-timeline-intro">
+    <p id="educational-timeline-intro" class="student-muted">{{ timeline.intro_line }}</p>
+    {% if not timeline.empty %}
+    <p class="student-muted" role="status">{{ timeline.certainty_label }}</p>
+    {% endif %}
+</section>
+
+{% if timeline.empty %}
+<section class="student-empty" aria-label="Educational Timeline" role="status">
+    <h2 class="student-empty-title">{{ timeline.empty_title }}</h2>
+    <p class="student-empty-description">{{ timeline.empty_description }}</p>
+    <div class="student-primary-action">
+        <a class="btn student-btn-primary" href="{{ url_for('student.decision_journal') }}" data-student-cta="primary">
+            {{ timeline.primary_cta_label }}
+        </a>
+    </div>
+</section>
+{% else %}
+
+<nav class="educational-timeline-nav" aria-label="{{ timeline.section_nav_label }}">
+    <ol class="educational-timeline-nav__list">
+        {% for section in timeline.sections %}
+        <li>
+            <a href="#{{ section.anchor_id }}">{{ section.label }}</a>
+        </li>
+        {% endfor %}
+    </ol>
+</nav>
+
+<p class="student-muted educational-timeline-count">
+    Drawn from {{ timeline.entry_count }}
+    {% if timeline.entry_count == 1 %}journal entry{% else %}journal entries{% endif %}.
+    <a href="{{ url_for('student.decision_journal') }}">{{ timeline.journal_link_label }}</a>
+</p>
+
+{% for section in timeline.sections %}
+<section class="student-stack educational-timeline-section"
+         id="{{ section.anchor_id }}"
+         aria-labelledby="{{ section.anchor_id }}-title"
+         data-timeline-section="{{ section.kind }}"
+         tabindex="-1">
+    <h2 id="{{ section.anchor_id }}-title" class="student-section-title">
+        {{ section.label }}
+    </h2>
+    <p class="student-muted">{{ section.intro }}</p>
+
+    <ol class="student-timeline educational-timeline"
+        aria-label="{{ section.label }}">
+        {% for moment in section.moments %}
+        <li class="student-timeline-item{% if loop.first %} is-current{% endif %}"
+            data-evidence-ids="{{ moment.evidence_decision_ids|join(',') }}">
+            <span class="student-timeline-marker" aria-hidden="true"></span>
+            <article class="educational-timeline-moment"
+                     aria-labelledby="et-{{ section.kind }}-{{ loop.index }}-title">
+                <header class="educational-timeline-moment__header">
+                    {% if moment.when_label %}
+                    <p class="student-card-eyebrow">
+                        <time>{{ moment.when_label }}</time>
+                    </p>
+                    {% endif %}
+                    <h3 id="et-{{ section.kind }}-{{ loop.index }}-title"
+                        class="student-timeline-title">
+                        {{ moment.title }}
+                    </h3>
+                </header>
+
+                <dl class="educational-timeline-arc">
+                    <div class="educational-timeline-arc__item">
+                        <dt>Observation</dt>
+                        <dd>{{ moment.observation }}</dd>
+                    </div>
+                    <div class="educational-timeline-arc__item">
+                        <dt>Pattern</dt>
+                        <dd>{{ moment.pattern }}</dd>
+                    </div>
+                    <div class="educational-timeline-arc__item">
+                        <dt>Educational meaning</dt>
+                        <dd>{{ moment.educational_meaning }}</dd>
+                    </div>
+                    <div class="educational-timeline-arc__item educational-timeline-arc__item--reflect">
+                        <dt>Reflection</dt>
+                        <dd>
+                            <p class="educational-timeline-question">
+                                {{ moment.reflection_question }}
+                            </p>
+                        </dd>
+                    </div>
+                </dl>
+            </article>
+        </li>
+        {% endfor %}
+    </ol>
+</section>
+{% endfor %}
+
+<div class="student-primary-action">
+    <a class="btn student-btn-secondary" href="{{ url_for('student.decision_journal') }}">
+        {{ timeline.journal_link_label }}
+    </a>
+    <a class="btn student-btn-primary" href="{{ url_for('student.home') }}" data-student-cta="primary">
+        Back to Home
+    </a>
+</div>
+{% endif %}
+{% endblock %}

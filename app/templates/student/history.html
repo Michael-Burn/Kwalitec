@@ -24,6 +24,11 @@
             Open your Decision Journal
         </a>
         — a fuller record of guidance, choices, and outcomes.
+        Or read your
+        <a href="{{ url_for('student.educational_timeline') }}">
+            Educational Timeline
+        </a>
+        — how those memories form a learning story.
     </p>
 </section>
 {% else %}
@@ -35,6 +40,9 @@
     <p>
         <a class="btn student-btn-secondary" href="{{ url_for('student.decision_journal') }}">
             Open Decision Journal
+        </a>
+        <a class="btn student-btn-secondary" href="{{ url_for('student.educational_timeline') }}">
+            Educational Timeline
         </a>
     </p>
 </section>
