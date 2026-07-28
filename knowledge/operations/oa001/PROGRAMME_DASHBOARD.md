@@ -26,7 +26,7 @@ Detail always lives in the cited authoritative artefacts. If this Dashboard conf
 | **Engineering confidence** | 82 / 100 (Conditional band) | `ER002_ENGINEERING_SCORECARD.md` |
 | **Product Version 1 production-ready** | **NO GO** (educational hard gates, notably G1 FAIL) | P-003.1 dossier · P-002.1 framework |
 | **Validated KSI** | **64** (below ≥ 80 bar) | EP-008.1B / EP-008.3B hold chain |
-| **Commercial Readiness Index (CRI)** | **53%** (provisional) | `knowledge/product/cq001_commercial_readiness/COMMERCIAL_READINESS_BOARD.md` |
+| **Commercial Readiness Index (CRI)** | **53%** Engineering provisional · **Founder Validated 0% Open** | `knowledge/product/cq001_commercial_readiness/COMMERCIAL_READINESS_BOARD.md` · `knowledge/product/fv001_founder_validation_launch/` |
 | **Educational governance baseline** | DG-001 corpus Active; not reopened by ER-002 | `knowledge/governance/` |
 | **Student presentation runtime** | Sole-runtime Education OS certified path; legacy Contained | RR-002.3 |
 | **G7 performance** | **HOLD** | `docs/production/G7_PERFORMANCE_HOLD.md` |
@@ -54,6 +54,7 @@ Detail always lives in the cited authoritative artefacts. If this Dashboard conf
 | **DG-001** | Educational Governance | Complete (corpus Active) | Educational governance constitution & companions | `knowledge/governance/` |
 | **RR-002** | Governance Convergence | Complete (in-scope Pass) | Sole-runtime path documented; legacy Contained | `knowledge/release/RR-002/` |
 | **EI-001** | Engineering Improvement | Complete (historical provenance) | CI / dependency / G-pack improvements | `knowledge/release/EI-001/` |
+| **EI-001** | Curriculum Knowledge Graph Foundation | **Complete** | Additive educational SoT (domain + `ckg_*` ORM); distinct from Engineering EI-001 | `knowledge/educational_intelligence/ei001_curriculum_knowledge_graph/` |
 | **ER-002** | Engineering Recertification | Complete | **Engineering Conditional GO** | `knowledge/release/ER-002/` |
 | **OA-001** | Operational Architecture | Complete | Permanent operating model | `knowledge/operations/oa001/` |
 | **CQ-001** | Commercial Readiness First | Complete (docs/governance) | CRI framework; baseline **43%** provisional; living board | `knowledge/product/cq001_commercial_readiness/` |
@@ -62,7 +63,8 @@ Detail always lives in the cited authoritative artefacts. If this Dashboard conf
 | **CQ-004** | Session Substance | Complete | CR4 topic-threaded session polish; CRI **49%** provisional (+2); no `cri-*` tag | `knowledge/product/cq004_session_substance/` |
 | **CQ-005** | Guidance Trust | Complete | CR3 why continuity / wording; CRI **51%** provisional (+2); no `cri-*` tag | `knowledge/product/cq005_guidance_trust/` |
 | **CQ-006** | Premium Craft | Complete | CR6 interface craft polish; CRI **53%** provisional (+2); no `cri-*` tag | `knowledge/product/cq006_premium_craft/` |
-| **CQ-007** | Founder Adoption Readiness | Complete | **🟡 GO WITH CONSTRAINTS**; CRI **53%** confirmed (Δ0); Founder Validated CRI Not Started; CQ engineering phase complete | `knowledge/product/cq007_founder_adoption_readiness/` |
+| **CQ-007** | Founder Adoption Readiness | Complete | **🟡 GO WITH CONSTRAINTS**; CRI **53%** confirmed (Δ0); CQ engineering phase complete; Board accept via FV-001 | `knowledge/product/cq007_founder_adoption_readiness/` |
+| **FV-001** | Founder Validation Launch | **Active** | Exclusive OS dogfood; Founder Validated CRI **0% Open**; Eng fixes only for Critical/Major session blockers | `knowledge/product/fv001_founder_validation_launch/` |
 
 ---
 

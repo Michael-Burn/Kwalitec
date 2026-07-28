@@ -1,32 +1,36 @@
 # Current Milestone
 
-**CQ-007** (completing) → **Founder Validation** (next)
+**EI-001** — Curriculum Knowledge Graph Foundation (**Active delivery**)
 
 ## Objective
 
-CQ-007 Founder Adoption Readiness: Board decision **🟡 GO WITH CONSTRAINTS**. Engineering CRI **53%** provisional confirmed. Commercial Quality engineering (CQ-001–CQ-007) complete pending Board acceptance. Next: Founder Validation / Founder Validated CRI under documented constraints.
+Establish the Curriculum Knowledge Graph as the additive Single Source of Educational Truth for future Educational Intelligence programmes: domain model, stable ids, ORM persistence, and architecture documentation — without extraction, Twin, mission, or UI work.
 
 ## Allowed modifications
 
-- CRI board / CQ-007 programme artefacts under `knowledge/product/cq001_commercial_readiness/` and `knowledge/product/cq007_*`
-- Founder Validation scorecard and evidence artefacts once Board accepts CQ-007
-- Critical/Major fixes only if Founder Validation records daily-use blockers
+- `app/domain/curriculum_knowledge_graph/`
+- `app/models/curriculum_knowledge_graph.py` and model registration
+- Alembic migration for `ckg_*` tables
+- `tests/domain/curriculum_knowledge_graph/`
+- `knowledge/educational_intelligence/ei001_curriculum_knowledge_graph/`
+- Programme dashboard / milestone pointers for EI-001
 
 ## Forbidden
 
-- Version 2 capabilities unless they directly improve current CRI
-- Premature `cri-*` / `ecri-*` / `v1.0.0` git tags
-- CR9 commercial envelope work while Founder Validation is the priority
-- Unjustified CR7 chase while invite-only Conditional GO holds
-- Redesign, educational engine expansion, recommendation / Twin / AI changes under adoption polish
+- Founder upload workflow, PDF parse, AI extraction
+- Mission generation, Twin redesign, UI redesign
+- Modifying or replacing V1/V2 Curriculum Engine import/traversal
+- CIP extraction pipeline changes
+- Premature runtime cutover off V1/V2
 
-## Authoritative board
+## Parallel note
 
-`knowledge/product/cq001_commercial_readiness/COMMERCIAL_READINESS_BOARD.md`
+FV-001 Founder Validation remains the commercial dogfood track. EI-001 does not reopen CQ engineering or Founder Validated CRI claims.
 
-## Adoption decision
+## Authoritative artefacts
 
-`knowledge/product/cq007_founder_adoption_readiness/FOUNDER_ADOPTION_DECISION.md`
+- Architecture: `knowledge/educational_intelligence/ei001_curriculum_knowledge_graph/ARCHITECTURE.md`
+- Completion: `knowledge/educational_intelligence/ei001_curriculum_knowledge_graph/EI001_COMPLETION_REPORT.md`
 
 ---
 
