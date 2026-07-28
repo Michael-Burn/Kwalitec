@@ -3,7 +3,7 @@
 **Programme:** EI-002 — Curriculum Extraction Pipeline (Educational Intelligence)  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commits:** `b13b2ba` (`feat(ei-002)`) · `e03fd54` (`docs(ei-002)`)  
+**Commits:** `b13b2ba` (`feat(ei-002)`) · `fcbc30e` (`docs(ei-002)`)  
 
 ---
 
