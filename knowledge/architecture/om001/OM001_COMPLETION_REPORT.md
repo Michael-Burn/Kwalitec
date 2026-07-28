@@ -4,7 +4,7 @@
 **Date:** 2026-07-28  
 **Status:** Complete — documentation / architecture & educational research only  
 **Change class:** Architecture & Educational Research  
-**Commit:** *(filled after commit)* — `docs(om-001): establish educational outcomes measurement framework`  
+**Commit:** `01a3752` — `docs(om-001): establish educational outcomes measurement framework`  
 **Authority:** Vision 2030 · DG-001 · OA-001 · SI-001 · Recommendation Quality Standard · Explainability Standard · Student Digital Twin Constitution  
 
 ---
