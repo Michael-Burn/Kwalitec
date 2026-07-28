@@ -4,7 +4,7 @@
 **Work Package:** ER-001.1 — Version 1 Engineering Baseline Assessment  
 **Date:** 2026-07-28  
 **Status:** Complete — Audit only  
-**Commit:** _(filled after mandated commit)_  
+**Commit:** `30c9e25` — `docs(er-001.1): perform version 1 engineering baseline assessment`  
 **Governance stance:** Educational baselines (DG-001, EGC-001, RR-001, RP-002, RR-002) **not reopened** — no new regression evidence
 
 ---
