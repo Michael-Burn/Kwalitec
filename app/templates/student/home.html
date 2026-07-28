@@ -324,6 +324,98 @@
   </div>
   {% endif %}
 
+  {% set mi = page.home.mission_intelligence %}
+  {% if mi and mi.has_mission and not page.home.guided_session_active and not page.home.reflection_active %}
+  <aside
+    class="student-mission-intelligence"
+    data-mission-intelligence="true"
+    data-lifecycle="{{ mi.lifecycle_phase }}"
+    aria-labelledby="mission-intelligence-heading"
+  >
+    <p class="student-panel-eyebrow">{{ mi.eyebrow }}</p>
+    <h3 id="mission-intelligence-heading" class="student-mission-intelligence-title">
+      {{ mi.focus_question }}
+    </h3>
+    {% if mi.educational_purpose %}
+    <p data-mission-field="educational_purpose">
+      <span class="student-label">Purpose</span> {{ mi.educational_purpose }}
+    </p>
+    {% endif %}
+    {% if mi.why_today %}
+    <p data-mission-field="why_today">
+      <span class="student-label">Why today</span> {{ mi.why_today }}
+    </p>
+    {% endif %}
+    {% if mi.why_not_something_else %}
+    <p data-mission-field="why_not_something_else">
+      <span class="student-label">Why not something else</span>
+      {{ mi.why_not_something_else }}
+    </p>
+    {% endif %}
+    {% if mi.supporting_evidence %}
+    <div data-mission-field="supporting_evidence">
+      <p class="student-label">{{ mi.evidence_heading }}</p>
+      <ul class="student-mission-evidence">
+        {% for point in mi.supporting_evidence %}
+        <li>{{ point }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    {% if mi.estimated_effort %}
+    <p data-mission-field="estimated_effort">
+      <span class="student-label">Estimated effort</span> {{ mi.estimated_effort }}
+    </p>
+    {% endif %}
+    {% if mi.expected_learning_outcome %}
+    <p data-mission-field="expected_learning_outcome">
+      <span class="student-label">Expected benefit</span>
+      {{ mi.expected_learning_outcome }}
+    </p>
+    {% endif %}
+    {% if mi.what_happens_after_completion %}
+    <p data-mission-field="after_completion">
+      <span class="student-label">{{ mi.after_heading }}</span>
+      {{ mi.what_happens_after_completion }}
+    </p>
+    {% endif %}
+    {% if mi.mission_confidence %}
+    <p data-mission-field="mission_confidence">
+      <span class="student-label">Mission confidence</span>
+      {{ mi.mission_confidence }}
+    </p>
+    {% endif %}
+    {% if mi.uncertainty %}
+    <p class="student-muted" data-mission-field="uncertainty">
+      <span class="student-label">Uncertainty</span> {{ mi.uncertainty }}
+    </p>
+    {% endif %}
+    {% if mi.mission_explanation %}
+    <details class="student-mission-explanation" data-mission-field="mission_explanation">
+      <summary>{{ mi.explainability_heading }}</summary>
+      <p>{{ mi.mission_explanation }}</p>
+    </details>
+    {% endif %}
+    {% if mi.skip_consequence %}
+    <p class="student-muted" data-mission-field="skip_consequence">
+      <span class="student-label">{{ mi.skip_heading }}</span>
+      {{ mi.skip_consequence }}
+    </p>
+    {% endif %}
+    {% if mi.reflection_prompt %}
+    <p data-mission-field="reflection_prompt">
+      <span class="student-label">{{ mi.reflection_heading }}</span>
+      {{ mi.reflection_prompt }}
+    </p>
+    {% endif %}
+    {% if mi.optimisation_axis_label %}
+    <p class="student-muted" data-mission-field="optimisation_axis">
+      Optimising for {{ mi.optimisation_axis_label | lower }}
+    </p>
+    {% endif %}
+  </aside>
+  {% endif %}
+
   {% if page.home.unified_journey_enabled and page.home.timeline_steps %}
   <nav class="student-mission-timeline" aria-label="Today's journey">
     <p class="student-panel-eyebrow">Today's journey</p>

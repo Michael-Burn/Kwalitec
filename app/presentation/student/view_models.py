@@ -451,6 +451,8 @@ class HomePageViewModel:
     tutor_guidance: str = ""
     tutor_next_action: str = ""
     tutor_available: bool = False
+    # ILE-004 — Daily Mission Intelligence (composition over authorised tip).
+    mission_intelligence: object | None = None
 
 @dataclass(frozen=True)
 class StudentShellViewModel:
@@ -876,7 +878,93 @@ def home_vm(
         completion_loop_echo=completion_echo,
         l1_expected_benefit=l1_benefit,
         commitment=_commitment_vm(snap),
+        mission_intelligence=_home_mission_intelligence(
+            snap,
+            benefit=benefit,
+            alternatives=alternatives_vm,
+            completion_echo=completion_echo,
+        ),
         **_tutor_home_fields(snap),
+    )
+
+
+def _home_mission_intelligence(
+    snap: HomeSnapshot,
+    *,
+    benefit: str,
+    alternatives: tuple,
+    completion_echo: str,
+):
+    """ILE-004 — compose today's primary mission brief (no re-decision)."""
+    from app.application.daily_mission_intelligence import (
+        DailyMissionIntelligenceApplicationService,
+    )
+
+    expl = snap.explanation
+    title = (snap.recommendation_title or "").strip()
+    if not title and snap.start_session:
+        title = (snap.start_session.topic_title or "").strip()
+    if not title and not (expl and expl.honest_refusal):
+        return DailyMissionIntelligenceApplicationService.compose_snapshot()
+
+    effort = ""
+    if snap.estimated_study_minutes is not None:
+        effort = format_minutes(snap.estimated_study_minutes) or ""
+    elif snap.start_session and snap.start_session.estimated_minutes is not None:
+        effort = format_minutes(snap.start_session.estimated_minutes) or ""
+
+    alt_titles = tuple(
+        (a.title or "").strip()
+        for a in (alternatives or ())
+        if (getattr(a, "title", None) or "").strip()
+    )
+    evidence = ()
+    if expl and expl.evidence_points:
+        evidence = tuple(expl.evidence_points)
+    commitment = getattr(snap, "commitment", None)
+    rec_key = ""
+    if commitment is not None:
+        rec_key = (commitment.recommendation_key or "").strip()
+    prior = ""
+    if commitment is not None and (commitment.state or "") == "deferred":
+        prior = (
+            "You deferred related guidance earlier. "
+            "Still the right call for today?"
+        )
+
+    return DailyMissionIntelligenceApplicationService.compose_snapshot(
+        title=title,
+        summary=snap.recommendation_summary or "",
+        why_recommended=(expl.why_recommended if expl else "") or "",
+        timeliness_line=(expl.timeliness_line if expl else "") or "",
+        supporting_evidence=evidence,
+        estimated_effort=effort,
+        expected_benefit=(
+            (expl.expected_benefit if expl else "") or benefit or ""
+        ),
+        suggested_next_action=(
+            (expl.suggested_next_action if expl else "") or ""
+        ),
+        review_point=(expl.review_point if expl else "") or "",
+        completion_loop_line=(
+            (expl.completion_loop_line if expl else "")
+            or completion_echo
+            or ""
+        ),
+        confidence_label=(expl.confidence_label if expl else "") or "",
+        confidence_basis=(expl.confidence_basis if expl else "") or "",
+        uncertainty="",
+        honest_refusal=bool(expl.honest_refusal) if expl else False,
+        alternative_titles=alt_titles,
+        recommendation_key=rec_key,
+        mission_id=(
+            (snap.start_session.mission_id or "") if snap.start_session else ""
+        ),
+        session_id=(
+            (snap.start_session.session_id or "") if snap.start_session else ""
+        ),
+        educational_context="Today's Mission",
+        prior_deferral_note=prior,
     )
 
 
@@ -1550,6 +1638,8 @@ def page_from_dashboard(
             unified_journey=use_unified,
             experience_feedback=feedback,
         )
+        if surface == "home" and home is not None:
+            home = _present_mission_intelligence(dash.home.student_id, home)
     return StudentPageViewModel(
         shell=shell,
         home=home,
@@ -1558,6 +1648,34 @@ def page_from_dashboard(
         history=history_vm(dash.history) if dash.history else None,
         profile=profile_vm(dash.profile) if dash.profile else None,
     )
+
+
+def _present_mission_intelligence(
+    student_id: str,
+    home: HomePageViewModel,
+) -> HomePageViewModel:
+    """ILE-004 — idempotently journal Mission presentation (fail-open)."""
+    from dataclasses import replace
+
+    mi = getattr(home, "mission_intelligence", None)
+    if mi is None or not getattr(mi, "has_mission", False):
+        return home
+    try:
+        user_id = int(str(student_id).strip())
+    except (TypeError, ValueError):
+        return home
+    try:
+        from app.application.daily_mission_intelligence import (
+            DailyMissionIntelligenceApplicationService,
+        )
+
+        presented = DailyMissionIntelligenceApplicationService.present(
+            user_id,
+            mi,
+        )
+        return replace(home, mission_intelligence=presented)
+    except Exception:  # noqa: BLE001 — Home must never fail on journal mirror
+        return home
 
 
 def _topic_vm(topic: JourneyTopicSnapshot) -> JourneyTopicViewModel:
