@@ -4,7 +4,8 @@
 **Milestone:** AP-002C — Educational Evidence Packaging  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commit message:** `feat(ap-002c): implement educational evidence packaging`
+**Commit message:** `feat(ap-002c): implement educational evidence packaging`  
+**Commit:** `087a655`
 
 ---
 
