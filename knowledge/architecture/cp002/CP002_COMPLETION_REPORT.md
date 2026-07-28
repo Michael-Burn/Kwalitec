@@ -4,7 +4,7 @@
 **Date:** 2026-07-28  
 **Status:** Complete — documentation / architecture only  
 **Change class:** Architecture & Product Capability  
-**Commit:** *(recorded at commit time)* — `docs(cp-002): establish learning feedback loop capability architecture`  
+**Commit:** `4e22af7` — `docs(cp-002): establish learning feedback loop capability architecture`  
 **Authority:** Vision 2030 · OA-001 · SI-001 · OM-001 · CP-001 · Recommendation Quality Standard · Explainability Standard · Student Digital Twin Constitution  
 
 ---
