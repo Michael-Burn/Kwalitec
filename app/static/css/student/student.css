@@ -77,7 +77,7 @@
   margin: 0 auto;
   padding: var(--student-space-4) var(--student-space-5);
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
   gap: var(--student-space-4);
@@ -112,13 +112,39 @@
   box-shadow: none;
 }
 
+.student-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--student-space-2);
+}
+
+.student-nav-toggle {
+  display: none;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--brand-white, #fff);
+  border-radius: var(--radius-md);
+  padding: var(--student-space-2) var(--student-space-3);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 2.75rem;
+}
+
+.student-nav-toggle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(139, 156, 224, 0.45);
+}
+
 .student-nav-list {
   list-style: none;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: var(--student-space-1);
   margin: 0;
   padding: 0;
+  align-items: center;
 }
 
 .student-nav-link {
@@ -130,6 +156,7 @@
   font-size: 0.95rem;
   font-weight: 500;
   transition: background-color var(--transition-fast), color var(--transition-fast);
+  white-space: nowrap;
 }
 
 .student-nav-link:hover {
@@ -162,13 +189,15 @@
 
 .student-topbar-nav {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   gap: var(--student-space-2);
+  min-width: 0;
 }
 
 .student-signout-form {
   margin: 0;
+  flex-shrink: 0;
 }
 
 button.student-signout {
@@ -176,6 +205,51 @@ button.student-signout {
   background: transparent;
   cursor: pointer;
   font: inherit;
+}
+
+/* RR-001.2 / XR-05 — compact mobile nav: single topbar row, expand on demand. */
+@media (max-width: 767.98px) {
+  .student-topbar-inner {
+    flex-wrap: nowrap;
+  }
+
+  .student-nav-toggle {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .student-nav-list {
+    display: none;
+    position: absolute;
+    top: calc(100% + var(--student-space-2));
+    right: 0;
+    left: auto;
+    min-width: min(18rem, calc(100vw - 2rem));
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    gap: var(--student-space-1);
+    padding: var(--student-space-2);
+    background: var(--brand-primary-dark, #0D1B2A);
+    border: 1px solid var(--brand-divider, #1E2A3D);
+    border-radius: var(--student-radius);
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--brand-navy) 35%, transparent);
+    z-index: 30;
+  }
+
+  .student-nav.is-open .student-nav-list,
+  .student-nav-list:focus-within {
+    display: flex;
+  }
+
+  .student-nav {
+    position: relative;
+  }
+
+  .student-nav-link {
+    display: block;
+    width: 100%;
+  }
 }
 
 .student-page-header {
@@ -393,6 +467,153 @@ button.student-signout {
 
 .student-secondary--subordinate {
   opacity: 0.92;
+  margin-top: var(--student-space-2);
+}
+
+.student-secondary--subordinate .student-panel {
+  background: color-mix(in srgb, var(--student-surface) 92%, var(--student-bg));
+}
+
+/* RR-001.2 / XR-02 — disclosure for density without removing educational fields. */
+.student-disclosure {
+  margin: var(--student-space-5) 0 0;
+  max-width: 40rem;
+}
+
+.student-disclosure > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: var(--student-space-3) 0;
+}
+
+.student-disclosure > summary::-webkit-details-marker {
+  display: none;
+}
+
+.student-disclosure-summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--student-space-1);
+}
+
+.student-disclosure-title {
+  font-family: var(--student-font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--student-text);
+}
+
+.student-disclosure > summary:focus-visible {
+  outline: none;
+  box-shadow: var(--student-focus);
+  border-radius: var(--radius-sm);
+}
+
+.student-mission-intelligence-disclosure .student-mission-intelligence {
+  margin-top: 0;
+  border-top: 0;
+  padding-top: var(--student-space-2);
+}
+
+.student-home-more {
+  max-width: none;
+  margin-bottom: var(--student-space-5);
+}
+
+.student-home-more .student-tertiary {
+  margin-top: var(--student-space-3);
+}
+
+.student-btn-secondary {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--student-text);
+  font-weight: 600;
+  padding: 0.7rem 1.25rem;
+  border-radius: var(--student-radius);
+  min-height: 2.75rem;
+}
+
+.student-btn-secondary:hover,
+.student-btn-secondary:focus {
+  background: color-mix(in srgb, var(--student-surface) 80%, var(--student-bg));
+  color: var(--student-text);
+  border-color: var(--student-primary);
+}
+
+.student-btn-secondary:focus-visible {
+  outline: none;
+  box-shadow: var(--student-focus);
+}
+
+.student-empty-why {
+  margin: var(--student-space-3) 0 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.student-empty-icon {
+  color: var(--student-muted);
+  margin-bottom: var(--student-space-3);
+  opacity: 0.65;
+}
+
+.student-hero-empty {
+  margin-top: var(--student-space-4);
+  max-width: 36rem;
+}
+
+.student-flash-stack .student-success {
+  position: relative;
+  padding-right: 2.75rem;
+}
+
+.student-flash-stack .btn-close {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+}
+
+.student-input:focus-visible,
+.help-search-input:focus-visible {
+  outline: none;
+  border-color: var(--student-primary);
+  box-shadow: var(--student-focus);
+}
+
+/* RR-001.2 / XR-01 — workspace pages: map residual Bootstrap cards to EOS panel craft. */
+.student-main--workspace .card {
+  background: var(--student-surface);
+  border: 1px solid var(--student-card-border);
+  border-radius: var(--student-radius);
+  box-shadow: none;
+}
+
+.student-main--workspace .card:hover {
+  box-shadow: none;
+  border-color: var(--student-card-border);
+}
+
+.student-main--workspace .section-header .section-eyebrow {
+  letter-spacing: 0.08em;
+}
+
+.student-main--workspace .settings-sidebar .settings-nav-link {
+  border-radius: var(--radius-md);
+}
+
+.student-main--workspace .settings-sidebar .settings-nav-link:focus-visible,
+.student-main--workspace a:focus-visible,
+.student-main--workspace button:focus-visible,
+.student-main--workspace .form-control:focus-visible {
+  outline: none;
+  box-shadow: var(--student-focus);
+}
+
+.student-main--workspace .settings-sidebar .settings-nav-link.active {
+  background: color-mix(in srgb, var(--student-primary) 14%, var(--student-surface));
+  color: var(--student-primary);
 }
 
 .student-hero-cta {
@@ -914,6 +1135,27 @@ button.student-signout {
   border: 1px dashed var(--student-card-border);
   border-radius: var(--student-radius);
   background: color-mix(in srgb, var(--student-surface) 88%, var(--student-bg));
+}
+
+/* XR-17 — alias legacy empty-state chrome onto EOS empty craft. */
+.empty-state.student-empty,
+.student-empty.empty-state {
+  text-align: left;
+  padding: var(--student-space-5);
+}
+
+.empty-state .empty-title {
+  margin: 0 0 var(--student-space-2);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--student-text);
+}
+
+.empty-state .empty-description {
+  margin: 0;
+  color: var(--student-muted);
+  line-height: 1.55;
+  max-width: 36rem;
 }
 
 .student-empty-title {

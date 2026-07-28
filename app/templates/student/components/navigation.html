@@ -1,7 +1,17 @@
 {% set nav_items = page.shell.navigation if page and page.shell else eos_navigation %}
 {% if nav_items %}
-<nav class="student-nav" aria-label="Student experience">
-    <ul class="student-nav-list">
+{# RR-001.2 / XR-05 — compact mobile nav: one topbar row; expand on demand. #}
+<nav class="student-nav" aria-label="Student experience" data-student-nav>
+    <button
+        type="button"
+        class="student-nav-toggle"
+        aria-expanded="false"
+        aria-controls="student-nav-list"
+        data-student-nav-toggle
+    >
+        Menu
+    </button>
+    <ul class="student-nav-list" id="student-nav-list">
         {% for item in nav_items %}
         <li class="student-nav-item">
             <a

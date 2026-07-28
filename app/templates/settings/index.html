@@ -5,11 +5,12 @@
 {% block content %}
 {% set current_section = section or 'general' %}
 
-<section class="section-header">
-    <p class="section-eyebrow">System</p>
-    <h1 class="section-title">Settings</h1>
-    <p class="section-description">Profile, preferences, and Internal Alpha status.</p>
-</section>
+{# RR-001.2 / XR-01 — EOS page header on Settings. #}
+<header class="student-page-header">
+    <p class="student-eyebrow">System</p>
+    <h1 class="student-page-title">Settings</h1>
+    <p class="student-page-description">Profile, preferences, and Internal Alpha status.</p>
+</header>
 
 <div class="row g-4">
     {# Sidebar Navigation #}
@@ -52,10 +53,9 @@
     <div class="col-md-8 col-lg-9">
         {# General Section #}
         {% if current_section == 'general' %}
-        <div class="card border-0">
-            <div class="card-body">
+        <div class="student-panel student-panel--quiet">
                 <div class="settings-section">
-                    <h2 class="settings-section-title">Application Information</h2>
+                    <h2 class="settings-section-title student-panel-title">Application Information</h2>
                     <div class="row g-3">
                         <div class="col-sm-6">
                             <label class="text-muted small d-block">Version</label>
@@ -110,38 +110,34 @@
                 </div>
 
                 <div class="settings-section">
-                    <h2 class="settings-section-title">About Kwalitec</h2>
-                    <p class="text-muted small mb-1">{{ product_descriptor }}</p>
-                    <p class="text-muted small mb-0">{{ product_value_proposition }}</p>
+                    <h2 class="settings-section-title student-panel-title">About Kwalitec</h2>
+                    <p class="student-muted small mb-1">{{ product_descriptor }}</p>
+                    <p class="student-muted small mb-0">{{ product_value_proposition }}</p>
                 </div>
-            </div>
         </div>
         {% endif %}
 
         {# Profile Section #}
         {% if current_section == 'profile' %}
-        <div class="card border-0 mb-4">
-            <div class="card-body">
+        <div class="student-panel student-panel--quiet mb-4">
                 <form method="post" action="{{ url_for('settings.update_profile') }}">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     <div class="settings-section">
-                        <h2 class="settings-section-title">Profile Details</h2>
+                        <h2 class="settings-section-title student-panel-title">Profile Details</h2>
                         <div class="mb-3">
                             <label class="form-label">Email</label>
                             <input type="email" class="form-control" value="{{ current_user.email }}" disabled readonly>
                             <div class="form-text text-muted">Your email is used for login and cannot be changed here.</div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Save Profile</button>
+                        <button type="submit" class="btn student-btn-primary">Save Profile</button>
                     </div>
                 </form>
-            </div>
         </div>
 
         {% if research_journey %}
-        <div class="card border-0" data-rip002-profile="1">
-            <div class="card-body">
+        <div class="student-panel student-panel--quiet" data-rip002-profile="1">
                 <div class="settings-section" style="margin-bottom: 0;">
-                    <h2 class="settings-section-title">Research Journey</h2>
+                    <h2 class="settings-section-title student-panel-title">Research Journey</h2>
                     <p class="text-muted small mb-3">
                         Personal progress for helping improve Kwalitec — not a competition.
                     </p>
@@ -184,66 +180,58 @@
                         {% endif %}
                     </div>
                     <p class="text-muted small mt-3 mb-0">{{ research_journey.appreciation_message }}</p>
-                    <a class="btn btn-outline btn-sm mt-3" href="{{ url_for('settings.share_feedback') }}">
+                    <a class="btn student-btn-secondary btn-sm mt-3" href="{{ url_for('settings.share_feedback') }}">
                         Share Feedback
                     </a>
                 </div>
-            </div>
         </div>
         {% endif %}
         {% endif %}
 
         {# Preferences Section #}
         {% if current_section == 'preferences' %}
-        <div class="card border-0 mb-4">
-            <div class="card-body">
+        <div class="student-panel student-panel--quiet mb-4">
                 <div class="settings-section" style="margin-bottom: 0;">
-                    <h2 class="settings-section-title">Appearance</h2>
+                    <h2 class="settings-section-title student-panel-title">Appearance</h2>
                     <p class="text-muted small">Choose Light, Dark, or System. System follows your device preference. Your choice is saved in this browser.</p>
                     {{ appearance_switcher(show_select=true) }}
                 </div>
-            </div>
         </div>
-        <div class="card border-0">
-            <div class="card-body">
+        <div class="student-panel student-panel--quiet">
                 <form method="post" action="{{ url_for('settings.update_preferences') }}">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     <div class="settings-section">
-                        <h2 class="settings-section-title">Study Preferences</h2>
+                        <h2 class="settings-section-title student-panel-title">Study Preferences</h2>
                         <div class="mb-3">
                             <label for="daily_goal_hours" class="form-label">Daily Study Goal (hours)</label>
                             <input type="number" class="form-control" id="daily_goal_hours" name="daily_goal_hours"
                                    value="{{ session.get('daily_goal_hours', '2') }}" min="0.5" max="12" step="0.5">
                             <div class="form-text text-muted">Set your target daily study hours. Used for progress tracking and recommendations.</div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Save Preferences</button>
+                        <button type="submit" class="btn student-btn-primary">Save Preferences</button>
                     </div>
                 </form>
-            </div>
         </div>
         {% endif %}
 
         {# Data Section #}
         {% if current_section == 'data' %}
         {# Weekly Report Export #}
-        <div class="card border-0 mb-4">
-            <div class="card-body">
+        <div class="student-panel student-panel--quiet mb-4">
                 <div class="settings-section">
-                    <h2 class="settings-section-title">Weekly Report</h2>
+                    <h2 class="settings-section-title student-panel-title">Weekly Report</h2>
                     <p class="text-muted small">Download your current weekly report as a structured text file covering your study activity, accuracy, highlights, and areas for improvement.</p>
-                    <a href="{{ url_for('settings.export_weekly_pdf') }}" class="btn btn-primary">
+                    <a href="{{ url_for('settings.export_weekly_pdf') }}" class="btn student-btn-primary">
                         {{ icon('download', class='me-1') }}
                         Export Weekly Report
                     </a>
                 </div>
-            </div>
         </div>
 
         {# JSON Backup #}
-        <div class="card border-0 mb-4">
-            <div class="card-body">
+        <div class="student-panel student-panel--quiet mb-4">
                 <div class="settings-section">
-                    <h2 class="settings-section-title">Backup Data</h2>
+                    <h2 class="settings-section-title student-panel-title">Backup Data</h2>
                     <p class="text-muted small">Download all your learning data as a JSON file. This includes study plans, study sessions, study attempts, topic progress, and decision history.</p>
                     {% if model_stats %}
                     <div class="mb-3">
@@ -255,19 +243,17 @@
                         </div>
                     </div>
                     {% endif %}
-                    <a href="{{ url_for('settings.export_backup') }}" class="btn btn-outline">
+                    <a href="{{ url_for('settings.export_backup') }}" class="btn student-btn-secondary">
                         {{ icon('download', class='me-1') }}
                         Download Backup (JSON)
                     </a>
                 </div>
-            </div>
         </div>
 
         {# JSON Restore #}
-        <div class="card border-0 mb-4">
-            <div class="card-body">
+        <div class="student-panel student-panel--quiet mb-4">
                 <div class="settings-section" style="margin-bottom: 0;">
-                    <h2 class="settings-section-title">Restore from Backup</h2>
+                    <h2 class="settings-section-title student-panel-title">Restore from Backup</h2>
                     <p class="text-muted small">Upload a previously exported JSON backup file to restore your data. <strong>This will replace all existing data.</strong> Use with caution.</p>
                     <form method="post" action="{{ url_for('settings.import_restore') }}" enctype="multipart/form-data">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
@@ -276,7 +262,7 @@
                             <input type="file" class="form-control" id="backup_file" name="backup_file" accept=".json">
                         </div>
                         {# PX-002A T2-4: styled confirmation modal, not a native confirm(). #}
-                        <button type="button" class="btn btn-outline" style="border-color: var(--color-warning); color: var(--color-warning);"
+                        <button type="button" class="btn student-btn-secondary" style="border-color: var(--color-warning); color: var(--color-warning);"
                                 data-confirm-trigger
                                 data-confirm-title="Restore from backup?"
                                 data-confirm-body="This will replace all existing data with the backup. This cannot be undone."
@@ -287,25 +273,21 @@
                         </button>
                     </form>
                 </div>
-            </div>
         </div>
         {% endif %}
 
         {# Internal Alpha Section #}
         {% if current_section == 'internal-alpha' and alpha_status %}
-        <div class="card border-0 mb-4">
-            <div class="card-body">
+        <div class="student-panel student-panel--quiet mb-4">
                 <div class="settings-section">
-                    <h2 class="settings-section-title">Appearance</h2>
+                    <h2 class="settings-section-title student-panel-title">Appearance</h2>
                     <p class="text-muted small">Choose Light, Dark, or System. System follows your device preference.</p>
                     {{ appearance_switcher() }}
                 </div>
-            </div>
         </div>
-        <div class="card border-0">
-            <div class="card-body">
+        <div class="student-panel student-panel--quiet">
                 <div class="settings-section" style="margin-bottom: 0;">
-                    <h2 class="settings-section-title">Account Status</h2>
+                    <h2 class="settings-section-title student-panel-title">Account Status</h2>
                     <p class="text-muted small mb-3">Informational only — these values do not change your study recommendations.</p>
                     <div class="row g-3">
                         <div class="col-sm-6">
@@ -351,7 +333,6 @@
                         </div>
                     </details>
                 </div>
-            </div>
         </div>
         {% endif %}
     </div>

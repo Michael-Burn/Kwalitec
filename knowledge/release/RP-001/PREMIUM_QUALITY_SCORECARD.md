@@ -3,8 +3,9 @@
 **Programme:** RP-001 — Alpha Readiness Certification  
 **Work Package:** RP-001.4 — Premium Experience Certification  
 **Date:** 2026-07-28  
-**Status:** Certified scorecard (documentation only)  
-**Companions:** `PREMIUM_EXPERIENCE_AUDIT.md`, `DESIGN_CONSISTENCY_REGISTER.md`, `EXPERIENCE_RISK_REGISTER.md`
+**Status:** Certified scorecard · **Verified post-RR-001.2 (2026-07-28)**  
+**Companions:** `PREMIUM_EXPERIENCE_AUDIT.md`, `DESIGN_CONSISTENCY_REGISTER.md`, `EXPERIENCE_RISK_REGISTER.md`  
+**Remediation:** `knowledge/release/RR-001/RR001_2_COMPLETION_REPORT.md`
 
 ---
 
@@ -28,48 +29,48 @@ Scores are **audit judgements** from templates/CSS/shells under production Alpha
 
 | Criterion | Score | Evidence |
 |-----------|------:|----------|
-| Layout consistency | 3 | EOS consistent; V1 content diverges (XR-01) |
+| Layout consistency | 4 | Workspace pages share EOS header/panel primitives (RR-001.2 / XR-01) |
 | Alignment & spacing | 4 | Token grid + student/session spacing aliases |
 | Typography | 4 | Inter hierarchy; clamp titles; captions |
 | Iconography | 4 | Lucide-weight strokes; settings icon helper |
 | Colour hierarchy | 4 | Navy/blue/muted; gold restrained |
-| Information density | 2 | Home overload (XR-02); MI + MES duplication |
-| **Visual quality average** | **3.5** | |
+| Information density | 4 | Home hero-first; MI/tertiary disclosed; secondary subordinate (XR-02) |
+| **Visual quality average** | **4.0** | |
 
 ### Interaction quality
 
 | Criterion | Score | Evidence |
 |-----------|------:|----------|
 | Predictability | 4 | Primary CTA patterns; disclosure; defer details |
-| Responsiveness (UI feedback) | 3 | Focus/hover; flashes generic; skeletons rare |
-| Feedback clarity | 3 | Honesty disclaimer improved; flash chrome generic |
-| Navigation clarity | 3 | Labels clear; mobile wrap; dual chrome destinations |
+| Responsiveness (UI feedback) | 4 | Focus/hover; student-success flashes; compact nav |
+| Feedback clarity | 4 | Honesty empties + EOS success craft (XR-04 / XR-17) |
+| Navigation clarity | 4 | Labels clear; compact mobile menu (XR-05) |
 | Error recovery | 4 | 403/404/500 CTAs + reference IDs |
 | Perceived performance | 3 | SSR; skeleton underused; CDN Bootstrap |
-| **Interaction quality average** | **3.3** | |
+| **Interaction quality average** | **3.8** | |
 
 ### Emotional quality
 
 | Criterion | Score | Evidence |
 |-----------|------:|----------|
-| Calm | 3 | Session/Journal yes; Home busy |
+| Calm | 4 | Session/Journal yes; Home quieter post-RR-001.2 |
 | Professional | 4 | No gamification; serious educational tone on cores |
-| Premium | 3 | Craft on cores; dual chrome dilutes |
+| Premium | 4 | Craft on cores + aligned workspace chrome |
 | Trustworthy | 4 | Post-RR-001.1 honesty; explainability disclosures |
-| Focused | 3 | Session 5; Home 2–3 |
+| Focused | 4 | Session 5; Home hero-first |
 | Respectful | 4 | Optional reflection; non-punitive empty copy |
-| **Emotional quality average** | **3.5** | |
+| **Emotional quality average** | **4.0** | |
 
 ### Cross-cutting
 
 | Criterion | Score | Evidence |
 |-----------|------:|----------|
-| Design consistency | 2 | Two component languages (DC-02) |
+| Design consistency | 4 | EOS primitives on workspace student pages (XR-01) |
 | Brand presentation | 4 | Lockup + navy chrome |
-| Educational emphasis | 3 | Strong on ILE; crowded on Home |
-| Mobile / responsive | 3 | Breakpoints exist; nav wrap |
-| Accessibility presentation | 3 | EOS stronger; no WCAG claim |
-| State system coherence | 2 | Empty/skeleton/success fragmented |
+| Educational emphasis | 4 | Strong on ILE; Home denser chrome demoted |
+| Mobile / responsive | 4 | Compact nav; breakpoints |
+| Accessibility presentation | 4 | Labels + focus-visible on workspace; no WCAG claim |
+| State system coherence | 4 | Empty + success unified (XR-17); skeletons still sparse |
 | Feature-flag safety (default OFF) | 4 | Extras off protects density |
 
 ---
@@ -79,25 +80,25 @@ Scores are **audit judgements** from templates/CSS/shells under production Alpha
 | Surface | Visual | Interaction | Emotional | Overall |
 |---------|-------:|------------:|----------:|---------|
 | Authentication | 4 | 4 | 4 | **Pass** |
-| Onboarding | 3 | 4 | 3 | Conditional |
-| Home | 3 | 3 | 3 | Conditional |
-| Navigation | 3 | 3 | 3 | Conditional |
-| Mission presentation | 4 | 4 | 3 | Conditional |
+| Onboarding | 4 | 4 | 4 | **Pass** (post-RR-001.2) |
+| Home | 4 | 4 | 4 | **Pass** (post-RR-001.2) |
+| Navigation | 4 | 4 | 4 | **Pass** (post-RR-001.2) |
+| Mission presentation | 4 | 4 | 4 | **Pass** (density remidiated) |
 | Session | 5 | 4 | 5 | **Pass** |
 | Decision Journal | 4 | 4 | 4 | **Pass** |
 | Educational Timeline | 4 | 4 | 4 | **Pass** |
 | Reflection | 3 | 3 | 3 | Conditional |
 | History | 3 | 3 | 3 | Conditional |
-| Study Plan | 3 | 3 | 3 | Conditional |
-| Help | 2 | 4 | 3 | Conditional |
+| Study Plan | 4 | 4 | 4 | **Pass** (post-RR-001.2) |
+| Help | 4 | 4 | 4 | **Pass** (post-RR-001.2) |
 | Profile | 4 | 3 | 3 | Conditional |
-| Settings | 2 | 3 | 3 | Conditional |
+| Settings | 4 | 4 | 4 | **Pass** (post-RR-001.2) |
 | Errors | 4 | 4 | 4 | **Pass** |
-| Empty states | 3 | 3 | 4 | Conditional |
+| Empty states | 4 | 4 | 4 | **Pass** (post-RR-001.2) |
 | Loading states | 4* | 2 | 3 | Conditional |
-| Success states | 2 | 3 | 3 | Conditional |
-| Mobile | 3 | 3 | 3 | Conditional |
-| A11y presentation | 3 | 3 | 4 | Conditional |
+| Success states | 4 | 4 | 4 | **Pass** (post-RR-001.2) |
+| Mobile | 4 | 4 | 4 | **Pass** (post-RR-001.2) |
+| A11y presentation | 4 | 4 | 4 | **Pass** (presentation; no WCAG claim) |
 
 \*Skeleton craft quality is high where used; adoption score pulls interaction down.
 
@@ -107,21 +108,21 @@ Scores are **audit judgements** from templates/CSS/shells under production Alpha
 
 | Aggregate | Value |
 |-----------|------:|
-| Visual quality | 3.5 / 5 |
-| Interaction quality | 3.3 / 5 |
-| Emotional quality | 3.5 / 5 |
-| Cross-cutting mean | ~3.0 / 5 |
-| Surfaces Pass | 5 |
-| Surfaces Conditional | 15 |
+| Visual quality | 4.0 / 5 |
+| Interaction quality | 3.8 / 5 |
+| Emotional quality | 4.0 / 5 |
+| Cross-cutting mean | ~4.0 / 5 |
+| Surfaces Pass | 15 |
+| Surfaces Conditional | 5 |
 | Surfaces Fail | 0 |
 
 ### Premium certification
 
-| Decision | **Conditional Pass** |
+| Decision | **Conditional Pass → Stronger (post-RR-001.2)** |
 |----------|----------------------|
-| Threshold rationale | Averages in the “adequate–strong” band on cores; no Fail surfaces; High experience risks (dual chrome, Home density, empty early states, unvalidated cohort) block unconditional Pass |
-| Alpha suitability | **Yes** — with disclosure of XR-01, XR-02, XR-04, XR-20 |
-| Unconditional Pass requires | Design unification of student V1 pages **or** scoped chrome; Home density reduction; unified states; cohort validation |
+| Threshold rationale | Experience Highs XR-01/02/04/05/11/17 remidiated; averages in strong band; XR-20 cohort validation still blocks unconditional “student-proven” Pass |
+| Alpha suitability | **Yes** — disclose XR-14 (keep extras OFF) and XR-20 (audit-only premium until cohort) |
+| Unconditional Pass requires | Cohort UX validation (XR-20); optional skeleton breadth (XR-06) |
 
 ---
 
@@ -132,8 +133,8 @@ Scores are **audit judgements** from templates/CSS/shells under production Alpha
 | Answer | Detail |
 |--------|--------|
 | **On Session / Journal / Timeline / Login** | Likely **yes** — calm, focused, brand-coherent |
-| **On full Alpha chrome including Settings/Help/Wizard + dense Home** | **Not yet consistently** — Conditional Pass |
-| **Documented?** | Yes — every surface and XR risk recorded |
+| **On full Alpha chrome including Settings/Help/Wizard + Home** | **Likely yes** after RR-001.2 — Conditional only for cohort proof (XR-20) |
+| **Documented?** | Yes — every surface and XR risk recorded; RR-001.2 verification notes applied |
 
 ---
 
@@ -145,3 +146,4 @@ Scores are **audit judgements** from templates/CSS/shells under production Alpha
 | RP-001.2 | Journey dual-chrome + empty Home risks carried into XR |
 | RP-001.3 | Identity/voice debt noted as emotional/trust adjacent (not rescored here as copy) |
 | RR-001.1 | Removed Critical false-affordance Fail risk from reflection; raised trustworthiness score vs pre-remediation baseline |
+| **RR-001.2** | Remidiated XR-01/02/04/05/11/17 — lifted visual/interaction/emotional averages and Pass surface count; XR-20 still blocks unconditional Pass |

@@ -2,33 +2,36 @@
 {% from "partials/contextual_help.html" import learn_more %}
 
 {% block content %}
-<section class="section-header">
-    <p class="section-eyebrow">{{ internal_alpha_label }}</p>
-    <h1 class="section-title">Help &amp; Support</h1>
-    <p class="section-description">
+{# RR-001.2 / XR-01 / XR-11 — EOS header, panel, and labelled search. #}
+<header class="student-page-header">
+    <p class="student-eyebrow">{{ internal_alpha_label }}</p>
+    <h1 class="student-page-title">Help &amp; Support</h1>
+    <p class="student-page-description">
         Guidance for using Kwalitec, and how to reach the Internal Alpha team.
     </p>
-</section>
+</header>
 
 {# PX-002A T2-8: guidance-first Help — search over popular topics, quick
    actions, and contextual help kept above the release-detail disclosure. #}
-<section class="mb-4">
-    <label class="visually-hidden" for="help-search">Search Help topics</label>
+<section class="student-panel student-panel--quiet mb-4">
+    <label class="student-label" for="help-search">Search Help topics</label>
     <input
         type="search"
         id="help-search"
-        class="form-control help-search-input"
+        class="form-control student-input help-search-input"
         placeholder="Search Help — try “reflection”, “study plan”, “appearance”…"
         data-help-search
         autocomplete="off"
+        aria-describedby="help-search-hint"
     >
-    <p class="form-text text-muted mb-0" data-help-search-empty hidden role="status" aria-live="polite">
+    <p id="help-search-hint" class="student-muted small mb-0 mt-2" data-help-search-empty hidden role="status" aria-live="polite">
         No topics match that search. Try a different word, or use Quick actions below.
     </p>
 </section>
 
-<section class="mb-4" aria-labelledby="popular-topics-title">
-    <h2 id="popular-topics-title" class="h5">Popular topics</h2>
+<section class="student-panel student-panel--quiet mb-4" aria-labelledby="popular-topics-title">
+    <p class="student-panel-eyebrow">Guidance</p>
+    <h2 id="popular-topics-title" class="student-panel-title">Popular topics</h2>
     <div data-help-topics>
         {% set topics = [
             ("How is my Session chosen?",
@@ -56,26 +59,27 @@
     </div>
 </section>
 
-<section class="mb-4" aria-labelledby="quick-feedback-title">
-    <h2 id="quick-feedback-title" class="h5">Quick actions</h2>
+<section class="student-panel student-panel--quiet mb-4" aria-labelledby="quick-feedback-title">
+    <p class="student-panel-eyebrow">Actions</p>
+    <h2 id="quick-feedback-title" class="student-panel-title">Quick actions</h2>
     <ul class="list-unstyled d-flex flex-wrap gap-2 mb-0">
         <li>
-            <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('alpha.feedback_report_problem') }}">
+            <a class="btn student-btn-secondary btn-sm" href="{{ url_for('alpha.feedback_report_problem') }}">
                 Report a problem
             </a>
         </li>
         <li>
-            <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('alpha.feedback_suggest') }}">
+            <a class="btn student-btn-secondary btn-sm" href="{{ url_for('alpha.feedback_suggest') }}">
                 Suggest an improvement
             </a>
         </li>
         <li>
-            <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('research.checkin', source='settings') }}">
+            <a class="btn student-btn-secondary btn-sm" href="{{ url_for('research.checkin', source='settings') }}">
                 Full Product Check-in
             </a>
         </li>
         <li>
-            <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('alpha.onboarding') }}">
+            <a class="btn student-btn-secondary btn-sm" href="{{ url_for('alpha.onboarding') }}">
                 Revisit onboarding
             </a>
         </li>
@@ -85,8 +89,8 @@
 {# PX-002A T2 trust: release/build metadata kept available (support needs it)
    but no longer the first thing a student sees on Help. #}
 <section class="mb-4">
-    <details class="settings-diagnostics">
-        <summary class="text-muted small">Diagnostic information</summary>
+    <details class="settings-diagnostics student-disclosure">
+        <summary class="student-muted small">Diagnostic information</summary>
         <dl class="row small mb-0 mt-2">
             <dt class="col-sm-4">Application version</dt>
             <dd class="col-sm-8">{{ release.app_version }}</dd>

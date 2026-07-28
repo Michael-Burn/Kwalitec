@@ -3,8 +3,9 @@
 **Programme:** RP-001 — Alpha Readiness Certification  
 **Work Package:** RP-001.4 — Premium Experience Certification  
 **Date:** 2026-07-28  
-**Status:** Certified register (documentation only)  
-**Companion:** `PREMIUM_EXPERIENCE_AUDIT.md`
+**Status:** Certified register · **Verified post-RR-001.2 (2026-07-28)**  
+**Companion:** `PREMIUM_EXPERIENCE_AUDIT.md`  
+**Remediation:** `knowledge/release/RR-001/RR001_2_COMPLETION_REPORT.md`
 
 ---
 
@@ -24,10 +25,10 @@ Record whether Alpha presents **one design language** across shells, components,
 | Typeface | Self-hosted Inter via `fonts.css` across shells | **Consistent** |
 | Spacing grid | 8-point tokens; student/session alias them | **Consistent** on EOS |
 | Colour hierarchy | Navy chrome, blue primary, muted text, gold reserved | **Consistent** on EOS/auth brand panel |
-| Hardcoded / Bootstrap defaults | V1 content often uses Bootstrap utility classes and `.card` defaults | **Inconsistent** vs EOS panels |
+| Hardcoded / Bootstrap defaults | Workspace pages (Help/Onboarding/Settings/Wizard) now use EOS header/panel/button primitives (RR-001.2); residual Bootstrap utilities remain inside panels | **Mostly consistent** (post-RR-001.2) |
 | Duplicate token aliases | `--color-*` legacy aliases coexist with semantic tokens — workable but noisy | **Acceptable residual** |
 
-**Verdict:** **Conditional** — one token source exists; application is uneven.
+**Verdict:** **Conditional → Improved (RR-001.2)** — one token source; workspace student pages now share EOS primitives; residual Bootstrap utilities inside panels remain acceptable Alpha debt.
 
 ---
 
@@ -35,17 +36,17 @@ Record whether Alpha presents **one design language** across shells, components,
 
 | Component family | EOS student / session | V1 / Bootstrap pages | Status |
 |------------------|----------------------|----------------------|--------|
-| Page header | `student-page-header` / `session-page-header` | `section-header` | **Divergent** |
-| Cards / panels | `student-panel`, `student-card`, `session-card` | Bootstrap `.card` | **Divergent** |
-| Primary button | `student-btn-primary` / `session-btn-primary` | `btn btn-primary` | **Divergent styling path** |
-| Empty state | `student-empty` | `educational_empty` macro | **Divergent** |
+| Page header | `student-page-header` / `session-page-header` | Help / Onboarding / Settings / Wizard now use `student-page-header` (RR-001.2) | **Aligned** |
+| Cards / panels | `student-panel`, `student-card`, `session-card` | Settings/Help/Onboarding/Wizard use `student-panel` (RR-001.2) | **Aligned** |
+| Primary button | `student-btn-primary` / `session-btn-primary` | Workspace CTAs use `student-btn-primary` / `student-btn-secondary` | **Aligned** |
+| Empty state | `student-empty` | `educational_empty` macro now emits `student-empty` (XR-17) | **Aligned** |
 | Skeleton | `skeleton.html` macros | Rarely used outside session overview | **Under-used** |
 | Flash / toast | Bootstrap `alert` | Same | **Consistent** (generic) |
 | Icons | Inline Lucide-weight SVG; `partials/icons.html` in settings | Mixed | **Mostly consistent stroke language** |
 | Modals | `confirm_modal` on EOS | Welcome modal shared | **Partial** |
 | Appearance | Public switcher on auth; Settings preferences on app | Split placement | **Acceptable** |
 
-**Verdict:** **Inconsistent** across EOS vs V1 content patterns.
+**Verdict:** **Conditional → Improved (RR-001.2)** — student-facing workspace pages share EOS component family; Bootstrap remains for grid/forms only.
 
 ---
 
@@ -57,7 +58,7 @@ Record whether Alpha presents **one design language** across shells, components,
 | Session | Strong | One objective, one CTA |
 | Journal / Timeline | Strong | Timeline → entry → provenance |
 | Home hero | Strong locally | Eyebrow → title → why → CTA |
-| Home full page | Weakened | Secondary + tertiary compete with hero |
+| Home full page | Improved (RR-001.2) | Hero primary; MI disclosed; secondary subordinate; tertiary disclosed |
 | Settings / Help | Medium | Section titles; card grids |
 | Wizard | Strong within flow | Step indicator + question |
 
@@ -117,9 +118,9 @@ Record whether Alpha presents **one design language** across shells, components,
 | `auth_base` | Login, errors | Brand marketing + form |
 | `eos_student` | Home, History, Journal, Timeline, Journey, Revision, Profile | Reading calm, navy topbar |
 | `session` | Overview → activity → reflection → summary | Focus room |
-| `layouts/base` → EOS under sole runtime | Onboarding, Help, Settings, Study Plan wizard | **EOS chrome + V1 content language** |
+| `layouts/base` → EOS under sole runtime | Onboarding, Help, Settings, Study Plan wizard | **EOS chrome + EOS content primitives** (RR-001.2); residual Bootstrap utilities only |
 
-This last row is the primary **design consistency fracture** for Alpha (maps to JR-02 / R-02 / XR-01).
+Primary fracture from RP-001.4 (EOS chrome + V1 card language) is **remidiated for Alpha student-facing workspace pages** (XR-01). Remaining dual-chrome risk is Low residual utility styling, not a second component language.
 
 ---
 
@@ -127,20 +128,21 @@ This last row is the primary **design consistency fracture** for Alpha (maps to 
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Design language | Conditional | Tokens shared; Bootstrap/V1 diverge |
-| Component usage | Fail (cross-system) | Two component families in one product |
-| Visual hierarchy | Conditional | Cores strong; Home density |
-| Educational emphasis | Conditional | Strong on ILE surfaces |
+| Design language | Conditional → Stronger | Tokens shared; workspace primitives aligned (RR-001.2) |
+| Component usage | Conditional → Pass (student path) | EOS panels/headers/buttons on workspace pages |
+| Visual hierarchy | Conditional → Stronger | Home density remidiated (XR-02) |
+| Educational emphasis | Conditional | Strong on ILE surfaces; Home quieter |
 | Brand presentation | Pass | Lockup + navy chrome |
-| Interaction patterns | Conditional | Disclosure good; shell switches |
+| Interaction patterns | Conditional → Stronger | Disclosure + compact mobile nav |
 
-**Overall design consistency: Conditional Pass** — not one visual system end-to-end; coherent enough for Alpha if dual chrome remains disclosed.
+**Overall design consistency (post-RR-001.2 verification): Conditional Pass → trending Pass on student Alpha path** — dual component language no longer the primary fracture; cohort validation (XR-20) still required for unconditional premium Pass.
 
 ---
 
 ## Required before unconditional Pass
 
-1. Unify page header, panel/card, button, and empty-state primitives on student-facing V1 content pages **or** fully migrate those pages to EOS components.  
-2. Reduce Home to one primary educational composition (hero ± one intelligence panel).  
-3. Adopt one empty + one loading + one success pattern on all student routes.  
-4. Mobile: compact navigation that does not wrap into a second visual band.
+1. ~~Unify page header, panel/card, button, and empty-state primitives on student-facing V1 content pages~~ **Done (RR-001.2)** — residual utility cleanup optional.  
+2. ~~Reduce Home to one primary educational composition~~ **Done (RR-001.2)** — MI/tertiary disclosed; secondary subordinate.  
+3. ~~Adopt one empty + one success pattern on student routes~~ **Done (RR-001.2)** for empty + success; skeleton adoption remains sparse (XR-06).  
+4. ~~Mobile: compact navigation that does not wrap into a second visual band~~ **Done (RR-001.2)**.  
+5. **Still required:** Internal Alpha cohort UX validation (XR-20) before claiming student-proven premium quality.

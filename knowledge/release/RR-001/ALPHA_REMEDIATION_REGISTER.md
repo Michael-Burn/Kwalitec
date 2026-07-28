@@ -1,9 +1,9 @@
 # RR-001 — Alpha Remediation Register
 
 **Programme:** RR-001 — Alpha Readiness Remediation Register  
-**Work Package:** RR-001.1 — Critical Findings Resolution  
-**Date:** 2026-07-28  
-**Sources:** RP-001.1 Product Inventory · RP-001.2 End-to-End Journey · RP-001.3 Study Sensei Identity & Voice  
+**Work Packages:** RR-001.1 — Critical Findings Resolution · **RR-001.2 — Premium Experience Remediation**  
+**Date:** 2026-07-28 (updated RR-001.2)  
+**Sources:** RP-001.1 Product Inventory · RP-001.2 End-to-End Journey · RP-001.3 Study Sensei Identity & Voice · **RP-001.4 Premium Experience Certification**  
 **Status legend:** `Resolved` · `Open` · `Deferred` · `Contained` (process / flag / ops mitigation) · `Merged` (see canonical ID)
 
 ---
@@ -64,10 +64,10 @@ Single remediation register for every certification finding from RP-001.1–RP-0
 | Canonical | Source IDs | Title | Status | Notes |
 |-----------|------------|-------|--------|-------|
 | RR-H01 | R-01 / JR-17 | Sole-runtime integrity | Contained | Same as RR-C04 |
-| RR-H02 | R-02 / JR-02 / IR-09 | Dual chrome | Deferred | Accepted Alpha Stage 1; DEP-003 later |
+| RR-H02 | R-02 / JR-02 / IR-09 / **XR-01** | Dual chrome | **Resolved** (RR-001.2) | EOS primitives on Help/Onboarding/Settings/Wizard + workspace CSS bridge; residual utility classes remain Low polish |
 | RR-H03 | R-03 / JR-03 / JR-18 | Flag-scope honesty | Contained | QC / UJ / Runtime C remain OFF; inventory excludes |
-| RR-H04 | R-04 / JR-04 / IR-10 | Empty Home without recommendation | Open | Provision Alpha accounts; briefing; no math change in RR-001.1 |
-| RR-H05 | R-05 / JR-05 / IR-15 | MES + MI duplication | Deferred | Watch cohort |
+| RR-H04 | R-04 / JR-04 / IR-10 / **XR-04** | Empty Home without recommendation | **Resolved** (presentation) / Contained (ops) | RR-001.2 honest empty + CTA; provisioning/briefing still ops |
+| RR-H05 | R-05 / JR-05 / IR-15 / **XR-02** | MES + MI duplication / Home density | **Resolved** (RR-001.2) | MI disclosed; secondary subordinate; tertiary behind disclosure — MI content unchanged |
 | RR-H06 | R-07 / JR-20 / IR-12 | Notifications copy honesty | Open | UI honesty package later |
 | RR-H07 | R-09 / JR-21 | ILE-005 migration discipline | Contained | Release checklist |
 | RR-H08 | R-16 / JR-16 / IR-16 | Cohort validation not run | Open | Execute Internal Alpha validation pack |
@@ -89,7 +89,7 @@ Single remediation register for every certification finding from RP-001.1–RP-0
 | RR-M03 | JR-10 | Onboarding skip under-orients | Deferred |
 | RR-M04 | JR-11 / R-10 | Calibration / Twin soft-fail → Tutor soft-fail | Contained |
 | RR-M05 | JR-14 | History ≠ legacy analytics charts | Deferred |
-| RR-M06 | JR-15 / R-15 | Dual-chrome a11y weaker than EOS | Deferred |
+| RR-M06 | JR-15 / R-15 / **XR-11** | Dual-chrome a11y weaker than EOS | **Resolved** (RR-001.2) | Labels, focus-visible, wizard progress label; no WCAG claim |
 | RR-M07 | JR-19 / R-19 | Sparse Journal / Timeline / History early | Deferred |
 | RR-M08 | JR-22 / R-23 | Session durable-store / orphaning | Contained |
 | RR-M09 | JR-23 / IR-01 partial | Sensei voice inconsistent on chrome | Open |
@@ -103,7 +103,7 @@ Single remediation register for every certification finding from RP-001.1–RP-0
 | RR-M17 | R-13 | Accidental UJ / Experience Feedback enable | Contained |
 | RR-M18 | R-17 | EI internal alpha misread as full EI widgets | Contained |
 | RR-M19 | R-24 | Forbidden engineering terms leak | Contained (tests) |
-| RR-M20 | CAP-02/16/19/25 conditions | Dual chrome capability conditions | Deferred |
+| RR-M20 | CAP-02/16/19/25 conditions / **XR-05** | Dual chrome capability / mobile nav wrap | **Resolved** (nav) / Contained (caps) | Compact mobile nav (RR-001.2); remaining CAP conditions disclosed |
 | RR-M21 | CAP-06/13/14/15/18/21/23 | Conditional capabilities from inventory | Contained / disclosed |
 
 ---
@@ -148,9 +148,24 @@ Capability readiness calls from RP-001.1 are unchanged by RR-001.1 except where 
 
 ---
 
+## Experience findings (RP-001.4 → RR-001.2)
+
+| XR ID | Title | Severity | Status | Package |
+|-------|-------|----------|--------|---------|
+| XR-01 | Dual design languages | High | **Resolved** | RR-001.2 |
+| XR-02 | Home cognitive overload | High | **Resolved** | RR-001.2 |
+| XR-04 | Empty / sparse early states | High | **Resolved** (presentation) | RR-001.2 |
+| XR-05 | Mobile nav wrap | Medium→High for Alpha polish | **Resolved** | RR-001.2 |
+| XR-11 | A11y residual on V1 pages | Medium | **Resolved** (presentation) | RR-001.2 |
+| XR-17 | Success / empty state fragmentation | Medium | **Resolved** | RR-001.2 |
+| XR-14 | Flag enablement without density redesign | High if enabled | **Contained** | Keep OFF |
+| XR-20 | Cohort UX validation not executed | High | **Open** | Internal Alpha pack |
+
+---
+
 ## Document control
 
-- Implementation package: RR-001.1  
+- Implementation packages: RR-001.1 · **RR-001.2**  
 - Companion matrix: `CRITICAL_FINDINGS_MATRIX.md`  
-- Completion: `RR001_1_COMPLETION_REPORT.md`  
+- Completions: `RR001_1_COMPLETION_REPORT.md` · `RR001_2_COMPLETION_REPORT.md`  
 - Do not treat this register as Version 1 production-ready declaration

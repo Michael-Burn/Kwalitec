@@ -12,10 +12,20 @@
 .wizard-progress-dot{width:8px;height:8px;border-radius:var(--radius-full);background:var(--color-border);transition:background var(--transition-base)}
 .wizard-progress-dot.active{background:var(--color-info)}
 .wizard-progress-dot.current{width:12px;height:12px;box-shadow:0 0 0 3px var(--color-info-bg)}
-.wizard-card{background:var(--color-surface);border:1px solid var(--color-border-light);border-radius:var(--radius-xl);box-shadow:var(--shadow-md);padding:var(--space-2xl)}
+.wizard-card{background:var(--surface, var(--color-surface));border:1px solid var(--divider, var(--color-border-light));border-radius:var(--radius-lg);box-shadow:none;padding:var(--space-2xl)}
 .wizard-nav{display:flex;gap:var(--space-md)}
 .wizard-nav .btn{flex:1;justify-content:center;align-items:center;display:inline-flex;gap:var(--space-sm);padding:var(--space-md) var(--space-xl);font-size:var(--font-base);font-weight:var(--font-weight-semibold)}
-.wizard-nav .btn-ghost{flex:0 0 auto}
+.wizard-nav .btn-ghost,.wizard-nav .student-btn-secondary{flex:0 0 auto}
+.wizard-header.student-page-header{text-align:center;margin-bottom:0}
+.wizard-header .student-eyebrow{margin-bottom:var(--space-sm)}
+.wizard-header .student-page-title{margin-bottom:var(--space-sm)}
+.wizard-header .student-page-description{margin-left:auto;margin-right:auto}
+.wizard-step-indicator{display:inline-flex;align-items:center;gap:var(--space-sm);background:color-mix(in srgb, var(--primary, var(--color-info)) 12%, transparent);border-radius:var(--radius-full);padding:var(--space-xs) var(--space-lg);margin-bottom:var(--space-lg)}
+.wizard-progress-dot.active{background:var(--primary, var(--color-info))}
+.wizard-progress-dot.current{width:12px;height:12px;box-shadow:0 0 0 3px color-mix(in srgb, var(--primary, var(--color-info)) 18%, transparent)}
+.wizard-option-card:hover,.wizard-option-row:hover,.wizard-pill:hover{border-color:var(--primary, var(--color-info));box-shadow:var(--shadow-sm)}
+.wizard-option-card:has(.wizard-option-input:checked),.wizard-option-row:has(.wizard-option-input:checked){border-color:var(--primary, var(--color-info));background:color-mix(in srgb, var(--primary, var(--color-info)) 10%, var(--surface, var(--color-surface)))}
+.wizard-option-card:focus-within,.wizard-option-row:focus-within,.wizard-pill:focus-within{outline:none;box-shadow:var(--focus-ring, 0 0 0 3px rgba(59,79,184,0.35))}
 .wizard-option-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:var(--space-md)}
 .wizard-option-card{display:block;position:relative;border:2px solid var(--color-border-light);border-radius:var(--radius-lg);padding:var(--space-lg);cursor:pointer;transition:all var(--transition-base);background:var(--color-surface)}
 .wizard-option-card:hover{border-color:var(--color-info);box-shadow:var(--shadow-sm)}

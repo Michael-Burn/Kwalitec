@@ -322,13 +322,18 @@
   </p>
   {% endif %}
   {% elif not page.home.primary_cta_enabled %}
-  <p class="student-muted student-hero-cta">
-    {% if page.educational and page.educational.active %}
-      Today's mission will appear here when your published syllabus is ready.
-    {% else %}
-      A session will be ready when today's mission is available.
-    {% endif %}
-  </p>
+  <div class="student-empty student-hero-empty" role="status" data-student-state="empty">
+    <p class="student-empty-title">
+      {% if page.educational and page.educational.active %}
+        Today's mission will appear here when your published syllabus is ready.
+      {% else %}
+        A session will be ready when today's mission is available.
+      {% endif %}
+    </p>
+    <p class="student-empty-why student-muted">
+      A quiet mission card is expected until guidance is ready — not a broken Home.
+    </p>
+  </div>
   {% endif %}
 
   {% if page.home.explanation and page.home.explanation.has_disclosure and not page.home.reflection_active %}
@@ -339,14 +344,20 @@
 
   {% set mi = page.home.mission_intelligence %}
   {% if mi and mi.has_mission and not page.home.guided_session_active and not page.home.reflection_active %}
+  {# RR-001.2 / XR-02 — keep Mission Intelligence fields unchanged; disclose to
+     reduce Home cognitive density (presentation only). #}
+  <details class="student-disclosure student-mission-intelligence-disclosure" data-home-density="mission-detail">
+    <summary class="student-disclosure-summary">
+      <span class="student-panel-eyebrow">{{ mi.eyebrow }}</span>
+      <span class="student-disclosure-title">{{ mi.focus_question }}</span>
+    </summary>
   <aside
     class="student-mission-intelligence"
     data-mission-intelligence="true"
     data-lifecycle="{{ mi.lifecycle_phase }}"
     aria-labelledby="mission-intelligence-heading"
   >
-    <p class="student-panel-eyebrow">{{ mi.eyebrow }}</p>
-    <h3 id="mission-intelligence-heading" class="student-mission-intelligence-title">
+    <h3 id="mission-intelligence-heading" class="student-visually-hidden">
       {{ mi.focus_question }}
     </h3>
     {% if mi.educational_purpose %}
@@ -427,6 +438,7 @@
     </p>
     {% endif %}
   </aside>
+  </details>
   {% endif %}
 
   {% if page.home.unified_journey_enabled and page.home.timeline_steps %}
@@ -477,8 +489,9 @@
 {% endif %}
 
 <section
-  class="student-secondary{% if page.home.unified_journey_enabled %} student-secondary--subordinate{% endif %}"
+  class="student-secondary student-secondary--subordinate"
   data-dashboard-slot="secondary"
+  data-home-density="secondary"
   aria-label="Readiness, journey, and coach"
 >
   <article class="student-panel student-panel--quiet" data-dashboard-panel="readiness" aria-labelledby="student-readiness-title">
@@ -626,6 +639,11 @@
   </article>
 </section>
 
+<details class="student-disclosure student-home-more" data-home-density="tertiary">
+  <summary class="student-disclosure-summary">
+    <span class="student-panel-eyebrow">More</span>
+    <span class="student-disclosure-title">Upcoming milestones and quick actions</span>
+  </summary>
 <section class="student-tertiary" data-dashboard-slot="tertiary" aria-label="Upcoming milestones and quick actions">
   <div class="student-panel student-panel--quiet" data-dashboard-panel="milestones" aria-labelledby="student-milestones-title">
     <p class="student-panel-eyebrow">Upcoming</p>
@@ -640,10 +658,13 @@
       {% endfor %}
     </ul>
     {% else %}
-    <div class="student-empty" role="status">
+    <div class="student-empty" role="status" data-student-state="empty">
       <p class="student-empty-title">No upcoming milestones yet</p>
       <p class="student-empty-description">
         Milestones appear as your study plan unfolds and session outcomes update your journey.
+      </p>
+      <p class="student-empty-why student-muted">
+        Empty here is expected early on — not a missing feature.
       </p>
     </div>
     {% endif %}
@@ -666,12 +687,21 @@
     </ul>
   </nav>
 </section>
+</details>
 {% else %}
-<section class="student-empty" aria-label="Home" role="status">
+<section class="student-empty" aria-label="Home" role="status" data-student-state="empty">
     <h2 class="student-empty-title">Your first insights will appear here</h2>
     <p class="student-empty-description">
       Your learning insights appear after your first session — readiness, journey, and coach detail included.
     </p>
+    <p class="student-empty-why student-muted">
+      This quiet Home is expected before a Study Plan and Session — not an unfinished product.
+    </p>
+    <div class="student-primary-action">
+        <a class="btn student-btn-primary" href="{{ url_for('study_plan.index') }}" data-student-cta="primary">
+            Open Study Plan
+        </a>
+    </div>
 </section>
 {% endif %}
 {% include "partials/welcome_modal.html" %}

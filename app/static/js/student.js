@@ -138,10 +138,44 @@
     });
   }
 
+  function wireCompactNav() {
+    var nav = document.querySelector("[data-student-nav]");
+    var toggle = document.querySelector("[data-student-nav-toggle]");
+    if (!nav || !toggle) {
+      return;
+    }
+    toggle.addEventListener("click", function () {
+      var open = nav.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.textContent = open ? "Close" : "Menu";
+    });
+    document.addEventListener("click", function (event) {
+      if (!nav.classList.contains("is-open")) {
+        return;
+      }
+      if (nav.contains(event.target)) {
+        return;
+      }
+      nav.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.textContent = "Menu";
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key !== "Escape" || !nav.classList.contains("is-open")) {
+        return;
+      }
+      nav.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.textContent = "Menu";
+      toggle.focus();
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     enhancePrimaryCta();
     announceSurface();
     markOptimisticNav();
     wirePresentationTelemetry();
+    wireCompactNav();
   });
 })();

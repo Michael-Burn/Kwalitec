@@ -1,21 +1,22 @@
 {% extends "layouts/base.html" %}
 
 {% block content %}
-<section class="section-header">
-    <p class="section-eyebrow">{{ internal_alpha_label }}</p>
-    <h1 class="section-title">Welcome to Kwalitec</h1>
-    <p class="section-description">
+{# RR-001.2 / XR-01 — EOS page header + panel/button primitives. #}
+<header class="student-page-header">
+    <p class="student-eyebrow">{{ internal_alpha_label }}</p>
+    <h1 class="student-page-title">Welcome to Kwalitec</h1>
+    <p class="student-page-description">
         A short orientation — four ideas, then you can start studying.
     </p>
-</section>
+</header>
 
-<section class="alpha-onboarding" aria-label="Product onboarding">
-    <ol class="alpha-onboarding-steps list-unstyled">
+<section class="alpha-onboarding student-panel student-panel--quiet" aria-label="Product onboarding">
+    <ol class="alpha-onboarding-steps list-unstyled mb-0">
         {% for step in steps %}
-        <li class="alpha-onboarding-step mb-4">
-            <p class="text-muted small mb-1">Step {{ loop.index }} of {{ steps|length }}</p>
-            <h2 class="h5 mb-2">{{ step.title }}</h2>
-            <p class="mb-0">{{ step.body }}</p>
+        <li class="alpha-onboarding-step{% if not loop.last %} mb-4{% endif %}">
+            <p class="student-muted small mb-1">Step {{ loop.index }} of {{ steps|length }}</p>
+            <h2 class="student-panel-title mb-2">{{ step.title }}</h2>
+            <p class="student-panel-body mb-0">{{ step.body }}</p>
         </li>
         {% endfor %}
     </ol>
@@ -23,13 +24,13 @@
     <div class="d-flex flex-wrap gap-2 mt-4">
         <form method="post" action="{{ url_for('alpha.onboarding_complete') }}">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-            <button type="submit" class="btn btn-primary">Continue to Home</button>
+            <button type="submit" class="btn student-btn-primary">Continue to Home</button>
         </form>
         <form method="post" action="{{ url_for('alpha.onboarding_skip') }}">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-            <button type="submit" class="btn btn-outline-secondary">Skip for now</button>
+            <button type="submit" class="btn student-btn-secondary">Skip for now</button>
         </form>
-        <a class="btn btn-outline-secondary" href="{{ url_for('alpha.help_centre') }}">Help &amp; Support</a>
+        <a class="btn student-btn-secondary" href="{{ url_for('alpha.help_centre') }}">Help &amp; Support</a>
     </div>
 </section>
 {% endblock %}
