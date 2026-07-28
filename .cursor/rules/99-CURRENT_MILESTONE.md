@@ -1,36 +1,37 @@
 # Current Milestone
 
-**LP-001** — Learner Lifecycle Orchestration (**Complete**)
+**VP-001** — Version 1 Product Completion (**Complete**)
 
 ## Objective
 
-Automate the lifecycle of Educational Intelligence so students are continuously maintained within the EI pipeline — without new educational reasoning.
+Complete the Version 1 student experience by consuming the Educational Intelligence Platform — no new educational architecture.
 
 ## Allowed modifications
 
-- `app/application/learner_lifecycle/`
-- `app/models/learner_lifecycle.py` + model registration
-- Alembic `202607280080` lifecycle checkpoints
-- `tests/application/learner_lifecycle/`
-- `knowledge/learner_lifecycle/lp001_learner_lifecycle_orchestration/`
-- Programme dashboard / milestone pointers for LP-001
+- LP-001 HTTP/runtime hooks (enrolment + session evidence)
+- RIS wiring for Revision Planner + Study Session
+- `tests/application/version1_product/`
+- `knowledge/product/vp001_version_1_product/`
+- Programme dashboard / milestone pointers for VP-001
 
 ## Forbidden
 
-- Modifying Educational Decisions / Twin inference rules / Experience Models
-- New educational reasoning
+- New Educational Intelligence layers
+- Duplicating educational reasoning / parallel recommendation engines
 - Bypassing Runtime Integration Preferred Authority read path
 - Removing Runtime A Temporary compatibility
+- Declaring Version 1 production-ready without P-002.1 gates
 
 ## Parallel note
 
-FV-001 Founder Validation remains the commercial dogfood track. LP-001 is write-path EI maintenance for RI adoption.
+FV-001 Founder Validation remains the commercial dogfood track. VP-001 closes product wiring so EI powers the student journey.
 
 ## Authoritative artefacts
 
-- Architecture: `knowledge/learner_lifecycle/lp001_learner_lifecycle_orchestration/ARCHITECTURE.md`
-- Completion: `knowledge/learner_lifecycle/lp001_learner_lifecycle_orchestration/LP001_COMPLETION_REPORT.md`
-- Upstream: EI-004…EI-007 · EX-001 · RI-001
+- Audit: `knowledge/product/vp001_version_1_product/STUDENT_JOURNEY_AUDIT.md`
+- Acceptance: `knowledge/product/vp001_version_1_product/FOUNDER_ACCEPTANCE.md`
+- Completion: `knowledge/product/vp001_version_1_product/VP001_COMPLETION_REPORT.md`
+- Upstream: EI-004…EI-007 · EX-001 · RI-001 · LP-001
 
 ---
 

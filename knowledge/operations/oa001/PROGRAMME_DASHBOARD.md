@@ -65,6 +65,7 @@ Detail always lives in the cited authoritative artefacts. If this Dashboard conf
 | **RI-001** | Educational Runtime Integration | **Complete** | Preferred Authority: EI-007→EX-001 when SCI+decisions; instrumented Runtime A Temporary compatibility | `knowledge/runtime_integration/ri001_educational_runtime_integration/` |
 | **RI-002** | Educational Intelligence Adoption & Readiness | **Complete** | Adoption metrics, Runtime Health dashboard, inventory, retirement gates; Runtime A not removed | `knowledge/runtime_integration/ri002_educational_intelligence_adoption/` |
 | **LP-001** | Learner Lifecycle Orchestration | **Complete** | Onboard + evidence pipelines; checkpointed recovery; coordinates EI-004…EX-001 without new reasoning | `knowledge/learner_lifecycle/lp001_learner_lifecycle_orchestration/` |
+| **VP-001** | Version 1 Product Completion | **Complete** | Student journey EI wiring: LP hooks + RIS Revision/Session; audit/UX/acceptance; no new EI layers | `knowledge/product/vp001_version_1_product/` |
 | **ER-002** | Engineering Recertification | Complete | **Engineering Conditional GO** | `knowledge/release/ER-002/` |
 | **OA-001** | Operational Architecture | Complete | Permanent operating model | `knowledge/operations/oa001/` |
 | **CQ-001** | Commercial Readiness First | Complete (docs/governance) | CRI framework; baseline **43%** provisional; living board | `knowledge/product/cq001_commercial_readiness/` |
