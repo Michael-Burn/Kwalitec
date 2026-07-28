@@ -348,12 +348,21 @@ class DecisionJournalService:
         *,
         note: str = "",
     ) -> DecisionJournalEntry:
-        """Close the reflection loop for a journal entry."""
+        """Close the reflection loop for a journal entry.
+
+        When the entry is already ``outcome_recorded``, reflection fields are
+        appended without requiring a lifecycle rewrite of the outcome itself
+        when transition to ``reflected`` is lawful (ILE-005 feedback loop).
+        """
         assert_student_safe_text(note or "", field="reflection_note")
         entry = DecisionJournalService._owned(user_id, entry_id)
-        DecisionJournalService._transition(
-            entry, JournalLifecycleStatus.REFLECTED
-        )
+        target = JournalLifecycleStatus.REFLECTED
+        if can_transition(entry.lifecycle_status, target):
+            DecisionJournalService._transition(entry, target)
+        elif entry.lifecycle_status != JournalLifecycleStatus.REFLECTED.value:
+            raise DecisionJournalTransitionError(
+                f"Cannot record reflection from {entry.lifecycle_status}"
+            )
         entry.reflection_status = ReflectionStatus.REFLECTED.value
         entry.reflection_note = (note or "").strip()
         entry.reflected_at = datetime.utcnow()

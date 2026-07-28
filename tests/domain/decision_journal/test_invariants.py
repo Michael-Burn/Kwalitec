@@ -42,6 +42,13 @@ class TestLifecycleTransitions:
             JournalLifecycleStatus.REFLECTED,
         )
 
+    def test_outcome_recorded_may_reflect(self):
+        """ILE-005 — optional reflection may follow an educational outcome."""
+        assert can_transition(
+            JournalLifecycleStatus.OUTCOME_RECORDED,
+            JournalLifecycleStatus.REFLECTED,
+        )
+
 
 class TestStudentSafeText:
     def test_plain_language_ok(self):

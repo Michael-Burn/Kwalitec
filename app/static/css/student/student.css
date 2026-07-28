@@ -294,6 +294,58 @@ button.student-signout {
   color: var(--brand-blue);
 }
 
+/* ILE-004 — Daily Mission Intelligence explainability panel */
+.student-mission-intelligence {
+  margin: var(--student-space-5) 0 0;
+  max-width: 40rem;
+  padding: var(--student-space-4) 0 0;
+  border-top: 1px solid color-mix(in srgb, var(--student-muted) 28%, transparent);
+}
+
+.student-mission-intelligence-title {
+  margin: 0 0 var(--student-space-3);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.student-mission-intelligence p {
+  margin: 0 0 var(--student-space-3);
+  max-width: 38rem;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: var(--student-muted);
+}
+
+.student-mission-intelligence .student-label {
+  display: inline;
+  margin-right: 0.35rem;
+}
+
+.student-mission-evidence {
+  margin: 0 0 var(--student-space-3);
+  padding-left: 1.2rem;
+  max-width: 38rem;
+  color: var(--student-muted);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.student-mission-explanation {
+  margin: 0 0 var(--student-space-3);
+  max-width: 38rem;
+}
+
+.student-mission-explanation summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.student-mission-explanation p {
+  margin-top: var(--student-space-2);
+}
+
 .student-mission-timeline {
   margin-top: var(--student-space-6);
   max-width: 22rem;
@@ -1011,6 +1063,40 @@ button.student-signout {
 .decision-journal-details .student-provenance__summary:focus-visible {
   outline: 3px solid color-mix(in srgb, var(--brand-blue) 45%, transparent);
   outline-offset: 2px;
+}
+
+/* ILE-005 — optional educational reflection on journal entries */
+.decision-journal-reflection {
+  margin-top: var(--student-space-4);
+  padding-top: var(--student-space-3);
+  border-top: 1px solid var(--student-card-border);
+}
+
+.decision-journal-reflection__fieldset {
+  border: 0;
+  margin: 0 0 var(--student-space-3);
+  padding: 0;
+}
+
+.decision-journal-reflection__choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-right: var(--student-space-3);
+  margin-bottom: var(--student-space-2);
+  font-size: 0.95rem;
+}
+
+.decision-journal-reflection__note {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.95rem;
+}
+
+.decision-journal-reflection .student-input {
+  width: 100%;
+  max-width: 36rem;
+  margin-bottom: var(--student-space-3);
 }
 
 /* ILE-003 — Educational Timeline narrative */

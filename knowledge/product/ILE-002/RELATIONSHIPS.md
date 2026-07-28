@@ -40,3 +40,8 @@
 ## Downstream
 
 **ILE-003 — Educational Timeline** reads Decision Journal evidence to produce Observation → Pattern → Meaning → Reflection narratives. Journal remains the sole educational memory store.
+
+**ILE-004 — Daily Mission Intelligence** composes today's primary Mission brief from authorised recommendations and records present / accept / defer / complete moments into the Decision Journal (fail-open). It does not invent a second journal.
+
+**ILE-005 — Educational Feedback Loop** reviews recommendation outcomes using journal evidence, optional student reflection, and internal Sensei educational review records. It never rewrites journal history and never re-ranks tips.
+

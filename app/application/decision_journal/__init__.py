@@ -13,7 +13,7 @@ from app.application.decision_journal.dto import (
     DecisionJournalTimelineSnapshot,
     EvidenceUpdateSnapshot,
 )
-from app.domain.decision_journal import JournalLifecycleStatus
+from app.domain.decision_journal import JournalLifecycleStatus, ReflectionStatus
 from app.services.decision_journal_service import DecisionJournalService
 
 
@@ -101,5 +101,15 @@ class DecisionJournalApplicationService:
             is_archived=(
                 row.lifecycle_status
                 == JournalLifecycleStatus.ARCHIVED.value
+            ),
+            reflection_pending=(
+                payload.get("reflection_status")
+                == ReflectionStatus.PENDING.value
+            ),
+            can_reflect=(
+                payload.get("reflection_status")
+                != ReflectionStatus.REFLECTED.value
+                and row.lifecycle_status
+                != JournalLifecycleStatus.ARCHIVED.value
             ),
         )

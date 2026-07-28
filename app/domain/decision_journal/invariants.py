@@ -51,6 +51,9 @@ _ALLOWED: dict[JournalLifecycleStatus, frozenset[JournalLifecycleStatus]] = {
     ),
     JournalLifecycleStatus.OUTCOME_RECORDED: frozenset(
         {
+            # ILE-005: optional reflection may follow an educational outcome.
+            # Outcome summary remains; history is never rewritten.
+            JournalLifecycleStatus.REFLECTED,
             JournalLifecycleStatus.ARCHIVED,
         }
     ),

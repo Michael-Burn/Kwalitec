@@ -65,27 +65,32 @@ Indicative sequencing only. Product Board may reorder on evidence (KSI gaps, Sta
 
 ---
 
-### ILE-004 — Learning Timeline
+### ILE-004 — Daily Mission Intelligence
 
-**Intent:** A coherent history of study, evidence, decisions accepted/deferred, and syllabus position over the sitting.
+**Intent:** One primary daily educational mission — the centre of the student's daily interaction — composed from authorised educational evidence with full explainability.
 
-**Student outcome:** “I can see my journey,” not a pile of disconnected charts.
+**Student outcome:** “This is the most valuable thing I can do today. I know why. I trust it.”
 
-**Depends on:** Decision Journal lite; evidence model; analytics depth honesty.
+**Depends on:** ILE-010 / ILE-011; ILE-001C0 / ILE-001C; Decision Journal (ILE-002); Educational Timeline (ILE-003); P-001.2; P-001.3; authorised Runtime A recommendation / MES.
 
-**Feeds:** ILE-006, ILE-009.
+**Feeds:** Daily trust loop; journal/timeline continuity; later Study Intelligence.
+
+> **Note:** An earlier ILE-000 roadmap draft titled ILE-004 “Learning Timeline”; that outcome was delivered as **ILE-003 Educational Timeline**. ILE-004 now names Daily Mission Intelligence per product programme brief.
+
 
 ---
 
-### ILE-005 — Confidence & Uncertainty Experience
+### ILE-005 — Educational Feedback Loop
 
-**Intent:** Make provisional knowledge, confidence calibration, and uncertainty labels a usable part of daily study — never fake precision.
+**Intent:** Evaluate whether Study Sensei guidance was educationally useful over time — via recommendation review, optional student reflection, and internal Sensei educational reviews — without changing selection.
 
-**Student outcome:** Confidence tracks evidence; students know what is unknown.
+**Student outcome:** Optional reflection on guidance usefulness; trust that outcomes are remembered honestly.
 
-**Depends on:** Estimated knowledge visibility rules; readiness confidence UX; Educational Constitution mastery language.
+**Depends on:** Decision Journal (ILE-002); Educational Timeline (ILE-003); Daily Mission Intelligence (ILE-004); P-001.2; P-001.3; KSI.
 
-**Feeds:** Readiness trust; burnout-safe pacing.
+**Feeds:** Educational quality governance; later Study Intelligence / Analytics honesty.
+
+> **Note:** An earlier ILE-000 roadmap draft titled ILE-005 “Confidence & Uncertainty Experience”; that confidence UX theme remains covered by ILE-001 assessment contracts and journal qualitative bands. ILE-005 now names Educational Feedback Loop per product programme brief.
 
 ---
 
@@ -150,8 +155,8 @@ Wave A — Daily trust loop
   ILE-001 Adaptive Assessment (may parallel where evidence capture blocks the loop)
 
 Wave B — Continuity & honesty of state
-  ILE-005 Confidence & Uncertainty Experience
-  ILE-004 Learning Timeline
+  ILE-005 Educational Feedback Loop
+  ILE-004 Daily Mission Intelligence
 
 Wave C — Depth
   ILE-006 Study Intelligence
@@ -172,8 +177,8 @@ Wave D — Reach
 flowchart TD
   A[ILE-001 Adaptive Assessment] --> B[ILE-002 Adaptive Mission Experience]
   B --> C[ILE-003 Explain My Learning]
-  C --> D[ILE-005 Confidence and Uncertainty]
-  C --> E[ILE-004 Learning Timeline]
+  C --> D[ILE-005 Educational Feedback Loop]
+  C --> E[ILE-004 Daily Mission Intelligence]
   D --> F[ILE-006 Study Intelligence]
   E --> F
   F --> G[ILE-009 Analytics]

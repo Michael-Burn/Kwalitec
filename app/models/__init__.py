@@ -60,6 +60,7 @@ from app.models.decision_journal import (
     DecisionJournalEntry,
     DecisionJournalEvidenceEvent,
 )
+from app.models.educational_feedback import EducationalFeedbackReview
 from app.models.educational_reasoning import (
     DecisionRecord,
     EducationalReasoningRun,
@@ -218,6 +219,7 @@ __all__ = [
     "Decision",
     "DecisionJournalEntry",
     "DecisionJournalEvidenceEvent",
+    "EducationalFeedbackReview",
     "RecommendationCommitment",
     "TwinSnapshot",
     "V2AggregateDocument",

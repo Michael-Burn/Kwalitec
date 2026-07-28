@@ -242,6 +242,10 @@ def decision_journal():
     from app.application.decision_journal import (
         DecisionJournalApplicationService,
     )
+    from app.application.educational_feedback_loop import (
+        EducationalFeedbackLoopApplicationService,
+    )
+    from app.presentation.student.forms import EducationalReflectionForm
     from app.presentation.student.view_models import (
         decision_journal_page_vm,
     )
@@ -250,12 +254,88 @@ def decision_journal():
         int(current_user.id)
     )
     page = decision_journal_page_vm(timeline)
+    reflection_forms: dict[str, EducationalReflectionForm] = {}
+    reflection_intros: dict[str, str] = {}
+    for entry in timeline.entries:
+        if not entry.can_reflect:
+            continue
+        invite = EducationalFeedbackLoopApplicationService.reflection_invite(
+            int(current_user.id),
+            entry.decision_id,
+        )
+        if not invite.available:
+            continue
+        form = EducationalReflectionForm(prefix=entry.decision_id)
+        form.entry_id.data = entry.decision_id
+        reflection_forms[entry.decision_id] = form
+        reflection_intros[entry.decision_id] = invite.intro_line
     return render_template(
         "student/decision_journal.html",
         title=page.shell.page_title,
         page=page,
         journal=timeline,
+        reflection_forms=reflection_forms,
+        reflection_intros=reflection_intros,
     )
+
+
+@student_bp.post("/decision-journal/<entry_id>/reflect")
+@login_required
+def decision_journal_reflect(entry_id: str):
+    """ILE-005 — optional educational reflection on a journal recommendation."""
+    from app.application.educational_feedback_loop import (
+        EducationalFeedbackLoopApplicationService,
+    )
+    from app.presentation.student.forms import EducationalReflectionForm
+    from app.services.educational_feedback_loop_service import (
+        EducationalFeedbackLoopError,
+    )
+
+    form = EducationalReflectionForm(prefix=entry_id)
+    if not form.validate_on_submit():
+        flash(
+            "We couldn't save that reflection. Please try again from the journal.",
+            "warning",
+        )
+        return redirect(url_for("student.decision_journal"))
+
+    form_entry = (form.entry_id.data or entry_id or "").strip()
+    if form_entry != entry_id:
+        flash(
+            "That reflection did not match the journal entry.",
+            "warning",
+        )
+        return redirect(url_for("student.decision_journal"))
+
+    try:
+        EducationalFeedbackLoopApplicationService.capture_reflection(
+            int(current_user.id),
+            entry_id,
+            helped=form.helped.data or "",
+            timing=form.timing.data or "",
+            understood_why=form.understood_why.data or "",
+            same_decision=form.same_decision.data or "",
+            free_text=form.free_text.data or "",
+        )
+        flash(
+            "Reflection saved. Thank you — this helps educational calibration, "
+            "not engagement scoring.",
+            "success",
+        )
+    except EducationalFeedbackLoopError:
+        flash(
+            "That journal entry can't accept reflection right now.",
+            "warning",
+        )
+    except Exception:  # noqa: BLE001 — fail open to journal
+        logger.exception(
+            "decision_journal_reflect_failed entry_id=%s", entry_id
+        )
+        flash(
+            "We couldn't save that reflection just now. Please try again shortly.",
+            "warning",
+        )
+    return redirect(url_for("student.decision_journal"))
 
 
 @student_bp.get("/educational-timeline")
@@ -364,6 +444,53 @@ def complete_runtime_mission():
     topic = ""
     if snap is not None and snap.mission is not None:
         topic = snap.mission.topic_title or snap.mission.title
+    # ILE-004 — mirror completion into Decision Journal (fail-open).
+    try:
+        from app.services.daily_mission_intelligence_service import (
+            DailyMissionIntelligenceService,
+        )
+
+        tip = _current_tip_payload()
+        title = tip.get("title") or topic or "Today's Mission"
+        brief = DailyMissionIntelligenceService.compose_from_home_fields(
+            title=title,
+            summary=tip.get("summary") or "",
+            why_recommended=tip.get("why_recommended")
+            or tip.get("reason")
+            or "",
+            expected_benefit=tip.get("expected_benefit") or "",
+            supporting_evidence=(
+                (tip.get("supporting_evidence"),)
+                if tip.get("supporting_evidence")
+                else ()
+            ),
+            uncertainty=tip.get("uncertainty") or "",
+            mission_id=mission_id,
+        )
+        entry = DailyMissionIntelligenceService.record_completion(
+            current_user.id,
+            brief,
+            tip=tip if tip.get("title") else None,
+            outcome_summary=(
+                f"Mission completed: {topic}" if topic else "Mission completed"
+            ),
+        )
+        # ILE-005 — educational review of the completed recommendation (fail-open).
+        if entry is not None:
+            try:
+                from app.services.educational_feedback_loop_service import (
+                    EducationalFeedbackLoopService,
+                )
+
+                EducationalFeedbackLoopService.review_after_outcome(
+                    int(current_user.id),
+                    entry.entry_id,
+                )
+            except Exception:  # noqa: BLE001 — feedback loop must not block
+                logger.exception("feedback_loop_after_mission_failed")
+    except Exception:  # noqa: BLE001 — journal mirror must not block completion
+        logger.exception("daily_mission_complete_journal_mirror_failed")
+
     if topic:
         flash(
             f"Mission complete: {topic}. Your journey progress is updated.",

@@ -42,6 +42,9 @@ class DecisionJournalEntrySnapshot:
     what_to_learn: str
     evidence_updates: tuple[EvidenceUpdateSnapshot, ...] = ()
     is_archived: bool = False
+    # ILE-005 — optional reflection invite (never required).
+    reflection_pending: bool = False
+    can_reflect: bool = False
 
 
 @dataclass(frozen=True)

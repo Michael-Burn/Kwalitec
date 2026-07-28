@@ -112,6 +112,80 @@
                     {% endif %}
                     <p class="student-muted mb-0">{{ entry.reflection_label }}</p>
                 </details>
+
+                {% if reflection_forms is defined and entry.decision_id in reflection_forms %}
+                <section class="decision-journal-reflection"
+                         aria-labelledby="dj-reflect-{{ loop.index }}">
+                    <h4 id="dj-reflect-{{ loop.index }}" class="student-section-title">
+                        Optional reflection
+                    </h4>
+                    {% if reflection_intros is defined and reflection_intros.get(entry.decision_id) %}
+                    <p class="student-muted">{{ reflection_intros[entry.decision_id] }}</p>
+                    {% endif %}
+                    {% set reflect_form = reflection_forms[entry.decision_id] %}
+                    <form method="post"
+                          action="{{ url_for('student.decision_journal_reflect', entry_id=entry.decision_id) }}"
+                          class="decision-journal-reflection__form">
+                        {{ reflect_form.hidden_tag() }}
+                        {{ reflect_form.entry_id() }}
+                        <fieldset class="decision-journal-reflection__fieldset">
+                            <legend class="student-muted">{{ reflect_form.helped.label.text }}</legend>
+                            {% for value, label in reflect_form.helped.choices %}
+                            <label class="decision-journal-reflection__choice">
+                                <input type="radio"
+                                       name="{{ reflect_form.helped.name }}"
+                                       value="{{ value }}"
+                                       {% if reflect_form.helped.data == value %}checked{% endif %}>
+                                {{ label }}
+                            </label>
+                            {% endfor %}
+                        </fieldset>
+                        <fieldset class="decision-journal-reflection__fieldset">
+                            <legend class="student-muted">{{ reflect_form.timing.label.text }}</legend>
+                            {% for value, label in reflect_form.timing.choices %}
+                            <label class="decision-journal-reflection__choice">
+                                <input type="radio"
+                                       name="{{ reflect_form.timing.name }}"
+                                       value="{{ value }}"
+                                       {% if reflect_form.timing.data == value %}checked{% endif %}>
+                                {{ label }}
+                            </label>
+                            {% endfor %}
+                        </fieldset>
+                        <fieldset class="decision-journal-reflection__fieldset">
+                            <legend class="student-muted">{{ reflect_form.understood_why.label.text }}</legend>
+                            {% for value, label in reflect_form.understood_why.choices %}
+                            <label class="decision-journal-reflection__choice">
+                                <input type="radio"
+                                       name="{{ reflect_form.understood_why.name }}"
+                                       value="{{ value }}"
+                                       {% if reflect_form.understood_why.data == value %}checked{% endif %}>
+                                {{ label }}
+                            </label>
+                            {% endfor %}
+                        </fieldset>
+                        <fieldset class="decision-journal-reflection__fieldset">
+                            <legend class="student-muted">{{ reflect_form.same_decision.label.text }}</legend>
+                            {% for value, label in reflect_form.same_decision.choices %}
+                            <label class="decision-journal-reflection__choice">
+                                <input type="radio"
+                                       name="{{ reflect_form.same_decision.name }}"
+                                       value="{{ value }}"
+                                       {% if reflect_form.same_decision.data == value %}checked{% endif %}>
+                                {{ label }}
+                            </label>
+                            {% endfor %}
+                        </fieldset>
+                        <label class="decision-journal-reflection__note" for="{{ reflect_form.free_text.id }}">
+                            Anything else worth remembering? (optional)
+                        </label>
+                        {{ reflect_form.free_text(class_="student-input", maxlength="500") }}
+                        <div class="student-primary-action">
+                            {{ reflect_form.submit(class_="btn student-btn-secondary") }}
+                        </div>
+                    </form>
+                </section>
+                {% endif %}
             </article>
         </li>
         {% endfor %}

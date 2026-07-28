@@ -28,9 +28,11 @@ Do **not** duplicate:
 ## Data flow
 
 1. Student Experience / Mission surfaces write significant guidance via `DecisionJournalService` (ILE-002).  
-2. Educational Timeline loads owned journal rows for the current learner.  
-3. Domain narrative builders emit sections only when evidence supports moments.  
-4. Presentation renders `/student/educational-timeline` under History chrome.
+2. ILE-004 Daily Mission Intelligence also records present / complete (and related) mission moments into the same journal.  
+3. ILE-005 Educational Feedback Loop appends optional student reflection and internal Sensei reviews; Timeline still reads journal rows only (never Sensei governance tables).  
+4. Educational Timeline loads owned journal rows for the current learner.  
+5. Domain narrative builders emit sections only when evidence supports moments.  
+6. Presentation renders `/student/educational-timeline` under History chrome.
 
 ---
 

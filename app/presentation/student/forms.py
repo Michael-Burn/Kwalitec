@@ -74,6 +74,63 @@ class ReflectionAckForm(FlaskForm):
     submit = SubmitField("Got it")
 
 
+class EducationalReflectionForm(FlaskForm):
+    """ILE-005 — optional educational reflection on a journal recommendation.
+
+    Preference / educational judgement only. Never engagement scoring.
+    """
+
+    entry_id = HiddenField(validators=[Optional()])
+    helped = RadioField(
+        "Did this recommendation help?",
+        choices=[
+            ("yes", "Yes"),
+            ("mostly", "Mostly"),
+            ("no", "No"),
+            ("skipped", "Prefer not to say"),
+        ],
+        default="skipped",
+        validators=[Optional()],
+    )
+    timing = RadioField(
+        "Was the timing appropriate?",
+        choices=[
+            ("yes", "Yes"),
+            ("mostly", "Mostly"),
+            ("no", "No"),
+            ("skipped", "Prefer not to say"),
+        ],
+        default="skipped",
+        validators=[Optional()],
+    )
+    understood_why = RadioField(
+        "Did you understand why it was recommended?",
+        choices=[
+            ("yes", "Yes"),
+            ("mostly", "Mostly"),
+            ("no", "No"),
+            ("skipped", "Prefer not to say"),
+        ],
+        default="skipped",
+        validators=[Optional()],
+    )
+    same_decision = RadioField(
+        "Would you make the same decision again?",
+        choices=[
+            ("yes", "Yes"),
+            ("mostly", "Mostly"),
+            ("no", "No"),
+            ("skipped", "Prefer not to say"),
+        ],
+        default="skipped",
+        validators=[Optional()],
+    )
+    free_text = StringField(
+        validators=[Optional(), Length(max=500)],
+    )
+    submit = SubmitField("Save reflection")
+
+
 class ExplainMissionTutorForm(FlaskForm):
     """TUTOR-001 — ask the Tutor to explain today's mission (evidence-backed)."""
 
