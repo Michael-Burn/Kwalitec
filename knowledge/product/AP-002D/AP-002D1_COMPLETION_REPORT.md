@@ -4,7 +4,8 @@
 **Milestone:** AP-002D1 — Evidence Ingress Integration  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commit message:** `feat(ap-002d1): integrate assessment evidence ingress`
+**Commit message:** `feat(ap-002d1): integrate assessment evidence ingress`  
+**Commit:** `66a2dd1`
 
 ---
 
