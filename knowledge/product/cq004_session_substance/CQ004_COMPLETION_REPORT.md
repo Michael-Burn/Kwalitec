@@ -3,7 +3,7 @@
 **Programme:** CQ-004 — Commercial Quality Programme  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commits:** (see git log for `feat(cq-004)` / `docs(cq-004)`)  
+**Commits:** `1f070e9` (`feat(cq-004)`) · `3b0c407` (`docs(cq-004)`)  
 
 ---
 
