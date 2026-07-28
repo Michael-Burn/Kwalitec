@@ -1,0 +1,181 @@
+{
+  "programme": "RI-002",
+  "generated_at": "2026-07-28T00:00:00Z",
+  "inventory": {
+    "generated_at": "2026-07-28T00:00:00Z",
+    "counts_by_status": {
+      "active": 5,
+      "deprecated": 5,
+      "removable": 2,
+      "blocked": 0
+    },
+    "entries": [
+      {
+        "entry_id": "rec-service",
+        "component": "RecommendationService",
+        "path": "app/services/recommendation_service.py",
+        "category": "runtime_a_recommendation",
+        "status": "active",
+        "notes": "Temporary compatibility educational selection when RIS falls back.",
+        "blocks_retirement": true
+      },
+      {
+        "entry_id": "rec-bridge",
+        "component": "RecommendationAdapter (Runtime Bridge)",
+        "path": "app/infrastructure/adapters/educational_runtime_bridge/recommendation_adapter.py",
+        "category": "compatibility_adapter",
+        "status": "deprecated",
+        "notes": "RIS-first adapter; Runtime A path remains for unmigrated students.",
+        "blocks_retirement": false
+      },
+      {
+        "entry_id": "planning-selection",
+        "component": "PlanningService educational slot selection",
+        "path": "app/services/planning_service.py",
+        "category": "runtime_a_planning",
+        "status": "active",
+        "notes": "Educational slot selection Temporary compatibility; mission ORM persistence may remain after recommendation retirement.",
+        "blocks_retirement": true
+      },
+      {
+        "entry_id": "stage-a-decision",
+        "component": "Stage A DecisionEngine / EducationalOrchestrator",
+        "path": "app/application/orchestration",
+        "category": "legacy_recommendation",
+        "status": "deprecated",
+        "notes": "Flag-gated; prefer RIS. Selection Replace over time.",
+        "blocks_retirement": false
+      },
+      {
+        "entry_id": "mission-optimizer",
+        "component": "MissionOptimizer",
+        "path": "app/services/mission_optimizer.py",
+        "category": "legacy_recommendation",
+        "status": "removable",
+        "notes": "Quarantined; no production callers expected.",
+        "blocks_retirement": false
+      },
+      {
+        "entry_id": "runtime-c",
+        "component": "Runtime C / PX-001 educational fork",
+        "path": "app/application/educational_experience",
+        "category": "compatibility_consumer",
+        "status": "deprecated",
+        "notes": "Temporary compatibility consumer; defers when Preferred Authority available. No new educational logic.",
+        "blocks_retirement": false
+      },
+      {
+        "entry_id": "sdt-educational-reasoning",
+        "component": "SDT-002 educational_reasoning vocabulary",
+        "path": "app/domain/educational_reasoning",
+        "category": "legacy_recommendation",
+        "status": "deprecated",
+        "notes": "Distinct from EI-007; replace over time.",
+        "blocks_retirement": false
+      },
+      {
+        "entry_id": "ap002-decision-generator",
+        "component": "AP-002 DecisionGenerator",
+        "path": "app/application/reasoning/decisions",
+        "category": "legacy_recommendation",
+        "status": "active",
+        "notes": "Evidence\u2192twin explanation path; not Preferred Authority for recommendations. Consolidation deferred.",
+        "blocks_retirement": true
+      },
+      {
+        "entry_id": "eos-src-engines",
+        "component": "EOS src/ recommendation engines",
+        "path": "src/domain/education/recommendation_engine",
+        "category": "out_of_scope",
+        "status": "removable",
+        "notes": "Out of student Runtime A path; do not wire into RIS.",
+        "blocks_retirement": false
+      },
+      {
+        "entry_id": "ris-adapters",
+        "component": "RI-001 surface adapters",
+        "path": "app/application/runtime_integration/adapters",
+        "category": "compatibility_adapter",
+        "status": "active",
+        "notes": "Presentation mapping only for Preferred Authority. Not Runtime A. Remain after Runtime A retirement.",
+        "blocks_retirement": false
+      },
+      {
+        "entry_id": "enable-flag",
+        "component": "ENABLE_RUNTIME_INTEGRATION flag",
+        "path": "app/application/config/v2_flags.py",
+        "category": "compatibility_control",
+        "status": "active",
+        "notes": "Forces Runtime A when off. Removable only after hard Preferred Authority cutover (RI-005).",
+        "blocks_retirement": true
+      },
+      {
+        "entry_id": "dashboard-legacy-rec",
+        "component": "Dashboard RecommendationService direct calls",
+        "path": "app/dashboard/routes.py",
+        "category": "legacy_recommendation",
+        "status": "deprecated",
+        "notes": "RIS preferred; Runtime A Temporary compatibility retained.",
+        "blocks_retirement": false
+      }
+    ]
+  },
+  "retirement_gates": [
+    {
+      "gate_id": "sci_coverage",
+      "title": "SCI coverage",
+      "description": "At least 95% of students with an active study plan have an active Student Curriculum Instance.",
+      "operator": ">=",
+      "threshold": 0.95,
+      "unit": "ratio"
+    },
+    {
+      "gate_id": "published_curriculum_coverage",
+      "title": "Published curriculum coverage",
+      "description": "Every subject code with a CKG edition has \u22651 published edition (100% published curriculum coverage).",
+      "operator": ">=",
+      "threshold": 1.0,
+      "unit": "ratio"
+    },
+    {
+      "gate_id": "educational_decision_coverage",
+      "title": "Educational Decision coverage",
+      "description": "At least 90% of active SCIs have \u22651 persisted EI-007 Educational Decision.",
+      "operator": ">=",
+      "threshold": 0.9,
+      "unit": "ratio"
+    },
+    {
+      "gate_id": "fallback_rate",
+      "title": "Runtime A fallback rate",
+      "description": "Process-scoped RIS fallback rate is at most 5% of educational surface requests.",
+      "operator": "<=",
+      "threshold": 0.05,
+      "unit": "ratio"
+    },
+    {
+      "gate_id": "experience_model_rate",
+      "title": "Experience Model generation rate",
+      "description": "At least 95% of RIS requests produce EX-001 Experience Models (Educational Intelligence path).",
+      "operator": ">=",
+      "threshold": 0.95,
+      "unit": "ratio"
+    },
+    {
+      "gate_id": "integration_tests",
+      "title": "Integration test pass requirement",
+      "description": "Preferred-authority, fallback telemetry, and no-bypass verification suites must pass (enforced by CI / local pytest).",
+      "operator": "==",
+      "threshold": 1.0,
+      "unit": "boolean"
+    },
+    {
+      "gate_id": "no_active_runtime_a_authority",
+      "title": "No active Runtime A recommendation authority",
+      "description": "Inventory contains no entries that both block retirement and remain status=active under runtime_a_recommendation / runtime_a_planning / compatibility_control categories.",
+      "operator": "==",
+      "threshold": 0.0,
+      "unit": "count"
+    }
+  ]
+}

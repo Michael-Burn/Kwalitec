@@ -63,6 +63,7 @@ Detail always lives in the cited authoritative artefacts. If this Dashboard conf
 | **EI-007** | Educational Reasoning Engine | **Complete** | Deterministic explainable educational decisions from curriculum + SCI + beliefs; no missions/UI | `knowledge/educational_intelligence/ei007_educational_reasoning_engine/` |
 | **EX-001** | Educational Experience Engine | **Complete** | Decision → consistent explainable experience models for Mission/Coach/Dashboard/Revision/Session; no reasoning | `knowledge/educational_experience/ex001_educational_experience_engine/` |
 | **RI-001** | Educational Runtime Integration | **Complete** | Preferred Authority: EI-007→EX-001 when SCI+decisions; instrumented Runtime A Temporary compatibility | `knowledge/runtime_integration/ri001_educational_runtime_integration/` |
+| **RI-002** | Educational Intelligence Adoption & Readiness | **Complete** | Adoption metrics, Runtime Health dashboard, inventory, retirement gates; Runtime A not removed | `knowledge/runtime_integration/ri002_educational_intelligence_adoption/` |
 | **ER-002** | Engineering Recertification | Complete | **Engineering Conditional GO** | `knowledge/release/ER-002/` |
 | **OA-001** | Operational Architecture | Complete | Permanent operating model | `knowledge/operations/oa001/` |
 | **CQ-001** | Commercial Readiness First | Complete (docs/governance) | CRI framework; baseline **43%** provisional; living board | `knowledge/product/cq001_commercial_readiness/` |

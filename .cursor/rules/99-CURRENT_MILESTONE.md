@@ -1,37 +1,37 @@
 # Current Milestone
 
-**RI-001** — Educational Runtime Integration (**Active delivery**)
+**RI-002** — Educational Intelligence Adoption & Readiness (**Complete**)
 
 ## Objective
 
-Integrate the Educational Intelligence Core into the live runtime with Preferred Authority cutover: EI-007 → EX-001 Experience Models whenever an active SCI has Educational Decisions; instrumented Runtime A Temporary compatibility otherwise.
+Measure, monitor, and assess readiness for retiring Runtime A as educational recommendation authority — without changing student-facing behaviour or Educational Intelligence cores.
 
 ## Allowed modifications
 
-- `app/application/runtime_integration/`
-- Wiring into Recommendation Bridge, Dashboard, Mission/Session, Tutor, Student Home Runtime C fork
-- `app/application/config/v2_flags.py` (`ENABLE_RUNTIME_INTEGRATION`)
-- `tests/application/runtime_integration/`
-- `knowledge/runtime_integration/ri001_educational_runtime_integration/`
-- Programme dashboard / milestone pointers for RI-001
+- `app/application/runtime_integration/` (metrics, inventory, gates, readiness, telemetry aggregation)
+- Founder Console Runtime Health route / template / nav
+- `tests/application/runtime_integration/` and Console nav/route tests
+- `knowledge/runtime_integration/ri002_educational_intelligence_adoption/`
+- Programme dashboard / milestone pointers for RI-002
 
 ## Forbidden
 
-- Modifying EI-007 reasoning, Twin beliefs, Learning Evidence, or CKG
-- Introducing new educational reasoning or bypassing EX-001
-- Adding educational logic to controllers or Runtime C
-- New educational features on Runtime A
+- New educational reasoning or Experience Model logic
+- Modifying EI-007 decisions, Twin, Evidence, or CKG
+- Removing Runtime A / RecommendationService / PlanningService
+- Student-facing behaviour changes
 
 ## Parallel note
 
-FV-001 Founder Validation remains the commercial dogfood track. RI-001 does not reopen CQ engineering or Founder Validated CRI claims.
+FV-001 Founder Validation remains the commercial dogfood track. RI-002 does not reopen CQ engineering or Founder Validated CRI claims.
 
 ## Authoritative artefacts
 
-- Architecture: `knowledge/runtime_integration/ri001_educational_runtime_integration/ARCHITECTURE.md`
-- Audit: `knowledge/runtime_integration/ri001_educational_runtime_integration/RUNTIME_AUDIT.md`
-- Completion: `knowledge/runtime_integration/ri001_educational_runtime_integration/RI001_COMPLETION_REPORT.md`
-- Upstream: EI-007 · EX-001
+- Architecture: `knowledge/runtime_integration/ri002_educational_intelligence_adoption/ARCHITECTURE.md`
+- Retirement gates: `knowledge/runtime_integration/ri002_educational_intelligence_adoption/RETIREMENT_GATES.md`
+- Inventory: `knowledge/runtime_integration/ri002_educational_intelligence_adoption/RUNTIME_INVENTORY.md`
+- Completion: `knowledge/runtime_integration/ri002_educational_intelligence_adoption/RI002_COMPLETION_REPORT.md`
+- Upstream: RI-001
 
 ---
 
