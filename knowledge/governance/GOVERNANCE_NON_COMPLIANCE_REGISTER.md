@@ -27,6 +27,8 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 
 **RR-001.3D (2026-07-28):** Closed NCR-002, NCR-003, NCR-005, NCR-008, NCR-009, NCR-012, NCR-013, NCR-014 (in-scope residual). Evidence: `RR001_3D_COMPLETION_REPORT.md`, `test_rr001_3d_educational_consistency.py`.
 
+**RR-001.3E (2026-07-28):** Governance closure verified — all NCR-001–022 dispositioned (Closed in-scope). Ops Contained + EGC-R11 preventive remain Accepted residuals with owners. Authoritative closure: `RR001_3E_GOVERNANCE_CLOSURE_REPORT.md` · residuals: `RR001_3E_RESIDUAL_RISK_REGISTER.md`.
+
 ---
 
 ## Summary
@@ -252,7 +254,7 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | **Capability** | Narrator transitions |
 | **Observed** | KW orientation → unnamed Home → SS memory without signal |
 | **Clause** | DG-001.2-D04; CI-05; CP-04; CP-10 |
-| **Compliance** | **Closed** (T04 handoff + Home/Session narrator — RR-001.3A); Help lag residual NCR-011; density Watch NCR-002/EGC-R08 |
+| **Compliance** | **Closed** (T04 handoff + Home/Session narrator — RR-001.3A); Help lag closed NCR-011 RR-001.3B; density closed NCR-002 RR-001.3D |
 | **Risk** | High |
 | **Student impact** | No singular mentor relationship |
 | **Required remediation** | Explicit handoff + Home naming policy |
@@ -270,7 +272,7 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | **Capability** | Authority ownership |
 | **Observed** | Educational judgement speech on KW surfaces; felt multi-authority via tip/Session; History soft alternate |
 | **Clause** | DG-001.2-D01–D10; Constitution §11.1–11.3 |
-| **Compliance** | **Closed** (memory / History AC-03 + tip empties — RR-001.3C); Home density Watch remains NCR-002 |
+| **Compliance** | **Closed** (memory / History AC-03 + tip empties — RR-001.3C); Home density closed NCR-002 RR-001.3D |
 | **Risk** | High |
 | **Student impact** | Unclear who teaches / remembers / reports facts |
 | **Required remediation** | Implement authority matrix in copy |
@@ -335,9 +337,17 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 
 ---
 
-### Condensed residuals (post RR-001.3D)
+### Condensed residuals (post RR-001.3E)
 
-NCR-003–005, 008–009, 012–013 closed RR-001.3D (see `RR001_3D_COMPLETION_REPORT.md`). Preventive residual: **EGC-R11** notifications-when-built. Ops Contained: QC / UJ / Runtime C remain OFF. Escalate any reopened copy only if a future programme claims ED closure without keeping the cited strings.
+All educational-copy NCR-001–022 **Closed** (in-scope). No open assigned educational NCR remains.
+
+**Accepted / Contained residuals** (not open NCRs) — owners and Board justification in `knowledge/release/RR-001/RR001_3E_RESIDUAL_RISK_REGISTER.md`:
+
+- Preventive: **EGC-R11** notifications-when-built  
+- Ops Contained: QC / UJ / Runtime C remain OFF  
+- Operational Criticals: RR-C04 sole-runtime · RR-C05 registration posture  
+
+Escalate any reopened copy only if a future programme claims ED closure without keeping the cited strings. Independent **RP-002** must re-score live surfaces before unqualified “educationally governed Alpha” claims.
 
 ---
 

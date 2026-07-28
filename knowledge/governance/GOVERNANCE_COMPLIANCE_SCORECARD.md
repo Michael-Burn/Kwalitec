@@ -3,9 +3,9 @@
 **Programme:** EGC-001 — Educational Governance Compliance  
 **Version:** 1.0  
 **Status:** Active — Board compliance baseline  
-**Score date:** 2026-07-28 (updated RR-001.3D)  
+**Score date:** 2026-07-28 (updated RR-001.3E)  
 **Authority:** `EDUCATIONAL_GOVERNANCE_COMPLIANCE_AUDIT.md`  
-**Constraint:** Scoring only at EGC-001; RR-001.3A–3D close identity/orientation/memory/consistency NCRs — product-wide unqualified claim still forbidden while Contained flag/ops and EGC-R11 preventive remain.
+**Constraint:** EGC-001 baseline scores remain historical. RR-001.3A–3D closed assigned educational-copy NCRs; RR-001.3E closes governance. Product-wide unqualified claim still forbidden until Contained flag/ops + EGC-R11 addressed and **RP-002** re-scores independently.
 
 ---
 
@@ -13,14 +13,16 @@
 
 | Field | Value |
 |-------|-------|
-| **Overall classification** | **NON-COMPLIANT** *(product-wide — Contained ops / preventive only)* |
-| **Meaning** | Assigned educational-copy NCR set closed through RR-001.3D. Product-wide unqualified “educationally governed Alpha” claim remains forbidden while Contained feature-flag enablement and EGC-R11 notifications-when-built remain. |
+| **Overall classification** | **REMEDIATED — PENDING RP-002** *(not unqualified Fully Compliant)* |
+| **Meaning** | Assigned educational-copy NCR-001–022 Closed through RR-001.3A–3D. Governance closed RR-001.3E. Unqualified “educationally governed Alpha” remains forbidden while Contained feature-flag enablement and EGC-R11 remain, and until independent RP-002 re-certifies. |
+| **EGC-001 baseline (historical)** | **NON-COMPLIANT** — preserved for before/after |
 | **Programme EGC-001** | **Complete** — baseline measurable; remediation traceable |
 | **RR-001.3A (EGC-R01/R02)** | **Pass (in-scope)** — see `RR001_3A_COMPLETION_REPORT.md` |
 | **RR-001.3B (EGC-R03–R05)** | **Pass (in-scope)** — see `RR001_3B_COMPLETION_REPORT.md` |
 | **RR-001.3C (EGC-R06 / R07-memory / R12-memory)** | **Pass (in-scope)** — see `RR001_3C_COMPLETION_REPORT.md` |
 | **RR-001.3D (EGC-R08–R12 remaining)** | **Pass (in-scope)** — see `RR001_3D_COMPLETION_REPORT.md` |
-| **Unqualified “educationally governed Alpha” claim** | **Forbidden** until Contained ops + notification programme addressed |
+| **RR-001.3E (governance closure)** | **Pass** — see `RR001_3E_COMPLETION_REPORT.md`; RP-002 intake **GO** |
+| **Unqualified “educationally governed Alpha” claim** | **Forbidden** until Contained ops + notification programme addressed **and** RP-002 Pass |
 
 ---
 
@@ -28,7 +30,7 @@
 
 ### 2.1 By capability (primary status)
 
-Primary status = overall row for that capability in the Audit.
+**EGC-001 baseline** (historical audit snapshot — do not use as post-remediation claim):
 
 | Classification | Count | Share |
 |----------------|------:|------:|
@@ -38,9 +40,9 @@ Primary status = overall row for that capability in the Audit.
 | Not Applicable (NA) | 1 | 4% |
 | **Total capabilities scored** | **28** | 100% |
 
-Capabilities counted: Authentication, Onboarding, Home, Mission Intelligence, Mission Commitment, Study Session, Decision Journal, Educational Timeline, Feedback Loop, Revision, History, Calibration, Help, Notifications, Settings, Success states, Empty states, Error states, Feature flag messaging, Educational copy, Educational explanations, Reflection flows, Narrator transitions, Authority ownership, Educational terminology, Educational memory, Product Check-in — and Notifications treated as NA/watch (counted NA).
+**Post RR-001.3E Board reading** (see `RR001_3E_FINAL_TRACEABILITY_REPORT.md` for row-level disposition): assigned educational-copy defects Closed on sole-runtime path; Notifications remain NA / Accepted residual (EGC-R11); Feature-flag enablement remains PC-ops Contained. RP-002 must re-measure — these are remediation dispositions, not a substitute certification percentage.
 
-*Note:* Notifications = NA; Feature flag = PC (contained). Educational memory = PC.
+Capabilities counted: Authentication, Onboarding, Home, Mission Intelligence, Mission Commitment, Study Session, Decision Journal, Educational Timeline, Feedback Loop, Revision, History, Calibration, Help, Notifications, Settings, Success states, Empty states, Error states, Feature flag messaging, Educational copy, Educational explanations, Reflection flows, Narrator transitions, Authority ownership, Educational terminology, Educational memory, Product Check-in — and Notifications treated as NA/watch (counted NA).
 
 ### 2.2 Non-Compliance Register
 
@@ -85,21 +87,21 @@ Capabilities counted: Authentication, Onboarding, Home, Mission Intelligence, Mi
 
 | Package | Instrument | Product posture | Headline |
 |---------|------------|-----------------|----------|
-| **DG-001.1** Lexicon | Canonical lexicon + DEP + map + style | **Partial application** | Law complete; RR-001.3A–3C closed tip storm on identity + memory empties |
-| **DG-001.2** Authority | Authority model + transitions + matrix + AC register | **Stronger partial** | T04 + Help + History bridge (D06) live; Home density Watch |
-| **DG-001.3** Reflection | Architecture + lifecycle + relationships + RG rules | **Partial / student map live** | Map + Check-in rename closed RR-001.3B; hosts remain FC |
-| **DG-001.4** Constitution | CP/CI, hierarchy, amendment, checklist | **Process Compliant for EGC-001** | Product residuals on CP-03/04/10 elsewhere |
+| **DG-001.1** Lexicon | Canonical lexicon + DEP + map + style | **Applied in-scope** | Law complete; tip/Session/Mission identity + empties Closed RR-001.3A–3D; OQ-01 PX residual Accepted |
+| **DG-001.2** Authority | Authority model + transitions + matrix + AC register | **Applied in-scope** | T04 + Help + History + Home density + Revision primacy Closed; D08 notifications Accepted residual |
+| **DG-001.3** Reflection | Architecture + lifecycle + relationships + RG rules | **Applied in-scope** | Map + Check-in rename Closed; hosts FC; D08 parallel stacks Contained |
+| **DG-001.4** Constitution | CP/CI, hierarchy, amendment, checklist | **Process Compliant** | EGC-001 + RR-001.3E closure; RP-002 must re-score product CPs |
 
 ### Package score bars (qualitative)
 
 ```
-DG-001.1 application   ████████░░  ~75%  (identity + memory empties Closed; OQ-01 PX residual)
-DG-001.2 application   ████████░░  ~75%  (handoff + Help + History bridge; Home density Watch)
-DG-001.3 application   ████████░░  ~75%  (map + Check-in Closed RR-001.3B)
-DG-001.4 process (EGC) ██████████  100%  (audit precedes remediation)
+DG-001.1 application   █████████░  ~90%  (in-scope Closed; OQ-01 PX residual)
+DG-001.2 application   █████████░  ~90%  (handoff + Help + History + density + primacy; D08 residual)
+DG-001.3 application   █████████░  ~90%  (map + Check-in Closed; D08 stacks Contained)
+DG-001.4 process (EGC) ██████████  100%  (audit → remediate → close)
 ```
 
-Percentages are **illustrative Board scorecard signals**, not KSI substitutes.
+Percentages are **illustrative Board scorecard signals**, not KSI substitutes and not RP-002 Pass.
 
 ---
 
@@ -135,16 +137,19 @@ Do not break these while remediating:
 9. ~~**Home naming density Watch** (NCR-002)~~ — **Closed RR-001.3D** (OQ-02 policy)  
 10. ~~**Broader empty-state gated nouns** (NCR-013)~~ — **Closed RR-001.3D**  
 
-*RR-001.3D updates:* Home naming density, MI educational chrome, Session readiness honesty, Revision Mission primacy, Feedback Loop student term, success/empty honesty.
+*RR-001.3D updates:* Home naming density, MI educational chrome, Session readiness honesty, Revision Mission primacy, Feedback Loop student term, success/empty honesty.  
+*RR-001.3E:* All assigned educational NCRs dispositioned; Contained ops + EGC-R11 remain Accepted residuals — see Residual Risk Register. Heat map below is **EGC-001 baseline illustration**; current disposition rows live in `RR001_3E_FINAL_TRACEABILITY_REPORT.md`.
 
 ---
 
 ## 6. Dimension heat map (capabilities × dimensions)
 
 Legend: F = FC · P = PC · N = NC · — = NA  
+**Frozen baseline illustration (EGC-001 / mid-remediation snapshots).** Do not cite as post-RR-001.3E certification. Authoritative disposition: `RR001_3E_FINAL_TRACEABILITY_REPORT.md`.  
 *RR-001.3A updates:* Onboarding, Narrator transitions, Explanations, Terminology, Educational copy (identity path), Feature flags (Runtime C rename).  
 *RR-001.3B updates:* Help orientation/glossary, Reflection flows (student map), Product Check-in rename.  
-*RR-001.3C updates:* Decision Journal empty honesty, Educational Timeline tip retirement, History epistemology bridge, Educational memory first-introduction, Authority ownership AC-03.
+*RR-001.3C updates:* Decision Journal empty honesty, Educational Timeline tip retirement, History epistemology bridge, Educational memory first-introduction, Authority ownership AC-03.  
+*RR-001.3D updates:* Home naming, MI chrome, Session readiness, Revision primacy, Feedback Loop term, success/empty honesty.
 
 | Capability | Lex | Auth | Refl | Const | Expl | Honest | Judge | Trust | Narr | Evid |
 |------------|:---:|:----:|:----:|:-----:|:----:|:------:|:-----:|:-----:|:----:|:----:|
@@ -183,8 +188,9 @@ Legend: F = FC · P = PC · N = NC · — = NA
 ```
 Wave 0 (governance already done)     DG-001.1–4  ✓
 Wave 1 (P0 trust + vocabulary)       EGC-R01 ✓ → R02 ✓ → R03 ✓ → R04 ✓ → R05 ✓
-Wave 2 (epistemology + honesty)      EGC-R06 ✓ → R12 (memory) ✓ → R08 → R10
-Wave 3 (containment / thin surfaces) EGC-R07 (Runtime C rename ✓; Journal QC empty ✓) → R09 → R11
+Wave 2 (epistemology + honesty)      EGC-R06 ✓ → R12 (memory) ✓ → R08 ✓ → R10 ✓
+Wave 3 (containment / thin surfaces) EGC-R07 (rename ✓; QC empties ✓) → R09 ✓ → R11 Accepted residual
+Wave Close                           RR-001.3E governance closure ✓ → RP-002 intake
 ```
 
 No wave may invent a fourth narrator or second durable Sensei memory.
@@ -193,13 +199,16 @@ No wave may invent a fourth narrator or second durable Sensei memory.
 
 ## 8. Scorecard decision
 
-| Claim | Allowed after EGC-001? |
-|-------|------------------------|
-| “DG-001 law exists” | Yes |
-| “Product compliance baseline certified” | Yes — **NON-COMPLIANT** |
-| “Alpha complies with educational governance” | **No** |
-| “ED-01–ED-04 closed” | **No** |
-| “Remediation can start with clause traceability” | **Yes** |
+| Claim | Allowed after EGC-001 baseline? | Allowed after RR-001.3E? |
+|-------|--------------------------------|--------------------------|
+| “DG-001 law exists” | Yes | Yes |
+| “Product compliance baseline certified” | Yes — **NON-COMPLIANT** | Yes — baseline preserved |
+| “Assigned educational-copy NCRs Closed” | No | **Yes** — with WP evidence |
+| “RR-001 remediation governance closed” | No | **Yes** |
+| “Ready for independent RP-002 intake” | No | **Yes** |
+| “Alpha complies with educational governance” (unqualified) | **No** | **No** — pending RP-002 + Contained ops |
+| “ED-01–ED-04 closed without evidence” | **No** | **No** — cite 3A–3D evidence only |
+| “RP-002 Pass” / “educationally governed Alpha” | **No** | **No** until RP-002 |
 
 ---
 

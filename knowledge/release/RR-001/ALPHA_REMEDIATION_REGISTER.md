@@ -1,8 +1,8 @@
 # RR-001 — Alpha Remediation Register
 
 **Programme:** RR-001 — Alpha Readiness Remediation Register  
-**Work Packages:** RR-001.1 — Critical Findings Resolution · RR-001.2 — Premium Experience Remediation · **RR-001.3A — Educational Identity & Narrator Consistency** · **RR-001.3B — Educational Orientation & Reflection Coherence** · **RR-001.3C — Educational Memory & History Coherence** · **RR-001.3D — Educational Consistency & Experience Refinement**  
-**Date:** 2026-07-28 (updated RR-001.3D)  
+**Work Packages:** RR-001.1 — Critical Findings Resolution · RR-001.2 — Premium Experience Remediation · **RR-001.3A — Educational Identity & Narrator Consistency** · **RR-001.3B — Educational Orientation & Reflection Coherence** · **RR-001.3C — Educational Memory & History Coherence** · **RR-001.3D — Educational Consistency & Experience Refinement** · **RR-001.3E — Governance Closure & Release Readiness**  
+**Date:** 2026-07-28 (updated RR-001.3E)  
 **Sources:** RP-001.1 Product Inventory · RP-001.2 End-to-End Journey · RP-001.3 Study Sensei Identity & Voice · **RP-001.4 Premium Experience Certification**  
 **Status legend:** `Resolved` · `Open` · `Deferred` · `Contained` (process / flag / ops mitigation) · `Merged` (see canonical ID)
 
@@ -166,6 +166,9 @@ Capability readiness calls from RP-001.1 are unchanged by RR-001.1 except where 
 ## Document control
 
 - Implementation packages: RR-001.1 · RR-001.2 · **RR-001.3A** · **RR-001.3B** · **RR-001.3C** · **RR-001.3D**  
+- Governance closure: **RR-001.3E** — `RR001_3E_GOVERNANCE_CLOSURE_REPORT.md` · `RR001_3E_FINAL_TRACEABILITY_REPORT.md` · `RR001_3E_RESIDUAL_RISK_REGISTER.md` · `RR001_3E_RELEASE_READINESS_REPORT.md` · `RR001_3E_COMPLETION_REPORT.md`  
 - Companion matrix: `CRITICAL_FINDINGS_MATRIX.md`  
-- Completions: `RR001_1_COMPLETION_REPORT.md` · `RR001_2_COMPLETION_REPORT.md` · `RR001_3A_COMPLETION_REPORT.md` · `RR001_3B_COMPLETION_REPORT.md` · `RR001_3C_COMPLETION_REPORT.md` · `RR001_3D_COMPLETION_REPORT.md`  
-- Do not treat this register as Version 1 production-ready declaration
+- Completions: `RR001_1_COMPLETION_REPORT.md` · `RR001_2_COMPLETION_REPORT.md` · `RR001_3A_COMPLETION_REPORT.md` · `RR001_3B_COMPLETION_REPORT.md` · `RR001_3C_COMPLETION_REPORT.md` · `RR001_3D_COMPLETION_REPORT.md` · `RR001_3E_COMPLETION_REPORT.md`  
+- Educational-copy NCR-001–022: **Closed** (in-scope); operational residuals owned in Residual Risk Register  
+- Do not treat this register as Version 1 production-ready declaration  
+- RP-002 intake: **GO** per `RR001_3E_RELEASE_READINESS_REPORT.md` — not RP-002 Pass

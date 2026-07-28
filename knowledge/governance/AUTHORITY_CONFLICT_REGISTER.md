@@ -42,11 +42,11 @@ Status: **Resolved (governance)** / **Open (implementation)** / **Contained**
 | AC-06 | Mission / Session / tip noun storm as false multi-authority | Duplicated concept → felt authority | High | Likely | Lexicon DG-001.1; authority D09 | **Closed** tip empties RR-001.3C; density RR-001.3D |
 | AC-07 | Reflection family without map | Fragmented judgement practice | High | Likely | DG-001.3 map | **Closed** RR-001.3B |
 | AC-08 | Revision vs Mission competing focus | Overlap | Medium | Possible | D09 + Mission primacy | **Closed** RR-001.3D (ED-13) |
-| AC-09 | MI + MES hero duplication | Authority noise | Medium | Possible | D05 | Mitigated disclosure (RR-001.2); watch |
+| AC-09 | MI + MES hero duplication | Authority noise | Medium | Possible | D05 | **Accepted residual (Watch)** — mitigated disclosure RR-001.2 |
 | AC-10 | Feature-flag / gated copy in mentor voice | Inappropriate ownership | Medium | Possible | **Resolved** D07 | Open if any Sensei-flag copy remains |
 | AC-11 | Error / outage as Sensei theatre | Inappropriate ownership | Medium | Possible | **Resolved** D03/D07 | Audit residual |
 | AC-12 | Settings / Profile learning recommendations | Inappropriate ownership | Medium | Unlikely | **Resolved** D02 | Prevent in future features |
-| AC-13 | Notifications marketing as Sensei | Overlap / inappropriate | Medium | Possible | **Resolved** D08 | Open until notification programme |
+| AC-13 | Notifications marketing as Sensei | Overlap / inappropriate | Medium | Possible | **Resolved** D08 | **Accepted residual** — EGC-R11 until notification programme |
 | AC-14 | Study Plan pacing advice unsigned | Gap / overlap | Low | Possible | Matrix: KW structure; SS if advising | Clarify in copy programmes |
 | AC-15 | Success states mixing account praise with educational judgement | Overlap | Low | Possible | Matrix success rows | **Closed** RR-001.3D |
 | AC-16 | Journal empty mentions gated QC while OFF | Flag honesty / KW duty | Low | Possible | D07 | **Closed** RR-001.3C |
@@ -79,7 +79,7 @@ Status: **Resolved (governance)** / **Open (implementation)** / **Contained**
 | **RP link** | ED-01 / IR-01 |
 | **Board resolution** | D01 + D02 + D04 — KW orients; SS owns educational speech; mandatory T04 |
 | **Implementation residual** | Insert handoff sentence; remove KW-as-mentor on Sensei surfaces (DEP-16) |
-| **Status** | Governance resolved; copy open |
+| **Status** | **Closed** — onboarding/welcome T04 RR-001.3A; Help AC-04 RR-001.3B |
 
 ### AC-02 — System-as-mentor
 
@@ -91,7 +91,7 @@ Status: **Resolved (governance)** / **Open (implementation)** / **Contained**
 | **RP link** | ED-11 / DEP-04 |
 | **Board resolution** | D01 + D03 — System never recommends; Sensei explains authorised decisions |
 | **Implementation residual** | Rename before any Runtime C enable |
-| **Status** | Contained while OFF; governance forbids enable-as-is |
+| **Status** | **Closed** (rename RR-001.3A); enablement **Contained OFF** — Accepted residual |
 
 ### AC-03 — History vs Timeline epistemology
 
@@ -127,7 +127,7 @@ Status: **Resolved (governance)** / **Open (implementation)** / **Contained**
 | **RP link** | ED-01 partial; Voice Guide Alpha finding |
 | **Board resolution** | D01 owns speech; naming density remains DG-001.1 OQ-02 |
 | **Implementation residual** | Prefer Sensei named once nearby Home educational hero |
-| **Status** | Ownership clear; naming density open |
+| **Status** | **Closed** — RR-001.3D OQ-02 hero-only naming policy |
 
 ### AC-06 — Daily-focus noun storm
 
@@ -139,7 +139,7 @@ Status: **Resolved (governance)** / **Open (implementation)** / **Contained**
 | **RP link** | ED-02 |
 | **Board resolution** | DG-001.1 lexicon + D09 (Session under Sensei framing, not second focus authority) |
 | **Implementation residual** | Tip retirement; Mission-led Home |
-| **Status** | Vocabulary + authority law set; copy open |
+| **Status** | **Closed** — tip empties RR-001.3C; density/Mission-led RR-001.3D |
 
 ### AC-07 — Reflection multiplicity
 
@@ -251,7 +251,7 @@ Status: **Resolved (governance)** / **Open (implementation)** / **Contained**
 | **RP link** | ED-14 |
 | **Board resolution** | D07 — gated honesty is KW; Sensei empties must not advertise OFF capabilities |
 | **Implementation residual** | Remove or gate-honest copy |
-| **Status** | Law set; copy open |
+| **Status** | **Closed** — Journal empty RR-001.3C; remaining QC residual RR-001.3D |
 
 ### AC-17 — Latent dual mission generator
 
@@ -279,14 +279,18 @@ Status: **Resolved (governance)** / **Open (implementation)** / **Contained**
 
 ## Gaps remaining (implementation / later governance)
 
-| Gap | Owner |
-|-----|-------|
-| Live dual-narrator copy | Future copy programme citing DG-001.2 |
-| Home naming density | DG-001.1 OQ-02 — **Closed** RR-001.3D |
-| Help Sensei glossary + reflection map | Copy + D10 |
-| Runtime C rename before enable | Engineering + educational review |
-| Notification authority tagging | Future notification programme |
-| History epistemology copy | ED-05 remediation |
+| Gap | Owner / disposition |
+|-----|---------------------|
+| Notification authority tagging (AC-13 / EGC-R11) | **Accepted residual** — future notification programme |
+| Runtime C / QC / UJ enablement | **Contained OFF** — Product + Educational Governance |
+| MI + MES density (AC-09) | **Watch** — mitigated RR-001.2 |
+| Latent MissionOptimizer (AC-17) | **Contained** — Architecture quarantine |
+| Parallel reflection stacks (DG-001.3-D08) | **Contained** — future consolidate |
+| PX / `product_language.py` drift (OQ-01) | **Accepted residual** — Engineering maintenance |
+
+Closed by RR-001.3A–3D (no longer open gaps): dual-narrator handoff; Home naming density; Help glossary + reflection map; History epistemology; Runtime C rename; Revision Mission primacy; success-state honesty.
+
+Authoritative residual owners: `knowledge/release/RR-001/RR001_3E_RESIDUAL_RISK_REGISTER.md`.
 
 ---
 

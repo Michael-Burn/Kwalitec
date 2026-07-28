@@ -2,10 +2,11 @@
 
 **Programme:** EGC-001 — Educational Governance Compliance  
 **Version:** 1.0  
-**Status:** Active — Board compliance baseline  
+**Status:** Active — **frozen EGC-001 baseline** (historical NC/PC/FC as audited)  
 **Effective:** 2026-07-28  
 **Authority:** `EDUCATIONAL_GOVERNANCE_COMPLIANCE_AUDIT.md`  
-**Constraint:** Traceability only — no product changes.
+**Constraint:** Traceability only — no product changes.  
+**Post-remediation disposition (authoritative):** `knowledge/release/RR-001/RR001_3E_FINAL_TRACEABILITY_REPORT.md` (RR-001.3E). Do not rewrite baseline rows below; cite both when Board needs before/after.
 
 ---
 
@@ -17,7 +18,7 @@ Show for every audited capability:
 
 Every remediation recommendation references at least one governance clause.
 
-Status: **FC** Fully Compliant · **PC** Partially Compliant · **NC** Non-Compliant · **NA** Not Applicable
+Status in this baseline matrix: **FC** Fully Compliant · **PC** Partially Compliant · **NC** Non-Compliant · **NA** Not Applicable — **as measured at EGC-001**, before RR-001.3A–3D remediations.
 
 ---
 
@@ -141,11 +142,12 @@ Status: **FC** Fully Compliant · **PC** Partially Compliant · **NC** Non-Compl
 
 ## Traceability rule for future work
 
-1. Pick capability row(s) above.  
+1. Pick capability row(s) above **or** the matching disposition in `RR001_3E_FINAL_TRACEABILITY_REPORT.md`.  
 2. Cite **document + clause**.  
 3. Name **EGC-R*** package (or Board amendment if law itself must change).  
 4. Complete `GOVERNANCE_COMPLIANCE_CHECKLIST.md` in the remediation WP.  
-5. Do **not** claim ED-* closed without implementation evidence (Constitution §11.6).
+5. Do **not** claim ED-* closed without implementation evidence (Constitution §11.6).  
+6. After RR-001.3E, new educational defects open as new NCR/AC rows — do not silently reopen Closed dispositions.
 
 ---
 
