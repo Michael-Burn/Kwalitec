@@ -62,6 +62,7 @@ Detail always lives in the cited authoritative artefacts. If this Dashboard conf
 | **CQ-004** | Session Substance | Complete | CR4 topic-threaded session polish; CRI **49%** provisional (+2); no `cri-*` tag | `knowledge/product/cq004_session_substance/` |
 | **CQ-005** | Guidance Trust | Complete | CR3 why continuity / wording; CRI **51%** provisional (+2); no `cri-*` tag | `knowledge/product/cq005_guidance_trust/` |
 | **CQ-006** | Premium Craft | Complete | CR6 interface craft polish; CRI **53%** provisional (+2); no `cri-*` tag | `knowledge/product/cq006_premium_craft/` |
+| **CQ-007** | Founder Adoption Readiness | Complete | **🟡 GO WITH CONSTRAINTS**; CRI **53%** confirmed (Δ0); Founder Validated CRI Not Started; CQ engineering phase complete | `knowledge/product/cq007_founder_adoption_readiness/` |
 
 ---
 

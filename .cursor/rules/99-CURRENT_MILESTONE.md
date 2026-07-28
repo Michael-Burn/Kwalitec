@@ -1,29 +1,32 @@
 # Current Milestone
 
-**CQ-006** (completing) → residual Strong-band polish / founder dogfood (CR1–CR6)
+**CQ-007** (completing) → **Founder Validation** (next)
 
 ## Objective
 
-Raise Commercial Readiness Index via CR6 Premium Craft (CQ-006). Board CRI **53%** provisional after CQ-006. Next priority: residual Strong-band polish and founder dogfood validation across CR1–CR6.
+CQ-007 Founder Adoption Readiness: Board decision **🟡 GO WITH CONSTRAINTS**. Engineering CRI **53%** provisional confirmed. Commercial Quality engineering (CQ-001–CQ-007) complete pending Board acceptance. Next: Founder Validation / Founder Validated CRI under documented constraints.
 
 ## Allowed modifications
 
-- CRI board / CQ programme artefacts under `knowledge/product/cq001_commercial_readiness/` and `knowledge/product/cq006_*`
-- Presentation/CSS craft polish on the sole-runtime student study loop that measurably improves CRI
-- Subsequent CQ programmes per framework priority order
+- CRI board / CQ-007 programme artefacts under `knowledge/product/cq001_commercial_readiness/` and `knowledge/product/cq007_*`
+- Founder Validation scorecard and evidence artefacts once Board accepts CQ-007
+- Critical/Major fixes only if Founder Validation records daily-use blockers
 
 ## Forbidden
 
 - Version 2 capabilities unless they directly improve current CRI
-- Premature `cri-*` / `v1.0.0` git tags (including provisional-only thresholds)
-- CR9 commercial envelope work while higher domains remain the priority target
+- Premature `cri-*` / `ecri-*` / `v1.0.0` git tags
+- CR9 commercial envelope work while Founder Validation is the priority
 - Unjustified CR7 chase while invite-only Conditional GO holds
-- Redesign or new educational capability under premium-craft polish
-- Recommendation / Twin / readiness algorithm changes under craft polish
+- Redesign, educational engine expansion, recommendation / Twin / AI changes under adoption polish
 
 ## Authoritative board
 
 `knowledge/product/cq001_commercial_readiness/COMMERCIAL_READINESS_BOARD.md`
+
+## Adoption decision
+
+`knowledge/product/cq007_founder_adoption_readiness/FOUNDER_ADOPTION_DECISION.md`
 
 ---
 
