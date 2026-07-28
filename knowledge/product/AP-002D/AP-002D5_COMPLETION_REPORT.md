@@ -4,7 +4,8 @@
 **Milestone:** AP-002D5 — Mission Engine Integration  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commit message:** `feat(ap-002d5): integrate mission engine with twin decisions`
+**Commit message:** `feat(ap-002d5): integrate mission engine with twin decisions`  
+**Commit:** `4dceb80`
 
 ---
 
