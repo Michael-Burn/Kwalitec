@@ -4,7 +4,7 @@
 **Work Package:** RR-001.3C — Educational Memory & History Coherence  
 **Date:** 2026-07-28  
 **Status:** Complete — Certified Pass (in-scope)  
-**Commit:** *(see git after mandated commit)* — `feat(rr-001.3c): implement educational memory and history coherence`  
+**Commit:** `da594f9` — `feat(rr-001.3c): implement educational memory and history coherence`  
 **Governance authority:** DG-001.2 · DG-001.3 · DG-001.4 · EGC-001  
 **Remediation packages:** EGC-R06 · EGC-R07 (memory-related) · EGC-R12 (memory empties)
 
