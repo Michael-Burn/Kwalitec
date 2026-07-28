@@ -72,7 +72,7 @@ def test_answer_without_body_warns(student_client, app):
     student_client.get("/session/sess-ans/overview")
     student_client.post(
         "/session/sess-ans/begin",
-        data={"session_id": "sess-ans", "submit": "Begin Session"},
+        data={"session_id": "sess-ans", "submit": "Start Session"},
         follow_redirects=True,
     )
     response = student_client.post(

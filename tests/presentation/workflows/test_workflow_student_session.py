@@ -35,7 +35,7 @@ def test_session_overview_from_home_handoff(student_client):
     response = student_client.get("/session/sess-wf2/overview")
     assert response.status_code == 200
     html = response.get_data(as_text=True)
-    assert "Begin Session" in html or "begin" in html.lower()
+    assert "Start Session" in html or "begin" in html.lower()
     assert "Session · Step" in html
     assert "Learning Session ·" not in html
 
@@ -44,7 +44,7 @@ def test_begin_advances_to_activity(student_client):
     student_client.get("/session/sess-wf2/overview")
     response = student_client.post(
         "/session/sess-wf2/begin",
-        data={"session_id": "sess-wf2", "submit": "Begin Session"},
+        data={"session_id": "sess-wf2", "submit": "Start Session"},
         follow_redirects=False,
     )
     assert response.status_code in {302, 303}
@@ -56,7 +56,7 @@ def test_full_session_happy_path(student_client, app):
     assert student_client.get("/session/sess-full/overview").status_code == 200
     begin = student_client.post(
         "/session/sess-full/begin",
-        data={"session_id": "sess-full", "submit": "Begin Session"},
+        data={"session_id": "sess-full", "submit": "Start Session"},
         follow_redirects=False,
     )
     assert "/activity" in begin.headers.get("Location", "")

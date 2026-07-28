@@ -49,7 +49,7 @@ def test_full_http_session_flow(session_client, session_app):
     assert session_client.get("/session/sess-e2e/overview").status_code == 200
     begin = session_client.post(
         "/session/sess-e2e/begin",
-        data={"session_id": "sess-e2e", "submit": "Begin Session"},
+        data={"session_id": "sess-e2e", "submit": "Start Session"},
         follow_redirects=False,
     )
     assert "/activity" in begin.headers.get("Location", "")

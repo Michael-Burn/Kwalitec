@@ -91,4 +91,5 @@ def test_student_start_hands_off_to_session():
     from app.presentation.student import routes as student_routes
 
     source = inspect.getsource(student_routes.start_session)
-    assert "session.overview" in source
+    assert "session.activity" in source
+    assert "begin_v2_session" in source or "begin_session" in source

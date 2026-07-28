@@ -23,9 +23,18 @@ TEMPLATE_ROOT = (
 @pytest.mark.parametrize("surface", list(SessionSurface))
 def test_steps_mark_active_surface(surface):
     steps = build_session_steps(surface, session_id="sess-1")
+    # CQ-002: Complete is omitted from chrome; when active, all prior steps
+    # are marked complete with no active marker.
+    if surface is SessionSurface.COMPLETE:
+        assert steps
+        assert all(s.is_complete for s in steps)
+        assert not any(s.is_active for s in steps)
+        assert all(s.surface != SessionSurface.COMPLETE.value for s in steps)
+        return
     active = [s for s in steps if s.is_active]
     assert len(active) == 1
     assert active[0].surface == surface.value
+    assert SessionSurface.COMPLETE.value not in {s.surface for s in steps}
 
 
 @pytest.mark.parametrize("surface", list(SessionSurface))
@@ -101,5 +110,10 @@ def test_component_templates_exist(name):
 @pytest.mark.parametrize("exam", ["CPA", "CFA", "ACCA", "Bar"])
 def test_step_labels_stable_across_exams(surface, exam):
     steps = build_session_steps(surface, session_id=f"{exam}-sess")
-    assert len(steps) == 5
-    assert any(s.is_active for s in steps)
+    # CQ-002: visible chrome is Overview → Activity → Reflection → Summary.
+    assert len(steps) == 4
+    if surface is SessionSurface.COMPLETE:
+        assert all(s.is_complete for s in steps)
+        assert not any(s.is_active for s in steps)
+    else:
+        assert any(s.is_active for s in steps)

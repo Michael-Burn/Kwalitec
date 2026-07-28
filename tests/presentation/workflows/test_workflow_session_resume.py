@@ -26,7 +26,7 @@ def test_interrupt_home_then_resume_activity(student_client, app):
     student_client.get("/session/sess-resume/overview")
     student_client.post(
         "/session/sess-resume/begin",
-        data={"session_id": "sess-resume", "submit": "Begin Session"},
+        data={"session_id": "sess-resume", "submit": "Start Session"},
         follow_redirects=True,
     )
     ws = svc.registry.get_workspace_for_session("sess-resume")
@@ -54,7 +54,7 @@ def test_resume_does_not_reset_workspace_id(student_client, app):
     student_client.get("/session/sess-id/overview")
     student_client.post(
         "/session/sess-id/begin",
-        data={"session_id": "sess-id", "submit": "Begin Session"},
+        data={"session_id": "sess-id", "submit": "Start Session"},
         follow_redirects=True,
     )
     before = svc.registry.get_workspace_for_session("sess-id")
@@ -109,7 +109,7 @@ def test_resume_then_complete(student_client, app):
     student_client.get("/session/sess-rc/overview")
     student_client.post(
         "/session/sess-rc/begin",
-        data={"session_id": "sess-rc", "submit": "Begin Session"},
+        data={"session_id": "sess-rc", "submit": "Start Session"},
         follow_redirects=True,
     )
     # Interrupt + resume
@@ -162,7 +162,7 @@ def test_brand_exit_does_not_close_workspace(student_client, app):
     student_client.get("/session/sess-brand/overview")
     student_client.post(
         "/session/sess-brand/begin",
-        data={"session_id": "sess-brand", "submit": "Begin Session"},
+        data={"session_id": "sess-brand", "submit": "Start Session"},
         follow_redirects=True,
     )
     student_client.get("/student/")

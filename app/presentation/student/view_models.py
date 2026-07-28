@@ -1878,11 +1878,20 @@ def _home_readiness_confidence_basis(snap: HomeSnapshot) -> str:
 
 
 def _home_readiness_next_action(snap: HomeSnapshot) -> str:
+    """Readiness-panel next only when it does not compete with the hero.
+
+    CQ-002 / CR1: Home must present one primary “Next”. When the Mission hero
+    already carries ``explanation.suggested_next_action``, suppress the
+    Readiness panel next (including the old fallback that duplicated it).
+    """
+    hero_next = ""
+    if snap.explanation and snap.explanation.suggested_next_action:
+        hero_next = snap.explanation.suggested_next_action.strip()
+    if hero_next:
+        return ""
     readiness = snap.readiness_explanation
     if readiness and readiness.suggested_next_action.strip():
         return readiness.suggested_next_action.strip()
-    if snap.explanation and snap.explanation.suggested_next_action:
-        return snap.explanation.suggested_next_action.strip()
     return ""
 
 

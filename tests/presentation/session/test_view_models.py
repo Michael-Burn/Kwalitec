@@ -124,7 +124,7 @@ def test_page_from_flow_overview():
             session_id="sess-1",
             can_begin=True,
             begin_action=BeginSessionActionSnapshot(
-                can_begin=True, session_id="sess-1", label="Begin Session"
+                can_begin=True, session_id="sess-1", label="Start Session"
             ),
         ),
         next_surface="activity",

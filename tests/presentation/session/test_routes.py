@@ -21,7 +21,7 @@ def test_overview_renders_begin(session_client, session_app):
     response = session_client.get("/session/sess-1/overview")
     assert response.status_code == 200
     html = response.get_data(as_text=True)
-    assert "Begin Session" in html or "begin" in html.lower()
+    assert "Start Session" in html or "begin" in html.lower()
     assert "Session Overview" in html or "objective" in html.lower()
 
 
@@ -29,7 +29,7 @@ def test_begin_post_redirects_to_activity(session_client, session_app):
     session_client.get("/session/sess-1/overview")
     response = session_client.post(
         "/session/sess-1/begin",
-        data={"session_id": "sess-1", "submit": "Begin Session"},
+        data={"session_id": "sess-1", "submit": "Start Session"},
         follow_redirects=False,
     )
     assert response.status_code in {302, 303}
@@ -40,7 +40,7 @@ def test_activity_get_after_begin(session_client, session_app):
     session_client.get("/session/sess-1/overview")
     session_client.post(
         "/session/sess-1/begin",
-        data={"session_id": "sess-1", "submit": "Begin Session"},
+        data={"session_id": "sess-1", "submit": "Start Session"},
         follow_redirects=True,
     )
     response = session_client.get("/session/sess-1/activity")
@@ -58,7 +58,7 @@ def test_answer_and_advance_to_reflection(session_client, session_app):
     session_client.get("/session/sess-1/overview")
     session_client.post(
         "/session/sess-1/begin",
-        data={"session_id": "sess-1", "submit": "Begin Session"},
+        data={"session_id": "sess-1", "submit": "Start Session"},
         follow_redirects=True,
     )
     activity_page = session_client.get("/session/sess-1/activity")

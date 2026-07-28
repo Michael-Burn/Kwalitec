@@ -56,7 +56,7 @@ def _missing_session_redirect(session_id: str, exc: SessionExperienceError):
 @session_bp.get("/<session_id>/overview")
 @login_required
 def overview(session_id: str):
-    """Session Overview — today's objective and Begin Session."""
+    """Session Overview — today's objective and Start Session."""
     try:
         resume = resume_redirect_if_needed(session_id, SessionSurface.OVERVIEW)
         if resume is not None:

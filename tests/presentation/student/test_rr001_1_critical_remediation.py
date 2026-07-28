@@ -170,7 +170,7 @@ def test_student_home_shows_revision_acknowledgement(
     assert lifecycle.acknowledgement_title in body
     assert "revision/acknowledge" in body
 
-    ack = client.post("/dashboard/revision/acknowledge", follow_redirects=True)
+    ack = client.post("/student/revision/acknowledge", follow_redirects=True)
     assert ack.status_code == 200
     db.session.refresh(plan)
     assert plan.revision_acknowledged is True

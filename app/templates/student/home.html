@@ -12,7 +12,7 @@
 {# EP-008.1 — Recommendation Trust: why now, L1 benefit, coherence, refusal, alts. #}
 
 {# RR-001.1 / JR-07 — restore syllabus-complete revision acknowledgement on the
-   sole-runtime Home path (same lifecycle service + dashboard POST). #}
+   sole-runtime Home path (same lifecycle service; CQ-002 student POST). #}
 {% if show_revision_acknowledgement and lifecycle %}
 <section class="student-revision-ack mb-4" aria-label="Syllabus complete acknowledgement" data-lifecycle="revision-ack">
   <p class="student-panel-eyebrow">Learning milestone</p>
@@ -21,7 +21,7 @@
   {% if revision_intro %}
   <p class="student-muted">{{ revision_intro }}</p>
   {% endif %}
-  <form method="POST" action="{{ url_for('dashboard.acknowledge_revision') }}" class="student-hero-cta mt-3">
+  <form method="POST" action="{{ url_for('student.acknowledge_revision') }}" class="student-hero-cta mt-3">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     <button type="submit" class="btn student-btn-primary" data-lifecycle="revision-ack-submit">Continue</button>
   </form>
@@ -303,13 +303,25 @@
   </details>
   {% endif %}
   {% elif page.home.guided_session_active and page.home.session_control == 'finish' %}
-  {# Finish is presentation-only — no educational write / persistence.
-     PX-002A T1-3/a11y: plain text, not styled as a button — see reflection
-     preview note above for why role="status" + "btn" styling was removed. #}
+  {# CQ-002 / CR1: when a real session exists, Finish resumes that session
+     (resume_redirect restores the active surface). Otherwise remain honest
+     presentation-only — no fake write control. #}
+  {% if page.home.session_id %}
+  <p class="student-hero-cta student-session-control" data-session-control="finish">
+    <a
+      class="btn student-btn-primary"
+      href="{{ url_for('session.overview', session_id=page.home.session_id) }}"
+      data-student-cta="primary"
+      data-session-resume="true"
+    >{{ page.home.session_control_label or 'Continue session' }}</a>
+  </p>
+  <p class="student-muted">Return to your open session to wrap up and record progress.</p>
+  {% else %}
   <p class="student-hero-cta student-session-control" data-session-control="finish" data-presentation-only="true">
     <span class="student-reflection-preview">{{ page.home.session_control_label or 'Finish' }}</span>
     <span class="student-muted">Wrap up when you are ready — session progress stays with your learning system.</span>
   </p>
+  {% endif %}
   {% elif page.home.day_complete or (page.home.unified_journey_enabled and page.home.completion_status == 'complete') %}
   <p class="student-muted student-hero-cta" data-mission-complete="true" data-day-complete="true">
     Today's learning day is complete.
@@ -335,6 +347,11 @@
     </p>
     <p class="student-empty-why student-muted">
       A quiet mission card is expected until guidance is ready — not a broken Home.
+    </p>
+    <p class="student-empty-actions">
+      <a class="student-panel-action" href="{{ url_for('student.journey') }}">Review Journey</a>
+      <span class="student-muted" aria-hidden="true"> · </span>
+      <a class="student-panel-action" href="{{ url_for('study_plan.index') }}">Open Study Plan</a>
     </p>
   </div>
   {% endif %}

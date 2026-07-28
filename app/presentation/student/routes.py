@@ -571,13 +571,37 @@ def start_session():
     )
 
     topic = handle.topic_title or "your topic"
-    flash(f"Session started: {topic}. Entering your study environment.", "success")
-    # Hand off into Session Experience (V2-019).
+    # CQ-002 / CR1: one Start click enters Activity. Overview remains for
+    # resume/deep-link when the workspace is still on overview.
     target_session_id = handle.session_id or session_id
     if target_session_id:
-        return redirect(
-            url_for("session.overview", session_id=target_session_id)
-        )
+        try:
+            from app.presentation.session.views import (
+                begin_session as begin_v2_session,
+            )
+
+            begin_v2_session(session_id=target_session_id)
+            flash(
+                f"Session started: {topic}. Your first activity is ready.",
+                "success",
+            )
+            return redirect(
+                url_for("session.activity", session_id=target_session_id)
+            )
+        except Exception:  # noqa: BLE001 — fail open to Overview
+            logger.warning(
+                "Auto-begin after Home start failed session_id=%s",
+                target_session_id,
+                exc_info=True,
+            )
+            flash(
+                f"Session started: {topic}. Review today's objective to begin.",
+                "success",
+            )
+            return redirect(
+                url_for("session.overview", session_id=target_session_id)
+            )
+    flash(f"Session started: {topic}. Entering your study environment.", "success")
     return redirect(url_for("student.home"))
 
 
@@ -614,6 +638,20 @@ def acknowledge_reflection():
         current_user.id,
         recommendation_key=(form.recommendation_key.data or "").strip(),
     )
+    return redirect(url_for("student.home"))
+
+
+@student_bp.post("/revision/acknowledge")
+@login_required
+def acknowledge_revision():
+    """CQ-002 / CR1: syllabus-complete ack on the sole-runtime student surface.
+
+    Mirrors ``dashboard.acknowledge_revision`` so Home does not depend on the
+    legacy dashboard POST when ``SOLE_RUNTIME=1``.
+    """
+    from app.services.learning_lifecycle_service import LearningLifecycleService
+
+    LearningLifecycleService.acknowledge_revision(current_user.id)
     return redirect(url_for("student.home"))
 
 

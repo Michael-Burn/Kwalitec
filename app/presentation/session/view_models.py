@@ -76,7 +76,7 @@ class OverviewViewModel:
     activity_count_label: str = ""
     topics: tuple[str, ...] = ()
     expected_improvement_label: str = ""
-    begin_label: str = "Begin Session"
+    begin_label: str = "Start Session"
     begin_enabled: bool = False
     session_id: str = ""
     mission_id: str | None = None
@@ -202,7 +202,7 @@ def overview_vm(snap: OverviewSnapshot) -> OverviewViewModel:
         activity_count_label=activities,
         topics=snap.topics,
         expected_improvement_label=improvement,
-        begin_label=(begin.label if begin else "Begin Session"),
+        begin_label=(begin.label if begin else "Start Session"),
         begin_enabled=bool(snap.can_begin),
         session_id=snap.session_id,
         mission_id=begin.mission_id if begin else None,

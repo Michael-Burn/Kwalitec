@@ -171,15 +171,15 @@ def test_home_vm_binds_authored_readiness_mes():
     )
     page = home_vm(snap, unified_journey=False)
     assert page.readiness.why_this_estimate.startswith("Coverage and practice")
-    assert page.readiness.suggested_next_action.startswith("Practise Geometry")
+    # CQ-002 / CR1: hero owns primary Next — readiness next is suppressed.
+    assert page.readiness.suggested_next_action == ""
     assert page.readiness.review_point.startswith("Reassess")
     assert len(page.readiness.readiness_drivers) >= 3
     assert page.readiness.confidence_label == "Suggested"
     assert "coverage" in page.readiness.confidence_basis.lower()
     assert page.readiness.has_disclosure is True
-    # Must prefer readiness next action over recommendation next action.
-    assert "Geometry" in page.readiness.suggested_next_action
-    assert "cash flow" not in page.readiness.suggested_next_action.lower()
+    assert page.explanation is not None
+    assert "cash flow" in page.explanation.suggested_next_action.lower()
 
 
 def test_home_template_renders_readiness_drivers_and_review(app, ctx):
@@ -250,8 +250,10 @@ def test_fallback_when_readiness_explanation_absent():
     )
     page = home_vm(snap, unified_journey=False)
     assert page.readiness.readiness_drivers == ()
-    # Falls back to recommendation cues for next / review / confidence.
-    assert page.readiness.suggested_next_action.startswith("Complete one tax")
+    # CQ-002 / CR1: do not duplicate hero Next into the Readiness panel.
+    assert page.readiness.suggested_next_action == ""
+    assert page.explanation is not None
+    assert page.explanation.suggested_next_action.startswith("Complete one tax")
     assert page.readiness.review_point.startswith("Review after")
     assert page.readiness.confidence_basis.startswith("Based on recent")
     assert page.readiness.has_disclosure is True

@@ -8,11 +8,11 @@ from wtforms.validators import DataRequired, Length, Optional
 
 
 class BeginSessionForm(FlaskForm):
-    """Begin Session from Overview."""
+    """Start Session from Overview (same verb family as Home)."""
 
     session_id = HiddenField(validators=[DataRequired(), Length(max=128)])
     mission_id = HiddenField(validators=[Optional(), Length(max=128)])
-    submit = SubmitField("Begin Session")
+    submit = SubmitField("Start Session")
 
 
 class SubmitAnswerForm(FlaskForm):

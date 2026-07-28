@@ -24,9 +24,9 @@ class LearningSessionStatus(StrEnum):
 
 @dataclass(frozen=True)
 class BeginSessionAction:
-    """Student-facing call-to-action to begin the Learning Session."""
+    """Student-facing call-to-action to start the Learning Session."""
 
-    label: str = "Begin Session"
+    label: str = "Start Session"
     enabled: bool = True
     session_id: str | None = None
     mission_id: str | None = None
@@ -35,16 +35,16 @@ class BeginSessionAction:
     def create(
         cls,
         *,
-        label: str = "Begin Session",
+        label: str = "Start Session",
         enabled: bool = True,
         session_id: str | None = None,
         mission_id: str | None = None,
     ) -> BeginSessionAction:
-        """Build a Begin Session action from port identities."""
+        """Build a Start Session action from port identities."""
         sid = None if session_id is None else str(session_id).strip() or None
         mid = None if mission_id is None else str(mission_id).strip() or None
         return cls(
-            label=(label or "Begin Session").strip() or "Begin Session",
+            label=(label or "Start Session").strip() or "Start Session",
             enabled=bool(enabled),
             session_id=sid,
             mission_id=mid,

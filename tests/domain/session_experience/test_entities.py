@@ -44,7 +44,7 @@ def test_learning_session_begin_action():
     session = make_session(objective="Master equity method", activity_count=3)
     assert session.can_begin
     assert session.begin_action is not None
-    assert session.begin_action.label == "Begin Session"
+    assert session.begin_action.label == "Start Session"
 
 
 def test_begin_action_requires_session_id():

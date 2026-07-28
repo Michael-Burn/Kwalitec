@@ -171,7 +171,7 @@ def test_session_overview_introduces_sensei_and_mission(app, ctx):
         hidden_tag=lambda: "",
         session_id=lambda: "",
         mission_id=lambda: "",
-        submit=lambda **kwargs: '<button type="submit">Begin Session</button>',
+        submit=lambda **kwargs: '<button type="submit">Start Session</button>',
     )
     with app.test_request_context("/session/sess-1"):
         html = render_template(

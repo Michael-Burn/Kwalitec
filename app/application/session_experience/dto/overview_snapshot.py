@@ -9,7 +9,7 @@ from dataclasses import dataclass, field
 class BeginSessionActionSnapshot:
     """Read-only Begin Session action."""
 
-    label: str = "Begin Session"
+    label: str = "Start Session"
     enabled: bool = True
     can_begin: bool = False
     session_id: str | None = None

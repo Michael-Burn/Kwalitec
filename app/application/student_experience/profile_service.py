@@ -99,14 +99,19 @@ class ProfileService:
                 locale=str(account_raw.get("locale") or ""),
                 timezone=str(account_raw.get("timezone") or ""),
             )
+            examination_label = str(
+                learner.get("examination_label")
+                or readiness.get("examination_label")
+                or ""
+            ).strip()
+            if not examination_label:
+                # CQ-002 / CR5: never show Profile "Not set" when an active
+                # Study Plan already names the examination (PX-003 B2).
+                examination_label = _exam_label_from_active_plan(sid)
             projection = ProfileProjection.create(
                 sid,
                 display_name=str(learner.get("display_name") or ""),
-                examination_label=str(
-                    learner.get("examination_label")
-                    or readiness.get("examination_label")
-                    or ""
-                ),
+                examination_label=examination_label,
                 preferences=preferences,
                 statistics=statistics,
                 goals=goals,
@@ -145,6 +150,23 @@ def _require_id(value: str) -> str:
     if not isinstance(value, str) or not value.strip():
         raise ProfileError("student_id must be a non-empty string")
     return value.strip()
+
+
+def _exam_label_from_active_plan(student_id: str) -> str:
+    """Best-effort examination name from the active Study Plan (fail-open)."""
+    try:
+        user_id = int(student_id)
+    except (TypeError, ValueError):
+        return ""
+    try:
+        from app.services.study_plan_service import StudyPlanService
+
+        plan = StudyPlanService.get_user_active_plan(user_id)
+    except Exception:  # noqa: BLE001 — presentation fallback only
+        return ""
+    if plan is None:
+        return ""
+    return str(getattr(plan, "exam_name", "") or "").strip()
 
 
 def _optional_int(value: Any) -> int | None:

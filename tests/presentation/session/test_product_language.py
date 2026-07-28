@@ -119,7 +119,7 @@ def test_home_cta_in_approved_list():
 @pytest.mark.parametrize(
     ("form_cls", "label"),
     (
-        (BeginSessionForm, "Begin Session"),
+        (BeginSessionForm, "Start Session"),
         (SubmitAnswerForm, "Submit Answer"),
         (AdvanceActivityForm, "Continue"),
         (ContinueReflectionForm, "Continue to Summary"),
@@ -133,7 +133,7 @@ def test_session_form_cta_labels(app_ctx, form_cls, label):
 
 def test_session_overview_shows_begin_session(student_client):
     html = student_client.get("/session/sess-lang/overview").get_data(as_text=True)
-    assert "Begin Session" in html
+    assert "Start Session" in html
 
 
 def test_session_eyebrow_uses_session_not_learning_session(student_client):

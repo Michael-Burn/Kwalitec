@@ -128,7 +128,7 @@ REJECTED_SYNONYMS: tuple[str, ...] = (
 # educational focus noun, not a CTA synonym here.
 STUDENT_PRIMARY_CTAS: tuple[str, ...] = (
     "Start Today's Session",
-    "Begin Session",
+    "Start Session",
     "Continue",
     "Submit Answer",
     "Continue to Summary",

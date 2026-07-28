@@ -93,7 +93,7 @@ def test_session_resume_does_not_rewind_overview(student_client, app):
     student_client.get(f"/session/{session_id}/overview")
     student_client.post(
         f"/session/{session_id}/begin",
-        data={"session_id": session_id, "submit": "Begin Session"},
+        data={"session_id": session_id, "submit": "Start Session"},
         follow_redirects=True,
     )
     ws = service.registry.get_workspace_for_session(session_id)

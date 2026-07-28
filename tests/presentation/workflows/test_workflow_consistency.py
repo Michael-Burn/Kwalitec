@@ -95,7 +95,7 @@ def test_session_surface_labels_stable(surface):
 
 def test_session_primary_cta_language(student_client):
     html = student_client.get("/session/sess-cta/overview").get_data(as_text=True)
-    assert "Begin Session" in html
+    assert "Start Session" in html
 
 
 def test_studio_primary_buttons_human_language(founder_client):
