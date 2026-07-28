@@ -38,7 +38,7 @@
 | CR7 | Operational Reliability | 8 | 68 | Strong | Maintain; G7 HOLD + ER2 residuals constrain claim class |
 | CR9 | Commercial Envelope | 6 | 12 | Broken | Freezes; public registration/launch/pricing NOT STARTED |
 
-**Composite:** 53.14 → **53%** (provisional).
+**Composite:** 53.44 → **53%** (provisional).
 
 ---
 
