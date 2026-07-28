@@ -40,11 +40,11 @@ CQ-001 establishes:
 
 | Measure | Value |
 |---|---|
-| Current CRI | **43%** (provisional) |
+| Current CRI | **45%** (provisional, after CQ-002) |
 | Validation status | **Provisional** — domain board grounded in known product/engineering evidence; not yet dogfood-validated as a commercial scorecard |
-| Highest-priority domain | **CR1 Core Study Loop** |
-| Next recommended programme | **CQ-002 — Core Study Loop Reliability** (proposed) |
-| Milestone tags | None yet (`cri-45` not achieved) |
+| Highest-priority domain | **CR2 Daily Habit Fit** (CR1 still Emerging; framework next after CR1 investment) |
+| Next recommended programme | **CQ-003 — Daily Habit Fit** (proposed) |
+| Milestone tags | None yet (`cri-45` composite met provisionally only — not tagged) |
 
 ---
 

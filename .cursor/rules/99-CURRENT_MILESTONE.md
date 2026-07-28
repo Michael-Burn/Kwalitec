@@ -1,21 +1,21 @@
 # Current Milestone
 
-**CQ-001** (framework complete) → next **CQ-002** (proposed)
+**CQ-002** (completing) → next **CQ-003** (proposed — Daily Habit Fit)
 
 ## Objective
 
-Optimise Version 1 work against the Commercial Readiness Index (CRI). Baseline CRI **43%** (provisional). Highest priority: **CR1 Core Study Loop**.
+Raise Commercial Readiness Index via CR1 Core Study Loop reliability (CQ-002). Board CRI **45%** provisional after CQ-002. Next priority: **CR2 Daily Habit Fit**.
 
 ## Allowed modifications
 
-- CRI framework / board / backlog under `knowledge/product/cq001_commercial_readiness/`
-- Governance and reporting hooks required by CQ-001
-- Subsequent CQ programmes that measurably improve CRI per framework priority order
+- CRI board / CQ programme artefacts under `knowledge/product/cq001_commercial_readiness/` and `knowledge/product/cq002_*`
+- Presentation polish on the sole-runtime student study loop that measurably improves CRI
+- Subsequent CQ programmes per framework priority order
 
 ## Forbidden
 
 - Version 2 capabilities unless they directly improve current CRI
-- Premature `cri-*` / `v1.0.0` git tags
+- Premature `cri-*` / `v1.0.0` git tags (including provisional-only `cri-45`)
 - CR9 commercial envelope work while higher domains remain the priority target
 - Unjustified CR7 chase while invite-only Conditional GO holds
 
