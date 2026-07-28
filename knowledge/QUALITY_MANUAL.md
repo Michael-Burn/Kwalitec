@@ -52,7 +52,7 @@ Before release tag / production deploy:
 - [ ] Security headers / CSP behaviour preserved
 - [ ] Secrets via env; production rejects default insecure `SECRET_KEY`
 - [ ] No new raw SQL concatenation
-- [ ] Dependency scan (`pip-audit`) reviewed — criticals not silently ignored
+- [ ] Dependency scan (`./scripts/dependency_audit.sh`) green — criticals never silently ignored; accepted HOLDs current in `docs/security/DEPENDENCY_ACCEPTED_FINDINGS.md`
 - [ ] CSP `'unsafe-inline'` residual risk acknowledged if still present
 
 Evidence: `docs/ga/SECURITY_REVIEW.md`.

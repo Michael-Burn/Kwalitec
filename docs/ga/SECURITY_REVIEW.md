@@ -63,6 +63,16 @@ Present on responses (including health):
 - Production startup validation rejects default/short secrets
 - Health and logs must not emit credentials or full DB URLs with passwords (operator discipline)
 
+## Dependency assurance (EI-001.2)
+
+| Control | Location |
+|---|---|
+| Policy | `docs/security/DEPENDENCY_ASSURANCE_POLICY.md` |
+| Accepted findings / Security HOLD | `docs/security/DEPENDENCY_ACCEPTED_FINDINGS.md` |
+| CI / operator command | `./scripts/dependency_audit.sh` |
+
+Unaccepted advisories fail CI. Criticals are never HOLD-waived. Flask Medium residuals remain HOLD-accepted pending ER-TD-M04 bump.
+
 ## Recommendation
 
-Security posture is **sufficient for GA** with documented CSP tech debt. No open P0 authz bypass found in automated review. Schedule CSP nonce migration as a dedicated security hardening programme after GA.
+Security posture is **sufficient for GA** with documented CSP tech debt and dependency HOLDs. No open P0 authz bypass found in automated review. Schedule CSP nonce migration as a dedicated security hardening programme after GA.

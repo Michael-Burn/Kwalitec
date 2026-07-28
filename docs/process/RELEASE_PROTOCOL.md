@@ -120,9 +120,10 @@ python3 -m pytest tests/architecture/ -v
 python3 -m pytest
 ```
 
-- [ ] Architecture governance gates pass (`tests/architecture/` — mandatory CI gate, including CI integrity)
+- [ ] Architecture governance gates pass (`tests/architecture/` — mandatory CI gate, including CI integrity and dependency assurance)
 - [ ] pytest passes
-- [ ] For RC / Version 1 claim packages: fingerprinted SHA has green canonical `ci.yml` (all required jobs); fingerprint record filed
+- [ ] Dependency audit hard gate green: `./scripts/dependency_audit.sh` (policy `docs/security/DEPENDENCY_ASSURANCE_POLICY.md`; accepted HOLDs in `docs/security/DEPENDENCY_ACCEPTED_FINDINGS.md`)
+- [ ] For RC / Version 1 claim packages: fingerprinted SHA has green canonical `ci.yml` (all required jobs); fingerprint record filed; dependency evidence attached or cited
 
 Ruff: run on modules modified in this release. Do not treat historical repository-wide Ruff debt as a blocker unless explicitly instructed.
 

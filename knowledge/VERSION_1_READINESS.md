@@ -88,7 +88,7 @@ This tracker does not redesign the application or change educational algorithms.
 | CSRF / session / headers | COMPLETE | GA security review |
 | Secrets / production key validation | COMPLETE | Factory validation |
 | CSP hardening beyond `'unsafe-inline'` | NOT STARTED | Accepted residual |
-| Critical dependency policy for every tag | IN PROGRESS | pip-audit soft gate |
+| Critical dependency policy for every tag | COMPLETE (EI-001.2) | Hard `scripts/dependency_audit.sh` + Security HOLD register; Flask pin bump residual ER-TD-M04 |
 
 ---
 

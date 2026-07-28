@@ -10,7 +10,7 @@
 2. Full test suite green
 3. Ruff clean (`ruff check app/ src/ tests/`)
 4. Migrations validate (Alembic head present; upgrade path tested on staging)
-5. Security scan reviewed (`pip-audit`; no unresolved criticals without waiver)
+5. Security dependency scan green (`./scripts/dependency_audit.sh`; unaccepted advisories fail CI — see `docs/security/DEPENDENCY_ASSURANCE_POLICY.md`)
 6. Accessibility review for UI-impacting changes
 7. Health endpoints green on staging (`/health/live`, `/health/ready`)
 8. Version tag matches `VERSION` / `APP_VERSION`

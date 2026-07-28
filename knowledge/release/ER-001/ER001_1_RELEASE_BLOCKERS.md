@@ -26,10 +26,10 @@ Invite-only Alpha operation may continue under existing conditions while these r
 | **ER-RB-01** | Stale secondary CI workflow `.github/workflows/tests.yml` (Python 3.14, unscoped pytest) | CI integrity / G11 | **Critical** | Engineering | Workflow retired or made identical in spirit to `ci.yml` (supported Python, same gate intent) — **Closed by EI-001.1** (`tests.yml` removed; `ci.yml` sole authority; `tests/architecture/test_ci_integrity.py`) |
 | **ER-RB-02** | G7 Performance evidence incomplete (no staging/production operator sample; load test NOT STARTED) | G7 | **High** | Engineering + Release | G7.2 sample filed **or** approved HOLD with high-traffic claim restriction |
 | **ER-RB-03** | G8 Reliability evidence incomplete (rollback drill note; backup/recovery acknowledgement for claim class) | G8 | **High** | Engineering + Release | G8.4 + G8.5 artefacts filed for claim window |
-| **ER-RB-04** | G10 Security claim-class residuals (privacy signatures; dependency critical policy for tag) | G10 | **High** | Security | G10.5 policy + privacy pack for intended claim class; no open Criticals |
+| **ER-RB-04** | G10 Security claim-class residuals (privacy signatures; dependency critical policy for tag) | G10 | **High** | Security | G10.5 policy + privacy pack for intended claim class; no open Criticals — **Partial:** G10.5 dependency policy Closed by EI-001.2; privacy pack residual remains |
 | **ER-RB-05** | G11 continuous green on fingerprinted release candidate | G11 | **High** | Engineering + Release | Tagged RC with green canonical `ci.yml` required suites — **Process closed by EI-001.1** (`docs/production/RELEASE_CANDIDATE_FINGERPRINT.md`); formal Version 1 RC tag still uses this process when Release cuts the candidate |
 | **ER-RB-06** | G12 Version 1 flag matrix not published / Not scored | G12 | **High** | Product + Release + Engineering | Published matrix with owners, defaults, rollback, kill-switch; `.env.example` / `render.yaml` aligned |
-| **ER-RB-07** | `pip-audit` soft gate allows known Flask advisory to ship without hard policy | G10.5 | **High** | Security + Release | Critical findings fail CI **or** Security HOLD recorded on tag |
+| **ER-RB-07** | `pip-audit` soft gate allows known Flask advisory to ship without hard policy | G10.5 | **High** | Security + Release | Critical findings fail CI **or** Security HOLD recorded on tag — **Closed by EI-001.2** (`DEPENDENCY_ASSURANCE_POLICY.md`; hard `scripts/dependency_audit.sh`; accepted HOLDs register) |
 
 ---
 
@@ -60,11 +60,11 @@ These do **not** necessarily stop invite-only Alpha, but they **block** architec
 ## 5. Blocker dependency graph
 
 ```
-ER-RB-01 (CI integrity)
+ER-RB-01 (CI integrity) [Closed EI-001.1]
         ↓
-ER-RB-05 (green fingerprinted RC) ←── ER-RB-07 (dependency policy)
+ER-RB-05 (green fingerprinted RC) ←── ER-RB-07 (dependency policy) [Closed EI-001.2]
         ↓
-ER-RB-02 / ER-RB-03 / ER-RB-04 / ER-RB-06  (G7 G8 G10 G12 evidence)
+ER-RB-02 / ER-RB-03 / ER-RB-04 / ER-RB-06  (G7 G8 G10 residual / G12 evidence)
         ↓
 Engineering GO for Version 1 declaration (still subject to Product G1–G6)
 ```
@@ -90,7 +90,7 @@ Security Criticals and G10 Criticals must not be HOLD-waived.
 | Decision | Status |
 |----------|--------|
 | Proceed with invite-only Alpha under existing ops | **Allowed** |
-| Engineering APPROVED for Version 1 production-ready | **Blocked** — ER-RB-02…04, ER-RB-06…07 open; ER-RB-01 closed; ER-RB-05 process closed (formal RC tag pending Release) |
+| Engineering APPROVED for Version 1 production-ready | **Blocked** — ER-RB-02…04, ER-RB-06 open; ER-RB-01 / ER-RB-07 closed; ER-RB-05 process closed (formal RC tag pending Release) |
 | Educational governance reopened | **No** |
 
 ---

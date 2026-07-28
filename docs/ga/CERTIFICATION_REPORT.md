@@ -34,7 +34,7 @@ See [SECURITY_REVIEW.md](SECURITY_REVIEW.md).
 | Secrets validation | Pass |
 | Open redirect hardening | Pass |
 | CSP `'unsafe-inline'` | Accepted residual risk (documented) |
-| pip-audit | Soft gate in CI — review before tag; not a silent ignore for criticals |
+| pip-audit | **Hard gate** (EI-001.2) — `./scripts/dependency_audit.sh`; unaccepted advisories fail CI; accepted Medium/Low require Security HOLD |
 
 **Verdict:** Secure enough for GA with tracked CSP and dependency-scan follow-ups.
 
@@ -78,7 +78,7 @@ See [PERFORMANCE_BASELINE.md](PERFORMANCE_BASELINE.md).
 
 1. **CSP `unsafe-inline` + jsDelivr** — residual XSS surface; plan nonce/hash migration post-GA.
 2. **In-process job dead letters** — lost on process restart; no durable DLQ table.
-3. **pip-audit soft-fail in CI** — findings warn rather than fail; release owners must review.
+3. **Accepted dependency HOLDs** — Flask Medium advisories documented in `docs/security/DEPENDENCY_ACCEPTED_FINDINGS.md` (CI hard-fails new/unaccepted IDs; EI-001.2).
 4. **Dual runtime** — Education OS HTTP stack is separate; production runbook targets legacy app.
 5. **Coach / readiness** — no dedicated legacy routes; covered via analytics + telemetry.
 6. **CI performance ≠ production SLO** — staging load verification remains an operator task.
@@ -92,7 +92,7 @@ See [PERFORMANCE_BASELINE.md](PERFORMANCE_BASELINE.md).
 |---|---|---|---|
 | GA-B1 | Staging `/health/ready` green on production-like Postgres | High | **Operator** — must pass before first GA traffic |
 | GA-B2 | Pre-deploy backup + restore drill evidence | High | **Operator** — complete using BACKUP_AND_RECOVERY.md |
-| GA-B3 | pip-audit critical findings (if any on tag day) | Medium | **Review/waive** with notes in release |
+| GA-B3 | Unaccepted pip-audit findings on tag day | Medium | **Hard-fail in CI** (EI-001.2); accepted HOLDs in `docs/security/DEPENDENCY_ACCEPTED_FINDINGS.md` |
 | GA-B4 | CSP hardening | Low | **Accepted** for GA; track post-GA |
 
 No in-repo P0 application defects were introduced or left unaddressed by GA-001 automated gates. Items GA-B1 and GA-B2 are **environment** gates, not code defects.

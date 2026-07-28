@@ -76,6 +76,14 @@ def test_canonical_ci_embeds_hard_gate_signals(needle: str) -> None:
     assert needle in text, f"ci.yml missing gate signal: {needle}"
 
 
+def test_canonical_ci_dependency_audit_is_hard_gated() -> None:
+    """EI-001.2 / ER-RB-07 — soft pip-audit must not return."""
+    text = CANONICAL_WORKFLOW.read_text(encoding="utf-8")
+    assert "scripts/dependency_audit.sh" in text
+    assert "Soft gate: warn in CI" not in text
+    assert "pip-audit -r requirements.txt || true" not in text
+
+
 def test_release_candidate_fingerprint_doc_present() -> None:
     path = REPO_ROOT / "docs" / "production" / "RELEASE_CANDIDATE_FINGERPRINT.md"
     text = path.read_text(encoding="utf-8")

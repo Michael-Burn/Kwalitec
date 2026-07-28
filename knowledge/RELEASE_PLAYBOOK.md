@@ -92,7 +92,8 @@ Architecture / Production ships: architecture pytest suite green.
 
 - Quality Manual security checklist
 - `docs/ga/SECURITY_REVIEW.md` residuals acknowledged
-- `pip-audit` reviewed for tag
+- `./scripts/dependency_audit.sh` green for tag (policy: `docs/security/DEPENDENCY_ASSURANCE_POLICY.md`)
+- Accepted Medium/Low findings cited from `docs/security/DEPENDENCY_ACCEPTED_FINDINGS.md` when present
 - No `.env` or credentials in tag
 
 ---

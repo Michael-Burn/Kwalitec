@@ -63,6 +63,7 @@ CI expectations (sole authority: `.github/workflows/ci.yml` — `Kwalitec CI`):
 - Architecture, unit (Python 3.11 / 3.12 / 3.13), integration, educational-intelligence certification, lint, production-gates, release-build
 - `ruff check app/ src/ tests/` (CI ignore policy: `F401` only where configured)
 - Do not add parallel workflow files; RC fingerprints cite this workflow only (`docs/production/RELEASE_CANDIDATE_FINGERPRINT.md`)
+- Dependency audit is a **hard gate** (`./scripts/dependency_audit.sh`; policy `docs/security/DEPENDENCY_ASSURANCE_POLICY.md`)
 
 Do not merge with failing CI without an explicit, documented exception.
 

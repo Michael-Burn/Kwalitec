@@ -49,7 +49,7 @@ Architecture regression: `tests/architecture/test_ci_integrity.py`.
 | `recorded_at` | UTC ISO-8601 | When the fingerprint was filed |
 | `recorder` | Engineering or Release owner | Named |
 
-Optional but recommended: Alembic head id, `pip-audit` note path, deploy health commit once live.
+Optional but recommended: Alembic head id, dependency-audit report path (`./scripts/dependency_audit.sh --output …`), deploy health commit once live.
 
 ---
 
@@ -64,7 +64,7 @@ A fingerprinted RC is **engineering-green** only when **all** of the following `
 | `integration` | Broad integration + founder/automation suites (G11.1) |
 | `educational-intelligence-certification` | EI cert + release-doc presence |
 | `lint` | Ruff policy (G11.2) |
-| `production-gates` | PR/GA ops tests, Alembic head pin, soft `pip-audit`, production docs |
+| `production-gates` | PR/GA ops tests, Alembic head pin, **hard** dependency audit (`scripts/dependency_audit.sh`), production docs |
 | `release-build` | VERSION / render.yaml / factory / dependency artefact checks |
 
 Local reproduction (engineering evidence, not a substitute for Actions on the tagged SHA):
@@ -146,7 +146,7 @@ Required jobs (all success): architecture · unit · integration · educational-
 
 - Filing this process document does **not** by itself declare Version 1 production-ready.  
 - Educational gates G1–G6 remain Product / Educational authorities.  
-- Soft `pip-audit` in `ci.yml` remains a separate engineering residual (ER-RB-07) until hardened.  
+- Dependency assurance is a hard CI gate (EI-001.2); accepted Medium/Low findings require Security HOLD in `docs/security/DEPENDENCY_ACCEPTED_FINDINGS.md`.  
 - Local pytest green is supporting evidence; **tagged SHA + Actions success** is required for G11 claim packages.
 
 ---

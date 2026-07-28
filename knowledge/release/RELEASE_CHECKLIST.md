@@ -35,6 +35,8 @@ Sole authority: `.github/workflows/ci.yml` (`Kwalitec CI`). See `docs/production
 
 Certification failure **blocks merge**. For a Version 1 / RC claim package, record commit SHA + tag + Actions run URL per the fingerprint process.
 
+Dependency assurance (EI-001.2 / G10.5): `production-gates` and `release-build` run `./scripts/dependency_audit.sh` as a **hard gate**. File Security HOLD citations from `docs/security/DEPENDENCY_ACCEPTED_FINDINGS.md` with the tag evidence pack when accepted Medium/Low findings remain.
+
 ---
 
 ## Post-deploy smoke

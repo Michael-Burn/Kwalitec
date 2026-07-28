@@ -1,8 +1,11 @@
 # Dependency Audit — Version 2.0.0
 
-**Milestone:** APP-004  
-**Date:** 2026-07-20  
+**Milestone:** APP-004 (baseline) · **Policy update:** EI-001.2 (2026-07-28)  
 **Scope:** Python runtime dependencies declared in `requirements.txt`  
+
+**Governing policy (EI-001.2):** [`docs/security/DEPENDENCY_ASSURANCE_POLICY.md`](../security/DEPENDENCY_ASSURANCE_POLICY.md)  
+**Accepted findings / Security HOLD:** [`docs/security/DEPENDENCY_ACCEPTED_FINDINGS.md`](../security/DEPENDENCY_ACCEPTED_FINDINGS.md)  
+**Reproducible command:** `./scripts/dependency_audit.sh`
 
 ---
 
@@ -10,10 +13,12 @@
 
 ```bash
 python -m pip install -r requirements.txt pip-audit
-pip-audit -r requirements.txt
+./scripts/dependency_audit.sh --output pip-audit-release.txt
 ```
 
-Re-run before tagging any security-sensitive hotfix.
+CI hard-fails on any advisory **not** listed in `docs/security/dependency_accepted_vulns.txt`. Soft-warn gates are retired (ER-RB-07).
+
+Re-run before tagging any security-sensitive hotfix or Version 1 / RC claim package.
 
 ---
 
@@ -41,10 +46,11 @@ Educational OS AI providers under `src/infrastructure/ai` intentionally **do not
 
 | Severity | Package | Advisory | Disposition |
 |---|---|---|---|
-| Medium (known) | Flask 3.1.0 | Prior Alpha audits noted PYSEC advisories fixed in ≥3.1.3 | Tracked for Version 3 dependency bump; not introduced by APP-004. Core EOS paths do not rely on the affected session-fallback behaviours. |
-| Info | Vendored AI SDKs | Not pinned | By design (ADR-008 enrichment boundary) |
+| Medium (HOLD) | Flask 3.1.0 | PYSEC-2026-1377 / PYSEC-2026-2151 (fix ≥3.1.3) | Security HOLD — see `DEPENDENCY_ACCEPTED_FINDINGS.md`; bump tracked as ER-TD-M04 |
+| Low (accepted) | python-dotenv 1.0.1 | PYSEC-2026-2270 | Accepted — `load_dotenv()` only |
+| Low / non-prod | pytest 8.3.4 | PYSEC-2026-1845 | Accepted — test dependency |
 
-Operators must re-run `pip-audit` on the release machine and attach the raw report to the release record if advisories change after this document’s date.
+Operators must re-run `./scripts/dependency_audit.sh` on the release machine and attach the raw report to the release record if unaccepted advisories appear (CI will already fail).
 
 ---
 
@@ -59,4 +65,5 @@ Operators must re-run `pip-audit` on the release machine and attach the raw repo
 
 ## Decision
 
-**ACCEPT for Version 2.0.0 close** with documented Flask pin follow-up on the Version 3 dependency track. No APP-004 educational or architectural change required.
+**ACCEPT for Version 2.0.0 close** with documented Flask pin follow-up (ER-TD-M04).  
+**EI-001.2:** dependency assurance policy is enforceable in CI; release evidence is reproducible via `scripts/dependency_audit.sh`.

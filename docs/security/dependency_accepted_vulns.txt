@@ -1,0 +1,9 @@
+# Accepted vulnerability IDs for pip-audit --ignore-vuln (EI-001.2).
+# Authority: docs/security/DEPENDENCY_ACCEPTED_FINDINGS.md
+# One advisory ID per line. Lines starting with # are comments.
+# Critical advisories must never be listed here.
+
+PYSEC-2026-1377
+PYSEC-2026-2151
+PYSEC-2026-1845
+PYSEC-2026-2270

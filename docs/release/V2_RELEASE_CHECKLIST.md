@@ -36,7 +36,7 @@ Operational verification only. Do not add educational functionality during this 
 - [ ] Production `DATABASE_URL` / `EOS_DATABASE_URL` set
 - [ ] Provider selectable via `AI_PROVIDER` without code changes
 - [ ] Input validation enforced on EOS web request schemas
-- [ ] **Dependency audit** reviewed (`docs/release/DEPENDENCY_AUDIT_V2.md`)
+- [ ] **Dependency audit** green (`./scripts/dependency_audit.sh`; policy `docs/security/DEPENDENCY_ASSURANCE_POLICY.md`)
 
 ---
 

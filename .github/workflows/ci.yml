@@ -221,19 +221,11 @@ jobs:
           assert head == "202607270013", head
           PY
 
+      # EI-001.2 / ER-RB-07: hard gate — unaccepted advisories fail the job.
       - name: Security dependency scan
         run: |
-          set +e
-          pip-audit -r requirements.txt --progress-spinner=off | tee pip-audit.txt
-          status=$?
-          set -e
-          if [ "$status" -ne 0 ]; then
-            echo "::warning::pip-audit reported dependency findings (exit $status)."
-            echo "Review pip-audit.txt and docs/release/DEPENDENCY_AUDIT_V2.md before release."
-            # Soft gate: warn in CI; hard-fail once the dependency baseline is clean.
-            exit 0
-          fi
-          echo "pip-audit clean"
+          chmod +x scripts/dependency_audit.sh
+          ./scripts/dependency_audit.sh --output pip-audit.txt
 
       - name: Production + GA docs present
         run: |
@@ -285,8 +277,16 @@ jobs:
         run: |
           python -c "from web.app import create_app, WebConfig; app = create_app(WebConfig(testing=True)); print('EOS factory OK', app.config.get('APP_VERSION'))"
 
+      # EI-001.2: same hard policy as production-gates (no soft || true).
       - name: Dependency audit
-        run: pip-audit -r requirements.txt || true
+        run: |
+          chmod +x scripts/dependency_audit.sh
+          ./scripts/dependency_audit.sh
 
-      - name: Dependency audit artefact present
-        run: test -f docs/release/DEPENDENCY_AUDIT_V2.md
+      - name: Dependency assurance artefacts present
+        run: |
+          test -f docs/release/DEPENDENCY_AUDIT_V2.md
+          test -f docs/security/DEPENDENCY_ASSURANCE_POLICY.md
+          test -f docs/security/DEPENDENCY_ACCEPTED_FINDINGS.md
+          test -f docs/security/dependency_accepted_vulns.txt
+          test -x scripts/dependency_audit.sh || chmod +x scripts/dependency_audit.sh
