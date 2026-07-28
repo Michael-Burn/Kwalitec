@@ -1,0 +1,41 @@
+{% extends "adaptive_assessment/base.html" %}
+
+{% block content %}
+<div class="session-stack qc-stack">
+    {% if page.snapshot.introduction %}
+    {% set intro = page.snapshot.introduction %}
+    <section
+        class="session-card qc-card"
+        role="{{ intro.accessibility.semantic_role }}"
+        aria-label="{{ intro.accessibility.accessible_label }}"
+        aria-labelledby="qc-intro-title"
+    >
+        <h2 id="qc-intro-title" class="session-card-title">{{ intro.title }}</h2>
+        <p class="session-body-text">{{ intro.body }}</p>
+        <p class="qc-muted">{{ intro.duration_label }}</p>
+        <div class="session-primary-action qc-actions">
+            <form method="post" action="{{ url_for('adaptive_assessment.begin', experience_id=page.experience_id) }}">
+                {{ begin_form.hidden_tag() }}
+                {{ begin_form.experience_id() }}
+                {{ begin_form.submit(class_="session-btn-primary", **{"data-qc-cta": "begin"}) }}
+            </form>
+            <form method="post" action="{{ url_for('adaptive_assessment.why_this') }}">
+                {{ why_form.hidden_tag() }}
+                {{ why_form.experience_id() }}
+                {{ why_form.subject_code() }}
+                {{ why_form.submit(class_="session-btn-secondary") }}
+            </form>
+            <form method="post" action="{{ url_for('adaptive_assessment.defer') }}">
+                {{ defer_form.hidden_tag() }}
+                {{ defer_form.experience_id() }}
+                {{ defer_form.mission_ref() }}
+                {{ defer_form.subject_code() }}
+                {{ defer_form.return_endpoint() }}
+                {{ defer_form.return_session_id() }}
+                {{ defer_form.submit(class_="session-btn-secondary") }}
+            </form>
+        </div>
+    </section>
+    {% endif %}
+</div>
+{% endblock %}

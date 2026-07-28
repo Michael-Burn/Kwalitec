@@ -94,6 +94,20 @@
             {% endif %}
         </div>
 
+        {% if quick_check_embed and quick_check_embed.available %}
+        {% from "adaptive_assessment/components/entry_card.html" import quick_check_entry_card %}
+        {% if quick_check_embed.mission_ack %}
+        <p class="qc-mission-ack small text-success mb-2" role="status">{{ quick_check_embed.mission_ack }}</p>
+        {% endif %}
+        {{ quick_check_entry_card(
+            quick_check_embed.card,
+            mission_ref=quick_check_embed.start_form.mission_ref.data,
+            start_form=quick_check_embed.start_form,
+            why_form=quick_check_embed.why_form,
+            defer_form=quick_check_embed.defer_form
+        ) }}
+        {% endif %}
+
         <div class="mission-hero-action d-flex flex-column gap-2">
             <button
                 type="button"
@@ -118,6 +132,15 @@
 </section>
 {% endblock %}
 
+{% block extra_head %}
+{% if quick_check_embed and quick_check_embed.available %}
+<link href="{{ versioned_static('css/adaptive_assessment/quick_check.css') }}" rel="stylesheet">
+{% endif %}
+{% endblock %}
+
 {% block extra_scripts %}
 <script src="{{ versioned_static('js/session/study_session.js') }}" defer></script>
+{% if quick_check_embed and quick_check_embed.available %}
+<script src="{{ versioned_static('js/adaptive_assessment/quick_check.js') }}"></script>
+{% endif %}
 {% endblock %}

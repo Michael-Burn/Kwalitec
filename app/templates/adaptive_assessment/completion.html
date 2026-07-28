@@ -1,0 +1,39 @@
+{% extends "adaptive_assessment/base.html" %}
+
+{% block content %}
+<div class="session-stack qc-stack">
+    {% if page.snapshot.completion %}
+    {% set done = page.snapshot.completion %}
+    <section
+        class="session-card qc-card qc-completion-card"
+        role="{{ done.accessibility.semantic_role }}"
+        aria-label="{{ done.accessibility.accessible_label }}"
+        aria-labelledby="qc-thanks"
+    >
+        <h2 id="qc-thanks" class="session-card-title">{{ done.thank_you }}</h2>
+        <div class="qc-completion-block">
+            <h3 class="qc-subhead">Evidence</h3>
+            <p class="session-body-text">{{ done.evidence_summary }}</p>
+        </div>
+        <div class="qc-completion-block">
+            <h3 class="qc-subhead">Still settling</h3>
+            <p class="session-body-text">{{ done.uncertainty_summary }}</p>
+        </div>
+        <div class="qc-completion-block">
+            <h3 class="qc-subhead">Today's Mission</h3>
+            <p class="session-body-text">{{ done.mission_benefit }}</p>
+        </div>
+        <p class="qc-muted">{{ done.use_to_guide }}</p>
+        <div class="session-primary-action">
+            <form method="post" action="{{ url_for('adaptive_assessment.return_to_mission', experience_id=page.experience_id) }}">
+                {{ return_form.hidden_tag() }}
+                {{ return_form.experience_id() }}
+                {{ return_form.return_endpoint() }}
+                {{ return_form.return_session_id() }}
+                {{ return_form.submit(class_="session-btn-primary", **{"data-qc-cta": "return"}) }}
+            </form>
+        </div>
+    </section>
+    {% endif %}
+</div>
+{% endblock %}

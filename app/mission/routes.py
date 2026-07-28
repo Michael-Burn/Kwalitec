@@ -479,12 +479,31 @@ def study_session(mission_id: int):
         current_user.id, mission
     )
 
+    quick_check_embed = None
+    try:
+        from app.presentation.adaptive_assessment.mission_embed import (
+            build_mission_quick_check_embed,
+        )
+
+        quick_check_embed = build_mission_quick_check_embed(
+            mission_ref=str(mission.id),
+            return_endpoint="mission.study_session",
+            return_session_id="",
+        )
+    except Exception:
+        logger.debug(
+            "Quick Check embed unavailable for mission %s",
+            mission.id,
+            exc_info=True,
+        )
+
     return render_template(
         "mission/session.html",
         title="Study Session",
         mission=mission,
         mission_narrative=mission_narrative,
         session_context=session_context,
+        quick_check_embed=quick_check_embed,
     )
 
 

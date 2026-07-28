@@ -1,10 +1,11 @@
-"""ILE-001A — Adaptive Assessment product foundations.
+"""ILE-001A/B — Adaptive Assessment product foundations + Quick Check.
 
 Presentation and product-infrastructure only. No educational selection,
 Twin reasoning, Mission planning, Tutor reasoning, or Assessment algorithms.
 
 Safe defaults keep every Adaptive Assessment surface disabled until later
-milestones (ILE-001B+) explicitly enable them.
+milestones explicitly enable them. ILE-001B adds Mission-embedded Quick Check
+experience orchestration over an already-selected learning check.
 """
 
 from __future__ import annotations
@@ -42,6 +43,40 @@ from app.application.adaptive_assessment.localisation import (
     get_default_catalogue,
     resolve_copy,
 )
+from app.application.adaptive_assessment.quick_check_contracts import (
+    QuickCheckCompletionContract,
+    QuickCheckIntroductionContract,
+    QuickCheckMissionCardContract,
+    QuickCheckMissionReturnContract,
+    QuickCheckPausedContract,
+    QuickCheckProgressContract,
+    QuickCheckQuestionContract,
+    QuickCheckReflectionContract,
+    build_calm_progress,
+    build_quick_check_completion,
+    build_quick_check_introduction,
+    build_quick_check_mission_card,
+    build_quick_check_mission_return,
+    build_quick_check_paused,
+    build_quick_check_question,
+    build_quick_check_reflection,
+    default_selected_learning_check,
+)
+from app.application.adaptive_assessment.quick_check_experience import (
+    QuickCheckExperienceError,
+    QuickCheckExperienceService,
+    QuickCheckExperienceState,
+    QuickCheckExperienceStore,
+    QuickCheckPhase,
+    QuickCheckSurfaceSnapshot,
+    get_quick_check_experience_service,
+    reset_quick_check_experience_service,
+)
+from app.application.adaptive_assessment.selected_learning_check import (
+    LearningCheckItem,
+    SelectedLearningCheck,
+    get_already_selected_quick_check,
+)
 from app.application.adaptive_assessment.session_registry import (
     SESSION_TYPES,
     SessionTypeDefinition,
@@ -76,9 +111,25 @@ __all__ = [
     "AdaptiveAssessmentProductContracts",
     "AdaptiveAssessmentTelemetryEvent",
     "ExplanationPresentationContract",
+    "LearningCheckItem",
     "MessageCatalogue",
     "MissionPresentationContract",
     "ProductTelemetryRecorder",
+    "QuickCheckCompletionContract",
+    "QuickCheckExperienceError",
+    "QuickCheckExperienceService",
+    "QuickCheckExperienceState",
+    "QuickCheckExperienceStore",
+    "QuickCheckIntroductionContract",
+    "QuickCheckMissionCardContract",
+    "QuickCheckMissionReturnContract",
+    "QuickCheckPausedContract",
+    "QuickCheckPhase",
+    "QuickCheckProgressContract",
+    "QuickCheckQuestionContract",
+    "QuickCheckReflectionContract",
+    "QuickCheckSurfaceSnapshot",
+    "SelectedLearningCheck",
     "SessionPresentationContract",
     "SessionTypeDefinition",
     "SessionTypeId",
@@ -87,18 +138,30 @@ __all__ = [
     "TerminologyViolation",
     "accessibility_for_session",
     "assert_adaptive_assessment_copy_safe",
+    "build_calm_progress",
     "build_mission_presentation_contract",
     "build_product_contracts",
+    "build_quick_check_completion",
+    "build_quick_check_introduction",
+    "build_quick_check_mission_card",
+    "build_quick_check_mission_return",
+    "build_quick_check_paused",
+    "build_quick_check_question",
+    "build_quick_check_reflection",
     "build_session_presentation_contract",
     "build_student_facing_content_contract",
     "build_telemetry_event",
+    "default_selected_learning_check",
     "format_message",
+    "get_already_selected_quick_check",
     "get_copy",
     "get_default_catalogue",
+    "get_quick_check_experience_service",
     "get_session_type",
     "iter_copy_entries",
     "iter_session_types",
     "reduced_motion_safe",
+    "reset_quick_check_experience_service",
     "resolve_adaptive_assessment_flags",
     "resolve_copy",
     "validate_product_resources",

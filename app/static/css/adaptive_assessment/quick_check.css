@@ -1,0 +1,218 @@
+/**
+ * Quick Check — calm Mission-embedded learning check chrome.
+ * Presentation only. Respects prefers-reduced-motion.
+ */
+
+.qc-body {
+  /* Inherits session atmosphere — Mission continuity */
+}
+
+.qc-topbar-note {
+  margin: 0;
+  color: color-mix(in srgb, #fff 70%, transparent);
+  font-size: 0.875rem;
+}
+
+.qc-stack {
+  gap: var(--session-space-4);
+}
+
+.qc-muted {
+  color: var(--session-muted);
+}
+
+.qc-card {
+  /* session-card base */
+}
+
+.qc-subhead {
+  margin: 0 0 var(--session-space-2);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--session-text);
+}
+
+.qc-completion-block {
+  margin-bottom: var(--session-space-4);
+}
+
+.qc-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--session-space-2);
+}
+
+.qc-progress {
+  margin-bottom: var(--session-space-3);
+}
+
+.qc-progress-label {
+  margin: 0 0 var(--session-space-2);
+  font-size: 0.9375rem;
+  color: var(--session-muted);
+}
+
+.qc-progress-track {
+  height: 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--session-border) 80%, transparent);
+  overflow: hidden;
+}
+
+.qc-progress-fill {
+  height: 100%;
+  background: var(--session-primary);
+  border-radius: inherit;
+  transition: width 220ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qc-progress-fill {
+    transition: none;
+  }
+
+  .qc-entry-card-inner,
+  .qc-card {
+    animation: none !important;
+  }
+}
+
+.qc-hint {
+  margin: var(--session-space-3) 0;
+  padding: var(--session-space-3);
+  border-left: 3px solid var(--session-primary);
+  background: color-mix(in srgb, var(--session-primary) 6%, transparent);
+}
+
+.qc-hint-label {
+  margin: 0 0 var(--session-space-1);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.qc-fieldset {
+  border: 0;
+  margin: var(--session-space-4) 0;
+  padding: 0;
+}
+
+.qc-option {
+  display: flex;
+  gap: var(--session-space-2);
+  align-items: flex-start;
+  margin-bottom: var(--session-space-2);
+  padding: var(--session-space-3);
+  border: 1px solid var(--session-border);
+  border-radius: var(--session-radius-input);
+  cursor: pointer;
+}
+
+.qc-option:focus-within {
+  outline: none;
+  box-shadow: var(--session-focus);
+}
+
+.qc-field-label {
+  display: block;
+  margin-bottom: var(--session-space-2);
+  font-weight: 500;
+}
+
+.qc-textarea {
+  width: 100%;
+  min-height: 6rem;
+  padding: var(--session-space-3);
+  border: 1px solid var(--session-border);
+  border-radius: var(--session-radius-input);
+  background: var(--session-surface);
+  color: var(--session-text);
+  font: inherit;
+  resize: vertical;
+}
+
+.qc-textarea:focus {
+  outline: none;
+  box-shadow: var(--session-focus);
+}
+
+.qc-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--session-space-2);
+  margin-top: var(--session-space-4);
+}
+
+/* Mission entry card */
+.qc-entry-card {
+  margin: var(--session-space-4) 0;
+}
+
+.qc-entry-card-inner {
+  padding: var(--session-space-4);
+  border: 1px solid var(--session-border);
+  border-radius: var(--session-radius);
+  background: var(--session-surface);
+}
+
+.qc-entry-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--session-space-2);
+  margin-bottom: var(--session-space-2);
+}
+
+.qc-entry-title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.qc-entry-duration {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--session-muted);
+}
+
+.qc-entry-invitation {
+  margin: 0 0 var(--session-space-2);
+  font-size: 1rem;
+}
+
+.qc-entry-tutor {
+  margin: 0 0 var(--session-space-3);
+  font-size: 0.875rem;
+  color: var(--session-muted);
+}
+
+.qc-entry-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--session-space-2);
+  margin-bottom: var(--session-space-3);
+}
+
+.qc-why-panel {
+  margin-top: var(--session-space-2);
+  font-size: 0.9375rem;
+  color: var(--session-muted);
+}
+
+.qc-why-panel summary {
+  cursor: pointer;
+  color: var(--session-primary);
+}
+
+.qc-why-panel[open] summary {
+  margin-bottom: var(--session-space-2);
+}
+
+/* Legacy mission hero embedding */
+.mission-hero-card .qc-entry-card {
+  margin-top: var(--session-space-4);
+}
+
+.mission-hero-card .qc-entry-card-inner {
+  background: color-mix(in srgb, var(--session-surface, #fff) 92%, transparent);
+}

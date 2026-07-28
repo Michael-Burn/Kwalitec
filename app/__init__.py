@@ -785,6 +785,10 @@ def _register_blueprints(app: Flask) -> None:
     from app.dashboard.routes import dashboard_bp
     from app.founder.dashboard import founder_dashboard_bp
     from app.mission.routes import mission_bp
+    from app.presentation.adaptive_assessment import adaptive_assessment_bp
+    from app.presentation.adaptive_assessment import (
+        load_routes as load_adaptive_assessment_routes,
+    )
     from app.presentation.assessment import assessment_bp
     from app.presentation.assessment import (
         load_routes as load_assessment_delivery_routes,
@@ -810,6 +814,7 @@ def _register_blueprints(app: Flask) -> None:
     load_routes()
     load_session_routes()
     load_assessment_delivery_routes()
+    load_adaptive_assessment_routes()
     from app.presentation.adaptive_mission import adaptive_mission_diagnostics_bp
     from app.presentation.adaptive_mission import load_routes as load_mission_routes
     from app.presentation.assessment_pipeline import (
@@ -849,6 +854,7 @@ def _register_blueprints(app: Flask) -> None:
     app.register_blueprint(student_bp)
     app.register_blueprint(session_bp)
     app.register_blueprint(assessment_bp)
+    app.register_blueprint(adaptive_assessment_bp)
     app.register_blueprint(studio_bp)
     app.register_blueprint(twin_diagnostics_bp)
     app.register_blueprint(reasoning_diagnostics_bp)

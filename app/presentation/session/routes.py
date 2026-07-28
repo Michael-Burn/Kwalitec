@@ -71,11 +71,33 @@ def overview(session_id: str):
     form.session_id.data = session_id
     if page.overview and page.overview.mission_id:
         form.mission_id.data = page.overview.mission_id
+    quick_check_embed = None
+    try:
+        from app.presentation.adaptive_assessment.mission_embed import (
+            build_mission_quick_check_embed,
+        )
+
+        mission_ref = str(
+            (page.overview.mission_id if page.overview else None)
+            or session_id
+        )
+        quick_check_embed = build_mission_quick_check_embed(
+            mission_ref=mission_ref,
+            return_endpoint="session.overview",
+            return_session_id=session_id,
+        )
+    except Exception:
+        logger.debug(
+            "Quick Check embed unavailable for session %s",
+            session_id,
+            exc_info=True,
+        )
     return render_template(
         "session/overview.html",
         title=page.shell.page_title,
         page=page,
         form=form,
+        quick_check_embed=quick_check_embed,
     )
 
 
@@ -121,12 +143,30 @@ def activity(session_id: str):
         answer_form.activity_id.data = page.activity.activity_id
     advance_form = AdvanceActivityForm()
     advance_form.session_id.data = session_id
+    quick_check_embed = None
+    try:
+        from app.presentation.adaptive_assessment.mission_embed import (
+            build_mission_quick_check_embed,
+        )
+
+        quick_check_embed = build_mission_quick_check_embed(
+            mission_ref=session_id,
+            return_endpoint="session.activity",
+            return_session_id=session_id,
+        )
+    except Exception:
+        logger.debug(
+            "Quick Check embed unavailable for activity %s",
+            session_id,
+            exc_info=True,
+        )
     return render_template(
         "session/activity.html",
         title=page.shell.page_title,
         page=page,
         answer_form=answer_form,
         advance_form=advance_form,
+        quick_check_embed=quick_check_embed,
     )
 
 

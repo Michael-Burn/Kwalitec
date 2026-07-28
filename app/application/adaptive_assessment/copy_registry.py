@@ -182,6 +182,156 @@ _COPY: tuple[AdaptiveAssessmentCopy, ...] = (
         default="Defer this learning check and continue studying",
         description="Accessible name for defer control",
     ),
+    # --- ILE-001B Quick Check learner experience ---
+    AdaptiveAssessmentCopy(
+        key="quick_check.invitation.headline",
+        default="Let's strengthen today's understanding.",
+        description="Mission entry card invitation line",
+    ),
+    AdaptiveAssessmentCopy(
+        key="quick_check.invitation.cta",
+        default="Continue",
+        description="Primary Mission entry CTA",
+    ),
+    AdaptiveAssessmentCopy(
+        key="quick_check.invitation.why_this",
+        default="Why this?",
+        description="Secondary Mission entry explain control",
+    ),
+    AdaptiveAssessmentCopy(
+        key="quick_check.invitation.tutor_available",
+        default="Tutor explanation available.",
+        description="Tutor availability note on entry card",
+    ),
+    AdaptiveAssessmentCopy(
+        key="quick_check.intro.title",
+        default="Why this check?",
+        description="Learner introduction headline",
+    ),
+    AdaptiveAssessmentCopy(
+        key="quick_check.intro.begin",
+        default="Begin",
+        description="Start questions from introduction",
+    ),
+    AdaptiveAssessmentCopy(
+        key="quick_check.progress.making",
+        default="Making progress",
+        description="Calm progress label — no question numbering",
+    ),
+    AdaptiveAssessmentCopy(
+        key="quick_check.progress.almost",
+        default="Almost there",
+        description="Calm late-progress label",
+    ),
+    AdaptiveAssessmentCopy(
+        key="quick_check.progress.steady",
+        default="Take your time",
+        description="Calm early-progress label",
+    ),
+    AdaptiveAssessmentCopy(
+        key="quick_check.hint.label",
+        default="Hint",
+        description="Hint control label",
+    ),
+    AdaptiveAssessmentCopy(
+        key="quick_check.hint.request",
+        default="Show a hint",
+        description="Request hint CTA",
+    ),
+    AdaptiveAssessmentCopy(
+        key="quick_check.action.next",
+        default="Continue",
+        description="Advance to next prompt",
+    ),
+    AdaptiveAssessmentCopy(
+        key="quick_check.action.resume",
+        default="Resume",
+        description="Resume a paused Quick Check",
+    ),
+    AdaptiveAssessmentCopy(
+        key="quick_check.paused.body",
+        default=(
+            "Your Quick Check is paused. Resume when you are ready — "
+            "there is no rush."
+        ),
+        description="Pause surface body",
+    ),
+    AdaptiveAssessmentCopy(
+        key="quick_check.reflection.title",
+        default="A moment to reflect",
+        description="Reflection step headline",
+    ),
+    AdaptiveAssessmentCopy(
+        key="quick_check.reflection.prompt",
+        default=(
+            "What feels clearer now, and what would you still like to "
+            "practise?"
+        ),
+        description="Reflection prompt",
+    ),
+    AdaptiveAssessmentCopy(
+        key="quick_check.reflection.continue",
+        default="Continue",
+        description="Leave reflection toward completion",
+    ),
+    AdaptiveAssessmentCopy(
+        key="quick_check.completion.thank_you",
+        default="Thank you",
+        description="Completion thank-you headline",
+    ),
+    AdaptiveAssessmentCopy(
+        key="quick_check.completion.evidence",
+        default=(
+            "We gathered useful evidence about how today's ideas are "
+            "settling."
+        ),
+        description="What evidence was collected",
+    ),
+    AdaptiveAssessmentCopy(
+        key="quick_check.completion.uncertain",
+        default=(
+            "Some parts may still feel uncertain — that is expected and "
+            "helps guide practice."
+        ),
+        description="What remains uncertain",
+    ),
+    AdaptiveAssessmentCopy(
+        key="quick_check.completion.mission_benefit",
+        default=(
+            "Today's Mission can use this to stay accurate and supportive."
+        ),
+        description="How today's Mission may benefit",
+    ),
+    AdaptiveAssessmentCopy(
+        key="quick_check.completion.return",
+        default="Return to Mission",
+        description="Primary return CTA after completion",
+    ),
+    AdaptiveAssessmentCopy(
+        key="quick_check.mission.evidence_ack",
+        default="We've gathered useful evidence.",
+        description="Mission acknowledgement after Quick Check return",
+    ),
+    AdaptiveAssessmentCopy(
+        key="quick_check.response.prompt",
+        default="Your thoughts",
+        description="Free-response field label",
+    ),
+    AdaptiveAssessmentCopy(
+        key="a11y.quick_check.pause",
+        default="Pause this Quick Check",
+        description="Accessible name for pause control",
+    ),
+    AdaptiveAssessmentCopy(
+        key="a11y.quick_check.resume",
+        default="Resume this Quick Check",
+        description="Accessible name for resume control",
+    ),
+    AdaptiveAssessmentCopy(
+        key="a11y.quick_check.progress",
+        default="Quick Check progress",
+        description="Accessible name for calm progress indicator",
+    ),
 )
 
 COPY_KEYS: frozenset[str] = frozenset(entry.key for entry in _COPY)

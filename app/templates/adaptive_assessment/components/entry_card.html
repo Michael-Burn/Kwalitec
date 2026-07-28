@@ -1,0 +1,57 @@
+{# Mission entry card for Quick Check — include when quick_check_card.available #}
+{% macro quick_check_entry_card(card, mission_ref, subject_code='', return_endpoint='', return_session_id='', start_form=None, why_form=None, defer_form=None) %}
+{% if card and card.available %}
+<section
+    class="qc-entry-card"
+    role="{{ card.accessibility.semantic_role }}"
+    aria-label="{{ card.accessibility.accessible_label }}"
+    data-qc-entry="true"
+    data-qc-focus="{{ card.accessibility.focus_order_hint }}"
+>
+    <div class="qc-entry-card-inner">
+        <header class="qc-entry-header">
+            <h3 class="qc-entry-title">{{ card.title }}</h3>
+            <p class="qc-entry-duration">{{ card.duration_label }}</p>
+        </header>
+        <p class="qc-entry-invitation">{{ card.invitation }}</p>
+        <p class="qc-entry-tutor">{{ card.tutor_note }}</p>
+        <div class="qc-entry-actions">
+            {% if start_form %}
+            <form method="post" action="{{ url_for('adaptive_assessment.start') }}" class="qc-entry-primary">
+                {{ start_form.hidden_tag() }}
+                {{ start_form.mission_ref() }}
+                {{ start_form.subject_code() }}
+                {{ start_form.return_endpoint() }}
+                {{ start_form.return_session_id() }}
+                {{ start_form.submit(class_="session-btn-primary qc-btn-primary", **{"data-qc-cta": "continue", "aria-label": card.continue_label}) }}
+            </form>
+            {% endif %}
+            {% if why_form %}
+            <form method="post" action="{{ url_for('adaptive_assessment.why_this') }}" class="qc-entry-secondary">
+                {{ why_form.hidden_tag() }}
+                {{ why_form.mission_ref() }}
+                {{ why_form.subject_code() }}
+                {{ why_form.experience_id() }}
+                {{ why_form.submit(class_="session-btn-secondary qc-btn-secondary", **{"aria-label": card.accessibility.screen_reader_description}) }}
+            </form>
+            {% endif %}
+            {% if defer_form %}
+            <form method="post" action="{{ url_for('adaptive_assessment.defer') }}" class="qc-entry-defer">
+                {{ defer_form.hidden_tag() }}
+                {{ defer_form.mission_ref() }}
+                {{ defer_form.subject_code() }}
+                {{ defer_form.experience_id() }}
+                {{ defer_form.return_endpoint() }}
+                {{ defer_form.return_session_id() }}
+                {{ defer_form.submit(class_="session-btn-secondary qc-btn-defer") }}
+            </form>
+            {% endif %}
+        </div>
+        <details class="qc-why-panel">
+            <summary>{{ card.why_this_label }}</summary>
+            <p>{{ card.accessibility.screen_reader_description }}</p>
+        </details>
+    </div>
+</section>
+{% endif %}
+{% endmacro %}

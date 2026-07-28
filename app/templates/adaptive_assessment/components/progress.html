@@ -1,0 +1,15 @@
+{% macro calm_progress(progress) %}
+<section class="qc-progress" aria-labelledby="qc-progress-label">
+    <p id="qc-progress-label" class="qc-progress-label">{{ progress.label }}</p>
+    <div
+        class="qc-progress-track"
+        role="progressbar"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="{{ progress.percent }}"
+        aria-label="{{ progress.accessible_label }}"
+    >
+        <div class="qc-progress-fill" style="width: {{ progress.percent }}%;"></div>
+    </div>
+</section>
+{% endmacro %}
