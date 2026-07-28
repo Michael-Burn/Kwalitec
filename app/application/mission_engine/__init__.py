@@ -17,6 +17,7 @@ from typing import Any
 
 __all__ = [
     "ActiveMissionExists",
+    "CandidateBuilder",
     "DailyMission",
     "DeliveryAction",
     "DeliveryError",
@@ -36,6 +37,7 @@ __all__ = [
     "MissionEngine",
     "MissionEngineError",
     "MissionNotFound",
+    "MissionPlanningService",
     "MissionSchedule",
     "MissionScheduler",
     "MissionSlot",
@@ -43,6 +45,9 @@ __all__ = [
     "MissionSummary",
     "MissionTransitionEvent",
     "MissionValidator",
+    "PLANNING_VERSION",
+    "PlanningPersistenceService",
+    "PlanningValidator",
     "SchedulingError",
     "SchedulingPolicy",
     "V1MissionAdapter",
@@ -53,6 +58,9 @@ __all__ = [
 
 _EXPORT_MODULES = {
     "ActiveMissionExists": "app.application.mission_engine.exceptions",
+    "CandidateBuilder": (
+        "app.application.mission_engine.planning.candidate_builder"
+    ),
     "DailyMission": "app.application.mission_engine.dto.daily_mission",
     "DeliveryAction": "app.application.mission_engine.mission_state",
     "DeliveryError": "app.application.mission_engine.exceptions",
@@ -72,6 +80,9 @@ _EXPORT_MODULES = {
     "MissionEngine": "app.application.mission_engine.engine",
     "MissionEngineError": "app.application.mission_engine.exceptions",
     "MissionNotFound": "app.application.mission_engine.exceptions",
+    "MissionPlanningService": (
+        "app.application.mission_engine.planning.mission_planning_service"
+    ),
     "MissionSchedule": "app.application.mission_engine.dto.mission_schedule",
     "MissionScheduler": "app.application.mission_engine.mission_scheduler",
     "MissionSlot": "app.application.mission_engine.mission_state",
@@ -79,6 +90,11 @@ _EXPORT_MODULES = {
     "MissionSummary": "app.application.mission_engine.dto.mission_summary",
     "MissionTransitionEvent": "app.application.mission_engine.mission_state",
     "MissionValidator": "app.application.mission_engine.mission_validator",
+    "PLANNING_VERSION": "app.application.mission_engine.planning.versions",
+    "PlanningPersistenceService": (
+        "app.application.mission_engine.planning.persistence"
+    ),
+    "PlanningValidator": "app.application.mission_engine.planning.validator",
     "SchedulingError": "app.application.mission_engine.exceptions",
     "SchedulingPolicy": "app.application.mission_engine.policies.scheduling_policy",
     "V1MissionAdapter": (

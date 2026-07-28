@@ -9,6 +9,12 @@ Pipeline (deterministic):
     → Mission Construction
     → Mission Validation
     → Daily Mission
+
+AP-002D5 planning path (decision-set explicit):
+  Validated Twin belief + EducationalDecisionSet
+    → MissionPlanningService
+    → StudyMissionPlan
+    → STOP (no Reasoning / Assessment / Tutor)
 """
 
 from __future__ import annotations
@@ -24,6 +30,12 @@ from app.application.curriculum_retrieval.curriculum_retrieval_service import (
     CurriculumRetrievalService,
 )
 from app.application.learning_graph.learning_graph_service import LearningGraphService
+from app.application.mission_engine.planning.mission_planning_service import (
+    MissionPlanningService,
+)
+from app.application.mission_engine.planning.persistence import (
+    PlanningPersistenceService,
+)
 from app.application.student_digital_twin.student_digital_twin_service import (
     StudentDigitalTwinService,
 )
@@ -41,6 +53,8 @@ from app.domain.adaptive_mission.validation import (
 )
 from app.domain.curriculum_retrieval.profile import RetrievalProfile
 from app.domain.curriculum_retrieval.query import RetrievalQuery
+from app.domain.mission.planning.result import PlanningResult
+from app.domain.reasoning.decisions.decision_set import EducationalDecisionSet
 from app.domain.student_digital_twin.student_digital_twin import StudentDigitalTwin
 from app.extensions import db
 
@@ -49,7 +63,8 @@ class AdaptiveMissionService:
     """Public facade for the Adaptive Mission Engine.
 
     Educational reasoning is never performed here. The engine consumes Twin
-    recommendations / gaps and Learning Graph recovery structure.
+    recommendations / gaps / validated EducationalDecisionSet and Learning Graph
+    recovery structure.
     """
 
     ENGINE_VERSION = "ame001.adaptive_mission_engine_v1"
@@ -61,11 +76,16 @@ class AdaptiveMissionService:
         graphs: LearningGraphService | None = None,
         retrieval: CurriculumRetrievalService | None = None,
         persistence: AdaptiveMissionPersistenceService | None = None,
+        planning: MissionPlanningService | None = None,
+        planning_persistence: PlanningPersistenceService | None = None,
     ) -> None:
         self._twins = twins or StudentDigitalTwinService()
         self._graphs = graphs or LearningGraphService()
         self._retrieval = retrieval
         self._persistence = persistence or AdaptiveMissionPersistenceService()
+        self._planning = planning or MissionPlanningService(
+            persistence=planning_persistence or PlanningPersistenceService()
+        )
 
     def generate_for_twin(
         self,
@@ -196,6 +216,40 @@ class AdaptiveMissionService:
                 )
             db.session.commit()
         return mission
+
+    def plan_from_decisions(
+        self,
+        twin: StudentDigitalTwin,
+        decision_set: EducationalDecisionSet,
+        *,
+        available_minutes: int = 45,
+        curriculum_position: str = "",
+        planned_at: datetime | None = None,
+        persist: bool = True,
+        allow_idempotent_skip: bool = True,
+    ) -> PlanningResult:
+        """AP-002D5: plan a study mission from validated Twin decisions only.
+
+        Consumes EducationalDecisionSet + Twin belief. Uses Learning Graph for
+        recovery-path structure. Does not reason, does not interpret assessment
+        evidence, and does not notify Tutor.
+        """
+        graph = self._graphs.get_for_twin(twin.twin_id)
+        return self._planning.plan(
+            twin,
+            decision_set,
+            learning_graph=graph,
+            available_minutes=available_minutes,
+            curriculum_position=curriculum_position,
+            planned_at=planned_at,
+            persist=persist,
+            allow_idempotent_skip=allow_idempotent_skip,
+        )
+
+    @property
+    def planning(self) -> MissionPlanningService:
+        """AP-002D5 Mission planning service (Twin decisions → StudyMissionPlan)."""
+        return self._planning
 
     def prioritise_for_twin(
         self,
