@@ -6,6 +6,7 @@ and how reflection works. Presentation preference only — never influences
 Twin, readiness, or recommendations.
 
 RR-001.3A / EGC-R01 / EGC-R02 — educational identity + lexicon application.
+RR-001.3B / EGC-R03 / EGC-R04 — reflection family orientation.
 """
 
 from __future__ import annotations
@@ -14,6 +15,7 @@ from dataclasses import dataclass
 
 from app.extensions import db
 from app.models.user import User
+from app.presentation.product_language import REFLECTION_FAMILY_MAP_SENTENCE
 
 # Mandatory KW → Study Sensei handoff (DG-001.1-D01 / DG-001.2-D04 / T04).
 SENSEI_HANDOFF_SENTENCE = (
@@ -60,11 +62,10 @@ ONBOARDING_STEPS: tuple[dict[str, str], ...] = (
     },
     {
         "id": "reflection",
-        "title": "How reflection works",
+        "title": "How Reflections work",
         "body": (
-            "After a Session, a short reflection closes the loop. It helps "
-            "Study Sensei understand how the Session felt and keeps tomorrow's "
-            "guidance honest."
+            f"{REFLECTION_FAMILY_MAP_SENTENCE} "
+            "Help keeps this map whenever you need it."
         ),
     },
 )

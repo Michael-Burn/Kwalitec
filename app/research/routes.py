@@ -1,7 +1,9 @@
-"""Routes for RIP-001 Daily Reflection & Product Check-in and RIP-002 recognition.
+"""Routes for RIP-001 Product Check-in and RIP-002 recognition.
 
-Founder operational surfaces live under ``/founder`` (IAHF-003). Legacy
-``/research/founder*`` paths redirect into the Founder Command Centre.
+Product Check-in is product research — never educational reflection
+(DG-001.3-D05 / EGC-R05). Founder operational surfaces live under
+``/founder`` (IAHF-003). Legacy ``/research/founder*`` paths redirect
+into the Founder Command Centre.
 """
 
 from __future__ import annotations
@@ -40,7 +42,7 @@ def _parse_optional_int(raw: str | None) -> int | None:
 @research_bp.route("/checkin", methods=["GET", "POST"])
 @login_required
 def checkin():
-    """Optional Daily Reflection & Product Check-in form."""
+    """Optional Product Check-in form (product research — not reflection)."""
     source = request.args.get("source") or request.form.get("submission_source")
     if source not in {SOURCE_STUDY_SESSION, SOURCE_SETTINGS}:
         source = SOURCE_SETTINGS

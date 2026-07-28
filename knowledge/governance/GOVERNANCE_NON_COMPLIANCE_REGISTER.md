@@ -34,23 +34,23 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | NCR-005 | Session readiness overclaim; Session/Mission CTA mix | PC | Medium | P1 | EGC-R02; R10 | ED-02; ED-16 |
 | NCR-006 | Journal empty “Mission tip” / QC mention | PC | Medium | P1 | EGC-R02; R12 | ED-14; DEP-01 |
 | NCR-007 | Timeline tip wording + stats tension | PC | Medium | P1 | EGC-R02; R06 | ED-05; DEP-01 |
-| NCR-008 | Feedback Loop not taught in Help | PC | Medium | P1 | EGC-R03; R04 | ED-04; OQ-03 |
+| NCR-008 | Feedback Loop not taught in Help | **Advanced*** | Medium | P1 | EGC-R03; R04 | ED-04; OQ-03 |
 | NCR-009 | Revision vs Mission competing focus | PC | Medium | P2 | EGC-R09 | ED-13 |
 | NCR-010 | History lacks Sensei/meaning bridge | NC | Medium | P1 | EGC-R06 | ED-05; AC-03 |
-| NCR-011 | Help omits Sensei memory map; anxiety phrasing | NC | High | P0 | EGC-R03 | ED-04; ED-08; AC-04 |
+| NCR-011 | Help omits Sensei memory map; anxiety phrasing | **Closed** | High | P0 | EGC-R03 | ED-04; ED-08; AC-04 |
 | NCR-012 | Success states mix praise / readiness claims | PC | Low–Med | P2 | EGC-R10 | AC-15; ED-16 |
 | NCR-013 | Empty states reintroduce deprecated / gated nouns | PC | Medium | P1 | EGC-R12 | ED-12; ED-14 |
 | NCR-014 | Flag speech residuals (Runtime C; QC OFF ads) | **Closed*** / Contained | High if ON | P0*/P1 | EGC-R07; R12 | ED-11; ED-14; AC-02 |
 | NCR-015 | Educational copy tip / Session noun storm | **Closed*** | High | P0 | EGC-R02 | ED-02; DEP-01/02 |
 | NCR-016 | Explanation eyebrow “Why this tip?” + KW reasons | **Closed** | High | P0 | EGC-R02; R01 | ED-07; ED-20 |
-| NCR-017 | Reflection not one student system | NC | High | P0 | EGC-R04; R05 | ED-03; AC-07 |
+| NCR-017 | Reflection not one student system | **Closed** | High | P0 | EGC-R04; R05 | ED-03; AC-07 |
 | NCR-018 | Hidden narrator transitions | **Closed*** | High | P0 | EGC-R01; R08 | ED-01; AC-01/04/05 |
-| NCR-019 | Authority ownership incorrect in live speech | NC | High | P0 | EGC-R01; R03; R06 | AC-* |
+| NCR-019 | Authority ownership incorrect in live speech | PC / residual | High | P0 | EGC-R01; R03; R06 | AC-* |
 | NCR-020 | Terminology not lexicon-applied | **Closed*** | High | P0 | EGC-R02 | ED-02; CP-03 |
-| NCR-021 | Educational memory not introduced at orientation | PC | High | P0 | EGC-R03; R01 | ED-04; D04 |
-| NCR-022 | Product Check-in titled as Reflection | NC | Medium | P1 | EGC-R05 | ED-18; D05 |
+| NCR-021 | Educational memory not introduced at orientation | **Advanced*** | High | P0 | EGC-R03; R01 | ED-04; D04 |
+| NCR-022 | Product Check-in titled as Reflection | **Closed** | Medium | P1 | EGC-R05 | ED-18; D05 |
 
-\*Closed for RR-001.3A **in-scope** educational identity surfaces. Named residuals: Journal/Timeline tip empties (NCR-006/007); Help lag (NCR-011); QC empty ads (NCR-013); Home naming density Watch (NCR-002 / EGC-R08).
+\*Closed for RR-001.3A **in-scope** educational identity surfaces where noted. RR-001.3B closes NCR-011 / NCR-017 / NCR-022. NCR-008 / NCR-021 advanced via Help Sensei reflection + memory map (OQ-03 FL jargon name still open). Named residuals: Journal/Timeline tip empties (NCR-006/007); QC empty ads (NCR-013); Home naming density Watch (NCR-002 / EGC-R08); History bridge (NCR-010).
 
 \*P0 before any Runtime C enablement.
 
@@ -118,13 +118,14 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | **Capability** | Help |
 | **Observed** | Session/Readiness/session-reflection FAQ only; omits Journal, Timeline, MI, Sensei reflection; “closest to being tested on” |
 | **Clause** | DG-001.1-D04; DG-001.2-D04/D10; CP-03; CP-06 |
-| **Compliance** | Non-Compliant |
+| **Compliance** | **Closed** — RR-001.3B |
 | **Risk** | High |
 | **Student impact** | Never learns where long-term mastery story lives |
 | **Required remediation** | Educational glossary + map; soften anxiety phrasing |
 | **Priority** | P0 |
 | **Implementation dependency** | EGC-R03 (+ R01 handoff sentence in Help) |
 | **Evidence** | `app/templates/alpha/help.html` |
+| **Closure** | Journey map + glossary + Sensei handoff; anxiety phrasing removed; `test_rr001_3b_educational_orientation.py`; `RR001_3B_COMPLETION_REPORT.md` |
 
 ---
 
@@ -189,13 +190,14 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | **Capability** | Reflection flows |
 | **Observed** | Multiple reflection types; preview honesty OK; no student map; Check-in titled Reflection |
 | **Clause** | DG-001.3-D01; D05; CP-05; CI-03; §11.5 |
-| **Compliance** | Non-Compliant |
+| **Compliance** | **Closed** — RR-001.3B |
 | **Risk** | High |
 | **Student impact** | Reflection = forms, not judgement practice |
 | **Required remediation** | Publish map; rename Check-in; keep optionality |
 | **Priority** | P0 |
 | **Implementation dependency** | EGC-R04; EGC-R05; OQ-R02 |
 | **Evidence** | home Guided Reflection; session reflection; Journal optional; checkin.html title |
+| **Closure** | Help + onboarding publish DG-001.3 map; Session reflection / Guided Reflection preview qualified; Check-in renamed; `test_rr001_3b_educational_orientation.py` |
 
 ---
 
@@ -259,13 +261,14 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | **Capability** | Educational memory |
 | **Observed** | Journal host compliant; Help/onboarding omit introduction |
 | **Clause** | DG-001.1-D04; DG-001.3-D02; ED-04 |
-| **Compliance** | Partially Compliant |
+| **Compliance** | **Advanced** — Help + onboarding introduce Journal / Timeline (RR-001.3B); residual Watch if other surfaces omit |
 | **Risk** | High (discoverability) |
 | **Student impact** | Durable memory unused / unknown |
 | **Required remediation** | First-introduction in Help + onboarding |
 | **Priority** | P0 |
 | **Implementation dependency** | EGC-R03; EGC-R01 |
 | **Evidence** | help.html topics; onboarding steps |
+| **Progress** | Journey map + glossary + reflection map name Decision Journal and Educational Timeline |
 
 ---
 
@@ -276,13 +279,14 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | **Capability** | Product Check-in |
 | **Observed** | H1 “Daily Reflection & Product Check-in” |
 | **Clause** | DG-001.3-D05; CI-03; §11.5; ED-18 |
-| **Compliance** | Non-Compliant |
+| **Compliance** | **Closed** — RR-001.3B |
 | **Risk** | Medium |
 | **Student impact** | Survey mistaken for educational reflection |
 | **Required remediation** | Rename; remove Reflection from title |
 | **Priority** | P1 |
 | **Implementation dependency** | EGC-R05; OQ-R03 |
 | **Evidence** | `app/templates/research/checkin.html` |
+| **Closure** | H1 Product Check-in + non-reflection disclosure; RIP-001 tests assert no “Daily Reflection” |
 
 ---
 

@@ -121,25 +121,28 @@ Do not break these while remediating:
 
 ## 5. Critical findings (Board attention)
 
-1. ~~**Missing Study Sensei handoff** (NCR-001 / NCR-018)~~ — **Closed RR-001.3A** (Help lag remains NCR-011)  
+1. ~~**Missing Study Sensei handoff** (NCR-001 / NCR-018)~~ — **Closed RR-001.3A**  
 2. ~~**Tip / Mission / Session noun storm** (NCR-015 / NCR-020)~~ — **Closed in-scope RR-001.3A** (Journal/Timeline residual)  
-3. **Help omits Sensei memory surfaces** (NCR-011 / NCR-021) — D04 / ED-04  
-4. **Reflection not one student system** (NCR-017) — CP-05 / ED-03  
-5. **Product Check-in titled Reflection** (NCR-022) — D05 / §11.5  
+3. ~~**Help omits Sensei memory surfaces** (NCR-011 / NCR-021)~~ — **Closed NCR-011 RR-001.3B**; NCR-021 Advanced  
+4. ~~**Reflection not one student system** (NCR-017)~~ — **Closed RR-001.3B**  
+5. ~~**Product Check-in titled Reflection** (NCR-022)~~ — **Closed RR-001.3B**  
 6. ~~**Runtime C System-as-mentor if enabled** (NCR-014)~~ — **Renamed RR-001.3A**; flag Contained OFF; QC empty residual NCR-013  
+7. **History epistemology without bridge** (NCR-010) — D06 / EGC-R06  
+8. **Journal / Timeline tip empties** (NCR-006 / NCR-007) — EGC-R12 / EGC-R06  
 
 ---
 
 ## 6. Dimension heat map (capabilities × dimensions)
 
 Legend: F = FC · P = PC · N = NC · — = NA  
-*RR-001.3A updates:* Onboarding, Narrator transitions, Explanations, Terminology, Educational copy (identity path), Feature flags (Runtime C rename).
+*RR-001.3A updates:* Onboarding, Narrator transitions, Explanations, Terminology, Educational copy (identity path), Feature flags (Runtime C rename).  
+*RR-001.3B updates:* Help orientation/glossary, Reflection flows (student map), Product Check-in rename.
 
 | Capability | Lex | Auth | Refl | Const | Expl | Honest | Judge | Trust | Narr | Evid |
 |------------|:---:|:----:|:----:|:-----:|:----:|:------:|:-----:|:-----:|:----:|:----:|
 | Authentication | F | F | — | F | — | F | — | F | F | F |
-| Onboarding | P | F | P | P | P | P | P | P | F | F |
-| Home | P | P | P | P | P | P | P | P | P | F |
+| Onboarding | P | F | F | P | P | P | P | P | F | F |
+| Home | P | P | F | P | P | P | P | P | P | F |
 | Mission Intelligence | P | P | — | P | P | P | P | P | P | F |
 | Mission Commitment | P | P | P | P | P | P | P | P | P | F |
 | Study Session | P | P | F | P | P | P | P | P | P | F |
@@ -149,7 +152,7 @@ Legend: F = FC · P = PC · N = NC · — = NA
 | Revision | P | P | F | P | P | P | P | P | P | P |
 | History | P | N | — | N | P | N | P | P | N | F |
 | Calibration | F | F | F | F | F | F | — | F | F | F |
-| Help | N | N | N | N | P | N | N | N | N | F |
+| Help | F | F | F | F | P | F | P | P | F | F |
 | Notifications | — | — | — | — | — | — | — | — | — | P |
 | Settings | F | F | — | F | — | F | — | F | F | F |
 | Success states | P | P | — | P | P | P | P | P | P | F |
@@ -158,12 +161,12 @@ Legend: F = FC · P = PC · N = NC · — = NA
 | Feature flags | P | P | P | P | P | P | — | P | P | F |
 | Educational copy | P | P | — | P | P | P | P | P | P | F |
 | Explanations | P | P | — | P | P | P | P | P | P | F |
-| Reflection flows | N | P | N | N | P | P | P | P | P | F |
+| Reflection flows | F | F | F | F | P | F | P | P | F | F |
 | Narrator transitions | P | P | — | P | — | P | — | P | P | F |
 | Authority ownership | P | P | P | P | P | P | P | P | P | F |
 | Terminology | P | P | — | P | P | P | P | P | P | F |
 | Educational memory | P | P | F | P | P | P | F | P | P | F |
-| Product Check-in | N | F | N | N | P | N | — | N | P | F |
+| Product Check-in | F | F | F | F | P | F | — | F | F | F |
 
 ---
 
@@ -171,7 +174,7 @@ Legend: F = FC · P = PC · N = NC · — = NA
 
 ```
 Wave 0 (governance already done)     DG-001.1–4  ✓
-Wave 1 (P0 trust + vocabulary)       EGC-R01 ✓ → R02 ✓ → R03 → R04 → R05
+Wave 1 (P0 trust + vocabulary)       EGC-R01 ✓ → R02 ✓ → R03 ✓ → R04 ✓ → R05 ✓
 Wave 2 (epistemology + honesty)      EGC-R06 → R08 → R12 → R10
 Wave 3 (containment / thin surfaces) EGC-R07 (Runtime C rename ✓) → R09 → R11
 ```

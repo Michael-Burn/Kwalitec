@@ -44,7 +44,7 @@
   <p class="student-muted" data-narrator="study-sensei">Study Sensei</p>
   <p class="student-hero-eyebrow">
     {% if page.home.reflection_active %}
-      Guided Reflection
+      Guided Reflection preview
     {% elif page.home.guided_session_active and page.home.session_phase != 'ready' %}
       Guided Study Session
     {% else %}
@@ -65,7 +65,7 @@
 
   {% if page.home.reflection_active %}
   <p class="student-mission-status" data-status="reflection-{{ page.home.reflection_state }}">
-    Reflection{% if page.home.reflection_state == 'in_progress' %} in progress{% else %} available{% endif %}
+    Guided Reflection preview — nothing recorded
   </p>
   {% elif page.home.unified_journey_enabled and page.home.session_status %}
   <p class="student-mission-status" data-status="{{ page.home.session_phase or page.home.completion_status }}">
@@ -256,7 +256,9 @@
       {% endfor %}
     </ul>
     <p class="student-muted" data-reflection-honesty="disclaimer">
-      Private reflection prompts for you to think through — nothing here is recorded, and there is no action to submit.
+      Guided Reflection preview only — private prompts to think through —
+      nothing here is recorded, and there is no action to submit. This is not
+      Session reflection, Sensei reflection, or Product Check-in.
     </p>
   </div>
   {% elif complete_form and page.home.primary_cta_enabled and page.home.session_control == 'complete_runtime_c' %}

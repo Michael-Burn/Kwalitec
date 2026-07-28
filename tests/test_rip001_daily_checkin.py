@@ -1,8 +1,9 @@
-"""RIP-001 Daily Reflection & Product Check-in tests.
+"""RIP-001 Product Check-in tests.
 
 Covers eligibility, optional check-in, unlimited submissions, persistence,
 contribution creation, thank-you page, settings entry, and educational
-state isolation.
+state isolation. Product Check-in is product research — not reflection
+(DG-001.3-D05 / RR-001.3B).
 """
 
 from __future__ import annotations
@@ -354,7 +355,8 @@ class TestCheckinHttpFlow:
         )
         assert response.status_code == 200
         body = response.get_data(as_text=True)
-        assert "Daily Reflection" in body
+        assert "Product Check-in" in body
+        assert "Daily Reflection" not in body
         assert 'data-rip001-checkin="1"' in body
 
     def test_sidebar_share_feedback_link(self, logged_in_client):

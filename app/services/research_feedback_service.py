@@ -1,8 +1,9 @@
-"""Research Feedback Service — RIP-001 Daily Reflection & Product Check-in.
+"""Research Feedback Service — RIP-001 Product Check-in.
 
 Owns eligibility, persistence of structured product feedback, and
-Contribution creation. Never reads or writes Educational Evidence, Twin
-state, readiness, recommendations, or study algorithms.
+Contribution creation. Product Check-in is product research — never
+educational reflection (DG-001.3-D05). Never reads or writes Educational
+Evidence, Twin state, readiness, recommendations, or study algorithms.
 """
 
 from __future__ import annotations

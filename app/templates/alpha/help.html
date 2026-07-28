@@ -2,12 +2,14 @@
 {% from "partials/contextual_help.html" import learn_more %}
 
 {% block content %}
-{# RR-001.2 / XR-01 / XR-11 — EOS header, panel, and labelled search. #}
+{# RR-001.2 / XR-01 / XR-11 — EOS header, panel, and labelled search.
+   RR-001.3B / EGC-R03 / EGC-R04 — educational orientation + reflection map. #}
 <header class="student-page-header">
     <p class="student-eyebrow">{{ internal_alpha_label }}</p>
     <h1 class="student-page-title">Help &amp; Support</h1>
     <p class="student-page-description">
-        Guidance for using Kwalitec, and how to reach the Internal Alpha team.
+        How Kwalitec and Study Sensei work together on your educational journey —
+        and how to reach the Internal Alpha team.
     </p>
 </header>
 
@@ -19,7 +21,7 @@
         type="search"
         id="help-search"
         class="form-control student-input help-search-input"
-        placeholder="Search Help — try “reflection”, “study plan”, “appearance”…"
+        placeholder="Search Help — try “reflection”, “Mission”, “Decision Journal”…"
         data-help-search
         autocomplete="off"
         aria-describedby="help-search-hint"
@@ -29,21 +31,94 @@
     </p>
 </section>
 
+<section class="student-panel student-panel--quiet mb-4" aria-labelledby="educational-journey-title" data-help-orientation="ecosystem">
+    <p class="student-panel-eyebrow">Orientation</p>
+    <h2 id="educational-journey-title" class="student-panel-title">Your educational journey</h2>
+    <p class="mb-3" data-help-field="sensei-handoff">
+        Study Sensei is how Kwalitec guides your daily learning decisions.
+        Kwalitec is the product; Study Sensei is your educational mentor for
+        what to focus on, why it matters, and what comes next.
+    </p>
+    <ol class="mb-0 ps-3" data-help-field="journey-map">
+        <li class="mb-2"><strong>Mission</strong> — what deserves your attention today.</li>
+        <li class="mb-2"><strong>Study Session</strong> — the practice workflow for that Mission.</li>
+        <li class="mb-2"><strong>Reflection</strong> — a short pause that closes practice or calibrates guidance (see the Reflection map below).</li>
+        <li class="mb-2"><strong>Decision Journal</strong> — Study Sensei’s durable memory of significant guidance and your choices.</li>
+        <li class="mb-2"><strong>Educational Timeline</strong> — the story of how your learning has evolved, drawn from the Journal.</li>
+        <li class="mb-0"><strong>Study Sensei</strong> — the mentor voice across Mission, Session, Journal, and Timeline.</li>
+    </ol>
+</section>
+
+<section class="student-panel student-panel--quiet mb-4" aria-labelledby="reflection-map-title" data-help-orientation="reflection-map">
+    <p class="student-panel-eyebrow">Reflection</p>
+    <h2 id="reflection-map-title" class="student-panel-title">One reflection family</h2>
+    <p class="mb-3" data-help-field="reflection-map-sentence">
+        Reflection after a Session closes practice. Commitment reflection on Home
+        confirms you finished what you chose. Optional reflection in the Decision
+        Journal helps the Study Sensei learn whether guidance was useful. The
+        Educational Timeline asks deeper questions about your learning story.
+        Product Check-in is feedback for the product team — not educational reflection.
+    </p>
+    <ul class="mb-0 ps-3" data-help-field="reflection-kinds">
+        <li class="mb-2"><strong>Session reflection</strong> — closes practice after a Session; optional note; does not score you.</li>
+        <li class="mb-2"><strong>Commitment reflection</strong> — on Home after you finish what you chose.</li>
+        <li class="mb-2"><strong>Sensei reflection</strong> — optional questions in the Decision Journal about whether guidance helped.</li>
+        <li class="mb-2"><strong>Timeline reflection</strong> — deeper questions on the Educational Timeline about your learning story.</li>
+        <li class="mb-2"><strong>Guided Reflection preview</strong> — Home prompts to think through only; nothing is recorded.</li>
+        <li class="mb-0"><strong>Not reflection:</strong> Product Check-in (product research), Calibration (declared coverage), Revision (review practice).</li>
+    </ul>
+</section>
+
+<section class="student-panel student-panel--quiet mb-4" aria-labelledby="glossary-title" data-help-orientation="glossary">
+    <p class="student-panel-eyebrow">Glossary</p>
+    <h2 id="glossary-title" class="student-panel-title">Educational glossary</h2>
+    <dl class="mb-0" data-help-field="glossary">
+        <dt class="student-label">Mission</dt>
+        <dd class="mb-2">Today’s authorised educational focus — what deserves attention now.</dd>
+        <dt class="student-label">Study Session</dt>
+        <dd class="mb-2">The practice workflow you start for a Mission. A Session is not the Mission itself.</dd>
+        <dt class="student-label">Reflection</dt>
+        <dd class="mb-2">A family of short pauses for judgement — after practice, on commitment, in the Journal, or on the Timeline. Never Product Check-in.</dd>
+        <dt class="student-label">Decision Journal</dt>
+        <dd class="mb-2">Where Study Sensei remembers significant guidance, your choices, and optional Sensei reflection.</dd>
+        <dt class="student-label">Educational Timeline</dt>
+        <dd class="mb-2">A calm reading of your learning story from the Journal — not from vanity scores.</dd>
+        <dt class="student-label">Study Sensei</dt>
+        <dd class="mb-2">Your educational mentor inside Kwalitec for focus, reasons, memory, and next steps.</dd>
+        <dt class="student-label">Product Check-in</dt>
+        <dd class="mb-2">Optional product experience feedback for the team. It does not teach, remember learning, or change guidance.</dd>
+        <dt class="student-label">Calibration</dt>
+        <dd class="mb-2">Declared coverage for a starting position — not mastery and not reflection.</dd>
+        <dt class="student-label">Revision</dt>
+        <dd class="mb-0">Review practice on the syllabus — distinct from today’s Mission focus.</dd>
+    </dl>
+</section>
+
 <section class="student-panel student-panel--quiet mb-4" aria-labelledby="popular-topics-title">
     <p class="student-panel-eyebrow">Guidance</p>
     <h2 id="popular-topics-title" class="student-panel-title">Popular topics</h2>
     <div data-help-topics>
         {% set topics = [
+            ("What does Study Sensei do?",
+             "Study Sensei is how Kwalitec guides your daily learning decisions. Sensei prepares today’s Mission, explains recommendations, remembers significant guidance in the Decision Journal, and reads your learning story on the Educational Timeline."),
             ("How is my Session chosen?",
-             "Today's Session is built from your Study Plan and your latest Readiness signal — the topics you're closest to being tested on, and the ones that need the most attention first."),
-            ("Why does Reflection matter?",
-             "Reflection takes under a minute and closes the loop: it keeps tomorrow's guidance honest and stays with your Session record. Skipping it doesn't penalise you — it just means less signal for your next recommendation."),
+             "Today's Session is built from your Study Plan and your latest Readiness signal — topics that need attention soon, and the ones that need the most focus first. Mission is the focus; Session is the practice."),
+            ("What is a Reflection, and why complete one?",
+             "A Reflection is a short pause that closes practice or helps Study Sensei understand whether guidance was useful. Completing one keeps tomorrow’s guidance honest. Skipping does not penalise you — it just means less signal for Sensei’s next recommendation."),
+            ("How is Reflection different from a Mission or Study Session?",
+             "A Mission is what deserves attention today. A Study Session is the practice workflow for that Mission. Reflection is the pause after practice (or in Journal / Timeline) — not a new Mission and not more practice."),
+            ("How is Reflection different from the Decision Journal?",
+             "The Decision Journal is Study Sensei’s durable memory of guidance and choices. Sensei reflection is an optional form inside that Journal. Session reflection closes practice and stays with the Session record — it is not the Journal itself."),
+            ("What does Product Check-in do?",
+             "Product Check-in is optional feedback about using Kwalitec as a product. It is not educational reflection, does not write to the Decision Journal or Timeline, and does not change Missions, Sessions, or Study Sensei guidance."),
+            ("Where does Study Sensei remember my learning?",
+             "Significant guidance and choices live in the Decision Journal. The Educational Timeline interprets that Journal as a learning story. History shows practice archives and stats as context — meaning lives in Journal and Timeline."),
             ("What does Exam Readiness mean?",
              "Readiness is an estimate of how prepared you are for your exam right now, based on completed Sessions and recent accuracy. It updates as you study — it isn't a final grade."),
             ("How do I change my Study Plan?",
              "Open Study Plan from the main navigation. You can adjust your exam date, weekly hours, and priority subjects — your next Session updates automatically."),
             ("Where can I see my past Sessions?",
-             "History shows every completed Session, your accuracy over time, and topic-level progress."),
+             "History shows every completed Session, your accuracy over time, and topic-level progress. For educational meaning, open the Decision Journal or Educational Timeline."),
             ("How do I switch appearance (Light / Dark)?",
              "Open Settings → Preferences and choose Light, Dark, or System. Your choice is saved in this browser."),
             ("How do I export or back up my data?",

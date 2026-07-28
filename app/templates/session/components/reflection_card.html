@@ -1,14 +1,16 @@
 {% macro reflection_card(reflection) %}
 {% if reflection %}
 <section class="session-card session-card--reflection" aria-labelledby="session-reflection-title">
-    <h2 id="session-reflection-title" class="session-card-title">Reflection</h2>
+    <h2 id="session-reflection-title" class="session-card-title">Session reflection</h2>
     {% if reflection.topic_title %}
     <p class="session-meta">{{ reflection.topic_title }}</p>
     {% endif %}
-    {# PX-002A T1-3: value framing — why this takes a minute, what it does,
-       and what happens to it. Matches the sanctioned onboarding language. #}
-    <p class="session-muted session-reflection-framing">
-        One minute, closes the loop: this keeps tomorrow's guidance honest and stays with your session record.
+    {# RR-001.3B / DG-001.3: Session reflection closes practice — not Journal,
+       not Product Check-in, and never a learner score. #}
+    <p class="session-muted session-reflection-framing" data-reflection-kind="session">
+        A short Session reflection closes practice. It helps Study Sensei keep
+        tomorrow's guidance honest and stays with your Session record — optional,
+        never rates you, and not your Decision Journal.
     </p>
     {% if reflection.key_insight %}
     <div class="session-insight">

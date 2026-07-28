@@ -1,8 +1,8 @@
 # RR-001 — Alpha Remediation Register
 
 **Programme:** RR-001 — Alpha Readiness Remediation Register  
-**Work Packages:** RR-001.1 — Critical Findings Resolution · RR-001.2 — Premium Experience Remediation · **RR-001.3A — Educational Identity & Narrator Consistency**  
-**Date:** 2026-07-28 (updated RR-001.3A)  
+**Work Packages:** RR-001.1 — Critical Findings Resolution · RR-001.2 — Premium Experience Remediation · **RR-001.3A — Educational Identity & Narrator Consistency** · **RR-001.3B — Educational Orientation & Reflection Coherence**  
+**Date:** 2026-07-28 (updated RR-001.3B)  
 **Sources:** RP-001.1 Product Inventory · RP-001.2 End-to-End Journey · RP-001.3 Study Sensei Identity & Voice · **RP-001.4 Premium Experience Certification**  
 **Status legend:** `Resolved` · `Open` · `Deferred` · `Contained` (process / flag / ops mitigation) · `Merged` (see canonical ID)
 
@@ -73,7 +73,7 @@ Single remediation register for every certification finding from RP-001.1–RP-0
 | RR-H08 | R-16 / JR-16 / IR-16 | Cohort validation not run | Open | Execute Internal Alpha validation pack |
 | RR-H09 | R-18 / JR-12 | Defer ≠ ranking change | Contained | Disclose preference-only (by design) |
 | RR-H10 | R-06 / JR-13 | Thin Revision surface | Contained | Adaptive authority OFF disclosed |
-| RR-H11 | IR-01 | Dual narrator (Kwalitec vs Study Sensei) | **Resolved** (RR-001.3A in-scope) | Handoff T04 + Home/Session Sensei naming; Help lag remains EGC-R03 |
+| RR-H11 | IR-01 | Dual narrator (Kwalitec vs Study Sensei) | **Resolved** (RR-001.3A + Help RR-001.3B) | Handoff T04 + Home/Session Sensei naming + Help Sensei teaching |
 | RR-H12 | IR-02 | Mission / Session / tip synonym storm | **Resolved** (RR-001.3A in-scope) | Lexicon on educational identity surfaces; Journal tip empty → EGC-R12 |
 | RR-H13 | R-14 | Runtime C dual educational context | Contained | Flags OFF |
 | RR-H14 | R-20 | Curriculum V1/V2 breakage via unrelated change | Contained | Architecture invariant + CI |
@@ -84,7 +84,7 @@ Single remediation register for every certification finding from RP-001.1–RP-0
 
 | Canonical | Source IDs | Title | Status |
 |-----------|------------|-------|--------|
-| RR-M01 | R-12 / JR-08 / IR-04 | Multiple reflection systems without map | Open |
+| RR-M01 | R-12 / JR-08 / IR-04 | Multiple reflection systems without map | **Resolved** (RR-001.3B) | Help + onboarding map; Check-in rename; Session/preview qualified |
 | RR-M02 | JR-09 | Welcome CTA lands on Home under sole runtime | Deferred |
 | RR-M03 | JR-10 | Onboarding skip under-orients | Deferred |
 | RR-M04 | JR-11 / R-10 | Calibration / Twin soft-fail → Tutor soft-fail | Contained |
@@ -97,9 +97,9 @@ Single remediation register for every certification finding from RP-001.1–RP-0
 | RR-M11 | JR-25 / R-08 | Export omits Decision Journal | Deferred |
 | RR-M12 | IR-05 | “Why the system chose this” | **Resolved** (RR-001.3A rename) | Runtime C summary → “Why this Mission?”; flag still Contained OFF |
 | RR-M13 | IR-06 | Onboarding never names Study Sensei | **Resolved** (RR-001.3A) | Meet Study Sensei step + Board handoff |
-| RR-M14 | IR-07 | Help FAQ lags ILE memory surfaces | Open | EGC-R03 |
+| RR-M14 | IR-07 | Help FAQ lags ILE memory surfaces | **Resolved** (RR-001.3B) | Help journey + glossary + reflection map (EGC-R03/R04) |
 | RR-M15 | IR-08 | Explanation “tip” understates guidance | **Resolved** (RR-001.3A) | “Why this guidance?” |
-| RR-M16 | IR-11 | Exam/test-adjacent Help phrasing | Open |
+| RR-M16 | IR-11 | Exam/test-adjacent Help phrasing | **Resolved** (RR-001.3B) | Softened Session FAQ (ED-08) |
 | RR-M17 | R-13 | Accidental UJ / Experience Feedback enable | Contained |
 | RR-M18 | R-17 | EI internal alpha misread as full EI widgets | Contained |
 | RR-M19 | R-24 | Forbidden engineering terms leak | Contained (tests) |

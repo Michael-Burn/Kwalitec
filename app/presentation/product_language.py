@@ -6,6 +6,8 @@ knowledge/governance/CANONICAL_EDUCATIONAL_LEXICON.md (DG-001.1).
 Presentation / documentation only — no educational authority.
 RR-001.3A reconciles Mission (focus) vs Session (practice) without
 retiring Session CTAs.
+RR-001.3B publishes reflection-family and orientation constants
+(DG-001.3 / EGC-R03–R05).
 """
 
 from __future__ import annotations
@@ -27,6 +29,25 @@ APPROVED_TERMS: tuple[str, ...] = (
     "Curriculum Studio",
     "Evidence Gates",
     "Home",
+    "Decision Journal",
+    "Educational Timeline",
+    "Session reflection",
+    "Commitment reflection",
+    "Sensei reflection",
+    "Timeline reflection",
+    "Guided Reflection preview",
+    "Product Check-in",
+    "Calibration",
+)
+
+# DG-001.3-D01 canonical student map (Help + orientation).
+REFLECTION_FAMILY_MAP_SENTENCE: str = (
+    "Reflection after a Session closes practice. "
+    "Commitment reflection on Home confirms you finished what you chose. "
+    "Optional reflection in the Decision Journal helps the Study Sensei "
+    "learn whether guidance was useful. "
+    "The Educational Timeline asks deeper questions about your learning story. "
+    "Product Check-in is feedback for the product team — not educational reflection."
 )
 
 # Rejected learner-facing synonyms (lowercase match).
@@ -44,6 +65,7 @@ REJECTED_SYNONYMS: tuple[str, ...] = (
     "why this tip",
     "mission tip",
     "the system chose",
+    "daily reflection",
 )
 
 # Preferred primary CTAs.

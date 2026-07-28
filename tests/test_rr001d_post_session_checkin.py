@@ -161,7 +161,8 @@ class TestPostSessionInvitationHttp:
         assert response.status_code == 200
         body = response.get_data(as_text=True)
         assert 'data-rip001-checkin="1"' in body
-        assert "Daily Reflection" in body
+        assert "Product Check-in" in body
+        assert "Daily Reflection" not in body
 
     def test_invitation_link_opens_checkin_after_date_rollover(
         self, logged_in_client, user

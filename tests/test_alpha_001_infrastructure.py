@@ -74,7 +74,8 @@ class TestAlphaOnboarding:
         )
         assert "How Missions work" in body
         assert "Why recommendations are explainable" in body
-        assert "How reflection works" in body
+        assert "How Reflections work" in body
+        assert "Product Check-in is feedback for the product team" in body
         assert "reasons Study Sensei used" in body
         assert "Kwalitec prepares" not in body
         assert 'role="main"' in body or "<main" in body or "section-title" in body
