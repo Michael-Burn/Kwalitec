@@ -193,7 +193,9 @@ class TestDashboardFeatureFlagOn:
             response = logged_in_client.get("/dashboard/")
         assert response.status_code == 200
         assert b'data-ei-recommendation-card="1"' in response.data
-        assert b"Today's Recommendation" in response.data
+        assert b"Guidance" in response.data
+        assert b"Study Sensei" in response.data
+        assert b"Today's Recommendation" not in response.data
         assert b"Start Today's Session" in response.data
         assert b"Based on your recent progress" in response.data
         assert b'href="/missions/"' in response.data
@@ -325,7 +327,8 @@ class TestInternalAlphaDailyPath:
         response = logged_in_client.get("/dashboard/")
         assert response.status_code == 200
         assert b'data-ei-recommendation-card="1"' in response.data
-        assert b"Today's Recommendation" in response.data
+        assert b"Guidance" in response.data
+        assert b"Today's Recommendation" not in response.data
         assert b'href="/missions/"' in response.data
         # Unfinished EI widgets stay hidden.
         assert b"data-ei-mission-card" not in response.data

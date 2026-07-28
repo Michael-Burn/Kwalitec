@@ -324,8 +324,10 @@ class TestStudySessionFeedbackHttpFlow:
         body = response.get_data(as_text=True)
         assert "Study Session Feedback" in body
         assert "What happened today?" in body
-        assert "What did Kwalitec observe?" in body
-        assert "What can Kwalitec honestly conclude?" in body
+        assert "What the system observed" in body
+        assert "What can Study Sensei honestly conclude?" in body
+        assert "What did Kwalitec observe?" not in body
+        assert "What can Kwalitec honestly conclude?" not in body
         assert "What happens next?" in body
         assert "20 practice questions" in body
         assert "15 correctly" in body

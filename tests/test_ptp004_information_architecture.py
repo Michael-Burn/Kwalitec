@@ -171,6 +171,8 @@ class TestPtp004DashboardHierarchy:
         assert "Progress through Study Plan" in body
         assert (
             "Topics needing more practice" in body
+            or "Guidance" in body
+            or "Guidance needing attention" in body
             or "Today's Recommendation" in body
             or "Recommendations needing attention" in body
             or "Estimated Knowledge" in body

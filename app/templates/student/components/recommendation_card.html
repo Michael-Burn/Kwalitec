@@ -1,7 +1,10 @@
-{# Recommendation Card — recommendation, benefit, time, reason, CTA #}
+{# Recommendation Card — recommendation, benefit, time, reason, CTA.
+   RR-002.2 / RP002-NCR-005: eyebrow uses Guidance (Mission-led lexicon),
+   not "Today's Recommendation" as a competing daily-focus noun.
+#}
 {% macro recommendation_card(rec, form=None, action_url=None) %}
 <section class="student-card student-card--recommendation" aria-labelledby="recommendation-title">
-    <p class="student-card-eyebrow">Today's Recommendation</p>
+    <p class="student-card-eyebrow">Guidance</p>
     {% if rec.has_recommendation %}
     <h2 id="recommendation-title" class="student-card-title">{{ rec.title }}</h2>
     {% if rec.summary %}
@@ -34,11 +37,11 @@
         </button>
     </form>
     {% elif not rec.cta_enabled %}
-    <p class="student-muted mt-3 mb-0">A session will be ready when today's recommendation is available.</p>
+    <p class="student-muted mt-3 mb-0">A Session will be ready when guidance is available.</p>
     {% endif %}
     {% else %}
-    <h2 id="recommendation-title" class="student-card-title">No recommendation yet</h2>
-    <p class="student-card-body">Complete a study plan or return after your next session for today's focus.</p>
+    <h2 id="recommendation-title" class="student-card-title">No guidance yet</h2>
+    <p class="student-card-body">Complete a study plan or return after your next Session for today's Mission.</p>
     {% endif %}
 </section>
 {% endmacro %}

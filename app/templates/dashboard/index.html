@@ -6,7 +6,7 @@
    1. Today's Study Session
    2. Progress through Study Plan
    3. Estimated Knowledge
-   4. Recommendations / Attention
+   4. Guidance / Attention
    5. Secondary exploration
 #}
 
@@ -46,7 +46,7 @@
     <div>
         <p class="onboarding-next-eyebrow">Next step</p>
         <h2 class="onboarding-next-title">Create your study plan</h2>
-        <p class="onboarding-next-text">Set your exam, schedule, and starting point so Kwalitec can recommend what to study each day.</p>
+        <p class="onboarding-next-text">Set your exam, schedule, and starting point so Study Sensei can guide what to study each day.</p>
     </div>
     <a href="{{ url_for('study_plan.wizard_step', step=1) }}" class="btn btn-primary">Create Study Plan</a>
 </section>
@@ -251,9 +251,9 @@
 </section>
 
 {# ══════════════════════════════════════════════════════════════════════
-   4. Recommendations / Attention
+   4. Guidance / Attention
    ══════════════════════════════════════════════════════════════════════ #}
-<section class="mb-4" aria-label="Attention and recommendations" data-ptp004-slot="attention">
+<section class="mb-4" aria-label="Attention and guidance" data-ptp004-slot="attention">
 
 {% if burnout_status and burnout_status.risk_level in ['high', 'moderate'] %}
     <div class="{% if burnout_status.risk_level == 'high' %}alert-danger-card{% else %}alert-warning-card{% endif %} mb-4" role="status">
@@ -291,7 +291,8 @@
 {% set ei_card = dashboard_view_model.recommendation_card %}
 <div class="card border-0 mb-4 ei-recommendation-card" data-ei-recommendation-card="1">
     <div class="card-body">
-        <h2 class="card-section-header mb-3">Today's Recommendation</h2>
+        <h2 class="card-section-header mb-3">Guidance</h2>
+        <p class="small text-muted mb-2" data-narrator="study-sensei">Study Sensei</p>
         <div class="ei-rec-title">{{ ei_card.title }}</div>
         {% if ei_card.subtitle %}
         <p class="ei-rec-subtitle">{{ ei_card.subtitle }}</p>
@@ -299,7 +300,7 @@
         {% if ei_card.next_action %}
         <p class="small mb-2"><strong>Next step:</strong> {{ ei_card.next_action }}</p>
         {% endif %}
-        {% call learn_more('Why this recommendation') %}
+        {% call learn_more('Why this guidance?') %}
         {% from "partials/educational_explainability.html" import explainability_block %}
         {{ explainability_block(
             observed_facts=ei_card.observed_facts,
@@ -328,8 +329,8 @@
     <div class="card-body">
         {% from "partials/empty_state.html" import educational_empty %}
         {{ educational_empty(
-            "No recommendations yet",
-            "Create a study plan to receive your first recommendation.",
+            "No guidance yet",
+            "Create a study plan so Study Sensei can prepare your first Mission.",
             "Create Study Plan",
             url_for("study_plan.wizard_step", step=1),
             "recommendation"
@@ -341,7 +342,7 @@
 {% if all_recommendations and not (dashboard_view_model and dashboard_view_model.recommendation_card) %}
 <div class="card border-0 mb-4">
     <div class="card-body">
-        <h2 class="card-section-header mb-3">Recommendations needing attention</h2>
+        <h2 class="card-section-header mb-3">Guidance needing attention</h2>
         <div>
             {% for rec in all_recommendations[:3] %}
             <div class="rec-card priority-{{ rec.priority | lower }} py-3 px-0{% if not loop.first %} border-top{% endif %}" style="border-top-color: var(--color-border-light) !important;">
