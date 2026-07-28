@@ -58,7 +58,8 @@ Detail always lives in the cited authoritative artefacts. If this Dashboard conf
 | **EI-002** | Curriculum Extraction Pipeline | **Complete** | CSD → Draft CKG with provenance, confidence, validation; `publication_state=draft` | `knowledge/educational_intelligence/ei002_curriculum_extraction_pipeline/` |
 | **EI-003** | Founder Curriculum Publishing Workflow | **Complete** | Draft → Founder review → explicit publish; audit + edition history; no student runtime | `knowledge/educational_intelligence/ei003_curriculum_publishing/` |
 | **EI-004** | Student Curriculum Binding | **Complete** | Student ↔ Published edition; node educational state; progress aggregation; Twin foundation | `knowledge/educational_intelligence/ei004_student_curriculum_binding/` |
-| **EI-005** | Learning Evidence Engine | **Active** | Append-only educational evidence against SCI; chronological history; no inference | `knowledge/educational_intelligence/ei005_learning_evidence_engine/` |
+| **EI-005** | Learning Evidence Engine | **Complete** | Append-only educational evidence against SCI; chronological history; no inference | `knowledge/educational_intelligence/ei005_learning_evidence_engine/` |
+| **EI-006** | Twin Inference Engine | **Active** | Deterministic explainable beliefs from evidence; knowledge state; no recommendations | `knowledge/educational_intelligence/ei006_twin_inference_engine/` |
 | **ER-002** | Engineering Recertification | Complete | **Engineering Conditional GO** | `knowledge/release/ER-002/` |
 | **OA-001** | Operational Architecture | Complete | Permanent operating model | `knowledge/operations/oa001/` |
 | **CQ-001** | Commercial Readiness First | Complete (docs/governance) | CRI framework; baseline **43%** provisional; living board | `knowledge/product/cq001_commercial_readiness/` |
