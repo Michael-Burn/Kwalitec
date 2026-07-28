@@ -57,6 +57,7 @@ Detail always lives in the cited authoritative artefacts. If this Dashboard conf
 | **EI-001** | Curriculum Knowledge Graph Foundation | **Complete** | Additive educational SoT (domain + `ckg_*` ORM); distinct from Engineering EI-001 | `knowledge/educational_intelligence/ei001_curriculum_knowledge_graph/` |
 | **EI-002** | Curriculum Extraction Pipeline | **Complete** | CSD → Draft CKG with provenance, confidence, validation; `publication_state=draft` | `knowledge/educational_intelligence/ei002_curriculum_extraction_pipeline/` |
 | **EI-003** | Founder Curriculum Publishing Workflow | **Complete** | Draft → Founder review → explicit publish; audit + edition history; no student runtime | `knowledge/educational_intelligence/ei003_curriculum_publishing/` |
+| **EI-004** | Student Curriculum Binding | **Active** | Student ↔ Published edition; node educational state; progress aggregation; Twin foundation | `knowledge/educational_intelligence/ei004_student_curriculum_binding/` |
 | **ER-002** | Engineering Recertification | Complete | **Engineering Conditional GO** | `knowledge/release/ER-002/` |
 | **OA-001** | Operational Architecture | Complete | Permanent operating model | `knowledge/operations/oa001/` |
 | **CQ-001** | Commercial Readiness First | Complete (docs/governance) | CRI framework; baseline **43%** provisional; living board | `knowledge/product/cq001_commercial_readiness/` |

@@ -129,6 +129,10 @@ from app.models.research_feedback import (
     ResearchProductFindingLink,
     ResearchProductFindingStatusTransition,
 )
+from app.models.student_curriculum_binding import (
+    SciCurriculumNodeState,
+    SciStudentCurriculumInstance,
+)
 from app.models.student_digital_twin import (
     SdtKnowledgeGap,
     SdtLearningStateSnapshot,
@@ -218,6 +222,8 @@ __all__ = [
     "CipEmbeddingRecord",
     "CipLocalVectorEntry",
     "CipRetrievalLog",
+    "SciStudentCurriculumInstance",
+    "SciCurriculumNodeState",
     "SdtStudentDigitalTwin",
     "SdtObservation",
     "SdtMasteryRecord",
