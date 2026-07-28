@@ -3,7 +3,7 @@
 **Programme:** VP-001 — Version 1 Product Completion  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commits:** `3e56efc` (`feat(vp-001)`) · *(docs hash after commit)*
+**Commits:** `3e56efc` (`feat(vp-001)`) · `0d291c6` (`docs(vp-001)`)
 
 ---
 
