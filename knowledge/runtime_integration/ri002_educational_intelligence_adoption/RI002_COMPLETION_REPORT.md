@@ -3,7 +3,7 @@
 **Programme:** RI-002 — Educational Intelligence Adoption & Readiness  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commits:** `54eea4c` (`feat(ri-002)`) · docs commit follows in `docs(ri-002)`
+**Commits:** `54eea4c` (`feat(ri-002)`) · `26e9534` (`docs(ri-002)`)
 
 ---
 
