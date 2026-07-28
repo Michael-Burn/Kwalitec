@@ -601,6 +601,7 @@ def _init_extensions(app: Flask) -> None:
         LeeEvidenceEvent,
         SciCurriculumNodeState,
         SciStudentCurriculumInstance,
+        TieNodeBelief,
         SdtKnowledgeGap,
         SdtLearningStateSnapshot,
         SdtMasteryRecord,

@@ -105,6 +105,7 @@ from app.models.intelligent_tutor import (
 )
 from app.models.learning import LearningObjective, Mistake, StudyAttempt
 from app.models.learning_evidence import LeeEvidenceEvent
+from app.models.twin_inference import TieNodeBelief
 from app.models.learning_graph import (
     LgGraphEdge,
     LgGraphNode,
@@ -226,6 +227,7 @@ __all__ = [
     "SciStudentCurriculumInstance",
     "SciCurriculumNodeState",
     "LeeEvidenceEvent",
+    "TieNodeBelief",
     "SdtStudentDigitalTwin",
     "SdtObservation",
     "SdtMasteryRecord",
