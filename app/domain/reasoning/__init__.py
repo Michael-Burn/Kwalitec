@@ -1,12 +1,20 @@
-"""Reasoning domain — educational observations and interpretation (AP-002D2).
+"""Reasoning domain — observations, interpretation, and decisions (AP-002D).
 
-Interpretation prepares immutable educational observations for later Twin
-consumption. It does not estimate mastery, update learner belief, or produce
-recommendations.
+Interpretation prepares immutable educational observations. Decisions derive
+Twin belief update requests from those observations. Twin state is never
+copied from observations.
 """
 
 from __future__ import annotations
 
+from app.domain.reasoning.decisions.category import DecisionCategory
+from app.domain.reasoning.decisions.context import DecisionContext
+from app.domain.reasoning.decisions.decision import EducationalDecision
+from app.domain.reasoning.decisions.decision_set import EducationalDecisionSet
+from app.domain.reasoning.decisions.reason import DecisionReason
+from app.domain.reasoning.decisions.reference import DecisionReference
+from app.domain.reasoning.decisions.result import DecisionResult
+from app.domain.reasoning.decisions.version import DECISION_VERSION, DecisionVersion
 from app.domain.reasoning.interpretation.context import InterpretationContext
 from app.domain.reasoning.interpretation.errors import (
     BrokenEvidenceReference,
@@ -24,8 +32,17 @@ from app.domain.reasoning.observations.observation import EducationalObservation
 from app.domain.reasoning.observations.observation_set import EducationalObservationSet
 
 __all__ = [
+    "DECISION_VERSION",
     "BrokenEvidenceReference",
+    "DecisionCategory",
+    "DecisionContext",
+    "DecisionReason",
+    "DecisionReference",
+    "DecisionResult",
+    "DecisionVersion",
     "DuplicateInterpretedObservation",
+    "EducationalDecision",
+    "EducationalDecisionSet",
     "EducationalObservation",
     "EducationalObservationSet",
     "InterpretationContext",

@@ -3,16 +3,19 @@
 Educational logic lives in ``app.domain.educational_reasoning`` (RuleRegistry).
 This service:
   1. Interprets Assessment Evidence into EducationalObservationSet (AP-002D2)
-  2. Delegates inference to EducationalReasoningService / engine
-  3. Applies results onto the Student Digital Twin aggregate
-  4. Adds prediction scaffolds (framework only)
-  5. Persists Twin inferences + Twin reasoning_history (SDT-001)
-  6. Relies on EducationalReasoningService for engine audit tables (SDT-002)
+  2. Derives EducationalDecisionSet and applies Twin belief (AP-002D3)
+  3. Delegates inference to EducationalReasoningService / engine
+  4. Applies results onto the Student Digital Twin aggregate
+  5. Adds prediction scaffolds (framework only)
+  6. Persists Twin inferences + Twin reasoning_history (SDT-001)
+  7. Relies on EducationalReasoningService for engine audit tables (SDT-002)
 
-Interpretation (AP-002D2) does not update Twin belief. Inference remains the
-sole path that mutates Twin inferences.
+Interpretation (AP-002D2) does not update Twin belief. AP-002D3 consumes
+EducationalObservationSet into validated EducationalDecisionSet and applies
+belief updates without storing observations on the Twin. Mission, Tutor, and
+Learning Graph remain untouched on the D3 path.
 
-No LLM. No educational decisions outside the engine.
+No LLM. No educational decisions outside StudentReasoningService authority.
 """
 
 from __future__ import annotations
@@ -192,6 +195,83 @@ class StudentReasoningService:
             return map_interpretation_result(result)
         return result
 
+    def consume_educational_observations(
+        self,
+        twin: StudentDigitalTwin,
+        observation_set,
+        *,
+        correlation_id: str,
+        session_id: str | None = None,
+        decided_at=None,
+        persist: bool = True,
+        as_dto: bool = False,
+    ):
+        """AP-002D3: EducationalObservationSet → EducationalDecisionSet → Twin.
+
+        Generates validated educational decisions from immutable observations
+        and applies them to Twin belief. Does **not** append observations to
+        the Twin, refresh Learning Graph, trigger Mission, or Tutor.
+        Does not generate recommendations or estimate exam readiness.
+        """
+        from app.application.reasoning.decisions.decision_generator import (
+            DecisionGenerator,
+        )
+        from app.application.reasoning.decisions.twin_updater import TwinUpdater
+        from app.application.reasoning.mappers.decision_mapper import (
+            map_decision_result,
+        )
+
+        decision_result = DecisionGenerator().generate(
+            observation_set,
+            twin=twin,
+            correlation_id=correlation_id,
+            session_id=session_id,
+            decided_at=decided_at,
+        )
+        updated = TwinUpdater().apply(
+            twin,
+            decision_result.decision_set,
+            updated_at=decided_at,
+        )
+        if persist:
+            self._persistence.replace_inferences(updated)
+            db.session.commit()
+        if as_dto:
+            return updated, map_decision_result(decision_result)
+        return updated, decision_result
+
+    def integrate_assessment_evidence(
+        self,
+        twin: StudentDigitalTwin,
+        *,
+        bundle,
+        correlation_id: str,
+        reasoning_request_id: str | None = None,
+        interpreted_at=None,
+        persist: bool = True,
+        as_dto: bool = False,
+    ):
+        """AP-002D3 end-to-end: Evidence Bundle → observations → decisions → Twin.
+
+        Sole authority path for Assessment evidence to influence Twin belief
+        without Mission / Tutor / Learning Graph side effects.
+        """
+        interpretation = self.interpret_assessment_evidence(
+            bundle=bundle,
+            correlation_id=correlation_id,
+            reasoning_request_id=reasoning_request_id,
+            interpreted_at=interpreted_at,
+            as_dto=False,
+        )
+        return self.consume_educational_observations(
+            twin,
+            interpretation.observation_set,
+            correlation_id=correlation_id,
+            session_id=interpretation.context.session_id,
+            decided_at=interpreted_at,
+            persist=persist,
+            as_dto=as_dto,
+        )
 
     def _apply_engine_result(
         self,

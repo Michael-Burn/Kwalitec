@@ -1,7 +1,19 @@
-"""Observation builders for deterministic educational interpretation."""
+"""Builders for deterministic educational observations and decisions."""
 
 from __future__ import annotations
 
-from app.application.reasoning.builders.observation_builder import ObservationBuilder
+__all__ = ["DecisionBuilder", "ObservationBuilder"]
 
-__all__ = ["ObservationBuilder"]
+
+def __getattr__(name: str):
+    if name == "ObservationBuilder":
+        from app.application.reasoning.builders.observation_builder import (
+            ObservationBuilder,
+        )
+
+        return ObservationBuilder
+    if name == "DecisionBuilder":
+        from app.application.reasoning.builders.decision_builder import DecisionBuilder
+
+        return DecisionBuilder
+    raise AttributeError(name)

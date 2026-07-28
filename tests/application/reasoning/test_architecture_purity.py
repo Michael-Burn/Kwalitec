@@ -1,4 +1,4 @@
-"""Architecture purity for AP-002D2 educational evidence interpretation."""
+"""Architecture purity for AP-002D educational reasoning (D2/D3)."""
 
 from __future__ import annotations
 
@@ -71,8 +71,9 @@ def test_required_structure_exists() -> None:
     assert DOMAIN_ROOT.is_dir()
     assert (DOMAIN_ROOT / "observations").is_dir()
     assert (DOMAIN_ROOT / "interpretation").is_dir()
+    assert (DOMAIN_ROOT / "decisions").is_dir()
     assert APPLICATION_ROOT.is_dir()
-    for name in ("interpretation", "builders", "dto", "mappers"):
+    for name in ("interpretation", "builders", "dto", "mappers", "decisions"):
         assert (APPLICATION_ROOT / name).is_dir()
     assert (
         APPLICATION_ROOT / "interpretation" / "evidence_interpreter.py"
@@ -81,6 +82,10 @@ def test_required_structure_exists() -> None:
         APPLICATION_ROOT / "interpretation" / "observation_interpreter.py"
     ).is_file()
     assert (APPLICATION_ROOT / "builders" / "observation_builder.py").is_file()
+    assert (APPLICATION_ROOT / "builders" / "decision_builder.py").is_file()
+    assert (APPLICATION_ROOT / "decisions" / "decision_generator.py").is_file()
+    assert (APPLICATION_ROOT / "decisions" / "twin_updater.py").is_file()
+    assert (APPLICATION_ROOT / "decisions" / "validator.py").is_file()
 
 
 @pytest.mark.parametrize(
@@ -119,3 +124,16 @@ def test_domain_does_not_import_application() -> None:
         for name in _imported_modules(path):
             assert not name.startswith("app.application."), path
             assert not name.startswith("application."), path
+
+
+def test_decision_pipeline_does_not_touch_learning_graph_or_mission() -> None:
+    twin_updater = APPLICATION_ROOT / "decisions" / "twin_updater.py"
+    generator = APPLICATION_ROOT / "decisions" / "decision_generator.py"
+    for path in (twin_updater, generator):
+        text = path.read_text(encoding="utf-8")
+        imported = _imported_modules(path)
+        assert not any("learning_graph" in name for name in imported)
+        assert not any("mission" in name.lower() for name in imported)
+        assert "RecommendationService" not in text
+        assert "AdaptiveMissionService" not in text
+        assert "IntelligentTutor" not in text
