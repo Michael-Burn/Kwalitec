@@ -75,7 +75,7 @@ Detail always lives in the cited authoritative artefacts. If this Dashboard conf
 | **CQ-005** | Guidance Trust | Complete | CR3 why continuity / wording; CRI **51%** provisional (+2); no `cri-*` tag | `knowledge/product/cq005_guidance_trust/` |
 | **CQ-006** | Premium Craft | Complete | CR6 interface craft polish; CRI **53%** provisional (+2); no `cri-*` tag | `knowledge/product/cq006_premium_craft/` |
 | **CQ-007** | Founder Adoption Readiness | Complete | **🟡 GO WITH CONSTRAINTS**; CRI **53%** confirmed (Δ0); CQ engineering phase complete; Board accept via FV-001 | `knowledge/product/cq007_founder_adoption_readiness/` |
-| **FV-001** | Founder Validation Launch | **Active** | Exclusive OS dogfood; Founder Validated CRI **0% Open**; Eng fixes only for Critical/Major session blockers | `knowledge/product/fv001_founder_validation_launch/` |
+| **FV-001** | Founder Validation & Dogfooding | **Active** | Exclusive OS dogfood; instrumentation + workflows live; Founder Validated CRI **0% Open**; Eng fixes only for Critical/Major session blockers | `knowledge/product/fv001_founder_validation_launch/` |
 
 ---
 

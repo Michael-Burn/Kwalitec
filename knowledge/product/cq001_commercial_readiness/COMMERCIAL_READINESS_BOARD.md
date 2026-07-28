@@ -14,15 +14,15 @@
 | Field | Value |
 |---|---|
 | **Current CRI** | **53%** |
-| **Validation** | **Provisional** |
+| **Validation** | **Provisional** (Engineering) · **Founder Validated Open @ 0%** |
 | **As of** | 2026-07-28 |
-| **Trend** | Flat (0) after CQ-007 confirmation |
-| **Prior CRI** | 53% (CQ-006) |
+| **Trend** | Flat (0) Engineering after CQ-007; Founder Validated meter opened |
+| **Prior CRI** | 53% (CQ-006 / CQ-007 confirm) |
 | **Nearest tag** | `cri-50` — composite at provisional band; **tag not created** (validation required) |
-| **Founder Adoption** | **🟡 GO WITH CONSTRAINTS** ([CQ-007](../cq007_founder_adoption_readiness/FOUNDER_ADOPTION_DECISION.md)) |
-| **Founder Validated CRI** | **Not Started** — opens after Board acceptance of CQ-007 |
-| **Current highest-priority programme** | **CQ-007** — completing |
-| **Next recommended programme** | **Founder Validation** (Founder Validated CRI under GO WITH CONSTRAINTS) |
+| **Founder Adoption** | **🟡 GO WITH CONSTRAINTS** ([CQ-007](../cq007_founder_adoption_readiness/FOUNDER_ADOPTION_DECISION.md)) — Board accept via FV-001 start |
+| **Founder Validated CRI** | **0% Open** — ([FV-001](../fv001_founder_validation_launch/VALIDATED_CRI_BOARD.md)); sessions logged: **0** |
+| **Current highest-priority programme** | **FV-001** — Founder Validation & Dogfooding (Active) |
+| **Next recommended programme** | Continue FV-001 exclusive OS dogfood; engineering only for Critical/Major session blockers |
 
 ---
 
@@ -55,6 +55,7 @@
 | 2026-07-28 | 51% | +2 | Provisional | CQ-005 | Guidance trust continuity / wording; no `cri-*` tag |
 | 2026-07-28 | 53% | +2 | Provisional | CQ-006 | Premium craft CSS/template polish; no `cri-*` tag |
 | 2026-07-28 | 53% | 0 | Provisional | CQ-007 | Founder adoption **GO WITH CONSTRAINTS**; CRI confirmed; no `cri-*` tag |
+| 2026-07-28 | 53% Eng / **0%** Val | 0 Eng | Provisional + Validated Open | FV-001 | Founder Validated CRI opens at 0%; exclusive OS window; no `cri-*` tag |
 
 ---
 
@@ -79,9 +80,9 @@
 
 | Role | Programme | Domains | Expected ΔCRI | Status |
 |---|---|---|---|---|
-| Completing | CQ-007 Founder Adoption Readiness | CR1–CR6 adoption lens | **0** (confirm 53%) | Completing |
-| Next recommended | **Founder Validation** | CR1–CR6 → Founder Validated CRI | TBD (validation, not provisional inflate) | Proposed — starts after Board acceptance |
-| Closed phase | Commercial Quality engineering (CQ-001–CQ-007) | — | +10 provisional (43→53) | Complete pending Board accept |
+| Active | **FV-001 Founder Validation & Dogfooding** | CR1–CR6 → Founder Validated CRI | Validated accumulates from sessions; Eng Δ = 0 unless Critical/Major fix | **Active** — 0% Open, 0 sessions; instrumentation live |
+| Closed | CQ-007 Founder Adoption Readiness | CR1–CR6 adoption lens | **0** (confirm 53%) | Complete — GO WITH CONSTRAINTS accepted via FV-001 |
+| Closed phase | Commercial Quality engineering (CQ-001–CQ-007) | — | +10 provisional (43→53) | **Complete** |
 | Deferred | Non-CRI / V2 ideas | — | — | [`VERSION_2_BACKLOG.md`](VERSION_2_BACKLOG.md) |
 
 ---

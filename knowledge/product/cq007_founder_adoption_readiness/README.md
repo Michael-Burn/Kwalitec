@@ -6,7 +6,7 @@
 **Primary question:** Would we recommend that the founder begins preparing for CS1 exclusively through Kwalitec?  
 **Decision:** **🟡 GO WITH CONSTRAINTS**  
 **Board CRI:** **53%** provisional (confirmed; ΔCRI = 0)  
-**Founder Validated CRI:** **Not Started** (opens after Board acceptance)
+**Founder Validated CRI:** **0% Open** — validation window active with instrumentation in [FV-001](../fv001_founder_validation_launch/)
 
 ---
 
