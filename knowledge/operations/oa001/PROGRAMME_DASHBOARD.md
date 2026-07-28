@@ -26,7 +26,7 @@ Detail always lives in the cited authoritative artefacts. If this Dashboard conf
 | **Engineering confidence** | 82 / 100 (Conditional band) | `ER002_ENGINEERING_SCORECARD.md` |
 | **Product Version 1 production-ready** | **NO GO** (educational hard gates, notably G1 FAIL) | P-003.1 dossier · P-002.1 framework |
 | **Validated KSI** | **64** (below ≥ 80 bar) | EP-008.1B / EP-008.3B hold chain |
-| **Commercial Readiness Index (CRI)** | **47%** (provisional) | `knowledge/product/cq001_commercial_readiness/COMMERCIAL_READINESS_BOARD.md` |
+| **Commercial Readiness Index (CRI)** | **49%** (provisional) | `knowledge/product/cq001_commercial_readiness/COMMERCIAL_READINESS_BOARD.md` |
 | **Educational governance baseline** | DG-001 corpus Active; not reopened by ER-002 | `knowledge/governance/` |
 | **Student presentation runtime** | Sole-runtime Education OS certified path; legacy Contained | RR-002.3 |
 | **G7 performance** | **HOLD** | `docs/production/G7_PERFORMANCE_HOLD.md` |
@@ -59,6 +59,7 @@ Detail always lives in the cited authoritative artefacts. If this Dashboard conf
 | **CQ-001** | Commercial Readiness First | Complete (docs/governance) | CRI framework; baseline **43%** provisional; living board | `knowledge/product/cq001_commercial_readiness/` |
 | **CQ-002** | Core Study Loop Reliability | Complete | CR1 polish; CRI **45%** provisional (+2); no `cri-45` tag | `knowledge/product/cq002_core_study_loop_reliability/` |
 | **CQ-003** | Daily Habit Fit | Complete | CR2 resume/Continue polish; CRI **47%** provisional (+2); no `cri-*` tag | `knowledge/product/cq003_daily_habit_fit/` |
+| **CQ-004** | Session Substance | Complete | CR4 topic-threaded session polish; CRI **49%** provisional (+2); no `cri-*` tag | `knowledge/product/cq004_session_substance/` |
 
 ---
 

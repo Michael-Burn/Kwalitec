@@ -1,14 +1,14 @@
 # Current Milestone
 
-**CQ-003** (completing) → next **CQ-004** (proposed — Session Substance)
+**CQ-004** (completing) → next **CQ-005** (proposed — Guidance Trust)
 
 ## Objective
 
-Raise Commercial Readiness Index via CR2 Daily Habit Fit (CQ-003). Board CRI **47%** provisional after CQ-003. Next priority: **CR4 Session Substance**.
+Raise Commercial Readiness Index via CR4 Session Substance (CQ-004). Board CRI **49%** provisional after CQ-004. Next priority: **CR3 Guidance Trust**.
 
 ## Allowed modifications
 
-- CRI board / CQ programme artefacts under `knowledge/product/cq001_commercial_readiness/` and `knowledge/product/cq003_*`
+- CRI board / CQ programme artefacts under `knowledge/product/cq001_commercial_readiness/` and `knowledge/product/cq004_*`
 - Presentation polish on the sole-runtime student study loop that measurably improves CRI
 - Subsequent CQ programmes per framework priority order
 
