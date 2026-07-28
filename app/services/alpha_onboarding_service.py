@@ -1,8 +1,11 @@
 """Lightweight Internal Alpha product onboarding — ALPHA-001.
 
-Explains what Kwalitec is, how missions work, why recommendations are
-explainable, and how reflection works. Presentation preference only —
-never influences Twin, readiness, or recommendations.
+Explains what Kwalitec is, introduces Study Sensei (mandatory handoff),
+how Missions and Sessions differ, why recommendations are explainable,
+and how reflection works. Presentation preference only — never influences
+Twin, readiness, or recommendations.
+
+RR-001.3A / EGC-R01 / EGC-R02 — educational identity + lexicon application.
 """
 
 from __future__ import annotations
@@ -12,23 +15,38 @@ from dataclasses import dataclass
 from app.extensions import db
 from app.models.user import User
 
+# Mandatory KW → Study Sensei handoff (DG-001.1-D01 / DG-001.2-D04 / T04).
+SENSEI_HANDOFF_SENTENCE = (
+    "Study Sensei is how Kwalitec guides your daily learning decisions."
+)
+
 ONBOARDING_STEPS: tuple[dict[str, str], ...] = (
     {
         "id": "what",
         "title": "What Kwalitec is",
         "body": (
             "Kwalitec is an Education Operating System for demanding exams. "
-            "It answers the daily question of what to study next — calmly, "
-            "from your plan and your progress."
+            "It is the product that hosts your Study Plan, Sessions, and "
+            "progress — calmly, from your plan and your evidence."
+        ),
+    },
+    {
+        "id": "sensei",
+        "title": "Meet Study Sensei",
+        "body": (
+            f"{SENSEI_HANDOFF_SENTENCE} "
+            "After this orientation, Study Sensei is your educational mentor "
+            "for what to focus on, why it matters, and what comes next."
         ),
     },
     {
         "id": "missions",
-        "title": "How missions work",
+        "title": "How Missions work",
         "body": (
-            "Each day Kwalitec prepares a focused study mission. Open today's "
-            "session, study the topic, and record what you did. Missions keep "
-            "study decisions small so learning can stay large."
+            "Each day Study Sensei prepares one focused Mission — what "
+            "deserves your attention now. Start today's Session to practice "
+            "that Mission, then record what you did. Missions keep study "
+            "decisions small so learning can stay large."
         ),
     },
     {
@@ -37,15 +55,15 @@ ONBOARDING_STEPS: tuple[dict[str, str], ...] = (
         "body": (
             "Recommendations come from your syllabus structure, available time, "
             "and study history — not a black box. When you expand “why”, you "
-            "see the reasons Kwalitec used."
+            "see the reasons Study Sensei used."
         ),
     },
     {
         "id": "reflection",
         "title": "How reflection works",
         "body": (
-            "After a session, a short reflection closes the loop. It helps "
-            "Kwalitec understand how the session felt and keeps tomorrow's "
+            "After a Session, a short reflection closes the loop. It helps "
+            "Study Sensei understand how the Session felt and keeps tomorrow's "
             "guidance honest."
         ),
     },

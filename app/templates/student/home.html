@@ -41,6 +41,7 @@
   {% if page.home.day_complete %}data-day-complete="true"{% endif %}
 >
   <p class="student-hero-greeting">{{ page.home.greeting }}</p>
+  <p class="student-muted" data-narrator="study-sensei">Study Sensei</p>
   <p class="student-hero-eyebrow">
     {% if page.home.reflection_active %}
       Guided Reflection
@@ -434,7 +435,7 @@
     {% endif %}
     {% if mi.optimisation_axis_label %}
     <p class="student-muted" data-mission-field="optimisation_axis">
-      Optimising for {{ mi.optimisation_axis_label | lower }}
+      Focusing on {{ mi.optimisation_axis_label | lower }}
     </p>
     {% endif %}
   </aside>
@@ -584,8 +585,8 @@
      or a pointer back rather than a restatement. #}
   {% set coach_matches_hero_now = not page.home.guided_session_active and not page.home.reflection_active %}
   <article class="student-panel student-panel--quiet" data-dashboard-panel="coach" aria-labelledby="student-coach-title">
-    <p class="student-panel-eyebrow">Coach</p>
-    <h2 id="student-coach-title" class="student-panel-title">Coach insight</h2>
+    <p class="student-panel-eyebrow" data-narrator="study-sensei">Study Sensei</p>
+    <h2 id="student-coach-title" class="student-panel-title">Guidance</h2>
     {% if page.home.coach_trust and page.home.coach_trust.has_content and not coach_matches_hero_now %}
     <ul class="student-coach-trust" data-mes-field="coach_insight" data-trust-coach="structured"{% if page.home.coach_trust.is_refusal %} data-trust-state="refusal"{% endif %}>
       {% if page.home.coach_trust.why %}
@@ -692,7 +693,7 @@
 <section class="student-empty" aria-label="Home" role="status" data-student-state="empty">
     <h2 class="student-empty-title">Your first insights will appear here</h2>
     <p class="student-empty-description">
-      Your learning insights appear after your first session — readiness, journey, and coach detail included.
+      Your learning insights appear after your first Session — readiness, journey, and Study Sensei guidance included.
     </p>
     <p class="student-empty-why student-muted">
       This quiet Home is expected before a Study Plan and Session — not an unfinished product.

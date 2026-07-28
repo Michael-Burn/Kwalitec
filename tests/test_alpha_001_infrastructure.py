@@ -67,9 +67,16 @@ class TestAlphaOnboarding:
         assert response.status_code == 200
         body = response.get_data(as_text=True)
         assert "What Kwalitec is" in body
-        assert "How missions work" in body
+        assert "Meet Study Sensei" in body
+        assert (
+            "Study Sensei is how Kwalitec guides your daily learning decisions."
+            in body
+        )
+        assert "How Missions work" in body
         assert "Why recommendations are explainable" in body
         assert "How reflection works" in body
+        assert "reasons Study Sensei used" in body
+        assert "Kwalitec prepares" not in body
         assert 'role="main"' in body or "<main" in body or "section-title" in body
 
     def test_dashboard_redirects_to_onboarding_when_pending(self, client, ctx):

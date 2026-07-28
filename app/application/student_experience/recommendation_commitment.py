@@ -61,13 +61,14 @@ CONTINUITY_DEFER = (
     "Your study plan continues — we'll meet you when you're ready."
 )
 CONTINUITY_REFLECTION = (
-    "Tomorrow's tip will reflect tonight's work as part of the same plan."
+    "Tomorrow's Mission will reflect tonight's work as part of the same plan."
 )
 CONTINUITY_HISTORY_HEADER = "Choices you've made inside one study plan."
 
 # Humble static frame — never personal-model theatre (Design §6.4).
 WHAT_WAS_LEARNED_HUMBLE = (
-    "Tonight's practice updates the educational state that shapes tomorrow's tip."
+    "Tonight's practice updates the educational state that shapes "
+    "tomorrow's Mission."
 )
 
 # Defer catalogue (Design §6.3) — student-safe labels only.
@@ -147,7 +148,7 @@ def compose_reflection(
         "Focused practice on tonight's priority."
     )
     next_line = translate_to_student_language(suggested_next_action) or (
-        "Return Home for the next tip in your continuous study plan."
+        "Return Home for the next Mission in your continuous study plan."
     )
     return CommitmentReflectionSnapshot(
         what_you_did=f"Completed: {did}" if did else "Completed today's session.",

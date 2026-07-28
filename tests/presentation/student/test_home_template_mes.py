@@ -56,6 +56,8 @@ def test_home_template_renders_mes_l1_and_explanation_card(app, ctx):
     assert 'data-mes-field="suggested_next_action"' in html
     assert "25-minute cash flow" in html
     assert 'data-mes-disclosure="true"' in html
-    assert "Why this tip?" in html
+    assert "Why this guidance?" in html
+    assert "Study Sensei" in html
+    assert 'data-narrator="study-sensei"' in html
     assert "Reassess after tonight" in html
     assert "Two recent practice attempts" in html

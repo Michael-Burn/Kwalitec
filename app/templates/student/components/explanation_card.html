@@ -9,7 +9,7 @@
 {% set alts = alternatives if alternatives is not none else () %}
 <details class="student-card student-card--explanation student-provenance" data-provenance="true" data-mes-level="2"{% if explanation.honest_refusal %} data-trust-state="refusal"{% endif %}>
     <summary class="student-provenance__summary">
-        <span class="student-card-eyebrow">Why this tip?</span>
+        <span class="student-card-eyebrow">Why this guidance?</span>
         <span class="student-card-title" id="explanation-title">
             {{ explanation.summary or 'Why this guidance' }}
         </span>

@@ -1,8 +1,8 @@
 # RR-001 — Alpha Remediation Register
 
 **Programme:** RR-001 — Alpha Readiness Remediation Register  
-**Work Packages:** RR-001.1 — Critical Findings Resolution · **RR-001.2 — Premium Experience Remediation**  
-**Date:** 2026-07-28 (updated RR-001.2)  
+**Work Packages:** RR-001.1 — Critical Findings Resolution · RR-001.2 — Premium Experience Remediation · **RR-001.3A — Educational Identity & Narrator Consistency**  
+**Date:** 2026-07-28 (updated RR-001.3A)  
 **Sources:** RP-001.1 Product Inventory · RP-001.2 End-to-End Journey · RP-001.3 Study Sensei Identity & Voice · **RP-001.4 Premium Experience Certification**  
 **Status legend:** `Resolved` · `Open` · `Deferred` · `Contained` (process / flag / ops mitigation) · `Merged` (see canonical ID)
 
@@ -73,8 +73,8 @@ Single remediation register for every certification finding from RP-001.1–RP-0
 | RR-H08 | R-16 / JR-16 / IR-16 | Cohort validation not run | Open | Execute Internal Alpha validation pack |
 | RR-H09 | R-18 / JR-12 | Defer ≠ ranking change | Contained | Disclose preference-only (by design) |
 | RR-H10 | R-06 / JR-13 | Thin Revision surface | Contained | Adaptive authority OFF disclosed |
-| RR-H11 | IR-01 | Dual narrator (Kwalitec vs Study Sensei) | Open | Voice package; not Critical trust-affordance |
-| RR-H12 | IR-02 | Mission / Session / tip synonym storm | Open | Board noun decision required |
+| RR-H11 | IR-01 | Dual narrator (Kwalitec vs Study Sensei) | **Resolved** (RR-001.3A in-scope) | Handoff T04 + Home/Session Sensei naming; Help lag remains EGC-R03 |
+| RR-H12 | IR-02 | Mission / Session / tip synonym storm | **Resolved** (RR-001.3A in-scope) | Lexicon on educational identity surfaces; Journal tip empty → EGC-R12 |
 | RR-H13 | R-14 | Runtime C dual educational context | Contained | Flags OFF |
 | RR-H14 | R-20 | Curriculum V1/V2 breakage via unrelated change | Contained | Architecture invariant + CI |
 
@@ -95,10 +95,10 @@ Single remediation register for every certification finding from RP-001.1–RP-0
 | RR-M09 | JR-23 / IR-01 partial | Sensei voice inconsistent on chrome | Open |
 | RR-M10 | JR-24 / R-11 | Orphan `/assessment` vs QC story | Deferred |
 | RR-M11 | JR-25 / R-08 | Export omits Decision Journal | Deferred |
-| RR-M12 | IR-05 | “Why the system chose this” | Contained (flag OFF) |
-| RR-M13 | IR-06 | Onboarding never names Study Sensei | Open |
-| RR-M14 | IR-07 | Help FAQ lags ILE memory surfaces | Open |
-| RR-M15 | IR-08 | Explanation “tip” understates guidance | Open |
+| RR-M12 | IR-05 | “Why the system chose this” | **Resolved** (RR-001.3A rename) | Runtime C summary → “Why this Mission?”; flag still Contained OFF |
+| RR-M13 | IR-06 | Onboarding never names Study Sensei | **Resolved** (RR-001.3A) | Meet Study Sensei step + Board handoff |
+| RR-M14 | IR-07 | Help FAQ lags ILE memory surfaces | Open | EGC-R03 |
+| RR-M15 | IR-08 | Explanation “tip” understates guidance | **Resolved** (RR-001.3A) | “Why this guidance?” |
 | RR-M16 | IR-11 | Exam/test-adjacent Help phrasing | Open |
 | RR-M17 | R-13 | Accidental UJ / Experience Feedback enable | Contained |
 | RR-M18 | R-17 | EI internal alpha misread as full EI widgets | Contained |
@@ -115,7 +115,7 @@ Single remediation register for every certification finding from RP-001.1–RP-0
 | RR-L01 | IR-13 | Streak language in legacy/settings export | Contained |
 | RR-L02 | IR-14 | Journal empty mentions QC while OFF | Open |
 | RR-L03 | IR-17 | Assessment flash brands Kwalitec | Deferred |
-| RR-L04 | IR-18 | “Optimising for {axis}” engineering tone | Open |
+| RR-L04 | IR-18 | “Optimising for {axis}” engineering tone | **Resolved** (RR-001.3A) | Home MI chrome → “Focusing on …” |
 | RR-L05 | IR-19 | Default benefit “strengthen your exam readiness” | Open |
 | RR-L06 | IR-20 | Unified Journey nav lexicon if enabled | Contained (OFF) |
 | RR-L07 | R-21 | Deep/Recovery/Confidence check flags | Contained |
@@ -165,7 +165,7 @@ Capability readiness calls from RP-001.1 are unchanged by RR-001.1 except where 
 
 ## Document control
 
-- Implementation packages: RR-001.1 · **RR-001.2**  
+- Implementation packages: RR-001.1 · RR-001.2 · **RR-001.3A**  
 - Companion matrix: `CRITICAL_FINDINGS_MATRIX.md`  
-- Completions: `RR001_1_COMPLETION_REPORT.md` · `RR001_2_COMPLETION_REPORT.md`  
+- Completions: `RR001_1_COMPLETION_REPORT.md` · `RR001_2_COMPLETION_REPORT.md` · `RR001_3A_IMPLEMENTATION_REPORT.md`  
 - Do not treat this register as Version 1 production-ready declaration

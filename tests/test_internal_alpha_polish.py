@@ -36,7 +36,8 @@ class TestStudyTipsService:
         response = logged_in_client.get("/dashboard/")
         assert response.status_code == 200
         body = response.get_data(as_text=True)
-        assert "Study Tip" in body
+        assert "Before you begin" in body
+        assert "Study Tip" not in body
         assert StudyTipsService.tip_for_day() in body
 
 

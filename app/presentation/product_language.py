@@ -1,15 +1,24 @@
 """Shared product-language constants for presentation surfaces.
 
-Aligned with knowledge/version2/PRODUCT_LANGUAGE_GUIDE.md.
+Aligned with knowledge/version2/PRODUCT_LANGUAGE_GUIDE.md and
+knowledge/governance/CANONICAL_EDUCATIONAL_LEXICON.md (DG-001.1).
+
 Presentation / documentation only — no educational authority.
+RR-001.3A reconciles Mission (focus) vs Session (practice) without
+retiring Session CTAs.
 """
 
 from __future__ import annotations
 
-# Canonical product nouns (UI).
+# Canonical product + educational nouns (UI).
 APPROVED_TERMS: tuple[str, ...] = (
     "Session",
     "Today's Session",
+    "Mission",
+    "Today's Mission",
+    "Study Sensei",
+    "Guidance",
+    "Recommendation",
     "Publish",
     "Journey",
     "Learning Insights",
@@ -32,9 +41,14 @@ REJECTED_SYNONYMS: tuple[str, ...] = (
     "student twin",
     "mission engine",
     "curriculum graph",
+    "why this tip",
+    "mission tip",
+    "the system chose",
 )
 
 # Preferred primary CTAs.
+# Session CTAs remain practice-entry labels (DG-001.1-D02); Mission is the
+# educational focus noun, not a CTA synonym here.
 STUDENT_PRIMARY_CTAS: tuple[str, ...] = (
     "Start Today's Session",
     "Begin Session",

@@ -187,7 +187,7 @@ def test_cf_a04_forbidden_shame_strings_absent(app, ctx):
         what_changed="Reassess after tonight.",
         why_it_mattered="Strengthen readiness.",
         what_was_learned=WHAT_WAS_LEARNED_HUMBLE,
-        what_happens_next="Return Home for the next tip.",
+        what_happens_next="Return Home for the next Mission.",
     )
     commitment = RecommendationCommitmentSnapshot(
         state="completed",
@@ -243,7 +243,7 @@ def test_cf_a06_reflection_binds_authored_humble_frames(app, ctx):
         what_changed="Reassess after tonight's practice set.",
         why_it_mattered="Strengthen exam readiness on cash flow analysis.",
         what_was_learned=WHAT_WAS_LEARNED_HUMBLE,
-        what_happens_next="Return Home for the next tip.",
+        what_happens_next="Return Home for the next Mission.",
     )
     commitment = RecommendationCommitmentSnapshot(
         state="completed",

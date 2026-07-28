@@ -66,7 +66,7 @@ def test_compose_reflection_uses_authored_and_humble_frame():
         title="Cash flow statements",
         review_point="Reassess after tonight's practice set.",
         expected_benefit="Strengthen exam readiness.",
-        suggested_next_action="Return Home for the next tip.",
+        suggested_next_action="Return Home for the next Mission.",
     )
     assert "Cash flow" in reflection.what_you_did
     assert "Reassess" in reflection.what_changed
@@ -74,9 +74,10 @@ def test_compose_reflection_uses_authored_and_humble_frame():
     assert reflection.what_was_learned == WHAT_WAS_LEARNED_HUMBLE
     assert "Twin" not in reflection.what_was_learned
     assert "AI learned" not in reflection.what_was_learned.lower()
-    assert "next tip" in reflection.what_happens_next.lower() or "Home" in (
-        reflection.what_happens_next
-    )
+    assert "tip" not in reflection.what_was_learned.lower()
+    assert "Mission" in reflection.what_happens_next
+    assert "Home" in reflection.what_happens_next
+    assert "tip" not in reflection.what_happens_next.lower()
 
 
 def test_continuity_and_defer_catalogue():

@@ -33,7 +33,12 @@ class TestWelcomeService:
         body = response.get_data(as_text=True)
         assert "Welcome to Kwalitec" in body
         assert "Start Today's Session" in body
+        assert (
+            "Study Sensei is how Kwalitec guides your daily learning decisions."
+            in body
+        )
         assert "welcome-modal" in body
+        assert "Each day Kwalitec recommends" not in body
 
     def test_welcome_modal_has_accessible_dialog_markup(self, logged_in_client, user):
         """B4 (PX-003): the Welcome dialog must carry a full ARIA contract —
@@ -91,7 +96,8 @@ class TestEmptyStatesAndOnboarding:
     def test_mission_includes_study_tip(self, logged_in_client):
         response = logged_in_client.get("/missions/")
         assert response.status_code == 200
-        assert b"Study Tip" in response.data
+        assert b"Before you begin" in response.data
+        assert b"Study Tip" not in response.data
 
     def test_study_plan_list_empty_copy(self, logged_in_client):
         response = logged_in_client.get("/study-plan/plans/all")

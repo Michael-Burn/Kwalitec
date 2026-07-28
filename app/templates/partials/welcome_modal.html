@@ -1,5 +1,6 @@
 {# One-time welcome modal after Study Plan + Calibration (Capability 4.4). #}
 {# EP-007.1: CTA targets the single authoritative session entry surface. #}
+{# RR-001.3A: Kwalitec product welcome + Study Sensei educational handoff. #}
 {% if show_welcome %}
 <div class="welcome-modal-backdrop" id="welcome-modal" role="dialog" aria-modal="true" aria-labelledby="welcome-modal-title" aria-describedby="welcome-modal-lead welcome-modal-desc">
     <div class="welcome-modal-card" tabindex="-1">
@@ -7,7 +8,10 @@
         <h2 class="welcome-modal-title" id="welcome-modal-title">Welcome to Kwalitec</h2>
         <p class="welcome-modal-lead" id="welcome-modal-lead">Your study journey is now personalised.</p>
         <div class="welcome-modal-body">
-            <p id="welcome-modal-desc">Each day Kwalitec recommends what to study. Start today's session to begin.</p>
+            <p id="welcome-modal-desc">
+                Study Sensei is how Kwalitec guides your daily learning decisions.
+                Start today's Session to begin today's Mission.
+            </p>
         </div>
         <div class="welcome-modal-actions">
             <a href="{{ canonical_session_entry_url }}" class="btn btn-primary" data-welcome-dismiss data-welcome-href="{{ canonical_session_entry_url }}">
