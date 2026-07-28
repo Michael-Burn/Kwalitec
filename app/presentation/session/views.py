@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import logging
+
 from flask import redirect, url_for
 from flask_login import current_user
 from werkzeug.wrappers import Response
@@ -23,6 +25,8 @@ from app.domain.session_experience.session_workspace import (
 from app.presentation.session.factory import get_session_experience_service
 from app.presentation.session.navigation import SURFACE_ENDPOINTS
 from app.presentation.session.view_models import SessionPageViewModel, page_from_flow
+
+logger = logging.getLogger(__name__)
 
 
 def student_id() -> str:
@@ -139,5 +143,57 @@ def continue_reflection(
 
 
 def complete_and_return(*, session_id: str) -> CompletionSnapshot:
+    """Complete the V2 session and close the Mission commitment lifecycle.
+
+    RR-001.1 / JR-01: V2 ``session.finish`` must call
+    ``RecommendationCommitmentService.mark_completed`` so Home reflection
+    chrome and the journal completion arc appear on the canonical Alpha path
+    (legacy mission finish already did this).
+    """
     assert_session_owned(session_id)
-    return service().complete_session(student_id(), session_id=session_id)
+    snap = service().complete_session(student_id(), session_id=session_id)
+    _link_commitment_completion(
+        int(current_user.id),
+        session_id=session_id,
+        session_topic=_session_topic_hint(snap),
+    )
+    return snap
+
+
+def _session_topic_hint(snap: CompletionSnapshot) -> str:
+    """Best-effort topic label from completion projection (fail-open)."""
+    topics = getattr(snap, "topics_completed", ()) or ()
+    if topics:
+        return str(topics[0])
+    next_rec = getattr(snap, "next_recommendation", "") or ""
+    return str(next_rec).strip()
+
+
+def _link_commitment_completion(
+    user_id: int,
+    *,
+    session_id: str,
+    session_topic: str = "",
+) -> None:
+    """EP-008.3 / RR-001.1: link V2 session completion to commitment (preference)."""
+    try:
+        from app.application.student_experience.recommendation_commitment import (
+            RecommendationCommitmentService,
+        )
+        from app.services.recommendation_service import RecommendationService
+
+        tip = RecommendationService.get_dashboard_today_recommendation(user_id)
+        if not isinstance(tip, dict):
+            tip = {"title": session_topic} if session_topic else {}
+        RecommendationCommitmentService.mark_completed(
+            user_id,
+            tip=tip,
+            session_id=session_id,
+            session_topic=session_topic,
+        )
+    except Exception:
+        logger.debug(
+            "EP-008.3 commitment completion link failed for user %s",
+            user_id,
+            exc_info=True,
+        )

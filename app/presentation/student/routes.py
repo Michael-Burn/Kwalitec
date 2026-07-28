@@ -122,6 +122,11 @@ def home():
             reflection_form.recommendation_key.data = (
                 page.home.commitment.recommendation_key or ""
             )
+    # RR-001.1 / JR-07: syllabus-complete revision acknowledgement must be
+    # reachable under sole runtime (legacy dashboard UI is redirected away).
+    from app.services.learning_lifecycle_service import LearningLifecycleService
+
+    lifecycle = LearningLifecycleService.resolve(current_user.id)
     return render_template(
         "student/home.html",
         title=page.shell.page_title,
@@ -132,6 +137,9 @@ def home():
         reflection_form=reflection_form,
         tutor_form=tutor_form,
         show_welcome=WelcomeService.should_show(current_user),
+        show_revision_acknowledgement=lifecycle.show_completion_acknowledgement,
+        lifecycle=lifecycle,
+        revision_intro=LearningLifecycleService.revision_intro_line(),
     )
 
 

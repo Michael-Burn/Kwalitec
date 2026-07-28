@@ -11,6 +11,23 @@
 {# EP-006.2 — authored MES L1 (why + next) visible; L2 via explanation_card. #}
 {# EP-008.1 — Recommendation Trust: why now, L1 benefit, coherence, refusal, alts. #}
 
+{# RR-001.1 / JR-07 — restore syllabus-complete revision acknowledgement on the
+   sole-runtime Home path (same lifecycle service + dashboard POST). #}
+{% if show_revision_acknowledgement and lifecycle %}
+<section class="student-revision-ack mb-4" aria-label="Syllabus complete acknowledgement" data-lifecycle="revision-ack">
+  <p class="student-panel-eyebrow">Learning milestone</p>
+  <h2 class="student-panel-title">{{ lifecycle.acknowledgement_title }}</h2>
+  <p class="student-panel-body">{{ lifecycle.acknowledgement_body }}</p>
+  {% if revision_intro %}
+  <p class="student-muted">{{ revision_intro }}</p>
+  {% endif %}
+  <form method="POST" action="{{ url_for('dashboard.acknowledge_revision') }}" class="student-hero-cta mt-3">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <button type="submit" class="btn student-btn-primary" data-lifecycle="revision-ack-submit">Continue</button>
+  </form>
+</section>
+{% endif %}
+
 <section
   class="student-hero"
   data-dashboard-slot="primary"
@@ -209,7 +226,10 @@
   {% endif %}
 
   {% if page.home.reflection_active %}
-  <div class="student-reflection" data-reflection-experience="true" data-presentation-only="true">
+  {# RR-001.1 / JR-06 / IR-03: preview prompts only — no fake action controls.
+     Commitment reflection (Got it) and session/journal reflection remain the
+     honest interactive paths. #}
+  <div class="student-reflection" data-reflection-experience="true" data-presentation-only="true" data-reflection-honesty="preview-only">
     {% if page.home.reflection_next_transition %}
     <p class="student-session-next" data-reflection-next="true">
       <span class="student-hero-purpose-label">Next</span>
@@ -221,7 +241,7 @@
       <li class="student-reflection-prompt" data-response-type="{{ prompt.response_type }}">
         <p class="student-reflection-prompt-text">{{ prompt.prompt }}</p>
         {% if prompt.response_type == 'choice' and prompt.available_options %}
-        <p class="student-muted student-reflection-options" role="group" aria-label="{{ prompt.prompt }}">
+        <p class="student-muted student-reflection-options" aria-label="{{ prompt.prompt }}">
           {% for option in prompt.available_options %}
           <span class="student-reflection-option" data-presentation-only="true">{{ option }}</span>{% if not loop.last %} · {% endif %}
           {% endfor %}
@@ -234,16 +254,9 @@
       </li>
       {% endfor %}
     </ul>
-    {# PX-002A T1-3/a11y: plain text, not styled as a button — this preview
-       has no live control yet, and a role="status" on a "btn"-styled span
-       misrepresented it as an operable, live-updating element. #}
-    <p class="student-hero-cta student-reflection-controls" data-presentation-only="true">
-      <span class="student-reflection-preview" data-reflection-control="complete">Done reflecting</span>
-      {% if page.home.reflection_skip_available %}
-      <span class="student-muted" data-reflection-control="skip">Skip for today</span>
-      {% endif %}
+    <p class="student-muted" data-reflection-honesty="disclaimer">
+      Private reflection prompts for you to think through — nothing here is recorded, and there is no action to submit.
     </p>
-    <p class="student-muted">Reflection is optional and stays with you — nothing is saved yet.</p>
   </div>
   {% elif complete_form and page.home.primary_cta_enabled and page.home.session_control == 'complete_runtime_c' %}
   <form method="post" action="{{ url_for('student.complete_runtime_mission') }}" class="student-hero-cta" data-pilot-cta="complete-mission">
