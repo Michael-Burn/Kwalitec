@@ -4,7 +4,7 @@
 **Work Package:** EI-001.3 — Release Operations & Deployment Evidence  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commit:** *(recorded after commit)* — `docs(ei-001.3): strengthen release operations and deployment evidence`  
+**Commit:** `bd8f05f` — `docs(ei-001.3): strengthen release operations and deployment evidence`  
 **Governance stance:** Educational baselines frozen — no educational / product behaviour changes  
 **Findings closed:** ER-RB-02 (HOLD) · ER-RB-03 · ER-RB-06  
 **Findings partial:** ER-RB-04 (ops advanced; privacy residual open)
