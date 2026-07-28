@@ -4,7 +4,8 @@
 **Milestone:** AP-002D3 — Student Digital Twin Integration  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commit message:** `feat(ap-002d3): integrate assessment evidence into student digital twin`
+**Commit message:** `feat(ap-002d3): integrate assessment evidence into student digital twin`  
+**Commit:** `c203e7f`
 
 ---
 
