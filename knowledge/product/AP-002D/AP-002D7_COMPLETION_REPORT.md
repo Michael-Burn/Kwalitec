@@ -4,7 +4,8 @@
 **Milestone:** AP-002D7 — Educational Intelligence Platform Certification  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commit message:** `chore(certification): certify educational intelligence platform`
+**Commit message:** `chore(certification): certify educational intelligence platform`  
+**Commit:** `9726cbf`
 
 ---
 
