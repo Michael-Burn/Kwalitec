@@ -598,6 +598,7 @@ def _init_extensions(app: Flask) -> None:
         ResearchContributorBadge,
         ResearchFeedbackReview,
         ResearchFeedbackSubmission,
+        LeeEvidenceEvent,
         SciCurriculumNodeState,
         SciStudentCurriculumInstance,
         SdtKnowledgeGap,
