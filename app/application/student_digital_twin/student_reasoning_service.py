@@ -2,11 +2,15 @@
 
 Educational logic lives in ``app.domain.educational_reasoning`` (RuleRegistry).
 This service:
-  1. Delegates inference to EducationalReasoningService / engine
-  2. Applies results onto the Student Digital Twin aggregate
-  3. Adds prediction scaffolds (framework only)
-  4. Persists Twin inferences + Twin reasoning_history (SDT-001)
-  5. Relies on EducationalReasoningService for engine audit tables (SDT-002)
+  1. Interprets Assessment Evidence into EducationalObservationSet (AP-002D2)
+  2. Delegates inference to EducationalReasoningService / engine
+  3. Applies results onto the Student Digital Twin aggregate
+  4. Adds prediction scaffolds (framework only)
+  5. Persists Twin inferences + Twin reasoning_history (SDT-001)
+  6. Relies on EducationalReasoningService for engine audit tables (SDT-002)
+
+Interpretation (AP-002D2) does not update Twin belief. Inference remains the
+sole path that mutates Twin inferences.
 
 No LLM. No educational decisions outside the engine.
 """
@@ -150,6 +154,43 @@ class StudentReasoningService:
             persist=persist,
             reason=True,
         )
+
+    def interpret_assessment_evidence(
+        self,
+        *,
+        bundle,
+        correlation_id: str,
+        reasoning_request_id: str | None = None,
+        interpreted_at=None,
+        as_dto: bool = False,
+    ):
+        """AP-002D2: interpret Assessment Evidence into EducationalObservationSet.
+
+        Deterministic interpretation only. Does **not** update the Student Digital
+        Twin, Mission Engine, Learning Graph, or Tutor. Does not estimate mastery
+        or produce recommendations. Output is ready for later Twin consumption.
+        """
+        from app.application.reasoning.dto.interpretation_dto import (
+            InterpretationRequestDTO,
+        )
+        from app.application.reasoning.interpretation.evidence_interpreter import (
+            EvidenceInterpreter,
+        )
+        from app.application.reasoning.mappers.evidence_mapper import (
+            map_interpretation_result,
+        )
+
+        result = EvidenceInterpreter().interpret(
+            InterpretationRequestDTO(
+                bundle=bundle,
+                correlation_id=correlation_id,
+                reasoning_request_id=reasoning_request_id,
+            ),
+            interpreted_at=interpreted_at,
+        )
+        if as_dto:
+            return map_interpretation_result(result)
+        return result
 
 
     def _apply_engine_result(
