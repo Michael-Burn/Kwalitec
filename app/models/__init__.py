@@ -56,6 +56,7 @@ from app.models.curriculum_knowledge_graph import (
     CkgIdAlias,
     CkgLearningObjective,
     CkgLoLink,
+    CkgNodeProvenance,
     CkgPracticeExercise,
     CkgReadingReference,
     CkgSection,
@@ -63,6 +64,7 @@ from app.models.curriculum_knowledge_graph import (
     CkgSubsection,
     CkgSyllabusOutcome,
     CkgTopic,
+    CkgValidationReport,
     CkgWorkedExample,
 )
 from app.models.curriculum_studio_foundation import (
@@ -181,6 +183,8 @@ __all__ = [
     "CkgLoLink",
     "CkgEdge",
     "CkgIdAlias",
+    "CkgNodeProvenance",
+    "CkgValidationReport",
     "StudioFoundationSubject",
     "StudioFoundationVersion",
     "StudioFoundationDocument",

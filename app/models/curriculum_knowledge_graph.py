@@ -37,6 +37,14 @@ class CkgGraphEdition(db.Model):
     edition_label: str = db.Column(db.String(64), nullable=False)
     provider: str = db.Column(db.String(64), nullable=False, default="IFoA")
     title: str = db.Column(db.String(255), nullable=False, default="")
+    publication_state: str = db.Column(
+        db.String(32), nullable=False, default="draft", index=True
+    )
+    validation_status: str = db.Column(
+        db.String(32), nullable=False, default="pending"
+    )
+    source_cmp_ref: str | None = db.Column(db.String(512), nullable=True)
+    source_syllabus_ref: str | None = db.Column(db.String(512), nullable=True)
     created_at: datetime = db.Column(db.DateTime, nullable=False, default=_utc_now)
     updated_at: datetime = db.Column(
         db.DateTime, nullable=False, default=_utc_now, onupdate=_utc_now
@@ -421,4 +429,61 @@ class CkgIdAlias(db.Model):
     old_stable_id: str = db.Column(db.String(256), nullable=False)
     new_stable_id: str = db.Column(db.String(256), nullable=False)
     reason: str = db.Column(db.String(255), nullable=False, default="")
+    created_at: datetime = db.Column(db.DateTime, nullable=False, default=_utc_now)
+
+
+class CkgNodeProvenance(db.Model):
+    """Source traceability sidecar for extracted CKG nodes (EI-002)."""
+
+    __tablename__ = "ckg_node_provenance"
+    __table_args__ = (
+        db.UniqueConstraint(
+            "edition_id",
+            "stable_id",
+            name="uq_ckg_node_provenance_edition_stable",
+        ),
+        db.Index("ix_ckg_node_provenance_stable", "stable_id"),
+        db.Index("ix_ckg_node_provenance_document", "source_document_id"),
+    )
+
+    id: int = db.Column(db.Integer, primary_key=True)
+    edition_id: str = db.Column(
+        db.String(64),
+        db.ForeignKey("ckg_graph_editions.edition_id"),
+        nullable=False,
+        index=True,
+    )
+    stable_id: str = db.Column(db.String(256), nullable=False)
+    source_document_id: str = db.Column(db.String(128), nullable=False)
+    document_kind: str = db.Column(db.String(32), nullable=False, default="")
+    page_number: int | None = db.Column(db.Integer, nullable=True)
+    structural_path: str = db.Column(db.String(512), nullable=False, default="")
+    section_heading: str = db.Column(db.String(512), nullable=False, default="")
+    paragraph_or_table_ref: str = db.Column(
+        db.String(255), nullable=False, default=""
+    )
+    confidence: int = db.Column(db.Integer, nullable=False, default=0)
+    extraction_method: str = db.Column(db.String(64), nullable=False, default="")
+    notes: str = db.Column(db.String(512), nullable=False, default="")
+    created_at: datetime = db.Column(db.DateTime, nullable=False, default=_utc_now)
+
+
+class CkgValidationReport(db.Model):
+    """Validation report stored with a draft CKG edition (EI-002)."""
+
+    __tablename__ = "ckg_validation_reports"
+    __table_args__ = (
+        db.Index("ix_ckg_validation_reports_edition", "edition_id"),
+    )
+
+    id: int = db.Column(db.Integer, primary_key=True)
+    report_id: str = db.Column(db.String(64), nullable=False, unique=True, index=True)
+    edition_id: str = db.Column(
+        db.String(64),
+        db.ForeignKey("ckg_graph_editions.edition_id"),
+        nullable=False,
+    )
+    passed: bool = db.Column(db.Boolean, nullable=False, default=False)
+    issue_count: int = db.Column(db.Integer, nullable=False, default=0)
+    report_json: str = db.Column(db.Text, nullable=False, default="{}")
     created_at: datetime = db.Column(db.DateTime, nullable=False, default=_utc_now)
