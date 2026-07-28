@@ -34,12 +34,12 @@ Status: **Resolved (governance)** / **Open (implementation)** / **Contained**
 
 | ID | Conflict | Type | Severity | Likelihood | Governance | Implementation |
 |----|----------|------|----------|------------|------------|----------------|
-| AC-01 | Dual narrator KW vs SS without handoff | Competing / gap | High | Likely | **Resolved** D01/D02/D04 | Open (ED-01 copy) |
-| AC-02 | “The system / algorithm” as mentor substitute | Inappropriate ownership | High | Possible (High if Runtime C ON) | **Resolved** D01/D03/D07 | Contained OFF; rename before enable (ED-11) |
+| AC-01 | Dual narrator KW vs SS without handoff | Competing / gap | High | Likely | **Resolved** D01/D02/D04 | **Closed** RR-001.3A (T04); Help residual AC-04/NCR-011 |
+| AC-02 | “The system / algorithm” as mentor substitute | Inappropriate ownership | High | Possible (High if Runtime C ON) | **Resolved** D01/D03/D07 | **Closed** Runtime C rename RR-001.3A; flag Contained OFF |
 | AC-03 | History stats vs Timeline narrative | Competing epistemology | Medium | Possible | **Resolved** D06 | Open (ED-05 copy) |
-| AC-04 | Help / Onboarding teach KW; memory teaches SS | Hidden transition / gap | High | Likely | **Resolved** D04/D10 | Open (ED-01/ED-04) |
-| AC-05 | Home educational speech often unnamed | Hidden attribution | Medium | Likely | **Resolved** D01/D05; density OQ | Open (DG-001.1 OQ-02) |
-| AC-06 | Mission / Session / tip noun storm as false multi-authority | Duplicated concept → felt authority | High | Likely | Lexicon DG-001.1; authority D09 | Open (ED-02) |
+| AC-04 | Help / Onboarding teach KW; memory teaches SS | Hidden transition / gap | High | Likely | **Resolved** D04/D10 | **Partial** — onboarding Closed RR-001.3A; Help Open (ED-04) |
+| AC-05 | Home educational speech often unnamed | Hidden attribution | Medium | Likely | **Resolved** D01/D05; density OQ | **Partial** — Sensei named RR-001.3A; OQ-02 Watch |
+| AC-06 | Mission / Session / tip noun storm as false multi-authority | Duplicated concept → felt authority | High | Likely | Lexicon DG-001.1; authority D09 | **Partial** — in-scope Closed RR-001.3A; Journal/Timeline Open |
 | AC-07 | Multiple reflection systems without map | Overlap / gap | High | Likely | Lexicon + D10 | Open (ED-03 Help map) |
 | AC-08 | Revision vs Mission competing focus | Overlap | Medium | Possible | D09 + Mission primacy | Open (ED-13) |
 | AC-09 | MI + MES hero duplication | Authority noise | Medium | Possible | D05 | Mitigated disclosure (RR-001.2); watch |

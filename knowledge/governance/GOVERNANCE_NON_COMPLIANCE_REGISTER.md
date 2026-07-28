@@ -5,11 +5,11 @@
 **Status:** Active — Board non-compliance baseline  
 **Effective:** 2026-07-28  
 **Authority:** `EDUCATIONAL_GOVERNANCE_COMPLIANCE_AUDIT.md`  
-**Constraint:** Register only — no product remediation in this package.
+**Constraint:** Baseline register from EGC-001; closures require implementation evidence (RR-001.3A+).
 
 Severity: **Critical / High / Medium / Low**  
 Priority: **P0 / P1 / P2 / P3**  
-Status values: **Open** · **Contained** · **Watch**
+Status values: **Open** · **Contained** · **Watch** · **Closed**
 
 ---
 
@@ -19,16 +19,18 @@ Catalogue every **Non-Compliant** finding and material **Partially Compliant** r
 
 Fully Compliant pockets are listed in the Scorecard, not here.
 
+**RR-001.3A (2026-07-28):** Closed NCR-001, NCR-004, NCR-014 (Runtime C system narrator), NCR-015 (in-scope identity surfaces), NCR-016, NCR-018 (handoff + Home/Session), NCR-020 (in-scope). Evidence: `RR001_3A_COMPLETION_REPORT.md`, `test_rr001_3a_educational_identity.py`.
+
 ---
 
 ## Summary
 
 | ID | Title | Status class | Severity | Priority | Package | RP / AC link |
 |----|-------|--------------|----------|----------|---------|--------------|
-| NCR-001 | Onboarding lacks Sensei handoff; KW-as-mentor | NC | High | P0 | EGC-R01 | ED-01; ED-20; AC-01 |
-| NCR-002 | Home authority unnamed; tip/Session collision; optimisation tone | PC | High | P0 | EGC-R01; R02; R08 | ED-01; ED-02; ED-15 |
+| NCR-001 | Onboarding lacks Sensei handoff; KW-as-mentor | **Closed** | High | P0 | EGC-R01 | ED-01; ED-20; AC-01 |
+| NCR-002 | Home authority unnamed; tip/Session collision; optimisation tone | PC / Watch | High | P0 | EGC-R08 residual | ED-01; ED-02; ED-15 |
 | NCR-003 | Mission Intelligence engineering chrome | PC | Medium | P1 | EGC-R08; R02 | ED-10; ED-15 |
-| NCR-004 | Commitment continuity “tip” | PC | Medium | P1 | EGC-R02 | ED-06 |
+| NCR-004 | Commitment continuity “tip” | **Closed** | Medium | P1 | EGC-R02 | ED-06 |
 | NCR-005 | Session readiness overclaim; Session/Mission CTA mix | PC | Medium | P1 | EGC-R02; R10 | ED-02; ED-16 |
 | NCR-006 | Journal empty “Mission tip” / QC mention | PC | Medium | P1 | EGC-R02; R12 | ED-14; DEP-01 |
 | NCR-007 | Timeline tip wording + stats tension | PC | Medium | P1 | EGC-R02; R06 | ED-05; DEP-01 |
@@ -38,15 +40,17 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | NCR-011 | Help omits Sensei memory map; anxiety phrasing | NC | High | P0 | EGC-R03 | ED-04; ED-08; AC-04 |
 | NCR-012 | Success states mix praise / readiness claims | PC | Low–Med | P2 | EGC-R10 | AC-15; ED-16 |
 | NCR-013 | Empty states reintroduce deprecated / gated nouns | PC | Medium | P1 | EGC-R12 | ED-12; ED-14 |
-| NCR-014 | Flag speech residuals (Runtime C; QC OFF ads) | PC / Contained | High if ON | P0*/P1 | EGC-R07; R12 | ED-11; ED-14; AC-02 |
-| NCR-015 | Educational copy tip / Session noun storm | NC | High | P0 | EGC-R02 | ED-02; DEP-01/02 |
-| NCR-016 | Explanation eyebrow “Why this tip?” + KW reasons | NC | High | P0 | EGC-R02; R01 | ED-07; ED-20 |
+| NCR-014 | Flag speech residuals (Runtime C; QC OFF ads) | **Closed*** / Contained | High if ON | P0*/P1 | EGC-R07; R12 | ED-11; ED-14; AC-02 |
+| NCR-015 | Educational copy tip / Session noun storm | **Closed*** | High | P0 | EGC-R02 | ED-02; DEP-01/02 |
+| NCR-016 | Explanation eyebrow “Why this tip?” + KW reasons | **Closed** | High | P0 | EGC-R02; R01 | ED-07; ED-20 |
 | NCR-017 | Reflection not one student system | NC | High | P0 | EGC-R04; R05 | ED-03; AC-07 |
-| NCR-018 | Hidden narrator transitions | NC | High | P0 | EGC-R01; R08 | ED-01; AC-01/04/05 |
+| NCR-018 | Hidden narrator transitions | **Closed*** | High | P0 | EGC-R01; R08 | ED-01; AC-01/04/05 |
 | NCR-019 | Authority ownership incorrect in live speech | NC | High | P0 | EGC-R01; R03; R06 | AC-* |
-| NCR-020 | Terminology not lexicon-applied | NC | High | P0 | EGC-R02 | ED-02; CP-03 |
+| NCR-020 | Terminology not lexicon-applied | **Closed*** | High | P0 | EGC-R02 | ED-02; CP-03 |
 | NCR-021 | Educational memory not introduced at orientation | PC | High | P0 | EGC-R03; R01 | ED-04; D04 |
 | NCR-022 | Product Check-in titled as Reflection | NC | Medium | P1 | EGC-R05 | ED-18; D05 |
+
+\*Closed for RR-001.3A **in-scope** educational identity surfaces. Named residuals: Journal/Timeline tip empties (NCR-006/007); Help lag (NCR-011); QC empty ads (NCR-013); Home naming density Watch (NCR-002 / EGC-R08).
 
 \*P0 before any Runtime C enablement.
 
@@ -61,13 +65,14 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | **Capability** | Onboarding |
 | **Observed** | Steps attribute missions, reasons, and reflection usefulness to **Kwalitec**; no Board handoff sentence. |
 | **Clause** | DG-001.1-D01; DG-001.2-D04; CI-05; CP-04; CP-10 |
-| **Compliance** | Non-Compliant |
+| **Compliance** | **Closed** — RR-001.3A |
 | **Risk** | High — wrong first mentor relationship |
 | **Student impact** | Learns product-as-tutor; later Sensei memory feels like a different product |
 | **Required remediation** | Insert handoff; reattribute guidance to Study Sensei; fix Mission/Session wording |
 | **Priority** | P0 |
 | **Implementation dependency** | EGC-R01 (+ EGC-R02 for lexicon) |
 | **Evidence** | `app/services/alpha_onboarding_service.py` ONBOARDING_STEPS |
+| **Closure** | Meet Study Sensei step + Board handoff; KW-as-mentor strings removed; `test_rr001_3a_educational_identity.py`; `RR001_3A_COMPLETION_REPORT.md` |
 
 ---
 
@@ -78,13 +83,14 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | **Capability** | Home |
 | **Observed** | Today's Mission hero OK when active; Sensei often unnamed; Guided Reflection honesty present; “Optimising for…”; welcome modal KW + Today's Session |
 | **Clause** | D01; D02; D05; DEP-01/02; CP-03/04/10 |
-| **Compliance** | Partially Compliant |
+| **Compliance** | Partially Compliant / **Watch** — narrator + tip/axis chrome remidiated (RR-001.3A); OQ-02 naming density remains EGC-R08 |
 | **Risk** | High |
 | **Student impact** | Daily focus half-clear; authority invisible |
 | **Required remediation** | Naming density; tip retirement elsewhere; soften axis chrome |
 | **Priority** | P0 |
 | **Implementation dependency** | EGC-R01; EGC-R02; EGC-R08 |
 | **Evidence** | `app/templates/student/home.html`; `partials/welcome_modal.html` |
+| **Progress** | Sensei named; Guidance panel; Focusing-on chrome; welcome handoff |
 
 ---
 
@@ -129,13 +135,14 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | **Capability** | Feature flag messaging |
 | **Observed** | Runtime C “the system” contained OFF; Journal empty may advertise QC while OFF |
 | **Clause** | DG-001.2-D07; DEP-04; Constitution §11 |
-| **Compliance** | Partially Compliant (Contained) |
+| **Compliance** | **Closed** (Runtime C system narrator — RR-001.3A); **Contained** residual QC empty ads → NCR-013 / EGC-R12 |
 | **Risk** | High if Runtime C enabled as-is |
 | **Student impact** | Robotic mentor / false gated affordances |
 | **Required remediation** | Rename before enable; empty-state flag honesty |
 | **Priority** | P0 before enable; P1 empty honesty |
 | **Implementation dependency** | EGC-R07; EGC-R12 |
 | **Evidence** | ED-11; ED-14; AC-02 |
+| **Closure** | Runtime C summary → “Why this Mission?”; flag still OFF; QC empty honesty deferred |
 
 ---
 
@@ -146,13 +153,14 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | **Capability** | Educational copy |
 | **Observed** | “Why this tip?”; Study Tip cards; Mission tip; Today's Session as focus synonym |
 | **Clause** | DG-001.1-D02; DEP-01; DEP-02; CP-03; CI-01 |
-| **Compliance** | Non-Compliant |
+| **Compliance** | **Closed** (in-scope identity surfaces — RR-001.3A); Journal/Timeline tip residuals remain NCR-006/007 |
 | **Risk** | High |
 | **Student impact** | Cannot transfer “today's decision” across surfaces |
 | **Required remediation** | Apply lexicon; PX reconciliation (OQ-01) |
 | **Priority** | P0 |
 | **Implementation dependency** | EGC-R02 |
 | **Evidence** | `student/components/explanation_card.html`; `presentation/product_language.py`; dashboard/mission study-tip cards |
+| **Closure** | Tip retired on explanation/commitment/Mission/Dashboard prep; Mission≠Session in onboarding/welcome |
 
 ---
 
@@ -163,13 +171,14 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | **Capability** | Educational explanations |
 | **Observed** | Explanation card “Why this tip?”; onboarding “reasons Kwalitec used”; Journal “Why this guidance” compliant |
 | **Clause** | DEP-01; DG-001.2-D01; CP-07 |
-| **Compliance** | Non-Compliant *(card/onboarding)* |
+| **Compliance** | **Closed** — RR-001.3A |
 | **Risk** | High |
 | **Student impact** | Explainability fragmented by noun and speaker |
 | **Required remediation** | Standardise guidance/Mission eyebrows; Sensei ownership |
 | **Priority** | P0 |
 | **Implementation dependency** | EGC-R02; EGC-R01 |
 | **Evidence** | explanation_card.html; alpha_onboarding_service.py |
+| **Closure** | “Why this guidance?”; onboarding “reasons Study Sensei used” |
 
 ---
 
@@ -197,13 +206,14 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | **Capability** | Narrator transitions |
 | **Observed** | KW orientation → unnamed Home → SS memory without signal |
 | **Clause** | DG-001.2-D04; CI-05; CP-04; CP-10 |
-| **Compliance** | Non-Compliant |
+| **Compliance** | **Closed** (T04 handoff + Home/Session narrator — RR-001.3A); Help lag residual NCR-011; density Watch NCR-002/EGC-R08 |
 | **Risk** | High |
 | **Student impact** | No singular mentor relationship |
 | **Required remediation** | Explicit handoff + Home naming policy |
 | **Priority** | P0 |
 | **Implementation dependency** | EGC-R01; EGC-R08 |
 | **Evidence** | AC-01; AC-04; AC-05; ED-01 |
+| **Closure** | Onboarding + welcome handoff; `data-narrator="study-sensei"` on Home/Session |
 
 ---
 
@@ -231,13 +241,14 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | **Capability** | Educational terminology |
 | **Observed** | Lexicon law active; product strings diverge |
 | **Clause** | CP-03; CI-01; DG-001.1; DEP-* |
-| **Compliance** | Non-Compliant |
+| **Compliance** | **Closed** (in-scope identity surfaces — RR-001.3A); OQ-01 PX docs + out-of-scope surfaces remain open via other NCRs |
 | **Risk** | High |
 | **Student impact** | Same as ED-02 noun storm |
 | **Required remediation** | Lexicon application programme |
 | **Priority** | P0 |
 | **Implementation dependency** | EGC-R02; OQ-01 |
 | **Evidence** | TERMINOLOGY / DEP / templates |
+| **Closure** | `product_language.py` + in-scope templates; see RR001_3A_TRACEABILITY_MATRIX.md |
 
 ---
 

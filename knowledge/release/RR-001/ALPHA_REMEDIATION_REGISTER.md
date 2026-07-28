@@ -167,5 +167,5 @@ Capability readiness calls from RP-001.1 are unchanged by RR-001.1 except where 
 
 - Implementation packages: RR-001.1 · RR-001.2 · **RR-001.3A**  
 - Companion matrix: `CRITICAL_FINDINGS_MATRIX.md`  
-- Completions: `RR001_1_COMPLETION_REPORT.md` · `RR001_2_COMPLETION_REPORT.md` · `RR001_3A_IMPLEMENTATION_REPORT.md`  
+- Completions: `RR001_1_COMPLETION_REPORT.md` · `RR001_2_COMPLETION_REPORT.md` · `RR001_3A_COMPLETION_REPORT.md` · `RR001_3A_IMPLEMENTATION_REPORT.md`  
 - Do not treat this register as Version 1 production-ready declaration

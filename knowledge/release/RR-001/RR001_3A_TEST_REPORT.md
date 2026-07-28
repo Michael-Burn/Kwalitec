@@ -1,8 +1,9 @@
 # RR-001.3A — Test Report
 
-**Programme:** RR-001.3 — Governance-driven Educational Remediation  
+**Programme:** RR-001 — Governance-driven Educational Remediation  
 **Work Package:** RR-001.3A — Educational Identity & Narrator Consistency  
-**Date:** 2026-07-28
+**Date:** 2026-07-28  
+**Re-verified:** 2026-07-28 (certification close)
 
 ---
 

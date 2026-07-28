@@ -3,9 +3,9 @@
 **Programme:** EGC-001 — Educational Governance Compliance  
 **Version:** 1.0  
 **Status:** Active — Board compliance baseline  
-**Score date:** 2026-07-28  
+**Score date:** 2026-07-28 (updated RR-001.3A)  
 **Authority:** `EDUCATIONAL_GOVERNANCE_COMPLIANCE_AUDIT.md`  
-**Constraint:** Scoring only — no product changes.
+**Constraint:** Scoring only at EGC-001; RR-001.3A closes identity NCRs — product-wide claim still forbidden until remaining P0 NCRs close.
 
 ---
 
@@ -13,10 +13,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Overall classification** | **NON-COMPLIANT** |
-| **Meaning** | Alpha does not yet satisfy DG-001 as a coherent student-facing educational system. Compliant pockets exist. |
+| **Overall classification** | **NON-COMPLIANT** *(product-wide)* |
+| **Meaning** | Alpha does not yet satisfy DG-001 as a coherent student-facing educational system. Compliant pockets exist. RR-001.3A closed Wave-1 identity NCRs on educational core. |
 | **Programme EGC-001** | **Complete** — baseline measurable; remediation traceable |
-| **Unqualified “educationally governed Alpha” claim** | **Forbidden** until P0 NCR items close with implementation evidence |
+| **RR-001.3A (EGC-R01/R02)** | **Pass (in-scope)** — see `RR001_3A_COMPLETION_REPORT.md` |
+| **Unqualified “educationally governed Alpha” claim** | **Forbidden** until remaining P0 NCR items close (Help, Reflection, Check-in, History) |
 
 ---
 
@@ -42,16 +43,19 @@ Capabilities counted: Authentication, Onboarding, Home, Mission Intelligence, Mi
 
 | Class in register | Count |
 |-------------------|------:|
-| NC findings | 12 |
-| PC findings (material) | 10 |
-| Contained / watch (subset) | 1+ (NCR-014) |
+| Closed (RR-001.3A in-scope) | 7+ (NCR-001/004/014*/015*/016/018*/020*) |
+| NC findings (remaining open) | 5 (NCR-010/011/017/019/022) |
+| PC findings (material) | 9+ |
+| Contained / watch | NCR-014 QC residual; NCR-002 density |
 | **Total NCR rows** | **22** |
+
+\*In-scope closures with named residuals — see NCR register.
 
 ### 2.3 By priority (open remediation)
 
-| Priority | NCR count (approx) | Intent |
-|----------|-------------------:|--------|
-| P0 | 12 | Must precede “governed Alpha” claims |
+| Priority | NCR count (approx open) | Intent |
+|----------|------------------------:|--------|
+| P0 | ~5–6 remaining | Help / Reflection / Check-in / authority residuals |
 | P1 | 8 | Next remediation wave |
 | P2 | 2 | Disclosure / polish |
 | P3 | Preventive (EGC-R11) | When notifications educationalise |
@@ -78,16 +82,16 @@ Capabilities counted: Authentication, Onboarding, Home, Mission Intelligence, Mi
 
 | Package | Instrument | Product posture | Headline |
 |---------|------------|-----------------|----------|
-| **DG-001.1** Lexicon | Canonical lexicon + DEP + map + style | **Non-Compliant application** | Law complete; tip/Session/Mission storm live |
-| **DG-001.2** Authority | Authority model + transitions + matrix + AC register | **Non-Compliant application** | Three authorities in law; dual narrator + missing handoff live |
+| **DG-001.1** Lexicon | Canonical lexicon + DEP + map + style | **Partial application** | Law complete; RR-001.3A closed identity tip storm; Journal/Timeline/Help residuals |
+| **DG-001.2** Authority | Authority model + transitions + matrix + AC register | **Partial application** | T04 handoff live; Help/History/Reflection authority residuals remain |
 | **DG-001.3** Reflection | Architecture + lifecycle + relationships + RG rules | **Non-Compliant as student system** | Hosts/optionality partially good; map missing; Check-in misnamed |
 | **DG-001.4** Constitution | CP/CI, hierarchy, amendment, checklist | **Process Compliant for EGC-001** | Product fails CP-03/04/05/10; checklist usable |
 
 ### Package score bars (qualitative)
 
 ```
-DG-001.1 application   ████░░░░░░  ~35%  (Journal/Timeline terms partial; tip fails)
-DG-001.2 application   ███░░░░░░░  ~30%  (memory SS good; orientation KW fails)
+DG-001.1 application   ██████░░░░  ~60%  (identity path Closed RR-001.3A; Journal/Help lag)
+DG-001.2 application   ██████░░░░  ~55%  (handoff + Home/Session Sensei; Help/History lag)
 DG-001.3 application   ████░░░░░░  ~40%  (optionality/honesty; map/Check-in fail)
 DG-001.4 process (EGC) ██████████  100%  (audit precedes remediation)
 ```
@@ -117,23 +121,24 @@ Do not break these while remediating:
 
 ## 5. Critical findings (Board attention)
 
-1. **Missing Study Sensei handoff** (NCR-001 / NCR-018) — CI-05 / D04  
-2. **Tip / Mission / Session noun storm** (NCR-015 / NCR-020) — CI-01 / D02  
+1. ~~**Missing Study Sensei handoff** (NCR-001 / NCR-018)~~ — **Closed RR-001.3A** (Help lag remains NCR-011)  
+2. ~~**Tip / Mission / Session noun storm** (NCR-015 / NCR-020)~~ — **Closed in-scope RR-001.3A** (Journal/Timeline residual)  
 3. **Help omits Sensei memory surfaces** (NCR-011 / NCR-021) — D04 / ED-04  
 4. **Reflection not one student system** (NCR-017) — CP-05 / ED-03  
 5. **Product Check-in titled Reflection** (NCR-022) — D05 / §11.5  
-6. **Runtime C System-as-mentor if enabled** (NCR-014) — D07 / DEP-04  
+6. ~~**Runtime C System-as-mentor if enabled** (NCR-014)~~ — **Renamed RR-001.3A**; flag Contained OFF; QC empty residual NCR-013  
 
 ---
 
 ## 6. Dimension heat map (capabilities × dimensions)
 
-Legend: F = FC · P = PC · N = NC · — = NA
+Legend: F = FC · P = PC · N = NC · — = NA  
+*RR-001.3A updates:* Onboarding, Narrator transitions, Explanations, Terminology, Educational copy (identity path), Feature flags (Runtime C rename).
 
 | Capability | Lex | Auth | Refl | Const | Expl | Honest | Judge | Trust | Narr | Evid |
 |------------|:---:|:----:|:----:|:-----:|:----:|:------:|:-----:|:-----:|:----:|:----:|
 | Authentication | F | F | — | F | — | F | — | F | F | F |
-| Onboarding | N | N | N | N | N | N | P | N | N | F |
+| Onboarding | P | F | P | P | P | P | P | P | F | F |
 | Home | P | P | P | P | P | P | P | P | P | F |
 | Mission Intelligence | P | P | — | P | P | P | P | P | P | F |
 | Mission Commitment | P | P | P | P | P | P | P | P | P | F |
@@ -151,12 +156,12 @@ Legend: F = FC · P = PC · N = NC · — = NA
 | Empty states | P | P | P | P | P | P | P | P | P | F |
 | Error states | F | F | — | F | — | F | — | F | F | F |
 | Feature flags | P | P | P | P | P | P | — | P | P | F |
-| Educational copy | N | N | — | N | N | N | P | N | N | F |
-| Explanations | N | P | — | N | P | P | P | P | N | F |
+| Educational copy | P | P | — | P | P | P | P | P | P | F |
+| Explanations | P | P | — | P | P | P | P | P | P | F |
 | Reflection flows | N | P | N | N | P | P | P | P | P | F |
-| Narrator transitions | N | N | — | N | — | N | — | N | N | F |
-| Authority ownership | N | N | P | N | P | N | P | N | N | F |
-| Terminology | N | N | — | N | N | N | P | N | N | F |
+| Narrator transitions | P | P | — | P | — | P | — | P | P | F |
+| Authority ownership | P | P | P | P | P | P | P | P | P | F |
+| Terminology | P | P | — | P | P | P | P | P | P | F |
 | Educational memory | P | P | F | P | P | P | F | P | P | F |
 | Product Check-in | N | F | N | N | P | N | — | N | P | F |
 
@@ -166,9 +171,9 @@ Legend: F = FC · P = PC · N = NC · — = NA
 
 ```
 Wave 0 (governance already done)     DG-001.1–4  ✓
-Wave 1 (P0 trust + vocabulary)       EGC-R01 → R02 → R03 → R04 → R05
+Wave 1 (P0 trust + vocabulary)       EGC-R01 ✓ → R02 ✓ → R03 → R04 → R05
 Wave 2 (epistemology + honesty)      EGC-R06 → R08 → R12 → R10
-Wave 3 (containment / thin surfaces) EGC-R07 (before flags) → R09 → R11
+Wave 3 (containment / thin surfaces) EGC-R07 (Runtime C rename ✓) → R09 → R11
 ```
 
 No wave may invent a fourth narrator or second durable Sensei memory.

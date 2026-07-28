@@ -1,9 +1,10 @@
-# RR-001.3A — Traceability
+# RR-001.3A — Traceability Matrix
 
-**Programme:** RR-001.3 — Governance-driven Educational Remediation  
+**Programme:** RR-001 — Governance-driven Educational Remediation  
 **Work Package:** RR-001.3A — Educational Identity & Narrator Consistency  
 **Date:** 2026-07-28  
-**Rule:** Every implementation references EGC NCR → governance clause → modified file → student impact.
+**Rule:** Every implementation references EGC NCR → governance clause → modified file → student impact.  
+**Companion:** `RR001_3A_COMPLETION_REPORT.md`
 
 ---
 
@@ -57,4 +58,4 @@
 
 ---
 
-**End of RR001_3A_TRACEABILITY**
+**End of RR001_3A_TRACEABILITY_MATRIX**

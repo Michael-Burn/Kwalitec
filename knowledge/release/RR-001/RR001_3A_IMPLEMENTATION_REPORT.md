@@ -55,7 +55,8 @@ Related in-scope residuals also remidiated: explanation tip eyebrow (NCR-016 sur
 
 - `tests/presentation/student/test_rr001_3a_educational_identity.py`
 - `knowledge/release/RR-001/RR001_3A_IMPLEMENTATION_REPORT.md`
-- `knowledge/release/RR-001/RR001_3A_TRACEABILITY.md`
+- `knowledge/release/RR-001/RR001_3A_TRACEABILITY_MATRIX.md`
+- `knowledge/release/RR-001/RR001_3A_COMPLETION_REPORT.md`
 - `knowledge/release/RR-001/RR001_3A_TEST_REPORT.md`
 - `knowledge/release/RR-001/RR001_3A_STUDENT_IMPACT_ASSESSMENT.md`
 
@@ -146,7 +147,8 @@ See `RR001_3A_STUDENT_IMPACT_ASSESSMENT.md`.
 
 - Tests: `tests/presentation/student/test_rr001_3a_educational_identity.py` + regression suite in Test Report  
 - Governance: `GOVERNANCE_NON_COMPLIANCE_REGISTER.md` NCR-001/014/015/018/020; `AUTHORITY_TRANSITION_MAP.md` T04  
-- Traceability: `RR001_3A_TRACEABILITY.md`
+- Traceability: `RR001_3A_TRACEABILITY_MATRIX.md`
+- Completion: `RR001_3A_COMPLETION_REPORT.md`
 
 ---
 
