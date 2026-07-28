@@ -112,4 +112,4 @@ This audit does **not** claim Version 1 production-ready progress. Residual open
 
 ### Commit hash
 
-`6f89c587a0bd10788cc20ca5863fd44fbcb7d756` (`6f89c58`)
+Primary audit pack: `6e4a59303484d1c2823da2bd3a75aba41a64ab95` (`6e4a593`).
