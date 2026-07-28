@@ -4,7 +4,7 @@
 **Work Package:** RR-002.3 — Repository & Runtime Convergence  
 **Date:** 2026-07-28  
 **Status:** Complete — Certified Pass (in-scope)  
-**Commit:** *(recorded after mandated commit)*  
+**Commit:** `a33bae3` — `docs(rr-002.3): document runtime convergence and repository governance`  
 **Governance authority:** DG-001.1 · DG-001.2 · DG-001.3 · DG-001.4 · RP-002 · RR-002
 
 ---
