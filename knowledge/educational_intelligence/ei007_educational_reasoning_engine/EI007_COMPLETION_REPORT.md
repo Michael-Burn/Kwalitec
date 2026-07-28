@@ -3,7 +3,7 @@
 **Programme:** EI-007 — Educational Reasoning Engine (Educational Intelligence)  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commits:** `e041c6f` (`feat(ei-007)`) · *(docs commit follows)*
+**Commits:** `e041c6f` (`feat(ei-007)`) · `28bc5ec` (`docs(ei-007)`)
 
 ---
 
