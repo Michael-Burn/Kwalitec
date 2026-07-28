@@ -3,7 +3,7 @@
 **Programme:** EI-001 — Curriculum Knowledge Graph Foundation (Educational Intelligence)  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commits:** `2bcc3d2` (`feat(ei-001)`) · *(docs hash recorded in this commit)*  
+**Commits:** `2bcc3d2` (`feat(ei-001)`) · `aa717e2` (`docs(ei-001)`)  
 
 > Disambiguation: this is **not** the historical Engineering Improvements programme at `knowledge/release/EI-001/`.
 
