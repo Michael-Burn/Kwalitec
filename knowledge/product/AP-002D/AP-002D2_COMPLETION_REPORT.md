@@ -4,7 +4,8 @@
 **Milestone:** AP-002D2 — Educational Evidence Interpretation  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commit message:** `feat(ap-002d2): implement deterministic educational evidence interpretation`
+**Commit message:** `feat(ap-002d2): implement deterministic educational evidence interpretation`  
+**Commit:** `9b7eaa1`
 
 ---
 
