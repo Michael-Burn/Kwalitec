@@ -4,7 +4,7 @@
 **Date:** 2026-07-28  
 **Status:** Complete — documentation only  
 **Change class:** Architecture (operational framework)  
-**Commit:** *(set at commit)* — `docs(oa-001): establish long-term operational architecture and product governance`  
+**Commit:** `5ad73b5` — `docs(oa-001): establish long-term operational architecture and product governance`  
 **Authority:** DG-001 · RR-002 · ER-002 · all approved governance and engineering artefacts  
 
 ---
