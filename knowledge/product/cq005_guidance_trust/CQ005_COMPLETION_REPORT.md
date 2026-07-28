@@ -3,7 +3,7 @@
 **Programme:** CQ-005 — Commercial Quality Programme  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commits:** `6bf1378` (`feat(cq-005)`) · `docs(cq-005)`  
+**Commits:** `6bf1378` (`feat(cq-005)`) · `7e60d39` (`docs(cq-005)`)  
 
 ---
 
