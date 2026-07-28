@@ -3,7 +3,7 @@
 **Programme:** FV-001 — Founder Validation & Dogfooding  
 **Date:** 2026-07-28  
 **Status:** Instrumentation & workflows complete; validation window **Active** (findings pending real sessions)  
-**Commits:** `ff90980` (`feat(fv-001)`) · *(docs hash filled after docs commit)* `docs(fv-001)`
+**Commits:** `ff90980` (`feat(fv-001)`) · `e74e999` (`docs(fv-001)`)
 
 ---
 
