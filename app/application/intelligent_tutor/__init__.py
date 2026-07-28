@@ -6,10 +6,16 @@ from typing import Any
 
 __all__ = [
     "DeterministicTutorGeneration",
+    "ExplanationBuilder",
+    "ExplanationPersistenceService",
+    "ExplanationResultDTO",
+    "ExplanationValidator",
     "IntelligentTutorService",
+    "TutorExplanationService",
     "TutorGenerationPort",
     "TutorGenerationRequest",
     "TutorGenerationResult",
+    "map_explanation_result",
 ]
 
 _EXPORT_MODULES = {
@@ -27,6 +33,24 @@ _EXPORT_MODULES = {
     ),
     "IntelligentTutorService": (
         "app.application.intelligent_tutor.intelligent_tutor_service"
+    ),
+    "TutorExplanationService": (
+        "app.application.intelligent_tutor.explainability.tutor_explanation_service"
+    ),
+    "ExplanationBuilder": (
+        "app.application.intelligent_tutor.explainability.explanation_builder"
+    ),
+    "ExplanationValidator": (
+        "app.application.intelligent_tutor.explainability.validator"
+    ),
+    "ExplanationPersistenceService": (
+        "app.application.intelligent_tutor.explainability.persistence"
+    ),
+    "ExplanationResultDTO": (
+        "app.application.intelligent_tutor.dto.explanation_dto"
+    ),
+    "map_explanation_result": (
+        "app.application.intelligent_tutor.mappers.explanation_mapper"
     ),
 }
 

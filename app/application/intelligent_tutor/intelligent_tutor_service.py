@@ -29,6 +29,9 @@ from app.application.assessment_pipeline.assessment_pipeline_service import (
 from app.application.curriculum_retrieval.curriculum_retrieval_service import (
     CurriculumRetrievalService,
 )
+from app.application.intelligent_tutor.explainability.tutor_explanation_service import (
+    TutorExplanationService,
+)
 from app.application.intelligent_tutor.persistence import (
     IntelligentTutorPersistenceService,
 )
@@ -63,6 +66,8 @@ from app.domain.intelligent_tutor.tutor_question import (
 from app.domain.intelligent_tutor.tutor_response import TutorResponse
 from app.domain.intelligent_tutor.tutor_session import TutorSession, TutorSessionStatus
 from app.domain.learning_graph.learning_graph import LearningGraph
+from app.domain.mission.planning.plan import StudyMissionPlan
+from app.domain.reasoning.decisions.decision_set import EducationalDecisionSet
 from app.domain.student_digital_twin.student_digital_twin import StudentDigitalTwin
 from app.extensions import db
 
@@ -87,6 +92,7 @@ class IntelligentTutorService:
         assessments: AssessmentPipelineService | None = None,
         generation: TutorGenerationPort | None = None,
         persistence: IntelligentTutorPersistenceService | None = None,
+        explanations: TutorExplanationService | None = None,
     ) -> None:
         self._twins = twins or StudentDigitalTwinService()
         self._graphs = graphs or LearningGraphService()
@@ -96,6 +102,7 @@ class IntelligentTutorService:
         self._assessments = assessments or AssessmentPipelineService()
         self._generation = generation or DeterministicTutorGeneration()
         self._persistence = persistence or IntelligentTutorPersistenceService()
+        self._explanations = explanations or TutorExplanationService()
 
     # ------------------------------------------------------------------
     # Session lifecycle
@@ -350,6 +357,38 @@ class IntelligentTutorService:
             "guidance": guidance,
             "next_action": next_action,
         }
+
+    def explain_from_decisions(
+        self,
+        twin: StudentDigitalTwin,
+        decision_set: EducationalDecisionSet,
+        *,
+        study_mission_plan: StudyMissionPlan | None = None,
+        explained_at: datetime | None = None,
+        persist: bool = True,
+        allow_idempotent_skip: bool = True,
+    ):
+        """AP-002D6: narrate validated Twin / Decision / Mission provenance.
+
+        Consumes EducationalDecisionSet + Twin belief (+ optional StudyMissionPlan).
+        Uses Learning Graph for structural concept relationships only.
+        Does not reason, plan missions, or invent educational conclusions.
+        """
+        graph = self._graphs.get_for_twin(twin.twin_id)
+        return self._explanations.explain(
+            twin,
+            decision_set,
+            study_mission_plan=study_mission_plan,
+            learning_graph=graph,
+            explained_at=explained_at,
+            persist=persist,
+            allow_idempotent_skip=allow_idempotent_skip,
+        )
+
+    @property
+    def explanations(self) -> TutorExplanationService:
+        """AP-002D6 Tutor explanation service (provenance → narration)."""
+        return self._explanations
 
     # ------------------------------------------------------------------
     # Context / evidence
