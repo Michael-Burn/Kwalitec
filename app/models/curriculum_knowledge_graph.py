@@ -1,9 +1,12 @@
-"""ORM models for Curriculum Knowledge Graph (EI-001).
+"""ORM models for Curriculum Knowledge Graph (EI-001 / EI-002 / EI-003).
 
 Normalised persistence for the educational structure SoT:
 
 Subject → Topic → Section → Subsection → Learning Objective
 plus educational objects, LO reference links, typed edges, and id aliases.
+
+EI-002 adds draft publication fields, provenance, and validation reports.
+EI-003 adds Founder review, publication audit, and edition snapshots.
 
 No PDF bytes, extraction jobs, Twin FKs, or student runtime tables.
 """
@@ -43,8 +46,17 @@ class CkgGraphEdition(db.Model):
     validation_status: str = db.Column(
         db.String(32), nullable=False, default="pending"
     )
+    review_status: str = db.Column(
+        db.String(32), nullable=False, default="pending", index=True
+    )
     source_cmp_ref: str | None = db.Column(db.String(512), nullable=True)
     source_syllabus_ref: str | None = db.Column(db.String(512), nullable=True)
+    review_completed_at: datetime | None = db.Column(db.DateTime, nullable=True)
+    approved_by: str | None = db.Column(db.String(128), nullable=True)
+    published_at: datetime | None = db.Column(db.DateTime, nullable=True)
+    published_by: str | None = db.Column(db.String(128), nullable=True)
+    previous_edition_id: str | None = db.Column(db.String(64), nullable=True)
+    publication_rationale: str | None = db.Column(db.Text, nullable=True)
     created_at: datetime = db.Column(db.DateTime, nullable=False, default=_utc_now)
     updated_at: datetime = db.Column(
         db.DateTime, nullable=False, default=_utc_now, onupdate=_utc_now
@@ -487,3 +499,109 @@ class CkgValidationReport(db.Model):
     issue_count: int = db.Column(db.Integer, nullable=False, default=0)
     report_json: str = db.Column(db.Text, nullable=False, default="{}")
     created_at: datetime = db.Column(db.DateTime, nullable=False, default=_utc_now)
+
+
+class CkgNodeReviewState(db.Model):
+    """Per-node Founder review disposition for a draft edition (EI-003)."""
+
+    __tablename__ = "ckg_node_review_states"
+    __table_args__ = (
+        db.UniqueConstraint(
+            "edition_id",
+            "stable_id",
+            name="uq_ckg_node_review_edition_stable",
+        ),
+        db.Index("ix_ckg_node_review_status", "edition_id", "status"),
+    )
+
+    id: int = db.Column(db.Integer, primary_key=True)
+    edition_id: str = db.Column(
+        db.String(64),
+        db.ForeignKey("ckg_graph_editions.edition_id"),
+        nullable=False,
+        index=True,
+    )
+    stable_id: str = db.Column(db.String(256), nullable=False, index=True)
+    status: str = db.Column(db.String(32), nullable=False, default="pending")
+    reviewer: str | None = db.Column(db.String(128), nullable=True)
+    notes: str = db.Column(db.Text, nullable=False, default="")
+    updated_at: datetime = db.Column(
+        db.DateTime, nullable=False, default=_utc_now, onupdate=_utc_now
+    )
+    created_at: datetime = db.Column(db.DateTime, nullable=False, default=_utc_now)
+
+
+class CkgEditorialAuditEvent(db.Model):
+    """Append-only audit trail for Founder editorial operations (EI-003)."""
+
+    __tablename__ = "ckg_editorial_audit_events"
+    __table_args__ = (
+        db.Index("ix_ckg_editorial_audit_edition", "edition_id"),
+        db.Index("ix_ckg_editorial_audit_action", "action"),
+    )
+
+    id: int = db.Column(db.Integer, primary_key=True)
+    event_id: str = db.Column(db.String(64), nullable=False, unique=True, index=True)
+    edition_id: str = db.Column(
+        db.String(64),
+        db.ForeignKey("ckg_graph_editions.edition_id"),
+        nullable=False,
+    )
+    action: str = db.Column(db.String(64), nullable=False)
+    actor: str = db.Column(db.String(128), nullable=False, default="")
+    stable_id: str | None = db.Column(db.String(256), nullable=True)
+    detail_json: str = db.Column(db.Text, nullable=False, default="{}")
+    created_at: datetime = db.Column(db.DateTime, nullable=False, default=_utc_now)
+
+
+class CkgPublicationRecord(db.Model):
+    """Immutable publication decision record (EI-003). Never delete."""
+
+    __tablename__ = "ckg_publication_records"
+    __table_args__ = (
+        db.Index("ix_ckg_publication_records_edition", "edition_id"),
+        db.Index("ix_ckg_publication_records_subject", "subject_code"),
+    )
+
+    id: int = db.Column(db.Integer, primary_key=True)
+    record_id: str = db.Column(db.String(64), nullable=False, unique=True, index=True)
+    edition_id: str = db.Column(
+        db.String(64),
+        db.ForeignKey("ckg_graph_editions.edition_id"),
+        nullable=False,
+    )
+    subject_code: str = db.Column(db.String(32), nullable=False)
+    publisher: str = db.Column(db.String(128), nullable=False)
+    published_at: datetime = db.Column(db.DateTime, nullable=False, default=_utc_now)
+    previous_edition_id: str | None = db.Column(db.String(64), nullable=True)
+    publication_rationale: str = db.Column(db.Text, nullable=False, default="")
+    validation_status: str = db.Column(db.String(32), nullable=False)
+    review_status: str = db.Column(db.String(32), nullable=False)
+    review_completed_at: datetime | None = db.Column(db.DateTime, nullable=True)
+    snapshot_id: str | None = db.Column(db.String(64), nullable=True)
+    detail_json: str = db.Column(db.Text, nullable=False, default="{}")
+    created_at: datetime = db.Column(db.DateTime, nullable=False, default=_utc_now)
+
+
+class CkgEditionSnapshot(db.Model):
+    """Structural snapshot of an edition for history and comparison (EI-003)."""
+
+    __tablename__ = "ckg_edition_snapshots"
+    __table_args__ = (
+        db.Index("ix_ckg_edition_snapshots_edition", "edition_id"),
+    )
+
+    id: int = db.Column(db.Integer, primary_key=True)
+    snapshot_id: str = db.Column(db.String(64), nullable=False, unique=True, index=True)
+    edition_id: str = db.Column(
+        db.String(64),
+        db.ForeignKey("ckg_graph_editions.edition_id"),
+        nullable=False,
+    )
+    subject_code: str = db.Column(db.String(32), nullable=False, index=True)
+    capture_reason: str = db.Column(db.String(64), nullable=False, default="")
+    snapshot_json: str = db.Column(db.Text, nullable=False, default="{}")
+    node_count: int = db.Column(db.Integer, nullable=False, default=0)
+    edge_count: int = db.Column(db.Integer, nullable=False, default=0)
+    captured_at: datetime = db.Column(db.DateTime, nullable=False, default=_utc_now)
+    captured_by: str = db.Column(db.String(128), nullable=False, default="")
