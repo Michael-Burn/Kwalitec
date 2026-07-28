@@ -951,3 +951,65 @@ button.student-signout {
   background: var(--brand-primary-dark, #0D1B2A);
   border-bottom-color: var(--brand-divider, #1E2A3D);
 }
+
+/* ILE-002 — Decision Journal timeline */
+.decision-journal-timeline {
+  margin-top: var(--student-space-4);
+}
+
+.decision-journal-entry {
+  display: flex;
+  flex-direction: column;
+  gap: var(--student-space-3);
+  padding-bottom: var(--student-space-5);
+  border-bottom: 1px solid var(--student-card-border);
+}
+
+.decision-journal-timeline .student-timeline-item:last-child .decision-journal-entry {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.decision-journal-entry__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--student-space-1);
+}
+
+.decision-journal-arc {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--student-space-3);
+}
+
+.decision-journal-arc__item dt {
+  margin: 0;
+  font-weight: 600;
+  color: var(--student-text);
+}
+
+.decision-journal-arc__item dd {
+  margin: var(--student-space-1) 0 0;
+  color: var(--student-muted);
+  line-height: 1.55;
+}
+
+.decision-journal-details {
+  margin-top: var(--student-space-2);
+}
+
+.student-timeline-item.is-archived .student-timeline-marker {
+  border-color: var(--student-muted);
+  background: transparent;
+}
+
+.student-timeline-item.is-archived .decision-journal-entry {
+  opacity: 0.85;
+}
+
+.decision-journal-details .student-provenance__summary:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--brand-blue) 45%, transparent);
+  outline-offset: 2px;
+}
+

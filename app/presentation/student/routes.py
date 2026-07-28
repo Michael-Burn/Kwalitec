@@ -235,6 +235,29 @@ def history():
     )
 
 
+@student_bp.get("/decision-journal")
+@login_required
+def decision_journal():
+    """ILE-002 — Decision Journal timeline (educational memory)."""
+    from app.application.decision_journal import (
+        DecisionJournalApplicationService,
+    )
+    from app.presentation.student.view_models import (
+        decision_journal_page_vm,
+    )
+
+    timeline = DecisionJournalApplicationService.timeline(
+        int(current_user.id)
+    )
+    page = decision_journal_page_vm(timeline)
+    return render_template(
+        "student/decision_journal.html",
+        title=page.shell.page_title,
+        page=page,
+        journal=timeline,
+    )
+
+
 @student_bp.get("/profile")
 @login_required
 def profile():

@@ -104,6 +104,9 @@ def surface_for_endpoint(endpoint: str | None) -> ExperienceSurface:
     # Settings subpages share the Profile / Settings nav destination.
     if endpoint.startswith("settings."):
         return ExperienceSurface.PROFILE
+    # ILE-002 Decision Journal sits under History chrome.
+    if endpoint == "student.decision_journal":
+        return ExperienceSurface.HISTORY
     for surface, ep in SURFACE_ENDPOINTS.items():
         if ep == endpoint:
             return surface

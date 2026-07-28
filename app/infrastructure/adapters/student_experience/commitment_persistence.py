@@ -122,7 +122,13 @@ class SqlCommitmentPersistenceAdapter:
 
 
 class RecommendationServiceDecisionJournalAdapter:
-    """DecisionJournalPort — delegates to the existing Decision Journal API."""
+    """DecisionJournalPort — preference audit + ILE-002 educational journal.
+
+    Writes the legacy ``decisions`` preference row (EP-008.3 contract) and
+    mirrors a student-safe narrative entry into the Decision Journal.
+    Educational Journal write is fail-open so preference recording never
+    breaks commitment flows.
+    """
 
     def record_decision(
         self,
@@ -142,7 +148,32 @@ class RecommendationServiceDecisionJournalAdapter:
             completed=completed,
             outcome_summary=outcome_summary,
         )
-        return getattr(decision, "id", None)
+        decision_id = getattr(decision, "id", None)
+        try:
+            from app.domain.decision_journal import EntryKind
+            from app.services.decision_journal_service import (
+                DecisionJournalService,
+            )
+
+            DecisionJournalService.record_from_recommendation(
+                user_id,
+                tip,
+                accepted=accepted,
+                completed=completed,
+                outcome_summary=outcome_summary,
+                kind=EntryKind.MISSION_RECOMMENDATION,
+                catalogue_decision_id="D-L01",
+                legacy_decision_id=decision_id,
+            )
+        except Exception:  # noqa: BLE001 — journal must not break preference
+            import logging
+
+            logging.getLogger(__name__).debug(
+                "ile002_decision_journal_mirror_failed user_id=%s",
+                user_id,
+                exc_info=True,
+            )
+        return decision_id
 
 
 class LearningFeedbackEmitterAdapter:

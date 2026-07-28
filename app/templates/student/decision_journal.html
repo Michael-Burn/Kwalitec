@@ -1,0 +1,130 @@
+{% extends "student/base.html" %}
+{% set title = page.shell.page_title %}
+
+{% block content %}
+<section class="student-stack" aria-labelledby="decision-journal-intro">
+    <p id="decision-journal-intro" class="student-muted">{{ journal.intro_line }}</p>
+</section>
+
+{% if journal.empty %}
+<section class="student-empty" aria-label="Decision Journal" role="status">
+    <h2 class="student-empty-title">{{ journal.empty_title }}</h2>
+    <p class="student-empty-description">{{ journal.empty_description }}</p>
+    <div class="student-primary-action">
+        <a class="btn student-btn-primary" href="{{ url_for('student.home') }}" data-student-cta="primary">
+            {{ journal.primary_cta_label }}
+        </a>
+    </div>
+</section>
+{% else %}
+<section class="student-stack" aria-labelledby="decision-journal-timeline-title">
+    <h2 id="decision-journal-timeline-title" class="student-section-title">
+        Guidance over time
+    </h2>
+    <p class="student-muted">
+        {{ journal.entry_count }}
+        {% if journal.entry_count == 1 %}entry{% else %}entries{% endif %}
+        in your educational memory.
+    </p>
+
+    <ol class="student-timeline decision-journal-timeline" aria-label="Decision Journal timeline">
+        {% for entry in journal.entries %}
+        <li class="student-timeline-item{% if entry.is_archived %} is-archived{% endif %}{% if loop.first %} is-current{% endif %}"
+            data-decision-id="{{ entry.decision_id }}"
+            data-lifecycle="{{ entry.lifecycle_status }}"
+            data-kind="{{ entry.kind }}">
+            <span class="student-timeline-marker" aria-hidden="true"></span>
+            <article class="decision-journal-entry"
+                     aria-labelledby="dj-title-{{ loop.index }}">
+                <header class="decision-journal-entry__header">
+                    <p class="student-card-eyebrow">
+                        <time datetime="{{ entry.timestamp_label }}">{{ entry.timestamp_label }}</time>
+                        · {{ entry.kind_label }}
+                        · {{ entry.lifecycle_label }}
+                    </p>
+                    <h3 id="dj-title-{{ loop.index }}" class="student-timeline-title">
+                        {{ entry.recommendation or entry.educational_context or entry.kind_label }}
+                    </h3>
+                </header>
+
+                <dl class="decision-journal-arc">
+                    <div class="decision-journal-arc__item">
+                        <dt>What happened?</dt>
+                        <dd>{{ entry.what_happened or entry.observation }}</dd>
+                    </div>
+                    <div class="decision-journal-arc__item">
+                        <dt>Why?</dt>
+                        <dd>{{ entry.why or entry.meaning }}</dd>
+                    </div>
+                    <div class="decision-journal-arc__item">
+                        <dt>What did I choose?</dt>
+                        <dd>{{ entry.what_i_chose }}</dd>
+                    </div>
+                    {% if entry.what_happened_afterwards %}
+                    <div class="decision-journal-arc__item">
+                        <dt>What happened afterwards?</dt>
+                        <dd>{{ entry.what_happened_afterwards }}</dd>
+                    </div>
+                    {% endif %}
+                    {% if entry.what_to_learn %}
+                    <div class="decision-journal-arc__item">
+                        <dt>What should I learn from this?</dt>
+                        <dd>{{ entry.what_to_learn }}</dd>
+                    </div>
+                    {% endif %}
+                </dl>
+
+                <details class="student-provenance decision-journal-details">
+                    <summary class="student-provenance__summary">
+                        <span>Why this guidance</span>
+                        <span class="student-muted">{{ entry.confidence_label }}</span>
+                    </summary>
+                    {% if entry.supporting_evidence_summary %}
+                    <p class="student-card-body">
+                        <strong>Evidence at the time:</strong>
+                        {{ entry.supporting_evidence_summary }}
+                    </p>
+                    {% endif %}
+                    {% if entry.expected_benefit %}
+                    <p class="student-card-body">
+                        <strong>Expected benefit:</strong>
+                        {{ entry.expected_benefit }}
+                    </p>
+                    {% endif %}
+                    {% if entry.uncertainty %}
+                    <p class="student-card-body">
+                        <strong>Still uncertain:</strong>
+                        {{ entry.uncertainty }}
+                    </p>
+                    {% endif %}
+                    {% if entry.evidence_updates %}
+                    <p class="student-muted">Evidence updates (appended, never rewritten):</p>
+                    <ul class="student-evidence-list">
+                        {% for update in entry.evidence_updates %}
+                        <li>
+                            {% if update.recorded_at_label %}
+                            <time>{{ update.recorded_at_label }}</time> —
+                            {% endif %}
+                            {{ update.summary }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <p class="student-muted mb-0">{{ entry.reflection_label }}</p>
+                </details>
+            </article>
+        </li>
+        {% endfor %}
+    </ol>
+</section>
+
+<div class="student-primary-action">
+    <a class="btn student-btn-secondary" href="{{ url_for('student.history') }}">
+        Back to History
+    </a>
+    <a class="btn student-btn-primary" href="{{ url_for('student.home') }}" data-student-cta="primary">
+        {{ journal.primary_cta_label }}
+    </a>
+</div>
+{% endif %}
+{% endblock %}

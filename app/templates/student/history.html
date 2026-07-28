@@ -19,6 +19,24 @@
         </li>
         {% endfor %}
     </ul>
+    <p class="student-muted">
+        <a href="{{ url_for('student.decision_journal') }}">
+            Open your Decision Journal
+        </a>
+        — a fuller record of guidance, choices, and outcomes.
+    </p>
+</section>
+{% else %}
+<section class="student-stack" aria-labelledby="decision-journal-link-title">
+    <h2 id="decision-journal-link-title" class="student-section-title">Decision Journal</h2>
+    <p class="student-muted">
+        Review previous educational guidance, what you chose, and what happened afterwards.
+    </p>
+    <p>
+        <a class="btn student-btn-secondary" href="{{ url_for('student.decision_journal') }}">
+            Open Decision Journal
+        </a>
+    </p>
 </section>
 {% endif %}
 

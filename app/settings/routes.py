@@ -19,6 +19,7 @@ from flask_login import current_user, login_required
 from app.extensions import db
 from app.models.curriculum import Topic
 from app.models.decision import Decision
+from app.models.decision_journal import DecisionJournalEntry
 from app.models.learning import StudyAttempt
 from app.models.mission import Mission, MissionTask
 from app.models.study_plan import StudyPlan, WeekPlan
@@ -35,6 +36,7 @@ _BACKUP_MODELS = [
     (StudyAttempt, "study_attempts"),
     (TopicProgress, "topic_progress"),
     (Decision, "decisions"),
+    (DecisionJournalEntry, "decision_journal_entries"),
 ]
 
 

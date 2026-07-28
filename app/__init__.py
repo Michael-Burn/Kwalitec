@@ -559,6 +559,8 @@ def _init_extensions(app: Flask) -> None:
         CipStructuralNode,
         Curriculum,
         Decision,
+        DecisionJournalEntry,
+        DecisionJournalEvidenceEvent,
         DecisionRecord,
         EducationalReasoningRun,
         EducationalRuleExecution,

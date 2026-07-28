@@ -56,6 +56,10 @@ from app.models.curriculum_studio_foundation import (
     StudioFoundationVersion,
 )
 from app.models.decision import Decision
+from app.models.decision_journal import (
+    DecisionJournalEntry,
+    DecisionJournalEvidenceEvent,
+)
 from app.models.educational_reasoning import (
     DecisionRecord,
     EducationalReasoningRun,
@@ -212,6 +216,8 @@ __all__ = [
     "LearningObjective",
     "Mistake",
     "Decision",
+    "DecisionJournalEntry",
+    "DecisionJournalEvidenceEvent",
     "RecommendationCommitment",
     "TwinSnapshot",
     "V2AggregateDocument",
