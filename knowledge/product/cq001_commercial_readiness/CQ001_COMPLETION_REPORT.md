@@ -4,7 +4,7 @@
 **Date:** 2026-07-28  
 **Status:** Complete — documentation and governance only  
 **Change class:** Product (commercial-quality measurement law)  
-**Commit:** *(filled at commit time)*  
+**Commit:** `1cf18bc` — `docs(cq-001): establish commercial readiness index and V1 prioritisation law`  
 **Authority:** Vision 2030 · P-001.1 (KSI) · P-002.1 · OA-001 Product Constitution · `knowledge/GOVERNANCE.md`  
 
 ---
