@@ -3,7 +3,7 @@
 **Programme:** EI-006 — Twin Inference Engine (Educational Intelligence)  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commits:** `a5c2ba1` (`feat(ei-006)`) · *(docs pending)*
+**Commits:** `a5c2ba1` (`feat(ei-006)`) · `ab8e301` (`docs(ei-006)`)
 
 ---
 
