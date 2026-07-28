@@ -90,6 +90,7 @@ from app.models.educational_reasoning import (
     EducationalRuleExecution,
     ReasoningExplanation,
 )
+from app.models.educational_reasoning_engine import EreEducationalDecision
 from app.models.educational_runtime_engine import (
     RuntimeEducationalEvent,
     RuntimeEnrolment,
@@ -228,6 +229,7 @@ __all__ = [
     "SciCurriculumNodeState",
     "LeeEvidenceEvent",
     "TieNodeBelief",
+    "EreEducationalDecision",
     "SdtStudentDigitalTwin",
     "SdtObservation",
     "SdtMasteryRecord",

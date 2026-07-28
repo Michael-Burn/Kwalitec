@@ -602,6 +602,7 @@ def _init_extensions(app: Flask) -> None:
         SciCurriculumNodeState,
         SciStudentCurriculumInstance,
         TieNodeBelief,
+        EreEducationalDecision,
         SdtKnowledgeGap,
         SdtLearningStateSnapshot,
         SdtMasteryRecord,
