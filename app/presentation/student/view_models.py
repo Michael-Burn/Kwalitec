@@ -639,6 +639,17 @@ def home_vm(
         guided=guided,
         cta_enabled=cta_enabled,
     )
+    # CQ-003 / CR2: Resume labelling without Unified Journey — Continue + deep link.
+    resume_without_unified = bool(
+        not use_unified
+        and cta_enabled
+        and start
+        and start.session_id
+        and _is_resume_cta_label(start.label)
+    )
+    if resume_without_unified:
+        control_label = "Continue"
+        control_action = "resume"
     mission_cta_label = (
         control_label
         if use_unified and control_label
@@ -648,6 +659,8 @@ def home_vm(
             else cta_label
         )
     )
+    if resume_without_unified:
+        mission_cta_label = control_label
     # Session gate remains the live Home authority for enabling start.
     mission_cta_enabled = (
         cta_enabled and daily_mission.start_action.enabled
@@ -807,8 +820,12 @@ def home_vm(
         session_progress_summary=(
             day_experience.progress_summary if use_unified else ""
         ),
-        session_control_label=control_label if use_unified else "",
-        session_control=control_action if use_unified else "",
+        session_control_label=(
+            control_label if use_unified or resume_without_unified else ""
+        ),
+        session_control=(
+            control_action if use_unified or resume_without_unified else ""
+        ),
         reflection_available=(
             day_experience.reflection_available if use_unified else False
         ),
@@ -1982,6 +1999,12 @@ def _compose_milestones(
     return tuple(milestones[:3])
 
 
+def _is_resume_cta_label(label: str | None) -> bool:
+    """True when the Start Session action is a return-to-study Continue/Resume."""
+    text = (label or "").casefold()
+    return "continue" in text or "resume" in text
+
+
 def _compose_quick_actions(
     snap: HomeSnapshot,
     *,
@@ -1990,13 +2013,29 @@ def _compose_quick_actions(
 ) -> tuple[HomeQuickActionViewModel, ...]:
     actions: list[HomeQuickActionViewModel] = []
     if cta_enabled:
+        start = snap.start_session
+        resume = bool(
+            start and start.session_id and _is_resume_cta_label(start.label)
+        )
+        # CQ-003 / CR2: deep-link to open session when returning mid-study.
+        href = (
+            f"/session/{start.session_id}/overview"
+            if resume and start and start.session_id
+            else "/student/"
+        )
         actions.append(
             HomeQuickActionViewModel(
-                label=snap.start_session.label
-                if snap.start_session and snap.start_session.label
-                else "Resume Mission",
-                href="/student/",
-                detail="Continue today's mission",
+                label=(
+                    start.label
+                    if start and start.label
+                    else ("Continue" if resume else "Resume Mission")
+                ),
+                href=href,
+                detail=(
+                    "Pick up where you left off"
+                    if resume
+                    else "Continue today's mission"
+                ),
             )
         )
     actions.append(

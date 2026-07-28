@@ -125,7 +125,13 @@ class ExperienceSession:
             ExperienceSessionStatus.READY,
             ExperienceSessionStatus.IN_PROGRESS,
         }
+        label = (
+            "Continue"
+            if self.status == ExperienceSessionStatus.IN_PROGRESS
+            else "Start Session"
+        )
         return StartSessionAction.create(
+            label=label,
             enabled=enabled and bool(self.mission_id or self.session_id),
             mission_id=self.mission_id,
             session_id=self.session_id,

@@ -683,19 +683,41 @@ def begin_revision():
         )
         return redirect(url_for("student.revision"))
 
-    flash(
-        f"Revision started: {handle.topic_title or 'selected topic'}.",
-        "success",
-    )
     composition = get_experience_composition()
     if composition is not None:
         composition.emit_revision_started(
             str(handle.student_id),
             option_id=(form.option_id.data or "").strip() or None,
         )
+    topic = handle.topic_title or "selected topic"
+    # CQ-003 / CR2: match Home start — one click into Activity (habit continuity).
     target_session_id = handle.session_id or session_id
     if target_session_id:
-        return redirect(
-            url_for("session.overview", session_id=target_session_id)
-        )
+        try:
+            from app.presentation.session.views import (
+                begin_session as begin_v2_session,
+            )
+
+            begin_v2_session(session_id=target_session_id)
+            flash(
+                f"Revision started: {topic}. Your first activity is ready.",
+                "success",
+            )
+            return redirect(
+                url_for("session.activity", session_id=target_session_id)
+            )
+        except Exception:  # noqa: BLE001 — fail open to Overview
+            logger.warning(
+                "Auto-begin after revision start failed session_id=%s",
+                target_session_id,
+                exc_info=True,
+            )
+            flash(
+                f"Revision started: {topic}. Review today's objective to begin.",
+                "success",
+            )
+            return redirect(
+                url_for("session.overview", session_id=target_session_id)
+            )
+    flash(f"Revision started: {topic}.", "success")
     return redirect(url_for("student.home"))

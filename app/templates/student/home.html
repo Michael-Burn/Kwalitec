@@ -40,6 +40,8 @@
   {% if page.home.reflection_active %}data-reflection="active" data-reflection-state="{{ page.home.reflection_state }}"{% endif %}
   {% if page.home.day_complete %}data-day-complete="true"{% endif %}
 >
+  {# CQ-003 / CR2: resume path keeps the hero light (title, duration, Continue). #}
+  {% set habit_resume = page.home.session_control == 'resume' %}
   <p class="student-hero-greeting">{{ page.home.greeting }}</p>
   <p class="student-muted" data-narrator="study-sensei">Study Sensei</p>
   <p class="student-hero-eyebrow">
@@ -103,52 +105,61 @@
     <span class="student-hero-purpose-label">Focus</span>
     {{ page.home.session_learning_objective }}
   </p>
-  {% elif page.home.explanation and page.home.explanation.why_recommended %}
+  {% elif not habit_resume and page.home.explanation and page.home.explanation.why_recommended %}
   <p class="student-hero-purpose" data-mes-field="why_recommended" data-mes-level="1">
     <span class="student-hero-purpose-label">Why</span>
     {{ page.home.explanation.why_recommended }}
   </p>
-  {% elif page.home.unified_journey_enabled and page.home.why_it_matters %}
+  {% elif not habit_resume and page.home.unified_journey_enabled and page.home.why_it_matters %}
   <p class="student-hero-purpose">
     <span class="student-hero-purpose-label">Why it matters</span>
     {{ page.home.why_it_matters }}
   </p>
-  {% elif page.home.recommendation.summary or page.home.recommendation.reason %}
+  {% elif not habit_resume and (page.home.recommendation.summary or page.home.recommendation.reason) %}
   <p class="student-hero-purpose">
     {{ page.home.recommendation.summary or page.home.recommendation.reason }}
   </p>
-  {% elif page.home.expected_benefit_label %}
+  {% elif not habit_resume and page.home.expected_benefit_label %}
   <p class="student-hero-purpose">{{ page.home.expected_benefit_label }}</p>
   {% endif %}
 
-  {% if page.home.explanation and page.home.explanation.timeliness_line and not page.home.guided_session_active and not page.home.reflection_active %}
+  {# CQ-003 / CR2: when resuming an open session, keep the hero light — title,
+     duration, and Continue. Hide start-time MES/commitment density. #}
+
+  {% if habit_resume and not page.home.guided_session_active and not page.home.reflection_active %}
+  <p class="student-mission-status" data-status="in_progress" data-habit="resume">
+    Session in progress — continue where you left off
+  </p>
+  {% endif %}
+
+  {% if page.home.explanation and page.home.explanation.timeliness_line and not page.home.guided_session_active and not page.home.reflection_active and not habit_resume %}
   <p class="student-hero-purpose" data-mes-field="timeliness" data-mes-level="1">
     <span class="student-hero-purpose-label">Why now</span>
     {{ page.home.explanation.timeliness_line }}
   </p>
   {% endif %}
 
-  {% if page.home.l1_expected_benefit and not page.home.guided_session_active and not page.home.reflection_active %}
+  {% if page.home.l1_expected_benefit and not page.home.guided_session_active and not page.home.reflection_active and not habit_resume %}
   <p class="student-hero-outcome" data-mes-field="expected_benefit" data-mes-level="1">
     <span class="student-hero-purpose-label">You’ll work toward</span>
     {{ page.home.l1_expected_benefit }}
   </p>
   {% endif %}
 
-  {% if page.home.readiness_bridge_line and not page.home.guided_session_active and not page.home.reflection_active %}
+  {% if page.home.readiness_bridge_line and not page.home.guided_session_active and not page.home.reflection_active and not habit_resume %}
   <p class="student-muted" data-mes-field="readiness_bridge" data-mes-level="1">
     {{ page.home.readiness_bridge_line }}
   </p>
   {% endif %}
 
-  {% if page.home.explanation and page.home.explanation.suggested_next_action and not page.home.guided_session_active and not page.home.reflection_active %}
+  {% if page.home.explanation and page.home.explanation.suggested_next_action and not page.home.guided_session_active and not page.home.reflection_active and not habit_resume %}
   <p class="student-session-next" data-mes-field="suggested_next_action" data-mes-level="1">
     <span class="student-hero-purpose-label">Next</span>
     {{ page.home.explanation.suggested_next_action }}
   </p>
   {% endif %}
 
-  {% if page.home.explanation and page.home.explanation.plan_coherence_label and not page.home.explanation.honest_refusal and not page.home.guided_session_active and not page.home.reflection_active %}
+  {% if page.home.explanation and page.home.explanation.plan_coherence_label and not page.home.explanation.honest_refusal and not page.home.guided_session_active and not page.home.reflection_active and not habit_resume %}
   <p class="student-muted student-plan-coherence" data-mes-field="plan_coherence" data-mes-level="1">
     {{ page.home.explanation.plan_coherence_label }}
   </p>
@@ -187,7 +198,7 @@
     <p class="student-muted" data-commitment="continuity">{{ page.home.commitment.continuity_line }}</p>
     {% endif %}
   </div>
-  {% elif page.home.commitment and page.home.commitment.show_commit_affordance and not page.home.guided_session_active and not page.home.reflection_active %}
+  {% elif page.home.commitment and page.home.commitment.show_commit_affordance and not page.home.guided_session_active and not page.home.reflection_active and not habit_resume %}
   <p class="student-muted" data-commitment="confirm">
     I’m doing this next.
     <span class="student-muted">Starting means you’re doing this next.</span>
@@ -197,19 +208,19 @@
   {% endif %}
   {% endif %}
 
-  {% if page.home.explanation and page.home.explanation.honest_refusal and page.home.explanation.confidence_label and not page.home.guided_session_active and not page.home.reflection_active %}
+  {% if page.home.explanation and page.home.explanation.honest_refusal and page.home.explanation.confidence_label and not page.home.guided_session_active and not page.home.reflection_active and not habit_resume %}
   <p class="student-muted" data-mes-field="confidence_level" data-mes-level="1" data-trust-state="refusal">
     <span class="student-label">Confidence</span> {{ page.home.explanation.confidence_label }}
   </p>
   {% endif %}
 
-  {% if page.home.unified_journey_enabled and page.home.expected_outcome and not page.home.guided_session_active and not page.home.reflection_active and not page.home.l1_expected_benefit %}
+  {% if page.home.unified_journey_enabled and page.home.expected_outcome and not page.home.guided_session_active and not page.home.reflection_active and not page.home.l1_expected_benefit and not habit_resume %}
   <p class="student-hero-outcome">{{ page.home.expected_outcome }}</p>
   {% endif %}
 
   {% if page.home.unified_journey_enabled and page.home.session_progress_summary and not page.home.reflection_active %}
   <p class="student-hero-summary student-muted">{{ page.home.session_progress_summary }}</p>
-  {% elif page.home.unified_journey_enabled and page.home.mission_summary and page.home.mission_summary != page.home.why_it_matters and not page.home.reflection_active %}
+  {% elif page.home.unified_journey_enabled and page.home.mission_summary and page.home.mission_summary != page.home.why_it_matters and not page.home.reflection_active and not habit_resume %}
   <p class="student-hero-summary student-muted">{{ page.home.mission_summary }}</p>
   {% endif %}
 
@@ -270,6 +281,25 @@
     </button>
   </form>
   <p class="student-muted">Study the topic using your materials, then mark the mission complete when you meet the “Done when” criteria.</p>
+  {% elif page.home.primary_cta_enabled and page.home.session_control == 'resume' and page.home.session_id %}
+  {# CQ-003 / CR2: deep-link resume — no re-commitment POST on return. #}
+  <p class="student-hero-cta student-session-control" data-session-control="resume">
+    <a
+      class="btn student-btn-primary"
+      href="{{ url_for('session.overview', session_id=page.home.session_id) }}"
+      data-student-cta="primary"
+      data-session-control="resume"
+      data-session-resume="true"
+      data-habit="resume-cta"
+    >{{ page.home.session_control_label or page.home.primary_cta_label or 'Continue' }}</a>
+  </p>
+  <p class="student-muted" data-habit="resume-hint">
+    {% if page.home.estimated_duration_label or page.home.estimated_study_label %}
+      {{ page.home.estimated_duration_label or page.home.estimated_study_label }} when you return — pick up mid-session.
+    {% else %}
+      Pick up where you left off — no need to start over.
+    {% endif %}
+  </p>
   {% elif form and page.home.primary_cta_enabled and page.home.session_control in ('start', 'resume', '') %}
   <form method="post" action="{{ url_for('student.start_session') }}" class="student-hero-cta">
     {{ form.hidden_tag() }}
@@ -281,7 +311,7 @@
       {{ page.home.session_control_label or page.home.primary_cta_label }}
     </button>
   </form>
-  {% if page.home.commitment and page.home.commitment.show_defer_affordance and defer_form %}
+  {% if page.home.commitment and page.home.commitment.show_defer_affordance and defer_form and not habit_resume %}
   <details class="student-commitment-defer" data-commitment="defer-open">
     <summary class="student-muted">Not today</summary>
     <form method="post" action="{{ url_for('student.defer_commitment') }}" class="student-defer-form">

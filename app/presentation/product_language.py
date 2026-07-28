@@ -126,6 +126,7 @@ REJECTED_SYNONYMS: tuple[str, ...] = (
 # Preferred primary CTAs.
 # Session CTAs remain practice-entry labels (DG-001.1-D02); Mission is the
 # educational focus noun, not a CTA synonym here.
+# CQ-003: "Continue" is the interrupt-recovery CTA for in-progress sessions.
 STUDENT_PRIMARY_CTAS: tuple[str, ...] = (
     "Start Today's Session",
     "Start Session",

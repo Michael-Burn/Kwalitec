@@ -252,9 +252,12 @@ def _start_action(
     session_id = session.get("session_id")
     if not mission_id and not session_id:
         return StartSessionAction.create(enabled=False)
+    status = str(session.get("status") or "ready").lower()
+    # CQ-003 / CR2: in-progress sessions say Continue — not a fresh Start.
+    label = "Continue" if status == "in_progress" else "Start Session"
     return StartSessionAction.create(
-        enabled=str(session.get("status") or "ready").lower()
-        in {"ready", "in_progress", ""},
+        label=label,
+        enabled=status in {"ready", "in_progress", ""},
         mission_id=None if mission_id is None else str(mission_id),
         session_id=None if session_id is None else str(session_id),
         estimated_minutes=_optional_int(session.get("estimated_minutes")),
