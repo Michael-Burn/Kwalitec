@@ -3,7 +3,7 @@
 **Programme:** RI-001 — Educational Runtime Integration (Preferred Authority)  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commits:** `b8b2899` (`feat(ri-001)`) · `b33620d` (`docs(ri-001)`)
+**Commits:** `b8b2899` (`feat(ri-001)`) · `b4098b4` (`docs(ri-001)`)
 
 ---
 
