@@ -61,6 +61,7 @@ Detail always lives in the cited authoritative artefacts. If this Dashboard conf
 | **EI-005** | Learning Evidence Engine | **Complete** | Append-only educational evidence against SCI; chronological history; no inference | `knowledge/educational_intelligence/ei005_learning_evidence_engine/` |
 | **EI-006** | Twin Inference Engine | **Complete** | Deterministic explainable beliefs from evidence; knowledge state; no recommendations | `knowledge/educational_intelligence/ei006_twin_inference_engine/` |
 | **EI-007** | Educational Reasoning Engine | **Complete** | Deterministic explainable educational decisions from curriculum + SCI + beliefs; no missions/UI | `knowledge/educational_intelligence/ei007_educational_reasoning_engine/` |
+| **EX-001** | Educational Experience Engine | **Complete** | Decision → consistent explainable experience models for Mission/Coach/Dashboard/Revision/Session; no reasoning | `knowledge/educational_experience/ex001_educational_experience_engine/` |
 | **ER-002** | Engineering Recertification | Complete | **Engineering Conditional GO** | `knowledge/release/ER-002/` |
 | **OA-001** | Operational Architecture | Complete | Permanent operating model | `knowledge/operations/oa001/` |
 | **CQ-001** | Commercial Readiness First | Complete (docs/governance) | CRI framework; baseline **43%** provisional; living board | `knowledge/product/cq001_commercial_readiness/` |
