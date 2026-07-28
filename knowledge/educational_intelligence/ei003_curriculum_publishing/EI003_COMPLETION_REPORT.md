@@ -3,7 +3,7 @@
 **Programme:** EI-003 — Founder Curriculum Publishing Workflow (Educational Intelligence)  
 **Date:** 2026-07-28  
 **Status:** Complete  
-**Commits:** `a52a9e2` (`feat(ei-003)`) · *(docs commit follows)*
+**Commits:** `a52a9e2` (`feat(ei-003)`) · `dc47130` (`docs(ei-003)`)
 
 ---
 
