@@ -1,37 +1,36 @@
 # Current Milestone
 
-**EI-006** — Twin Inference Engine (**Active delivery**)
+**EI-007** — Educational Reasoning Engine (**Active delivery**)
 
 ## Objective
 
-Derive explainable educational beliefs from immutable Learning Evidence for every curriculum node in a Student Curriculum Instance. No recommendations or study missions.
+Determine highest-value educational actions for a Student Curriculum Instance from published curriculum, Twin beliefs, and evidence references. Produce ordered, explainable decisions only — no mission text or student UI.
 
 ## Allowed modifications
 
-- `app/domain/twin_inference/`
-- `app/application/twin_inference/`
-- `app/models/twin_inference.py` and model registration
-- Alembic migration for EI-006 belief tables
-- `tests/domain/twin_inference/` · `tests/application/twin_inference/`
-- `knowledge/educational_intelligence/ei006_twin_inference_engine/`
-- Programme dashboard / milestone pointers for EI-006
+- `app/domain/educational_reasoning_engine/`
+- `app/application/educational_reasoning_engine/`
+- `app/models/educational_reasoning_engine.py` and model registration
+- Alembic migration for EI-007 decision tables
+- `tests/domain/educational_reasoning_engine/` · `tests/application/educational_reasoning_engine/`
+- `knowledge/educational_intelligence/ei007_educational_reasoning_engine/`
+- Programme dashboard / milestone pointers for EI-007
 
 ## Forbidden
 
-- Recommendations / study missions
-- Mutating Learning Evidence history
-- Modifying published Curriculum Knowledge Graph content
-- Probabilistic AI / LLM inference in core learning paths
+- Daily Missions / Coach responses / student UI
+- Mutating Learning Evidence, Twin beliefs, or published curriculum
+- Probabilistic AI / LLM reasoning in core learning paths
 
 ## Parallel note
 
-FV-001 Founder Validation remains the commercial dogfood track. EI-006 does not reopen CQ engineering or Founder Validated CRI claims.
+FV-001 Founder Validation remains the commercial dogfood track. EI-007 does not reopen CQ engineering or Founder Validated CRI claims. Legacy `app.domain.educational_reasoning` is untouched.
 
 ## Authoritative artefacts
 
-- Architecture: `knowledge/educational_intelligence/ei006_twin_inference_engine/ARCHITECTURE.md`
-- Completion: `knowledge/educational_intelligence/ei006_twin_inference_engine/EI006_COMPLETION_REPORT.md`
-- Prior: EI-001 CKG · EI-002 Extraction · EI-003 Publishing · EI-004 Binding · EI-005 Evidence
+- Architecture: `knowledge/educational_intelligence/ei007_educational_reasoning_engine/ARCHITECTURE.md`
+- Completion: `knowledge/educational_intelligence/ei007_educational_reasoning_engine/EI007_COMPLETION_REPORT.md`
+- Prior: EI-001 CKG · EI-002 Extraction · EI-003 Publishing · EI-004 Binding · EI-005 Evidence · EI-006 Twin Inference
 
 ---
 
