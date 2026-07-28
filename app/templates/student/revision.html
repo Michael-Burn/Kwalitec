@@ -9,8 +9,12 @@
 {% if revision.has_revision and revision.primary %}
 {% set primary = revision.primary %}
 <section class="student-card student-card--revision-primary" aria-labelledby="revision-title">
-    <p class="student-card-eyebrow">Today's best revision</p>
+    <p class="student-card-eyebrow">Revision support</p>
     <h2 id="revision-title" class="student-card-title">{{ primary.topic_title }}</h2>
+    <p class="student-muted" data-educational="mission-primacy">
+        Revision supports today's Mission — it is not a second Mission.
+        Use it to strengthen what Mission asked you to practice.
+    </p>
     <dl class="student-meta-row">
         {% if primary.priority_label %}
         <div>
@@ -85,25 +89,33 @@
 {% endif %}
 
 {% else %}
-<section class="student-card">
-    <h2 class="student-card-title">No revision focus yet</h2>
-    <p class="student-card-body">{{ revision.empty_message }}</p>
+<section class="student-empty" aria-label="Revision" role="status" data-student-state="empty">
+    <h2 class="student-empty-title">No revision support yet</h2>
+    <p class="student-empty-description">{{ revision.empty_message }}</p>
+    <p class="student-empty-why student-muted" data-educational="mission-primacy">
+        Revision supports today's Mission when there is something worth
+        strengthening. Until then, follow Mission on Home.
+    </p>
     <div class="student-primary-action">
         <a class="btn student-btn-primary" href="{{ url_for('student.home') }}" data-student-cta="primary">
-            Return Home
+            Return to today's Mission
         </a>
     </div>
 </section>
 {% endif %}
 {% else %}
-<section class="student-empty" aria-label="Revision" role="status">
-    <h2 class="student-empty-title">Revision opens up after your first session</h2>
+<section class="student-empty" aria-label="Revision" role="status" data-student-state="empty">
+    <h2 class="student-empty-title">Revision opens after practice</h2>
     <p class="student-empty-description">
-        Once you've studied a topic, we'll surface the revision that will help you the most.
+        After you practice a topic in a Session, Revision can suggest follow-up
+        that supports today's Mission — never as a competing daily focus.
+    </p>
+    <p class="student-empty-why student-muted">
+        Empty Revision is expected early — start with Mission on Home.
     </p>
     <div class="student-primary-action">
         <a class="btn student-btn-primary" href="{{ url_for('student.home') }}" data-student-cta="primary">
-            Go to Home
+            Return to today's Mission
         </a>
     </div>
 </section>

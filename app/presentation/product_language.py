@@ -10,6 +10,8 @@ RR-001.3B publishes reflection-family and orientation constants
 (DG-001.3 / EGC-R03–R05).
 RR-001.3C publishes educational memory coherence constants
 (DG-001.2-D06 / EGC-R06 / EGC-R12).
+RR-001.3D publishes Home naming density, Mission primacy, readiness
+honesty, and Feedback Loop student-term policy (EGC-R08–R12).
 """
 
 from __future__ import annotations
@@ -41,6 +43,32 @@ APPROVED_TERMS: tuple[str, ...] = (
     "Guided Reflection preview",
     "Product Check-in",
     "Calibration",
+)
+
+# EGC-R08 / OQ-02 — Home Sensei naming density policy.
+# Name Study Sensei once in the Home hero narrator chrome. Do not repeat
+# the Sensei eyebrow on the Guidance panel. Secondary panels may use
+# Guidance / Readiness / Journey nouns without re-attributing the mentor.
+HOME_SENSEI_NAMING_POLICY: str = (
+    "Home names Study Sensei once in the hero narrator chrome. "
+    "The Guidance panel uses the Guidance noun without repeating the "
+    "Sensei eyebrow. Other Home panels do not re-introduce mentor naming."
+)
+
+# EGC-R09 / OQ-05 — Revision supports Mission; never a second Mission.
+REVISION_MISSION_PRIMACY_SENTENCE: str = (
+    "Revision supports today's Mission — it is not a second Mission. "
+    "Use it to strengthen what Mission asked you to practice."
+)
+
+# EGC-R03/R04 / OQ-03 — Feedback Loop is internal architecture language.
+# Student-facing term remains Sensei reflection (optional Journal form).
+FEEDBACK_LOOP_STUDENT_TERM: str = "Sensei reflection"
+FEEDBACK_LOOP_TERMINOLOGY_POLICY: str = (
+    "Students never see “Feedback Loop” as a product label. "
+    "Optional Decision Journal reflection is taught as Sensei reflection. "
+    "It helps Study Sensei understand whether guidance was useful and "
+    "does not re-rank today's Mission."
 )
 
 # DG-001.3-D01 canonical student map (Help + orientation).
@@ -89,6 +117,10 @@ REJECTED_SYNONYMS: tuple[str, ...] = (
     "mission tip",
     "the system chose",
     "daily reflection",
+    "feedback loop",
+    "optimising for",
+    "today's best revision",
+    "coach insight",
 )
 
 # Preferred primary CTAs.

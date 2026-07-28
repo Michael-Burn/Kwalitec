@@ -125,7 +125,7 @@ def seeded_demo_twin(student_id: str) -> dict[str, Any]:
             "goals": (
                 {
                     "goal_id": "g1",
-                    "title": "Reach exam readiness",
+                    "title": "Progress toward exam readiness",
                     "target_label": "Exam sitting",
                     "progress_ratio": 0.4,
                 },
@@ -197,7 +197,7 @@ def seeded_demo_adaptive(student_id: str) -> dict[str, Any]:
             "Recent practice showed soft recall on this topic",
             "This topic appears frequently in the examination",
         ),
-        "expected_benefit": "Strengthen exam readiness",
+        "expected_benefit": "Support progress toward exam readiness",
         "priority_band": "high",
         "confidence": "strong",
     }

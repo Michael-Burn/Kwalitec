@@ -234,7 +234,8 @@ def build_explanation(
     benefit = translate_to_student_language(expected_benefit)
     if not benefit and not honest_refusal:
         benefit = (
-            f"Studying {topic} now is expected to strengthen your exam readiness."
+            f"Studying {topic} now can support steady progress toward "
+            "exam readiness."
         )
     confidence_label = translate_to_student_language(confidence)
     review = translate_to_student_language(review_point)

@@ -187,9 +187,12 @@ def overview_vm(snap: OverviewSnapshot) -> OverviewViewModel:
     if snap.expected_readiness_improvement is not None:
         pct = abs(int(round(snap.expected_readiness_improvement * 100)))
         if snap.expected_readiness_improvement >= 0:
-            improvement = f"Expected readiness lift · about {pct}%"
+            improvement = (
+                f"Possible readiness movement · about {pct}% "
+                "(estimate, not a guarantee)"
+            )
         else:
-            improvement = "Expected readiness change noted"
+            improvement = "Possible readiness change noted (estimate only)"
     begin = snap.begin_action
     return OverviewViewModel(
         objective=snap.objective or "Today's learning objective",

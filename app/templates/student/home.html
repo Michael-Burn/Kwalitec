@@ -408,13 +408,13 @@
     {% endif %}
     {% if mi.mission_confidence %}
     <p data-mission-field="mission_confidence">
-      <span class="student-label">Mission confidence</span>
+      <span class="student-label">How sure this guidance feels</span>
       {{ mi.mission_confidence }}
     </p>
     {% endif %}
     {% if mi.uncertainty %}
     <p class="student-muted" data-mission-field="uncertainty">
-      <span class="student-label">Uncertainty</span> {{ mi.uncertainty }}
+      <span class="student-label">What is still uncertain</span> {{ mi.uncertainty }}
     </p>
     {% endif %}
     {% if mi.mission_explanation %}
@@ -437,7 +437,7 @@
     {% endif %}
     {% if mi.optimisation_axis_label %}
     <p class="student-muted" data-mission-field="optimisation_axis">
-      Focusing on {{ mi.optimisation_axis_label | lower }}
+      Educational priority: {{ mi.optimisation_axis_label | lower }}
     </p>
     {% endif %}
   </aside>
@@ -495,7 +495,7 @@
   class="student-secondary student-secondary--subordinate"
   data-dashboard-slot="secondary"
   data-home-density="secondary"
-  aria-label="Readiness, journey, and coach"
+  aria-label="Readiness, journey, and guidance"
 >
   <article class="student-panel student-panel--quiet" data-dashboard-panel="readiness" aria-labelledby="student-readiness-title">
     <p class="student-panel-eyebrow">Readiness</p>
@@ -578,16 +578,13 @@
     <p class="student-panel-body student-story">{{ page.home.journey_story }}</p>
   </article>
 
-  {# PX-002A T2-8: the Mission card above already renders Why / Why now /
-     Next / Benefit from these same authored fields whenever it is visible
-     (i.e. outside guided-session and reflection states). Showing that list
-     again here would just paraphrase the Mission card, so Coach only
-     repeats it when the Mission card isn't currently showing it — otherwise
-     Coach surfaces something the Mission card doesn't: commitment status,
-     or a pointer back rather than a restatement. #}
+  {# PX-002A T2-8 + RR-001.3D / EGC-R08: Mission card already renders Why /
+     Why now / Next / Benefit when visible. Guidance only repeats those
+     fields outside that state; otherwise it shows commitment status or a
+     pointer. Sensei is named once in the hero — not again as an eyebrow. #}
   {% set coach_matches_hero_now = not page.home.guided_session_active and not page.home.reflection_active %}
   <article class="student-panel student-panel--quiet" data-dashboard-panel="coach" aria-labelledby="student-coach-title">
-    <p class="student-panel-eyebrow" data-narrator="study-sensei">Study Sensei</p>
+    <p class="student-panel-eyebrow">Guidance</p>
     <h2 id="student-coach-title" class="student-panel-title">Guidance</h2>
     {% if page.home.coach_trust and page.home.coach_trust.has_content and not coach_matches_hero_now %}
     <ul class="student-coach-trust" data-mes-field="coach_insight" data-trust-coach="structured"{% if page.home.coach_trust.is_refusal %} data-trust-state="refusal"{% endif %}>
@@ -683,9 +680,9 @@
         {% if action.detail %}<span class="student-quick-detail">{{ action.detail }}</span>{% endif %}
       </li>
       {% else %}
-      <li><a href="{{ url_for('student.journey') }}">Open Schedule</a></li>
-      <li><a href="{{ url_for('student.revision') }}">Prepare Checkpoint</a></li>
-      <li><a href="{{ url_for('student.history') }}">Review Reflection</a></li>
+      <li><a href="{{ url_for('student.journey') }}">Open Journey</a></li>
+      <li><a href="{{ url_for('student.revision') }}">Open Revision</a></li>
+      <li><a href="{{ url_for('student.history') }}">Open History</a></li>
       {% endfor %}
     </ul>
   </nav>

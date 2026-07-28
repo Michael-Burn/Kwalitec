@@ -104,7 +104,9 @@ def page_from_educational_experience(
     descriptions = {
         "home": "What you should study today, and why.",
         "journey": "Where you are on the published syllabus path.",
-        "revision": "Revision guidance will appear after first-pass coverage.",
+        "revision": (
+            "Revision that supports today's Mission — not a second Mission."
+        ),
         "history": (
             "Practice archives and progress context — not Study Sensei’s "
             "learning story. Educational meaning lives in the Decision "

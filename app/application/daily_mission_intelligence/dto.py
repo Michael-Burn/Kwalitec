@@ -37,6 +37,6 @@ class DailyMissionIntelligenceSnapshot:
     explainability_heading: str = "Why this Mission"
     evidence_heading: str = "Supporting evidence"
     after_heading: str = "After you finish"
-    reflection_heading: str = "Reflection"
+    reflection_heading: str = "Sensei reflection"
     skip_heading: str = "If you skip today"
     metadata: tuple[tuple[str, str], ...] = field(default_factory=tuple)

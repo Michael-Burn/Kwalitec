@@ -124,12 +124,15 @@ class CompletionProjection:
 
 
 def readiness_change_label(delta: float) -> str:
-    """Map a readiness delta to a calm student-facing label."""
+    """Map a readiness delta to a calm, honest student-facing label.
+
+    RR-001.3D / EGC-R10 — celebrate movement without overclaiming certainty.
+    """
     if delta > 0.02:
-        return "Exam readiness improved"
+        return "Readiness estimate moved up a little"
     if delta < -0.02:
-        return "Exam readiness dipped slightly"
-    return "Exam readiness steady"
+        return "Readiness estimate eased a little"
+    return "Readiness estimate held steady"
 
 
 def _require_non_empty(value: str, field_name: str) -> str:

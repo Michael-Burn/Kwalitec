@@ -3,9 +3,9 @@
 **Programme:** EGC-001 — Educational Governance Compliance  
 **Version:** 1.0  
 **Status:** Active — Board compliance baseline  
-**Score date:** 2026-07-28 (updated RR-001.3C)  
+**Score date:** 2026-07-28 (updated RR-001.3D)  
 **Authority:** `EDUCATIONAL_GOVERNANCE_COMPLIANCE_AUDIT.md`  
-**Constraint:** Scoring only at EGC-001; RR-001.3A–3C close identity/orientation/memory NCRs — product-wide claim still forbidden until remaining material NCRs close.
+**Constraint:** Scoring only at EGC-001; RR-001.3A–3D close identity/orientation/memory/consistency NCRs — product-wide unqualified claim still forbidden while Contained flag/ops and EGC-R11 preventive remain.
 
 ---
 
@@ -13,13 +13,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Overall classification** | **NON-COMPLIANT** *(product-wide)* |
-| **Meaning** | Alpha does not yet satisfy DG-001 as a coherent student-facing educational system. Compliant pockets exist. RR-001.3A–3C closed Wave-1 identity, Wave-1 orientation/reflection, and Wave-2 memory epistemology NCRs on educational core. |
+| **Overall classification** | **NON-COMPLIANT** *(product-wide — Contained ops / preventive only)* |
+| **Meaning** | Assigned educational-copy NCR set closed through RR-001.3D. Product-wide unqualified “educationally governed Alpha” claim remains forbidden while Contained feature-flag enablement and EGC-R11 notifications-when-built remain. |
 | **Programme EGC-001** | **Complete** — baseline measurable; remediation traceable |
 | **RR-001.3A (EGC-R01/R02)** | **Pass (in-scope)** — see `RR001_3A_COMPLETION_REPORT.md` |
 | **RR-001.3B (EGC-R03–R05)** | **Pass (in-scope)** — see `RR001_3B_COMPLETION_REPORT.md` |
 | **RR-001.3C (EGC-R06 / R07-memory / R12-memory)** | **Pass (in-scope)** — see `RR001_3C_COMPLETION_REPORT.md` |
-| **Unqualified “educationally governed Alpha” claim** | **Forbidden** until remaining material NCR items close |
+| **RR-001.3D (EGC-R08–R12 remaining)** | **Pass (in-scope)** — see `RR001_3D_COMPLETION_REPORT.md` |
+| **Unqualified “educationally governed Alpha” claim** | **Forbidden** until Contained ops + notification programme addressed |
 
 ---
 
@@ -45,21 +46,21 @@ Capabilities counted: Authentication, Onboarding, Home, Mission Intelligence, Mi
 
 | Class in register | Count |
 |-------------------|------:|
-| Closed (RR-001.3A–3C in-scope) | 15+ (incl. NCR-006/007/010/011/017/019/021/022 + 3A set) |
-| NC findings (remaining open) | 0 primary NC rows in register after 3C memory closures |
-| PC findings (material) | NCR-002 Watch; 003; 005; 008 Advanced; 009; 012; 013 |
-| Contained / watch | NCR-014 QC residual elsewhere; NCR-002 density |
+| Closed (RR-001.3A–3D in-scope) | 22 educational NCR rows closed (ops Contained separate) |
+| NC findings (remaining open educational copy) | 0 |
+| PC findings (material educational copy) | 0 assigned |
+| Contained / watch | Feature-flag enablement OFF; EGC-R11 preventive |
 | **Total NCR rows** | **22** |
 
-\*In-scope closures with named residuals — see NCR register.
+\*In-scope closures — see NCR register and `RR001_3D_COMPLETION_REPORT.md`.
 
 ### 2.3 By priority (open remediation)
 
 | Priority | NCR count (approx open) | Intent |
 |----------|------------------------:|--------|
-| P0 | ~1 Watch (NCR-002 density) | Home naming residual |
-| P1 | ~5 | Session readiness, MI chrome, empties residual, FL jargon, success honesty |
-| P2 | 2 | Revision primacy / polish |
+| P0 | 0 educational copy | Contained flags remain ops |
+| P1 | 0 assigned | — |
+| P2 | 0 assigned | — |
 | P3 | Preventive (EGC-R11) | When notifications educationalise |
 
 ### 2.4 Constitutional principles (CP-01–CP-10)
@@ -128,11 +129,13 @@ Do not break these while remediating:
 3. ~~**Help omits Sensei memory surfaces** (NCR-011 / NCR-021)~~ — **Closed NCR-011 RR-001.3B**; **Closed NCR-021 RR-001.3C**  
 4. ~~**Reflection not one student system** (NCR-017)~~ — **Closed RR-001.3B**  
 5. ~~**Product Check-in titled Reflection** (NCR-022)~~ — **Closed RR-001.3B**  
-6. ~~**Runtime C System-as-mentor if enabled** (NCR-014)~~ — **Renamed RR-001.3A**; flag Contained OFF; Journal QC empty **Closed RR-001.3C**; other QC residual NCR-013  
+6. ~~**Runtime C System-as-mentor if enabled** (NCR-014)~~ — **Renamed RR-001.3A**; flag Contained OFF; Journal QC empty **Closed RR-001.3C**; remaining QC residual **Closed RR-001.3D**  
 7. ~~**History epistemology without bridge** (NCR-010)~~ — **Closed RR-001.3C**  
 8. ~~**Journal / Timeline tip empties** (NCR-006 / NCR-007)~~ — **Closed RR-001.3C**  
-9. **Home naming density Watch** (NCR-002) — EGC-R08 residual  
-10. **Broader empty-state gated nouns** (NCR-013) — outside memory surfaces  
+9. ~~**Home naming density Watch** (NCR-002)~~ — **Closed RR-001.3D** (OQ-02 policy)  
+10. ~~**Broader empty-state gated nouns** (NCR-013)~~ — **Closed RR-001.3D**  
+
+*RR-001.3D updates:* Home naming density, MI educational chrome, Session readiness honesty, Revision Mission primacy, Feedback Loop student term, success/empty honesty.
 
 ---
 

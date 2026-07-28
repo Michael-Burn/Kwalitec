@@ -139,7 +139,9 @@ def _empty_page(surface: str) -> StudentPageViewModel:
     descriptions = {
         "home": "What you should do next, and why.",
         "journey": "Where you are on the path to exam readiness.",
-        "revision": "The highest-value revision for today.",
+        "revision": (
+            "Revision that supports today's Mission — not a second Mission."
+        ),
         "history": (
             "Practice archives and progress context — not Study Sensei’s "
             "learning story. Educational meaning lives in the Decision "

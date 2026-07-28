@@ -140,7 +140,7 @@ def test_home_vm_primary_cta():
     assert "improving" in vm.readiness.trend_label.lower()
     assert "High educational return" in vm.coach_insight
     assert any(m.title == "Checkpoint" for m in vm.milestones)
-    assert any(a.label == "Open Schedule" for a in vm.quick_actions)
+    assert any(a.label == "Open Journey" for a in vm.quick_actions)
 
 
 def test_journey_vm_progress():

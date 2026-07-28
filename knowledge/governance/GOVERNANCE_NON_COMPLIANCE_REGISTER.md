@@ -25,6 +25,8 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 
 **RR-001.3C (2026-07-28):** Closed NCR-006, NCR-007, NCR-010, NCR-019, NCR-021. Evidence: `RR001_3C_COMPLETION_REPORT.md`, `test_rr001_3c_educational_memory.py`.
 
+**RR-001.3D (2026-07-28):** Closed NCR-002, NCR-003, NCR-005, NCR-008, NCR-009, NCR-012, NCR-013, NCR-014 (in-scope residual). Evidence: `RR001_3D_COMPLETION_REPORT.md`, `test_rr001_3d_educational_consistency.py`.
+
 ---
 
 ## Summary
@@ -32,19 +34,19 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | ID | Title | Status class | Severity | Priority | Package | RP / AC link |
 |----|-------|--------------|----------|----------|---------|--------------|
 | NCR-001 | Onboarding lacks Sensei handoff; KW-as-mentor | **Closed** | High | P0 | EGC-R01 | ED-01; ED-20; AC-01 |
-| NCR-002 | Home authority unnamed; tip/Session collision; optimisation tone | PC / Watch | High | P0 | EGC-R08 residual | ED-01; ED-02; ED-15 |
-| NCR-003 | Mission Intelligence engineering chrome | PC | Medium | P1 | EGC-R08; R02 | ED-10; ED-15 |
+| NCR-002 | Home authority unnamed; tip/Session collision; optimisation tone | **Closed** | High | P0 | EGC-R08 | ED-01; ED-02; ED-15 |
+| NCR-003 | Mission Intelligence engineering chrome | **Closed** | Medium | P1 | EGC-R08; R02 | ED-10; ED-15 |
 | NCR-004 | Commitment continuity “tip” | **Closed** | Medium | P1 | EGC-R02 | ED-06 |
-| NCR-005 | Session readiness overclaim; Session/Mission CTA mix | PC | Medium | P1 | EGC-R02; R10 | ED-02; ED-16 |
+| NCR-005 | Session readiness overclaim; Session/Mission CTA mix | **Closed** | Medium | P1 | EGC-R02; R10 | ED-02; ED-16 |
 | NCR-006 | Journal empty “Mission tip” / QC mention | **Closed** | Medium | P1 | EGC-R02; R12 | ED-14; DEP-01 |
 | NCR-007 | Timeline tip wording + stats tension | **Closed** | Medium | P1 | EGC-R02; R06 | ED-05; DEP-01 |
-| NCR-008 | Feedback Loop not taught in Help | **Advanced*** | Medium | P1 | EGC-R03; R04 | ED-04; OQ-03 |
-| NCR-009 | Revision vs Mission competing focus | PC | Medium | P2 | EGC-R09 | ED-13 |
+| NCR-008 | Feedback Loop not taught in Help | **Closed** | Medium | P1 | EGC-R03; R04 | ED-04; OQ-03 |
+| NCR-009 | Revision vs Mission competing focus | **Closed** | Medium | P2 | EGC-R09 | ED-13 |
 | NCR-010 | History lacks Sensei/meaning bridge | **Closed** | Medium | P1 | EGC-R06 | ED-05; AC-03 |
 | NCR-011 | Help omits Sensei memory map; anxiety phrasing | **Closed** | High | P0 | EGC-R03 | ED-04; ED-08; AC-04 |
-| NCR-012 | Success states mix praise / readiness claims | PC | Low–Med | P2 | EGC-R10 | AC-15; ED-16 |
-| NCR-013 | Empty states reintroduce deprecated / gated nouns | PC | Medium | P1 | EGC-R12 | ED-12; ED-14 |
-| NCR-014 | Flag speech residuals (Runtime C; QC OFF ads) | **Closed*** / Contained | High if ON | P0*/P1 | EGC-R07; R12 | ED-11; ED-14; AC-02 |
+| NCR-012 | Success states mix praise / readiness claims | **Closed** | Low–Med | P2 | EGC-R10 | AC-15; ED-16 |
+| NCR-013 | Empty states reintroduce deprecated / gated nouns | **Closed** | Medium | P1 | EGC-R12 | ED-12; ED-14 |
+| NCR-014 | Flag speech residuals (Runtime C; QC OFF ads) | **Closed** | High if ON | P0*/P1 | EGC-R07; R12 | ED-11; ED-14; AC-02 |
 | NCR-015 | Educational copy tip / Session noun storm | **Closed*** | High | P0 | EGC-R02 | ED-02; DEP-01/02 |
 | NCR-016 | Explanation eyebrow “Why this tip?” + KW reasons | **Closed** | High | P0 | EGC-R02; R01 | ED-07; ED-20 |
 | NCR-017 | Reflection not one student system | **Closed** | High | P0 | EGC-R04; R05 | ED-03; AC-07 |
@@ -54,7 +56,7 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | NCR-021 | Educational memory not introduced at orientation | **Closed** | High | P0 | EGC-R03; R01 | ED-04; D04 |
 | NCR-022 | Product Check-in titled as Reflection | **Closed** | Medium | P1 | EGC-R05 | ED-18; D05 |
 
-\*Closed for RR-001.3A **in-scope** educational identity surfaces where noted. RR-001.3B closes NCR-011 / NCR-017 / NCR-022. RR-001.3C closes NCR-006 / NCR-007 / NCR-010 / NCR-019 / NCR-021. NCR-008 remains Advanced (OQ-03 FL jargon name). Named residuals: QC empty ads outside memory (NCR-013); Home naming density Watch (NCR-002 / EGC-R08).
+\*Closed for RR-001.3A–3D in-scope educational surfaces. RR-001.3D closes NCR-002 / 003 / 005 / 008 / 009 / 012 / 013 / 014 residual. Ops Contained: keep QC / UJ / Runtime C OFF until separately certified. EGC-R11 notifications remain preventive.
 
 \*P0 before any Runtime C enablement.
 
@@ -87,7 +89,7 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | **Capability** | Home |
 | **Observed** | Today's Mission hero OK when active; Sensei often unnamed; Guided Reflection honesty present; “Optimising for…”; welcome modal KW + Today's Session |
 | **Clause** | D01; D02; D05; DEP-01/02; CP-03/04/10 |
-| **Compliance** | Partially Compliant / **Watch** — narrator + tip/axis chrome remidiated (RR-001.3A); OQ-02 naming density remains EGC-R08 |
+| **Compliance** | **Closed** — RR-001.3D (OQ-02 naming density policy applied) |
 | **Risk** | High |
 | **Student impact** | Daily focus half-clear; authority invisible |
 | **Required remediation** | Naming density; tip retirement elsewhere; soften axis chrome |
@@ -95,6 +97,7 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | **Implementation dependency** | EGC-R01; EGC-R02; EGC-R08 |
 | **Evidence** | `app/templates/student/home.html`; `partials/welcome_modal.html` |
 | **Progress** | Sensei named; Guidance panel; Focusing-on chrome; welcome handoff |
+| **Closure** | Hero-only Sensei naming; Guidance without duplicate eyebrow; MI educational priority; `test_rr001_3d_educational_consistency.py`; `RR001_3D_COMPLETION_REPORT.md` |
 
 ---
 
@@ -177,7 +180,7 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 | **Capability** | Feature flag messaging |
 | **Observed** | Runtime C “the system” contained OFF; Journal empty may advertise QC while OFF |
 | **Clause** | DG-001.2-D07; DEP-04; Constitution §11 |
-| **Compliance** | **Closed** (Runtime C system narrator — RR-001.3A); Journal empty QC ad **Closed** RR-001.3C; **Contained** residual other QC empty ads → NCR-013 |
+| **Compliance** | **Closed** (Runtime C system narrator — RR-001.3A); Journal empty QC ad **Closed** RR-001.3C; remaining QC empty/CTA residual **Closed** RR-001.3D |
 | **Risk** | High if Runtime C enabled as-is |
 | **Student impact** | Robotic mentor / false gated affordances |
 | **Required remediation** | Rename before enable; empty-state flag honesty |
@@ -332,9 +335,9 @@ Fully Compliant pockets are listed in the Scorecard, not here.
 
 ---
 
-### Condensed residuals (NCR-003–005, 008–009, 012–013)
+### Condensed residuals (post RR-001.3D)
 
-Full narrative for these PC items lives in the Audit §5. Shared pattern: **governance resolved; product copy open** (except NCR-006/007 closed RR-001.3C). Each cites DEP/ED and maps to EGC-R* in the summary table. Escalate any to Critical only if a future programme claims ED closure without fixing the cited strings.
+NCR-003–005, 008–009, 012–013 closed RR-001.3D (see `RR001_3D_COMPLETION_REPORT.md`). Preventive residual: **EGC-R11** notifications-when-built. Ops Contained: QC / UJ / Runtime C remain OFF. Escalate any reopened copy only if a future programme claims ED closure without keeping the cited strings.
 
 ---
 

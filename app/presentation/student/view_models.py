@@ -388,7 +388,7 @@ class HomePageViewModel:
         "Your learning story will appear here as you complete sessions."
     )
     coach_insight: str = (
-        "Your coach insight will appear after your next study session."
+        "Guidance will appear after your next study Session."
     )
     milestones: tuple[HomeMilestoneViewModel, ...] = ()
     quick_actions: tuple[HomeQuickActionViewModel, ...] = ()
@@ -1393,7 +1393,11 @@ def revision_vm(snap: RevisionSnapshot) -> RevisionPageViewModel:
         primary=primary,
         alternatives=tuple(_revision_option_vm(o) for o in snap.alternatives),
         empty_message=snap.empty_message
-        or "No revision focus is ready yet. Check back after your next session.",
+        or (
+            "No revision support is ready yet. Follow today's Mission on "
+            "Home — Revision will appear when there is something worth "
+            "strengthening."
+        ),
         has_revision=snap.has_revision,
         option_count=snap.option_count,
         primary_cta_label="Begin Revision",
@@ -1602,7 +1606,9 @@ def page_from_dashboard(
     descriptions = {
         "home": "What you should do next, and why.",
         "journey": "Where you are on the path to exam readiness.",
-        "revision": "The highest-value revision for today.",
+        "revision": (
+            "Revision that supports today's Mission — not a second Mission."
+        ),
         "history": (
             "Practice archives and progress context — not Study Sensei’s "
             "learning story. Educational meaning lives in the Decision "
@@ -1819,7 +1825,7 @@ def _compose_coach_insight(
     if explanation is None:
         if snap.recommendation_summary:
             return _clip_sentences(snap.recommendation_summary, 3)
-        return "Your coach insight will appear after your next study session."
+        return "Guidance will appear after your next study Session."
 
     has_disclosure = bool(
         explanation.evidence_points
@@ -1837,7 +1843,7 @@ def _compose_coach_insight(
         chunks.append(explanation.expected_benefit)
     text = " ".join(chunk.strip() for chunk in chunks if chunk and chunk.strip())
     if not text:
-        return "Your coach insight will appear after your next study session."
+        return "Guidance will appear after your next study Session."
     if has_disclosure:
         return " ".join(text.split()).strip()
     return _clip_sentences(text, 3)
@@ -1986,22 +1992,22 @@ def _compose_quick_actions(
         )
     actions.append(
         HomeQuickActionViewModel(
-            label="Review Reflection",
+            label="Open History",
             href="/student/history",
-            detail="Look back on recent study",
+            detail="Practice archives and progress context",
         )
     )
     if revision and revision.has_revision:
         actions.append(
             HomeQuickActionViewModel(
-                label="Prepare Checkpoint",
+                label="Open Revision",
                 href="/student/revision",
-                detail="Open revision focus",
+                detail="Supports today's Mission",
             )
         )
     actions.append(
         HomeQuickActionViewModel(
-            label="Open Schedule",
+            label="Open Journey",
             href="/student/journey",
             detail="See what comes next",
         )

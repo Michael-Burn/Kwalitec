@@ -74,8 +74,9 @@ class RevisionProjection:
         alts = tuple(alternatives or ())
         if primary is None and not alts:
             msg = (empty_message or "").strip() or (
-                "No revision is recommended right now. Keep going with "
-                "today's session."
+                "No revision support is ready right now. Follow today's "
+                "Mission on Home — Revision will appear when there is "
+                "something worth strengthening."
             )
         else:
             msg = (empty_message or "").strip()

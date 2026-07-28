@@ -78,9 +78,9 @@ def test_progress_grid(completed, remaining):
 def test_readiness_change_labels(delta_i):
     label = readiness_change_label(delta_i / 100)
     assert label in {
-        "Exam readiness improved",
-        "Exam readiness dipped slightly",
-        "Exam readiness steady",
+        "Readiness estimate moved up a little",
+        "Readiness estimate eased a little",
+        "Readiness estimate held steady",
     }
 
 
