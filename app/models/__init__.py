@@ -8,14 +8,6 @@ from app.models.adaptive_mission import (
     AmeMissionProgress,
     AmeMissionStep,
 )
-from app.models.assessment_pipeline import (
-    ApActivityAttempt,
-    ApAssessmentEvent,
-    ApAssessmentResult,
-    ApLearningFeedback,
-    ApMissionAssessmentLink,
-    ApPerformanceSummary,
-)
 from app.models.alpha_infrastructure import (
     AlphaFeedbackSubmission,
     PresentationEvent,
@@ -24,6 +16,14 @@ from app.models.analytics_events import (
     AnalyticsAuditLogRecord,
     AnalyticsEventRecord,
     AnalyticsOutboxRecord,
+)
+from app.models.assessment_pipeline import (
+    ApActivityAttempt,
+    ApAssessmentEvent,
+    ApAssessmentResult,
+    ApLearningFeedback,
+    ApMissionAssessmentLink,
+    ApPerformanceSummary,
 )
 from app.models.curriculum import Curriculum, Section, Topic
 from app.models.curriculum_intelligence import (
@@ -47,6 +47,23 @@ from app.models.curriculum_intelligence import (
     CipStructuralNode,
     CipValidationIssue,
     CipValidationReport,
+)
+from app.models.curriculum_knowledge_graph import (
+    CkgDefinition,
+    CkgEdge,
+    CkgFormula,
+    CkgGraphEdition,
+    CkgIdAlias,
+    CkgLearningObjective,
+    CkgLoLink,
+    CkgPracticeExercise,
+    CkgReadingReference,
+    CkgSection,
+    CkgSubject,
+    CkgSubsection,
+    CkgSyllabusOutcome,
+    CkgTopic,
+    CkgWorkedExample,
 )
 from app.models.curriculum_studio_foundation import (
     PublishedCurriculumPackage,
@@ -149,6 +166,21 @@ __all__ = [
     "Curriculum",
     "Section",
     "Topic",
+    "CkgGraphEdition",
+    "CkgSubject",
+    "CkgTopic",
+    "CkgSection",
+    "CkgSubsection",
+    "CkgLearningObjective",
+    "CkgDefinition",
+    "CkgFormula",
+    "CkgWorkedExample",
+    "CkgPracticeExercise",
+    "CkgReadingReference",
+    "CkgSyllabusOutcome",
+    "CkgLoLink",
+    "CkgEdge",
+    "CkgIdAlias",
     "StudioFoundationSubject",
     "StudioFoundationVersion",
     "StudioFoundationDocument",
