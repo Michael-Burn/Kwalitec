@@ -1,39 +1,38 @@
 # Current Milestone
 
-**EI-002** — Curriculum Extraction Pipeline (**Active delivery**)
+**EI-003** — Founder Curriculum Publishing Workflow (**Active delivery**)
 
 ## Objective
 
-Transform Canonical Structured Documents (IFoA CMP + Syllabus) into a Draft Curriculum Knowledge Graph with provenance, confidence, validation, and `publication_state=draft` persistence — without Founder UI, publish, Twin, mission, or student runtime integration.
+Transform a validated Draft Curriculum Knowledge Graph into a Founder-approved Published Curriculum Edition with inspection, editorial operations, explicit publication, auditability, and edition history — without Twin, mission, recommendation, student UI, or runtime CKG cutover.
 
 ## Allowed modifications
 
-- `app/domain/curriculum_extraction/`
-- `app/application/curriculum_extraction/`
-- `app/infrastructure/adapters/curriculum_extraction/`
-- `app/models/curriculum_knowledge_graph.py` (draft fields + provenance/validation tables) and model registration
-- Alembic migration for EI-002 CKG extensions
-- `tests/domain/curriculum_extraction/` · `tests/application/curriculum_extraction/`
-- `knowledge/educational_intelligence/ei002_curriculum_extraction_pipeline/`
-- Programme dashboard / milestone pointers for EI-002
+- `app/domain/curriculum_publishing/`
+- `app/application/curriculum_publishing/`
+- `app/models/curriculum_knowledge_graph.py` (review/publication/audit/snapshot tables) and model registration
+- Alembic migration for EI-003 publishing extensions
+- `tests/domain/curriculum_publishing/` · `tests/application/curriculum_publishing/`
+- `knowledge/educational_intelligence/ei003_curriculum_publishing/`
+- Programme dashboard / milestone pointers for EI-003
 
 ## Forbidden
 
-- Founder approval / publish UI
 - Student Digital Twin, missions, recommendations
+- Exposing drafts to students
 - Student runtime / CurriculumService cutover onto CKG
+- Founder HTTP UI redesign
 - CIP stage contract changes
-- LLM / OCR extraction inside Educational Intelligence
 
 ## Parallel note
 
-FV-001 Founder Validation remains the commercial dogfood track. EI-002 does not reopen CQ engineering or Founder Validated CRI claims.
+FV-001 Founder Validation remains the commercial dogfood track. EI-003 does not reopen CQ engineering or Founder Validated CRI claims.
 
 ## Authoritative artefacts
 
-- Architecture: `knowledge/educational_intelligence/ei002_curriculum_extraction_pipeline/ARCHITECTURE.md`
-- Completion: `knowledge/educational_intelligence/ei002_curriculum_extraction_pipeline/EI002_COMPLETION_REPORT.md`
-- Prior SoT: `knowledge/educational_intelligence/ei001_curriculum_knowledge_graph/ARCHITECTURE.md`
+- Architecture: `knowledge/educational_intelligence/ei003_curriculum_publishing/ARCHITECTURE.md`
+- Completion: `knowledge/educational_intelligence/ei003_curriculum_publishing/EI003_COMPLETION_REPORT.md`
+- Prior: EI-001 CKG · EI-002 Extraction Pipeline
 
 ---
 
