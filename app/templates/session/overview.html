@@ -1,5 +1,4 @@
 {% extends "session/base.html" %}
-{% from "session/components/timer_card.html" import timer_card %}
 
 {% block extra_head %}
 {% if quick_check_embed and quick_check_embed.available %}
@@ -13,7 +12,11 @@
     <section class="session-card session-card--overview" aria-labelledby="session-objective-title">
         <p class="session-eyebrow" data-narrator="study-sensei">Study Sensei</p>
         <p class="session-body-text session-intro" data-session="introduction">
+            {% if page.shell.topic_title %}
+            This Session is focused practice on {{ page.shell.topic_title }}.
+            {% else %}
             This Session is focused practice on today's Mission.
+            {% endif %}
         </p>
         <h2 id="session-objective-title" class="session-card-title">{{ page.overview.objective }}</h2>
         {% if page.overview.why_studying %}
@@ -77,7 +80,6 @@
         defer_form=quick_check_embed.defer_form
     ) }}
     {% endif %}
-    {{ timer_card(page.overview.estimated_duration_label) }}
     {% else %}
     {% from "partials/skeleton.html" import skeleton_card %}
     {{ skeleton_card(lines=4, show_button=true, label='Preparing session') }}

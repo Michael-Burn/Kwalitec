@@ -216,9 +216,14 @@ class SessionRuntimeAdapter:
         overview = {**overview, "status": "completed"}
         self.put_overview(sid, session_id=sess, document=overview)
         self._store.save(self.NS_STATUS, self._key(sid, sess), result)
-        completion = default_completion_summary(sid, session_id=sess)
-        topics = overview.get("topics") or ("Core methods",)
-        completion["topics_completed"] = tuple(topics)
+        topic = _topic_from_overview(overview)
+        completion = default_completion_summary(
+            sid, session_id=sess, topic_title=topic
+        )
+        topics = overview.get("topics") or (topic,)
+        if isinstance(topics, str):
+            topics = (topics,)
+        completion["topics_completed"] = tuple(str(t) for t in topics)
         self._store.save(self.NS_COMPLETION, self._key(sid, sess), completion)
         return result
 
@@ -237,7 +242,7 @@ class SessionRuntimeAdapter:
                     projected,
                 )
                 return deepcopy(projected)
-        return self._load_or_provision(
+        return self._load_or_provision_topic_aware(
             self.NS_REFLECTION,
             student_id,
             session_id,
@@ -266,8 +271,11 @@ class SessionRuntimeAdapter:
             )
             if isinstance(recorded, dict):
                 return dict(recorded)
+        overview = self.get_session_overview(sid, session_id=sess) or {}
         existing = self.get_reflection(sid, session_id=sess) or default_reflection(
-            sid, session_id=sess
+            sid,
+            session_id=sess,
+            topic_title=_topic_from_overview(overview),
         )
         updated = {**existing, "student_note": cleaned}
         self._store.save(self.NS_REFLECTION, self._key(sid, sess), updated)
@@ -295,7 +303,7 @@ class SessionRuntimeAdapter:
                     projected,
                 )
                 return deepcopy(projected)
-        return self._load_or_provision(
+        return self._load_or_provision_topic_aware(
             self.NS_COMPLETION,
             student_id,
             session_id,
@@ -316,6 +324,42 @@ class SessionRuntimeAdapter:
             self._store.save(namespace, key, doc)
         return None if doc is None else deepcopy(doc)
 
+    def _load_or_provision_topic_aware(
+        self,
+        namespace: str,
+        student_id: str,
+        session_id: str,
+        factory,
+    ) -> dict[str, Any] | None:
+        """Provision reflection/completion defaults with overview topic (CQ-004)."""
+        key = self._key(student_id, session_id)
+        doc = self._store.get(namespace, key)
+        if doc is None and self._auto_provision:
+            overview = self._store.get(self.NS_OVERVIEW, key) or {}
+            topic = _topic_from_overview(overview)
+            doc = factory(
+                student_id.strip(),
+                session_id=session_id.strip(),
+                topic_title=topic,
+            )
+            self._store.save(namespace, key, doc)
+        return None if doc is None else deepcopy(doc)
+
     @staticmethod
     def _key(student_id: str, session_id: str) -> str:
         return f"{student_id.strip()}::{session_id.strip()}"
+
+
+def _topic_from_overview(overview: dict[str, Any]) -> str:
+    topics = overview.get("topics") or ()
+    if isinstance(topics, str) and topics.strip():
+        return topics.strip()
+    if topics:
+        first = str(topics[0]).strip()
+        if first:
+            return first
+    for key in ("topic_title", "objective"):
+        value = str(overview.get(key) or "").strip()
+        if value:
+            return value
+    return "Core methods"

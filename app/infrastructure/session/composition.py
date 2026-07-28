@@ -96,9 +96,22 @@ class SessionExperienceComposition:
                 sid, session_id=session_id, mission_id=mission_id
             )
             overview["topics"] = tuple(today.get("topics") or overview["topics"])
-            overview["objective"] = str(
-                today.get("objective") or overview["objective"]
-            )
+            topic = str(
+                today.get("topic_title")
+                or (overview["topics"][0] if overview["topics"] else "")
+                or overview["objective"]
+            ).strip()
+            if topic:
+                overview["topics"] = (topic,) + tuple(
+                    t for t in overview["topics"] if str(t) != topic
+                )
+                overview["objective"] = str(
+                    today.get("objective") or f"Strengthen {topic}"
+                )
+            else:
+                overview["objective"] = str(
+                    today.get("objective") or overview["objective"]
+                )
             overview["estimated_minutes"] = today.get("estimated_minutes") or 30
             self.runtime.put_overview(sid, session_id=session_id, document=overview)
         else:

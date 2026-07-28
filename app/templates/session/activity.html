@@ -4,17 +4,11 @@
 {% from "session/components/question_card.html" import question_card %}
 {% from "session/components/explanation_card.html" import explanation_card %}
 
-{% block extra_head %}
-{% if quick_check_embed and quick_check_embed.available %}
-<link href="{{ versioned_static('css/adaptive_assessment/quick_check.css') }}" rel="stylesheet">
-{% endif %}
-{% endblock %}
-
 {% block content %}
 <div class="session-stack">
     {{ progress_bar(page.progress) }}
     {{ activity_card(page.activity) }}
-    {% if page.activity and page.activity.has_hints %}
+    {% if page.activity and page.activity.has_hints and not page.activity.has_explanation %}
     <section class="session-card" aria-labelledby="session-hints-title">
         <h2 id="session-hints-title" class="session-card-title">Hints</h2>
         <ul class="session-list">
@@ -35,24 +29,5 @@
         </form>
     </div>
     {% endif %}
-    {% if quick_check_embed and quick_check_embed.available %}
-    {% from "adaptive_assessment/components/entry_card.html" import quick_check_entry_card %}
-    {% if quick_check_embed.mission_ack %}
-    <p class="qc-mission-ack" role="status">{{ quick_check_embed.mission_ack }}</p>
-    {% endif %}
-    {{ quick_check_entry_card(
-        quick_check_embed.card,
-        mission_ref=quick_check_embed.start_form.mission_ref.data,
-        start_form=quick_check_embed.start_form,
-        why_form=quick_check_embed.why_form,
-        defer_form=quick_check_embed.defer_form
-    ) }}
-    {% endif %}
 </div>
-{% endblock %}
-
-{% block extra_scripts %}
-{% if quick_check_embed and quick_check_embed.available %}
-<script src="{{ versioned_static('js/adaptive_assessment/quick_check.js') }}"></script>
-{% endif %}
 {% endblock %}

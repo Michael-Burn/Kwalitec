@@ -261,18 +261,44 @@ class ActivityOpaqueBridge:
         self._index: dict[tuple[str, str], int] = {}
 
     def get_current_activity_opaque(
-        self, student_id: str, *, session_id: str
+        self,
+        student_id: str,
+        *,
+        session_id: str,
+        topic_title: str = "",
     ) -> dict[str, Any]:
         sid, sess = student_id.strip(), session_id.strip()
         idx = self._index.get((sid, sess), 0)
+        index = idx + 1
+        topic = (topic_title or "today's topic").strip() or "today's topic"
+        is_final = index >= self._activity_count
+        prompts = (
+            f"In your own words, explain one key idea from {topic}.",
+            f"Describe a situation where {topic} applies — what would you do first?",
+            f"What still feels unclear about {topic}, and how would you check it?",
+        )
         return {
             "student_id": sid,
             "session_id": sess,
-            "activity_id": f"act-{idx + 1}",
-            "position": idx + 1,
+            "activity_id": f"act-{index}",
+            "activity_index": index,
+            "position": index,
+            "activities_total": self._activity_count,
             "total": self._activity_count,
-            "prompt": f"Practice item {idx + 1}",
+            "question": prompts[(index - 1) % len(prompts)],
+            "prompt": prompts[(index - 1) % len(prompts)],
+            "context": f"Focused practice on {topic}",
+            "supporting_material": (
+                f"Review the core definition for {topic} and one worked example"
+            ),
+            "hints": (f"Start from the definition of {topic}",),
+            "topic_title": topic,
             "activity_type": "practice",
+            "phase": "ready",
+            "answer_prompt": "Your answer",
+            "next_action_label": (
+                "Continue to Reflection" if is_final else "Continue"
+            ),
             "authority": "learning_activity_engine",
         }
 
@@ -283,16 +309,19 @@ class ActivityOpaqueBridge:
         session_id: str,
         activity_id: str,
         response: str,
+        topic_title: str = "",
     ) -> dict[str, Any]:
         current = self.get_current_activity_opaque(
-            student_id, session_id=session_id
+            student_id, session_id=session_id, topic_title=topic_title
         )
+        topic = str(current.get("topic_title") or topic_title or "today's topic")
         current["response"] = response
         current["submitted"] = True
-        current["explanation"] = {
-            "summary": "Response recorded for Twin evidence.",
-            "authority": "learning_activity_engine",
-        }
+        current["phase"] = "explained"
+        current["explanation"] = (
+            f"Compare your reasoning with the worked example for {topic}. "
+            "Note one idea you would keep and one you would adjust."
+        )
         return current
 
     def advance_activity_opaque(
@@ -311,11 +340,19 @@ class ActivityOpaqueBridge:
         current = self.get_current_activity_opaque(
             student_id, session_id=session_id
         )
+        position = int(current.get("position") or current.get("activity_index") or 1)
+        total = int(current.get("total") or current.get("activities_total") or 1)
+        completed = max(0, position - 1)
         return {
             "student_id": student_id.strip(),
             "session_id": session_id.strip(),
-            "position": current["position"],
-            "total": current["total"],
+            "position": position,
+            "total": total,
+            "activities_completed": completed,
+            "activities_remaining": max(0, total - completed),
+            "activities_total": total,
+            "current_topic": str(current.get("topic_title") or ""),
+            "overall_progress": (completed / total) if total else 0.0,
             "authority": "learning_activity_engine",
         }
 

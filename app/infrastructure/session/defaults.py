@@ -49,17 +49,23 @@ def default_runtime_snapshot(
 
 
 def default_reflection(
-    student_id: str, *, session_id: str
+    student_id: str,
+    *,
+    session_id: str,
+    topic_title: str = "Core methods",
 ) -> dict[str, Any]:
     """Opaque reflection guidance facts."""
+    topic = (topic_title or "today's topic").strip() or "today's topic"
     return {
         "student_id": student_id,
         "session_id": session_id,
-        "key_insight": "Focused practice strengthens recall",
-        "concept_confidence": "Growing comfort with today's topic",
-        "suggested_improvement": "Revisit borderline cases next session",
-        "reflection_prompt": "What still feels unclear about today's topic?",
-        "topic_title": "Core methods",
+        "key_insight": f"Focused practice on {topic} strengthens recall",
+        "concept_confidence": f"Growing comfort with {topic}",
+        "suggested_improvement": (
+            f"Revisit borderline cases in {topic} next session"
+        ),
+        "reflection_prompt": f"What still feels unclear about {topic}?",
+        "topic_title": topic,
         "next_action_label": "Continue to Summary",
         "student_note": "",
         "authority": "learning_session_runtime",
@@ -67,16 +73,22 @@ def default_reflection(
 
 
 def default_completion_summary(
-    student_id: str, *, session_id: str
+    student_id: str,
+    *,
+    session_id: str,
+    topic_title: str = "Core methods",
 ) -> dict[str, Any]:
     """Opaque session completion / summary facts."""
+    topic = (topic_title or "Core methods").strip() or "Core methods"
     return {
         "student_id": student_id,
         "session_id": session_id,
-        "topics_completed": ("Core methods",),
+        "topics_completed": (topic,),
         "time_studied_minutes": 28,
         "activities_completed": 3,
-        "learning_insights": ("Consistent practice helps retention",),
+        "learning_insights": (
+            f"Completing practice on {topic} builds exam-ready recall",
+        ),
         "exam_readiness_change": 0.03,
         "exam_readiness_change_label": "",
         "authority": "learning_session_runtime",
@@ -89,22 +101,39 @@ def default_activity(
     session_id: str,
     index: int = 1,
     total: int = 3,
+    topic_title: str = "Core methods",
 ) -> dict[str, Any]:
-    """Opaque current activity facts."""
+    """Opaque current activity facts.
+
+    Topic-threaded prompts keep the activity coherent with today's Mission
+    without inventing new educational content (CQ-004).
+    """
+    topic = (topic_title or "today's topic").strip() or "today's topic"
+    is_final = index >= total
+    prompts = (
+        f"In your own words, explain one key idea from {topic}.",
+        f"Describe a situation where {topic} applies — what would you do first?",
+        f"What still feels unclear about {topic}, and how would you check it?",
+    )
+    question = prompts[(index - 1) % len(prompts)]
     return {
         "student_id": student_id,
         "session_id": session_id,
         "activity_id": f"act-{index}",
-        "question": f"Question {index}: explain a key idea from today's topic",
-        "context": "Focused practice item",
-        "supporting_material": "Review the core definition and one worked example",
-        "hints": ("Start from the definition",),
+        "question": question,
+        "context": f"Focused practice on {topic}",
+        "supporting_material": (
+            f"Review the core definition for {topic} and one worked example"
+        ),
+        "hints": (f"Start from the definition of {topic}",),
         "activity_index": index,
         "activities_total": total,
-        "topic_title": "Core methods",
+        "topic_title": topic,
         "phase": "ready",
         "answer_prompt": "Your answer",
-        "next_action_label": "Continue",
+        "next_action_label": (
+            "Continue to Reflection" if is_final else "Continue"
+        ),
         "authority": "learning_activity_engine",
     }
 
@@ -115,9 +144,11 @@ def default_activity_progress(
     session_id: str,
     completed: int = 0,
     total: int = 3,
+    topic_title: str = "Core methods",
 ) -> dict[str, Any]:
     """Opaque activity sequence progress facts."""
     remaining = max(0, total - completed)
+    topic = (topic_title or "Core methods").strip() or "Core methods"
     return {
         "student_id": student_id,
         "session_id": session_id,
@@ -125,7 +156,7 @@ def default_activity_progress(
         "activities_remaining": remaining,
         "activities_total": total,
         "estimated_remaining_minutes": remaining * 8,
-        "current_topic": "Core methods",
+        "current_topic": topic,
         "overall_progress": (completed / total) if total else 0.0,
         "authority": "learning_activity_engine",
     }

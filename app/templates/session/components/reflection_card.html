@@ -5,12 +5,10 @@
     {% if reflection.topic_title %}
     <p class="session-meta">{{ reflection.topic_title }}</p>
     {% endif %}
-    {# RR-001.3B / DG-001.3: Session reflection closes practice — not Journal,
-       not Product Check-in, and never a learner score. #}
+    {# RR-001.3B / DG-001.3 / CQ-004: short framing — Session reflection closes
+       practice; never rates the learner; not Decision Journal. #}
     <p class="session-muted session-reflection-framing" data-reflection-kind="session">
-        A short Session reflection closes practice. It helps Study Sensei keep
-        tomorrow's guidance honest and stays with your Session record — optional,
-        never rates you, and not your Decision Journal.
+        Optional — helps keep tomorrow's guidance honest. Never rates you.
     </p>
     {% if reflection.key_insight %}
     <div class="session-insight">

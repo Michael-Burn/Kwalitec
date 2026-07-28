@@ -124,6 +124,8 @@ class CompletionViewModel:
     return_home_label: str = "Return Home"
     return_home_enabled: bool = True
     session_id: str = ""
+    headline: str = "Session complete"
+    primary_topic: str = ""
 
 
 @dataclass(frozen=True)
@@ -210,6 +212,9 @@ def overview_vm(snap: OverviewSnapshot) -> OverviewViewModel:
 
 
 def activity_vm(snap: ActivitySnapshot) -> ActivityViewModel:
+    next_label = snap.next_action_label or "Continue"
+    if snap.is_final_activity and next_label == "Continue":
+        next_label = "Continue to Reflection"
     return ActivityViewModel(
         activity_id=snap.activity_id,
         question=snap.question,
@@ -218,7 +223,7 @@ def activity_vm(snap: ActivitySnapshot) -> ActivityViewModel:
         hints=snap.hints,
         answer_prompt=snap.answer_prompt,
         explanation=snap.explanation,
-        next_action_label=snap.next_action_label,
+        next_action_label=next_label,
         topic_title=snap.topic_title,
         position_label=f"Activity {snap.activity_index} of {snap.activities_total}",
         has_hints=snap.has_hints,
@@ -266,17 +271,31 @@ def completion_vm(snap: CompletionSnapshot) -> CompletionViewModel:
             f"Next session · about {snap.estimated_next_session_minutes} minutes"
         )
     home = snap.return_home
+    primary_topic = ""
+    if snap.topics_completed:
+        primary_topic = str(snap.topics_completed[0]).strip()
+    if primary_topic:
+        headline = f"You completed today's Session on {primary_topic}"
+    else:
+        headline = "You completed today's Session"
+    insights = snap.learning_insights
+    if not insights and primary_topic:
+        insights = (
+            f"Completing practice on {primary_topic} builds exam-ready recall",
+        )
     return CompletionViewModel(
         topics_completed=snap.topics_completed,
         time_studied_label=time_label,
         activities_completed_label=activities,
-        learning_insights=snap.learning_insights,
+        learning_insights=insights,
         readiness_change_label=snap.exam_readiness_change_label,
         next_recommendation=snap.next_recommendation,
         next_session_label=next_session,
         return_home_label=(home.label if home else "Return Home"),
         return_home_enabled=bool(snap.can_return_home),
         session_id=snap.session_id,
+        headline=headline,
+        primary_topic=primary_topic,
     )
 
 

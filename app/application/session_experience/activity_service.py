@@ -140,6 +140,22 @@ def _build_activity(
         resolved_phase = ActivityPhase(
             str(opaque.get("phase") or ActivityPhase.READY.value).lower()
         )
+    activity_index = int(
+        opaque.get("activity_index")
+        or opaque.get("index")
+        or opaque.get("position")
+        or 1
+    )
+    activities_total = int(
+        opaque.get("activities_total") or opaque.get("total") or 1
+    )
+    next_label = str(opaque.get("next_action_label") or "").strip()
+    if not next_label:
+        next_label = (
+            "Continue to Reflection"
+            if activity_index >= activities_total
+            else "Continue"
+        )
     return ActivityProjection.create(
         str(opaque.get("activity_id") or opaque.get("id") or "activity-1"),
         session_id,
@@ -150,15 +166,26 @@ def _build_activity(
         ),
         hints=hints,
         answer_prompt=str(opaque.get("answer_prompt") or "Your answer"),
-        explanation=str(opaque.get("explanation") or ""),
+        explanation=_explanation_text(opaque.get("explanation")),
         phase=resolved_phase,
-        activity_index=int(opaque.get("activity_index") or opaque.get("index") or 1),
-        activities_total=int(
-            opaque.get("activities_total") or opaque.get("total") or 1
-        ),
-        next_action_label=str(opaque.get("next_action_label") or "Continue"),
+        activity_index=activity_index,
+        activities_total=activities_total,
+        next_action_label=next_label,
         topic_title=str(opaque.get("topic_title") or opaque.get("topic") or ""),
     )
+
+
+def _explanation_text(value: Any) -> str:
+    """Coerce opaque explanation payloads to learner-facing string copy."""
+    if value is None:
+        return ""
+    if isinstance(value, dict):
+        for key in ("summary", "text", "body", "explanation"):
+            text = str(value.get(key) or "").strip()
+            if text:
+                return text
+        return ""
+    return str(value).strip()
 
 
 def _require_id(value: str, field: str = "student_id") -> str:

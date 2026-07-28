@@ -25,6 +25,7 @@ class SessionActivityAdapter:
     ADAPTER_VERSION = "1.0.0"
     NS_SEQUENCE = "activity.sequence"
     NS_CURRENT = "activity.current"
+    NS_OVERVIEW = "runtime.overview"
 
     def __init__(
         self,
@@ -83,21 +84,30 @@ class SessionActivityAdapter:
         self._diagnostics.record_call(self.ADAPTER_ID)
         sid = student_id.strip()
         sess = session_id.strip()
+        topic = self._topic_for(sid, sess)
         if self._engine is not None and hasattr(
             self._engine, "get_current_activity_opaque"
         ):
-            projected = self._engine.get_current_activity_opaque(
-                sid, session_id=sess
-            )
+            try:
+                projected = self._engine.get_current_activity_opaque(
+                    sid, session_id=sess, topic_title=topic
+                )
+            except TypeError:
+                projected = self._engine.get_current_activity_opaque(
+                    sid, session_id=sess
+                )
             if isinstance(projected, dict):
-                self._store.save(self.NS_CURRENT, self._key(sid, sess), projected)
-                return deepcopy(projected)
+                enriched = self._enrich_activity(projected, topic=topic)
+                self._store.save(self.NS_CURRENT, self._key(sid, sess), enriched)
+                return deepcopy(enriched)
         seq = self._ensure_sequence(sid, sess)
         index = int(seq.get("index") or 1)
         total = int(seq.get("total") or self._activity_count)
         if index > total:
             return None
-        activity = default_activity(sid, session_id=sess, index=index, total=total)
+        activity = default_activity(
+            sid, session_id=sess, index=index, total=total, topic_title=topic
+        )
         self._store.save(self.NS_CURRENT, self._key(sid, sess), activity)
         return deepcopy(activity)
 
@@ -112,30 +122,44 @@ class SessionActivityAdapter:
         self._diagnostics.record_call(self.ADAPTER_ID)
         sid = student_id.strip()
         sess = session_id.strip()
+        topic = self._topic_for(sid, sess)
         if self._engine is not None and hasattr(
             self._engine, "submit_response_opaque"
         ):
-            submitted = self._engine.submit_response_opaque(
-                sid,
-                session_id=sess,
-                activity_id=activity_id,
-                response=response,
-            )
+            try:
+                submitted = self._engine.submit_response_opaque(
+                    sid,
+                    session_id=sess,
+                    activity_id=activity_id,
+                    response=response,
+                    topic_title=topic,
+                )
+            except TypeError:
+                submitted = self._engine.submit_response_opaque(
+                    sid,
+                    session_id=sess,
+                    activity_id=activity_id,
+                    response=response,
+                )
             if isinstance(submitted, dict):
-                return dict(submitted)
+                return self._enrich_activity(dict(submitted), topic=topic)
         seq = self._ensure_sequence(sid, sess)
         index = int(seq.get("index") or 1)
         total = int(seq.get("total") or self._activity_count)
+        is_final = index >= total
         result = {
             "activity_id": activity_id,
             "explanation": (
-                "Review the worked example and compare it with your reasoning."
+                f"Compare your reasoning with the worked example for {topic}. "
+                "Note one idea you would keep and one you would adjust."
             ),
             "phase": "explained",
             "activity_index": index,
             "activities_total": total,
-            "question": f"Question {index}",
-            "next_action_label": "Continue",
+            "topic_title": topic,
+            "next_action_label": (
+                "Continue to Reflection" if is_final else "Continue"
+            ),
             "authority": "learning_activity_engine",
         }
         current = self.get_current_activity(sid, session_id=sess) or {}
@@ -156,8 +180,10 @@ class SessionActivityAdapter:
             if advanced is None:
                 return None
             if isinstance(advanced, dict):
-                self._store.save(self.NS_CURRENT, self._key(sid, sess), advanced)
-                return deepcopy(advanced)
+                topic = self._topic_for(sid, sess)
+                enriched = self._enrich_activity(advanced, topic=topic)
+                self._store.save(self.NS_CURRENT, self._key(sid, sess), enriched)
+                return deepcopy(enriched)
         seq = self._ensure_sequence(sid, sess)
         index = int(seq.get("index") or 1)
         total = int(seq.get("total") or self._activity_count)
@@ -177,6 +203,7 @@ class SessionActivityAdapter:
         self._diagnostics.record_call(self.ADAPTER_ID)
         sid = student_id.strip()
         sess = session_id.strip()
+        topic = self._topic_for(sid, sess)
         if self._engine is not None and hasattr(
             self._engine, "get_activity_progress_opaque"
         ):
@@ -184,13 +211,102 @@ class SessionActivityAdapter:
                 sid, session_id=sess
             )
             if isinstance(projected, dict):
+                if not projected.get("current_topic"):
+                    projected = {**projected, "current_topic": topic}
                 return deepcopy(projected)
         seq = self._ensure_sequence(sid, sess)
         completed = int(seq.get("completed") or 0)
         total = int(seq.get("total") or self._activity_count)
         return default_activity_progress(
-            sid, session_id=sess, completed=completed, total=total
+            sid,
+            session_id=sess,
+            completed=completed,
+            total=total,
+            topic_title=topic,
         )
+
+    def _topic_for(self, student_id: str, session_id: str) -> str:
+        """Best-effort topic from runtime overview — fail-open to defaults."""
+        overview = self._store.get(self.NS_OVERVIEW, self._key(student_id, session_id))
+        if not isinstance(overview, dict):
+            return "today's topic"
+        topics = overview.get("topics") or ()
+        if isinstance(topics, str) and topics.strip():
+            return topics.strip()
+        if topics:
+            first = str(topics[0]).strip()
+            if first:
+                return first
+        for key in ("topic_title", "objective"):
+            value = str(overview.get(key) or "").strip()
+            if value:
+                return value
+        return "today's topic"
+
+    def _enrich_activity(
+        self, opaque: dict[str, Any], *, topic: str
+    ) -> dict[str, Any]:
+        """Normalize bridge/default activity facts for learner-facing substance."""
+        enriched = dict(opaque)
+        index = int(
+            enriched.get("activity_index")
+            or enriched.get("index")
+            or enriched.get("position")
+            or 1
+        )
+        total = int(
+            enriched.get("activities_total")
+            or enriched.get("total")
+            or self._activity_count
+        )
+        enriched.setdefault("activity_index", index)
+        enriched.setdefault("activities_total", total)
+        if not str(enriched.get("topic_title") or "").strip():
+            enriched["topic_title"] = topic
+        resolved_topic = str(enriched.get("topic_title") or topic).strip()
+        prompt = str(enriched.get("question") or enriched.get("prompt") or "").strip()
+        if not prompt or prompt.lower().startswith("practice item"):
+            seeded = default_activity(
+                str(enriched.get("student_id") or ""),
+                session_id=str(enriched.get("session_id") or ""),
+                index=index,
+                total=total,
+                topic_title=resolved_topic,
+            )
+            for key in (
+                "question",
+                "context",
+                "supporting_material",
+                "hints",
+                "answer_prompt",
+            ):
+                if not str(enriched.get(key) or "").strip():
+                    enriched[key] = seeded[key]
+            if not prompt or prompt.lower().startswith("practice item"):
+                enriched["question"] = seeded["question"]
+                enriched["context"] = seeded["context"]
+        explanation = enriched.get("explanation")
+        if isinstance(explanation, dict):
+            enriched["explanation"] = str(
+                explanation.get("summary")
+                or explanation.get("text")
+                or explanation.get("body")
+                or ""
+            ).strip()
+        if not str(enriched.get("explanation") or "").strip() and enriched.get(
+            "submitted"
+        ):
+            enriched["explanation"] = (
+                f"Compare your reasoning with the worked example for "
+                f"{resolved_topic}. Note one idea you would keep and one "
+                "you would adjust."
+            )
+        if index >= total:
+            enriched["next_action_label"] = "Continue to Reflection"
+        else:
+            enriched.setdefault("next_action_label", "Continue")
+        enriched.setdefault("authority", "learning_activity_engine")
+        return enriched
 
     def _ensure_sequence(self, student_id: str, session_id: str) -> dict[str, Any]:
         key = self._key(student_id, session_id)

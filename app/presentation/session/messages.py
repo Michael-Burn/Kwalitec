@@ -9,7 +9,13 @@ from __future__ import annotations
 FLASH_SUCCESS = {
     "resumed": "Welcome back — continuing where you left off.",
     "begun": "Session started. Stay focused — one activity at a time.",
-    "completed": "Session complete. Your home view is ready with today's updates.",
+    "activities_complete": (
+        "Activities complete — a short reflection closes today's practice."
+    ),
+    "completed": (
+        "Session complete. Your home view is ready with today's progress "
+        "and the next step."
+    ),
 }
 
 FLASH_WARNING = {

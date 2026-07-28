@@ -143,30 +143,16 @@ def activity(session_id: str):
         answer_form.activity_id.data = page.activity.activity_id
     advance_form = AdvanceActivityForm()
     advance_form.session_id.data = session_id
-    quick_check_embed = None
-    try:
-        from app.presentation.adaptive_assessment.mission_embed import (
-            build_mission_quick_check_embed,
-        )
-
-        quick_check_embed = build_mission_quick_check_embed(
-            mission_ref=session_id,
-            return_endpoint="session.activity",
-            return_session_id=session_id,
-        )
-    except Exception:
-        logger.debug(
-            "Quick Check embed unavailable for activity %s",
-            session_id,
-            exc_info=True,
-        )
+    if page.activity and page.activity.next_action_label:
+        advance_form.submit.label.text = page.activity.next_action_label
+    # CQ-004: keep Quick Check on Overview only — Activity stays focused practice.
     return render_template(
         "session/activity.html",
         title=page.shell.page_title,
         page=page,
         answer_form=answer_form,
         advance_form=advance_form,
-        quick_check_embed=quick_check_embed,
+        quick_check_embed=None,
     )
 
 
@@ -216,6 +202,7 @@ def advance(session_id: str):
         flash(FLASH_WARNING["continue_failed"], "warning")
         return redirect(url_for("session.activity", session_id=session_id))
     if nxt is None:
+        flash(FLASH_SUCCESS["activities_complete"], "success")
         return redirect(url_for("session.reflection", session_id=session_id))
     return redirect(url_for("session.activity", session_id=session_id))
 
