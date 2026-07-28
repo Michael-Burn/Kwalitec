@@ -104,9 +104,9 @@ from app.models.intelligent_tutor import (
     TutorMessageRow,
     TutorSessionRow,
 )
+from app.models.learner_lifecycle import LlpLifecycleOperation
 from app.models.learning import LearningObjective, Mistake, StudyAttempt
 from app.models.learning_evidence import LeeEvidenceEvent
-from app.models.twin_inference import TieNodeBelief
 from app.models.learning_graph import (
     LgGraphEdge,
     LgGraphNode,
@@ -149,6 +149,7 @@ from app.models.student_digital_twin import (
 from app.models.study_plan import StudyPlan, WeekPlan
 from app.models.subject import Subject
 from app.models.topic_progress import TopicProgress
+from app.models.twin_inference import TieNodeBelief
 from app.models.twin_snapshot import TwinSnapshot
 from app.models.user import User
 from app.models.v2_aggregate import (
@@ -228,6 +229,7 @@ __all__ = [
     "SciStudentCurriculumInstance",
     "SciCurriculumNodeState",
     "LeeEvidenceEvent",
+    "LlpLifecycleOperation",
     "TieNodeBelief",
     "EreEducationalDecision",
     "SdtStudentDigitalTwin",

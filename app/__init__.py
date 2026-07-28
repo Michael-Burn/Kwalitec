@@ -599,6 +599,7 @@ def _init_extensions(app: Flask) -> None:
         ResearchFeedbackReview,
         ResearchFeedbackSubmission,
         LeeEvidenceEvent,
+        LlpLifecycleOperation,
         SciCurriculumNodeState,
         SciStudentCurriculumInstance,
         TieNodeBelief,
