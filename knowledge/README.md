@@ -11,6 +11,7 @@ This knowledge base complements (does not replace):
 | [`CONTRIBUTING.md`](../CONTRIBUTING.md) | Branching, commits, PRs, milestones |
 | [`product/vision/PRODUCT_VISION_2030.md`](product/vision/PRODUCT_VISION_2030.md) | Executive product constitution (why / north star) |
 | [`product/p001_1_ksi_baseline/`](product/p001_1_ksi_baseline/) | P-001.1 — KSI Product Success Framework (Version 1 usefulness ≥ 80) |
+| [`product/cq001_commercial_readiness/`](product/cq001_commercial_readiness/) | CQ-001 — Commercial Readiness Framework (CRI; Version 1 prioritisation; board at 43%) |
 | [`product/p001_2_explainability_standard/`](product/p001_2_explainability_standard/) | P-001.2 — Explainability Standard (schema, levels, review gate) |
 | [`product/p001_3_recommendation_quality_standard/`](product/p001_3_recommendation_quality_standard/) | P-001.3 — Recommendation Quality Standard (principles, decision frame, scorecard, review gate) |
 | [`product/p002_1_version_1_release_framework/`](product/p002_1_version_1_release_framework/) | P-002.1 — Version 1 Release Framework (production-ready gates, evidence, go / no-go) |
@@ -57,6 +58,7 @@ knowledge/
 ├── product/                  ← Product programmes (PTP, LXP, IA)
 │   ├── vision/               ← PRODUCT_VISION_2030 (executive constitution)
 │   ├── p001_1_ksi_baseline/  ← P-001.1 KSI Product Success Framework
+│   ├── cq001_commercial_readiness/ ← CQ-001 Commercial Readiness Framework (CRI)
 │   ├── p001_2_explainability_standard/ ← P-001.2 Explainability Standard
 │   ├── p001_3_recommendation_quality_standard/ ← P-001.3 Recommendation Quality Standard
 │   ├── p002_1_version_1_release_framework/ ← P-002.1 Version 1 Release Framework

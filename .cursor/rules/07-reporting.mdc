@@ -60,6 +60,25 @@ If the programme claims progress toward **Version 1 production-ready**, cite res
 
 Version 1 product-success claims require **KSI ≥ 80** under the Product Success Framework. Version 1 **production-ready** declaration additionally requires the P-002.1 Release Framework gates and evidence package. KSI does not replace Vision 2030’s north star.
 
+## Required sections for Version 1 programmes (from CQ-001)
+
+Every material **Version 1** programme completion report must **also** include:
+
+### CRI domains improved
+Which of CR1–CR9 moved (or none with rationale) per `knowledge/product/cq001_commercial_readiness/COMMERCIAL_READINESS_FRAMEWORK.md`.
+
+### Estimated CRI delta
+Net CRI points; docs/infra may record ΔCRI = 0 with rationale. Update `COMMERCIAL_READINESS_BOARD.md` when non-zero or when blockers change.
+
+### Evidence supporting the increase
+Paths to tests, reviews, dogfood, metrics, or other artefacts supporting the CRI claim.
+
+### Remaining blockers
+What still caps the affected domains.
+
+### Provisional or validated
+Label whether the delta is provisional or validated. Do not create `cri-*` / `v1.0.0` tags on provisional-only thresholds.
+
 ## Rules
 
 - Be specific to Kwalitec — no placeholder lorem.

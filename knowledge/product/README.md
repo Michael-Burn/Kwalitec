@@ -18,6 +18,7 @@ Active
 |---|---|
 | [`vision/`](vision/) | PRODUCT_VISION_2030 — executive constitution |
 | [`p001_1_ksi_baseline/`](p001_1_ksi_baseline/) | P-001.1 — KSI / Product Success Framework (Version 1 usefulness bar) |
+| [`cq001_commercial_readiness/`](cq001_commercial_readiness/) | CQ-001 — Commercial Readiness First (CRI framework, board, V2 backlog) |
 | [`p001_2_explainability_standard/`](p001_2_explainability_standard/) | P-001.2 — Explainability Standard (levels, schema, patterns, review gate) |
 | [`p001_3_recommendation_quality_standard/`](p001_3_recommendation_quality_standard/) | P-001.3 — Recommendation Quality Standard (principles, decision frame, scorecard, review gate) |
 | [`p002_1_version_1_release_framework/`](p002_1_version_1_release_framework/) | P-002.1 — Version 1 Release Framework (production-ready gates G1–G12, evidence, go / no-go) |

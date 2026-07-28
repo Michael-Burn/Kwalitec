@@ -157,6 +157,7 @@ A change is **Done** when:
 10. For **EP / P programmes** affecting student-facing intelligence: Explainability Review Checklist completed (see `knowledge/product/p001_2_explainability_standard/` and `knowledge/GOVERNANCE.md` §4.2); N/A with rationale when out of scope.
 11. For **EP / P programmes** affecting student-facing recommendations: Recommendation Review Checklist completed (see `knowledge/product/p001_3_recommendation_quality_standard/` and `knowledge/GOVERNANCE.md` §4.3); N/A with rationale when out of scope.
 12. For **Version 1 production-ready declaration:** P-002.1 gates G1–G12, evidence package, and go / no-go decision completed (see `knowledge/product/p002_1_version_1_release_framework/` and `knowledge/GOVERNANCE.md` §4.4). Programme completions that only claim incremental V1 progress should cite residual open gates; estimated ΔKSI alone is insufficient for Gate G1.
+13. For **Version 1 programmes (from CQ-001):** CRI domains improved, Estimated CRI delta, Evidence supporting the increase, Remaining blockers, and Provisional or validated are included (see `knowledge/product/cq001_commercial_readiness/` and `knowledge/GOVERNANCE.md` §4.5); update the Commercial Readiness Board when applicable.
 
 Handbook detail: ENG-001 Chapter 16.
 

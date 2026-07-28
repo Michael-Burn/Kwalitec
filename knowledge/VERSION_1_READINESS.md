@@ -64,7 +64,7 @@ This tracker does not redesign the application or change educational algorithms.
 | Educational validation | IN PROGRESS | EP-001 + EP-003 complete; EP-004 Stage 0 measured (exploratory); educational GO claims pending Stage 1–2 **ops** evidence. **Validated KSI 64; K1 72; K2 68; K3 65; K7 60; K8 72; Gate G1 FAIL (G1.1/G1.9).** **G1.5 PASS.** EP-007.3 froze Stage 1 cohort design and reaffirmed effectiveness **NO-GO / PENDING EVIDENCE** (external N=0; Privacy Review unsigned). EP-005.2–EP-007.2 cover experience remediation + MES/readiness/journey perception. EP-008.1A + EP-008.1B: Recommendation Trust delivered and Tier B validated (K2 **68**). EP-008.3A + EP-008.3B: Commitment delivered; Tier B perception Pass with K2 hold / K7 **60**; observational follow-through rates still open. EP-008.2A: Stage 1 **ops readiness** assessed; enrollment **HOLD**. EP-008.2B: OR-01/OR-02 **packages** complete; human signatures / dry-run evidence **OPEN**; enrollment **HOLD**. PB-001: Product Board Stage 1 evidence review **reaffirms HOLD** (no invites). |
 | Support | IN PROGRESS | Private beta support workflow prepared; not staffed as a function yet. |
 | Beta | IN PROGRESS | EP-004 Stage 0 GO; Stage 1–2 HOLD on privacy sign-off + Pilot evidence. EP-007.3 Stage 1 **design** complete; EP-008.2A ops readiness **assessed**; EP-008.2B packages **ready**; PB-001 Board review **HOLD**; Stage 1 **enrollment** not cleared; **ops** not started. Decision: GO WITH CONDITIONS (`ep004_private_beta/GO_NO_GO_DECISION.md`). |
-| Commercial readiness | NOT STARTED | No public launch; no public registration. |
+| Commercial readiness | IN PROGRESS (CRI) | CQ-001 opened Commercial Readiness Framework; baseline **CRI 43%** (provisional). Public launch / registration / pricing remain **NOT STARTED** (CR9). Living board: `product/cq001_commercial_readiness/COMMERCIAL_READINESS_BOARD.md`. |
 
 ---
 
@@ -228,10 +228,12 @@ This tracker does not redesign the application or change educational algorithms.
 
 | Item | Status | Evidence |
 |---|---|---|
-| Public registration | NOT STARTED | Intentionally closed |
-| Public launch | NOT STARTED | Forbidden by private beta programme |
-| Pricing / packaging | NOT STARTED | Out of scope |
-| Multi-country privacy programme | NOT STARTED | Vision 2030 long-term |
+| Commercial Readiness Index (CRI) | **43%** provisional | `product/cq001_commercial_readiness/` — CQ-001 framework + board |
+| CRI priority focus | CR1 Core Study Loop | Next recommended: CQ-002 (proposed) |
+| Public registration | NOT STARTED | Intentionally closed (CR9 deferred) |
+| Public launch | NOT STARTED | Forbidden by private beta programme (CR9 deferred) |
+| Pricing / packaging | NOT STARTED | Out of scope for current CRI priority (CR9 deferred) |
+| Multi-country privacy programme | NOT STARTED | Vision 2030 long-term (V2 backlog) |
 
 ---
 

@@ -1,25 +1,27 @@
 # Current Milestone
 
-**GA-001**
+**CQ-001** (framework complete) → next **CQ-002** (proposed)
 
 ## Objective
 
-Prepare Kwalitec for Version 1.0 / General Availability operational readiness through validation, verification, resilience testing, and release preparation.
+Optimise Version 1 work against the Commercial Readiness Index (CRI). Baseline CRI **43%** (provisional). Highest priority: **CR1 Core Study Loop**.
 
 ## Allowed modifications
 
-- GA readiness tests under `tests/ga/`
-- Production / GA documentation under `docs/production/`, `docs/ga/`
-- Release checklist and CI production-gates wiring
-- `.cursor/` governance updates required by GA-001 (checklist, current milestone)
+- CRI framework / board / backlog under `knowledge/product/cq001_commercial_readiness/`
+- Governance and reporting hooks required by CQ-001
+- Subsequent CQ programmes that measurably improve CRI per framework priority order
 
 ## Forbidden
 
-- New educational functionality
-- Student Experience redesign
-- Kwalitec Console redesign
-- Education OS behaviour changes
-- Recommendation logic changes
+- Version 2 capabilities unless they directly improve current CRI
+- Premature `cri-*` / `v1.0.0` git tags
+- CR9 commercial envelope work while higher domains remain the priority target
+- Unjustified CR7 chase while invite-only Conditional GO holds
+
+## Authoritative board
+
+`knowledge/product/cq001_commercial_readiness/COMMERCIAL_READINESS_BOARD.md`
 
 ---
 
