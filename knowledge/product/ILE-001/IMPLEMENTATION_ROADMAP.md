@@ -71,6 +71,8 @@ ILE-001 may proceed in thin slices even while AP-002 implementation milestones l
 
 **Deliver:** Intent → session type mapping in product behaviour; suppress/replace copy when gates fail; Mission alternative when check deferred.
 
+**Status (2026-07-28):** **ILE-001C shipped presentation framing** — Context Card, Educational Summary, recommendation framing, reflection agency, behavioural telemetry, flag `KWALITEC_CONTEXTUAL_FRAMING` (default OFF). See `CONTEXTUAL_INTENT_UX.md`. Residual: Twin/Mission eligibility band wiring, density/time-gate visibility, Mission alternative polish.
+
 **Exit:** Blind/dogfood: “I understand why this appeared.”
 
 ---

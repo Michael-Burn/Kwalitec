@@ -1,8 +1,12 @@
-"""Quick Check learner experience — presentation state machine (ILE-001B).
+"""Quick Check learner experience — presentation state machine (ILE-001B/C).
 
 Orchestrates Mission-embedded Quick Check surfaces using already-selected
 learning check items. No adaptive selection, Twin writes, Mission planning,
 Assessment Engine scoring, or Tutor reasoning.
+
+ILE-001C adds optional Study Sensei contextual framing (Context Card,
+Educational Summary, recommendation framing) behind
+``ENABLE_CONTEXTUAL_FRAMING`` (default OFF). Framing is presentation-only.
 
 Answers are accepted only to advance the presentation flow; they are not
 persisted as educational state and must never appear in telemetry payloads.
@@ -15,6 +19,19 @@ from enum import StrEnum
 from typing import Any
 from uuid import uuid4
 
+from app.application.adaptive_assessment.educational_framing import (
+    ContextCardContract,
+    EducationalSummaryContract,
+    EvidenceBand,
+    PresentationIntentContext,
+    RecommendationFrameContract,
+    ReflectionFrameContract,
+    build_context_card,
+    build_educational_summary,
+    build_recommendation_frame,
+    build_reflection_frame,
+    default_intent_context,
+)
 from app.application.adaptive_assessment.feature_flags import (
     AdaptiveAssessmentFeatureFlags,
     resolve_adaptive_assessment_flags,
@@ -39,7 +56,10 @@ from app.application.adaptive_assessment.quick_check_contracts import (
 from app.application.adaptive_assessment.selected_learning_check import (
     SelectedLearningCheck,
 )
-from app.application.adaptive_assessment.session_registry import SessionTypeId
+from app.application.adaptive_assessment.session_registry import (
+    SessionTypeId,
+    get_session_type,
+)
 from app.application.adaptive_assessment.telemetry import (
     ProductTelemetryRecorder,
     TelemetryEventName,
@@ -68,7 +88,7 @@ class QuickCheckExperienceState:
     """Mutable presentation state for one Quick Check run.
 
     Answers are held only to support pause/resume of the UI flow; they are
-    never emitted as educational telemetry or Twin observations in ILE-001B.
+    never emitted as educational telemetry or Twin observations in ILE-001B/C.
     """
 
     experience_id: str
@@ -82,8 +102,11 @@ class QuickCheckExperienceState:
     paused_from: QuickCheckPhase | None = None
     responses: dict[str, str] = field(default_factory=dict)
     reflection_text: str = ""
+    recommendation_choice: str = ""
+    context_viewed: bool = False
     completed: bool = False
     dismissed: bool = False
+    evidence_band: str = EvidenceBand.EMERGING.value
 
 
 @dataclass(frozen=True)
@@ -103,6 +126,12 @@ class QuickCheckSurfaceSnapshot:
     paused: QuickCheckPausedContract | None = None
     mission_return: QuickCheckMissionReturnContract | None = None
     focus_label: str = ""
+    framing_enabled: bool = False
+    context_card: ContextCardContract | None = None
+    educational_summary: EducationalSummaryContract | None = None
+    recommendation: RecommendationFrameContract | None = None
+    reflection_frame: ReflectionFrameContract | None = None
+    evidence_band: str = EvidenceBand.EMERGING.value
 
 
 class QuickCheckExperienceStore:
@@ -152,6 +181,7 @@ class QuickCheckExperienceService:
         telemetry: Behavioural product telemetry recorder.
         flags: Feature flags (resolved from env when omitted).
         learning_check: Already-selected check (no selection performed).
+        intent_context: Optional presentation intent for framing composition.
     """
 
     def __init__(
@@ -161,6 +191,7 @@ class QuickCheckExperienceService:
         telemetry: ProductTelemetryRecorder | None = None,
         flags: AdaptiveAssessmentFeatureFlags | None = None,
         learning_check: SelectedLearningCheck | None = None,
+        intent_context: PresentationIntentContext | None = None,
     ) -> None:
         self._store = store if store is not None else QuickCheckExperienceStore()
         self._telemetry = (
@@ -172,6 +203,7 @@ class QuickCheckExperienceService:
             if learning_check is not None
             else default_selected_learning_check()
         )
+        self._intent_context = intent_context
 
     @property
     def store(self) -> QuickCheckExperienceStore:
@@ -199,6 +231,42 @@ class QuickCheckExperienceService:
             cohort_id=cohort_id,
         )
 
+    def is_framing_enabled(
+        self,
+        *,
+        subject_code: str | None = None,
+        cohort_id: str | None = None,
+    ) -> bool:
+        """True when ILE-001C contextual framing is active."""
+        return self._resolve_flags().is_contextual_framing_enabled(
+            subject_code=subject_code,
+            cohort_id=cohort_id,
+        )
+
+    def _intent_for(
+        self,
+        *,
+        focus_label: str = "",
+        evidence_band: str | EvidenceBand | None = None,
+    ) -> PresentationIntentContext:
+        if self._intent_context is not None and not focus_label and (
+            evidence_band is None
+        ):
+            return self._intent_context
+        band: EvidenceBand | str
+        if evidence_band is not None:
+            band = evidence_band
+        elif self._intent_context is not None:
+            band = self._intent_context.evidence_band
+        else:
+            band = EvidenceBand.EMERGING
+        focus = focus_label or (
+            self._intent_context.focus_label
+            if self._intent_context is not None
+            else self._learning_check.focus_label
+        )
+        return default_intent_context(focus_label=focus, evidence_band=band)
+
     def mission_card(
         self,
         *,
@@ -209,7 +277,15 @@ class QuickCheckExperienceService:
         available = self.is_available(
             subject_code=subject_code, cohort_id=cohort_id
         )
-        return build_quick_check_mission_card(available=available)
+        framing = self.is_framing_enabled(
+            subject_code=subject_code, cohort_id=cohort_id
+        )
+        intent = self._intent_for()
+        return build_quick_check_mission_card(
+            available=available,
+            framing_enabled=framing,
+            focus_label=intent.focus_label,
+        )
 
     def view_mission_invitation(
         self,
@@ -274,6 +350,7 @@ class QuickCheckExperienceService:
             subject_code=(subject_code or "").strip(),
             phase=QuickCheckPhase.INTRODUCTION,
             check=self._learning_check,
+            evidence_band=self._intent_for().evidence_band.value,
         )
         self._store.save(state)
         self._emit(
@@ -349,17 +426,37 @@ class QuickCheckExperienceService:
         *,
         student_id: str,
         reflection: str = "",
+        recommendation_choice: str = "",
     ) -> QuickCheckSurfaceSnapshot:
-        """Reflection → completion."""
+        """Reflection → completion (Educational Summary when framing on)."""
         state = self._require(experience_id, student_id)
         if state.phase != QuickCheckPhase.REFLECTION:
             raise QuickCheckExperienceError(
                 "reflection only accepted on reflection phase"
             )
         state.reflection_text = (reflection or "").strip()
+        choice = (recommendation_choice or "").strip().lower()
+        state.recommendation_choice = choice
         state.phase = QuickCheckPhase.COMPLETION
         state.completed = True
         self._store.save(state)
+        self._emit(
+            TelemetryEventName.REFLECTION_COMPLETED,
+            subject_code=state.subject_code,
+            payload={"surface": "reflection"},
+        )
+        if choice in {"accept", "accepted"}:
+            self._emit(
+                TelemetryEventName.RECOMMENDATION_ACCEPTED,
+                subject_code=state.subject_code,
+                payload={"surface": "reflection"},
+            )
+        elif choice in {"defer", "deferred", "later"}:
+            self._emit(
+                TelemetryEventName.RECOMMENDATION_DEFERRED,
+                subject_code=state.subject_code,
+                payload={"surface": "reflection"},
+            )
         self._emit(
             TelemetryEventName.QUICK_CHECK_COMPLETED,
             subject_code=state.subject_code,
@@ -368,6 +465,78 @@ class QuickCheckExperienceService:
                 "check_id": state.check.check_id,
                 "item_count": len(state.check.items),
             },
+        )
+        return self._snapshot_for(state)
+
+    def mark_context_viewed(
+        self, experience_id: str, *, student_id: str
+    ) -> QuickCheckSurfaceSnapshot:
+        """Record Context Card viewed (once per experience)."""
+        state = self._require(experience_id, student_id)
+        if not state.context_viewed:
+            state.context_viewed = True
+            self._store.save(state)
+            self._emit(
+                TelemetryEventName.CONTEXT_VIEWED,
+                subject_code=state.subject_code,
+                payload={"surface": "context_card"},
+            )
+        return self._snapshot_for(state)
+
+    def expand_explanation(
+        self,
+        *,
+        student_id: str = "",
+        subject_code: str = "",
+        surface: str = "why_recommendation",
+        experience_id: str = "",
+    ) -> None:
+        """Record that the learner expanded educational reasoning."""
+        _ = student_id, experience_id
+        event = (
+            TelemetryEventName.WHY_RECOMMENDATION_OPENED
+            if surface in {"why_recommendation", "recommendation"}
+            else TelemetryEventName.EXPLANATION_EXPANDED
+        )
+        self._emit(
+            event,
+            subject_code=subject_code,
+            payload={"surface": surface},
+        )
+
+    def accept_recommendation(
+        self,
+        experience_id: str,
+        *,
+        student_id: str,
+        surface: str = "completion",
+    ) -> QuickCheckSurfaceSnapshot:
+        """Record recommendation accepted (behavioural telemetry only)."""
+        state = self._require(experience_id, student_id)
+        state.recommendation_choice = "accept"
+        self._store.save(state)
+        self._emit(
+            TelemetryEventName.RECOMMENDATION_ACCEPTED,
+            subject_code=state.subject_code,
+            payload={"surface": surface},
+        )
+        return self._snapshot_for(state)
+
+    def defer_recommendation(
+        self,
+        experience_id: str,
+        *,
+        student_id: str,
+        surface: str = "completion",
+    ) -> QuickCheckSurfaceSnapshot:
+        """Record recommendation deferred (behavioural telemetry only)."""
+        state = self._require(experience_id, student_id)
+        state.recommendation_choice = "defer"
+        self._store.save(state)
+        self._emit(
+            TelemetryEventName.RECOMMENDATION_DEFERRED,
+            subject_code=state.subject_code,
+            payload={"surface": surface},
         )
         return self._snapshot_for(state)
 
@@ -457,6 +626,18 @@ class QuickCheckExperienceService:
             subject_code=subject_code,
             payload={"surface": surface},
         )
+        if surface in {"why_recommendation", "recommendation"}:
+            self._emit(
+                TelemetryEventName.WHY_RECOMMENDATION_OPENED,
+                subject_code=subject_code,
+                payload={"surface": surface},
+            )
+        elif surface in {"context_why", "explanation_expanded"}:
+            self._emit(
+                TelemetryEventName.EXPLANATION_EXPANDED,
+                subject_code=subject_code,
+                payload={"surface": surface},
+            )
 
     def complete_return(
         self, experience_id: str, *, student_id: str
@@ -500,9 +681,26 @@ class QuickCheckExperienceService:
         completion = None
         paused = None
         mission_return = None
+        context_card = None
+        educational_summary = None
+        recommendation = None
+        reflection_frame = None
+
+        framing = self.is_framing_enabled(subject_code=state.subject_code or None)
+        intent = self._intent_for(
+            focus_label=state.check.focus_label,
+            evidence_band=state.evidence_band,
+        )
 
         if state.phase == QuickCheckPhase.INTRODUCTION:
-            introduction = build_quick_check_introduction()
+            introduction = build_quick_check_introduction(
+                framing_enabled=framing
+            )
+            if framing:
+                session = get_session_type(SessionTypeId.QUICK_CHECK)
+                context_card = build_context_card(
+                    intent, duration_label=session.expected_duration_label
+                )
         elif state.phase == QuickCheckPhase.QUESTION:
             item = state.check.items[state.item_index]
             question = build_quick_check_question(
@@ -513,13 +711,23 @@ class QuickCheckExperienceService:
             )
         elif state.phase == QuickCheckPhase.REFLECTION:
             reflection = build_quick_check_reflection()
+            if framing:
+                reflection_frame = build_reflection_frame(intent)
+                recommendation = build_recommendation_frame(intent)
         elif state.phase == QuickCheckPhase.COMPLETION:
             completion = build_quick_check_completion()
             mission_return = build_quick_check_mission_return()
+            if framing:
+                educational_summary = build_educational_summary(intent)
+                recommendation = build_recommendation_frame(intent)
         elif state.phase == QuickCheckPhase.PAUSED:
             paused = build_quick_check_paused()
         elif state.phase == QuickCheckPhase.INVITATION:
-            card = build_quick_check_mission_card(available=True)
+            card = build_quick_check_mission_card(
+                available=True,
+                framing_enabled=framing,
+                focus_label=intent.focus_label,
+            )
 
         return QuickCheckSurfaceSnapshot(
             experience_id=state.experience_id,
@@ -535,6 +743,12 @@ class QuickCheckExperienceService:
             paused=paused,
             mission_return=mission_return,
             focus_label=state.check.focus_label,
+            framing_enabled=framing,
+            context_card=context_card,
+            educational_summary=educational_summary,
+            recommendation=recommendation,
+            reflection_frame=reflection_frame,
+            evidence_band=state.evidence_band,
         )
 
     def _emit(

@@ -52,6 +52,21 @@ class RespondQuickCheckForm(FlaskForm):
 class ReflectQuickCheckForm(FlaskForm):
     experience_id = HiddenField(validators=[DataRequired(), Length(max=64)])
     reflection = TextAreaField(validators=[Optional(), Length(max=4000)])
+    recommendation_choice = HiddenField(validators=[Optional(), Length(max=32)])
+    submit = SubmitField("Continue")
+
+
+class ExpandExplanationForm(FlaskForm):
+    experience_id = HiddenField(validators=[Optional(), Length(max=64)])
+    subject_code = HiddenField(validators=[Optional(), Length(max=64)])
+    surface = HiddenField(validators=[Optional(), Length(max=64)])
+    submit = SubmitField("Expand")
+
+
+class RecommendationChoiceForm(FlaskForm):
+    experience_id = HiddenField(validators=[DataRequired(), Length(max=64)])
+    choice = HiddenField(validators=[DataRequired(), Length(max=32)])
+    surface = HiddenField(validators=[Optional(), Length(max=64)])
     submit = SubmitField("Continue")
 
 

@@ -19,12 +19,18 @@ Each journey states: trigger, student feeling to protect, session type(s), feedb
 
 Every Adaptive Assessment journey follows:
 
-1. **Frame** — why this check exists now  
+1. **Frame** — why this check exists now (Context Card when ILE-001C framing is enabled)  
 2. **Consent to continue** — start is voluntary within the Mission path; exit/pause allowed  
 3. **Check** — questions selected for educational intent and time budget  
-4. **Immediate feedback** — evidence + next action; no identity score  
-5. **State update** — observations → Reasoning → Twin (platform path)  
+4. **Immediate feedback** — Educational Summary + next action; no identity score  
+5. **State update** — observations → Reasoning → Twin (platform path; not changed by ILE-001C)  
 6. **Bridge** — Mission / Tutor reflect the new honest state  
+
+Student experience diagram (Quick Check with framing):
+
+```
+Mission → Context Card → Quick Check → Reflection → Educational Summary → Mission
+```
 
 If any step cannot be explained in plain language, the journey must not ship as authoritative.
 

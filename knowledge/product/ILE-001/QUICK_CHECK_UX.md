@@ -21,15 +21,17 @@ Product goal: students finish feeling *“I understand why Kwalitec asked me tho
 ```
 Mission
   → Quick Check invitation (entry card)
-  → Why this check? (introduction)
+  → Context Card / Why this check? (introduction; Context Card when framing on)
   → Begin
   → Questions (already-selected learning check)
-  → Reflection
-  → Completion
+  → Reflection (expanded framing when enabled)
+  → Educational Summary / Completion
   → Mission resumes (evidence acknowledgement)
 ```
 
 The learner should never feel they have left the Mission.
+
+Framing detail: `CONTEXTUAL_INTENT_UX.md` (ILE-001C). When `KWALITEC_CONTEXTUAL_FRAMING` is OFF, introduction and completion match ILE-001B.
 
 ---
 
@@ -38,11 +40,11 @@ The learner should never feel they have left the Mission.
 | Surface | Role |
 |---|---|
 | **Mission entry card** | Title, duration, invitation, Continue / Why this? / Not now |
-| **Introduction** | Why framing from copy registry; Begin |
+| **Context Card / Introduction** | Why framing (observation → meaning → purpose → benefit → invitation when framing on) |
 | **Question** | Calm progress, stem, response, optional hint, Pause |
 | **Paused** | Resume or defer — no pressure |
-| **Reflection** | Brief reflective prompt |
-| **Completion** | Thank you; evidence; uncertainty; Mission benefit; Return |
+| **Reflection** | Brief prompt; with framing: observation → meaning → action → student choice |
+| **Educational Summary / Completion** | Evidence-honest close; recommendation framing when enabled |
 | **Mission return** | “We've gathered useful evidence.” |
 
 ---
@@ -108,6 +110,7 @@ Approved behavioural events only (`telemetry.py`):
 - `AdaptiveAssessmentViewed`  
 - `QuickCheckStarted` / `Dismissed` / `Completed`  
 - `AssessmentDeferred` / `AssessmentExplained`  
+- ILE-001C: `ContextViewed`, `WhyRecommendationOpened`, `ExplanationExpanded`, `RecommendationAccepted`, `RecommendationDeferred`, `ReflectionCompleted`  
 
 No answers, scores, Twin state, or learner educational payloads.
 
@@ -118,6 +121,7 @@ No answers, scores, Twin state, or learner educational payloads.
 | Concern | Location |
 |---|---|
 | Experience orchestration | `app/application/adaptive_assessment/quick_check_experience.py` |
+| Educational framing | `educational_framing.py` (ILE-001C) |
 | Presentation contracts | `quick_check_contracts.py` |
 | Already-selected check | `selected_learning_check.py` |
 | HTTP / templates | `app/presentation/adaptive_assessment/` |
@@ -134,7 +138,7 @@ No answers, scores, Twin state, or learner educational payloads.
 - Grades, pass/fail, mastery theatre  
 - Database / Alembic changes  
 
-Next: **ILE-001C — Intent framing + eligibility visibility**.
+Related: **ILE-001C — Contextual Intent & Educational Framing** (`CONTEXTUAL_INTENT_UX.md`).
 
 ---
 

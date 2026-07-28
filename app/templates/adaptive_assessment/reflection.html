@@ -1,8 +1,77 @@
 {% extends "adaptive_assessment/base.html" %}
+{% from "adaptive_assessment/components/recommendation_frame.html" import recommendation_frame %}
 
 {% block content %}
 <div class="session-stack qc-stack">
-    {% if page.snapshot.reflection %}
+    {% if page.snapshot.framing_enabled and page.snapshot.reflection_frame %}
+    {% set ref = page.snapshot.reflection_frame %}
+    <section
+        class="session-card qc-card"
+        role="{{ ref.accessibility.semantic_role }}"
+        aria-label="{{ ref.accessibility.accessible_label }}"
+        aria-labelledby="qc-reflect-title"
+    >
+        <h2 id="qc-reflect-title" class="session-card-title">{{ ref.title }}</h2>
+
+        <div class="qc-framing-block">
+            <h3 class="qc-framing-label">{{ ref.observation_label }}</h3>
+            <p class="session-body-text">{{ ref.observation }}</p>
+        </div>
+        <div class="qc-framing-block">
+            <h3 class="qc-framing-label">{{ ref.meaning_label }}</h3>
+            <p class="session-body-text">{{ ref.meaning }}</p>
+        </div>
+        <div class="qc-framing-block">
+            <h3 class="qc-framing-label">{{ ref.action_label }}</h3>
+            <p class="session-body-text">{{ ref.suggested_action }}</p>
+        </div>
+        <div class="qc-framing-block">
+            <h3 class="qc-framing-label">{{ ref.choice_label }}</h3>
+            <p class="session-body-text">{{ ref.student_choice_prompt }}</p>
+        </div>
+
+        {% if page.snapshot.recommendation %}
+        {{ recommendation_frame(page.snapshot.recommendation) }}
+        {% endif %}
+
+        <p class="session-body-text">{{ ref.prompt }}</p>
+        <form
+            method="post"
+            action="{{ url_for('adaptive_assessment.reflect', experience_id=page.experience_id) }}"
+            class="qc-response-form"
+        >
+            {{ reflect_form.hidden_tag() }}
+            {{ reflect_form.experience_id() }}
+            <fieldset class="qc-fieldset">
+                <legend class="qc-framing-label">{{ ref.choice_label }}</legend>
+                {% for value, label in [
+                    ('accept', ref.accept_choice_label),
+                    ('defer', ref.defer_choice_label),
+                    ('own', ref.own_choice_label)
+                ] %}
+                <label class="qc-option">
+                    <input
+                        type="radio"
+                        name="recommendation_choice"
+                        value="{{ value }}"
+                        {% if loop.first %}checked{% endif %}
+                    >
+                    <span>{{ label }}</span>
+                </label>
+                {% endfor %}
+            </fieldset>
+            {{ reflect_form.reflection(class_="qc-textarea", rows="4", **{"aria-label": ref.prompt}) }}
+            <div class="session-primary-action">
+                {{ reflect_form.submit(class_="session-btn-primary", **{"data-qc-cta": "reflect"}) }}
+            </div>
+        </form>
+        <form method="post" action="{{ url_for('adaptive_assessment.pause', experience_id=page.experience_id) }}">
+            {{ pause_form.hidden_tag() }}
+            {{ pause_form.experience_id() }}
+            {{ pause_form.submit(class_="session-btn-secondary") }}
+        </form>
+    </section>
+    {% elif page.snapshot.reflection %}
     {% set ref = page.snapshot.reflection %}
     <section
         class="session-card qc-card"

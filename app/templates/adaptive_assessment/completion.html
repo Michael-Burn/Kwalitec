@@ -1,8 +1,53 @@
 {% extends "adaptive_assessment/base.html" %}
+{% from "adaptive_assessment/components/recommendation_frame.html" import recommendation_frame %}
 
 {% block content %}
 <div class="session-stack qc-stack">
-    {% if page.snapshot.completion %}
+    {% if page.snapshot.framing_enabled and page.snapshot.educational_summary %}
+    {% set done = page.snapshot.educational_summary %}
+    <section
+        class="session-card qc-card qc-completion-card"
+        role="{{ done.accessibility.semantic_role }}"
+        aria-label="{{ done.accessibility.accessible_label }}"
+        aria-labelledby="qc-summary-title"
+    >
+        <h2 id="qc-summary-title" class="session-card-title">{{ done.title }}</h2>
+        <div class="qc-completion-block qc-framing-block">
+            <h3 class="qc-subhead">{{ done.learned_label }}</h3>
+            <p class="session-body-text">{{ done.learned }}</p>
+        </div>
+        <div class="qc-completion-block qc-framing-block">
+            <h3 class="qc-subhead">{{ done.evidence_label }}</h3>
+            <p class="session-body-text">{{ done.evidence }}</p>
+        </div>
+        <div class="qc-completion-block qc-framing-block">
+            <h3 class="qc-subhead">{{ done.meaning_label }}</h3>
+            <p class="session-body-text">{{ done.meaning }}</p>
+        </div>
+        <div class="qc-completion-block qc-framing-block">
+            <h3 class="qc-subhead">{{ done.next_label }}</h3>
+            <p class="session-body-text">{{ done.next_step }}</p>
+        </div>
+
+        {% if page.snapshot.recommendation %}
+        {{ recommendation_frame(
+            page.snapshot.recommendation,
+            accept_form=accept_form,
+            defer_form=defer_rec_form
+        ) }}
+        {% endif %}
+
+        <div class="session-primary-action">
+            <form method="post" action="{{ url_for('adaptive_assessment.return_to_mission', experience_id=page.experience_id) }}">
+                {{ return_form.hidden_tag() }}
+                {{ return_form.experience_id() }}
+                {{ return_form.return_endpoint() }}
+                {{ return_form.return_session_id() }}
+                {{ return_form.submit(class_="session-btn-primary", **{"data-qc-cta": "return"}) }}
+            </form>
+        </div>
+    </section>
+    {% elif page.snapshot.completion %}
     {% set done = page.snapshot.completion %}
     <section
         class="session-card qc-card qc-completion-card"

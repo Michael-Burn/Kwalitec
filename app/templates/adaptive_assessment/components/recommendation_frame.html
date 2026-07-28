@@ -1,0 +1,70 @@
+{# Recommendation framing block — ILE-001C #}
+{% macro recommendation_frame(rec, why_form=None, accept_form=None, defer_form=None) %}
+{% if rec %}
+<section
+    class="qc-recommendation"
+    role="{{ rec.accessibility.semantic_role }}"
+    aria-label="{{ rec.accessibility.accessible_label }}"
+    data-qc-recommendation="true"
+>
+    <h3 class="qc-subhead">{{ rec.headline_label }}</h3>
+    <p class="session-body-text">{{ rec.recommendation }}</p>
+
+    <div class="qc-framing-block">
+        <h4 class="qc-framing-label">{{ rec.reason_label }}</h4>
+        <p class="session-body-text">{{ rec.reason }}</p>
+    </div>
+    <div class="qc-framing-block">
+        <h4 class="qc-framing-label">{{ rec.evidence_label }}</h4>
+        <p class="session-body-text">{{ rec.supporting_evidence }}</p>
+    </div>
+    <div class="qc-framing-block">
+        <h4 class="qc-framing-label">{{ rec.confidence_label }}</h4>
+        <p class="session-body-text">{{ rec.confidence_level }}</p>
+    </div>
+    <div class="qc-framing-block">
+        <h4 class="qc-framing-label">{{ rec.outcome_label }}</h4>
+        <p class="session-body-text">{{ rec.expected_outcome }}</p>
+    </div>
+    {% if rec.show_uncertainty and rec.uncertainty %}
+    <div class="qc-framing-block qc-uncertainty">
+        <p class="session-body-text">{{ rec.uncertainty }}</p>
+    </div>
+    {% endif %}
+
+    <details
+        class="qc-why-panel"
+        data-qc-expand="why_recommendation"
+        data-qc-surface="why_recommendation"
+    >
+        <summary>{{ rec.why_label }}</summary>
+        <p class="session-body-text">{{ rec.why_body }}</p>
+    </details>
+
+    <p class="qc-muted">{{ rec.guidance_note }}</p>
+
+    {% if accept_form or defer_form %}
+    <div class="qc-actions qc-recommendation-actions">
+        {% if accept_form and not rec.suppress_primary %}
+        <form method="post" action="{{ url_for('adaptive_assessment.recommendation_choice') }}">
+            {{ accept_form.hidden_tag() }}
+            {{ accept_form.experience_id() }}
+            {{ accept_form.choice() }}
+            {{ accept_form.surface() }}
+            {{ accept_form.submit(class_="session-btn-primary", **{"data-qc-cta": "rec-accept"}) }}
+        </form>
+        {% endif %}
+        {% if defer_form %}
+        <form method="post" action="{{ url_for('adaptive_assessment.recommendation_choice') }}">
+            {{ defer_form.hidden_tag() }}
+            {{ defer_form.experience_id() }}
+            {{ defer_form.choice() }}
+            {{ defer_form.surface() }}
+            {{ defer_form.submit(class_="session-btn-secondary", **{"data-qc-cta": "rec-defer"}) }}
+        </form>
+        {% endif %}
+    </div>
+    {% endif %}
+</section>
+{% endif %}
+{% endmacro %}

@@ -332,6 +332,365 @@ _COPY: tuple[AdaptiveAssessmentCopy, ...] = (
         default="Quick Check progress",
         description="Accessible name for calm progress indicator",
     ),
+    # --- ILE-001C Contextual intent & educational framing ---
+    AdaptiveAssessmentCopy(
+        key="framing.focus.fallback",
+        default="today's focus",
+        description="Fallback focus label when none provided",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.label.observation",
+        default="Observation",
+        description="Context / reflection observation heading",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.label.meaning",
+        default="What this means",
+        description="Educational meaning heading",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.label.purpose",
+        default="Purpose",
+        description="Context card purpose heading",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.label.benefit",
+        default="Expected benefit",
+        description="Context card benefit heading",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.label.learned",
+        default="What you worked on",
+        description="Educational summary learned heading",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.label.evidence",
+        default="Evidence gathered",
+        description="Educational summary evidence heading",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.label.next",
+        default="What happens next",
+        description="Educational summary next-step heading",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.label.recommendation",
+        default="Recommendation",
+        description="Recommendation frame headline label",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.label.reason",
+        default="Reason",
+        description="Recommendation reason heading",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.label.supporting_evidence",
+        default="Supporting evidence",
+        description="Recommendation evidence heading",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.label.confidence",
+        default="Confidence",
+        description="Qualitative confidence heading",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.label.expected_outcome",
+        default="Expected benefit",
+        description="Recommendation expected outcome heading",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.label.suggested_action",
+        default="Suggested action",
+        description="Reflection suggested action heading",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.label.student_choice",
+        default="Your choice",
+        description="Reflection student agency heading",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.context.title",
+        default="Before you begin",
+        description="Context Card title",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.context.observation",
+        default=(
+            "We've noticed your recent work on {focus} suggests a short "
+            "review would help before moving forward."
+        ),
+        description="Context Card observation layer",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.context.meaning",
+        default=(
+            "That usually means understanding is forming, but stability "
+            "is not yet clear for {focus}."
+        ),
+        description="Context Card educational meaning",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.context.purpose",
+        default=(
+            "This Quick Check gathers a little evidence so today's Mission "
+            "can stay accurate for {focus}."
+        ),
+        description="Context Card purpose",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.context.benefit",
+        default=(
+            "Clearer evidence means more supportive next steps — not a grade."
+        ),
+        description="Context Card expected benefit",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.context.invitation",
+        default="It should only take a few minutes. Begin when you are ready.",
+        description="Context Card invitation",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.context.why_expanded",
+        default=(
+            "You are seeing this check because today's Mission focus on "
+            "{focus} benefits from a short formative signal. Answers guide "
+            "practice — they are not a grade."
+        ),
+        description="Expanded why-am-I-seeing-this on Context Card",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.summary.title",
+        default="Educational summary",
+        description="Educational Summary title",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.summary.learned",
+        default=(
+            "You spent a moment checking how {focus} is settling."
+        ),
+        description="What was learned (activity framing)",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.summary.evidence",
+        default=(
+            "We collected short formative signals about what feels clear "
+            "and what still needs practice."
+        ),
+        description="What evidence was collected",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.summary.meaning",
+        default=(
+            "That helps today's Mission stay aligned with how the ideas "
+            "are landing for you."
+        ),
+        description="What this means educationally",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.summary.next",
+        default=(
+            "Continue with your Mission. You can revisit anything that "
+            "still feels unclear."
+        ),
+        description="What happens next",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.recommendation.continue_mission",
+        default="Continue with {focus}.",
+        description="Primary recommendation when guidance is warranted",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.recommendation.hold",
+        default=(
+            "Hold a firm next-step suggestion until we have clearer evidence."
+        ),
+        description="Recommendation when evidence is insufficient",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.recommendation.reason.insufficient",
+        default=(
+            "There is not enough recent evidence yet to justify a firm "
+            "learning recommendation."
+        ),
+        description="Reason when insufficient",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.recommendation.reason.observation_only",
+        default=(
+            "We are still gathering signals on {focus}; interpretation "
+            "would overclaim."
+        ),
+        description="Reason when observation-only",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.recommendation.reason.emerging",
+        default=(
+            "Early signals suggest continuing with {focus} is useful — "
+            "still provisional."
+        ),
+        description="Reason when emerging",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.recommendation.reason.reliable",
+        default=(
+            "Recent observations indicate stable understanding across "
+            "related ideas for {focus}."
+        ),
+        description="Reason when reliable / high",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.recommendation.supporting_evidence",
+        default=(
+            "Based on today's Mission context and this Quick Check on {focus}."
+        ),
+        description="Supporting evidence (presentation, non-technical)",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.recommendation.expected_outcome",
+        default="Maintains learning momentum without overclaiming certainty.",
+        description="Expected benefit of accepting guidance",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.recommendation.why_label",
+        default="Why this recommendation?",
+        description="Decision transparency expand control",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.recommendation.why_body",
+        default=(
+            "The suggestion follows from today's Mission focus on {focus} "
+            "and the evidence gathered in this check. It is guidance only — "
+            "you remain responsible for significant learning decisions."
+        ),
+        description="Expanded educational reasoning (no algorithms)",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.recommendation.accept",
+        default="Continue with this suggestion",
+        description="Accept recommendation CTA",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.recommendation.defer",
+        default="Decide later",
+        description="Defer recommendation CTA",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.recommendation.guidance_note",
+        default="Recommendations are guidance only.",
+        description="Agency reminder under recommendation",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.confidence.insufficient",
+        default="Not enough yet",
+        description="Confidence label — insufficient",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.confidence.observation_only",
+        default="Still gathering",
+        description="Confidence label — observation only",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.confidence.emerging",
+        default="Emerging",
+        description="Confidence label — emerging",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.confidence.reliable",
+        default="Reliable",
+        description="Confidence label — reliable",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.confidence.high",
+        default="Strong",
+        description="Confidence label — high (never certainty)",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.uncertainty.insufficient",
+        default=(
+            "There isn't enough evidence yet to confidently suggest a "
+            "next step."
+        ),
+        description="Uncertainty when insufficient",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.uncertainty.observation_only",
+        default=(
+            "We'd like to observe one more session before making a "
+            "recommendation."
+        ),
+        description="Uncertainty when observation-only",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.uncertainty.emerging",
+        default=(
+            "Evidence is limited; treat this as a gentle suggestion."
+        ),
+        description="Uncertainty when emerging",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.uncertainty.reliable",
+        default=(
+            "Evidence supports this step; some uncertainty always remains."
+        ),
+        description="Brief residual uncertainty when reliable",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.reflection.title",
+        default="A moment to reflect",
+        description="Framed reflection title",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.reflection.observation",
+        default="You have just completed a short check on {focus}.",
+        description="Reflection observation",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.reflection.meaning",
+        default=(
+            "Reflection helps separate what feels solid from what still "
+            "needs practice."
+        ),
+        description="Reflection meaning",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.reflection.suggested_action",
+        default=(
+            "Continue Learning within today's Mission is a calm next step."
+        ),
+        description="Reflection suggested action",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.reflection.student_choice",
+        default=(
+            "You choose what to do next — recommendations are guidance only."
+        ),
+        description="Reflection student choice prompt",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.reflection.choice_accept",
+        default="Accept suggestion",
+        description="Reflection choice — accept",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.reflection.choice_defer",
+        default="Decide later",
+        description="Reflection choice — defer",
+    ),
+    AdaptiveAssessmentCopy(
+        key="framing.reflection.choice_own",
+        default="Continue in my own way",
+        description="Reflection choice — own path",
+    ),
+    AdaptiveAssessmentCopy(
+        key="a11y.framing.why_recommendation",
+        default="Explain why this recommendation is shown",
+        description="Accessible name for why-recommendation control",
+    ),
+    AdaptiveAssessmentCopy(
+        key="a11y.framing.context_card",
+        default="Educational context before this learning check",
+        description="Accessible label for Context Card region",
+    ),
 )
 
 COPY_KEYS: frozenset[str] = frozenset(entry.key for entry in _COPY)

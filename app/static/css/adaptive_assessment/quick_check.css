@@ -208,6 +208,37 @@
   margin-bottom: var(--session-space-2);
 }
 
+.qc-framing-block {
+  margin-bottom: var(--session-space-3);
+}
+
+.qc-framing-label {
+  margin: 0 0 var(--session-space-1);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--session-text);
+}
+
+.qc-context-card .qc-framing-block:last-of-type {
+  margin-bottom: var(--session-space-2);
+}
+
+.qc-recommendation {
+  margin: var(--session-space-4) 0;
+  padding: var(--session-space-3) 0;
+  border-top: 1px solid var(--session-border);
+}
+
+.qc-recommendation-actions {
+  margin-top: var(--session-space-3);
+}
+
+.qc-uncertainty {
+  padding: var(--session-space-3);
+  border-left: 3px solid var(--session-muted);
+  background: color-mix(in srgb, var(--session-muted) 8%, transparent);
+}
+
 /* Legacy mission hero embedding */
 .mission-hero-card .qc-entry-card {
   margin-top: var(--session-space-4);

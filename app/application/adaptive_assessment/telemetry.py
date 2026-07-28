@@ -44,6 +44,13 @@ class TelemetryEventName(StrEnum):
     QUICK_CHECK_COMPLETED = "QuickCheckCompleted"
     ASSESSMENT_DEFERRED = "AssessmentDeferred"
     ASSESSMENT_EXPLAINED = "AssessmentExplained"
+    # ILE-001C — behavioural framing events (never educational outcomes).
+    CONTEXT_VIEWED = "ContextViewed"
+    WHY_RECOMMENDATION_OPENED = "WhyRecommendationOpened"
+    EXPLANATION_EXPANDED = "ExplanationExpanded"
+    RECOMMENDATION_ACCEPTED = "RecommendationAccepted"
+    RECOMMENDATION_DEFERRED = "RecommendationDeferred"
+    REFLECTION_COMPLETED = "ReflectionCompleted"
 
 
 @dataclass(frozen=True)

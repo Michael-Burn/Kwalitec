@@ -35,9 +35,11 @@ class QuickCheckMissionCardContract:
     invitation: str
     continue_label: str
     why_this_label: str
+    why_body: str
     tutor_note: str
     defer_label: str
     available: bool
+    framing_enabled: bool
     accessibility: AccessibilityMetadata
 
 
@@ -52,6 +54,7 @@ class QuickCheckIntroductionContract:
     defer_label: str
     why_control_label: str
     accessibility: AccessibilityMetadata
+    framing_enabled: bool = False
 
 
 @dataclass(frozen=True)
@@ -134,9 +137,18 @@ def _quick_check_a11y() -> AccessibilityMetadata:
 def build_quick_check_mission_card(
     *,
     available: bool,
+    framing_enabled: bool = False,
+    focus_label: str = "",
 ) -> QuickCheckMissionCardContract:
     """Build the Mission entry card contract from registries."""
     session = get_session_type(SessionTypeId.QUICK_CHECK)
+    focus = (focus_label or "").strip() or resolve_copy("framing.focus.fallback")
+    if framing_enabled:
+        why_body = resolve_copy("framing.context.why_expanded").format(
+            focus=focus
+        )
+    else:
+        why_body = resolve_copy("explain.why_body")
     return QuickCheckMissionCardContract(
         session_type_id=session.identifier,
         title=session.display_name,
@@ -144,14 +156,19 @@ def build_quick_check_mission_card(
         invitation=resolve_copy("quick_check.invitation.headline"),
         continue_label=resolve_copy("quick_check.invitation.cta"),
         why_this_label=resolve_copy("quick_check.invitation.why_this"),
+        why_body=why_body,
         tutor_note=resolve_copy("quick_check.invitation.tutor_available"),
         defer_label=resolve_copy("action.defer"),
         available=available,
+        framing_enabled=framing_enabled,
         accessibility=_quick_check_a11y(),
     )
 
 
-def build_quick_check_introduction() -> QuickCheckIntroductionContract:
+def build_quick_check_introduction(
+    *,
+    framing_enabled: bool = False,
+) -> QuickCheckIntroductionContract:
     """Build the introduction / why-this-check contract."""
     session = get_session_type(SessionTypeId.QUICK_CHECK)
     return QuickCheckIntroductionContract(
@@ -162,6 +179,7 @@ def build_quick_check_introduction() -> QuickCheckIntroductionContract:
         defer_label=resolve_copy("action.defer"),
         why_control_label=resolve_copy("explain.why_am_i_seeing_this"),
         accessibility=_quick_check_a11y(),
+        framing_enabled=framing_enabled,
     )
 
 

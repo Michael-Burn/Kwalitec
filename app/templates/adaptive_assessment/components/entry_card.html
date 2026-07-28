@@ -47,9 +47,9 @@
             </form>
             {% endif %}
         </div>
-        <details class="qc-why-panel">
+        <details class="qc-why-panel" data-qc-expand="why_this" data-qc-surface="why_this">
             <summary>{{ card.why_this_label }}</summary>
-            <p>{{ card.accessibility.screen_reader_description }}</p>
+            <p>{{ card.why_body }}</p>
         </details>
     </div>
 </section>

@@ -1,8 +1,65 @@
 {% extends "adaptive_assessment/base.html" %}
+{% from "adaptive_assessment/components/recommendation_frame.html" import recommendation_frame %}
 
 {% block content %}
 <div class="session-stack qc-stack">
-    {% if page.snapshot.introduction %}
+    {% if page.snapshot.framing_enabled and page.snapshot.context_card %}
+    {% set card = page.snapshot.context_card %}
+    <section
+        class="session-card qc-card qc-context-card"
+        role="{{ card.accessibility.semantic_role }}"
+        aria-label="{{ card.accessibility.accessible_label }}"
+        aria-labelledby="qc-context-title"
+        data-qc-context="true"
+    >
+        <h2 id="qc-context-title" class="session-card-title">{{ card.title }}</h2>
+
+        <div class="qc-framing-block">
+            <h3 class="qc-framing-label">{{ card.observation_label }}</h3>
+            <p class="session-body-text">{{ card.observation }}</p>
+        </div>
+        <div class="qc-framing-block">
+            <h3 class="qc-framing-label">{{ card.meaning_label }}</h3>
+            <p class="session-body-text">{{ card.meaning }}</p>
+        </div>
+        <div class="qc-framing-block">
+            <h3 class="qc-framing-label">{{ card.purpose_label }}</h3>
+            <p class="session-body-text">{{ card.purpose }}</p>
+        </div>
+        <div class="qc-framing-block">
+            <h3 class="qc-framing-label">{{ card.benefit_label }}</h3>
+            <p class="session-body-text">{{ card.benefit }}</p>
+        </div>
+        <p class="session-body-text">{{ card.invitation }}</p>
+        <p class="qc-muted">{{ card.duration_label }}</p>
+
+        <details
+            class="qc-why-panel"
+            data-qc-expand="context_why"
+            data-qc-surface="context_why"
+        >
+            <summary>{{ card.why_control_label }}</summary>
+            <p class="session-body-text">{{ card.why_expanded_body }}</p>
+        </details>
+
+        <div class="session-primary-action qc-actions">
+            <form method="post" action="{{ url_for('adaptive_assessment.begin', experience_id=page.experience_id) }}">
+                {{ begin_form.hidden_tag() }}
+                {{ begin_form.experience_id() }}
+                {{ begin_form.submit(class_="session-btn-primary", **{"data-qc-cta": "begin"}) }}
+            </form>
+            <form method="post" action="{{ url_for('adaptive_assessment.defer') }}">
+                {{ defer_form.hidden_tag() }}
+                {{ defer_form.experience_id() }}
+                {{ defer_form.mission_ref() }}
+                {{ defer_form.subject_code() }}
+                {{ defer_form.return_endpoint() }}
+                {{ defer_form.return_session_id() }}
+                {{ defer_form.submit(class_="session-btn-secondary") }}
+            </form>
+        </div>
+    </section>
+    {% elif page.snapshot.introduction %}
     {% set intro = page.snapshot.introduction %}
     <section
         class="session-card qc-card"

@@ -24,6 +24,12 @@ Operational product events for Adaptive Assessment UX behaviour. Telemetry is **
 | `QuickCheckCompleted` | Learner completes a Quick Check |
 | `AssessmentDeferred` | Learner defers (“Not now”) |
 | `AssessmentExplained` | Learner opens “Why am I seeing this?” |
+| `ContextViewed` | Context Card viewed (ILE-001C) |
+| `WhyRecommendationOpened` | “Why this recommendation?” opened |
+| `ExplanationExpanded` | Other explanation expand |
+| `RecommendationAccepted` | Learner accepts framed suggestion |
+| `RecommendationDeferred` | Learner defers framed suggestion |
+| `ReflectionCompleted` | Reflection step submitted |
 
 Unknown event names are rejected.
 

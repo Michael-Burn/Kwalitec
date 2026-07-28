@@ -22,6 +22,9 @@
 <body
     class="session-body qc-body"
     data-qc-phase="{{ page.phase if page else 'entry' }}"
+    data-qc-experience-id="{{ page.experience_id if page else '' }}"
+    data-qc-subject="{{ page.subject_code if page else '' }}"
+    data-qc-expand-url="{{ url_for('adaptive_assessment.expand_explanation') }}"
     data-reduced-motion="respect"
 >
     <a class="session-skip-link" href="#qc-main">Skip to content</a>

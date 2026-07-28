@@ -45,8 +45,10 @@ Placeholders use `{braces}`.
 | Defer / pause | “Pause for now” / “You can continue later — no penalty.” |
 | Not enough yet | “Not enough evidence yet.” |
 | Gather more | “Let’s gather a little more information.” |
+| Context Card (ILE-001C) | Observation → meaning → purpose → benefit → invitation via AA `framing.context.*` registry keys |
+| Educational Summary | What worked on / evidence / meaning / what next — never scores |
 
-Align with ILE-001A registry keys where they exist.
+Align with ILE-001A/B/C registry keys where they exist (`app/application/adaptive_assessment/copy_registry.py`).
 
 ---
 

@@ -24,10 +24,12 @@ Progressive, reversible enablement of Adaptive Assessment product surfaces witho
 | Recovery Check | `KWALITEC_RECOVERY_CHECK` | OFF | Session type |
 | Confidence Check | `KWALITEC_CONFIDENCE_CHECK` | OFF | Session type |
 | Readiness Check | `KWALITEC_READINESS_CHECK` | OFF | Session type |
+| Contextual framing (ILE-001C) | `KWALITEC_CONTEXTUAL_FRAMING` | OFF | Study Sensei Context Card / Educational Summary / recommendation framing |
 
 Truthy values: `1`, `true`, `yes`, `on` (case-insensitive).
 
-Session types require the **master switch** plus their own flag.
+Session types require the **master switch** plus their own flag.  
+Contextual framing requires the **master switch** plus `KWALITEC_CONTEXTUAL_FRAMING` (and subject/cohort gates). Helper: `flags.is_contextual_framing_enabled(...)`.
 
 ---
 
@@ -59,8 +61,9 @@ Combined gate: `flags.is_available(session_type_id, subject_code=..., cohort_id=
 
 1. **ILE-001A** — infrastructure only; all flags OFF in production.  
 2. **ILE-001B** — enable master + Quick Check for dogfood cohort / selected subjects.  
-3. Later types — enable independently after perception safety for Quick Check.  
-4. Rollback — set master (or session flag) OFF; no schema dependency.
+3. **ILE-001C** — enable `KWALITEC_CONTEXTUAL_FRAMING` after copy review (Sensei Context Card / summary).  
+4. Later types — enable independently after perception safety for Quick Check.  
+5. Rollback — set master (or session / framing flag) OFF; no schema dependency.
 
 ---
 

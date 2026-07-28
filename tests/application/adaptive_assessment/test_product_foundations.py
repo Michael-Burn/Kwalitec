@@ -72,10 +72,12 @@ def test_feature_flags_default_all_off():
     assert flags.ENABLE_RECOVERY_CHECK is False
     assert flags.ENABLE_CONFIDENCE_CHECK is False
     assert flags.ENABLE_READINESS_CHECK is False
+    assert flags.ENABLE_CONTEXTUAL_FRAMING is False
     assert flags.enabled_subjects == frozenset()
     assert flags.enabled_cohorts == frozenset()
     assert flags.is_globally_enabled() is False
     assert flags.is_available("quick_check", subject_code="CS1") is False
+    assert flags.is_contextual_framing_enabled() is False
 
 
 def test_feature_flags_global_and_session_type():

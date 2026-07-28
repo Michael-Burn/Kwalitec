@@ -1,7 +1,8 @@
-"""HTTP routes for Adaptive Assessment Quick Check (ILE-001B).
+"""HTTP routes for Adaptive Assessment Quick Check (ILE-001B/C).
 
 Thin Flask layer: auth → experience service → templates.
 No Twin updates, Reasoning, Mission planning, or Assessment Engine logic.
+ILE-001C adds Context Card view telemetry and recommendation choice posts.
 """
 
 from __future__ import annotations
@@ -20,8 +21,10 @@ from app.presentation.adaptive_assessment import adaptive_assessment_bp
 from app.presentation.adaptive_assessment.forms import (
     BeginQuickCheckForm,
     DeferQuickCheckForm,
+    ExpandExplanationForm,
     HintQuickCheckForm,
     PauseQuickCheckForm,
+    RecommendationChoiceForm,
     ReflectQuickCheckForm,
     RespondQuickCheckForm,
     ResumeQuickCheckForm,
@@ -167,10 +170,21 @@ def introduction(experience_id: str):
     snapshot = _load_or_404(experience_id)
     if snapshot.phase != QuickCheckPhase.INTRODUCTION:
         return redirect(_phase_redirect(snapshot))
+    if snapshot.framing_enabled:
+        try:
+            snapshot = service().mark_context_viewed(
+                experience_id, student_id=student_id()
+            )
+        except QuickCheckExperienceError:
+            pass
     page = page_for(snapshot)
     begin_form = BeginQuickCheckForm()
     begin_form.experience_id.data = experience_id
-    begin_form.submit.label.text = resolve_copy("quick_check.intro.begin")
+    begin_form.submit.label.text = (
+        snapshot.context_card.begin_label
+        if snapshot.context_card is not None
+        else resolve_copy("quick_check.intro.begin")
+    )
     defer_form = DeferQuickCheckForm()
     defer_form.experience_id.data = experience_id
     defer_form.mission_ref.data = snapshot.mission_ref
@@ -331,11 +345,17 @@ def reflect(experience_id: str):
                 "adaptive_assessment.reflection", experience_id=experience_id
             )
         )
+    choice = (
+        form.recommendation_choice.data
+        or request.form.get("recommendation_choice")
+        or ""
+    )
     try:
         snapshot = service().submit_reflection(
             experience_id,
             student_id=student_id(),
             reflection=form.reflection.data or "",
+            recommendation_choice=choice,
         )
     except QuickCheckExperienceError as exc:
         if "not owned" in str(exc).lower():
@@ -355,15 +375,81 @@ def completion(experience_id: str):
     return_form.experience_id.data = experience_id
     return_form.return_endpoint.data = page.return_endpoint
     return_form.return_session_id.data = page.return_session_id
-    return_form.submit.label.text = resolve_copy(
-        "quick_check.completion.return"
+    return_form.submit.label.text = (
+        snapshot.educational_summary.return_label
+        if snapshot.educational_summary is not None
+        else resolve_copy("quick_check.completion.return")
     )
+    accept_form = None
+    defer_rec_form = None
+    if snapshot.framing_enabled and snapshot.recommendation is not None:
+        rec = snapshot.recommendation
+        accept_form = RecommendationChoiceForm()
+        accept_form.experience_id.data = experience_id
+        accept_form.choice.data = "accept"
+        accept_form.surface.data = "completion"
+        accept_form.submit.label.text = rec.accept_label
+        defer_rec_form = RecommendationChoiceForm()
+        defer_rec_form.experience_id.data = experience_id
+        defer_rec_form.choice.data = "defer"
+        defer_rec_form.surface.data = "completion"
+        defer_rec_form.submit.label.text = rec.defer_label
     return render_template(
         "adaptive_assessment/completion.html",
         title=page.page_title,
         page=page,
         return_form=return_form,
+        accept_form=accept_form,
+        defer_rec_form=defer_rec_form,
     )
+
+
+@adaptive_assessment_bp.post("/quick-check/expand")
+@login_required
+def expand_explanation():
+    """Behavioural telemetry when a learner expands educational reasoning."""
+    form = ExpandExplanationForm()
+    if form.validate_on_submit():
+        surface = (form.surface.data or "explanation_expanded").strip()
+        service().expand_explanation(
+            student_id=student_id(),
+            subject_code=form.subject_code.data or "",
+            surface=surface,
+            experience_id=form.experience_id.data or "",
+        )
+        if surface in {"why_recommendation", "recommendation", "context_why"}:
+            service().explain(
+                student_id=student_id(),
+                subject_code=form.subject_code.data or "",
+                surface=surface,
+            )
+    return ("", 204)
+
+
+@adaptive_assessment_bp.post("/quick-check/recommendation-choice")
+@login_required
+def recommendation_choice():
+    """Accept or defer a framed recommendation (telemetry only)."""
+    form = RecommendationChoiceForm()
+    if not form.validate_on_submit():
+        return redirect(url_for("student.home"))
+    eid = (form.experience_id.data or "").strip()
+    choice = (form.choice.data or "").strip().lower()
+    surface = (form.surface.data or "completion").strip()
+    try:
+        if choice in {"accept", "accepted"}:
+            snapshot = service().accept_recommendation(
+                eid, student_id=student_id(), surface=surface
+            )
+        else:
+            snapshot = service().defer_recommendation(
+                eid, student_id=student_id(), surface=surface
+            )
+    except QuickCheckExperienceError as exc:
+        if "not owned" in str(exc).lower():
+            abort(403)
+        abort(404)
+    return redirect(_phase_redirect(snapshot))
 
 
 @adaptive_assessment_bp.post("/quick-check/<experience_id>/return")

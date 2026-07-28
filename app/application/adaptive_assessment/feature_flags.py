@@ -20,6 +20,7 @@ _ENV_DEEP_CHECK = "KWALITEC_DEEP_CHECK"
 _ENV_RECOVERY_CHECK = "KWALITEC_RECOVERY_CHECK"
 _ENV_CONFIDENCE_CHECK = "KWALITEC_CONFIDENCE_CHECK"
 _ENV_READINESS_CHECK = "KWALITEC_READINESS_CHECK"
+_ENV_CONTEXTUAL_FRAMING = "KWALITEC_CONTEXTUAL_FRAMING"
 _ENV_SUBJECTS = "KWALITEC_ADAPTIVE_ASSESSMENT_SUBJECTS"
 _ENV_COHORTS = "KWALITEC_ADAPTIVE_ASSESSMENT_COHORTS"
 
@@ -52,6 +53,8 @@ class AdaptiveAssessmentFeatureFlags:
         ENABLE_RECOVERY_CHECK: Recovery Check session type.
         ENABLE_CONFIDENCE_CHECK: Confidence Check session type.
         ENABLE_READINESS_CHECK: Readiness Check session type.
+        ENABLE_CONTEXTUAL_FRAMING: ILE-001C Study Sensei Context Card /
+            Educational Summary / recommendation framing (presentation only).
         enabled_subjects: Subject codes allowed when the master switch is on.
             Empty means all subjects (when master is on) — subject filtering
             is opt-in via an explicit allow-list.
@@ -65,6 +68,7 @@ class AdaptiveAssessmentFeatureFlags:
     ENABLE_RECOVERY_CHECK: bool = False
     ENABLE_CONFIDENCE_CHECK: bool = False
     ENABLE_READINESS_CHECK: bool = False
+    ENABLE_CONTEXTUAL_FRAMING: bool = False
     enabled_subjects: frozenset[str] = field(default_factory=frozenset)
     enabled_cohorts: frozenset[str] = field(default_factory=frozenset)
 
@@ -128,6 +132,24 @@ class AdaptiveAssessmentFeatureFlags:
             and self.is_cohort_enabled(cohort_id)
         )
 
+    def is_contextual_framing_enabled(
+        self,
+        *,
+        subject_code: str | None = None,
+        cohort_id: str | None = None,
+    ) -> bool:
+        """True when Study Sensei contextual framing may appear.
+
+        Requires the Adaptive Assessment master switch, subject/cohort gates,
+        and ``ENABLE_CONTEXTUAL_FRAMING``. Does not imply a session type is on.
+        """
+        return (
+            self.ENABLE_ADAPTIVE_ASSESSMENT
+            and self.ENABLE_CONTEXTUAL_FRAMING
+            and self.is_subject_enabled(subject_code)
+            and self.is_cohort_enabled(cohort_id)
+        )
+
 
 def resolve_adaptive_assessment_flags(
     *,
@@ -154,6 +176,9 @@ def resolve_adaptive_assessment_flags(
         ),
         ENABLE_READINESS_CHECK=_env_truthy(
             _ENV_READINESS_CHECK, environ=environ
+        ),
+        ENABLE_CONTEXTUAL_FRAMING=_env_truthy(
+            _ENV_CONTEXTUAL_FRAMING, environ=environ
         ),
         enabled_subjects=subjects,
         enabled_cohorts=cohorts,

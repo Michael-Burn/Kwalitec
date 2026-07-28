@@ -1,11 +1,12 @@
-"""ILE-001A/B — Adaptive Assessment product foundations + Quick Check.
+"""ILE-001A/B/C — Adaptive Assessment foundations, Quick Check, framing.
 
 Presentation and product-infrastructure only. No educational selection,
 Twin reasoning, Mission planning, Tutor reasoning, or Assessment algorithms.
 
 Safe defaults keep every Adaptive Assessment surface disabled until later
 milestones explicitly enable them. ILE-001B adds Mission-embedded Quick Check
-experience orchestration over an already-selected learning check.
+experience orchestration over an already-selected learning check. ILE-001C
+adds optional Study Sensei contextual framing (default OFF).
 """
 
 from __future__ import annotations
@@ -31,6 +32,19 @@ from app.application.adaptive_assessment.copy_registry import (
     AdaptiveAssessmentCopy,
     get_copy,
     iter_copy_entries,
+)
+from app.application.adaptive_assessment.educational_framing import (
+    ContextCardContract,
+    EducationalSummaryContract,
+    EvidenceBand,
+    PresentationIntentContext,
+    RecommendationFrameContract,
+    ReflectionFrameContract,
+    build_context_card,
+    build_educational_summary,
+    build_recommendation_frame,
+    build_reflection_frame,
+    default_intent_context,
 )
 from app.application.adaptive_assessment.feature_flags import (
     ADAPTIVE_ASSESSMENT_FEATURE_FLAGS,
@@ -110,10 +124,14 @@ __all__ = [
     "AdaptiveAssessmentFeatureFlags",
     "AdaptiveAssessmentProductContracts",
     "AdaptiveAssessmentTelemetryEvent",
+    "ContextCardContract",
+    "EducationalSummaryContract",
+    "EvidenceBand",
     "ExplanationPresentationContract",
     "LearningCheckItem",
     "MessageCatalogue",
     "MissionPresentationContract",
+    "PresentationIntentContext",
     "ProductTelemetryRecorder",
     "QuickCheckCompletionContract",
     "QuickCheckExperienceError",
@@ -129,6 +147,8 @@ __all__ = [
     "QuickCheckQuestionContract",
     "QuickCheckReflectionContract",
     "QuickCheckSurfaceSnapshot",
+    "RecommendationFrameContract",
+    "ReflectionFrameContract",
     "SelectedLearningCheck",
     "SessionPresentationContract",
     "SessionTypeDefinition",
@@ -139,6 +159,8 @@ __all__ = [
     "accessibility_for_session",
     "assert_adaptive_assessment_copy_safe",
     "build_calm_progress",
+    "build_context_card",
+    "build_educational_summary",
     "build_mission_presentation_contract",
     "build_product_contracts",
     "build_quick_check_completion",
@@ -148,9 +170,12 @@ __all__ = [
     "build_quick_check_paused",
     "build_quick_check_question",
     "build_quick_check_reflection",
+    "build_recommendation_frame",
+    "build_reflection_frame",
     "build_session_presentation_contract",
     "build_student_facing_content_contract",
     "build_telemetry_event",
+    "default_intent_context",
     "default_selected_learning_check",
     "format_message",
     "get_already_selected_quick_check",
