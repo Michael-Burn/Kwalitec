@@ -3,7 +3,7 @@
 **Programme:** ER-002 — Engineering Recertification  
 **Date:** 2026-07-28  
 **Status:** Complete — Audit only  
-**Commit:** *(recorded after mandated commit)*  
+**Commit:** `4d91e63` — `docs(er-002): perform independent engineering recertification`  
 **Audit SHA (pre-commit HEAD inspected):** `11d8a224cb4f40de94d7e48e65d467e569408d1c`  
 **Governance stance:** Educational baselines (DG-001, EGC-001, RR-001, RP-002, RR-002) **not reassessed** — no engineering regression evidence  
 **Independence:** EI-001 treated as historical provenance only; certification based on live repository state
