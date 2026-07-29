@@ -29,7 +29,7 @@ def upgrade() -> None:
         sa.Column("current_stage", sa.String(length=255), nullable=False),
         sa.Column("study_preference", sa.String(length=50), nullable=False, server_default="Mixed"),
         sa.Column("target_grade", sa.String(length=50), nullable=False),
-        sa.Column("active", sa.Boolean(), nullable=False, server_default="0"),
+        sa.Column("active", sa.Boolean(), nullable=False, server_default=sa.false()),
         sa.Column("created_at", sa.DateTime(), nullable=False),
         sa.ForeignKeyConstraint(["user_id"], ["users.id"]),
         sa.PrimaryKeyConstraint("id"),
