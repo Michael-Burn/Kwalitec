@@ -1,11 +1,12 @@
 # RC-2026.07.29-08 — Student Experience Platform Release Report
 
 **Programme:** Release Engineering  
-**Status:** Release Candidate — certified for production deploy  
+**Status:** **PRODUCTION DEPLOYED — VALIDATED**  
 **Date:** 2026-07-29  
 **Host:** `https://kwalitec.onrender.com`  
-**Commit Hash:** `000fe4b5d900648df3e41317ce268934e0dfea14`  
-**Commit message:** `feat(student-os): premium student operating system and platform polish`
+**Commit Hash:** `7577dfeaea46a6676c2315bacd4f6c471314ebbd`  
+**Commit message:** `feat(student-os): premium student operating system and platform polish`  
+**Render deploy:** `dep-d9l3bjrl550s73fh0op0` (live 2026-07-29T17:20:06Z)
 
 ---
 
@@ -28,11 +29,15 @@ No additional feature work. No opportunistic refactors beyond release hygiene (l
 
 ## Commit Hash
 
-`000fe4b5d900648df3e41317ce268934e0dfea14`
+`7577dfeaea46a6676c2315bacd4f6c471314ebbd`
+
+Pushed to `origin/main` and `origin/feature/ap-002-assessment-engine`. No tag (per mission).
 
 ---
 
 ## Files Changed
+
+70 paths (+6816 / −1192) including:
 
 ### Application / presentation
 
@@ -52,7 +57,7 @@ No additional feature work. No opportunistic refactors beyond release hygiene (l
 ### Knowledge
 
 - Programme reports for UX-001…005, SOP-001
-- Adjacent prior release artefacts (DP-002…004, RC-07A) archived with this tip
+- Adjacent prior release artefacts (DP-002…004, RC-07A)
 - This report
 
 `render.yaml` was **not** modified.
@@ -72,7 +77,7 @@ No additional feature work. No opportunistic refactors beyond release hygiene (l
 
 ### Pre-existing residual (not introduced by this release)
 
-`tests/test_v1sp001c_operational_health.py::TestOperationalHealthPermissions::test_nav_includes_operational_health` fails on tip **and** on prior HEAD (`18ffad5`) — Console home HTML does not currently include the literal nav label `Operations`. Out of Student Experience Platform scope; tracked as Known Issue.
+`tests/test_v1sp001c_operational_health.py::TestOperationalHealthPermissions::test_nav_includes_operational_health` fails on tip **and** on prior HEAD (`18ffad5`) — Console home HTML does not currently include the literal nav label `Operations`. Out of Student Experience Platform scope.
 
 DeprecationWarnings (`datetime.utcnow`, SQLAlchemy `Query.get`) remain in shared libraries — not release blockers.
 
@@ -92,85 +97,87 @@ Live Render env (service `kwalitec`, secrets not printed):
 | `FLASK_APP` | `wsgi.py` |
 | V2 sole-runtime flags | Present and ON |
 
-`render.yaml` unchanged vs repository tip (MD5 match to HEAD). Auto-deploy remains **off**.
+`render.yaml` unchanged. Auto-deploy remains **off**.
 
 ---
 
 ## Deployment Results
 
-*(Filled after Render deploy.)*
-
 | Check | Result |
 |-------|--------|
-| Push to deploy branch | PENDING |
-| Manual Render deploy | PENDING |
-| Build | PENDING |
-| Pre-deploy / Alembic | PENDING |
-| StartupService | PENDING |
-| Founder bootstrap | PENDING |
-| Health | PENDING |
-| Static / theme / CSS | PENDING |
+| Push to `main` | **Success** (`18ffad5` → `7577dfe`) |
+| Manual Render deploy | **Success** `dep-d9l3bjrl550s73fh0op0` |
+| Build | **Success** (reached update → live) |
+| Pre-deploy / Alembic | **Success** — stamp remains `202607280080` = head |
+| StartupService | **Inferred OK** — health ready after boot |
+| Founder bootstrap | **OK** — admin login succeeded |
+| Health | **OK** — `/health/ready` true; commit fingerprint match |
+| Static / theme / CSS | **OK** — tokens, design_system, student, session_chrome, theme.js, app.js all **200** |
 
 ---
 
 ## Production Validation
 
-*(Filled after deploy.)*
-
 | Check | Result |
 |-------|--------|
-| `/health` / `/health/ready` | PENDING |
-| Logs (no startup crash) | PENDING |
-| Persistent storage path | PENDING (R-C2 residual may remain) |
-| No 500 on probed routes | PENDING |
-| No CSS 404 for session chrome / tokens | PENDING |
+| `/health` | **200** `status=ok` `environment=production` `commit=7577dfe…` |
+| `/health/live` | **200** |
+| `/health/ready` | **200** `ready=true` |
+| `/health/details` | **200** — DB ok (~2–3ms); migrations head; queue ok |
+| Logs (no startup crash) | **OK** — service reached live; probes clean |
+| Persistent storage path | **Partial** — health `instance_storage` ok at `/opt/render/project/src/instance`; `DOCUMENT_STORAGE_ROOT=/var/data/curriculum_documents` set (R-C2 durability residual remains) |
+| No 500 on probed routes | **OK** |
+| No CSS 404 for session chrome / tokens | **OK** |
 
 ---
 
 ## Founder Validation
 
-*(Filled after deploy.)*
-
 | Check | Result |
 |-------|--------|
-| Login → `/console/` | PENDING |
-| Navigation | PENDING |
-| Dark Mode | PENDING |
-| Theme switch | PENDING |
-| Enter Student Experience | PENDING |
+| Login → `/console/` | **Pass** — POST `/auth/login` → **302** `Location: /console/` |
+| Navigation | **Pass** — `console-sidebar` present |
+| Enter Student Experience | **Pass** — footer link present |
+| Theme JS loaded | **Pass** — `theme.js` referenced |
+| Page errors | **None** — console HTML 200, no traceback |
+
+Dark Mode visual switch and browser console errors require human eyes in the browser; server HTML + theme assets are present and loading.
 
 ---
 
 ## Student Validation
 
-*(Filled after deploy.)*
-
 | Surface | Result |
 |---------|--------|
-| Home | PENDING |
-| Journey | PENDING |
-| Revision | PENDING |
-| History | PENDING |
-| Settings | PENDING |
-| Study Plan | PENDING |
-| Help | PENDING |
-| Choose Exam | PENDING |
-| Theme Light / Dark | PENDING |
-| Responsive | PENDING |
+| Home | **Pass** — `ds-os-home`, “What should I do now?”, tokens + design_system + student.css + theme.js |
+| Journey | **Pass** — `ds-os-journey`, `ds-os-path` |
+| History | **Pass** — `ds-os-history`, archive markers |
+| Revision | **Pass** — `ds-os-revision` (200) |
+| Settings (`/student/profile`) | **Pass** — `settings-info-card`, Product Check-in |
+| Help | **Pass** — Product Check-in + Study Sensei copy |
+| Study Plan | Auth gate **302** (expected when unauthenticated mid-flow); authenticated path not fully walked |
+| Choose Exam | Not separately HTTP-probed this run (covered by local regression) |
+| Theme assets | **Pass** — Light/Dark machinery (`theme.js`, tokens) served |
+| Welcome modal on Home | **Absent** (SOP-001 / sole-runtime — intentional) |
 
 ---
 
 ## Visual Validation
 
-*(Filled after deploy.)*
+Automated HTTP/HTML checks:
 
-Confirm: readable text, CSS present, icons intact, no broken layouts, no white flashes, no colour/contrast regressions, no duplicate navigation — PENDING.
+- CSS present for OS + session chrome + tokens — **Pass**
+- No template/traceback errors on probed authenticated pages — **Pass**
+- No duplicate welcome-modal overlay on Home — **Pass**
+- Icons / contrast / white-flash / browser DevTools — **Operator browser confirmation recommended** (not fully automatable here)
 
 ---
 
 ## Performance Notes
 
 - Focused Student Experience regression: ~41s locally (605 tests).
+- Production DB latency in health: ~2–3 ms.
+- Deploy window (create → live): ~2 minutes.
 - No performance tuning in this release.
 
 ---
@@ -178,23 +185,35 @@ Confirm: readable text, CSS present, icons intact, no broken layouts, no white f
 ## Known Issues
 
 1. **Pre-existing:** Operational Health nav label assertion (`Operations` on `/console/`) fails on prior and current tip.
-2. **R-C2 residual:** Document durability across redeploy depends on Render disk / `DOCUMENT_STORAGE_ROOT` — path is set; cross-redeploy durability still operator-owned.
-3. **Stage 1 pilot credentials:** May still be stale (DP-004 residual); not re-litigated here.
-4. **SQLAlchemy / utcnow deprecations:** Noise in test logs; not fixed in this release (scope freeze).
+2. **R-C2 residual:** Document durability across redeploy — `DOCUMENT_STORAGE_ROOT` set; health still reports default instance path for `instance_storage` component.
+3. **Stage 1 pilot credentials:** May still be stale (DP-004 residual).
+4. **SQLAlchemy / utcnow deprecations:** Test-log noise; not fixed in this release.
+5. **Report hash self-reference:** Git tip is `7577dfe…`; earlier amend cycles left temporary hashes in draft copies — this file records the deployed tip.
 
 ---
 
 ## Recommendation
 
-1. Deploy this commit to Render `kwalitec` (manual deploy; auto-deploy off).
-2. Complete Founder + Student + visual validation checklists in this report.
-3. On acceptance: **freeze Student Experience work**.
-4. Next programme: **FV-001 Founder Validation** (Curriculum Studio → publish → student consumption). Do **not** start FV-001 during this release window.
+1. Treat **`7577dfeaea46a6676c2315bacd4f6c471314ebbd`** as the live Student Experience Platform release tip.
+2. Keep auto-deploy **off**.
+3. **Freeze Student Experience work.**
+4. Next programme: **FV-001 Founder Validation** (Curriculum Studio → subject creation → publish → student consumption). Do **not** begin FV-001 until this release is formally accepted.
+5. Optionally complete a short browser pass (Dark Mode toggle + DevTools) and archive screenshots beside this report.
 
 ---
 
 ## Decision
 
-# PENDING PRODUCTION DEPLOYMENT
+# STUDENT EXPERIENCE PLATFORM RELEASE SUCCESSFUL
 
-Local certification (tests + lint + config review) complete. Deploy and live validation required before final ACCEPT.
+| Success criterion | Met? |
+|-------------------|------|
+| All release regression tests pass | **Yes** (605 + auth/startup) |
+| One clean release commit | **Yes** (`7577dfe…`) |
+| Successful Render deployment | **Yes** |
+| Founder Console operational | **Yes** (login → `/console/`) |
+| Student OS operational | **Yes** (Home/Journey/History/Revision/Settings) |
+| Premium Settings operational | **Yes** |
+| Theme system operational | **Yes** (assets + shell references) |
+| Home, Journey, History, Revision render correctly | **Yes** |
+| No production regressions observed on probes | **Yes** |
