@@ -655,3 +655,84 @@ to{opacity:1; transform:translateY(0);}}
 .page-actions .btn-link-tertiary{color:var(--color-text-secondary);font-size:var(--font-sm);text-decoration:none;}
 .page-actions .btn-link-tertiary:hover,
 .page-actions .btn-link-tertiary:focus-visible{color:var(--color-brand);text-decoration:underline;}
+
+/* FV-001B — Experience Selection */
+.experience-selection{
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding:var(--space-2xl) var(--space-lg);
+  min-height:60vh;
+}
+.experience-selection__card{
+  width:100%;
+  max-width:40rem;
+  background:var(--surface);
+  border:1px solid var(--border-subtle);
+  border-radius:var(--radius-xl);
+  box-shadow:var(--shadow-lg);
+  padding:var(--space-2xl);
+}
+.experience-selection__title{
+  font-size:var(--font-2xl);
+  font-weight:var(--font-weight-semibold);
+  letter-spacing:-0.02em;
+  margin:0 0 var(--space-sm);
+}
+.experience-selection__lead,
+.experience-selection__status,
+.experience-selection__hint{
+  color:var(--text-secondary);
+  margin:0 0 var(--space-lg);
+}
+.experience-selection__status{min-height:1.5rem;}
+.experience-selection__choices{
+  display:grid;
+  gap:var(--space-md);
+  margin-bottom:var(--space-xl);
+}
+.experience-selection__choice{
+  text-align:left;
+  display:flex;
+  flex-direction:column;
+  gap:0.35rem;
+  padding:var(--space-lg) var(--space-xl);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  background:var(--background);
+  color:var(--text-primary);
+  cursor:pointer;
+  transition:border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.experience-selection__choice:hover,
+.experience-selection__choice:focus-visible{
+  border-color:var(--primary);
+  box-shadow:var(--focus-ring);
+  outline:none;
+}
+.experience-selection__choice-label{
+  font-weight:var(--font-weight-semibold);
+  font-size:var(--font-lg);
+}
+.experience-selection__choice-meta{
+  color:var(--text-secondary);
+  font-size:var(--font-sm);
+}
+.experience-selection__remember{
+  border:0;
+  margin:0;
+  padding:0;
+}
+.experience-selection__remember legend{
+  font-size:var(--font-sm);
+  font-weight:var(--font-weight-semibold);
+  margin-bottom:var(--space-sm);
+}
+.experience-selection__option{
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+  margin-bottom:0.4rem;
+  font-size:var(--font-sm);
+  cursor:pointer;
+}

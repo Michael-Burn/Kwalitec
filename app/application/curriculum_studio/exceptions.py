@@ -26,6 +26,19 @@ class WorkflowError(CurriculumStudioError):  # noqa: N818
 class WorkflowGateBlocked(CurriculumStudioError):  # noqa: N818
     """Advancing the workflow is blocked by unmet readiness gates."""
 
+    def __init__(
+        self,
+        message: str,
+        *,
+        target_stage: str = "",
+        missing_codes: tuple[str, ...] = (),
+        satisfied_codes: tuple[str, ...] = (),
+    ) -> None:
+        super().__init__(message)
+        self.target_stage = (target_stage or "").strip()
+        self.missing_codes = tuple(missing_codes or ())
+        self.satisfied_codes = tuple(satisfied_codes or ())
+
 
 class ValidationError(CurriculumStudioError):  # noqa: N818
     """Validation summary could not be produced or failed readiness."""

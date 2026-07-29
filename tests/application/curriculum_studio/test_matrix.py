@@ -29,21 +29,22 @@ FACT_KEYS = (
     "official_syllabus_uploaded",
     "validation_passed",
     "blueprint_assigned",
+    "preview_built",
     "preview_approved",
     "version_assigned",
     "rollback_snapshot_created",
 )
 
 
-@pytest.mark.parametrize("mask", range(128))
+@pytest.mark.parametrize("mask", range(256))
 def test_publication_checklist_matrix(mask):
     studio = seed_workspace()
     kwargs = {
         key: bool(mask & (1 << i)) for i, key in enumerate(FACT_KEYS)
     }
     snap = studio.publication.update_facts("ws-1", **kwargs)
-    assert snap.ready_to_publish is (mask == 127)
-    if mask == 127:
+    assert snap.ready_to_publish is (mask == 255)
+    if mask == 255:
         assert snap.lifecycle_status == "ready"
         assert snap.blocking_codes == ()
     else:
@@ -109,7 +110,7 @@ def test_version_labels(label):
     [
         (WorkflowStage.VALIDATION, "cmp_uploaded"),
         (WorkflowStage.PREVIEW, "validation_passed"),
-        (WorkflowStage.APPROVAL, "preview_approved"),
+        (WorkflowStage.APPROVAL, "preview_built"),
         (WorkflowStage.PUBLICATION, "version_assigned"),
     ],
 )

@@ -109,8 +109,8 @@ def test_canonical_home_endpoint_founder_prefers_console(app, client, ctx):
             assert canonical_session_entry_endpoint() == CANONICAL_HOME_ENDPOINT
 
 
-def test_founder_login_lands_on_console(app, client, ctx):
-    """Post-login redirect for founders is Console Home (not student / wizard)."""
+def test_founder_login_lands_on_experience_selection(app, client, ctx):
+    """Post-login redirect for founders is Experience Selection (FV-001B)."""
     from tests.presentation.curriculum_studio.helpers import make_founder_user
 
     app.config["FOUNDER_EMAILS"] = "founder@kwalitec.example"
@@ -125,8 +125,7 @@ def test_founder_login_lands_on_console(app, client, ctx):
     )
     assert response.status_code in {302, 303}
     location = response.headers.get("Location", "")
-    assert location.endswith("/console/") or "/console/" in location
-    assert "/student" not in location
+    assert "/auth/experience" in location
     assert "/study-plan" not in location
 
 

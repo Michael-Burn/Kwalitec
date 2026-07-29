@@ -17,6 +17,7 @@ class ChecklistItemCode(StrEnum):
     OFFICIAL_SYLLABUS_UPLOADED = "official_syllabus_uploaded"
     VALIDATION_PASSED = "validation_passed"
     BLUEPRINT_ASSIGNED = "blueprint_assigned"
+    PREVIEW_BUILT = "preview_built"
     PREVIEW_APPROVED = "preview_approved"
     VERSION_ASSIGNED = "version_assigned"
     ROLLBACK_SNAPSHOT_CREATED = "rollback_snapshot_created"
@@ -37,6 +38,7 @@ CHECKLIST_ORDER: tuple[ChecklistItemCode, ...] = (
     ChecklistItemCode.OFFICIAL_SYLLABUS_UPLOADED,
     ChecklistItemCode.VALIDATION_PASSED,
     ChecklistItemCode.BLUEPRINT_ASSIGNED,
+    ChecklistItemCode.PREVIEW_BUILT,
     ChecklistItemCode.PREVIEW_APPROVED,
     ChecklistItemCode.VERSION_ASSIGNED,
     ChecklistItemCode.ROLLBACK_SNAPSHOT_CREATED,
@@ -48,6 +50,7 @@ CHECKLIST_LABELS: dict[ChecklistItemCode, str] = {
     ChecklistItemCode.OFFICIAL_SYLLABUS_UPLOADED: "Official Syllabus Uploaded",
     ChecklistItemCode.VALIDATION_PASSED: "Validation Passed",
     ChecklistItemCode.BLUEPRINT_ASSIGNED: "Blueprint Assigned",
+    ChecklistItemCode.PREVIEW_BUILT: "Preview Built",
     ChecklistItemCode.PREVIEW_APPROVED: "Preview Approved",
     ChecklistItemCode.VERSION_ASSIGNED: "Version Assigned",
     ChecklistItemCode.ROLLBACK_SNAPSHOT_CREATED: "Rollback Snapshot Created",
@@ -60,6 +63,7 @@ _READINESS_PREREQUISITES: tuple[ChecklistItemCode, ...] = (
     ChecklistItemCode.OFFICIAL_SYLLABUS_UPLOADED,
     ChecklistItemCode.VALIDATION_PASSED,
     ChecklistItemCode.BLUEPRINT_ASSIGNED,
+    ChecklistItemCode.PREVIEW_BUILT,
     ChecklistItemCode.PREVIEW_APPROVED,
     ChecklistItemCode.VERSION_ASSIGNED,
     ChecklistItemCode.ROLLBACK_SNAPSHOT_CREATED,
@@ -77,6 +81,7 @@ class WorkspacePublicationFacts:
     official_syllabus_uploaded: bool = False
     validation_passed: bool = False
     blueprint_assigned: bool = False
+    preview_built: bool = False
     preview_approved: bool = False
     version_assigned: bool = False
     rollback_snapshot_created: bool = False
@@ -89,6 +94,7 @@ class WorkspacePublicationFacts:
         official_syllabus_uploaded: bool = False,
         validation_passed: bool = False,
         blueprint_assigned: bool = False,
+        preview_built: bool = False,
         preview_approved: bool = False,
         version_assigned: bool = False,
         rollback_snapshot_created: bool = False,
@@ -99,6 +105,7 @@ class WorkspacePublicationFacts:
             official_syllabus_uploaded=bool(official_syllabus_uploaded),
             validation_passed=bool(validation_passed),
             blueprint_assigned=bool(blueprint_assigned),
+            preview_built=bool(preview_built),
             preview_approved=bool(preview_approved),
             version_assigned=bool(version_assigned),
             rollback_snapshot_created=bool(rollback_snapshot_created),
@@ -113,6 +120,7 @@ class WorkspacePublicationFacts:
             ),
             ChecklistItemCode.VALIDATION_PASSED: self.validation_passed,
             ChecklistItemCode.BLUEPRINT_ASSIGNED: self.blueprint_assigned,
+            ChecklistItemCode.PREVIEW_BUILT: self.preview_built,
             ChecklistItemCode.PREVIEW_APPROVED: self.preview_approved,
             ChecklistItemCode.VERSION_ASSIGNED: self.version_assigned,
             ChecklistItemCode.ROLLBACK_SNAPSHOT_CREATED: (

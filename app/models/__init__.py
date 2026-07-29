@@ -77,6 +77,7 @@ from app.models.curriculum_studio_foundation import (
     StudioFoundationDocument,
     StudioFoundationSubject,
     StudioFoundationVersion,
+    StudioWorkspaceProjection,
 )
 from app.models.decision import Decision
 from app.models.decision_journal import (
@@ -205,6 +206,7 @@ __all__ = [
     "StudioFoundationVersion",
     "StudioFoundationDocument",
     "StudioFoundationAuditEvent",
+    "StudioWorkspaceProjection",
     "PublishedCurriculumPackage",
     "CipProcessingJob",
     "CipProcessingEvent",

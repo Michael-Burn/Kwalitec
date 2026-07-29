@@ -1,8 +1,8 @@
-"""Founder Publication Workspace DTO — DX-004C Execution First."""
+"""Founder Publication Workspace DTO — FV-001A workflow alignment."""
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 from app.application.curriculum_studio.dto.workspace_snapshot import (
     WorkspaceSnapshot,
@@ -20,8 +20,19 @@ class BlockingFindingRow:
 
 
 @dataclass(frozen=True)
+class PreviewNodeRow:
+    """One node in the Founder preview hierarchy tree."""
+
+    node_id: str
+    title: str
+    kind: str = "topic"
+    parent_id: str | None = None
+    order_index: int = 0
+
+
+@dataclass(frozen=True)
 class FounderWorkspacePage:
-    """DX-004C Publication Workspace projection."""
+    """FV-001A Publication Workspace projection."""
 
     workspace: WorkspaceSnapshot
     subject_code: str
@@ -48,6 +59,13 @@ class FounderWorkspacePage:
     empty_version_message: str
     workspace_id: str
     subjects_href: str
+    show_processing: bool = False
+    preview_nodes: tuple[PreviewNodeRow, ...] = field(default_factory=tuple)
+    preview_nodes_json: str = "[]"
+    topic_count: int = 0
+    section_count: int = 0
+    preview_built: bool = False
+    preview_approved: bool = False
 
     # Compatibility aliases for legacy presentation helpers / tests.
     @property

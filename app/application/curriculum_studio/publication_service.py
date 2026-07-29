@@ -101,6 +101,7 @@ class PublicationService:
             official_syllabus_uploaded=workspace.facts.official_syllabus_uploaded,
             validation_passed=workspace.facts.validation_passed,
             blueprint_assigned=True,
+            preview_built=True,
             preview_approved=True,
             version_assigned=workspace.facts.version_assigned,
             rollback_snapshot_created=workspace.facts.rollback_snapshot_created,
@@ -255,6 +256,7 @@ class PublicationService:
         official_syllabus_uploaded: bool | None = None,
         validation_passed: bool | None = None,
         blueprint_assigned: bool | None = None,
+        preview_built: bool | None = None,
         preview_approved: bool | None = None,
         version_assigned: bool | None = None,
         rollback_snapshot_created: bool | None = None,
@@ -264,20 +266,21 @@ class PublicationService:
         Intended for port-sync and test seeding. Prefer use-case methods
         that set facts after successful port responses.
         """
+        from app.application.curriculum_studio.fact_updates import (
+            copy_publication_facts,
+        )
+
         workspace = self._require_workspace(workspace_id)
-        f = workspace.facts
-        facts = WorkspacePublicationFacts.create(
-            cmp_uploaded=_or(cmp_uploaded, f.cmp_uploaded),
-            official_syllabus_uploaded=_or(
-                official_syllabus_uploaded, f.official_syllabus_uploaded
-            ),
-            validation_passed=_or(validation_passed, f.validation_passed),
-            blueprint_assigned=_or(blueprint_assigned, f.blueprint_assigned),
-            preview_approved=_or(preview_approved, f.preview_approved),
-            version_assigned=_or(version_assigned, f.version_assigned),
-            rollback_snapshot_created=_or(
-                rollback_snapshot_created, f.rollback_snapshot_created
-            ),
+        facts = copy_publication_facts(
+            workspace.facts,
+            cmp_uploaded=cmp_uploaded,
+            official_syllabus_uploaded=official_syllabus_uploaded,
+            validation_passed=validation_passed,
+            blueprint_assigned=blueprint_assigned,
+            preview_built=preview_built,
+            preview_approved=preview_approved,
+            version_assigned=version_assigned,
+            rollback_snapshot_created=rollback_snapshot_created,
         )
         self._registry.put_workspace(workspace.with_facts(facts))
         return self.checklist(workspace_id)
@@ -313,7 +316,3 @@ class PublicationService:
         if workspace is None:
             raise WorkspaceNotFound(f"Workspace not found: {workspace_id!r}")
         return workspace
-
-
-def _or(override: bool | None, current: bool) -> bool:
-    return current if override is None else bool(override)

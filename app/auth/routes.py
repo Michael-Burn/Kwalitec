@@ -5,9 +5,15 @@ from __future__ import annotations
 from urllib.parse import unquote, urlsplit
 
 from flask import Blueprint, flash, redirect, render_template, request, url_for
-from flask_login import current_user, login_user, logout_user
+from flask_login import current_user, login_required, login_user, logout_user
 
 from app.application.config.internal_alpha import is_internal_alpha_enabled
+from app.auth.experience import (
+    can_access_both_experiences,
+    experience_selection_url,
+    founder_console_url,
+    student_experience_url,
+)
 from app.auth.forms import LoginForm
 from app.models import User
 from app.presentation.consolidation import (
@@ -22,7 +28,9 @@ auth_bp = Blueprint("auth", __name__, url_prefix="/auth")
 def login():
     """Display and process the login form."""
     if current_user.is_authenticated:
-        # EP-007.1: land on the single authoritative home (no dual-home bounce).
+        # FV-001B: dual-access users land on Experience Selection (no roulette).
+        if can_access_both_experiences(current_user):
+            return redirect(experience_selection_url())
         return redirect_to_canonical_home()
 
     form = LoginForm()
@@ -35,30 +43,23 @@ def login():
             login_user(user, remember=form.remember_me.data)
             flash("Welcome back to Kwalitec.", "success")
 
-            # Founders land on the Kwalitec Console (Founder OS). Do not divert
-            # them into student onboarding or the study-plan wizard — those
-            # remain available when dogfooding via Student Role, but are not
-            # the post-login product for Console operators.
-            from app.founder.dashboard.access import is_founder_user
+            # Deep-link first: never intercept an explicit safe next destination.
+            next_url = _safe_next_url()
+            if next_url:
+                return redirect(next_url)
 
-            if is_founder_user(user):
-                return redirect(_safe_next_url() or canonical_home_url())
+            # FV-001B: users who can reach both experiences choose explicitly.
+            # Preference (Remember Founder / Student / Always Ask) is applied
+            # client-side on the Experience Selection page via localStorage.
+            if can_access_both_experiences(user):
+                return redirect(experience_selection_url())
 
-            # B8 (PX-003 release blockers): onboarding must be guaranteed for
-            # every first-time student regardless of entry path. Checked here,
-            # before the study-plan-wizard branch below, so a brand-new
-            # student sees "what Kwalitec is" before being asked to configure
-            # a plan — not after a multi-step wizard they might abandon
-            # without ever reaching the `student.home` onboarding gate.
+            # Student-only path (unchanged): onboarding → plan → student home.
             from app.services.alpha_onboarding_service import AlphaOnboardingService
 
             if AlphaOnboardingService.should_show(user):
                 return redirect(url_for("alpha.onboarding"))
 
-            # Check if user has an active study plan (Runtime A) or an
-            # active Runtime C enrolment. Runtime C pilots have no StudyPlan
-            # row; sending them back to the wizard on every login blocks
-            # consecutive study sessions (PR-001B).
             from app.services.study_plan_service import StudyPlanService
 
             active_plan = StudyPlanService.get_user_active_plan(user.id)
@@ -70,12 +71,10 @@ def login():
                 if EducationalExperienceService().has_runtime_c_enrolment(
                     user.id
                 ):
-                    return redirect(
-                        _safe_next_url() or canonical_home_url()
-                    )
+                    return redirect(canonical_home_url())
                 return redirect(url_for("study_plan.wizard_step", step=1))
 
-            return redirect(_safe_next_url() or canonical_home_url())
+            return redirect(canonical_home_url())
 
         flash("Invalid email or password.", "danger")
 
@@ -85,6 +84,22 @@ def login():
         title="Sign in",
         is_redirected=is_redirected,
         internal_alpha_enabled=is_internal_alpha_enabled(),
+    )
+
+
+@auth_bp.get("/experience")
+@login_required
+def experience_selection():
+    """Explicit Founder Console ↔ Student Experience chooser (FV-001B)."""
+    if not can_access_both_experiences(current_user):
+        return redirect_to_canonical_home()
+    force_chooser = (request.args.get("switch") or "").strip() == "1"
+    return render_template(
+        "auth/experience_selection.html",
+        title="Choose experience",
+        founder_url=founder_console_url(),
+        student_url=student_experience_url(),
+        force_chooser=force_chooser,
     )
 
 

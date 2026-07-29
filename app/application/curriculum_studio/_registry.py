@@ -56,24 +56,66 @@ class StudioRegistry:
     # --- workspaces ---------------------------------------------------------
 
     def put_workspace(self, workspace: CurriculumWorkspace) -> None:
-        """Insert or replace a workspace."""
+        """Insert or replace a workspace (memory + durable projection)."""
         self._workspaces[workspace.workspace_id] = workspace
+        try:
+            from app.infrastructure.adapters import (
+                curriculum_studio_workspace_persistence as persist,
+            )
+
+            persist.persist_workspace(workspace)
+        except Exception:  # noqa: BLE001
+            pass
 
     def get_workspace(self, workspace_id: str) -> CurriculumWorkspace | None:
-        """Return a workspace by id, or None."""
-        return self._workspaces.get(workspace_id)
+        """Return a workspace by id, hydrating from durable store on miss."""
+        cached = self._workspaces.get(workspace_id)
+        if cached is not None:
+            return cached
+        try:
+            from app.infrastructure.adapters import (
+                curriculum_studio_workspace_persistence as persist,
+            )
+
+            loaded = persist.load_workspace(workspace_id)
+        except Exception:  # noqa: BLE001
+            return None
+        if loaded is not None:
+            self._workspaces[workspace_id] = loaded
+        return loaded
 
     def has_workspace(self, workspace_id: str) -> bool:
-        """True when a workspace id is registered."""
-        return workspace_id in self._workspaces
+        """True when a workspace id is registered (memory or durable)."""
+        if workspace_id in self._workspaces:
+            return True
+        return self.get_workspace(workspace_id) is not None
 
     def list_workspaces(self) -> tuple[CurriculumWorkspace, ...]:
-        """All registered workspaces in insertion order."""
+        """All known workspaces (hydrate durable set into memory)."""
+        try:
+            from app.infrastructure.adapters import (
+                curriculum_studio_workspace_persistence as persist,
+            )
+
+            for workspace in persist.load_all_workspaces():
+                if workspace.workspace_id not in self._workspaces:
+                    self._workspaces[workspace.workspace_id] = workspace
+        except Exception:  # noqa: BLE001
+            pass
         return tuple(self._workspaces.values())
 
     def delete_workspace(self, workspace_id: str) -> bool:
-        """Remove a workspace; return True when it existed."""
-        return self._workspaces.pop(workspace_id, None) is not None
+        """Remove a workspace; return True when it existed in memory."""
+        existed = self._workspaces.pop(workspace_id, None) is not None
+        try:
+            from app.infrastructure.adapters import (
+                curriculum_studio_workspace_persistence as persist,
+            )
+
+            persist.delete_workspace_projection(workspace_id)
+        except Exception:  # noqa: BLE001
+            pass
+        return existed
 
     # --- ingestion job linkage ----------------------------------------------
 

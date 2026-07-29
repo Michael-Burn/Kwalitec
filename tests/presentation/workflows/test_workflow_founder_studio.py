@@ -45,7 +45,7 @@ def test_workspace_reachable(founder_client):
     html = response.get_data(as_text=True)
     assert "ds-persistent-context" in html
     assert "Upload" in html
-    assert "Validate" in html
+    assert "Preview" in html
 
 
 @pytest.mark.parametrize("stage_label", FOUNDER_WORKFLOW_STAGES)
@@ -77,9 +77,9 @@ def test_preview_next_action_mentions_structure():
     assert "structure" in text or "confirm" in text
 
 
-def test_approval_next_action_mentions_students():
+def test_approval_next_action_mentions_publish():
     text = NEXT_ACTION_BY_STAGE[WorkflowStage.APPROVAL.value].lower()
-    assert "student" in text
+    assert "publish" in text
 
 
 def test_publish_success_flash_confirms_outcome():

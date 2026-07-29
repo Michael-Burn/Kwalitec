@@ -36,20 +36,21 @@ FACT_FIELDS = (
     "official_syllabus_uploaded",
     "validation_passed",
     "blueprint_assigned",
+    "preview_built",
     "preview_approved",
     "version_assigned",
     "rollback_snapshot_created",
 )
 
 
-@pytest.mark.parametrize("mask", range(128))
-def test_checklist_ready_iff_all_seven_facts(mask):
-    """Exhaustive 2^7 fact combinations — READY only when mask == 127."""
+@pytest.mark.parametrize("mask", range(256))
+def test_checklist_ready_iff_all_eight_facts(mask):
+    """Exhaustive 2^8 fact combinations — READY only when mask == 255."""
     kwargs = {
         field: bool(mask & (1 << i)) for i, field in enumerate(FACT_FIELDS)
     }
     checklist = PublicationChecklist.compute(make_facts(**kwargs))
-    assert checklist.ready_to_publish is (mask == 127)
+    assert checklist.ready_to_publish is (mask == 255)
 
 
 @pytest.mark.parametrize(
@@ -116,6 +117,7 @@ def test_facts_fact_for_each_code(code):
         official_syllabus_uploaded=True,
         validation_passed=True,
         blueprint_assigned=True,
+        preview_built=True,
         preview_approved=True,
         version_assigned=True,
         rollback_snapshot_created=True,

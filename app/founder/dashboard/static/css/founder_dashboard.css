@@ -515,6 +515,40 @@ a.console-card:hover{border-color:var(--border);box-shadow:var(--shadow-sm, none
   margin-bottom:0.25rem;
 }
 .doc-pipeline-actions{display:flex;gap:0.5rem;flex-wrap:wrap;}
+.doc-founder-pipeline{
+  list-style:none;
+  margin:0.75rem 0 0;
+  padding:0;
+  display:grid;
+  gap:0.35rem;
+}
+.doc-founder-pipeline li{
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+  color:var(--text-muted);
+  font-size:var(--font-sm);
+}
+.doc-founder-pipeline li::before{
+  content:"○";
+  color:var(--border-strong, var(--border-subtle));
+}
+.doc-founder-pipeline li.is-complete{
+  color:var(--text-primary);
+}
+.doc-founder-pipeline li.is-complete::before{
+  content:"●";
+  color:var(--brand-blue, var(--primary));
+}
+.doc-founder-pipeline li.is-current{
+  color:var(--text-primary);
+  font-weight:600;
+}
+.doc-founder-pipeline li.is-current::before{
+  content:"●";
+  color:var(--brand-blue, var(--primary));
+}
+.doc-founder-pipeline li.is-failed{color:var(--danger, #b42318);}
 .doc-upload-toast{
   position:fixed;
   right:1rem;

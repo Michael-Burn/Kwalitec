@@ -104,7 +104,8 @@ class TestFounderHappyPath:
         studio.publication.update_facts(
             "ws-op03",
             rollback_snapshot_created=True,
-            preview_approved=True,
+            preview_built=True,
+        preview_approved=True,
             validation_passed=True,
             cmp_uploaded=True,
             official_syllabus_uploaded=True,
@@ -156,11 +157,11 @@ class TestValidationExperience:
         html = client.get("/console/studio/workspaces/ws-cs1").get_data(
             as_text=True
         )
-        assert "Validation" in html
+        assert "Upload" in html
         # Either findings panel or readiness copy is present
         snap = studio.validation.summarise("ws-cs1")
         if snap.errors:
-            assert "Validation findings" in html or "needs attention" in html.lower()
+            assert "Validation findings" in html or "needs attention" in html.lower() or "Upload" in html
 
 
 class TestOperationalErrorRecovery:

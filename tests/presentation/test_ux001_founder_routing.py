@@ -1,4 +1,4 @@
-"""UX-001 — Founder-first landing and role routing matrix."""
+"""UX-001 / FV-001B — Founder routing and Experience Selection."""
 
 from __future__ import annotations
 
@@ -33,35 +33,37 @@ def _login_post(client, email: str):
     )
 
 
-def _assert_lands_on_console(response) -> None:
+def _assert_lands_on_experience_selection(response) -> None:
+    """Dual-access operators choose Founder vs Student after login (FV-001B)."""
     assert response.status_code in {302, 303}
     location = response.headers.get("Location", "")
-    assert "/console/" in location
-    assert "/student" not in location
+    assert "/auth/experience" in location
+    assert "/student" not in location or "/auth/experience" in location
 
 
 def _assert_lands_on_student_os(response) -> None:
     assert response.status_code in {302, 303}
     location = response.headers.get("Location", "")
     assert "/console/" not in location
+    assert "/auth/experience" not in location
     assert any(
         token in location for token in ("/student", "study-plan", "alpha/onboarding")
     )
 
 
-def test_founder_login_lands_on_console(app, client, ctx):
+def test_founder_login_lands_on_experience_selection(app, client, ctx):
     user = _make_user("ux001-founder@kwalitec.example")
     IdentityService.grant_role(user, Role.FOUNDER)
-    _assert_lands_on_console(_login_post(client, user.email))
+    _assert_lands_on_experience_selection(_login_post(client, user.email))
 
 
-def test_administrator_login_lands_on_console_without_capabilities(app, client, ctx):
-    """Administrator role alone (no UserCapability rows) → Console."""
+def test_administrator_login_lands_on_experience_selection(app, client, ctx):
+    """Administrator role alone (no UserCapability rows) → Experience Selection."""
     user = _make_user("ux001-admin@kwalitec.example")
     IdentityService.grant_role(user, Role.ADMINISTRATOR)
     db.session.refresh(user)
     assert not user.get_capabilities()
-    _assert_lands_on_console(_login_post(client, user.email))
+    _assert_lands_on_experience_selection(_login_post(client, user.email))
 
 
 def test_student_only_login_lands_on_student_os(app, client, ctx):
@@ -70,18 +72,18 @@ def test_student_only_login_lands_on_student_os(app, client, ctx):
     _assert_lands_on_student_os(_login_post(client, user.email))
 
 
-def test_founder_plus_student_lands_on_console(app, client, ctx):
+def test_founder_plus_student_lands_on_experience_selection(app, client, ctx):
     user = _make_user("ux001-founder-student@kwalitec.example")
     IdentityService.grant_role(user, Role.FOUNDER)
     IdentityService.grant_role(user, Role.STUDENT)
-    _assert_lands_on_console(_login_post(client, user.email))
+    _assert_lands_on_experience_selection(_login_post(client, user.email))
 
 
-def test_administrator_plus_student_lands_on_console(app, client, ctx):
+def test_administrator_plus_student_lands_on_experience_selection(app, client, ctx):
     user = _make_user("ux001-admin-student@kwalitec.example")
     IdentityService.grant_role(user, Role.ADMINISTRATOR)
     IdentityService.grant_role(user, Role.STUDENT)
-    _assert_lands_on_console(_login_post(client, user.email))
+    _assert_lands_on_experience_selection(_login_post(client, user.email))
 
 
 def test_canonical_home_endpoint_role_matrix(app, client, ctx):
@@ -113,7 +115,7 @@ def test_canonical_home_endpoint_role_matrix(app, client, ctx):
             client.post("/auth/logout")
 
 
-def test_console_exposes_enter_student_experience(app, client, ctx):
+def test_console_exposes_switch_and_enter_student(app, client, ctx):
     user = _make_user("ux001-entry@kwalitec.example")
     IdentityService.ensure_founder_admin(user)
     client.post(
@@ -124,6 +126,42 @@ def test_console_exposes_enter_student_experience(app, client, ctx):
     response = client.get("/console/")
     assert response.status_code == 200
     html = response.get_data(as_text=True)
+    assert "Switch Experience" in html
+    assert 'data-testid="switch-experience"' in html
     assert "Enter Student Experience" in html
     assert 'data-testid="enter-student-experience"' in html
     assert "/student/" in html
+    assert "/auth/experience" in html
+
+
+def test_experience_selection_page_for_founder(app, client, ctx):
+    user = _make_user("ux001-exp@kwalitec.example")
+    IdentityService.grant_role(user, Role.FOUNDER)
+    client.post(
+        "/auth/login",
+        data={"email": user.email, "password": "password123"},
+        follow_redirects=False,
+    )
+    response = client.get("/auth/experience")
+    assert response.status_code == 200
+    html = response.get_data(as_text=True)
+    assert "Choose your experience" in html
+    assert 'data-testid="choose-founder-console"' in html
+    assert 'data-testid="choose-student-experience"' in html
+    assert "always_ask" in html
+    assert "remember_founder" in html
+    assert "remember_student" in html
+    assert "experience_preference.js" in html
+
+
+def test_experience_selection_forbidden_for_student_only(app, client, ctx):
+    user = _make_user("ux001-exp-student@kwalitec.example")
+    IdentityService.ensure_student_defaults(user)
+    client.post(
+        "/auth/login",
+        data={"email": user.email, "password": "password123"},
+        follow_redirects=True,
+    )
+    response = client.get("/auth/experience", follow_redirects=False)
+    assert response.status_code in {302, 303}
+    assert "/auth/experience" not in response.headers.get("Location", "")

@@ -47,6 +47,19 @@ def _workspace_redirect(workspace_id: str):
     return redirect(url_for("curriculum_studio.workspace", workspace_id=workspace_id))
 
 
+def _auto_advance_when_ready(workspace_id: str) -> bool:
+    """Advance one stage when readiness gates already pass (FV-001A)."""
+    try:
+        snap = service().workflow.get_workflow(workspace_id)
+        if not snap.can_advance:
+            return False
+        service().workflow.advance(workspace_id)
+        return True
+    except Exception as exc:  # noqa: BLE001 — never block the parent action
+        logger.info("Auto-advance skipped for %s: %s", workspace_id, exc)
+        return False
+
+
 def _json_error(exc: Exception, *, status: int = 400):
     if isinstance(exc, DocumentUploadError):
         return jsonify({"ok": False, "error": exc.message, "code": exc.code}), status
@@ -268,6 +281,21 @@ def validate(workspace_id: str):
     try:
         service().validation.validate_curriculum(workspace_id)
         flash(FLASH_SUCCESS["validation_ok"], "success")
+        _auto_advance_when_ready(workspace_id)
+        # Prefer landing on Preview after successful validation.
+        try:
+            snap = service().preview.build_for_review(workspace_id)
+            flash(
+                FLASH_SUCCESS["preview_ok"].format(count=snap.node_count),
+                "success",
+            )
+            _auto_advance_when_ready(workspace_id)
+        except Exception as preview_exc:
+            logger.info(
+                "Preview not ready after validation for %s: %s",
+                workspace_id,
+                preview_exc,
+            )
     except Exception as exc:
         logger.warning("Validation failed: %s", exc)
         flash(recover_flash(exc, "validate"), "warning")
@@ -296,6 +324,7 @@ def preview(workspace_id: str):
                 "Validate the curriculum before preview is ready for review.",
                 "warning",
             )
+        _auto_advance_when_ready(workspace_id)
     except Exception as exc:
         logger.warning("Preview failed: %s", exc)
         flash(recover_flash(exc, "preview"), "warning")
@@ -316,6 +345,9 @@ def approve(workspace_id: str):
             reason=(form.reason.data or "").strip(),
         )
         flash(FLASH_SUCCESS["approved"], "success")
+        # FV-001A: structure approved → enable Publish path automatically.
+        _auto_advance_when_ready(workspace_id)
+        _auto_advance_when_ready(workspace_id)
     except Exception as exc:
         logger.warning("Approve failed: %s", exc)
         flash(recover_flash(exc, "approve"), "warning")

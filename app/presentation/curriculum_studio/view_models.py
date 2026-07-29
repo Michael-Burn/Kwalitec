@@ -8,17 +8,17 @@ from app.application.curriculum_studio.dto.dashboard_snapshot import DashboardSn
 from app.application.curriculum_studio.dto.workspace_snapshot import WorkspaceSnapshot
 from app.domain.curriculum_studio.workflow_stage import WorkflowStage
 
-# Founder-facing stage labels (DX-004C strip). Domain tokens unchanged.
+# Founder-facing stage labels (FV-001A strip). Domain tokens unchanged.
 STAGE_LABELS: dict[str, str] = {
     WorkflowStage.SUBJECT.value: "Upload",
     WorkflowStage.CONTENT_SOURCES.value: "Upload",
-    WorkflowStage.VALIDATION.value: "Validate",
-    WorkflowStage.PREVIEW.value: "Review",
+    WorkflowStage.VALIDATION.value: "Upload",
+    WorkflowStage.PREVIEW.value: "Preview",
     WorkflowStage.APPROVAL.value: "Approve",
     WorkflowStage.PUBLICATION.value: "Publish",
 }
 
-# Suggested primary CTA key → button/form identity for templates (DX-004C).
+# Suggested primary CTA key → button/form identity for templates (FV-001A).
 PRIMARY_ACTION_BY_STAGE: dict[str, str] = {
     WorkflowStage.SUBJECT.value: "advance",
     WorkflowStage.CONTENT_SOURCES.value: "upload",
@@ -30,23 +30,23 @@ PRIMARY_ACTION_BY_STAGE: dict[str, str] = {
 
 NEXT_ACTION_BY_STAGE: dict[str, str] = {
     WorkflowStage.SUBJECT.value: (
-        "Confirm the subject, then continue to Upload."
+        "Confirm the subject, then continue to upload curriculum documents."
     ),
     WorkflowStage.CONTENT_SOURCES.value: (
-        "Upload the Official CMP and Official Syllabus PDFs, then validate "
-        "the curriculum."
+        "Upload the Official CMP and Official Syllabus PDFs. "
+        "Processing starts automatically after upload."
     ),
     WorkflowStage.VALIDATION.value: (
-        "Run validation after both official documents are uploaded and "
-        "extraction has finished."
+        "Curriculum is processing. Wait for preview to become ready, "
+        "or re-run checks if findings appear."
     ),
     WorkflowStage.PREVIEW.value: (
-        "Confirm the student-visible curriculum structure, "
+        "Review the student-visible curriculum structure, "
         "then approve when it looks right."
     ),
     WorkflowStage.APPROVAL.value: (
-        "Approve this curriculum for release. "
-        "Published curriculum becomes Ready for students."
+        "Structure is approved. Continue to Publish when a version "
+        "label is assigned."
     ),
     WorkflowStage.PUBLICATION.value: (
         "Publish this version so students can enrol. "
@@ -277,8 +277,8 @@ def workspace_page(
     blocking = tuple(f for f in findings if f.is_blocking)
     primary = PRIMARY_ACTION_BY_STAGE.get(current, "advance")
     if blocking and founder_label in {
-        "Validate",
-        "Review",
+        "Upload",
+        "Preview",
         "Approve",
         "Publish",
     }:

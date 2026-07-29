@@ -109,6 +109,7 @@ class StructurePreparationService:
             official_syllabus_uploaded=updated.facts.official_syllabus_uploaded,
             validation_passed=updated.facts.validation_passed,
             blueprint_assigned=blueprint_ok,
+            preview_built=updated.facts.preview_built,
             preview_approved=updated.facts.preview_approved,
             version_assigned=updated.facts.version_assigned,
             rollback_snapshot_created=updated.facts.rollback_snapshot_created,

@@ -151,6 +151,7 @@ def test_preview_reject():
         cmp_uploaded=True,
         official_syllabus_uploaded=True,
         validation_passed=True,
+        preview_built=True,
         preview_approved=True,
     )
     snap = studio.preview.reject("ws-1")
@@ -189,6 +190,7 @@ def test_publish_requires_management_port():
         official_syllabus_uploaded=True,
         validation_passed=True,
         blueprint_assigned=True,
+        preview_built=True,
         preview_approved=True,
         version_assigned=True,
         rollback_snapshot_created=True,

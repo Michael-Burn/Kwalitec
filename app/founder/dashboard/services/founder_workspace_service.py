@@ -1,6 +1,6 @@
-"""Founder Publication Workspace service — DX-004C Execution First.
+"""Founder Publication Workspace service — FV-001A workflow alignment.
 
-Presentation projection only. Does not alter publication pipeline rules.
+Presentation projection only. Does not alter educational algorithms.
 """
 
 from __future__ import annotations
@@ -21,6 +21,7 @@ from app.domain.curriculum_studio.workflow_stage import (
 from app.founder.dashboard.dto.founder_workspace import (
     BlockingFindingRow,
     FounderWorkspacePage,
+    PreviewNodeRow,
 )
 from app.presentation.curriculum_studio.factory import get_studio_service
 from app.presentation.curriculum_studio.founder_stages import (
@@ -45,23 +46,21 @@ PRIMARY_VERSION = "version"
 
 _DEFAULT_PRIMARY_BY_FOUNDER: dict[str, tuple[str, str]] = {
     "Upload": (PRIMARY_UPLOAD, "Upload documents"),
-    "Validate": (PRIMARY_VALIDATE, "Validate"),
-    "Review": (PRIMARY_REVIEW, "Confirm structure"),
+    "Preview": (PRIMARY_REVIEW, "Generate preview"),
     "Approve": (PRIMARY_APPROVE, "Approve"),
     "Publish": (PRIMARY_PUBLISH, "Publish"),
 }
 
 _NEXT_STEP_BY_FOUNDER: dict[str, str] = {
-    "Upload": "Upload the required CMP and syllabus, then continue.",
-    "Validate": "Run validation so structure can pass readiness checks.",
-    "Review": "Confirm the student-visible curriculum structure.",
-    "Approve": "Approve this curriculum for release.",
+    "Upload": "Upload the required CMP and syllabus. Processing starts next.",
+    "Preview": "Inspect the curriculum hierarchy, then approve the structure.",
+    "Approve": "Confirm this curriculum may proceed to Publish.",
     "Publish": "Publish this version so students can enrol.",
 }
 
 
 class FounderWorkspaceService:
-    """Build the DX-004C Publication Workspace page model."""
+    """Build the FV-001A Publication Workspace page model."""
 
     def __init__(
         self,
@@ -82,15 +81,35 @@ class FounderWorkspaceService:
         # Upload L1 owns source gaps — do not promote validation theatre to L0.
         if founder_label == "Upload":
             findings = ()
-        review_summary, supporting = self._load_supporting(
-            studio, workspace_id, workspace, founder_label=founder_label
+        entity = studio.registry.get_workspace(workspace_id)
+        facts = entity.facts if entity is not None else None
+        preview_built = bool(facts.preview_built) if facts is not None else False
+        preview_approved = (
+            bool(facts.preview_approved) if facts is not None else False
+        )
+        cmp_uploaded = bool(facts.cmp_uploaded) if facts is not None else False
+        syllabus_uploaded = (
+            bool(facts.official_syllabus_uploaded) if facts is not None else False
+        )
+        review_summary, supporting, preview_nodes, topic_count, section_count = (
+            self._load_supporting(
+                studio, workspace_id, workspace, founder_label=founder_label
+            )
         )
         history = self._load_version_history(studio, workspace.subject_code)
         primary_key, primary_label = self._select_primary(
             workspace=workspace,
             blocking_count=len(findings),
+            preview_built=preview_built,
+            cmp_uploaded=cmp_uploaded,
+            syllabus_uploaded=syllabus_uploaded,
         )
         stage_idx = founder_stage_index(workspace.current_stage)
+        domain = resolve_workflow_stage(workspace.current_stage)
+        processing = founder_label == "Upload" and (
+            domain is WorkflowStage.VALIDATION or cmp_uploaded
+        )
+        preview_json = _preview_nodes_json(preview_nodes)
 
         return FounderWorkspacePage(
             workspace=workspace,
@@ -110,12 +129,19 @@ class FounderWorkspaceService:
             blocking_findings=findings,
             blocking_count=len(findings),
             show_upload=founder_label == "Upload",
-            show_validate=founder_label == "Validate",
-            show_review=founder_label == "Review",
+            show_validate=False,
+            show_review=founder_label == "Preview",
             show_approve=founder_label == "Approve",
             show_publish=founder_label == "Publish",
+            show_processing=processing,
             supporting_lines=supporting,
             review_summary=review_summary,
+            preview_nodes=preview_nodes,
+            preview_nodes_json=preview_json,
+            topic_count=topic_count,
+            section_count=section_count,
+            preview_built=preview_built,
+            preview_approved=preview_approved,
             version_history=history,
             has_version_history=bool(history),
             empty_version_message=EMPTY_VERSION_HISTORY_GUIDANCE,
@@ -128,11 +154,13 @@ class FounderWorkspaceService:
         *,
         workspace: WorkspaceSnapshot,
         blocking_count: int,
+        preview_built: bool,
+        cmp_uploaded: bool,
+        syllabus_uploaded: bool,
     ) -> tuple[str, str]:
         founder = founder_stage_label(workspace.current_stage)
         if blocking_count > 0 and founder in {
-            "Validate",
-            "Review",
+            "Preview",
             "Approve",
             "Publish",
         }:
@@ -141,7 +169,15 @@ class FounderWorkspaceService:
             domain = resolve_workflow_stage(workspace.current_stage)
             if domain is WorkflowStage.SUBJECT:
                 return PRIMARY_ADVANCE, "Continue"
+            if domain is WorkflowStage.VALIDATION:
+                return PRIMARY_VALIDATE, "Continue processing"
+            if cmp_uploaded and syllabus_uploaded:
+                return PRIMARY_ADVANCE, "Continue to Preview"
             return PRIMARY_UPLOAD, "Upload documents"
+        if founder == "Preview":
+            if preview_built:
+                return PRIMARY_APPROVE, "Approve structure"
+            return PRIMARY_REVIEW, "Generate preview"
         if founder == "Publish" and workspace.ready_to_publish:
             return PRIMARY_PUBLISH, "Publish"
         if founder == "Publish" and not (workspace.version_label or "").strip():
@@ -178,9 +214,12 @@ class FounderWorkspaceService:
         workspace: WorkspaceSnapshot,
         *,
         founder_label: str,
-    ) -> tuple[str, tuple[str, ...]]:
+    ) -> tuple[str, tuple[str, ...], tuple[PreviewNodeRow, ...], int, int]:
         review_summary = ""
         lines: list[str] = []
+        nodes: list[PreviewNodeRow] = []
+        topic_count = 0
+        section_count = 0
         if founder_label != "Upload":
             try:
                 snap = studio.validation.summarise(workspace_id)
@@ -193,15 +232,35 @@ class FounderWorkspaceService:
         try:
             snap = studio.preview.preview(workspace_id)
             count = int(snap.node_count)
+            topic_count = count
             topics = "topic" if count == 1 else "topics"
             review_summary = f"{count} student-visible {topics}"
-            if count > 0 and founder_label in {"Review", "Approve", "Publish"}:
+            if count > 0 and founder_label in {"Preview", "Approve", "Publish"}:
                 lines.append(f"Preview · {snap.readiness} · {count} {topics}")
+            for node in snap.hierarchy:
+                kind = (node.kind or "topic").strip().lower()
+                if kind in {"section", "chapter", "unit", "module"}:
+                    section_count += 1
+                nodes.append(
+                    PreviewNodeRow(
+                        node_id=node.node_id,
+                        title=node.title,
+                        kind=node.kind,
+                        parent_id=node.parent_id,
+                        order_index=int(node.order_index),
+                    )
+                )
         except Exception:
             review_summary = "Preview not built yet"
         if (workspace.version_label or "").strip():
             lines.append(f"Version {workspace.version_label.strip()}")
-        return review_summary, tuple(lines)
+        return (
+            review_summary,
+            tuple(lines),
+            tuple(nodes),
+            topic_count,
+            section_count,
+        )
 
     def _load_version_history(
         self,
@@ -223,6 +282,22 @@ def _subject_name(workspace: WorkspaceSnapshot) -> str:
     if title:
         return title
     return (workspace.subject_code or workspace.workspace_id).strip()
+
+
+def _preview_nodes_json(nodes: tuple[PreviewNodeRow, ...]) -> str:
+    import json
+
+    payload = [
+        {
+            "node_id": n.node_id,
+            "title": n.title,
+            "kind": n.kind,
+            "parent_id": n.parent_id,
+            "order_index": n.order_index,
+        }
+        for n in nodes
+    ]
+    return json.dumps(payload, separators=(",", ":"))
 
 
 def _status_label(workspace: WorkspaceSnapshot) -> str:

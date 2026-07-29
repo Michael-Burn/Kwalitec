@@ -1,7 +1,11 @@
-"""Founder-facing publication stages (DX-004C).
+"""Founder-facing publication stages (FV-001A).
 
 Domain ``WorkflowStage`` tokens remain authoritative for persistence.
-This module maps them to the five Founder workspace stage labels.
+This module maps them to the four Founder strip labels:
+
+Upload → Preview → Approve → Publish
+
+Validation is automatic (Processing) and is not a strip stage.
 """
 
 from __future__ import annotations
@@ -11,11 +15,10 @@ from app.domain.curriculum_studio.workflow_stage import (
     resolve_workflow_stage,
 )
 
-# Canonical Founder strip — Upload → Validate → Review → Approve → Publish.
+# Canonical Founder strip — Upload → Preview → Approve → Publish.
 FOUNDER_STAGES: tuple[str, ...] = (
     "Upload",
-    "Validate",
-    "Review",
+    "Preview",
     "Approve",
     "Publish",
 )
@@ -23,8 +26,8 @@ FOUNDER_STAGES: tuple[str, ...] = (
 _DOMAIN_TO_FOUNDER: dict[WorkflowStage, str] = {
     WorkflowStage.SUBJECT: "Upload",
     WorkflowStage.CONTENT_SOURCES: "Upload",
-    WorkflowStage.VALIDATION: "Validate",
-    WorkflowStage.PREVIEW: "Review",
+    WorkflowStage.VALIDATION: "Upload",  # Processing lives under Upload→Preview
+    WorkflowStage.PREVIEW: "Preview",
     WorkflowStage.APPROVAL: "Approve",
     WorkflowStage.PUBLICATION: "Publish",
 }
@@ -35,7 +38,7 @@ _FOUNDER_TO_INDEX: dict[str, int] = {
 
 
 def founder_stage_label(stage: WorkflowStage | str) -> str:
-    """Return the DX-004C Founder stage label for a domain stage."""
+    """Return the Founder stage label for a domain stage."""
     resolved = resolve_workflow_stage(stage)
     return _DOMAIN_TO_FOUNDER[resolved]
 

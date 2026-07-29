@@ -34,11 +34,10 @@ def founder_client(app, client, ctx):
     return client
 
 
-def test_founder_stages_are_five():
+def test_founder_stages_are_four():
     assert FOUNDER_STAGES == (
         "Upload",
-        "Validate",
-        "Review",
+        "Preview",
         "Approve",
         "Publish",
     )
@@ -49,8 +48,8 @@ def test_founder_stages_are_five():
     (
         ("subject", "Upload"),
         ("content_sources", "Upload"),
-        ("validation", "Validate"),
-        ("preview", "Review"),
+        ("validation", "Upload"),
+        ("preview", "Preview"),
         ("approval", "Approve"),
         ("publication", "Publish"),
     ),
@@ -96,7 +95,7 @@ def test_blocking_findings_override_primary():
     assert view.primary_action == PRIMARY_RESOLVE
 
 
-def test_workspace_strip_has_five_founder_stages():
+def test_workspace_strip_has_four_founder_stages():
     view = workspace_page(make_workspace(current_stage="approval"))
     labels = [label for _, label, _ in view.workflow_stages]
     assert labels == list(FOUNDER_STAGES)
@@ -111,8 +110,7 @@ def test_workspace_page_renders_dx004c_structure(founder_client):
     assert "ds-persistent-context" in body
     assert "ds-stage-indicator" in body
     assert "Upload" in body
-    assert "Validate" in body
-    assert "Review" in body
+    assert "Preview" in body
     assert "Approve" in body
     assert "Publish" in body
     assert "ds-btn--primary" in body

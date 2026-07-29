@@ -26,7 +26,12 @@
     </nav>
     <div class="console-sidebar-foot">
         <a class="console-nav-link console-nav-link--muted" href="{{ url_for('founder_dashboard.search') }}">Search</a>
-        {# UX-001 — Founder OS stays primary; Student OS is entered deliberately. #}
+        {# FV-001B — Switch Experience (no logout). #}
+        <a
+            class="console-nav-link console-nav-link--muted"
+            href="{{ experience_selection_url }}"
+            data-testid="switch-experience"
+        >Switch Experience</a>
         <a
             class="console-nav-link console-nav-link--muted"
             href="{{ url_for('student.home') }}"

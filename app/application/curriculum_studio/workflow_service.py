@@ -22,6 +22,8 @@ from app.domain.curriculum_studio.workflow_stage import (
 )
 
 # Required checklist facts before ADVANCING into each target stage.
+# FV-001A: approval requires preview_built (reviewable hierarchy), NOT
+# preview_approved — approval records acceptance on the Approve stage.
 _ADVANCE_GATES: dict[WorkflowStage, tuple[ChecklistItemCode, ...]] = {
     WorkflowStage.CONTENT_SOURCES: (),
     WorkflowStage.VALIDATION: (
@@ -29,7 +31,7 @@ _ADVANCE_GATES: dict[WorkflowStage, tuple[ChecklistItemCode, ...]] = {
         ChecklistItemCode.OFFICIAL_SYLLABUS_UPLOADED,
     ),
     WorkflowStage.PREVIEW: (ChecklistItemCode.VALIDATION_PASSED,),
-    WorkflowStage.APPROVAL: (ChecklistItemCode.PREVIEW_APPROVED,),
+    WorkflowStage.APPROVAL: (ChecklistItemCode.PREVIEW_BUILT,),
     WorkflowStage.PUBLICATION: (
         ChecklistItemCode.PREVIEW_APPROVED,
         ChecklistItemCode.VERSION_ASSIGNED,
@@ -164,8 +166,14 @@ class WorkflowService:
             if not workspace.facts.fact_for(code)
         ]
         if missing:
+            satisfied = tuple(
+                code.value for code in required if workspace.facts.fact_for(code)
+            )
             raise WorkflowGateBlocked(
-                f"Cannot advance to {target.value}; missing: {', '.join(missing)}"
+                f"Cannot advance to {target.value}; missing: {', '.join(missing)}",
+                target_stage=target.value,
+                missing_codes=tuple(missing),
+                satisfied_codes=satisfied,
             )
 
     def _require_workspace(self, workspace_id: str):

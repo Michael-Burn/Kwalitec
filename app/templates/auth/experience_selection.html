@@ -1,0 +1,74 @@
+{% extends "layouts/auth_base.html" %}
+
+{% block content %}
+<div
+  class="experience-selection"
+  data-experience-selection
+  data-founder-url="{{ founder_url }}"
+  data-student-url="{{ student_url }}"
+  {% if not force_chooser %}hidden{% endif %}
+>
+  <div class="experience-selection__card">
+    <header class="experience-selection__header">
+      <p class="landing-descriptor">{{ product_descriptor }}</p>
+      <h1 class="experience-selection__title">Choose your experience</h1>
+      <p class="experience-selection__lead">
+        Founder Console publishes curriculum. Student Experience is how learners study.
+        You can switch anytime without signing out.
+      </p>
+      <p class="experience-selection__status" role="status" data-experience-status>
+        {% if force_chooser %}Switch experience — pick where to continue.{% else %}Loading…{% endif %}
+      </p>
+    </header>
+
+    <div class="experience-selection__choices" role="group" aria-label="Experience options">
+      <button
+        type="button"
+        class="experience-selection__choice"
+        data-experience-choose="founder"
+        data-testid="choose-founder-console"
+      >
+        <span class="experience-selection__choice-label">Founder Console</span>
+        <span class="experience-selection__choice-meta">
+          Subjects, Curriculum Studio, publication, and operations.
+        </span>
+      </button>
+      <button
+        type="button"
+        class="experience-selection__choice"
+        data-experience-choose="student"
+        data-testid="choose-student-experience"
+      >
+        <span class="experience-selection__choice-label">Student Experience</span>
+        <span class="experience-selection__choice-meta">
+          Home, Journey, History, Revision — study as a learner.
+        </span>
+      </button>
+    </div>
+
+    <fieldset class="experience-selection__remember">
+      <legend>On this device</legend>
+      <label class="experience-selection__option">
+        <input type="radio" name="experience-remember" value="always_ask" checked>
+        <span>Always ask</span>
+      </label>
+      <label class="experience-selection__option">
+        <input type="radio" name="experience-remember" value="remember_founder">
+        <span>Remember Founder Console</span>
+      </label>
+      <label class="experience-selection__option">
+        <input type="radio" name="experience-remember" value="remember_student">
+        <span>Remember Student Experience</span>
+      </label>
+      <p class="experience-selection__hint">
+        Stored only in this browser. Use Switch Experience anytime to change.
+      </p>
+    </fieldset>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ versioned_static('js/experience_preference.js') }}"></script>
+<script src="{{ versioned_static('js/experience_selection.js') }}"></script>
+{% endblock %}

@@ -249,6 +249,7 @@ def test_checklist_ready_requires_each_prerequisite(code):
         ChecklistItemCode.OFFICIAL_SYLLABUS_UPLOADED: "official_syllabus_uploaded",
         ChecklistItemCode.VALIDATION_PASSED: "validation_passed",
         ChecklistItemCode.BLUEPRINT_ASSIGNED: "blueprint_assigned",
+        ChecklistItemCode.PREVIEW_BUILT: "preview_built",
         ChecklistItemCode.PREVIEW_APPROVED: "preview_approved",
         ChecklistItemCode.VERSION_ASSIGNED: "version_assigned",
         ChecklistItemCode.ROLLBACK_SNAPSHOT_CREATED: "rollback_snapshot_created",

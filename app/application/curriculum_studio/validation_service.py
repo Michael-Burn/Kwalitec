@@ -253,27 +253,11 @@ def _copy_facts(
     facts: WorkspacePublicationFacts,
     **overrides,
 ) -> WorkspacePublicationFacts:
-    return WorkspacePublicationFacts.create(
-        cmp_uploaded=overrides.get("cmp_uploaded", facts.cmp_uploaded),
-        official_syllabus_uploaded=overrides.get(
-            "official_syllabus_uploaded", facts.official_syllabus_uploaded
-        ),
-        validation_passed=overrides.get(
-            "validation_passed", facts.validation_passed
-        ),
-        blueprint_assigned=overrides.get(
-            "blueprint_assigned", facts.blueprint_assigned
-        ),
-        preview_approved=overrides.get(
-            "preview_approved", facts.preview_approved
-        ),
-        version_assigned=overrides.get(
-            "version_assigned", facts.version_assigned
-        ),
-        rollback_snapshot_created=overrides.get(
-            "rollback_snapshot_created", facts.rollback_snapshot_created
-        ),
+    from app.application.curriculum_studio.fact_updates import (
+        copy_publication_facts,
     )
+
+    return copy_publication_facts(facts, **overrides)
 
 
 def _report_passed(report: dict) -> bool:

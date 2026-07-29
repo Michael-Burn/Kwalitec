@@ -617,10 +617,17 @@
 .ds-stage-indicator {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: var(--space-2) var(--space-3);
   font-size: var(--font-caption);
   color: var(--text-muted);
   margin-bottom: var(--space-3);
+}
+
+.ds-stage-indicator__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 
 .ds-stage-indicator__item--current {
@@ -630,6 +637,17 @@
 
 .ds-stage-indicator__item--done {
   color: var(--text-secondary);
+}
+
+.ds-stage-indicator__dot {
+  line-height: 1;
+}
+
+.ds-stage-indicator__rule {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1px;
+  background: var(--border-subtle);
 }
 
 .ds-workspace-l0 {
@@ -1089,4 +1107,60 @@
   .ds-os-progress__fill {
     transition: none;
   }
+}
+
+/* FV-001B — Hierarchical curriculum preview */
+.ds-curriculum-preview__toolbar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:var(--space-2);
+  margin:var(--space-3) 0;
+}
+.ds-curriculum-preview__viewport{
+  position:relative;
+  max-height:28rem;
+  overflow:auto;
+  border:1px solid var(--border-subtle);
+  border-radius:var(--radius-md);
+  background:var(--surface);
+}
+.ds-curriculum-preview__spacer{
+  width:1px;
+  pointer-events:none;
+}
+.ds-curriculum-preview__rows{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  will-change:transform;
+}
+.ds-curriculum-preview__row{
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+  padding-right:0.75rem;
+  box-sizing:border-box;
+  border-bottom:1px solid var(--border-subtle);
+  white-space:nowrap;
+  overflow:hidden;
+}
+.ds-curriculum-preview__toggle,
+.ds-curriculum-preview__toggle-spacer{
+  flex:0 0 1.25rem;
+  width:1.25rem;
+  height:1.25rem;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:0;
+  background:transparent;
+  color:var(--text-secondary);
+  padding:0;
+  cursor:pointer;
+}
+.ds-curriculum-preview__title{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  font-size:var(--font-sm);
 }

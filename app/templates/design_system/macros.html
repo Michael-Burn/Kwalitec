@@ -287,8 +287,10 @@
 <nav class="ds-stage-indicator" aria-label="Publication stages">
   {% for stage in stages %}
   <span class="ds-stage-indicator__item{% if loop.index0 < current_index %} ds-stage-indicator__item--done{% elif loop.index0 == current_index %} ds-stage-indicator__item--current{% endif %}"{% if loop.index0 == current_index %} aria-current="step"{% endif %}>
-    {% if loop.index0 < current_index %}{{ stage }} ✓{% elif loop.index0 == current_index %}{{ stage }} (here){% else %}{{ stage }}{% endif %}
+    <span class="ds-stage-indicator__dot" aria-hidden="true">{% if loop.index0 < current_index %}●{% elif loop.index0 == current_index %}●{% else %}○{% endif %}</span>
+    <span class="ds-stage-indicator__label">{% if loop.index0 < current_index %}{{ stage }}{% elif loop.index0 == current_index %}{{ stage }}{% else %}{{ stage }}{% endif %}</span>
   </span>
+  {% if not loop.last %}<span class="ds-stage-indicator__rule" aria-hidden="true"></span>{% endif %}
   {% endfor %}
 </nav>
 {%- endmacro %}

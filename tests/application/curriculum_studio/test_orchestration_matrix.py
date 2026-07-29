@@ -18,18 +18,19 @@ FACT_KEYS = (
     "official_syllabus_uploaded",
     "validation_passed",
     "blueprint_assigned",
+    "preview_built",
     "preview_approved",
     "version_assigned",
     "rollback_snapshot_created",
 )
 
 
-@pytest.mark.parametrize("mask", range(64))
+@pytest.mark.parametrize("mask", range(128))
 def test_fact_masks_partial_ready(mask):
     """Smaller subset matrix overlapping checklist readiness."""
     studio = seed_workspace()
-    kwargs = {key: bool(mask & (1 << i)) for i, key in enumerate(FACT_KEYS[:6])}
-    kwargs["rollback_snapshot_created"] = bool(mask & 32)
+    kwargs = {key: bool(mask & (1 << i)) for i, key in enumerate(FACT_KEYS[:7])}
+    kwargs["rollback_snapshot_created"] = bool(mask & 64)
     snap = studio.publication.update_facts("ws-1", **kwargs)
     ready = all(kwargs.values())
     assert snap.ready_to_publish is ready
@@ -103,6 +104,7 @@ def test_full_thin_port_pipeline(i):
         official_syllabus_uploaded=True,
         validation_passed=True,
         blueprint_assigned=True,
+        preview_built=True,
         preview_approved=True,
         version_assigned=True,
         rollback_snapshot_created=True,

@@ -1,6 +1,7 @@
-"""Founder-facing operational recovery flashes for Curriculum Studio (PR-001A).
+"""Founder-facing operational recovery flashes for Curriculum Studio (FV-001A).
 
 Maps application exceptions to operator copy: issue → why → recovery.
+Gate blocks include an actionable remaining-tasks checklist.
 """
 
 from __future__ import annotations
@@ -21,6 +22,28 @@ from app.application.curriculum_studio.exceptions import (
     WorkspaceAlreadyExists,
     WorkspaceNotFound,
 )
+
+_FACT_LABELS: dict[str, str] = {
+    "cmp_uploaded": "Upload Official CMP",
+    "official_syllabus_uploaded": "Upload Official Syllabus",
+    "validation_passed": "Complete curriculum processing",
+    "blueprint_assigned": "Structure bound",
+    "preview_built": "Generate preview",
+    "preview_approved": "Approve structure",
+    "version_assigned": "Assign version label",
+    "rollback_snapshot_created": "Create rollback snapshot",
+}
+
+_FACT_ACTIONS: dict[str, tuple[str, str]] = {
+    "cmp_uploaded": ("Go to Upload", "upload"),
+    "official_syllabus_uploaded": ("Go to Upload", "upload"),
+    "validation_passed": ("Wait for processing", "upload"),
+    "blueprint_assigned": ("Wait for processing", "upload"),
+    "preview_built": ("Go to Preview", "preview"),
+    "preview_approved": ("Go to Approve", "approve"),
+    "version_assigned": ("Assign version", "version"),
+    "rollback_snapshot_created": ("Retry Publish", "publish"),
+}
 
 
 def recover_flash(exc: BaseException, fallback_key: str) -> str:
@@ -50,11 +73,7 @@ def recover_flash(exc: BaseException, fallback_key: str) -> str:
     if isinstance(exc, WorkspaceNotFound):
         return FLASH_WARNING["workspace_missing"]
     if isinstance(exc, WorkflowGateBlocked):
-        return (
-            "We couldn't advance the workflow because readiness gates are "
-            "incomplete. Skipping gates risks publishing an unfinished "
-            "curriculum. Complete the current stage checklist, then try again."
-        )
+        return format_gate_blocked(exc)
     if isinstance(exc, WorkflowError):
         return FLASH_WARNING["advance"]
     if isinstance(exc, ValidationError):
@@ -157,3 +176,37 @@ def recover_flash(exc: BaseException, fallback_key: str) -> str:
     if isinstance(exc, CurriculumStudioError):
         return FLASH_WARNING.get(fallback_key, FLASH_WARNING["advance"])
     return FLASH_WARNING.get(fallback_key, FLASH_WARNING["advance"])
+
+
+def format_gate_blocked(exc: WorkflowGateBlocked) -> str:
+    """Actionable readiness-gate message with remaining tasks."""
+    target = (exc.target_stage or "next stage").replace("_", " ")
+    missing = list(exc.missing_codes)
+    satisfied = list(exc.satisfied_codes)
+    lines = [
+        f"Advancement blocked — cannot enter {target} yet.",
+        "Remaining tasks:",
+    ]
+    for code in satisfied:
+        label = _FACT_LABELS.get(code, code.replace("_", " "))
+        lines.append(f"✓ {label}")
+    for code in missing:
+        label = _FACT_LABELS.get(code, code.replace("_", " "))
+        lines.append(f"✗ {label}")
+    if not satisfied and not missing:
+        lines.append("✗ Complete the current stage checklist")
+    primary_code = missing[0] if missing else ""
+    action_label, _ = _FACT_ACTIONS.get(
+        primary_code, ("Complete the checklist", "upload")
+    )
+    lines.append(f"Next: {action_label}.")
+    return " ".join(lines)
+
+
+def gate_primary_action(exc: WorkflowGateBlocked) -> tuple[str, str]:
+    """Return (button_label, action_key) for the first missing gate."""
+    if not exc.missing_codes:
+        return ("Review checklist", "upload")
+    return _FACT_ACTIONS.get(
+        exc.missing_codes[0], ("Complete the checklist", "upload")
+    )

@@ -150,6 +150,7 @@ def test_publish_curriculum_use_case(i):
         f"ws-pub-{i}",
         version_assigned=True,
         rollback_snapshot_created=True,
+        preview_built=True,
         preview_approved=True,
         validation_passed=True,
         cmp_uploaded=True,

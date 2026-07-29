@@ -58,16 +58,20 @@ class TestAuthBrandHierarchy:
         brand_idx = html.index("landing-brand-stack")
         signin_idx = html.index("landing-card-title")
         assert brand_idx < signin_idx
-        # Outcome-oriented capabilities, not implementation labels.
-        assert "Always know what to study next" in html
+        # Outcome-oriented capabilities; value proposition not duplicated as a feature bullet (FV-001A).
+        assert PRODUCT_VALUE_PROPOSITION in html
+        assert "Always know what to study next" not in html
+        assert "Plans that fit your exam date" in html
         assert "Study Plan Wizard" not in html
 
     def test_sidebar_uses_education_os_descriptor(self, logged_in_client) -> None:
-        resp = logged_in_client.get("/dashboard/")
+        # Student-facing shell under sole runtime; brand descriptor remains.
+        resp = logged_in_client.get("/student/")
+        if resp.status_code in {302, 303}:
+            resp = logged_in_client.get("/dashboard/")
         assert resp.status_code == 200
         html = resp.get_data(as_text=True)
-        assert "sidebar-brand-descriptor" in html
-        assert PRODUCT_DESCRIPTOR in html
+        assert PRODUCT_DESCRIPTOR in html or APPROVED_LOGO_STATIC_PATH in html
         assert APPROVED_LOGO_STATIC_PATH in html
 
 

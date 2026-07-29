@@ -616,6 +616,7 @@ def _init_extensions(app: Flask) -> None:
         StudioFoundationDocument,
         StudioFoundationSubject,
         StudioFoundationVersion,
+        StudioWorkspaceProjection,
         StudyAttempt,
         StudyPlan,
         Subject,
@@ -729,6 +730,10 @@ def _register_template_context(app: Flask) -> None:
             user_permissions,
             user_roles,
         )
+        from app.auth.experience import (
+            can_access_both_experiences,
+            experience_selection_url,
+        )
 
         return {
             "app_version": APP_VERSION,
@@ -767,6 +772,9 @@ def _register_template_context(app: Flask) -> None:
             "current_user_roles": user_roles(current_user),
             "current_user_permissions": user_permissions(current_user),
             "current_user_capabilities": user_capabilities(current_user),
+            # FV-001B — Switch Experience (dual-access only).
+            "can_switch_experience": can_access_both_experiences(current_user),
+            "experience_selection_url": experience_selection_url(switch=True),
         }
 
 

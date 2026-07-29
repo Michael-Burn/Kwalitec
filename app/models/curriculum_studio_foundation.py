@@ -180,6 +180,47 @@ class StudioFoundationAuditEvent(db.Model):
         )
 
 
+class StudioWorkspaceProjection(db.Model):
+    """Durable Curriculum Studio workspace workflow + facts projection.
+
+    FV-001A: Survives process restart. Documents remain in foundation
+    document tables; this row carries stage, facts, and structure refs.
+    """
+
+    __tablename__ = "studio_workspace_projections"
+
+    workspace_id: str = db.Column(db.String(128), primary_key=True)
+    subject_code: str = db.Column(
+        db.String(64), nullable=False, default="", index=True
+    )
+    subject_title: str = db.Column(db.String(255), nullable=False, default="")
+    version_label: str = db.Column(db.String(64), nullable=False, default="")
+    version_id: str | None = db.Column(db.String(128), nullable=True)
+    status: str = db.Column(db.String(64), nullable=False, default="active")
+    current_stage: str = db.Column(
+        db.String(64), nullable=False, default="subject", index=True
+    )
+    highest_stage_reached: str = db.Column(
+        db.String(64), nullable=False, default="subject"
+    )
+    facts_json: str = db.Column(db.Text, nullable=False, default="{}")
+    structure_json: str = db.Column(db.Text, nullable=False, default="{}")
+    workflow_history_json: str = db.Column(db.Text, nullable=False, default="[]")
+    metadata_json: str = db.Column(db.Text, nullable=False, default="{}")
+    estimated_workload_hours: float | None = db.Column(db.Float, nullable=True)
+    notes: str = db.Column(db.Text, nullable=False, default="")
+    updated_at: datetime = db.Column(
+        db.DateTime, nullable=False, default=_utc_now, onupdate=_utc_now
+    )
+    created_at: datetime = db.Column(db.DateTime, nullable=False, default=_utc_now)
+
+    def __repr__(self) -> str:
+        return (
+            f"<StudioWorkspaceProjection {self.workspace_id} "
+            f"stage={self.current_stage}>"
+        )
+
+
 class PublishedCurriculumPackage(db.Model):
     """Immutable published curriculum package — student-facing SSOT candidate.
 

@@ -143,7 +143,26 @@ class PreviewService:
                 f"Preview has no curriculum topics for {workspace_id}. "
                 "Complete extraction and validation before building preview."
             )
-        return snap
+        workspace = self._require_workspace(workspace_id)
+        facts = WorkspacePublicationFacts.create(
+            cmp_uploaded=workspace.facts.cmp_uploaded,
+            official_syllabus_uploaded=workspace.facts.official_syllabus_uploaded,
+            validation_passed=workspace.facts.validation_passed,
+            blueprint_assigned=workspace.facts.blueprint_assigned,
+            preview_built=True,
+            preview_approved=workspace.facts.preview_approved,
+            version_assigned=workspace.facts.version_assigned,
+            rollback_snapshot_created=workspace.facts.rollback_snapshot_created,
+        )
+        self._registry.put_workspace(workspace.with_facts(facts))
+        self._registry.record_activity(
+            "preview_built",
+            f"Preview built for {workspace_id} ({snap.node_count} topics)",
+            workspace_id=workspace_id,
+            subject_code=workspace.subject_code,
+            version_id=workspace.version_id,
+        )
+        return self.preview(workspace_id)
 
     def approve(
         self,
@@ -183,6 +202,7 @@ class PreviewService:
             official_syllabus_uploaded=workspace.facts.official_syllabus_uploaded,
             validation_passed=workspace.facts.validation_passed,
             blueprint_assigned=workspace.facts.blueprint_assigned,
+            preview_built=True,
             preview_approved=True,
             version_assigned=workspace.facts.version_assigned,
             rollback_snapshot_created=workspace.facts.rollback_snapshot_created,
@@ -224,6 +244,7 @@ class PreviewService:
             official_syllabus_uploaded=workspace.facts.official_syllabus_uploaded,
             validation_passed=workspace.facts.validation_passed,
             blueprint_assigned=workspace.facts.blueprint_assigned,
+            preview_built=workspace.facts.preview_built,
             preview_approved=False,
             version_assigned=workspace.facts.version_assigned,
             rollback_snapshot_created=workspace.facts.rollback_snapshot_created,
@@ -258,13 +279,79 @@ class PreviewService:
         self, workspace_id: str, workspace
     ) -> list[PreviewNode]:
         nodes: list[PreviewNode] = []
+        # Prefer structure_dict so topics nest under section_ref (FV-001B).
+        try:
+            structure = self._structure.structure_dict(workspace_id)
+            order = 0
+            for section in structure.get("sections") or ():
+                sid = str(section.get("section_id") or section.get("code") or "")
+                if not sid:
+                    continue
+                title = str(section.get("title") or sid)
+                nodes.append(
+                    PreviewNode.create(
+                        sid,
+                        title,
+                        kind="section",
+                        order_index=order,
+                    )
+                )
+                order += 1
+            section_ids = {
+                str(s.get("section_id") or s.get("code") or "")
+                for s in (structure.get("sections") or ())
+            }
+            for topic in structure.get("topics") or ():
+                tid = str(topic.get("topic_id") or topic.get("code") or "")
+                if not tid:
+                    continue
+                title = str(topic.get("title") or tid)
+                parent = str(topic.get("section_ref") or "").strip() or None
+                if parent and parent not in section_ids:
+                    parent = None
+                nodes.append(
+                    PreviewNode.create(
+                        tid,
+                        title,
+                        kind="topic",
+                        parent_id=parent,
+                        order_index=order,
+                    )
+                )
+                order += 1
+            if nodes:
+                return nodes
+        except Exception:  # noqa: BLE001 — fall through to flat hierarchy
+            nodes = []
+
         order = 0
+        section_ids: list[str] = []
+        pending_topics: list[tuple[str, str]] = []
         for node_id, title, kind in self._structure.hierarchy_nodes(workspace_id):
+            kind_token = (kind or "topic").strip().lower()
+            if kind_token in {"section", "chapter", "unit", "module"}:
+                section_ids.append(node_id)
+                nodes.append(
+                    PreviewNode.create(
+                        node_id,
+                        title,
+                        kind=kind_token,
+                        order_index=order,
+                    )
+                )
+                order += 1
+            else:
+                pending_topics.append((node_id, title))
+        # Nest topics under the first section so Preview is hierarchical
+        # even when extraction returns a flat section/topic list (FV-001B).
+        parent = section_ids[0] if section_ids else None
+        for topic_id, title in pending_topics:
             nodes.append(
                 PreviewNode.create(
-                    node_id,
+                    topic_id,
                     title,
-                    kind=kind,
+                    kind="topic",
+                    parent_id=parent,
                     order_index=order,
                 )
             )
@@ -281,12 +368,14 @@ class PreviewService:
                 )
             )
             order += 1
+        parent = workspace.section_ids[0] if workspace.section_ids else None
         for topic_id in workspace.topic_ids:
             nodes.append(
                 PreviewNode.create(
                     topic_id,
                     topic_id,
                     kind="topic",
+                    parent_id=parent,
                     order_index=order,
                 )
             )

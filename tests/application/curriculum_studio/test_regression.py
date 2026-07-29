@@ -40,7 +40,7 @@ def test_workspace_snapshot_mapping():
     ws = make_workspace(facts=make_ready_facts())
     snap = workspace_snapshot(ws)
     assert snap.ready_to_publish is True
-    assert snap.checklist_satisfied_count == 8
+    assert snap.checklist_satisfied_count == 9
 
 
 def test_workflow_snapshot_mapping():
@@ -84,7 +84,7 @@ def test_publication_snapshot_mapping():
     )
     snap = publication_snapshot(summary)
     assert snap.ready_to_publish is True
-    assert snap.checklist_item_count == 8
+    assert snap.checklist_item_count == 9
 
 
 def test_version_snapshot_mapping():
@@ -128,6 +128,7 @@ def test_end_to_end_founder_path():
         "ws-e2e",
         version_assigned=True,
         rollback_snapshot_created=True,
+        preview_built=True,
         preview_approved=True,
         validation_passed=True,
         cmp_uploaded=True,

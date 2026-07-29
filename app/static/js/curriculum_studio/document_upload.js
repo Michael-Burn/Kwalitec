@@ -53,6 +53,7 @@
     var stages = root.querySelectorAll("[data-doc-processing-stages] [data-stage]");
     var present = {};
     var order = [
+      "uploading",
       "queued",
       "verified",
       "extracted",
@@ -63,28 +64,86 @@
       "ready_for_embeddings",
       "ready",
     ];
-    (documents || []).forEach(function (doc) {
+    var founderOrder = [
+      "uploading",
+      "extracted",
+      "parsed",
+      "mapped",
+      "ready_for_embeddings",
+      "ready",
+    ];
+    var docs = documents || [];
+    if (docs.length) {
+      present.uploading = true;
+    }
+    docs.forEach(function (doc) {
       var stage = doc.processing_stage || "";
       if (stage === "ready") stage = "ready_for_embeddings";
       if (stage === "processing") stage = "queued";
       present[stage] = true;
       var idx = order.indexOf(stage);
       for (var i = 0; i <= idx; i += 1) present[order[i]] = true;
-      // Founder strip skips normalized — mark parsed when normalized reached.
       if (stage === "normalized") present.parsed = true;
+      if (stage === "ready_for_embeddings" || stage === "ready" || stage === "graph_built") {
+        present.ready = true;
+      }
     });
     stages.forEach(function (li) {
       var key = li.getAttribute("data-stage");
       li.classList.toggle("is-complete", !!present[key]);
+      li.classList.toggle("is-current", false);
       li.classList.toggle("is-failed", false);
     });
-    (documents || []).forEach(function (doc) {
+    // Highlight the furthest incomplete founder stage as current.
+    var currentKey = null;
+    for (var f = 0; f < founderOrder.length; f += 1) {
+      if (!present[founderOrder[f]]) {
+        currentKey = founderOrder[f];
+        break;
+      }
+    }
+    if (currentKey) {
+      stages.forEach(function (li) {
+        if (li.getAttribute("data-stage") === currentKey) {
+          li.classList.add("is-current");
+        }
+      });
+    }
+    docs.forEach(function (doc) {
       if (doc.processing_stage === "failed") {
         stages.forEach(function (li) {
           li.classList.add("is-failed");
         });
       }
     });
+    var pipeline = root.querySelector("[data-founder-pipeline]");
+    if (pipeline) {
+      pipeline.hidden = docs.length === 0;
+    }
+  }
+
+  function pollStatus(root) {
+    var url = root.getAttribute("data-status-url");
+    if (!url) return;
+    fetch(url, {
+      headers: { Accept: "application/json", "X-CSRFToken": csrfToken() },
+      credentials: "same-origin",
+    })
+      .then(function (res) {
+        return res.json().then(function (body) {
+          return { ok: res.ok, body: body };
+        });
+      })
+      .then(function (result) {
+        if (result.ok && result.body && result.body.status) {
+          applyStatus(root, result.body.status);
+        } else if (result.ok && result.body && result.body.documents) {
+          applyStatus(root, result.body);
+        }
+      })
+      .catch(function () {
+        /* polling is best-effort */
+      });
   }
 
   function renderPipelineJobs(root, jobs) {
@@ -466,6 +525,12 @@
       if (!article) return;
       pipelineAction(root, article, retry ? "retry" : "cancel");
     });
+    if (root.getAttribute("data-poll-status") === "true") {
+      pollStatus(root);
+      window.setInterval(function () {
+        pollStatus(root);
+      }, 2500);
+    }
   }
 
   if (document.readyState === "loading") {

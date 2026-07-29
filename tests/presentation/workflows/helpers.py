@@ -20,8 +20,7 @@ from tests.presentation.curriculum_studio.helpers import (
 
 FOUNDER_WORKFLOW_STAGES = (
     "Upload",
-    "Validate",
-    "Review",
+    "Preview",
     "Approve",
     "Publish",
 )

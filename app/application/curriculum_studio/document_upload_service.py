@@ -388,6 +388,7 @@ class DocumentUploadService:
             official_syllabus_uploaded="syllabus" in active,
             validation_passed=entity.facts.validation_passed,
             blueprint_assigned=entity.facts.blueprint_assigned,
+            preview_built=entity.facts.preview_built,
             preview_approved=entity.facts.preview_approved,
             version_assigned=entity.facts.version_assigned,
             rollback_snapshot_created=entity.facts.rollback_snapshot_created,

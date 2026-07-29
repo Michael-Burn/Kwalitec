@@ -102,6 +102,7 @@
       data-upload-url="{{ url_for('curriculum_studio.upload_document', workspace_id=page.workspace_id) }}"
       data-status-url="{{ url_for('curriculum_studio.documents_status', workspace_id=page.workspace_id) }}"
       data-cta-state="{{ document_status.cta_state }}"
+      data-poll-status="true"
     >
       <p class="ds-list__meta">
         {% if document_status.cta_state == 'uploaded' %}
@@ -118,9 +119,23 @@
         {% include "curriculum_studio/_document_upload_card.html" %}
         {% endfor %}
       </div>
+
+      <div class="ds-workspace-processing" aria-label="Curriculum processing pipeline" {% if not page.show_processing and document_status.cta_state == 'upload' %}hidden{% endif %} data-founder-pipeline>
+        <h3 class="ds-section__title">Processing</h3>
+        <p class="ds-list__meta">Progress updates automatically while documents are prepared for review.</p>
+        <ol class="doc-founder-pipeline" data-doc-processing-stages>
+          <li data-stage="uploading">Uploading</li>
+          <li data-stage="extracted">Extracting document</li>
+          <li data-stage="parsed">Analysing curriculum</li>
+          <li data-stage="mapped">Building hierarchy</li>
+          <li data-stage="ready_for_embeddings">Generating preview</li>
+          <li data-stage="ready">Ready for review</li>
+        </ol>
+      </div>
+
       {% if document_status.pipeline_jobs %}
-      <div class="ds-workspace-processing" aria-label="Processing status">
-        <h3 class="ds-section__title">Document processing</h3>
+      <div class="ds-workspace-processing" aria-label="Processing jobs">
+        <h3 class="ds-section__title">Document jobs</h3>
         <div class="doc-pipeline-jobs" data-doc-pipeline-jobs>
           {% for job in document_status.pipeline_jobs %}
           <article class="doc-pipeline-job" data-pipeline-job data-document-id="{{ job.document_id }}" data-job-id="{{ job.job_id }}">
@@ -143,47 +158,79 @@
           {% endfor %}
         </div>
       </div>
+      {% else %}
+      <div class="doc-pipeline-jobs" data-doc-pipeline-jobs hidden></div>
       {% endif %}
       <div class="visually-hidden" role="status" aria-live="polite" data-doc-upload-live></div>
-      {% if page.primary_key != 'advance' %}
+      {% if page.primary_key != 'advance' and page.primary_key != 'validate' %}
       <form method="post" action="{{ url_for('curriculum_studio.advance', workspace_id=page.workspace_id) }}">
         {{ advance_form.hidden_tag() }}{{ advance_form.workspace_id }}
-        {{ secondary_submit(advance_form, 'Continue to Validate') }}
+        {{ secondary_submit(advance_form, 'Continue to Preview') }}
       </form>
       {% endif %}
     </div>
 
-    {% elif page.show_validate %}
-    <p class="ds-list__meta">Does structure pass readiness checks?</p>
-    {% if page.primary_key != 'validate' %}
-    <form method="post" action="{{ url_for('curriculum_studio.validate', workspace_id=page.workspace_id) }}">
-      {{ validate_form.hidden_tag() }}{{ validate_form.workspace_id }}
-      {{ secondary_submit(validate_form, 'Re-run validation') }}
-    </form>
-    {% endif %}
-    {% if page.blocking_count == 0 %}
-    <form method="post" action="{{ url_for('curriculum_studio.advance', workspace_id=page.workspace_id) }}">
-      {{ advance_form.hidden_tag() }}{{ advance_form.workspace_id }}
-      {{ secondary_submit(advance_form, 'Continue to Review') }}
-    </form>
-    {% endif %}
-
     {% elif page.show_review %}
     <p class="ds-list__meta">{{ page.review_summary }}</p>
-    <p>Confirm the student-visible curriculum is acceptable for this version.</p>
+    {% if page.preview_built and page.preview_nodes %}
+    <div
+      class="ds-curriculum-preview"
+      aria-label="Curriculum preview"
+      data-curriculum-preview-tree
+      data-preview-nodes='{{ page.preview_nodes_json|e }}'
+      data-lazy-threshold="400"
+    >
+      <p><strong>Subject</strong> · {{ page.subject_name }}
+        {% if page.subject_code %} ({{ page.subject_code }}){% endif %}
+      </p>
+      <p class="ds-list__meta" data-preview-meta>
+        {{ page.section_count }} section{{ '' if page.section_count == 1 else 's' }}
+        · {{ page.topic_count }} topic{{ '' if page.topic_count == 1 else 's' }}
+      </p>
+      <div class="ds-curriculum-preview__toolbar" role="group" aria-label="Hierarchy controls">
+        <button type="button" class="ds-btn ds-btn--secondary" data-preview-expand-all>Expand All</button>
+        <button type="button" class="ds-btn ds-btn--secondary" data-preview-collapse-all>Collapse All</button>
+      </div>
+      <div class="ds-curriculum-preview__viewport" data-preview-viewport role="tree" aria-label="Curriculum hierarchy">
+        <div class="ds-curriculum-preview__spacer" data-preview-spacer aria-hidden="true"></div>
+        <div class="ds-curriculum-preview__rows" data-preview-rows></div>
+      </div>
+      <noscript>
+        <ul class="ds-list">
+          {% for node in page.preview_nodes %}
+          <li>
+            <span class="ds-badge ds-badge--neutral">{{ node.kind }}</span>
+            <strong>{{ node.title }}</strong>
+            {% if node.parent_id %}<span class="ds-list__meta">parent {{ node.parent_id }}</span>{% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+      </noscript>
+    </div>
+    <p>Inspect the structure above, then approve when it looks right.</p>
+    {% else %}
+    <p>Generate the preview to inspect sections and topics before approving.</p>
+    {% endif %}
     {% if page.primary_key != 'preview' %}
     <form method="post" action="{{ url_for('curriculum_studio.preview', workspace_id=page.workspace_id) }}">
       {{ preview_form.hidden_tag() }}{{ preview_form.workspace_id }}
       {{ secondary_submit(preview_form, 'Rebuild preview') }}
     </form>
     {% endif %}
-    <form method="post" action="{{ url_for('curriculum_studio.advance', workspace_id=page.workspace_id) }}">
-      {{ advance_form.hidden_tag() }}{{ advance_form.workspace_id }}
-      {{ secondary_submit(advance_form, 'Continue to Approve') }}
+    {% if page.preview_built and page.primary_key != 'approve' %}
+    <form method="post" action="{{ url_for('curriculum_studio.approve', workspace_id=page.workspace_id) }}" class="ds-workspace-primary-form">
+      {{ approve_form.hidden_tag() }}{{ approve_form.workspace_id }}
+      <label class="ds-field-label" for="{{ approve_form.reason.id }}">{{ approve_form.reason.label.text }}</label>
+      {{ approve_form.reason(class_='ds-input') }}
+      {{ secondary_submit(approve_form, 'Approve structure') }}
     </form>
+    {% endif %}
 
     {% elif page.show_approve %}
-    <p>Approval records that this curriculum may proceed to Publish.</p>
+    <p>Structure approved. Continue to Publish when a version label is assigned.</p>
+    {% if page.topic_count %}
+    <p class="ds-list__meta">{{ page.review_summary }}</p>
+    {% endif %}
     {% if page.primary_key != 'approve' %}
     <form method="post" action="{{ url_for('curriculum_studio.approve', workspace_id=page.workspace_id) }}" class="ds-workspace-primary-form">
       {{ approve_form.hidden_tag() }}{{ approve_form.workspace_id }}
@@ -258,5 +305,8 @@
 {% block extra_scripts %}
 {% if page.show_upload %}
 <script src="{{ versioned_static('js/curriculum_studio/document_upload.js') }}"></script>
+{% endif %}
+{% if page.show_review and page.preview_built %}
+<script src="{{ versioned_static('js/curriculum_preview_tree.js') }}"></script>
 {% endif %}
 {% endblock %}

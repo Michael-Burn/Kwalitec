@@ -41,6 +41,13 @@
                     {% from "partials/appearance_switcher.html" import appearance_switcher %}
                     {{ appearance_switcher(group_aria_label='Appearance', compact=true) }}
                     {% if current_user.is_authenticated %}
+                    {% if can_switch_experience %}
+                    <a
+                        class="student-nav-link"
+                        href="{{ experience_selection_url }}"
+                        data-testid="switch-experience"
+                    >Switch Experience</a>
+                    {% endif %}
                     <form method="post" action="{{ url_for('auth.logout') }}" class="student-signout-form">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                         <button class="student-nav-link student-signout" type="submit">Sign out</button>
