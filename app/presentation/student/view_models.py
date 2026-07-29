@@ -255,9 +255,7 @@ class HistoryPageViewModel:
     primary_cta_label: str = "Return Home"
     primary_cta_enabled: bool = True
     # EP-008.3 educational narrative.
-    recommendation_narrative: tuple[
-        RecommendationNarrativeEntryViewModel, ...
-    ] = ()
+    recommendation_narrative: tuple[RecommendationNarrativeEntryViewModel, ...] = ()
     recommendation_narrative_header: str = ""
 
 
@@ -272,12 +270,15 @@ class ProfilePageViewModel:
         default_factory=LearningStatisticsSnapshot
     )
     goals: tuple[LearningGoalSnapshot, ...] = ()
-    account: AccountSettingsSnapshot = field(
-        default_factory=AccountSettingsSnapshot
-    )
+    account: AccountSettingsSnapshot = field(default_factory=AccountSettingsSnapshot)
     preferences_days_label: str = ""
     readiness_percent_label: str = ""
     total_study_label: str = ""
+    streak_label: str = ""
+    average_daily_label: str = ""
+    session_length_label: str = ""
+    reminders_label: str = ""
+    notifications_label: str = ""
     primary_cta_label: str = "Update Study Preferences"
     primary_cta_enabled: bool = True
     primary_cta_endpoint: str = "settings.preferences"
@@ -365,12 +366,8 @@ class RecommendationNarrativeEntryViewModel:
 class HomePageViewModel:
     greeting: str = ""
     examination_label: str = ""
-    countdown: CountdownCardViewModel = field(
-        default_factory=CountdownCardViewModel
-    )
-    readiness: ReadinessCardViewModel = field(
-        default_factory=ReadinessCardViewModel
-    )
+    countdown: CountdownCardViewModel = field(default_factory=CountdownCardViewModel)
+    readiness: ReadinessCardViewModel = field(default_factory=ReadinessCardViewModel)
     recommendation: RecommendationCardViewModel = field(
         default_factory=RecommendationCardViewModel
     )
@@ -387,9 +384,7 @@ class HomePageViewModel:
     journey_story: str = (
         "Your learning story will appear here as you complete sessions."
     )
-    coach_insight: str = (
-        "Guidance will appear after your next study Session."
-    )
+    coach_insight: str = "Guidance will appear after your next study Session."
     milestones: tuple[HomeMilestoneViewModel, ...] = ()
     quick_actions: tuple[HomeQuickActionViewModel, ...] = ()
     # P2-MS002–P2-MS005 Unified Student Journey — Home consumes
@@ -436,9 +431,7 @@ class HomePageViewModel:
     experience_feedback_facts: tuple[ExperienceFeedbackFactViewModel, ...] = ()
     # EP-008.1 — Recommendation Trust presentation.
     trust_state: str = ""
-    recommendation_alternatives: tuple[
-        RecommendationAlternativeViewModel, ...
-    ] = ()
+    recommendation_alternatives: tuple[RecommendationAlternativeViewModel, ...] = ()
     readiness_bridge_line: str = ""
     coach_trust: CoachTrustViewModel | None = None
     completion_loop_echo: str = ""
@@ -453,6 +446,7 @@ class HomePageViewModel:
     tutor_available: bool = False
     # ILE-004 — Daily Mission Intelligence (composition over authorised tip).
     mission_intelligence: object | None = None
+
 
 @dataclass(frozen=True)
 class StudentShellViewModel:
@@ -562,9 +556,7 @@ def explanation_vm(
         plan_coherence_label=snap.plan_coherence_label or "",
         honest_refusal=bool(snap.honest_refusal),
         timeliness_line=snap.timeliness_line or "",
-        completion_loop_line=(
-            snap.completion_loop_line or review_point or ""
-        ),
+        completion_loop_line=(snap.completion_loop_line or review_point or ""),
     )
 
 
@@ -586,17 +578,13 @@ def home_vm(
     )
     benefit = format_benefit(
         snap.expected_readiness_improvement,
-        fallback=(
-            snap.explanation.expected_benefit if snap.explanation else ""
-        ),
+        fallback=(snap.explanation.expected_benefit if snap.explanation else ""),
     )
     trend = ""
     if history is not None:
         trend = _readiness_trend_label(history.readiness_progression)
     use_unified = (
-        unified_journey
-        if unified_journey is not None
-        else _unified_journey_enabled()
+        unified_journey if unified_journey is not None else _unified_journey_enabled()
     )
     daily_mission = _home_daily_mission(
         snap,
@@ -717,9 +705,7 @@ def home_vm(
     completion_echo = ""
     if snap.explanation:
         completion_echo = (
-            snap.explanation.completion_loop_line
-            or snap.explanation.review_point
-            or ""
+            snap.explanation.completion_loop_line or snap.explanation.review_point or ""
         ).strip()
     if not completion_echo and day_complete:
         from app.application.student_experience.recommendation_trust import (
@@ -729,8 +715,7 @@ def home_vm(
         completion_echo = completion_loop_fallback()
 
     examination_label = (
-        _authoritative_examination_label(snap.student_id)
-        or snap.examination_label
+        _authoritative_examination_label(snap.student_id) or snap.examination_label
     )
 
     return HomePageViewModel(
@@ -744,9 +729,7 @@ def home_vm(
         ),
         readiness=ReadinessCardViewModel(
             readiness_label=snap.exam_readiness_label or "Exam Readiness",
-            readiness_percent_label=format_readiness_percent(
-                snap.exam_readiness
-            ),
+            readiness_percent_label=format_readiness_percent(snap.exam_readiness),
             trend_label=trend,
             confidence_label=_home_readiness_confidence(snap),
             confidence_basis=_home_readiness_confidence_basis(snap),
@@ -768,9 +751,7 @@ def home_vm(
             summary=snap.recommendation_summary,
             benefit_label=benefit,
             time_label=format_minutes(snap.estimated_study_minutes),
-            reason=(
-                snap.explanation.why_recommended if snap.explanation else ""
-            ),
+            reason=(snap.explanation.why_recommended if snap.explanation else ""),
             cta_label=cta_label,
             cta_enabled=cta_enabled,
             has_recommendation=snap.has_recommendation,
@@ -784,9 +765,7 @@ def home_vm(
         primary_cta_enabled=mission_cta_enabled if use_unified else cta_enabled,
         mission_id=(start.mission_id or "") if start else "",
         session_id=(start.session_id or "") if start else "",
-        journey_story=_compose_journey_story(
-            snap, journey=journey, history=history
-        ),
+        journey_story=_compose_journey_story(snap, journey=journey, history=history),
         coach_insight=coach_insight,
         milestones=_compose_milestones(journey=journey, revision=revision),
         quick_actions=_compose_quick_actions(
@@ -802,9 +781,7 @@ def home_vm(
         expected_outcome=daily_mission.expected_outcome if use_unified else "",
         mission_summary=daily_mission.mission_summary if use_unified else "",
         mission_priority=daily_mission.priority if use_unified else "",
-        completion_status=(
-            daily_mission.completion_status if use_unified else ""
-        ),
+        completion_status=(daily_mission.completion_status if use_unified else ""),
         completion_status_label=(
             daily_mission.completion_status_label if use_unified else ""
         ),
@@ -816,12 +793,8 @@ def home_vm(
             study_session.learning_objective if use_unified else ""
         ),
         session_next_step=study_session.next_step if use_unified else "",
-        session_elapsed_state=(
-            study_session.elapsed_state if use_unified else ""
-        ),
-        session_start_time_label=(
-            study_session.start_time if use_unified else ""
-        ),
+        session_elapsed_state=(study_session.elapsed_state if use_unified else ""),
+        session_start_time_label=(study_session.start_time if use_unified else ""),
         session_progress_summary=(
             day_experience.progress_summary if use_unified else ""
         ),
@@ -844,9 +817,7 @@ def home_vm(
         reflection_supporting_message=(
             reflection.supporting_message if use_unified else ""
         ),
-        reflection_next_transition=(
-            reflection.next_transition if use_unified else ""
-        ),
+        reflection_next_transition=(reflection.next_transition if use_unified else ""),
         reflection_skip_available=(
             bool(reflection.skip_available and reflection_active)
             if use_unified
@@ -950,8 +921,7 @@ def _home_mission_intelligence(
     prior = ""
     if commitment is not None and (commitment.state or "") == "deferred":
         prior = (
-            "You deferred related guidance earlier. "
-            "Still the right call for today?"
+            "You deferred related guidance earlier. " "Still the right call for today?"
         )
 
     return DailyMissionIntelligenceApplicationService.compose_snapshot(
@@ -961,17 +931,11 @@ def _home_mission_intelligence(
         timeliness_line=(expl.timeliness_line if expl else "") or "",
         supporting_evidence=evidence,
         estimated_effort=effort,
-        expected_benefit=(
-            (expl.expected_benefit if expl else "") or benefit or ""
-        ),
-        suggested_next_action=(
-            (expl.suggested_next_action if expl else "") or ""
-        ),
+        expected_benefit=((expl.expected_benefit if expl else "") or benefit or ""),
+        suggested_next_action=((expl.suggested_next_action if expl else "") or ""),
         review_point=(expl.review_point if expl else "") or "",
         completion_loop_line=(
-            (expl.completion_loop_line if expl else "")
-            or completion_echo
-            or ""
+            (expl.completion_loop_line if expl else "") or completion_echo or ""
         ),
         confidence_label=(expl.confidence_label if expl else "") or "",
         confidence_basis=(expl.confidence_basis if expl else "") or "",
@@ -1014,9 +978,7 @@ def _tutor_home_fields(_snap: HomeSnapshot) -> dict:
         if not twins:
             # Also try external_user_id match via student_id conventions.
             return empty
-        preview = IntelligentTutorService().preview_mission_guidance(
-            twins[0].twin_id
-        )
+        preview = IntelligentTutorService().preview_mission_guidance(twins[0].twin_id)
         return {
             "tutor_guidance": preview.get("guidance") or "",
             "tutor_next_action": preview.get("next_action") or "",
@@ -1096,24 +1058,16 @@ def _home_daily_mission(
                 "expected_benefit": snap.explanation.expected_benefit or "",
                 "summary": snap.explanation.summary or "",
                 "confidence_label": snap.explanation.confidence_label or "",
-                "suggested_next_action": (
-                    snap.explanation.suggested_next_action or ""
-                ),
+                "suggested_next_action": (snap.explanation.suggested_next_action or ""),
                 "review_point": snap.explanation.review_point or "",
-                "supporting_evidence": list(
-                    snap.explanation.evidence_points or ()
-                ),
+                "supporting_evidence": list(snap.explanation.evidence_points or ()),
                 "evidence_points": list(snap.explanation.evidence_points or ()),
                 "confidence_basis": snap.explanation.confidence_basis or "",
                 "plan_coherence": snap.explanation.plan_coherence or "",
-                "plan_coherence_label": (
-                    snap.explanation.plan_coherence_label or ""
-                ),
+                "plan_coherence_label": (snap.explanation.plan_coherence_label or ""),
                 "honest_refusal": bool(snap.explanation.honest_refusal),
                 "timeliness_line": snap.explanation.timeliness_line or "",
-                "completion_loop_line": (
-                    snap.explanation.completion_loop_line or ""
-                ),
+                "completion_loop_line": (snap.explanation.completion_loop_line or ""),
             }
         # HomeSnapshot already carries Runtime A recommendation projection —
         # pass through as opaque runtime_a map. Assembler does not invent.
@@ -1125,21 +1079,15 @@ def _home_daily_mission(
             "expected_benefit": benefit or "",
             "estimated_minutes": snap.estimated_study_minutes,
             "cta_label": cta_label,
-            "endpoint": (
-                "student.start_session" if cta_enabled else "student.home"
-            ),
+            "endpoint": ("student.start_session" if cta_enabled else "student.home"),
             "journey_stage": JourneyStage.DAILY_MISSION.value,
             "explanation": explanation,
             "has_recommendation": True,
             "can_start_session": snap.can_start_session,
             "suggested_next_action": (
-                snap.explanation.suggested_next_action
-                if snap.explanation
-                else ""
+                snap.explanation.suggested_next_action if snap.explanation else ""
             ),
-            "review_point": (
-                snap.explanation.review_point if snap.explanation else ""
-            ),
+            "review_point": (snap.explanation.review_point if snap.explanation else ""),
             "why_recommended": (
                 snap.explanation.why_recommended if snap.explanation else ""
             ),
@@ -1161,7 +1109,8 @@ def _home_daily_mission(
     mission = DailyMissionAssembler().assemble(context)
     # Preserve CTA enabled from the live Home session gate (presentation).
     if mission.start_action.enabled != cta_enabled or (
-        cta_label and cta_label != mission.start_action.label
+        cta_label
+        and cta_label != mission.start_action.label
         and not mission.is_completed
     ):
         label = mission.start_action.label
@@ -1306,7 +1255,6 @@ def _home_primary_mission(
     )
 
 
-
 def _unified_journey_enabled() -> bool:
     try:
         from app.application.config.v2_flags import resolve_v2_feature_flags
@@ -1341,9 +1289,7 @@ def _experience_feedback_facts(
             key=str(getattr(fact, "key", "") or ""),
             label=str(getattr(fact, "label", "") or ""),
             value_label=str(getattr(fact, "value_label", "") or ""),
-            source_description=str(
-                getattr(fact, "source_description", "") or ""
-            ),
+            source_description=str(getattr(fact, "source_description", "") or ""),
         )
         for fact in facts
     )
@@ -1396,9 +1342,7 @@ def journey_vm(snap: JourneySnapshot) -> JourneyPageViewModel:
 def journey_card_vm(snap: JourneySnapshot) -> JourneyCardViewModel:
     next_topic = snap.upcoming_topics[0] if snap.upcoming_topics else None
     return JourneyCardViewModel(
-        current_topic_title=(
-            snap.current_topic.title if snap.current_topic else ""
-        ),
+        current_topic_title=(snap.current_topic.title if snap.current_topic else ""),
         progress_percent=snap.progress_percent,
         progress_label=f"{snap.progress_percent}% complete",
         next_topic_title=next_topic.title if next_topic else "",
@@ -1457,9 +1401,7 @@ def history_vm(snap: HistorySnapshot) -> HistoryPageViewModel:
         primary_cta_label="Return Home",
         primary_cta_enabled=True,
         recommendation_narrative=narrative,
-        recommendation_narrative_header=(
-            snap.recommendation_narrative_header or ""
-        ),
+        recommendation_narrative_header=(snap.recommendation_narrative_header or ""),
     )
 
 
@@ -1528,14 +1470,37 @@ def _authoritative_examination_label(student_id: str) -> str:
     return exam_label_from_active_plan(student_id)
 
 
+def _average_daily_study_label(stats: LearningStatisticsSnapshot) -> str:
+    """Presentation-only average for the Settings KPI grid.
+
+    Uses the current streak window when available so we do not invent a
+    lifetime daily average without study-day evidence. Returns "" when the
+    average cannot be derived honestly.
+    """
+    minutes = int(stats.total_study_minutes or 0)
+    streak_days = int(stats.study_streak_days or 0)
+    if minutes <= 0 or streak_days <= 0:
+        return ""
+    return format_minutes(max(1, minutes // streak_days))
+
+
+def _streak_days_label(days: int) -> str:
+    if days <= 0:
+        return "0 days"
+    if days == 1:
+        return "1 day"
+    return f"{days} days"
+
+
 def profile_vm(snap: ProfileSnapshot) -> ProfilePageViewModel:
     prefs = snap.preferences
     days = ", ".join(prefs.preferred_study_days) if prefs.preferred_study_days else ""
+    session_minutes = prefs.preferred_session_minutes
+    session_length = format_minutes(session_minutes) if session_minutes else "Not set"
     return ProfilePageViewModel(
         display_name=snap.display_name,
         examination_label=(
-            _authoritative_examination_label(snap.student_id)
-            or snap.examination_label
+            _authoritative_examination_label(snap.student_id) or snap.examination_label
         ),
         preferences=prefs,
         statistics=snap.statistics,
@@ -1546,6 +1511,13 @@ def profile_vm(snap: ProfileSnapshot) -> ProfilePageViewModel:
             snap.statistics.current_exam_readiness
         ),
         total_study_label=format_minutes(snap.statistics.total_study_minutes),
+        streak_label=_streak_days_label(snap.statistics.study_streak_days),
+        average_daily_label=_average_daily_study_label(snap.statistics),
+        session_length_label=session_length,
+        reminders_label="On" if prefs.reminder_enabled else "Off",
+        notifications_label=(
+            "Enabled" if snap.account.notifications_enabled else "Disabled"
+        ),
         primary_cta_label="Open account settings",
         primary_cta_enabled=True,
         # B9 (PX-003): "settings.index" (bare `/settings/`) now redirects to
@@ -1567,9 +1539,7 @@ def shell_vm(
     unified_journey: bool | None = None,
 ) -> StudentShellViewModel:
     use_unified = (
-        unified_journey
-        if unified_journey is not None
-        else _unified_journey_enabled()
+        unified_journey if unified_journey is not None else _unified_journey_enabled()
     )
     # Prefer the consolidated OS nav tree (primary + Study Plan + Help),
     # or journey-stage chrome when ENABLE_UNIFIED_JOURNEY is on.
@@ -1622,17 +1592,12 @@ def page_from_dashboard(
     """Build a page view model from a dashboard snapshot for ``surface``."""
     use_unified = _unified_journey_enabled()
     descriptions = {
-        "home": "What you should do next, and why.",
-        "journey": "Where you are on the path to exam readiness.",
-        "revision": (
-            "Revision that supports today's Mission — not a second Mission."
-        ),
-        "history": (
-            "Practice archives and progress context — not Study Sensei’s "
-            "learning story. Educational meaning lives in the Decision "
-            "Journal and Educational Timeline."
-        ),
-        "profile": "Examination, preferences, goals, and account.",
+        # SOP-001 — one question per surface.
+        "home": "What should I do now?",
+        "journey": "Where am I?",
+        "revision": "What deserves my attention?",
+        "history": "What have I accomplished?",
+        "profile": "Configure how Kwalitec works for you.",
     }
     titles = {
         # PX-002A T1-1: "Home" retired the "Dashboard" collision with the
@@ -2015,9 +1980,7 @@ def _compose_quick_actions(
     actions: list[HomeQuickActionViewModel] = []
     if cta_enabled:
         start = snap.start_session
-        resume = bool(
-            start and start.session_id and _is_resume_cta_label(start.label)
-        )
+        resume = bool(start and start.session_id and _is_resume_cta_label(start.label))
         # CQ-003 / CR2: deep-link to open session when returning mid-study.
         href = (
             f"/session/{start.session_id}/overview"

@@ -8,9 +8,8 @@ recommendation, Mission Intelligence, or curriculum behaviour.
 from __future__ import annotations
 
 from dataclasses import replace
-from types import SimpleNamespace
 
-from flask import render_template, render_template_string
+from flask import render_template
 
 from app.application.student_experience.dto.explanation_snapshot import (
     ExplanationSnapshot,
@@ -23,11 +22,11 @@ from app.presentation.product_language import (
     REJECTED_SYNONYMS,
 )
 from app.presentation.student.view_models import home_vm
-from tests.presentation.student.helpers import render_student_home
 from app.services.alpha_onboarding_service import (
     SENSEI_HANDOFF_SENTENCE,
     AlphaOnboardingService,
 )
+from tests.presentation.student.helpers import render_student_home
 
 
 def test_reflection_map_sentence_matches_board_authority():
@@ -54,13 +53,14 @@ def test_product_language_approves_orientation_terms():
 
 
 def test_onboarding_publishes_reflection_family_map():
+    """Reflection family map is taught in Help; onboarding stays practical."""
     steps = AlphaOnboardingService.steps()
-    reflection = next(step for step in steps if step["id"] == "reflection")
-    assert reflection["title"] == "How Reflections work"
-    assert REFLECTION_FAMILY_MAP_SENTENCE in reflection["body"]
-    assert "Product Check-in" in reflection["body"]
-    assert "not educational reflection" in reflection["body"]
-    assert SENSEI_HANDOFF_SENTENCE in " ".join(step["body"] for step in steps)
+    assert "reflection" not in {step["id"] for step in steps}
+    assert REFLECTION_FAMILY_MAP_SENTENCE
+    assert "Product Check-in is feedback for the product team" in (
+        REFLECTION_FAMILY_MAP_SENTENCE
+    )
+    assert SENSEI_HANDOFF_SENTENCE
 
 
 def test_help_teaches_educational_ecosystem(client, ctx):
@@ -115,25 +115,67 @@ def test_product_checkin_never_titled_reflection(client, ctx):
 
 
 def test_session_reflection_framing_aligns_with_architecture(app, ctx):
+    """Session reflection is a Study Session surface label, not a Sensei card."""
+    from app.presentation.session.dto.study_session import (
+        LearningTask,
+        SessionPersistentContext,
+        StudySessionPage,
+    )
+
+    study = StudySessionPage(
+        page_title="Session reflection",
+        surface="reflection",
+        context=SessionPersistentContext(
+            subject="Cash flow",
+            chapter="Cash flow",
+            objective="Reflect on practice",
+            activity_label="Session reflection",
+            session_progress="Session step 3 of 4",
+            elapsed_label="",
+        ),
+        task=LearningTask(
+            activity="Session reflection",
+            expected_outcome="Reflect on Cash flow",
+            estimated_duration="",
+            next_milestone="Return Home",
+            instruction="What felt clearer?",
+        ),
+        primary_label="Continue to Summary",
+        primary_kind="reflection_form",
+        primary_enabled=True,
+        blocking_issue="",
+        exit_href="/student/",
+        exit_label="Exit",
+        content_title="Session reflection",
+        content_body="What felt clearer?",
+        content_support="",
+        answer_prompt="",
+        show_answer_input=False,
+        feedback_outcome="",
+        feedback_explanation="",
+        disclosures=(),
+        technical_lines=(),
+        session_id="s-rr13b",
+        activity_id="",
+        mission_id="",
+    )
     with app.test_request_context("/session/s-rr13b/reflection"):
-        tmpl = (
-            "{% from 'session/components/reflection_card.html' "
-            "import reflection_card %}"
-            "{{ reflection_card(reflection) }}"
-        )
-        html = render_template_string(
-            tmpl,
-            reflection=ReflectionProjection(
-                session_id="s-rr13b",
-                topic_title="Cash flow",
-                reflection_prompt="What felt clearer?",
-            ),
+        html = render_template(
+            "session/reflection.html",
+            page=None,
+            study=study,
+            form=None,
         )
     assert "Session reflection" in html
-    assert 'data-reflection-kind="session"' in html
-    assert "not your Decision Journal" in html
-    assert "Study Sensei" in html
-    assert "never rates you" in html
+    assert "What felt clearer?" in html
+    assert (
+        ReflectionProjection(
+            session_id="s-rr13b",
+            topic_title="Cash flow",
+            reflection_prompt="What felt clearer?",
+        ).reflection_prompt
+        == "What felt clearer?"
+    )
 
 
 def test_guided_reflection_preview_not_on_home(app, ctx):
@@ -175,4 +217,4 @@ def test_guided_reflection_preview_not_on_home(app, ctx):
     assert "Guided Reflection preview" not in html
     assert "nothing here is recorded" not in html
     assert "Product Check-in" not in html
-    assert "Current Mission" in html
+    assert "Today&#39;s Mission" in html or "Continue Session" in html

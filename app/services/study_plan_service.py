@@ -81,8 +81,10 @@ class StudyPlanService:
             study_preference: Study preference (Reading First, Questions First, Mixed).
             target_grade: Target grade to achieve.
             preferred_session_minutes: Preferred study session length in minutes.
-            curriculum_version: Optional curriculum version this plan was created against.
-            curriculum_topic_code: Optional official curriculum topic code (e.g., "1.1").
+            curriculum_version: Optional curriculum version this plan was
+                created against.
+            curriculum_topic_code: Optional official curriculum topic code
+                (e.g., "1.1").
             completed_curriculum_topics: Optional list of topic codes the user has
                 already completed (from the Study Plan Wizard).
 
@@ -191,7 +193,9 @@ class StudyPlanService:
         except Exception:
             logger.exception(
                 "Failed to load curriculum %s/%s/%s.",
-                organisation, paper, version,
+                organisation,
+                paper,
+                version,
             )
             return None
 
@@ -281,7 +285,9 @@ class StudyPlanService:
         if load_result is None:
             logger.debug(
                 "Curriculum %s/%s/%s not found — skipping topic progress init.",
-                organisation, paper, curriculum_version,
+                organisation,
+                paper,
+                curriculum_version,
             )
             return
 
@@ -368,17 +374,21 @@ class StudyPlanService:
                             engine_topic.learning_objectives,
                             key=lambda lo: lo.display_order,
                         ):
-                            db.session.add(LearningObjective(
-                                topic_id=db_topic.id,
-                                description=(
-                                    f"[{engine_lo.code}] {engine_lo.description}"
-                                ),
-                                order=engine_lo.display_order,
-                                active=True,
-                            ))
+                            db.session.add(
+                                LearningObjective(
+                                    topic_id=db_topic.id,
+                                    description=(
+                                        f"[{engine_lo.code}] {engine_lo.description}"
+                                    ),
+                                    order=engine_lo.display_order,
+                                    active=True,
+                                )
+                            )
 
                     StudyPlanService._create_topic_progress_if_absent(
-                        study_plan, db_topic, engine_topic.code,
+                        study_plan,
+                        db_topic,
+                        engine_topic.code,
                         completed_curriculum_topics,
                     )
 
@@ -405,17 +415,21 @@ class StudyPlanService:
                     for lo_order, engine_lo in enumerate(
                         engine_topic.learning_outcomes, start=1
                     ):
-                        db.session.add(LearningObjective(
-                            topic_id=db_topic.id,
-                            description=(
-                                f"[{engine_lo.code}] {engine_lo.description}"
-                            ),
-                            order=lo_order,
-                            active=True,
-                        ))
+                        db.session.add(
+                            LearningObjective(
+                                topic_id=db_topic.id,
+                                description=(
+                                    f"[{engine_lo.code}] {engine_lo.description}"
+                                ),
+                                order=lo_order,
+                                active=True,
+                            )
+                        )
 
                 StudyPlanService._create_topic_progress_if_absent(
-                    study_plan, db_topic, engine_topic.code,
+                    study_plan,
+                    db_topic,
+                    engine_topic.code,
                     completed_curriculum_topics,
                 )
 
@@ -580,25 +594,27 @@ class StudyPlanService:
         # EIP-001 / EL-001 / IA-004: Manual topic completion writes Study
         # Progress only. Never invent Mastery or student-felt confidence
         # from a coverage declaration.
-        db.session.add(TopicProgress(
-            user_id=study_plan.user_id,
-            topic_id=db_topic.id,
-            confidence="Not Started",
-            completed=is_completed,
-            mastery_score=0.0,
-            revision_count=0,
-            last_reviewed=None,
-            current_stage=(
-                TopicProgress.STAGE_COMPLETED
-                if is_completed
-                else TopicProgress.STAGE_NOT_STARTED
-            ),
-        ))
+        db.session.add(
+            TopicProgress(
+                user_id=study_plan.user_id,
+                topic_id=db_topic.id,
+                confidence="Not Started",
+                completed=is_completed,
+                mastery_score=0.0,
+                revision_count=0,
+                last_reviewed=None,
+                current_stage=(
+                    TopicProgress.STAGE_COMPLETED
+                    if is_completed
+                    else TopicProgress.STAGE_NOT_STARTED
+                ),
+            )
+        )
 
     @staticmethod
     def _generate_week_plans(study_plan: StudyPlan) -> list[WeekPlan]:
         """Generate week plans from study start date to exam date.
-        
+
         For curriculum-backed study plans (those with both
         ``curriculum_version`` and ``curriculum_topic_code`` set), week
         plans are paced according to the official curriculum topic order
@@ -607,14 +623,17 @@ class StudyPlanService:
 
         Args:
             study_plan: The study plan to generate weeks for.
-        
+
         Returns:
             list[WeekPlan]: List of generated week plans.
         """
         # ── Try curriculum-backed sequencing first ──────────────────────
         if study_plan.curriculum_version and study_plan.curriculum_topic_code:
             from app.services.planning_service import PlanningService
-            curriculum_weeks = PlanningService.generate_curriculum_week_plans(study_plan)
+
+            curriculum_weeks = PlanningService.generate_curriculum_week_plans(
+                study_plan
+            )
             if curriculum_weeks:
                 return curriculum_weeks
 
@@ -663,18 +682,14 @@ class StudyPlanService:
         Returns:
             StudyPlan | None: The active study plan or None if not found.
         """
-        study_plan = StudyPlan.query.filter_by(
-            user_id=user_id, active=True
-        ).first()
+        study_plan = StudyPlan.query.filter_by(user_id=user_id, active=True).first()
         if study_plan is None:
             return None
         StudyPlanService.ensure_curriculum_binding(study_plan)
         return study_plan
 
     @staticmethod
-    def get_plan(
-        study_plan_id: int, user_id: int | None = None
-    ) -> StudyPlan | None:
+    def get_plan(study_plan_id: int, user_id: int | None = None) -> StudyPlan | None:
         """Load a study plan by id, self-healing curriculum binding.
 
         This is the canonical single-plan access path. Prefer it over raw
@@ -762,9 +777,7 @@ class StudyPlanService:
         StudyPlanService._initialize_topic_progress_from_curriculum(study_plan)
         db.session.commit()
 
-        bound = bool(
-            study_plan.curriculum_id and study_plan.curriculum_version
-        )
+        bound = bool(study_plan.curriculum_id and study_plan.curriculum_version)
         if bound:
             logger.info(
                 "Bound study plan %s to curriculum_id=%s version=%s",
@@ -788,7 +801,9 @@ class StudyPlanService:
         Args:
             user_id: The user ID.
         """
-        StudyPlan.query.filter_by(user_id=user_id, active=True).update({"active": False})
+        StudyPlan.query.filter_by(user_id=user_id, active=True).update(
+            {"active": False}
+        )
         db.session.commit()
 
     @staticmethod
@@ -896,10 +911,16 @@ class StudyPlanService:
         }
 
         # Validate new values for study minutes if provided
-        test_weekday = kwargs.get("weekday_study_minutes", study_plan.weekday_study_minutes)
-        test_weekend = kwargs.get("weekend_study_minutes", study_plan.weekend_study_minutes)
+        test_weekday = kwargs.get(
+            "weekday_study_minutes", study_plan.weekday_study_minutes
+        )
+        test_weekend = kwargs.get(
+            "weekend_study_minutes", study_plan.weekend_study_minutes
+        )
         test_exam_date = kwargs.get("exam_date", study_plan.exam_date)
-        StudyPlanService._validate_study_plan_input(test_exam_date, test_weekday, test_weekend)
+        StudyPlanService._validate_study_plan_input(
+            test_exam_date, test_weekday, test_weekend
+        )
 
         # Apply scalar updates
         for field in updatable_fields:
@@ -976,7 +997,9 @@ class StudyPlanService:
         if load_result is None:
             logger.debug(
                 "Curriculum %s/%s/%s not found — skipping topic sync.",
-                organisation, paper, study_plan.curriculum_version,
+                organisation,
+                paper,
+                study_plan.curriculum_version,
             )
             return
 
@@ -1002,8 +1025,7 @@ class StudyPlanService:
                 continue
 
             is_current = (
-                curriculum_topic_code
-                and engine_topic.code == curriculum_topic_code
+                curriculum_topic_code and engine_topic.code == curriculum_topic_code
             )
             in_completed = engine_topic.code in completed_set
 
@@ -1064,15 +1086,34 @@ class StudyPlanService:
             raise ValueError(f"Study plan {study_plan_id} not found")
 
         if study_plan.user_id != user_id:
-            raise ValueError(f"Study plan {study_plan_id} does not belong to user {user_id}")
+            raise ValueError(
+                f"Study plan {study_plan_id} does not belong to user {user_id}"
+            )
 
         # Detach disposable plan context; retain learner educational history.
         EducationalContinuityService.release_plan_planning_artifacts(study_plan)
 
         # Week plans cascade via delete-orphan. TopicProgress is intentionally
         # untouched — it is learner-owned Study Progress / estimate storage.
-        db.session.delete(study_plan)
-        db.session.commit()
+        try:
+            db.session.delete(study_plan)
+            db.session.commit()
+        except Exception as exc:
+            db.session.rollback()
+            from sqlalchemy.exc import IntegrityError
+
+            if isinstance(exc, IntegrityError):
+                logger.warning(
+                    "Study plan %s delete blocked by remaining references: %s",
+                    study_plan_id,
+                    exc,
+                )
+                raise ValueError(
+                    "This study plan cannot be deleted because related records "
+                    "still reference it. Archive the plan instead, or ask an "
+                    "operator to run the Founder educational reset."
+                ) from exc
+            raise
 
     @staticmethod
     def archive_study_plan(study_plan_id: int, user_id: int) -> StudyPlan:
@@ -1096,7 +1137,9 @@ class StudyPlanService:
             raise ValueError(f"Study plan {study_plan_id} not found")
 
         if study_plan.user_id != user_id:
-            raise ValueError(f"Study plan {study_plan_id} does not belong to user {user_id}")
+            raise ValueError(
+                f"Study plan {study_plan_id} does not belong to user {user_id}"
+            )
 
         study_plan.archived = True
         study_plan.active = False
@@ -1104,9 +1147,7 @@ class StudyPlanService:
         return study_plan
 
     @staticmethod
-    def get_user_plans(
-        user_id: int, include_archived: bool = False
-    ) -> list[StudyPlan]:
+    def get_user_plans(user_id: int, include_archived: bool = False) -> list[StudyPlan]:
         """Get all study plans for a user.
 
         Args:
@@ -1114,7 +1155,7 @@ class StudyPlanService:
             include_archived: If True, also return archived plans.
 
         Returns:
-            list[StudyPlan]: List of study plans ordered by creation date (newest first).
+            list[StudyPlan]: Study plans ordered by creation date (newest first).
         """
         query = StudyPlan.query.filter_by(user_id=user_id)
         if not include_archived:

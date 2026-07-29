@@ -244,7 +244,7 @@ class MissionPanel:
     why_now: str = ""
     status_label: str = ""
     after_completion: str = ""
-    section_title: str = "Current Mission"
+    section_title: str = "Today's Mission"
 
     def style(self) -> StyleContract:
         return StyleContract(

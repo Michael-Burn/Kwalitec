@@ -869,3 +869,198 @@
     transition: none;
   }
 }
+
+/* ——— SOP-001 Student OS surfaces (token-only) ——— */
+
+.ds-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.ds-os-exam,
+.ds-os-health,
+.ds-os-actions,
+.ds-os-deadlines,
+.ds-os-progress,
+.ds-os-recommend {
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.ds-os-health__status {
+  margin: 0;
+  font-size: var(--font-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.ds-os-exam__label,
+.ds-os-progress__label,
+.ds-os-recommend__title,
+.ds-os-path__title {
+  margin: 0;
+  font-size: var(--font-section);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.ds-os-path__subtitle,
+.ds-os-stat__value {
+  margin: 0;
+  font-size: var(--font-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.ds-os-stat__value--sm {
+  font-size: var(--font-support);
+  font-weight: var(--font-weight-medium);
+}
+
+.ds-os-health--positive {
+  border-color: color-mix(in srgb, var(--success) 35%, var(--border-subtle));
+}
+
+.ds-os-health--caution {
+  border-color: color-mix(in srgb, var(--warning) 35%, var(--border-subtle));
+}
+
+.ds-os-progress__track {
+  height: 0.5rem;
+  border-radius: var(--radius-full, 999px);
+  background: var(--surface-secondary, var(--background));
+  overflow: hidden;
+}
+
+.ds-os-progress__fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: inherit;
+  transition: width 0.2s ease;
+}
+
+.ds-os-path {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.ds-os-path__current {
+  background: var(--surface);
+  border: 1px solid var(--primary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.ds-os-path__next {
+  padding: var(--space-3) var(--space-4);
+  border-left: 3px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.ds-os-path__timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.ds-os-path__step {
+  display: grid;
+  grid-template-columns: 0.75rem 1fr;
+  gap: var(--space-3);
+  align-items: start;
+}
+
+.ds-os-path__marker {
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-top: 0.35rem;
+  border-radius: 50%;
+  background: var(--border);
+  border: 2px solid var(--surface);
+  box-shadow: 0 0 0 1px var(--border);
+}
+
+.ds-os-path__step--done .ds-os-path__marker {
+  background: var(--success);
+  box-shadow: 0 0 0 1px var(--success);
+}
+
+.ds-os-path__step-title {
+  margin: 0;
+  font-size: var(--font-base);
+  color: var(--text-primary);
+}
+
+.ds-os-recommend__meta {
+  display: grid;
+  gap: var(--space-2);
+  margin: var(--space-2) 0 0;
+}
+
+.ds-os-recommend__meta > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: space-between;
+}
+
+.ds-os-recommend__meta dt {
+  margin: 0;
+  font-size: var(--font-caption, var(--font-support));
+  color: var(--text-muted);
+}
+
+.ds-os-recommend__meta dd {
+  margin: 0;
+  font-size: var(--font-support);
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+.ds-os-recommend__why {
+  margin: var(--space-2) 0 0;
+  font-size: var(--font-base);
+  color: var(--text-secondary);
+}
+
+.ds-os-archive-bridge {
+  padding-bottom: var(--space-2);
+}
+
+.ds-os-archive-stats {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.ds-os-stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-os-progress__fill {
+    transition: none;
+  }
+}

@@ -108,9 +108,7 @@ def create_admin_command() -> None:
         return
 
     click.echo("Administrator created successfully.")
-    logger.info(
-        "create-admin: administrator created for email=%s", user.email
-    )
+    logger.info("create-admin: administrator created for email=%s", user.email)
 
 
 @click.command("sync-admin")
@@ -157,9 +155,7 @@ def sync_admin_command() -> None:
 
     if result.created:
         click.echo("Administrator created successfully.")
-        logger.info(
-            "sync-admin: administrator created for email=%s", result.email
-        )
+        logger.info("sync-admin: administrator created for email=%s", result.email)
     else:
         click.echo("Administrator synchronised successfully.")
         click.echo("  - password updated")
@@ -318,7 +314,10 @@ def backfill_sections_command(dry_run: bool) -> None:
             except Exception as exc:
                 logger.warning(
                     "backfill-sections: cannot load %s/%s/%s — skipping (%s)",
-                    organisation, paper, version, exc,
+                    organisation,
+                    paper,
+                    version,
+                    exc,
                 )
                 continue
 
@@ -389,9 +388,7 @@ def backfill_sections_command(dry_run: bool) -> None:
                     total_sections_created += 1
                     label = "[DRY] " if dry_run else ""
                     action = "would be created" if dry_run else "created"
-                    click.echo(
-                        f"    {label}Section '{engine_section.code}' {action}."
-                    )
+                    click.echo(f"    {label}Section '{engine_section.code}' {action}.")
 
                 if dry_run:
                     # Count how many topics would be linked for this section.
@@ -461,11 +458,13 @@ def backfill_sections_command(dry_run: bool) -> None:
     help="Skip the interactive confirmation prompt (operator automation only).",
 )
 def internal_alpha_reset_command(assume_yes: bool) -> None:
-    """Reset generated educational state for Internal Alpha.
+    """Reset generated educational state for Founder / Internal Alpha baseline.
 
-    Removes Study Plans, Twins, progress, missions, attempts, decisions, and
-    related regenerable history. Preserves users, password hashes, curricula,
-    sections, topics, learning objectives, configuration, and Alembic history.
+    Removes Study Plans, Twins, progress, missions, attempts, decisions,
+    research feedback, analytics, V2 aggregates, runtime enrolments, and
+    related regenerable learner history. Preserves users, password hashes,
+    curricula, sections, topics, learning objectives, Curriculum Studio
+    configuration, published curriculum metadata, and Alembic history.
 
     This is NOT a database wipe. THIS CANNOT BE UNDONE.
 
@@ -478,21 +477,21 @@ def internal_alpha_reset_command(assume_yes: bool) -> None:
     logger.info("Starting internal-alpha-reset command")
 
     click.echo("=" * 60)
-    click.echo("INTERNAL ALPHA RESET")
+    click.echo("INTERNAL ALPHA / FOUNDER EDUCATIONAL RESET")
     click.echo("=" * 60)
     click.echo()
     click.echo("THIS CANNOT BE UNDONE")
     click.echo()
     click.echo(
-        "This command removes generated educational state so every "
-        "Internal Alpha participant starts from the same baseline."
+        "This command removes learner-generated operational state so the "
+        "environment returns to a clean Founder baseline."
     )
     click.echo("It does NOT wipe the database.")
     click.echo()
 
     preview = InternalAlphaResetService.preview()
 
-    click.echo("Will delete (generated educational data):")
+    click.echo("Will delete (learner-generated operational data):")
     for item in preview.to_delete:
         click.echo(f"  - {item.table}: {item.count}")
     click.echo(f"  Total rows to delete: {preview.total_to_delete}")
@@ -532,9 +531,9 @@ def internal_alpha_reset_command(assume_yes: bool) -> None:
         click.echo(f"  - {item.table}: {item.count}")
     click.echo()
     click.echo(
-        "Application is ready for Internal Alpha. "
+        "Application is ready for a clean Founder baseline. "
         "Participants may create new Study Plans, Calibration, Twins, "
-        "recommendations, and missions from a shared baseline."
+        "recommendations, and missions from a shared empty history."
     )
     logger.info(
         "internal-alpha-reset: completed total_deleted=%d",

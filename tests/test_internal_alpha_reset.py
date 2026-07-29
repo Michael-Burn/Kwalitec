@@ -24,15 +24,19 @@ from app.application.twin_repository import (
 )
 from app.domain.twin import DigitalTwin
 from app.extensions import db
+from app.models.analytics_events import AnalyticsEventRecord
 from app.models.curriculum import Curriculum, Section, Topic
 from app.models.decision import Decision
 from app.models.learning import LearningObjective, Mistake, StudyAttempt
 from app.models.mission import Mission, MissionTask
+from app.models.recommendation_commitment import RecommendationCommitment
+from app.models.research_feedback import ResearchFeedbackSubmission
 from app.models.study_plan import StudyPlan, WeekPlan
 from app.models.subject import Subject
 from app.models.topic_progress import TopicProgress
 from app.models.twin_snapshot import TwinSnapshot
 from app.models.user import User
+from app.models.v2_aggregate import V2AggregateDocument, V2AggregateSnapshot
 from app.services.curriculum_service import CurriculumService
 from app.services.internal_alpha_reset_service import (
     RESET_MODELS,
@@ -186,6 +190,56 @@ def _seed_generated_state(user: User) -> Curriculum:
         persisted_at=datetime.now(UTC).replace(tzinfo=None),
     )
     db.session.add(twin_row)
+
+    # UX-002A expanded coverage seeds
+    feedback = ResearchFeedbackSubmission(
+        user_id=user.id,
+        product_version="2.0.0",
+        study_plan_id=plan.id,
+        mission_id=mission.id,
+        experience_rating="good",
+        feature_helped_most="study_plan",
+        friction_area="none",
+        confidence_rating="medium",
+        return_intent="yes",
+        submission_source="test",
+    )
+    db.session.add(feedback)
+
+    commitment = RecommendationCommitment(
+        user_id=user.id,
+        recommendation_key="seed-rec-1",
+        title="Study Probability",
+        state="offered",
+    )
+    db.session.add(commitment)
+
+    analytics = AnalyticsEventRecord(
+        event_id="seed-evt-1",
+        event_type="session.started",
+        user_id=user.id,
+        idempotency_key="seed-idem-1",
+        payload_json="{}",
+        occurred_at=datetime.now(UTC).replace(tzinfo=None),
+    )
+    db.session.add(analytics)
+
+    doc = V2AggregateDocument(
+        aggregate_name="twin",
+        aggregate_id=f"student-{user.id}",
+        version=1,
+        payload="{}",
+    )
+    db.session.add(doc)
+    snap = V2AggregateSnapshot(
+        snapshot_id="seed-v2-snap-1",
+        aggregate_name="twin",
+        aggregate_id=f"student-{user.id}",
+        sequence=1,
+        payload="{}",
+    )
+    db.session.add(snap)
+
     db.session.commit()
     return curriculum
 
@@ -266,6 +320,35 @@ class TestInternalAlphaResetService:
         preserved = {item.table: item.count for item in result.preserved}
         assert preserved["users"] == 1
         assert preserved["curricula"] == 1
+
+    def test_execute_clears_expanded_learner_artefacts(self, ctx, user):
+        _seed_generated_state(user)
+        assert ResearchFeedbackSubmission.query.count() == 1
+        assert RecommendationCommitment.query.count() == 1
+        assert AnalyticsEventRecord.query.count() == 1
+        assert V2AggregateDocument.query.count() == 1
+        assert V2AggregateSnapshot.query.count() == 1
+
+        InternalAlphaResetService.execute()
+
+        assert ResearchFeedbackSubmission.query.count() == 0
+        assert RecommendationCommitment.query.count() == 0
+        assert AnalyticsEventRecord.query.count() == 0
+        assert V2AggregateDocument.query.count() == 0
+        assert V2AggregateSnapshot.query.count() == 0
+        assert StudyPlan.query.count() == 0
+
+    def test_execute_is_idempotent(self, ctx, user):
+        _seed_generated_state(user)
+        first = InternalAlphaResetService.execute()
+        assert first.total_deleted >= 1
+
+        second = InternalAlphaResetService.execute()
+        assert second.total_deleted == 0
+        for model in RESET_MODELS:
+            assert db.session.query(model).count() == 0
+        assert User.query.count() == 1
+        assert Curriculum.query.count() >= 1
 
 
 class TestInternalAlphaResetCli:

@@ -22,11 +22,11 @@ from app.application.student_experience.recommendation_commitment import (
 )
 from app.presentation.product_language import APPROVED_TERMS, REJECTED_SYNONYMS
 from app.presentation.student.view_models import home_vm
-from tests.presentation.student.helpers import render_student_home
 from app.services.alpha_onboarding_service import (
     SENSEI_HANDOFF_SENTENCE,
     AlphaOnboardingService,
 )
+from tests.presentation.student.helpers import render_student_home
 
 HANDOFF = "Study Sensei is how Kwalitec guides your daily learning decisions."
 
@@ -36,20 +36,19 @@ def test_handoff_sentence_matches_board_authority():
 
 
 def test_onboarding_steps_hand_off_to_study_sensei():
+    """Orientation is four practical steps; Sensei handoff lives in Help."""
     steps = AlphaOnboardingService.steps()
     ids = [step["id"] for step in steps]
-    assert ids[0] == "what"
-    assert ids[1] == "sensei"
+    assert ids == ["what", "choose", "focus", "explainable"]
     bodies = " ".join(step["body"] for step in steps)
     titles = " ".join(step["title"] for step in steps)
-    assert HANDOFF in bodies
-    assert "Meet Study Sensei" in titles
-    assert "Kwalitec prepares" not in bodies
-    assert "reasons Kwalitec used" not in bodies
-    assert "helps Kwalitec understand" not in bodies
-    assert "Study Sensei prepares one focused Mission" in bodies
-    assert "Start today's Session" in bodies
-    assert "reasons Study Sensei used" in bodies
+    assert "What Kwalitec is" in titles
+    assert "Choose your exam" in titles
+    assert "Today's Focus" in titles
+    assert "Guidance you can understand" in titles
+    assert "Study Plan" in bodies
+    assert "black box" in bodies
+    assert SENSEI_HANDOFF_SENTENCE == HANDOFF
 
 
 def test_product_language_approves_mission_and_rejects_tip_system():
@@ -108,7 +107,7 @@ def test_home_template_mission_first_without_guidance_panel(app, ctx):
     assert "Coach insight" not in html
     assert ">Guidance<" not in html
     assert "Guidance</h2>" not in html
-    assert "Current Mission" in html
+    assert "Today&#39;s Mission" in html or "Continue Session" in html
     assert "Optimising for" not in html
 
 
@@ -152,18 +151,49 @@ def test_runtime_c_panel_retires_system_narrator(app, ctx):
 
 
 def test_session_overview_introduces_sensei_and_mission(app, ctx):
-    page = SimpleNamespace(
-        shell=SimpleNamespace(session_id="sess-1"),
-        overview=SimpleNamespace(
+    """DX-005C: overview is a calm learning task — no Sensei chrome theatre."""
+    from app.presentation.session.dto.study_session import (
+        LearningTask,
+        SessionPersistentContext,
+        StudySessionPage,
+    )
+
+    study = StudySessionPage(
+        page_title="Session",
+        surface="overview",
+        context=SessionPersistentContext(
+            subject="Cash flow statements",
+            chapter="Cash flow statements",
             objective="Practice cash flow statements",
-            why_studying="Soft recall needs deliberate practice.",
-            learning_goal="",
-            estimated_duration_label="25 min",
-            activity_count_label="3 activities",
-            expected_improvement_label="",
-            topics=("Cash flow",),
-            begin_enabled=True,
+            activity_label="Begin practice",
+            session_progress="Session step 1 of 4",
+            elapsed_label="25 min",
         ),
+        task=LearningTask(
+            activity="Begin practice",
+            expected_outcome="Practice cash flow statements",
+            estimated_duration="25 min",
+            next_milestone="3 activities",
+            instruction="Soft recall needs deliberate practice.",
+        ),
+        primary_label="Start Session",
+        primary_kind="begin_form",
+        primary_enabled=True,
+        blocking_issue="",
+        exit_href="/student/",
+        exit_label="Exit",
+        content_title="Current objective",
+        content_body="Practice cash flow statements",
+        content_support="",
+        answer_prompt="Your answer",
+        show_answer_input=False,
+        feedback_outcome="",
+        feedback_explanation="",
+        disclosures=(),
+        technical_lines=(),
+        session_id="sess-1",
+        activity_id="",
+        mission_id="m1",
     )
     form = SimpleNamespace(
         hidden_tag=lambda: "",
@@ -174,10 +204,12 @@ def test_session_overview_introduces_sensei_and_mission(app, ctx):
     with app.test_request_context("/session/sess-1"):
         html = render_template(
             "session/overview.html",
-            page=page,
+            page=None,
+            study=study,
             form=form,
             quick_check_embed=None,
         )
-    assert 'data-narrator="study-sensei"' in html
-    assert "Study Sensei" in html
-    assert "focused practice on today's Mission" in html
+    assert "Soft recall needs deliberate practice." in html
+    assert "Start Session" in html
+    assert "Study Sensei" not in html
+    assert 'data-narrator="study-sensei"' not in html

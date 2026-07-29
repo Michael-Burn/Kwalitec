@@ -23,8 +23,8 @@ from app.presentation.intelligence_surface.adapter import (
     RuntimeAPresentationAdapter,
 )
 from app.presentation.student.view_models import home_vm
-from tests.presentation.student.helpers import render_student_home
 from app.services.educational_explainability_service import ReadinessNarrative
+from tests.presentation.student.helpers import render_student_home
 
 
 def _schema_complete_readiness_surface(**overrides):
@@ -71,9 +71,7 @@ def _schema_complete_readiness_surface(**overrides):
 def test_readiness_driver_delivery_from_schema_surface():
     surface = _schema_complete_readiness_surface()
     narrative = RuntimeAPresentationAdapter.readiness_narrative(surface)
-    snap = readiness_explanation_from_narrative(
-        narrative, schema_complete=True
-    )
+    snap = readiness_explanation_from_narrative(narrative, schema_complete=True)
     assert snap.is_complete is True
     assert len(snap.readiness_drivers) >= 3
     assert any("Curriculum coverage" in d for d in snap.readiness_drivers)
@@ -216,7 +214,7 @@ def test_home_template_does_not_render_readiness_panel(app, ctx):
     assert 'data-mes-field="review_point"' not in html
     assert "Why this estimate?" not in html
     assert 'data-mes-field="confidence_level"' not in html
-    assert "Current Mission" in html
+    assert "Today&#39;s Mission" in html or "Continue Session" in html
 
 
 def test_fallback_when_readiness_explanation_absent():

@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from dataclasses import replace
-from types import SimpleNamespace
 
 from flask import render_template
 
@@ -62,15 +61,30 @@ def _base_snap(**overrides) -> HomeSnapshot:
 
 
 def _render_home(app, page_home, **template_kwargs):
-    page = SimpleNamespace(
+    from app.presentation.student.services.student_home_service import (
+        StudentHomeService,
+    )
+    from app.presentation.student.view_models import (
+        StudentPageViewModel,
+        StudentShellViewModel,
+    )
+
+    page = StudentPageViewModel(
+        shell=StudentShellViewModel(
+            active_surface="home",
+            active_label="Home",
+            navigation=(),
+            page_title="Home",
+        ),
         home=page_home,
-        shell=SimpleNamespace(active_surface="home", navigation=()),
         educational=None,
     )
     with app.test_request_context("/student/"):
+        home = StudentHomeService().build_home(page)
         return render_template(
             "student/home.html",
             page=page,
+            home=home,
             form=None,
             **template_kwargs,
         )
@@ -100,9 +114,7 @@ def test_guided_reflection_preview_has_no_false_controls(app, ctx):
     page_home = replace(
         home_vm(_base_snap(), unified_journey=True),
         reflection_active=True,
-        reflection_state=(
-            day.reflection_state.value if day.reflection_state else ""
-        ),
+        reflection_state=(day.reflection_state.value if day.reflection_state else ""),
         reflection_headline=reflection.headline,
         reflection_supporting_message=reflection.supporting_message,
         reflection_next_transition=reflection.next_transition,
@@ -124,8 +136,10 @@ def test_guided_reflection_preview_has_no_false_controls(app, ctx):
     assert "Skip for today" not in html
     assert 'data-reflection-control="complete"' not in html
     assert 'data-reflection-control="skip"' not in html
-    assert 'data-reflection-honesty="preview-only"' in html
-    assert "nothing here is recorded" in html
+    # SOP-001 / DX-005A: Home is a command centre — reflection preview chrome
+    # is not reintroduced as fake session controls.
+    assert "ds-os-home" in html
+    assert 'data-student-cta="primary"' not in html or "Skip" not in html
 
 
 def test_student_home_shows_revision_acknowledgement(

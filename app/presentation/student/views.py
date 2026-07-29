@@ -84,9 +84,7 @@ def load_page(surface: ExperienceSurface | str) -> StudentPageViewModel:
         return _empty_page(surface_key)
 
 
-def _try_runtime_c_page(
-    sid: str, surface_key: str
-) -> StudentPageViewModel | None:
+def _try_runtime_c_page(sid: str, surface_key: str) -> StudentPageViewModel | None:
     """Return a Runtime C educational page when the student is enrolled.
 
     RI-001: when Educational Intelligence Preferred Authority is available,
@@ -113,9 +111,7 @@ def _try_runtime_c_page(
         experience = EducationalExperienceService().load_for_user(user_id)
         if experience is None:
             return None
-        return page_from_educational_experience(
-            experience, surface=surface_key
-        )
+        return page_from_educational_experience(experience, surface=surface_key)
     except Exception:  # noqa: BLE001 — fail open to Runtime A
         logger.warning(
             "runtime_c_educational_page_failed surface=%s",
@@ -132,9 +128,7 @@ def _ri001_preferred_authority_available(user_id: int) -> bool:
             build_runtime_integration_service,
         )
 
-        return build_runtime_integration_service().has_educational_intelligence(
-            user_id
-        )
+        return build_runtime_integration_service().has_educational_intelligence(user_id)
     except Exception:  # noqa: BLE001
         return False
 
@@ -159,17 +153,12 @@ def start_todays_session(
 
 def _empty_page(surface: str) -> StudentPageViewModel:
     descriptions = {
-        "home": "What you should do next, and why.",
-        "journey": "Where you are on the path to exam readiness.",
-        "revision": (
-            "Revision that supports today's Mission — not a second Mission."
-        ),
-        "history": (
-            "Practice archives and progress context — not Study Sensei’s "
-            "learning story. Educational meaning lives in the Decision "
-            "Journal and Educational Timeline."
-        ),
-        "profile": "Examination, preferences, goals, and account.",
+        # SOP-001 — one question per surface.
+        "home": "What should I do now?",
+        "journey": "Where am I?",
+        "revision": "What deserves my attention?",
+        "history": "What have I accomplished?",
+        "profile": "Configure how Kwalitec works for you.",
     }
     titles = {
         "home": "Home",

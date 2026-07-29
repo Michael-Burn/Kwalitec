@@ -86,7 +86,7 @@ def test_home_template_mission_first_without_legacy_chrome(app, ctx):
     assert "Study Sensei" not in html
     assert "Readiness, journey, and guidance" not in html
     assert "Readiness, journey, and coach" not in html
-    assert "Current Mission" in html
+    assert "Today&#39;s Mission" in html or "Continue Session" in html
     assert "Optimising for" not in html
     assert "Focusing on" not in html
     assert "Mission confidence" not in html
@@ -136,8 +136,8 @@ def test_home_mi_chrome_not_on_home(app, ctx):
     assert "How sure this guidance feels" not in html
     assert "What is still uncertain" not in html
     assert "Sensei reflection" not in html
-    assert 'data-mission-intelligence' not in html
-    assert "Current Mission" in html
+    assert "data-mission-intelligence" not in html
+    assert "Today&#39;s Mission" in html or "Continue Session" in html
     assert "Focusing on" not in html
     assert "Optimising for" not in html
 
@@ -197,7 +197,9 @@ def test_session_completion_omits_readiness_kpi(app, ctx):
         activity_id="",
     )
     with app.test_request_context("/session/complete"):
-        html = render_template("session/summary.html", study=study, form=None, page=None)
+        html = render_template(
+            "session/summary.html", study=study, form=None, page=None
+        )
     assert "Cash flow" in html
     assert "Readiness estimate" not in html
     assert "Exam readiness" not in html
@@ -227,7 +229,7 @@ def test_revision_template_declares_mission_primacy(app, ctx):
     assert "Revision support" in html
     assert "not a second Mission" in html
     assert "Today's best revision" not in html
-    assert "supports today's Mission" in html
+    assert "supports today's Mission" in html or "supports today&#39;s Mission" in html
 
 
 def test_revision_empty_teaches_mission_next_step(app, ctx):
@@ -249,7 +251,9 @@ def test_revision_empty_teaches_mission_next_step(app, ctx):
     )
     with app.test_request_context("/student/revision"):
         html = render_template("student/revision.html", page=page, form=None)
-    assert "Return to today's Mission" in html
+    assert (
+        "Return to today's Mission" in html or "Return to today&#39;s Mission" in html
+    )
     assert "No revision support yet" in html
     assert "Quick Check" not in html
     assert "Mission tip" not in html

@@ -111,7 +111,7 @@ def test_home_mission_intelligence_relocated_off_home(app, ctx):
     assert 'data-mission-intelligence="true"' not in html
     assert "student-mission-intelligence-disclosure" not in html
     assert 'data-home-density="tertiary"' not in html
-    assert "Current Mission" in html
+    assert "Today&#39;s Mission" in html or "Continue Session" in html
     assert "Why now" in html
 
 
@@ -146,9 +146,9 @@ def test_educational_empty_macro_uses_student_empty():
 
 def test_compact_nav_markers_present():
     """XR-05: navigation exposes compact mobile toggle markers."""
-    nav = (
-        ROOT / "app/templates/student/components/navigation.html"
-    ).read_text(encoding="utf-8")
+    nav = (ROOT / "app/templates/student/components/navigation.html").read_text(
+        encoding="utf-8"
+    )
     css = (ROOT / "app/static/css/student/student.css").read_text(encoding="utf-8")
     js = (ROOT / "app/static/js/student.js").read_text(encoding="utf-8")
     assert "data-student-nav-toggle" in nav

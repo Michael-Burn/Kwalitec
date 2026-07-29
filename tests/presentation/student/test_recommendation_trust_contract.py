@@ -180,11 +180,11 @@ def test_tr_a01_schema_complete_home_binds_trust_mes_fields(app, ctx):
         unified_journey=False,
     )
     html = render_student_home(app, page_home)
-    assert "Current Mission" in html
+    assert "Today&#39;s Mission" in html or "Continue Session" in html
     assert "Why now" in html
-    assert 'data-mes-field' not in html
-    assert 'data-mes-level' not in html
-    assert 'data-mes-disclosure' not in html
+    assert "data-mes-field" not in html
+    assert "data-mes-level" not in html
+    assert "data-mes-disclosure" not in html
     assert 'data-mes-field="plan_coherence"' not in html
     assert 'data-mes-field="review_point"' not in html
     assert html.count('data-student-cta="primary"') <= 1

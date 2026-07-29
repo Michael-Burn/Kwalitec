@@ -45,7 +45,7 @@ def test_home_shows_mission_or_empty(student_client):
     html = response.get_data(as_text=True)
     assert "Home" in html
     assert (
-        "Current Mission" in html
+        ("Today&#39;s Mission" in html)
         or "Choose Exam" in html
         or "Continue Session" in html
         or "Start Session" in html
@@ -114,9 +114,7 @@ def test_start_session_opaque_engine_missing_experience_id(
 
     wire_experience(
         experience_app,
-        mission=ExperienceMissionAdapter(
-            mission_engine=IncompleteOpaqueEngine()
-        ),
+        mission=ExperienceMissionAdapter(mission_engine=IncompleteOpaqueEngine()),
     )
     response = student_client.post(
         "/student/session/start",

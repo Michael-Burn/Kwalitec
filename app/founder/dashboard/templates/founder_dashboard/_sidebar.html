@@ -23,5 +23,11 @@
     </nav>
     <div class="console-sidebar-foot">
         <a class="console-nav-link console-nav-link--muted" href="{{ url_for('founder_dashboard.search') }}">Search</a>
+        {# UX-001 — Founder OS stays primary; Student OS is entered deliberately. #}
+        <a
+            class="console-nav-link console-nav-link--muted"
+            href="{{ url_for('student.home') }}"
+            data-testid="enter-student-experience"
+        >Enter Student Experience</a>
     </div>
 </aside>

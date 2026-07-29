@@ -54,11 +54,11 @@ def test_home_template_shows_mission_why_now_without_mes_stack(app, ctx):
     )
     page_home = home_vm(snap, unified_journey=False)
     html = render_student_home(app, page_home)
-    assert "Current Mission" in html
+    assert "Today&#39;s Mission" in html or "Continue Session" in html
     assert "Why now" in html
     assert "soft recall on cash flow" in html
-    assert 'data-mes-field' not in html
-    assert 'data-mes-disclosure' not in html
+    assert "data-mes-field" not in html
+    assert "data-mes-disclosure" not in html
     assert "Study Sensei" not in html
     assert 'data-narrator="study-sensei"' not in html
     assert "Why this guidance?" not in html

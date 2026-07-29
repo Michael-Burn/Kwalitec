@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from types import SimpleNamespace
-
 from flask import render_template
 
 from app.application.student_experience.dto.explanation_snapshot import (
@@ -61,9 +59,7 @@ def test_why_studying_from_recommendation_uses_summary_then_topic():
         {"summary": "Focused practice where readiness gains are strongest today."},
         topic="Core methods",
     )
-    assert "Cash flows" in _why_studying_from_recommendation(
-        {}, topic="Cash flows"
-    )
+    assert "Cash flows" in _why_studying_from_recommendation({}, topic="Cash flows")
 
 
 def test_composition_seeds_overview_why_from_adaptive():
@@ -119,41 +115,61 @@ def test_activity_adapter_threads_overview_why_into_context():
 
 
 def test_overview_labels_why_this_session(app, ctx):
-    page = SimpleNamespace(
-        shell=SimpleNamespace(
-            session_id="sess-1",
-            topic_title="Cash flows",
-            steps=(),
-            page_eyebrow="Session",
-            page_title="Overview",
-            page_description="",
-            active_surface="overview",
-        ),
-        overview=SimpleNamespace(
+    """DX-005C: why-copy is one instructional sentence on the learning task."""
+    from app.presentation.session.dto.study_session import (
+        LearningTask,
+        SessionPersistentContext,
+        StudySessionPage,
+    )
+
+    study = StudySessionPage(
+        page_title="Session",
+        surface="overview",
+        context=SessionPersistentContext(
+            subject="Cash flows",
+            chapter="Cash flows",
             objective="Strengthen Cash flows",
-            learning_goal="",
-            why_studying="Soft recall needs deliberate practice.",
-            estimated_duration_label="About 30 minutes",
-            activity_count_label="3 activities",
-            topics=("Cash flows",),
-            expected_improvement_label="",
-            begin_label="Start Session",
-            begin_enabled=True,
-            mission_id="m1",
+            activity_label="Begin practice",
+            session_progress="Session step 1 of 4",
+            elapsed_label="About 30 minutes",
         ),
-        progress=None,
-        activity=None,
+        task=LearningTask(
+            activity="Begin practice",
+            expected_outcome="Strengthen Cash flows",
+            estimated_duration="About 30 minutes",
+            next_milestone="3 activities",
+            instruction="Soft recall needs deliberate practice.",
+        ),
+        primary_label="Start Session",
+        primary_kind="begin_form",
+        primary_enabled=True,
+        blocking_issue="",
+        exit_href="/student/",
+        exit_label="Exit",
+        content_title="Current objective",
+        content_body="Strengthen Cash flows",
+        content_support="",
+        answer_prompt="Your answer",
+        show_answer_input=False,
+        feedback_outcome="",
+        feedback_explanation="",
+        disclosures=(),
+        technical_lines=(),
+        session_id="sess-1",
+        activity_id="",
+        mission_id="m1",
     )
     with app.test_request_context("/session/sess-1/overview"):
         html = render_template(
             "session/overview.html",
-            page=page,
+            page=None,
+            study=study,
             form=None,
             quick_check_embed=None,
         )
-    assert "Why this Session" in html
     assert "Soft recall needs deliberate practice." in html
-    assert 'data-session="why"' in html
+    assert "Current Learning Task" in html
+    assert "Why this Session" not in html
 
 
 def test_home_canonicalises_why_label_and_resume_reconnection(app, ctx):
@@ -196,7 +212,7 @@ def test_home_canonicalises_why_label_and_resume_reconnection(app, ctx):
     assert 'data-habit="resume-why"' not in html
     assert "Still on this because" not in html
     assert "I’m doing this next" not in html
-    assert 'data-trust-coach' not in html
+    assert "data-trust-coach" not in html
     assert ">Guidance<" not in html
 
 
@@ -240,8 +256,8 @@ def test_home_guidance_panel_absent(app, ctx):
     assert 'data-trust-coach="alternatives"' not in html
     assert "Also considered" not in html
     assert "Ethics" not in html
-    assert "Current Mission" in html
-    assert 'data-mes-field' not in html
+    assert "Today&#39;s Mission" in html or "Continue Session" in html
+    assert "data-mes-field" not in html
 
 
 def test_home_readiness_panel_absent(app, ctx):

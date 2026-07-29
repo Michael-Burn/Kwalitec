@@ -1,7 +1,8 @@
-"""Internal Alpha educational-state reset.
+"""Founder / Internal Alpha educational-state reset.
 
-Removes generated learning history while preserving users, curricula,
-configuration, and Alembic metadata. This is not a database wipe.
+Removes learner-generated operational artefacts while preserving users,
+canonical curricula, Curriculum Studio configuration, published curriculum
+metadata, and Alembic history. This is not a database wipe.
 """
 
 from __future__ import annotations
@@ -12,20 +13,107 @@ from dataclasses import dataclass
 from sqlalchemy import inspect, text
 
 from app.extensions import db
+from app.models.analytics_events import (
+    AnalyticsAuditLogRecord,
+    AnalyticsEventRecord,
+    AnalyticsOutboxRecord,
+)
 from app.models.curriculum import Curriculum, Section, Topic
+from app.models.curriculum_studio_foundation import (
+    PublishedCurriculumPackage,
+    StudioFoundationAuditEvent,
+    StudioFoundationDocument,
+    StudioFoundationSubject,
+    StudioFoundationVersion,
+)
 from app.models.decision import Decision
+from app.models.educational_runtime_engine import (
+    RuntimeEducationalEvent,
+    RuntimeEnrolment,
+    RuntimeMissionInstance,
+    RuntimeStudyPlanInstance,
+)
 from app.models.learning import LearningObjective, Mistake, StudyAttempt
 from app.models.mission import Mission, MissionTask
+from app.models.platform_integration import RuntimeEnrolmentRoutingAudit
+from app.models.recommendation_commitment import RecommendationCommitment
+from app.models.research_feedback import (
+    ResearchContribution,
+    ResearchContributorBadge,
+    ResearchFeedbackReview,
+    ResearchFeedbackStatusTransition,
+    ResearchFeedbackSubmission,
+    ResearchFounderNote,
+    ResearchProductFinding,
+    ResearchProductFindingLink,
+    ResearchProductFindingStatusTransition,
+)
+from app.models.student_curriculum_binding import (
+    SciCurriculumNodeState,
+    SciStudentCurriculumInstance,
+)
+from app.models.student_digital_twin import (
+    SdtKnowledgeGap,
+    SdtLearningStateSnapshot,
+    SdtMasteryRecord,
+    SdtObservation,
+    SdtPrediction,
+    SdtReasoningHistory,
+    SdtRecommendation,
+    SdtStudentDigitalTwin,
+)
 from app.models.study_plan import StudyPlan, WeekPlan
 from app.models.subject import Subject
 from app.models.topic_progress import TopicProgress
 from app.models.twin_snapshot import TwinSnapshot
 from app.models.user import User
+from app.models.v2_aggregate import (
+    V2AggregateDocument,
+    V2AggregateSnapshot,
+    V2EvidenceEvent,
+)
 
 logger = logging.getLogger(__name__)
 
 # Child tables first so FK constraints remain satisfied during delete.
 RESET_MODELS: tuple[type, ...] = (
+    # Research feedback graph (children → submissions)
+    ResearchProductFindingLink,
+    ResearchProductFindingStatusTransition,
+    ResearchProductFinding,
+    ResearchFounderNote,
+    ResearchFeedbackStatusTransition,
+    ResearchFeedbackReview,
+    ResearchContributorBadge,
+    ResearchContribution,
+    ResearchFeedbackSubmission,
+    # Analytics / durable aggregates
+    AnalyticsAuditLogRecord,
+    AnalyticsOutboxRecord,
+    AnalyticsEventRecord,
+    V2EvidenceEvent,
+    V2AggregateSnapshot,
+    V2AggregateDocument,
+    # Runtime C / SCI learner bindings
+    RuntimeEducationalEvent,
+    RuntimeMissionInstance,
+    RuntimeStudyPlanInstance,
+    RuntimeEnrolment,
+    RuntimeEnrolmentRoutingAudit,
+    SciCurriculumNodeState,
+    SciStudentCurriculumInstance,
+    # Student digital twin projections
+    SdtReasoningHistory,
+    SdtPrediction,
+    SdtRecommendation,
+    SdtKnowledgeGap,
+    SdtMasteryRecord,
+    SdtObservation,
+    SdtLearningStateSnapshot,
+    SdtStudentDigitalTwin,
+    # Recommendation commitments
+    RecommendationCommitment,
+    # Runtime A educational history
     Mistake,
     StudyAttempt,
     MissionTask,
@@ -44,6 +132,11 @@ PRESERVED_MODELS: tuple[type, ...] = (
     Section,
     Topic,
     LearningObjective,
+    PublishedCurriculumPackage,
+    StudioFoundationSubject,
+    StudioFoundationVersion,
+    StudioFoundationDocument,
+    StudioFoundationAuditEvent,
 )
 
 
@@ -74,18 +167,29 @@ class InternalAlphaResetResult:
 
 
 class InternalAlphaResetService:
-    """Reset generated educational state for a fair Internal Alpha baseline."""
+    """Canonical Founder / Internal Alpha educational-state reset."""
+
+    @staticmethod
+    def _models_with_tables(models: tuple[type, ...]) -> tuple[type, ...]:
+        """Return only models whose tables exist in the current database."""
+        inspector = inspect(db.engine)
+        present = set(inspector.get_table_names())
+        return tuple(model for model in models if model.__tablename__ in present)
 
     @staticmethod
     def preview() -> InternalAlphaResetPreview:
         """Return current row counts for reset and preserved tables."""
+        reset_models = InternalAlphaResetService._models_with_tables(RESET_MODELS)
+        preserved_models = InternalAlphaResetService._models_with_tables(
+            PRESERVED_MODELS
+        )
         to_delete = tuple(
             TableCount(table=model.__tablename__, count=db.session.query(model).count())
-            for model in RESET_MODELS
+            for model in reset_models
         )
         preserved = tuple(
             TableCount(table=model.__tablename__, count=db.session.query(model).count())
-            for model in PRESERVED_MODELS
+            for model in preserved_models
         )
         return InternalAlphaResetPreview(
             to_delete=to_delete,
@@ -95,10 +199,12 @@ class InternalAlphaResetService:
 
     @staticmethod
     def execute() -> InternalAlphaResetResult:
-        """Delete all generated educational rows inside one transaction.
+        """Delete all learner-generated operational rows inside one transaction.
 
-        Preserves users, curricula (including sections/topics/learning
-        objectives), and never touches Alembic metadata.
+        Preserves users (Founder / Administrator and any other accounts),
+        canonical curricula (including sections / topics / learning objectives),
+        Curriculum Studio configuration, published curriculum metadata, and
+        never touches Alembic metadata.
 
         Returns:
             InternalAlphaResetResult with exact per-table delete counts.
@@ -107,10 +213,11 @@ class InternalAlphaResetService:
             Exception: Any database error rolls back the whole reset.
         """
         preview = InternalAlphaResetService.preview()
+        reset_models = InternalAlphaResetService._models_with_tables(RESET_MODELS)
         deleted_counts: list[TableCount] = []
 
         try:
-            for model in RESET_MODELS:
+            for model in reset_models:
                 before = db.session.query(model).count()
                 db.session.query(model).delete(synchronize_session=False)
                 deleted_counts.append(
@@ -137,24 +244,32 @@ class InternalAlphaResetService:
                 exc_info=True,
             )
 
+        preserved_models = InternalAlphaResetService._models_with_tables(
+            PRESERVED_MODELS
+        )
         preserved = tuple(
             TableCount(table=model.__tablename__, count=db.session.query(model).count())
-            for model in PRESERVED_MODELS
+            for model in preserved_models
         )
         deleted = tuple(deleted_counts)
         total = sum(item.count for item in deleted)
+
+        users_preserved = next((p.count for p in preserved if p.table == "users"), 0)
+        curricula_preserved = next(
+            (p.count for p in preserved if p.table == "curricula"), 0
+        )
 
         logger.info(
             "internal-alpha-reset: deleted %d row(s) across %d table(s); "
             "preserved users=%d curricula=%d",
             total,
             len(deleted),
-            next(p.count for p in preserved if p.table == "users"),
-            next(p.count for p in preserved if p.table == "curricula"),
+            users_preserved,
+            curricula_preserved,
         )
 
         # Sanity: nothing scheduled for delete should remain.
-        for model in RESET_MODELS:
+        for model in reset_models:
             remaining = db.session.query(model).count()
             if remaining != 0:
                 raise RuntimeError(

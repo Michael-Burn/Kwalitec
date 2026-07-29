@@ -14,9 +14,11 @@ Legacy workspace chrome and runtime shell switching are retired.
 ``SOLE_RUNTIME`` still governs home redirects only. Controllers and
 engines unchanged.
 
-Role-aware landing: Founder / Console users land on the Kwalitec Console
-(``founder_dashboard.index``) via RBAC (``is_founder_user``), not the
-student product. Students keep the Education OS / legacy home as before.
+Role-aware landing (UX-001): Founder and Administrator Console operators
+land on the Kwalitec Console (``founder_dashboard.index``) via RBAC
+(``is_founder_user``), not the student product. Student-only identities
+keep the Education OS / legacy home. Dual-role Founder/Admin + Student
+accounts still land on Console; Student OS is entered from Console.
 """
 
 from __future__ import annotations

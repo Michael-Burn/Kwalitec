@@ -131,7 +131,7 @@
 </section>
 {%- endmacro %}
 
-{% macro ds_mission_panel(subject_name, objective, primary_label='', primary_href='', why_now='', status_label='', after_completion='', section_title='Current Mission', include_primary=true) -%}
+{% macro ds_mission_panel(subject_name, objective, primary_label='', primary_href='', why_now='', status_label='', after_completion='', section_title="Today's Mission", include_primary=true) -%}
 <section class="ds-mission-panel" aria-labelledby="ds-mission-title">
   <h2 class="ds-section__title" id="ds-mission-title">{{ section_title }}</h2>
   <p class="ds-mission-panel__subject">{{ subject_name }}</p>

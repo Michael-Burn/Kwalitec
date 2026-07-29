@@ -125,7 +125,8 @@ def test_day_complete_has_no_primary(app, ctx):
     assert "tomorrow" in page.day_complete_message.lower()
 
 
-def test_recent_progress_capped_at_five(app, ctx):
+def test_recent_progress_relocated_to_history(app, ctx):
+    """SOP-001: session archives belong on History, not Home."""
     sessions = tuple(
         HistorySessionViewModel(
             session_id=f"s{i}",
@@ -154,7 +155,7 @@ def test_recent_progress_capped_at_five(app, ctx):
     )
     with app.test_request_context("/student/"):
         page = StudentHomeService().build_home(_page(home, history=history))
-    assert len(page.recent_progress) == 5
+    assert page.recent_progress == ()
 
 
 def test_template_mission_first_no_legacy_chrome(app, ctx):
@@ -187,16 +188,19 @@ def test_template_mission_first_no_legacy_chrome(app, ctx):
             home=home,
             form=None,
         )
-    assert "Current Mission" in html
+    assert "Today&#39;s Mission" in html or "Continue Session" in html
     assert "Continue Session" in html
     assert html.count("ds-btn--primary") == 1
     assert "student-hero-greeting" not in html
     assert "Study Sensei" not in html
-    assert "Quick actions" not in html
-    assert "data-dashboard-panel=\"readiness\"" not in html
+    assert 'data-dashboard-panel="quick-actions"' not in html
+    assert 'data-dashboard-panel="readiness"' not in html
     assert "welcome_modal" not in html
     assert "ds-mission-panel" in html
     assert "design_system.css" in html or "ds-page" in html
+    assert "What should I do now?" in html
+    assert "Current Examination" in html
+    assert "CS1 FR" in html
 
 
 def test_mission_without_exam_label_is_not_empty(app, ctx):

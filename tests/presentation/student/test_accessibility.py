@@ -53,31 +53,35 @@ def test_progressbar_attributes_on_journey(student_client):
 
 
 class TestWelcomeModalOnCanonicalStudentHome:
-    """B4 (PX-003): the Welcome dialog is only ever included by
-    ``student/home.html`` (see ``partials/welcome_modal.html``'s single call
-    site) — the canonical, always-on-under-``SOLE_RUNTIME`` Student
-    Experience home, not the legacy ``dashboard/index.html`` shell. A
-    server-rendered ARIA contract is necessary but not sufficient: this shell
-    must also load the script (``app.js``) that gives the dialog its focus
-    entry/trap/return and Escape behaviour, or the markup is inert."""
+    """SOP-001 / sole-runtime: Welcome modal is not hosted on Student Home.
+
+    The ARIA contract remains in ``partials/welcome_modal.html`` for the
+    legacy dashboard include. EOS Student Home must stay a clean command
+    centre (no modal overlay) while still loading ``app.js`` for shared
+    shell behaviour.
+    """
 
     def test_welcome_modal_renders_with_aria_contract(self, student_client, user):
+        from pathlib import Path
+
         WelcomeService.mark_eligible(user.id)
         body = student_client.get("/student/").get_data(as_text=True)
-        assert 'id="welcome-modal"' in body
-        assert 'role="dialog"' in body
-        assert 'aria-modal="true"' in body
-        assert 'aria-labelledby="welcome-modal-title"' in body
-        assert 'aria-describedby="welcome-modal-lead welcome-modal-desc"' in body
-        assert 'class="welcome-modal-card" tabindex="-1"' in body
+        assert 'id="welcome-modal"' not in body
+        modal = (
+            Path(__file__).resolve().parents[3]
+            / "app/templates/partials/welcome_modal.html"
+        ).read_text(encoding="utf-8")
+        assert 'id="welcome-modal"' in modal
+        assert 'role="dialog"' in modal
+        assert 'aria-modal="true"' in modal
+        assert 'aria-labelledby="welcome-modal-title"' in modal
+        assert 'aria-describedby="welcome-modal-lead welcome-modal-desc"' in modal
+        assert 'class="welcome-modal-card" tabindex="-1"' in modal
 
     def test_shell_loads_the_script_that_wires_focus_behaviour(
         self, student_client, user
     ):
-        """Regression for a real gap found during RC-001 evidence capture:
-        this shell previously loaded only ``student.js``, which has no
-        welcome-modal handling at all — the dialog appeared with focus left
-        on <body>, no trap, and Escape doing nothing."""
+        """EOS shell still loads ``app.js`` for shared chrome behaviour."""
         WelcomeService.mark_eligible(user.id)
         body = student_client.get("/student/").get_data(as_text=True)
         assert "js/app.js" in body

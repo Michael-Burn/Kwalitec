@@ -1,92 +1,140 @@
 {% extends "student/base.html" %}
 {% set title = page.shell.page_title %}
-{% from "student/components/progress_card.html" import progress_card %}
-{% from "student/components/educational_experience.html" import educational_experience_panel %}
+{% from "design_system/macros.html" import ds_button, ds_badge %}
+
+{% block extra_head %}
+<link href="{{ versioned_static('css/design_system.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block page_header %}{% endblock %}
 
 {% block content %}
+<article
+  class="ds-page ds-container ds-container--content ds-os-journey"
+  aria-labelledby="student-journey-title"
+  data-sop="syllabus"
+>
+  <header class="ds-page-header">
+    <h1 id="student-journey-title" class="ds-page-header__title student-page-title">{{ page.shell.page_title }}</h1>
+    <p class="ds-page-header__support">Where am I?</p>
+  </header>
+
 {% if page.journey %}
 {% set journey = page.journey %}
 {% set edu = page.educational or journey.educational %}
 
-{{ progress_card(
-    journey.progress_percent,
-    journey.progress_label,
-    journey.estimated_completion_label
-) }}
+  {# ——— Subject / examination identity ——— #}
+  <section class="ds-os-exam" aria-labelledby="journey-subject-title" data-sop-section="subjects">
+    <h2 class="ds-section__title" id="journey-subject-title">Subject</h2>
+    <p class="ds-os-exam__label">
+      {{ journey.examination_label or (edu.examination_label if edu and edu.examination_label else 'Your syllabus') }}
+    </p>
+    {% if edu and edu.active and edu.section_title %}
+    <p class="ds-list__meta">Section · {{ edu.section_title }}</p>
+    {% endif %}
+    {% if edu and edu.active and edu.position_label %}
+    <p class="ds-list__meta">{{ edu.position_label }}</p>
+    {% endif %}
+  </section>
 
-{% if edu and edu.active %}
-{{ educational_experience_panel(edu, surface='journey') }}
-{% endif %}
+  {# ——— Motivating progress (not administrative KPI) ——— #}
+  <section class="ds-os-progress" aria-labelledby="journey-progress-title" data-sop-section="progress">
+    <h2 class="ds-section__title" id="journey-progress-title">Progress</h2>
+    <p class="ds-os-progress__label">
+      {{ journey.progress_label or ((journey.progress_percent ~ '% through your path') if journey.progress_percent is not none else 'Your path is taking shape') }}
+    </p>
+    <div
+      class="ds-os-progress__track"
+      role="progressbar"
+      aria-valuenow="{{ journey.progress_percent or 0 }}"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-label="{{ journey.progress_label or (journey.progress_percent ~ '% complete') }}"
+    >
+      <div class="ds-os-progress__fill" style="width: {{ journey.progress_percent or 0 }}%"></div>
+    </div>
+    {% if journey.estimated_completion_label %}
+    <p class="ds-list__meta">{{ journey.estimated_completion_label }}</p>
+    {% endif %}
+  </section>
 
-<section class="student-journey-map" aria-label="Learning journey">
+  {# ——— Learning path ——— #}
+  <section class="ds-os-path" aria-label="Learning path" data-sop-section="learning-path">
     {% if journey.current %}
-    <section class="student-card student-card--current" aria-labelledby="current-topic-title">
-        <p class="student-card-eyebrow">Current topic</p>
-        <h2 id="current-topic-title" class="student-card-title">{{ journey.current.title }}</h2>
-        {% if journey.current.prerequisite_note %}
-        <p class="student-muted mb-0">{{ journey.current.prerequisite_note }}</p>
-        {% endif %}
+    <section class="ds-os-path__current" aria-labelledby="current-topic-title" data-sop-section="current-topic">
+      <p class="ds-list__meta">Current topic</p>
+      <h2 id="current-topic-title" class="ds-os-path__title">{{ journey.current.title }}</h2>
+      {% if journey.current.prerequisite_note %}
+      <p class="ds-list__meta">{{ journey.current.prerequisite_note }}</p>
+      {% endif %}
+      {% if journey.current.status_label %}
+      {{ ds_badge(journey.current.status_label, tone='primary') }}
+      {% endif %}
+    </section>
+    {% endif %}
+
+    {% if journey.upcoming and journey.upcoming|length > 0 %}
+    {% set next_topic = journey.upcoming[0] %}
+    <section class="ds-os-path__next" aria-labelledby="upcoming-topic-title" data-sop-section="upcoming-topic">
+      <p class="ds-list__meta">Upcoming topic</p>
+      <h3 id="upcoming-topic-title" class="ds-os-path__subtitle">{{ next_topic.title }}</h3>
+      {% if next_topic.prerequisite_note %}
+      <p class="ds-list__meta">{{ next_topic.prerequisite_note }}</p>
+      {% endif %}
     </section>
     {% endif %}
 
     {% if journey.completed %}
-    <section class="student-timeline-section" aria-labelledby="completed-topics-title">
-        <h2 id="completed-topics-title" class="student-section-title">Completed topics</h2>
-        <ol class="student-timeline">
-            {% for topic in journey.completed %}
-            <li class="student-timeline-item is-complete">
-                <span class="student-timeline-marker" aria-hidden="true"></span>
-                <div>
-                    <p class="student-timeline-title">{{ topic.title }}</p>
-                    {% if topic.status_label %}
-                    <p class="student-muted mb-0">{{ topic.status_label }}</p>
-                    {% endif %}
-                </div>
-            </li>
-            {% endfor %}
-        </ol>
+    <section class="ds-section" aria-labelledby="completed-topics-title" data-sop-section="completed-work">
+      <h2 id="completed-topics-title" class="ds-section__title">Completed work</h2>
+      <ol class="ds-os-path__timeline">
+        {% for topic in journey.completed %}
+        <li class="ds-os-path__step ds-os-path__step--done">
+          <span class="ds-os-path__marker" aria-hidden="true"></span>
+          <div>
+            <p class="ds-os-path__step-title">{{ topic.title }}</p>
+            {% if topic.status_label %}
+            <p class="ds-list__meta">{{ topic.status_label }}</p>
+            {% endif %}
+          </div>
+        </li>
+        {% endfor %}
+      </ol>
     </section>
     {% endif %}
 
-    {% if journey.upcoming %}
-    <section class="student-timeline-section" aria-labelledby="upcoming-topics-title">
-        <h2 id="upcoming-topics-title" class="student-section-title">Upcoming topics</h2>
-        <ol class="student-timeline">
-            {% for topic in journey.upcoming %}
-            <li class="student-timeline-item">
-                <span class="student-timeline-marker" aria-hidden="true"></span>
-                <div>
-                    <p class="student-timeline-title">{{ topic.title }}</p>
-                    {% if topic.prerequisite_note %}
-                    <p class="student-muted mb-0">{{ topic.prerequisite_note }}</p>
-                    {% endif %}
-                </div>
-            </li>
-            {% endfor %}
-        </ol>
+    {% if journey.upcoming and journey.upcoming|length > 1 %}
+    <section class="ds-section" aria-labelledby="path-ahead-title" data-sop-section="topics">
+      <h2 id="path-ahead-title" class="ds-section__title">Path ahead</h2>
+      <ol class="ds-os-path__timeline">
+        {% for topic in journey.upcoming[1:] %}
+        <li class="ds-os-path__step">
+          <span class="ds-os-path__marker" aria-hidden="true"></span>
+          <div>
+            <p class="ds-os-path__step-title">{{ topic.title }}</p>
+            {% if topic.prerequisite_note %}
+            <p class="ds-list__meta">{{ topic.prerequisite_note }}</p>
+            {% endif %}
+          </div>
+        </li>
+        {% endfor %}
+      </ol>
     </section>
     {% endif %}
-</section>
+  </section>
 
-<div class="student-primary-action">
-    <a class="btn student-btn-primary" href="{{ url_for('student.home') }}" data-student-cta="primary">
-        {{ journey.primary_cta_label }}
-    </a>
-</div>
+  <div class="ds-primary-strip">
+    {{ ds_button(journey.primary_cta_label or 'Return Home', href=url_for('student.home'), variant='ghost') }}
+  </div>
+
 {% else %}
-<section class="student-empty" aria-label="Journey" role="status">
-    <h2 class="student-empty-title">Your journey will take shape after your first session</h2>
-    <p class="student-empty-description">
-        Once you complete a study session, we'll map your path — current topic, what's done, and what's next.
+  <section class="ds-empty-operational" aria-label="Journey" role="status">
+    <h2 class="ds-section__title">Your journey will take shape after your first session</h2>
+    <p class="ds-empty-operational__reason">
+      Once you complete a study session, we'll map your path — current topic, what's done, and what's next.
     </p>
-    <p class="student-empty-why student-muted">
-        Empty journeys are expected early on — complete today's Mission to start the map.
-    </p>
-    <div class="student-primary-action">
-        <a class="btn student-btn-primary" href="{{ url_for('student.home') }}" data-student-cta="primary">
-            Go to Home
-        </a>
-    </div>
-</section>
+    {{ ds_button('Go to Home', href=url_for('student.home'), variant='primary', attrs='data-student-cta="primary"') }}
+  </section>
 {% endif %}
+</article>
 {% endblock %}

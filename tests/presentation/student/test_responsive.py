@@ -13,16 +13,17 @@ def test_css_has_breakpoints():
     css = Path("app/static/css/student/student.css").read_text(encoding="utf-8")
     assert "@media (min-width: 640px)" in css
     assert "@media (min-width: 480px)" in css
-    assert "@media (min-width: 768px)" in css
+    assert "@media (min-width: 960px)" in css or "@media (min-width: 800px)" in css
     assert "@media (min-width: 1280px)" in css
 
 
 def test_css_has_decision_screen_layout():
-    css = Path("app/static/css/student/student.css").read_text(encoding="utf-8")
-    assert ".student-hero" in css
-    assert ".student-secondary" in css
-    assert ".student-tertiary" in css
-    assert "prefers-reduced-motion" in css
+    """SOP-001 / UX-005: decision hierarchy lives in design_system OS styles."""
+    student = Path("app/static/css/student/student.css").read_text(encoding="utf-8")
+    ds = Path("app/static/css/design_system.css").read_text(encoding="utf-8")
+    assert "prefers-reduced-motion" in student or "prefers-reduced-motion" in ds
+    assert ".ds-os-home" in ds or ".ds-mission-panel" in ds
+    assert ".ds-page" in ds
 
 
 def test_css_has_max_content_width():

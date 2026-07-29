@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from types import SimpleNamespace
-
 from flask import render_template
 
 from app.application.session_experience.activity_service import _build_activity

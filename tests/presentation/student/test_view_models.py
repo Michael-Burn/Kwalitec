@@ -21,6 +21,7 @@ from app.application.student_experience.dto.journey_snapshot import (
     JourneyTopicSnapshot,
 )
 from app.application.student_experience.dto.profile_snapshot import (
+    LearningStatisticsSnapshot,
     ProfileSnapshot,
     StudyPreferencesSnapshot,
 )
@@ -193,9 +194,7 @@ def test_revision_vm_alternatives():
 def test_history_vm_trend():
     snap = HistorySnapshot(
         student_id="s1",
-        completed_sessions=(
-            CompletedSessionSnapshot("s1", "Topic", "2026-07-01", 30),
-        ),
+        completed_sessions=(CompletedSessionSnapshot("s1", "Topic", "2026-07-01", 30),),
         total_study_minutes=30,
         readiness_progression=(
             ReadinessPointSnapshot("2026-06-01", 0.4),
@@ -216,16 +215,38 @@ def test_profile_vm_days():
         preferences=StudyPreferencesSnapshot(
             preferred_session_minutes=45,
             preferred_study_days=("Mon", "Wed"),
+            reminder_enabled=True,
+        ),
+        statistics=LearningStatisticsSnapshot(
+            total_study_minutes=120,
+            sessions_completed=4,
+            topics_mastered=2,
+            study_streak_days=3,
         ),
     )
     vm = profile_vm(snap)
     assert "Mon" in vm.preferences_days_label
     assert vm.display_name == "Alex"
+    assert vm.streak_label == "3 days"
+    assert vm.average_daily_label == "40 minutes"
+    assert vm.session_length_label == "45 minutes"
+    assert vm.reminders_label == "On"
 
 
-def test_profile_vm_examination_label_agrees_with_active_study_plan(
-    ctx, study_plan
-):
+def test_profile_vm_average_daily_blank_without_streak():
+    snap = ProfileSnapshot(
+        student_id="s1",
+        statistics=LearningStatisticsSnapshot(
+            total_study_minutes=90,
+            study_streak_days=0,
+        ),
+    )
+    vm = profile_vm(snap)
+    assert vm.average_daily_label == ""
+    assert vm.streak_label == "0 days"
+
+
+def test_profile_vm_examination_label_agrees_with_active_study_plan(ctx, study_plan):
     """B2 (PX-003): Profile must never show "Not set" while Dashboard,
     Study Plan, and Settings show an active plan — all must agree, sourced
     from the same ``StudyPlanService.get_user_active_plan`` call."""

@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from pathlib import Path
-from types import SimpleNamespace
 
 from flask import render_template
 
@@ -46,19 +45,24 @@ def test_session_shell_owns_secondary_button_styles():
 
 
 def test_home_hero_craft_hooks_are_styled():
-    css = _css("student/student.css")
-    assert ".student-session-next" in css
-    assert ".student-commitment-defer" in css
-    assert ".student-defer-option" in css
-    assert ".student-coach-trust" in css
-    assert ".student-card--current" in css
-    assert ".student-narrative-entry" in css
-    assert 'body[data-nav-pending="true"]' in css
-    subordinate = css.split(".student-secondary--subordinate {", 1)[1].split("}", 1)[0]
-    assert "opacity:" not in subordinate
+    """SOP-001 / UX-005: command-centre craft lives in design_system + student.css."""
+    student = _css("student/student.css")
+    ds = _css("design_system.css")
+    assert ".ds-os-exam" in ds
+    assert ".ds-os-health" in ds
+    assert ".ds-os-actions" in ds
+    assert ".ds-os-path" in ds
+    assert ".student-card--current" in student
+    assert ".student-narrative-entry" in student
+    assert 'body[data-nav-pending="true"]' in student
 
 
 def test_home_suppresses_shell_page_header(app, ctx):
+    from app.application.student_experience.dto.home_snapshot import (
+        StartSessionActionSnapshot,
+    )
+    from tests.presentation.student.helpers import render_student_home
+
     snap = HomeSnapshot(
         student_id="stu-cq006",
         greeting="Welcome back",
@@ -79,29 +83,19 @@ def test_home_suppresses_shell_page_header(app, ctx):
         ),
         has_recommendation=True,
         can_start_session=True,
-    )
-    page = SimpleNamespace(
-        home=home_vm(snap, unified_journey=False),
-        shell=SimpleNamespace(
-            active_surface="home",
-            navigation=(),
-            page_title="Today",
-            page_eyebrow="Your learning",
-            page_description="What you should do next.",
+        start_session=StartSessionActionSnapshot(
+            label="Start Session",
+            enabled=True,
+            can_start=True,
+            mission_id="m1",
+            topic_title="Cash flows",
+            estimated_minutes=25,
         ),
-        educational=None,
     )
-    with app.test_request_context("/student/"):
-        html = render_template(
-            "student/home.html",
-            page=page,
-            form=None,
-            show_welcome=False,
-        )
+    html = render_student_home(app, home_vm(snap, unified_journey=False))
     assert "student-page-header" not in html
-    assert "student-hero-title" in html
-    assert 'data-narrator="study-sensei"' in html
-    assert "student-narrator" in html
+    assert "ds-os-home" in html
+    assert "What should I do now?" in html
     assert "Cash flows" in html
 
 
@@ -174,10 +168,10 @@ def test_session_overview_why_uses_dedicated_label(app, ctx):
 def test_history_and_journey_craft_markers():
     history = _template("student/history.html")
     journey = _template("student/journey.html")
-    assert "student-action-row" in history
-    assert "student-narrative-list" in history
-    assert "student-card--current" in journey
-    assert "student-empty-why" in journey
+    assert "ds-os-history" in history
+    assert "ds-os-archive-stats" in history
+    assert "ds-os-journey" in journey
+    assert "ds-os-path" in journey
 
 
 def test_assessment_base_meta_description_is_valid_html():

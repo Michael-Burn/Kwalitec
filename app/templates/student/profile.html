@@ -1,133 +1,265 @@
 {% extends "student/base.html" %}
+{% from "partials/icons.html" import icon %}
+{% from "partials/appearance_switcher.html" import appearance_switcher %}
 {% set title = page.shell.page_title %}
+
+{# UX-003: Settings needs workspace width for the two-column hub. #}
+{% block student_main_modifier %}student-main--workspace{% endblock %}
 
 {% block content %}
 {% if page.profile %}
 {% set profile = page.profile %}
+{% set stats = profile.statistics %}
+{% set prefs = profile.preferences %}
+{% set account = profile.account %}
 
-<section class="student-card" aria-labelledby="exam-title">
-    <p class="student-card-eyebrow">Current examination</p>
-    <h2 id="exam-title" class="student-card-title">
-        {{ profile.examination_label or 'Not set' }}
-    </h2>
-    {% if profile.display_name %}
-    <p class="student-muted mb-0">{{ profile.display_name }}</p>
-    {% endif %}
+<section class="settings-hub" aria-label="Settings">
+
+    {# ── Compact KPI overview ─────────────────────────────────────────── #}
+    <section class="settings-kpi" aria-labelledby="settings-kpi-title">
+        <div class="settings-section-head">
+            <h2 id="settings-kpi-title" class="settings-group-title">Overview</h2>
+            <a class="settings-section-link" href="{{ url_for('student.history') }}">View progress</a>
+        </div>
+        <div class="settings-kpi-grid" role="list">
+            <article class="settings-kpi-item" role="listitem">
+                <span class="settings-kpi-icon" aria-hidden="true">{{ icon('clock', size=16) }}</span>
+                <p class="settings-kpi-label">Study Time</p>
+                <p class="settings-kpi-value">{{ profile.total_study_label or '—' }}</p>
+            </article>
+            <article class="settings-kpi-item" role="listitem">
+                <span class="settings-kpi-icon" aria-hidden="true">{{ icon('sessions', size=16) }}</span>
+                <p class="settings-kpi-label">Sessions</p>
+                <p class="settings-kpi-value">{{ stats.sessions_completed }}</p>
+            </article>
+            <article class="settings-kpi-item" role="listitem">
+                <span class="settings-kpi-icon" aria-hidden="true">{{ icon('topics', size=16) }}</span>
+                <p class="settings-kpi-label">Topics Mastered</p>
+                <p class="settings-kpi-value">{{ stats.topics_mastered }}</p>
+            </article>
+            <article class="settings-kpi-item" role="listitem">
+                <span class="settings-kpi-icon" aria-hidden="true">{{ icon('streak', size=16) }}</span>
+                <p class="settings-kpi-label">Current Streak</p>
+                <p class="settings-kpi-value">{{ profile.streak_label }}</p>
+            </article>
+            <article class="settings-kpi-item" role="listitem">
+                <span class="settings-kpi-icon" aria-hidden="true">{{ icon('clock', size=16) }}</span>
+                <p class="settings-kpi-label">Average Daily Study</p>
+                <p class="settings-kpi-value">{{ profile.average_daily_label or '—' }}</p>
+            </article>
+            <article class="settings-kpi-item" role="listitem">
+                <span class="settings-kpi-icon" aria-hidden="true">{{ icon('exam', size=16) }}</span>
+                <p class="settings-kpi-label">Current Examination</p>
+                <p class="settings-kpi-value settings-kpi-value--text">{{ profile.examination_label or 'Not set' }}</p>
+            </article>
+        </div>
+    </section>
+
+    <div class="settings-columns">
+
+        {# ── Left column: Profile + Learning ──────────────────────────── #}
+        <div class="settings-column">
+
+            <section class="settings-group" aria-labelledby="settings-profile-title">
+                <h2 id="settings-profile-title" class="settings-group-title">Profile</h2>
+                <div class="settings-card-list">
+                    <article class="settings-info-card">
+                        <div class="settings-info-card-icon" aria-hidden="true">{{ icon('profile', size=18) }}</div>
+                        <div class="settings-info-card-body">
+                            <h3 class="settings-info-card-title">Display name</h3>
+                            <p class="settings-info-card-value">{{ profile.display_name or 'Student' }}</p>
+                            <p class="settings-info-card-desc">How you appear across the Student Experience.</p>
+                        </div>
+                        <a class="settings-info-card-action" href="{{ url_for('settings.profile') }}">Edit</a>
+                    </article>
+                    <article class="settings-info-card">
+                        <div class="settings-info-card-icon" aria-hidden="true">{{ icon('exam', size=18) }}</div>
+                        <div class="settings-info-card-body">
+                            <h3 class="settings-info-card-title">Examination</h3>
+                            <p class="settings-info-card-value">{{ profile.examination_label or 'Not set' }}</p>
+                            <p class="settings-info-card-desc">Active exam from your study plan.</p>
+                        </div>
+                        <a class="settings-info-card-action" href="{{ url_for('study_plan.index') }}">Manage</a>
+                    </article>
+                </div>
+            </section>
+
+            <section class="settings-group" aria-labelledby="settings-learning-title">
+                <h2 id="settings-learning-title" class="settings-group-title">Learning</h2>
+                <div class="settings-panel">
+                    <div class="settings-row">
+                        <div class="settings-row-copy">
+                            <label class="settings-row-label" for="daily_goal_hours">Daily study goal</label>
+                            <p class="settings-row-desc">Target hours used for progress tracking.</p>
+                        </div>
+                        <form method="post" action="{{ url_for('settings.update_preferences') }}" class="settings-row-control settings-inline-form">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <select id="daily_goal_hours" name="daily_goal_hours" class="settings-select" aria-label="Daily study goal in hours">
+                                {% set current_goal = session.get('daily_goal_hours', '2')|string %}
+                                {% for hours in ['0.5', '1', '1.5', '2', '2.5', '3', '4', '5', '6', '8', '10', '12'] %}
+                                <option value="{{ hours }}"{% if current_goal == hours %} selected{% endif %}>{{ hours }} h</option>
+                                {% endfor %}
+                            </select>
+                            <button type="submit" class="btn student-btn-secondary settings-row-btn">Save</button>
+                        </form>
+                    </div>
+
+                    <div class="settings-row">
+                        <div class="settings-row-copy">
+                            <p class="settings-row-label">Preferred session length</p>
+                            <p class="settings-row-desc">{{ profile.session_length_label }}</p>
+                        </div>
+                        <a class="btn student-btn-secondary settings-row-btn" href="{{ url_for('settings.preferences') }}">Adjust</a>
+                    </div>
+
+                    <div class="settings-row">
+                        <div class="settings-row-copy">
+                            <p class="settings-row-label">Study days</p>
+                            <p class="settings-row-desc">{{ profile.preferences_days_label or 'Not set' }}</p>
+                        </div>
+                        <a class="btn student-btn-secondary settings-row-btn" href="{{ url_for('settings.preferences') }}">Adjust</a>
+                    </div>
+
+                    {% if prefs.quiet_hours_label %}
+                    <div class="settings-row">
+                        <div class="settings-row-copy">
+                            <p class="settings-row-label">Quiet hours</p>
+                            <p class="settings-row-desc">{{ prefs.quiet_hours_label }}</p>
+                        </div>
+                        <a class="btn student-btn-secondary settings-row-btn" href="{{ url_for('settings.preferences') }}">Adjust</a>
+                    </div>
+                    {% endif %}
+
+                    <div class="settings-row settings-row--stack">
+                        <div class="settings-row-copy">
+                            <p class="settings-row-label" id="appearance-settings-label">Appearance</p>
+                            <p class="settings-row-desc">Light, Dark, or System — saved in this browser.</p>
+                        </div>
+                        <div class="settings-appearance">
+                            {{ appearance_switcher(group_aria_label='Appearance preference') }}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        {# ── Right column: Notifications + Account + Security ─────────── #}
+        <div class="settings-column">
+
+            <section class="settings-group" aria-labelledby="settings-notifications-title">
+                <h2 id="settings-notifications-title" class="settings-group-title">Notifications</h2>
+                <div class="settings-panel">
+                    <div class="settings-row">
+                        <div class="settings-row-copy">
+                            <p class="settings-row-label">Study reminders</p>
+                            <p class="settings-row-desc">Prompt when it is time to study.</p>
+                        </div>
+                        <div class="settings-toggle-wrap">
+                            <span class="settings-toggle-state" aria-hidden="true">{{ profile.reminders_label }}</span>
+                            <a class="btn student-btn-secondary settings-row-btn" href="{{ url_for('settings.preferences') }}">
+                                {{ 'Turn off' if prefs.reminder_enabled else 'Turn on' }}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="settings-row">
+                        <div class="settings-row-copy">
+                            <p class="settings-row-label">Account notifications</p>
+                            <p class="settings-row-desc">Product updates and account messages.</p>
+                        </div>
+                        <div class="settings-toggle-wrap">
+                            <span class="settings-toggle-state{% if account.notifications_enabled %} is-on{% endif %}"
+                                  role="status"
+                                  aria-label="Account notifications {{ profile.notifications_label|lower }}">
+                                {{ profile.notifications_label }}
+                            </span>
+                            <a class="btn student-btn-secondary settings-row-btn" href="{{ url_for(profile.primary_cta_endpoint) }}">Manage</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="settings-group" aria-labelledby="settings-account-title">
+                <h2 id="settings-account-title" class="settings-group-title">Account</h2>
+                <div class="settings-card-list">
+                    <article class="settings-info-card">
+                        <div class="settings-info-card-icon" aria-hidden="true">{{ icon('mail', size=18) }}</div>
+                        <div class="settings-info-card-body">
+                            <h3 class="settings-info-card-title">Email</h3>
+                            <p class="settings-info-card-value">{{ account.email or '—' }}</p>
+                            <p class="settings-info-card-desc">Used for sign-in. Cannot be changed here.</p>
+                        </div>
+                        <a class="settings-info-card-action" href="{{ url_for('settings.profile') }}">View</a>
+                    </article>
+                    {% if account.locale or account.timezone %}
+                    <article class="settings-info-card">
+                        <div class="settings-info-card-icon" aria-hidden="true">{{ icon('sessions', size=18) }}</div>
+                        <div class="settings-info-card-body">
+                            <h3 class="settings-info-card-title">Locale &amp; timezone</h3>
+                            <p class="settings-info-card-value">
+                                {% if account.locale %}{{ account.locale }}{% endif %}
+                                {% if account.locale and account.timezone %} · {% endif %}
+                                {% if account.timezone %}{{ account.timezone }}{% endif %}
+                            </p>
+                            <p class="settings-info-card-desc">Regional formatting for dates and times.</p>
+                        </div>
+                        <a class="settings-info-card-action" href="{{ url_for('settings.profile') }}">View</a>
+                    </article>
+                    {% endif %}
+                    <article class="settings-info-card">
+                        <div class="settings-info-card-icon" aria-hidden="true">{{ icon('data', size=18) }}</div>
+                        <div class="settings-info-card-body">
+                            <h3 class="settings-info-card-title">Data &amp; privacy</h3>
+                            <p class="settings-info-card-value">Export, backup, restore</p>
+                            <p class="settings-info-card-desc">Download reports or restore a backup.</p>
+                        </div>
+                        <a class="settings-info-card-action" href="{{ url_for('settings.data') }}">Open</a>
+                    </article>
+                    <article class="settings-info-card">
+                        <div class="settings-info-card-icon" aria-hidden="true">{{ icon('feedback', size=18) }}</div>
+                        <div class="settings-info-card-body">
+                            <h3 class="settings-info-card-title">Product Check-in</h3>
+                            <p class="settings-info-card-value">Share feedback</p>
+                            <p class="settings-info-card-desc">Help improve Kwalitec with a short check-in.</p>
+                        </div>
+                        <a class="settings-info-card-action" href="{{ url_for('settings.share_feedback') }}">Open</a>
+                    </article>
+                </div>
+            </section>
+
+            <section class="settings-group" aria-labelledby="settings-security-title">
+                <h2 id="settings-security-title" class="settings-group-title">Security</h2>
+                <div class="settings-card-list">
+                    <article class="settings-info-card">
+                        <div class="settings-info-card-icon" aria-hidden="true">{{ icon('shield', size=18) }}</div>
+                        <div class="settings-info-card-body">
+                            <h3 class="settings-info-card-title">Account status</h3>
+                            <p class="settings-info-card-value">System posture</p>
+                            <p class="settings-info-card-desc">Curriculum binding, personalisation, and diagnostics.</p>
+                        </div>
+                        <a class="settings-info-card-action" href="{{ url_for('settings.internal_alpha') }}">Review</a>
+                    </article>
+                    <article class="settings-info-card">
+                        <div class="settings-info-card-icon" aria-hidden="true">{{ icon('shield', size=18) }}</div>
+                        <div class="settings-info-card-body">
+                            <h3 class="settings-info-card-title">Password &amp; sessions</h3>
+                            <p class="settings-info-card-value">Managed by your account</p>
+                            <p class="settings-info-card-desc">Password change and session controls will appear here when shipped.</p>
+                        </div>
+                        <span class="settings-info-card-action settings-info-card-action--muted" aria-disabled="true">Soon</span>
+                    </article>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
 </section>
 
-<section class="student-card" aria-labelledby="prefs-title">
-    <p class="student-card-eyebrow">Learning preferences</p>
-    <h2 id="prefs-title" class="student-card-title student-card-title--sm">Study preferences</h2>
-    <dl class="student-meta-row">
-        {% if profile.preferences.preferred_session_minutes %}
-        <div>
-            <dt>Preferred session length</dt>
-            <dd>{{ profile.preferences.preferred_session_minutes }} minutes</dd>
-        </div>
-        {% endif %}
-        {% if profile.preferences_days_label %}
-        <div>
-            <dt>Preferred study days</dt>
-            <dd>{{ profile.preferences_days_label }}</dd>
-        </div>
-        {% endif %}
-        <div>
-            <dt>Reminders</dt>
-            <dd>{{ 'On' if profile.preferences.reminder_enabled else 'Off' }}</dd>
-        </div>
-        {% if profile.preferences.quiet_hours_label %}
-        <div>
-            <dt>Quiet hours</dt>
-            <dd>{{ profile.preferences.quiet_hours_label }}</dd>
-        </div>
-        {% endif %}
-    </dl>
-</section>
-
-{% if profile.goals %}
-<section class="student-stack" aria-labelledby="goals-title">
-    <h2 id="goals-title" class="student-section-title">Goals</h2>
-    {% for goal in profile.goals %}
-    <article class="student-card">
-        <h3 class="student-card-title student-card-title--sm">{{ goal.title }}</h3>
-        {% if goal.target_label %}
-        <p class="student-muted mb-0">{{ goal.target_label }}</p>
-        {% endif %}
-        <div class="student-progress mt-2" role="progressbar"
-             aria-valuenow="{{ (goal.progress_ratio * 100)|int }}"
-             aria-valuemin="0"
-             aria-valuemax="100"
-             aria-label="Goal progress">
-            <div class="student-progress-bar" style="width: {{ (goal.progress_ratio * 100)|int }}%"></div>
-        </div>
-    </article>
-    {% endfor %}
-</section>
-{% endif %}
-
-<section class="student-card" aria-labelledby="stats-title">
-    <p class="student-card-eyebrow">Learning statistics</p>
-    <h2 id="stats-title" class="student-card-title student-card-title--sm">Progress summary</h2>
-    <dl class="student-meta-row">
-        <div>
-            <dt>Total study time</dt>
-            <dd>{{ profile.total_study_label or '—' }}</dd>
-        </div>
-        <div>
-            <dt>Sessions completed</dt>
-            <dd>{{ profile.statistics.sessions_completed }}</dd>
-        </div>
-        <div>
-            <dt>Topics mastered</dt>
-            <dd>{{ profile.statistics.topics_mastered }}</dd>
-        </div>
-        {% if profile.readiness_percent_label %}
-        <div>
-            <dt>Exam readiness</dt>
-            <dd>{{ profile.readiness_percent_label }}</dd>
-        </div>
-        {% endif %}
-    </dl>
-</section>
-
-<section class="student-card" aria-labelledby="account-title">
-    <p class="student-card-eyebrow">Account settings</p>
-    <h2 id="account-title" class="student-card-title student-card-title--sm">Account</h2>
-    <dl class="student-meta-row">
-        {% if profile.account.email %}
-        <div>
-            <dt>Email</dt>
-            <dd>{{ profile.account.email }}</dd>
-        </div>
-        {% endif %}
-        <div>
-            <dt>Notifications</dt>
-            <dd>{{ 'Enabled' if profile.account.notifications_enabled else 'Disabled' }}</dd>
-        </div>
-        {% if profile.account.locale %}
-        <div>
-            <dt>Locale</dt>
-            <dd>{{ profile.account.locale }}</dd>
-        </div>
-        {% endif %}
-        {% if profile.account.timezone %}
-        <div>
-            <dt>Timezone</dt>
-            <dd>{{ profile.account.timezone }}</dd>
-        </div>
-        {% endif %}
-    </dl>
-</section>
-
-<div class="student-primary-action">
-    <a class="btn student-btn-primary" href="{{ url_for(profile.primary_cta_endpoint) }}" data-student-cta="primary">
-        {{ profile.primary_cta_label }}
-    </a>
-</div>
 {% else %}
 <section class="student-card">
-    <h2 class="student-card-title">Profile</h2>
-    <p class="student-card-body">Your profile will appear when learning insights are available.</p>
+    <h2 class="student-card-title">Settings</h2>
+    <p class="student-card-body">Your settings will appear when your account is ready.</p>
 </section>
 {% endif %}
 {% endblock %}

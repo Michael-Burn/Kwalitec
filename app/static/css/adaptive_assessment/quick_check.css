@@ -9,7 +9,7 @@
 
 .qc-topbar-note {
   margin: 0;
-  color: color-mix(in srgb, #fff 70%, transparent);
+  color: var(--chrome-text-muted, rgba(248, 250, 252, 0.72));
   font-size: 0.875rem;
 }
 
@@ -245,7 +245,7 @@
 }
 
 .mission-hero-card .qc-entry-card-inner {
-  background: color-mix(in srgb, var(--session-surface, #fff) 92%, transparent);
+  background: color-mix(in srgb, var(--session-surface) 92%, transparent);
 }
 
 /* CQ-006 — mission acknowledgement after Quick Check defer/why. */

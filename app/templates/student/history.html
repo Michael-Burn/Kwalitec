@@ -1,147 +1,153 @@
 {% extends "student/base.html" %}
 {% set title = page.shell.page_title %}
+{% from "design_system/macros.html" import ds_button %}
 {% from "student/components/history_card.html" import history_card %}
 
+{% block extra_head %}
+<link href="{{ versioned_static('css/design_system.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block page_header %}{% endblock %}
+
 {% block content %}
-{# RR-001.3C / EGC-R06 / DG-001.2-D06 — History is context; meaning in Journal/Timeline. #}
-<section class="student-stack" aria-labelledby="history-memory-bridge" data-educational-memory="history-bridge">
-    <h2 id="history-memory-bridge" class="student-section-title">What History shows</h2>
-    <p class="student-muted" data-educational-memory="epistemology-bridge">
-        History shows what you practiced — completed Sessions, study time, and
-        readiness trends. Those numbers orient you; they are not Study Sensei’s
-        mentor narrative. What happened educationally, why it mattered, what was
-        learned, and how that shapes future guidance live in the Decision Journal
-        and Educational Timeline.
+<article
+  class="ds-page ds-container ds-container--content ds-os-history"
+  aria-labelledby="student-history-title"
+  data-sop="archive"
+>
+  <header class="ds-page-header">
+    <h1 id="student-history-title" class="ds-page-header__title student-page-title">{{ page.shell.page_title }}</h1>
+    <p class="ds-page-header__support">What have I accomplished?</p>
+  </header>
+
+  <section class="ds-os-archive-bridge" aria-labelledby="history-memory-bridge" data-educational-memory="history-bridge">
+    <h2 id="history-memory-bridge" class="ds-visually-hidden">Archive and educational memory</h2>
+    <p class="ds-list__meta" data-educational-memory="epistemology-bridge">
+      This archive holds practice evidence — sessions, study time, and readiness trends.
+      Educational meaning lives in the
+      <a href="{{ url_for('student.decision_journal') }}">Decision Journal</a>
+      and
+      <a href="{{ url_for('student.educational_timeline') }}">Educational Timeline</a>.
     </p>
-    <p class="student-action-row">
-        <a class="btn student-btn-secondary" href="{{ url_for('student.decision_journal') }}">
-            Open Decision Journal
-        </a>
-        <a class="btn student-btn-secondary" href="{{ url_for('student.educational_timeline') }}">
-            Educational Timeline
-        </a>
-    </p>
-</section>
+  </section>
 
 {% if page.history %}
 {% set history = page.history %}
 
-{% if history.recommendation_narrative %}
-<section class="student-stack" aria-labelledby="recent-study-choices" data-commitment="history">
-    <h2 id="recent-study-choices" class="student-section-title">Recent study choices</h2>
-    {% if history.recommendation_narrative_header %}
-    <p class="student-muted">{{ history.recommendation_narrative_header }}</p>
-    {% endif %}
-    <ul class="student-narrative-list">
-        {% for entry in history.recommendation_narrative %}
-        <li class="student-narrative-entry" data-narrative-kind="{{ entry.kind }}">
-            {{ entry.summary_line }}
-        </li>
-        {% endfor %}
+  {# ——— Study Time (owned here — not duplicated on Home) ——— #}
+  <section class="ds-os-archive-stats" aria-label="Study time" data-sop-section="study-time">
+    <div class="ds-panel ds-os-stat">
+      <p class="ds-list__meta">Study time</p>
+      <p class="ds-os-stat__value">{{ history.total_study_label }}</p>
+      <p class="ds-list__meta">{{ history.session_count }} completed sessions</p>
+    </div>
+  </section>
+
+  {# ——— Readiness Trends ——— #}
+  <section class="ds-section" aria-labelledby="readiness-trend-title" data-sop-section="readiness-trends">
+    <h2 id="readiness-trend-title" class="ds-section__title">Readiness Trends</h2>
+    <p class="ds-os-stat__value ds-os-stat__value--sm">{{ history.readiness_trend_label or 'Trends appear as you practice' }}</p>
+    {% if history.readiness_points %}
+    <ul class="ds-list">
+      {% for recorded_at, label in history.readiness_points %}
+      <li class="ds-list__row">
+        <span>{{ recorded_at }}</span>
+        <span class="ds-list__meta">{{ label }}</span>
+      </li>
+      {% endfor %}
     </ul>
-    <p class="student-muted">
-        For the fuller educational memory — guidance, choices, and outcomes — open your
-        <a href="{{ url_for('student.decision_journal') }}">Decision Journal</a>.
-        For the chronological learning story, open your
-        <a href="{{ url_for('student.educational_timeline') }}">Educational Timeline</a>.
-    </p>
-</section>
-{% endif %}
+    {% endif %}
+  </section>
 
-<section class="student-grid student-grid--stats" aria-label="Learning statistics">
-    <section class="student-card">
-        <p class="student-card-eyebrow">Study time</p>
-        <h2 class="student-card-title">{{ history.total_study_label }}</h2>
-        <p class="student-muted mb-0">{{ history.session_count }} completed sessions</p>
-    </section>
-    <section class="student-card">
-        <p class="student-card-eyebrow">Readiness trend</p>
-        <h2 class="student-card-title student-card-title--sm">{{ history.readiness_trend_label }}</h2>
-        {% if history.readiness_points %}
-        <ul class="student-trend-list">
-            {% for recorded_at, label in history.readiness_points %}
-            <li><span>{{ recorded_at }}</span> <strong>{{ label }}</strong></li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-    </section>
-</section>
+  {% if history.recommendation_narrative %}
+  <section class="ds-section" aria-labelledby="recent-study-choices" data-commitment="history">
+    <h2 id="recent-study-choices" class="ds-section__title">Recent study choices</h2>
+    {% if history.recommendation_narrative_header %}
+    <p class="ds-list__meta">{{ history.recommendation_narrative_header }}</p>
+    {% endif %}
+    <ul class="ds-list">
+      {% for entry in history.recommendation_narrative %}
+      <li class="ds-list__row" data-narrative-kind="{{ entry.kind }}">
+        <span>{{ entry.summary_line }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
 
-<section class="student-stack" aria-labelledby="recent-sessions-title">
-    <h2 id="recent-sessions-title" class="student-section-title">Recent sessions</h2>
+  {# ——— Sessions ——— #}
+  <section class="ds-section" aria-labelledby="recent-sessions-title" data-sop-section="sessions">
+    <h2 id="recent-sessions-title" class="ds-section__title">Sessions</h2>
     {% if history.sessions %}
+      <div class="ds-stack">
         {% for session in history.sessions %}
-            {{ history_card(session) }}
+          {{ history_card(session) }}
         {% endfor %}
+      </div>
     {% else %}
-    <div class="student-empty" role="status">
-        <p class="student-empty-title">No sessions completed yet</p>
-        <p class="student-empty-description">
-            Finish a Study Session and it will show up here as practice context —
-            what you covered and how it went. Educational meaning still lives in
-            the Decision Journal and Educational Timeline.
-        </p>
+    <div class="ds-empty-operational" role="status">
+      <p class="ds-empty-operational__reason">
+        Finish a Study Session and it will appear here as practice evidence.
+      </p>
     </div>
     {% endif %}
-</section>
+  </section>
 
-{% if history.mastered_topics %}
-<section class="student-stack" aria-labelledby="completed-topics-history">
-    <h2 id="completed-topics-history" class="student-section-title">Completed topics</h2>
-    <ul class="student-plain-list">
-        {% for topic in history.mastered_topics %}
-        <li>{{ topic }}</li>
-        {% endfor %}
+  {# ——— Completed Topics ——— #}
+  {% if history.mastered_topics %}
+  <section class="ds-section" aria-labelledby="completed-topics-history" data-sop-section="completed-topics">
+    <h2 id="completed-topics-history" class="ds-section__title">Completed Topics</h2>
+    <ul class="ds-list">
+      {% for topic in history.mastered_topics %}
+      <li class="ds-list__row"><span>{{ topic }}</span></li>
+      {% endfor %}
     </ul>
-</section>
-{% endif %}
+  </section>
+  {% endif %}
 
-{% if history.revision_history %}
-<section class="student-stack" aria-labelledby="revision-history-title">
-    <h2 id="revision-history-title" class="student-section-title">Revision history</h2>
-    <ul class="student-plain-list">
-        {% for item in history.revision_history %}
-        <li>{{ item }}</li>
-        {% endfor %}
-    </ul>
-</section>
-{% endif %}
-
-{% if history.achievements %}
-<section class="student-stack" aria-labelledby="achievements-title">
-    <h2 id="achievements-title" class="student-section-title">Achievements</h2>
-    {% for achievement in history.achievements %}
-    <article class="student-card">
-        <h3 class="student-card-title student-card-title--sm">{{ achievement.title }}</h3>
+  {# ——— Milestones / Achievements ——— #}
+  {% if history.achievements %}
+  <section class="ds-section" aria-labelledby="milestones-title" data-sop-section="milestones">
+    <h2 id="milestones-title" class="ds-section__title">Milestones</h2>
+    <div class="ds-stack">
+      {% for achievement in history.achievements %}
+      <article class="ds-panel" data-sop-section="achievements">
+        <h3 class="ds-os-path__subtitle">{{ achievement.title }}</h3>
         {% if achievement.description %}
-        <p class="student-card-body">{{ achievement.description }}</p>
+        <p class="ds-list__meta">{{ achievement.description }}</p>
         {% endif %}
         {% if achievement.earned_at %}
-        <p class="student-muted mb-0">{{ achievement.earned_at }}</p>
+        <p class="ds-list__meta">{{ achievement.earned_at }}</p>
         {% endif %}
-    </article>
-    {% endfor %}
-</section>
-{% endif %}
-
-<div class="student-primary-action">
-    <a class="btn student-btn-primary" href="{{ url_for('student.home') }}" data-student-cta="primary">
-        {{ history.primary_cta_label }}
-    </a>
-</div>
-{% else %}
-<section class="student-empty" aria-label="History" role="status">
-    <h2 class="student-empty-title">Your history starts with your first session</h2>
-    <p class="student-empty-description">
-        Study time, readiness trends, and completed topics will appear here as
-        practice context. For Study Sensei’s educational memory, open the
-        Decision Journal or Educational Timeline when guidance is recorded.
-    </p>
-    <div class="student-primary-action">
-        <a class="btn student-btn-primary" href="{{ url_for('student.home') }}" data-student-cta="primary">
-            Go to Home
-        </a>
+      </article>
+      {% endfor %}
     </div>
-</section>
+  </section>
+  {% endif %}
+
+  {% if history.revision_history %}
+  <section class="ds-section" aria-labelledby="revision-history-title">
+    <h2 id="revision-history-title" class="ds-section__title">Revision archive</h2>
+    <ul class="ds-list">
+      {% for item in history.revision_history %}
+      <li class="ds-list__row"><span>{{ item }}</span></li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  <div class="ds-primary-strip">
+    {{ ds_button(history.primary_cta_label or 'Return Home', href=url_for('student.home'), variant='ghost') }}
+  </div>
+
+{% else %}
+  <section class="ds-empty-operational" aria-label="History" role="status">
+    <h2 class="ds-section__title">Your history starts with your first session</h2>
+    <p class="ds-empty-operational__reason">
+      Study time, readiness trends, and completed topics will appear here as practice evidence.
+    </p>
+    {{ ds_button('Go to Home', href=url_for('student.home'), variant='primary', attrs='data-student-cta="primary"') }}
+  </section>
 {% endif %}
+</article>
 {% endblock %}

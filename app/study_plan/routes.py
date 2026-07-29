@@ -106,9 +106,7 @@ def _parse_current_stage(current_stage: str) -> tuple[str, str]:
 # no per-paper entries here.
 
 
-def _discover_curriculum_version(
-    category_code: str, paper_code: str
-) -> str | None:
+def _discover_curriculum_version(category_code: str, paper_code: str) -> str | None:
     """Return the latest on-disk curriculum version for an examination.
 
     Discovers versions through ``CurriculumEngineService.list_supported_versions``
@@ -158,13 +156,17 @@ def _resolve_curriculum_version(
     if engine.curriculum_exists(category_code, paper_code, version):
         logger.debug(
             "Curriculum %s/%s/%s found — associating with study plan.",
-            category_code, paper_code, version,
+            category_code,
+            paper_code,
+            version,
         )
         return version
 
     logger.warning(
         "Discovered curriculum %s/%s/%s was not verifiable on disk.",
-        category_code, paper_code, version,
+        category_code,
+        paper_code,
+        version,
     )
     flash(
         f"A curriculum for {category_code} {paper_code} (version {version}) "
@@ -483,8 +485,12 @@ def _handle_step_3_post():
 
     form = StudyAvailabilityForm()
     if form.validate_on_submit():
-        session["wizard_data"]["weekday_study_minutes"] = form.weekday_study_minutes.data
-        session["wizard_data"]["weekend_study_minutes"] = form.weekend_study_minutes.data
+        session["wizard_data"]["weekday_study_minutes"] = (
+            form.weekday_study_minutes.data
+        )
+        session["wizard_data"]["weekend_study_minutes"] = (
+            form.weekend_study_minutes.data
+        )
         session["wizard_data"]["preferred_session_minutes"] = (
             form.preferred_session_minutes.data
         )
@@ -563,14 +569,22 @@ def review_post():
 
         # Validate all required fields are present
         required_fields = [
-            "exam_category", "exam_sitting", "exam_date",
-            "weekday_study_minutes", "weekend_study_minutes",
-            "current_position", "study_preference", "target_grade",
+            "exam_category",
+            "exam_sitting",
+            "exam_date",
+            "weekday_study_minutes",
+            "weekend_study_minutes",
+            "current_position",
+            "study_preference",
+            "target_grade",
         ]
-        missing = [f for f in required_fields if f not in wizard_data or not wizard_data[f]]
+        missing = [
+            f for f in required_fields if f not in wizard_data or not wizard_data[f]
+        ]
         if missing:
             flash(
-                f"Missing required fields: {', '.join(missing)}. Please restart the wizard.",
+                "Missing required fields: "
+                f"{', '.join(missing)}. Please restart the wizard.",
                 "danger",
             )
             session.pop("wizard_data", None)
@@ -607,7 +621,9 @@ def review_post():
         )
 
         # ── Curriculum version resolution ──────────────────────────
-        curriculum_version = _resolve_curriculum_version(category_code, paper_or_subject)
+        curriculum_version = _resolve_curriculum_version(
+            category_code, paper_or_subject
+        )
         if curriculum_version is False:
             # A failure sentinel means the curriculum was not found;
             # a friendly message has already been flashed.
@@ -674,10 +690,7 @@ def review_post():
                     result.audit_id,
                 )
                 flash(result.message, "success")
-                if (
-                    result.runtime_authority
-                    == RuntimeAuthority.PUBLISHED_CURRICULUM
-                ):
+                if result.runtime_authority == RuntimeAuthority.PUBLISHED_CURRICULUM:
                     return redirect_to_canonical_home()
                 if result.study_plan_id is not None:
                     return redirect(
@@ -723,7 +736,9 @@ def review_post():
 
             session.pop("wizard_data", None)
 
-            logger.info("Study plan %d created for user %s", study_plan.id, current_user.id)
+            logger.info(
+                "Study plan %d created for user %s", study_plan.id, current_user.id
+            )
             # VP-001: LP-001 onboard when a published CKG edition exists so
             # RI-001 Preferred Authority can serve Experience Models.
             from app.infrastructure.adapters.learner_lifecycle import (
@@ -738,9 +753,7 @@ def review_post():
             # Product law (Capability 3.6.3 / 3.8.1): Calibration begins
             # immediately after Study Plan success — not login / settings /
             # dashboard. Birth Twin is authored on the Calibration path.
-            return redirect(
-                url_for("calibration.start", study_plan_id=study_plan.id)
-            )
+            return redirect(url_for("calibration.start", study_plan_id=study_plan.id))
         except ValueError as e:
             logger.warning("Study plan creation failed: %s", e)
             flash(str(e), "danger")
@@ -792,7 +805,9 @@ def _build_review_data(wizard_data: dict) -> dict:
     else:
         paper_label = wizard_data.get("exam_paper", "")
 
-    exam_name = catalogue.format_exam_name(category_code, paper_label) if paper_label else ""
+    exam_name = (
+        catalogue.format_exam_name(category_code, paper_label) if paper_label else ""
+    )
 
     # Exam date + days remaining
     exam_date_str = wizard_data.get("exam_date", "")
@@ -800,7 +815,11 @@ def _build_review_data(wizard_data: dict) -> dict:
     exam_date_display = exam_date_str
     if exam_date_str:
         try:
-            exam_date = date.fromisoformat(exam_date_str) if isinstance(exam_date_str, str) else exam_date_str
+            exam_date = (
+                date.fromisoformat(exam_date_str)
+                if isinstance(exam_date_str, str)
+                else exam_date_str
+            )
             exam_date_display = exam_date.strftime("%B %d, %Y")
             days_remaining = (exam_date - date.today()).days
         except (ValueError, TypeError):
@@ -850,7 +869,9 @@ def view_plan(study_plan_id: int):
         flash("You can only view your own study plans.", "danger")
         return redirect(url_for("study_plan.index"))
 
-    return render_template("study_plan/view.html", study_plan=study_plan, title="Study Plan")
+    return render_template(
+        "study_plan/view.html", study_plan=study_plan, title="Study Plan"
+    )
 
 
 @study_plan_bp.get("/plans/all")
@@ -900,8 +921,12 @@ def edit_plan(study_plan_id: int):
             engine = CurriculumEngineService()
             if engine.curriculum_exists(organisation, paper, curriculum_version):
                 try:
-                    curriculum = engine.load_auto(organisation, paper, curriculum_version)
-                    curriculum_topics = CurriculumEngineService.get_topics_flat(curriculum)
+                    curriculum = engine.load_auto(
+                        organisation, paper, curriculum_version
+                    )
+                    curriculum_topics = CurriculumEngineService.get_topics_flat(
+                        curriculum
+                    )
                     # Determine which topics are already completed
                     from app.models.topic_progress import TopicProgress
 
@@ -1000,7 +1025,9 @@ def edit_plan_post(study_plan_id: int):
             )
 
             flash("Study plan updated successfully!", "success")
-            return redirect(url_for("study_plan.view_plan", study_plan_id=study_plan_id))
+            return redirect(
+                url_for("study_plan.view_plan", study_plan_id=study_plan_id)
+            )
         except ValueError as e:
             flash(str(e), "danger")
 
@@ -1043,6 +1070,17 @@ def delete_plan(study_plan_id: int):
         )
     except ValueError as e:
         flash(str(e), "danger")
+    except Exception:
+        logger.exception(
+            "Study plan delete failed for plan_id=%s user_id=%s",
+            study_plan_id,
+            current_user.id,
+        )
+        flash(
+            "Could not delete this study plan because related records still "
+            "reference it. You can archive it instead.",
+            "danger",
+        )
 
     return redirect(url_for("study_plan.list_plans"))
 

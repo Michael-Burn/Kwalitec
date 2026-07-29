@@ -1,123 +1,155 @@
 {% extends "student/base.html" %}
 {% set title = page.shell.page_title %}
+{% from "design_system/macros.html" import ds_button, ds_badge %}
 {% from "student/components/explanation_card.html" import explanation_card %}
 
+{% block extra_head %}
+<link href="{{ versioned_static('css/design_system.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block page_header %}{% endblock %}
+
 {% block content %}
+<article
+  class="ds-page ds-container ds-container--content ds-os-revision"
+  aria-labelledby="student-revision-title"
+  data-sop="recommendations"
+>
+  <header class="ds-page-header">
+    <h1 id="student-revision-title" class="ds-page-header__title student-page-title">{{ page.shell.page_title }}</h1>
+    <p class="ds-page-header__support">What deserves my attention?</p>
+  </header>
+
 {% if page.revision %}
 {% set revision = page.revision %}
 
 {% if revision.has_revision and revision.primary %}
 {% set primary = revision.primary %}
-<section class="student-card student-card--revision-primary" aria-labelledby="revision-title">
-    <p class="student-card-eyebrow">Revision support</p>
-    <h2 id="revision-title" class="student-card-title">{{ primary.topic_title }}</h2>
-    <p class="student-muted" data-educational="mission-primacy">
-        Revision supports today's Mission — it is not a second Mission.
-        Use it to strengthen what Mission asked you to practice.
+
+  {# ——— Primary recommendation (recommend, don't merely list) ——— #}
+  <section
+    class="ds-os-recommend"
+    aria-labelledby="revision-title"
+    data-sop-section="primary-recommendation"
+  >
+    <p class="ds-list__meta">Revision support</p>
+    <h2 id="revision-title" class="ds-os-recommend__title">{{ primary.topic_title }}</h2>
+    <p class="ds-list__meta" data-educational="mission-primacy">
+      Revision supports today's Mission — it is not a second Mission.
+      Use it to strengthen what Mission asked you to practice.
     </p>
-    <dl class="student-meta-row">
-        {% if primary.priority_label %}
-        <div>
-            <dt>Priority</dt>
-            <dd><span class="student-badge">{{ primary.priority_label }}</span></dd>
-        </div>
-        {% endif %}
-        {% if primary.time_label %}
-        <div>
-            <dt>Estimated time</dt>
-            <dd>{{ primary.time_label }}</dd>
-        </div>
-        {% endif %}
-        {% if primary.expected_benefit %}
-        <div>
-            <dt>Expected educational benefit</dt>
-            <dd>{{ primary.expected_benefit }}</dd>
-        </div>
-        {% endif %}
+
+    <dl class="ds-os-recommend__meta">
+      {% if primary.priority_label %}
+      <div>
+        <dt>Why it matters</dt>
+        <dd>{{ ds_badge(primary.priority_label, tone='warning') }}</dd>
+      </div>
+      {% endif %}
+      {% if primary.time_label %}
+      <div>
+        <dt>Time</dt>
+        <dd>{{ primary.time_label }}</dd>
+      </div>
+      {% endif %}
+      {% if primary.expected_benefit %}
+      <div>
+        <dt>High-value outcome</dt>
+        <dd>{{ primary.expected_benefit }}</dd>
+      </div>
+      {% endif %}
+      {% if primary.explanation and primary.explanation.confidence_label %}
+      <div data-sop-section="confidence">
+        <dt>Confidence</dt>
+        <dd>{{ primary.explanation.confidence_label }}</dd>
+      </div>
+      {% endif %}
     </dl>
+
+    {% if primary.explanation and primary.explanation.why_recommended %}
+    <p class="ds-os-recommend__why" data-sop-section="weak-topics">
+      {{ primary.explanation.why_recommended }}
+    </p>
+    {% endif %}
+
     {% if form and revision.primary_cta_enabled %}
-    <form method="post" action="{{ url_for('student.begin_revision') }}" class="student-primary-action">
-        {{ form.hidden_tag() }}
-        {{ form.option_id() }}
-        {{ form.mission_id() }}
-        {{ form.session_id() }}
-        <button type="submit" class="btn student-btn-primary" data-student-cta="primary">
-            {{ revision.primary_cta_label }}
-        </button>
+    <form method="post" action="{{ url_for('student.begin_revision') }}" class="ds-primary-strip">
+      {{ form.hidden_tag() }}
+      {{ form.option_id() }}
+      {{ form.mission_id() }}
+      {{ form.session_id() }}
+      <button type="submit" class="ds-btn ds-btn--primary" data-student-cta="primary">
+        {{ revision.primary_cta_label }}
+      </button>
     </form>
     {% endif %}
-</section>
+  </section>
 
-{{ explanation_card(primary.explanation) }}
+  {{ explanation_card(primary.explanation) }}
 
-{% if revision.alternatives %}
-<section class="student-stack" aria-labelledby="alt-revision-title">
-    <h2 id="alt-revision-title" class="student-section-title">Alternative revision options</h2>
-    {% for option in revision.alternatives %}
-    <article class="student-card student-card--revision-alt" data-mes-field="revision_alternative">
-        <h3 class="student-card-title student-card-title--sm">{{ option.topic_title }}</h3>
-        <dl class="student-meta-row">
-            {% if option.priority_label %}
-            <div>
-                <dt>Priority</dt>
-                <dd>{{ option.priority_label }}</dd>
-            </div>
-            {% endif %}
-            {% if option.time_label %}
-            <div>
-                <dt>Time</dt>
-                <dd>{{ option.time_label }}</dd>
-            </div>
-            {% endif %}
-            {% if option.expected_benefit %}
-            <div>
-                <dt>Benefit</dt>
-                <dd>{{ option.expected_benefit }}</dd>
-            </div>
-            {% endif %}
+  {% if revision.alternatives %}
+  <section class="ds-section" aria-labelledby="alt-revision-title" data-sop-section="also-deserves-attention">
+    <h2 id="alt-revision-title" class="ds-section__title">Also deserves attention</h2>
+    <div class="ds-stack">
+      {% for option in revision.alternatives %}
+      <article class="ds-panel ds-os-recommend-alt" data-mes-field="revision_alternative">
+        <h3 class="ds-os-path__subtitle">{{ option.topic_title }}</h3>
+        <dl class="ds-os-recommend__meta">
+          {% if option.priority_label %}
+          <div>
+            <dt>Priority</dt>
+            <dd>{{ option.priority_label }}</dd>
+          </div>
+          {% endif %}
+          {% if option.time_label %}
+          <div>
+            <dt>Time</dt>
+            <dd>{{ option.time_label }}</dd>
+          </div>
+          {% endif %}
+          {% if option.expected_benefit %}
+          <div>
+            <dt>Benefit</dt>
+            <dd>{{ option.expected_benefit }}</dd>
+          </div>
+          {% endif %}
         </dl>
         {% if option.explanation and option.explanation.has_content %}
         {{ explanation_card(option.explanation) }}
         {% elif option.explanation and option.explanation.why_recommended %}
-        <p class="student-card-body" data-mes-field="why_recommended">
-            <span class="student-label">Why</span> {{ option.explanation.why_recommended }}
+        <p class="ds-list__meta" data-mes-field="why_recommended">
+          {{ option.explanation.why_recommended }}
         </p>
         {% endif %}
-    </article>
-    {% endfor %}
-</section>
-{% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
 
 {% else %}
-<section class="student-empty" aria-label="Revision" role="status" data-student-state="empty">
-    <h2 class="student-empty-title">No revision support yet</h2>
-    <p class="student-empty-description">{{ revision.empty_message }}</p>
-    <p class="student-empty-why student-muted" data-educational="mission-primacy">
-        Revision supports today's Mission when there is something worth
-        strengthening. Until then, follow Mission on Home.
+  <section class="ds-empty-operational" aria-label="Revision" role="status" data-student-state="empty">
+    <h2 class="ds-section__title">No revision support yet</h2>
+    <p class="ds-empty-operational__reason">{{ revision.empty_message }}</p>
+    <p class="ds-list__meta" data-educational="mission-primacy">
+      Revision supports today's Mission when there is something worth
+      strengthening. Until then, follow Mission on Home.
     </p>
-    <div class="student-primary-action">
-        <a class="btn student-btn-primary" href="{{ url_for('student.home') }}" data-student-cta="primary">
-            Return to today's Mission
-        </a>
-    </div>
-</section>
+    {{ ds_button("Return to today's Mission", href=url_for('student.home'), variant='primary', attrs='data-student-cta="primary"') }}
+  </section>
 {% endif %}
 {% else %}
-<section class="student-empty" aria-label="Revision" role="status" data-student-state="empty">
-    <h2 class="student-empty-title">Revision opens after practice</h2>
-    <p class="student-empty-description">
-        After you practice a topic in a Session, Revision can suggest follow-up
-        that supports today's Mission — never as a competing daily focus.
+  <section class="ds-empty-operational" aria-label="Revision" role="status" data-student-state="empty">
+    <h2 class="ds-section__title">Revision opens after practice</h2>
+    <p class="ds-empty-operational__reason">
+      After you practice a topic in a Session, Revision can suggest follow-up
+      that supports today's Mission — never as a competing daily focus.
     </p>
-    <p class="student-empty-why student-muted">
-        Empty Revision is expected early — start with Mission on Home.
+    <p class="ds-list__meta">
+      Empty Revision is expected early — start with Mission on Home.
     </p>
-    <div class="student-primary-action">
-        <a class="btn student-btn-primary" href="{{ url_for('student.home') }}" data-student-cta="primary">
-            Return to today's Mission
-        </a>
-    </div>
-</section>
+    {{ ds_button("Return to today's Mission", href=url_for('student.home'), variant='primary', attrs='data-student-cta="primary"') }}
+  </section>
 {% endif %}
+</article>
 {% endblock %}

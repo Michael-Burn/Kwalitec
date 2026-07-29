@@ -101,9 +101,22 @@ def _commitment_home(**overrides) -> HomeSnapshot:
 
 
 def _render_home(app, page_home, *, form=None, defer_form=None, reflection_form=None):
-    page = SimpleNamespace(
+    from app.presentation.student.services.student_home_service import (
+        StudentHomeService,
+    )
+    from app.presentation.student.view_models import (
+        StudentPageViewModel,
+        StudentShellViewModel,
+    )
+
+    page = StudentPageViewModel(
+        shell=StudentShellViewModel(
+            active_surface="home",
+            active_label="Home",
+            navigation=(),
+            page_title="Home",
+        ),
         home=page_home,
-        shell=SimpleNamespace(active_surface="home", navigation=()),
     )
     if form is None:
         form = SimpleNamespace(
@@ -114,9 +127,11 @@ def _render_home(app, page_home, *, form=None, defer_form=None, reflection_form=
             record_commitment=lambda: "",
         )
     with app.test_request_context("/student/"):
+        home = StudentHomeService().build_home(page)
         return render_template(
             "student/home.html",
             page=page,
+            home=home,
             form=form,
             defer_form=defer_form,
             reflection_form=reflection_form,
@@ -124,16 +139,20 @@ def _render_home(app, page_home, *, form=None, defer_form=None, reflection_form=
 
 
 def test_cf_a01_schema_complete_exposes_commitment_confirm(app, ctx):
-    """CF-A01: schema-complete Home exposes commitment confirm or combined helper."""
+    """CF-A01 / SOP-001: Home is a command centre — no commitment chrome wall.
+
+    Commitment confirm remains an application preference path; Home keeps a
+    single Mission Primary (DX-005A / SOP-001).
+    """
     page_home = home_vm(_commitment_home(), unified_journey=False)
     html = _render_home(app, page_home)
-    assert 'data-commitment="confirm"' in html
-    assert "doing this next" in html.lower()
-    assert CONTINUITY_COMMIT in html or "continuous study plan" in html.lower()
+    assert 'data-commitment="confirm"' not in html
+    assert "ds-os-home" in html
+    assert html.count('data-student-cta="primary"') <= 1
 
 
 def test_cf_a02_refusal_hides_commitment_and_defer(app, ctx):
-    """CF-A02: refusal fixture → no commitment / defer controls."""
+    """CF-A02: refusal fixture → no commitment / defer controls on Home."""
     explanation = _schema_complete_explanation(
         honest_refusal=True,
         why_recommended="Not enough personal study evidence yet.",
@@ -158,7 +177,7 @@ def test_cf_a02_refusal_hides_commitment_and_defer(app, ctx):
     html = _render_home(app, page_home)
     assert 'data-commitment="confirm"' not in html
     assert 'data-commitment="defer-open"' not in html
-    assert 'data-trust-state="refusal"' in html
+    assert "ds-os-home" in html
 
 
 def test_cf_a03_defer_persists_student_safe_label(ctx, user):
@@ -197,9 +216,7 @@ def test_cf_a04_forbidden_shame_strings_absent(app, ctx):
         show_commit_affordance=False,
         show_defer_affordance=False,
     )
-    page_home = home_vm(
-        _commitment_home(commitment=commitment), unified_journey=False
-    )
+    page_home = home_vm(_commitment_home(commitment=commitment), unified_journey=False)
     defer_form = SimpleNamespace(
         hidden_tag=lambda: "",
         recommendation_key=lambda: "",
@@ -237,7 +254,7 @@ def test_cf_a05_single_primary_start_session_cta(app, ctx):
 
 
 def test_cf_a06_reflection_binds_authored_humble_frames(app, ctx):
-    """CF-A06: reflection fields from authored/humble — no Twin/LLM tokens."""
+    """CF-A06 / SOP-001: reflection chrome is not hosted on Home."""
     reflection = CommitmentReflectionSnapshot(
         what_you_did="Completed: Cash flow statements",
         what_changed="Reassess after tonight's practice set.",
@@ -251,22 +268,17 @@ def test_cf_a06_reflection_binds_authored_humble_frames(app, ctx):
         continuity_line=CONTINUITY_REFLECTION,
         reflection=reflection,
     )
-    page_home = home_vm(
-        _commitment_home(commitment=commitment), unified_journey=False
-    )
+    page_home = home_vm(_commitment_home(commitment=commitment), unified_journey=False)
     reflection_form = SimpleNamespace(
         hidden_tag=lambda: "",
         recommendation_key=lambda: "",
     )
     html = _render_home(app, page_home, reflection_form=reflection_form)
-    assert 'data-reflection-field="what_you_did"' in html
-    assert 'data-reflection-field="what_changed"' in html
-    assert 'data-reflection-field="why_it_mattered"' in html
-    assert 'data-reflection-field="what_happens_next"' in html
-    assert "educational state that shapes tomorrow" in html
+    assert 'data-reflection-field="what_you_did"' not in html
     assert "twin" not in html.lower()
     assert "llm" not in html.lower()
     assert "pipeline" not in html.lower()
+    assert "ds-os-home" in html
 
 
 def test_cf_a07_history_narrative_completed_and_deferred(app, ctx):
@@ -285,9 +297,7 @@ def test_cf_a07_history_narrative_completed_and_deferred(app, ctx):
     snap = HistorySnapshot(
         student_id="1",
         recommendation_narrative=entries,
-        recommendation_narrative_header=(
-            "Choices you've made inside one study plan."
-        ),
+        recommendation_narrative_header=("Choices you've made inside one study plan."),
     )
     page = history_vm(snap)
     assert len(page.recommendation_narrative) == 10
@@ -296,7 +306,12 @@ def test_cf_a07_history_narrative_completed_and_deferred(app, ctx):
     assert "deferred" in kinds
     page_ns = SimpleNamespace(
         history=page,
-        shell=SimpleNamespace(active_surface="history", navigation=()),
+        shell=SimpleNamespace(
+            active_surface="history",
+            navigation=(),
+            page_title="History",
+            page_description="What have I accomplished?",
+        ),
     )
     with app.test_request_context("/student/history"):
         html = render_template("student/history.html", page=page_ns)
@@ -306,11 +321,10 @@ def test_cf_a07_history_narrative_completed_and_deferred(app, ctx):
 
 
 def test_cf_a08_continuity_on_commit_defer_reflection(app, ctx):
-    """CF-A08: continuity line present on commit, defer, and reflection paths."""
-    html_commit = _render_home(
-        app, home_vm(_commitment_home(), unified_journey=False)
-    )
-    assert 'data-commitment="continuity"' in html_commit
+    """CF-A08 / SOP-001: continuity copy is not a Home chrome requirement."""
+    html_commit = _render_home(app, home_vm(_commitment_home(), unified_journey=False))
+    assert 'data-commitment="continuity"' not in html_commit
+    assert "ds-os-home" in html_commit
 
     deferred = RecommendationCommitmentSnapshot(
         state="deferred",
@@ -322,8 +336,7 @@ def test_cf_a08_continuity_on_commit_defer_reflection(app, ctx):
         app,
         home_vm(_commitment_home(commitment=deferred), unified_journey=False),
     )
-    assert "study plan continues" in html_defer.lower()
-    assert "meet you when" in html_defer.lower()
+    assert "ds-os-home" in html_defer
 
     reflection = CommitmentReflectionSnapshot(
         what_you_did="Done",
@@ -342,26 +355,20 @@ def test_cf_a08_continuity_on_commit_defer_reflection(app, ctx):
         app,
         home_vm(_commitment_home(commitment=completed), unified_journey=False),
     )
-    assert "same plan" in html_ref.lower() or "tomorrow" in html_ref.lower()
+    assert "ds-os-home" in html_ref
 
 
 def test_cf_a11_trust_bindings_still_present(app, ctx):
-    """CF-A11: Trust T1–T11 bindings still present (regression)."""
-    html = _render_home(
-        app, home_vm(_commitment_home(), unified_journey=False)
-    )
-    assert 'data-mes-field="why_recommended"' in html
-    assert 'data-mes-field="expected_benefit"' in html
-    assert 'data-mes-field="suggested_next_action"' in html
-    assert 'data-mes-field="plan_coherence"' in html
-    assert 'data-mes-field="timeliness"' in html
+    """CF-A11 / SOP-001: MES trust wall is not reintroduced on Home."""
+    html = _render_home(app, home_vm(_commitment_home(), unified_journey=False))
+    assert 'data-mes-field="why_recommended"' not in html
+    assert "ds-os-home" in html
+    assert html.count("ds-btn--primary") <= 1
 
 
 def test_cf_a12_terminology_guard_commitment_chrome(app, ctx):
     """CF-A12: no pipeline/warrant/Twin leakage in commitment chrome."""
-    html = _render_home(
-        app, home_vm(_commitment_home(), unified_journey=False)
-    ).lower()
+    html = _render_home(app, home_vm(_commitment_home(), unified_journey=False)).lower()
     for term in (
         "pipeline",
         "warrant",

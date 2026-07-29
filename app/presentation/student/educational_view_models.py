@@ -42,34 +42,21 @@ def educational_vm(
         coverage_label=f"{pos.coverage_percent}% of syllabus topics complete",
         mission_title=(mission.title if mission else pos.topic_title),
         mission_rationale=(
-            (mission.educational_rationale if mission else "")
-            or journey.why_today
+            (mission.educational_rationale if mission else "") or journey.why_today
         ),
-        learning_objectives=(
-            mission.learning_objectives if mission else ()
-        ),
-        estimated_duration_label=(
-            mission.estimated_duration_label if mission else ""
-        ),
-        completion_definition=(
-            mission.completion_definition if mission else ""
-        ),
+        learning_objectives=(mission.learning_objectives if mission else ()),
+        estimated_duration_label=(mission.estimated_duration_label if mission else ""),
+        completion_definition=(mission.completion_definition if mission else ""),
         prerequisite_status_label=(
             mission.prerequisite_status_label if mission else ""
         ),
-        prerequisite_satisfied=(
-            mission.prerequisite_satisfied if mission else True
-        ),
+        prerequisite_satisfied=(mission.prerequisite_satisfied if mission else True),
         task_descriptions=(mission.task_descriptions if mission else ()),
         why_this_mission=(mission.why_this_mission if mission else ""),
-        supporting_evidence=(
-            mission.supporting_evidence if mission else ()
-        ),
+        supporting_evidence=(mission.supporting_evidence if mission else ()),
         confidence_label=(mission.confidence_label if mission else ""),
         expected_benefit=(mission.expected_benefit if mission else ""),
-        suggested_next_action=(
-            mission.suggested_next_action if mission else ""
-        ),
+        suggested_next_action=(mission.suggested_next_action if mission else ""),
         review_point=(mission.review_point if mission else ""),
         why_today=journey.why_today,
         why_previous_complete=journey.why_previous_complete,
@@ -102,17 +89,12 @@ def page_from_educational_experience(
         "profile": "Settings",
     }
     descriptions = {
-        "home": "What you should study today, and why.",
-        "journey": "Where you are on the published syllabus path.",
-        "revision": (
-            "Revision that supports today's Mission — not a second Mission."
-        ),
-        "history": (
-            "Practice archives and progress context — not Study Sensei’s "
-            "learning story. Educational meaning lives in the Decision "
-            "Journal and Educational Timeline."
-        ),
-        "profile": "Examination, preferences, goals, and account.",
+        # SOP-001 — one question per surface.
+        "home": "What should I do now?",
+        "journey": "Where am I?",
+        "revision": "What deserves my attention?",
+        "history": "What have I accomplished?",
+        "profile": "Configure how Kwalitec works for you.",
     }
     shell = StudentShellViewModel(
         active_surface=surface,
@@ -121,9 +103,7 @@ def page_from_educational_experience(
         page_title=titles.get(surface, surface.title()),
         page_eyebrow="Your learning",
         page_description=descriptions.get(surface, ""),
-        learning_activity_status=(
-            "mission_ready" if snap.mission else "planning"
-        ),
+        learning_activity_status=("mission_ready" if snap.mission else "planning"),
         journey_stage=snap.curriculum_position.journey_stage.lower(),
         unified_journey_enabled=False,
     )
@@ -161,9 +141,7 @@ def _home_from_educational(
         and mission.mission_instance_id
         and (mission.status or "").lower() == "generated"
     )
-    mission_done_today = bool(
-        mission and (mission.status or "").lower() == "completed"
-    )
+    mission_done_today = bool(mission and (mission.status or "").lower() == "completed")
     day_complete = bool(snap.syllabus_complete or mission_done_today)
     if snap.syllabus_complete:
         cta_label = "Syllabus complete"
@@ -191,13 +169,9 @@ def _home_from_educational(
         suggested_next_action=edu.suggested_next_action or edu.unlocks_next,
         review_point=edu.review_point,
         is_complete=bool(why and edu.supporting_evidence),
-        has_content=bool(
-            why or edu.expected_benefit or edu.suggested_next_action
-        ),
+        has_content=bool(why or edu.expected_benefit or edu.suggested_next_action),
         has_disclosure=bool(
-            edu.supporting_evidence
-            or edu.review_point
-            or edu.confidence_label
+            edu.supporting_evidence or edu.review_point or edu.confidence_label
         ),
         timeliness_line=edu.why_today,
         completion_loop_line=edu.review_point,

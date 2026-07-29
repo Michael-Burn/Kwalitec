@@ -62,28 +62,41 @@ class EducationalContinuityService:
     def release_plan_planning_artifacts(study_plan: StudyPlan) -> int:
         """Detach planning-only links so a Study Plan can be deleted safely.
 
-        Preserves Missions, Study Attempts, TopicProgress, and Decision Journal
-        rows as learner educational history. Clears active mission plan pointers
-        so temporary planning context does not block deletion.
+        Preserves Missions, Study Attempts, TopicProgress, Decision Journal,
+        and Research Feedback rows as learner / product history. Clears every
+        nullable foreign key that would otherwise block Study Plan deletion
+        (missions, research feedback submissions).
 
         Args:
             study_plan: The Study Plan about to be removed.
 
         Returns:
-            Number of Mission rows whose ``study_plan_id`` was cleared.
+            Number of dependent rows whose ``study_plan_id`` was cleared.
         """
-        missions = Mission.query.filter_by(study_plan_id=study_plan.id).all()
+        from app.models.research_feedback import ResearchFeedbackSubmission
+
         detached = 0
+
+        missions = Mission.query.filter_by(study_plan_id=study_plan.id).all()
         for mission in missions:
             mission.study_plan_id = None
             detached += 1
 
+        feedback_rows = ResearchFeedbackSubmission.query.filter_by(
+            study_plan_id=study_plan.id
+        ).all()
+        for row in feedback_rows:
+            row.study_plan_id = None
+            detached += 1
+
         if detached:
             logger.info(
-                "EIP-005: detached %s mission pointer(s) from study plan %s "
-                "(missions retained as educational history).",
+                "EIP-005: detached %s plan pointer(s) from study plan %s "
+                "(missions=%s research_feedback=%s; history retained).",
                 detached,
                 study_plan.id,
+                len(missions),
+                len(feedback_rows),
             )
         return detached
 
@@ -155,12 +168,10 @@ class EducationalContinuityService:
             RemapResult describing remapped, retained, and skipped units.
         """
         exam_label = exam_name or target_curriculum.exam_name
-        prior_curricula = (
-            Curriculum.query.filter(
-                Curriculum.exam_name == target_curriculum.exam_name,
-                Curriculum.id != target_curriculum.id,
-            ).all()
-        )
+        prior_curricula = Curriculum.query.filter(
+            Curriculum.exam_name == target_curriculum.exam_name,
+            Curriculum.id != target_curriculum.id,
+        ).all()
         if not prior_curricula:
             return RemapResult(notes=("No prior curricula for exam family.",))
 
@@ -236,9 +247,11 @@ class EducationalContinuityService:
                 user_id=user_id, topic_id=target_topic.id
             ).first()
 
-            has_history = EducationalContinuityService._has_learner_history(
-                existing
-            ) if existing is not None else False
+            has_history = (
+                EducationalContinuityService._has_learner_history(existing)
+                if existing is not None
+                else False
+            )
 
             if existing is not None and has_history:
                 # Fill missing estimate posture from mapped prior history without
@@ -350,15 +363,13 @@ class EducationalContinuityService:
             target.revision_count = source.revision_count
         # Preserve coverage stages (Completed / Learning). Only adopt stage when
         # target remains a cold coverage start and source stage is estimate-bearing.
-        if (
-            target.current_stage
-            in (TopicProgress.STAGE_NOT_STARTED, TopicProgress.STAGE_LEARNING)
-            and source.current_stage
-            in (
-                TopicProgress.STAGE_PRACTISING,
-                TopicProgress.STAGE_MASTERED,
-                TopicProgress.STAGE_NEEDS_REVIEW,
-            )
+        if target.current_stage in (
+            TopicProgress.STAGE_NOT_STARTED,
+            TopicProgress.STAGE_LEARNING,
+        ) and source.current_stage in (
+            TopicProgress.STAGE_PRACTISING,
+            TopicProgress.STAGE_MASTERED,
+            TopicProgress.STAGE_NEEDS_REVIEW,
         ):
             target.current_stage = source.current_stage
 

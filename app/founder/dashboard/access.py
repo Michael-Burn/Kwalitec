@@ -16,11 +16,9 @@ from flask import abort, current_app
 from flask_login import current_user, login_required
 
 from app.security.authorization import (
-    user_has_capability,
     user_has_permission,
     user_has_role,
 )
-from app.security.capabilities import Capability
 from app.security.permissions import Permission
 from app.security.roles import Role
 
@@ -66,8 +64,13 @@ def is_founder_user(user: Any | None = None) -> bool:
 
     Order of checks:
     1. Durable Founder role
-    2. Console capability + console.access permission (admin / staff)
-    3. Legacy email allowlist (bootstrap; syncs Founder role when possible)
+    2. Durable Administrator role (Console operators)
+    3. ``console.access`` permission from any staff role
+    4. Legacy email allowlist (bootstrap; syncs Founder role when possible)
+
+    UX-001: Administrator (and Administrator + Student) must resolve as
+    Console operators even when durable ``UserCapability`` rows were never
+    granted — role → permission is authoritative for landing and access.
     """
     candidate = user if user is not None else current_user
     if candidate is None or not getattr(candidate, "is_authenticated", False):
@@ -76,18 +79,17 @@ def is_founder_user(user: Any | None = None) -> bool:
     if user_has_role(candidate, Role.FOUNDER):
         return True
 
-    if user_has_capability(candidate, Capability.CONSOLE) and user_has_permission(
-        candidate, Permission.CONSOLE_ACCESS
-    ):
+    if user_has_role(candidate, Role.ADMINISTRATOR):
+        return True
+
+    if user_has_permission(candidate, Permission.CONSOLE_ACCESS):
         return True
 
     if _email_on_legacy_allowlist(candidate):
         try:
             from app.services.identity_service import IdentityService
 
-            IdentityService.sync_legacy_founder_allowlist(
-                candidate, founder_emails()
-            )
+            IdentityService.sync_legacy_founder_allowlist(candidate, founder_emails())
         except Exception:  # noqa: BLE001 — access check must not fail closed on sync
             pass
         return True

@@ -32,21 +32,24 @@ ROOT = Path(__file__).resolve().parents[3]
 
 
 def test_pc001_settings_and_help_use_product_check_in_label():
-    """PC-001 / RP002-NCR-001 — Product Check-in canon (legacy sidebar retired)."""
-    settings = (ROOT / "app/templates/settings/index.html").read_text(
-        encoding="utf-8"
-    )
+    """PC-001 / UX-003 — Product Check-in canon via settings.share_feedback."""
+    settings = (ROOT / "app/templates/settings/index.html").read_text(encoding="utf-8")
+    profile = (ROOT / "app/templates/student/profile.html").read_text(encoding="utf-8")
     help_page = (ROOT / "app/templates/alpha/help.html").read_text(encoding="utf-8")
     assert "Product Check-in" in settings
     assert "Share Feedback" not in settings
+    assert "Product Check-in" in profile
     assert "Product Check-in" in help_page
     assert "Share Feedback" not in help_page
-    assert "research.checkin" in settings or "url_for('research.checkin'" in settings
+    assert "settings.share_feedback" in settings
+    assert "settings.share_feedback" in profile
     assert "research.checkin" in help_page or "url_for('research.checkin'" in help_page
 
 
 def test_pc002_commitment_reflection_names_system_authority(app, ctx):
-    """PC-002 / RP002-NCR-002 — update field names System, not unnamed we."""
+    """PC-002 / SOP-001 — commitment reflection chrome is not hosted on Home."""
+    from tests.presentation.student.helpers import render_student_home
+
     reflection = CommitmentReflectionSnapshot(
         what_you_did="Completed: Cash flow statements",
         what_changed="Reassess after tonight's practice set.",
@@ -87,40 +90,30 @@ def test_pc002_commitment_reflection_names_system_authority(app, ctx):
         commitment=commitment,
     )
     page_home = home_vm(snap, unified_journey=False)
-    page = SimpleNamespace(
-        home=page_home,
-        shell=SimpleNamespace(active_surface="home", navigation=()),
-    )
     reflection_form = SimpleNamespace(
         hidden_tag=lambda: "",
         recommendation_key=lambda: "",
     )
-    with app.test_request_context("/student/"):
-        html = render_template(
-            "student/home.html",
-            page=page,
-            form=None,
-            reflection_form=reflection_form,
-        )
-    assert "What the system updated" in html
+    html = render_student_home(app, page_home, reflection_form=reflection_form)
     assert "What we updated" not in html
-    assert 'data-reflection-field="what_was_learned"' in html
+    assert 'data-reflection-field="what_was_learned"' not in html
+    assert "ds-os-home" in html
+    assert "Mission" in WHAT_WAS_LEARNED_HUMBLE
 
 
 def test_pc003_onboarding_header_count_matches_steps(app, ctx):
-    """PC-003 / RP002-NCR-003 — orientation count matches ONBOARDING_STEPS."""
+    """PC-003 — orientation count matches ONBOARDING_STEPS (four ideas)."""
     steps = AlphaOnboardingService.steps()
-    assert len(steps) == 6
+    assert len(steps) == 4
     with app.test_request_context("/alpha/onboarding"):
         html = render_template(
             "alpha/onboarding.html",
             steps=steps,
             internal_alpha_label="Internal Alpha",
         )
-    assert f"{len(steps)} ideas" in html
-    assert "five ideas" not in html
-    assert "Step 1 of 6" in html
-    assert "Step 6 of 6" in html
+    assert f"Step 1 of {len(steps)}" in html
+    assert f"Step {len(steps)} of {len(steps)}" in html
+    assert "Step 1 of 6" not in html
 
 
 def test_pc004_learning_check_attributes_support_to_study_sensei():

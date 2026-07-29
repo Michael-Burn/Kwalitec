@@ -38,13 +38,19 @@ def test_one_primary_cta_marker(student_client, endpoint, path):
 
 def test_home_has_decision_hierarchy(student_client):
     html = student_client.get("/student/").get_data(as_text=True)
-    # DX-005A / DX-006B Phase 4: L0 Mission → L1 Queue → L2 Progress (no dashboard slots).
-    assert "Current Mission" in html or "ds-mission-panel" in html or "ds-empty-operational" in html
+    # SOP-001 command centre: mission-first, no legacy dashboard slots.
+    assert (
+        "Today&#39;s Mission" in html
+        or "Continue Session" in html
+        or "ds-mission-panel" in html
+        or "ds-empty-operational" in html
+    )
     assert 'id="student-home-title"' in html or ">Home<" in html
     assert "student-hero-greeting" not in html
-    assert "Quick actions" not in html
+    assert 'data-dashboard-panel="quick-actions"' not in html
     assert 'data-dashboard-panel="readiness"' not in html
     assert 'data-dashboard-panel="coach"' not in html
+    assert "What should I do now?" in html
 
 
 def test_home_has_no_kpi_readiness_on_surface(student_client):
@@ -58,7 +64,7 @@ def test_home_has_no_kpi_readiness_on_surface(student_client):
 def test_journey_has_progress(student_client):
     html = student_client.get("/student/journey").get_data(as_text=True)
     assert "progress" in html.lower() or "complete" in html.lower()
-    assert "role=\"progressbar\"" in html or "student-progress" in html
+    assert 'role="progressbar"' in html or "student-progress" in html
 
 
 def test_revision_has_priority_or_benefit(student_client):
@@ -76,6 +82,26 @@ def test_history_focuses_on_progress_not_logs(student_client):
 def test_profile_has_settings_cta(student_client):
     html = student_client.get("/student/profile").get_data(as_text=True)
     assert "settings" in html.lower() or "account" in html.lower()
+    assert "settings-hub" in html
+    assert "settings-kpi-grid" in html
+
+
+def test_settings_hub_groups_present(student_client):
+    html = student_client.get("/student/profile").get_data(as_text=True)
+    for group in ("Profile", "Learning", "Notifications", "Account", "Security"):
+        assert group in html
+    for kpi in (
+        "Study Time",
+        "Sessions",
+        "Topics Mastered",
+        "Current Streak",
+        "Average Daily Study",
+        "Current Examination",
+    ):
+        assert kpi in html
+    assert 'id="daily_goal_hours"' in html
+    assert "appearance-switcher" in html or "data-appearance-option" in html
+    assert "Open account settings" not in html  # replaced by compact card actions
 
 
 def test_skip_link_present(student_client):

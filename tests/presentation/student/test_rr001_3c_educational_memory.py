@@ -75,11 +75,13 @@ def test_timeline_empty_distinguishes_journal_and_history():
 
 
 def test_onboarding_introduces_educational_memory():
+    """Educational memory model is taught in Help; onboarding stays practical."""
     steps = AlphaOnboardingService.steps()
-    memory = next(step for step in steps if step["id"] == "memory")
-    assert memory["title"] == "How Study Sensei remembers"
-    assert EDUCATIONAL_MEMORY_MODEL_SENTENCE in memory["body"]
-    assert SENSEI_HANDOFF_SENTENCE in " ".join(step["body"] for step in steps)
+    assert "memory" not in {step["id"] for step in steps}
+    from app.presentation.product_language import EDUCATIONAL_MEMORY_MODEL_SENTENCE
+
+    assert "Decision Journal" in EDUCATIONAL_MEMORY_MODEL_SENTENCE
+    assert SENSEI_HANDOFF_SENTENCE
 
 
 def test_help_teaches_educational_memory_model(client, ctx):
@@ -107,9 +109,9 @@ def test_timeline_narrative_retires_mission_tip_phrase():
     """EGC-R06 / DEP-01 — mission milestone patterns use guidance noun."""
     from pathlib import Path
 
-    source = Path(
-        "app/domain/educational_timeline/narrative.py"
-    ).read_text(encoding="utf-8")
+    source = Path("app/domain/educational_timeline/narrative.py").read_text(
+        encoding="utf-8"
+    )
     assert "Mission tip marked as" not in source
     assert "Mission guidance marked as" in source
     assert "fewer recorded tips" not in source
