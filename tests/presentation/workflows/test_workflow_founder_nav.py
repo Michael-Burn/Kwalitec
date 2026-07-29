@@ -81,10 +81,10 @@ def test_evidence_gates_links_to_intelligence_and_studio(founder_client):
 
 
 def test_breadcrumbs_present_on_alpha_pages(founder_client):
+    # Studio catalogue/index surfaces follow DX-004B — shell nav only, no local breadcrumb chrome.
     paths = (
         "/console/intelligence",
         "/console/evidence-gates",
-        "/console/studio/",
     )
     for path in paths:
         html = founder_client.get(path).get_data(as_text=True)

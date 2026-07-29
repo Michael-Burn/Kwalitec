@@ -43,10 +43,11 @@
 <section class="mb-4" aria-labelledby="settings-studio-filters-title">
     <h2 id="settings-studio-filters-title" class="h5">Studio filters</h2>
     <ul class="list-unstyled mb-0">
-        <li><a href="{{ url_for('curriculum_studio.review_hub') }}">Review Queue</a></li>
-        <li><a href="{{ url_for('curriculum_studio.publishing_hub') }}">Publishing</a></li>
-        <li><a href="{{ url_for('curriculum_studio.versions_hub') }}">Versions</a></li>
-        <li><a href="{{ url_for('curriculum_studio.quality_hub') }}">Quality</a></li>
+        <li><a href="{{ url_for('curriculum_studio.subjects_hub', status='validation') }}">Validation</a></li>
+        <li><a href="{{ url_for('curriculum_studio.subjects_hub', status='approval') }}">Approval</a></li>
+        <li><a href="{{ url_for('curriculum_studio.subjects_hub', status='ready_to_publish') }}">Ready to publish</a></li>
+        <li><a href="{{ url_for('curriculum_studio.subjects_hub', status='published') }}">Published</a></li>
+        <li><a href="{{ url_for('curriculum_studio.subjects_hub', status='archived') }}">Archived</a></li>
     </ul>
 </section>
 {% endblock %}

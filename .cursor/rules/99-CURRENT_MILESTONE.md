@@ -56,9 +56,9 @@ Release Candidate: RC-2026.07.29-01
 
 ## Next
 
-1. **Phase 1 — Founder Home** — implementation complete (**IN REVIEW**). Report: `knowledge/implementation/dx006b/DX006B_PHASE1_FOUNDER_HOME_COMPLETION_REPORT.md`.  
-2. Independent review → mark Phase 1 **CERTIFIED** before any Phase 2 work.  
-3. Then Phase 2 — Founder Subjects (DX-004B).  
+1. **Phase 2 — Founder Subjects** — implementation complete (**IN REVIEW**). Report: `knowledge/implementation/dx006b/DX006B_PHASE2_FOUNDER_SUBJECTS_COMPLETION_REPORT.md`.  
+2. Independent review → mark Phase 2 **CERTIFIED** before any Phase 3 work.  
+3. Then Phase 3 — Founder Workspace (DX-004C).  
 4. Continue mandatory sequence through Phase 6 after each certification.  
 5. Only after programme exit: **CQ-008 — Premium Product Certification**.
 

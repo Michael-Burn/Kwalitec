@@ -179,6 +179,20 @@
   color: var(--text-primary);
 }
 
+.ds-page-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.ds-page-header--with-action {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
 .ds-page-header__title {
   margin: 0;
   font-size: var(--font-page);
@@ -190,6 +204,67 @@
   margin: var(--space-2) 0 0;
   font-size: var(--font-support);
   color: var(--text-secondary);
+}
+
+.ds-search {
+  flex: 1 1 16rem;
+  min-width: 12rem;
+}
+
+.ds-search__input {
+  width: 100%;
+}
+
+.ds-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 10rem;
+}
+
+.ds-catalogue__code {
+  display: block;
+  font-size: var(--font-caption);
+  font-weight: var(--font-weight-normal);
+  color: var(--text-muted);
+}
+
+.ds-catalogue__name {
+  font-size: var(--font-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.ds-catalogue__name:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.ds-catalogue__table {
+  display: table;
+}
+
+.ds-catalogue__list {
+  display: none;
+}
+
+.ds-catalogue__row:hover {
+  background: var(--surface);
+}
+
+.ds-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: var(--container-narrow);
+}
+
+.ds-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
 }
 
 .ds-primary-strip {
@@ -369,6 +444,15 @@
     gap: var(--space-5);
   }
 
+  .ds-page-header--with-action {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ds-page-header--with-action .ds-primary-strip .ds-btn {
+    width: 100%;
+  }
+
   .ds-primary-strip {
     flex-direction: column;
     align-items: stretch;
@@ -376,6 +460,30 @@
 
   .ds-primary-strip .ds-btn {
     width: 100%;
+  }
+
+  .ds-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ds-field,
+  .ds-search {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .ds-catalogue__table {
+    display: none;
+  }
+
+  .ds-catalogue__list {
+    display: flex;
+  }
+
+  .ds-catalogue__list-row {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 

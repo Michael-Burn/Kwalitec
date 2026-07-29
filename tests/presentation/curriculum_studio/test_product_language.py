@@ -105,10 +105,14 @@ def test_studio_workspace_renders_publish_curriculum(founder_client):
     assert "go live" not in html.lower()
 
 
-def test_studio_dashboard_headings_title_case(founder_client):
+def test_studio_dashboard_is_workspace_index(founder_client):
     html = founder_client.get("/console/studio/").get_data(as_text=True)
-    assert "Create Subject" in html
-    assert "Open Workspace" in html
+    assert "Curriculum Studio" in html
+    assert "Workspaces" in html
+    # Create Subject belongs on Subjects catalogue, not as Studio peer Primary
+    # when workspaces exist; empty Studio may offer Create Subject once.
+    assert "Open Workspace" not in html
+    assert html.count("<h1") == 1
 
 
 def test_publication_stage_label_is_publish():

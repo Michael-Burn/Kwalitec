@@ -56,15 +56,70 @@ def _json_error(exc: Exception, *, status: int = 400):
 @studio_bp.get("/")
 @founder_required
 def index():
-    """Curriculum Studio founder dashboard."""
+    """Curriculum Studio — workspace execution index (not a subject catalogue)."""
     page = load_dashboard()
     return render_template(
         "curriculum_studio/dashboard.html",
         title="Curriculum Studio",
         page=page,
-        create_subject_form=CreateSubjectForm(),
         create_workspace_form=CreateWorkspaceForm(),
+        hub="studio",
     )
+
+
+@studio_bp.get("/subjects")
+@founder_required
+def subjects_hub():
+    """Subjects catalogue — DX-004B Catalogue First."""
+    from app.founder.dashboard.services.founder_subjects_service import (
+        FounderSubjectsService,
+    )
+
+    subjects = FounderSubjectsService().build_page(
+        query=request.args.get("q", ""),
+        status=request.args.get("status", "all"),
+        sort=request.args.get("sort", "recent_active"),
+        create=request.args.get("create", "") in {"1", "true", "yes"},
+    )
+    return render_template(
+        "curriculum_studio/subjects.html",
+        title="Subjects",
+        subjects=subjects,
+        create_subject_form=CreateSubjectForm(),
+    )
+
+
+def _subjects_filter_redirect(*, status: str = "all"):
+    """Collapse legacy hub catalogues into Subjects filter presets."""
+    return redirect(url_for("curriculum_studio.subjects_hub", status=status))
+
+
+@studio_bp.get("/review-queue")
+@founder_required
+def review_hub():
+    """Legacy Review Queue hub → Subjects Validation filter."""
+    return _subjects_filter_redirect(status="validation")
+
+
+@studio_bp.get("/publishing")
+@founder_required
+def publishing_hub():
+    """Legacy Publishing hub → Subjects Ready to publish filter."""
+    return _subjects_filter_redirect(status="ready_to_publish")
+
+
+@studio_bp.get("/versions")
+@founder_required
+def versions_hub():
+    """Legacy Versions hub → Subjects catalogue."""
+    return redirect(url_for("curriculum_studio.subjects_hub"))
+
+
+@studio_bp.get("/quality")
+@founder_required
+def quality_hub():
+    """Legacy Quality hub → Subjects Validation filter."""
+    return _subjects_filter_redirect(status="validation")
 
 
 @studio_bp.post("/subjects")
@@ -73,17 +128,41 @@ def create_subject():
     form = CreateSubjectForm()
     if not form.validate_on_submit():
         flash(FLASH_WARNING["subject_create"], "warning")
-        return redirect(url_for("curriculum_studio.index"))
+        return redirect(url_for("curriculum_studio.subjects_hub", create=1))
     try:
-        service().create_subject(
-            form.subject_code.data.strip(),
-            title=(form.title.data or "").strip(),
-        )
+        code = form.subject_code.data.strip().upper()
+        title = (form.title.data or "").strip()
+        service().create_subject(code, title=title)
+        workspace_id = f"ws-{code.lower()}"
+        try:
+            ws = service().create_workspace(
+                workspace_id, code, subject_title=title
+            )
+        except Exception as open_exc:  # noqa: BLE001
+            logger.info("Create workspace after subject: %s", open_exc)
+            existing = [
+                w
+                for w in service().list_workspaces()
+                if (w.subject_code or "").strip().upper() == code
+            ]
+            if not existing:
+                flash(FLASH_SUCCESS["subject_created"], "success")
+                return redirect(url_for("curriculum_studio.subjects_hub"))
+            flash(FLASH_SUCCESS["subject_created"], "success")
+            return redirect(
+                url_for(
+                    "curriculum_studio.workspace",
+                    workspace_id=existing[0].workspace_id,
+                )
+            )
         flash(FLASH_SUCCESS["subject_created"], "success")
+        return redirect(
+            url_for("curriculum_studio.workspace", workspace_id=ws.workspace_id)
+        )
     except Exception as exc:
         logger.warning("Create subject failed: %s", exc)
         flash(recover_flash(exc, "subject_create"), "warning")
-    return redirect(url_for("curriculum_studio.index"))
+        return redirect(url_for("curriculum_studio.subjects_hub", create=1))
 
 
 @studio_bp.post("/workspaces")

@@ -33,7 +33,10 @@ def test_studio_index_reachable(founder_client):
     assert response.status_code == 200
     html = response.get_data(as_text=True)
     assert "Curriculum Studio" in html
-    assert "founder-breadcrumb" in html
+    assert "Workspaces" in html
+    # DX-004B: Studio is an execution index — shell nav only, no breadcrumb chrome.
+    assert "Curriculum workflow" not in html
+    assert "command-metric" not in html
 
 
 def test_workspace_reachable(founder_client):

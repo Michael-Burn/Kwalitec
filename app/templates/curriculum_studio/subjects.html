@@ -1,0 +1,99 @@
+{% extends "founder_dashboard/base.html" %}
+{% from "design_system/macros.html" import ds_page_header, ds_search_input, ds_select, ds_toolbar, ds_subject_catalogue, ds_empty_operational, ds_button %}
+
+{% block console_content %}
+<article class="ds-page ds-container ds-container--content" aria-labelledby="founder-subjects-title">
+  {% if subjects.show_header_primary %}
+    {{ ds_page_header(
+      subjects.page_title,
+      title_id='founder-subjects-title',
+      primary_label=subjects.primary_label,
+      primary_href=subjects.primary_href
+    ) }}
+  {% else %}
+    {{ ds_page_header(subjects.page_title, title_id='founder-subjects-title') }}
+  {% endif %}
+
+  {% if subjects.show_create_form %}
+  <section class="ds-section" aria-labelledby="create-subject-heading">
+    <h2 class="ds-section__title" id="create-subject-heading">Create Subject</h2>
+    <form
+      method="post"
+      action="{{ url_for('curriculum_studio.create_subject') }}"
+      class="ds-form"
+      novalidate
+    >
+      {{ create_subject_form.hidden_tag() }}
+      <div class="ds-field">
+        <label class="ds-field-label" for="{{ create_subject_form.subject_code.id }}">
+          {{ create_subject_form.subject_code.label.text }}
+        </label>
+        {{ create_subject_form.subject_code(class_='ds-input', id=create_subject_form.subject_code.id) }}
+        <p id="help-subject-code" class="ds-list__meta">Use a short syllabus code such as CS1.</p>
+        {% for error in create_subject_form.subject_code.errors %}
+        <p class="ds-field-error" role="alert">{{ error }}</p>
+        {% endfor %}
+      </div>
+      <div class="ds-field">
+        <label class="ds-field-label" for="{{ create_subject_form.title.id }}">
+          {{ create_subject_form.title.label.text }}
+        </label>
+        {{ create_subject_form.title(class_='ds-input', id=create_subject_form.title.id) }}
+      </div>
+      <div class="ds-form__actions">
+        {{ create_subject_form.submit(class_='ds-btn ds-btn--primary') }}
+        {% if not subjects.is_empty_catalogue %}
+          {{ ds_button('Cancel', href=url_for('curriculum_studio.subjects_hub'), variant='ghost') }}
+        {% endif %}
+      </div>
+    </form>
+  </section>
+
+  {% elif subjects.is_empty_catalogue %}
+    {{ ds_empty_operational(
+      subjects.empty_reason,
+      subjects.empty_action_label,
+      subjects.empty_action_href
+    ) }}
+
+  {% else %}
+  {# L1 — Search & Filters #}
+  <form method="get" action="{{ url_for('curriculum_studio.subjects_hub') }}" class="ds-stack ds-stack--lg">
+    {% call ds_toolbar(label='Search and filters') %}
+      {{ ds_search_input(
+        name='q',
+        value=subjects.query,
+        placeholder='Search subjects…',
+        label='Search subjects',
+        input_id='subjects-search'
+      ) }}
+      {{ ds_select(
+        name='status',
+        options=subjects.status_options,
+        selected=subjects.status,
+        label='Status',
+        select_id='subjects-status'
+      ) }}
+      {{ ds_select(
+        name='sort',
+        options=subjects.sort_options,
+        selected=subjects.sort,
+        label='Sort',
+        select_id='subjects-sort'
+      ) }}
+      <button class="ds-btn ds-btn--secondary" type="submit">Apply</button>
+    {% endcall %}
+  </form>
+
+  {% if subjects.is_zero_results %}
+  <div class="ds-empty-operational" role="status">
+    <p class="ds-empty-operational__reason">{{ subjects.empty_reason }}</p>
+    {{ ds_button(subjects.empty_action_label, href=subjects.empty_action_href, variant='ghost') }}
+  </div>
+  {% else %}
+  {# L0 — Subject Catalogue (table/list; not cards) #}
+  {{ ds_subject_catalogue(subjects.rows, caption='Subject catalogue') }}
+  {% endif %}
+  {% endif %}
+</article>
+{% endblock %}

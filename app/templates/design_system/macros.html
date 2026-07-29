@@ -18,12 +18,96 @@
 </div>
 {%- endmacro %}
 
-{% macro ds_page_header(title, support='', eyebrow='') -%}
-<header class="ds-page-header">
-  {% if eyebrow %}<p class="ds-list__meta">{{ eyebrow }}</p>{% endif %}
-  <h1 class="ds-page-header__title">{{ title }}</h1>
-  {% if support %}<p class="ds-page-header__support">{{ support }}</p>{% endif %}
+{% macro ds_page_header(title, support='', eyebrow='', primary_label='', primary_href='', title_id='') -%}
+<header class="ds-page-header{% if primary_label %} ds-page-header--with-action{% endif %}">
+  <div class="ds-page-header__text">
+    {% if eyebrow %}<p class="ds-list__meta">{{ eyebrow }}</p>{% endif %}
+    <h1 class="ds-page-header__title"{% if title_id %} id="{{ title_id }}"{% endif %}>{{ title }}</h1>
+    {% if support %}<p class="ds-page-header__support">{{ support }}</p>{% endif %}
+  </div>
+  {% if primary_label %}
+    {{ ds_primary_action_strip(primary_label, primary_href=primary_href) }}
+  {% endif %}
 </header>
+{%- endmacro %}
+
+{% macro ds_search_input(name='q', value='', placeholder='Search', label='Search', input_id='ds-search') -%}
+<div class="ds-search" role="search">
+  <label class="ds-field-label" for="{{ input_id }}">{{ label }}</label>
+  <input
+    class="ds-input ds-search__input"
+    type="search"
+    id="{{ input_id }}"
+    name="{{ name }}"
+    value="{{ value }}"
+    placeholder="{{ placeholder }}"
+    autocomplete="off"
+  >
+</div>
+{%- endmacro %}
+
+{% macro ds_select(name, options, selected='', label='', select_id='') -%}
+{%- set sid = select_id or ('ds-select-' ~ name) -%}
+<div class="ds-field">
+  {% if label %}<label class="ds-field-label" for="{{ sid }}">{{ label }}</label>{% endif %}
+  <select class="ds-select" id="{{ sid }}" name="{{ name }}">
+    {% for opt in options %}
+    <option value="{{ opt.value }}"{% if opt.value == selected %} selected{% endif %}>{{ opt.label }}</option>
+    {% endfor %}
+  </select>
+</div>
+{%- endmacro %}
+
+{% macro ds_toolbar(label='Toolbar') -%}
+<div class="ds-toolbar" role="toolbar" aria-label="{{ label }}">
+  {{ caller() }}
+</div>
+{%- endmacro %}
+
+{% macro ds_subject_catalogue(rows, caption='Subject catalogue') -%}
+<div class="ds-catalogue" role="region" aria-label="{{ caption }}">
+  <table class="ds-table ds-catalogue__table">
+    <caption class="visually-hidden">{{ caption }}</caption>
+    <thead>
+      <tr>
+        <th scope="col">Subject</th>
+        <th scope="col">Stage</th>
+        <th scope="col">Updated</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in rows %}
+      <tr class="ds-catalogue__row">
+        <th scope="row">
+          <a class="ds-catalogue__name" href="{{ row.workspace_href }}">{{ row.name }}</a>
+          {% if row.code and row.code != row.name %}
+          <span class="ds-catalogue__code">{{ row.code }}</span>
+          {% endif %}
+        </th>
+        <td>{{ row.stage_label }}</td>
+        <td><span class="ds-list__meta">{{ row.updated_label }}</span></td>
+        <td>{{ ds_badge(row.publication_status, tone='neutral') }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <ul class="ds-catalogue__list ds-list">
+    {% for row in rows %}
+    <li>
+      <a class="ds-list__row ds-catalogue__list-row" href="{{ row.workspace_href }}">
+        <span>
+          <span class="ds-catalogue__name">{{ row.name }}</span>
+          {% if row.code and row.code != row.name %}
+          <span class="ds-catalogue__code">{{ row.code }}</span>
+          {% endif %}
+          <span class="ds-list__meta">{{ row.stage_label }} · {{ row.updated_label }} · {{ row.publication_status }}</span>
+        </span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
 {%- endmacro %}
 
 {% macro ds_section(title, id='') -%}

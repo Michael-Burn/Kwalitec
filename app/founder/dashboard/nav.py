@@ -35,19 +35,9 @@ COMMAND_CENTRE_NAV: tuple[CommandCentreNavItem, ...] = (
 )
 
 # Secondary / nested destinations (not equal-weight chrome).
+# Legacy Review / Publishing / Versions / Quality hubs collapsed into
+# Subjects filter presets (DX-004B NAVIGATION_BOUNDARIES).
 COMMAND_CENTRE_SECONDARY_NAV: tuple[CommandCentreNavItem, ...] = (
-    CommandCentreNavItem(
-        "curriculum_studio.review_hub", "Review Queue", "review_queue"
-    ),
-    CommandCentreNavItem(
-        "curriculum_studio.publishing_hub", "Publishing", "publishing"
-    ),
-    CommandCentreNavItem(
-        "curriculum_studio.versions_hub", "Versions", "versions"
-    ),
-    CommandCentreNavItem(
-        "curriculum_studio.quality_hub", "Quality", "quality"
-    ),
     CommandCentreNavItem(
         "founder_dashboard.operational_health",
         "Operations",
@@ -140,13 +130,13 @@ def active_section_id(endpoint: str | None) -> str:
         "curriculum_studio.publishing_hub",
         "curriculum_studio.versions_hub",
         "curriculum_studio.quality_hub",
+        "curriculum_studio.create_subject",
     }:
-        return "curriculum_studio"
+        return "subjects"
     if endpoint == "curriculum_studio.index":
         return "curriculum_studio"
     if endpoint in {
         "curriculum_studio.workspace",
-        "curriculum_studio.create_subject",
         "curriculum_studio.create_workspace",
         "curriculum_studio.advance",
         "curriculum_studio.validate",

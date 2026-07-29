@@ -38,7 +38,8 @@ def test_curriculum_authority_primary_nav():
     assert "Assessments" not in labels
     secondary_ids = [item.section_id for item in COMMAND_CENTRE_SECONDARY_NAV]
     assert "assessments" in secondary_ids
-    assert "review_queue" in secondary_ids
+    assert "review_queue" not in secondary_ids
+    assert "publishing" not in secondary_ids
 
 
 @pytest.mark.parametrize(
