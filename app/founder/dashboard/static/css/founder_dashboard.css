@@ -162,16 +162,31 @@
 }
 .console-sidebar-brand{margin-bottom:1.5rem;}
 .console-brand-link{
-  display:flex;align-items:center;gap:0.65rem;text-decoration:none;color:inherit;
+  /* Navy plate: approved logo uses white wordmark — needs dark field on light sidebar. */
+  display:inline-flex;align-items:center;gap:0.65rem;text-decoration:none;color:inherit;
+  background:var(--chrome, var(--brand-primary-dark, #0D1B2A));
+  border-radius:var(--radius);
+  padding:0.55rem 0.75rem;
+  max-width:100%;
 }
-.console-brand-logo{max-height:1.75rem;width:auto;}
-.console-brand-text{
-  font-size:var(--font-sm);font-weight:var(--font-weight-semibold);
-  color:var(--text-primary);letter-spacing:-0.01em;
+.console-brand-link:focus-visible{
+  outline:2px solid var(--brand-blue, var(--primary));outline-offset:2px;
 }
+.console-brand-logo{max-height:1.85rem;width:auto;display:block;}
+.console-brand-logo--mobile{max-height:1.35rem;}
 .console-brand-tagline{
-  margin:0.45rem 0 0;font-size:var(--font-xs);color:var(--text-muted);
+  margin:0.55rem 0 0;font-size:var(--font-xs);color:var(--text-secondary);
   letter-spacing:0.04em;text-transform:uppercase;
+  display:flex;flex-wrap:wrap;align-items:center;gap:0.4rem;
+}
+.console-brand-context{
+  display:inline-flex;align-items:center;
+  font-size:var(--font-xs);font-weight:var(--font-weight-semibold);
+  letter-spacing:0.04em;text-transform:uppercase;
+  color:var(--text-secondary);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:0.1rem 0.4rem;
 }
 .console-nav-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0.15rem;}
 .console-nav-link{
@@ -198,11 +213,23 @@
 .console-topbar-inner{
   display:flex;align-items:center;gap:0.75rem;padding:0.75rem 1.25rem;flex-wrap:wrap;
 }
-.console-topbar-brand-mobile{display:none;font-weight:var(--font-weight-semibold);font-size:var(--font-sm);}
+.console-topbar-brand-mobile{
+  display:none;align-items:center;gap:0.5rem;font-weight:var(--font-weight-semibold);font-size:var(--font-sm);
+}
+.console-topbar-brand-mobile .console-brand-logo{
+  background:var(--chrome, var(--brand-primary-dark, #0D1B2A));
+  border-radius:var(--radius);
+  padding:0.35rem 0.5rem;
+}
+.console-topbar-context{
+  font-size:var(--font-xs);font-weight:var(--font-weight-semibold);
+  letter-spacing:0.04em;text-transform:uppercase;color:var(--text-secondary);
+  border:1px solid var(--border);border-radius:var(--radius);padding:0.1rem 0.4rem;
+}
 .console-topbar-meta{display:flex;align-items:center;gap:0.75rem;margin-left:auto;}
 .console-topbar-badge{
   font-size:var(--font-xs);text-transform:uppercase;letter-spacing:0.04em;
-  color:var(--text-muted);border:1px solid var(--border);border-radius:var(--radius);padding:0.15rem 0.45rem;
+  color:var(--text-secondary);border:1px solid var(--border);border-radius:var(--radius);padding:0.15rem 0.45rem;
 }
 .console-topbar-link{
   font-size:var(--font-sm);color:var(--text-secondary);text-decoration:none;background:none;border:0;padding:0;cursor:pointer;
@@ -218,13 +245,13 @@
 .console-search-submit{flex-shrink:0;}
 
 .console-main{flex:1;padding:1.5rem 1.5rem 2.5rem;max-width:72rem;}
-.console-footer{padding:1rem 1.5rem 1.5rem;border-top:1px solid var(--border-subtle);}
-.console-footer-text{margin:0;font-size:var(--font-xs);color:var(--text-muted);}
+.console-footer{padding:0.65rem 1.5rem 0.85rem;border-top:1px solid var(--border-subtle);}
+.console-footer-text{margin:0;font-size:var(--font-xs);color:var(--text-secondary);}
 
 .console-page-header{margin-bottom:1.75rem;}
 .console-eyebrow{
   margin:0 0 0.35rem;font-size:var(--font-xs);font-weight:var(--font-weight-semibold);
-  text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);
+  text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);
 }
 .console-page-title{
   margin:0 0 0.5rem;font-size:clamp(1.6rem, 2vw, 2rem);font-weight:var(--font-weight-semibold);
@@ -328,7 +355,7 @@ a.console-card:hover{border-color:var(--border);box-shadow:var(--shadow-sm, none
   }
   .console-shell.is-nav-open .console-sidebar{transform:translateX(0);}
   .console-nav-toggle{display:inline-flex;}
-  .console-topbar-brand-mobile{display:inline;}
+  .console-topbar-brand-mobile{display:inline-flex;}
   .console-sidebar-backdrop{
     display:block;position:fixed;inset:0;background:var(--surface-overlay, rgba(15,23,42,0.35));z-index:30;
   }

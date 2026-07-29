@@ -67,6 +67,8 @@ def test_empty_home(app):
     assert page.current_work is None
     assert page.queue == ()
     assert page.recent_publications == ()
+    assert page.empty_title == "No subjects have been created yet."
+    assert "Create your first subject" in page.empty_reason
     assert page.empty_action_label == "Create Subject"
 
 

@@ -17,7 +17,7 @@
   --student-space-8: var(--space-4xl);
   --student-radius: var(--radius-lg);
   --student-radius-input: var(--radius-md);
-  --student-max-width: 44rem;
+  --student-max-width: 48rem;
   --student-shell-max: 72rem;
   --student-focus: var(--focus-ring);
   --student-card-border: var(--divider);
@@ -208,7 +208,7 @@ button.student-signout {
   font: inherit;
 }
 
-/* Appearance controls live in the shared Student shell (RC-2026.07.29-03). */
+/* Appearance controls live in the shared Student shell (RC-2026.07.29-03 / UX-006). */
 .student-topbar .appearance-switcher {
   align-items: center;
   display: inline-flex;
@@ -217,13 +217,41 @@ button.student-signout {
   margin-left: 0;
 }
 
-.student-topbar .appearance-switcher-label {
-  color: var(--chrome-text-subtle, rgba(248, 250, 252, 0.5));
-  font-size: var(--font-xs, 0.75rem);
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  margin-right: var(--student-space-2);
-  text-transform: uppercase;
+.student-topbar .appearance-switcher--compact {
+  gap: 0;
+}
+
+.student-topbar .appearance-cycle {
+  align-items: center;
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--chrome-text) 22%, transparent);
+  border-radius: var(--radius-md);
+  color: var(--chrome-text-muted, rgba(248, 250, 252, 0.72));
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.85rem;
+  font-weight: 500;
+  gap: 0.4rem;
+  line-height: 1;
+  min-height: 2.75rem;
+  padding: var(--student-space-2) var(--student-space-3);
+  transition: background-color var(--transition-fast), color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.student-topbar .appearance-cycle:hover {
+  background: color-mix(in srgb, var(--chrome-text) 8%, transparent);
+  color: var(--chrome-text, var(--text-inverse));
+}
+
+.student-topbar .appearance-cycle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(139, 156, 224, 0.45);
+}
+
+.student-topbar .appearance-cycle svg {
+  flex-shrink: 0;
+  opacity: 0.9;
 }
 
 .student-topbar .appearance-option {
@@ -550,7 +578,7 @@ button.student-signout {
 
 @media (min-width: 1280px) {
   .student-main {
-    max-width: min(var(--student-shell-max), 56rem);
+    max-width: min(var(--student-shell-max), 60rem);
   }
 }
 
@@ -855,7 +883,7 @@ button.student-signout {
 }
 
 .student-footer {
-  padding: var(--student-space-5);
+  padding: var(--student-space-3) var(--student-space-5);
   text-align: center;
   border-top: 1px solid var(--student-card-border);
 }
@@ -863,7 +891,7 @@ button.student-signout {
 .student-footer-text {
   margin: 0;
   color: var(--student-muted);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 /* One primary CTA emphasis — secondary actions stay quieter */
@@ -1489,13 +1517,35 @@ body[data-nav-pending="true"] .student-main {
   }
 }
 
-/* ── UX-003 Premium Settings hub ───────────────────────────────────────── */
+/* ── UX-003 / UX-006 Premium Settings hub ──────────────────────────────── */
 
 .settings-hub {
   display: flex;
   flex-direction: column;
-  gap: var(--student-space-6);
+  gap: var(--student-space-7);
   max-width: 64rem;
+}
+
+.settings-intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--student-space-2);
+  max-width: 36rem;
+}
+
+.settings-intro-title {
+  margin: 0;
+  font-family: var(--student-font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--student-text);
+}
+
+.settings-intro-copy {
+  margin: 0;
+  color: var(--student-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
 .settings-section-head {
@@ -1507,13 +1557,13 @@ body[data-nav-pending="true"] .student-main {
 }
 
 .settings-group-title {
-  margin: 0;
+  margin: 0 0 var(--student-space-3);
   font-family: var(--student-font-display);
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--student-muted);
+  color: var(--text-secondary);
 }
 
 .settings-section-link {

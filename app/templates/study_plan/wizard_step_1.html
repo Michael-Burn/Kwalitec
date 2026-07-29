@@ -54,15 +54,16 @@
 
   {# ——— Empty Ready ——— #}
   {% elif discovery.empty_ready %}
-  <section class="ds-section" aria-labelledby="ds-ready-title">
-    <h2 class="ds-section__title" id="ds-ready-title">Ready to begin</h2>
+  <section class="ds-section" aria-label="No exams available" data-student-state="empty">
     {{ ds_empty_operational(
-      'No Ready subjects yet.',
-      'Return later',
-      url_for('student.home')
+      discovery.empty_explanation,
+      discovery.empty_action_label,
+      url_for(discovery.empty_action_endpoint),
+      title=discovery.empty_title,
+      explanation=discovery.empty_explanation,
+      context='The Student Experience shows only the current published curriculum catalogue.'
     ) }}
   </section>
-  {{ ds_exam_coming_soon(discovery.coming_soon, notify_available=false) }}
 
   {# ——— L0 Ready catalogue + selection ——— #}
   {% else %}

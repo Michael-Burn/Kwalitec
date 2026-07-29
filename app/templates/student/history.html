@@ -1,6 +1,6 @@
 {% extends "student/base.html" %}
 {% set title = page.shell.page_title %}
-{% from "design_system/macros.html" import ds_button %}
+{% from "design_system/macros.html" import ds_button, ds_empty_operational %}
 {% from "student/components/history_card.html" import history_card %}
 
 {% block extra_head %}
@@ -85,11 +85,14 @@
         {% endfor %}
       </div>
     {% else %}
-    <div class="ds-empty-operational" role="status">
-      <p class="ds-empty-operational__reason">
-        Finish a Study Session and it will appear here as practice evidence.
-      </p>
-    </div>
+    {{ ds_empty_operational(
+      'Finish a Study Session and it will appear here as practice evidence.',
+      'Go to Home',
+      url_for('student.home'),
+      title='No sessions yet',
+      explanation='Finish a Study Session and it will appear here as practice evidence.',
+      context='History is your accomplishment archive — not a second Home.'
+    ) }}
     {% endif %}
   </section>
 
@@ -141,13 +144,14 @@
   </div>
 
 {% else %}
-  <section class="ds-empty-operational" aria-label="History" role="status">
-    <h2 class="ds-section__title">Your history starts with your first session</h2>
-    <p class="ds-empty-operational__reason">
-      Study time, readiness trends, and completed topics will appear here as practice evidence.
-    </p>
-    {{ ds_button('Go to Home', href=url_for('student.home'), variant='primary', attrs='data-student-cta="primary"') }}
-  </section>
+  {{ ds_empty_operational(
+    'Study time, readiness trends, and completed topics will appear here as practice evidence.',
+    'Go to Home',
+    url_for('student.home'),
+    title='Your history starts with your first session',
+    explanation='Study time, readiness trends, and completed topics will appear here as practice evidence.',
+    context='History answers one question: what have I accomplished?'
+  ) }}
 {% endif %}
 </article>
 {% endblock %}

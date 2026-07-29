@@ -42,3 +42,4 @@ class FounderHomePage:
     empty_action_href: str
     subjects_href: str
     page_title: str = "Home"
+    empty_title: str = ""

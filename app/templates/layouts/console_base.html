@@ -37,7 +37,10 @@
                         <span class="console-nav-toggle-bars" aria-hidden="true"></span>
                     </button>
                     <div class="console-topbar-brand-mobile">
-                        <span class="console-topbar-product">{{ kwalitec_console_label }}</span>
+                        {% with brand_class='console-brand-logo console-brand-logo--mobile' %}
+                            {% include "partials/brand_logo.html" %}
+                        {% endwith %}
+                        <span class="console-topbar-context">Founder</span>
                     </div>
                     {% include "founder_dashboard/_search.html" %}
                     <div class="console-topbar-meta" aria-label="Console context">

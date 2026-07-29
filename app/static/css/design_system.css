@@ -330,7 +330,7 @@
 
 .ds-list__meta {
   font-size: var(--font-support);
-  color: var(--text-muted);
+  color: var(--text-secondary);
 }
 
 /* ——— L3 Operational ——— */
@@ -698,12 +698,38 @@
   padding: var(--space-6) var(--space-5);
   background: var(--surface);
   border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.ds-empty-operational__title {
+  margin: 0;
+  font-size: var(--font-section);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
 }
 
 .ds-empty-operational__reason {
-  margin: 0 0 var(--space-3);
+  margin: 0;
   font-size: var(--font-section);
   font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.ds-empty-operational__explanation {
+  font-size: var(--font-base);
+  font-weight: var(--font-weight-normal);
+  color: var(--text-secondary);
+  line-height: var(--line-height-relaxed, 1.5);
+}
+
+.ds-empty-operational__context {
+  margin: 0;
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  line-height: var(--line-height-relaxed, 1.5);
 }
 
 /* ——— Choose Exam discovery (DX-005B) ——— */

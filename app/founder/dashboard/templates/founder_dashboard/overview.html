@@ -17,12 +17,14 @@
       supporting_text=home.current_work.supporting_text
     ) }}
   {% else %}
-    <section class="ds-section" aria-labelledby="ds-current-work-title">
-      <h2 class="ds-section__title" id="ds-current-work-title">Current Work</h2>
+    <section class="ds-section" aria-label="Getting started" data-founder-state="empty">
       {{ ds_empty_operational(
         home.empty_reason,
         home.empty_action_label,
-        home.empty_action_href
+        home.empty_action_href,
+        title=home.empty_title or home.empty_reason,
+        explanation=home.empty_reason if home.empty_title else '',
+        context='Subjects you create here become the published curriculum students can choose.'
       ) }}
     </section>
   {% endif %}

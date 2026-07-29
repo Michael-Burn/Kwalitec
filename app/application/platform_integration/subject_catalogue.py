@@ -83,25 +83,31 @@ class SubjectCatalogueService:
 
         Ready subjects are always included. Coming Soon may be included for
         roadmap honesty. Unavailable / Not Supported subjects are omitted.
+
+        When published-subject discovery is enabled, only founder-published
+        subjects appear (UX-006) — legacy on-disk curricula are not exposed.
         """
         entries: list[SubjectCatalogueEntry] = []
         seen: set[str] = set()
+        discovery_only = self._discovery.discovery_enabled()
 
         for category in self._discovery.augmented_categories():
             if category.free_text_subject:
                 continue
-            statuses = SubjectSupportService.paper_statuses_for_category(
-                category.code
-            )
+            if discovery_only and category.code != PUBLISHED_CATEGORY_CODE:
+                continue
+            statuses = SubjectSupportService.paper_statuses_for_category(category.code)
             for paper in category.papers:
                 info = statuses.get(paper.code)
                 if info is None:
+                    # Published category papers may lack support rows until
+                    # enrolment is enabled — still project via _from_published.
+                    if category.code != PUBLISHED_CATEGORY_CODE:
+                        continue
+                elif info.status is SupportStatus.NOT_SUPPORTED:
                     continue
-                if info.status is SupportStatus.NOT_SUPPORTED:
-                    continue
-                if (
-                    info.status is SupportStatus.COMING_SOON
-                    and not include_coming_soon
+                elif (
+                    info.status is SupportStatus.COMING_SOON and not include_coming_soon
                 ):
                     continue
                 if category.code == PUBLISHED_CATEGORY_CODE:
@@ -154,9 +160,7 @@ class SubjectCatalogueService:
         status_label = "Published" if info.allows_plan_creation else "Under preparation"
 
         if info.status is SupportStatus.SUPPORTED:
-            version = (
-                _latest_curriculum_version(org, paper) or "Verified Curriculum"
-            )
+            version = _latest_curriculum_version(org, paper) or "Verified Curriculum"
             edition = f"{display} · {version}" if version else display
             availability = CatalogueAvailability.READY
             selectable = True
@@ -197,17 +201,13 @@ class SubjectCatalogueService:
         offer = self._discovery.get_offer(code)
         title = offer.title if offer else code
         package = self._active_package(code)
-        release = _coerce_release(
-            package.published_at if package is not None else None
-        )
+        release = _coerce_release(package.published_at if package is not None else None)
         version = (
             offer.version_label
             if offer is not None
             else (package.version_label if package is not None else "")
         )
-        edition = (
-            f"{title} · {version}" if version else title
-        )
+        edition = f"{title} · {version}" if version else title
 
         if info.allows_plan_creation:
             availability = CatalogueAvailability.READY
@@ -248,14 +248,12 @@ class SubjectCatalogueService:
             release_date_label=_format_release(release),
             selectable=selectable,
             preparation_message=prep,
-            explanation=info.explanation if not selectable else (
-                f"{title} is Ready. You can enrol and begin your Study Plan."
-            ),
+            explanation=info.explanation
+            if not selectable
+            else (f"{title} is Ready. You can enrol and begin your Study Plan."),
         )
 
-    def _active_package(
-        self, subject_code: str
-    ) -> PublishedPackageSnapshot | None:
+    def _active_package(self, subject_code: str) -> PublishedPackageSnapshot | None:
         for package in self._authority.list_published():
             if (
                 package.is_active

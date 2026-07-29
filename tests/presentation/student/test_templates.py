@@ -83,22 +83,24 @@ def test_profile_has_settings_cta(student_client):
     html = student_client.get("/student/profile").get_data(as_text=True)
     assert "settings" in html.lower() or "account" in html.lower()
     assert "settings-hub" in html
-    assert "settings-kpi-grid" in html
+    assert "How Kwalitec works for you" in html
+    assert "settings-kpi-grid" not in html
 
 
 def test_settings_hub_groups_present(student_client):
     html = student_client.get("/student/profile").get_data(as_text=True)
-    for group in ("Profile", "Learning", "Notifications", "Account", "Security"):
-        assert group in html
-    for kpi in (
-        "Study Time",
-        "Sessions",
-        "Topics Mastered",
-        "Current Streak",
-        "Average Daily Study",
-        "Current Examination",
+    for group in (
+        "Profile",
+        "Learning",
+        "Appearance",
+        "Notifications",
+        "Account",
+        "Security",
     ):
-        assert kpi in html
+        assert group in html
+    assert "History" in html  # progress relocated
+    assert "Study Time" not in html
+    assert "Topics Mastered" not in html
     assert 'id="daily_goal_hours"' in html
     assert "appearance-switcher" in html or "data-appearance-option" in html
     assert "Open account settings" not in html  # replaced by compact card actions

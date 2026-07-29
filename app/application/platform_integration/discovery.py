@@ -95,18 +95,20 @@ class PublishedSubjectDiscoveryService:
         return (category_code or "").strip() == PUBLISHED_CATEGORY_CODE
 
     def augmented_categories(self) -> list[ExaminationCategory]:
-        """Catalogue categories plus the Published category when discovery is on.
+        """Categories for student discovery.
 
-        Does not mutate the static examination catalogue.
+        When published-subject discovery is enabled (Founder → Student bridge),
+        return **only** the Published category so Choose Exam reflects the
+        founder-published catalogue — never legacy on-disk V1 artefacts.
+
+        When discovery is off, return the static examination catalogue
+        unchanged (legacy Runtime A path).
         """
-        categories = list(catalogue.get_categories())
         if not self.discovery_enabled():
-            return categories
+            return list(catalogue.get_categories())
         offers = self.list_active_offers()
         if not offers:
-            # Still expose the category so founders can verify the surface;
-            # step 2 will show an empty/unsupported state.
-            return [*categories, _PUBLISHED_CATEGORY]
+            return [_PUBLISHED_CATEGORY]
         papers = [
             Paper(
                 code=offer.subject_code,
@@ -117,16 +119,17 @@ class PublishedSubjectDiscoveryService:
             )
             for offer in offers
         ]
-        published = ExaminationCategory(
-            code=_PUBLISHED_CATEGORY.code,
-            name=_PUBLISHED_CATEGORY.name,
-            description=_PUBLISHED_CATEGORY.description,
-            papers=papers,
-            sittings=list(_PUBLISHED_CATEGORY.sittings),
-            targets=list(_PUBLISHED_CATEGORY.targets),
-            free_text_subject=False,
-        )
-        return [*categories, published]
+        return [
+            ExaminationCategory(
+                code=_PUBLISHED_CATEGORY.code,
+                name=_PUBLISHED_CATEGORY.name,
+                description=_PUBLISHED_CATEGORY.description,
+                papers=papers,
+                sittings=list(_PUBLISHED_CATEGORY.sittings),
+                targets=list(_PUBLISHED_CATEGORY.targets),
+                free_text_subject=False,
+            )
+        ]
 
     def get_category(self, code: str) -> ExaminationCategory | None:
         """Resolve a category including the virtual Published category."""
@@ -150,9 +153,7 @@ class PublishedSubjectDiscoveryService:
 
     @staticmethod
     def _subject_title(subject_code: str) -> str:
-        row = StudioFoundationSubject.query.filter_by(
-            subject_code=subject_code
-        ).first()
+        row = StudioFoundationSubject.query.filter_by(subject_code=subject_code).first()
         if row is not None and (row.title or "").strip():
             return row.title.strip()
         return subject_code

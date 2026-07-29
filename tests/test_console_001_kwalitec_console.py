@@ -82,8 +82,9 @@ class TestConsoleRouting:
         response = client.get("/console/")
         assert response.status_code == 200
         body = response.get_data(as_text=True)
-        assert "Current Work" in body
+        assert "Current Work" in body or "No subjects have been created yet" in body
         assert "Kwalitec Console" in body
+        assert "console-brand-text" not in body
         assert "Attention Required" not in body
         assert "Platform Summary" not in body
         assert "Quick Actions" not in body
@@ -91,6 +92,8 @@ class TestConsoleRouting:
         assert "console-search" in body
         assert 'aria-label="Console primary"' in body
         assert "design_system.css" in body
+        assert "console-brand-logo" in body
+        assert "Founder" in body
 
     def test_legacy_founder_redirects_to_console(self, client, ctx, app) -> None:
         _login_founder(client, app)
@@ -153,18 +156,14 @@ class TestConsoleRouting:
 
 
 class TestPortalSeparation:
-    def test_learning_workspace_has_no_console_nav(
-        self, client, ctx, app
-    ) -> None:
+    def test_learning_workspace_has_no_console_nav(self, client, ctx, app) -> None:
         _login_founder(client, app)
         response = client.get("/dashboard/", follow_redirects=True)
         body = response.get_data(as_text=True)
         assert "console-sidebar" not in body
         assert ">Founder<" not in body
 
-    def test_student_portal_has_no_console_chrome(
-        self, client, ctx, app
-    ) -> None:
+    def test_student_portal_has_no_console_chrome(self, client, ctx, app) -> None:
         _login_student(client, app)
         # Student home may 404 if experience wiring differs; hit login-gated path.
         response = client.get("/student/")

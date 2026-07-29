@@ -92,9 +92,7 @@ class TestThemeSurface:
         assert response.status_code == 200
         body = response.get_data(as_text=True)
         assert "js/theme.js" in body
-        assert 'data-appearance-option="light"' in body
-        assert 'data-appearance-option="dark"' in body
-        assert 'data-appearance-option="system"' in body
+        assert "data-appearance-cycle" in body
         assert 'aria-label="Appearance"' in body
 
     def test_login_includes_theme_bootstrap_and_switcher(self, client):

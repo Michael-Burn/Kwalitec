@@ -1,6 +1,6 @@
 {% extends "student/base.html" %}
 {% set title = page.shell.page_title %}
-{% from "design_system/macros.html" import ds_button, ds_badge %}
+{% from "design_system/macros.html" import ds_button, ds_badge, ds_empty_operational %}
 {% from "student/components/explanation_card.html" import explanation_card %}
 
 {% block extra_head %}
@@ -128,28 +128,24 @@
   {% endif %}
 
 {% else %}
-  <section class="ds-empty-operational" aria-label="Revision" role="status" data-student-state="empty">
-    <h2 class="ds-section__title">No revision support yet</h2>
-    <p class="ds-empty-operational__reason">{{ revision.empty_message }}</p>
-    <p class="ds-list__meta" data-educational="mission-primacy">
-      Revision supports today's Mission when there is something worth
-      strengthening. Until then, follow Mission on Home.
-    </p>
-    {{ ds_button("Return to today's Mission", href=url_for('student.home'), variant='primary', attrs='data-student-cta="primary"') }}
-  </section>
+  {{ ds_empty_operational(
+    revision.empty_message,
+    "Return to today's Mission",
+    url_for('student.home'),
+    title='No revision support yet',
+    explanation=revision.empty_message,
+    context="Revision supports today’s Mission — it is never a competing daily focus."
+  ) }}
 {% endif %}
 {% else %}
-  <section class="ds-empty-operational" aria-label="Revision" role="status" data-student-state="empty">
-    <h2 class="ds-section__title">Revision opens after practice</h2>
-    <p class="ds-empty-operational__reason">
-      After you practice a topic in a Session, Revision can suggest follow-up
-      that supports today's Mission — never as a competing daily focus.
-    </p>
-    <p class="ds-list__meta">
-      Empty Revision is expected early — start with Mission on Home.
-    </p>
-    {{ ds_button("Return to today's Mission", href=url_for('student.home'), variant='primary', attrs='data-student-cta="primary"') }}
-  </section>
+  {{ ds_empty_operational(
+    'After you practice a topic in a Session, Revision can suggest follow-up that supports today’s Mission — never as a competing daily focus.',
+    "Return to today's Mission",
+    url_for('student.home'),
+    title='Revision opens after practice',
+    explanation='After you practice a topic in a Session, Revision can suggest follow-up that supports today’s Mission — never as a competing daily focus.',
+    context='Empty Revision is expected early — start with Mission on Home.'
+  ) }}
 {% endif %}
 </article>
 {% endblock %}

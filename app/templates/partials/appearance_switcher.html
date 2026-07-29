@@ -1,29 +1,43 @@
 {#
-  Shared appearance (Light/Dark/System) switcher (PX-002B — Design
-  Standardisation). Previously the top nav rendered icon+label buttons while
-  Settings rendered text-only buttons for the identical control — two
-  implementations of one choice. Per the "choose the better one, standardise
-  the rest" rule, the more complete (icon + label) treatment is now the one
-  implementation, reused everywhere. `theme.js` only reads
-  `[data-appearance-option]` / `[data-appearance-select]`, so this refactor
-  changes no behaviour.
+  Shared appearance control (UX-006 / PX-002B).
+
+  Modes:
+    compact=true  — single cycle button for top navigation (Light→Dark→System).
+    compact=false — full Light / Dark / System option group (Settings).
+
+  `theme.js` reads `[data-appearance-option]`, `[data-appearance-select]`,
+  and `[data-appearance-cycle]`.
 
   Usage:
     {% from "partials/appearance_switcher.html" import appearance_switcher %}
-    {{ appearance_switcher() }}
-    {{ appearance_switcher(group_aria_label='Appearance', show_switcher_label=true) }}
+    {{ appearance_switcher(compact=true) }}
+    {{ appearance_switcher(group_aria_label='Appearance preference') }}
     {{ appearance_switcher(show_select=true) }}
 #}
 {% from "partials/icons.html" import icon %}
-{% macro appearance_switcher(group_aria_label='Appearance preference', show_switcher_label=false, show_select=false) %}
+{% macro appearance_switcher(group_aria_label='Appearance preference', show_switcher_label=false, show_select=false, compact=false) %}
+{% if compact %}
+<div class="appearance-switcher appearance-switcher--compact" role="group" aria-label="{{ group_aria_label }}">
+    <button
+        type="button"
+        class="appearance-cycle"
+        data-appearance-cycle
+        aria-label="Appearance: System. Activate to switch."
+        title="Cycle appearance"
+    >
+        <span class="appearance-cycle__icon appearance-cycle__icon--light" data-appearance-cycle-icon="light" hidden>{{ icon('sun') }}</span>
+        <span class="appearance-cycle__icon appearance-cycle__icon--dark" data-appearance-cycle-icon="dark" hidden>{{ icon('moon') }}</span>
+        <span class="appearance-cycle__icon appearance-cycle__icon--system" data-appearance-cycle-icon="system">{{ icon('monitor') }}</span>
+        <span class="appearance-cycle__label" data-appearance-cycle-label>System</span>
+    </button>
+</div>
+{% else %}
 <div class="appearance-switcher" role="group" aria-label="{{ group_aria_label }}">
     {% if show_switcher_label %}
     <span class="appearance-switcher-label" id="appearance-label">Appearance</span>
     {% endif %}
-    {# PX-002B: an explicit aria-label on every button keeps its accessible
-       name stable even when the visible text is hidden at narrow widths
-       (icon-only layout) — aria-labelledby to a shared label would give all
-       three buttons the same name. #}
+    {# Explicit aria-label on every button keeps accessible name stable when
+       visible text is hidden at narrow widths. #}
     <button type="button" class="appearance-option" data-appearance-option="light" aria-pressed="false" aria-label="Light" title="Light">
         {{ icon('sun') }}
         <span>Light</span>
@@ -44,5 +58,6 @@
     <option value="dark">Dark</option>
     <option value="system">System</option>
 </select>
+{% endif %}
 {% endif %}
 {% endmacro %}

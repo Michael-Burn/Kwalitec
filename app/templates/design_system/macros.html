@@ -293,9 +293,19 @@
 </nav>
 {%- endmacro %}
 
-{% macro ds_empty_operational(reason, action_label='', action_href='') -%}
+{% macro ds_empty_operational(reason, action_label='', action_href='', title='', explanation='', context='') -%}
+{# UX-006: title + explanation + single primary action (+ optional context).
+   `reason` remains the fallback body when title is omitted (legacy call sites). #}
 <div class="ds-empty-operational" role="status">
-  <p class="ds-empty-operational__reason">{{ reason }}</p>
+  {% if title %}
+  <h3 class="ds-empty-operational__title">{{ title }}</h3>
+  {% endif %}
+  {% if explanation or reason %}
+  <p class="ds-empty-operational__reason{% if title %} ds-empty-operational__explanation{% endif %}">{{ explanation or reason }}</p>
+  {% endif %}
+  {% if context %}
+  <p class="ds-empty-operational__context">{{ context }}</p>
+  {% endif %}
   {% if action_label %}
     {{ ds_button(action_label, href=action_href, variant='primary') }}
   {% endif %}

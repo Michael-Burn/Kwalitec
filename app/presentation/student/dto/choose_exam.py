@@ -66,3 +66,10 @@ class ChooseExamPage:
     page_title: str = "Choose Exam"
     primary_label: str = "Continue"
     support_line: str = "Select an exam to begin."
+    empty_title: str = "No exams are available yet."
+    empty_explanation: str = (
+        "Exams will appear after a subject has been created, "
+        "published, and made available."
+    )
+    empty_action_label: str = "Go to Founder Console"
+    empty_action_endpoint: str = "founder_dashboard.index"

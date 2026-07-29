@@ -1,6 +1,6 @@
 {% extends "student/base.html" %}
 {% set title = page.shell.page_title %}
-{% from "design_system/macros.html" import ds_button, ds_badge %}
+{% from "design_system/macros.html" import ds_button, ds_badge, ds_empty_operational %}
 
 {% block extra_head %}
 <link href="{{ versioned_static('css/design_system.css') }}" rel="stylesheet">
@@ -128,13 +128,14 @@
   </div>
 
 {% else %}
-  <section class="ds-empty-operational" aria-label="Journey" role="status">
-    <h2 class="ds-section__title">Your journey will take shape after your first session</h2>
-    <p class="ds-empty-operational__reason">
-      Once you complete a study session, we'll map your path — current topic, what's done, and what's next.
-    </p>
-    {{ ds_button('Go to Home', href=url_for('student.home'), variant='primary', attrs='data-student-cta="primary"') }}
-  </section>
+  {{ ds_empty_operational(
+    'Once you complete a study session, we’ll map your path — current topic, what’s done, and what’s next.',
+    'Go to Home',
+    url_for('student.home'),
+    title='Your journey will take shape after your first session',
+    explanation='Once you complete a study session, we’ll map your path — current topic, what’s done, and what’s next.',
+    context='Journey answers one question: where am I on the syllabus?'
+  ) }}
 {% endif %}
 </article>
 {% endblock %}

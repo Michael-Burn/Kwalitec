@@ -3,61 +3,30 @@
 {% from "partials/appearance_switcher.html" import appearance_switcher %}
 {% set title = page.shell.page_title %}
 
-{# UX-003: Settings needs workspace width for the two-column hub. #}
+{# UX-003 / UX-006: Settings needs workspace width for the two-column hub. #}
 {% block student_main_modifier %}student-main--workspace{% endblock %}
 
 {% block content %}
 {% if page.profile %}
 {% set profile = page.profile %}
-{% set stats = profile.statistics %}
 {% set prefs = profile.preferences %}
 {% set account = profile.account %}
 
 <section class="settings-hub" aria-label="Settings">
 
-    {# ── Compact KPI overview ─────────────────────────────────────────── #}
-    <section class="settings-kpi" aria-labelledby="settings-kpi-title">
-        <div class="settings-section-head">
-            <h2 id="settings-kpi-title" class="settings-group-title">Overview</h2>
-            <a class="settings-section-link" href="{{ url_for('student.history') }}">View progress</a>
-        </div>
-        <div class="settings-kpi-grid" role="list">
-            <article class="settings-kpi-item" role="listitem">
-                <span class="settings-kpi-icon" aria-hidden="true">{{ icon('clock', size=16) }}</span>
-                <p class="settings-kpi-label">Study Time</p>
-                <p class="settings-kpi-value">{{ profile.total_study_label or '—' }}</p>
-            </article>
-            <article class="settings-kpi-item" role="listitem">
-                <span class="settings-kpi-icon" aria-hidden="true">{{ icon('sessions', size=16) }}</span>
-                <p class="settings-kpi-label">Sessions</p>
-                <p class="settings-kpi-value">{{ stats.sessions_completed }}</p>
-            </article>
-            <article class="settings-kpi-item" role="listitem">
-                <span class="settings-kpi-icon" aria-hidden="true">{{ icon('topics', size=16) }}</span>
-                <p class="settings-kpi-label">Topics Mastered</p>
-                <p class="settings-kpi-value">{{ stats.topics_mastered }}</p>
-            </article>
-            <article class="settings-kpi-item" role="listitem">
-                <span class="settings-kpi-icon" aria-hidden="true">{{ icon('streak', size=16) }}</span>
-                <p class="settings-kpi-label">Current Streak</p>
-                <p class="settings-kpi-value">{{ profile.streak_label }}</p>
-            </article>
-            <article class="settings-kpi-item" role="listitem">
-                <span class="settings-kpi-icon" aria-hidden="true">{{ icon('clock', size=16) }}</span>
-                <p class="settings-kpi-label">Average Daily Study</p>
-                <p class="settings-kpi-value">{{ profile.average_daily_label or '—' }}</p>
-            </article>
-            <article class="settings-kpi-item" role="listitem">
-                <span class="settings-kpi-icon" aria-hidden="true">{{ icon('exam', size=16) }}</span>
-                <p class="settings-kpi-label">Current Examination</p>
-                <p class="settings-kpi-value settings-kpi-value--text">{{ profile.examination_label or 'Not set' }}</p>
-            </article>
-        </div>
-    </section>
+    {# UX-006: configuration, not performance — metrics live on History. #}
+    <header class="settings-intro">
+        <h2 class="settings-intro-title">How Kwalitec works for you</h2>
+        <p class="settings-intro-copy">
+            Adjust learning preferences, notifications, and account details.
+            Progress and performance live on
+            <a class="settings-section-link" href="{{ url_for('student.history') }}">History</a>.
+        </p>
+    </header>
 
     <div class="settings-columns">
 
-        {# ── Left column: Profile + Learning ──────────────────────────── #}
+        {# ── Left column: Profile + Learning + Appearance ─────────────── #}
         <div class="settings-column">
 
             <section class="settings-group" aria-labelledby="settings-profile-title">
@@ -129,10 +98,15 @@
                         <a class="btn student-btn-secondary settings-row-btn" href="{{ url_for('settings.preferences') }}">Adjust</a>
                     </div>
                     {% endif %}
+                </div>
+            </section>
 
+            <section class="settings-group" aria-labelledby="settings-appearance-title">
+                <h2 id="settings-appearance-title" class="settings-group-title">Appearance</h2>
+                <div class="settings-panel">
                     <div class="settings-row settings-row--stack">
                         <div class="settings-row-copy">
-                            <p class="settings-row-label" id="appearance-settings-label">Appearance</p>
+                            <p class="settings-row-label" id="appearance-settings-label">Theme</p>
                             <p class="settings-row-desc">Light, Dark, or System — saved in this browser.</p>
                         </div>
                         <div class="settings-appearance">

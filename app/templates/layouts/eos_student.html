@@ -39,7 +39,7 @@
                 <div class="student-topbar-nav">
                     {% include "student/components/navigation.html" %}
                     {% from "partials/appearance_switcher.html" import appearance_switcher %}
-                    {{ appearance_switcher(group_aria_label='Appearance', show_switcher_label=true) }}
+                    {{ appearance_switcher(group_aria_label='Appearance', compact=true) }}
                     {% if current_user.is_authenticated %}
                     <form method="post" action="{{ url_for('auth.logout') }}" class="student-signout-form">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">

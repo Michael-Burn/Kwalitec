@@ -3,6 +3,8 @@
 
     var STORAGE_KEY = "kwalitec-appearance";
     var VALID = { light: true, dark: true, system: true };
+    var CYCLE = ["light", "dark", "system"];
+    var LABELS = { light: "Light", dark: "Dark", system: "System" };
 
     function getStoredAppearance() {
         try {
@@ -56,6 +58,44 @@
         syncControls(appearance);
     }
 
+    function nextAppearance(current) {
+        var idx = CYCLE.indexOf(current);
+        if (idx < 0) {
+            return "light";
+        }
+        return CYCLE[(idx + 1) % CYCLE.length];
+    }
+
+    function syncCycleControls(appearance) {
+        var cycles = document.querySelectorAll("[data-appearance-cycle]");
+        for (var i = 0; i < cycles.length; i++) {
+            var btn = cycles[i];
+            var label = LABELS[appearance] || "System";
+            btn.setAttribute(
+                "aria-label",
+                "Appearance: " + label + ". Activate to switch."
+            );
+            btn.setAttribute("title", "Appearance: " + label);
+            btn.setAttribute("data-appearance-current", appearance);
+
+            var labelEl = btn.querySelector("[data-appearance-cycle-label]");
+            if (labelEl) {
+                labelEl.textContent = label;
+            }
+
+            var icons = btn.querySelectorAll("[data-appearance-cycle-icon]");
+            for (var j = 0; j < icons.length; j++) {
+                var icon = icons[j];
+                var mode = icon.getAttribute("data-appearance-cycle-icon");
+                if (mode === appearance) {
+                    icon.removeAttribute("hidden");
+                } else {
+                    icon.setAttribute("hidden", "");
+                }
+            }
+        }
+    }
+
     function syncControls(appearance) {
         var controls = document.querySelectorAll(
             "[data-appearance-select], [data-appearance-option]"
@@ -74,6 +114,7 @@
             el.classList.toggle("is-active", active);
             el.setAttribute("aria-pressed", active ? "true" : "false");
         }
+        syncCycleControls(appearance);
     }
 
     var current = getStoredAppearance();
@@ -102,6 +143,13 @@
         });
 
         document.addEventListener("click", function (event) {
+            var cycle = event.target.closest
+                ? event.target.closest("[data-appearance-cycle]")
+                : null;
+            if (cycle) {
+                setAppearance(nextAppearance(getStoredAppearance()));
+                return;
+            }
             var btn = event.target.closest
                 ? event.target.closest("[data-appearance-option]")
                 : null;
@@ -133,5 +181,6 @@
         getAppearance: getStoredAppearance,
         setAppearance: setAppearance,
         resolveTheme: resolveTheme,
+        nextAppearance: nextAppearance,
     };
 })();

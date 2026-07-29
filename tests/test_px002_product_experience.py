@@ -13,30 +13,96 @@ from app.services.subject_support_service import SubjectSupportService
 
 
 class TestSubjectCatalogue:
-    def test_ready_subjects_are_selectable(self):
-        entries = SubjectCatalogueService().list_entries()
-        ready = [e for e in entries if e.availability is CatalogueAvailability.READY]
-        assert ready
-        assert all(e.selectable for e in ready)
-        assert any(e.paper == "CS1" for e in ready)
+    def test_ready_subjects_are_selectable_when_discovery_off(self, app):
+        """Legacy on-disk curricula remain selectable when bridge discovery is off."""
+        from app.application.platform_integration.discovery import (
+            PublishedSubjectDiscoveryService,
+        )
+        from app.application.platform_integration.flags import (
+            FounderStudentBridgeFlags,
+        )
 
-    def test_coming_soon_not_selectable(self):
-        entries = SubjectCatalogueService().list_entries(include_coming_soon=True)
-        coming = [
-            e for e in entries if e.availability is CatalogueAvailability.COMING_SOON
-        ]
-        assert coming
-        assert all(not e.selectable for e in coming)
-        assert all(COMING_SOON_MESSAGE[:40] in e.preparation_message for e in coming)
+        with app.app_context():
+            discovery = PublishedSubjectDiscoveryService(
+                flags=FounderStudentBridgeFlags(
+                    ENABLE_PUBLISHED_SUBJECT_DISCOVERY=False
+                )
+            )
+            entries = SubjectCatalogueService(discovery=discovery).list_entries()
+            ready = [
+                e for e in entries if e.availability is CatalogueAvailability.READY
+            ]
+            assert ready
+            assert all(e.selectable for e in ready)
+            assert any(e.paper == "CS1" for e in ready)
 
-    def test_catalogue_omits_unavailable(self):
-        entries = SubjectCatalogueService().list_entries()
-        keys = {e.subject_key for e in entries}
-        assert "CFA:Level I" not in keys
+    def test_discovery_mode_hides_legacy_exams_when_empty(self, app):
+        """UX-006: with discovery on and no published subjects, catalogue is empty."""
+        from app.application.platform_integration.discovery import (
+            PublishedSubjectDiscoveryService,
+        )
+        from app.application.platform_integration.flags import (
+            FounderStudentBridgeFlags,
+        )
 
-    def test_ready_label_from_support_service(self):
-        info = SubjectSupportService.resolve("IFoA", "CS1")
-        assert info.label == "Ready"
+        with app.app_context():
+            discovery = PublishedSubjectDiscoveryService(
+                flags=FounderStudentBridgeFlags(ENABLE_PUBLISHED_SUBJECT_DISCOVERY=True)
+            )
+            entries = SubjectCatalogueService(discovery=discovery).list_entries()
+            assert entries == ()
+            assert all(e.organisation != "IFoA" for e in entries)
+
+    def test_coming_soon_not_selectable(self, app):
+        from app.application.platform_integration.discovery import (
+            PublishedSubjectDiscoveryService,
+        )
+        from app.application.platform_integration.flags import (
+            FounderStudentBridgeFlags,
+        )
+
+        with app.app_context():
+            discovery = PublishedSubjectDiscoveryService(
+                flags=FounderStudentBridgeFlags(
+                    ENABLE_PUBLISHED_SUBJECT_DISCOVERY=False
+                )
+            )
+            entries = SubjectCatalogueService(discovery=discovery).list_entries(
+                include_coming_soon=True
+            )
+            coming = [
+                e
+                for e in entries
+                if e.availability is CatalogueAvailability.COMING_SOON
+            ]
+            assert coming
+            assert all(not e.selectable for e in coming)
+            assert all(
+                COMING_SOON_MESSAGE[:40] in e.preparation_message for e in coming
+            )
+
+    def test_catalogue_omits_unavailable(self, app):
+        from app.application.platform_integration.discovery import (
+            PublishedSubjectDiscoveryService,
+        )
+        from app.application.platform_integration.flags import (
+            FounderStudentBridgeFlags,
+        )
+
+        with app.app_context():
+            discovery = PublishedSubjectDiscoveryService(
+                flags=FounderStudentBridgeFlags(
+                    ENABLE_PUBLISHED_SUBJECT_DISCOVERY=False
+                )
+            )
+            entries = SubjectCatalogueService(discovery=discovery).list_entries()
+            keys = {e.subject_key for e in entries}
+            assert "CFA:Level I" not in keys
+
+    def test_ready_label_from_support_service(self, app):
+        with app.app_context():
+            info = SubjectSupportService.resolve("IFoA", "CS1")
+            assert info.label == "Ready"
 
 
 class TestFounderNavigation:
@@ -70,6 +136,7 @@ class TestStudentSurfaces:
 
         wire_studio(app)
         login_founder(client, app)
+        # Legacy Studio hub presets collapse into Subjects filter redirects.
         for path in (
             "/console/studio/subjects",
             "/console/studio/review-queue",
@@ -77,6 +144,6 @@ class TestStudentSurfaces:
             "/console/studio/versions",
             "/console/studio/quality",
         ):
-            response = client.get(path)
+            response = client.get(path, follow_redirects=True)
             assert response.status_code == 200, path
             assert b"Curriculum Authority" in response.data

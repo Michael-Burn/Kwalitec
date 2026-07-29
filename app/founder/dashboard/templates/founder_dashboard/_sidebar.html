@@ -1,12 +1,15 @@
 <aside id="console-sidebar" class="console-sidebar" aria-label="{{ kwalitec_console_label }} navigation">
     <div class="console-sidebar-brand">
+        {# UX-006: logo is primary identity — no duplicated "Kwalitec Console" wordmark. #}
         <a class="console-brand-link" href="{{ url_for('founder_dashboard.index') }}" aria-label="{{ kwalitec_console_label }} home">
             {% with brand_class='console-brand-logo' %}
                 {% include "partials/brand_logo.html" %}
             {% endwith %}
-            <span class="console-brand-text">{{ kwalitec_console_label }}</span>
         </a>
-        <p class="console-brand-tagline">Curriculum Authority</p>
+        <p class="console-brand-tagline">
+            <span class="console-brand-context">Founder</span>
+            Curriculum Authority
+        </p>
     </div>
     <nav class="console-nav" aria-label="Console primary">
         <ul class="console-nav-list">

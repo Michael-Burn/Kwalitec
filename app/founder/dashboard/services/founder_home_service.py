@@ -47,7 +47,8 @@ _QUEUE_PRIORITY: dict[str, int] = {
 _QUEUE_VISIBLE_MAX = 7
 _RECENT_MAX = 5
 
-_EMPTY_REASON = "No publication work in progress."
+_EMPTY_TITLE = "No subjects have been created yet."
+_EMPTY_REASON = "Create your first subject to begin building your curriculum."
 _EMPTY_ACTION_LABEL = "Create Subject"
 
 
@@ -103,6 +104,7 @@ class FounderHomeService:
             queue=queue_rows,
             recent_publications=recent,
             queue_truncated=queue_truncated,
+            empty_title=_EMPTY_TITLE,
             empty_reason=_EMPTY_REASON,
             empty_action_label=_EMPTY_ACTION_LABEL,
             empty_action_href=subjects_href,
