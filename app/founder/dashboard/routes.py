@@ -25,6 +25,7 @@ from app.founder.dashboard.services.command_centre_service import (
 from app.founder.dashboard.services.console_search_service import (
     ConsoleSearchService,
 )
+from app.founder.dashboard.services.founder_home_service import FounderHomeService
 from app.founder.dashboard.services.operational_health_service import (
     OperationalHealthService,
 )
@@ -85,17 +86,17 @@ def inject_founder_nav() -> dict:
 @founder_dashboard_bp.get("/")
 @founder_required
 def index():
-    """Console Home — executive briefing for operational decisions.
+    """Founder Home — publication decision surface (DX-004A).
 
     Registered only at ``/console/`` (trailing slash) so ``url_for`` does
     not emit bare ``/console``, which collides with Werkzeug's debug
     interactive console when ``flask run --debug`` is active.
     """
-    overview = _overview_service().build_overview()
+    home = FounderHomeService().build_home()
     return render_template(
         "founder_dashboard/overview.html",
-        title="Console Home",
-        overview=overview,
+        title="Home",
+        home=home,
     )
 
 

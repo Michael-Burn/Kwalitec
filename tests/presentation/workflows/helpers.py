@@ -35,7 +35,7 @@ STUDENT_SESSION_FLOW = (
     SessionSurface.COMPLETE,
 )
 
-ALPHA_PRIMARY_NAV = ("Content", "Learning", "Assessments")
+ALPHA_PRIMARY_NAV = ("Subjects", "Curriculum Studio")
 
 
 def wire_session(app: Flask, **kwargs):

@@ -1,4 +1,4 @@
-"""Workflow 4 — Console Assessments → Learning → Content navigation."""
+"""Workflow 4 — Console Curriculum Authority navigation (PX-002)."""
 
 from __future__ import annotations
 
@@ -29,27 +29,28 @@ def test_alpha_destinations_in_primary_nav(label):
     assert label in primary_nav_labels()
 
 
-def test_nav_order_content_learning_assessments():
+def test_nav_order_curriculum_authority():
     labels = primary_nav_labels()
-    content = labels.index("Content")
-    learning = labels.index("Learning")
-    assessments = labels.index("Assessments")
-    assert learning < assessments < content
+    assert labels.index("Subjects") < labels.index("Curriculum Studio")
+    assert labels.index("Home") < labels.index("Subjects")
+    assert "Review Queue" not in labels
+    assert "Publishing" not in labels
 
 
-def test_assessments_not_secondary_only():
+def test_ops_surfaces_are_secondary():
     secondary = [item.section_id for item in COMMAND_CENTRE_SECONDARY_NAV]
-    assert "assessments" not in secondary
+    assert "assessments" in secondary
+    assert "learning" in secondary
     primary = [item.section_id for item in COMMAND_CENTRE_NAV]
-    assert "assessments" in primary
+    assert "assessments" not in primary
 
 
 @pytest.mark.parametrize(
     ("path", "marker", "section"),
     (
-        ("/console/studio/", "Curriculum Studio", "content"),
-        ("/console/intelligence", "Founder Intelligence", "learning"),
-        ("/console/evidence-gates", "Evidence Gates", "assessments"),
+        ("/console/studio/", "Curriculum Studio", "curriculum_studio"),
+        ("/console/intelligence", "Founder Intelligence", "settings"),
+        ("/console/evidence-gates", "Evidence Gates", "settings"),
     ),
 )
 def test_founder_alpha_pages_render(founder_client, path, marker, section):
@@ -120,4 +121,4 @@ def test_nav_labels_unique():
     ),
 )
 def test_studio_endpoints_map_to_content_section(endpoint):
-    assert active_section_id(endpoint) == "content"
+    assert active_section_id(endpoint) == "curriculum_studio"

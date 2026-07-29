@@ -149,7 +149,7 @@ def test_console_home_exposes_curriculum_studio_nav(app, client, ctx):
     html = response.get_data(as_text=True)
     assert "console-sidebar" in html
     assert "/console/studio" in html
-    assert "Content" in html
+    assert "Curriculum Studio" in html or "Subjects" in html
 
 
 # ---------------------------------------------------------------------------

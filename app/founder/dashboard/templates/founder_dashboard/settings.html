@@ -4,7 +4,7 @@
 <section class="section-header founder-header">
     <p class="section-eyebrow">{{ kwalitec_console_label }} / Settings</p>
     <h1 class="section-title">Settings</h1>
-    <p class="section-description">Operator configuration and Internal Alpha identity.</p>
+    <p class="section-description">Operator configuration and nested Console destinations.</p>
 </section>
 
 <section class="mb-4">
@@ -19,5 +19,34 @@
             </a>
         </div>
     </div>
+</section>
+
+<section class="mb-4" aria-labelledby="settings-ops-title">
+    <h2 id="settings-ops-title" class="h5">Operations &amp; reports</h2>
+    <ul class="list-unstyled mb-0">
+        <li><a href="{{ url_for('founder_dashboard.operational_health') }}">Operations</a></li>
+        <li><a href="{{ url_for('founder_dashboard.alpha_observability') }}">Platform Intelligence</a></li>
+        <li><a href="{{ url_for('founder_dashboard.research') }}">Research</a></li>
+        <li><a href="{{ url_for('founder_dashboard.attention') }}">Attention</a></li>
+        <li><a href="{{ url_for('founder_dashboard.findings') }}">Findings</a></li>
+        <li><a href="{{ url_for('founder_dashboard.vision_journal') }}">Vision Journal</a></li>
+        <li><a href="{{ url_for('founder_dashboard.search') }}">Search</a></li>
+        <li><a href="{{ url_for('founder_dashboard.releases') }}">Releases</a></li>
+        <li><a href="{{ url_for('founder_dashboard.runtime_health') }}">Runtime Health</a></li>
+        <li><a href="{{ url_for('founder_dashboard.evidence_gates') }}">Evidence Gates</a></li>
+        <li><a href="{{ url_for('founder_dashboard.founder_intelligence') }}">Founder Intelligence</a></li>
+        <li><a href="{{ url_for('founder_dashboard.internal_alpha') }}">Internal Alpha</a></li>
+        <li><a href="{{ url_for('founder_dashboard.operations') }}">System Operations</a></li>
+    </ul>
+</section>
+
+<section class="mb-4" aria-labelledby="settings-studio-filters-title">
+    <h2 id="settings-studio-filters-title" class="h5">Studio filters</h2>
+    <ul class="list-unstyled mb-0">
+        <li><a href="{{ url_for('curriculum_studio.review_hub') }}">Review Queue</a></li>
+        <li><a href="{{ url_for('curriculum_studio.publishing_hub') }}">Publishing</a></li>
+        <li><a href="{{ url_for('curriculum_studio.versions_hub') }}">Versions</a></li>
+        <li><a href="{{ url_for('curriculum_studio.quality_hub') }}">Quality</a></li>
+    </ul>
 </section>
 {% endblock %}

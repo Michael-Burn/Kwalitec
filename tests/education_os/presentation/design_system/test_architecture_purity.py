@@ -71,6 +71,8 @@ EXPECTED_TOKEN_FILES = {
     PACKAGE_ROOT / "icons.py",
     PACKAGE_ROOT / "motion.py",
     PACKAGE_ROOT / "layout.py",
+    PACKAGE_ROOT / "opacity.py",
+    PACKAGE_ROOT / "foundation.py",
 }
 
 

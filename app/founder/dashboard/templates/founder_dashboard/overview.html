@@ -1,198 +1,45 @@
 {% extends "founder_dashboard/base.html" %}
+{% from "design_system/macros.html" import ds_current_work, ds_publication_queue, ds_recent_publications, ds_empty_operational, ds_button %}
 
 {% block console_content %}
-<article class="console-page" aria-labelledby="console-home-title">
-    <header class="console-page-header">
-        <p class="console-eyebrow">{{ kwalitec_console_label }} · {{ internal_alpha_label }} · v{{ overview.app_version }}</p>
-        <h1 id="console-home-title" class="console-page-title">{{ console_home_label }}</h1>
-        <p class="console-executive-summary">
-            Operational pulse — what needs attention today · {{ overview.refreshed_at }} · {{ overview.timezone_policy }}
-        </p>
-        {% if overview.needs_action_count > 0 %}
-        <div class="console-primary-action">
-            <a class="console-btn console-btn--primary" href="{{ url_for('founder_dashboard.attention') }}">
-                Review attention queue ({{ overview.needs_action_count }})
-            </a>
-        </div>
-        {% endif %}
-    </header>
+<article class="ds-page ds-container ds-container--content" aria-labelledby="founder-home-title">
+  <header class="ds-page-header">
+    <h1 id="founder-home-title" class="ds-page-header__title">{{ home.page_title }}</h1>
+  </header>
 
-    {# ——— Attention Required ——— #}
-    <section class="console-section console-attention-center" aria-labelledby="attention-required-title">
-        <div class="console-section-head">
-            <h2 id="attention-required-title" class="console-section-title">Attention Required</h2>
-            <a class="console-link" href="{{ url_for('founder_dashboard.attention') }}">Open Attention Center</a>
-        </div>
-        <div class="console-attention-grid" role="list">
-            <a class="console-card console-card--attention" role="listitem" href="{{ url_for('founder_dashboard.feedback') }}">
-                <span class="console-card-kicker">Support</span>
-                <span class="console-card-metric">{{ overview.outstanding_reviews }}</span>
-                <span class="console-card-label">Pending content reviews</span>
-                <span class="console-card-detail">Outstanding Product Check-in reviews</span>
-            </a>
-            <a class="console-card console-card--attention" role="listitem" href="{{ url_for('founder_dashboard.alpha_observability') }}">
-                <span class="console-card-kicker">Platform Health</span>
-                {% if overview.system_health_available %}
-                <span class="console-card-metric">{{ overview.system_health_pct }}%</span>
-                <span class="console-card-label">{{ overview.system_health_label }}</span>
-                {% else %}
-                <span class="console-card-metric console-card-metric--text">Check</span>
-                <span class="console-card-label">Platform Intelligence</span>
-                {% endif %}
-                <span class="console-card-detail">{{ overview.alpha_health_detail }}</span>
-            </a>
-            <a class="console-card console-card--attention" role="listitem" href="{{ url_for('founder_dashboard.findings') }}">
-                <span class="console-card-kicker">Content Reviews</span>
-                <span class="console-card-metric">{{ overview.open_high_severity_findings }}</span>
-                <span class="console-card-label">High-severity findings</span>
-                <span class="console-card-detail">Open Critical / High product findings</span>
-            </a>
-            <a class="console-card console-card--attention" role="listitem" href="{{ url_for('founder_dashboard.attention') }}">
-                <span class="console-card-kicker">Student Issues</span>
-                <span class="console-card-metric">{{ overview.attention_queue|length }}</span>
-                <span class="console-card-label">Needs intervention</span>
-                <span class="console-card-detail">
-                    {% if overview.attention_queue %}
-                        {{ overview.attention_queue[0].title }}
-                    {% else %}
-                        Nothing queued
-                    {% endif %}
-                </span>
-            </a>
-        </div>
-        {% if overview.alerts %}
-        <ul class="console-alert-list" aria-label="Health notices">
-            {% for alert in overview.alerts %}
-            <li class="console-alert console-alert--{{ alert.severity }}">
-                <span class="console-alert-severity">{{ alert.severity }}</span>
-                <span class="console-alert-message">{{ alert.message }}</span>
-                <a class="console-btn console-btn--tertiary" href="{{ alert.href }}">Open</a>
-            </li>
-            {% endfor %}
-        </ul>
-        {% endif %}
+  {# L0 — Current Work + exactly one Primary #}
+  {% if home.current_work %}
+    {{ ds_current_work(
+      home.current_work.subject_name,
+      home.current_work.stage_label,
+      home.current_work.primary_label,
+      primary_href=home.current_work.primary_href,
+      supporting_text=home.current_work.supporting_text
+    ) }}
+  {% else %}
+    <section class="ds-section" aria-labelledby="ds-current-work-title">
+      <h2 class="ds-section__title" id="ds-current-work-title">Current Work</h2>
+      {{ ds_empty_operational(
+        home.empty_reason,
+        home.empty_action_label,
+        home.empty_action_href
+      ) }}
     </section>
+  {% endif %}
 
-    {# ——— Platform Summary ——— #}
-    <section class="console-section" aria-labelledby="platform-summary-title">
-        <div class="console-section-head">
-            <h2 id="platform-summary-title" class="console-section-title">Platform Summary</h2>
-        </div>
-        <div class="console-summary-grid" role="list">
-            <div class="console-card" role="listitem">
-                <span class="console-card-kicker">Students</span>
-                <span class="console-card-metric">{{ overview.active_participants }}</span>
-                <span class="console-card-label">Active participants</span>
-                <span class="console-card-detail">{{ overview.participants_active_today }} active today</span>
-            </div>
-            <div class="console-card" role="listitem">
-                <span class="console-card-kicker">Learning</span>
-                <span class="console-card-metric">{{ overview.checkins_today }}</span>
-                <span class="console-card-label">Check-ins today</span>
-                <span class="console-card-detail">{{ overview.checkins_last_7_days }} in last 7 days</span>
-            </div>
-            <div class="console-card" role="listitem">
-                <span class="console-card-kicker">Assessments</span>
-                <span class="console-card-metric">
-                    {% if overview.avg_product_experience is not none %}{{ overview.avg_product_experience }}/5{% else %}—{% endif %}
-                </span>
-                <span class="console-card-label">Avg experience</span>
-                <span class="console-card-detail">
-                    Would open tomorrow
-                    {% if overview.would_open_tomorrow_pct is not none %}{{ overview.would_open_tomorrow_pct }}%{% else %}—{% endif %}
-                </span>
-            </div>
-            <div class="console-card" role="listitem">
-                <span class="console-card-kicker">System</span>
-                <span class="console-card-metric console-card-metric--text">{{ overview.alpha_health_label }}</span>
-                <span class="console-card-label">Alpha health</span>
-                <span class="console-card-detail">Build {{ overview.build_number }}</span>
-            </div>
-        </div>
-    </section>
+  {# L1 — Publication Queue (attention-only) #}
+  {% if home.queue %}
+    {{ ds_publication_queue(home.queue) }}
+    {% if home.queue_truncated %}
+      <p class="ds-list__meta">
+        {{ ds_button('View all in Subjects', href=home.subjects_href, variant='ghost') }}
+      </p>
+    {% endif %}
+  {% endif %}
 
-    {# ——— Quick Actions (max four) ——— #}
-    <section class="console-section" aria-labelledby="quick-actions-title">
-        <div class="console-section-head">
-            <h2 id="quick-actions-title" class="console-section-title">Quick Actions</h2>
-        </div>
-        <ul class="console-quick-actions">
-            <li>
-                <a class="console-btn console-btn--primary" href="{{ url_for('founder_dashboard.feedback') }}">Review support inbox</a>
-            </li>
-            <li>
-                <a class="console-btn console-btn--secondary" href="{{ url_for('founder_dashboard.operational_health') }}">Open operations</a>
-            </li>
-            <li>
-                <a class="console-btn console-btn--secondary" href="{{ url_for('curriculum_studio.index') }}">Manage content</a>
-            </li>
-            <li>
-                <a class="console-btn console-btn--tertiary" href="{{ url_for('founder_dashboard.alpha_observability') }}">Platform Intelligence</a>
-            </li>
-        </ul>
-    </section>
-
-    {# ——— Advanced / contextual ——— #}
-    <section class="console-section console-advanced" aria-labelledby="advanced-title">
-        <div class="console-section-head">
-            <h2 id="advanced-title" class="console-section-title">Operational detail</h2>
-        </div>
-        <div class="console-detail-grid">
-            <div class="console-card">
-                <div class="console-card-header">
-                    <h3 class="console-card-heading">Recent support</h3>
-                    <a class="console-link" href="{{ url_for('founder_dashboard.feedback') }}">Inbox</a>
-                </div>
-                {% if overview.recent_feedback %}
-                <ul class="console-activity-list">
-                    {% for item in overview.recent_feedback %}
-                    <li>
-                        <a href="{{ url_for('founder_dashboard.feedback', submission=item.submission_id) }}">#{{ item.submission_id }}</a>
-                        · {{ item.student_label }} · {{ item.status_label }}
-                    </li>
-                    {% endfor %}
-                </ul>
-                {% else %}
-                <p class="console-empty">No Product Check-ins yet.</p>
-                {% endif %}
-            </div>
-            <div class="console-card">
-                <div class="console-card-header">
-                    <h3 class="console-card-heading">Attention queue</h3>
-                    <a class="console-link" href="{{ url_for('founder_dashboard.attention') }}">Center</a>
-                </div>
-                {% if overview.attention_queue %}
-                <ul class="console-activity-list">
-                    {% for item in overview.attention_queue %}
-                    <li>
-                        <a href="{{ item.href }}">{{ item.title }}</a>
-                        · {{ item.urgency }} · {{ item.detail }}
-                    </li>
-                    {% endfor %}
-                </ul>
-                {% else %}
-                <p class="console-empty">Nothing needs action right now.</p>
-                {% endif %}
-            </div>
-            <div class="console-card">
-                <div class="console-card-header">
-                    <h3 class="console-card-heading">Vision Journal</h3>
-                    <a class="console-link" href="{{ url_for('founder_dashboard.vision_journal') }}">Open</a>
-                </div>
-                {% if overview.vision_recent %}
-                <ul class="console-activity-list">
-                    {% for item in overview.vision_recent %}
-                    <li>
-                        <a href="{{ url_for('founder_dashboard.vision_entry', entry_id=item.entry_id) }}">{{ item.title }}</a>
-                        · {{ item.status_label }}
-                    </li>
-                    {% endfor %}
-                </ul>
-                {% else %}
-                <p class="console-empty">No Vision entries yet. <a href="{{ url_for('founder_dashboard.vision_new') }}">New entry</a></p>
-                {% endif %}
-            </div>
-        </div>
-    </section>
+  {# L2 — Recent Publications (omit when empty) #}
+  {% if home.recent_publications %}
+    {{ ds_recent_publications(home.recent_publications) }}
+  {% endif %}
 </article>
 {% endblock %}

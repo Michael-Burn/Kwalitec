@@ -143,12 +143,17 @@ def test_session_and_student_share_brand(student_client):
 
 
 def test_no_duplicate_primary_nav_labels():
-    from app.founder.dashboard.nav import COMMAND_CENTRE_NAV
+    from app.founder.dashboard.nav import (
+        COMMAND_CENTRE_NAV,
+        COMMAND_CENTRE_SECONDARY_NAV,
+    )
 
     labels = [i.label for i in COMMAND_CENTRE_NAV]
-    assert labels.count("Content") == 1
-    assert labels.count("Learning") == 1
-    assert labels.count("Assessments") == 1
+    assert labels.count("Curriculum Studio") == 1
+    assert labels.count("Home") == 1
+    secondary = [i.label for i in COMMAND_CENTRE_SECONDARY_NAV]
+    assert secondary.count("Learning") == 1
+    assert secondary.count("Assessments") == 1
 
 
 def test_publication_stage_ui_says_publish_not_publication():

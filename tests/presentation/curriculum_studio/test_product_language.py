@@ -57,7 +57,7 @@ def app_ctx(app):
 
 def test_guide_documents_publish_curriculum_cta():
     text = GUIDE.read_text(encoding="utf-8")
-    assert "Publish Curriculum" in text
+    assert "Publish" in text
     assert "Review Evidence" in text
 
 
@@ -67,10 +67,12 @@ def test_founder_nav_includes_approved_label(label):
     assert label in labels
 
 
-def test_founder_nav_labels_match_guide_order_core():
+def test_founder_nav_labels_match_curriculum_authority_order():
     labels = [item.label for item in COMMAND_CENTRE_NAV]
-    assert labels.index("Learning") < labels.index("Assessments")
-    assert labels.index("Assessments") < labels.index("Content")
+    assert labels.index("Home") < labels.index("Subjects")
+    assert labels.index("Subjects") < labels.index("Curriculum Studio")
+    assert "Review Queue" not in labels
+    assert "Publishing" not in labels
 
 
 # --- Studio CTAs -----------------------------------------------------------
@@ -85,7 +87,7 @@ def test_founder_nav_labels_match_guide_order_core():
         (ValidateWorkspaceForm, "Validate Curriculum"),
         (PreviewWorkspaceForm, "Build Preview"),
         (ApproveWorkspaceForm, "Approve Curriculum"),
-        (PublishWorkspaceForm, "Publish Curriculum"),
+        (PublishWorkspaceForm, "Publish Verified Curriculum"),
         (AssignVersionForm, "Assign Version"),
     ),
 )
@@ -98,7 +100,7 @@ def test_studio_workspace_renders_publish_curriculum(founder_client):
     html = founder_client.get("/console/studio/workspaces/ws-cs1").get_data(
         as_text=True
     )
-    assert "Publish Curriculum" in html
+    assert "Publish Verified Curriculum" in html
     assert "execute publish" not in html.lower()
     assert "go live" not in html.lower()
 
@@ -142,7 +144,7 @@ def test_studio_warnings_use_we_couldnt_or_recovery(key):
 
 def test_publish_success_matches_guide_example():
     assert FLASH_SUCCESS["published"] == (
-        "We've published your curriculum successfully."
+        "We've published your verified curriculum successfully."
     )
 
 

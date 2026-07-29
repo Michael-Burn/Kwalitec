@@ -18,31 +18,38 @@ from app.presentation.curriculum_studio.view_models import (
 from tests.presentation.curriculum_studio.helpers import make_workspace
 
 
-def test_content_is_primary_nav_item():
+def test_curriculum_authority_primary_nav():
     labels = [item.label for item in COMMAND_CENTRE_NAV]
-    assert "Content" in labels
-    content = next(i for i in COMMAND_CENTRE_NAV if i.section_id == "content")
-    assert content.endpoint == "curriculum_studio.index"
-
-
-def test_assessments_primary_nav():
-    labels = [item.label for item in COMMAND_CENTRE_NAV]
-    assert "Assessments" in labels
-    gates = next(i for i in COMMAND_CENTRE_NAV if i.section_id == "assessments")
-    assert gates.endpoint == "founder_dashboard.evidence_gates"
-    # Keep secondary list free of the alpha primary destinations.
+    for required in (
+        "Home",
+        "Subjects",
+        "Curriculum Studio",
+        "Students",
+        "Support",
+        "Settings",
+    ):
+        assert required in labels
+    studio = next(i for i in COMMAND_CENTRE_NAV if i.section_id == "curriculum_studio")
+    assert studio.endpoint == "curriculum_studio.index"
+    # Hub peers demoted from primary curriculum chrome (DX-004A).
+    assert "Review Queue" not in labels
+    assert "Publishing" not in labels
+    assert "Content" not in labels
+    assert "Assessments" not in labels
     secondary_ids = [item.section_id for item in COMMAND_CENTRE_SECONDARY_NAV]
-    assert "assessments" not in secondary_ids
+    assert "assessments" in secondary_ids
+    assert "review_queue" in secondary_ids
 
 
 @pytest.mark.parametrize(
     ("endpoint", "expected"),
     (
-        ("curriculum_studio.index", "content"),
-        ("curriculum_studio.workspace", "content"),
-        ("founder_dashboard.founder_intelligence", "learning"),
-        ("founder_dashboard.evidence_gates", "assessments"),
-        ("founder_dashboard.index", "overview"),
+        ("curriculum_studio.index", "curriculum_studio"),
+        ("curriculum_studio.workspace", "curriculum_studio"),
+        ("curriculum_studio.subjects_hub", "subjects"),
+        ("founder_dashboard.founder_intelligence", "settings"),
+        ("founder_dashboard.evidence_gates", "settings"),
+        ("founder_dashboard.index", "home"),
     ),
 )
 def test_active_section_mapping(endpoint, expected):

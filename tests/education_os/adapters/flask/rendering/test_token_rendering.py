@@ -55,7 +55,7 @@ def test_style_renderer_maps_contract_to_css_vars(
         typography=TypeRole.SUBHEADING,
         padding_x=SpacingToken.XL,
         padding_y=SpacingToken.XL,
-        gap=SpacingToken.MD,
+        gap=SpacingToken.SM,
     )
     decls = style_renderer.declarations(style)
     assert decls["background-color"] == "var(--surface)"

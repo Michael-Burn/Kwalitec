@@ -49,7 +49,7 @@ def _login_student(client, app) -> User:
 class TestConsoleTerminology:
     def test_brand_labels(self) -> None:
         assert KWALITEC_CONSOLE_LABEL == "Kwalitec Console"
-        assert CONSOLE_HOME_LABEL == "Console Home"
+        assert CONSOLE_HOME_LABEL == "Home"
         assert FOUNDER_COMMAND_CENTRE_LABEL == KWALITEC_CONSOLE_LABEL
 
 
@@ -57,27 +57,23 @@ class TestConsoleNavigation:
     def test_primary_nav_structure(self) -> None:
         labels = [item.label for item in COMMAND_CENTRE_NAV]
         assert labels == [
-            "Overview",
-            "Operations",
+            "Home",
+            "Subjects",
+            "Curriculum Studio",
             "Students",
-            "Learning",
-            "Assessments",
-            "Content",
-            "Analytics",
-            "Platform",
-            "Settings",
             "Support",
+            "Settings",
         ]
 
     def test_section_mapping(self) -> None:
-        assert active_section_id("founder_dashboard.index") == "overview"
+        assert active_section_id("founder_dashboard.index") == "home"
         assert active_section_id("founder_dashboard.feedback") == "support"
         assert active_section_id("founder_dashboard.alpha_observability") == (
-            "platform"
+            "settings"
         )
-        assert active_section_id("curriculum_studio.index") == "content"
-        assert active_section_id("founder_dashboard.attention") == "operations"
-        assert active_section_id("founder_dashboard.runtime_health") == "operations"
+        assert active_section_id("curriculum_studio.index") == "curriculum_studio"
+        assert active_section_id("founder_dashboard.attention") == "settings"
+        assert active_section_id("founder_dashboard.runtime_health") == "settings"
 
 
 class TestConsoleRouting:
@@ -86,14 +82,15 @@ class TestConsoleRouting:
         response = client.get("/console/")
         assert response.status_code == 200
         body = response.get_data(as_text=True)
-        assert "Console Home" in body
+        assert "Current Work" in body
         assert "Kwalitec Console" in body
-        assert "Attention Required" in body
-        assert "Platform Summary" in body
-        assert "Quick Actions" in body
+        assert "Attention Required" not in body
+        assert "Platform Summary" not in body
+        assert "Quick Actions" not in body
         assert "console-sidebar" in body
         assert "console-search" in body
         assert 'aria-label="Console primary"' in body
+        assert "design_system.css" in body
 
     def test_legacy_founder_redirects_to_console(self, client, ctx, app) -> None:
         _login_founder(client, app)

@@ -133,7 +133,7 @@ def test_workspace_breadcrumb_includes_studio(founder_client):
         as_text=True
     )
     assert "Curriculum Studio" in html
-    assert "Overview" in html
+    assert "Home" in html
 
 
 def test_all_stage_labels_unique():

@@ -378,8 +378,11 @@ class TestRegression:
         assert response.status_code == 200
         body = response.get_data(as_text=True)
         assert "Kwalitec Console" in body
-        assert "Attention Required" in body
-        assert "/console/operational-health" in body
+        assert "Current Work" in body
+        assert "Attention Required" not in body
+        settings = client.get("/console/settings")
+        assert settings.status_code == 200
+        assert "/console/operational-health" in settings.get_data(as_text=True)
 
     def test_operations_route_still_available(self, client, ctx, app) -> None:
         _login_founder(client, app)

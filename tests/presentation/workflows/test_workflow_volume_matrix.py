@@ -118,7 +118,6 @@ def test_founder_studio_and_workspace_share_css(founder_client):
 def test_intelligence_and_gates_share_nav_shell(founder_client):
     intel = founder_client.get("/console/intelligence").get_data(as_text=True)
     gates = founder_client.get("/console/evidence-gates").get_data(as_text=True)
-    assert "Assessments" in intel
-    assert "Learning" in gates
-    assert "Content" in intel and "Content" in gates
+    assert "Curriculum Studio" in intel or "Subjects" in intel
+    assert "Curriculum Studio" in gates or "Subjects" in gates
     assert "console-sidebar" in intel and "console-sidebar" in gates

@@ -15,7 +15,7 @@ INTERNAL_ALPHA_BUILD_LABEL = "RC2"
 # Official product-area names (user-facing).
 # CONSOLE-001 — Founder Command Centre becomes Kwalitec Console.
 KWALITEC_CONSOLE_LABEL = "Kwalitec Console"
-CONSOLE_HOME_LABEL = "Console Home"
+CONSOLE_HOME_LABEL = "Home"
 FOUNDER_COMMAND_CENTRE_LABEL = KWALITEC_CONSOLE_LABEL  # alias for legacy imports
 LEARNING_WORKSPACE_LABEL = "Learning Workspace"
 REVISION_WORKSPACE_LABEL = "Revision Workspace"

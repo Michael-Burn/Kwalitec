@@ -249,10 +249,6 @@
   background:var(--surface);padding:1.15rem 1.15rem 1.25rem;
   box-shadow:var(--shadow-sm, var(--shadow));
 }
-.console-attention-grid,.console-summary-grid,.console-detail-grid{
-  display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:0.75rem;
-}
-.console-detail-grid{grid-template-columns:repeat(2, minmax(0, 1fr));}
 
 .console-card{
   display:flex;flex-direction:column;gap:0.25rem;padding:0.95rem 1rem;
@@ -287,7 +283,6 @@ a.console-card:hover{border-color:var(--border);box-shadow:var(--shadow-sm, none
 .console-btn--tertiary{background:transparent;color:var(--text-secondary);border-color:transparent;padding-left:0.35rem;padding-right:0.35rem;}
 .console-btn--tertiary:hover{color:var(--text-primary);text-decoration:underline;}
 
-.console-quick-actions{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:0.65rem;}
 .console-activity-list{list-style:disc;margin:0;padding-left:1.1rem;color:var(--text-secondary);font-size:var(--font-sm);}
 .console-empty{margin:0;color:var(--text-muted);font-size:var(--font-sm);}
 .console-alert-list{list-style:none;margin:1rem 0 0;padding:0;display:flex;flex-direction:column;gap:0.5rem;}
@@ -335,12 +330,9 @@ a.console-card:hover{border-color:var(--border);box-shadow:var(--shadow-sm, none
     display:block;position:fixed;inset:0;background:rgba(15,23,42,0.35);z-index:30;
   }
   .console-sidebar-backdrop[hidden]{display:none !important;}
-  .console-attention-grid,.console-summary-grid{grid-template-columns:repeat(2, minmax(0, 1fr));}
-  .console-detail-grid{grid-template-columns:1fr;}
 }
 @media (max-width:575.98px){
   .console-main{padding:1rem 1rem 2rem;}
-  .console-attention-grid,.console-summary-grid{grid-template-columns:1fr;}
   .console-topbar-meta .console-topbar-badge{display:none;}
 }
 @media (prefers-reduced-motion:reduce){

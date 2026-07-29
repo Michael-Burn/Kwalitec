@@ -331,9 +331,12 @@ class TestVisionJournalRoutes:
         overview = client.get("/console/")
         assert overview.status_code == 200
         body = overview.get_data(as_text=True)
-        assert "Console Home" in body
-        assert "Attention Required" in body
-        assert "Operations" in body
+        assert "Current Work" in body
+        assert "Attention Required" not in body
+        # Ops remain reachable via Settings nesting (not Home chrome).
+        settings = client.get("/console/settings")
+        assert settings.status_code == 200
+        assert b"Operations" in settings.data
 
         export_json = client.get("/console/vision/export/json")
         assert export_json.status_code == 200

@@ -55,12 +55,16 @@ def test_evidence_gates_checklist_surface(founder_client):
 
 
 def test_founder_nav_includes_alpha_trio():
-    from app.founder.dashboard.nav import COMMAND_CENTRE_NAV
+    from app.founder.dashboard.nav import (
+        COMMAND_CENTRE_NAV,
+        COMMAND_CENTRE_SECONDARY_NAV,
+    )
 
-    labels = [item.label for item in COMMAND_CENTRE_NAV]
-    assert "Content" in labels
-    assert "Learning" in labels
-    assert "Assessments" in labels
+    primary = [item.label for item in COMMAND_CENTRE_NAV]
+    secondary = [item.label for item in COMMAND_CENTRE_SECONDARY_NAV]
+    assert "Curriculum Studio" in primary
+    assert "Learning" in secondary
+    assert "Assessments" in secondary
 
 
 def test_founder_surfaces_require_auth(client):

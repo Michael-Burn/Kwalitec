@@ -54,7 +54,7 @@ class Modal:
             background=SemanticColour.SURFACE_ELEVATED,
             foreground=SemanticColour.TEXT,
             border=SemanticColour.BORDER_SUBTLE,
-            typography=TypeRole.HEADING,
+            typography=TypeRole.PAGE,
             padding_x=SpacingToken.XXL,
             padding_y=SpacingToken.XXL,
             gap=SpacingToken.LG,
@@ -87,7 +87,7 @@ class Toast:
             foreground=_TOAST_FG[self.tone],
             typography=TypeRole.BODY,
             padding_x=SpacingToken.LG,
-            padding_y=SpacingToken.MD,
+            padding_y=SpacingToken.SM,
             radius=RadiusToken.MD,
             elevation=ElevationToken.MD,
             motion=MotionToken.SLOW,
@@ -120,10 +120,10 @@ class EmptyState:
         return StyleContract(
             background=SemanticColour.SURFACE,
             foreground=SemanticColour.TEXT,
-            typography=TypeRole.HEADING,
+            typography=TypeRole.SECTION,
             padding_x=SpacingToken.XXL,
             padding_y=SpacingToken.XXXL,
-            gap=SpacingToken.MD,
+            gap=SpacingToken.SM,
             radius=RadiusToken.LG,
         )
 
@@ -148,7 +148,7 @@ class LoadingState:
     def style(self) -> StyleContract:
         return StyleContract(
             foreground=SemanticColour.MUTED,
-            typography=TypeRole.CAPTION,
+            typography=TypeRole.SUPPORT,
             gap=SpacingToken.SM,
             motion=MotionToken.SKELETON,
         )

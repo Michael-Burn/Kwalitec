@@ -26,7 +26,7 @@
 | Syllabus source document | **Official Syllabus** | Syllabus PDF (ok secondary) |
 | Student-visible availability | **Ready** | Live, Active, Published (as catalogue badge — use Ready) |
 | Not yet selectable | **Coming Soon** | Unavailable, Draft (in student catalogue) |
-| Console home decision surface | **Overview** | Dashboard, Console Home (as page title) |
+| Console home decision surface | **Home** | Dashboard, Overview, Console Home (as page title) |
 | Participant catalogue | **Students** | Participants (page title → Students) |
 
 **Publish vs Ready:** Operators **Publish**; students see **Ready**. Do not badge student catalogue “Published”.

@@ -74,7 +74,7 @@ CONTAINERS: Mapping[ContainerWidth, ContainerSpec] = {
 # Grids requested by V3-002.
 MOBILE_GRID = GridSpec(
     columns=4,
-    gutter=SpacingToken.MD,
+    gutter=SpacingToken.SM,
     margin=SpacingToken.LG,
     max_width=ContainerWidth.FULL,
 )

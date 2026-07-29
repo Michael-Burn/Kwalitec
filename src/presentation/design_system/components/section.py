@@ -24,7 +24,7 @@ class Section:
     def style(self) -> StyleContract:
         return StyleContract(
             foreground=SemanticColour.TEXT,
-            typography=TypeRole.HEADING,
+            typography=TypeRole.SECTION,
             padding_y=SpacingToken.XXL,
             gap=SpacingToken.SM,
         )
@@ -40,7 +40,7 @@ class Section:
 
 @dataclass(frozen=True, slots=True)
 class PageHeader:
-    """Page-level title block — display typography."""
+    """Page-level title block — one H1 (type.page / 24px)."""
 
     title: str
     description: str = ""
@@ -49,9 +49,9 @@ class PageHeader:
     def style(self) -> StyleContract:
         return StyleContract(
             foreground=SemanticColour.TEXT,
-            typography=TypeRole.DISPLAY,
+            typography=TypeRole.PAGE,
             padding_y=SpacingToken.XXXL,
-            gap=SpacingToken.MD,
+            gap=SpacingToken.SM,
         )
 
     def accessibility(self) -> AccessibilityContract:

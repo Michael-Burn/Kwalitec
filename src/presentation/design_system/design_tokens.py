@@ -36,6 +36,7 @@ from presentation.design_system.motion import (
     MotionToken,
     MotionValue,
 )
+from presentation.design_system.opacity import OPACITY, OpacityToken, OpacityValue
 from presentation.design_system.radius import RADIUS, RadiusToken, RadiusValue
 from presentation.design_system.spacing import SPACING, SpacingToken, SpacingValue
 from presentation.design_system.typography import TYPE_STYLES, TypeRole, TypeStyle
@@ -53,6 +54,7 @@ class DesignTokens:
     radius: Mapping[RadiusToken, RadiusValue]
     icon_sizes: Mapping[IconSize, IconSizeValue]
     motion: Mapping[MotionToken, MotionValue]
+    opacity: Mapping[OpacityToken, OpacityValue]
     icon_library: str
     icon_stroke_width: float
     hover_lift_px: int
@@ -89,6 +91,8 @@ class DesignTokens:
             props[value.css_var] = f"{value.px}px"
         for value in self.motion.values():
             props[value.css_var] = f"{value.duration_ms}ms {value.easing}"
+        for value in self.opacity.values():
+            props[value.css_var] = str(value.value)
         return props
 
 
@@ -101,6 +105,7 @@ TOKENS = DesignTokens(
     radius=RADIUS,
     icon_sizes=ICON_SIZES,
     motion=MOTION,
+    opacity=OPACITY,
     icon_library=ICON_LIBRARY,
     icon_stroke_width=ICON_STROKE_WIDTH,
     hover_lift_px=HOVER_LIFT_PX,
@@ -111,5 +116,5 @@ TOKENS = DesignTokens(
 
 
 def get_tokens() -> DesignTokens:
-    """Return the canonical V3 design token catalogue."""
+    """Return the canonical DX-006A design token catalogue."""
     return TOKENS

@@ -1,7 +1,7 @@
-"""Kwalitec Console navigation (CONSOLE-001).
+"""Kwalitec Console navigation (CONSOLE-001 / DX-004A).
 
-Primary navigation is workflow-oriented and kept short. Secondary destinations
-remain reachable from module hubs and Console Home.
+Primary navigation is the ≤6 Console tree. Operational destinations
+remain reachable from Settings and secondary nav.
 """
 
 from __future__ import annotations
@@ -18,16 +18,40 @@ class CommandCentreNavItem:
     section_id: str
 
 
-# Primary Console hierarchy — operational workflows, not feature laundry lists.
+# DX-004A / DX-002 target primary Console tree (≤6).
 COMMAND_CENTRE_NAV: tuple[CommandCentreNavItem, ...] = (
-    CommandCentreNavItem("founder_dashboard.index", "Overview", "overview"),
+    CommandCentreNavItem("founder_dashboard.index", "Home", "home"),
+    CommandCentreNavItem(
+        "curriculum_studio.subjects_hub", "Subjects", "subjects"
+    ),
+    CommandCentreNavItem(
+        "curriculum_studio.index", "Curriculum Studio", "curriculum_studio"
+    ),
+    CommandCentreNavItem(
+        "founder_dashboard.participants", "Students", "students"
+    ),
+    CommandCentreNavItem("founder_dashboard.feedback", "Support", "support"),
+    CommandCentreNavItem("founder_dashboard.settings", "Settings", "settings"),
+)
+
+# Secondary / nested destinations (not equal-weight chrome).
+COMMAND_CENTRE_SECONDARY_NAV: tuple[CommandCentreNavItem, ...] = (
+    CommandCentreNavItem(
+        "curriculum_studio.review_hub", "Review Queue", "review_queue"
+    ),
+    CommandCentreNavItem(
+        "curriculum_studio.publishing_hub", "Publishing", "publishing"
+    ),
+    CommandCentreNavItem(
+        "curriculum_studio.versions_hub", "Versions", "versions"
+    ),
+    CommandCentreNavItem(
+        "curriculum_studio.quality_hub", "Quality", "quality"
+    ),
     CommandCentreNavItem(
         "founder_dashboard.operational_health",
         "Operations",
         "operations",
-    ),
-    CommandCentreNavItem(
-        "founder_dashboard.participants", "Students", "students"
     ),
     CommandCentreNavItem(
         "founder_dashboard.founder_intelligence",
@@ -39,7 +63,6 @@ COMMAND_CENTRE_NAV: tuple[CommandCentreNavItem, ...] = (
         "Assessments",
         "assessments",
     ),
-    CommandCentreNavItem("curriculum_studio.index", "Content", "content"),
     CommandCentreNavItem(
         "founder_dashboard.research", "Analytics", "analytics"
     ),
@@ -48,12 +71,6 @@ COMMAND_CENTRE_NAV: tuple[CommandCentreNavItem, ...] = (
         "Platform",
         "platform",
     ),
-    CommandCentreNavItem("founder_dashboard.settings", "Settings", "settings"),
-    CommandCentreNavItem("founder_dashboard.feedback", "Support", "support"),
-)
-
-# Secondary operational destinations kept reachable (not primary nav).
-COMMAND_CENTRE_SECONDARY_NAV: tuple[CommandCentreNavItem, ...] = (
     CommandCentreNavItem("founder_dashboard.attention", "Attention", "attention"),
     CommandCentreNavItem(
         "founder_dashboard.runtime_health", "Runtime Health", "runtime_health"
@@ -78,9 +95,9 @@ COMMAND_CENTRE_SECONDARY_NAV: tuple[CommandCentreNavItem, ...] = (
 def active_section_id(endpoint: str | None) -> str:
     """Map a Flask endpoint to the Console section id."""
     if not endpoint:
-        return "overview"
+        return "home"
     if endpoint == "founder_dashboard.index":
-        return "overview"
+        return "home"
     if endpoint in {
         "founder_dashboard.feedback",
         "founder_dashboard.review_submission",
@@ -97,34 +114,37 @@ def active_section_id(endpoint: str | None) -> str:
         "founder_dashboard.vision_export",
         "founder_dashboard.vision_remove_relation",
     }:
-        return "platform"
+        return "settings"
     if endpoint in {
         "founder_dashboard.operational_health",
         "founder_dashboard.operations",
         "founder_dashboard.attention",
         "founder_dashboard.runtime_health",
-    }:
-        return "operations"
-    if endpoint == "founder_dashboard.participants":
-        return "students"
-    if endpoint == "founder_dashboard.founder_intelligence":
-        return "learning"
-    if endpoint == "founder_dashboard.evidence_gates":
-        return "assessments"
-    if endpoint == "founder_dashboard.research":
-        return "analytics"
-    if endpoint in {
         "founder_dashboard.alpha_observability",
         "founder_dashboard.internal_alpha",
         "founder_dashboard.releases",
+        "founder_dashboard.founder_intelligence",
+        "founder_dashboard.evidence_gates",
+        "founder_dashboard.research",
+        "founder_dashboard.search",
     }:
-        return "platform"
+        return "settings"
+    if endpoint == "founder_dashboard.participants":
+        return "students"
     if endpoint == "founder_dashboard.settings":
         return "settings"
-    if endpoint == "founder_dashboard.search":
-        return "search"
+    if endpoint == "curriculum_studio.subjects_hub":
+        return "subjects"
     if endpoint in {
-        "curriculum_studio.index",
+        "curriculum_studio.review_hub",
+        "curriculum_studio.publishing_hub",
+        "curriculum_studio.versions_hub",
+        "curriculum_studio.quality_hub",
+    }:
+        return "curriculum_studio"
+    if endpoint == "curriculum_studio.index":
+        return "curriculum_studio"
+    if endpoint in {
         "curriculum_studio.workspace",
         "curriculum_studio.create_subject",
         "curriculum_studio.create_workspace",
@@ -135,7 +155,7 @@ def active_section_id(endpoint: str | None) -> str:
         "curriculum_studio.publish",
         "curriculum_studio.assign_version",
     } or (endpoint and endpoint.startswith("curriculum_studio.")):
-        return "content"
+        return "curriculum_studio"
     if endpoint.startswith("founder_dashboard."):
         suffix = endpoint.removeprefix("founder_dashboard.")
         for item in COMMAND_CENTRE_NAV:
@@ -143,5 +163,5 @@ def active_section_id(endpoint: str | None) -> str:
                 return item.section_id
         for item in COMMAND_CENTRE_SECONDARY_NAV:
             if item.section_id == suffix:
-                return item.section_id
-    return "overview"
+                return "settings"
+    return "home"

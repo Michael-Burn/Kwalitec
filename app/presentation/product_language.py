@@ -143,7 +143,7 @@ FOUNDER_STUDIO_CTAS: tuple[str, ...] = (
     "Validate Curriculum",
     "Build Preview",
     "Approve Curriculum",
-    "Publish Curriculum",
+    "Publish Verified Curriculum",
     "Assign Version",
 )
 
@@ -159,15 +159,12 @@ STUDENT_NAV_LABELS: tuple[str, ...] = (
     "Help",
 )
 
+# DX-004A / DX-002 Console primary navigation (≤6).
 FOUNDER_PRIMARY_NAV_LABELS: tuple[str, ...] = (
-    "Overview",
-    "Operations",
+    "Home",
+    "Subjects",
+    "Curriculum Studio",
     "Students",
-    "Learning",
-    "Assessments",
-    "Content",
-    "Analytics",
-    "Platform",
-    "Settings",
     "Support",
+    "Settings",
 )

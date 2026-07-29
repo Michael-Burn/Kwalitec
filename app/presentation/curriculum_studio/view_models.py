@@ -194,14 +194,14 @@ class WorkspacePageView:
 
 def _dashboard_breadcrumbs() -> tuple[BreadcrumbItem, ...]:
     return (
-        BreadcrumbItem("Overview", "founder_dashboard.index"),
+        BreadcrumbItem("Home", "founder_dashboard.index"),
         BreadcrumbItem("Curriculum Studio"),
     )
 
 
 def _workspace_breadcrumbs(workspace: WorkspaceSnapshot) -> tuple[BreadcrumbItem, ...]:
     return (
-        BreadcrumbItem("Overview", "founder_dashboard.index"),
+        BreadcrumbItem("Home", "founder_dashboard.index"),
         BreadcrumbItem("Curriculum Studio", "curriculum_studio.index"),
         BreadcrumbItem(workspace.subject_code or workspace.workspace_id),
     )

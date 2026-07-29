@@ -71,7 +71,7 @@ def test_workspace_page_version_history_present():
 def test_workspace_breadcrumbs_include_studio():
     view = workspace_page(make_workspace())
     labels = [c.label for c in view.breadcrumbs]
-    assert labels[0] == "Overview"
+    assert labels[0] == "Home"
     assert labels[1] == "Curriculum Studio"
     assert labels[2] == "CS1"
     assert view.breadcrumbs[0].endpoint == "founder_dashboard.index"

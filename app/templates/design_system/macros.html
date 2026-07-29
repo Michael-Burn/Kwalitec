@@ -1,0 +1,172 @@
+{# DX-006A / DX-006B shared component macros — token-class only. #}
+{# Import: {% from "design_system/macros.html" import ds_button, ds_current_work, ... %} #}
+
+{% macro ds_button(label, href='', variant='primary', type='button', disabled=false, attrs='') -%}
+{%- if href -%}
+<a class="ds-btn ds-btn--{{ variant }}" href="{{ href }}"{% if disabled %} aria-disabled="true" tabindex="-1"{% endif %} {{ attrs|safe }}>{{ label }}</a>
+{%- else -%}
+<button class="ds-btn ds-btn--{{ variant }}" type="{{ type }}"{% if disabled %} disabled{% endif %} {{ attrs|safe }}>{{ label }}</button>
+{%- endif -%}
+{%- endmacro %}
+
+{% macro ds_primary_action_strip(primary_label, primary_href='', secondary_label='', secondary_href='') -%}
+<div class="ds-primary-strip" role="group" aria-label="Primary actions">
+  {{ ds_button(primary_label, href=primary_href, variant='primary') }}
+  {% if secondary_label %}
+    {{ ds_button(secondary_label, href=secondary_href, variant='ghost') }}
+  {% endif %}
+</div>
+{%- endmacro %}
+
+{% macro ds_page_header(title, support='', eyebrow='') -%}
+<header class="ds-page-header">
+  {% if eyebrow %}<p class="ds-list__meta">{{ eyebrow }}</p>{% endif %}
+  <h1 class="ds-page-header__title">{{ title }}</h1>
+  {% if support %}<p class="ds-page-header__support">{{ support }}</p>{% endif %}
+</header>
+{%- endmacro %}
+
+{% macro ds_section(title, id='') -%}
+<section class="ds-section"{% if id %} aria-labelledby="{{ id }}"{% endif %}>
+  <h2 class="ds-section__title"{% if id %} id="{{ id }}"{% endif %}>{{ title }}</h2>
+  {{ caller() if caller else '' }}
+</section>
+{%- endmacro %}
+
+{% macro ds_badge(label, tone='neutral') -%}
+<span class="ds-badge ds-badge--{{ tone }}" role="status">{{ label }}</span>
+{%- endmacro %}
+
+{% macro ds_current_work(subject_name, stage_label, primary_label, primary_href='', supporting_text='', section_title='Current Work') -%}
+<section class="ds-current-work" aria-labelledby="ds-current-work-title">
+  <h2 class="ds-section__title" id="ds-current-work-title">{{ section_title }}</h2>
+  <p class="ds-current-work__subject">{{ subject_name }}</p>
+  <p class="ds-current-work__stage">Stage · {{ stage_label }}</p>
+  {% if supporting_text %}<p class="ds-list__meta">{{ supporting_text }}</p>{% endif %}
+  {{ ds_primary_action_strip(primary_label, primary_href=primary_href) }}
+</section>
+{%- endmacro %}
+
+{% macro ds_mission_panel(subject_name, objective, primary_label, primary_href='', why_now='', status_label='') -%}
+<section class="ds-mission-panel" aria-label="Current mission">
+  <h2 class="ds-mission-panel__subject">{{ subject_name }}</h2>
+  <p class="ds-mission-panel__objective">{{ objective }}</p>
+  {% if why_now %}<p class="ds-list__meta">{{ why_now }}</p>{% endif %}
+  {% if status_label %}{{ ds_badge(status_label, tone='primary') }}{% endif %}
+  {{ ds_primary_action_strip(primary_label, primary_href=primary_href) }}
+</section>
+{%- endmacro %}
+
+{% macro ds_queue_list(rows, labelled_by='') -%}
+<ul class="ds-list"{% if labelled_by %} aria-labelledby="{{ labelled_by }}"{% endif %}>
+  {% for row in rows %}
+  <li>
+    {% if row.href %}
+    <a class="ds-list__row" href="{{ row.href }}">
+      <span>{{ row.title }}</span>
+      <span class="ds-list__meta">{{ row.status_label or row.meta_label }}</span>
+    </a>
+    {% else %}
+    <div class="ds-list__row">
+      <span>{{ row.title }}</span>
+      <span class="ds-list__meta">{{ row.status_label or row.meta_label }}</span>
+    </div>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{%- endmacro %}
+
+{% macro ds_publication_queue(rows, title='Publication Queue', empty_reason='Nothing needs attention', empty_action_label='', empty_action_href='') -%}
+<section class="ds-section" aria-labelledby="ds-pub-queue-title">
+  <h2 class="ds-section__title" id="ds-pub-queue-title">{{ title }}</h2>
+  {% if rows %}
+    {{ ds_queue_list(rows, labelled_by='ds-pub-queue-title') }}
+  {% else %}
+    {{ ds_empty_operational(empty_reason, empty_action_label, empty_action_href) }}
+  {% endif %}
+</section>
+{%- endmacro %}
+
+{% macro ds_recent_publications(rows, title='Recent Publications') -%}
+<section class="ds-section" aria-labelledby="ds-recent-pub-title">
+  <h2 class="ds-section__title" id="ds-recent-pub-title">{{ title }}</h2>
+  {% if rows %}
+    {{ ds_queue_list(rows, labelled_by='ds-recent-pub-title') }}
+  {% endif %}
+</section>
+{%- endmacro %}
+
+{% macro ds_learning_queue(rows, title='Learning Queue', empty_reason='Your queue is clear') -%}
+<section class="ds-section" aria-labelledby="ds-learn-queue-title">
+  <h2 class="ds-section__title" id="ds-learn-queue-title">{{ title }}</h2>
+  {% if rows %}
+    {{ ds_queue_list(rows, labelled_by='ds-learn-queue-title') }}
+  {% else %}
+    <p class="ds-list__meta">{{ empty_reason }}</p>
+  {% endif %}
+</section>
+{%- endmacro %}
+
+{% macro ds_recent_progress(rows, title='Recent Progress') -%}
+<section class="ds-section" aria-labelledby="ds-recent-progress-title">
+  <h2 class="ds-section__title" id="ds-recent-progress-title">{{ title }}</h2>
+  {% if rows %}
+    {{ ds_queue_list(rows, labelled_by='ds-recent-progress-title') }}
+  {% endif %}
+</section>
+{%- endmacro %}
+
+{% macro ds_persistent_context(title, meta_labels=[], stage_label='') -%}
+<header class="ds-persistent-context" aria-label="Context">
+  <span class="ds-persistent-context__title">{{ title }}</span>
+  {% if stage_label %}<span>{{ stage_label }}</span>{% endif %}
+  {% for meta in meta_labels %}
+  <span class="ds-list__meta">{{ meta }}</span>
+  {% endfor %}
+</header>
+{%- endmacro %}
+
+{% macro ds_blocking_findings(findings) -%}
+{% if findings %}
+<div class="ds-blocking-findings" role="alert">
+  <ul class="ds-list">
+    {% for finding in findings %}
+    <li>{{ finding.title }}{% if finding.detail %} — {{ finding.detail }}{% endif %}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+{%- endmacro %}
+
+{% macro ds_feedback_block(outcome_label, explanation='', next_hint='') -%}
+<div class="ds-feedback-block" role="status">
+  <p><strong>{{ outcome_label }}</strong></p>
+  {% if explanation %}<p>{{ explanation }}</p>{% endif %}
+  {% if next_hint %}<p class="ds-list__meta">{{ next_hint }}</p>{% endif %}
+</div>
+{%- endmacro %}
+
+{% macro ds_stage_indicator(stages, current_index=0) -%}
+<nav class="ds-stage-indicator" aria-label="Publication stages">
+  {% for stage in stages %}
+  <span class="ds-stage-indicator__item{% if loop.index0 == current_index %} ds-stage-indicator__item--current{% endif %}"{% if loop.index0 == current_index %} aria-current="step"{% endif %}>{{ stage }}</span>
+  {% endfor %}
+</nav>
+{%- endmacro %}
+
+{% macro ds_empty_operational(reason, action_label='', action_href='') -%}
+<div class="ds-empty-operational" role="status">
+  <p class="ds-empty-operational__reason">{{ reason }}</p>
+  {% if action_label %}
+    {{ ds_button(action_label, href=action_href, variant='primary') }}
+  {% endif %}
+</div>
+{%- endmacro %}
+
+{% macro ds_publication_status(label, tone='neutral', supporting_text='') -%}
+<span class="ds-inline">
+  {{ ds_badge(label, tone=tone) }}
+  {% if supporting_text %}<span class="ds-list__meta">{{ supporting_text }}</span>{% endif %}
+</span>
+{%- endmacro %}

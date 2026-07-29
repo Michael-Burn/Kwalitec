@@ -1,9 +1,10 @@
-"""Design token integrity — every value tokenised and brand-aligned."""
+"""Design token integrity — DX-001 / DX-006A scale."""
 
 from __future__ import annotations
 
 from presentation.design_system import (
     BRAND_COLOURS,
+    PRODUCT_SPACING_PX,
     SEMANTIC_COLOURS,
     SPACING,
     TOKENS,
@@ -12,7 +13,10 @@ from presentation.design_system import (
     SemanticColour,
     SpacingToken,
     TypeRole,
+    assert_product_spacing,
+    assert_spacing_integrity,
     get_tokens,
+    is_product_spacing,
 )
 from presentation.design_system.colours import (
     UI_FORBIDDEN_BRAND_COLOURS,
@@ -20,7 +24,7 @@ from presentation.design_system.colours import (
 )
 from presentation.design_system.spacing import (
     ALLOWED_SPACING_PX,
-    assert_spacing_integrity,
+    LEGACY_SPACING_TOKENS,
 )
 from presentation.design_system.typography import (
     CANONICAL_TYPE_SIZES_PX,
@@ -32,6 +36,7 @@ def test_get_tokens_returns_canonical_catalogue() -> None:
     tokens = get_tokens()
     assert tokens is TOKENS
     assert tokens.icon_library == "lucide"
+    assert tokens.opacity is not None
 
 
 def test_brand_primary_blue_matches_bi000() -> None:
@@ -69,24 +74,42 @@ def test_spacing_scale_is_eight_point_grid() -> None:
         assert value.px in ALLOWED_SPACING_PX
 
 
-def test_spacing_tokens_cover_ux001_scale() -> None:
+def test_spacing_tokens_cover_ux001_and_product_scale() -> None:
     pixels = {value.px for value in SPACING.values()}
     assert {4, 8, 12, 16, 24, 32, 48, 64, 96, 128} <= pixels
+    assert PRODUCT_SPACING_PX == frozenset({0, 4, 8, 16, 24, 32, 48, 64})
     assert SpacingToken.XS in SPACING
+    assert SpacingToken.MD in LEGACY_SPACING_TOKENS
+    assert not is_product_spacing(SpacingToken.MD)
+    assert is_product_spacing(SpacingToken.LG)
+    assert_product_spacing(SpacingToken.XL)
 
 
-def test_typography_roles_and_inter_family() -> None:
+def test_product_spacing_rejects_legacy() -> None:
+    try:
+        assert_product_spacing(SpacingToken.MD)
+        raise AssertionError("expected legacy MD to fail")
+    except AssertionError as exc:
+        assert "legacy" in str(exc).lower() or "12" in str(exc)
+
+
+def test_typography_dx006a_scale() -> None:
     for role in TypeRole:
         assert role in TYPE_STYLES
-    assert TYPE_STYLES[TypeRole.DISPLAY].size_px == 40
-    assert TYPE_STYLES[TypeRole.HEADING].size_px == 28
-    assert TYPE_STYLES[TypeRole.SUBHEADING].size_px == 20
+    assert TYPE_STYLES[TypeRole.DISPLAY].size_px == 32
+    assert TYPE_STYLES[TypeRole.PAGE].size_px == 24
+    assert TYPE_STYLES[TypeRole.HEADING].size_px == 24
+    assert TYPE_STYLES[TypeRole.SECTION].size_px == 18
+    assert TYPE_STYLES[TypeRole.SUBHEADING].size_px == 18
     assert TYPE_STYLES[TypeRole.BODY].size_px == 16
-    assert TYPE_STYLES[TypeRole.CAPTION].size_px == 14
+    assert TYPE_STYLES[TypeRole.SUPPORT].size_px == 14
+    assert TYPE_STYLES[TypeRole.CAPTION].size_px == 12
+    assert TYPE_STYLES[TypeRole.MONOSPACE].size_px == 14
     assert "Inter" in TYPE_STYLES[TypeRole.BODY].family
     assert TYPE_STYLES[TypeRole.BODY].family == FONT_FAMILY_SANS
     sizes = {style.size_px for style in TYPE_STYLES.values()}
-    assert sizes <= CANONICAL_TYPE_SIZES_PX | {14}  # mono also 14
+    assert sizes <= CANONICAL_TYPE_SIZES_PX
+    assert CANONICAL_TYPE_SIZES_PX == frozenset({32, 24, 18, 16, 14, 12})
 
 
 def test_css_custom_properties_are_complete() -> None:
@@ -95,7 +118,12 @@ def test_css_custom_properties_are_complete() -> None:
     assert "--space-lg" in props
     assert "--radius-lg" in props
     assert "--shadow-sm" in props
+    assert "--font-page" in props
+    assert "--font-display" in props
+    assert "--opacity-disabled" in props
     assert props["--primary"].upper() == "#3B4FB8"
+    assert props["--font-page"] == "1.5rem"
+    assert props["--font-display"] == "2rem"
 
 
 def test_no_duplicate_semantic_css_vars() -> None:

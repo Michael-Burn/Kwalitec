@@ -48,14 +48,15 @@ class TestIAHF003CommandCentre:
         overview = client.get("/console/")
         assert overview.status_code == 200
         assert b"Kwalitec Console" in overview.data
-        assert b"Attention Required" in overview.data
+        assert b"Current Work" in overview.data
+        assert b"Attention Required" not in overview.data
 
         # Legacy Research home is no longer a competing dashboard.
         legacy = client.get("/research/founder", follow_redirects=False)
         assert legacy.status_code == 302
         assert "/console/feedback" in legacy.headers["Location"]
 
-    def test_overview_uses_live_checkin_counts(self, client, ctx, app) -> None:
+    def test_home_excludes_platform_summary_kpis(self, client, ctx, app) -> None:
         founder = _login_founder(client, app)
         student = _make_user("student@kwalitec.example")
         _submit_checkin(student.id)
@@ -65,11 +66,10 @@ class TestIAHF003CommandCentre:
         body = response.get_data(as_text=True)
         summary = FounderResearchService.get_internal_alpha_summary()
         assert summary.completed_checkins == 1
-        assert "Platform Summary" in body
-        assert str(summary.completed_checkins) in body or str(
-            summary.active_participants
-        ) in body
-        # Must not present static/unwired zeros as the Alpha story on Overview.
+        assert "Platform Summary" not in body
+        assert "Attention Required" not in body
+        assert "Current Work" in body
+        # Must not present static/unwired zeros as the Alpha story on Home.
         assert "Offline week pipeline" not in body or "not wired" in body
         assert founder.email  # founder identity preserved
 

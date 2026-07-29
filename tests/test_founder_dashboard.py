@@ -74,7 +74,7 @@ class TestFounderDashboardRoutes:
     def test_blueprint_registered(self, app) -> None:
         assert "founder_dashboard" in app.blueprints
 
-    def test_overview_renders_command_centre(self, client, ctx, app) -> None:
+    def test_overview_renders_founder_home(self, client, ctx, app) -> None:
         app.config["FOUNDER_EMAILS"] = "founder@kwalitec.example"
         _make_user("founder@kwalitec.example")
         client.post(
@@ -89,10 +89,11 @@ class TestFounderDashboardRoutes:
         assert response.status_code == 200
         html = response.data
         assert b"Kwalitec Console" in html
-        assert b"Console Home" in html
-        assert b"Attention Required" in html
-        assert b"Platform Summary" in html
-        assert b"Quick Actions" in html
+        assert b">Home<" in html or b"founder-home-title" in html
+        assert b"Current Work" in html
+        assert b"Attention Required" not in html
+        assert b"Platform Summary" not in html
+        assert b"Quick Actions" not in html
 
     def test_operations_renders_system_sections(
         self, client, ctx, app, monkeypatch

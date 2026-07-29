@@ -1,7 +1,9 @@
 /**
- * Kwalitec shared design tokens — UX-001 / UI Guardian
+ * Kwalitec shared design tokens — DX-001 / DX-006A / UI Guardian v2
  * Load after brand.css on every product shell (app, student, session).
  * Do not invent colours, spacing, type, or radii outside this file.
+ * Canonical product type: 32 / 24 / 18 / 16 / 14 / 12
+ * Canonical product spacing: 4 / 8 / 16 / 24 / 32 / 48 / 64
  */
 
 :root,
@@ -75,27 +77,40 @@
   --color-info: var(--info);
   --color-info-bg: var(--info-bg);
 
-  /* 8-point spacing grid (UX-001) */
-  --space-xs: 0.25rem;   /* 4 */
-  --space-sm: 0.5rem;    /* 8 */
-  --space-md: 0.75rem;   /* 12 */
-  --space-lg: 1rem;      /* 16 */
-  --space-xl: 1.5rem;    /* 24 */
-  --space-2xl: 2rem;     /* 32 */
-  --space-3xl: 3rem;     /* 48 */
-  --space-4xl: 4rem;     /* 64 */
+  /* 8-point spacing grid — DX-006A product: 4/8/16/24/32/48/64 */
+  --space-xs: 0.25rem;   /* 4  — space.1 */
+  --space-sm: 0.5rem;    /* 8  — space.2 */
+  --space-md: 0.75rem;   /* 12 — LEGACY transitional alias only */
+  --space-lg: 1rem;      /* 16 — space.3 */
+  --space-xl: 1.5rem;    /* 24 — space.4 */
+  --space-2xl: 2rem;     /* 32 — space.5 */
+  --space-3xl: 3rem;     /* 48 — space.6 */
+  --space-4xl: 4rem;     /* 64 — space.7 */
+  --space-1: var(--space-xs);
+  --space-2: var(--space-sm);
+  --space-3: var(--space-lg);
+  --space-4: var(--space-xl);
+  --space-5: var(--space-2xl);
+  --space-6: var(--space-3xl);
+  --space-7: var(--space-4xl);
 
-  /* Typography — Inter only; hierarchy 40 / 28 / 20 / 16 / 14 */
+  /* Typography — Inter only; DX-001 / DX-006A: 32 / 24 / 18 / 16 / 14 / 12 */
   --font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "SF Mono", "Fira Code", "Fira Mono", Menlo, Consolas, monospace;
-  --font-xs: 0.875rem;   /* 14 caption */
-  --font-sm: 0.875rem;   /* 14 */
-  --font-base: 1rem;     /* 16 body */
-  --font-lg: 1.25rem;    /* 20 card */
-  --font-xl: 1.25rem;    /* 20 */
-  --font-2xl: 1.75rem;   /* 28 section */
-  --font-3xl: 1.75rem;   /* 28 */
-  --font-4xl: 2.5rem;    /* 40 page */
+  --font-display: 2rem;     /* 32 */
+  --font-page: 1.5rem;      /* 24 — one H1 */
+  --font-section: 1.125rem; /* 18 */
+  --font-base: 1rem;        /* 16 body */
+  --font-support: 0.875rem; /* 14 */
+  --font-caption: 0.75rem;  /* 12 */
+  /* Legacy aliases → DX-006A (do not invent new sizes from these names) */
+  --font-xs: var(--font-caption);
+  --font-sm: var(--font-support);
+  --font-lg: var(--font-section);
+  --font-xl: var(--font-section);
+  --font-2xl: var(--font-page);
+  --font-3xl: var(--font-page);
+  --font-4xl: var(--font-display);
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
@@ -103,6 +118,15 @@
   --line-height-tight: 1.2;
   --line-height-normal: 1.5;
   --line-height-relaxed: 1.7;
+
+  --opacity-disabled: 0.5;
+  --opacity-muted: 0.7;
+  --opacity-skeleton-min: 0.55;
+  --opacity-skeleton-max: 1;
+
+  --container-narrow: 44rem;
+  --container-content: 60rem;
+  --container-wide: 72rem;
 
   /* Radii — inputs 12px, cards 16px */
   --radius: 0.75rem;
@@ -197,13 +221,13 @@
 }
 
 .skeleton--text-lg {
-  height: 1.25rem;
+  height: var(--font-section);
   width: 70%;
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-sm);
 }
 
 .skeleton--title {
-  height: 1.75rem;
+  height: var(--font-page);
   width: 48%;
   margin-bottom: var(--space-lg);
 }
@@ -230,22 +254,22 @@
 }
 
 .skeleton--bar {
-  height: 0.5rem;
+  height: var(--space-sm);
   width: 100%;
   border-radius: var(--radius-full);
-  margin: var(--space-md) 0;
+  margin: var(--space-sm) 0;
 }
 
 .skeleton-stack {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: var(--space-sm);
 }
 
 .skeleton-row {
   display: flex;
   align-items: center;
-  gap: var(--space-md);
+  gap: var(--space-sm);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -275,7 +299,7 @@
   background: var(--success-bg);
   border: 1px solid color-mix(in srgb, var(--success) 22%, transparent);
   border-radius: var(--radius-lg);
-  padding: var(--space-md) var(--space-lg);
+  padding: var(--space-sm) var(--space-lg);
   margin-bottom: var(--space-xl);
   animation: kw-success-in var(--transition-slow) ease-out;
 }

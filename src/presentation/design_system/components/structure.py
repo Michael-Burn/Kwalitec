@@ -37,7 +37,7 @@ class Timeline:
             border=SemanticColour.BORDER,
             typography=TypeRole.BODY,
             gap=SpacingToken.LG,
-            padding_y=SpacingToken.MD,
+            padding_y=SpacingToken.SM,
         )
 
     def accessibility(self) -> AccessibilityContract:
