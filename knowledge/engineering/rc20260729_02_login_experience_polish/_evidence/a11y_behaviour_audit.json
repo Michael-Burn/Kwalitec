@@ -1,0 +1,199 @@
+{
+  "focus_seq": [
+    {
+      "tag": "a",
+      "id": null,
+      "name": null,
+      "type": null,
+      "label": "Kwalitec home",
+      "inFooter": false,
+      "inMain": true
+    },
+    {
+      "tag": "input",
+      "id": "email",
+      "name": "email",
+      "type": "text",
+      "label": "",
+      "inFooter": false,
+      "inMain": true
+    },
+    {
+      "tag": "input",
+      "id": "password",
+      "name": "password",
+      "type": "password",
+      "label": "",
+      "inFooter": false,
+      "inMain": true
+    },
+    {
+      "tag": "input",
+      "id": "remember_me",
+      "name": "remember_me",
+      "type": "checkbox",
+      "label": "",
+      "inFooter": false,
+      "inMain": true
+    },
+    {
+      "tag": "input",
+      "id": "submit",
+      "name": "submit",
+      "type": "submit",
+      "label": "",
+      "inFooter": false,
+      "inMain": true
+    },
+    {
+      "tag": "button",
+      "id": null,
+      "name": null,
+      "type": "button",
+      "label": "Light",
+      "inFooter": true,
+      "inMain": false
+    },
+    {
+      "tag": "button",
+      "id": null,
+      "name": null,
+      "type": "button",
+      "label": "Dark",
+      "inFooter": true,
+      "inMain": false
+    },
+    {
+      "tag": "button",
+      "id": null,
+      "name": null,
+      "type": "button",
+      "label": "System",
+      "inFooter": true,
+      "inMain": false
+    },
+    {
+      "tag": "body",
+      "id": null,
+      "name": null,
+      "type": null,
+      "label": "Education Operating System\n\nKnow exactly",
+      "inFooter": false,
+      "inMain": false
+    },
+    {
+      "tag": "a",
+      "id": null,
+      "name": null,
+      "type": null,
+      "label": "Kwalitec home",
+      "inFooter": false,
+      "inMain": true
+    },
+    {
+      "tag": "input",
+      "id": "email",
+      "name": "email",
+      "type": "text",
+      "label": "",
+      "inFooter": false,
+      "inMain": true
+    },
+    {
+      "tag": "input",
+      "id": "password",
+      "name": "password",
+      "type": "password",
+      "label": "",
+      "inFooter": false,
+      "inMain": true
+    }
+  ],
+  "a11y": {
+    "issues": [],
+    "samples": [
+      {
+        "sel": ".landing-card-title",
+        "color": "rgb(30, 36, 48)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "fontSize": "24px",
+        "minH": "0px"
+      },
+      {
+        "sel": ".landing-card-subtitle",
+        "color": "rgb(74, 85, 104)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "fontSize": "16px",
+        "minH": "0px"
+      },
+      {
+        "sel": ".landing-submit",
+        "color": "rgb(248, 250, 252)",
+        "bg": "rgb(59, 79, 184)",
+        "fontSize": "20px",
+        "minH": "44px"
+      },
+      {
+        "sel": ".public-footer-build",
+        "color": "rgb(92, 101, 112)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "fontSize": "12px",
+        "minH": "auto"
+      },
+      {
+        "sel": ".appearance-switcher-label",
+        "color": "rgb(92, 101, 112)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "fontSize": "12px",
+        "minH": "auto"
+      }
+    ],
+    "targets": [
+      {
+        "cls": "form-control form-control-lg",
+        "w": 350,
+        "h": 50
+      },
+      {
+        "cls": "form-control form-control-lg",
+        "w": 350,
+        "h": 50
+      },
+      {
+        "cls": "form-check-input",
+        "w": 16,
+        "h": 16
+      },
+      {
+        "cls": "btn btn-primary btn-lg w-100 landing-sub",
+        "w": 350,
+        "h": 56
+      },
+      {
+        "cls": "appearance-option",
+        "w": 53,
+        "h": 32
+      },
+      {
+        "cls": "appearance-option",
+        "w": 51,
+        "h": 32
+      },
+      {
+        "cls": "appearance-option is-active",
+        "w": 70,
+        "h": 32
+      }
+    ],
+    "h1": 1,
+    "footerStructure": {
+      "start": true,
+      "center": "Internal Alpha\n\u00b7\nFounding Cohort",
+      "end": "Kwalitec v2.0.0\n\u00b7\nBuild RC2"
+    }
+  },
+  "theme_dark": "dark",
+  "theme_light": "light",
+  "invalid_login_stays": true,
+  "invalid_login_feedback": true
+}
