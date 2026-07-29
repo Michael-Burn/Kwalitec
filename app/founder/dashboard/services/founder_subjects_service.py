@@ -23,7 +23,6 @@ from app.application.curriculum_studio_foundation.authority import (
 from app.domain.curriculum_studio.workflow_stage import (
     WorkflowStage,
     resolve_workflow_stage,
-    stage_label,
 )
 from app.founder.dashboard.dto.founder_subjects import (
     FilterOption,
@@ -368,10 +367,14 @@ class FounderSubjectsService:
 
     @staticmethod
     def _stage_display(workspace: WorkspaceSnapshot) -> str:
+        from app.presentation.curriculum_studio.founder_stages import (
+            founder_stage_label,
+        )
+
         try:
-            return stage_label(workspace.current_stage)
+            return founder_stage_label(workspace.current_stage)
         except ValueError:
-            return (workspace.current_stage or "Subject").replace("_", " ").title()
+            return (workspace.current_stage or "Upload").replace("_", " ").title()
 
     @staticmethod
     def _relative_updated(raw: str) -> str:

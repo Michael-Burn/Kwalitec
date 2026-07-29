@@ -8,47 +8,49 @@ from app.application.curriculum_studio.dto.dashboard_snapshot import DashboardSn
 from app.application.curriculum_studio.dto.workspace_snapshot import WorkspaceSnapshot
 from app.domain.curriculum_studio.workflow_stage import WorkflowStage
 
-# Founder-facing stage labels (aligned with domain STAGE_LABELS).
+# Founder-facing stage labels (DX-004C strip). Domain tokens unchanged.
 STAGE_LABELS: dict[str, str] = {
-    WorkflowStage.SUBJECT.value: "Subject",
-    WorkflowStage.CONTENT_SOURCES.value: "Content Sources",
-    WorkflowStage.VALIDATION.value: "Validation",
-    WorkflowStage.PREVIEW.value: "Preview",
-    WorkflowStage.APPROVAL.value: "Approval",
+    WorkflowStage.SUBJECT.value: "Upload",
+    WorkflowStage.CONTENT_SOURCES.value: "Upload",
+    WorkflowStage.VALIDATION.value: "Validate",
+    WorkflowStage.PREVIEW.value: "Review",
+    WorkflowStage.APPROVAL.value: "Approve",
     WorkflowStage.PUBLICATION.value: "Publish",
 }
 
-# Suggested primary CTA key → button/form identity for templates.
+# Suggested primary CTA key → button/form identity for templates (DX-004C).
 PRIMARY_ACTION_BY_STAGE: dict[str, str] = {
     WorkflowStage.SUBJECT.value: "advance",
     WorkflowStage.CONTENT_SOURCES.value: "upload",
-    WorkflowStage.VALIDATION.value: "preview",
-    WorkflowStage.PREVIEW.value: "approve",
-    WorkflowStage.APPROVAL.value: "publish",
-    WorkflowStage.PUBLICATION.value: "version",
+    WorkflowStage.VALIDATION.value: "validate",
+    WorkflowStage.PREVIEW.value: "preview",
+    WorkflowStage.APPROVAL.value: "approve",
+    WorkflowStage.PUBLICATION.value: "publish",
 }
 
 NEXT_ACTION_BY_STAGE: dict[str, str] = {
     WorkflowStage.SUBJECT.value: (
-        "Confirm the subject, then advance to Content Sources."
+        "Confirm the subject, then continue to Upload."
     ),
     WorkflowStage.CONTENT_SOURCES.value: (
         "Upload the Official CMP and Official Syllabus PDFs, then validate "
         "the curriculum."
     ),
     WorkflowStage.VALIDATION.value: (
-        "Validation looks ready — build a student-facing preview."
+        "Run validation after both official documents are uploaded and "
+        "extraction has finished."
     ),
     WorkflowStage.PREVIEW.value: (
-        "Assign a version label if needed, review the preview, "
+        "Confirm the student-visible curriculum structure, "
         "then approve when it looks right."
     ),
     WorkflowStage.APPROVAL.value: (
-        "Curriculum is approved — publish when you are ready. "
-        "Published curriculum becomes available to students."
+        "Approve this curriculum for release. "
+        "Published curriculum becomes Ready for students."
     ),
     WorkflowStage.PUBLICATION.value: (
-        "Confirm the version label and keep version history up to date."
+        "Publish this version so students can enrol. "
+        "Assign a version label if one is still missing."
     ),
 }
 
@@ -78,9 +80,12 @@ FLASH_SUCCESS = {
     "workspace_opened": "We've opened your workspace successfully.",
     "workflow_advanced": "We've advanced the workflow to the next stage.",
     "validation_ok": "We've completed validation successfully.",
-    "preview_ok": "We've built the preview successfully.",
+    "preview_ok": (
+        "We've built the preview successfully — {count} curriculum "
+        "topics ready to review."
+    ),
     "approved": "We've approved your curriculum successfully.",
-    "published": "We've published your curriculum successfully.",
+    "published": "We've published your verified curriculum successfully.",
     "version_assigned": "We've assigned the version successfully.",
     "sources_uploaded": "We've uploaded your curriculum documents successfully.",
 }
@@ -200,11 +205,17 @@ def _dashboard_breadcrumbs() -> tuple[BreadcrumbItem, ...]:
 
 
 def _workspace_breadcrumbs(workspace: WorkspaceSnapshot) -> tuple[BreadcrumbItem, ...]:
+    label = (
+        workspace.subject_title
+        or workspace.subject_code
+        or workspace.workspace_id
+    )
     return (
         BreadcrumbItem("Home", "founder_dashboard.index"),
-        BreadcrumbItem("Curriculum Studio", "curriculum_studio.index"),
-        BreadcrumbItem(workspace.subject_code or workspace.workspace_id),
+        BreadcrumbItem("Subjects", "curriculum_studio.subjects_hub"),
+        BreadcrumbItem(label),
     )
+
 
 
 def dashboard_view(snap: DashboardSnapshot) -> StudioDashboardView:
@@ -248,18 +259,39 @@ def workspace_page(
     version_history: tuple[str, ...] = (),
     validation_findings: tuple[ValidationFindingView, ...] = (),
 ) -> WorkspacePageView:
-    stages = []
+    from app.presentation.curriculum_studio.founder_stages import (
+        FOUNDER_STAGES,
+        founder_stage_index,
+        founder_stage_label,
+    )
+
     current = (workspace.current_stage or "").strip().lower()
-    for stage in WorkflowStage:
-        stages.append(
-            (stage.value, STAGE_LABELS[stage.value], stage.value == current)
-        )
+    founder_label = founder_stage_label(current)
+    current_idx = founder_stage_index(current)
+    stages = tuple(
+        (label.lower(), label, idx == current_idx)
+        for idx, label in enumerate(FOUNDER_STAGES)
+    )
     history = tuple(version_history)
     findings = tuple(validation_findings)
+    blocking = tuple(f for f in findings if f.is_blocking)
+    primary = PRIMARY_ACTION_BY_STAGE.get(current, "advance")
+    if blocking and founder_label in {
+        "Validate",
+        "Review",
+        "Approve",
+        "Publish",
+    }:
+        primary = "resolve"
+    elif (
+        founder_label == "Publish"
+        and not (workspace.version_label or "").strip()
+    ):
+        primary = "version"
     return WorkspacePageView(
         workspace=workspace,
-        stage_label=STAGE_LABELS.get(current, workspace.current_stage),
-        workflow_stages=tuple(stages),
+        stage_label=founder_label,
+        workflow_stages=stages,
         validation_summary=validation_summary or EMPTY_VALIDATION_SUMMARY,
         preview_summary=preview_summary or EMPTY_PREVIEW_SUMMARY,
         checklist_summary=checklist_summary or EMPTY_CHECKLIST_SUMMARY,
@@ -268,9 +300,9 @@ def workspace_page(
         empty_version_message=EMPTY_VERSION_HISTORY_GUIDANCE,
         next_action_label=NEXT_ACTION_BY_STAGE.get(
             current,
-            "Continue the Studio workflow for this curriculum.",
+            "Complete the next publication stage.",
         ),
-        primary_action=PRIMARY_ACTION_BY_STAGE.get(current, "advance"),
+        primary_action=primary,
         breadcrumbs=_workspace_breadcrumbs(workspace),
         validation_findings=findings,
         has_validation_findings=bool(findings),
@@ -286,8 +318,15 @@ def friendly_validation_summary(*, readiness: str, passed: bool) -> str:
 
 def friendly_preview_summary(*, readiness: str, node_count: int) -> str:
     """Human-readable preview status for the workspace readiness card."""
-    nodes = "node" if node_count == 1 else "nodes"
-    return f"Preview ready · {readiness} · {node_count} {nodes}"
+    topics = "topic" if node_count == 1 else "topics"
+    token = (readiness or "").strip().lower()
+    if node_count <= 0:
+        return "Preview not ready — no extracted curriculum topics yet"
+    if token in {"not_ready", "rejected"}:
+        return f"Preview needs attention · {readiness} · {node_count} {topics}"
+    if token in {"ready_for_review", "approved"}:
+        return f"Preview ready · {readiness} · {node_count} {topics}"
+    return f"Preview · {readiness} · {node_count} {topics}"
 
 
 def friendly_checklist_summary(*, ready: int, total: int) -> str:

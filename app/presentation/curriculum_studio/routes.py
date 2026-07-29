@@ -207,10 +207,28 @@ def workspace(workspace_id: str):
     version = AssignVersionForm()
     version.workspace_id.data = workspace_id
     upload_svc = document_upload_service()
-    doc_status = upload_svc.status(workspace_id)
+    try:
+        doc_status = upload_svc.status(workspace_id)
+    except Exception:
+        logger.warning(
+            "Document status unavailable for %s",
+            workspace_id,
+            exc_info=True,
+        )
+        from app.application.curriculum_studio.dto.document_metadata import (
+            WorkspaceDocumentsStatus,
+        )
+        doc_status = WorkspaceDocumentsStatus(
+            workspace_id=workspace_id,
+            documents=(),
+            required_kinds=("cmp", "syllabus"),
+            ready_kinds=(),
+            all_required_uploaded=False,
+            cta_state="upload",
+        )
     return render_template(
         "curriculum_studio/workspace.html",
-        title=f"Workspace · {page.workspace.subject_code}",
+        title=page.subject_name,
         page=page,
         advance_form=advance,
         validate_form=validate,
@@ -221,7 +239,6 @@ def workspace(workspace_id: str):
         document_slots=upload_svc.upload_slots(),
         document_status=doc_status,
         documents_by_kind={d.kind: d for d in doc_status.documents},
-        intelligence_workspace_id=workspace_id,
     )
 
 
@@ -265,8 +282,20 @@ def preview(workspace_id: str):
         flash(FLASH_WARNING["preview"], "warning")
         return _workspace_redirect(workspace_id)
     try:
-        service().preview.preview(workspace_id)
-        flash(FLASH_SUCCESS["preview_ok"], "success")
+        snap = service().preview.build_for_review(workspace_id)
+        readiness = (snap.readiness or "").strip().lower()
+        # PI-002R: never claim Preview Ready when validation has not passed.
+        if readiness in {"ready_for_review", "approved"} and snap.validation_passed:
+            flash(
+                FLASH_SUCCESS["preview_ok"].format(count=snap.node_count),
+                "success",
+            )
+        else:
+            flash(
+                f"We've loaded {snap.node_count} curriculum topic(s). "
+                "Validate the curriculum before preview is ready for review.",
+                "warning",
+            )
     except Exception as exc:
         logger.warning("Preview failed: %s", exc)
         flash(recover_flash(exc, "preview"), "warning")
@@ -306,6 +335,8 @@ def publish(workspace_id: str):
             actor_id=actor_id(),
         )
         flash(FLASH_SUCCESS["published"], "success")
+        # DX-004C: successful Publish exits to Home → Recent Publications.
+        return redirect(url_for("founder_dashboard.index"))
     except Exception as exc:
         logger.warning("Publish failed: %s", exc)
         flash(recover_flash(exc, "publish"), "warning")

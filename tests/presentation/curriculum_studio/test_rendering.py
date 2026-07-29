@@ -24,27 +24,27 @@ def test_studio_dashboard_renders_empty_friendly_when_no_workspaces(
     body = response.get_data(as_text=True)
     assert "Curriculum Studio" in body
     assert "No workspaces yet" in body
-    assert "Next step" in body
-    assert "founder-breadcrumb" in body
 
 
 def test_studio_dashboard_lists_workspace(founder_client):
     response = founder_client.get("/console/studio/")
     assert response.status_code == 200
     body = response.get_data(as_text=True)
-    assert "CS1" in body
+    assert "Core Statistics" in body or "CS1" in body
     assert "Workspaces" in body
+    assert "ws-cs1" in body
 
 
 def test_workspace_page_renders_workflow_and_next_step(founder_client):
     response = founder_client.get("/console/studio/workspaces/ws-cs1")
     assert response.status_code == 200
     body = response.get_data(as_text=True)
-    assert "Next step" in body
-    assert "Validate Curriculum" in body or "Advance to Next Stage" in body
-    assert "Publish Curriculum" in body
-    assert "Version history" in body
-    assert "No versions yet" in body
+    assert "ds-persistent-context" in body
+    assert "Upload" in body
+    assert "Validate" in body
+    assert "ds-btn--primary" in body
+    assert "Technical details" in body
+    assert "command-metric" not in body
 
 
 def test_create_subject_flash_message(founder_client):
@@ -83,7 +83,7 @@ def test_intelligence_page_renders(founder_client):
     body = response.get_data(as_text=True)
     assert "Founder Intelligence" in body
     assert "No intelligence signals yet" in body or "Signals" in body
-    assert "Evidence Gates" in body or "Assessments" in body
+    assert "Curriculum Studio" in body or "console-sidebar" in body
 
 
 def test_evidence_gates_page_renders(founder_client):

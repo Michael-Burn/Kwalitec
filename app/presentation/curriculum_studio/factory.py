@@ -96,6 +96,9 @@ def set_studio_service(
         if not has_app_context():
             raise RuntimeError("set_studio_service requires an app or app context")
         target = current_app._get_current_object()  # type: ignore[attr-defined]
+    # Always drop request/app-context caches — ``g`` outlives individual
+    # test-client requests while the app context remains active.
+    if has_app_context():
         g.pop(_G_KEY, None)
         g.pop(_G_UPLOAD_KEY, None)
     target.config[_CONFIG_KEY] = service

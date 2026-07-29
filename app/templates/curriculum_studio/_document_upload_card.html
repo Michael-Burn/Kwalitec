@@ -1,86 +1,77 @@
-{# Reusable curriculum document upload card — driven by document type registry. #}
+{# Document upload slot — interaction card for Upload stage (DX-004C L1). #}
 {% set input_id = 'doc-file-' ~ slot.kind %}
-<div class="col-md-6">
-    <article class="doc-upload-card"
-             data-doc-kind="{{ slot.kind }}"
-             data-doc-label="{{ slot.label }}"
-             data-has-document="{{ 'true' if doc else 'false' }}"
-             {% if doc %}data-document-id="{{ doc.document_id }}"{% endif %}>
-        <header class="doc-upload-card-header">
-            <h3 class="h6 mb-0">{{ slot.label }}</h3>
-            {% if slot.required_for_publish %}
-            <span class="doc-upload-required">Required</span>
-            {% endif %}
-        </header>
-        <p class="doc-upload-desc text-muted">{{ slot.description }}</p>
+<article class="doc-upload-card"
+         data-doc-kind="{{ slot.kind }}"
+         data-doc-label="{{ slot.label }}"
+         data-has-document="{{ 'true' if doc else 'false' }}"
+         {% if doc %}data-document-id="{{ doc.document_id }}"{% endif %}>
+  <header class="doc-upload-card-header">
+    <h3 class="doc-upload-card-title">{{ slot.label }}</h3>
+    {% if slot.required_for_publish %}
+    <span class="doc-upload-required">Required</span>
+    {% endif %}
+  </header>
+  <p class="doc-upload-desc">{{ slot.description }}</p>
 
-        <div class="doc-upload-dropzone"
-             data-doc-dropzone
-             tabindex="0"
-             role="button"
-             aria-label="Upload {{ slot.label }} PDF"
-             aria-describedby="help-{{ slot.kind }}">
-            <input type="file"
-                   id="{{ input_id }}"
-                   class="doc-upload-input"
-                   accept=".pdf,application/pdf"
-                   data-doc-file-input
-                   {% if not doc %}aria-required="true"{% endif %}>
-            <div class="doc-upload-dropzone-body" data-doc-empty {% if doc %}hidden{% endif %}>
-                <p class="mb-2">Drag PDF here</p>
-                <p class="mb-2 text-muted">or</p>
-                <label class="btn btn-outline-secondary btn-sm" for="{{ input_id }}">Select PDF</label>
-            </div>
-            <div class="doc-upload-meta" data-doc-meta {% if not doc %}hidden{% endif %}>
-                <p class="mb-1"><strong data-doc-filename>{{ doc.filename if doc else '' }}</strong></p>
-                <dl class="doc-upload-meta-grid mb-0">
-                    <div>
-                        <dt>Version</dt>
-                        <dd data-doc-version>{% if doc %}v{{ doc.version_number }}{% endif %}</dd>
-                    </div>
-                    <div>
-                        <dt>Uploaded</dt>
-                        <dd data-doc-uploaded>{% if doc %}{{ doc.uploaded_at[:16]|replace('T', ' ') }}{% endif %}</dd>
-                    </div>
-                    <div>
-                        <dt>Size</dt>
-                        <dd data-doc-size>{% if doc %}{{ (doc.byte_size / 1024)|round(1) }} KB{% endif %}</dd>
-                    </div>
-                    <div>
-                        <dt>Status</dt>
-                        <dd data-doc-stage>{% if doc %}{{ doc.processing_label }}{% endif %}</dd>
-                    </div>
-                    <div>
-                        <dt>Uploaded by</dt>
-                        <dd data-doc-by>{% if doc %}{{ doc.uploaded_by or '—' }}{% endif %}</dd>
-                    </div>
-                </dl>
-            </div>
-            <div class="doc-upload-progress" data-doc-progress hidden>
-                <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                    <div class="progress-bar" data-doc-progress-bar style="width: 0%"></div>
-                </div>
-                <p class="doc-upload-progress-label mb-0" data-doc-progress-label>Uploading…</p>
-            </div>
+  <div class="doc-upload-dropzone"
+       data-doc-dropzone
+       tabindex="0"
+       role="button"
+       aria-label="Upload {{ slot.label }} PDF"
+       aria-describedby="help-{{ slot.kind }}">
+    <input type="file"
+           id="{{ input_id }}"
+           class="doc-upload-input"
+           accept=".pdf,application/pdf"
+           data-doc-file-input
+           {% if not doc %}aria-required="true"{% endif %}>
+    <div class="doc-upload-dropzone-body" data-doc-empty {% if doc %}hidden{% endif %}>
+      <p>Drag PDF here or select a file</p>
+      <label class="ds-btn ds-btn--secondary" for="{{ input_id }}">Select PDF</label>
+    </div>
+    <div class="doc-upload-meta" data-doc-meta {% if not doc %}hidden{% endif %}>
+      <p>
+        <span data-doc-bound-kind>{{ slot.label }}</span>
+        ·
+        <strong data-doc-filename>{{ doc.filename if doc else '' }}</strong>
+      </p>
+      <dl class="doc-upload-meta-grid">
+        <div>
+          <dt>Version</dt>
+          <dd data-doc-version>{% if doc %}v{{ doc.version_number }}{% endif %}</dd>
         </div>
-        <p id="help-{{ slot.kind }}" class="form-text">PDF only · maximum size applies</p>
-        <div class="doc-upload-actions" data-doc-actions {% if not doc %}hidden{% endif %}>
-            <label class="btn btn-outline-secondary btn-sm mb-0" for="{{ input_id }}">Replace</label>
-            {% if doc %}
-            <a class="btn btn-outline-secondary btn-sm"
-               data-doc-download
-               href="{{ url_for('curriculum_studio.download_document', workspace_id=page.workspace.workspace_id, document_id=doc.document_id) }}">
-                Download
-            </a>
-            <button type="button" class="btn btn-outline-danger btn-sm" data-doc-remove>
-                Remove
-            </button>
-            {% else %}
-            <a class="btn btn-outline-secondary btn-sm" data-doc-download hidden href="#">Download</a>
-            <button type="button" class="btn btn-outline-danger btn-sm" data-doc-remove hidden>Remove</button>
-            {% endif %}
+        <div>
+          <dt>Uploaded</dt>
+          <dd data-doc-uploaded>{% if doc %}{{ doc.uploaded_at[:16]|replace('T', ' ') }}{% endif %}</dd>
         </div>
-        <p class="doc-upload-feedback text-danger mb-0" data-doc-error hidden></p>
-        <p class="doc-upload-feedback text-success mb-0" data-doc-success hidden></p>
-    </article>
-</div>
+        <div>
+          <dt>Status</dt>
+          <dd data-doc-stage>{% if doc %}{{ doc.processing_label }}{% endif %}</dd>
+        </div>
+      </dl>
+    </div>
+    <div class="doc-upload-progress" data-doc-progress hidden>
+      <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="progress-bar" data-doc-progress-bar style="width: 0%"></div>
+      </div>
+      <p class="doc-upload-progress-label" data-doc-progress-label>Uploading…</p>
+    </div>
+  </div>
+  <p id="help-{{ slot.kind }}" class="ds-list__meta">PDF only · maximum size applies</p>
+  <div class="doc-upload-actions" data-doc-actions {% if not doc %}hidden{% endif %}>
+    <label class="ds-btn ds-btn--secondary" for="{{ input_id }}">Replace</label>
+    {% if doc %}
+    <a class="ds-btn ds-btn--ghost"
+       data-doc-download
+       href="{{ url_for('curriculum_studio.download_document', workspace_id=page.workspace_id, document_id=doc.document_id) }}">
+      Download
+    </a>
+    <button type="button" class="ds-btn ds-btn--danger" data-doc-remove>Remove</button>
+    {% else %}
+    <a class="ds-btn ds-btn--ghost" data-doc-download hidden href="#">Download</a>
+    <button type="button" class="ds-btn ds-btn--danger" data-doc-remove hidden>Remove</button>
+    {% endif %}
+  </div>
+  <p class="doc-upload-feedback text-danger" data-doc-error hidden></p>
+  <p class="doc-upload-feedback text-success" data-doc-success hidden></p>
+</article>

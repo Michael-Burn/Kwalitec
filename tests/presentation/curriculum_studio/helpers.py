@@ -19,11 +19,7 @@ FOUNDER_EMAIL = "founder@kwalitec.example"
 
 STUDIO_TEMPLATE_MARKERS = (
     "founder_dashboard/base.html",
-    "founder-breadcrumb",
-    "founder-next-action",
-    "founder-empty-state",
-    "founder-required",
-    "btn-primary",
+    "ds-page",
 )
 
 FORBIDDEN_FOUNDER_COPY = (

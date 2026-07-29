@@ -59,17 +59,17 @@ class CreateWorkspaceForm(FlaskForm):
 
 class AdvanceWorkflowForm(FlaskForm):
     workspace_id = HiddenField(validators=[DataRequired()])
-    submit = SubmitField("Advance to Next Stage")
+    submit = SubmitField("Continue")
 
 
 class ValidateWorkspaceForm(FlaskForm):
     workspace_id = HiddenField(validators=[DataRequired()])
-    submit = SubmitField("Validate Curriculum")
+    submit = SubmitField("Validate")
 
 
 class PreviewWorkspaceForm(FlaskForm):
     workspace_id = HiddenField(validators=[DataRequired()])
-    submit = SubmitField("Build Preview")
+    submit = SubmitField("Confirm structure")
 
 
 class ApproveWorkspaceForm(FlaskForm):
@@ -79,7 +79,7 @@ class ApproveWorkspaceForm(FlaskForm):
         validators=[Optional(), Length(max=200)],
         render_kw={"placeholder": "Optional reason for approval"},
     )
-    submit = SubmitField("Approve Curriculum")
+    submit = SubmitField("Approve")
 
 
 class PublishWorkspaceForm(FlaskForm):
@@ -92,7 +92,7 @@ class PublishWorkspaceForm(FlaskForm):
             "rows": 2,
         },
     )
-    submit = SubmitField("Publish Curriculum")
+    submit = SubmitField("Publish")
 
 
 class AssignVersionForm(FlaskForm):
@@ -115,4 +115,4 @@ class AssignVersionForm(FlaskForm):
             **_REQUIRED,
         },
     )
-    submit = SubmitField("Assign Version")
+    submit = SubmitField("Assign version")

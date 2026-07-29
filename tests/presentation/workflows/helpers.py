@@ -19,11 +19,10 @@ from tests.presentation.curriculum_studio.helpers import (
 )
 
 FOUNDER_WORKFLOW_STAGES = (
-    "Subject",
-    "Content Sources",
-    "Validation",
-    "Preview",
-    "Approval",
+    "Upload",
+    "Validate",
+    "Review",
+    "Approve",
     "Publish",
 )
 

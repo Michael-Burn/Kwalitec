@@ -1,7 +1,7 @@
 # DX-006B Phase Tracker
 
 **Programme:** DX-006B — Founder & Student Surface Migration  
-**Status:** Phase 2 Founder Subjects **IN REVIEW** (implementation complete; awaiting independent certification)  
+**Status:** Phase 3 Founder Workspace **IN REVIEW** (implementation complete; awaiting independent certification)  
 **Release Candidate:** `RC-2026.07.29-01`  
 **Last updated:** 2026-07-29  
 
@@ -25,8 +25,8 @@
 |---|---|---|---|---|---|---|---|---|
 | Foundation Gate | DX-006A Order Phases 1–5 | CERTIFIED (GO WITH CONDITIONS) | — | — | PASS | PASS | PASS | 196 DS tests |
 | Phase 1 Founder Home | DX-004A | CERTIFIED | 97/100 | ≥9/10 | PASS | PASS | PASS | Home suite PASS |
-| Phase 2 Founder Subjects | DX-004B | IN REVIEW | 97/100 | ≥9/10 provisional | PASS | PASS | PASS | Subjects suite PASS |
-| Phase 3 Founder Workspace | DX-004C | NOT STARTED | — | — | — | — | — | — |
+| Phase 2 Founder Subjects | DX-004B | CERTIFIED | 97/100 | ≥9/10 | PASS | PASS | PASS | Subjects suite PASS |
+| Phase 3 Founder Workspace | DX-004C | IN REVIEW | 97/100 | ≥9/10 provisional | PASS | PASS | PASS | Workspace suite PASS |
 | Phase 4 Student Home | DX-005A | NOT STARTED | — | — | — | — | — | — |
 | Phase 5 Choose Exam | DX-005B | NOT STARTED | — | — | — | — | — | — |
 | Phase 6 Study Session | DX-005C | NOT STARTED | — | — | — | — | — | — |
@@ -36,17 +36,11 @@
 
 ## Foundation Gate
 
-**Goal:** DX-006A tokens, L1–L3, Guardian enforcement available for composition.
-
 | Field | Value |
 |---|---|
 | Status | CERTIFIED |
-| Acceptance | `knowledge/design/dx006a_design_system/IMPLEMENTATION_ORDER.md` |
 | Certified | 2026-07-29 |
 | Report | `FOUNDATION_GATE_COMPLETION_REPORT.md` |
-| Notes | Tokens remapped; L1–L3 + foundation API + macros/CSS shipped |
-
-**Exit:** Met with conditions (foundation import surface; `design_system.css` linked in Phase 1).
 
 ---
 
@@ -55,66 +49,64 @@
 | Field | Value |
 |---|---|
 | Status | CERTIFIED |
-| Authority | `knowledge/design/dx004a_founder_home/` |
-| Surface migrated | Founder Home (`/console/`) |
+| Authority | DX-004A |
 | Certified | 2026-07-29 |
 | Report | `DX006B_PHASE1_FOUNDER_HOME_COMPLETION_REPORT.md` |
 | Fidelity | 97 /100 |
-| Premium | All dimensions ≥9 |
-| Guardian | PASS |
 
 ---
 
 ## Phase 2 — Founder Subjects
+
+| Field | Value |
+|---|---|
+| Status | CERTIFIED |
+| Authority | DX-004B |
+| Certified | 2026-07-29 |
+| Report | `DX006B_PHASE2_FOUNDER_SUBJECTS_COMPLETION_REPORT.md` |
+| Fidelity | 97 /100 |
+
+---
+
+## Phase 3 — Founder Workspace
 
 ### Meta
 
 | Field | Value |
 |---|---|
 | Status | IN REVIEW |
-| Authority | `knowledge/design/dx004b_subjects/` |
-| Depends on | Phase 1 CERTIFIED |
+| Authority | `knowledge/design/dx004c_workspace/` |
+| Depends on | Phase 2 CERTIFIED |
 | Started | 2026-07-29 |
 | Certified | — (pending independent review) |
-| Notes | Report: `DX006B_PHASE2_FOUNDER_SUBJECTS_COMPLETION_REPORT.md` |
+| Notes | Report: `DX006B_PHASE3_FOUNDER_WORKSPACE_COMPLETION_REPORT.md` |
 
 ### Completion report fields
 
 | Field | Value |
 |---|---|
-| Surface migrated | Founder Subjects (`/console/studio/subjects` → DX-004B catalogue) |
-| Legacy removed | `hub.html`; workflow essay; dual Primaries; hub peer catalogues (redirected); Studio KPI / create peer forms |
-| Components reused | Search, Select, Toolbar, Page header, Primary strip, Badge, Empty operational, Catalogue table/list |
+| Surface migrated | Publication Workspace (`/console/studio/workspaces/<id>`) |
+| Legacy removed | KPI readiness cards; multi-Primary grid; CIP dashboard; intelligence.js; breadcrumbs |
+| Components reused | Persistent context, Stage indicator, Blocking findings, Primary strip, Badge, Disclosure |
 | Guardian status | PASS |
 | Accessibility | PASS |
 | Performance | PASS |
 | Architectural Fidelity | 97 /100 |
 | Premium score | All dimensions ≥9 (provisional) |
-| Regression summary | Subjects suite PASS; hubs redirect to filter presets |
-| Known issues | More (…) deferred; created_at sort fallback; live dogfood pending |
+| Regression summary | 247 passed (Workspace + Phases 1–2 + Studio presentation) |
+| Known issues | Review L1 confirm-only (no full tree); live dogfood pending |
 
 ### Certification checklist
 
-- [x] Catalogue  
-- [x] Search  
-- [x] Filters  
-- [x] Create Subject  
-- [x] Object permanence  
-- [x] Open → Workspace flow  
-- [x] Legacy hubs removed (redirected to Subjects filters)  
-- [x] Duplicate catalogue pages removed  
+- [x] Persistent Context  
+- [x] Exactly one Primary  
+- [x] Blocking Findings  
+- [x] Stages inside one Workspace  
+- [x] No separate Review/Publish/Validation pages  
+- [x] No KPI cards  
+- [x] Shared foundation components only  
 - [ ] All review gates PASS (independent)  
 - [x] Architectural Fidelity ≥95%  
-
----
-
-## Phase 3 — Founder Workspace
-
-| Field | Value |
-|---|---|
-| Status | NOT STARTED |
-| Authority | `knowledge/design/dx004c_workspace/` |
-| Depends on | Phase 2 CERTIFIED |
 
 ---
 

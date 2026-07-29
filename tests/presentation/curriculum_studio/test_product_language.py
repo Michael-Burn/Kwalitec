@@ -83,12 +83,12 @@ def test_founder_nav_labels_match_curriculum_authority_order():
     (
         (CreateSubjectForm, "Create Subject"),
         (CreateWorkspaceForm, "Open Workspace"),
-        (AdvanceWorkflowForm, "Advance to Next Stage"),
-        (ValidateWorkspaceForm, "Validate Curriculum"),
-        (PreviewWorkspaceForm, "Build Preview"),
-        (ApproveWorkspaceForm, "Approve Curriculum"),
-        (PublishWorkspaceForm, "Publish Verified Curriculum"),
-        (AssignVersionForm, "Assign Version"),
+        (AdvanceWorkflowForm, "Continue"),
+        (ValidateWorkspaceForm, "Validate"),
+        (PreviewWorkspaceForm, "Confirm structure"),
+        (ApproveWorkspaceForm, "Approve"),
+        (PublishWorkspaceForm, "Publish"),
+        (AssignVersionForm, "Assign version"),
     ),
 )
 def test_studio_form_cta_title_case(app_ctx, form_cls, label):
@@ -96,11 +96,11 @@ def test_studio_form_cta_title_case(app_ctx, form_cls, label):
     assert label in FOUNDER_STUDIO_CTAS
 
 
-def test_studio_workspace_renders_publish_curriculum(founder_client):
+def test_studio_workspace_avoids_rejected_publish_copy(founder_client):
     html = founder_client.get("/console/studio/workspaces/ws-cs1").get_data(
         as_text=True
     )
-    assert "Publish Verified Curriculum" in html
+    assert "Publish" in html
     assert "execute publish" not in html.lower()
     assert "go live" not in html.lower()
 

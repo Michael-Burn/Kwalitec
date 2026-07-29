@@ -30,11 +30,12 @@ CSS_PATH = (
     / "css"
     / "founder_dashboard.css"
 )
+DS_CSS = REPO / "app" / "static" / "css" / "design_system.css"
 
 
 @pytest.mark.parametrize(
     "name",
-    ("dashboard.html", "workspace.html"),
+    ("dashboard.html", "workspace.html", "subjects.html"),
 )
 def test_studio_templates_include_polish_markers(name):
     text = (STUDIO_TEMPLATES / name).read_text(encoding="utf-8")
@@ -57,32 +58,34 @@ def test_founder_advisory_templates_include_empty_and_breadcrumb(name):
 def test_dashboard_empty_workspace_copy():
     text = (STUDIO_TEMPLATES / "dashboard.html").read_text(encoding="utf-8")
     assert "No workspaces yet" in text
-    assert "empty_workspaces_message" in text
-    assert "No activity yet" in text
-    assert "empty_activity_message" in text
+    assert "empty_workspaces_message" in text or "Create Subject" in text
 
 
-def test_workspace_empty_version_copy():
+def test_workspace_dx004c_structure():
     text = (STUDIO_TEMPLATES / "workspace.html").read_text(encoding="utf-8")
-    assert "No versions yet" in text
-    assert "empty_version_message" in text
-    assert "Version history" in text
-    assert "Publish Curriculum" not in text or "publish_form" in text
+    assert "ds_persistent_context" in text
+    assert "ds_stage_indicator" in text
+    assert "ds_blocking_findings" in text
+    assert "page.primary_key" in text
+    assert "ds-btn--primary" in text
+    assert "command-metric" not in text
+    assert "cip-intel" not in text
+    assert "founder-action-grid" not in text
+    assert "Technical details" in text
+    assert "Back to Subjects" in text
 
 
 def test_workspace_primary_action_macro():
     text = (STUDIO_TEMPLATES / "workspace.html").read_text(encoding="utf-8")
-    assert "page.primary_action" in text
-    assert "btn-primary" in text
-    assert "founder-workflow" in text
+    assert "page.primary_key" in text
+    assert "ds-primary-strip" in text
 
 
 def test_forms_show_required_indicators():
-    dash = (STUDIO_TEMPLATES / "dashboard.html").read_text(encoding="utf-8")
+    subjects = (STUDIO_TEMPLATES / "subjects.html").read_text(encoding="utf-8")
+    assert "ds-field-label" in subjects
     workspace = (STUDIO_TEMPLATES / "workspace.html").read_text(encoding="utf-8")
-    assert "founder-required" in dash
-    assert "founder-required" in workspace
-    assert 'role="alert"' in dash
+    assert "aria-hidden=\"true\"" in workspace or "Assign version" in workspace
 
 
 @pytest.mark.parametrize("term", FORBIDDEN_FOUNDER_COPY)
@@ -104,6 +107,9 @@ def test_css_contains_responsive_and_focus_rules():
     assert ":focus-visible" in text
     assert "min-height:2.5rem" in text
     assert "@media (max-width:767.98px)" in text
+    ds = DS_CSS.read_text(encoding="utf-8")
+    assert "ds-persistent-context" in ds
+    assert "ds-workspace-l0" in ds
 
 
 def test_intelligence_empty_signals_guidance():

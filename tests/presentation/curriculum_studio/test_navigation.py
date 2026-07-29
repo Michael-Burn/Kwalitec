@@ -59,11 +59,11 @@ def test_active_section_mapping(endpoint, expected):
 
 def test_workflow_order_matches_founder_journey():
     expected = (
-        "Subject",
-        "Content Sources",
-        "Validation",
-        "Preview",
-        "Approval",
+        "Upload",
+        "Upload",
+        "Validate",
+        "Review",
+        "Approve",
         "Publish",
     )
     labels = tuple(STAGE_LABELS[stage.value] for stage in WorkflowStage)
@@ -75,19 +75,20 @@ def test_workflow_order_matches_founder_journey():
     (
         ("subject", "advance"),
         ("content_sources", "upload"),
-        ("validation", "preview"),
-        ("preview", "approve"),
-        ("approval", "publish"),
-        ("publication", "version"),
+        ("validation", "validate"),
+        ("preview", "preview"),
+        ("approval", "approve"),
+        ("publication", "publish"),
     ),
 )
 def test_primary_action_follows_workflow(stage, primary):
     assert PRIMARY_ACTION_BY_STAGE[stage] == primary
-    view = workspace_page(make_workspace(current_stage=stage))
+    version = "2026.1" if stage == "publication" else ""
+    view = workspace_page(make_workspace(current_stage=stage, version_label=version))
     assert view.primary_action == primary
 
 
 def test_workspace_workflow_renders_all_stages():
     view = workspace_page(make_workspace(current_stage="approval"))
-    values = [value for value, _, _ in view.workflow_stages]
-    assert values == [stage.value for stage in WorkflowStage]
+    labels = [label for _, label, _ in view.workflow_stages]
+    assert labels == ["Upload", "Validate", "Review", "Approve", "Publish"]

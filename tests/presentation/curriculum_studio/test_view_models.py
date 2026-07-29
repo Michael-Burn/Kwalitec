@@ -49,7 +49,8 @@ def test_populated_dashboard_lists_workspaces_and_activity():
 
 @pytest.mark.parametrize("stage", list(WorkflowStage))
 def test_workspace_page_next_action_and_primary(stage: WorkflowStage):
-    ws = make_workspace(current_stage=stage.value)
+    version = "2026.1" if stage is WorkflowStage.PUBLICATION else ""
+    ws = make_workspace(current_stage=stage.value, version_label=version)
     view = workspace_page(ws)
     assert view.stage_label == STAGE_LABELS[stage.value]
     assert view.next_action_label == NEXT_ACTION_BY_STAGE[stage.value]
@@ -61,21 +62,21 @@ def test_workspace_page_next_action_and_primary(stage: WorkflowStage):
 
 def test_workspace_page_version_history_present():
     view = workspace_page(
-        make_workspace(current_stage="publication"),
+        make_workspace(current_stage="publication", version_label="1.0.0"),
         version_history=("1.0.0 (published)",),
     )
     assert view.has_version_history is True
     assert view.version_history[0].startswith("1.0.0")
 
 
-def test_workspace_breadcrumbs_include_studio():
+def test_workspace_breadcrumbs_include_subjects():
     view = workspace_page(make_workspace())
     labels = [c.label for c in view.breadcrumbs]
     assert labels[0] == "Home"
-    assert labels[1] == "Curriculum Studio"
-    assert labels[2] == "CS1"
+    assert labels[1] == "Subjects"
+    assert labels[2] == "Core Statistics"
     assert view.breadcrumbs[0].endpoint == "founder_dashboard.index"
-    assert view.breadcrumbs[1].endpoint == "curriculum_studio.index"
+    assert view.breadcrumbs[1].endpoint == "curriculum_studio.subjects_hub"
 
 
 def test_friendly_validation_summaries():
@@ -86,10 +87,13 @@ def test_friendly_validation_summaries():
 
 
 def test_friendly_preview_and_checklist():
-    preview = friendly_preview_summary(readiness="ready", node_count=1)
-    assert "1 node" in preview
-    multi = friendly_preview_summary(readiness="ready", node_count=4)
-    assert "4 nodes" in multi
+    preview = friendly_preview_summary(readiness="ready_for_review", node_count=1)
+    assert "1 topic" in preview
+    multi = friendly_preview_summary(readiness="ready_for_review", node_count=4)
+    assert "4 topics" in multi
+    empty = friendly_preview_summary(readiness="not_ready", node_count=0)
+    assert "not ready" in empty.lower()
+    assert "Preview ready" not in empty
     assert "All 3 checklist items are ready." in friendly_checklist_summary(
         ready=3, total=3
     )
@@ -97,10 +101,11 @@ def test_friendly_preview_and_checklist():
 
 
 def test_flash_success_copy_is_professional():
-    for message in FLASH_SUCCESS.values():
-        assert message.endswith(".")
-        assert "execute" not in message.lower()
-        assert message[0].isupper()
+    for key, message in FLASH_SUCCESS.items():
+        rendered = message.format(count=3) if "{count}" in message else message
+        assert rendered.endswith(".")
+        assert "execute" not in rendered.lower()
+        assert rendered[0].isupper()
 
 
 def test_flash_warning_copy_guides_recovery():
@@ -110,12 +115,13 @@ def test_flash_warning_copy_guides_recovery():
 
 
 def test_stage_labels_avoid_jargon():
-    assert STAGE_LABELS[WorkflowStage.CONTENT_SOURCES.value] == "Content Sources"
+    assert STAGE_LABELS[WorkflowStage.CONTENT_SOURCES.value] == "Upload"
     assert STAGE_LABELS[WorkflowStage.PUBLICATION.value] == "Publish"
+    assert STAGE_LABELS[WorkflowStage.PREVIEW.value] == "Review"
 
 
 def test_workflow_stages_mark_exactly_one_active():
     view = workspace_page(make_workspace(current_stage="preview"))
     active = [label for _, label, on in view.workflow_stages if on]
-    assert active == ["Preview"]
-    assert len(view.workflow_stages) == len(WorkflowStage)
+    assert active == ["Review"]
+    assert len(view.workflow_stages) == 5

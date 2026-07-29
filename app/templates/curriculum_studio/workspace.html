@@ -1,414 +1,260 @@
 {% extends "founder_dashboard/base.html" %}
+{% from "design_system/macros.html" import ds_persistent_context, ds_stage_indicator, ds_blocking_findings, ds_button, ds_badge %}
 
-{# founder_dashboard/base.html (via layouts/console_base.html) loads
-   founder_dashboard.css for this Console surface. #}
-{% macro action_btn(form_obj, action_key, default_class) -%}
-{%- set is_primary = page.primary_action == action_key -%}
-{%- set btn_class = 'btn founder-btn ' + ('btn-primary' if is_primary else default_class) -%}
-{{ form_obj.submit(class_=btn_class) }}
+{# DX-004C Publication Workspace — Execution First.
+   One question: How do I complete this publication?
+   Exactly one Primary. Stages are modes, not pages. #}
+
+{% macro primary_submit(form_obj, label) -%}
+{{ form_obj.submit(class_='ds-btn ds-btn--primary', value=label) }}
+{%- endmacro %}
+
+{% macro secondary_submit(form_obj, label) -%}
+{{ form_obj.submit(class_='ds-btn ds-btn--secondary', value=label) }}
 {%- endmacro %}
 
 {% block console_content %}
-<nav class="founder-breadcrumb" aria-label="Breadcrumb">
-    <ol class="founder-breadcrumb-list">
-        {% for crumb in page.breadcrumbs %}
-        <li class="founder-breadcrumb-item">
-            {% if crumb.endpoint %}
-            <a href="{{ url_for(crumb.endpoint) }}">{{ crumb.label }}</a>
-            {% else %}
-            <span aria-current="page">{{ crumb.label }}</span>
-            {% endif %}
-        </li>
+<article class="ds-page ds-container ds-container--content ds-workspace" aria-labelledby="workspace-subject-title">
+
+  {# Persistent context — identity always visible #}
+  {% set context_title = (page.subject_code ~ ' · ' ~ page.subject_name) if page.subject_code else page.subject_name %}
+  {{ ds_persistent_context(
+    context_title,
+    meta_labels=['Version ' ~ page.version_label],
+    stage_label=page.stage_label,
+    status_label=page.status_label,
+    as_heading=true,
+    title_id='workspace-subject-title'
+  ) }}
+
+  {# L0 — Stage decision strip + exactly one Primary #}
+  <section class="ds-workspace-l0" aria-labelledby="workspace-stage-heading">
+    <h2 class="visually-hidden" id="workspace-stage-heading">Current stage</h2>
+    {{ ds_stage_indicator(page.founder_stages, current_index=page.stage_index) }}
+    <p class="ds-list__meta">{{ page.next_step_sentence }}</p>
+
+    <div class="ds-primary-strip" role="group" aria-label="Primary action">
+      {% if page.primary_key == 'upload' %}
+        {{ ds_button(page.primary_label, href='#stage-content', variant='primary') }}
+      {% elif page.primary_key == 'resolve' %}
+        {{ ds_button(page.primary_label, href='#blocking-findings', variant='primary') }}
+      {% elif page.primary_key == 'advance' %}
+        <form method="post" action="{{ url_for('curriculum_studio.advance', workspace_id=page.workspace_id) }}">
+          {{ advance_form.hidden_tag() }}{{ advance_form.workspace_id }}
+          {{ primary_submit(advance_form, page.primary_label) }}
+        </form>
+      {% elif page.primary_key == 'validate' %}
+        <form method="post" action="{{ url_for('curriculum_studio.validate', workspace_id=page.workspace_id) }}">
+          {{ validate_form.hidden_tag() }}{{ validate_form.workspace_id }}
+          {{ primary_submit(validate_form, page.primary_label) }}
+        </form>
+      {% elif page.primary_key == 'preview' %}
+        <form method="post" action="{{ url_for('curriculum_studio.preview', workspace_id=page.workspace_id) }}">
+          {{ preview_form.hidden_tag() }}{{ preview_form.workspace_id }}
+          {{ primary_submit(preview_form, page.primary_label) }}
+        </form>
+      {% elif page.primary_key == 'approve' %}
+        <form method="post" action="{{ url_for('curriculum_studio.approve', workspace_id=page.workspace_id) }}" class="ds-workspace-primary-form">
+          {{ approve_form.hidden_tag() }}{{ approve_form.workspace_id }}
+          <label class="visually-hidden" for="{{ approve_form.reason.id }}">{{ approve_form.reason.label.text }}</label>
+          {{ approve_form.reason(class_='ds-input') }}
+          {{ primary_submit(approve_form, page.primary_label) }}
+        </form>
+      {% elif page.primary_key == 'publish' %}
+        <form method="post" action="{{ url_for('curriculum_studio.publish', workspace_id=page.workspace_id) }}" class="ds-workspace-primary-form">
+          {{ publish_form.hidden_tag() }}{{ publish_form.workspace_id }}
+          <label class="visually-hidden" for="{{ publish_form.reason.id }}">{{ publish_form.reason.label.text }}</label>
+          {{ publish_form.reason(class_='ds-input') }}
+          {{ primary_submit(publish_form, page.primary_label) }}
+        </form>
+      {% elif page.primary_key == 'version' %}
+        <form method="post" action="{{ url_for('curriculum_studio.assign_version', workspace_id=page.workspace_id) }}" class="ds-workspace-primary-form">
+          {{ version_form.hidden_tag() }}{{ version_form.workspace_id }}
+          <label class="ds-field-label" for="{{ version_form.version_label.id }}">
+            {{ version_form.version_label.label.text }}
+            <span aria-hidden="true">*</span>
+          </label>
+          {{ version_form.version_label(class_='ds-input') }}
+          {{ primary_submit(version_form, page.primary_label) }}
+        </form>
+      {% endif %}
+      {% if page.blocking_count > 0 %}
+        <span class="ds-list__meta" role="status">Blocking: {{ page.blocking_count }}</span>
+      {% endif %}
+    </div>
+  </section>
+
+  {# Blocking findings — only when present #}
+  {% if page.blocking_count > 0 %}
+    {{ ds_blocking_findings(page.blocking_findings) }}
+  {% endif %}
+
+  {# L1 — Current stage content only #}
+  <section class="ds-section" id="stage-content" aria-labelledby="stage-content-title">
+    <h2 class="ds-section__title" id="stage-content-title">{{ page.stage_label }}</h2>
+
+    {% if page.show_upload %}
+    <div
+      data-document-upload
+      data-workspace-id="{{ page.workspace_id }}"
+      data-upload-url="{{ url_for('curriculum_studio.upload_document', workspace_id=page.workspace_id) }}"
+      data-status-url="{{ url_for('curriculum_studio.documents_status', workspace_id=page.workspace_id) }}"
+      data-cta-state="{{ document_status.cta_state }}"
+    >
+      <p class="ds-list__meta">
+        {% if document_status.cta_state == 'uploaded' %}
+        Required sources · {{ ds_badge('Documents uploaded', tone='success') }}
+        {% elif document_status.cta_state == 'replace' %}
+        Required sources — replace documents if needed
+        {% else %}
+        Required sources — Upload documents
+        {% endif %}
+      </p>
+      <div class="ds-workspace-upload-grid" data-doc-upload-slots>
+        {% for slot in document_slots %}
+        {% set doc = documents_by_kind.get(slot.kind) %}
+        {% include "curriculum_studio/_document_upload_card.html" %}
         {% endfor %}
-    </ol>
-</nav>
-
-<section class="section-header founder-header">
-    <p class="section-eyebrow">Curriculum Studio · Workspace</p>
-    <h1 class="section-title">{{ page.workspace.subject_title or page.workspace.subject_code }}</h1>
-    <p class="section-description">
-        Stage: {{ page.stage_label }} · Status: {{ page.workspace.status|title }}
-        {% if page.workspace.version_label %} · Version {{ page.workspace.version_label }}{% endif %}
-    </p>
-</section>
-
-<section class="mb-4" aria-label="Suggested next step">
-    <div class="founder-next-action" role="status">
-        <p class="founder-next-action-label">Next step</p>
-        <p class="founder-next-action-text mb-0">{{ page.next_action_label }}</p>
-    </div>
-</section>
-
-<section class="mb-4" aria-label="Workflow stages">
-    <div class="command-card">
-        <div class="command-card-header"><h2 class="h5 mb-0">Workflow</h2></div>
-        <div class="command-card-body">
-            <ol class="founder-workflow list-unstyled mb-0" aria-label="Curriculum Studio workflow stages">
-                {% for value, label, active in page.workflow_stages %}
-                <li class="founder-workflow-step{% if active %} is-active{% endif %}">
-                    <span class="founder-workflow-marker" aria-hidden="true"></span>
-                    <span class="founder-workflow-label">{{ label }}</span>
-                    {% if active %}<span class="visually-hidden">(current)</span>{% endif %}
-                </li>
-                {% endfor %}
-            </ol>
-        </div>
-    </div>
-</section>
-
-<section class="mb-4" aria-label="Readiness">
-    <div class="row g-3">
-        <div class="col-md-4">
-            <div class="command-card h-100">
-                <div class="command-card-body">
-                    <span class="command-metric-label">Validation</span>
-                    <p class="mb-0">{{ page.validation_summary }}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="command-card h-100">
-                <div class="command-card-body">
-                    <span class="command-metric-label">Preview</span>
-                    <p class="mb-0">{{ page.preview_summary }}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="command-card h-100">
-                <div class="command-card-body">
-                    <span class="command-metric-label">Checklist</span>
-                    <p class="mb-0">{{ page.checklist_summary }}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-{% if page.has_validation_findings %}
-<section class="mb-4" aria-label="Validation findings">
-    <div class="command-card">
-        <div class="command-card-header"><h2 class="h5 mb-0">Validation findings</h2></div>
-        <div class="command-card-body">
-            <ul class="list-unstyled mb-0">
-                {% for finding in page.validation_findings %}
-                <li class="mb-3{% if not loop.last %} border-bottom pb-3{% endif %}">
-                    <p class="mb-1">
-                        <strong>{{ finding.message }}</strong>
-                        {% if finding.is_blocking %}
-                        <span class="text-danger">(blocking)</span>
-                        {% endif %}
-                    </p>
-                    {% if finding.why_it_matters %}
-                    <p class="mb-1 text-muted"><span class="visually-hidden">Why it matters: </span>{{ finding.why_it_matters }}</p>
-                    {% endif %}
-                    {% if finding.recovery_action %}
-                    <p class="mb-0"><strong>What to do:</strong> {{ finding.recovery_action }}</p>
-                    {% endif %}
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-</section>
-{% endif %}
-
-<section class="mb-4" aria-label="Content sources"
-         data-document-upload
-         data-workspace-id="{{ page.workspace.workspace_id }}"
-         data-upload-url="{{ url_for('curriculum_studio.upload_document', workspace_id=page.workspace.workspace_id) }}"
-         data-status-url="{{ url_for('curriculum_studio.documents_status', workspace_id=page.workspace.workspace_id) }}"
-         data-cta-state="{{ document_status.cta_state }}">
-    <div class="command-card">
-        <div class="command-card-header">
-            <h2 class="h5 mb-0">Content Sources</h2>
-            <span class="doc-upload-cta-badge" data-doc-cta-badge>
-                {% if document_status.cta_state == 'uploaded' %}
-                Documents Uploaded
-                {% elif document_status.cta_state == 'replace' %}
-                Replace Documents
-                {% else %}
-                Upload Documents
-                {% endif %}
-            </span>
-        </div>
-        <div class="command-card-body">
-            <p class="text-muted mb-3">
-                Upload the official curriculum PDFs for this subject. Kwalitec stores
-                and links them automatically — you never need to manage internal file IDs.
-            </p>
-            <div class="row g-3" data-doc-upload-slots>
-                {% for slot in document_slots %}
-                {% set doc = documents_by_kind.get(slot.kind) %}
-                {% include "curriculum_studio/_document_upload_card.html" %}
-                {% endfor %}
-            </div>
-            <div class="doc-processing-panel mt-4" aria-label="Processing status">
-                <h3 class="h6 mb-2">Curriculum Intelligence Pipeline</h3>
-                <ol class="doc-processing-stages list-unstyled mb-0" data-doc-processing-stages>
-                    {% set stages = [
-                        ('queued', 'Processing'),
-                        ('verified', 'Verified'),
-                        ('extracted', 'Extracted'),
-                        ('parsed', 'Parsed'),
-                        ('mapped', 'Mapped'),
-                        ('graph_built', 'Knowledge Graph Built'),
-                        ('ready_for_embeddings', 'Ready'),
-                    ] %}
-                    {% set active_stages = documents_by_kind.values() | map(attribute='processing_stage') | list %}
-                    {% for stage_key, stage_label in stages %}
-                    <li class="doc-processing-stage{% if stage_key in active_stages %} is-complete{% endif %}"
-                        data-stage="{{ stage_key }}">
-                        <span class="doc-processing-marker" aria-hidden="true"></span>
-                        <span>{{ stage_label }}</span>
-                    </li>
-                    {% endfor %}
-                </ol>
-                <div class="doc-pipeline-jobs mt-3" data-doc-pipeline-jobs>
-                    {% for job in document_status.pipeline_jobs %}
-                    <article class="doc-pipeline-job" data-pipeline-job data-document-id="{{ job.document_id }}" data-job-id="{{ job.job_id }}">
-                        <header class="doc-pipeline-job-header">
-                            <strong>Document {{ job.document_id }}</strong>
-                            <span data-job-status>{{ job.status_label }}</span>
-                        </header>
-                        {% if job.last_error %}
-                        <p class="text-danger mb-2" data-job-error>{{ job.last_error }}</p>
-                        {% endif %}
-                        <ul class="doc-pipeline-events list-unstyled mb-2" data-job-events>
-                            {% for event in job.events[-6:] %}
-                            <li class="doc-pipeline-event">
-                                <span>{{ event.stage_label }}</span>
-                                <span class="text-muted">{{ event.status }}</span>
-                                {% if event.duration_ms is not none %}
-                                <span class="text-muted">{{ event.duration_ms }} ms</span>
-                                {% endif %}
-                                {% if event.error_message %}
-                                <span class="text-danger">{{ event.error_message }}</span>
-                                {% endif %}
-                            </li>
-                            {% endfor %}
-                        </ul>
-                        <div class="doc-pipeline-actions">
-                            {% if job.can_retry %}
-                            <button type="button" class="btn btn-outline-secondary btn-sm" data-pipeline-retry>
-                                Retry
-                            </button>
-                            {% endif %}
-                            {% if job.can_cancel %}
-                            <button type="button" class="btn btn-outline-danger btn-sm" data-pipeline-cancel>
-                                Cancel
-                            </button>
-                            {% endif %}
-                        </div>
-                    </article>
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="visually-hidden" role="status" aria-live="polite" data-doc-upload-live></div>
-        </div>
-    </div>
-</section>
-
-<section class="mb-4" aria-label="Curriculum intelligence"
-         data-cip-intelligence
-         data-workspace-id="{{ page.workspace.workspace_id }}"
-         data-overview-url="{{ url_for('curriculum_studio.intelligence_overview', workspace_id=page.workspace.workspace_id) }}"
-         data-validation-url="{{ url_for('curriculum_studio.intelligence_validation', workspace_id=page.workspace.workspace_id) }}"
-         data-review-url="{{ url_for('curriculum_studio.intelligence_review_queue', workspace_id=page.workspace.workspace_id) }}"
-         data-metrics-url="{{ url_for('curriculum_studio.intelligence_metrics', workspace_id=page.workspace.workspace_id) }}"
-         data-graph-url="{{ url_for('curriculum_studio.intelligence_knowledge_graph', workspace_id=page.workspace.workspace_id) }}"
-         data-audit-url="{{ url_for('curriculum_studio.intelligence_audit', workspace_id=page.workspace.workspace_id) }}"
-         data-evidence-search-url="{{ url_for('curriculum_studio.intelligence_evidence_search', workspace_id=page.workspace.workspace_id) }}"
-         data-evidence-retrieve-url="{{ url_for('curriculum_studio.intelligence_evidence_retrieve', workspace_id=page.workspace.workspace_id) }}"
-         data-embedding-status-url="{{ url_for('curriculum_studio.intelligence_embedding_status', workspace_id=page.workspace.workspace_id) }}"
-         data-retrieval-diagnostics-url="{{ url_for('curriculum_studio.intelligence_retrieval_diagnostics', workspace_id=page.workspace.workspace_id) }}">
-    <div class="command-card">
-        <div class="command-card-header">
-            <h2 class="h5 mb-0">Curriculum Intelligence</h2>
-            <span class="text-muted" data-cip-overview-badge>Validation, provenance &amp; evidence retrieval</span>
-        </div>
-        <div class="command-card-body">
-            <nav class="cip-intel-tabs" aria-label="Intelligence views">
-                <button type="button" class="cip-intel-tab is-active" data-cip-tab="overview">Overview</button>
-                <button type="button" class="cip-intel-tab" data-cip-tab="documents">Documents</button>
-                <button type="button" class="cip-intel-tab" data-cip-tab="pipeline">Pipeline</button>
-                <button type="button" class="cip-intel-tab" data-cip-tab="graph">Knowledge Graph</button>
-                <button type="button" class="cip-intel-tab" data-cip-tab="evidence">Evidence Explorer</button>
-                <button type="button" class="cip-intel-tab" data-cip-tab="validation">Validation</button>
-                <button type="button" class="cip-intel-tab" data-cip-tab="review">Review Queue</button>
-                <button type="button" class="cip-intel-tab" data-cip-tab="metrics">Metrics</button>
-                <button type="button" class="cip-intel-tab" data-cip-tab="entity">Entity Details</button>
-            </nav>
-
-            <div class="cip-intel-panel is-active" data-cip-panel="overview">
-                <p class="text-muted mb-3">Evidence-backed curriculum knowledge for this workspace.</p>
-                <div class="row g-3" data-cip-overview-metrics>
-                    <div class="col-md-3"><div class="cip-metric"><span class="command-metric-label">Documents</span><p class="mb-0" data-cip-ov-docs>—</p></div></div>
-                    <div class="col-md-3"><div class="cip-metric"><span class="command-metric-label">Entities</span><p class="mb-0" data-cip-ov-entities>—</p></div></div>
-                    <div class="col-md-3"><div class="cip-metric"><span class="command-metric-label">Needs review</span><p class="mb-0" data-cip-ov-review>—</p></div></div>
-                    <div class="col-md-3"><div class="cip-metric"><span class="command-metric-label">Validation errors</span><p class="mb-0" data-cip-ov-errors>—</p></div></div>
-                </div>
-            </div>
-
-            <div class="cip-intel-panel" data-cip-panel="documents" hidden>
-                <p class="text-muted mb-2">Official curriculum documents appear in Content Sources above. Use Pipeline and Review Queue after processing.</p>
-                <ul class="list-unstyled mb-0" data-cip-documents-list></ul>
-            </div>
-
-            <div class="cip-intel-panel" data-cip-panel="pipeline" hidden>
-                <p class="text-muted mb-2">Pipeline stage history is shown in Content Sources. Audit trail of intelligence actions:</p>
-                <ul class="list-unstyled mb-0" data-cip-audit-list></ul>
-            </div>
-
-            <div class="cip-intel-panel" data-cip-panel="graph" hidden>
-                <p class="text-muted mb-2"><span data-cip-graph-summary>Loading graph…</span></p>
-                <ul class="list-unstyled mb-0" data-cip-graph-nodes></ul>
-            </div>
-
-            <div class="cip-intel-panel" data-cip-panel="evidence" hidden>
-                <p class="text-muted mb-2">Search educational evidence via the canonical retrieval layer. Results expose concepts, confidence, provenance, and ranking — not vector internals.</p>
-                <div class="cip-evidence-search mb-3">
-                    <label class="form-label" for="cip-evidence-q">Search concepts</label>
-                    <div class="cip-entity-lookup">
-                        <input type="text" class="form-control founder-input" id="cip-evidence-q" data-cip-evidence-input placeholder="e.g. Bayes theorem definition">
-                        <button type="button" class="btn btn-outline-secondary btn-sm" data-cip-evidence-search>Search</button>
-                    </div>
-                    <label class="form-label mt-2" for="cip-evidence-profile">Retrieval profile</label>
-                    <select class="form-select founder-input" id="cip-evidence-profile" data-cip-evidence-profile>
-                        <option value="founder_explorer">Founder Explorer</option>
-                        <option value="knowledge_search">Knowledge Search</option>
-                        <option value="tutor">Tutor</option>
-                        <option value="mission_engine">Mission Engine</option>
-                        <option value="revision_planner">Revision Planner</option>
-                        <option value="analytics">Analytics</option>
-                    </select>
-                </div>
-                <div class="row g-3 mb-3" data-cip-embed-status>
-                    <div class="col-md-3"><div class="cip-metric"><span class="command-metric-label">Indexed</span><p class="mb-0" data-cip-embed-indexed>—</p></div></div>
-                    <div class="col-md-3"><div class="cip-metric"><span class="command-metric-label">Failed</span><p class="mb-0" data-cip-embed-failed>—</p></div></div>
-                    <div class="col-md-3"><div class="cip-metric"><span class="command-metric-label">Model</span><p class="mb-0" data-cip-embed-model>—</p></div></div>
-                    <div class="col-md-3"><div class="cip-metric"><span class="command-metric-label">Vectors</span><p class="mb-0" data-cip-embed-vectors>—</p></div></div>
-                </div>
-                <div data-cip-evidence-results>
-                    <p class="text-muted mb-0">Enter a query to inspect ranked educational evidence.</p>
-                </div>
-                <div class="mt-3" data-cip-evidence-neighbours hidden>
-                    <h3 class="h6">Graph neighbours</h3>
-                    <ul class="list-unstyled mb-0" data-cip-evidence-neighbours-list></ul>
-                </div>
-            </div>
-
-            <div class="cip-intel-panel" data-cip-panel="validation" hidden>
-                <div data-cip-validation-list>
-                    <p class="text-muted mb-0">No validation reports yet. Run the intelligence pipeline on uploaded documents.</p>
-                </div>
-            </div>
-
-            <div class="cip-intel-panel" data-cip-panel="review" hidden>
-                <div data-cip-review-list>
-                    <p class="text-muted mb-0">No entities awaiting review.</p>
-                </div>
-            </div>
-
-            <div class="cip-intel-panel" data-cip-panel="metrics" hidden>
-                <div class="row g-3 mb-3" data-cip-metrics-summary>
-                    <div class="col-md-4"><div class="cip-metric"><span class="command-metric-label">Mean mapping confidence</span><p class="mb-0" data-cip-met-conf>—</p></div></div>
-                    <div class="col-md-4"><div class="cip-metric"><span class="command-metric-label">Graph completeness</span><p class="mb-0" data-cip-met-complete>—</p></div></div>
-                    <div class="col-md-4"><div class="cip-metric"><span class="command-metric-label">Founder approvals</span><p class="mb-0" data-cip-met-approvals>—</p></div></div>
-                </div>
-                <ul class="list-unstyled mb-0" data-cip-metrics-docs></ul>
-            </div>
-
-            <div class="cip-intel-panel" data-cip-panel="entity" hidden>
-                <label class="form-label" for="cip-entity-id">Entity id</label>
-                <div class="cip-entity-lookup mb-3">
-                    <input type="text" class="form-control founder-input" id="cip-entity-id" data-cip-entity-input placeholder="ent-…">
-                    <button type="button" class="btn btn-outline-secondary btn-sm" data-cip-entity-load>Load</button>
-                </div>
-                <div data-cip-entity-detail>
-                    <p class="text-muted mb-0">Select an entity from the Review Queue or enter an entity id.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="mb-4" aria-label="Studio actions">
-    <div class="command-card">
-        <div class="command-card-header"><h2 class="h5 mb-0">Actions</h2></div>
-        <div class="command-card-body">
-            <div class="founder-action-grid">
-                <form method="post" action="{{ url_for('curriculum_studio.advance', workspace_id=page.workspace.workspace_id) }}" class="founder-action-form">
-                    {{ advance_form.hidden_tag() }}{{ advance_form.workspace_id }}
-                    {{ action_btn(advance_form, 'advance', 'btn-outline-secondary') }}
-                </form>
-                <form method="post" action="{{ url_for('curriculum_studio.validate', workspace_id=page.workspace.workspace_id) }}" class="founder-action-form">
-                    {{ validate_form.hidden_tag() }}{{ validate_form.workspace_id }}
-                    {{ action_btn(validate_form, 'validate', 'btn-outline-secondary') }}
-                </form>
-                <form method="post" action="{{ url_for('curriculum_studio.preview', workspace_id=page.workspace.workspace_id) }}" class="founder-action-form">
-                    {{ preview_form.hidden_tag() }}{{ preview_form.workspace_id }}
-                    {{ action_btn(preview_form, 'preview', 'btn-outline-secondary') }}
-                </form>
-                <form method="post" action="{{ url_for('curriculum_studio.approve', workspace_id=page.workspace.workspace_id) }}" class="founder-action-form founder-action-form--wide">
-                    {{ approve_form.hidden_tag() }}{{ approve_form.workspace_id }}
-                    <label class="form-label visually-hidden" for="{{ approve_form.reason.id }}">{{ approve_form.reason.label.text }}</label>
-                    {{ approve_form.reason(class_='form-control founder-input') }}
-                    {{ action_btn(approve_form, 'approve', 'btn-outline-success') }}
-                </form>
-                <form method="post" action="{{ url_for('curriculum_studio.publish', workspace_id=page.workspace.workspace_id) }}" class="founder-action-form founder-action-form--wide">
-                    {{ publish_form.hidden_tag() }}{{ publish_form.workspace_id }}
-                    <label class="form-label visually-hidden" for="{{ publish_form.reason.id }}">{{ publish_form.reason.label.text }}</label>
-                    {{ publish_form.reason(class_='form-control founder-input') }}
-                    {{ action_btn(publish_form, 'publish', 'btn-outline-primary') }}
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="mb-4" aria-label="Version history">
-    <div class="command-card">
-        <div class="command-card-header"><h2 class="h5 mb-0">Version history</h2></div>
-        <div class="command-card-body">
-            <form method="post" action="{{ url_for('curriculum_studio.assign_version', workspace_id=page.workspace.workspace_id) }}" class="founder-version-form mb-3">
-                {{ version_form.hidden_tag() }}{{ version_form.workspace_id }}
-                <div class="founder-version-fields">
-                    <div>
-                        <label class="form-label" for="{{ version_form.version_label.id }}">
-                            {{ version_form.version_label.label.text }}
-                            <span class="founder-required" aria-hidden="true">*</span>
-                        </label>
-                        {{ version_form.version_label(class_='form-control founder-input') }}
-                        {% for error in version_form.version_label.errors %}
-                        <p class="invalid-feedback d-block" role="alert">{{ error }}</p>
-                        {% endfor %}
-                    </div>
-                    {{ action_btn(version_form, 'version', 'btn-outline-secondary') }}
-                </div>
-            </form>
-            {% if page.has_version_history %}
-            <ul class="founder-version-list mb-0">
-                {% for line in page.version_history %}
-                <li>{{ line }}</li>
-                {% endfor %}
-            </ul>
-            {% else %}
-            <div class="founder-empty-state" role="status">
-                <p class="founder-empty-title mb-1">No versions yet</p>
-                <p class="mb-0 text-muted">{{ page.empty_version_message }}</p>
-            </div>
+      </div>
+      {% if document_status.pipeline_jobs %}
+      <div class="ds-workspace-processing" aria-label="Processing status">
+        <h3 class="ds-section__title">Document processing</h3>
+        <div class="doc-pipeline-jobs" data-doc-pipeline-jobs>
+          {% for job in document_status.pipeline_jobs %}
+          <article class="doc-pipeline-job" data-pipeline-job data-document-id="{{ job.document_id }}" data-job-id="{{ job.job_id }}">
+            <header class="doc-pipeline-job-header">
+              <strong>{{ job.document_label or ('Official document ' ~ job.document_id) }}</strong>
+              <span data-job-status>{{ job.status_label }}</span>
+            </header>
+            {% if job.last_error %}
+            <p class="ds-field-error" data-job-error role="alert">{{ job.last_error }}</p>
             {% endif %}
+            <div class="doc-pipeline-actions">
+              {% if job.can_retry %}
+              <button type="button" class="ds-btn ds-btn--secondary" data-pipeline-retry>Retry</button>
+              {% endif %}
+              {% if job.can_cancel %}
+              <button type="button" class="ds-btn ds-btn--danger" data-pipeline-cancel>Cancel</button>
+              {% endif %}
+            </div>
+          </article>
+          {% endfor %}
         </div>
+      </div>
+      {% endif %}
+      <div class="visually-hidden" role="status" aria-live="polite" data-doc-upload-live></div>
+      {% if page.primary_key != 'advance' %}
+      <form method="post" action="{{ url_for('curriculum_studio.advance', workspace_id=page.workspace_id) }}">
+        {{ advance_form.hidden_tag() }}{{ advance_form.workspace_id }}
+        {{ secondary_submit(advance_form, 'Continue to Validate') }}
+      </form>
+      {% endif %}
     </div>
-</section>
 
-<p class="founder-back-link mb-0">
-    <a href="{{ url_for('curriculum_studio.index') }}">← Back to Curriculum Studio</a>
-</p>
+    {% elif page.show_validate %}
+    <p class="ds-list__meta">Does structure pass readiness checks?</p>
+    {% if page.primary_key != 'validate' %}
+    <form method="post" action="{{ url_for('curriculum_studio.validate', workspace_id=page.workspace_id) }}">
+      {{ validate_form.hidden_tag() }}{{ validate_form.workspace_id }}
+      {{ secondary_submit(validate_form, 'Re-run validation') }}
+    </form>
+    {% endif %}
+    {% if page.blocking_count == 0 %}
+    <form method="post" action="{{ url_for('curriculum_studio.advance', workspace_id=page.workspace_id) }}">
+      {{ advance_form.hidden_tag() }}{{ advance_form.workspace_id }}
+      {{ secondary_submit(advance_form, 'Continue to Review') }}
+    </form>
+    {% endif %}
+
+    {% elif page.show_review %}
+    <p class="ds-list__meta">{{ page.review_summary }}</p>
+    <p>Confirm the student-visible curriculum is acceptable for this version.</p>
+    {% if page.primary_key != 'preview' %}
+    <form method="post" action="{{ url_for('curriculum_studio.preview', workspace_id=page.workspace_id) }}">
+      {{ preview_form.hidden_tag() }}{{ preview_form.workspace_id }}
+      {{ secondary_submit(preview_form, 'Rebuild preview') }}
+    </form>
+    {% endif %}
+    <form method="post" action="{{ url_for('curriculum_studio.advance', workspace_id=page.workspace_id) }}">
+      {{ advance_form.hidden_tag() }}{{ advance_form.workspace_id }}
+      {{ secondary_submit(advance_form, 'Continue to Approve') }}
+    </form>
+
+    {% elif page.show_approve %}
+    <p>Approval records that this curriculum may proceed to Publish.</p>
+    {% if page.primary_key != 'approve' %}
+    <form method="post" action="{{ url_for('curriculum_studio.approve', workspace_id=page.workspace_id) }}" class="ds-workspace-primary-form">
+      {{ approve_form.hidden_tag() }}{{ approve_form.workspace_id }}
+      <label class="ds-field-label" for="{{ approve_form.reason.id }}">{{ approve_form.reason.label.text }}</label>
+      {{ approve_form.reason(class_='ds-input') }}
+      {{ secondary_submit(approve_form, 'Approve') }}
+    </form>
+    {% endif %}
+
+    {% elif page.show_publish %}
+    <p>This version will become Ready for students.</p>
+    {% if page.primary_key != 'publish' and page.primary_key != 'version' %}
+    <form method="post" action="{{ url_for('curriculum_studio.publish', workspace_id=page.workspace_id) }}" class="ds-workspace-primary-form">
+      {{ publish_form.hidden_tag() }}{{ publish_form.workspace_id }}
+      <label class="ds-field-label" for="{{ publish_form.reason.id }}">{{ publish_form.reason.label.text }}</label>
+      {{ publish_form.reason(class_='ds-input') }}
+      {{ secondary_submit(publish_form, 'Publish') }}
+    </form>
+    {% endif %}
+    {% endif %}
+  </section>
+
+  {# L2 — Supporting information (omit when empty) #}
+  {% if page.supporting_lines %}
+  <section class="ds-section ds-workspace-supporting" aria-labelledby="supporting-title">
+    <h2 class="ds-section__title" id="supporting-title">Supporting</h2>
+    <ul class="ds-list">
+      {% for line in page.supporting_lines %}
+      <li><span class="ds-list__meta">{{ line }}</span></li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {# L3 — Technical details (collapsed) #}
+  <details class="ds-disclosure">
+    <summary>Technical details</summary>
+    <dl class="ds-workspace-tech">
+      <div><dt>Workspace</dt><dd>{{ page.workspace_id }}</dd></div>
+      <div><dt>Subject code</dt><dd>{{ page.subject_code or '—' }}</dd></div>
+      <div><dt>Domain stage</dt><dd>{{ page.workspace.current_stage }}</dd></div>
+      <div><dt>Status</dt><dd>{{ page.status_label }}</dd></div>
+    </dl>
+    {% if page.has_version_history %}
+    <h3 class="ds-section__title">Version history</h3>
+    <ul class="ds-list">
+      {% for line in page.version_history %}
+      <li>{{ line }}</li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="ds-list__meta" role="status">{{ page.empty_version_message }}</p>
+    {% endif %}
+    {% if page.primary_key != 'version' %}
+    <form method="post" action="{{ url_for('curriculum_studio.assign_version', workspace_id=page.workspace_id) }}" class="ds-workspace-primary-form">
+      {{ version_form.hidden_tag() }}{{ version_form.workspace_id }}
+      <label class="ds-field-label" for="{{ version_form.version_label.id }}">
+        {{ version_form.version_label.label.text }}
+      </label>
+      {{ version_form.version_label(class_='ds-input') }}
+      {{ secondary_submit(version_form, 'Assign version') }}
+    </form>
+    {% endif %}
+  </details>
+
+  <p class="ds-list__meta">
+    {{ ds_button('Back to Subjects', href=page.subjects_href, variant='ghost') }}
+  </p>
+</article>
 {% endblock %}
 
 {% block extra_scripts %}
+{% if page.show_upload %}
 <script src="{{ versioned_static('js/curriculum_studio/document_upload.js') }}"></script>
-<script src="{{ versioned_static('js/curriculum_studio/curriculum_intelligence.js') }}"></script>
+{% endif %}
 {% endblock %}

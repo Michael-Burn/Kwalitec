@@ -25,36 +25,41 @@ CSS = (
     / "css"
     / "founder_dashboard.css"
 )
+DS_CSS = REPO / "app" / "static" / "css" / "design_system.css"
 
 
 @pytest.mark.parametrize(
     "path",
     (
-        STUDIO / "dashboard.html",
-        STUDIO / "workspace.html",
         FOUNDER / "founder_intelligence.html",
         FOUNDER / "evidence_gates.html",
     ),
 )
-def test_pages_have_breadcrumb_nav(path):
+def test_advisory_pages_have_breadcrumb_nav(path):
     text = path.read_text(encoding="utf-8")
     assert 'aria-label="Breadcrumb"' in text
     assert "aria-current=\"page\"" in text or "aria-current='page'" in text
 
 
-def test_dashboard_forms_have_labels_and_help():
-    text = (STUDIO / "dashboard.html").read_text(encoding="utf-8")
+def test_workspace_has_persistent_context_and_one_h1():
+    text = (STUDIO / "workspace.html").read_text(encoding="utf-8")
+    assert "ds_persistent_context" in text
+    assert "workspace-subject-title" in text
+    assert "as_heading=true" in text
+    assert 'aria-label="Primary action"' in text
+    assert "ds_stage_indicator" in text
+
+
+def test_subjects_forms_have_labels():
+    text = (STUDIO / "subjects.html").read_text(encoding="utf-8")
     assert 'for="{{ create_subject_form.subject_code.id }}"' in text
     assert 'id="help-subject-code"' in text
-    assert 'id="help-workspace-code"' in text
-    assert "aria-describedby" in text or "help-subject-code" in text
 
 
 def test_workspace_actions_have_accessible_labels():
     text = (STUDIO / "workspace.html").read_text(encoding="utf-8")
     assert "visually-hidden" in text
-    assert 'aria-label="Curriculum Studio workflow stages"' in text
-    assert "(current)" in text
+    assert "aria-current" in text or "ds_stage_indicator" in text
 
 
 def test_empty_states_use_status_role():
@@ -73,12 +78,13 @@ def test_focus_and_button_size_in_css():
     assert "founder-btn:focus-visible" in css or ".founder-btn:focus-visible" in css
     assert "min-height:2.5rem" in css
     assert "min-width:2.75rem" in css
+    ds = DS_CSS.read_text(encoding="utf-8")
+    assert "focus-visible" in ds or ":focus-visible" in ds
 
 
 def test_required_indicators_are_aria_hidden():
-    dash = (STUDIO / "dashboard.html").read_text(encoding="utf-8")
-    assert 'aria-hidden="true"' in dash
-    assert "founder-required" in dash
+    subjects = (STUDIO / "subjects.html").read_text(encoding="utf-8")
+    assert "ds-field-label" in subjects
 
 
 def test_evidence_gates_status_has_screen_reader_text():

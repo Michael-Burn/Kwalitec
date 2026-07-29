@@ -161,4 +161,4 @@ def test_publication_stage_ui_says_publish_not_publication():
 
 
 def test_content_sources_label_human():
-    assert STAGE_LABELS[WorkflowStage.CONTENT_SOURCES.value] == "Content Sources"
+    assert STAGE_LABELS[WorkflowStage.CONTENT_SOURCES.value] == "Upload"

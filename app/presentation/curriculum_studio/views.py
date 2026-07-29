@@ -7,23 +7,17 @@ from flask_login import current_user
 from app.application.curriculum_studio.curriculum_studio_service import (
     CurriculumStudioService,
 )
-from app.application.curriculum_studio.exceptions import WorkspaceNotFound
+from app.founder.dashboard.dto.founder_workspace import FounderWorkspacePage
+from app.founder.dashboard.services.founder_workspace_service import (
+    FounderWorkspaceService,
+)
 from app.presentation.curriculum_studio.factory import (
     get_document_upload_service,
     get_studio_service,
 )
 from app.presentation.curriculum_studio.view_models import (
-    EMPTY_CHECKLIST_SUMMARY,
-    EMPTY_PREVIEW_SUMMARY,
-    EMPTY_VALIDATION_SUMMARY,
     StudioDashboardView,
-    ValidationFindingView,
-    WorkspacePageView,
     dashboard_view,
-    friendly_checklist_summary,
-    friendly_preview_summary,
-    friendly_validation_summary,
-    workspace_page,
 )
 
 
@@ -43,64 +37,6 @@ def load_dashboard() -> StudioDashboardView:
     return dashboard_view(service().founder_dashboard())
 
 
-def load_workspace(workspace_id: str) -> WorkspacePageView:
-    svc = service()
-    try:
-        ws = svc.get_workspace(workspace_id)
-    except WorkspaceNotFound as exc:
-        raise LookupError(workspace_id) from exc
-    validation = EMPTY_VALIDATION_SUMMARY
-    preview = EMPTY_PREVIEW_SUMMARY
-    checklist = EMPTY_CHECKLIST_SUMMARY
-    findings: list[ValidationFindingView] = []
-    try:
-        snap = svc.validation.summarise(workspace_id)
-        validation = friendly_validation_summary(
-            readiness=snap.readiness,
-            passed=bool(snap.passed),
-        )
-        for item in (*snap.errors, *snap.warnings):
-            findings.append(
-                ValidationFindingView(
-                    code=item.code,
-                    message=item.message,
-                    severity=item.severity,
-                    is_blocking=bool(item.is_blocking),
-                    why_it_matters=item.why_it_matters or "",
-                    recovery_action=item.recovery_action or "",
-                )
-            )
-    except Exception:
-        pass
-    try:
-        snap = svc.preview.preview(workspace_id)
-        preview = friendly_preview_summary(
-            readiness=snap.readiness,
-            node_count=int(snap.node_count),
-        )
-    except Exception:
-        pass
-    try:
-        check = svc.checklist.checklist(workspace_id)
-        ready = sum(1 for item in check.checklist_items if item.satisfied)
-        checklist = friendly_checklist_summary(
-            ready=ready,
-            total=int(check.checklist_item_count),
-        )
-    except Exception:
-        pass
-    history: list[str] = []
-    try:
-        version_snap = svc.versions.history(ws.subject_code)
-        for record in version_snap.records:
-            history.append(f"{record.version_label} ({record.status})")
-    except Exception:
-        pass
-    return workspace_page(
-        ws,
-        validation_summary=validation,
-        preview_summary=preview,
-        checklist_summary=checklist,
-        version_history=tuple(history),
-        validation_findings=tuple(findings),
-    )
+def load_workspace(workspace_id: str) -> FounderWorkspacePage:
+    """Load DX-004C Publication Workspace projection."""
+    return FounderWorkspaceService(studio=service()).build_page(workspace_id)

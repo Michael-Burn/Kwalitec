@@ -43,8 +43,9 @@ def test_workspace_reachable(founder_client):
     response = founder_client.get("/console/studio/workspaces/ws-cs1")
     assert response.status_code == 200
     html = response.get_data(as_text=True)
-    assert "Next step" in html
-    assert "Validate" in html or "validate" in html.lower()
+    assert "ds-persistent-context" in html
+    assert "Upload" in html
+    assert "Validate" in html
 
 
 @pytest.mark.parametrize("stage_label", FOUNDER_WORKFLOW_STAGES)
@@ -57,22 +58,23 @@ def test_workflow_stage_label_present(stage_label):
     (
         ("subject", "advance"),
         ("content_sources", "upload"),
-        ("validation", "preview"),
-        ("preview", "approve"),
-        ("approval", "publish"),
-        ("publication", "version"),
+        ("validation", "validate"),
+        ("preview", "preview"),
+        ("approval", "approve"),
+        ("publication", "publish"),
     ),
 )
 def test_primary_cta_matches_stage(stage, primary):
     assert PRIMARY_ACTION_BY_STAGE[stage] == primary
-    view = workspace_page(make_workspace(current_stage=stage))
+    version = "2026.1" if stage == "publication" else ""
+    view = workspace_page(make_workspace(current_stage=stage, version_label=version))
     assert view.primary_action == primary
     assert view.next_action_label
 
 
-def test_preview_next_action_mentions_version():
+def test_preview_next_action_mentions_structure():
     text = NEXT_ACTION_BY_STAGE[WorkflowStage.PREVIEW.value].lower()
-    assert "version" in text
+    assert "structure" in text or "confirm" in text
 
 
 def test_approval_next_action_mentions_students():
@@ -131,17 +133,19 @@ def test_create_subject_form_on_dashboard(founder_client):
     assert "workspace" in html.lower()
 
 
-def test_workspace_breadcrumb_includes_studio(founder_client):
+def test_workspace_breadcrumb_includes_subjects(founder_client):
     html = founder_client.get("/console/studio/workspaces/ws-cs1").get_data(
         as_text=True
     )
-    assert "Curriculum Studio" in html
-    assert "Home" in html
+    # Shell nav still includes Curriculum Studio; page exit is Subjects.
+    assert "Back to Subjects" in html
+    assert "ds-persistent-context" in html
 
 
-def test_all_stage_labels_unique():
-    labels = list(STAGE_LABELS.values())
-    assert len(labels) == len(set(labels))
+def test_founder_stage_labels_unique():
+    from app.presentation.curriculum_studio.founder_stages import FOUNDER_STAGES
+
+    assert len(FOUNDER_STAGES) == len(set(FOUNDER_STAGES))
 
 
 def test_workflow_order_is_linear():

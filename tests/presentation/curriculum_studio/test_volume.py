@@ -23,9 +23,13 @@ def test_checklist_summary_edges(ready, total):
 
 @pytest.mark.parametrize("nodes", (0, 1, 4))
 def test_preview_summary_edges(nodes):
-    assert str(nodes) in friendly_preview_summary(
-        readiness="ready", node_count=nodes
-    )
+    summary = friendly_preview_summary(readiness="ready_for_review", node_count=nodes)
+    assert summary
+    if nodes == 0:
+        assert "not ready" in summary.lower()
+    else:
+        assert str(nodes) in summary
+        assert "topic" in summary
 
 
 @pytest.mark.parametrize("populated", (False, True))

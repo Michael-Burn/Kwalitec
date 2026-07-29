@@ -61,14 +61,14 @@ def test_create_workspace_placeholder(app_ctx):
     assert form.subject_code.render_kw.get("aria-required") == "true"
 
 
-def test_publish_button_says_publish_curriculum(app_ctx):
+def test_publish_button_says_publish(app_ctx):
     form = PublishWorkspaceForm()
-    assert form.submit.label.text == "Publish Curriculum"
+    assert form.submit.label.text == "Publish"
 
 
-def test_validate_button_says_validate_curriculum(app_ctx):
+def test_validate_button_says_validate(app_ctx):
     form = ValidateWorkspaceForm()
-    assert form.submit.label.text == "Validate Curriculum"
+    assert form.submit.label.text == "Validate"
 
 
 def test_approve_optional_reason_placeholder(app_ctx):
@@ -94,8 +94,8 @@ def test_assign_version_accepts_semver(app_ctx):
 
 
 def test_advance_and_preview_labels(app_ctx):
-    assert AdvanceWorkflowForm().submit.label.text == "Advance to Next Stage"
-    assert PreviewWorkspaceForm().submit.label.text == "Build Preview"
+    assert AdvanceWorkflowForm().submit.label.text == "Continue"
+    assert PreviewWorkspaceForm().submit.label.text == "Confirm structure"
 
 
 def test_required_fields_expose_aria(app_ctx):

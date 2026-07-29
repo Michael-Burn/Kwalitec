@@ -38,7 +38,7 @@ def test_validation_success_message():
 
 def test_publish_success_message():
     assert FLASH_SUCCESS["published"] == (
-        "We've published your curriculum successfully."
+        "We've published your verified curriculum successfully."
     )
 
 

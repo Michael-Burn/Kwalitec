@@ -139,12 +139,14 @@ STUDENT_PRIMARY_CTAS: tuple[str, ...] = (
 FOUNDER_STUDIO_CTAS: tuple[str, ...] = (
     "Create Subject",
     "Open Workspace",
-    "Advance to Next Stage",
-    "Validate Curriculum",
-    "Build Preview",
-    "Approve Curriculum",
-    "Publish Verified Curriculum",
-    "Assign Version",
+    "Continue",
+    "Validate",
+    "Confirm structure",
+    "Approve",
+    "Publish",
+    "Assign version",
+    "Upload documents",
+    "Resolve findings",
 )
 
 STUDENT_NAV_LABELS: tuple[str, ...] = (

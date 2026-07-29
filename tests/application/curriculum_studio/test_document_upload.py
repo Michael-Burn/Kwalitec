@@ -208,7 +208,7 @@ def test_workspace_page_shows_upload_cards(client, app, ctx):
     assert "Official Syllabus" in text
     assert "CMP reference" not in text
     assert "ref://" not in text
-    assert "Upload Documents" in text
+    assert "Upload documents" in text
     assert "data-document-upload" in text
     assert "document_upload.js" in text
 
