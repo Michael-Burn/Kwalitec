@@ -1,7 +1,7 @@
 # ==========================================================
 # KWALITEC UI GUARDIAN
 #
-# Version: 1.0
+# Version: 2.0 (DX-006A)
 #
 # Purpose
 #
@@ -10,7 +10,13 @@
 # It enforces compliance with:
 #
 # • BRAND_GUIDELINES.md
-# • UI_UX_IMPLEMENTATION_STANDARD.md
+# • DX-006A Design System foundation
+#   knowledge/design/dx006a_design_system/
+# • DX-001 … DX-005 surface authorities (as applicable)
+# • UI_UX_IMPLEMENTATION_STANDARD.md (legacy; superseded on
+#   conflict by DX-001 / DX-006A for redesigns)
+#
+# Detail checklist: dx006a_design_system/GUARDIAN_RULES.md
 #
 # Cursor MUST consult this document before implementing,
 # modifying, or reviewing any user-facing interface.
@@ -31,6 +37,11 @@ No screen should reveal which developer built it.
 
 Users should experience one coherent design language.
 
+Pages compose components.
+Components compose tokens.
+Tokens define the visual language.
+No page invents its own primitives.
+
 
 
 #############################################################
@@ -49,26 +60,83 @@ knowledge/design/BRAND_GUIDELINES.md
 
 Read
 
-knowledge/design/UI_UX_IMPLEMENTATION_STANDARD.md
+knowledge/design/dx006a_design_system/DESIGN_SYSTEM_ARCHITECTURE.md
+
+knowledge/design/dx006a_design_system/DESIGN_TOKEN_SPEC.md
+
+knowledge/design/dx006a_design_system/COMPONENT_CATALOGUE.md
+
+knowledge/design/dx006a_design_system/GUARDIAN_RULES.md
 
 3.
 
-Inspect existing reusable components.
+Read the surface authority when touching Founder or Student OS
+
+DX-004A / DX-004B / DX-004C / DX-005A / DX-005B / DX-005C
 
 4.
 
-Reuse components whenever possible.
+Inspect existing reusable components in the catalogue (L1–L3).
 
 5.
 
-Only create new components when no suitable component exists.
+Reuse catalogue components whenever possible.
 
 6.
 
-Verify that the proposed implementation follows the design
-system.
+Only create new components when no suitable component exists —
+and document Purpose / When / When NOT per COMPONENT_STANDARDS.md.
+
+7.
+
+Verify G-1 … G-12 (below) and the design system.
 
 Only then may implementation begin.
+
+
+
+#############################################################
+# DX-006A ENFORCEMENT (G-1 … G-12)
+#############################################################
+
+Every UI change MUST PASS:
+
+G-1  Exactly one Primary button / CTA per page
+     (primary task viewport).
+
+G-2  Exactly one H1 per page.
+
+G-3  Token usage only — colour, space, type, radius,
+     elevation, motion from DESIGN_TOKEN_SPEC.md.
+
+G-4  No hard-coded colours in components or pages
+     (token definition files excepted).
+
+G-5  No duplicate spacing scales in new work
+     (product UI: 4, 8, 16, 24, 32, 48, 64 only).
+
+G-6  No dashboard KPI patterns
+     (StatisticTile, vanity counts, ProgressRing chrome).
+
+G-7  No decorative cards
+     (cards only with DX-001 grouping justification).
+
+G-8  L0–L3 hierarchy respected
+     (pages compose catalogue components; components
+     compose tokens; no page-invented primitives).
+
+G-9  No decorative icons (Lucide; functional; named).
+
+G-10 No duplicate navigation
+     (shell owns nav; OS surface boundaries hold).
+
+G-11 Catalogue only for shared components
+     (orphans and Rejected list banned in new UI).
+
+G-12 No Rejected foundation components
+     (see COMPONENT_CATALOGUE.md § Rejected).
+
+Full detail: knowledge/design/dx006a_design_system/GUARDIAN_RULES.md
 
 
 
@@ -97,6 +165,18 @@ Invent icons.
 Invent layouts.
 
 Invent component behaviour.
+
+Ship more than one Primary CTA per page.
+
+Ship more than one H1 per page.
+
+Ship KPI / StatisticTile / vanity ProgressRing chrome.
+
+Ship decorative Card wrappers.
+
+Use Rejected catalogue components in new or migrated UI.
+
+Use Gold as button, link, nav, or focus colour.
 
 Invent responsive rules.
 
@@ -150,13 +230,19 @@ Verify
 
 Inter
 
-Correct hierarchy
+DX-001 / DX-006A hierarchy
+
+Display 32 (rare) · Page 24 · Section 18 · Body 16 ·
+Supporting 14 · Caption 12
 
 Correct weights
 
 Correct spacing
 
 Reject
+
+Legacy UX-001 defaults as redesign targets
+(page 40 / section 28 / card 20)
 
 Random font sizes
 
@@ -542,37 +628,41 @@ Before approving implementation verify
 
 □ Brand compliant
 
-□ Typography compliant
+□ DX-006A G-1 … G-12 PASS
 
-□ Colours compliant
+□ Typography compliant (DX-001 scale)
 
-□ Responsive
+□ Colours compliant (semantic tokens only)
 
-□ Accessible
+□ Responsive (DX-006A RESPONSIVE_STANDARD)
 
-□ Reusable components used
+□ Accessible (DX-006A ACCESSIBILITY_STANDARD / WCAG AA)
+
+□ Catalogue components used (L1–L3)
+
+□ No Rejected components
 
 □ No duplicate components
 
 □ Loading states implemented
 
-□ Empty states implemented
+□ Empty states implemented (Reason + Next Action)
 
 □ Error states implemented
 
-□ Animations implemented
+□ Animations purposeful (≤250ms; reduced-motion)
 
 □ Performance acceptable
 
 □ Visual hierarchy clear
 
-□ Consistent spacing
+□ Consistent spacing (DX-001 4–64)
 
-□ Consistent shadows
+□ Consistent elevation (prefer border)
 
 □ Consistent radii
 
-□ Consistent icons
+□ Consistent icons (Lucide; non-decorative)
 
 □ Semantic HTML
 
@@ -581,6 +671,8 @@ Before approving implementation verify
 □ Dark mode verified
 
 □ Mobile verified
+
+□ One Primary · One H1
 
 
 
@@ -610,15 +702,17 @@ UI implementation is NOT COMPLETE until
 
 Brand Guidelines pass.
 
-UI Standard passes.
+DX-006A Design System (tokens + catalogue) passes.
 
-UI Guardian passes.
+UI Guardian passes (including G-1 … G-12).
 
-Accessibility passes.
+Accessibility passes (WCAG AA).
 
 Responsive checks pass.
 
 Performance passes.
+
+Surface authority (DX-004 / DX-005) respected when applicable.
 
 Only then may the feature be committed.
 

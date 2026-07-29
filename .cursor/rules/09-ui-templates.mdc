@@ -1,5 +1,5 @@
 ---
-description: Jinja, CSS, JS — UX-001 + UI Guardian enforcement for product UI
+description: Jinja, CSS, JS — DX-006A + UI Guardian enforcement for product UI
 globs: "{app/templates/**,app/static/**}"
 alwaysApply: false
 ---
@@ -8,17 +8,19 @@ alwaysApply: false
 
 Canonical sources (read before any UI work):
 1. `knowledge/design/BRAND_GUIDELINES.md` — identity
-2. `knowledge/design/UI_UX_IMPLEMENTATION_STANDARD.md` — UX-001 implementation
-3. `knowledge/design/UI_GUARDIAN.md` — enforcement / release gate
+2. `knowledge/design/dx006a_design_system/` — Design System foundation (DX-006A)
+3. `knowledge/design/UI_GUARDIAN.md` — enforcement / release gate (G-1…G-12)
+4. Surface authorities DX-001…DX-005 as applicable
+5. `knowledge/design/UI_UX_IMPLEMENTATION_STANDARD.md` — legacy UX-001; **superseded on conflict** by DX-001 / DX-006A for redesigns
 
-UI quality is a **release blocker**. Brand guidelines define identity; UX-001 defines tokens and patterns; UI Guardian governs workflow and validation. Do not invent design tokens outside the system.
+UI quality is a **release blocker**. Brand defines identity; DX-006A defines tokens and components; UI Guardian governs workflow and validation. Do not invent design tokens outside the system. Pages compose components; components compose tokens.
 
 ## Mandatory workflow (before writing UI code)
 
-1. Read Brand Guidelines + UX-001 + UI Guardian.
-2. Inspect existing reusable components / partials / CSS tokens.
-3. Reuse whenever possible; create new components only when none fit.
-4. Verify the proposal against the design system — then implement.
+1. Read Brand Guidelines + DX-006A architecture/token/catalogue/Guardian rules + UI Guardian.
+2. Inspect catalogue L1–L3 and existing partials.
+3. Reuse whenever possible; create new components only with COMPONENT_STANDARDS documentation.
+4. Verify G-1…G-12 — then implement.
 
 ## Never invent
 
@@ -37,16 +39,20 @@ Colours, spacing, typography, button styles, shadows, radii, animations, icons, 
 
 Gold is **not** a UI colour. Never use gold for buttons, nav, links, focus, or charts. Reject random blues/greys/gradients/accents.
 
-## Tokens (UX-001)
+## Tokens (DX-006A / DX-001)
 
-- **Spacing (8-pt):** 4, 8, 12, 16, 24, 32, 48, 64, 96, 128 only.
-- **Type:** Inter only. Sizes: page 40 / section 28 / card 20 / body 16 / caption 14.
-- **Icons:** Lucide only; 20 / 24 / 32 px; never replace labels.
-- **Cards:** 16px radius, large padding, soft shadow, no gradients/decorative fills.
-- **Inputs:** 12px radius, visible labels, helper/errors below, blue focus ring; never placeholder-as-label.
-- **Buttons:** One dominant Brand Blue CTA; Secondary outlined; Ghost minimal. Hover lift 2px, press scale 98%, 200ms ease-out. No new variants without approval.
-- **Motion:** Communicative only — hover/fade/slide/scale. Reject bounce/flash/shake/spin/elastic/long transitions.
-- **Charts:** Brand Blue + neutrals; semantic colours only when meaningful.
+- **Spacing (product UI):** 4, 8, 16, 24, 32, 48, 64 only. (12 / 96 / 128 retired for redesigns.)
+- **Type:** Inter only. Display 32 (rare) / Page 24 / Section 18 / Body 16 / Supporting 14 / Caption 12.
+- **Icons:** Lucide only; functional; never decorative; never replace labels without names.
+- **Cards:** Only when DX-001 grouping justified; prefer border over soft shadow stacks; no KPI card grids.
+- **Inputs:** Token radius, visible labels, helper/errors below, Primary focus ring; never placeholder-as-label.
+- **Buttons:** Exactly **one** Primary CTA per page; Secondary / Ghost / Text / Danger as catalogue. No new variants without catalogue entry.
+- **Motion:** ≤250ms ease-out; respect `prefers-reduced-motion`. Reject bounce/flash/shake/elastic.
+- **Charts:** Semantic colours only when meaningful.
+
+## Guardian gate (must PASS)
+
+One Primary · One H1 · Token-only · No hard-coded colours · No duplicate spacing scales · No KPI patterns · No decorative cards · L0–L3 hierarchy · No decorative icons · No duplicate nav · Catalogue only · No Rejected components.
 
 ## Page / hierarchy gate
 
@@ -54,11 +60,11 @@ Answer in under five seconds: What is this page? Most important action? Where sh
 
 ## States (feature incomplete without them)
 
-Loading · Empty · Success · Failure · Permission denied · Offline (where applicable). Skeleton loaders preferred; calm microcopy (no blame, jargon, or stack traces).
+Loading · Empty (Reason + Next Action) · Success · Failure · Permission denied · Offline (where applicable). Skeleton preferred; calm microcopy (DX-003 — no blame, cheer, or stack traces).
 
 ## A11y / responsive / performance
 
-WCAG AA, keyboard, visible focus, ARIA, semantic HTML, large targets — failures block release. Desktop → tablet → mobile: recompose, do not shrink. Avoid layout shift, heavy animation, oversized assets, duplicate libraries.
+WCAG AA (`ACCESSIBILITY_STANDARD.md`), keyboard, visible focus, ARIA, semantic HTML, large targets — failures block release. Desktop → tablet → mobile per `RESPONSIVE_STANDARD.md`: one component, responsive behaviour. Avoid layout shift, heavy animation, oversized assets, duplicate libraries.
 
 ## Jinja / CSS / JS
 
@@ -70,10 +76,10 @@ app/templates/
 ```
 
 - Authenticated → `layouts/base.html`; auth → `layouts/auth_base.html`.
-- Reuse partials; no screen-local design systems. Business rules stay in services.
-- CSS: `app/static/css/app.css` (+ `wizard.css` via `extra_head`). Bootstrap 5.3 via CDN — no second framework without milestone approval.
+- Reuse partials / catalogue components; no screen-local design systems. Business rules stay in services.
+- CSS: `app/static/css/tokens.css` is the CSS token source; feature CSS must reference tokens only.
 - JS: `app/static/js/app.js` + feature files; CSRF from `<meta name="csrf-token">`; progressive enhancement; respect CSP.
 
 ## Release gate (UI Guardian)
 
-Not complete until Brand + UX-001 + Guardian + a11y + responsive + performance pass. Self-review: Would Apple remove / Linear simplify / Notion make this easier to scan? If yes — implement the simpler solution.
+Not complete until Brand + DX-006A + Guardian G-1…G-12 + a11y + responsive + performance pass. Self-review: Would Apple remove / Linear simplify / Notion make this easier to scan? If yes — implement the simpler solution.
