@@ -1,0 +1,31 @@
+{
+  "mode": "flask_test_client",
+  "user_id": 50,
+  "login_status": 200,
+  "before_empty": true,
+  "before_empty_state": true,
+  "before_mission": false,
+  "before_quiet": false,
+  "plan_id": 25,
+  "mission_id": 28,
+  "mission_title": "Study 1.1 Show How Interest Rates May Be Expressed In Different Time Periods \u2014 Wednesday, Jul 29",
+  "after_status": 200,
+  "after_empty": false,
+  "after_mission_panel": true,
+  "after_quiet": false,
+  "after_empty_state": false,
+  "after_primary": true,
+  "after_has_exam_name": true,
+  "refresh_empty": false,
+  "refresh_mission_panel": true,
+  "relogin_empty": false,
+  "relogin_mission_panel": true,
+  "pass": true,
+  "browser_screenshot": {
+    "requested": "student_home_after_plan.png",
+    "status": "unavailable_in_agent",
+    "reason": "Playwright Chromium headless_shell SIGSEGV on launch in agent environment (macOS 26.5 / chrome-headless-shell-1228). HTML capture + Flask test-client DOM assertions used instead.",
+    "html_capture": "student_home_after_plan.html",
+    "playwright_script": "_evidence/browser_acceptance/rc20260729_06_playwright_run.py"
+  }
+}

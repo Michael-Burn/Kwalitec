@@ -1,0 +1,48 @@
+%PDF-1.4
+1 0 obj<< /Type /Catalog /Pages 2 0 R >>endobj
+2 0 obj<< /Type /Pages /Kids [3 0 R] /Count 1 >>endobj
+3 0 obj<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>endobj
+4 0 obj<< /Length 1061 >>stream
+BT
+/F1 11 Tf
+50 800 Td
+14 TL
+(Official Syllabus CS1F) Tj
+T* (Institute and Faculty of Actuaries) Tj
+T* (Subject CS1F - Actuarial Statistics \(FV-001B Final\)) Tj
+T* (Syllabus 2026) Tj
+T* () Tj
+T* (1. Data exploration and visualisation) Tj
+T* (1.1 Summarise data using descriptive statistics) Tj
+T* (1.2 Construct and interpret graphical displays) Tj
+T* (2. Probability theory) Tj
+T* (2.1 Apply probability axioms and conditional probability) Tj
+T* (2.2 Use Bayes theorem in actuarial contexts) Tj
+T* (3. Random variables and distributions) Tj
+T* (3.1 Identify common discrete distributions) Tj
+T* (3.2 Identify common continuous distributions) Tj
+T* (4. Statistical inference) Tj
+T* (4.1 Construct point estimates and confidence intervals) Tj
+T* (4.2 Perform hypothesis tests) Tj
+T* (5. Regression and correlation) Tj
+T* (5.1 Fit and interpret simple linear regression) Tj
+T* (5.2 Assess correlation and residual diagnostics) Tj
+T* (6. Credibility theory) Tj
+T* (6.1 Apply classical credibility formulae) Tj
+T* (6.2 Interpret Bayesian credibility updates) Tj
+ET
+endstream
+endobj
+5 0 obj<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000056 00000 n 
+0000000111 00000 n 
+0000000235 00000 n 
+0000001346 00000 n 
+trailer<< /Size 6 /Root 1 0 R >>
+startxref
+1414
+%%EOF

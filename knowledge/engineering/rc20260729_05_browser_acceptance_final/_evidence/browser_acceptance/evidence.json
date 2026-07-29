@@ -1,0 +1,745 @@
+{
+  "base_url": "http://127.0.0.1:5055",
+  "started_at": "2026-07-29T09:56:16.749034+00:00",
+  "shots": {
+    "wizard_complete": {
+      "filename": "01_wizard_complete.png",
+      "path": "/Users/kwalitec/Developer/kwalitec/knowledge/engineering/rc20260729_05_browser_acceptance_final/_evidence/browser_acceptance/01_wizard_complete.png",
+      "url": "http://127.0.0.1:5055/student/",
+      "dom": {
+        "url": "http://127.0.0.1:5055/student/",
+        "title": "Home \u00b7 Kwalitec",
+        "theme": "light",
+        "bodySurface": "home",
+        "hasStudentShell": true,
+        "headerClass": "student-topbar",
+        "footerText": "Reduce decisions. Increase learning.",
+        "h1": "Home",
+        "scrollX": true,
+        "navLinks": [
+          "Home",
+          "Journey",
+          "Revision",
+          "History",
+          "Settings",
+          "Choose Exam",
+          "Help"
+        ],
+        "activeNav": [
+          "Home"
+        ],
+        "brandPresent": true,
+        "primaryButtonCount": 1,
+        "sessionPage": false,
+        "founderPath": false,
+        "founderChrome": false,
+        "mainTag": "main"
+      },
+      "captured_at_ms": 1785318985462
+    },
+    "study_session": {
+      "filename": "02_study_session.png",
+      "path": "/Users/kwalitec/Developer/kwalitec/knowledge/engineering/rc20260729_05_browser_acceptance_final/_evidence/browser_acceptance/02_study_session.png",
+      "url": "http://127.0.0.1:5055/missions/23/session",
+      "dom": {
+        "url": "http://127.0.0.1:5055/missions/23/session",
+        "title": "Study Session \u00b7 Kwalitec",
+        "theme": "light",
+        "bodySurface": "home",
+        "hasStudentShell": true,
+        "headerClass": "student-topbar",
+        "footerText": "Reduce decisions. Increase learning.",
+        "h1": "Study 1.1 Relationship Between Economics And Business \u2014 Wednesday, Jul 29",
+        "scrollX": true,
+        "navLinks": [
+          "Home",
+          "Journey",
+          "Revision",
+          "History",
+          "Settings",
+          "Choose Exam",
+          "Help"
+        ],
+        "activeNav": [
+          "Home"
+        ],
+        "brandPresent": true,
+        "primaryButtonCount": 0,
+        "sessionPage": false,
+        "founderPath": false,
+        "founderChrome": false,
+        "mainTag": "main"
+      },
+      "captured_at_ms": 1785318986778
+    },
+    "navigation_continuity": {
+      "filename": "03_navigation_continuity.png",
+      "path": "/Users/kwalitec/Developer/kwalitec/knowledge/engineering/rc20260729_05_browser_acceptance_final/_evidence/browser_acceptance/03_navigation_continuity.png",
+      "url": "http://127.0.0.1:5055/missions/23/session",
+      "dom": {
+        "url": "http://127.0.0.1:5055/missions/23/session",
+        "title": "Study Session \u00b7 Kwalitec",
+        "theme": "light",
+        "bodySurface": "home",
+        "hasStudentShell": true,
+        "headerClass": "student-topbar",
+        "footerText": "Reduce decisions. Increase learning.",
+        "h1": "Study 1.1 Relationship Between Economics And Business \u2014 Wednesday, Jul 29",
+        "scrollX": true,
+        "navLinks": [
+          "Home",
+          "Journey",
+          "Revision",
+          "History",
+          "Settings",
+          "Choose Exam",
+          "Help"
+        ],
+        "activeNav": [
+          "Home"
+        ],
+        "brandPresent": true,
+        "primaryButtonCount": 0,
+        "sessionPage": false,
+        "founderPath": false,
+        "founderChrome": false,
+        "mainTag": "main"
+      },
+      "captured_at_ms": 1785318992676
+    },
+    "responsive": {
+      "filename": "07_responsive.png",
+      "path": "/Users/kwalitec/Developer/kwalitec/knowledge/engineering/rc20260729_05_browser_acceptance_final/_evidence/browser_acceptance/07_responsive.png",
+      "url": "http://127.0.0.1:5055/missions/23/session",
+      "dom": {
+        "url": "http://127.0.0.1:5055/missions/23/session",
+        "title": "Study Session \u00b7 Kwalitec",
+        "theme": "light",
+        "bodySurface": "home",
+        "hasStudentShell": true,
+        "headerClass": "student-topbar",
+        "footerText": "Reduce decisions. Increase learning.",
+        "h1": "Study 1.1 Relationship Between Economics And Business \u2014 Wednesday, Jul 29",
+        "scrollX": true,
+        "navLinks": [
+          "Home",
+          "Journey",
+          "Revision",
+          "History",
+          "Settings",
+          "Choose Exam",
+          "Help"
+        ],
+        "activeNav": [
+          "Home"
+        ],
+        "brandPresent": true,
+        "primaryButtonCount": 0,
+        "sessionPage": false,
+        "founderPath": false,
+        "founderChrome": false,
+        "mainTag": "main"
+      },
+      "captured_at_ms": 1785318997940
+    },
+    "founder_home": {
+      "filename": "04_founder_home.png",
+      "path": "/Users/kwalitec/Developer/kwalitec/knowledge/engineering/rc20260729_05_browser_acceptance_final/_evidence/browser_acceptance/04_founder_home.png",
+      "url": "http://127.0.0.1:5055/console/",
+      "dom": {
+        "url": "http://127.0.0.1:5055/console/",
+        "title": "Home \u00b7 Kwalitec Console",
+        "theme": "light",
+        "bodySurface": null,
+        "hasStudentShell": false,
+        "headerClass": "console-topbar",
+        "footerText": "Kwalitec Console \u00b7 What needs attention today?",
+        "h1": "Home",
+        "scrollX": false,
+        "navLinks": [
+          "Home",
+          "Subjects",
+          "Curriculum Studio",
+          "Students",
+          "Support",
+          "Settings"
+        ],
+        "activeNav": [
+          "Home"
+        ],
+        "brandPresent": true,
+        "primaryButtonCount": 1,
+        "sessionPage": false,
+        "founderPath": true,
+        "founderChrome": true,
+        "mainTag": "main"
+      },
+      "captured_at_ms": 1785319000026
+    },
+    "founder_subjects": {
+      "filename": "05_founder_subjects.png",
+      "path": "/Users/kwalitec/Developer/kwalitec/knowledge/engineering/rc20260729_05_browser_acceptance_final/_evidence/browser_acceptance/05_founder_subjects.png",
+      "url": "http://127.0.0.1:5055/console/studio/subjects",
+      "dom": {
+        "url": "http://127.0.0.1:5055/console/studio/subjects",
+        "title": "Subjects \u00b7 Kwalitec Console",
+        "theme": "light",
+        "bodySurface": null,
+        "hasStudentShell": false,
+        "headerClass": "console-topbar",
+        "footerText": "Kwalitec Console \u00b7 What needs attention today?",
+        "h1": "Subjects",
+        "scrollX": false,
+        "navLinks": [
+          "Home",
+          "Subjects",
+          "Curriculum Studio",
+          "Students",
+          "Support",
+          "Settings"
+        ],
+        "activeNav": [
+          "Subjects"
+        ],
+        "brandPresent": true,
+        "primaryButtonCount": 1,
+        "sessionPage": false,
+        "founderPath": true,
+        "founderChrome": true,
+        "mainTag": "main"
+      },
+      "captured_at_ms": 1785319000625
+    },
+    "founder_workspace": {
+      "filename": "06_founder_workspace.png",
+      "path": "/Users/kwalitec/Developer/kwalitec/knowledge/engineering/rc20260729_05_browser_acceptance_final/_evidence/browser_acceptance/06_founder_workspace.png",
+      "url": "http://127.0.0.1:5055/console/studio/",
+      "dom": {
+        "url": "http://127.0.0.1:5055/console/studio/",
+        "title": "Curriculum Studio \u00b7 Kwalitec Console",
+        "theme": "light",
+        "bodySurface": null,
+        "hasStudentShell": false,
+        "headerClass": "console-topbar",
+        "footerText": "Kwalitec Console \u00b7 What needs attention today?",
+        "h1": "Curriculum Studio",
+        "scrollX": false,
+        "navLinks": [
+          "Home",
+          "Subjects",
+          "Curriculum Studio",
+          "Students",
+          "Support",
+          "Settings"
+        ],
+        "activeNav": [
+          "Curriculum Studio"
+        ],
+        "brandPresent": true,
+        "primaryButtonCount": 1,
+        "sessionPage": false,
+        "founderPath": true,
+        "founderChrome": true,
+        "mainTag": "main"
+      },
+      "captured_at_ms": 1785319001211
+    },
+    "logout": {
+      "filename": "08_logout.png",
+      "path": "/Users/kwalitec/Developer/kwalitec/knowledge/engineering/rc20260729_05_browser_acceptance_final/_evidence/browser_acceptance/08_logout.png",
+      "url": "http://127.0.0.1:5055/auth/login",
+      "dom": {
+        "url": "http://127.0.0.1:5055/auth/login",
+        "title": "Sign in \u00b7 Kwalitec",
+        "theme": "light",
+        "bodySurface": null,
+        "hasStudentShell": false,
+        "headerClass": null,
+        "footerText": "APPEARANCE\nLight\nDark\nSystem\nInternal Alpha\n\u00b7\nFounding Cohort\nKwalitec v2.0.0\n\u00b7\nBuild RC2",
+        "h1": "Sign in",
+        "scrollX": false,
+        "navLinks": [],
+        "activeNav": [],
+        "brandPresent": true,
+        "primaryButtonCount": 0,
+        "sessionPage": false,
+        "founderPath": false,
+        "founderChrome": false,
+        "mainTag": "main"
+      },
+      "captured_at_ms": 1785319001905
+    }
+  },
+  "errors": [],
+  "issues": [
+    {
+      "severity": "Medium",
+      "page": "Responsive 1366",
+      "expected": "No horizontal scroll",
+      "actual": "Horizontal scroll present",
+      "screenshot": "07_responsive.png"
+    },
+    {
+      "severity": "Medium",
+      "page": "Responsive 1100",
+      "expected": "No horizontal scroll",
+      "actual": "Horizontal scroll present",
+      "screenshot": "07_responsive.png"
+    },
+    {
+      "severity": "Medium",
+      "page": "Responsive 900",
+      "expected": "No horizontal scroll",
+      "actual": "Horizontal scroll present",
+      "screenshot": "07_responsive.png"
+    },
+    {
+      "severity": "Medium",
+      "page": "Responsive tablet",
+      "expected": "No horizontal scroll",
+      "actual": "Horizontal scroll present",
+      "screenshot": "07_responsive.png"
+    },
+    {
+      "severity": "Medium",
+      "page": "Responsive desktop",
+      "expected": "No horizontal scroll",
+      "actual": "Horizontal scroll present",
+      "screenshot": "07_responsive.png"
+    }
+  ],
+  "server_note": "Flask on :5055 was down at start of RC-05; restarted with the same RC-04 V2 feature flags before evidence collection (no application code changes).",
+  "console": [],
+  "page_errors": [],
+  "network": [],
+  "navigation": [
+    {
+      "t": 1785318977.753,
+      "url": "http://127.0.0.1:5055/auth/login",
+      "main_frame": true
+    },
+    {
+      "t": 1785318978.368,
+      "url": "http://127.0.0.1:5055/alpha/onboarding",
+      "main_frame": true
+    },
+    {
+      "t": 1785318979.009,
+      "url": "http://127.0.0.1:5055/dashboard/",
+      "main_frame": true
+    },
+    {
+      "t": 1785318979.642,
+      "url": "http://127.0.0.1:5055/study-plan/wizard/1",
+      "main_frame": true
+    },
+    {
+      "t": 1785318980.328,
+      "url": "http://127.0.0.1:5055/study-plan/wizard/2",
+      "main_frame": true
+    },
+    {
+      "t": 1785318980.958,
+      "url": "http://127.0.0.1:5055/study-plan/wizard/3",
+      "main_frame": true
+    },
+    {
+      "t": 1785318981.591,
+      "url": "http://127.0.0.1:5055/study-plan/review",
+      "main_frame": true
+    },
+    {
+      "t": 1785318982.215,
+      "url": "http://127.0.0.1:5055/calibration/after-plan/20",
+      "main_frame": true
+    },
+    {
+      "t": 1785318982.879,
+      "url": "http://127.0.0.1:5055/dashboard/?welcome=1",
+      "main_frame": true
+    },
+    {
+      "t": 1785318983.648,
+      "url": "http://127.0.0.1:5055/missions/",
+      "main_frame": true
+    },
+    {
+      "t": 1785318984.252,
+      "url": "http://127.0.0.1:5055/missions/23/session",
+      "main_frame": true
+    },
+    {
+      "t": 1785318984.843,
+      "url": "http://127.0.0.1:5055/student/",
+      "main_frame": true
+    },
+    {
+      "t": 1785318985.59,
+      "url": "http://127.0.0.1:5055/missions/",
+      "main_frame": true
+    },
+    {
+      "t": 1785318986.136,
+      "url": "http://127.0.0.1:5055/missions/23/session",
+      "main_frame": true
+    },
+    {
+      "t": 1785318988.853,
+      "url": "http://127.0.0.1:5055/student/",
+      "main_frame": true
+    },
+    {
+      "t": 1785318991.486,
+      "url": "http://127.0.0.1:5055/study-plan/20",
+      "main_frame": true
+    },
+    {
+      "t": 1785318992.036,
+      "url": "http://127.0.0.1:5055/missions/23/session",
+      "main_frame": true
+    },
+    {
+      "t": 1785318992.701,
+      "url": "http://127.0.0.1:5055/student/",
+      "main_frame": true
+    },
+    {
+      "t": 1785318993.235,
+      "url": "http://127.0.0.1:5055/student/",
+      "main_frame": true
+    },
+    {
+      "t": 1785318993.782,
+      "url": "http://127.0.0.1:5055/study-plan/20",
+      "main_frame": true
+    },
+    {
+      "t": 1785318994.328,
+      "url": "http://127.0.0.1:5055/study-plan/20",
+      "main_frame": true
+    },
+    {
+      "t": 1785318994.872,
+      "url": "http://127.0.0.1:5055/missions/23/session",
+      "main_frame": true
+    },
+    {
+      "t": 1785318995.42,
+      "url": "http://127.0.0.1:5055/missions/23/session",
+      "main_frame": true
+    },
+    {
+      "t": 1785318995.966,
+      "url": "http://127.0.0.1:5055/missions/23/session",
+      "main_frame": true
+    },
+    {
+      "t": 1785318998.019,
+      "url": "http://127.0.0.1:5055/auth/login",
+      "main_frame": true
+    },
+    {
+      "t": 1785318998.544,
+      "url": "http://127.0.0.1:5055/auth/login",
+      "main_frame": true
+    },
+    {
+      "t": 1785318998.914,
+      "url": "http://127.0.0.1:5055/console/",
+      "main_frame": true
+    },
+    {
+      "t": 1785318999.455,
+      "url": "http://127.0.0.1:5055/console/",
+      "main_frame": true
+    },
+    {
+      "t": 1785319000.051,
+      "url": "http://127.0.0.1:5055/console/studio/subjects",
+      "main_frame": true
+    },
+    {
+      "t": 1785319000.643,
+      "url": "http://127.0.0.1:5055/console/studio/",
+      "main_frame": true
+    },
+    {
+      "t": 1785319001.269,
+      "url": "http://127.0.0.1:5055/auth/login",
+      "main_frame": true
+    }
+  ],
+  "journey": [
+    {
+      "t": "2026-07-29T09:56:18.909062+00:00",
+      "step": "authenticated",
+      "url": "http://127.0.0.1:5055/alpha/onboarding",
+      "h1": "Welcome to Kwalitec"
+    },
+    {
+      "t": "2026-07-29T09:56:20.153560+00:00",
+      "step": "wizard_step_1",
+      "url": "http://127.0.0.1:5055/study-plan/wizard/1",
+      "h1": "Choose Exam"
+    },
+    {
+      "t": "2026-07-29T09:56:20.179663+00:00",
+      "step": "wizard:http://127.0.0.1:5055/study-plan/wizard/1",
+      "url": "http://127.0.0.1:5055/study-plan/wizard/1",
+      "h1": "Choose Exam"
+    },
+    {
+      "t": "2026-07-29T09:56:20.856079+00:00",
+      "step": "wizard:http://127.0.0.1:5055/study-plan/wizard/2",
+      "url": "http://127.0.0.1:5055/study-plan/wizard/2",
+      "h1": "When is your exam?"
+    },
+    {
+      "t": "2026-07-29T09:56:21.486347+00:00",
+      "step": "wizard:http://127.0.0.1:5055/study-plan/wizard/3",
+      "url": "http://127.0.0.1:5055/study-plan/wizard/3",
+      "h1": "How much time can you study?"
+    },
+    {
+      "t": "2026-07-29T09:56:22.114491+00:00",
+      "step": "review",
+      "url": "http://127.0.0.1:5055/study-plan/review",
+      "h1": "Choose Exam"
+    },
+    {
+      "t": "2026-07-29T09:56:22.739490+00:00",
+      "step": "calibration",
+      "url": "http://127.0.0.1:5055/calibration/after-plan/20",
+      "h1": "Confirm your educational history"
+    },
+    {
+      "t": "2026-07-29T09:56:23.437080+00:00",
+      "step": "welcome_modal",
+      "url": "http://127.0.0.1:5055/dashboard/?welcome=1",
+      "h1": "Student Dashboard"
+    },
+    {
+      "t": "2026-07-29T09:56:24.181463+00:00",
+      "step": "missions_hub",
+      "url": "http://127.0.0.1:5055/missions/",
+      "h1": "Today's Study Session"
+    },
+    {
+      "t": "2026-07-29T09:56:25.462505+00:00",
+      "step": "wizard_complete_capture_on_home",
+      "url": "http://127.0.0.1:5055/student/",
+      "h1": "Home"
+    },
+    {
+      "t": "2026-07-29T09:56:26.778344+00:00",
+      "step": "study_session",
+      "url": "http://127.0.0.1:5055/missions/23/session",
+      "h1": "Study 1.1 Relationship Between Economics And Business \u2014 Wednesday, Jul 29"
+    },
+    {
+      "t": "2026-07-29T09:56:29.383528+00:00",
+      "step": "nav_home",
+      "url": "http://127.0.0.1:5055/student/",
+      "h1": "Home"
+    },
+    {
+      "t": "2026-07-29T09:56:32.002904+00:00",
+      "step": "nav_choose_exam",
+      "url": "http://127.0.0.1:5055/study-plan/20",
+      "h1": "IFoA CB2"
+    },
+    {
+      "t": "2026-07-29T09:56:32.676748+00:00",
+      "step": "nav_back_session",
+      "url": "http://127.0.0.1:5055/missions/23/session",
+      "h1": "Study 1.1 Relationship Between Economics And Business \u2014 Wednesday, Jul 29"
+    },
+    {
+      "t": "2026-07-29T09:56:40.026729+00:00",
+      "step": "founder_home",
+      "url": "http://127.0.0.1:5055/console/",
+      "h1": "Home"
+    },
+    {
+      "t": "2026-07-29T09:56:40.625160+00:00",
+      "step": "founder_subjects",
+      "url": "http://127.0.0.1:5055/console/studio/subjects",
+      "h1": "Subjects"
+    },
+    {
+      "t": "2026-07-29T09:56:41.211184+00:00",
+      "step": "founder_workspace",
+      "url": "http://127.0.0.1:5055/console/studio/",
+      "h1": "Curriculum Studio"
+    },
+    {
+      "t": "2026-07-29T09:56:41.905351+00:00",
+      "step": "logout",
+      "url": "http://127.0.0.1:5055/auth/login",
+      "h1": "Sign in"
+    }
+  ],
+  "student_login": {
+    "ok": true,
+    "email": "rc05.accept2@kwalitec.example",
+    "url": "http://127.0.0.1:5055/alpha/onboarding"
+  },
+  "session_reached": true,
+  "session_url": "http://127.0.0.1:5055/missions/23/session",
+  "home_dom": {
+    "url": "http://127.0.0.1:5055/student/",
+    "title": "Home \u00b7 Kwalitec",
+    "theme": "light",
+    "bodySurface": "home",
+    "hasStudentShell": true,
+    "headerClass": "student-topbar",
+    "footerText": "Reduce decisions. Increase learning.",
+    "h1": "Home",
+    "scrollX": true,
+    "navLinks": [
+      "Home",
+      "Journey",
+      "Revision",
+      "History",
+      "Settings",
+      "Choose Exam",
+      "Help"
+    ],
+    "activeNav": [
+      "Home"
+    ],
+    "brandPresent": true,
+    "primaryButtonCount": 1,
+    "sessionPage": false,
+    "founderPath": false,
+    "founderChrome": false,
+    "mainTag": "main"
+  },
+  "certification_answers": {
+    "study_session_continuation": {
+      "question": "Did Study Session feel like a natural continuation of Home and Choose Exam?",
+      "answer": "YES",
+      "rationale": "home_shell=True session_shell=True home_header=student-topbar session_header=student-topbar home_footer='Reduce decisions. Increase learning.' session_footer='Reduce decisions. Increase learning.' home_h1='Home' session_h1='Study 1.1 Relationship Between Economics And Business \u2014 Wednesday, Jul 29'"
+    },
+    "consistent_application": {
+      "question": "Did the Student journey remain inside one consistent application?",
+      "answer": "YES",
+      "rationale": "session_reached=True shell_retained=True continuation=YES"
+    },
+    "shell_changes": {
+      "question": "Did any shell changes occur?",
+      "answer": "NO",
+      "rationale": "shell_retained=True header_unchanged=True"
+    },
+    "founder_unaffected": {
+      "question": "Did Founder pages remain unaffected?",
+      "answer": "YES",
+      "rationale": "student_shell_leak=False urls home=http://127.0.0.1:5055/console/ subjects=http://127.0.0.1:5055/console/studio/subjects workspace=http://127.0.0.1:5055/console/studio/"
+    },
+    "runtime_failures": {
+      "question": "Were any runtime failures encountered?",
+      "answer": "NO",
+      "rationale": "material_network=0 page_errors=0 issues=5"
+    },
+    "certify_for_cq008": {
+      "question": "Would you certify this Release Candidate for CQ-008 recertification?",
+      "answer": "YES",
+      "rationale": "Proceed to CQ-008 with Medium conditions: Student Home empty projection after plan creation; ~5px Study Session horizontal overflow. Shell continuity and Founder regression passed; no runtime failures."
+    }
+  },
+  "navigation_continuity": {
+    "path": "Study Session \u2192 Student Home \u2192 Choose Exam \u2192 Study Session",
+    "header_unchanged": true,
+    "footer_unchanged": true,
+    "shell_retained": true,
+    "final_url": "http://127.0.0.1:5055/missions/23/session"
+  },
+  "refresh_results": [
+    {
+      "page": "Student Home",
+      "url_before": "http://127.0.0.1:5055/student/",
+      "url_after": "http://127.0.0.1:5055/student/",
+      "login_before": true,
+      "login_after": true,
+      "unexpected_logout": false
+    },
+    {
+      "page": "Choose Exam",
+      "url_before": "http://127.0.0.1:5055/study-plan/20",
+      "url_after": "http://127.0.0.1:5055/study-plan/20",
+      "login_before": true,
+      "login_after": true,
+      "unexpected_logout": false
+    },
+    {
+      "page": "Study Session",
+      "url_before": "http://127.0.0.1:5055/missions/23/session",
+      "url_after": "http://127.0.0.1:5055/missions/23/session",
+      "login_before": true,
+      "login_after": true,
+      "unexpected_logout": false
+    }
+  ],
+  "responsive_results": [
+    {
+      "label": "1366",
+      "width": 1366,
+      "height": 768,
+      "scrollX": true,
+      "note": "horizontal scroll detected"
+    },
+    {
+      "label": "1100",
+      "width": 1100,
+      "height": 768,
+      "scrollX": true,
+      "note": "horizontal scroll detected"
+    },
+    {
+      "label": "900",
+      "width": 900,
+      "height": 768,
+      "scrollX": true,
+      "note": "horizontal scroll detected"
+    },
+    {
+      "label": "tablet",
+      "width": 768,
+      "height": 1024,
+      "scrollX": true,
+      "note": "horizontal scroll detected"
+    },
+    {
+      "label": "desktop",
+      "width": 1366,
+      "height": 768,
+      "scrollX": true,
+      "note": "horizontal scroll detected"
+    }
+  ],
+  "founder_login": {
+    "ok": true,
+    "email": "cq008.founder@kwalitec.example",
+    "url": "http://127.0.0.1:5055/console/"
+  },
+  "founder_regression": {
+    "student_shell_leak": false,
+    "home_url": "http://127.0.0.1:5055/console/",
+    "subjects_url": "http://127.0.0.1:5055/console/studio/subjects",
+    "workspace_url": "http://127.0.0.1:5055/console/studio/",
+    "shell_flags": [
+      false,
+      false,
+      false
+    ]
+  },
+  "logout": {
+    "url": "http://127.0.0.1:5055/auth/login",
+    "sign_in_shown": true,
+    "theme": "light",
+    "footer": "APPEARANCE\nLight\nDark\nSystem\nInternal Alpha\n\u00b7\nFounding Cohort\nKwalitec v2.0.0\n\u00b7\nBuild RC2"
+  },
+  "final_recommendation": "GO WITH CONDITIONS",
+  "finished_at": "2026-07-29T09:56:41.907678+00:00",
+  "report_path": "/Users/kwalitec/Developer/kwalitec/knowledge/engineering/rc20260729_05_browser_acceptance_final/RC20260729_05_BROWSER_ACCEPTANCE_FINAL.md"
+}

@@ -1,0 +1,57 @@
+%PDF-1.4
+1 0 obj<< /Type /Catalog /Pages 2 0 R >>endobj
+2 0 obj<< /Type /Pages /Kids [3 0 R] /Count 1 >>endobj
+3 0 obj<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>endobj
+4 0 obj<< /Length 1523 >>stream
+BT
+/F1 11 Tf
+50 800 Td
+14 TL
+(Official CMP CS1F) Tj
+T* (Core Reading / CMP - CS1F Actuarial Statistics) Tj
+T* () Tj
+T* (Chapter 1 Data exploration) Tj
+T* (Students should be able to summarise datasets and construct charts.) Tj
+T* (Learning objective: Describe measures of central tendency.) Tj
+T* (Learning objective: Construct histograms and boxplots.) Tj
+T* () Tj
+T* (Chapter 2 Probability) Tj
+T* (Students should apply probability rules to actuarial problems.) Tj
+T* (Learning objective: Apply Bayes theorem to update beliefs.) Tj
+T* (Learning objective: Compute conditional probabilities.) Tj
+T* () Tj
+T* (Chapter 3 Distributions) Tj
+T* (Students should identify and use common probability distributions.) Tj
+T* (Learning objective: Select appropriate discrete models.) Tj
+T* (Learning objective: Select appropriate continuous models.) Tj
+T* () Tj
+T* (Chapter 4 Inference) Tj
+T* (Students should estimate parameters and test hypotheses.) Tj
+T* (Learning objective: Construct confidence intervals.) Tj
+T* (Learning objective: Interpret p-values carefully.) Tj
+T* () Tj
+T* (Chapter 5 Regression) Tj
+T* (Students should fit and critique linear models.) Tj
+T* (Learning objective: Interpret slope and intercept.) Tj
+T* (Learning objective: Diagnose residual patterns.) Tj
+T* () Tj
+T* (Chapter 6 Credibility) Tj
+T* (Students should apply credibility methods in pricing contexts.) Tj
+T* (Learning objective: Compute classical credibility premiums.) Tj
+T* (Learning objective: Compare classical and Bayesian approaches.) Tj
+ET
+endstream
+endobj
+5 0 obj<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000056 00000 n 
+0000000111 00000 n 
+0000000235 00000 n 
+0000001808 00000 n 
+trailer<< /Size 6 /Root 1 0 R >>
+startxref
+1876
+%%EOF

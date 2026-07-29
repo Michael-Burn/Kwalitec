@@ -1,16 +1,13 @@
-{# DEP-003 — Student Experience Unification presentation router.
-   Under sole runtime, student-facing pages that extend this layout render
-   inside the Education Operating System shell. Dual-run / rollback keeps
-   the legacy Learning Workspace chrome (sidebar + topnav). Controllers,
-   routes, and blueprints are unchanged.
+{# RC-2026.07.29-03 — Authenticated Student chrome is always the EOS shell.
+   Shared student-facing templates that extend this layout render inside
+   layouts/eos_student.html. Runtime shell switching is retired.
+   Controllers, routes, and engines unchanged.
 
-   Both target chrome layouts (layouts/eos_student.html and
-   layouts/legacy_workspace.html) wire the same canonical brand chrome —
-   documented here for template-inventory regression scans (BI-001,
-   IAHF-004A, IAHF-005):
+   Canonical brand chrome lives on layouts/eos_student.html:
      include "partials/brand_meta.html"
      link href=versioned_static('css/fonts.css')
      link href=versioned_static('css/brand.css')
      link href=versioned_static('css/tokens.css')
-     include "partials/app_footer.html" #}
-{% extends "layouts/eos_student.html" if (v2_flags and v2_flags.SOLE_RUNTIME) else "layouts/legacy_workspace.html" %}
+     student footer (shared product identity)
+#}
+{% extends "layouts/eos_student.html" %}

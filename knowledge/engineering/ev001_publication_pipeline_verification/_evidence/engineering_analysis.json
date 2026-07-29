@@ -1,0 +1,120 @@
+{
+  "programme": "EV-001",
+  "generated_at": "2026-07-28T22:37:39.101771+00:00",
+  "identity": {
+    "subject_code": "CS1V",
+    "subject_id": 1,
+    "subject_created_at": "2026-07-28 22:34:48.468006",
+    "workspace_id": "ws-cs1v",
+    "foundation_version_id": 1,
+    "version_label": "2026.1",
+    "publication_state": "published",
+    "foundation_stage": "publish",
+    "documents": [
+      {
+        "id": 1,
+        "kind": "cmp",
+        "filename": "official_cmp.pdf",
+        "processing_stage": "ready_for_embeddings",
+        "reference": "ref://cmp/cs1v-2026.1-v1"
+      },
+      {
+        "id": 2,
+        "kind": "syllabus",
+        "filename": "official_syllabus.pdf",
+        "processing_stage": "ready_for_embeddings",
+        "reference": "ref://syllabus/cs1v-2026.1-v1"
+      }
+    ],
+    "cip_entity_counts": {
+      "total": 28,
+      "sections_or_subjects": 2,
+      "topics_and_subtopics": 21,
+      "learning_objectives": 5
+    },
+    "package_structure_counts": {
+      "section_count": 2,
+      "topic_count": 21,
+      "objective_count": 5
+    },
+    "preview_node_count_ui": 23,
+    "package": {
+      "id": 1,
+      "subject_code": "CS1V",
+      "version_id": 1,
+      "version_label": "2026.1",
+      "is_active": true,
+      "published_at": "2026-07-28 22:35:19.805952",
+      "published_at_type": "datetime",
+      "published_by": "1"
+    },
+    "authority_package_projection": {
+      "type": "PublishedPackageSnapshot",
+      "published_at": "'2026-07-28T22:35:19.805952'",
+      "published_at_type": "str",
+      "version_label": "2026.1",
+      "is_active": true
+    },
+    "catalogue_list_entries_error": "AttributeError: 'str' object has no attribute 'strftime'",
+    "catalogue_entries_when_ok": [],
+    "same_identity_chain": {
+      "workspace": "ws-cs1v",
+      "subject": "CS1V",
+      "version_label": "2026.1",
+      "foundation_version_id": 1,
+      "package_version_id": 1,
+      "package_links_same_version": true,
+      "package_foundation_version_id": 1
+    }
+  },
+  "corrected_stages": {
+    "1_subject_creation": {
+      "ok": true,
+      "evidence": "CS1V created; subject_id=1; created_at=2026-07-28 22:34:48.468006"
+    },
+    "2_document_upload": {
+      "ok": true,
+      "evidence": "cmp+syllabus active; processing ready_for_embeddings"
+    },
+    "3_structure_preparation": {
+      "ok": true,
+      "evidence": "CIP topics=21 objectives=5; package topics=21 objectives=5"
+    },
+    "4_validation": {
+      "ok": true,
+      "evidence": "UI: Validation completed successfully \u00b7 passed; blocking=0"
+    },
+    "5_preview": {
+      "ok": true,
+      "evidence": "UI: Preview ready \u00b7 ready_for_review \u00b7 23 topics"
+    },
+    "6_approval": {
+      "ok": true,
+      "evidence": "UI: We've approved your curriculum successfully; preview \u00b7 approved"
+    },
+    "7_publication": {
+      "ok": true,
+      "evidence": "UI published success; Status Published \u00b7 Version 2026.1; package id=1 published_at=2026-07-28 22:35:19.805952"
+    },
+    "8_ready_catalogue": {
+      "ok": true,
+      "evidence": "Subjects hub: CS1V Ready \u00b7 Current Version 2026.1 \u00b7 Published 2026-07-28"
+    },
+    "9_student_discovery": {
+      "ok": false,
+      "evidence": "AttributeError: 'str' object has no attribute 'strftime'",
+      "blocker": "SubjectCatalogueService._format_release AttributeError when authority published_at is str",
+      "data_layer_ready": true
+    },
+    "regression_ui_gates": {
+      "ok": true,
+      "evidence": "CS1Z incomplete path refused publish/approve/validate/preview; missing CMP+syllabus findings shown"
+    }
+  },
+  "lifecycle_core_ok": true,
+  "student_catalogue_visible_ok": false,
+  "pytest": {
+    "pi002r_use_cases_workflow": "189 passed",
+    "pi002r_plus_policies": "41 passed"
+  }
+}

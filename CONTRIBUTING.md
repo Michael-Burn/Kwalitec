@@ -90,7 +90,7 @@ Do not merge with failing CI without an explicit, documented exception.
 | Authoritative runtime | Education OS under `KWALITEC_V2_SOLE_RUNTIME` — `app/presentation/student/` + `app/presentation/session/` |
 | Certified templates | `app/templates/student/`, `app/templates/session/`, `layouts/eos_student.html` |
 | Do not extend | Legacy Contained shells: `dashboard/`, `mission/` LXP, `analytics/` presentation (redirect soak only) |
-| Chrome router | `layouts/base.html` (DEP-003) selects EOS vs `legacy_workspace` — do not invent a third shell |
+| Student chrome | `layouts/base.html` → `layouts/eos_student.html` (RC-2026.07.29-03); Session extends the same shell — do not invent a third shell |
 | Lexicon / authority | Follow DG-001 (`CANONICAL_EDUCATIONAL_LEXICON.md`, `EDUCATIONAL_AUTHORITY_MODEL.md`) |
 | Inventory | `knowledge/release/RR-002/RR002_3_LEGACY_INVENTORY.md` · ownership `RR002_3_RUNTIME_OWNERSHIP.md` |
 

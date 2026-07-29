@@ -1,0 +1,868 @@
+{
+  "programme": "FV-001B-RERUN",
+  "kind": "final",
+  "subject": "CS1U",
+  "elapsed_s": 22.3,
+  "records": [
+    {
+      "phase": "Z1_home",
+      "t": 2.8,
+      "url": "http://127.0.0.1:5130/console/",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWelcome back to Kwalitec.\n\nKWALITEC CONSOLE \u00b7 INTERNAL ALPHA \u00b7 V2.0.0\n\nConsole Home\n\nOperational pulse \u2014 what needs attention today \u00b7 2026-07-28 22:09 UTC \u00b7 Calendar day (server local date)\n\nReview attention queue (4)\nATTENTION REQUIRED\nOpen Attention Center\nSUPPORT\n4\nPending content reviews\nOutstanding Product Check-in reviews\nPLATFORM HEALTH\n0%\nNeeds attention\nParticipation 18.8%\nCONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings\nSTUDENT ISSUES\n4\nNeeds intervention\nReview check-in #4\nHIGH\nSystem health signals need attention\nOpen\nPLATFORM SUMMARY\nSTUDENTS\n3\nActive participants\n0 active today\nLEARNING\n0\nCheck-ins today\n2 in last 7 days\nASSESSMENTS\n3.75/5\nAvg experience\nWould open tomorrow 75.0%\nSYSTEM\nLow participation\nAlpha health\nBuild local\nQUICK ACTIONS\nReview support inbox\nOpen operations\nManage content\nPlatform Intelligence\nOPERATIONAL DETAIL\nRecent support\nInbox\n#4 \u00b7 sarah.ndlovu@gmail.com \u00b7 New\n#3 \u00b7 sarah.ndlovu@gmail.com \u00b7 New\n#2 \u00b7 priya.student@example.com \u00b7 New\n#1 \u00b7 founder.cert.1784190548@gmail.com \u00b7 New\nAttention queue\nCenter\nReview check-in #4 \u00b7 new \u00b7 Study Plan\nReview check-in #3 \u00b7 new \u00b7 Study Session\nReview check-in #2 \u00b7 new \u00b7 Today's Study Session\nReview check-in #1 \u00b7 new \u00b7 Recommendations\nVision Journal\nOpen\n\nNo Vision entries yet. New entry\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "findings": [],
+      "workflow_words": [],
+      "status": {
+        "preview_line": "",
+        "cmp_file": "",
+        "syl_file": "",
+        "next_step": ""
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_00_z1_home.png"
+    },
+    {
+      "phase": "Z2_subjects_before",
+      "t": 2.9,
+      "url": "http://127.0.0.1:5130/console/studio/subjects",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nSubjects\n\nKWALITEC CONSOLE \u00b7 CURRICULUM AUTHORITY\n\nSubjects\n\nCreate subjects and open workspaces. Students only see a subject as Ready after you publish a verified curriculum.\n\nNEXT STEP\n\nOpen a workspace below, or create a subject to start a new curriculum.\n\nCurriculum workflow\nNew Subject\nUpload Official CMP\nUpload Official Syllabus\nExtraction\nReview & Corrections\nPublish Verified Curriculum\nAvailable to Students (Ready)\n\nOpen Curriculum Studio\n\nCreate Subject\nSubject code\nTitle\nOpen Workspace\nSubject code\nWorkspaces\nCS1R\n2026.1 \u00b7 Subject\nCS1S\n2026.1 \u00b7 Content Sources\nCS1T\nDraft \u00b7 Subject\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "findings": [],
+      "workflow_words": [
+        "Draft",
+        "Publish",
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "",
+        "cmp_file": "",
+        "syl_file": "",
+        "next_step": "Open a workspace below, or create a subject to start a new curriculum.  Curriculum workflow"
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_01_z2_subjects_before.png"
+    },
+    {
+      "phase": "Z3_created",
+      "t": 3.1,
+      "url": "http://127.0.0.1:5130/console/studio/",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe've created your subject successfully.\nOverview\nCurriculum Studio\n\nKWALITEC CONSOLE \u00b7 CURRICULUM STUDIO\n\nCurriculum Studio\n\nReview, validate, preview, approve, and publish curricula through one Console workflow.\n\nNEXT STEP\n\nOpen a workspace below, or create a subject to start a new curriculum.\n\nPublished 0\nDrafts 3\nPending validation 0\nPending approval 0\nCreate Subject\nSubject code *\n\nUse a short syllabus code such as CS1.\n\nTitle\nOpen Workspace\nSubject code *\n\nOpen an existing subject code to continue its workflow.\n\nWorkspaces\nCS1R\n2026.1 \u00b7 Subject\nCS1S\n2026.1 \u00b7 Content Sources\nCS1T\nDraft \u00b7 Subject\nRecent activity\nsubject_created: Created subject CS1U\nworkspace_opened: Opened workspace ws-cs1t\nsubject_created: Created subject CS1T\nsources_uploaded: Uploaded sources for ws-cs1s\nversion_assigned: Assigned version version-2\nworkspace_opened: Opened workspace ws-cs1s\nsubject_created: Created subject CS1S\nsources_uploaded: Uploaded sources for ws-cs1r\nsources_uploaded: Uploaded sources for ws-cs1r\nversion_assigned: Assigned version version-1\nworkspace_opened: Opened workspace ws-cs1r\nsubject_created: Created subject CS1R\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "findings": [],
+      "workflow_words": [
+        "Draft"
+      ],
+      "status": {
+        "preview_line": "",
+        "cmp_file": "",
+        "syl_file": "",
+        "next_step": "Open a workspace below, or create a subject to start a new curriculum.  Published 0"
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_02_z3_created.png"
+    },
+    {
+      "phase": "Z4_workspace",
+      "t": 3.3,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1u",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe've opened your workspace successfully.\nOverview\nCurriculum Studio\nCS1U\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1U\n\nStage: Subject \u00b7 Status: Active\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 failed\n\nPreview\n\nPreview not ready \u2014 no extracted curriculum topics yet\n\nChecklist\n\n0 of 8 checklist items ready.\n\nValidation findings\n\nOfficial CMP is not present. (blocking)\n\nWhy it matters:\nWithout an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.\n\nWhat to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.\n\nOfficial syllabus is not present. (blocking)\n\nWhy it matters:\nPublication must stay grounded in the official syllabus so student journeys follow authorised curriculum order.\n\nWhat to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.\n\nContent Sources\nUPLOAD DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n0\n\nTopics\n\n0\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n\nNo versions yet\n\nNo versions recorded yet. Assign a version label after approval to start version history.\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "findings": [
+        "Official CMP is not present. (blocking)",
+        "Why it matters:",
+        "Without an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.",
+        "What to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.",
+        "Official syllabus is not present. (blocking)",
+        "Why it matters:",
+        "Publication must stay grounded in the official syllabus so student journeys follow authorised curriculum order.",
+        "What to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.",
+        "Content Sources",
+        "UPLOAD DOCUMENTS",
+        "Upload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.",
+        "Official CMP",
+        "REQUIRED",
+        "Curriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Drag PDF here",
+        "or",
+        "Select PDF",
+        "PDF only \u00b7 maximum size applies",
+        "Official Syllabus",
+        "REQUIRED",
+        "Official syllabus PDF grounding authorised curriculum order.",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Drag PDF here",
+        "or",
+        "Select PDF",
+        "PDF only \u00b7 maximum size applies",
+        "Document processing",
+        "Processing",
+        "Verified",
+        "Extracted",
+        "Parsed",
+        "Mapped",
+        "Curriculum structure built",
+        "Ready",
+        "Curriculum review",
+        "0 awaiting review \u00b7 0 validation errors",
+        "OVERVIEW",
+        "DOCUMENTS",
+        "EXTRACTION STATUS"
+      ],
+      "workflow_words": [
+        "Validate",
+        "Preview",
+        "Publish",
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "Preview not ready \u2014 no extracted curriculum topics yet",
+        "cmp_file": "",
+        "syl_file": "",
+        "next_step": "Confirm the subject, then advance to Content Sources.  Workflow"
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_03_z4_workspace.png"
+    },
+    {
+      "phase": "Z5_files_bound",
+      "t": 7.5,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1u",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe've opened your workspace successfully.\nOverview\nCurriculum Studio\nCS1U\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1U\n\nStage: Subject \u00b7 Status: Active\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 failed\n\nPreview\n\nPreview not ready \u2014 no extracted curriculum topics yet\n\nChecklist\n\n0 of 8 checklist items ready.\n\nValidation findings\n\nOfficial CMP is not present. (blocking)\n\nWhy it matters:\nWithout an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.\n\nWhat to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.\n\nOfficial syllabus is not present. (blocking)\n\nWhy it matters:\nPublication must stay grounded in the official syllabus so student journeys follow authorised curriculum order.\n\nWhat to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\n\nDocument uploaded successfully.\n\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nOfficial Syllabus \u00b7 official_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.7 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\n\nDocument uploaded successfully.\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nDocument 4\nReady\nExtracted \u00b7 completed \u00b7 2 ms\nNormalized \u00b7 completed \u00b7 1 ms\nParsed \u00b7 completed \u00b7 10 ms\nMapped \u00b7 completed \u00b7 15 ms\nCurriculum structure built \u00b7 completed \u00b7 32 ms\nReady \u00b7 completed \u00b7 6 ms\nDocument 5\nReady\nExtracted \u00b7 completed \u00b7 2 ms\nNormalized \u00b7 completed \u00b7 2 ms\nParsed \u00b7 completed \u00b7 7 ms\nMapped \u00b7 completed \u00b7 21 ms\nCurriculum structure built \u00b7 completed \u00b7 60 ms\nReady \u00b7 completed \u00b7 12 ms\nDocument uploaded successfully.\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n0\n\nTopics\n\n0\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n\nNo versions yet\n\nNo versions recorded yet. Assign a version label after approval to start version history.\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?\n\nDocument uploaded successfully.",
+      "flashes": [],
+      "findings": [
+        "Official CMP is not present. (blocking)",
+        "Why it matters:",
+        "Without an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.",
+        "What to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.",
+        "Official syllabus is not present. (blocking)",
+        "Why it matters:",
+        "Publication must stay grounded in the official syllabus so student journeys follow authorised curriculum order.",
+        "What to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.",
+        "Content Sources",
+        "DOCUMENTS UPLOADED",
+        "Upload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.",
+        "Official CMP",
+        "REQUIRED",
+        "Curriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official CMP \u00b7 official_cmp.pdf",
+        "VERSION",
+        "v1",
+        "UPLOADED",
+        "2026-07-28 22:09",
+        "SIZE",
+        "1.4 KB",
+        "STATUS",
+        "Ready",
+        "UPLOADED BY",
+        "38",
+        "PDF only \u00b7 maximum size applies",
+        "Replace",
+        "Download",
+        "Remove",
+        "Document uploaded successfully.",
+        "Official Syllabus",
+        "REQUIRED",
+        "Official syllabus PDF grounding authorised curriculum order.",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Official Syllabus \u00b7 official_syllabus.pdf",
+        "VERSION",
+        "v1",
+        "UPLOADED",
+        "2026-07-28 22:09"
+      ],
+      "workflow_words": [
+        "Validate",
+        "Preview",
+        "Publish",
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "Preview not ready \u2014 no extracted curriculum topics yet",
+        "cmp_file": "Official CMP \u00b7 official_cmp.pdf",
+        "syl_file": "Official Syllabus \u00b7 official_syllabus.pdf",
+        "next_step": "Confirm the subject, then advance to Content Sources.  Workflow"
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_04_z5_files_bound.png"
+    },
+    {
+      "phase": "Z6_process_0",
+      "t": 10.2,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1u",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1U\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1U\n\nStage: Subject \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 23 topics\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nOfficial Syllabus \u00b7 official_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.7 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 10 ms\nMapped completed 15 ms\nCurriculum structure built completed 32 ms\nReady completed 6 ms\nOfficial Syllabus\nReady\nExtracted completed 2 ms\nNormalized completed 2 ms\nParsed completed 7 ms\nMapped completed 21 ms\nCurriculum structure built completed 60 ms\nReady completed 12 ms\nCurriculum review\nExtraction, validation & corrections\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n\u2014\n\nTopics\n\n\u2014\n\nNeeds review\n\n\u2014\n\nValidation errors\n\n\u2014\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "findings": [],
+      "workflow_words": [
+        "Preview",
+        "Publish",
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "Preview needs attention \u00b7 not_ready \u00b7 23 topics",
+        "cmp_file": "Official CMP \u00b7 official_cmp.pdf",
+        "syl_file": "Official Syllabus \u00b7 official_syllabus.pdf",
+        "next_step": "Confirm the subject, then advance to Content Sources.  Workflow"
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_05_z6_process_0.png"
+    },
+    {
+      "phase": "Z7_advance",
+      "t": 10.3,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1u",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1U\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1U\n\nStage: Subject \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 23 topics\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nOfficial Syllabus \u00b7 official_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.7 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 10 ms\nMapped completed 15 ms\nCurriculum structure built completed 32 ms\nReady completed 6 ms\nOfficial Syllabus\nReady\nExtracted completed 2 ms\nNormalized completed 2 ms\nParsed completed 7 ms\nMapped completed 21 ms\nCurriculum structure built completed 60 ms\nReady completed 12 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n2\n\nTopics\n\n23\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "findings": [],
+      "workflow_words": [
+        "Preview",
+        "Publish",
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "Preview needs attention \u00b7 not_ready \u00b7 23 topics",
+        "cmp_file": "Official CMP \u00b7 official_cmp.pdf",
+        "syl_file": "Official Syllabus \u00b7 official_syllabus.pdf",
+        "next_step": "Confirm the subject, then advance to Content Sources.  Workflow"
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_06_z7_advance.png"
+    },
+    {
+      "phase": "Z8_validate",
+      "t": 10.4,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1u",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1U\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1U\n\nStage: Subject \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 23 topics\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nOfficial Syllabus \u00b7 official_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.7 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 10 ms\nMapped completed 15 ms\nCurriculum structure built completed 32 ms\nReady completed 6 ms\nOfficial Syllabus\nReady\nExtracted completed 2 ms\nNormalized completed 2 ms\nParsed completed 7 ms\nMapped completed 21 ms\nCurriculum structure built completed 60 ms\nReady completed 12 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n2\n\nTopics\n\n23\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "findings": [],
+      "workflow_words": [
+        "Preview",
+        "Publish",
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "Preview needs attention \u00b7 not_ready \u00b7 23 topics",
+        "cmp_file": "Official CMP \u00b7 official_cmp.pdf",
+        "syl_file": "Official Syllabus \u00b7 official_syllabus.pdf",
+        "next_step": "Confirm the subject, then advance to Content Sources.  Workflow"
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_07_z8_validate.png"
+    },
+    {
+      "phase": "Z8_validate_reload",
+      "t": 10.6,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1u",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1U\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1U\n\nStage: Subject \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 23 topics\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nOfficial Syllabus \u00b7 official_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.7 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 10 ms\nMapped completed 15 ms\nCurriculum structure built completed 32 ms\nReady completed 6 ms\nOfficial Syllabus\nReady\nExtracted completed 2 ms\nNormalized completed 2 ms\nParsed completed 7 ms\nMapped completed 21 ms\nCurriculum structure built completed 60 ms\nReady completed 12 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n2\n\nTopics\n\n23\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "findings": [],
+      "workflow_words": [
+        "Preview",
+        "Publish",
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "Preview needs attention \u00b7 not_ready \u00b7 23 topics",
+        "cmp_file": "Official CMP \u00b7 official_cmp.pdf",
+        "syl_file": "Official Syllabus \u00b7 official_syllabus.pdf",
+        "next_step": "Confirm the subject, then advance to Content Sources.  Workflow"
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_08_z8_validate_reload.png"
+    },
+    {
+      "phase": "Z8_validation_panel",
+      "t": 11.7,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1u",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1U\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1U\n\nStage: Subject \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 23 topics\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nOfficial Syllabus \u00b7 official_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.7 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 10 ms\nMapped completed 15 ms\nCurriculum structure built completed 32 ms\nReady completed 6 ms\nOfficial Syllabus\nReady\nExtracted completed 2 ms\nNormalized completed 2 ms\nParsed completed 7 ms\nMapped completed 21 ms\nCurriculum structure built completed 60 ms\nReady completed 12 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\nDocument 4 \u00b7 Passed \u00b7 1 issues\nwarning \u00b7 missing_learning_objective\nDocument has topics/concepts but no learning objectives.\nDocument 5 \u00b7 Passed \u00b7 1 issues\nwarning \u00b7 missing_learning_objective\nDocument has topics/concepts but no learning objectives.\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "findings": [],
+      "workflow_words": [
+        "Preview",
+        "Publish",
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "Preview needs attention \u00b7 not_ready \u00b7 23 topics",
+        "cmp_file": "Official CMP \u00b7 official_cmp.pdf",
+        "syl_file": "Official Syllabus \u00b7 official_syllabus.pdf",
+        "next_step": "Confirm the subject, then advance to Content Sources.  Workflow"
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_09_z8_validation_panel.png"
+    },
+    {
+      "phase": "Z9_preview",
+      "t": 11.9,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1u",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1U\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1U\n\nStage: Subject \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 23 topics\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nOfficial Syllabus \u00b7 official_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.7 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 10 ms\nMapped completed 15 ms\nCurriculum structure built completed 32 ms\nReady completed 6 ms\nOfficial Syllabus\nReady\nExtracted completed 2 ms\nNormalized completed 2 ms\nParsed completed 7 ms\nMapped completed 21 ms\nCurriculum structure built completed 60 ms\nReady completed 12 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\nDocument 4 \u00b7 Passed \u00b7 1 issues\nwarning \u00b7 missing_learning_objective\nDocument has topics/concepts but no learning objectives.\nDocument 5 \u00b7 Passed \u00b7 1 issues\nwarning \u00b7 missing_learning_objective\nDocument has topics/concepts but no learning objectives.\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "findings": [],
+      "workflow_words": [
+        "Preview",
+        "Publish",
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "Preview needs attention \u00b7 not_ready \u00b7 23 topics",
+        "cmp_file": "Official CMP \u00b7 official_cmp.pdf",
+        "syl_file": "Official Syllabus \u00b7 official_syllabus.pdf",
+        "next_step": "Confirm the subject, then advance to Content Sources.  Workflow"
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_10_z9_preview.png"
+    },
+    {
+      "phase": "Z9_preview_reload",
+      "t": 12.0,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1u",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1U\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1U\n\nStage: Subject \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 23 topics\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nOfficial Syllabus \u00b7 official_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.7 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 10 ms\nMapped completed 15 ms\nCurriculum structure built completed 32 ms\nReady completed 6 ms\nOfficial Syllabus\nReady\nExtracted completed 2 ms\nNormalized completed 2 ms\nParsed completed 7 ms\nMapped completed 21 ms\nCurriculum structure built completed 60 ms\nReady completed 12 ms\nCurriculum review\nExtraction, validation & corrections\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n\u2014\n\nTopics\n\n\u2014\n\nNeeds review\n\n\u2014\n\nValidation errors\n\n\u2014\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "findings": [],
+      "workflow_words": [
+        "Preview",
+        "Publish",
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "Preview needs attention \u00b7 not_ready \u00b7 23 topics",
+        "cmp_file": "Official CMP \u00b7 official_cmp.pdf",
+        "syl_file": "Official Syllabus \u00b7 official_syllabus.pdf",
+        "next_step": "Confirm the subject, then advance to Content Sources.  Workflow"
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_11_z9_preview_reload.png"
+    },
+    {
+      "phase": "Z9_structure",
+      "t": 13.2,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1u",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1U\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1U\n\nStage: Subject \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 23 topics\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nOfficial Syllabus \u00b7 official_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.7 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 10 ms\nMapped completed 15 ms\nCurriculum structure built completed 32 ms\nReady completed 6 ms\nOfficial Syllabus\nReady\nExtracted completed 2 ms\nNormalized completed 2 ms\nParsed completed 7 ms\nMapped completed 21 ms\nCurriculum structure built completed 60 ms\nReady completed 12 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\n23 entities \u00b7 99 relationships\n\nCS1U (subject, 100%)\nOfficial CMP CS1R (topic, 60%)\nCore Reading / CMP - CS1R Actuarial Statistics (topic, 60%)\nChapter 1 Data exploration (topic, 60%)\nChapter 2 Probability (topic, 60%)\nChapter 3 Distributions (topic, 60%)\nChapter 4 Inference (topic, 60%)\nChapter 5 Regression (topic, 60%)\nCS1U (subject, 100%)\nOfficial Syllabus CS1R (topic, 60%)\nInstitute and Faculty of Actuaries (topic, 60%)\nSubject CS1R - Actuarial Statistics (Re-run Blind) (topic, 60%)\nSyllabus 2026 (topic, 60%)\nSummarise data using descriptive statistics (subtopic, 88%)\nConstruct and interpret graphical displays (subtopic, 88%)\nApply axioms of probability (subtopic, 88%)\nConditional probability and Bayes theorem (subtopic, 88%)\nDiscrete distributions (subtopic, 88%)\nContinuous distributions (subtopic, 88%)\nPoint estimation (subtopic, 88%)\nHypothesis testing (subtopic, 88%)\nSimple linear regression (subtopic, 88%)\nMultiple regression concepts (subtopic, 88%)\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "findings": [],
+      "workflow_words": [
+        "Preview",
+        "Publish",
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "Preview needs attention \u00b7 not_ready \u00b7 23 topics",
+        "cmp_file": "Official CMP \u00b7 official_cmp.pdf",
+        "syl_file": "Official Syllabus \u00b7 official_syllabus.pdf",
+        "next_step": "Confirm the subject, then advance to Content Sources.  Workflow"
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_12_z9_structure.png"
+    },
+    {
+      "phase": "Z9_topics",
+      "t": 14.4,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1u",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1U\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1U\n\nStage: Subject \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 23 topics\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nOfficial Syllabus \u00b7 official_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.7 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 10 ms\nMapped completed 15 ms\nCurriculum structure built completed 32 ms\nReady completed 6 ms\nOfficial Syllabus\nReady\nExtracted completed 2 ms\nNormalized completed 2 ms\nParsed completed 7 ms\nMapped completed 21 ms\nCurriculum structure built completed 60 ms\nReady completed 12 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\nEntity id\nLoad\n\nSelect an entity from the Review Queue or enter an entity id.\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "findings": [],
+      "workflow_words": [
+        "Preview",
+        "Publish",
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "Preview needs attention \u00b7 not_ready \u00b7 23 topics",
+        "cmp_file": "Official CMP \u00b7 official_cmp.pdf",
+        "syl_file": "Official Syllabus \u00b7 official_syllabus.pdf",
+        "next_step": "Confirm the subject, then advance to Content Sources.  Workflow"
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_13_z9_topics.png"
+    },
+    {
+      "phase": "Z10_approve",
+      "t": 14.5,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1u",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1U\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1U\n\nStage: Subject \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 23 topics\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nOfficial Syllabus \u00b7 official_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.7 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 10 ms\nMapped completed 15 ms\nCurriculum structure built completed 32 ms\nReady completed 6 ms\nOfficial Syllabus\nReady\nExtracted completed 2 ms\nNormalized completed 2 ms\nParsed completed 7 ms\nMapped completed 21 ms\nCurriculum structure built completed 60 ms\nReady completed 12 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\nEntity id\nLoad\n\nSelect an entity from the Review Queue or enter an entity id.\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "findings": [],
+      "workflow_words": [
+        "Preview",
+        "Publish",
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "Preview needs attention \u00b7 not_ready \u00b7 23 topics",
+        "cmp_file": "Official CMP \u00b7 official_cmp.pdf",
+        "syl_file": "Official Syllabus \u00b7 official_syllabus.pdf",
+        "next_step": "Confirm the subject, then advance to Content Sources.  Workflow"
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_14_z10_approve.png"
+    },
+    {
+      "phase": "Z10_approve_reload",
+      "t": 14.7,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1u",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1U\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1U\n\nStage: Subject \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 23 topics\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nOfficial Syllabus \u00b7 official_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.7 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 10 ms\nMapped completed 15 ms\nCurriculum structure built completed 32 ms\nReady completed 6 ms\nOfficial Syllabus\nReady\nExtracted completed 2 ms\nNormalized completed 2 ms\nParsed completed 7 ms\nMapped completed 21 ms\nCurriculum structure built completed 60 ms\nReady completed 12 ms\nCurriculum review\nExtraction, validation & corrections\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n\u2014\n\nTopics\n\n\u2014\n\nNeeds review\n\n\u2014\n\nValidation errors\n\n\u2014\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "findings": [],
+      "workflow_words": [
+        "Preview",
+        "Publish",
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "Preview needs attention \u00b7 not_ready \u00b7 23 topics",
+        "cmp_file": "Official CMP \u00b7 official_cmp.pdf",
+        "syl_file": "Official Syllabus \u00b7 official_syllabus.pdf",
+        "next_step": "Confirm the subject, then advance to Content Sources.  Workflow"
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_15_z10_approve_reload.png"
+    },
+    {
+      "phase": "Z11_publish",
+      "t": 14.8,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1u",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1U\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1U\n\nStage: Subject \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 23 topics\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nOfficial Syllabus \u00b7 official_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.7 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 10 ms\nMapped completed 15 ms\nCurriculum structure built completed 32 ms\nReady completed 6 ms\nOfficial Syllabus\nReady\nExtracted completed 2 ms\nNormalized completed 2 ms\nParsed completed 7 ms\nMapped completed 21 ms\nCurriculum structure built completed 60 ms\nReady completed 12 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n2\n\nTopics\n\n23\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "findings": [],
+      "workflow_words": [
+        "Preview",
+        "Publish",
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "Preview needs attention \u00b7 not_ready \u00b7 23 topics",
+        "cmp_file": "Official CMP \u00b7 official_cmp.pdf",
+        "syl_file": "Official Syllabus \u00b7 official_syllabus.pdf",
+        "next_step": "Confirm the subject, then advance to Content Sources.  Workflow"
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_16_z11_publish.png"
+    },
+    {
+      "phase": "Z11_publish_state_0",
+      "t": 17.0,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1u",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1U\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1U\n\nStage: Subject \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 23 topics\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nOfficial Syllabus \u00b7 official_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.7 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 10 ms\nMapped completed 15 ms\nCurriculum structure built completed 32 ms\nReady completed 6 ms\nOfficial Syllabus\nReady\nExtracted completed 2 ms\nNormalized completed 2 ms\nParsed completed 7 ms\nMapped completed 21 ms\nCurriculum structure built completed 60 ms\nReady completed 12 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n2\n\nTopics\n\n23\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "findings": [],
+      "workflow_words": [
+        "Preview",
+        "Publish",
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "Preview needs attention \u00b7 not_ready \u00b7 23 topics",
+        "cmp_file": "Official CMP \u00b7 official_cmp.pdf",
+        "syl_file": "Official Syllabus \u00b7 official_syllabus.pdf",
+        "next_step": "Confirm the subject, then advance to Content Sources.  Workflow"
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_17_z11_publish_state_0.png"
+    },
+    {
+      "phase": "Z11_publish_state_1",
+      "t": 19.1,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1u",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1U\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1U\n\nStage: Subject \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 23 topics\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nOfficial Syllabus \u00b7 official_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.7 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 10 ms\nMapped completed 15 ms\nCurriculum structure built completed 32 ms\nReady completed 6 ms\nOfficial Syllabus\nReady\nExtracted completed 2 ms\nNormalized completed 2 ms\nParsed completed 7 ms\nMapped completed 21 ms\nCurriculum structure built completed 60 ms\nReady completed 12 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n2\n\nTopics\n\n23\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "findings": [],
+      "workflow_words": [
+        "Preview",
+        "Publish",
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "Preview needs attention \u00b7 not_ready \u00b7 23 topics",
+        "cmp_file": "Official CMP \u00b7 official_cmp.pdf",
+        "syl_file": "Official Syllabus \u00b7 official_syllabus.pdf",
+        "next_step": "Confirm the subject, then advance to Content Sources.  Workflow"
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_18_z11_publish_state_1.png"
+    },
+    {
+      "phase": "Z11_publish_state_2",
+      "t": 21.4,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1u",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1U\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1U\n\nStage: Subject \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 23 topics\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nOfficial Syllabus \u00b7 official_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:09\nSIZE\n1.7 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 10 ms\nMapped completed 15 ms\nCurriculum structure built completed 32 ms\nReady completed 6 ms\nOfficial Syllabus\nReady\nExtracted completed 2 ms\nNormalized completed 2 ms\nParsed completed 7 ms\nMapped completed 21 ms\nCurriculum structure built completed 60 ms\nReady completed 12 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n2\n\nTopics\n\n23\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "findings": [],
+      "workflow_words": [
+        "Preview",
+        "Publish",
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "Preview needs attention \u00b7 not_ready \u00b7 23 topics",
+        "cmp_file": "Official CMP \u00b7 official_cmp.pdf",
+        "syl_file": "Official Syllabus \u00b7 official_syllabus.pdf",
+        "next_step": "Confirm the subject, then advance to Content Sources.  Workflow"
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_19_z11_publish_state_2.png"
+    },
+    {
+      "phase": "Z12_subjects",
+      "t": 21.5,
+      "url": "http://127.0.0.1:5130/console/studio/subjects",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nSubjects\n\nKWALITEC CONSOLE \u00b7 CURRICULUM AUTHORITY\n\nSubjects\n\nCreate subjects and open workspaces. Students only see a subject as Ready after you publish a verified curriculum.\n\nNEXT STEP\n\nOpen a workspace below, or create a subject to start a new curriculum.\n\nCurriculum workflow\nNew Subject\nUpload Official CMP\nUpload Official Syllabus\nExtraction\nReview & Corrections\nPublish Verified Curriculum\nAvailable to Students (Ready)\n\nOpen Curriculum Studio\n\nCreate Subject\nSubject code\nTitle\nOpen Workspace\nSubject code\nWorkspaces\nCS1R\n2026.1 \u00b7 Subject\nCS1S\n2026.1 \u00b7 Content Sources\nCS1T\nDraft \u00b7 Subject\nCS1U\n2026.1 \u00b7 Subject\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "findings": [],
+      "workflow_words": [
+        "Draft",
+        "Publish",
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "",
+        "cmp_file": "",
+        "syl_file": "",
+        "next_step": "Open a workspace below, or create a subject to start a new curriculum.  Curriculum workflow"
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_20_z12_subjects.png"
+    },
+    {
+      "phase": "Z12_subjects_alt",
+      "t": 21.5,
+      "url": "http://127.0.0.1:5130/console/subjects",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID 4BE6495D5636 \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "flashes": [],
+      "findings": [],
+      "workflow_words": [],
+      "status": {
+        "preview_line": "",
+        "cmp_file": "",
+        "syl_file": "",
+        "next_step": ""
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_21_z12_subjects_alt.png"
+    },
+    {
+      "phase": "Z13_student",
+      "t": 21.6,
+      "url": "http://127.0.0.1:5130/alpha/onboarding",
+      "text": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\nfounder.studio@kwalitec.example\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\n\nInternal Alpha\n\nWelcome to Kwalitec\n\nA short orientation \u2014 then choose your exam and begin learning.\n\nStep 1 of 4\n\nWhat Kwalitec is\n\nKwalitec helps you prepare for demanding exams with a clear Study Plan, focused daily study, and progress you can trust \u2014 built from verified curriculum and your recorded practice.\n\nStep 2 of 4\n\nChoose your exam\n\nPick a Ready subject from the Subject Catalogue, enter your exam date and study availability, then begin learning. Coming Soon subjects are under preparation and cannot be selected yet.\n\nStep 3 of 4\n\nToday's Focus\n\nEach day, Home shows Today's Focus \u2014 what to study now and why. Start today's Session to practice, then see what changed and what comes next.\n\nStep 4 of 4\n\nGuidance you can understand\n\nRecommendations come from your syllabus structure, available time, and study history \u2014 not a black box. When you expand \u201cwhy\u201d, you see the reasons behind the guidance.\n\nContinue to Home\nSkip for now\nHelp & Support\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "flashes": [],
+      "findings": [],
+      "workflow_words": [
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "",
+        "cmp_file": "",
+        "syl_file": "",
+        "next_step": ""
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_22_z13_student.png"
+    },
+    {
+      "phase": "Z13_dashboard",
+      "t": 21.7,
+      "url": "http://127.0.0.1:5130/alpha/onboarding",
+      "text": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\nfounder.studio@kwalitec.example\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\n\nInternal Alpha\n\nWelcome to Kwalitec\n\nA short orientation \u2014 then choose your exam and begin learning.\n\nStep 1 of 4\n\nWhat Kwalitec is\n\nKwalitec helps you prepare for demanding exams with a clear Study Plan, focused daily study, and progress you can trust \u2014 built from verified curriculum and your recorded practice.\n\nStep 2 of 4\n\nChoose your exam\n\nPick a Ready subject from the Subject Catalogue, enter your exam date and study availability, then begin learning. Coming Soon subjects are under preparation and cannot be selected yet.\n\nStep 3 of 4\n\nToday's Focus\n\nEach day, Home shows Today's Focus \u2014 what to study now and why. Start today's Session to practice, then see what changed and what comes next.\n\nStep 4 of 4\n\nGuidance you can understand\n\nRecommendations come from your syllabus structure, available time, and study history \u2014 not a black box. When you expand \u201cwhy\u201d, you see the reasons behind the guidance.\n\nContinue to Home\nSkip for now\nHelp & Support\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "flashes": [],
+      "findings": [],
+      "workflow_words": [
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "",
+        "cmp_file": "",
+        "syl_file": "",
+        "next_step": ""
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_23_z13_dashboard.png"
+    },
+    {
+      "phase": "Z14_incomplete",
+      "t": 21.8,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1t",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1T\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1T\n\nStage: Subject \u00b7 Status: Active\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 failed\n\nPreview\n\nPreview not ready \u2014 no extracted curriculum topics yet\n\nChecklist\n\n0 of 8 checklist items ready.\n\nValidation findings\n\nOfficial CMP is not present. (blocking)\n\nWhy it matters:\nWithout an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.\n\nWhat to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.\n\nOfficial syllabus is not present. (blocking)\n\nWhy it matters:\nPublication must stay grounded in the official syllabus so student journeys follow authorised curriculum order.\n\nWhat to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.\n\nContent Sources\nUPLOAD DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n0\n\nTopics\n\n0\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n\nNo versions yet\n\nNo versions recorded yet. Assign a version label after approval to start version history.\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "findings": [
+        "Official CMP is not present. (blocking)",
+        "Why it matters:",
+        "Without an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.",
+        "What to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.",
+        "Official syllabus is not present. (blocking)",
+        "Why it matters:",
+        "Publication must stay grounded in the official syllabus so student journeys follow authorised curriculum order.",
+        "What to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.",
+        "Content Sources",
+        "UPLOAD DOCUMENTS",
+        "Upload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.",
+        "Official CMP",
+        "REQUIRED",
+        "Curriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Drag PDF here",
+        "or",
+        "Select PDF",
+        "PDF only \u00b7 maximum size applies",
+        "Official Syllabus",
+        "REQUIRED",
+        "Official syllabus PDF grounding authorised curriculum order.",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Drag PDF here",
+        "or",
+        "Select PDF",
+        "PDF only \u00b7 maximum size applies",
+        "Document processing",
+        "Processing",
+        "Verified",
+        "Extracted",
+        "Parsed",
+        "Mapped",
+        "Curriculum structure built",
+        "Ready",
+        "Curriculum review",
+        "0 awaiting review \u00b7 0 validation errors",
+        "OVERVIEW",
+        "DOCUMENTS",
+        "EXTRACTION STATUS"
+      ],
+      "workflow_words": [
+        "Validate",
+        "Preview",
+        "Publish",
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "Preview not ready \u2014 no extracted curriculum topics yet",
+        "cmp_file": "",
+        "syl_file": "",
+        "next_step": "Confirm the subject, then advance to Content Sources.  Workflow"
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_24_z14_incomplete.png"
+    },
+    {
+      "phase": "Z14_incomplete_publish",
+      "t": 21.9,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1t",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1T\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1T\n\nStage: Subject \u00b7 Status: Active\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 failed\n\nPreview\n\nPreview not ready \u2014 no extracted curriculum topics yet\n\nChecklist\n\n0 of 8 checklist items ready.\n\nValidation findings\n\nOfficial CMP is not present. (blocking)\n\nWhy it matters:\nWithout an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.\n\nWhat to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.\n\nOfficial syllabus is not present. (blocking)\n\nWhy it matters:\nPublication must stay grounded in the official syllabus so student journeys follow authorised curriculum order.\n\nWhat to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.\n\nContent Sources\nUPLOAD DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n0\n\nTopics\n\n0\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n\nNo versions yet\n\nNo versions recorded yet. Assign a version label after approval to start version history.\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "findings": [
+        "Official CMP is not present. (blocking)",
+        "Why it matters:",
+        "Without an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.",
+        "What to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.",
+        "Official syllabus is not present. (blocking)",
+        "Why it matters:",
+        "Publication must stay grounded in the official syllabus so student journeys follow authorised curriculum order.",
+        "What to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.",
+        "Content Sources",
+        "UPLOAD DOCUMENTS",
+        "Upload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.",
+        "Official CMP",
+        "REQUIRED",
+        "Curriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Drag PDF here",
+        "or",
+        "Select PDF",
+        "PDF only \u00b7 maximum size applies",
+        "Official Syllabus",
+        "REQUIRED",
+        "Official syllabus PDF grounding authorised curriculum order.",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Drag PDF here",
+        "or",
+        "Select PDF",
+        "PDF only \u00b7 maximum size applies",
+        "Document processing",
+        "Processing",
+        "Verified",
+        "Extracted",
+        "Parsed",
+        "Mapped",
+        "Curriculum structure built",
+        "Ready",
+        "Curriculum review",
+        "0 awaiting review \u00b7 0 validation errors",
+        "OVERVIEW",
+        "DOCUMENTS",
+        "EXTRACTION STATUS"
+      ],
+      "workflow_words": [
+        "Validate",
+        "Preview",
+        "Publish",
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "Preview not ready \u2014 no extracted curriculum topics yet",
+        "cmp_file": "",
+        "syl_file": "",
+        "next_step": "Confirm the subject, then advance to Content Sources.  Workflow"
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_25_z14_incomplete_publish.png"
+    },
+    {
+      "phase": "Z14_incomplete_approve",
+      "t": 22.0,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1t",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1T\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1T\n\nStage: Subject \u00b7 Status: Active\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 failed\n\nPreview\n\nPreview not ready \u2014 no extracted curriculum topics yet\n\nChecklist\n\n0 of 8 checklist items ready.\n\nValidation findings\n\nOfficial CMP is not present. (blocking)\n\nWhy it matters:\nWithout an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.\n\nWhat to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.\n\nOfficial syllabus is not present. (blocking)\n\nWhy it matters:\nPublication must stay grounded in the official syllabus so student journeys follow authorised curriculum order.\n\nWhat to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.\n\nContent Sources\nUPLOAD DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n0\n\nTopics\n\n0\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n\nNo versions yet\n\nNo versions recorded yet. Assign a version label after approval to start version history.\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "findings": [
+        "Official CMP is not present. (blocking)",
+        "Why it matters:",
+        "Without an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.",
+        "What to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.",
+        "Official syllabus is not present. (blocking)",
+        "Why it matters:",
+        "Publication must stay grounded in the official syllabus so student journeys follow authorised curriculum order.",
+        "What to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.",
+        "Content Sources",
+        "UPLOAD DOCUMENTS",
+        "Upload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.",
+        "Official CMP",
+        "REQUIRED",
+        "Curriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Drag PDF here",
+        "or",
+        "Select PDF",
+        "PDF only \u00b7 maximum size applies",
+        "Official Syllabus",
+        "REQUIRED",
+        "Official syllabus PDF grounding authorised curriculum order.",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Drag PDF here",
+        "or",
+        "Select PDF",
+        "PDF only \u00b7 maximum size applies",
+        "Document processing",
+        "Processing",
+        "Verified",
+        "Extracted",
+        "Parsed",
+        "Mapped",
+        "Curriculum structure built",
+        "Ready",
+        "Curriculum review",
+        "0 awaiting review \u00b7 0 validation errors",
+        "OVERVIEW",
+        "DOCUMENTS",
+        "EXTRACTION STATUS"
+      ],
+      "workflow_words": [
+        "Validate",
+        "Preview",
+        "Publish",
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "Preview not ready \u2014 no extracted curriculum topics yet",
+        "cmp_file": "",
+        "syl_file": "",
+        "next_step": "Confirm the subject, then advance to Content Sources.  Workflow"
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_26_z14_incomplete_approve.png"
+    },
+    {
+      "phase": "Z14_incomplete_preview",
+      "t": 22.2,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1t",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1T\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1T\n\nStage: Subject \u00b7 Status: Active\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 failed\n\nPreview\n\nPreview not ready \u2014 no extracted curriculum topics yet\n\nChecklist\n\n0 of 8 checklist items ready.\n\nValidation findings\n\nOfficial CMP is not present. (blocking)\n\nWhy it matters:\nWithout an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.\n\nWhat to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.\n\nOfficial syllabus is not present. (blocking)\n\nWhy it matters:\nPublication must stay grounded in the official syllabus so student journeys follow authorised curriculum order.\n\nWhat to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.\n\nContent Sources\nUPLOAD DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n0\n\nTopics\n\n0\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n\nNo versions yet\n\nNo versions recorded yet. Assign a version label after approval to start version history.\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "findings": [
+        "Official CMP is not present. (blocking)",
+        "Why it matters:",
+        "Without an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.",
+        "What to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.",
+        "Official syllabus is not present. (blocking)",
+        "Why it matters:",
+        "Publication must stay grounded in the official syllabus so student journeys follow authorised curriculum order.",
+        "What to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.",
+        "Content Sources",
+        "UPLOAD DOCUMENTS",
+        "Upload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.",
+        "Official CMP",
+        "REQUIRED",
+        "Curriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Drag PDF here",
+        "or",
+        "Select PDF",
+        "PDF only \u00b7 maximum size applies",
+        "Official Syllabus",
+        "REQUIRED",
+        "Official syllabus PDF grounding authorised curriculum order.",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Drag PDF here",
+        "or",
+        "Select PDF",
+        "PDF only \u00b7 maximum size applies",
+        "Document processing",
+        "Processing",
+        "Verified",
+        "Extracted",
+        "Parsed",
+        "Mapped",
+        "Curriculum structure built",
+        "Ready",
+        "Curriculum review",
+        "0 awaiting review \u00b7 0 validation errors",
+        "OVERVIEW",
+        "DOCUMENTS",
+        "EXTRACTION STATUS"
+      ],
+      "workflow_words": [
+        "Validate",
+        "Preview",
+        "Publish",
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "Preview not ready \u2014 no extracted curriculum topics yet",
+        "cmp_file": "",
+        "syl_file": "",
+        "next_step": "Confirm the subject, then advance to Content Sources.  Workflow"
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_27_z14_incomplete_preview.png"
+    },
+    {
+      "phase": "Z14_incomplete_validate",
+      "t": 22.3,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1t",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1T\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1T\n\nStage: Subject \u00b7 Status: Active\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 failed\n\nPreview\n\nPreview not ready \u2014 no extracted curriculum topics yet\n\nChecklist\n\n0 of 8 checklist items ready.\n\nValidation findings\n\nOfficial CMP is not present. (blocking)\n\nWhy it matters:\nWithout an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.\n\nWhat to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.\n\nOfficial syllabus is not present. (blocking)\n\nWhy it matters:\nPublication must stay grounded in the official syllabus so student journeys follow authorised curriculum order.\n\nWhat to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.\n\nContent Sources\nUPLOAD DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n0\n\nTopics\n\n0\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n\nNo versions yet\n\nNo versions recorded yet. Assign a version label after approval to start version history.\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "findings": [
+        "Official CMP is not present. (blocking)",
+        "Why it matters:",
+        "Without an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.",
+        "What to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.",
+        "Official syllabus is not present. (blocking)",
+        "Why it matters:",
+        "Publication must stay grounded in the official syllabus so student journeys follow authorised curriculum order.",
+        "What to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.",
+        "Content Sources",
+        "UPLOAD DOCUMENTS",
+        "Upload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.",
+        "Official CMP",
+        "REQUIRED",
+        "Curriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Drag PDF here",
+        "or",
+        "Select PDF",
+        "PDF only \u00b7 maximum size applies",
+        "Official Syllabus",
+        "REQUIRED",
+        "Official syllabus PDF grounding authorised curriculum order.",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Drag PDF here",
+        "or",
+        "Select PDF",
+        "PDF only \u00b7 maximum size applies",
+        "Document processing",
+        "Processing",
+        "Verified",
+        "Extracted",
+        "Parsed",
+        "Mapped",
+        "Curriculum structure built",
+        "Ready",
+        "Curriculum review",
+        "0 awaiting review \u00b7 0 validation errors",
+        "OVERVIEW",
+        "DOCUMENTS",
+        "EXTRACTION STATUS"
+      ],
+      "workflow_words": [
+        "Validate",
+        "Preview",
+        "Publish",
+        "Ready"
+      ],
+      "status": {
+        "preview_line": "Preview not ready \u2014 no extracted curriculum topics yet",
+        "cmp_file": "",
+        "syl_file": "",
+        "next_step": "Confirm the subject, then advance to Content Sources.  Workflow"
+      },
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/final_28_z14_incomplete_validate.png"
+    }
+  ]
+}

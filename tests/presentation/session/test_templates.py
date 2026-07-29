@@ -46,9 +46,18 @@ def test_legacy_session_css_removed():
 
 def test_base_template_skip_link_and_main():
     text = (TEMPLATE_ROOT / "base.html").read_text(encoding="utf-8")
-    assert "Skip to content" in text
-    assert 'id="session-main"' in text
+    assert 'extends "layouts/eos_student.html"' in text
     assert "design_system.css" in text
+    eos = (
+        Path(__file__).resolve().parents[3]
+        / "app"
+        / "templates"
+        / "layouts"
+        / "eos_student.html"
+    ).read_text(encoding="utf-8")
+    assert "Skip to content" in eos
+    assert 'id="student-main"' in eos
+    assert "student-shell" in eos
 
 
 def test_overview_has_primary_cta_marker():

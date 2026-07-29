@@ -1,0 +1,1388 @@
+{
+  "programme": "FV-001B",
+  "kind": "focus",
+  "elapsed_s": 31.1,
+  "records": [
+    {
+      "phase": "01_studio",
+      "t": 2.8,
+      "url": "http://127.0.0.1:5130/console/studio/",
+      "title": "Curriculum Studio \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\n\nKWALITEC CONSOLE \u00b7 CURRICULUM STUDIO\n\nCurriculum Studio\n\nReview, validate, preview, approve, and publish curricula through one Console workflow.\n\nNEXT STEP\n\nOpen a workspace below, or create a subject to start a new curriculum.\n\nPublished 0\nDrafts 1\nPending validation 0\nPending approval 0\nCreate Subject\nSubject code *\n\nUse a short syllabus code such as CS1.\n\nTitle\nOpen Workspace\nSubject code *\n\nOpen an existing subject code to continue its workflow.\n\nWorkspaces\nCS1B\n2026.1 \u00b7 Content Sources\nRecent activity\nsources_uploaded: Uploaded sources for ws-cs1b\nsources_uploaded: Uploaded sources for ws-cs1b\nversion_assigned: Assigned version version-1\nworkspace_opened: Opened workspace ws-cs1b\nsubject_created: Created subject CS1B\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Create Subject",
+        "Open Workspace"
+      ],
+      "tabs": [
+        "Overview",
+        "Subjects",
+        "Curriculum Studio",
+        "Review Queue",
+        "Publishing",
+        "Versions",
+        "Quality",
+        "Students",
+        "Settings",
+        "Support"
+      ],
+      "headings": [
+        "Curriculum Studio",
+        "Create Subject",
+        "Open Workspace",
+        "Workspaces",
+        "Recent activity"
+      ],
+      "labels": [
+        "Search the Console",
+        "Subject code *",
+        "Title"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/focus_00_01_studio.png"
+    },
+    {
+      "phase": "02_workspace_opened",
+      "t": 3.1,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b",
+      "title": "Workspace \u00b7 CS1B \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1B\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1B\n\nStage: Content Sources \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nUpload the Official CMP and Official Syllabus PDFs, then validate the curriculum.\n\nWorkflow\nSubject\nContent Sources\n(current)\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview ready \u00b7 not_ready \u00b7 0 nodes\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nofficial_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nofficial_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nCurriculum Intelligence Pipeline\nProcessing\nVerified\nExtracted\nParsed\nMapped\nKnowledge Graph Built\nReady\nDocument 1\nReady\nExtracted completed 1060 ms\nNormalized completed 14 ms\nParsed completed 65 ms\nMapped completed 353 ms\nKnowledge Graph Built completed 68 ms\nReady completed 15 ms\nDocument 2\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 4 ms\nMapped completed 14 ms\nKnowledge Graph Built completed 36 ms\nReady completed 8 ms\nCurriculum Intelligence\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nPIPELINE\nKNOWLEDGE GRAPH\nEVIDENCE EXPLORER\nVALIDATION\nREVIEW QUEUE\nMETRICS\nENTITY DETAILS\n\nEvidence-backed curriculum knowledge for this workspace.\n\nDocuments\n\n2\n\nEntities\n\n23\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Remove",
+        "OVERVIEW",
+        "DOCUMENTS",
+        "PIPELINE",
+        "KNOWLEDGE GRAPH",
+        "EVIDENCE EXPLORER",
+        "VALIDATION",
+        "REVIEW QUEUE",
+        "METRICS",
+        "ENTITY DETAILS",
+        "Load",
+        "Advance to Next Stage",
+        "Validate Curriculum",
+        "Build Preview",
+        "Approve Curriculum",
+        "Publish Verified Curriculum",
+        "Assign Version",
+        "Download",
+        "official_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1",
+        "official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1"
+      ],
+      "tabs": [
+        "Overview",
+        "Subjects",
+        "Curriculum Studio",
+        "Review Queue",
+        "Publishing",
+        "Versions",
+        "Quality",
+        "Students",
+        "Settings",
+        "Support"
+      ],
+      "headings": [
+        "CS1B",
+        "Workflow",
+        "Content Sources",
+        "Curriculum Intelligence",
+        "Actions",
+        "Version history",
+        "Official CMP",
+        "Official Syllabus",
+        "Curriculum Intelligence Pipeline",
+        "Graph neighbours"
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "terms_found": [
+        "Knowledge Graph",
+        "Pipeline",
+        "Entity Details"
+      ],
+      "screenshot": "/tmp/fv001b_blind_capture/focus_01_02_workspace_opened.png"
+    },
+    {
+      "phase": "03_workspace_state",
+      "t": 3.3,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b",
+      "title": "Workspace \u00b7 CS1B \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1B\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1B\n\nStage: Content Sources \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nUpload the Official CMP and Official Syllabus PDFs, then validate the curriculum.\n\nWorkflow\nSubject\nContent Sources\n(current)\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview ready \u00b7 not_ready \u00b7 0 nodes\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nofficial_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nofficial_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nCurriculum Intelligence Pipeline\nProcessing\nVerified\nExtracted\nParsed\nMapped\nKnowledge Graph Built\nReady\nDocument 1\nReady\nExtracted completed 1060 ms\nNormalized completed 14 ms\nParsed completed 65 ms\nMapped completed 353 ms\nKnowledge Graph Built completed 68 ms\nReady completed 15 ms\nDocument 2\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 4 ms\nMapped completed 14 ms\nKnowledge Graph Built completed 36 ms\nReady completed 8 ms\nCurriculum Intelligence\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nPIPELINE\nKNOWLEDGE GRAPH\nEVIDENCE EXPLORER\nVALIDATION\nREVIEW QUEUE\nMETRICS\nENTITY DETAILS\n\nEvidence-backed curriculum knowledge for this workspace.\n\nDocuments\n\n2\n\nEntities\n\n23\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Remove",
+        "OVERVIEW",
+        "DOCUMENTS",
+        "PIPELINE",
+        "KNOWLEDGE GRAPH",
+        "EVIDENCE EXPLORER",
+        "VALIDATION",
+        "REVIEW QUEUE",
+        "METRICS",
+        "ENTITY DETAILS",
+        "Load",
+        "Advance to Next Stage",
+        "Validate Curriculum",
+        "Build Preview",
+        "Approve Curriculum",
+        "Publish Verified Curriculum",
+        "Assign Version",
+        "Download",
+        "official_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1",
+        "official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1"
+      ],
+      "tabs": [
+        "Overview",
+        "Subjects",
+        "Curriculum Studio",
+        "Review Queue",
+        "Publishing",
+        "Versions",
+        "Quality",
+        "Students",
+        "Settings",
+        "Support"
+      ],
+      "headings": [
+        "CS1B",
+        "Workflow",
+        "Content Sources",
+        "Curriculum Intelligence",
+        "Actions",
+        "Version history",
+        "Official CMP",
+        "Official Syllabus",
+        "Curriculum Intelligence Pipeline",
+        "Graph neighbours"
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "terms_found": [
+        "Knowledge Graph",
+        "Pipeline",
+        "Entity Details"
+      ],
+      "screenshot": "/tmp/fv001b_blind_capture/focus_02_03_workspace_state.png",
+      "file_input_count": 2
+    },
+    {
+      "phase": "04_syllabus",
+      "t": 5.6,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b",
+      "title": "Workspace \u00b7 CS1B \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1B\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1B\n\nStage: Content Sources \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nUpload the Official CMP and Official Syllabus PDFs, then validate the curriculum.\n\nWorkflow\nSubject\nContent Sources\n(current)\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview ready \u00b7 not_ready \u00b7 0 nodes\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nofficial_syllabus.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\n\nDocument replaced successfully.\n\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nofficial_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nCurriculum Intelligence Pipeline\nProcessing\nVerified\nExtracted\nParsed\nMapped\nKnowledge Graph Built\nReady\nDocument 3\nReady\nExtracted \u00b7 completed \u00b7 4 ms\nNormalized \u00b7 completed \u00b7 1 ms\nParsed \u00b7 completed \u00b7 7 ms\nMapped \u00b7 completed \u00b7 39 ms\nKnowledge Graph Built \u00b7 completed \u00b7 92 ms\nReady \u00b7 completed \u00b7 19 ms\nDocument 2\nReady\nExtracted \u00b7 completed \u00b7 2 ms\nNormalized \u00b7 completed \u00b7 1 ms\nParsed \u00b7 completed \u00b7 4 ms\nMapped \u00b7 completed \u00b7 14 ms\nKnowledge Graph Built \u00b7 completed \u00b7 36 ms\nReady \u00b7 completed \u00b7 8 ms\nDocument replaced successfully.\nCurriculum Intelligence\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nPIPELINE\nKNOWLEDGE GRAPH\nEVIDENCE EXPLORER\nVALIDATION\nREVIEW QUEUE\nMETRICS\nENTITY DETAILS\n\nEvidence-backed curriculum knowledge for this workspace.\n\nDocuments\n\n2\n\nEntities\n\n23\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?\n\nDocument replaced successfully.",
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Remove",
+        "OVERVIEW",
+        "DOCUMENTS",
+        "PIPELINE",
+        "KNOWLEDGE GRAPH",
+        "EVIDENCE EXPLORER",
+        "VALIDATION",
+        "REVIEW QUEUE",
+        "METRICS",
+        "ENTITY DETAILS",
+        "Load",
+        "Advance to Next Stage",
+        "Validate Curriculum",
+        "Build Preview",
+        "Approve Curriculum",
+        "Publish Verified Curriculum",
+        "Assign Version",
+        "Download",
+        "official_syllabus.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1",
+        "official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1"
+      ],
+      "tabs": [
+        "Overview",
+        "Subjects",
+        "Curriculum Studio",
+        "Review Queue",
+        "Publishing",
+        "Versions",
+        "Quality",
+        "Students",
+        "Settings",
+        "Support"
+      ],
+      "headings": [
+        "CS1B",
+        "Workflow",
+        "Content Sources",
+        "Curriculum Intelligence",
+        "Actions",
+        "Version history",
+        "Official CMP",
+        "Official Syllabus",
+        "Curriculum Intelligence Pipeline",
+        "Graph neighbours"
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "terms_found": [
+        "Knowledge Graph",
+        "Pipeline",
+        "Entity Details"
+      ],
+      "screenshot": "/tmp/fv001b_blind_capture/focus_03_04_syllabus.png"
+    },
+    {
+      "phase": "05_cmp",
+      "t": 7.8,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b",
+      "title": "Workspace \u00b7 CS1B \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1B\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1B\n\nStage: Content Sources \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nUpload the Official CMP and Official Syllabus PDFs, then validate the curriculum.\n\nWorkflow\nSubject\nContent Sources\n(current)\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview ready \u00b7 not_ready \u00b7 0 nodes\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nofficial_syllabus.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\n\nDocument replaced successfully.\n\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nofficial_cmp.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\n\nDocument replaced successfully.\n\nCurriculum Intelligence Pipeline\nProcessing\nVerified\nExtracted\nParsed\nMapped\nKnowledge Graph Built\nReady\nDocument 3\nReady\nExtracted \u00b7 completed \u00b7 4 ms\nNormalized \u00b7 completed \u00b7 1 ms\nParsed \u00b7 completed \u00b7 7 ms\nMapped \u00b7 completed \u00b7 39 ms\nKnowledge Graph Built \u00b7 completed \u00b7 92 ms\nReady \u00b7 completed \u00b7 19 ms\nDocument 4\nReady\nExtracted \u00b7 completed \u00b7 10 ms\nNormalized \u00b7 completed \u00b7 8 ms\nParsed \u00b7 completed \u00b7 11 ms\nMapped \u00b7 completed \u00b7 61 ms\nKnowledge Graph Built \u00b7 completed \u00b7 126 ms\nReady \u00b7 completed \u00b7 7 ms\nDocument replaced successfully.\nCurriculum Intelligence\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nPIPELINE\nKNOWLEDGE GRAPH\nEVIDENCE EXPLORER\nVALIDATION\nREVIEW QUEUE\nMETRICS\nENTITY DETAILS\n\nEvidence-backed curriculum knowledge for this workspace.\n\nDocuments\n\n2\n\nEntities\n\n23\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?\n\nDocument replaced successfully.",
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Remove",
+        "OVERVIEW",
+        "DOCUMENTS",
+        "PIPELINE",
+        "KNOWLEDGE GRAPH",
+        "EVIDENCE EXPLORER",
+        "VALIDATION",
+        "REVIEW QUEUE",
+        "METRICS",
+        "ENTITY DETAILS",
+        "Load",
+        "Advance to Next Stage",
+        "Validate Curriculum",
+        "Build Preview",
+        "Approve Curriculum",
+        "Publish Verified Curriculum",
+        "Assign Version",
+        "Download",
+        "official_syllabus.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1",
+        "official_cmp.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1"
+      ],
+      "tabs": [
+        "Overview",
+        "Subjects",
+        "Curriculum Studio",
+        "Review Queue",
+        "Publishing",
+        "Versions",
+        "Quality",
+        "Students",
+        "Settings",
+        "Support"
+      ],
+      "headings": [
+        "CS1B",
+        "Workflow",
+        "Content Sources",
+        "Curriculum Intelligence",
+        "Actions",
+        "Version history",
+        "Official CMP",
+        "Official Syllabus",
+        "Curriculum Intelligence Pipeline",
+        "Graph neighbours"
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "terms_found": [
+        "Knowledge Graph",
+        "Pipeline",
+        "Entity Details"
+      ],
+      "screenshot": "/tmp/fv001b_blind_capture/focus_04_05_cmp.png"
+    },
+    {
+      "phase": "06_action_Advance",
+      "t": 10.3,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b",
+      "title": "Workspace \u00b7 CS1B \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe've advanced the workflow to the next stage.\nOverview\nCurriculum Studio\nCS1B\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1B\n\nStage: Validation \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nValidation looks ready \u2014 build a student-facing preview.\n\nWorkflow\nSubject\nContent Sources\nValidation\n(current)\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview ready \u00b7 not_ready \u00b7 0 nodes\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nofficial_syllabus.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nofficial_cmp.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nCurriculum Intelligence Pipeline\nProcessing\nVerified\nExtracted\nParsed\nMapped\nKnowledge Graph Built\nReady\nDocument 3\nReady\nExtracted completed 4 ms\nNormalized completed 1 ms\nParsed completed 7 ms\nMapped completed 39 ms\nKnowledge Graph Built completed 92 ms\nReady completed 19 ms\nDocument 4\nReady\nExtracted completed 10 ms\nNormalized completed 8 ms\nParsed completed 11 ms\nMapped completed 61 ms\nKnowledge Graph Built completed 126 ms\nReady completed 7 ms\nCurriculum Intelligence\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nPIPELINE\nKNOWLEDGE GRAPH\nEVIDENCE EXPLORER\nVALIDATION\nREVIEW QUEUE\nMETRICS\nENTITY DETAILS\n\nEvidence-backed curriculum knowledge for this workspace.\n\nDocuments\n\n4\n\nEntities\n\n46\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Remove",
+        "OVERVIEW",
+        "DOCUMENTS",
+        "PIPELINE",
+        "KNOWLEDGE GRAPH",
+        "EVIDENCE EXPLORER",
+        "VALIDATION",
+        "REVIEW QUEUE",
+        "METRICS",
+        "ENTITY DETAILS",
+        "Load",
+        "Advance to Next Stage",
+        "Validate Curriculum",
+        "Build Preview",
+        "Approve Curriculum",
+        "Publish Verified Curriculum",
+        "Assign Version",
+        "Download",
+        "official_syllabus.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1",
+        "official_cmp.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1"
+      ],
+      "tabs": [
+        "Overview",
+        "Subjects",
+        "Curriculum Studio",
+        "Review Queue",
+        "Publishing",
+        "Versions",
+        "Quality",
+        "Students",
+        "Settings",
+        "Support"
+      ],
+      "headings": [
+        "CS1B",
+        "Workflow",
+        "Content Sources",
+        "Curriculum Intelligence",
+        "Actions",
+        "Version history",
+        "Official CMP",
+        "Official Syllabus",
+        "Curriculum Intelligence Pipeline",
+        "Graph neighbours"
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "terms_found": [
+        "Knowledge Graph",
+        "Pipeline",
+        "Entity Details"
+      ],
+      "screenshot": "/tmp/fv001b_blind_capture/focus_05_06_action_advance.png"
+    },
+    {
+      "phase": "06_action_Validate",
+      "t": 13.0,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b",
+      "title": "Workspace \u00b7 CS1B \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe couldn't complete validation. Blocking findings prevent a safe student curriculum. Review the Validation findings, fix CMP or syllabus issues, then try again.\nOverview\nCurriculum Studio\nCS1B\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1B\n\nStage: Validation \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nValidation looks ready \u2014 build a student-facing preview.\n\nWorkflow\nSubject\nContent Sources\nValidation\n(current)\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview ready \u00b7 not_ready \u00b7 0 nodes\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nofficial_syllabus.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nofficial_cmp.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nCurriculum Intelligence Pipeline\nProcessing\nVerified\nExtracted\nParsed\nMapped\nKnowledge Graph Built\nReady\nDocument 3\nReady\nExtracted completed 4 ms\nNormalized completed 1 ms\nParsed completed 7 ms\nMapped completed 39 ms\nKnowledge Graph Built completed 92 ms\nReady completed 19 ms\nDocument 4\nReady\nExtracted completed 10 ms\nNormalized completed 8 ms\nParsed completed 11 ms\nMapped completed 61 ms\nKnowledge Graph Built completed 126 ms\nReady completed 7 ms\nCurriculum Intelligence\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nPIPELINE\nKNOWLEDGE GRAPH\nEVIDENCE EXPLORER\nVALIDATION\nREVIEW QUEUE\nMETRICS\nENTITY DETAILS\n\nEvidence-backed curriculum knowledge for this workspace.\n\nDocuments\n\n4\n\nEntities\n\n46\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [
+        "We couldn't complete validation. Blocking findings prevent a safe student curriculum. Review the Validation findings, fix CMP or syllabus issues, then try again.",
+        "We couldn't complete validation. Blocking findings prevent a safe student curriculum. Review the Validation findings, fix CMP or syllabus issues, then try again."
+      ],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Remove",
+        "OVERVIEW",
+        "DOCUMENTS",
+        "PIPELINE",
+        "KNOWLEDGE GRAPH",
+        "EVIDENCE EXPLORER",
+        "VALIDATION",
+        "REVIEW QUEUE",
+        "METRICS",
+        "ENTITY DETAILS",
+        "Load",
+        "Advance to Next Stage",
+        "Validate Curriculum",
+        "Build Preview",
+        "Approve Curriculum",
+        "Publish Verified Curriculum",
+        "Assign Version",
+        "Download",
+        "official_syllabus.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1",
+        "official_cmp.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1"
+      ],
+      "tabs": [
+        "Overview",
+        "Subjects",
+        "Curriculum Studio",
+        "Review Queue",
+        "Publishing",
+        "Versions",
+        "Quality",
+        "Students",
+        "Settings",
+        "Support"
+      ],
+      "headings": [
+        "CS1B",
+        "Workflow",
+        "Content Sources",
+        "Curriculum Intelligence",
+        "Actions",
+        "Version history",
+        "Official CMP",
+        "Official Syllabus",
+        "Curriculum Intelligence Pipeline",
+        "Graph neighbours"
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "terms_found": [
+        "Knowledge Graph",
+        "Pipeline",
+        "Entity Details"
+      ],
+      "screenshot": "/tmp/fv001b_blind_capture/focus_06_06_action_validate.png"
+    },
+    {
+      "phase": "06_action_Preview",
+      "t": 15.6,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b",
+      "title": "Workspace \u00b7 CS1B \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe've built the preview successfully.\nOverview\nCurriculum Studio\nCS1B\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1B\n\nStage: Validation \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nValidation looks ready \u2014 build a student-facing preview.\n\nWorkflow\nSubject\nContent Sources\nValidation\n(current)\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview ready \u00b7 not_ready \u00b7 0 nodes\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nofficial_syllabus.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nofficial_cmp.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nCurriculum Intelligence Pipeline\nProcessing\nVerified\nExtracted\nParsed\nMapped\nKnowledge Graph Built\nReady\nDocument 3\nReady\nExtracted completed 4 ms\nNormalized completed 1 ms\nParsed completed 7 ms\nMapped completed 39 ms\nKnowledge Graph Built completed 92 ms\nReady completed 19 ms\nDocument 4\nReady\nExtracted completed 10 ms\nNormalized completed 8 ms\nParsed completed 11 ms\nMapped completed 61 ms\nKnowledge Graph Built completed 126 ms\nReady completed 7 ms\nCurriculum Intelligence\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nPIPELINE\nKNOWLEDGE GRAPH\nEVIDENCE EXPLORER\nVALIDATION\nREVIEW QUEUE\nMETRICS\nENTITY DETAILS\n\nEvidence-backed curriculum knowledge for this workspace.\n\nDocuments\n\n4\n\nEntities\n\n46\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Remove",
+        "OVERVIEW",
+        "DOCUMENTS",
+        "PIPELINE",
+        "KNOWLEDGE GRAPH",
+        "EVIDENCE EXPLORER",
+        "VALIDATION",
+        "REVIEW QUEUE",
+        "METRICS",
+        "ENTITY DETAILS",
+        "Load",
+        "Advance to Next Stage",
+        "Validate Curriculum",
+        "Build Preview",
+        "Approve Curriculum",
+        "Publish Verified Curriculum",
+        "Assign Version",
+        "Download",
+        "official_syllabus.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1",
+        "official_cmp.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1"
+      ],
+      "tabs": [
+        "Overview",
+        "Subjects",
+        "Curriculum Studio",
+        "Review Queue",
+        "Publishing",
+        "Versions",
+        "Quality",
+        "Students",
+        "Settings",
+        "Support"
+      ],
+      "headings": [
+        "CS1B",
+        "Workflow",
+        "Content Sources",
+        "Curriculum Intelligence",
+        "Actions",
+        "Version history",
+        "Official CMP",
+        "Official Syllabus",
+        "Curriculum Intelligence Pipeline",
+        "Graph neighbours"
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "terms_found": [
+        "Knowledge Graph",
+        "Pipeline",
+        "Entity Details"
+      ],
+      "screenshot": "/tmp/fv001b_blind_capture/focus_07_06_action_preview.png"
+    },
+    {
+      "phase": "06_action_Review",
+      "t": 18.0,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b",
+      "title": "Workspace \u00b7 CS1B \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe've built the preview successfully.\nOverview\nCurriculum Studio\nCS1B\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1B\n\nStage: Validation \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nValidation looks ready \u2014 build a student-facing preview.\n\nWorkflow\nSubject\nContent Sources\nValidation\n(current)\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview ready \u00b7 not_ready \u00b7 0 nodes\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nofficial_syllabus.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nofficial_cmp.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nCurriculum Intelligence Pipeline\nProcessing\nVerified\nExtracted\nParsed\nMapped\nKnowledge Graph Built\nReady\nDocument 3\nReady\nExtracted completed 4 ms\nNormalized completed 1 ms\nParsed completed 7 ms\nMapped completed 39 ms\nKnowledge Graph Built completed 92 ms\nReady completed 19 ms\nDocument 4\nReady\nExtracted completed 10 ms\nNormalized completed 8 ms\nParsed completed 11 ms\nMapped completed 61 ms\nKnowledge Graph Built completed 126 ms\nReady completed 7 ms\nCurriculum Intelligence\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nPIPELINE\nKNOWLEDGE GRAPH\nEVIDENCE EXPLORER\nVALIDATION\nREVIEW QUEUE\nMETRICS\nENTITY DETAILS\n\nNo entities awaiting review.\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Remove",
+        "OVERVIEW",
+        "DOCUMENTS",
+        "PIPELINE",
+        "KNOWLEDGE GRAPH",
+        "EVIDENCE EXPLORER",
+        "VALIDATION",
+        "REVIEW QUEUE",
+        "METRICS",
+        "ENTITY DETAILS",
+        "Load",
+        "Advance to Next Stage",
+        "Validate Curriculum",
+        "Build Preview",
+        "Approve Curriculum",
+        "Publish Verified Curriculum",
+        "Assign Version",
+        "Download",
+        "official_syllabus.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1",
+        "official_cmp.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1"
+      ],
+      "tabs": [
+        "Overview",
+        "Subjects",
+        "Curriculum Studio",
+        "Review Queue",
+        "Publishing",
+        "Versions",
+        "Quality",
+        "Students",
+        "Settings",
+        "Support"
+      ],
+      "headings": [
+        "CS1B",
+        "Workflow",
+        "Content Sources",
+        "Curriculum Intelligence",
+        "Actions",
+        "Version history",
+        "Official CMP",
+        "Official Syllabus",
+        "Curriculum Intelligence Pipeline",
+        "Graph neighbours"
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "terms_found": [
+        "Knowledge Graph",
+        "Pipeline",
+        "Entity Details"
+      ],
+      "screenshot": "/tmp/fv001b_blind_capture/focus_08_06_action_review.png"
+    },
+    {
+      "phase": "06_action_Approve",
+      "t": 20.5,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b",
+      "title": "Workspace \u00b7 CS1B \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe couldn't approve this curriculum. Approval without a version and preview risks publishing the wrong package. Assign a version label, complete preview, then try again.\nOverview\nCurriculum Studio\nCS1B\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1B\n\nStage: Validation \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nValidation looks ready \u2014 build a student-facing preview.\n\nWorkflow\nSubject\nContent Sources\nValidation\n(current)\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview ready \u00b7 not_ready \u00b7 0 nodes\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nofficial_syllabus.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nofficial_cmp.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nCurriculum Intelligence Pipeline\nProcessing\nVerified\nExtracted\nParsed\nMapped\nKnowledge Graph Built\nReady\nDocument 3\nReady\nExtracted completed 4 ms\nNormalized completed 1 ms\nParsed completed 7 ms\nMapped completed 39 ms\nKnowledge Graph Built completed 92 ms\nReady completed 19 ms\nDocument 4\nReady\nExtracted completed 10 ms\nNormalized completed 8 ms\nParsed completed 11 ms\nMapped completed 61 ms\nKnowledge Graph Built completed 126 ms\nReady completed 7 ms\nCurriculum Intelligence\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nPIPELINE\nKNOWLEDGE GRAPH\nEVIDENCE EXPLORER\nVALIDATION\nREVIEW QUEUE\nMETRICS\nENTITY DETAILS\n\nEvidence-backed curriculum knowledge for this workspace.\n\nDocuments\n\n4\n\nEntities\n\n46\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [
+        "We couldn't approve this curriculum. Approval without a version and preview risks publishing the wrong package. Assign a version label, complete preview, then try again.",
+        "We couldn't approve this curriculum. Approval without a version and preview risks publishing the wrong package. Assign a version label, complete preview, then try again."
+      ],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Remove",
+        "OVERVIEW",
+        "DOCUMENTS",
+        "PIPELINE",
+        "KNOWLEDGE GRAPH",
+        "EVIDENCE EXPLORER",
+        "VALIDATION",
+        "REVIEW QUEUE",
+        "METRICS",
+        "ENTITY DETAILS",
+        "Load",
+        "Advance to Next Stage",
+        "Validate Curriculum",
+        "Build Preview",
+        "Approve Curriculum",
+        "Publish Verified Curriculum",
+        "Assign Version",
+        "Download",
+        "official_syllabus.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1",
+        "official_cmp.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1"
+      ],
+      "tabs": [
+        "Overview",
+        "Subjects",
+        "Curriculum Studio",
+        "Review Queue",
+        "Publishing",
+        "Versions",
+        "Quality",
+        "Students",
+        "Settings",
+        "Support"
+      ],
+      "headings": [
+        "CS1B",
+        "Workflow",
+        "Content Sources",
+        "Curriculum Intelligence",
+        "Actions",
+        "Version history",
+        "Official CMP",
+        "Official Syllabus",
+        "Curriculum Intelligence Pipeline",
+        "Graph neighbours"
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "terms_found": [
+        "Knowledge Graph",
+        "Pipeline",
+        "Entity Details"
+      ],
+      "screenshot": "/tmp/fv001b_blind_capture/focus_09_06_action_approve.png"
+    },
+    {
+      "phase": "06_action_Publish",
+      "t": 24.4,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b",
+      "title": "Workspace \u00b7 CS1B \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe couldn't publish this curriculum. Publication without approval and a version would expose incomplete material to students. Assign a version label, complete approval, then try again.\nOverview\nCurriculum Studio\nCS1B\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1B\n\nStage: Validation \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nValidation looks ready \u2014 build a student-facing preview.\n\nWorkflow\nSubject\nContent Sources\nValidation\n(current)\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview ready \u00b7 not_ready \u00b7 0 nodes\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nofficial_syllabus.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nofficial_cmp.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nCurriculum Intelligence Pipeline\nProcessing\nVerified\nExtracted\nParsed\nMapped\nKnowledge Graph Built\nReady\nDocument 3\nReady\nExtracted completed 4 ms\nNormalized completed 1 ms\nParsed completed 7 ms\nMapped completed 39 ms\nKnowledge Graph Built completed 92 ms\nReady completed 19 ms\nDocument 4\nReady\nExtracted completed 10 ms\nNormalized completed 8 ms\nParsed completed 11 ms\nMapped completed 61 ms\nKnowledge Graph Built completed 126 ms\nReady completed 7 ms\nCurriculum Intelligence\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nPIPELINE\nKNOWLEDGE GRAPH\nEVIDENCE EXPLORER\nVALIDATION\nREVIEW QUEUE\nMETRICS\nENTITY DETAILS\n\nEvidence-backed curriculum knowledge for this workspace.\n\nDocuments\n\n4\n\nEntities\n\n46\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [
+        "We couldn't publish this curriculum. Publication without approval and a version would expose incomplete material to students. Assign a version label, complete approval, then try again.",
+        "We couldn't publish this curriculum. Publication without approval and a version would expose incomplete material to students. Assign a version label, complete approval, then try again."
+      ],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Remove",
+        "OVERVIEW",
+        "DOCUMENTS",
+        "PIPELINE",
+        "KNOWLEDGE GRAPH",
+        "EVIDENCE EXPLORER",
+        "VALIDATION",
+        "REVIEW QUEUE",
+        "METRICS",
+        "ENTITY DETAILS",
+        "Load",
+        "Advance to Next Stage",
+        "Validate Curriculum",
+        "Build Preview",
+        "Approve Curriculum",
+        "Publish Verified Curriculum",
+        "Assign Version",
+        "Download",
+        "official_syllabus.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1",
+        "official_cmp.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1"
+      ],
+      "tabs": [
+        "Overview",
+        "Subjects",
+        "Curriculum Studio",
+        "Review Queue",
+        "Publishing",
+        "Versions",
+        "Quality",
+        "Students",
+        "Settings",
+        "Support"
+      ],
+      "headings": [
+        "CS1B",
+        "Workflow",
+        "Content Sources",
+        "Curriculum Intelligence",
+        "Actions",
+        "Version history",
+        "Official CMP",
+        "Official Syllabus",
+        "Curriculum Intelligence Pipeline",
+        "Graph neighbours"
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "terms_found": [
+        "Knowledge Graph",
+        "Pipeline",
+        "Entity Details"
+      ],
+      "screenshot": "/tmp/fv001b_blind_capture/focus_10_06_action_publish.png"
+    },
+    {
+      "phase": "07_tab_Pipeline",
+      "t": 25.7,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b",
+      "title": "Workspace \u00b7 CS1B \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe couldn't publish this curriculum. Publication without approval and a version would expose incomplete material to students. Assign a version label, complete approval, then try again.\nOverview\nCurriculum Studio\nCS1B\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1B\n\nStage: Validation \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nValidation looks ready \u2014 build a student-facing preview.\n\nWorkflow\nSubject\nContent Sources\nValidation\n(current)\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview ready \u00b7 not_ready \u00b7 0 nodes\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nofficial_syllabus.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nofficial_cmp.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nCurriculum Intelligence Pipeline\nProcessing\nVerified\nExtracted\nParsed\nMapped\nKnowledge Graph Built\nReady\nDocument 3\nReady\nExtracted completed 4 ms\nNormalized completed 1 ms\nParsed completed 7 ms\nMapped completed 39 ms\nKnowledge Graph Built completed 92 ms\nReady completed 19 ms\nDocument 4\nReady\nExtracted completed 10 ms\nNormalized completed 8 ms\nParsed completed 11 ms\nMapped completed 61 ms\nKnowledge Graph Built completed 126 ms\nReady completed 7 ms\nCurriculum Intelligence\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nPIPELINE\nKNOWLEDGE GRAPH\nEVIDENCE EXPLORER\nVALIDATION\nREVIEW QUEUE\nMETRICS\nENTITY DETAILS\n\nPipeline stage history is shown in Content Sources. Audit trail of intelligence actions:\n\npipeline_completed \u00b7 Pipeline ready for embeddings extension 2026-07-28T21:41:12Z\nmetrics_recorded \u00b7 Pipeline quality metrics recorded 2026-07-28T21:41:12Z\ngraph_rebuilt \u00b7 Knowledge graph rebuilt with 32 relations 2026-07-28T21:41:12Z\ngraph_validated \u00b7 Validation passed (0 errors, 1 warnings) 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created requires edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created depends_on edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created requires edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created depends_on edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created requires edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created depends_on edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created requires edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created depends_on edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created requires edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created depends_on edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created appears_in edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created formula_for edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created parent_of edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created child_of edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created appears_in edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created parent_of edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created child_of edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created appears_in edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created parent_of edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created child_of edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created appears_in edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created parent_of edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created child_of edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created appears_in edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created parent_of edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created child_of edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created appears_in edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created parent_of edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created child_of edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created appears_in edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created parent_of edge 2026-07-28T21:41:12Z\nrelation_created \u00b7 Created child_of edge 2026-07-28T21:41:12Z\nentity_created \u00b7 Mapped formula: Formula 2026-07-28T21:41:12Z\nentity_created \u00b7 Mapped topic: Chapter 3 \u00e2\u0080\u0094 Regression 2026-07-28T21:41:12Z\nentity_created \u00b7 Mapped topic: Chapter 2 \u00e2\u0080\u0094 Inference 2026-07-28T21:41:12Z\nentity_created \u00b7 Mapped topic: Chapter 1 \u00e2\u0080\u0094 Random variables 2026-07-28T21:41:12Z\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec ",
+      "flashes": [
+        "We couldn't publish this curriculum. Publication without approval and a version would expose incomplete material to students. Assign a version label, complete approval, then try again.",
+        "We couldn't publish this curriculum. Publication without approval and a version would expose incomplete material to students. Assign a version label, complete approval, then try again."
+      ],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Remove",
+        "OVERVIEW",
+        "DOCUMENTS",
+        "PIPELINE",
+        "KNOWLEDGE GRAPH",
+        "EVIDENCE EXPLORER",
+        "VALIDATION",
+        "REVIEW QUEUE",
+        "METRICS",
+        "ENTITY DETAILS",
+        "Load",
+        "Advance to Next Stage",
+        "Validate Curriculum",
+        "Build Preview",
+        "Approve Curriculum",
+        "Publish Verified Curriculum",
+        "Assign Version",
+        "Download",
+        "official_syllabus.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1",
+        "official_cmp.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1"
+      ],
+      "tabs": [
+        "Overview",
+        "Subjects",
+        "Curriculum Studio",
+        "Review Queue",
+        "Publishing",
+        "Versions",
+        "Quality",
+        "Students",
+        "Settings",
+        "Support"
+      ],
+      "headings": [
+        "CS1B",
+        "Workflow",
+        "Content Sources",
+        "Curriculum Intelligence",
+        "Actions",
+        "Version history",
+        "Official CMP",
+        "Official Syllabus",
+        "Curriculum Intelligence Pipeline",
+        "Graph neighbours"
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "terms_found": [
+        "Inference",
+        "Knowledge Graph",
+        "Pipeline",
+        "Entity Details"
+      ],
+      "screenshot": "/tmp/fv001b_blind_capture/focus_11_07_tab_pipeline.png"
+    },
+    {
+      "phase": "07_tab_Validation",
+      "t": 27.0,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b",
+      "title": "Workspace \u00b7 CS1B \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe couldn't publish this curriculum. Publication without approval and a version would expose incomplete material to students. Assign a version label, complete approval, then try again.\nOverview\nCurriculum Studio\nCS1B\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1B\n\nStage: Validation \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nValidation looks ready \u2014 build a student-facing preview.\n\nWorkflow\nSubject\nContent Sources\nValidation\n(current)\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview ready \u00b7 not_ready \u00b7 0 nodes\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nofficial_syllabus.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nofficial_cmp.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nCurriculum Intelligence Pipeline\nProcessing\nVerified\nExtracted\nParsed\nMapped\nKnowledge Graph Built\nReady\nDocument 3\nReady\nExtracted completed 4 ms\nNormalized completed 1 ms\nParsed completed 7 ms\nMapped completed 39 ms\nKnowledge Graph Built completed 92 ms\nReady completed 19 ms\nDocument 4\nReady\nExtracted completed 10 ms\nNormalized completed 8 ms\nParsed completed 11 ms\nMapped completed 61 ms\nKnowledge Graph Built completed 126 ms\nReady completed 7 ms\nCurriculum Intelligence\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nPIPELINE\nKNOWLEDGE GRAPH\nEVIDENCE EXPLORER\nVALIDATION\nREVIEW QUEUE\nMETRICS\nENTITY DETAILS\nDocument 1 \u00b7 Passed \u00b7 1 issues\nwarning \u00b7 missing_learning_objective\nDocument has topics/concepts but no learning objectives.\nDocument 3 \u00b7 Passed \u00b7 1 issues\nwarning \u00b7 missing_learning_objective\nDocument has topics/concepts but no learning objectives.\nDocument 2 \u00b7 Passed \u00b7 1 issues\nwarning \u00b7 missing_learning_objective\nDocument has topics/concepts but no learning objectives.\nDocument 4 \u00b7 Passed \u00b7 1 issues\nwarning \u00b7 missing_learning_objective\nDocument has topics/concepts but no learning objectives.\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [
+        "We couldn't publish this curriculum. Publication without approval and a version would expose incomplete material to students. Assign a version label, complete approval, then try again.",
+        "We couldn't publish this curriculum. Publication without approval and a version would expose incomplete material to students. Assign a version label, complete approval, then try again."
+      ],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Remove",
+        "OVERVIEW",
+        "DOCUMENTS",
+        "PIPELINE",
+        "KNOWLEDGE GRAPH",
+        "EVIDENCE EXPLORER",
+        "VALIDATION",
+        "REVIEW QUEUE",
+        "METRICS",
+        "ENTITY DETAILS",
+        "Load",
+        "Advance to Next Stage",
+        "Validate Curriculum",
+        "Build Preview",
+        "Approve Curriculum",
+        "Publish Verified Curriculum",
+        "Assign Version",
+        "Download",
+        "official_syllabus.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1",
+        "official_cmp.pdf\n\nVERSION\nv2\nUPLOADED\n2026-07-28 21:41\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1"
+      ],
+      "tabs": [
+        "Overview",
+        "Subjects",
+        "Curriculum Studio",
+        "Review Queue",
+        "Publishing",
+        "Versions",
+        "Quality",
+        "Students",
+        "Settings",
+        "Support"
+      ],
+      "headings": [
+        "CS1B",
+        "Workflow",
+        "Content Sources",
+        "Curriculum Intelligence",
+        "Actions",
+        "Version history",
+        "Official CMP",
+        "Official Syllabus",
+        "Curriculum Intelligence Pipeline",
+        "Graph neighbours"
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "terms_found": [
+        "Knowledge Graph",
+        "Pipeline",
+        "Entity Details"
+      ],
+      "screenshot": "/tmp/fv001b_blind_capture/focus_12_07_tab_validation.png"
+    },
+    {
+      "phase": "07_tab_Publish",
+      "t": 28.2,
+      "url": "http://127.0.0.1:5130/console/studio/publishing",
+      "title": "Publishing \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nPublishing\n\nKWALITEC CONSOLE \u00b7 CURRICULUM AUTHORITY\n\nPublishing\n\nApprove and publish verified curriculum. Publishing is what makes a subject Ready in the student Subject Catalogue.\n\nNEXT STEP\n\nOpen a workspace below, or create a subject to start a new curriculum.\n\nCurriculum workflow\nNew Subject\nUpload Official CMP\nUpload Official Syllabus\nExtraction\nReview & Corrections\nPublish Verified Curriculum\nAvailable to Students (Ready)\n\nOpen Curriculum Studio\n\nWorkspaces\nCS1B\n2026.1 \u00b7 Validation\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Open Curriculum Studio"
+      ],
+      "tabs": [
+        "Overview",
+        "Subjects",
+        "Curriculum Studio",
+        "Review Queue",
+        "Publishing",
+        "Versions",
+        "Quality",
+        "Students",
+        "Settings",
+        "Support"
+      ],
+      "headings": [
+        "Publishing",
+        "Curriculum workflow",
+        "Workspaces"
+      ],
+      "labels": [
+        "Search the Console"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/focus_13_07_tab_publish.png"
+    },
+    {
+      "phase": "07_tab_Curriculum",
+      "t": 29.4,
+      "url": "http://127.0.0.1:5130/console/studio/",
+      "title": "Curriculum Studio \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\n\nKWALITEC CONSOLE \u00b7 CURRICULUM STUDIO\n\nCurriculum Studio\n\nReview, validate, preview, approve, and publish curricula through one Console workflow.\n\nNEXT STEP\n\nOpen a workspace below, or create a subject to start a new curriculum.\n\nPublished 0\nDrafts 1\nPending validation 1\nPending approval 0\nCreate Subject\nSubject code *\n\nUse a short syllabus code such as CS1.\n\nTitle\nOpen Workspace\nSubject code *\n\nOpen an existing subject code to continue its workflow.\n\nWorkspaces\nCS1B\n2026.1 \u00b7 Validation\nRecent activity\nsources_uploaded: Uploaded sources for ws-cs1b\nsources_uploaded: Uploaded sources for ws-cs1b\nsources_uploaded: Uploaded sources for ws-cs1b\nsources_uploaded: Uploaded sources for ws-cs1b\nversion_assigned: Assigned version version-1\nworkspace_opened: Opened workspace ws-cs1b\nsubject_created: Created subject CS1B\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Create Subject",
+        "Open Workspace"
+      ],
+      "tabs": [
+        "Overview",
+        "Subjects",
+        "Curriculum Studio",
+        "Review Queue",
+        "Publishing",
+        "Versions",
+        "Quality",
+        "Students",
+        "Settings",
+        "Support"
+      ],
+      "headings": [
+        "Curriculum Studio",
+        "Create Subject",
+        "Open Workspace",
+        "Workspaces",
+        "Recent activity"
+      ],
+      "labels": [
+        "Search the Console",
+        "Subject code *",
+        "Title"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/focus_14_07_tab_curriculum.png"
+    },
+    {
+      "phase": "07_tab_Review",
+      "t": 30.5,
+      "url": "http://127.0.0.1:5130/console/studio/review-queue",
+      "title": "Review Queue \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nReview Queue\n\nKWALITEC CONSOLE \u00b7 CURRICULUM AUTHORITY\n\nReview Queue\n\nReview extracted curriculum structure and apply corrections before publishing a verified curriculum.\n\nNEXT STEP\n\nOpen a workspace below, or create a subject to start a new curriculum.\n\nCurriculum workflow\nNew Subject\nUpload Official CMP\nUpload Official Syllabus\nExtraction\nReview & Corrections\nPublish Verified Curriculum\nAvailable to Students (Ready)\n\nOpen Curriculum Studio\n\nWorkspaces\nCS1B\n2026.1 \u00b7 Validation\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Open Curriculum Studio"
+      ],
+      "tabs": [
+        "Overview",
+        "Subjects",
+        "Curriculum Studio",
+        "Review Queue",
+        "Publishing",
+        "Versions",
+        "Quality",
+        "Students",
+        "Settings",
+        "Support"
+      ],
+      "headings": [
+        "Review Queue",
+        "Curriculum workflow",
+        "Workspaces"
+      ],
+      "labels": [
+        "Search the Console"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/focus_15_07_tab_review.png"
+    },
+    {
+      "phase": "08_workspace_final",
+      "t": 30.6,
+      "url": "http://127.0.0.1:5130/console/studio/review-queue",
+      "title": "Review Queue \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nReview Queue\n\nKWALITEC CONSOLE \u00b7 CURRICULUM AUTHORITY\n\nReview Queue\n\nReview extracted curriculum structure and apply corrections before publishing a verified curriculum.\n\nNEXT STEP\n\nOpen a workspace below, or create a subject to start a new curriculum.\n\nCurriculum workflow\nNew Subject\nUpload Official CMP\nUpload Official Syllabus\nExtraction\nReview & Corrections\nPublish Verified Curriculum\nAvailable to Students (Ready)\n\nOpen Curriculum Studio\n\nWorkspaces\nCS1B\n2026.1 \u00b7 Validation\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Open Curriculum Studio"
+      ],
+      "tabs": [
+        "Overview",
+        "Subjects",
+        "Curriculum Studio",
+        "Review Queue",
+        "Publishing",
+        "Versions",
+        "Quality",
+        "Students",
+        "Settings",
+        "Support"
+      ],
+      "headings": [
+        "Review Queue",
+        "Curriculum workflow",
+        "Workspaces"
+      ],
+      "labels": [
+        "Search the Console"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/focus_16_08_workspace_final.png"
+    },
+    {
+      "phase": "09_subjects",
+      "t": 30.8,
+      "url": "http://127.0.0.1:5130/console/studio/subjects",
+      "title": "Subjects \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nSubjects\n\nKWALITEC CONSOLE \u00b7 CURRICULUM AUTHORITY\n\nSubjects\n\nCreate subjects and open workspaces. Students only see a subject as Ready after you publish a verified curriculum.\n\nNEXT STEP\n\nOpen a workspace below, or create a subject to start a new curriculum.\n\nCurriculum workflow\nNew Subject\nUpload Official CMP\nUpload Official Syllabus\nExtraction\nReview & Corrections\nPublish Verified Curriculum\nAvailable to Students (Ready)\n\nOpen Curriculum Studio\n\nCreate Subject\nSubject code\nTitle\nOpen Workspace\nSubject code\nWorkspaces\nCS1B\n2026.1 \u00b7 Validation\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Create Subject",
+        "Open Workspace",
+        "Open Curriculum Studio"
+      ],
+      "tabs": [
+        "Overview",
+        "Subjects",
+        "Curriculum Studio",
+        "Review Queue",
+        "Publishing",
+        "Versions",
+        "Quality",
+        "Students",
+        "Settings",
+        "Support"
+      ],
+      "headings": [
+        "Subjects",
+        "Curriculum workflow",
+        "Create Subject",
+        "Open Workspace",
+        "Workspaces"
+      ],
+      "labels": [
+        "Search the Console",
+        "Subject code",
+        "Title"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/focus_17_09_subjects.png"
+    },
+    {
+      "phase": "10_publishing",
+      "t": 30.9,
+      "url": "http://127.0.0.1:5130/console/studio/publishing",
+      "title": "Publishing \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nPublishing\n\nKWALITEC CONSOLE \u00b7 CURRICULUM AUTHORITY\n\nPublishing\n\nApprove and publish verified curriculum. Publishing is what makes a subject Ready in the student Subject Catalogue.\n\nNEXT STEP\n\nOpen a workspace below, or create a subject to start a new curriculum.\n\nCurriculum workflow\nNew Subject\nUpload Official CMP\nUpload Official Syllabus\nExtraction\nReview & Corrections\nPublish Verified Curriculum\nAvailable to Students (Ready)\n\nOpen Curriculum Studio\n\nWorkspaces\nCS1B\n2026.1 \u00b7 Validation\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Open Curriculum Studio"
+      ],
+      "tabs": [
+        "Overview",
+        "Subjects",
+        "Curriculum Studio",
+        "Review Queue",
+        "Publishing",
+        "Versions",
+        "Quality",
+        "Students",
+        "Settings",
+        "Support"
+      ],
+      "headings": [
+        "Publishing",
+        "Curriculum workflow",
+        "Workspaces"
+      ],
+      "labels": [
+        "Search the Console"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/focus_18_10_publishing.png"
+    },
+    {
+      "phase": "11_studio_final",
+      "t": 31.0,
+      "url": "http://127.0.0.1:5130/console/studio/",
+      "title": "Curriculum Studio \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\n\nKWALITEC CONSOLE \u00b7 CURRICULUM STUDIO\n\nCurriculum Studio\n\nReview, validate, preview, approve, and publish curricula through one Console workflow.\n\nNEXT STEP\n\nOpen a workspace below, or create a subject to start a new curriculum.\n\nPublished 0\nDrafts 1\nPending validation 1\nPending approval 0\nCreate Subject\nSubject code *\n\nUse a short syllabus code such as CS1.\n\nTitle\nOpen Workspace\nSubject code *\n\nOpen an existing subject code to continue its workflow.\n\nWorkspaces\nCS1B\n2026.1 \u00b7 Validation\nRecent activity\nsources_uploaded: Uploaded sources for ws-cs1b\nsources_uploaded: Uploaded sources for ws-cs1b\nsources_uploaded: Uploaded sources for ws-cs1b\nsources_uploaded: Uploaded sources for ws-cs1b\nversion_assigned: Assigned version version-1\nworkspace_opened: Opened workspace ws-cs1b\nsubject_created: Created subject CS1B\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Create Subject",
+        "Open Workspace"
+      ],
+      "tabs": [
+        "Overview",
+        "Subjects",
+        "Curriculum Studio",
+        "Review Queue",
+        "Publishing",
+        "Versions",
+        "Quality",
+        "Students",
+        "Settings",
+        "Support"
+      ],
+      "headings": [
+        "Curriculum Studio",
+        "Create Subject",
+        "Open Workspace",
+        "Workspaces",
+        "Recent activity"
+      ],
+      "labels": [
+        "Search the Console",
+        "Subject code *",
+        "Title"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/focus_19_11_studio_final.png"
+    }
+  ],
+  "term_hits": [
+    {
+      "phase": "02_workspace_opened",
+      "term": "Knowledge Graph",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "02_workspace_opened",
+      "term": "Pipeline",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "02_workspace_opened",
+      "term": "Entity Details",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "03_workspace_state",
+      "term": "Knowledge Graph",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "03_workspace_state",
+      "term": "Pipeline",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "03_workspace_state",
+      "term": "Entity Details",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "04_syllabus",
+      "term": "Knowledge Graph",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "04_syllabus",
+      "term": "Pipeline",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "04_syllabus",
+      "term": "Entity Details",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "05_cmp",
+      "term": "Knowledge Graph",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "05_cmp",
+      "term": "Pipeline",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "05_cmp",
+      "term": "Entity Details",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "06_action_Advance",
+      "term": "Knowledge Graph",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "06_action_Advance",
+      "term": "Pipeline",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "06_action_Advance",
+      "term": "Entity Details",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "06_action_Validate",
+      "term": "Knowledge Graph",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "06_action_Validate",
+      "term": "Pipeline",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "06_action_Validate",
+      "term": "Entity Details",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "06_action_Preview",
+      "term": "Knowledge Graph",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "06_action_Preview",
+      "term": "Pipeline",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "06_action_Preview",
+      "term": "Entity Details",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "06_action_Review",
+      "term": "Knowledge Graph",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "06_action_Review",
+      "term": "Pipeline",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "06_action_Review",
+      "term": "Entity Details",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "06_action_Approve",
+      "term": "Knowledge Graph",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "06_action_Approve",
+      "term": "Pipeline",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "06_action_Approve",
+      "term": "Entity Details",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "06_action_Publish",
+      "term": "Knowledge Graph",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "06_action_Publish",
+      "term": "Pipeline",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "06_action_Publish",
+      "term": "Entity Details",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "07_tab_Pipeline",
+      "term": "Inference",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "07_tab_Pipeline",
+      "term": "Knowledge Graph",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "07_tab_Pipeline",
+      "term": "Pipeline",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "07_tab_Pipeline",
+      "term": "Entity Details",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "07_tab_Validation",
+      "term": "Knowledge Graph",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "07_tab_Validation",
+      "term": "Pipeline",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "07_tab_Validation",
+      "term": "Entity Details",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    }
+  ]
+}

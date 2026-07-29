@@ -1,0 +1,18 @@
+{
+  "database_url": "sqlite:////tmp/rc001_RC-2026.07.29-01.sqlite3",
+  "engine": "sqlite",
+  "file_location": "/tmp/rc001_RC-2026.07.29-01.sqlite3",
+  "size_bytes": 2723840,
+  "alembic_revision": "202607280080",
+  "migration_head": "202607280080",
+  "user_count": 1,
+  "user_emails": [
+    "ctshumba01@gmail.com"
+  ],
+  "studio_foundation_subjects": 0,
+  "studio_foundation_documents": 0,
+  "published_curriculum_packages": 0,
+  "ckg_subjects": 0,
+  "subjects": 0,
+  "seed_state": "fresh_rc_migrations_plus_admin_only"
+}

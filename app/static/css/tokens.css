@@ -97,7 +97,7 @@
   /* Typography — Inter only; DX-001 / DX-006A: 32 / 24 / 18 / 16 / 14 / 12 */
   --font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "SF Mono", "Fira Code", "Fira Mono", Menlo, Consolas, monospace;
-  --font-display: 2rem;     /* 32 */
+  --font-display: 2.5rem;   /* 40 */
   --font-page: 1.5rem;      /* 24 — one H1 */
   --font-section: 1.125rem; /* 18 */
   --font-base: 1rem;        /* 16 body */
@@ -110,7 +110,7 @@
   --font-xl: var(--font-section);
   --font-2xl: var(--font-page);
   --font-3xl: var(--font-page);
-  --font-4xl: var(--font-display);
+  --font-4xl: 2.5rem;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;

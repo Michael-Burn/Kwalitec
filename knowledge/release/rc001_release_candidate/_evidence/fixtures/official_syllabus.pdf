@@ -1,0 +1,39 @@
+%PDF-1.4
+1 0 obj<< /Type /Catalog /Pages 2 0 R >>endobj
+2 0 obj<< /Type /Pages /Kids [3 0 R] /Count 1 >>endobj
+3 0 obj<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>endobj
+4 0 obj<< /Length 1195 >>stream
+BT /F1 14 Tf 50 780 Td (Official Syllabus CS1V) Tj ET
+BT /F1 11 Tf 50 750 Td (Institute and Faculty of Actuaries) Tj ET
+BT /F1 11 Tf 50 732 Td (Subject CS1V - Actuarial Statistics \(EV-001\)) Tj ET
+BT /F1 11 Tf 50 714 Td (Syllabus 2026) Tj ET
+BT /F1 11 Tf 50 696 Td (1. Data exploration and visualisation) Tj ET
+BT /F1 11 Tf 50 678 Td (1.1 Summarise data using descriptive statistics) Tj ET
+BT /F1 11 Tf 50 660 Td (1.2 Construct and interpret graphical displays) Tj ET
+BT /F1 11 Tf 50 642 Td (2. Probability theory) Tj ET
+BT /F1 11 Tf 50 624 Td (2.1 Apply axioms of probability) Tj ET
+BT /F1 11 Tf 50 606 Td (2.2 Conditional probability and Bayes theorem) Tj ET
+BT /F1 11 Tf 50 588 Td (3. Random variables and distributions) Tj ET
+BT /F1 11 Tf 50 570 Td (3.1 Discrete distributions) Tj ET
+BT /F1 11 Tf 50 552 Td (3.2 Continuous distributions) Tj ET
+BT /F1 11 Tf 50 534 Td (4. Statistical inference) Tj ET
+BT /F1 11 Tf 50 516 Td (4.1 Point estimation) Tj ET
+BT /F1 11 Tf 50 498 Td (4.2 Hypothesis testing) Tj ET
+BT /F1 11 Tf 50 480 Td (5. Regression and correlation) Tj ET
+BT /F1 11 Tf 50 462 Td (5.1 Simple linear regression) Tj ET
+BT /F1 11 Tf 50 444 Td (5.2 Multiple regression concepts) Tj ET
+endstream
+endobj
+5 0 obj<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000056 00000 n 
+0000000111 00000 n 
+0000000235 00000 n 
+0000001480 00000 n 
+trailer<< /Size 6 /Root 1 0 R >>
+startxref
+1548
+%%EOF

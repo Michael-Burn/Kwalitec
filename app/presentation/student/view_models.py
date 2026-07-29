@@ -728,13 +728,18 @@ def home_vm(
 
         completion_echo = completion_loop_fallback()
 
+    examination_label = (
+        _authoritative_examination_label(snap.student_id)
+        or snap.examination_label
+    )
+
     return HomePageViewModel(
         greeting=snap.greeting or "Welcome back",
-        examination_label=snap.examination_label,
+        examination_label=examination_label,
         countdown=CountdownCardViewModel(
             days=snap.exam_countdown_days,
             label=_countdown_label(snap.exam_countdown_days),
-            examination_label=snap.examination_label,
+            examination_label=examination_label,
             has_countdown=snap.exam_countdown_days is not None,
         ),
         readiness=ReadinessCardViewModel(
@@ -1511,20 +1516,16 @@ def educational_timeline_page_vm(timeline) -> StudentPageViewModel:
 def _authoritative_examination_label(student_id: str) -> str:
     """Resolve "Current Examination" from the same source of truth used by
     Dashboard, Study Plan, and Settings -> Internal Alpha
-    (``StudyPlanService.get_user_active_plan``), so Profile can never show
-    "Not set" while those screens show an active plan (B2, PX-003 release
-    blockers). Returns "" — letting the Twin-derived value or "Not set"
-    apply — for non-persisted identities (e.g. test doubles) or students
-    with no active plan.
+    (``StudyPlanService.get_user_active_plan``), so Profile / Home can never
+    show "Not set" / empty-exam while those screens show an active plan
+    (B2, PX-003; RC-2026.07.29-06). Returns "" — letting the Twin-derived
+    value apply — for non-persisted identities or students with no plan.
     """
-    if not student_id.isdigit():
-        return ""
-    from app.services.study_plan_service import StudyPlanService
+    from app.application.student_experience.examination_identity import (
+        exam_label_from_active_plan,
+    )
 
-    plan = StudyPlanService.get_user_active_plan(int(student_id))
-    if plan is None:
-        return ""
-    return str(plan.exam_name or "")
+    return exam_label_from_active_plan(student_id)
 
 
 def profile_vm(snap: ProfileSnapshot) -> ProfilePageViewModel:

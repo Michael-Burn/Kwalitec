@@ -31,19 +31,18 @@ from app.services.alpha_onboarding_service import AlphaOnboardingService
 ROOT = Path(__file__).resolve().parents[3]
 
 
-def test_pc001_sidebar_and_settings_use_product_check_in_label():
-    """PC-001 / RP002-NCR-001 — nav entry matches Product Check-in canon."""
-    sidebar = (ROOT / "app/templates/partials/sidebar.html").read_text(
-        encoding="utf-8"
-    )
+def test_pc001_settings_and_help_use_product_check_in_label():
+    """PC-001 / RP002-NCR-001 — Product Check-in canon (legacy sidebar retired)."""
     settings = (ROOT / "app/templates/settings/index.html").read_text(
         encoding="utf-8"
     )
-    assert "Product Check-in" in sidebar
-    assert "Share Feedback" not in sidebar
+    help_page = (ROOT / "app/templates/alpha/help.html").read_text(encoding="utf-8")
     assert "Product Check-in" in settings
     assert "Share Feedback" not in settings
-    assert "research.checkin" in sidebar or "url_for('research.checkin'" in sidebar
+    assert "Product Check-in" in help_page
+    assert "Share Feedback" not in help_page
+    assert "research.checkin" in settings or "url_for('research.checkin'" in settings
+    assert "research.checkin" in help_page or "url_for('research.checkin'" in help_page
 
 
 def test_pc002_commitment_reflection_names_system_authority(app, ctx):

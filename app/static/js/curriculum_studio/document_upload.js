@@ -187,16 +187,16 @@
       .then(function (result) {
         if (result.ok && result.body && result.body.ok) {
           applyStatus(root, result.body.status);
-          showToast(result.body.message || "Pipeline updated.", "success");
+          showToast(result.body.message || "Extraction updated.", "success");
         } else {
           showToast(
-            (result.body && result.body.error) || "Pipeline action failed.",
+            (result.body && result.body.error) || "Extraction action failed.",
             "danger"
           );
         }
       })
       .catch(function () {
-        showToast("Pipeline action failed.", "danger");
+        showToast("Extraction action failed.", "danger");
       });
   }
 

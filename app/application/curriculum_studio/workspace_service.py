@@ -188,7 +188,10 @@ class WorkspaceService:
                 {"kind": "syllabus", "reference": syllabus_reference}
             )
             syl_ok = True
-        if start_ingestion and sources:
+        # PI-002R: only start Ingestion when sources carry real entries.
+        # Reference-only uploads (CMP/syllabus refs) must not create synthetic
+        # stub jobs that later fail validation beside CIP extraction.
+        if start_ingestion and sources and _sources_have_structure(sources):
             ing = require_ingestion(self._ingestion, action="upload_sources")
             job = ing.start_ingestion(
                 subject_code=workspace.subject_code,
@@ -256,3 +259,11 @@ class WorkspaceService:
         if workspace is None:
             raise WorkspaceNotFound(f"Workspace not found: {workspace_id!r}")
         return workspace
+
+
+def _sources_have_structure(sources: list[dict]) -> bool:
+    """True when any source carries real curriculum entries (not refs only)."""
+    for source in sources:
+        if isinstance(source, dict) and source.get("entries"):
+            return True
+    return False

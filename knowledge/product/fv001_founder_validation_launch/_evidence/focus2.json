@@ -1,0 +1,993 @@
+[
+  {
+    "phase": "console_home",
+    "t": 2.7,
+    "url": "http://127.0.0.1:5128/console/",
+    "title": "Console Home \u00b7 Kwalitec Console",
+    "text": "Skip to content\nKwalitec Console\n\nOPERATIONAL DECISIONS\n\nOverview\nOperations\nStudents\nLearning\nAssessments\nContent\nAnalytics\nPlatform\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWelcome back to Kwalitec.\n\nKWALITEC CONSOLE \u00b7 INTERNAL ALPHA \u00b7 V2.0.0\n\nConsole Home\n\nOperational pulse \u2014 what needs attention today \u00b7 2026-07-28 20:42 UTC \u00b7 Calendar day (server local date)\n\nATTENTION REQUIRED\nOpen Attention Center\nSUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews\nPLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in\nCONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings\nSTUDENT ISSUES\n0\nNeeds intervention\nNothing queued\nHIGH\nSystem health signals need attention\nOpen\nPLATFORM SUMMARY\nSTUDENTS\n0\nActive participants\n0 active today\nLEARNING\n0\nCheck-ins today\n0 in last 7 days\nASSESSMENTS\n\u2014\nAvg experience\nWould open tomorrow \u2014\nSYSTEM\nNo check-ins yet\nAlpha health\nBuild local\nQUICK ACTIONS\nReview support inbox\nOpen operations\nManage content\nPlatform Intelligence\nOPERATIONAL DETAIL\nRecent support\nInbox\n\nNo Product Check-ins yet.\n\nAttention queue\nCenter\n\nNothing needs action right now.\n\nVision Journal\nOpen\n\nNo Vision entries yet. New entry\n\nKwalitec Console \u00b7 What needs attention today?",
+    "links": [
+      {
+        "text": "Skip to content",
+        "href": "#console-main"
+      },
+      {
+        "text": "Kwalitec Console",
+        "href": "/console/"
+      },
+      {
+        "text": "Overview",
+        "href": "/console/"
+      },
+      {
+        "text": "Operations",
+        "href": "/console/operational-health"
+      },
+      {
+        "text": "Students",
+        "href": "/console/participants"
+      },
+      {
+        "text": "Learning",
+        "href": "/console/intelligence"
+      },
+      {
+        "text": "Assessments",
+        "href": "/console/evidence-gates"
+      },
+      {
+        "text": "Content",
+        "href": "/console/studio/"
+      },
+      {
+        "text": "Analytics",
+        "href": "/console/research"
+      },
+      {
+        "text": "Platform",
+        "href": "/console/alpha-observability"
+      },
+      {
+        "text": "Settings",
+        "href": "/console/settings"
+      },
+      {
+        "text": "Support",
+        "href": "/console/feedback"
+      },
+      {
+        "text": "Search",
+        "href": "/console/search"
+      },
+      {
+        "text": "Account",
+        "href": "/settings/"
+      },
+      {
+        "text": "Open Attention Center",
+        "href": "/console/attention"
+      },
+      {
+        "text": "SUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews",
+        "href": "/console/feedback"
+      },
+      {
+        "text": "PLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in",
+        "href": "/console/alpha-observability"
+      },
+      {
+        "text": "CONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings",
+        "href": "/console/findings"
+      },
+      {
+        "text": "STUDENT ISSUES\n0\nNeeds intervention\nNothing queued",
+        "href": "/console/attention"
+      },
+      {
+        "text": "Open",
+        "href": "/console/operations"
+      },
+      {
+        "text": "Review support inbox",
+        "href": "/console/feedback"
+      },
+      {
+        "text": "Open operations",
+        "href": "/console/operational-health"
+      },
+      {
+        "text": "Manage content",
+        "href": "/console/studio/"
+      },
+      {
+        "text": "Platform Intelligence",
+        "href": "/console/alpha-observability"
+      },
+      {
+        "text": "Inbox",
+        "href": "/console/feedback"
+      },
+      {
+        "text": "Center",
+        "href": "/console/attention"
+      },
+      {
+        "text": "Open",
+        "href": "/console/vision"
+      },
+      {
+        "text": "New entry",
+        "href": "/console/vision/new"
+      }
+    ],
+    "ctas": [
+      "Search",
+      "Sign out"
+    ],
+    "headings": [
+      "Search the Console",
+      "Console Home",
+      "ATTENTION REQUIRED",
+      "PLATFORM SUMMARY",
+      "QUICK ACTIONS",
+      "OPERATIONAL DETAIL",
+      "Recent support",
+      "Attention queue",
+      "Vision Journal"
+    ],
+    "screenshot": "/tmp/fv001a_blind_capture/focus2_00_console_home.png"
+  },
+  {
+    "phase": "nav_to_studio",
+    "t": 2.9,
+    "url": "http://127.0.0.1:5128/console/studio/",
+    "title": "Curriculum Studio \u00b7 Kwalitec Console",
+    "text": "Skip to content\nKwalitec Console\n\nOPERATIONAL DECISIONS\n\nOverview\nOperations\nStudents\nLearning\nAssessments\nContent\nAnalytics\nPlatform\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\n\nKWALITEC CONSOLE \u00b7 CURRICULUM STUDIO\n\nCurriculum Studio\n\nReview, validate, preview, approve, and publish curricula through one Console workflow.\n\nNEXT STEP\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nPublished 0\nDrafts 0\nPending validation 0\nPending approval 0\nCreate Subject\nSubject code *\n\nUse a short syllabus code such as CS1.\n\nTitle\nOpen Workspace\nSubject code *\n\nOpen an existing subject code to continue its workflow.\n\nWorkspaces\n\nNo workspaces yet\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nRecent activity\n\nNo activity yet\n\nNo recent Studio activity yet. Open a workspace to validate, preview, or publish a curriculum.\n\nKwalitec Console \u00b7 What needs attention today?",
+    "links": [
+      {
+        "text": "Skip to content",
+        "href": "#console-main"
+      },
+      {
+        "text": "Kwalitec Console",
+        "href": "/console/"
+      },
+      {
+        "text": "Overview",
+        "href": "/console/"
+      },
+      {
+        "text": "Operations",
+        "href": "/console/operational-health"
+      },
+      {
+        "text": "Students",
+        "href": "/console/participants"
+      },
+      {
+        "text": "Learning",
+        "href": "/console/intelligence"
+      },
+      {
+        "text": "Assessments",
+        "href": "/console/evidence-gates"
+      },
+      {
+        "text": "Content",
+        "href": "/console/studio/"
+      },
+      {
+        "text": "Analytics",
+        "href": "/console/research"
+      },
+      {
+        "text": "Platform",
+        "href": "/console/alpha-observability"
+      },
+      {
+        "text": "Settings",
+        "href": "/console/settings"
+      },
+      {
+        "text": "Support",
+        "href": "/console/feedback"
+      },
+      {
+        "text": "Search",
+        "href": "/console/search"
+      },
+      {
+        "text": "Account",
+        "href": "/settings/"
+      },
+      {
+        "text": "Overview",
+        "href": "/console/"
+      }
+    ],
+    "ctas": [
+      "Search",
+      "Sign out",
+      "Create Subject",
+      "Open Workspace"
+    ],
+    "headings": [
+      "Search the Console",
+      "KWALITEC CONSOLE \u00b7 CURRICULUM STUDIO",
+      "Curriculum Studio",
+      "Create Subject",
+      "Subject code *",
+      "Title",
+      "Open Workspace",
+      "Subject code *",
+      "Workspaces",
+      "Recent activity"
+    ],
+    "screenshot": "/tmp/fv001a_blind_capture/focus2_01_nav_to_studio.png"
+  },
+  {
+    "phase": "studio_index",
+    "t": 3.0,
+    "url": "http://127.0.0.1:5128/console/studio/",
+    "title": "Curriculum Studio \u00b7 Kwalitec Console",
+    "text": "Skip to content\nKwalitec Console\n\nOPERATIONAL DECISIONS\n\nOverview\nOperations\nStudents\nLearning\nAssessments\nContent\nAnalytics\nPlatform\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\n\nKWALITEC CONSOLE \u00b7 CURRICULUM STUDIO\n\nCurriculum Studio\n\nReview, validate, preview, approve, and publish curricula through one Console workflow.\n\nNEXT STEP\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nPublished 0\nDrafts 0\nPending validation 0\nPending approval 0\nCreate Subject\nSubject code *\n\nUse a short syllabus code such as CS1.\n\nTitle\nOpen Workspace\nSubject code *\n\nOpen an existing subject code to continue its workflow.\n\nWorkspaces\n\nNo workspaces yet\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nRecent activity\n\nNo activity yet\n\nNo recent Studio activity yet. Open a workspace to validate, preview, or publish a curriculum.\n\nKwalitec Console \u00b7 What needs attention today?",
+    "links": [
+      {
+        "text": "Skip to content",
+        "href": "#console-main"
+      },
+      {
+        "text": "Kwalitec Console",
+        "href": "/console/"
+      },
+      {
+        "text": "Overview",
+        "href": "/console/"
+      },
+      {
+        "text": "Operations",
+        "href": "/console/operational-health"
+      },
+      {
+        "text": "Students",
+        "href": "/console/participants"
+      },
+      {
+        "text": "Learning",
+        "href": "/console/intelligence"
+      },
+      {
+        "text": "Assessments",
+        "href": "/console/evidence-gates"
+      },
+      {
+        "text": "Content",
+        "href": "/console/studio/"
+      },
+      {
+        "text": "Analytics",
+        "href": "/console/research"
+      },
+      {
+        "text": "Platform",
+        "href": "/console/alpha-observability"
+      },
+      {
+        "text": "Settings",
+        "href": "/console/settings"
+      },
+      {
+        "text": "Support",
+        "href": "/console/feedback"
+      },
+      {
+        "text": "Search",
+        "href": "/console/search"
+      },
+      {
+        "text": "Account",
+        "href": "/settings/"
+      },
+      {
+        "text": "Overview",
+        "href": "/console/"
+      }
+    ],
+    "ctas": [
+      "Search",
+      "Sign out",
+      "Create Subject",
+      "Open Workspace"
+    ],
+    "headings": [
+      "Search the Console",
+      "KWALITEC CONSOLE \u00b7 CURRICULUM STUDIO",
+      "Curriculum Studio",
+      "Create Subject",
+      "Subject code *",
+      "Title",
+      "Open Workspace",
+      "Subject code *",
+      "Workspaces",
+      "Recent activity"
+    ],
+    "screenshot": "/tmp/fv001a_blind_capture/focus2_02_studio_index.png"
+  },
+  {
+    "phase": "create_attempt",
+    "t": 3.2,
+    "url": "http://127.0.0.1:5128/console/studio/",
+    "title": "Curriculum Studio \u00b7 Kwalitec Console",
+    "text": "Skip to content\nKwalitec Console\n\nOPERATIONAL DECISIONS\n\nOverview\nOperations\nStudents\nLearning\nAssessments\nContent\nAnalytics\nPlatform\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\n\nKWALITEC CONSOLE \u00b7 CURRICULUM STUDIO\n\nCurriculum Studio\n\nReview, validate, preview, approve, and publish curricula through one Console workflow.\n\nNEXT STEP\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nPublished 0\nDrafts 0\nPending validation 0\nPending approval 0\nCreate Subject\nSubject code *\n\nUse a short syllabus code such as CS1.\n\nTitle\nOpen Workspace\nSubject code *\n\nOpen an existing subject code to continue its workflow.\n\nWorkspaces\n\nNo workspaces yet\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nRecent activity\n\nNo activity yet\n\nNo recent Studio activity yet. Open a workspace to validate, preview, or publish a curriculum.\n\nKwalitec Console \u00b7 What needs attention today?",
+    "links": [
+      {
+        "text": "Skip to content",
+        "href": "#console-main"
+      },
+      {
+        "text": "Kwalitec Console",
+        "href": "/console/"
+      },
+      {
+        "text": "Overview",
+        "href": "/console/"
+      },
+      {
+        "text": "Operations",
+        "href": "/console/operational-health"
+      },
+      {
+        "text": "Students",
+        "href": "/console/participants"
+      },
+      {
+        "text": "Learning",
+        "href": "/console/intelligence"
+      },
+      {
+        "text": "Assessments",
+        "href": "/console/evidence-gates"
+      },
+      {
+        "text": "Content",
+        "href": "/console/studio/"
+      },
+      {
+        "text": "Analytics",
+        "href": "/console/research"
+      },
+      {
+        "text": "Platform",
+        "href": "/console/alpha-observability"
+      },
+      {
+        "text": "Settings",
+        "href": "/console/settings"
+      },
+      {
+        "text": "Support",
+        "href": "/console/feedback"
+      },
+      {
+        "text": "Search",
+        "href": "/console/search"
+      },
+      {
+        "text": "Account",
+        "href": "/settings/"
+      },
+      {
+        "text": "Overview",
+        "href": "/console/"
+      }
+    ],
+    "ctas": [
+      "Search",
+      "Sign out",
+      "Create Subject",
+      "Open Workspace"
+    ],
+    "headings": [
+      "Search the Console",
+      "KWALITEC CONSOLE \u00b7 CURRICULUM STUDIO",
+      "Curriculum Studio",
+      "Create Subject",
+      "Subject code *",
+      "Title",
+      "Open Workspace",
+      "Subject code *",
+      "Workspaces",
+      "Recent activity"
+    ],
+    "screenshot": "/tmp/fv001a_blind_capture/focus2_03_create_attempt.png"
+  },
+  {
+    "phase": "after_create_subject",
+    "t": 24.3,
+    "url": "http://127.0.0.1:5128/console/search?q=",
+    "title": "Console Search \u00b7 Kwalitec Console",
+    "text": "Skip to content\nKwalitec Console\n\nOPERATIONAL DECISIONS\n\nOverview\nOperations\nStudents\nLearning\nAssessments\nContent\nAnalytics\nPlatform\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\n\nKWALITEC CONSOLE \u00b7 SEARCH\n\nConsole Search\n\nDiscover students, support records, content, and platform objects.\n\nEnter a query to search the Console.\n\nDomains: Students \u00b7 Support \u00b7 Content \u00b7 Platform \u00b7 Assessments \u00b7 Topics \u00b7 Questions\n\nKwalitec Console \u00b7 What needs attention today?",
+    "links": [
+      {
+        "text": "Skip to content",
+        "href": "#console-main"
+      },
+      {
+        "text": "Kwalitec Console",
+        "href": "/console/"
+      },
+      {
+        "text": "Overview",
+        "href": "/console/"
+      },
+      {
+        "text": "Operations",
+        "href": "/console/operational-health"
+      },
+      {
+        "text": "Students",
+        "href": "/console/participants"
+      },
+      {
+        "text": "Learning",
+        "href": "/console/intelligence"
+      },
+      {
+        "text": "Assessments",
+        "href": "/console/evidence-gates"
+      },
+      {
+        "text": "Content",
+        "href": "/console/studio/"
+      },
+      {
+        "text": "Analytics",
+        "href": "/console/research"
+      },
+      {
+        "text": "Platform",
+        "href": "/console/alpha-observability"
+      },
+      {
+        "text": "Settings",
+        "href": "/console/settings"
+      },
+      {
+        "text": "Support",
+        "href": "/console/feedback"
+      },
+      {
+        "text": "Search",
+        "href": "/console/search"
+      },
+      {
+        "text": "Account",
+        "href": "/settings/"
+      }
+    ],
+    "ctas": [
+      "Search",
+      "Sign out"
+    ],
+    "headings": [
+      "Search the Console",
+      "Console Search"
+    ],
+    "screenshot": "/tmp/fv001a_blind_capture/focus2_04_after_create_subject.png"
+  },
+  {
+    "phase": "pre_upload_state",
+    "t": 24.4,
+    "url": "http://127.0.0.1:5128/console/search?q=",
+    "title": "Console Search \u00b7 Kwalitec Console",
+    "text": "Skip to content\nKwalitec Console\n\nOPERATIONAL DECISIONS\n\nOverview\nOperations\nStudents\nLearning\nAssessments\nContent\nAnalytics\nPlatform\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\n\nKWALITEC CONSOLE \u00b7 SEARCH\n\nConsole Search\n\nDiscover students, support records, content, and platform objects.\n\nEnter a query to search the Console.\n\nDomains: Students \u00b7 Support \u00b7 Content \u00b7 Platform \u00b7 Assessments \u00b7 Topics \u00b7 Questions\n\nKwalitec Console \u00b7 What needs attention today?",
+    "links": [
+      {
+        "text": "Skip to content",
+        "href": "#console-main"
+      },
+      {
+        "text": "Kwalitec Console",
+        "href": "/console/"
+      },
+      {
+        "text": "Overview",
+        "href": "/console/"
+      },
+      {
+        "text": "Operations",
+        "href": "/console/operational-health"
+      },
+      {
+        "text": "Students",
+        "href": "/console/participants"
+      },
+      {
+        "text": "Learning",
+        "href": "/console/intelligence"
+      },
+      {
+        "text": "Assessments",
+        "href": "/console/evidence-gates"
+      },
+      {
+        "text": "Content",
+        "href": "/console/studio/"
+      },
+      {
+        "text": "Analytics",
+        "href": "/console/research"
+      },
+      {
+        "text": "Platform",
+        "href": "/console/alpha-observability"
+      },
+      {
+        "text": "Settings",
+        "href": "/console/settings"
+      },
+      {
+        "text": "Support",
+        "href": "/console/feedback"
+      },
+      {
+        "text": "Search",
+        "href": "/console/search"
+      },
+      {
+        "text": "Account",
+        "href": "/settings/"
+      }
+    ],
+    "ctas": [
+      "Search",
+      "Sign out"
+    ],
+    "headings": [
+      "Search the Console",
+      "Console Search"
+    ],
+    "screenshot": "/tmp/fv001a_blind_capture/focus2_05_pre_upload_state.png"
+  },
+  {
+    "phase": "studio_end",
+    "t": 24.4,
+    "url": "http://127.0.0.1:5128/console/search?q=",
+    "title": "Console Search \u00b7 Kwalitec Console",
+    "text": "Skip to content\nKwalitec Console\n\nOPERATIONAL DECISIONS\n\nOverview\nOperations\nStudents\nLearning\nAssessments\nContent\nAnalytics\nPlatform\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\n\nKWALITEC CONSOLE \u00b7 SEARCH\n\nConsole Search\n\nDiscover students, support records, content, and platform objects.\n\nEnter a query to search the Console.\n\nDomains: Students \u00b7 Support \u00b7 Content \u00b7 Platform \u00b7 Assessments \u00b7 Topics \u00b7 Questions\n\nKwalitec Console \u00b7 What needs attention today?",
+    "links": [
+      {
+        "text": "Skip to content",
+        "href": "#console-main"
+      },
+      {
+        "text": "Kwalitec Console",
+        "href": "/console/"
+      },
+      {
+        "text": "Overview",
+        "href": "/console/"
+      },
+      {
+        "text": "Operations",
+        "href": "/console/operational-health"
+      },
+      {
+        "text": "Students",
+        "href": "/console/participants"
+      },
+      {
+        "text": "Learning",
+        "href": "/console/intelligence"
+      },
+      {
+        "text": "Assessments",
+        "href": "/console/evidence-gates"
+      },
+      {
+        "text": "Content",
+        "href": "/console/studio/"
+      },
+      {
+        "text": "Analytics",
+        "href": "/console/research"
+      },
+      {
+        "text": "Platform",
+        "href": "/console/alpha-observability"
+      },
+      {
+        "text": "Settings",
+        "href": "/console/settings"
+      },
+      {
+        "text": "Support",
+        "href": "/console/feedback"
+      },
+      {
+        "text": "Search",
+        "href": "/console/search"
+      },
+      {
+        "text": "Account",
+        "href": "/settings/"
+      }
+    ],
+    "ctas": [
+      "Search",
+      "Sign out"
+    ],
+    "headings": [
+      "Search the Console",
+      "Console Search"
+    ],
+    "screenshot": "/tmp/fv001a_blind_capture/focus2_06_studio_end.png"
+  },
+  {
+    "phase": "student_entry",
+    "t": 24.6,
+    "url": "http://127.0.0.1:5128/student/",
+    "title": "Home \u00b7 Kwalitec",
+    "text": "Skip to content\nHome\nJourney\nRevision\nHistory\nSettings\nStudy Plan\nHelp\nSign out\n\nWelcome back.\n\nSTUDY SENSEI\n\nTODAY'S MISSION\n\nToday's Mission\n\n30 minutes\n\nWHY\nThis is the highest-value next step for this topic based on your recent practice.\n\nYOU\u2019LL WORK TOWARD\nStudying this topic now can support steady progress toward exam readiness.\n\nExpected readiness change from tonight's focus: Help you judge study preparation honestly and choose the next useful study step..\n\nStart Session\n\nREADINESS\n\nExam Readiness\n\nNot enough history for a trend yet\n\nThis estimate combines syllabus coverage (~0%), average Estimated Knowledge (~0%), review habits (~0%). Confidence: Cannot yet be estimated.\n\nNext Open Today\u2019s Session and complete the next planned study block.\n\nWhy this estimate?\nReview journey\n\nJOURNEY\n\nLearning journey\n\nYour learning story will appear here as you complete sessions.\n\nGUIDANCE\n\nGuidance\n\nToday's why, timing, and next step are covered in the Mission card above.\n\nMORE\nUpcoming milestones and quick actions\nShowing home\n\nReduce decisions. Increase learning.",
+    "links": [
+      {
+        "text": "Skip to content",
+        "href": "#student-main"
+      },
+      {
+        "text": "",
+        "href": "/student/"
+      },
+      {
+        "text": "Home",
+        "href": "/student/"
+      },
+      {
+        "text": "Journey",
+        "href": "/student/journey"
+      },
+      {
+        "text": "Revision",
+        "href": "/student/revision"
+      },
+      {
+        "text": "History",
+        "href": "/student/history"
+      },
+      {
+        "text": "Settings",
+        "href": "/student/profile"
+      },
+      {
+        "text": "Study Plan",
+        "href": "/study-plan/"
+      },
+      {
+        "text": "Help",
+        "href": "/alpha/help"
+      },
+      {
+        "text": "Review journey",
+        "href": "/student/journey"
+      },
+      {
+        "text": "",
+        "href": "/student/"
+      },
+      {
+        "text": "",
+        "href": "/student/history"
+      },
+      {
+        "text": "",
+        "href": "/student/journey"
+      }
+    ],
+    "ctas": [
+      "Menu",
+      "Sign out",
+      "Start Session",
+      "Explain today's mission"
+    ],
+    "headings": [
+      "Today's Mission",
+      "Exam Readiness",
+      "Learning journey",
+      "Guidance"
+    ],
+    "screenshot": "/tmp/fv001a_blind_capture/focus2_07_student_entry.png"
+  },
+  {
+    "phase": "student_home",
+    "t": 24.7,
+    "url": "http://127.0.0.1:5128/student/",
+    "title": "Home \u00b7 Kwalitec",
+    "text": "Skip to content\nHome\nJourney\nRevision\nHistory\nSettings\nStudy Plan\nHelp\nSign out\n\nWelcome back.\n\nSTUDY SENSEI\n\nTODAY'S MISSION\n\nToday's Mission\n\n30 minutes\n\nWHY\nThis is the highest-value next step for this topic based on your recent practice.\n\nYOU\u2019LL WORK TOWARD\nStudying this topic now can support steady progress toward exam readiness.\n\nExpected readiness change from tonight's focus: Help you judge study preparation honestly and choose the next useful study step..\n\nStart Session\n\nREADINESS\n\nExam Readiness\n\nNot enough history for a trend yet\n\nThis estimate combines syllabus coverage (~0%), average Estimated Knowledge (~0%), review habits (~0%). Confidence: Cannot yet be estimated.\n\nNext Open Today\u2019s Session and complete the next planned study block.\n\nWhy this estimate?\nReview journey\n\nJOURNEY\n\nLearning journey\n\nYour learning story will appear here as you complete sessions.\n\nGUIDANCE\n\nGuidance\n\nToday's why, timing, and next step are covered in the Mission card above.\n\nMORE\nUpcoming milestones and quick actions\nShowing home\n\nReduce decisions. Increase learning.",
+    "links": [
+      {
+        "text": "Skip to content",
+        "href": "#student-main"
+      },
+      {
+        "text": "",
+        "href": "/student/"
+      },
+      {
+        "text": "Home",
+        "href": "/student/"
+      },
+      {
+        "text": "Journey",
+        "href": "/student/journey"
+      },
+      {
+        "text": "Revision",
+        "href": "/student/revision"
+      },
+      {
+        "text": "History",
+        "href": "/student/history"
+      },
+      {
+        "text": "Settings",
+        "href": "/student/profile"
+      },
+      {
+        "text": "Study Plan",
+        "href": "/study-plan/"
+      },
+      {
+        "text": "Help",
+        "href": "/alpha/help"
+      },
+      {
+        "text": "Review journey",
+        "href": "/student/journey"
+      },
+      {
+        "text": "",
+        "href": "/student/"
+      },
+      {
+        "text": "",
+        "href": "/student/history"
+      },
+      {
+        "text": "",
+        "href": "/student/journey"
+      }
+    ],
+    "ctas": [
+      "Menu",
+      "Sign out",
+      "Start Session",
+      "Explain today's mission"
+    ],
+    "headings": [
+      "Today's Mission",
+      "Exam Readiness",
+      "Learning journey",
+      "Guidance"
+    ],
+    "screenshot": "/tmp/fv001a_blind_capture/focus2_08_student_home.png"
+  },
+  {
+    "phase": "wizard1",
+    "t": 24.9,
+    "url": "http://127.0.0.1:5128/study-plan/wizard/1",
+    "title": "Study Plan \u00b7 Kwalitec",
+    "text": "Skip to content\nHome\nJourney\nRevision\nHistory\nSettings\nStudy Plan\nHelp\nSign out\nSTEP 1\nExamination\n\nSTUDY PLAN\n\nWhat examination are you preparing for?\n\nChoose your examining body. Kwalitec shows which examinations can create a full study plan in Version 1.\n\nIFoA\nPartially Supported\nInstitute and Faculty of Actuaries professional examinations.\nVersion 1 supports CS1, CM1, CB2. Other papers are Coming Soon.\nCFA\nNot Supported\nChartered Financial Analyst programme \u2014 global investment professionals.\nNot available in Version 1.\nACCA\nNot Supported\nAssociation of Chartered Certified Accountants professional qualification.\nNot available in Version 1.\nCIMA\nNot Supported\nChartered Institute of Management Accountants professional qualification.\nNot available in Version 1.\nUniversity\nNot Supported\nUniversity or college examinations and coursework.\nCustom subjects are not available in Version 1.\nA-Level\nNot Supported\nAdvanced Level qualifications \u2014 UK pre-university examinations.\nNot available in Version 1.\nGCSE\nNot Supported\nGeneral Certificate of Secondary Education \u2014 UK qualifications.\nNot available in Version 1.\nCambridge\nNot Supported\nUniversity of Cambridge admissions tests and interviews.\nNot available in Version 1.\nOxford\nNot Supported\nUniversity of Oxford admissions tests and interviews.\nNot available in Version 1.\nOther\nNot Supported\nAny other examination not listed above.\nCustom subjects are not available in Version 1.\nNext\nShowing study plan\n\nReduce decisions. Increase learning.",
+    "links": [
+      {
+        "text": "Skip to content",
+        "href": "#student-main"
+      },
+      {
+        "text": "",
+        "href": "/student/"
+      },
+      {
+        "text": "Home",
+        "href": "/student/"
+      },
+      {
+        "text": "Journey",
+        "href": "/student/journey"
+      },
+      {
+        "text": "Revision",
+        "href": "/student/revision"
+      },
+      {
+        "text": "History",
+        "href": "/student/history"
+      },
+      {
+        "text": "Settings",
+        "href": "/student/profile"
+      },
+      {
+        "text": "Study Plan",
+        "href": "/study-plan/"
+      },
+      {
+        "text": "Help",
+        "href": "/alpha/help"
+      }
+    ],
+    "ctas": [
+      "Menu",
+      "Sign out",
+      "Next",
+      "Cancel"
+    ],
+    "headings": [
+      "What examination are you preparing for?",
+      "IFoA\nPartially Supported\nInstitute and Faculty of Actuaries professional examinations.\nVersion 1 supports CS1, CM1, CB2.",
+      "CFA\nNot Supported\nChartered Financial Analyst programme \u2014 global investment professionals.\nNot available in Version 1.",
+      "ACCA\nNot Supported\nAssociation of Chartered Certified Accountants professional qualification.\nNot available in Version 1",
+      "CIMA\nNot Supported\nChartered Institute of Management Accountants professional qualification.\nNot available in Version 1.",
+      "University\nNot Supported\nUniversity or college examinations and coursework.\nCustom subjects are not available in Version",
+      "A-Level\nNot Supported\nAdvanced Level qualifications \u2014 UK pre-university examinations.\nNot available in Version 1.",
+      "GCSE\nNot Supported\nGeneral Certificate of Secondary Education \u2014 UK qualifications.\nNot available in Version 1.",
+      "Cambridge\nNot Supported\nUniversity of Cambridge admissions tests and interviews.\nNot available in Version 1.",
+      "Oxford\nNot Supported\nUniversity of Oxford admissions tests and interviews.\nNot available in Version 1.",
+      "Other\nNot Supported\nAny other examination not listed above.\nCustom subjects are not available in Version 1.",
+      "Confirm"
+    ],
+    "screenshot": "/tmp/fv001a_blind_capture/focus2_09_wizard1.png"
+  },
+  {
+    "phase": "wizard2",
+    "t": 26.0,
+    "url": "http://127.0.0.1:5128/study-plan/wizard/2",
+    "title": "Study Plan \u00b7 Kwalitec",
+    "text": "Skip to content\nHome\nJourney\nRevision\nHistory\nSettings\nStudy Plan\nHelp\nSign out\nSTEP 2\nPaper / Subject\n\nSTUDY PLAN\n\nWhat paper or subject are you studying?\n\nEach paper shows whether Kwalitec can build a full study plan for it. Only Supported papers can continue.\n\nCS1\nSupported\nActuarial Statistics 1\nCS2\nComing Soon\nRisk Modelling and Survival Analysis\nCM1\nSupported\nActuarial Mathematics 1\nCM2\nComing Soon\nLoss Reserving and Financial Engineering\nCB1\nComing Soon\nBusiness Finance\nCB2\nSupported\nBusiness Economics\nCB3\nComing Soon\nBusiness Management\nCP1\nComing Soon\nActuarial Practice 1\nCP2\nComing Soon\nModelling Practice\nCP3\nComing Soon\nCommunications Practice\nSP papers\nComing Soon\nSpecialist Principles \u2014 choose your SP paper\nSA papers\nComing Soon\nSpecialist Advanced \u2014 choose your SA paper\nBack\nNext\nShowing study plan\n\nReduce decisions. Increase learning.",
+    "links": [
+      {
+        "text": "Skip to content",
+        "href": "#student-main"
+      },
+      {
+        "text": "",
+        "href": "/student/"
+      },
+      {
+        "text": "Home",
+        "href": "/student/"
+      },
+      {
+        "text": "Journey",
+        "href": "/student/journey"
+      },
+      {
+        "text": "Revision",
+        "href": "/student/revision"
+      },
+      {
+        "text": "History",
+        "href": "/student/history"
+      },
+      {
+        "text": "Settings",
+        "href": "/student/profile"
+      },
+      {
+        "text": "Study Plan",
+        "href": "/study-plan/"
+      },
+      {
+        "text": "Help",
+        "href": "/alpha/help"
+      },
+      {
+        "text": "Back",
+        "href": "/study-plan/wizard/1"
+      }
+    ],
+    "ctas": [
+      "Menu",
+      "Sign out",
+      "Next",
+      "Cancel",
+      "Back"
+    ],
+    "headings": [
+      "What paper or subject are you studying?",
+      "CS1\nSupported\nActuarial Statistics 1",
+      "CS2\nComing Soon\nRisk Modelling and Survival Analysis",
+      "CM1\nSupported\nActuarial Mathematics 1",
+      "CM2\nComing Soon\nLoss Reserving and Financial Engineering",
+      "CB1\nComing Soon\nBusiness Finance",
+      "CB2\nSupported\nBusiness Economics",
+      "CB3\nComing Soon\nBusiness Management",
+      "CP1\nComing Soon\nActuarial Practice 1",
+      "CP2\nComing Soon\nModelling Practice",
+      "CP3\nComing Soon\nCommunications Practice",
+      "SP papers\nComing Soon\nSpecialist Principles \u2014 choose your SP paper",
+      "SA papers\nComing Soon\nSpecialist Advanced \u2014 choose your SA paper",
+      "Confirm"
+    ],
+    "screenshot": "/tmp/fv001a_blind_capture/focus2_10_wizard2.png"
+  },
+  {
+    "phase": "wizard_step_2",
+    "t": 27.0,
+    "url": "http://127.0.0.1:5128/auth/login",
+    "title": "Sign in \u00b7 Kwalitec",
+    "text": "Education Operating System\n\nKnow exactly what to study next.\n\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAlways know what to study next\nPlans that fit your exam date\nFocused sessions without decision fatigue\nHonest progress you can trust\nEstimated readiness insights as you study\nSustainable pace through exam season\nSign in\n\nContinue to your workspace.\n\nEmail\nPassword\nRemember me\nNew to the Internal Alpha?\n\nKwalitec is invite-only during the Internal Alpha \u2014 sign in with the credentials your coordinator provided.\n\nMissing your details, or need a reset? Contact your coordinator.\n\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+    "links": [
+      {
+        "text": "",
+        "href": "/auth/login"
+      }
+    ],
+    "ctas": [
+      "Light",
+      "Dark",
+      "System",
+      "Sign in"
+    ],
+    "headings": [
+      "Sign in",
+      "Email",
+      "Password",
+      "Remember me",
+      "New to the Internal Alpha?"
+    ],
+    "screenshot": "/tmp/fv001a_blind_capture/focus2_11_wizard_step_2.png"
+  },
+  {
+    "phase": "home_after_plan",
+    "t": 27.2,
+    "url": "http://127.0.0.1:5128/auth/login?next=%2Fstudent%2F",
+    "title": "Sign in \u00b7 Kwalitec",
+    "text": "Education Operating System\n\nKnow exactly what to study next.\n\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAlways know what to study next\nPlans that fit your exam date\nFocused sessions without decision fatigue\nHonest progress you can trust\nEstimated readiness insights as you study\nSustainable pace through exam season\nSign in\nPlease sign in to continue.\nEmail\nPassword\nRemember me\nNew to the Internal Alpha?\n\nKwalitec is invite-only during the Internal Alpha \u2014 sign in with the credentials your coordinator provided.\n\nMissing your details, or need a reset? Contact your coordinator.\n\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+    "links": [
+      {
+        "text": "",
+        "href": "/auth/login"
+      }
+    ],
+    "ctas": [
+      "Light",
+      "Dark",
+      "System",
+      "Sign in"
+    ],
+    "headings": [
+      "Sign in",
+      "Email",
+      "Password",
+      "Remember me",
+      "New to the Internal Alpha?"
+    ],
+    "screenshot": "/tmp/fv001a_blind_capture/focus2_12_home_after_plan.png"
+  },
+  {
+    "phase": "end",
+    "t": 27.4,
+    "url": "http://127.0.0.1:5128/auth/login?next=%2Fstudent%2F",
+    "title": "Sign in \u00b7 Kwalitec",
+    "text": "Education Operating System\n\nKnow exactly what to study next.\n\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAlways know what to study next\nPlans that fit your exam date\nFocused sessions without decision fatigue\nHonest progress you can trust\nEstimated readiness insights as you study\nSustainable pace through exam season\nSign in\nPlease sign in to continue.\nEmail\nPassword\nRemember me\nNew to the Internal Alpha?\n\nKwalitec is invite-only during the Internal Alpha \u2014 sign in with the credentials your coordinator provided.\n\nMissing your details, or need a reset? Contact your coordinator.\n\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+    "links": [
+      {
+        "text": "",
+        "href": "/auth/login"
+      }
+    ],
+    "ctas": [
+      "Light",
+      "Dark",
+      "System",
+      "Sign in"
+    ],
+    "headings": [
+      "Sign in",
+      "Email",
+      "Password",
+      "Remember me",
+      "New to the Internal Alpha?"
+    ],
+    "screenshot": "/tmp/fv001a_blind_capture/focus2_13_end.png"
+  }
+]

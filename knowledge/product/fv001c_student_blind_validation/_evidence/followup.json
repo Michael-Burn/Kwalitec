@@ -1,0 +1,658 @@
+{
+  "records": [
+    {
+      "phase": "w1",
+      "url": "http://127.0.0.1:5201/study-plan/wizard/1",
+      "fields": [
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": null
+        },
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": "csrf_token"
+        },
+        {
+          "tag": "INPUT",
+          "name": "subject_key",
+          "type": "radio",
+          "id": "subject_key-0"
+        },
+        {
+          "tag": "INPUT",
+          "name": "subject_key",
+          "type": "radio",
+          "id": "subject_key-1"
+        },
+        {
+          "tag": "INPUT",
+          "name": "subject_key",
+          "type": "radio",
+          "id": "subject_key-2"
+        },
+        {
+          "tag": "INPUT",
+          "name": "subject_key",
+          "type": "radio",
+          "id": "subject_key-3"
+        }
+      ],
+      "text": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\nctshumba01@gmail.com\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\nSTEP 1\nChoose Exam\n\nStudy Plan\n\nWhich exam are you preparing for?\n\nBrowse the Subject Catalogue. Only Ready subjects can be selected. Coming Soon subjects are under preparation.\n\nCS1V\nReady\nCS1V \u00b7 2026.1\nVersion 2026.1 \u00b7 Updated 28 Jul 2026\nIFoA CB2\nReady\nIFoA CB2 \u00b7 2026\nVersion 2026\nIFoA CM1\nReady\nIFoA CM1 \u00b7 2026\nVersion 2026\nIFoA CS1\nReady\nIFoA CS1 \u00b7 2026\nVersion 2026\nIFoA CB1\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA CB3\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA CM2\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA CP1\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA CP2\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA CP3\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA CS2\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA SA\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA SP\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nNext\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "flashes": []
+    },
+    {
+      "phase": "w2",
+      "url": "http://127.0.0.1:5201/study-plan/wizard/2",
+      "fields": [
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": null
+        },
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": "csrf_token"
+        },
+        {
+          "tag": "SELECT",
+          "name": "exam_sitting",
+          "type": null,
+          "id": "exam_sitting"
+        },
+        {
+          "tag": "INPUT",
+          "name": "exam_date",
+          "type": "date",
+          "id": "exam_date"
+        }
+      ],
+      "text": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\nctshumba01@gmail.com\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\nSTEP 2\nExam Date\n\nStudy Plan\n\nWhen is your exam?\n\nEnter your exam date so we can plan your study schedule.\n\nSitting\nCustom\nChoose the exam sitting you're targeting.\nExam Date\nEnter the exact date of your exam.\nBack\nNext\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "flashes": []
+    },
+    {
+      "phase": "w3",
+      "url": "http://127.0.0.1:5201/study-plan/wizard/3",
+      "fields": [
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": null
+        },
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": "csrf_token"
+        },
+        {
+          "tag": "INPUT",
+          "name": "weekday_study_minutes",
+          "type": "number",
+          "id": "weekday_study_minutes"
+        },
+        {
+          "tag": "INPUT",
+          "name": "weekend_study_minutes",
+          "type": "number",
+          "id": "weekend_study_minutes"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-0"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-1"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-2"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-3"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-4"
+        }
+      ],
+      "text": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\nctshumba01@gmail.com\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\nSTEP 3\nStudy Availability\n\nStudy Plan\n\nHow much time can you study?\n\nBe honest about your availability. This shapes how much we schedule each day.\n\nWeekdays (minutes per day)\nmins/day\nWeekend (minutes per day)\nmins/day\nPreferred study session length\n30 minutes\n45 minutes\n60 minutes\n90 minutes\n120 minutes\nBack\nNext\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "flashes": []
+    },
+    {
+      "phase": "w3_filled",
+      "url": "http://127.0.0.1:5201/study-plan/wizard/3",
+      "fields": [
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": null
+        },
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": "csrf_token"
+        },
+        {
+          "tag": "INPUT",
+          "name": "weekday_study_minutes",
+          "type": "number",
+          "id": "weekday_study_minutes"
+        },
+        {
+          "tag": "INPUT",
+          "name": "weekend_study_minutes",
+          "type": "number",
+          "id": "weekend_study_minutes"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-0"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-1"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-2"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-3"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-4"
+        }
+      ],
+      "text": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\nctshumba01@gmail.com\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\nSTEP 3\nStudy Availability\n\nStudy Plan\n\nHow much time can you study?\n\nBe honest about your availability. This shapes how much we schedule each day.\n\nWeekdays (minutes per day)\nmins/day\nWeekend (minutes per day)\nmins/day\nPreferred study session length\n30 minutes\n45 minutes\n60 minutes\n90 minutes\n120 minutes\nBack\nNext\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "flashes": []
+    },
+    {
+      "phase": "w4_or_review",
+      "url": "http://127.0.0.1:5201/study-plan/wizard/3",
+      "fields": [
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": null
+        },
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": "csrf_token"
+        },
+        {
+          "tag": "INPUT",
+          "name": "weekday_study_minutes",
+          "type": "number",
+          "id": "weekday_study_minutes"
+        },
+        {
+          "tag": "INPUT",
+          "name": "weekend_study_minutes",
+          "type": "number",
+          "id": "weekend_study_minutes"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-0"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-1"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-2"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-3"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-4"
+        }
+      ],
+      "text": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\nctshumba01@gmail.com\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\nSTEP 3\nStudy Availability\n\nStudy Plan\n\nHow much time can you study?\n\nBe honest about your availability. This shapes how much we schedule each day.\n\nWeekdays (minutes per day)\nStudy time must be between 15 and 480 minutes.\nmins/day\nWeekend (minutes per day)\nStudy time must be between 15 and 480 minutes.\nmins/day\nPreferred study session length\n30 minutes\n45 minutes\n60 minutes\n90 minutes\n120 minutes\nBack\nNext\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "flashes": [
+        "Study time must be between 15 and 480 minutes.",
+        "Study time must be between 15 and 480 minutes.",
+        "Study time must be between 15 and 480 minutes.",
+        "Study time must be between 15 and 480 minutes."
+      ]
+    },
+    {
+      "phase": "advance_0_next",
+      "url": "http://127.0.0.1:5201/study-plan/wizard/3",
+      "fields": [
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": null
+        },
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": "csrf_token"
+        },
+        {
+          "tag": "INPUT",
+          "name": "weekday_study_minutes",
+          "type": "number",
+          "id": "weekday_study_minutes"
+        },
+        {
+          "tag": "INPUT",
+          "name": "weekend_study_minutes",
+          "type": "number",
+          "id": "weekend_study_minutes"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-0"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-1"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-2"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-3"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-4"
+        }
+      ],
+      "text": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\nctshumba01@gmail.com\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\nSTEP 3\nStudy Availability\n\nStudy Plan\n\nHow much time can you study?\n\nBe honest about your availability. This shapes how much we schedule each day.\n\nWeekdays (minutes per day)\nStudy time must be between 15 and 480 minutes.\nmins/day\nWeekend (minutes per day)\nStudy time must be between 15 and 480 minutes.\nmins/day\nPreferred study session length\n30 minutes\n45 minutes\n60 minutes\n90 minutes\n120 minutes\nBack\nNext\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "flashes": [
+        "Study time must be between 15 and 480 minutes.",
+        "Study time must be between 15 and 480 minutes.",
+        "Study time must be between 15 and 480 minutes.",
+        "Study time must be between 15 and 480 minutes."
+      ]
+    },
+    {
+      "phase": "advance_1_next",
+      "url": "http://127.0.0.1:5201/study-plan/wizard/3",
+      "fields": [
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": null
+        },
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": "csrf_token"
+        },
+        {
+          "tag": "INPUT",
+          "name": "weekday_study_minutes",
+          "type": "number",
+          "id": "weekday_study_minutes"
+        },
+        {
+          "tag": "INPUT",
+          "name": "weekend_study_minutes",
+          "type": "number",
+          "id": "weekend_study_minutes"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-0"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-1"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-2"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-3"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-4"
+        }
+      ],
+      "text": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\nctshumba01@gmail.com\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\nSTEP 3\nStudy Availability\n\nStudy Plan\n\nHow much time can you study?\n\nBe honest about your availability. This shapes how much we schedule each day.\n\nWeekdays (minutes per day)\nStudy time must be between 15 and 480 minutes.\nmins/day\nWeekend (minutes per day)\nStudy time must be between 15 and 480 minutes.\nmins/day\nPreferred study session length\n30 minutes\n45 minutes\n60 minutes\n90 minutes\n120 minutes\nBack\nNext\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "flashes": [
+        "Study time must be between 15 and 480 minutes.",
+        "Study time must be between 15 and 480 minutes.",
+        "Study time must be between 15 and 480 minutes.",
+        "Study time must be between 15 and 480 minutes."
+      ]
+    },
+    {
+      "phase": "advance_2_next",
+      "url": "http://127.0.0.1:5201/study-plan/wizard/3",
+      "fields": [
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": null
+        },
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": "csrf_token"
+        },
+        {
+          "tag": "INPUT",
+          "name": "weekday_study_minutes",
+          "type": "number",
+          "id": "weekday_study_minutes"
+        },
+        {
+          "tag": "INPUT",
+          "name": "weekend_study_minutes",
+          "type": "number",
+          "id": "weekend_study_minutes"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-0"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-1"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-2"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-3"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-4"
+        }
+      ],
+      "text": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\nctshumba01@gmail.com\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\nSTEP 3\nStudy Availability\n\nStudy Plan\n\nHow much time can you study?\n\nBe honest about your availability. This shapes how much we schedule each day.\n\nWeekdays (minutes per day)\nStudy time must be between 15 and 480 minutes.\nmins/day\nWeekend (minutes per day)\nStudy time must be between 15 and 480 minutes.\nmins/day\nPreferred study session length\n30 minutes\n45 minutes\n60 minutes\n90 minutes\n120 minutes\nBack\nNext\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "flashes": [
+        "Study time must be between 15 and 480 minutes.",
+        "Study time must be between 15 and 480 minutes.",
+        "Study time must be between 15 and 480 minutes.",
+        "Study time must be between 15 and 480 minutes."
+      ]
+    },
+    {
+      "phase": "advance_3_next",
+      "url": "http://127.0.0.1:5201/study-plan/wizard/3",
+      "fields": [
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": null
+        },
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": "csrf_token"
+        },
+        {
+          "tag": "INPUT",
+          "name": "weekday_study_minutes",
+          "type": "number",
+          "id": "weekday_study_minutes"
+        },
+        {
+          "tag": "INPUT",
+          "name": "weekend_study_minutes",
+          "type": "number",
+          "id": "weekend_study_minutes"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-0"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-1"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-2"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-3"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-4"
+        }
+      ],
+      "text": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\nctshumba01@gmail.com\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\nSTEP 3\nStudy Availability\n\nStudy Plan\n\nHow much time can you study?\n\nBe honest about your availability. This shapes how much we schedule each day.\n\nWeekdays (minutes per day)\nStudy time must be between 15 and 480 minutes.\nmins/day\nWeekend (minutes per day)\nStudy time must be between 15 and 480 minutes.\nmins/day\nPreferred study session length\n30 minutes\n45 minutes\n60 minutes\n90 minutes\n120 minutes\nBack\nNext\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "flashes": [
+        "Study time must be between 15 and 480 minutes.",
+        "Study time must be between 15 and 480 minutes.",
+        "Study time must be between 15 and 480 minutes.",
+        "Study time must be between 15 and 480 minutes."
+      ]
+    },
+    {
+      "phase": "advance_4_next",
+      "url": "http://127.0.0.1:5201/study-plan/wizard/3",
+      "fields": [
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": null
+        },
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": "csrf_token"
+        },
+        {
+          "tag": "INPUT",
+          "name": "weekday_study_minutes",
+          "type": "number",
+          "id": "weekday_study_minutes"
+        },
+        {
+          "tag": "INPUT",
+          "name": "weekend_study_minutes",
+          "type": "number",
+          "id": "weekend_study_minutes"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-0"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-1"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-2"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-3"
+        },
+        {
+          "tag": "INPUT",
+          "name": "preferred_session_minutes",
+          "type": "radio",
+          "id": "preferred_session_minutes-4"
+        }
+      ],
+      "text": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\nctshumba01@gmail.com\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\nSTEP 3\nStudy Availability\n\nStudy Plan\n\nHow much time can you study?\n\nBe honest about your availability. This shapes how much we schedule each day.\n\nWeekdays (minutes per day)\nStudy time must be between 15 and 480 minutes.\nmins/day\nWeekend (minutes per day)\nStudy time must be between 15 and 480 minutes.\nmins/day\nPreferred study session length\n30 minutes\n45 minutes\n60 minutes\n90 minutes\n120 minutes\nBack\nNext\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "flashes": [
+        "Study time must be between 15 and 480 minutes.",
+        "Study time must be between 15 and 480 minutes.",
+        "Study time must be between 15 and 480 minutes.",
+        "Study time must be between 15 and 480 minutes."
+      ]
+    },
+    {
+      "phase": "home_final",
+      "url": "http://127.0.0.1:5201/alpha/onboarding",
+      "fields": [
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": null
+        },
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": null
+        },
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": null
+        }
+      ],
+      "text": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\nctshumba01@gmail.com\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\n\nInternal Alpha\n\nWelcome to Kwalitec\n\nA short orientation \u2014 then choose your exam and begin learning.\n\nStep 1 of 4\n\nWhat Kwalitec is\n\nKwalitec helps you prepare for demanding exams with a clear Study Plan, focused daily study, and progress you can trust \u2014 built from verified curriculum and your recorded practice.\n\nStep 2 of 4\n\nChoose your exam\n\nPick a Ready subject from the Subject Catalogue, enter your exam date and study availability, then begin learning. Coming Soon subjects are under preparation and cannot be selected yet.\n\nStep 3 of 4\n\nToday's Focus\n\nEach day, Home shows Today's Focus \u2014 what to study now and why. Start today's Session to practice, then see what changed and what comes next.\n\nStep 4 of 4\n\nGuidance you can understand\n\nRecommendations come from your syllabus structure, available time, and study history \u2014 not a black box. When you expand \u201cwhy\u201d, you see the reasons behind the guidance.\n\nContinue to Home\nSkip for now\nHelp & Support\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "flashes": []
+    },
+    {
+      "phase": "dash_final",
+      "url": "http://127.0.0.1:5201/alpha/onboarding",
+      "fields": [
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": null
+        },
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": null
+        },
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "type": "hidden",
+          "id": null
+        }
+      ],
+      "text": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\nctshumba01@gmail.com\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\n\nInternal Alpha\n\nWelcome to Kwalitec\n\nA short orientation \u2014 then choose your exam and begin learning.\n\nStep 1 of 4\n\nWhat Kwalitec is\n\nKwalitec helps you prepare for demanding exams with a clear Study Plan, focused daily study, and progress you can trust \u2014 built from verified curriculum and your recorded practice.\n\nStep 2 of 4\n\nChoose your exam\n\nPick a Ready subject from the Subject Catalogue, enter your exam date and study availability, then begin learning. Coming Soon subjects are under preparation and cannot be selected yet.\n\nStep 3 of 4\n\nToday's Focus\n\nEach day, Home shows Today's Focus \u2014 what to study now and why. Start today's Session to practice, then see what changed and what comes next.\n\nStep 4 of 4\n\nGuidance you can understand\n\nRecommendations come from your syllabus structure, available time, and study history \u2014 not a black box. When you expand \u201cwhy\u201d, you see the reasons behind the guidance.\n\nContinue to Home\nSkip for now\nHelp & Support\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "flashes": []
+    }
+  ]
+}

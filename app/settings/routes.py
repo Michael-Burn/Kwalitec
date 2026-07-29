@@ -86,7 +86,7 @@ def index():
     """Render the settings overview page.
 
     READY FOR MIGRATION: under sole runtime, the canonical Settings surface
-    is Student Profile (see `partials/sidebar.html`'s "Settings" nav item).
+    is Student Profile (see Student EOS navigation "Settings").
     This bare landing ("general" tab — version/support/diagnostics/about) is
     fully superseded by `alpha.help_centre`'s own "Diagnostic information"
     disclosure, so redirecting it closes a duplicate-experience entry point

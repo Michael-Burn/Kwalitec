@@ -16,12 +16,8 @@ from dataclasses import dataclass
 
 from app.extensions import db
 from app.models.user import User
-from app.presentation.product_language import (
-    EDUCATIONAL_MEMORY_MODEL_SENTENCE,
-    REFLECTION_FAMILY_MAP_SENTENCE,
-)
 
-# Mandatory KW → Study Sensei handoff (DG-001.1-D01 / DG-001.2-D04 / T04).
+# Kept for Help / orientation surfaces that still introduce Study Sensei.
 SENSEI_HANDOFF_SENTENCE = (
     "Study Sensei is how Kwalitec guides your daily learning decisions."
 )
@@ -31,53 +27,36 @@ ONBOARDING_STEPS: tuple[dict[str, str], ...] = (
         "id": "what",
         "title": "What Kwalitec is",
         "body": (
-            "Kwalitec is an Education Operating System for demanding exams. "
-            "It is the product that hosts your Study Plan, Sessions, and "
-            "progress — calmly, from your plan and your evidence."
+            "Kwalitec helps you prepare for demanding exams with a clear "
+            "Study Plan, focused daily study, and progress you can trust — "
+            "built from verified curriculum and your recorded practice."
         ),
     },
     {
-        "id": "sensei",
-        "title": "Meet Study Sensei",
+        "id": "choose",
+        "title": "Choose your exam",
         "body": (
-            f"{SENSEI_HANDOFF_SENTENCE} "
-            "After this orientation, Study Sensei is your educational mentor "
-            "for what to focus on, why it matters, and what comes next."
+            "Pick a Ready subject from the Subject Catalogue, enter your exam "
+            "date and study availability, then begin learning. Coming Soon "
+            "subjects are under preparation and cannot be selected yet."
         ),
     },
     {
-        "id": "missions",
-        "title": "How Missions work",
+        "id": "focus",
+        "title": "Today's Focus",
         "body": (
-            "Each day Study Sensei prepares one focused Mission — what "
-            "deserves your attention now. Start today's Session to practice "
-            "that Mission, then record what you did. Missions keep study "
-            "decisions small so learning can stay large."
+            "Each day, Home shows Today's Focus — what to study now and why. "
+            "Start today's Session to practice, then see what changed and "
+            "what comes next."
         ),
     },
     {
         "id": "explainable",
-        "title": "Why recommendations are explainable",
+        "title": "Guidance you can understand",
         "body": (
             "Recommendations come from your syllabus structure, available time, "
             "and study history — not a black box. When you expand “why”, you "
-            "see the reasons Study Sensei used."
-        ),
-    },
-    {
-        "id": "reflection",
-        "title": "How Reflections work",
-        "body": (
-            f"{REFLECTION_FAMILY_MAP_SENTENCE} "
-            "Help keeps this map whenever you need it."
-        ),
-    },
-    {
-        "id": "memory",
-        "title": "How Study Sensei remembers",
-        "body": (
-            f"{EDUCATIONAL_MEMORY_MODEL_SENTENCE} "
-            "Help keeps this memory map whenever you need it."
+            "see the reasons behind the guidance."
         ),
     },
 )

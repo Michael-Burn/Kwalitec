@@ -1,0 +1,82 @@
+{
+  "01_login": {
+    "url": "http://127.0.0.1:5201/auth/login",
+    "title": "Sign in \u00b7 Kwalitec"
+  },
+  "after_login": {
+    "url": "http://127.0.0.1:5201/console/",
+    "title": "Console Home \u00b7 Kwalitec Console"
+  },
+  "02_founder_console.png": {
+    "path": "/console/",
+    "final_url": "http://127.0.0.1:5201/console/",
+    "status": 200,
+    "title": "Console Home \u00b7 Kwalitec Console",
+    "body_head": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\n\nKWALITEC CONSOLE \u00b7 INTERNAL ALPHA \u00b7 V2.0.0\n\nConsole Home\n\nOperational pulse \u2014 what needs attention today \u00b7 2026-07-28 23:04 UTC \u00b7 Calendar day (server local date)\n\nATTENTION REQUIRED\nOpen Attention Center\nSUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews\nPLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in\nCONTENT REVIEWS\n0\nHigh-severi",
+    "mentions_cs1": false
+  },
+  "02b_founder_overview.png": {
+    "path": "/founder/",
+    "final_url": "http://127.0.0.1:5201/console/",
+    "status": 200,
+    "title": "Console Home \u00b7 Kwalitec Console",
+    "body_head": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\n\nKWALITEC CONSOLE \u00b7 INTERNAL ALPHA \u00b7 V2.0.0\n\nConsole Home\n\nOperational pulse \u2014 what needs attention today \u00b7 2026-07-28 23:04 UTC \u00b7 Calendar day (server local date)\n\nATTENTION REQUIRED\nOpen Attention Center\nSUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews\nPLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in\nCONTENT REVIEWS\n0\nHigh-severi",
+    "mentions_cs1": false
+  },
+  "03_subjects.png": {
+    "path": "/console/studio/subjects",
+    "final_url": "http://127.0.0.1:5201/console/studio/subjects",
+    "status": 200,
+    "title": "Subjects \u00b7 Kwalitec Console",
+    "body_head": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nSubjects\n\nKWALITEC CONSOLE \u00b7 CURRICULUM AUTHORITY\n\nSubjects\n\nCreate subjects and open workspaces. Students only see a subject as Ready after you publish a verified curriculum.\n\nNEXT STEP\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nCurriculum workflow\nNew Subject\nUpload Official CMP\nUpload",
+    "mentions_cs1": false
+  },
+  "03b_studio_hub.png": {
+    "path": "/console/studio/",
+    "final_url": "http://127.0.0.1:5201/console/studio/",
+    "status": 200,
+    "title": "Curriculum Studio \u00b7 Kwalitec Console",
+    "body_head": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\n\nKWALITEC CONSOLE \u00b7 CURRICULUM STUDIO\n\nCurriculum Studio\n\nReview, validate, preview, approve, and publish curricula through one Console workflow.\n\nNEXT STEP\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nPublished 0\nDrafts 0\nPending validation 0\nPending approval 0\nCreate Su",
+    "mentions_cs1": false
+  },
+  "04_system_operations.png": {
+    "path": "/founder/operations",
+    "final_url": "http://127.0.0.1:5201/console/operations",
+    "status": 200,
+    "title": "System Operations \u00b7 Kwalitec Console",
+    "body_head": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\n\nKWALITEC CONSOLE / OPERATIONS\n\nOperations\n\nSystem & engineering readiness \u2014 Version 1.0 \u00b7 Release 1.0 \u00b7 Snapshot 1.0\n\nCURRENT OPERATIONAL SNAPSHOT\nSNAPSHOT VERSION\n1.0\nRECOMMENDATIONS\n3\nOVERALL STATUS\ncritical\nLATEST ACTIVITY\nFSI-005\nENGINEERING\nENGINEERING HEALTH\n0%\nARCHITECTURE HEALTH\n0%\nCAPABILITIES COMPLETED\n10\nCAPABILITIES ACTIVE\n0\nTOP RECOMMENDATIONS\nCRITICAL\nENGINEE",
+    "mentions_cs1": false
+  },
+  "04b_settings_about.png": {
+    "path": "/settings/",
+    "final_url": "http://127.0.0.1:5201/settings/",
+    "status": 200,
+    "title": "Settings \u00b7 Kwalitec",
+    "body_head": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\nctshumba01@gmail.com\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\n\nSystem\n\nSettings\n\nProfile, preferences, and Internal Alpha status.\n\n General\n Profile\n Preferences\n Data\n Account Status\n Product Check-in\nApplication Information\nVersion\n2.0.0\nSupport contact\nalpha-support@kwalitec.com\nAccount\nctshumba01@gmail.com\nDiagnostic information\n\nOpen Help & Support \u00b7 Product onboarding\n\nAbout Kwalitec\n\nEducation Operating System\n",
+    "mentions_cs1": false
+  },
+  "04c_alpha_help_release.png": {
+    "path": "/alpha/help",
+    "final_url": "http://127.0.0.1:5201/alpha/help",
+    "status": 200,
+    "title": "Help & Support \u00b7 Kwalitec",
+    "body_head": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\nctshumba01@gmail.com\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\n\nInternal Alpha\n\nHelp & Support\n\nHow Kwalitec and Study Sensei work together on your educational journey \u2014 and how to reach the Internal Alpha team.\n\nSearch Help topics\n\nOrientation\n\nYour educational journey\n\nStudy Sensei is how Kwalitec guides your daily learning decisions. Kwalitec is the product; Study Sensei is your educational mentor for what to focus ",
+    "mentions_cs1": false
+  },
+  "05_health.png": {
+    "path": "/health",
+    "final_url": "http://127.0.0.1:5201/health",
+    "status": 200,
+    "title": "",
+    "body_head": "{\"build_date\":\"2026-07-28\",\"build_number\":\"local\",\"commit\":null,\"components\":{\"database\":{\"latency_ms\":0.2,\"name\":\"database\",\"status\":\"ok\"},\"instance_storage\":{\"meta\":{\"path\":\"/Users/kwalitec/Developer/kwalitec/instance\"},\"name\":\"instance_storage\",\"status\":\"ok\"},\"migrations\":{\"meta\":{\"current\":\"202607280080\",\"head\":\"202607280080\"},\"name\":\"migrations\",\"status\":\"ok\"},\"queue\":{\"detail\":\"manual automation runner (no external broker)\",\"meta\":{\"broker\":\"none\",\"runner\":\"app.automation\"},\"name\":\"queue\",\"status\":\"ok\"}},\"database\":\"connected\",\"environment\":\"development\",\"status\":\"ok\",\"timestamp\":\"2026-0",
+    "mentions_cs1": false
+  },
+  "05b_health_details.png": {
+    "path": "/health/details",
+    "final_url": "http://127.0.0.1:5201/health/details",
+    "status": 200,
+    "title": "",
+    "body_head": "{\"alerts\":{\"db_latency_alert_ms\":500,\"slow_request_threshold_ms\":1000},\"build_date\":\"2026-07-28\",\"build_number\":\"local\",\"commit\":null,\"components\":{\"database\":{\"latency_ms\":0.2,\"name\":\"database\",\"status\":\"ok\"},\"instance_storage\":{\"meta\":{\"path\":\"/Users/kwalitec/Developer/kwalitec/instance\"},\"name\":\"instance_storage\",\"status\":\"ok\"},\"migrations\":{\"meta\":{\"current\":\"202607280080\",\"head\":\"202607280080\"},\"name\":\"migrations\",\"status\":\"ok\"},\"queue\":{\"detail\":\"manual automation runner (no external broker)\",\"meta\":{\"broker\":\"none\",\"runner\":\"app.automation\"},\"name\":\"queue\",\"status\":\"ok\"}},\"database\":\"co",
+    "mentions_cs1": false
+  }
+}

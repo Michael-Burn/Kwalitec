@@ -1,0 +1,17 @@
+[INFO] app: Kwalitec logging configured at level DEBUG
+[WARNING] app: SECRET_KEY is using the default value. Set a strong key for production use.
+[INFO] app: Environment: APP_ENV=development, FLASK_ENV=development, config=DevelopmentConfig
+[INFO] app: Using external database (DATABASE_URL is set)
+[INFO] app: SQLAlchemy database driver prefix: sqlite://
+[INFO] alembic.runtime.migration: Context impl SQLiteImpl.
+[INFO] alembic.runtime.migration: Will assume non-transactional DDL.
+[INFO] app: Alembic: current database revision = 202607280080
+[INFO] app: Alembic: head script revision = 202607280080
+[INFO] app: Alembic: database is up to date.
+[INFO] app.services.startup_service: Startup initialization beginning...
+[DEBUG] app.services.startup_service: Skipping curriculum import during Flask CLI command. Import will run on next normal application startup.
+[INFO] app.services.startup_service: Startup initialization complete.
+[INFO] app: Kwalitec application created successfully
+INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+202607280080 (head)

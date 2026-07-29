@@ -24,7 +24,12 @@ DASHBOARD_TEMPLATE = REPO_ROOT / "app" / "templates" / "dashboard" / "index.html
 PTP004_DOC = (
     REPO_ROOT / "knowledge" / "product" / "PTP-004_INFORMATION_ARCHITECTURE.md"
 )
-SIDEBAR = REPO_ROOT / "app" / "templates" / "partials" / "sidebar.html"
+EOS_NAV = (
+    REPO_ROOT / "app" / "templates" / "student" / "components" / "navigation.html"
+)
+STUDENT_NAV_PY = (
+    REPO_ROOT / "app" / "presentation" / "student" / "navigation.py"
+)
 
 # Competing / removed Dashboard chrome (must not reappear as section titles)
 FORBIDDEN_DASHBOARD_LABELS = (
@@ -185,16 +190,17 @@ class TestPtp004DashboardHierarchy:
 
 
 class TestPtp004NavigationUnchanged:
-    def test_sidebar_nav_endpoints_preserved(self):
-        html = SIDEBAR.read_text(encoding="utf-8")
+    def test_eos_nav_preserves_core_student_destinations(self):
+        html = EOS_NAV.read_text(encoding="utf-8")
+        assert "student-nav" in html or "nav_items" in html
+        nav_py = STUDENT_NAV_PY.read_text(encoding="utf-8")
         for endpoint in (
-            "dashboard.index",
-            "mission.missions",
+            "student.home",
             "study_plan.index",
-            "analytics.index",
-            "settings.index",
+            "student.profile",
+            "alpha.help_centre",
         ):
-            assert endpoint in html
+            assert endpoint in nav_py
 
     def test_dashboard_route_still_serves_student_home(
         self, logged_in_client

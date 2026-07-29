@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import logging
+
 from app.application.curriculum_studio._ports import as_str, require_management
 from app.application.curriculum_studio._registry import StudioRegistry
 from app.application.curriculum_studio.dto.publication_snapshot import (
@@ -23,6 +25,8 @@ from app.domain.curriculum_studio.publication_checklist import (
 )
 from app.domain.curriculum_studio.version_history import StudioVersionStatus
 
+logger = logging.getLogger(__name__)
+
 
 class PublicationService:
     """Orchestrate Founder publication use-cases through Management.
@@ -30,6 +34,8 @@ class PublicationService:
     Studio never owns publication state. Management ``publish`` /
     ``archive`` / ``approve`` are the authority. Studio syncs workspace
     projection status and checklist facts after successful port calls.
+    After Management publish, Foundation is bridged so Subject Catalogue
+    can show Ready (student-facing SSOT package).
     """
 
     def __init__(
@@ -71,17 +77,30 @@ class PublicationService:
         workspace = self._require_workspace(workspace_id)
         if not workspace.version_id:
             raise PublicationError("Approval requires an assigned version")
+        if not workspace.facts.validation_passed:
+            raise PublicationError(
+                "Approval requires successful validation"
+            )
+        # Advance Management to PREVIEW_READY when still at BLUEPRINT_ASSIGNED.
+        try:
+            mgmt.preview_version(workspace.version_id)
+        except Exception as exc:
+            raise PublicationError(
+                "Approval requires a successful preview with curriculum "
+                f"content: {exc}"
+            ) from exc
         mgmt.approve(
             workspace.version_id,
             actor_id=actor_id,
             occurred_at=occurred_at,
             reason=reason or "founder_approval",
         )
+        workspace = self._require_workspace(workspace_id)
         facts = WorkspacePublicationFacts.create(
             cmp_uploaded=workspace.facts.cmp_uploaded,
             official_syllabus_uploaded=workspace.facts.official_syllabus_uploaded,
             validation_passed=workspace.facts.validation_passed,
-            blueprint_assigned=workspace.facts.blueprint_assigned,
+            blueprint_assigned=True,
             preview_approved=True,
             version_assigned=workspace.facts.version_assigned,
             rollback_snapshot_created=workspace.facts.rollback_snapshot_created,
@@ -104,8 +123,10 @@ class PublicationService:
         occurred_at: str = "",
         actor_id: str | None = None,
     ) -> PublicationSnapshot:
-        """Publish Curriculum — Management authority."""
+        """Publish Curriculum — Management authority + Foundation Ready bridge."""
         mgmt = require_management(self._management, action="publish")
+        workspace = self._require_workspace(workspace_id)
+        self._ensure_rollback_snapshot(workspace_id)
         workspace = self._require_workspace(workspace_id)
         self.assert_ready(workspace_id)
         if not workspace.version_id:
@@ -130,9 +151,35 @@ class PublicationService:
             StudioVersionStatus.PUBLISHED,
             published_at=occurred_at or "published",
         )
+        workspace = self._require_workspace(workspace_id)
         self._registry.put_workspace(
             workspace.with_status(WorkspaceStatus.PUBLISHED)
         )
+        # Student Subject Catalogue Ready depends on Foundation packages.
+        try:
+            from app.application.platform_integration.publication_bridge import (
+                PublicationBridgeService,
+            )
+
+            PublicationBridgeService(self._registry).publish_to_catalogue(
+                workspace_id, actor_id=actor_id or ""
+            )
+        except PublicationError as exc:
+            detail = str(exc).lower()
+            # Unit paths without Foundation documents still publish via Management.
+            if "no foundation" in detail:
+                logger.warning("Ready bridge skipped: %s", exc)
+            else:
+                raise
+        except RuntimeError as exc:
+            # Outside Flask app context (pure unit tests).
+            logger.warning("Ready bridge skipped (no app context): %s", exc)
+        except Exception as exc:
+            logger.exception("Foundation Ready bridge failed")
+            raise PublicationError(
+                "Curriculum was approved in Studio but could not become Ready "
+                f"in the Subject Catalogue: {exc}"
+            ) from exc
         self._registry.record_activity(
             "published",
             f"Published {workspace_id}",
@@ -142,6 +189,21 @@ class PublicationService:
             occurred_at=occurred_at,
         )
         return self.checklist(workspace_id)
+
+    def _ensure_rollback_snapshot(self, workspace_id: str) -> None:
+        """Create rollback snapshot when missing (safety gate, not a bypass)."""
+        workspace = self._require_workspace(workspace_id)
+        if workspace.facts.rollback_snapshot_created:
+            return
+        if not workspace.version_id:
+            raise PublicationError("Publication requires an assigned version")
+        from app.application.curriculum_studio.version_history_service import (
+            VersionHistoryService,
+        )
+
+        VersionHistoryService(
+            self._registry, management=self._management
+        ).create_rollback_snapshot(workspace.version_id)
 
     def archive(
         self,

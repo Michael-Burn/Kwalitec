@@ -34,10 +34,18 @@ def test_session_body_has_one_h1_marker():
 
 
 def test_base_has_banner_main():
-    text = (TEMPLATE_ROOT / "base.html").read_text(encoding="utf-8")
-    assert 'role="banner"' in text
-    assert 'role="main"' in text
-    assert "Skip to content" in text
+    eos = (
+        Path(__file__).resolve().parents[3]
+        / "app"
+        / "templates"
+        / "layouts"
+        / "eos_student.html"
+    ).read_text(encoding="utf-8")
+    assert 'role="banner"' in eos
+    assert 'role="main"' in eos
+    assert "Skip to content" in eos
+    session_base = (TEMPLATE_ROOT / "base.html").read_text(encoding="utf-8")
+    assert 'extends "layouts/eos_student.html"' in session_base
 
 
 def test_primary_has_accessible_group():

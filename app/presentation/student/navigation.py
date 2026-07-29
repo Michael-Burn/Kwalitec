@@ -144,6 +144,10 @@ def build_navigation_for_request(
                 active_endpoint = SURFACE_ENDPOINTS[ExperienceSurface.PROFILE]
         elif endpoint.startswith("study_plan.") or endpoint.startswith("alpha."):
             active_surface = None
+        elif endpoint.startswith("session."):
+            # Study Session stays inside the same Student shell; Home remains
+            # the orientation anchor (exit returns to student.home).
+            active_surface = ExperienceSurface.HOME
         else:
             active_surface = surface_for_endpoint(endpoint)
     return build_navigation(

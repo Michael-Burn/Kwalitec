@@ -1,0 +1,331 @@
+{
+  "programme": "FV-001C",
+  "release_candidate": "RC-2026.07.29-01",
+  "base": "http://127.0.0.1:5201",
+  "subject": "CS1V",
+  "commit": "f17058862baf9aa8c6f416c6fa7bd26739812fb8",
+  "worktree_digest": "5e8e92256cbd1e728e5ddb8f8ec40b1f9f26ccf1ac84ddb0addd36d02593915e",
+  "database_url": "sqlite:////tmp/rc001_RC-2026.07.29-01.sqlite3",
+  "started_at": "2026-07-28T23:15:11.330021+00:00",
+  "finished_at": "2026-07-28T23:15:16.747101+00:00",
+  "elapsed_s": 5.4,
+  "acceptance": {
+    "login": true,
+    "onboarding_loads": true,
+    "onboarding_mentions_ready": true,
+    "choose_exam_loads": true,
+    "no_http_500": true,
+    "cs1v_visible": true,
+    "cs1v_ready": true,
+    "cs1v_version": true,
+    "cs1v_published_or_updated": true,
+    "select_cs1v": true,
+    "student_home_loads": true,
+    "home_mentions_subject_or_focus": true,
+    "cs1v_not_coming_soon_only": true,
+    "complete_without_assistance": true,
+    "no_forbidden_ei": true
+  },
+  "checklist": {
+    "Login": true,
+    "Onboarding loads": true,
+    "Choose Exam loads (no 500)": true,
+    "CS1V visible in catalogue": true,
+    "CS1V shows Ready": true,
+    "CS1V shows version": true,
+    "CS1V shows published/updated date": true,
+    "Select / engage CS1V": true,
+    "Student home loads": true,
+    "Complete discovery without assistance": true,
+    "No unnecessary EI terminology": true
+  },
+  "ux_notes": [
+    {
+      "phase": "Choose Exam",
+      "window": "mail.com\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\nSTEP 1\nChoose Exam\n\nStudy Plan\n\nWhich exam are you preparing for?\n\nBrowse the Subject Catalogue. Only Ready subjects can be selected. Coming Soon subjects are under preparation.\n\nCS1V\nReady\nCS1V \u00b7 2026.1\nVersion 2026.1 \u00b7 Updated 28 Jul 2026\nIFoA CB2\nReady\nIFoA CB2 \u00b7 2026\nVersion 2026\nIFoA CM1\nReady\nIFoA CM1 \u00b7 2026\nVersion 2026\nIFoA CS1\nReady\nIFoA CS1 \u00b7 2026\nVersion 2026\nIFoA CB1\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA CB3\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is",
+      "confidence": 9
+    }
+  ],
+  "term_hits": [],
+  "records": [
+    {
+      "phase": "S1_login",
+      "t": 2.4,
+      "ts": "2026-07-28T23:15:13.699229+00:00",
+      "url": "http://127.0.0.1:5201/auth/login",
+      "title": "Sign in \u00b7 Kwalitec",
+      "flashes": [],
+      "headings": [
+        "Sign in",
+        "New to the Internal Alpha?"
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Sign in"
+      ],
+      "terms_found": [],
+      "text": "Education Operating System\n\nKnow exactly what to study next.\n\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAlways know what to study next\nPlans that fit your exam date\nFocused sessions without decision fatigue\nHonest progress you can trust\nEstimated readiness insights as you study\nSustainable pace through exam season\nSign in\n\nContinue to your workspace.\n\nEmail\nPassword\nRemember me\nNew to the Internal Alpha?\n\nKwalitec is invite-only during the Internal Alpha \u2014 sign in with the credentials your coordinator provided.\n\nMissing your details, or need a reset? Contact your coordinator.\n\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "screenshot": "knowledge/product/fv001c_student_blind_validation/_evidence/screenshots/00_s1_login.png"
+    },
+    {
+      "phase": "S1_after_login",
+      "t": 3.3,
+      "ts": "2026-07-28T23:15:14.604493+00:00",
+      "url": "http://127.0.0.1:5201/console/",
+      "title": "Console Home \u00b7 Kwalitec Console",
+      "flashes": [],
+      "headings": [
+        "Console Home",
+        "ATTENTION REQUIRED",
+        "PLATFORM SUMMARY",
+        "QUICK ACTIONS",
+        "OPERATIONAL DETAIL",
+        "Recent support",
+        "Attention queue",
+        "Vision Journal"
+      ],
+      "ctas": [
+        "Search",
+        "Sign out"
+      ],
+      "terms_found": [],
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWelcome back to Kwalitec.\n\nKWALITEC CONSOLE \u00b7 INTERNAL ALPHA \u00b7 V2.0.0\n\nConsole Home\n\nOperational pulse \u2014 what needs attention today \u00b7 2026-07-28 23:15 UTC \u00b7 Calendar day (server local date)\n\nATTENTION REQUIRED\nOpen Attention Center\nSUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews\nPLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in\nCONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings\nSTUDENT ISSUES\n0\nNeeds intervention\nNothing queued\nHIGH\nSystem health signals need attention\nOpen\nPLATFORM SUMMARY\nSTUDENTS\n0\nActive participants\n0 active today\nLEARNING\n0\nCheck-ins today\n0 in last 7 days\nASSESSMENTS\n\u2014\nAvg experience\nWould open tomorrow \u2014\nSYSTEM\nNo check-ins yet\nAlpha health\nBuild local\nQUICK ACTIONS\nReview support inbox\nOpen operations\nManage content\nPlatform Intelligence\nOPERATIONAL DETAIL\nRecent support\nInbox\n\nNo Product Check-ins yet.\n\nAttention queue\nCenter\n\nNothing needs action right now.\n\nVision Journal\nOpen\n\nNo Vision entries yet. New entry\n\nKwalitec Console \u00b7 What needs attention today?",
+      "screenshot": "knowledge/product/fv001c_student_blind_validation/_evidence/screenshots/01_s1_after_login.png"
+    },
+    {
+      "phase": "S2_onboarding",
+      "t": 3.4,
+      "ts": "2026-07-28T23:15:14.696754+00:00",
+      "url": "http://127.0.0.1:5201/alpha/onboarding",
+      "title": "Welcome to Kwalitec \u00b7 Kwalitec",
+      "flashes": [],
+      "headings": [
+        "Welcome to Kwalitec",
+        "What Kwalitec is",
+        "Choose your exam",
+        "Today's Focus",
+        "Guidance you can understand",
+        "Confirm"
+      ],
+      "ctas": [
+        "Sign out",
+        "Light",
+        "Dark",
+        "System",
+        "Continue to Home",
+        "Skip for now",
+        "Cancel",
+        "Help & Support"
+      ],
+      "terms_found": [],
+      "text": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\nctshumba01@gmail.com\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\n\nInternal Alpha\n\nWelcome to Kwalitec\n\nA short orientation \u2014 then choose your exam and begin learning.\n\nStep 1 of 4\n\nWhat Kwalitec is\n\nKwalitec helps you prepare for demanding exams with a clear Study Plan, focused daily study, and progress you can trust \u2014 built from verified curriculum and your recorded practice.\n\nStep 2 of 4\n\nChoose your exam\n\nPick a Ready subject from the Subject Catalogue, enter your exam date and study availability, then begin learning. Coming Soon subjects are under preparation and cannot be selected yet.\n\nStep 3 of 4\n\nToday's Focus\n\nEach day, Home shows Today's Focus \u2014 what to study now and why. Start today's Session to practice, then see what changed and what comes next.\n\nStep 4 of 4\n\nGuidance you can understand\n\nRecommendations come from your syllabus structure, available time, and study history \u2014 not a black box. When you expand \u201cwhy\u201d, you see the reasons behind the guidance.\n\nContinue to Home\nSkip for now\nHelp & Support\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "screenshot": "knowledge/product/fv001c_student_blind_validation/_evidence/screenshots/02_s2_onboarding.png"
+    },
+    {
+      "phase": "S3_wizard_choose_exam",
+      "t": 3.6,
+      "ts": "2026-07-28T23:15:14.932556+00:00",
+      "url": "http://127.0.0.1:5201/study-plan/wizard/1",
+      "title": "Study Plan \u00b7 Kwalitec",
+      "flashes": [],
+      "headings": [
+        "Which exam are you preparing for?",
+        "Confirm"
+      ],
+      "ctas": [
+        "Sign out",
+        "Light",
+        "Dark",
+        "System",
+        "Next",
+        "Cancel"
+      ],
+      "terms_found": [],
+      "text": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\nctshumba01@gmail.com\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\nSTEP 1\nChoose Exam\n\nStudy Plan\n\nWhich exam are you preparing for?\n\nBrowse the Subject Catalogue. Only Ready subjects can be selected. Coming Soon subjects are under preparation.\n\nCS1V\nReady\nCS1V \u00b7 2026.1\nVersion 2026.1 \u00b7 Updated 28 Jul 2026\nIFoA CB2\nReady\nIFoA CB2 \u00b7 2026\nVersion 2026\nIFoA CM1\nReady\nIFoA CM1 \u00b7 2026\nVersion 2026\nIFoA CS1\nReady\nIFoA CS1 \u00b7 2026\nVersion 2026\nIFoA CB1\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA CB3\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA CM2\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA CP1\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA CP2\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA CP3\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA CS2\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA SA\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA SP\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nNext\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "screenshot": "knowledge/product/fv001c_student_blind_validation/_evidence/screenshots/03_s3_wizard_choose_exam.png"
+    },
+    {
+      "phase": "S3_cs1v_selected",
+      "t": 4.3,
+      "ts": "2026-07-28T23:15:15.649651+00:00",
+      "url": "http://127.0.0.1:5201/study-plan/wizard/1",
+      "title": "Study Plan \u00b7 Kwalitec",
+      "flashes": [],
+      "headings": [
+        "Which exam are you preparing for?",
+        "Confirm"
+      ],
+      "ctas": [
+        "Sign out",
+        "Light",
+        "Dark",
+        "System",
+        "Next",
+        "Cancel"
+      ],
+      "terms_found": [],
+      "text": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\nctshumba01@gmail.com\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\nSTEP 1\nChoose Exam\n\nStudy Plan\n\nWhich exam are you preparing for?\n\nBrowse the Subject Catalogue. Only Ready subjects can be selected. Coming Soon subjects are under preparation.\n\nCS1V\nReady\nCS1V \u00b7 2026.1\nVersion 2026.1 \u00b7 Updated 28 Jul 2026\nIFoA CB2\nReady\nIFoA CB2 \u00b7 2026\nVersion 2026\nIFoA CM1\nReady\nIFoA CM1 \u00b7 2026\nVersion 2026\nIFoA CS1\nReady\nIFoA CS1 \u00b7 2026\nVersion 2026\nIFoA CB1\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA CB3\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA CM2\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA CP1\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA CP2\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA CP3\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA CS2\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA SA\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA SP\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nNext\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "screenshot": "knowledge/product/fv001c_student_blind_validation/_evidence/screenshots/04_s3_cs1v_selected.png"
+    },
+    {
+      "phase": "S4_wizard_step2",
+      "t": 4.6,
+      "ts": "2026-07-28T23:15:15.941723+00:00",
+      "url": "http://127.0.0.1:5201/study-plan/wizard/2",
+      "title": "Study Plan \u00b7 Kwalitec",
+      "flashes": [],
+      "headings": [
+        "When is your exam?",
+        "Confirm"
+      ],
+      "ctas": [
+        "Sign out",
+        "Light",
+        "Dark",
+        "System",
+        "Next",
+        "Cancel",
+        "Back"
+      ],
+      "terms_found": [],
+      "text": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\nctshumba01@gmail.com\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\nSTEP 2\nExam Date\n\nStudy Plan\n\nWhen is your exam?\n\nEnter your exam date so we can plan your study schedule.\n\nSitting\nCustom\nChoose the exam sitting you're targeting.\nExam Date\nEnter the exact date of your exam.\nBack\nNext\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "screenshot": "knowledge/product/fv001c_student_blind_validation/_evidence/screenshots/05_s4_wizard_step2.png"
+    },
+    {
+      "phase": "S5_wizard_step3",
+      "t": 4.8,
+      "ts": "2026-07-28T23:15:16.108591+00:00",
+      "url": "http://127.0.0.1:5201/study-plan/wizard/3",
+      "title": "Study Plan \u00b7 Kwalitec",
+      "flashes": [],
+      "headings": [
+        "How much time can you study?",
+        "Confirm"
+      ],
+      "ctas": [
+        "Sign out",
+        "Light",
+        "Dark",
+        "System",
+        "Next",
+        "Cancel",
+        "Back"
+      ],
+      "terms_found": [],
+      "text": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\nctshumba01@gmail.com\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\nSTEP 3\nStudy Availability\n\nStudy Plan\n\nHow much time can you study?\n\nBe honest about your availability. This shapes how much we schedule each day.\n\nWeekdays (minutes per day)\nmins/day\nWeekend (minutes per day)\nmins/day\nPreferred study session length\n30 minutes\n45 minutes\n60 minutes\n90 minutes\n120 minutes\nBack\nNext\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "screenshot": "knowledge/product/fv001c_student_blind_validation/_evidence/screenshots/06_s5_wizard_step3.png"
+    },
+    {
+      "phase": "S6_review",
+      "t": 4.9,
+      "ts": "2026-07-28T23:15:16.259525+00:00",
+      "url": "http://127.0.0.1:5201/study-plan/wizard/3",
+      "title": "Study Plan \u00b7 Kwalitec",
+      "flashes": [
+        "Weekday study time is required.",
+        "Weekend study time is required.",
+        "Weekday study time is required.",
+        "Weekend study time is required."
+      ],
+      "headings": [
+        "How much time can you study?",
+        "Confirm"
+      ],
+      "ctas": [
+        "Sign out",
+        "Light",
+        "Dark",
+        "System",
+        "Next",
+        "Cancel",
+        "Back"
+      ],
+      "terms_found": [],
+      "text": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\nctshumba01@gmail.com\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\nSTEP 3\nStudy Availability\n\nStudy Plan\n\nHow much time can you study?\n\nBe honest about your availability. This shapes how much we schedule each day.\n\nWeekdays (minutes per day)\nWeekday study time is required.\nmins/day\nWeekend (minutes per day)\nWeekend study time is required.\nmins/day\nPreferred study session length\n30 minutes\n45 minutes\n60 minutes\n90 minutes\n120 minutes\nBack\nNext\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "screenshot": "knowledge/product/fv001c_student_blind_validation/_evidence/screenshots/07_s6_review.png"
+    },
+    {
+      "phase": "S7_student_home",
+      "t": 5.0,
+      "ts": "2026-07-28T23:15:16.364734+00:00",
+      "url": "http://127.0.0.1:5201/alpha/onboarding",
+      "title": "Welcome to Kwalitec \u00b7 Kwalitec",
+      "flashes": [],
+      "headings": [
+        "Welcome to Kwalitec",
+        "What Kwalitec is",
+        "Choose your exam",
+        "Today's Focus",
+        "Guidance you can understand",
+        "Confirm"
+      ],
+      "ctas": [
+        "Sign out",
+        "Light",
+        "Dark",
+        "System",
+        "Continue to Home",
+        "Skip for now",
+        "Cancel",
+        "Help & Support"
+      ],
+      "terms_found": [],
+      "text": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\nctshumba01@gmail.com\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\n\nInternal Alpha\n\nWelcome to Kwalitec\n\nA short orientation \u2014 then choose your exam and begin learning.\n\nStep 1 of 4\n\nWhat Kwalitec is\n\nKwalitec helps you prepare for demanding exams with a clear Study Plan, focused daily study, and progress you can trust \u2014 built from verified curriculum and your recorded practice.\n\nStep 2 of 4\n\nChoose your exam\n\nPick a Ready subject from the Subject Catalogue, enter your exam date and study availability, then begin learning. Coming Soon subjects are under preparation and cannot be selected yet.\n\nStep 3 of 4\n\nToday's Focus\n\nEach day, Home shows Today's Focus \u2014 what to study now and why. Start today's Session to practice, then see what changed and what comes next.\n\nStep 4 of 4\n\nGuidance you can understand\n\nRecommendations come from your syllabus structure, available time, and study history \u2014 not a black box. When you expand \u201cwhy\u201d, you see the reasons behind the guidance.\n\nContinue to Home\nSkip for now\nHelp & Support\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "screenshot": "knowledge/product/fv001c_student_blind_validation/_evidence/screenshots/08_s7_student_home.png"
+    },
+    {
+      "phase": "S8_dashboard",
+      "t": 5.1,
+      "ts": "2026-07-28T23:15:16.466619+00:00",
+      "url": "http://127.0.0.1:5201/alpha/onboarding",
+      "title": "Welcome to Kwalitec \u00b7 Kwalitec",
+      "flashes": [],
+      "headings": [
+        "Welcome to Kwalitec",
+        "What Kwalitec is",
+        "Choose your exam",
+        "Today's Focus",
+        "Guidance you can understand",
+        "Confirm"
+      ],
+      "ctas": [
+        "Sign out",
+        "Light",
+        "Dark",
+        "System",
+        "Continue to Home",
+        "Skip for now",
+        "Cancel",
+        "Help & Support"
+      ],
+      "terms_found": [],
+      "text": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\nctshumba01@gmail.com\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\n\nInternal Alpha\n\nWelcome to Kwalitec\n\nA short orientation \u2014 then choose your exam and begin learning.\n\nStep 1 of 4\n\nWhat Kwalitec is\n\nKwalitec helps you prepare for demanding exams with a clear Study Plan, focused daily study, and progress you can trust \u2014 built from verified curriculum and your recorded practice.\n\nStep 2 of 4\n\nChoose your exam\n\nPick a Ready subject from the Subject Catalogue, enter your exam date and study availability, then begin learning. Coming Soon subjects are under preparation and cannot be selected yet.\n\nStep 3 of 4\n\nToday's Focus\n\nEach day, Home shows Today's Focus \u2014 what to study now and why. Start today's Session to practice, then see what changed and what comes next.\n\nStep 4 of 4\n\nGuidance you can understand\n\nRecommendations come from your syllabus structure, available time, and study history \u2014 not a black box. When you expand \u201cwhy\u201d, you see the reasons behind the guidance.\n\nContinue to Home\nSkip for now\nHelp & Support\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "screenshot": "knowledge/product/fv001c_student_blind_validation/_evidence/screenshots/09_s8_dashboard.png"
+    },
+    {
+      "phase": "S8_study_plan",
+      "t": 5.4,
+      "ts": "2026-07-28T23:15:16.716764+00:00",
+      "url": "http://127.0.0.1:5201/study-plan/wizard/1",
+      "title": "Study Plan \u00b7 Kwalitec",
+      "flashes": [],
+      "headings": [
+        "Which exam are you preparing for?",
+        "Confirm"
+      ],
+      "ctas": [
+        "Sign out",
+        "Light",
+        "Dark",
+        "System",
+        "Next",
+        "Cancel"
+      ],
+      "terms_found": [],
+      "text": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\nctshumba01@gmail.com\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\nSTEP 1\nChoose Exam\n\nStudy Plan\n\nWhich exam are you preparing for?\n\nBrowse the Subject Catalogue. Only Ready subjects can be selected. Coming Soon subjects are under preparation.\n\nCS1V\nReady\nCS1V \u00b7 2026.1\nVersion 2026.1 \u00b7 Updated 28 Jul 2026\nIFoA CB2\nReady\nIFoA CB2 \u00b7 2026\nVersion 2026\nIFoA CM1\nReady\nIFoA CM1 \u00b7 2026\nVersion 2026\nIFoA CS1\nReady\nIFoA CS1 \u00b7 2026\nVersion 2026\nIFoA CB1\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA CB3\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA CM2\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA CP1\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA CP2\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA CP3\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA CS2\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA SA\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nIFoA SP\nComing Soon\nThis subject\u2019s verified curriculum is still under preparation. It will become available when publishing is complete. You cannot start studying this exam yet.\nNext\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "screenshot": "knowledge/product/fv001c_student_blind_validation/_evidence/screenshots/10_s8_study_plan.png"
+    }
+  ]
+}

@@ -197,3 +197,79 @@ def test_template_mission_first_no_legacy_chrome(app, ctx):
     assert "welcome_modal" not in html
     assert "ds-mission-panel" in html
     assert "design_system.css" in html or "ds-page" in html
+
+
+def test_mission_without_exam_label_is_not_empty(app, ctx):
+    """RC-2026.07.29-06: live mission with topic must never render empty-exam."""
+    home = home_vm(
+        HomeSnapshot(
+            student_id="1",
+            examination_label="",
+            has_recommendation=False,
+            recommendation_title="",
+            can_start_session=True,
+            start_session=StartSessionActionSnapshot(
+                label="Start Session",
+                enabled=True,
+                can_start=True,
+                mission_id="23",
+                session_id="",
+                topic_title="Today's study focus",
+            ),
+        ),
+        unified_journey=False,
+    )
+    # Simulate Twin empty examination while mission bridge is live.
+    home = replace(home, examination_label="")
+    with app.test_request_context("/student/"):
+        page = StudentHomeService().build_home(_page(home))
+    assert page.state == "mission"
+    assert page.mission is not None
+    assert page.mission.primary_kind == "start_form"
+    assert "No exam selected" not in page.empty_reason
+
+
+def test_demo_mission_stub_without_topic_stays_empty(app, ctx):
+    """Bare Experience demo mission ids must not suppress the empty state."""
+    home = home_vm(
+        HomeSnapshot(
+            student_id="1",
+            examination_label="",
+            has_recommendation=False,
+            recommendation_title="",
+            can_start_session=True,
+            start_session=StartSessionActionSnapshot(
+                label="Start Session",
+                enabled=True,
+                can_start=True,
+                mission_id="mission-1",
+                session_id="sess-1",
+                topic_title="",
+            ),
+        ),
+        unified_journey=False,
+    )
+    home = replace(home, examination_label="")
+    with app.test_request_context("/student/"):
+        page = StudentHomeService().build_home(_page(home))
+    assert page.state == "empty"
+    assert "No exam selected" in page.empty_reason
+
+
+def test_plan_signal_without_ready_mission_is_quiet(app, ctx):
+    """Active plan / mission id without a startable CTA → quiet, not empty."""
+    home = home_vm(
+        HomeSnapshot(
+            student_id="1",
+            examination_label="IFoA CM1",
+            has_recommendation=False,
+            recommendation_title="",
+            can_start_session=False,
+        ),
+        unified_journey=False,
+    )
+    with app.test_request_context("/student/"):
+        page = StudentHomeService().build_home(_page(home))
+    assert page.state == "quiet"
+    assert "No exam selected" not in page.empty_reason
+    assert "session will be ready" in page.empty_reason.lower()

@@ -340,6 +340,11 @@ class StudentHomeService:
                 if home.recommendation and home.recommendation.title
                 else ""
             )
+            or (
+                (home.start_session.topic_title or "").strip()
+                if home.start_session
+                else ""
+            )
         )
 
     @staticmethod
@@ -352,6 +357,11 @@ class StudentHomeService:
                 else ""
             )
             or (home.primary_mission_title or "").strip()
+            or (
+                (home.start_session.topic_title or "").strip()
+                if home.start_session
+                else ""
+            )
         )
 
     @staticmethod
@@ -431,11 +441,24 @@ class StudentHomeService:
 
     @staticmethod
     def _has_study_plan_signal(home: HomePageViewModel) -> bool:
+        """True when the learner has an active study context.
+
+        Canonical signals: examination label (Study Plan / Twin), today's
+        recommendation (or mission topic title), Unified Journey, or Runtime C
+        educational enrolment.
+
+        Do not treat bare demo ``mission_id`` / ``session_id`` stubs alone as
+        proof of an active plan — those can exist without an exam selection.
+        """
+        topic = ""
+        if home.start_session:
+            topic = (home.start_session.topic_title or "").strip()
         return bool(
             home.examination_label
             or (
                 home.recommendation and home.recommendation.has_recommendation
             )
+            or topic
             or home.unified_journey_enabled
             or (home.educational and getattr(home.educational, "active", False))
         )

@@ -199,6 +199,32 @@ class CurriculumWorkspace:
             notes=self.notes,
         )
 
+    def with_structure(
+        self,
+        *,
+        section_ids: list[str] | tuple[str, ...] | None = None,
+        topic_ids: list[str] | tuple[str, ...] | None = None,
+        objective_ids: list[str] | tuple[str, ...] | None = None,
+    ) -> CurriculumWorkspace:
+        """Return a copy with updated extracted curriculum structure ids."""
+        return CurriculumWorkspace(
+            workspace_id=self.workspace_id,
+            subject_code=self.subject_code,
+            subject_title=self.subject_title,
+            version_label=self.version_label,
+            version_id=self.version_id,
+            status=self.status,
+            workflow=self.workflow,
+            facts=self.facts,
+            section_ids=tuple(section_ids or ()),
+            topic_ids=tuple(topic_ids or ()),
+            objective_ids=tuple(objective_ids or ()),
+            prerequisite_edges=self.prerequisite_edges,
+            metadata=self.metadata,
+            estimated_workload_hours=self.estimated_workload_hours,
+            notes=self.notes,
+        )
+
     def at_stage(self, stage: WorkflowStage | str) -> bool:
         """True when the workspace is currently on ``stage``."""
         return self.current_stage is resolve_workflow_stage(stage)

@@ -7,6 +7,7 @@
 |---|---|
 | **BI-000** — [`knowledge/design/BRAND_GUIDELINES.md`](../../knowledge/design/BRAND_GUIDELINES.md) | Brand manual: logo, palette, voice |
 | **DX-006A** — [`knowledge/design/dx006a_design_system/`](../../knowledge/design/dx006a_design_system/) | Design System foundation (tokens, catalogue, Guardian G-1…G-12) |
+| **DX-006B** — [`knowledge/implementation/dx006b/`](../../knowledge/implementation/dx006b/) | Founder & Student surface migration law (fidelity ≥95%, phase order, Guard) |
 | **DX-001** — [`knowledge/design/dx001_design_system/`](../../knowledge/design/dx001_design_system/) | Design language authority |
 | [`knowledge/design/UI_GUARDIAN.md`](../../knowledge/design/UI_GUARDIAN.md) | UI compliance guardian |
 | [`knowledge/design/UI_UX_IMPLEMENTATION_STANDARD.md`](../../knowledge/design/UI_UX_IMPLEMENTATION_STANDARD.md) | Legacy UX-001 — **superseded on conflict** by DX-001 / DX-006A |
@@ -37,6 +38,7 @@ Runtime sources (must stay semantically aligned):
 - **CSS:** `app/static/css/tokens.css`
 - **Python:** `presentation.design_system` (`design_tokens`, colours, spacing, typography, radius, elevation, motion, layout)
 - **Hierarchy:** L0 Tokens → L1 Primitives → L2 Layout → L3 Operational → Pages (DX-006B)
+- **Page migration:** Follow `knowledge/implementation/dx006b/` — Replace never layer; certify each phase before the next; Fidelity ≥95%
 
 ### Hard rules
 

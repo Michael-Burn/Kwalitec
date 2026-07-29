@@ -8,10 +8,11 @@ EP-007.1 — Student Journey Consolidation: helpers resolve the single
 authoritative home endpoint so login, completion, and chrome never present
 two competing homes under sole runtime.
 
-DEP-003 — Student Experience Unification: under sole runtime,
-``layouts/base.html`` routes student-facing templates into
-``layouts/eos_student.html`` (EOS chrome). Dual-run keeps
-``layouts/legacy_workspace.html``. Controllers and engines unchanged.
+RC-2026.07.29-03 — Student shell unification: ``layouts/base.html``
+always routes student-facing templates into ``layouts/eos_student.html``.
+Legacy workspace chrome and runtime shell switching are retired.
+``SOLE_RUNTIME`` still governs home redirects only. Controllers and
+engines unchanged.
 
 Role-aware landing: Founder / Console users land on the Kwalitec Console
 (``founder_dashboard.index``) via RBAC (``is_founder_user``), not the

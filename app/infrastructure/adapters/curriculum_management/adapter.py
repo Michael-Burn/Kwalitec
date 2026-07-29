@@ -232,10 +232,15 @@ class CurriculumManagementAdapter:
         return opaque_dict(snap)
 
     def latest_validation(self, version_id: str) -> dict[str, Any] | None:
-        ver = self.get_version_summary(version_id)
-        if ver is None:
-            return None
-        return ver.get("latest_validation")  # type: ignore[return-value]
+        # Prefer the ValidationService snapshot (includes issues[]) over the
+        # VersionSnapshot, which does not project latest_validation.
+        try:
+            snap = self._facade.validation.latest(version_id)
+        except Exception:
+            snap = None
+        if snap is not None:
+            return opaque_dict(snap)
+        return None
 
     def preview_version(self, version_id: str) -> dict[str, Any]:
         snap = self._facade.previews.preview(version_id)

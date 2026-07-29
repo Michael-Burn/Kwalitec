@@ -1,0 +1,2125 @@
+{
+  "programme": "FV-001B",
+  "base": "http://127.0.0.1:5130",
+  "email": "founder.studio@kwalitec.example",
+  "elapsed_s": 20.0,
+  "phases": [
+    {
+      "phase": "P1_root",
+      "t": 3.3,
+      "url": "http://127.0.0.1:5130/auth/login?next=%2Fstudent%2F",
+      "title": "Sign in \u00b7 Kwalitec",
+      "text": "Education Operating System\n\nKnow exactly what to study next.\n\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAlways know what to study next\nPlans that fit your exam date\nFocused sessions without decision fatigue\nHonest progress you can trust\nEstimated readiness insights as you study\nSustainable pace through exam season\nSign in\nPlease sign in to continue.\nEmail\nPassword\nRemember me\nNew to the Internal Alpha?\n\nKwalitec is invite-only during the Internal Alpha \u2014 sign in with the credentials your coordinator provided.\n\nMissing your details, or need a reset? Contact your coordinator.\n\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 662,
+      "links": [],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Sign in"
+      ],
+      "headings": [
+        "Sign in",
+        "New to the Internal Alpha?"
+      ],
+      "labels": [
+        "Email",
+        "Password",
+        "Remember me"
+      ],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/00_p1_root.png"
+    },
+    {
+      "phase": "P1_login",
+      "t": 3.5,
+      "url": "http://127.0.0.1:5130/auth/login",
+      "title": "Sign in \u00b7 Kwalitec",
+      "text": "Education Operating System\n\nKnow exactly what to study next.\n\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAlways know what to study next\nPlans that fit your exam date\nFocused sessions without decision fatigue\nHonest progress you can trust\nEstimated readiness insights as you study\nSustainable pace through exam season\nSign in\n\nContinue to your workspace.\n\nEmail\nPassword\nRemember me\nNew to the Internal Alpha?\n\nKwalitec is invite-only during the Internal Alpha \u2014 sign in with the credentials your coordinator provided.\n\nMissing your details, or need a reset? Contact your coordinator.\n\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 664,
+      "links": [],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Sign in"
+      ],
+      "headings": [
+        "Sign in",
+        "New to the Internal Alpha?",
+        "Continue to your workspace."
+      ],
+      "labels": [
+        "Email",
+        "Password",
+        "Remember me"
+      ],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/01_p1_login.png"
+    },
+    {
+      "phase": "P1_after_login",
+      "t": 7.0,
+      "url": "http://127.0.0.1:5130/console/",
+      "title": "Console Home \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWelcome back to Kwalitec.\n\nKWALITEC CONSOLE \u00b7 INTERNAL ALPHA \u00b7 V2.0.0\n\nConsole Home\n\nOperational pulse \u2014 what needs attention today \u00b7 2026-07-28 21:38 UTC \u00b7 Calendar day (server local date)\n\nATTENTION REQUIRED\nOpen Attention Center\nSUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews\nPLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in\nCONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings\nSTUDENT ISSUES\n0\nNeeds intervention\nNothing queued\nHIGH\nSystem health signals need attention\nOpen\nPLATFORM SUMMARY\nSTUDENTS\n0\nActive participants\n0 active today\nLEARNING\n0\nCheck-ins today\n0 in last 7 days\nASSESSMENTS\n\u2014\nAvg experience\nWould open tomorrow \u2014\nSYSTEM\nNo check-ins yet\nAlpha health\nBuild local\nQUICK ACTIONS\nReview support inbox\nOpen operations\nManage content\nPlatform Intelligence\nOPERATIONAL DETAIL\nRecent support\nInbox\n\nNo Product Check-ins yet.\n\nAttention queue\nCenter\n\nNothing needs action right now.\n\nVision Journal\nOpen\n\nNo Vision entries yet. New entry\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 1295,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Open Attention Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "SUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "PLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "CONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings",
+          "href": "/console/findings"
+        },
+        {
+          "text": "STUDENT ISSUES\n0\nNeeds intervention\nNothing queued",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/operations"
+        },
+        {
+          "text": "Review support inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Open operations",
+          "href": "/console/operational-health"
+        },
+        {
+          "text": "Manage content",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Platform Intelligence",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "Inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/vision"
+        },
+        {
+          "text": "New entry",
+          "href": "/console/vision/new"
+        }
+      ],
+      "ctas": [
+        "Search",
+        "Sign out"
+      ],
+      "headings": [
+        "Console Home",
+        "ATTENTION REQUIRED",
+        "PLATFORM SUMMARY",
+        "QUICK ACTIONS",
+        "OPERATIONAL DETAIL",
+        "Recent support",
+        "Attention queue",
+        "Vision Journal"
+      ],
+      "labels": [
+        "Search the Console"
+      ],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/02_p1_after_login.png"
+    },
+    {
+      "phase": "P1_env_nav_click",
+      "t": 7.2,
+      "url": "http://127.0.0.1:5130/console/studio/",
+      "title": "Curriculum Studio \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\n\nKWALITEC CONSOLE \u00b7 CURRICULUM STUDIO\n\nCurriculum Studio\n\nReview, validate, preview, approve, and publish curricula through one Console workflow.\n\nNEXT STEP\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nPublished 0\nDrafts 0\nPending validation 0\nPending approval 0\nCreate Subject\nSubject code *\n\nUse a short syllabus code such as CS1.\n\nTitle\nOpen Workspace\nSubject code *\n\nOpen an existing subject code to continue its workflow.\n\nWorkspaces\n\nNo workspaces yet\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nRecent activity\n\nNo activity yet\n\nNo recent Studio activity yet. Open a workspace to validate, preview, or publish a curriculum.\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 1084,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        }
+      ],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Create Subject",
+        "Open Workspace"
+      ],
+      "headings": [
+        "Curriculum Studio",
+        "Create Subject",
+        "Open Workspace",
+        "Workspaces",
+        "Recent activity",
+        "No workspaces yet",
+        "No activity yet"
+      ],
+      "labels": [
+        "Search the Console",
+        "Subject code *",
+        "Title"
+      ],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/03_p1_env_nav_click.png"
+    },
+    {
+      "phase": "P1_founder_home",
+      "t": 7.6,
+      "url": "http://127.0.0.1:5130/console/",
+      "title": "Console Home \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\n\nKWALITEC CONSOLE \u00b7 INTERNAL ALPHA \u00b7 V2.0.0\n\nConsole Home\n\nOperational pulse \u2014 what needs attention today \u00b7 2026-07-28 21:38 UTC \u00b7 Calendar day (server local date)\n\nATTENTION REQUIRED\nOpen Attention Center\nSUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews\nPLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in\nCONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings\nSTUDENT ISSUES\n0\nNeeds intervention\nNothing queued\nHIGH\nSystem health signals need attention\nOpen\nPLATFORM SUMMARY\nSTUDENTS\n0\nActive participants\n0 active today\nLEARNING\n0\nCheck-ins today\n0 in last 7 days\nASSESSMENTS\n\u2014\nAvg experience\nWould open tomorrow \u2014\nSYSTEM\nNo check-ins yet\nAlpha health\nBuild local\nQUICK ACTIONS\nReview support inbox\nOpen operations\nManage content\nPlatform Intelligence\nOPERATIONAL DETAIL\nRecent support\nInbox\n\nNo Product Check-ins yet.\n\nAttention queue\nCenter\n\nNothing needs action right now.\n\nVision Journal\nOpen\n\nNo Vision entries yet. New entry\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 1269,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Open Attention Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "SUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "PLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "CONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings",
+          "href": "/console/findings"
+        },
+        {
+          "text": "STUDENT ISSUES\n0\nNeeds intervention\nNothing queued",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/operations"
+        },
+        {
+          "text": "Review support inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Open operations",
+          "href": "/console/operational-health"
+        },
+        {
+          "text": "Manage content",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Platform Intelligence",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "Inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/vision"
+        },
+        {
+          "text": "New entry",
+          "href": "/console/vision/new"
+        }
+      ],
+      "ctas": [
+        "Search",
+        "Sign out"
+      ],
+      "headings": [
+        "Console Home",
+        "ATTENTION REQUIRED",
+        "PLATFORM SUMMARY",
+        "QUICK ACTIONS",
+        "OPERATIONAL DETAIL",
+        "Recent support",
+        "Attention queue",
+        "Vision Journal"
+      ],
+      "labels": [
+        "Search the Console"
+      ],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/04_p1_founder_home.png"
+    },
+    {
+      "phase": "P1_console",
+      "t": 8.0,
+      "url": "http://127.0.0.1:5130/console/",
+      "title": "Console Home \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\n\nKWALITEC CONSOLE \u00b7 INTERNAL ALPHA \u00b7 V2.0.0\n\nConsole Home\n\nOperational pulse \u2014 what needs attention today \u00b7 2026-07-28 21:38 UTC \u00b7 Calendar day (server local date)\n\nATTENTION REQUIRED\nOpen Attention Center\nSUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews\nPLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in\nCONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings\nSTUDENT ISSUES\n0\nNeeds intervention\nNothing queued\nHIGH\nSystem health signals need attention\nOpen\nPLATFORM SUMMARY\nSTUDENTS\n0\nActive participants\n0 active today\nLEARNING\n0\nCheck-ins today\n0 in last 7 days\nASSESSMENTS\n\u2014\nAvg experience\nWould open tomorrow \u2014\nSYSTEM\nNo check-ins yet\nAlpha health\nBuild local\nQUICK ACTIONS\nReview support inbox\nOpen operations\nManage content\nPlatform Intelligence\nOPERATIONAL DETAIL\nRecent support\nInbox\n\nNo Product Check-ins yet.\n\nAttention queue\nCenter\n\nNothing needs action right now.\n\nVision Journal\nOpen\n\nNo Vision entries yet. New entry\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 1269,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Open Attention Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "SUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "PLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "CONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings",
+          "href": "/console/findings"
+        },
+        {
+          "text": "STUDENT ISSUES\n0\nNeeds intervention\nNothing queued",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/operations"
+        },
+        {
+          "text": "Review support inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Open operations",
+          "href": "/console/operational-health"
+        },
+        {
+          "text": "Manage content",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Platform Intelligence",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "Inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/vision"
+        },
+        {
+          "text": "New entry",
+          "href": "/console/vision/new"
+        }
+      ],
+      "ctas": [
+        "Search",
+        "Sign out"
+      ],
+      "headings": [
+        "Console Home",
+        "ATTENTION REQUIRED",
+        "PLATFORM SUMMARY",
+        "QUICK ACTIONS",
+        "OPERATIONAL DETAIL",
+        "Recent support",
+        "Attention queue",
+        "Vision Journal"
+      ],
+      "labels": [
+        "Search the Console"
+      ],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/05_p1_console.png"
+    },
+    {
+      "phase": "P2_try_curriculum-studio",
+      "t": 8.1,
+      "url": "http://127.0.0.1:5130/curriculum-studio/",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID 1503113366EA \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "headings": [
+        "Page Not Found"
+      ],
+      "labels": [],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/06_p2_try_curriculum_studio.png",
+      "http_status": 404
+    },
+    {
+      "phase": "P2_try_curriculum-studio_hub",
+      "t": 8.2,
+      "url": "http://127.0.0.1:5130/curriculum-studio/hub",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID 8CAF3E384501 \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "headings": [
+        "Page Not Found"
+      ],
+      "labels": [],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/07_p2_try_curriculum_studio_hub.png",
+      "http_status": 404
+    },
+    {
+      "phase": "P2_try_curriculum-studio_subjects",
+      "t": 8.3,
+      "url": "http://127.0.0.1:5130/curriculum-studio/subjects",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID 51F108E99BB4 \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "headings": [
+        "Page Not Found"
+      ],
+      "labels": [],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/08_p2_try_curriculum_studio_subjects.png",
+      "http_status": 404
+    },
+    {
+      "phase": "P2_try_founder_studio",
+      "t": 8.4,
+      "url": "http://127.0.0.1:5130/console/studio/",
+      "title": "Curriculum Studio \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\n\nKWALITEC CONSOLE \u00b7 CURRICULUM STUDIO\n\nCurriculum Studio\n\nReview, validate, preview, approve, and publish curricula through one Console workflow.\n\nNEXT STEP\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nPublished 0\nDrafts 0\nPending validation 0\nPending approval 0\nCreate Subject\nSubject code *\n\nUse a short syllabus code such as CS1.\n\nTitle\nOpen Workspace\nSubject code *\n\nOpen an existing subject code to continue its workflow.\n\nWorkspaces\n\nNo workspaces yet\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nRecent activity\n\nNo activity yet\n\nNo recent Studio activity yet. Open a workspace to validate, preview, or publish a curriculum.\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 1084,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        }
+      ],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Create Subject",
+        "Open Workspace"
+      ],
+      "headings": [
+        "Curriculum Studio",
+        "Create Subject",
+        "Open Workspace",
+        "Workspaces",
+        "Recent activity",
+        "No workspaces yet",
+        "No activity yet"
+      ],
+      "labels": [
+        "Search the Console",
+        "Subject code *",
+        "Title"
+      ],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/09_p2_try_founder_studio.png",
+      "http_status": 200
+    },
+    {
+      "phase": "P2_subjects_nav_click",
+      "t": 8.6,
+      "url": "http://127.0.0.1:5130/console/studio/subjects",
+      "title": "Subjects \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nSubjects\n\nKWALITEC CONSOLE \u00b7 CURRICULUM AUTHORITY\n\nSubjects\n\nCreate subjects and open workspaces. Students only see a subject as Ready after you publish a verified curriculum.\n\nNEXT STEP\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nCurriculum workflow\nNew Subject\nUpload Official CMP\nUpload Official Syllabus\nExtraction\nReview & Corrections\nPublish Verified Curriculum\nAvailable to Students (Ready)\n\nOpen Curriculum Studio\n\nCreate Subject\nSubject code\nTitle\nOpen Workspace\nSubject code\nWorkspaces\n\nNo workspaces yet\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 994,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Open Curriculum Studio",
+          "href": "/console/studio/"
+        }
+      ],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Create Subject",
+        "Open Workspace",
+        "Open Curriculum Studio"
+      ],
+      "headings": [
+        "Subjects",
+        "Curriculum workflow",
+        "Create Subject",
+        "Open Workspace",
+        "Workspaces",
+        "No workspaces yet"
+      ],
+      "labels": [
+        "Search the Console",
+        "Subject code",
+        "Title"
+      ],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/10_p2_subjects_nav_click.png"
+    },
+    {
+      "phase": "P2_catalogue_state",
+      "t": 8.7,
+      "url": "http://127.0.0.1:5130/console/studio/subjects",
+      "title": "Subjects \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nSubjects\n\nKWALITEC CONSOLE \u00b7 CURRICULUM AUTHORITY\n\nSubjects\n\nCreate subjects and open workspaces. Students only see a subject as Ready after you publish a verified curriculum.\n\nNEXT STEP\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nCurriculum workflow\nNew Subject\nUpload Official CMP\nUpload Official Syllabus\nExtraction\nReview & Corrections\nPublish Verified Curriculum\nAvailable to Students (Ready)\n\nOpen Curriculum Studio\n\nCreate Subject\nSubject code\nTitle\nOpen Workspace\nSubject code\nWorkspaces\n\nNo workspaces yet\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 994,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Open Curriculum Studio",
+          "href": "/console/studio/"
+        }
+      ],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Create Subject",
+        "Open Workspace",
+        "Open Curriculum Studio"
+      ],
+      "headings": [
+        "Subjects",
+        "Curriculum workflow",
+        "Create Subject",
+        "Open Workspace",
+        "Workspaces",
+        "No workspaces yet"
+      ],
+      "labels": [
+        "Search the Console",
+        "Subject code",
+        "Title"
+      ],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/11_p2_catalogue_state.png",
+      "ready_visible": true,
+      "draft_visible": false,
+      "coming_soon_visible": false,
+      "create_cta_visible": true
+    },
+    {
+      "phase": "P3_create_cta_missing",
+      "t": 8.8,
+      "url": "http://127.0.0.1:5130/console/studio/subjects",
+      "title": "Subjects \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nSubjects\n\nKWALITEC CONSOLE \u00b7 CURRICULUM AUTHORITY\n\nSubjects\n\nCreate subjects and open workspaces. Students only see a subject as Ready after you publish a verified curriculum.\n\nNEXT STEP\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nCurriculum workflow\nNew Subject\nUpload Official CMP\nUpload Official Syllabus\nExtraction\nReview & Corrections\nPublish Verified Curriculum\nAvailable to Students (Ready)\n\nOpen Curriculum Studio\n\nCreate Subject\nSubject code\nTitle\nOpen Workspace\nSubject code\nWorkspaces\n\nNo workspaces yet\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 994,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Open Curriculum Studio",
+          "href": "/console/studio/"
+        }
+      ],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Create Subject",
+        "Open Workspace",
+        "Open Curriculum Studio"
+      ],
+      "headings": [
+        "Subjects",
+        "Curriculum workflow",
+        "Create Subject",
+        "Open Workspace",
+        "Workspaces",
+        "No workspaces yet"
+      ],
+      "labels": [
+        "Search the Console",
+        "Subject code",
+        "Title"
+      ],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/12_p3_create_cta_missing.png"
+    },
+    {
+      "phase": "P3_try_curriculum-studio_subjects_new",
+      "t": 8.9,
+      "url": "http://127.0.0.1:5130/curriculum-studio/subjects/new",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID 83A97209D680 \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "headings": [
+        "Page Not Found"
+      ],
+      "labels": [],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/13_p3_try_curriculum_studio_subjects_new.png",
+      "http_status": 404
+    },
+    {
+      "phase": "P3_try_curriculum-studio_create",
+      "t": 9.0,
+      "url": "http://127.0.0.1:5130/curriculum-studio/create",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID F2FC5A141654 \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "headings": [
+        "Page Not Found"
+      ],
+      "labels": [],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/14_p3_try_curriculum_studio_create.png",
+      "http_status": 404
+    },
+    {
+      "phase": "P3_try_curriculum-studio_subjects_create",
+      "t": 9.1,
+      "url": "http://127.0.0.1:5130/curriculum-studio/subjects/create",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID E80B360222F2 \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "headings": [
+        "Page Not Found"
+      ],
+      "labels": [],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/15_p3_try_curriculum_studio_subjects_create.png",
+      "http_status": 404
+    },
+    {
+      "phase": "P3_try_founder_studio_subjects_new",
+      "t": 9.1,
+      "url": "http://127.0.0.1:5130/console/studio/subjects/new",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID 602A78B42419 \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "headings": [
+        "Page Not Found"
+      ],
+      "labels": [],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/16_p3_try_founder_studio_subjects_new.png",
+      "http_status": 404,
+      "fields_filled": []
+    },
+    {
+      "phase": "P3_no_form",
+      "t": 9.2,
+      "url": "http://127.0.0.1:5130/console/studio/subjects/new",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID 602A78B42419 \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "headings": [
+        "Page Not Found"
+      ],
+      "labels": [],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/17_p3_no_form.png"
+    },
+    {
+      "phase": "P4_workspace_cta_not_found",
+      "t": 9.3,
+      "url": "http://127.0.0.1:5130/console/studio/subjects/new",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID 602A78B42419 \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "headings": [
+        "Page Not Found"
+      ],
+      "labels": [],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/18_p4_workspace_cta_not_found.png"
+    },
+    {
+      "phase": "P4_pre_upload_state",
+      "t": 10.1,
+      "url": "http://127.0.0.1:5130/console/studio/subjects/new",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID 602A78B42419 \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "headings": [
+        "Page Not Found"
+      ],
+      "labels": [],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/19_p4_pre_upload_state.png",
+      "file_input_count": 0
+    },
+    {
+      "phase": "P4_upload_inputs_not_found",
+      "t": 10.2,
+      "url": "http://127.0.0.1:5130/console/studio/subjects/new",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID 602A78B42419 \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "headings": [
+        "Page Not Found"
+      ],
+      "labels": [],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/20_p4_upload_inputs_not_found.png",
+      "upload_attempted": false
+    },
+    {
+      "phase": "P5_progress_poll_0",
+      "t": 12.4,
+      "url": "http://127.0.0.1:5130/console/studio/subjects/new",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID C4FCBEF645E4 \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "headings": [
+        "Page Not Found"
+      ],
+      "labels": [],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/21_p5_progress_poll_0.png"
+    },
+    {
+      "phase": "P5_progress_poll_1",
+      "t": 14.5,
+      "url": "http://127.0.0.1:5130/console/studio/subjects/new",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID 98ECBF996326 \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "headings": [
+        "Page Not Found"
+      ],
+      "labels": [],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/22_p5_progress_poll_1.png"
+    },
+    {
+      "phase": "P5_progress_poll_2",
+      "t": 16.6,
+      "url": "http://127.0.0.1:5130/console/studio/subjects/new",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID 182DB7C67874 \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "headings": [
+        "Page Not Found"
+      ],
+      "labels": [],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/23_p5_progress_poll_2.png"
+    },
+    {
+      "phase": "P5_progress_poll_3",
+      "t": 18.7,
+      "url": "http://127.0.0.1:5130/console/studio/subjects/new",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID E298DB79D62C \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "headings": [
+        "Page Not Found"
+      ],
+      "labels": [],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/24_p5_progress_poll_3.png"
+    },
+    {
+      "phase": "P5_extraction_review_final",
+      "t": 18.7,
+      "url": "http://127.0.0.1:5130/console/studio/subjects/new",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID E298DB79D62C \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "headings": [
+        "Page Not Found"
+      ],
+      "labels": [],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/25_p5_extraction_review_final.png"
+    },
+    {
+      "phase": "P6_publish_cta_not_found",
+      "t": 18.8,
+      "url": "http://127.0.0.1:5130/console/studio/subjects/new",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID E298DB79D62C \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "headings": [
+        "Page Not Found"
+      ],
+      "labels": [],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/26_p6_publish_cta_not_found.png"
+    },
+    {
+      "phase": "P7_catalogue_founder_studio",
+      "t": 19.0,
+      "url": "http://127.0.0.1:5130/console/studio/",
+      "title": "Curriculum Studio \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\n\nKWALITEC CONSOLE \u00b7 CURRICULUM STUDIO\n\nCurriculum Studio\n\nReview, validate, preview, approve, and publish curricula through one Console workflow.\n\nNEXT STEP\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nPublished 0\nDrafts 0\nPending validation 0\nPending approval 0\nCreate Subject\nSubject code *\n\nUse a short syllabus code such as CS1.\n\nTitle\nOpen Workspace\nSubject code *\n\nOpen an existing subject code to continue its workflow.\n\nWorkspaces\n\nNo workspaces yet\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nRecent activity\n\nNo activity yet\n\nNo recent Studio activity yet. Open a workspace to validate, preview, or publish a curriculum.\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 1084,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        }
+      ],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Create Subject",
+        "Open Workspace"
+      ],
+      "headings": [
+        "Curriculum Studio",
+        "Create Subject",
+        "Open Workspace",
+        "Workspaces",
+        "Recent activity",
+        "No workspaces yet",
+        "No activity yet"
+      ],
+      "labels": [
+        "Search the Console",
+        "Subject code *",
+        "Title"
+      ],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/27_p7_catalogue_founder_studio.png",
+      "cs1b_visible": false,
+      "ready_for_cs1b": false
+    },
+    {
+      "phase": "P7_subject_detail",
+      "t": 19.7,
+      "url": "http://127.0.0.1:5130/console/",
+      "title": "Console Home \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\n\nKWALITEC CONSOLE \u00b7 INTERNAL ALPHA \u00b7 V2.0.0\n\nConsole Home\n\nOperational pulse \u2014 what needs attention today \u00b7 2026-07-28 21:38 UTC \u00b7 Calendar day (server local date)\n\nATTENTION REQUIRED\nOpen Attention Center\nSUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews\nPLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in\nCONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings\nSTUDENT ISSUES\n0\nNeeds intervention\nNothing queued\nHIGH\nSystem health signals need attention\nOpen\nPLATFORM SUMMARY\nSTUDENTS\n0\nActive participants\n0 active today\nLEARNING\n0\nCheck-ins today\n0 in last 7 days\nASSESSMENTS\n\u2014\nAvg experience\nWould open tomorrow \u2014\nSYSTEM\nNo check-ins yet\nAlpha health\nBuild local\nQUICK ACTIONS\nReview support inbox\nOpen operations\nManage content\nPlatform Intelligence\nOPERATIONAL DETAIL\nRecent support\nInbox\n\nNo Product Check-ins yet.\n\nAttention queue\nCenter\n\nNothing needs action right now.\n\nVision Journal\nOpen\n\nNo Vision entries yet. New entry\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 1269,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Open Attention Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "SUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "PLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "CONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings",
+          "href": "/console/findings"
+        },
+        {
+          "text": "STUDENT ISSUES\n0\nNeeds intervention\nNothing queued",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/operations"
+        },
+        {
+          "text": "Review support inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Open operations",
+          "href": "/console/operational-health"
+        },
+        {
+          "text": "Manage content",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Platform Intelligence",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "Inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/vision"
+        },
+        {
+          "text": "New entry",
+          "href": "/console/vision/new"
+        }
+      ],
+      "ctas": [
+        "Search",
+        "Sign out"
+      ],
+      "headings": [
+        "Console Home",
+        "ATTENTION REQUIRED",
+        "PLATFORM SUMMARY",
+        "QUICK ACTIONS",
+        "OPERATIONAL DETAIL",
+        "Recent support",
+        "Attention queue",
+        "Vision Journal"
+      ],
+      "labels": [
+        "Search the Console"
+      ],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/28_p7_subject_detail.png"
+    },
+    {
+      "phase": "P7_verification_final",
+      "t": 19.9,
+      "url": "http://127.0.0.1:5130/console/",
+      "title": "Console Home \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\n\nKWALITEC CONSOLE \u00b7 INTERNAL ALPHA \u00b7 V2.0.0\n\nConsole Home\n\nOperational pulse \u2014 what needs attention today \u00b7 2026-07-28 21:38 UTC \u00b7 Calendar day (server local date)\n\nATTENTION REQUIRED\nOpen Attention Center\nSUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews\nPLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in\nCONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings\nSTUDENT ISSUES\n0\nNeeds intervention\nNothing queued\nHIGH\nSystem health signals need attention\nOpen\nPLATFORM SUMMARY\nSTUDENTS\n0\nActive participants\n0 active today\nLEARNING\n0\nCheck-ins today\n0 in last 7 days\nASSESSMENTS\n\u2014\nAvg experience\nWould open tomorrow \u2014\nSYSTEM\nNo check-ins yet\nAlpha health\nBuild local\nQUICK ACTIONS\nReview support inbox\nOpen operations\nManage content\nPlatform Intelligence\nOPERATIONAL DETAIL\nRecent support\nInbox\n\nNo Product Check-ins yet.\n\nAttention queue\nCenter\n\nNothing needs action right now.\n\nVision Journal\nOpen\n\nNo Vision entries yet. New entry\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 1269,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Open Attention Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "SUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "PLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "CONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings",
+          "href": "/console/findings"
+        },
+        {
+          "text": "STUDENT ISSUES\n0\nNeeds intervention\nNothing queued",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/operations"
+        },
+        {
+          "text": "Review support inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Open operations",
+          "href": "/console/operational-health"
+        },
+        {
+          "text": "Manage content",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Platform Intelligence",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "Inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/vision"
+        },
+        {
+          "text": "New entry",
+          "href": "/console/vision/new"
+        }
+      ],
+      "ctas": [
+        "Search",
+        "Sign out"
+      ],
+      "headings": [
+        "Console Home",
+        "ATTENTION REQUIRED",
+        "PLATFORM SUMMARY",
+        "QUICK ACTIONS",
+        "OPERATIONAL DETAIL",
+        "Recent support",
+        "Attention queue",
+        "Vision Journal"
+      ],
+      "labels": [
+        "Search the Console"
+      ],
+      "terms_found": [],
+      "flash": "",
+      "screenshot": "/tmp/fv001b_blind_capture/29_p7_verification_final.png"
+    }
+  ],
+  "timeline": [
+    {
+      "t": 3.3,
+      "phase": "P1_root",
+      "url": "http://127.0.0.1:5130/auth/login?next=%2Fstudent%2F",
+      "title": "Sign in \u00b7 Kwalitec"
+    },
+    {
+      "t": 3.6,
+      "phase": "P1_login",
+      "url": "http://127.0.0.1:5130/auth/login",
+      "title": "Sign in \u00b7 Kwalitec"
+    },
+    {
+      "t": 7.0,
+      "phase": "P1_after_login",
+      "url": "http://127.0.0.1:5130/console/",
+      "title": "Console Home \u00b7 Kwalitec Console"
+    },
+    {
+      "t": 7.2,
+      "phase": "P1_env_nav_click",
+      "url": "http://127.0.0.1:5130/console/studio/",
+      "title": "Curriculum Studio \u00b7 Kwalitec Console"
+    },
+    {
+      "t": 7.6,
+      "phase": "P1_founder_home",
+      "url": "http://127.0.0.1:5130/console/",
+      "title": "Console Home \u00b7 Kwalitec Console"
+    },
+    {
+      "t": 8.0,
+      "phase": "P1_console",
+      "url": "http://127.0.0.1:5130/console/",
+      "title": "Console Home \u00b7 Kwalitec Console"
+    },
+    {
+      "t": 8.1,
+      "phase": "P2_try_curriculum-studio",
+      "url": "http://127.0.0.1:5130/curriculum-studio/",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 8.2,
+      "phase": "P2_try_curriculum-studio_hub",
+      "url": "http://127.0.0.1:5130/curriculum-studio/hub",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 8.3,
+      "phase": "P2_try_curriculum-studio_subjects",
+      "url": "http://127.0.0.1:5130/curriculum-studio/subjects",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 8.4,
+      "phase": "P2_try_founder_studio",
+      "url": "http://127.0.0.1:5130/console/studio/",
+      "title": "Curriculum Studio \u00b7 Kwalitec Console"
+    },
+    {
+      "t": 8.6,
+      "phase": "P2_subjects_nav_click",
+      "url": "http://127.0.0.1:5130/console/studio/subjects",
+      "title": "Subjects \u00b7 Kwalitec Console"
+    },
+    {
+      "t": 8.7,
+      "phase": "P2_catalogue_state",
+      "url": "http://127.0.0.1:5130/console/studio/subjects",
+      "title": "Subjects \u00b7 Kwalitec Console"
+    },
+    {
+      "t": 8.8,
+      "phase": "P3_create_cta_missing",
+      "url": "http://127.0.0.1:5130/console/studio/subjects",
+      "title": "Subjects \u00b7 Kwalitec Console"
+    },
+    {
+      "t": 8.9,
+      "phase": "P3_try_curriculum-studio_subjects_new",
+      "url": "http://127.0.0.1:5130/curriculum-studio/subjects/new",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 9.0,
+      "phase": "P3_try_curriculum-studio_create",
+      "url": "http://127.0.0.1:5130/curriculum-studio/create",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 9.1,
+      "phase": "P3_try_curriculum-studio_subjects_create",
+      "url": "http://127.0.0.1:5130/curriculum-studio/subjects/create",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 9.1,
+      "phase": "P3_try_founder_studio_subjects_new",
+      "url": "http://127.0.0.1:5130/console/studio/subjects/new",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 9.2,
+      "phase": "P3_no_form",
+      "url": "http://127.0.0.1:5130/console/studio/subjects/new",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 9.3,
+      "phase": "P4_workspace_cta_not_found",
+      "url": "http://127.0.0.1:5130/console/studio/subjects/new",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 10.1,
+      "phase": "P4_pre_upload_state",
+      "url": "http://127.0.0.1:5130/console/studio/subjects/new",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 10.2,
+      "phase": "P4_upload_inputs_not_found",
+      "url": "http://127.0.0.1:5130/console/studio/subjects/new",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 12.4,
+      "phase": "P5_progress_poll_0",
+      "url": "http://127.0.0.1:5130/console/studio/subjects/new",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 14.5,
+      "phase": "P5_progress_poll_1",
+      "url": "http://127.0.0.1:5130/console/studio/subjects/new",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 16.6,
+      "phase": "P5_progress_poll_2",
+      "url": "http://127.0.0.1:5130/console/studio/subjects/new",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 18.7,
+      "phase": "P5_progress_poll_3",
+      "url": "http://127.0.0.1:5130/console/studio/subjects/new",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 18.7,
+      "phase": "P5_extraction_review_final",
+      "url": "http://127.0.0.1:5130/console/studio/subjects/new",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 18.8,
+      "phase": "P6_publish_cta_not_found",
+      "url": "http://127.0.0.1:5130/console/studio/subjects/new",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 19.0,
+      "phase": "P7_catalogue_founder_studio",
+      "url": "http://127.0.0.1:5130/console/studio/",
+      "title": "Curriculum Studio \u00b7 Kwalitec Console"
+    },
+    {
+      "t": 19.7,
+      "phase": "P7_subject_detail",
+      "url": "http://127.0.0.1:5130/console/",
+      "title": "Console Home \u00b7 Kwalitec Console"
+    },
+    {
+      "t": 19.9,
+      "phase": "P7_verification_final",
+      "url": "http://127.0.0.1:5130/console/",
+      "title": "Console Home \u00b7 Kwalitec Console"
+    }
+  ],
+  "term_hits": [],
+  "nav_notes": [
+    {
+      "phase": "P1",
+      "observation": "After login, visible founder/studio cues: ['Skip to content', 'Kwalitec Console', 'Overview', 'Subjects', 'Curriculum Studio', 'Review Queue', 'Publishing', 'Versions', 'Quality', 'Students', 'Settings', 'Support', 'Search', 'Open Attention Center', 'SUPPORT\\n0\\nPending content reviews\\nOutstanding Product Check-in reviews']",
+      "t": 7.0
+    },
+    {
+      "phase": "P1",
+      "observation": "Clicked into environment via a:has-text(\"Curriculum Studio\")",
+      "t": 7.0
+    },
+    {
+      "phase": "P2",
+      "observation": "Catalogue-like surface at /founder/studio/ status=200",
+      "t": 8.4
+    },
+    {
+      "phase": "P2",
+      "observation": "Subjects nav via a:has-text(\"Subjects\")",
+      "t": 8.6
+    },
+    {
+      "phase": "P3",
+      "observation": "Create Subject CTA not found \u2014 checking forms on page",
+      "t": 8.7
+    },
+    {
+      "phase": "P6",
+      "observation": "Publish CTA not visible",
+      "t": 18.8
+    }
+  ],
+  "pdfs": {
+    "syllabus": "/tmp/fv001b_blind_capture/official_syllabus.pdf",
+    "syllabus_bytes": 1097,
+    "cmp": "/tmp/fv001b_blind_capture/official_cmp.pdf",
+    "cmp_bytes": 1149
+  }
+}

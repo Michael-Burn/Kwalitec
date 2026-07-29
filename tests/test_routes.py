@@ -222,169 +222,68 @@ class TestSecurityHeaders:
         assert response.headers.get("X-Content-Type-Options") == "nosniff"
 
 
-class TestStudyPlanWizardStep4:
-    """Tests for wizard step 4 — current position with completed curriculum topics."""
+class TestStudyPlanWizardPx002:
+    """PX-002 onboarding path — Choose Exam → Date → Availability → Begin Learning."""
 
-    def test_step4_get_requires_login(self, client):
-        response = client.get("/study-plan/wizard/4", follow_redirects=True)
-        assert response.status_code == 200
-
-    def test_step4_get_displays_for_supported_curriculum(self, logged_in_client):
-        """Step 4 for IFoA/CS1 captures study stage only — not completed topics."""
+    def test_step4_redirects_to_begin_learning(self, logged_in_client):
         with logged_in_client.session_transaction() as sess:
             sess["wizard_data"] = {
                 "exam_category": "IFoA",
                 "exam_paper": "CS1",
                 "exam_sitting": "April 2027",
                 "exam_date": "2027-04-15",
-            }
-        response = logged_in_client.get("/study-plan/wizard/4")
-        assert response.status_code == 200
-        assert b'id="curriculum-topic-field"' not in response.data
-        assert b'name="current_position"' in response.data
-
-    def test_step4_get_displays_for_cb2_curriculum(self, logged_in_client):
-        """Step 4 for IFoA/CB2 captures study stage only."""
-        with logged_in_client.session_transaction() as sess:
-            sess["wizard_data"] = {
-                "exam_category": "IFoA",
-                "exam_paper": "CB2",
-                "exam_sitting": "April 2027",
-                "exam_date": "2027-04-15",
-            }
-        response = logged_in_client.get("/study-plan/wizard/4")
-        assert response.status_code == 200
-        assert b'id="curriculum-topic-field"' not in response.data
-        assert b'id="current-topic-field"' not in response.data
-
-    def test_step4_get_displays_for_cm1_curriculum(self, logged_in_client):
-        """Step 4 for IFoA/CM1 captures study stage only."""
-        with logged_in_client.session_transaction() as sess:
-            sess["wizard_data"] = {
-                "exam_category": "IFoA",
-                "exam_paper": "CM1",
-                "exam_sitting": "April 2027",
-                "exam_date": "2027-04-15",
-            }
-        response = logged_in_client.get("/study-plan/wizard/4")
-        assert response.status_code == 200
-        assert b'id="curriculum-topic-field"' not in response.data
-        assert b'id="current-topic-field"' not in response.data
-
-    def test_step4_get_redirects_unsupported_to_paper_step(self, logged_in_client):
-        """PTP-001: unsupported exams cannot reach step 4."""
-        with logged_in_client.session_transaction() as sess:
-            sess["wizard_data"] = {
-                "exam_category": "IFoA",
-                "exam_paper": "CM2",
-                "exam_sitting": "April 2027",
-                "exam_date": "2027-04-15",
+                "weekday_study_minutes": 60,
+                "weekend_study_minutes": 90,
+                "preferred_session_minutes": 60,
+                "current_position": "not_started",
+                "study_preference": "Mixed",
+                "target_grade": "Pass",
             }
         response = logged_in_client.get(
             "/study-plan/wizard/4", follow_redirects=False
         )
         assert response.status_code == 302
-        assert "/study-plan/wizard/2" in response.headers["Location"]
+        assert "/study-plan/review" in response.headers["Location"]
 
-    def test_step4_post_stores_position_not_completed_topics(self, logged_in_client):
-        """QS-001: completed topics are declared once in Educational History."""
-        with logged_in_client.session_transaction() as sess:
-            sess["wizard_data"] = {
-                "exam_category": "IFoA",
-                "exam_paper": "CS1",
-                "exam_sitting": "April 2027",
-                "exam_date": "2027-04-15",
-            }
-        response = logged_in_client.post(
-            "/study-plan/wizard/4",
-            data={
-                "current_position": "learning",
-            },
-            follow_redirects=True,
-        )
-        assert response.status_code == 200
-        with logged_in_client.session_transaction() as sess:
-            wizard_data = sess["wizard_data"]
-            assert wizard_data["current_position"] == "learning"
-            assert "completed_curriculum_topics" not in wizard_data
-            assert "curriculum_current_topic" in wizard_data
-
-    def test_step4_post_not_started_clears_completed_topics(self, logged_in_client):
-        """POST for not_started must not retain wizard completed-topic capture."""
-        with logged_in_client.session_transaction() as sess:
-            sess["wizard_data"] = {
-                "exam_category": "IFoA",
-                "exam_paper": "CS1",
-                "exam_sitting": "April 2027",
-                "exam_date": "2027-04-15",
-            }
-        response = logged_in_client.post(
-            "/study-plan/wizard/4",
-            data={
-                "current_position": "not_started",
-            },
-            follow_redirects=True,
-        )
-        assert response.status_code == 200
-        with logged_in_client.session_transaction() as sess:
-            wizard_data = sess["wizard_data"]
-            assert "completed_curriculum_topics" not in wizard_data
-
-    def test_step4_post_unsupported_redirects_to_paper_step(self, logged_in_client):
-        """PTP-001: POST for unsupported exam cannot advance past the gate."""
+    def test_coming_soon_cannot_open_begin_learning(self, logged_in_client):
         with logged_in_client.session_transaction() as sess:
             sess["wizard_data"] = {
                 "exam_category": "IFoA",
                 "exam_paper": "CM2",
                 "exam_sitting": "April 2027",
                 "exam_date": "2027-04-15",
-            }
-        response = logged_in_client.post(
-            "/study-plan/wizard/4",
-            data={
-                "current_position": "learning",
-                "current_topic": "Probability distributions",
-            },
-            follow_redirects=False,
-        )
-        assert response.status_code == 302
-        assert "/study-plan/wizard/2" in response.headers["Location"]
-
-    def test_step4_back_navigation_restores_position(self, logged_in_client):
-        """When navigating back to step 4, the selected position is restored."""
-        with logged_in_client.session_transaction() as sess:
-            sess["wizard_data"] = {
-                "exam_category": "IFoA",
-                "exam_paper": "CS1",
-                "exam_sitting": "April 2027",
-                "exam_date": "2027-04-15",
-                "current_position": "learning",
-            }
-        response = logged_in_client.get("/study-plan/wizard/4")
-        assert response.status_code == 200
-        html = response.data.decode()
-        assert 'value="learning"' in html
-        assert "checked" in html
-
-    def test_step4_review_does_not_show_completed_topics(self, logged_in_client):
-        """Review page no longer duplicates Educational History coverage capture."""
-        with logged_in_client.session_transaction() as sess:
-            sess["wizard_data"] = {
-                "exam_category": "IFoA",
-                "exam_paper": "CS1",
-                "exam_sitting": "April 2027",
-                "exam_date": "2027-04-15",
-                "current_position": "learning",
                 "weekday_study_minutes": 60,
-                "weekend_study_minutes": 120,
+                "weekend_study_minutes": 90,
+                "preferred_session_minutes": 60,
+                "current_position": "not_started",
                 "study_preference": "Mixed",
                 "target_grade": "Pass",
+            }
+        response = logged_in_client.get(
+            "/study-plan/review", follow_redirects=False
+        )
+        assert response.status_code == 302
+        assert "/study-plan/wizard/1" in response.headers["Location"]
+
+    def test_review_does_not_show_completed_topics(self, logged_in_client):
+        """Begin Learning no longer duplicates Educational History coverage capture."""
+        with logged_in_client.session_transaction() as sess:
+            sess["wizard_data"] = {
+                "exam_category": "IFoA",
+                "exam_paper": "CS1",
+                "exam_sitting": "April 2027",
+                "exam_date": "2027-04-15",
+                "current_position": "not_started",
+                "weekday_study_minutes": 60,
+                "weekend_study_minutes": 120,
                 "preferred_session_minutes": 60,
+                "study_preference": "Mixed",
+                "target_grade": "Pass",
             }
         response = logged_in_client.get("/study-plan/review")
         assert response.status_code == 200
-        html = response.data.decode()
-        assert "Completed Topics" not in html
+        assert b"completed topic" not in response.data.lower()
+        assert b"Begin Learning" in response.data or b"Study Plan" in response.data
 
 
 class TestStudyPlanManagementRoutes:

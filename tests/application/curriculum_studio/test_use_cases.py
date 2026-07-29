@@ -78,7 +78,21 @@ def test_upload_sources_use_case(i):
     assert studio.registry.get_workspace(f"ws-u-{i}").facts.cmp_uploaded
     assert studio.registry.get_workspace(f"ws-u-{i}").facts.official_syllabus_uploaded
     assert len(mgmt.list_assets(f"ver-u-{i}")) == 2
-    assert len(ingestion.start_calls) == 1
+    # PI-002R: reference-only uploads must not start stub Ingestion jobs.
+    assert len(ingestion.start_calls) == 0
+
+
+def test_structured_source_entries_mark_ingestion_authoritative():
+    from app.application.curriculum_studio.workspace_service import (
+        _sources_have_structure,
+    )
+
+    assert _sources_have_structure(
+        [{"kind": "cmp", "reference": "ref://x", "entries": [{"entry_id": "t1"}]}]
+    )
+    assert not _sources_have_structure(
+        [{"kind": "cmp", "reference": "ref://x"}]
+    )
 
 
 @pytest.mark.parametrize("i", range(12))

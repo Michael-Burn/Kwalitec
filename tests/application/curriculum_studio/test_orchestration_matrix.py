@@ -110,7 +110,8 @@ def test_full_thin_port_pipeline(i):
     pub = studio.publication.publish(wid)
     assert pub.lifecycle_status == "published"
     assert f"ver-pipe-{i}" in mgmt.publish_calls
-    assert ingestion.start_calls
+    # PI-002R: reference-only uploads do not start stub Ingestion jobs.
+    assert ingestion.start_calls == []
     assert platform.surface_calls or True
     dash = studio.founder_dashboard()
     assert dash.published_count >= 1

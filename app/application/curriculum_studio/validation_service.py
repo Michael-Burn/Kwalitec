@@ -1,6 +1,8 @@
-"""ValidationService — present Ingestion + Management validation via ports."""
+"""ValidationService — present Management (+ optional Ingestion) validation."""
 
 from __future__ import annotations
+
+import logging
 
 from app.application.curriculum_studio._ports import (
     as_bool,
@@ -36,13 +38,20 @@ from app.domain.curriculum_studio.validation_summary import (
     ValidationSummary,
 )
 
+logger = logging.getLogger(__name__)
+
 
 class ValidationService:
     """Present validation results for Studio workspaces.
 
-    Structural validation authority: Curriculum Ingestion.
-    Publication-gate validation authority: Curriculum Management.
-    Studio maps results and syncs checklist facts only.
+    Founder publication-gate authority (PI-002R):
+        CIP / Foundation extraction → StructurePreparation →
+        Curriculum Management ValidationPolicy.
+
+    Curriculum Ingestion is consulted only when an ingestion job was
+    started with real normalised structure (not reference-only stubs).
+    Studio maps results and syncs checklist facts only — it never sets
+    ``validation_passed`` without a successful Management gate.
     """
 
     def __init__(
@@ -63,11 +72,8 @@ class ValidationService:
         warnings: list[ValidationFinding] = []
         readiness = ValidationReadiness.NOT_STARTED
 
-        job_id = self._registry.get_ingestion_job(workspace_id)
-        if job_id and self._ingestion is not None and self._ingestion.is_available():
-            report = self._ingestion.get_validation_report(job_id) or {}
-            readiness, errors, warnings = _map_report(report, errors, warnings)
-        elif workspace.version_id and self._management is not None:
+        # Prefer Management (publication-gate authority).
+        if workspace.version_id and self._management is not None:
             try:
                 if self._management.is_available():
                     report = (
@@ -80,6 +86,17 @@ class ValidationService:
                         )
             except Exception:  # noqa: BLE001
                 pass
+
+        # Authoritative ingestion only — never project stub-job failures.
+        job_id = self._registry.get_ingestion_job(workspace_id)
+        if (
+            job_id
+            and self._ingestion is not None
+            and self._ingestion.is_available()
+            and _ingestion_job_is_authoritative(self._ingestion, job_id)
+        ):
+            report = self._ingestion.get_validation_report(job_id) or {}
+            readiness, errors, warnings = _map_report(report, errors, warnings)
 
         if readiness is ValidationReadiness.NOT_STARTED:
             if not workspace.facts.cmp_uploaded:
@@ -115,23 +132,39 @@ class ValidationService:
         *,
         run_management_gate: bool = True,
     ) -> ValidationSnapshot:
-        """Validate Curriculum — ask ports; sync validation_passed fact."""
+        """Validate Curriculum — Management authority; sync validation_passed."""
         workspace = self._require_workspace(workspace_id)
+
+        # Materialise extraction + default blueprints before Management gate.
+        from app.application.curriculum_studio.structure_preparation_service import (
+            StructurePreparationService,
+        )
+
+        StructurePreparationService(
+            self._registry, management=self._management
+        ).prepare_for_validation(workspace_id)
+        workspace = self._require_workspace(workspace_id)
+
         if run_management_gate:
             require_management(self._management, action="validate_curriculum")
-        job_id = self._registry.get_ingestion_job(workspace_id)
+
+        # Ingestion gate only when a real (non-stub) job is registered.
         ingestion_passed = True
-        if job_id:
-            ing = require_ingestion(self._ingestion, action="validate_curriculum")
-            report = ing.get_validation_report(job_id) or {}
-            ingestion_passed = as_bool(
-                report.get("passed"),
-                default=str(report.get("readiness", "")).lower()
-                in {"passed", "ready", "ok"},
-            )
-            if not ingestion_passed and report.get("passed") is None:
-                issues = report.get("issues") or report.get("errors") or ()
-                ingestion_passed = len(issues) == 0
+        job_id = self._registry.get_ingestion_job(workspace_id)
+        if job_id and self._ingestion is not None and self._ingestion.is_available():
+            if _ingestion_job_is_authoritative(self._ingestion, job_id):
+                ing = require_ingestion(
+                    self._ingestion, action="validate_curriculum"
+                )
+                report = ing.get_validation_report(job_id) or {}
+                ingestion_passed = _report_passed(report)
+            else:
+                logger.info(
+                    "Ignoring non-authoritative ingestion job %s for %s "
+                    "(reference-only stub; Management is publication gate)",
+                    job_id,
+                    workspace_id,
+                )
 
         management_passed = True
         if run_management_gate:
@@ -142,12 +175,18 @@ class ValidationService:
             mgmt = require_management(
                 self._management, action="validate_curriculum"
             )
-            report = mgmt.validate_version(workspace.version_id)
-            management_passed = as_bool(
-                report.get("passed"),
-                default=str(report.get("readiness", "")).lower()
-                in {"passed", "ready", "ok", "validated"},
-            )
+            try:
+                report = mgmt.validate_version(workspace.version_id)
+            except Exception as exc:
+                # Management may raise on blocking failures after storing report.
+                facts = _copy_facts(workspace.facts, validation_passed=False)
+                self._registry.put_workspace(workspace.with_facts(facts))
+                snap = self.summarise(workspace_id)
+                raise ValidationError(
+                    f"Validation failed for {workspace_id}: "
+                    f"{snap.error_count} error(s)"
+                ) from exc
+            management_passed = _report_passed(report)
 
         passed = bool(ingestion_passed and management_passed)
         if not passed:
@@ -159,7 +198,11 @@ class ValidationService:
                 f"{snap.error_count} error(s)"
             )
 
-        facts = _copy_facts(workspace.facts, validation_passed=True)
+        facts = _copy_facts(
+            workspace.facts,
+            validation_passed=True,
+            blueprint_assigned=True,
+        )
         self._registry.put_workspace(workspace.with_facts(facts))
         self._registry.record_activity(
             "validation_passed",
@@ -233,58 +276,103 @@ def _copy_facts(
     )
 
 
+def _report_passed(report: dict) -> bool:
+    """Interpret an opaque validation report as pass/fail."""
+    if as_bool(report.get("passed")):
+        return True
+    if report.get("passed") is False:
+        return False
+    if as_bool(report.get("blocks_publication")):
+        return False
+    readiness = str(report.get("readiness", "")).lower()
+    if readiness in {"passed", "ready", "ok", "validated"}:
+        return True
+    if readiness in {"failed", "blocked", "error"}:
+        return False
+    issues = (
+        report.get("issues")
+        or report.get("errors")
+        or report.get("blocking_issues")
+        or ()
+    )
+    # Blocking / error severities fail; empty issues pass when passed is unset.
+    for issue in issues:
+        if not isinstance(issue, dict):
+            return False
+        severity = str(issue.get("severity") or "").lower()
+        if severity in {"blocking", "error"} or as_bool(
+            issue.get("is_blocking")
+        ):
+            return False
+    return len(issues) == 0 or readiness == ""
+
+
+def _ingestion_job_is_authoritative(
+    ingestion: CurriculumIngestionPort, job_id: str
+) -> bool:
+    """True when the job carries real structure (not a reference-only stub).
+
+    Reference-only uploads produce synthetic single-topic stubs without
+    objectives. Those must never gate Founder publication.
+    """
+    summary = ingestion.get_ingestion_summary(job_id) or {}
+    sources = summary.get("sources") or ()
+    for source in sources:
+        if isinstance(source, dict) and source.get("entries"):
+            return True
+
+    structure = ingestion.normalised_structure(job_id) or {}
+    topics = structure.get("topics") or structure.get("entries") or ()
+    if not topics:
+        return False
+    if int(structure.get("objective_count") or 0) > 0:
+        return True
+    for topic in topics:
+        if not isinstance(topic, dict):
+            continue
+        objectives = topic.get("objectives") or topic.get("objective_ids") or ()
+        if objectives:
+            return True
+    return False
+
+
 def _map_report(
     report: dict,
     errors: list[ValidationFinding],
     warnings: list[ValidationFinding],
 ) -> tuple[ValidationReadiness, list[ValidationFinding], list[ValidationFinding]]:
-    for issue in report.get("errors") or report.get("blocking_issues") or ():
-        if isinstance(issue, dict):
-            errors.append(
-                enrich_finding(
-                    ValidationFinding.create(
-                        str(issue.get("code") or "ingestion_error"),
-                        str(issue.get("message") or "Validation error"),
-                        severity=ValidationFindingSeverity.BLOCKING,
-                        why_it_matters=str(issue.get("why_it_matters") or ""),
-                        recovery_action=str(issue.get("recovery_action") or ""),
-                    )
-                )
-            )
+    """Project opaque Management / Ingestion reports into Studio findings.
+
+    Consumes ``issues``, ``errors``, and ``blocking_issues`` so Founder-facing
+    counts match the underlying validation report (PI-002R Phase 3).
+    """
+    raw_issues = list(report.get("issues") or ())
+    raw_errors = list(
+        report.get("errors") or report.get("blocking_issues") or ()
+    )
+    raw_warnings = list(report.get("warnings") or ())
+
+    for issue in (*raw_issues, *raw_errors):
+        finding = _finding_from_issue(issue, default_severity="blocking")
+        if finding is None:
+            continue
+        if finding.severity in {
+            ValidationFindingSeverity.BLOCKING,
+            ValidationFindingSeverity.ERROR,
+        } or finding.is_blocking:
+            errors.append(enrich_finding(finding))
         else:
-            errors.append(
-                enrich_finding(
-                    ValidationFinding.create(
-                        "ingestion_error",
-                        str(issue),
-                        severity=ValidationFindingSeverity.BLOCKING,
-                    )
-                )
-            )
-    for issue in report.get("warnings") or ():
-        if isinstance(issue, dict):
-            warnings.append(
-                enrich_finding(
-                    ValidationFinding.create(
-                        str(issue.get("code") or "ingestion_warning"),
-                        str(issue.get("message") or "Validation warning"),
-                        severity=ValidationFindingSeverity.WARNING,
-                        why_it_matters=str(issue.get("why_it_matters") or ""),
-                        recovery_action=str(issue.get("recovery_action") or ""),
-                    )
-                )
-            )
-        else:
-            warnings.append(
-                enrich_finding(
-                    ValidationFinding.create(
-                        "ingestion_warning",
-                        str(issue),
-                        severity=ValidationFindingSeverity.WARNING,
-                    )
-                )
-            )
-    if errors:
+            warnings.append(enrich_finding(finding))
+
+    for issue in raw_warnings:
+        finding = _finding_from_issue(issue, default_severity="warning")
+        if finding is not None:
+            warnings.append(enrich_finding(finding))
+
+    explicit_fail = report.get("passed") is False or as_bool(
+        report.get("blocks_publication")
+    )
+    if errors or explicit_fail:
         readiness = ValidationReadiness.FAILED
     elif as_bool(report.get("passed")) or str(
         report.get("readiness", "")
@@ -295,3 +383,37 @@ def _map_report(
     else:
         readiness = ValidationReadiness.NOT_STARTED
     return readiness, errors, warnings
+
+
+def _finding_from_issue(
+    issue: object, *, default_severity: str
+) -> ValidationFinding | None:
+    if isinstance(issue, dict):
+        severity = str(issue.get("severity") or default_severity).lower()
+        if as_bool(issue.get("is_blocking")) and severity not in {
+            "blocking",
+            "error",
+        }:
+            severity = "blocking"
+        code = str(issue.get("code") or "validation_issue")
+        message = str(issue.get("message") or "Validation finding")
+        return ValidationFinding.create(
+            code,
+            message,
+            severity=severity,
+            section_id=(
+                None
+                if issue.get("section_ref") is None
+                and issue.get("section_id") is None
+                else str(issue.get("section_ref") or issue.get("section_id"))
+            ),
+            why_it_matters=str(issue.get("why_it_matters") or ""),
+            recovery_action=str(issue.get("recovery_action") or ""),
+        )
+    if issue is None or str(issue).strip() == "":
+        return None
+    return ValidationFinding.create(
+        "validation_issue",
+        str(issue),
+        severity=default_severity,
+    )

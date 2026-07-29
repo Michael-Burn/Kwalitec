@@ -1,0 +1,3022 @@
+{
+  "programme": "FV-001B",
+  "kind": "precise",
+  "base": "http://127.0.0.1:5130",
+  "elapsed_s": 30.2,
+  "records": [
+    {
+      "phase": "P1_login",
+      "t": 1.7,
+      "url": "http://127.0.0.1:5130/auth/login",
+      "title": "Sign in \u00b7 Kwalitec",
+      "text": "Education Operating System\n\nKnow exactly what to study next.\n\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAlways know what to study next\nPlans that fit your exam date\nFocused sessions without decision fatigue\nHonest progress you can trust\nEstimated readiness insights as you study\nSustainable pace through exam season\nSign in\n\nContinue to your workspace.\n\nEmail\nPassword\nRemember me\nNew to the Internal Alpha?\n\nKwalitec is invite-only during the Internal Alpha \u2014 sign in with the credentials your coordinator provided.\n\nMissing your details, or need a reset? Contact your coordinator.\n\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 664,
+      "flashes": [],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Sign in"
+      ],
+      "links": [],
+      "headings": [
+        "Sign in",
+        "New to the Internal Alpha?"
+      ],
+      "labels": [
+        "Email",
+        "Password",
+        "Remember me"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_00_p1_login.png"
+    },
+    {
+      "phase": "P1_after_login",
+      "t": 2.8,
+      "url": "http://127.0.0.1:5130/console/",
+      "title": "Console Home \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWelcome back to Kwalitec.\n\nKWALITEC CONSOLE \u00b7 INTERNAL ALPHA \u00b7 V2.0.0\n\nConsole Home\n\nOperational pulse \u2014 what needs attention today \u00b7 2026-07-28 21:39 UTC \u00b7 Calendar day (server local date)\n\nATTENTION REQUIRED\nOpen Attention Center\nSUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews\nPLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in\nCONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings\nSTUDENT ISSUES\n0\nNeeds intervention\nNothing queued\nHIGH\nSystem health signals need attention\nOpen\nPLATFORM SUMMARY\nSTUDENTS\n0\nActive participants\n0 active today\nLEARNING\n0\nCheck-ins today\n0 in last 7 days\nASSESSMENTS\n\u2014\nAvg experience\nWould open tomorrow \u2014\nSYSTEM\nNo check-ins yet\nAlpha health\nBuild local\nQUICK ACTIONS\nReview support inbox\nOpen operations\nManage content\nPlatform Intelligence\nOPERATIONAL DETAIL\nRecent support\nInbox\n\nNo Product Check-ins yet.\n\nAttention queue\nCenter\n\nNothing needs action right now.\n\nVision Journal\nOpen\n\nNo Vision entries yet. New entry\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 1295,
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Open Attention Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "SUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "PLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "CONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings",
+          "href": "/console/findings"
+        },
+        {
+          "text": "STUDENT ISSUES\n0\nNeeds intervention\nNothing queued",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/operations"
+        },
+        {
+          "text": "Review support inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Open operations",
+          "href": "/console/operational-health"
+        },
+        {
+          "text": "Manage content",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Platform Intelligence",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "Inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/vision"
+        },
+        {
+          "text": "New entry",
+          "href": "/console/vision/new"
+        }
+      ],
+      "headings": [
+        "Console Home",
+        "ATTENTION REQUIRED",
+        "PLATFORM SUMMARY",
+        "QUICK ACTIONS",
+        "OPERATIONAL DETAIL",
+        "Recent support",
+        "Attention queue",
+        "Vision Journal"
+      ],
+      "labels": [
+        "Search the Console"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_01_p1_after_login.png"
+    },
+    {
+      "phase": "P1_console_home",
+      "t": 3.0,
+      "url": "http://127.0.0.1:5130/console/",
+      "title": "Console Home \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWelcome back to Kwalitec.\n\nKWALITEC CONSOLE \u00b7 INTERNAL ALPHA \u00b7 V2.0.0\n\nConsole Home\n\nOperational pulse \u2014 what needs attention today \u00b7 2026-07-28 21:39 UTC \u00b7 Calendar day (server local date)\n\nATTENTION REQUIRED\nOpen Attention Center\nSUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews\nPLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in\nCONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings\nSTUDENT ISSUES\n0\nNeeds intervention\nNothing queued\nHIGH\nSystem health signals need attention\nOpen\nPLATFORM SUMMARY\nSTUDENTS\n0\nActive participants\n0 active today\nLEARNING\n0\nCheck-ins today\n0 in last 7 days\nASSESSMENTS\n\u2014\nAvg experience\nWould open tomorrow \u2014\nSYSTEM\nNo check-ins yet\nAlpha health\nBuild local\nQUICK ACTIONS\nReview support inbox\nOpen operations\nManage content\nPlatform Intelligence\nOPERATIONAL DETAIL\nRecent support\nInbox\n\nNo Product Check-ins yet.\n\nAttention queue\nCenter\n\nNothing needs action right now.\n\nVision Journal\nOpen\n\nNo Vision entries yet. New entry\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 1295,
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Open Attention Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "SUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "PLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "CONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings",
+          "href": "/console/findings"
+        },
+        {
+          "text": "STUDENT ISSUES\n0\nNeeds intervention\nNothing queued",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/operations"
+        },
+        {
+          "text": "Review support inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Open operations",
+          "href": "/console/operational-health"
+        },
+        {
+          "text": "Manage content",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Platform Intelligence",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "Inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/vision"
+        },
+        {
+          "text": "New entry",
+          "href": "/console/vision/new"
+        }
+      ],
+      "headings": [
+        "Console Home",
+        "ATTENTION REQUIRED",
+        "PLATFORM SUMMARY",
+        "QUICK ACTIONS",
+        "OPERATIONAL DETAIL",
+        "Recent support",
+        "Attention queue",
+        "Vision Journal"
+      ],
+      "labels": [
+        "Search the Console"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_02_p1_console_home.png"
+    },
+    {
+      "phase": "P2_subjects",
+      "t": 3.2,
+      "url": "http://127.0.0.1:5130/console/studio/subjects",
+      "title": "Subjects \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nSubjects\n\nKWALITEC CONSOLE \u00b7 CURRICULUM AUTHORITY\n\nSubjects\n\nCreate subjects and open workspaces. Students only see a subject as Ready after you publish a verified curriculum.\n\nNEXT STEP\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nCurriculum workflow\nNew Subject\nUpload Official CMP\nUpload Official Syllabus\nExtraction\nReview & Corrections\nPublish Verified Curriculum\nAvailable to Students (Ready)\n\nOpen Curriculum Studio\n\nCreate Subject\nSubject code\nTitle\nOpen Workspace\nSubject code\nWorkspaces\n\nNo workspaces yet\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 994,
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Create Subject",
+        "Open Workspace",
+        "Open Curriculum Studio"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Open Curriculum Studio",
+          "href": "/console/studio/"
+        }
+      ],
+      "headings": [
+        "Subjects",
+        "Curriculum workflow",
+        "Create Subject",
+        "Open Workspace",
+        "Workspaces"
+      ],
+      "labels": [
+        "Search the Console",
+        "Subject code",
+        "Title"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_03_p2_subjects.png"
+    },
+    {
+      "phase": "P2_nav_review_queue",
+      "t": 3.3,
+      "url": "http://127.0.0.1:5130/console/studio/review-queue",
+      "title": "Review Queue \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nReview Queue\n\nKWALITEC CONSOLE \u00b7 CURRICULUM AUTHORITY\n\nReview Queue\n\nReview extracted curriculum structure and apply corrections before publishing a verified curriculum.\n\nNEXT STEP\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nCurriculum workflow\nNew Subject\nUpload Official CMP\nUpload Official Syllabus\nExtraction\nReview & Corrections\nPublish Verified Curriculum\nAvailable to Students (Ready)\n\nOpen Curriculum Studio\n\nWorkspaces\n\nNo workspaces yet\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 926,
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Open Curriculum Studio"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Open Curriculum Studio",
+          "href": "/console/studio/"
+        }
+      ],
+      "headings": [
+        "Review Queue",
+        "Curriculum workflow",
+        "Workspaces"
+      ],
+      "labels": [
+        "Search the Console"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_04_p2_nav_review_queue.png"
+    },
+    {
+      "phase": "P2_nav_publishing",
+      "t": 3.5,
+      "url": "http://127.0.0.1:5130/console/studio/publishing",
+      "title": "Publishing \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nPublishing\n\nKWALITEC CONSOLE \u00b7 CURRICULUM AUTHORITY\n\nPublishing\n\nApprove and publish verified curriculum. Publishing is what makes a subject Ready in the student Subject Catalogue.\n\nNEXT STEP\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nCurriculum workflow\nNew Subject\nUpload Official CMP\nUpload Official Syllabus\nExtraction\nReview & Corrections\nPublish Verified Curriculum\nAvailable to Students (Ready)\n\nOpen Curriculum Studio\n\nWorkspaces\n\nNo workspaces yet\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 937,
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Open Curriculum Studio"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Open Curriculum Studio",
+          "href": "/console/studio/"
+        }
+      ],
+      "headings": [
+        "Publishing",
+        "Curriculum workflow",
+        "Workspaces"
+      ],
+      "labels": [
+        "Search the Console"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_05_p2_nav_publishing.png"
+    },
+    {
+      "phase": "P2_nav_versions",
+      "t": 3.7,
+      "url": "http://127.0.0.1:5130/console/studio/versions",
+      "title": "Versions \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nVersions\n\nKWALITEC CONSOLE \u00b7 CURRICULUM AUTHORITY\n\nVersions\n\nManage curriculum editions and assign version labels for published subjects.\n\nNEXT STEP\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nCurriculum workflow\nNew Subject\nUpload Official CMP\nUpload Official Syllabus\nExtraction\nReview & Corrections\nPublish Verified Curriculum\nAvailable to Students (Ready)\n\nOpen Curriculum Studio\n\nWorkspaces\n\nNo workspaces yet\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 894,
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Open Curriculum Studio"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Open Curriculum Studio",
+          "href": "/console/studio/"
+        }
+      ],
+      "headings": [
+        "Versions",
+        "Curriculum workflow",
+        "Workspaces"
+      ],
+      "labels": [
+        "Search the Console"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_06_p2_nav_versions.png"
+    },
+    {
+      "phase": "P2_nav_quality",
+      "t": 3.8,
+      "url": "http://127.0.0.1:5130/console/studio/quality",
+      "title": "Quality \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nQuality\n\nKWALITEC CONSOLE \u00b7 CURRICULUM AUTHORITY\n\nQuality\n\nValidate, preview, and quality-check curricula before and after publication.\n\nNEXT STEP\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nCurriculum workflow\nNew Subject\nUpload Official CMP\nUpload Official Syllabus\nExtraction\nReview & Corrections\nPublish Verified Curriculum\nAvailable to Students (Ready)\n\nOpen Curriculum Studio\n\nWorkspaces\n\nNo workspaces yet\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 892,
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Open Curriculum Studio"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Open Curriculum Studio",
+          "href": "/console/studio/"
+        }
+      ],
+      "headings": [
+        "Quality",
+        "Curriculum workflow",
+        "Workspaces"
+      ],
+      "labels": [
+        "Search the Console"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_07_p2_nav_quality.png"
+    },
+    {
+      "phase": "P2_studio_index",
+      "t": 4.0,
+      "url": "http://127.0.0.1:5130/console/studio/",
+      "title": "Curriculum Studio \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\n\nKWALITEC CONSOLE \u00b7 CURRICULUM STUDIO\n\nCurriculum Studio\n\nReview, validate, preview, approve, and publish curricula through one Console workflow.\n\nNEXT STEP\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nPublished 0\nDrafts 0\nPending validation 0\nPending approval 0\nCreate Subject\nSubject code *\n\nUse a short syllabus code such as CS1.\n\nTitle\nOpen Workspace\nSubject code *\n\nOpen an existing subject code to continue its workflow.\n\nWorkspaces\n\nNo workspaces yet\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nRecent activity\n\nNo activity yet\n\nNo recent Studio activity yet. Open a workspace to validate, preview, or publish a curriculum.\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 1084,
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Create Subject",
+        "Open Workspace"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        }
+      ],
+      "headings": [
+        "Curriculum Studio",
+        "Create Subject",
+        "Open Workspace",
+        "Workspaces",
+        "Recent activity"
+      ],
+      "labels": [
+        "Search the Console",
+        "Subject code *",
+        "Title"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_08_p2_studio_index.png"
+    },
+    {
+      "phase": "P3_create_form_filled",
+      "t": 4.2,
+      "url": "http://127.0.0.1:5130/console/studio/",
+      "title": "Curriculum Studio \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\n\nKWALITEC CONSOLE \u00b7 CURRICULUM STUDIO\n\nCurriculum Studio\n\nReview, validate, preview, approve, and publish curricula through one Console workflow.\n\nNEXT STEP\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nPublished 0\nDrafts 0\nPending validation 0\nPending approval 0\nCreate Subject\nSubject code *\n\nUse a short syllabus code such as CS1.\n\nTitle\nOpen Workspace\nSubject code *\n\nOpen an existing subject code to continue its workflow.\n\nWorkspaces\n\nNo workspaces yet\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nRecent activity\n\nNo activity yet\n\nNo recent Studio activity yet. Open a workspace to validate, preview, or publish a curriculum.\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 1084,
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Create Subject",
+        "Open Workspace"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        }
+      ],
+      "headings": [
+        "Curriculum Studio",
+        "Create Subject",
+        "Open Workspace",
+        "Workspaces",
+        "Recent activity"
+      ],
+      "labels": [
+        "Search the Console",
+        "Subject code *",
+        "Title"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_09_p3_create_form_filled.png"
+    },
+    {
+      "phase": "P3_after_create_subject",
+      "t": 4.4,
+      "url": "http://127.0.0.1:5130/console/studio/",
+      "title": "Curriculum Studio \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe've created your subject successfully.\nOverview\nCurriculum Studio\n\nKWALITEC CONSOLE \u00b7 CURRICULUM STUDIO\n\nCurriculum Studio\n\nReview, validate, preview, approve, and publish curricula through one Console workflow.\n\nNEXT STEP\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nPublished 0\nDrafts 0\nPending validation 0\nPending approval 0\nCreate Subject\nSubject code *\n\nUse a short syllabus code such as CS1.\n\nTitle\nOpen Workspace\nSubject code *\n\nOpen an existing subject code to continue its workflow.\n\nWorkspaces\n\nNo workspaces yet\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nRecent activity\nsubject_created: Created subject CS1B\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 1050,
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Create Subject",
+        "Open Workspace"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        }
+      ],
+      "headings": [
+        "Curriculum Studio",
+        "Create Subject",
+        "Open Workspace",
+        "Workspaces",
+        "Recent activity"
+      ],
+      "labels": [
+        "Search the Console",
+        "Subject code *",
+        "Title"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_10_p3_after_create_subject.png"
+    },
+    {
+      "phase": "P3_studio_after_create",
+      "t": 4.5,
+      "url": "http://127.0.0.1:5130/console/studio/",
+      "title": "Curriculum Studio \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\n\nKWALITEC CONSOLE \u00b7 CURRICULUM STUDIO\n\nCurriculum Studio\n\nReview, validate, preview, approve, and publish curricula through one Console workflow.\n\nNEXT STEP\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nPublished 0\nDrafts 0\nPending validation 0\nPending approval 0\nCreate Subject\nSubject code *\n\nUse a short syllabus code such as CS1.\n\nTitle\nOpen Workspace\nSubject code *\n\nOpen an existing subject code to continue its workflow.\n\nWorkspaces\n\nNo workspaces yet\n\nNo workspaces yet. Create a subject, then open a workspace to begin the validate \u2192 preview \u2192 approve \u2192 publish journey.\n\nRecent activity\nsubject_created: Created subject CS1B\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 1009,
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Create Subject",
+        "Open Workspace"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        }
+      ],
+      "headings": [
+        "Curriculum Studio",
+        "Create Subject",
+        "Open Workspace",
+        "Workspaces",
+        "Recent activity"
+      ],
+      "labels": [
+        "Search the Console",
+        "Subject code *",
+        "Title"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_11_p3_studio_after_create.png"
+    },
+    {
+      "phase": "P4_workspace_opened",
+      "t": 4.9,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b",
+      "title": "Workspace \u00b7 CS1B \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe've opened your workspace successfully.\nOverview\nCurriculum Studio\nCS1B\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1B\n\nStage: Subject \u00b7 Status: Active\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 failed\n\nPreview\n\nPreview ready \u00b7 not_ready \u00b7 0 nodes\n\nChecklist\n\n0 of 8 checklist items ready.\n\nValidation findings\n\nOfficial CMP is not present. (blocking)\n\nWhy it matters:\nWithout an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.\n\nWhat to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.\n\nOfficial syllabus is not present. (blocking)\n\nWhy it matters:\nPublication must stay grounded in the official syllabus so student journeys follow authorised curriculum order.\n\nWhat to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.\n\nContent Sources\nUPLOAD DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nCurriculum Intelligence Pipeline\nProcessing\nVerified\nExtracted\nParsed\nMapped\nKnowledge Graph Built\nReady\nCurriculum Intelligence\nValidation, provenance & evidence retrieval\nOVERVIEW\nDOCUMENTS\nPIPELINE\nKNOWLEDGE GRAPH\nEVIDENCE EXPLORER\nVALIDATION\nREVIEW QUEUE\nMETRICS\nENTITY DETAILS\n\nEvidence-backed curriculum knowledge for this workspace.\n\nDocuments\n\n\u2014\n\nEntities\n\n\u2014\n\nNeeds review\n\n\u2014\n\nValidation errors\n\n\u2014\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n\nNo versions yet\n\nNo versions recorded yet. Assign a version label after approval to start version history.\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 2389,
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Remove",
+        "OVERVIEW",
+        "DOCUMENTS",
+        "PIPELINE",
+        "KNOWLEDGE GRAPH",
+        "EVIDENCE EXPLORER",
+        "VALIDATION",
+        "REVIEW QUEUE",
+        "METRICS",
+        "ENTITY DETAILS",
+        "Load",
+        "Advance to Next Stage",
+        "Validate Curriculum",
+        "Build Preview",
+        "Approve Curriculum",
+        "Publish Verified Curriculum",
+        "Assign Version",
+        "Download",
+        "Drag PDF here\n\nor\n\nSelect PDF"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Download",
+          "href": "#"
+        },
+        {
+          "text": "Download",
+          "href": "#"
+        },
+        {
+          "text": "\u2190 Back to Curriculum Studio",
+          "href": "/console/studio/"
+        }
+      ],
+      "headings": [
+        "CS1B",
+        "Workflow",
+        "Validation findings",
+        "Content Sources",
+        "Curriculum Intelligence",
+        "Actions",
+        "Version history",
+        "Official CMP",
+        "Official Syllabus",
+        "Curriculum Intelligence Pipeline",
+        "Graph neighbours"
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "terms_found": [
+        "Knowledge Graph"
+      ],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_12_p4_workspace_opened.png"
+    },
+    {
+      "phase": "P4_pre_upload",
+      "t": 5.1,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b",
+      "title": "Workspace \u00b7 CS1B \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe've opened your workspace successfully.\nOverview\nCurriculum Studio\nCS1B\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1B\n\nStage: Subject \u00b7 Status: Active\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 failed\n\nPreview\n\nPreview ready \u00b7 not_ready \u00b7 0 nodes\n\nChecklist\n\n0 of 8 checklist items ready.\n\nValidation findings\n\nOfficial CMP is not present. (blocking)\n\nWhy it matters:\nWithout an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.\n\nWhat to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.\n\nOfficial syllabus is not present. (blocking)\n\nWhy it matters:\nPublication must stay grounded in the official syllabus so student journeys follow authorised curriculum order.\n\nWhat to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.\n\nContent Sources\nUPLOAD DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nCurriculum Intelligence Pipeline\nProcessing\nVerified\nExtracted\nParsed\nMapped\nKnowledge Graph Built\nReady\nCurriculum Intelligence\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nPIPELINE\nKNOWLEDGE GRAPH\nEVIDENCE EXPLORER\nVALIDATION\nREVIEW QUEUE\nMETRICS\nENTITY DETAILS\n\nEvidence-backed curriculum knowledge for this workspace.\n\nDocuments\n\n0\n\nEntities\n\n0\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n\nNo versions yet\n\nNo versions recorded yet. Assign a version label after approval to start version history.\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 2385,
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Remove",
+        "OVERVIEW",
+        "DOCUMENTS",
+        "PIPELINE",
+        "KNOWLEDGE GRAPH",
+        "EVIDENCE EXPLORER",
+        "VALIDATION",
+        "REVIEW QUEUE",
+        "METRICS",
+        "ENTITY DETAILS",
+        "Load",
+        "Advance to Next Stage",
+        "Validate Curriculum",
+        "Build Preview",
+        "Approve Curriculum",
+        "Publish Verified Curriculum",
+        "Assign Version",
+        "Download",
+        "Drag PDF here\n\nor\n\nSelect PDF"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Download",
+          "href": "#"
+        },
+        {
+          "text": "Download",
+          "href": "#"
+        },
+        {
+          "text": "\u2190 Back to Curriculum Studio",
+          "href": "/console/studio/"
+        }
+      ],
+      "headings": [
+        "CS1B",
+        "Workflow",
+        "Validation findings",
+        "Content Sources",
+        "Curriculum Intelligence",
+        "Actions",
+        "Version history",
+        "Official CMP",
+        "Official Syllabus",
+        "Curriculum Intelligence Pipeline",
+        "Graph neighbours"
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "terms_found": [
+        "Knowledge Graph"
+      ],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_13_p4_pre_upload.png",
+      "file_input_count": 2,
+      "upload_labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ]
+    },
+    {
+      "phase": "P4_syllabus_selected",
+      "t": 7.4,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b",
+      "title": "Workspace \u00b7 CS1B \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe've opened your workspace successfully.\nOverview\nCurriculum Studio\nCS1B\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1B\n\nStage: Subject \u00b7 Status: Active\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 failed\n\nPreview\n\nPreview ready \u00b7 not_ready \u00b7 0 nodes\n\nChecklist\n\n0 of 8 checklist items ready.\n\nValidation findings\n\nOfficial CMP is not present. (blocking)\n\nWhy it matters:\nWithout an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.\n\nWhat to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.\n\nOfficial syllabus is not present. (blocking)\n\nWhy it matters:\nPublication must stay grounded in the official syllabus so student journeys follow authorised curriculum order.\n\nWhat to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.\n\nContent Sources\nREPLACE DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nofficial_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nUploaded\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\n\nDocument uploaded successfully.\n\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nCurriculum Intelligence Pipeline\nProcessing\nVerified\nExtracted\nParsed\nMapped\nKnowledge Graph Built\nReady\nDocument 1\nReady\nExtracted \u00b7 completed \u00b7 1060 ms\nNormalized \u00b7 completed \u00b7 14 ms\nParsed \u00b7 completed \u00b7 65 ms\nMapped \u00b7 completed \u00b7 353 ms\nKnowledge Graph Built \u00b7 completed \u00b7 68 ms\nReady \u00b7 completed \u00b7 15 ms\nDocument uploaded successfully.\nCurriculum Intelligence\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nPIPELINE\nKNOWLEDGE GRAPH\nEVIDENCE EXPLORER\nVALIDATION\nREVIEW QUEUE\nMETRICS\nENTITY DETAILS\n\nEvidence-backed curriculum knowledge for this workspace.\n\nDocuments\n\n0\n\nEntities\n\n0\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n\nNo versions yet\n\nNo versions recorded yet. Assign a version label after approval to start version history.\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?\n\nDocument uploaded successfully.",
+      "text_len": 2791,
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Remove",
+        "OVERVIEW",
+        "DOCUMENTS",
+        "PIPELINE",
+        "KNOWLEDGE GRAPH",
+        "EVIDENCE EXPLORER",
+        "VALIDATION",
+        "REVIEW QUEUE",
+        "METRICS",
+        "ENTITY DETAILS",
+        "Load",
+        "Advance to Next Stage",
+        "Validate Curriculum",
+        "Build Preview",
+        "Approve Curriculum",
+        "Publish Verified Curriculum",
+        "Assign Version",
+        "Download",
+        "official_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nUploaded",
+        "Drag PDF here\n\nor\n\nSelect PDF"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Download",
+          "href": "/console/studio/workspaces/ws-cs1b/documents/1/download"
+        },
+        {
+          "text": "Download",
+          "href": "#"
+        },
+        {
+          "text": "\u2190 Back to Curriculum Studio",
+          "href": "/console/studio/"
+        }
+      ],
+      "headings": [
+        "CS1B",
+        "Workflow",
+        "Validation findings",
+        "Content Sources",
+        "Curriculum Intelligence",
+        "Actions",
+        "Version history",
+        "Official CMP",
+        "Official Syllabus",
+        "Curriculum Intelligence Pipeline",
+        "Graph neighbours"
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "terms_found": [
+        "Knowledge Graph"
+      ],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_14_p4_syllabus_selected.png"
+    },
+    {
+      "phase": "P4_cmp_selected",
+      "t": 9.9,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b",
+      "title": "Workspace \u00b7 CS1B \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe've opened your workspace successfully.\nOverview\nCurriculum Studio\nCS1B\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1B\n\nStage: Subject \u00b7 Status: Active\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 failed\n\nPreview\n\nPreview ready \u00b7 not_ready \u00b7 0 nodes\n\nChecklist\n\n0 of 8 checklist items ready.\n\nValidation findings\n\nOfficial CMP is not present. (blocking)\n\nWhy it matters:\nWithout an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.\n\nWhat to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.\n\nOfficial syllabus is not present. (blocking)\n\nWhy it matters:\nPublication must stay grounded in the official syllabus so student journeys follow authorised curriculum order.\n\nWhat to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nofficial_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\n\nDocument uploaded successfully.\n\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nofficial_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\n\nDocument uploaded successfully.\n\nCurriculum Intelligence Pipeline\nProcessing\nVerified\nExtracted\nParsed\nMapped\nKnowledge Graph Built\nReady\nDocument 1\nReady\nExtracted \u00b7 completed \u00b7 1060 ms\nNormalized \u00b7 completed \u00b7 14 ms\nParsed \u00b7 completed \u00b7 65 ms\nMapped \u00b7 completed \u00b7 353 ms\nKnowledge Graph Built \u00b7 completed \u00b7 68 ms\nReady \u00b7 completed \u00b7 15 ms\nDocument 2\nReady\nExtracted \u00b7 completed \u00b7 2 ms\nNormalized \u00b7 completed \u00b7 1 ms\nParsed \u00b7 completed \u00b7 4 ms\nMapped \u00b7 completed \u00b7 14 ms\nKnowledge Graph Built \u00b7 completed \u00b7 36 ms\nReady \u00b7 completed \u00b7 8 ms\nDocument uploaded successfully.\nCurriculum Intelligence\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nPIPELINE\nKNOWLEDGE GRAPH\nEVIDENCE EXPLORER\nVALIDATION\nREVIEW QUEUE\nMETRICS\nENTITY DETAILS\n\nEvidence-backed curriculum knowledge for this workspace.\n\nDocuments\n\n0\n\nEntities\n\n0\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n\nNo versions yet\n\nNo versions recorded yet. Assign a version label after approval to start version history.\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?\n\nDocument uploaded successfully.",
+      "text_len": 3100,
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Remove",
+        "OVERVIEW",
+        "DOCUMENTS",
+        "PIPELINE",
+        "KNOWLEDGE GRAPH",
+        "EVIDENCE EXPLORER",
+        "VALIDATION",
+        "REVIEW QUEUE",
+        "METRICS",
+        "ENTITY DETAILS",
+        "Load",
+        "Advance to Next Stage",
+        "Validate Curriculum",
+        "Build Preview",
+        "Approve Curriculum",
+        "Publish Verified Curriculum",
+        "Assign Version",
+        "Download",
+        "official_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1",
+        "official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Download",
+          "href": "/console/studio/workspaces/ws-cs1b/documents/1/download"
+        },
+        {
+          "text": "Download",
+          "href": "/console/studio/workspaces/ws-cs1b/documents/2/download"
+        },
+        {
+          "text": "\u2190 Back to Curriculum Studio",
+          "href": "/console/studio/"
+        }
+      ],
+      "headings": [
+        "CS1B",
+        "Workflow",
+        "Validation findings",
+        "Content Sources",
+        "Curriculum Intelligence",
+        "Actions",
+        "Version history",
+        "Official CMP",
+        "Official Syllabus",
+        "Curriculum Intelligence Pipeline",
+        "Graph neighbours"
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "terms_found": [
+        "Knowledge Graph"
+      ],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_15_p4_cmp_selected.png"
+    },
+    {
+      "phase": "P5_action_Advance",
+      "t": 12.2,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b",
+      "title": "Workspace \u00b7 CS1B \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe've advanced the workflow to the next stage.\nOverview\nCurriculum Studio\nCS1B\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1B\n\nStage: Content Sources \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nUpload the Official CMP and Official Syllabus PDFs, then validate the curriculum.\n\nWorkflow\nSubject\nContent Sources\n(current)\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview ready \u00b7 not_ready \u00b7 0 nodes\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nofficial_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nofficial_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nCurriculum Intelligence Pipeline\nProcessing\nVerified\nExtracted\nParsed\nMapped\nKnowledge Graph Built\nReady\nDocument 1\nReady\nExtracted completed 1060 ms\nNormalized completed 14 ms\nParsed completed 65 ms\nMapped completed 353 ms\nKnowledge Graph Built completed 68 ms\nReady completed 15 ms\nDocument 2\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 4 ms\nMapped completed 14 ms\nKnowledge Graph Built completed 36 ms\nReady completed 8 ms\nCurriculum Intelligence\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nPIPELINE\nKNOWLEDGE GRAPH\nEVIDENCE EXPLORER\nVALIDATION\nREVIEW QUEUE\nMETRICS\nENTITY DETAILS\n\nEvidence-backed curriculum knowledge for this workspace.\n\nDocuments\n\n2\n\nEntities\n\n23\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 2336,
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Remove",
+        "OVERVIEW",
+        "DOCUMENTS",
+        "PIPELINE",
+        "KNOWLEDGE GRAPH",
+        "EVIDENCE EXPLORER",
+        "VALIDATION",
+        "REVIEW QUEUE",
+        "METRICS",
+        "ENTITY DETAILS",
+        "Load",
+        "Advance to Next Stage",
+        "Validate Curriculum",
+        "Build Preview",
+        "Approve Curriculum",
+        "Publish Verified Curriculum",
+        "Assign Version",
+        "Download",
+        "official_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1",
+        "official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Download",
+          "href": "/console/studio/workspaces/ws-cs1b/documents/1/download"
+        },
+        {
+          "text": "Download",
+          "href": "/console/studio/workspaces/ws-cs1b/documents/2/download"
+        },
+        {
+          "text": "\u2190 Back to Curriculum Studio",
+          "href": "/console/studio/"
+        }
+      ],
+      "headings": [
+        "CS1B",
+        "Workflow",
+        "Content Sources",
+        "Curriculum Intelligence",
+        "Actions",
+        "Version history",
+        "Official CMP",
+        "Official Syllabus",
+        "Curriculum Intelligence Pipeline",
+        "Graph neighbours"
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "terms_found": [
+        "Knowledge Graph"
+      ],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_16_p5_action_advance.png"
+    },
+    {
+      "phase": "P5_action_Validate",
+      "t": 14.5,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b",
+      "title": "Workspace \u00b7 CS1B \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe couldn't complete validation. Blocking findings prevent a safe student curriculum. Review the Validation findings, fix CMP or syllabus issues, then try again.\nOverview\nCurriculum Studio\nCS1B\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1B\n\nStage: Content Sources \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nUpload the Official CMP and Official Syllabus PDFs, then validate the curriculum.\n\nWorkflow\nSubject\nContent Sources\n(current)\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview ready \u00b7 not_ready \u00b7 0 nodes\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nofficial_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nofficial_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nCurriculum Intelligence Pipeline\nProcessing\nVerified\nExtracted\nParsed\nMapped\nKnowledge Graph Built\nReady\nDocument 1\nReady\nExtracted completed 1060 ms\nNormalized completed 14 ms\nParsed completed 65 ms\nMapped completed 353 ms\nKnowledge Graph Built completed 68 ms\nReady completed 15 ms\nDocument 2\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 4 ms\nMapped completed 14 ms\nKnowledge Graph Built completed 36 ms\nReady completed 8 ms\nCurriculum Intelligence\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nPIPELINE\nKNOWLEDGE GRAPH\nEVIDENCE EXPLORER\nVALIDATION\nREVIEW QUEUE\nMETRICS\nENTITY DETAILS\n\nEvidence-backed curriculum knowledge for this workspace.\n\nDocuments\n\n2\n\nEntities\n\n23\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 2451,
+      "flashes": [
+        "We couldn't complete validation. Blocking findings prevent a safe student curriculum. Review the Validation findings, fix CMP or syllabus issues, then try again.",
+        "We couldn't complete validation. Blocking findings prevent a safe student curriculum. Review the Validation findings, fix CMP or syllabus issues, then try again."
+      ],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Remove",
+        "OVERVIEW",
+        "DOCUMENTS",
+        "PIPELINE",
+        "KNOWLEDGE GRAPH",
+        "EVIDENCE EXPLORER",
+        "VALIDATION",
+        "REVIEW QUEUE",
+        "METRICS",
+        "ENTITY DETAILS",
+        "Load",
+        "Advance to Next Stage",
+        "Validate Curriculum",
+        "Build Preview",
+        "Approve Curriculum",
+        "Publish Verified Curriculum",
+        "Assign Version",
+        "Download",
+        "official_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1",
+        "official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Download",
+          "href": "/console/studio/workspaces/ws-cs1b/documents/1/download"
+        },
+        {
+          "text": "Download",
+          "href": "/console/studio/workspaces/ws-cs1b/documents/2/download"
+        },
+        {
+          "text": "\u2190 Back to Curriculum Studio",
+          "href": "/console/studio/"
+        }
+      ],
+      "headings": [
+        "CS1B",
+        "Workflow",
+        "Content Sources",
+        "Curriculum Intelligence",
+        "Actions",
+        "Version history",
+        "Official CMP",
+        "Official Syllabus",
+        "Curriculum Intelligence Pipeline",
+        "Graph neighbours"
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "terms_found": [
+        "Knowledge Graph"
+      ],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_17_p5_action_validate.png"
+    },
+    {
+      "phase": "P5_action_Preview",
+      "t": 16.9,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b",
+      "title": "Workspace \u00b7 CS1B \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe've built the preview successfully.\nOverview\nCurriculum Studio\nCS1B\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1B\n\nStage: Content Sources \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nUpload the Official CMP and Official Syllabus PDFs, then validate the curriculum.\n\nWorkflow\nSubject\nContent Sources\n(current)\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview ready \u00b7 not_ready \u00b7 0 nodes\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nofficial_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nofficial_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nCurriculum Intelligence Pipeline\nProcessing\nVerified\nExtracted\nParsed\nMapped\nKnowledge Graph Built\nReady\nDocument 1\nReady\nExtracted completed 1060 ms\nNormalized completed 14 ms\nParsed completed 65 ms\nMapped completed 353 ms\nKnowledge Graph Built completed 68 ms\nReady completed 15 ms\nDocument 2\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 4 ms\nMapped completed 14 ms\nKnowledge Graph Built completed 36 ms\nReady completed 8 ms\nCurriculum Intelligence\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nPIPELINE\nKNOWLEDGE GRAPH\nEVIDENCE EXPLORER\nVALIDATION\nREVIEW QUEUE\nMETRICS\nENTITY DETAILS\n\nEvidence-backed curriculum knowledge for this workspace.\n\nDocuments\n\n2\n\nEntities\n\n23\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 2327,
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Remove",
+        "OVERVIEW",
+        "DOCUMENTS",
+        "PIPELINE",
+        "KNOWLEDGE GRAPH",
+        "EVIDENCE EXPLORER",
+        "VALIDATION",
+        "REVIEW QUEUE",
+        "METRICS",
+        "ENTITY DETAILS",
+        "Load",
+        "Advance to Next Stage",
+        "Validate Curriculum",
+        "Build Preview",
+        "Approve Curriculum",
+        "Publish Verified Curriculum",
+        "Assign Version",
+        "Download",
+        "official_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1",
+        "official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 21:39\nSIZE\n1.1 KB\nSTATUS\nReady\nUPLOADED BY\n1"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Download",
+          "href": "/console/studio/workspaces/ws-cs1b/documents/1/download"
+        },
+        {
+          "text": "Download",
+          "href": "/console/studio/workspaces/ws-cs1b/documents/2/download"
+        },
+        {
+          "text": "\u2190 Back to Curriculum Studio",
+          "href": "/console/studio/"
+        }
+      ],
+      "headings": [
+        "CS1B",
+        "Workflow",
+        "Content Sources",
+        "Curriculum Intelligence",
+        "Actions",
+        "Version history",
+        "Official CMP",
+        "Official Syllabus",
+        "Curriculum Intelligence Pipeline",
+        "Graph neighbours"
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "terms_found": [
+        "Knowledge Graph"
+      ],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_18_p5_action_preview.png"
+    },
+    {
+      "phase": "P5_action_Review",
+      "t": 19.1,
+      "url": "http://127.0.0.1:5130/console/studio/review-queue",
+      "title": "Review Queue \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nReview Queue\n\nKWALITEC CONSOLE \u00b7 CURRICULUM AUTHORITY\n\nReview Queue\n\nReview extracted curriculum structure and apply corrections before publishing a verified curriculum.\n\nNEXT STEP\n\nOpen a workspace below, or create a subject to start a new curriculum.\n\nCurriculum workflow\nNew Subject\nUpload Official CMP\nUpload Official Syllabus\nExtraction\nReview & Corrections\nPublish Verified Curriculum\nAvailable to Students (Ready)\n\nOpen Curriculum Studio\n\nWorkspaces\nCS1B\n2026.1 \u00b7 Content Sources\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 767,
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Open Curriculum Studio"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Open Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "CS1B\n2026.1 \u00b7 Content Sources",
+          "href": "/console/studio/workspaces/ws-cs1b"
+        }
+      ],
+      "headings": [
+        "Review Queue",
+        "Curriculum workflow",
+        "Workspaces"
+      ],
+      "labels": [
+        "Search the Console"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_19_p5_action_review.png"
+    },
+    {
+      "phase": "P5_progress_0",
+      "t": 21.8,
+      "url": "http://127.0.0.1:5130/console/studio/review-queue",
+      "title": "Review Queue \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nReview Queue\n\nKWALITEC CONSOLE \u00b7 CURRICULUM AUTHORITY\n\nReview Queue\n\nReview extracted curriculum structure and apply corrections before publishing a verified curriculum.\n\nNEXT STEP\n\nOpen a workspace below, or create a subject to start a new curriculum.\n\nCurriculum workflow\nNew Subject\nUpload Official CMP\nUpload Official Syllabus\nExtraction\nReview & Corrections\nPublish Verified Curriculum\nAvailable to Students (Ready)\n\nOpen Curriculum Studio\n\nWorkspaces\nCS1B\n2026.1 \u00b7 Content Sources\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 767,
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Open Curriculum Studio"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Open Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "CS1B\n2026.1 \u00b7 Content Sources",
+          "href": "/console/studio/workspaces/ws-cs1b"
+        }
+      ],
+      "headings": [
+        "Review Queue",
+        "Curriculum workflow",
+        "Workspaces"
+      ],
+      "labels": [
+        "Search the Console"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_20_p5_progress_0.png"
+    },
+    {
+      "phase": "P5_progress_1",
+      "t": 24.5,
+      "url": "http://127.0.0.1:5130/console/studio/review-queue",
+      "title": "Review Queue \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nReview Queue\n\nKWALITEC CONSOLE \u00b7 CURRICULUM AUTHORITY\n\nReview Queue\n\nReview extracted curriculum structure and apply corrections before publishing a verified curriculum.\n\nNEXT STEP\n\nOpen a workspace below, or create a subject to start a new curriculum.\n\nCurriculum workflow\nNew Subject\nUpload Official CMP\nUpload Official Syllabus\nExtraction\nReview & Corrections\nPublish Verified Curriculum\nAvailable to Students (Ready)\n\nOpen Curriculum Studio\n\nWorkspaces\nCS1B\n2026.1 \u00b7 Content Sources\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 767,
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Open Curriculum Studio"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Open Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "CS1B\n2026.1 \u00b7 Content Sources",
+          "href": "/console/studio/workspaces/ws-cs1b"
+        }
+      ],
+      "headings": [
+        "Review Queue",
+        "Curriculum workflow",
+        "Workspaces"
+      ],
+      "labels": [
+        "Search the Console"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_21_p5_progress_1.png"
+    },
+    {
+      "phase": "P5_progress_2",
+      "t": 27.1,
+      "url": "http://127.0.0.1:5130/console/studio/review-queue",
+      "title": "Review Queue \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nReview Queue\n\nKWALITEC CONSOLE \u00b7 CURRICULUM AUTHORITY\n\nReview Queue\n\nReview extracted curriculum structure and apply corrections before publishing a verified curriculum.\n\nNEXT STEP\n\nOpen a workspace below, or create a subject to start a new curriculum.\n\nCurriculum workflow\nNew Subject\nUpload Official CMP\nUpload Official Syllabus\nExtraction\nReview & Corrections\nPublish Verified Curriculum\nAvailable to Students (Ready)\n\nOpen Curriculum Studio\n\nWorkspaces\nCS1B\n2026.1 \u00b7 Content Sources\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 767,
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Open Curriculum Studio"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Open Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "CS1B\n2026.1 \u00b7 Content Sources",
+          "href": "/console/studio/workspaces/ws-cs1b"
+        }
+      ],
+      "headings": [
+        "Review Queue",
+        "Curriculum workflow",
+        "Workspaces"
+      ],
+      "labels": [
+        "Search the Console"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_22_p5_progress_2.png"
+    },
+    {
+      "phase": "P6_after_publish",
+      "t": 29.3,
+      "url": "http://127.0.0.1:5130/console/studio/publishing",
+      "title": "Publishing \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nPublishing\n\nKWALITEC CONSOLE \u00b7 CURRICULUM AUTHORITY\n\nPublishing\n\nApprove and publish verified curriculum. Publishing is what makes a subject Ready in the student Subject Catalogue.\n\nNEXT STEP\n\nOpen a workspace below, or create a subject to start a new curriculum.\n\nCurriculum workflow\nNew Subject\nUpload Official CMP\nUpload Official Syllabus\nExtraction\nReview & Corrections\nPublish Verified Curriculum\nAvailable to Students (Ready)\n\nOpen Curriculum Studio\n\nWorkspaces\nCS1B\n2026.1 \u00b7 Content Sources\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 778,
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Open Curriculum Studio"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Open Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "CS1B\n2026.1 \u00b7 Content Sources",
+          "href": "/console/studio/workspaces/ws-cs1b"
+        }
+      ],
+      "headings": [
+        "Publishing",
+        "Curriculum workflow",
+        "Workspaces"
+      ],
+      "labels": [
+        "Search the Console"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_23_p6_after_publish.png"
+    },
+    {
+      "phase": "P6_workspace_final",
+      "t": 29.4,
+      "url": "http://127.0.0.1:5130/console/studio/publishing",
+      "title": "Publishing \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nPublishing\n\nKWALITEC CONSOLE \u00b7 CURRICULUM AUTHORITY\n\nPublishing\n\nApprove and publish verified curriculum. Publishing is what makes a subject Ready in the student Subject Catalogue.\n\nNEXT STEP\n\nOpen a workspace below, or create a subject to start a new curriculum.\n\nCurriculum workflow\nNew Subject\nUpload Official CMP\nUpload Official Syllabus\nExtraction\nReview & Corrections\nPublish Verified Curriculum\nAvailable to Students (Ready)\n\nOpen Curriculum Studio\n\nWorkspaces\nCS1B\n2026.1 \u00b7 Content Sources\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 778,
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Open Curriculum Studio"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Open Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "CS1B\n2026.1 \u00b7 Content Sources",
+          "href": "/console/studio/workspaces/ws-cs1b"
+        }
+      ],
+      "headings": [
+        "Publishing",
+        "Curriculum workflow",
+        "Workspaces"
+      ],
+      "labels": [
+        "Search the Console"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_24_p6_workspace_final.png"
+    },
+    {
+      "phase": "P7_subjects_catalogue",
+      "t": 29.6,
+      "url": "http://127.0.0.1:5130/console/studio/subjects",
+      "title": "Subjects \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nSubjects\n\nKWALITEC CONSOLE \u00b7 CURRICULUM AUTHORITY\n\nSubjects\n\nCreate subjects and open workspaces. Students only see a subject as Ready after you publish a verified curriculum.\n\nNEXT STEP\n\nOpen a workspace below, or create a subject to start a new curriculum.\n\nCurriculum workflow\nNew Subject\nUpload Official CMP\nUpload Official Syllabus\nExtraction\nReview & Corrections\nPublish Verified Curriculum\nAvailable to Students (Ready)\n\nOpen Curriculum Studio\n\nCreate Subject\nSubject code\nTitle\nOpen Workspace\nSubject code\nWorkspaces\nCS1B\n2026.1 \u00b7 Content Sources\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 835,
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Create Subject",
+        "Open Workspace",
+        "Open Curriculum Studio"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Open Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "CS1B\n2026.1 \u00b7 Content Sources",
+          "href": "/console/studio/workspaces/ws-cs1b"
+        }
+      ],
+      "headings": [
+        "Subjects",
+        "Curriculum workflow",
+        "Create Subject",
+        "Open Workspace",
+        "Workspaces"
+      ],
+      "labels": [
+        "Search the Console",
+        "Subject code",
+        "Title"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_25_p7_subjects_catalogue.png"
+    },
+    {
+      "phase": "P7_studio_catalogue",
+      "t": 29.8,
+      "url": "http://127.0.0.1:5130/console/studio/",
+      "title": "Curriculum Studio \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\n\nKWALITEC CONSOLE \u00b7 CURRICULUM STUDIO\n\nCurriculum Studio\n\nReview, validate, preview, approve, and publish curricula through one Console workflow.\n\nNEXT STEP\n\nOpen a workspace below, or create a subject to start a new curriculum.\n\nPublished 0\nDrafts 1\nPending validation 0\nPending approval 0\nCreate Subject\nSubject code *\n\nUse a short syllabus code such as CS1.\n\nTitle\nOpen Workspace\nSubject code *\n\nOpen an existing subject code to continue its workflow.\n\nWorkspaces\nCS1B\n2026.1 \u00b7 Content Sources\nRecent activity\nsources_uploaded: Uploaded sources for ws-cs1b\nsources_uploaded: Uploaded sources for ws-cs1b\nversion_assigned: Assigned version version-1\nworkspace_opened: Opened workspace ws-cs1b\nsubject_created: Created subject CS1B\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 1031,
+      "flashes": [],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Create Subject",
+        "Open Workspace"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "CS1B\n2026.1 \u00b7 Content Sources",
+          "href": "/console/studio/workspaces/ws-cs1b"
+        }
+      ],
+      "headings": [
+        "Curriculum Studio",
+        "Create Subject",
+        "Open Workspace",
+        "Workspaces",
+        "Recent activity"
+      ],
+      "labels": [
+        "Search the Console",
+        "Subject code *",
+        "Title"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_26_p7_studio_catalogue.png",
+      "cs1b_visible": true,
+      "ready_mentioned": true
+    },
+    {
+      "phase": "P7_reopen_workspace",
+      "t": 30.1,
+      "url": "http://127.0.0.1:5130/console/studio/",
+      "title": "Curriculum Studio \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe couldn't open a new workspace because one already exists for this subject. Re-using a single workspace keeps version history coherent. Open the existing workspace from the dashboard, then try again.\nOverview\nCurriculum Studio\n\nKWALITEC CONSOLE \u00b7 CURRICULUM STUDIO\n\nCurriculum Studio\n\nReview, validate, preview, approve, and publish curricula through one Console workflow.\n\nNEXT STEP\n\nOpen a workspace below, or create a subject to start a new curriculum.\n\nPublished 0\nDrafts 1\nPending validation 0\nPending approval 0\nCreate Subject\nSubject code *\n\nUse a short syllabus code such as CS1.\n\nTitle\nOpen Workspace\nSubject code *\n\nOpen an existing subject code to continue its workflow.\n\nWorkspaces\nCS1B\n2026.1 \u00b7 Content Sources\nRecent activity\nsources_uploaded: Uploaded sources for ws-cs1b\nsources_uploaded: Uploaded sources for ws-cs1b\nversion_assigned: Assigned version version-1\nworkspace_opened: Opened workspace ws-cs1b\nsubject_created: Created subject CS1B\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 1233,
+      "flashes": [
+        "We couldn't open a new workspace because one already exists for this subject. Re-using a single workspace keeps version history coherent. Open the existing workspace from the dashboard, then try again.",
+        "We couldn't open a new workspace because one already exists for this subject. Re-using a single workspace keeps version history coherent. Open the existing workspace from the dashboard, then try again."
+      ],
+      "ctas": [
+        "Search",
+        "Sign out",
+        "Create Subject",
+        "Open Workspace"
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Subjects",
+          "href": "/console/studio/subjects"
+        },
+        {
+          "text": "Curriculum Studio",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Review Queue",
+          "href": "/console/studio/review-queue"
+        },
+        {
+          "text": "Publishing",
+          "href": "/console/studio/publishing"
+        },
+        {
+          "text": "Versions",
+          "href": "/console/studio/versions"
+        },
+        {
+          "text": "Quality",
+          "href": "/console/studio/quality"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "CS1B\n2026.1 \u00b7 Content Sources",
+          "href": "/console/studio/workspaces/ws-cs1b"
+        }
+      ],
+      "headings": [
+        "Curriculum Studio",
+        "Create Subject",
+        "Open Workspace",
+        "Workspaces",
+        "Recent activity"
+      ],
+      "labels": [
+        "Search the Console",
+        "Subject code *",
+        "Title"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001b_blind_capture/precise_27_p7_reopen_workspace.png"
+    }
+  ],
+  "term_hits": [
+    {
+      "phase": "P4_workspace_opened",
+      "term": "Knowledge Graph",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "P4_pre_upload",
+      "term": "Knowledge Graph",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "P4_syllabus_selected",
+      "term": "Knowledge Graph",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "P4_cmp_selected",
+      "term": "Knowledge Graph",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "P5_action_Advance",
+      "term": "Knowledge Graph",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "P5_action_Validate",
+      "term": "Knowledge Graph",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    },
+    {
+      "phase": "P5_action_Preview",
+      "term": "Knowledge Graph",
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1b"
+    }
+  ],
+  "pdfs": {
+    "syllabus_bytes": 1097,
+    "cmp_bytes": 1149
+  }
+}

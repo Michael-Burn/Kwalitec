@@ -1,0 +1,24 @@
+[INFO] app: Kwalitec logging configured at level DEBUG
+[WARNING] app: SECRET_KEY is using the default value. Set a strong key for production use.
+[INFO] app: Environment: APP_ENV=development, FLASK_ENV=development, config=DevelopmentConfig
+[INFO] app: Using external database (DATABASE_URL is set)
+[INFO] app: SQLAlchemy database driver prefix: sqlite://
+[INFO] alembic.runtime.migration: Context impl SQLiteImpl.
+[INFO] alembic.runtime.migration: Will assume non-transactional DDL.
+[INFO] app: Alembic: current database revision = 202607280080
+[INFO] app: Alembic: head script revision = 202607280080
+[INFO] app: Alembic: database is up to date.
+[INFO] app.services.startup_service: Startup initialization beginning...
+[DEBUG] app.services.startup_service: Skipping curriculum import during Flask CLI command. Import will run on next normal application startup.
+[INFO] app.services.startup_service: Startup initialization complete.
+[INFO] app: Kwalitec application created successfully
+[INFO] app.cli: Starting create-admin command
+[INFO] app.services.identity_service: Granted role=founder user_id=1
+[INFO] app.services.identity_service: Granted role=administrator user_id=1
+[INFO] app.services.identity_service: Granted role=student user_id=1
+[INFO] app.services.identity_service: Granted capability=api user_id=1
+[INFO] app.services.identity_service: Granted capability=student_portal user_id=1
+[INFO] app.services.identity_service: Granted capability=console user_id=1
+[INFO] app.services.admin_bootstrap_service: Admin created with Founder RBAC for email=ctshumba01@gmail.com
+Administrator created successfully.
+[INFO] app.cli: create-admin: administrator created for email=ctshumba01@gmail.com

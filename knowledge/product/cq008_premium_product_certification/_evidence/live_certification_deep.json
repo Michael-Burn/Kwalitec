@@ -1,0 +1,70 @@
+{
+  "notes": [
+    {
+      "subjects_controls": [
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "id": "",
+          "type": "button",
+          "text": "\n                        \n              "
+        },
+        {
+          "tag": "INPUT",
+          "name": "q",
+          "id": "console-search-input",
+          "type": "search",
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "id": "",
+          "type": "submit",
+          "text": "Search"
+        },
+        {
+          "tag": "INPUT",
+          "name": "csrf_token",
+          "id": "",
+          "type": "hidden",
+          "text": "ImZkNWVkYjI5ZGUxZGJmOWIwNWM4NjcwZDEwMjA1"
+        },
+        {
+          "tag": "BUTTON",
+          "name": "",
+          "id": "",
+          "type": "submit",
+          "text": "Sign out"
+        }
+      ]
+    },
+    {
+      "ws": []
+    },
+    {
+      "sitting_opts": [
+        "September 2026",
+        "April 2027",
+        "September 2027",
+        "April 2028"
+      ]
+    },
+    {
+      "after_date": "http://127.0.0.1:5001/auth/login",
+      "h1": [
+        "Sign in"
+      ],
+      "sample": "Education Operating System\n\nKnow exactly what to study next.\n\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAlways know what to study next\nPlans that fit your exam date\nFocused sessions without decision fatigue\nHonest progress you can trust\nEstimated readiness insights as you study\nSustainable pace through exam season\nSign in\n\nContinue to your workspace.\n\nEmail\nPassword\nRemember me\nNew to the Internal Alpha?\n\nKwalitec is invite-only during the Internal Alpha \u2014 sign in with the credentials your coordinator provided.\n\nMissing your details, or need a reset? Contact your coordinator.\n\nAPPEARANCE\nLight\nDark\nSys"
+    }
+  ],
+  "student": {
+    "url": "http://127.0.0.1:5001/auth/login?next=%2Fstudent%2F",
+    "h1": [
+      "Sign in"
+    ],
+    "primary": [],
+    "nav": [],
+    "sample": "Education Operating System\n\nKnow exactly what to study next.\n\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAlways know what to study next\nPlans that fit your exam date\nFocused sessions without decision fatigue\nHonest progress you can trust\nEstimated readiness insights as you study\nSustainable pace through exam season\nSign in\nPlease sign in to continue.\nEmail\nPassword\nRemember me\nNew to the Internal Alpha?\n\nKwalitec is invite-only during the Internal Alpha \u2014 sign in with the credentials your coordinator provided.\n\nMissing your details, or need a reset? Contact your coordinator.\n\nAPPEARANCE\nLight\nDark\nSystem\nInternal Alpha\n\u00b7\nFounding Cohort\nKwalitec v2.0.0\n\u00b7\nBuild RC2"
+  }
+}

@@ -1,0 +1,10 @@
+Release Candidate: RC-2026.07.29-01
+Fixture source: EV-001 CS1V official pack (/tmp/ev001_capture at capture time)
+
+b7b33a78a7635089e56fb152b94aafb79ed4f527ea4ab517400c919545110091  knowledge/release/rc001_release_candidate/_evidence/fixtures/official_cmp.pdf
+68b4204d62b21513324b5ab88b96f97b546028aa2a1446b91b6fa675bbcf6a60  knowledge/release/rc001_release_candidate/_evidence/fixtures/official_syllabus.pdf
+
+Sizes:
+    1844 knowledge/release/rc001_release_candidate/_evidence/fixtures/official_cmp.pdf
+    1731 knowledge/release/rc001_release_candidate/_evidence/fixtures/official_syllabus.pdf
+    3575 total

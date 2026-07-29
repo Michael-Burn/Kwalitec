@@ -297,7 +297,10 @@ class DocumentUploadService:
                 )
             )
             if job_view is not None:
-                pipeline_jobs.append(job_view.to_dict())
+                payload = job_view.to_dict()
+                payload["document_label"] = label
+                payload["document_kind"] = row.kind
+                pipeline_jobs.append(payload)
 
         required = tuple(d.kind for d in self._registry.publish_required())
         ready = tuple(sorted({v.kind for v in views if v.kind in required}))
@@ -345,9 +348,11 @@ class DocumentUploadService:
             # Non-checklist kinds still store metadata; checklist unchanged.
             return
         try:
+            # PI-002R: document uploads are reference-only; CIP owns extraction.
+            # Do not start a synthetic Ingestion stub that would poison validation.
             self._studio.workspaces.upload_sources(
                 workspace_id,
-                start_ingestion=True,
+                start_ingestion=False,
                 **kwargs,
             )
         except Exception as exc:

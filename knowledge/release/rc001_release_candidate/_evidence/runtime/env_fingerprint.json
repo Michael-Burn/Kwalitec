@@ -1,0 +1,23 @@
+{
+  "release_candidate_id": "RC-2026.07.29-01",
+  "base_url": "http://127.0.0.1:5201",
+  "port": 5201,
+  "host": "127.0.0.1",
+  "DATABASE_URL": "sqlite:////tmp/rc001_RC-2026.07.29-01.sqlite3",
+  "DOCUMENT_STORAGE_ROOT": "/tmp/rc001_RC-2026.07.29-01_documents",
+  "FLASK_APP": "run.py",
+  "APP_ENV": "development",
+  "FLASK_ENV": "development",
+  "config_class": "DevelopmentConfig",
+  "debug_mode": false,
+  "reload_mode": false,
+  "start_flags": ["--host 127.0.0.1", "--port 5201", "--no-reload", "--no-debugger"],
+  "process_pid": 83805,
+  "process_start_timestamp_utc": "2026-07-28T23:04:14Z",
+  "python_version": "3.14.6",
+  "flask_version": "3.1.0",
+  "app_version_health": "2.0.0",
+  "build_number_health": "local",
+  "build_date_health": "2026-07-28",
+  "git_commit_health_field": null
+}

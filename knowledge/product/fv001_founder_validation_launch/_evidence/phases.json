@@ -1,0 +1,2352 @@
+{
+  "phases": [
+    {
+      "phase": "PHASE1_root",
+      "t": 12.0,
+      "url": "http://127.0.0.1:5128/auth/login?next=%2Fstudent%2F",
+      "title": "Sign in \u00b7 Kwalitec",
+      "text": "Education Operating System\n\nKnow exactly what to study next.\n\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAlways know what to study next\nPlans that fit your exam date\nFocused sessions without decision fatigue\nHonest progress you can trust\nEstimated readiness insights as you study\nSustainable pace through exam season\nSign in\nPlease sign in to continue.\nEmail\nPassword\nRemember me\nNew to the Internal Alpha?\n\nKwalitec is invite-only during the Internal Alpha \u2014 sign in with the credentials your coordinator provided.\n\nMissing your details, or need a reset? Contact your coordinator.\n\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 662,
+      "links": [],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Sign in"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/00_phase1_root.png"
+    },
+    {
+      "phase": "PHASE1_landing_login",
+      "t": 12.2,
+      "url": "http://127.0.0.1:5128/auth/login",
+      "title": "Sign in \u00b7 Kwalitec",
+      "text": "Education Operating System\n\nKnow exactly what to study next.\n\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAlways know what to study next\nPlans that fit your exam date\nFocused sessions without decision fatigue\nHonest progress you can trust\nEstimated readiness insights as you study\nSustainable pace through exam season\nSign in\n\nContinue to your workspace.\n\nEmail\nPassword\nRemember me\nNew to the Internal Alpha?\n\nKwalitec is invite-only during the Internal Alpha \u2014 sign in with the credentials your coordinator provided.\n\nMissing your details, or need a reset? Contact your coordinator.\n\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 664,
+      "links": [],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Sign in"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/01_phase1_landing_login.png",
+      "registration_visible": false,
+      "registration_links": []
+    },
+    {
+      "phase": "PHASE2_try_auth_register",
+      "t": 12.3,
+      "url": "http://127.0.0.1:5128/auth/register",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID FBBE6CBB23D7 \u2014 include this if you contact support.\n\nSign In\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 230,
+      "links": [
+        {
+          "text": "Sign In",
+          "href": "/auth/login"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Sign In"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/02_phase2_try_auth_register.png",
+      "status": 404
+    },
+    {
+      "phase": "PHASE2_try_register",
+      "t": 12.4,
+      "url": "http://127.0.0.1:5128/register",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID D1A5A13B8969 \u2014 include this if you contact support.\n\nSign In\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 230,
+      "links": [
+        {
+          "text": "Sign In",
+          "href": "/auth/login"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Sign In"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/03_phase2_try_register.png",
+      "status": 404
+    },
+    {
+      "phase": "PHASE2_try_signup",
+      "t": 12.5,
+      "url": "http://127.0.0.1:5128/signup",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID EF63AFFD6FB9 \u2014 include this if you contact support.\n\nSign In\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 230,
+      "links": [
+        {
+          "text": "Sign In",
+          "href": "/auth/login"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Sign In"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/04_phase2_try_signup.png",
+      "status": 404
+    },
+    {
+      "phase": "PHASE2_try_auth_signup",
+      "t": 12.5,
+      "url": "http://127.0.0.1:5128/auth/signup",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID A94294342014 \u2014 include this if you contact support.\n\nSign In\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 230,
+      "links": [
+        {
+          "text": "Sign In",
+          "href": "/auth/login"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Sign In"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/05_phase2_try_auth_signup.png",
+      "status": 404
+    },
+    {
+      "phase": "PHASE2_try_join",
+      "t": 12.6,
+      "url": "http://127.0.0.1:5128/join",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID 4BE2BAFB66A1 \u2014 include this if you contact support.\n\nSign In\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 230,
+      "links": [
+        {
+          "text": "Sign In",
+          "href": "/auth/login"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Sign In"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/06_phase2_try_join.png",
+      "status": 404
+    },
+    {
+      "phase": "PHASE2_after_provisioned_login",
+      "t": 14.1,
+      "url": "http://127.0.0.1:5128/console/",
+      "title": "Console Home \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nOPERATIONAL DECISIONS\n\nOverview\nOperations\nStudents\nLearning\nAssessments\nContent\nAnalytics\nPlatform\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWelcome back to Kwalitec.\n\nKWALITEC CONSOLE \u00b7 INTERNAL ALPHA \u00b7 V2.0.0\n\nConsole Home\n\nOperational pulse \u2014 what needs attention today \u00b7 2026-07-28 20:34 UTC \u00b7 Calendar day (server local date)\n\nATTENTION REQUIRED\nOpen Attention Center\nSUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews\nPLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in\nCONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings\nSTUDENT ISSUES\n0\nNeeds intervention\nNothing queued\nHIGH\nSystem health signals need attention\nOpen\nPLATFORM SUMMARY\nSTUDENTS\n0\nActive participants\n0 active today\nLEARNING\n0\nCheck-ins today\n0 in last 7 days\nASSESSMENTS\n\u2014\nAvg experience\nWould open tomorrow \u2014\nSYSTEM\nNo check-ins yet\nAlpha health\nBuild local\nQUICK ACTIONS\nReview support inbox\nOpen operations\nManage content\nPlatform Intelligence\nOPERATIONAL DETAIL\nRecent support\nInbox\n\nNo Product Check-ins yet.\n\nAttention queue\nCenter\n\nNothing needs action right now.\n\nVision Journal\nOpen\n\nNo Vision entries yet. New entry\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 1287,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Operations",
+          "href": "/console/operational-health"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Learning",
+          "href": "/console/intelligence"
+        },
+        {
+          "text": "Assessments",
+          "href": "/console/evidence-gates"
+        },
+        {
+          "text": "Content",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Analytics",
+          "href": "/console/research"
+        },
+        {
+          "text": "Platform",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Open Attention Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "SUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "PLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "CONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings",
+          "href": "/console/findings"
+        },
+        {
+          "text": "STUDENT ISSUES\n0\nNeeds intervention\nNothing queued",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/operations"
+        },
+        {
+          "text": "Review support inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Open operations",
+          "href": "/console/operational-health"
+        },
+        {
+          "text": "Manage content",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Platform Intelligence",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "Inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/vision"
+        },
+        {
+          "text": "New entry",
+          "href": "/console/vision/new"
+        }
+      ],
+      "ctas": [
+        "Search",
+        "Sign out"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/07_phase2_after_provisioned_login.png"
+    },
+    {
+      "phase": "PHASE3_post_login_home",
+      "t": 14.2,
+      "url": "http://127.0.0.1:5128/console/",
+      "title": "Console Home \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nOPERATIONAL DECISIONS\n\nOverview\nOperations\nStudents\nLearning\nAssessments\nContent\nAnalytics\nPlatform\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWelcome back to Kwalitec.\n\nKWALITEC CONSOLE \u00b7 INTERNAL ALPHA \u00b7 V2.0.0\n\nConsole Home\n\nOperational pulse \u2014 what needs attention today \u00b7 2026-07-28 20:34 UTC \u00b7 Calendar day (server local date)\n\nATTENTION REQUIRED\nOpen Attention Center\nSUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews\nPLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in\nCONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings\nSTUDENT ISSUES\n0\nNeeds intervention\nNothing queued\nHIGH\nSystem health signals need attention\nOpen\nPLATFORM SUMMARY\nSTUDENTS\n0\nActive participants\n0 active today\nLEARNING\n0\nCheck-ins today\n0 in last 7 days\nASSESSMENTS\n\u2014\nAvg experience\nWould open tomorrow \u2014\nSYSTEM\nNo check-ins yet\nAlpha health\nBuild local\nQUICK ACTIONS\nReview support inbox\nOpen operations\nManage content\nPlatform Intelligence\nOPERATIONAL DETAIL\nRecent support\nInbox\n\nNo Product Check-ins yet.\n\nAttention queue\nCenter\n\nNothing needs action right now.\n\nVision Journal\nOpen\n\nNo Vision entries yet. New entry\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 1287,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Operations",
+          "href": "/console/operational-health"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Learning",
+          "href": "/console/intelligence"
+        },
+        {
+          "text": "Assessments",
+          "href": "/console/evidence-gates"
+        },
+        {
+          "text": "Content",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Analytics",
+          "href": "/console/research"
+        },
+        {
+          "text": "Platform",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Open Attention Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "SUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "PLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "CONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings",
+          "href": "/console/findings"
+        },
+        {
+          "text": "STUDENT ISSUES\n0\nNeeds intervention\nNothing queued",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/operations"
+        },
+        {
+          "text": "Review support inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Open operations",
+          "href": "/console/operational-health"
+        },
+        {
+          "text": "Manage content",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Platform Intelligence",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "Inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/vision"
+        },
+        {
+          "text": "New entry",
+          "href": "/console/vision/new"
+        }
+      ],
+      "ctas": [
+        "Search",
+        "Sign out"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/08_phase3_post_login_home.png"
+    },
+    {
+      "phase": "PHASE3_nav_click",
+      "t": 14.6,
+      "url": "http://127.0.0.1:5128/console/",
+      "title": "Console Home \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nOPERATIONAL DECISIONS\n\nOverview\nOperations\nStudents\nLearning\nAssessments\nContent\nAnalytics\nPlatform\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\n\nKWALITEC CONSOLE \u00b7 INTERNAL ALPHA \u00b7 V2.0.0\n\nConsole Home\n\nOperational pulse \u2014 what needs attention today \u00b7 2026-07-28 20:34 UTC \u00b7 Calendar day (server local date)\n\nATTENTION REQUIRED\nOpen Attention Center\nSUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews\nPLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in\nCONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings\nSTUDENT ISSUES\n0\nNeeds intervention\nNothing queued\nHIGH\nSystem health signals need attention\nOpen\nPLATFORM SUMMARY\nSTUDENTS\n0\nActive participants\n0 active today\nLEARNING\n0\nCheck-ins today\n0 in last 7 days\nASSESSMENTS\n\u2014\nAvg experience\nWould open tomorrow \u2014\nSYSTEM\nNo check-ins yet\nAlpha health\nBuild local\nQUICK ACTIONS\nReview support inbox\nOpen operations\nManage content\nPlatform Intelligence\nOPERATIONAL DETAIL\nRecent support\nInbox\n\nNo Product Check-ins yet.\n\nAttention queue\nCenter\n\nNothing needs action right now.\n\nVision Journal\nOpen\n\nNo Vision entries yet. New entry\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 1261,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Operations",
+          "href": "/console/operational-health"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Learning",
+          "href": "/console/intelligence"
+        },
+        {
+          "text": "Assessments",
+          "href": "/console/evidence-gates"
+        },
+        {
+          "text": "Content",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Analytics",
+          "href": "/console/research"
+        },
+        {
+          "text": "Platform",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Open Attention Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "SUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "PLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "CONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings",
+          "href": "/console/findings"
+        },
+        {
+          "text": "STUDENT ISSUES\n0\nNeeds intervention\nNothing queued",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/operations"
+        },
+        {
+          "text": "Review support inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Open operations",
+          "href": "/console/operational-health"
+        },
+        {
+          "text": "Manage content",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Platform Intelligence",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "Inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/vision"
+        },
+        {
+          "text": "New entry",
+          "href": "/console/vision/new"
+        }
+      ],
+      "ctas": [
+        "Search",
+        "Sign out"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/09_phase3_nav_click.png"
+    },
+    {
+      "phase": "PHASE4_curriculum_studio_index",
+      "t": 14.6,
+      "url": "http://127.0.0.1:5128/curriculum-studio/",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID 84E8D72CDBE6 \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/10_phase4_curriculum_studio_index.png"
+    },
+    {
+      "phase": "PHASE4_create_subject_NOT_FOUND_or_inline",
+      "t": 14.7,
+      "url": "http://127.0.0.1:5128/curriculum-studio/",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID 84E8D72CDBE6 \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/11_phase4_create_subject_not_found_or_inline.png"
+    },
+    {
+      "phase": "PHASE4_after_inline_attempt",
+      "t": 15.6,
+      "url": "http://127.0.0.1:5128/curriculum-studio/",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID 84E8D72CDBE6 \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/12_phase4_after_inline_attempt.png"
+    },
+    {
+      "phase": "PHASE5_workspace_entry",
+      "t": 16.2,
+      "url": "http://127.0.0.1:5128/curriculum-studio/",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID 84E8D72CDBE6 \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/13_phase5_workspace_entry.png"
+    },
+    {
+      "phase": "PHASE5_after_workspace",
+      "t": 17.1,
+      "url": "http://127.0.0.1:5128/curriculum-studio/",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID 84E8D72CDBE6 \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/14_phase5_after_workspace.png"
+    },
+    {
+      "phase": "PHASE5_6_upload_inputs_NOT_FOUND",
+      "t": 17.1,
+      "url": "http://127.0.0.1:5128/curriculum-studio/",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID 84E8D72CDBE6 \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/15_phase5_6_upload_inputs_not_found.png"
+    },
+    {
+      "phase": "PHASE7_curriculum_review",
+      "t": 18.0,
+      "url": "http://127.0.0.1:5128/curriculum-studio/",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID 84E8D72CDBE6 \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/16_phase7_curriculum_review.png"
+    },
+    {
+      "phase": "PHASE8_publish",
+      "t": 19.1,
+      "url": "http://127.0.0.1:5128/curriculum-studio/",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID 84E8D72CDBE6 \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/17_phase8_publish.png"
+    },
+    {
+      "phase": "PHASE9_student_home",
+      "t": 19.2,
+      "url": "http://127.0.0.1:5128/alpha/onboarding",
+      "title": "Welcome to Kwalitec \u00b7 Kwalitec",
+      "text": "Skip to content\nHome\nJourney\nRevision\nHistory\nSettings\nStudy Plan\nHelp\nSign out\n\nINTERNAL ALPHA\n\nWelcome to Kwalitec\n\nA short orientation \u2014 6 ideas, then Study Sensei guides your study.\n\nStep 1 of 6\n\nWhat Kwalitec is\n\nKwalitec is an Education Operating System for demanding exams. It is the product that hosts your Study Plan, Sessions, and progress \u2014 calmly, from your plan and your evidence.\n\nStep 2 of 6\n\nMeet Study Sensei\n\nStudy Sensei is how Kwalitec guides your daily learning decisions. After this orientation, Study Sensei is your educational mentor for what to focus on, why it matters, and what comes next.\n\nStep 3 of 6\n\nHow Missions work\n\nEach day Study Sensei prepares one focused Mission \u2014 what deserves your attention now. Start today's Session to practice that Mission, then record what you did. Missions keep study decisions small so learning can stay large.\n\nStep 4 of 6\n\nWhy recommendations are explainable\n\nRecommendations come from your syllabus structure, available time, and study history \u2014 not a black box. When you expand \u201cwhy\u201d, you see the reasons Study Sensei used.\n\nStep 5 of 6\n\nHow Reflections work\n\nReflection after a Session closes practice. Commitment reflection on Home confirms you finished what you chose. Optional reflection in the Decision Journal helps the Study Sensei learn whether guidance was useful. The Educational Timeline asks deeper questions about your learning story. Product Check-in is feedback for the product team \u2014 not educational reflection. Help keeps this map whenever you need it.\n\nStep 6 of 6\n\nHow Study Sensei remembers\n\nThe Decision Journal is Study Sensei\u2019s durable educational memory of significant guidance, your choices, and what followed. The Educational Timeline is the chronological learning story drawn from that Journal \u2014 not a second memory store and not a scoreboard. History keeps practice archives and progress stats as context; educational meaning lives in the Journal and Timeline. After a Reflection, Session notes stay with the Session; optional Sensei reflection deepens Journal memory that Timeline can later interpret. Help keeps this memory map whenever you need it.\n\nContinue to Home\nSkip for now\nHelp & Support\nShowing alpha\n\nReduce decisions. Increase learning.",
+      "text_len": 2245,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#student-main"
+        },
+        {
+          "text": "Home",
+          "href": "/student/"
+        },
+        {
+          "text": "Journey",
+          "href": "/student/journey"
+        },
+        {
+          "text": "Revision",
+          "href": "/student/revision"
+        },
+        {
+          "text": "History",
+          "href": "/student/history"
+        },
+        {
+          "text": "Settings",
+          "href": "/student/profile"
+        },
+        {
+          "text": "Study Plan",
+          "href": "/study-plan/"
+        },
+        {
+          "text": "Help",
+          "href": "/alpha/help"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Menu",
+        "Sign out",
+        "Continue to Home",
+        "Skip for now",
+        "Cancel",
+        "Help & Support"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/18_phase9_student_home.png"
+    },
+    {
+      "phase": "PHASE9_study_plan_index",
+      "t": 19.4,
+      "url": "http://127.0.0.1:5128/study-plan/wizard/1",
+      "title": "Study Plan \u00b7 Kwalitec",
+      "text": "Skip to content\nHome\nJourney\nRevision\nHistory\nSettings\nStudy Plan\nHelp\nSign out\nSTEP 1\nExamination\n\nSTUDY PLAN\n\nWhat examination are you preparing for?\n\nChoose your examining body. Kwalitec shows which examinations can create a full study plan in Version 1.\n\nIFoA\nPartially Supported\nInstitute and Faculty of Actuaries professional examinations.\nVersion 1 supports CS1, CM1, CB2. Other papers are Coming Soon.\nCFA\nNot Supported\nChartered Financial Analyst programme \u2014 global investment professionals.\nNot available in Version 1.\nACCA\nNot Supported\nAssociation of Chartered Certified Accountants professional qualification.\nNot available in Version 1.\nCIMA\nNot Supported\nChartered Institute of Management Accountants professional qualification.\nNot available in Version 1.\nUniversity\nNot Supported\nUniversity or college examinations and coursework.\nCustom subjects are not available in Version 1.\nA-Level\nNot Supported\nAdvanced Level qualifications \u2014 UK pre-university examinations.\nNot available in Version 1.\nGCSE\nNot Supported\nGeneral Certificate of Secondary Education \u2014 UK qualifications.\nNot available in Version 1.\nCambridge\nNot Supported\nUniversity of Cambridge admissions tests and interviews.\nNot available in Version 1.\nOxford\nNot Supported\nUniversity of Oxford admissions tests and interviews.\nNot available in Version 1.\nOther\nNot Supported\nAny other examination not listed above.\nCustom subjects are not available in Version 1.\nNext\nShowing study plan\n\nReduce decisions. Increase learning.",
+      "text_len": 1502,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#student-main"
+        },
+        {
+          "text": "Home",
+          "href": "/student/"
+        },
+        {
+          "text": "Journey",
+          "href": "/student/journey"
+        },
+        {
+          "text": "Revision",
+          "href": "/student/revision"
+        },
+        {
+          "text": "History",
+          "href": "/student/history"
+        },
+        {
+          "text": "Settings",
+          "href": "/student/profile"
+        },
+        {
+          "text": "Study Plan",
+          "href": "/study-plan/"
+        },
+        {
+          "text": "Help",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Menu",
+        "Sign out",
+        "Next",
+        "Cancel"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/19_phase9_study_plan_index.png"
+    },
+    {
+      "phase": "PHASE9_wizard_step1",
+      "t": 19.6,
+      "url": "http://127.0.0.1:5128/study-plan/wizard/1",
+      "title": "Study Plan \u00b7 Kwalitec",
+      "text": "Skip to content\nHome\nJourney\nRevision\nHistory\nSettings\nStudy Plan\nHelp\nSign out\nSTEP 1\nExamination\n\nSTUDY PLAN\n\nWhat examination are you preparing for?\n\nChoose your examining body. Kwalitec shows which examinations can create a full study plan in Version 1.\n\nIFoA\nPartially Supported\nInstitute and Faculty of Actuaries professional examinations.\nVersion 1 supports CS1, CM1, CB2. Other papers are Coming Soon.\nCFA\nNot Supported\nChartered Financial Analyst programme \u2014 global investment professionals.\nNot available in Version 1.\nACCA\nNot Supported\nAssociation of Chartered Certified Accountants professional qualification.\nNot available in Version 1.\nCIMA\nNot Supported\nChartered Institute of Management Accountants professional qualification.\nNot available in Version 1.\nUniversity\nNot Supported\nUniversity or college examinations and coursework.\nCustom subjects are not available in Version 1.\nA-Level\nNot Supported\nAdvanced Level qualifications \u2014 UK pre-university examinations.\nNot available in Version 1.\nGCSE\nNot Supported\nGeneral Certificate of Secondary Education \u2014 UK qualifications.\nNot available in Version 1.\nCambridge\nNot Supported\nUniversity of Cambridge admissions tests and interviews.\nNot available in Version 1.\nOxford\nNot Supported\nUniversity of Oxford admissions tests and interviews.\nNot available in Version 1.\nOther\nNot Supported\nAny other examination not listed above.\nCustom subjects are not available in Version 1.\nNext\nShowing study plan\n\nReduce decisions. Increase learning.",
+      "text_len": 1502,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#student-main"
+        },
+        {
+          "text": "Home",
+          "href": "/student/"
+        },
+        {
+          "text": "Journey",
+          "href": "/student/journey"
+        },
+        {
+          "text": "Revision",
+          "href": "/student/revision"
+        },
+        {
+          "text": "History",
+          "href": "/student/history"
+        },
+        {
+          "text": "Settings",
+          "href": "/student/profile"
+        },
+        {
+          "text": "Study Plan",
+          "href": "/study-plan/"
+        },
+        {
+          "text": "Help",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Menu",
+        "Sign out",
+        "Next",
+        "Cancel"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/20_phase9_wizard_step1.png"
+    },
+    {
+      "phase": "PHASE9_wizard_after_step_1",
+      "t": 35.5,
+      "url": "http://127.0.0.1:5128/study-plan/wizard/1",
+      "title": "Study Plan \u00b7 Kwalitec",
+      "text": "Skip to content\nHome\nJourney\nRevision\nHistory\nSettings\nStudy Plan\nHelp\nSign out\nSTEP 1\nExamination\n\nSTUDY PLAN\n\nWhat examination are you preparing for?\n\nChoose your examining body. Kwalitec shows which examinations can create a full study plan in Version 1.\n\nPlease select an examination.\nIFoA\nPartially Supported\nInstitute and Faculty of Actuaries professional examinations.\nVersion 1 supports CS1, CM1, CB2. Other papers are Coming Soon.\nCFA\nNot Supported\nChartered Financial Analyst programme \u2014 global investment professionals.\nNot available in Version 1.\nACCA\nNot Supported\nAssociation of Chartered Certified Accountants professional qualification.\nNot available in Version 1.\nCIMA\nNot Supported\nChartered Institute of Management Accountants professional qualification.\nNot available in Version 1.\nUniversity\nNot Supported\nUniversity or college examinations and coursework.\nCustom subjects are not available in Version 1.\nA-Level\nNot Supported\nAdvanced Level qualifications \u2014 UK pre-university examinations.\nNot available in Version 1.\nGCSE\nNot Supported\nGeneral Certificate of Secondary Education \u2014 UK qualifications.\nNot available in Version 1.\nCambridge\nNot Supported\nUniversity of Cambridge admissions tests and interviews.\nNot available in Version 1.\nOxford\nNot Supported\nUniversity of Oxford admissions tests and interviews.\nNot available in Version 1.\nOther\nNot Supported\nAny other examination not listed above.\nCustom subjects are not available in Version 1.\nNext\nShowing study plan\n\nReduce decisions. Increase learning.",
+      "text_len": 1532,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#student-main"
+        },
+        {
+          "text": "Home",
+          "href": "/student/"
+        },
+        {
+          "text": "Journey",
+          "href": "/student/journey"
+        },
+        {
+          "text": "Revision",
+          "href": "/student/revision"
+        },
+        {
+          "text": "History",
+          "href": "/student/history"
+        },
+        {
+          "text": "Settings",
+          "href": "/student/profile"
+        },
+        {
+          "text": "Study Plan",
+          "href": "/study-plan/"
+        },
+        {
+          "text": "Help",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Menu",
+        "Sign out",
+        "Next",
+        "Cancel"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/21_phase9_wizard_after_step_1.png"
+    },
+    {
+      "phase": "PHASE9_wizard_after_step_2",
+      "t": 51.5,
+      "url": "http://127.0.0.1:5128/study-plan/wizard/1",
+      "title": "Study Plan \u00b7 Kwalitec",
+      "text": "Skip to content\nHome\nJourney\nRevision\nHistory\nSettings\nStudy Plan\nHelp\nSign out\nSTEP 1\nExamination\n\nSTUDY PLAN\n\nWhat examination are you preparing for?\n\nChoose your examining body. Kwalitec shows which examinations can create a full study plan in Version 1.\n\nPlease select an examination.\nIFoA\nPartially Supported\nInstitute and Faculty of Actuaries professional examinations.\nVersion 1 supports CS1, CM1, CB2. Other papers are Coming Soon.\nCFA\nNot Supported\nChartered Financial Analyst programme \u2014 global investment professionals.\nNot available in Version 1.\nACCA\nNot Supported\nAssociation of Chartered Certified Accountants professional qualification.\nNot available in Version 1.\nCIMA\nNot Supported\nChartered Institute of Management Accountants professional qualification.\nNot available in Version 1.\nUniversity\nNot Supported\nUniversity or college examinations and coursework.\nCustom subjects are not available in Version 1.\nA-Level\nNot Supported\nAdvanced Level qualifications \u2014 UK pre-university examinations.\nNot available in Version 1.\nGCSE\nNot Supported\nGeneral Certificate of Secondary Education \u2014 UK qualifications.\nNot available in Version 1.\nCambridge\nNot Supported\nUniversity of Cambridge admissions tests and interviews.\nNot available in Version 1.\nOxford\nNot Supported\nUniversity of Oxford admissions tests and interviews.\nNot available in Version 1.\nOther\nNot Supported\nAny other examination not listed above.\nCustom subjects are not available in Version 1.\nNext\nShowing study plan\n\nReduce decisions. Increase learning.",
+      "text_len": 1532,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#student-main"
+        },
+        {
+          "text": "Home",
+          "href": "/student/"
+        },
+        {
+          "text": "Journey",
+          "href": "/student/journey"
+        },
+        {
+          "text": "Revision",
+          "href": "/student/revision"
+        },
+        {
+          "text": "History",
+          "href": "/student/history"
+        },
+        {
+          "text": "Settings",
+          "href": "/student/profile"
+        },
+        {
+          "text": "Study Plan",
+          "href": "/study-plan/"
+        },
+        {
+          "text": "Help",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Menu",
+        "Sign out",
+        "Next",
+        "Cancel"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/22_phase9_wizard_after_step_2.png"
+    },
+    {
+      "phase": "PHASE9_wizard_after_step_3",
+      "t": 67.4,
+      "url": "http://127.0.0.1:5128/study-plan/wizard/1",
+      "title": "Study Plan \u00b7 Kwalitec",
+      "text": "Skip to content\nHome\nJourney\nRevision\nHistory\nSettings\nStudy Plan\nHelp\nSign out\nSTEP 1\nExamination\n\nSTUDY PLAN\n\nWhat examination are you preparing for?\n\nChoose your examining body. Kwalitec shows which examinations can create a full study plan in Version 1.\n\nPlease select an examination.\nIFoA\nPartially Supported\nInstitute and Faculty of Actuaries professional examinations.\nVersion 1 supports CS1, CM1, CB2. Other papers are Coming Soon.\nCFA\nNot Supported\nChartered Financial Analyst programme \u2014 global investment professionals.\nNot available in Version 1.\nACCA\nNot Supported\nAssociation of Chartered Certified Accountants professional qualification.\nNot available in Version 1.\nCIMA\nNot Supported\nChartered Institute of Management Accountants professional qualification.\nNot available in Version 1.\nUniversity\nNot Supported\nUniversity or college examinations and coursework.\nCustom subjects are not available in Version 1.\nA-Level\nNot Supported\nAdvanced Level qualifications \u2014 UK pre-university examinations.\nNot available in Version 1.\nGCSE\nNot Supported\nGeneral Certificate of Secondary Education \u2014 UK qualifications.\nNot available in Version 1.\nCambridge\nNot Supported\nUniversity of Cambridge admissions tests and interviews.\nNot available in Version 1.\nOxford\nNot Supported\nUniversity of Oxford admissions tests and interviews.\nNot available in Version 1.\nOther\nNot Supported\nAny other examination not listed above.\nCustom subjects are not available in Version 1.\nNext\nShowing study plan\n\nReduce decisions. Increase learning.",
+      "text_len": 1532,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#student-main"
+        },
+        {
+          "text": "Home",
+          "href": "/student/"
+        },
+        {
+          "text": "Journey",
+          "href": "/student/journey"
+        },
+        {
+          "text": "Revision",
+          "href": "/student/revision"
+        },
+        {
+          "text": "History",
+          "href": "/student/history"
+        },
+        {
+          "text": "Settings",
+          "href": "/student/profile"
+        },
+        {
+          "text": "Study Plan",
+          "href": "/study-plan/"
+        },
+        {
+          "text": "Help",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Menu",
+        "Sign out",
+        "Next",
+        "Cancel"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/23_phase9_wizard_after_step_3.png"
+    },
+    {
+      "phase": "PHASE10_dashboard",
+      "t": 67.6,
+      "url": "http://127.0.0.1:5128/alpha/onboarding",
+      "title": "Welcome to Kwalitec \u00b7 Kwalitec",
+      "text": "Skip to content\nHome\nJourney\nRevision\nHistory\nSettings\nStudy Plan\nHelp\nSign out\n\nINTERNAL ALPHA\n\nWelcome to Kwalitec\n\nA short orientation \u2014 6 ideas, then Study Sensei guides your study.\n\nStep 1 of 6\n\nWhat Kwalitec is\n\nKwalitec is an Education Operating System for demanding exams. It is the product that hosts your Study Plan, Sessions, and progress \u2014 calmly, from your plan and your evidence.\n\nStep 2 of 6\n\nMeet Study Sensei\n\nStudy Sensei is how Kwalitec guides your daily learning decisions. After this orientation, Study Sensei is your educational mentor for what to focus on, why it matters, and what comes next.\n\nStep 3 of 6\n\nHow Missions work\n\nEach day Study Sensei prepares one focused Mission \u2014 what deserves your attention now. Start today's Session to practice that Mission, then record what you did. Missions keep study decisions small so learning can stay large.\n\nStep 4 of 6\n\nWhy recommendations are explainable\n\nRecommendations come from your syllabus structure, available time, and study history \u2014 not a black box. When you expand \u201cwhy\u201d, you see the reasons Study Sensei used.\n\nStep 5 of 6\n\nHow Reflections work\n\nReflection after a Session closes practice. Commitment reflection on Home confirms you finished what you chose. Optional reflection in the Decision Journal helps the Study Sensei learn whether guidance was useful. The Educational Timeline asks deeper questions about your learning story. Product Check-in is feedback for the product team \u2014 not educational reflection. Help keeps this map whenever you need it.\n\nStep 6 of 6\n\nHow Study Sensei remembers\n\nThe Decision Journal is Study Sensei\u2019s durable educational memory of significant guidance, your choices, and what followed. The Educational Timeline is the chronological learning story drawn from that Journal \u2014 not a second memory store and not a scoreboard. History keeps practice archives and progress stats as context; educational meaning lives in the Journal and Timeline. After a Reflection, Session notes stay with the Session; optional Sensei reflection deepens Journal memory that Timeline can later interpret. Help keeps this memory map whenever you need it.\n\nContinue to Home\nSkip for now\nHelp & Support\nShowing alpha\n\nReduce decisions. Increase learning.",
+      "text_len": 2245,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#student-main"
+        },
+        {
+          "text": "Home",
+          "href": "/student/"
+        },
+        {
+          "text": "Journey",
+          "href": "/student/journey"
+        },
+        {
+          "text": "Revision",
+          "href": "/student/revision"
+        },
+        {
+          "text": "History",
+          "href": "/student/history"
+        },
+        {
+          "text": "Settings",
+          "href": "/student/profile"
+        },
+        {
+          "text": "Study Plan",
+          "href": "/study-plan/"
+        },
+        {
+          "text": "Help",
+          "href": "/alpha/help"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Menu",
+        "Sign out",
+        "Continue to Home",
+        "Skip for now",
+        "Cancel",
+        "Help & Support"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/24_phase10_dashboard.png"
+    },
+    {
+      "phase": "PHASE10_student_home_dashboard",
+      "t": 67.7,
+      "url": "http://127.0.0.1:5128/alpha/onboarding",
+      "title": "Welcome to Kwalitec \u00b7 Kwalitec",
+      "text": "Skip to content\nHome\nJourney\nRevision\nHistory\nSettings\nStudy Plan\nHelp\nSign out\n\nINTERNAL ALPHA\n\nWelcome to Kwalitec\n\nA short orientation \u2014 6 ideas, then Study Sensei guides your study.\n\nStep 1 of 6\n\nWhat Kwalitec is\n\nKwalitec is an Education Operating System for demanding exams. It is the product that hosts your Study Plan, Sessions, and progress \u2014 calmly, from your plan and your evidence.\n\nStep 2 of 6\n\nMeet Study Sensei\n\nStudy Sensei is how Kwalitec guides your daily learning decisions. After this orientation, Study Sensei is your educational mentor for what to focus on, why it matters, and what comes next.\n\nStep 3 of 6\n\nHow Missions work\n\nEach day Study Sensei prepares one focused Mission \u2014 what deserves your attention now. Start today's Session to practice that Mission, then record what you did. Missions keep study decisions small so learning can stay large.\n\nStep 4 of 6\n\nWhy recommendations are explainable\n\nRecommendations come from your syllabus structure, available time, and study history \u2014 not a black box. When you expand \u201cwhy\u201d, you see the reasons Study Sensei used.\n\nStep 5 of 6\n\nHow Reflections work\n\nReflection after a Session closes practice. Commitment reflection on Home confirms you finished what you chose. Optional reflection in the Decision Journal helps the Study Sensei learn whether guidance was useful. The Educational Timeline asks deeper questions about your learning story. Product Check-in is feedback for the product team \u2014 not educational reflection. Help keeps this map whenever you need it.\n\nStep 6 of 6\n\nHow Study Sensei remembers\n\nThe Decision Journal is Study Sensei\u2019s durable educational memory of significant guidance, your choices, and what followed. The Educational Timeline is the chronological learning story drawn from that Journal \u2014 not a second memory store and not a scoreboard. History keeps practice archives and progress stats as context; educational meaning lives in the Journal and Timeline. After a Reflection, Session notes stay with the Session; optional Sensei reflection deepens Journal memory that Timeline can later interpret. Help keeps this memory map whenever you need it.\n\nContinue to Home\nSkip for now\nHelp & Support\nShowing alpha\n\nReduce decisions. Increase learning.",
+      "text_len": 2245,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#student-main"
+        },
+        {
+          "text": "Home",
+          "href": "/student/"
+        },
+        {
+          "text": "Journey",
+          "href": "/student/journey"
+        },
+        {
+          "text": "Revision",
+          "href": "/student/revision"
+        },
+        {
+          "text": "History",
+          "href": "/student/history"
+        },
+        {
+          "text": "Settings",
+          "href": "/student/profile"
+        },
+        {
+          "text": "Study Plan",
+          "href": "/study-plan/"
+        },
+        {
+          "text": "Help",
+          "href": "/alpha/help"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Menu",
+        "Sign out",
+        "Continue to Home",
+        "Skip for now",
+        "Cancel",
+        "Help & Support"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/25_phase10_student_home_dashboard.png"
+    },
+    {
+      "phase": "PHASE11_missions",
+      "t": 67.8,
+      "url": "http://127.0.0.1:5128/alpha/onboarding",
+      "title": "Welcome to Kwalitec \u00b7 Kwalitec",
+      "text": "Skip to content\nHome\nJourney\nRevision\nHistory\nSettings\nStudy Plan\nHelp\nSign out\n\nINTERNAL ALPHA\n\nWelcome to Kwalitec\n\nA short orientation \u2014 6 ideas, then Study Sensei guides your study.\n\nStep 1 of 6\n\nWhat Kwalitec is\n\nKwalitec is an Education Operating System for demanding exams. It is the product that hosts your Study Plan, Sessions, and progress \u2014 calmly, from your plan and your evidence.\n\nStep 2 of 6\n\nMeet Study Sensei\n\nStudy Sensei is how Kwalitec guides your daily learning decisions. After this orientation, Study Sensei is your educational mentor for what to focus on, why it matters, and what comes next.\n\nStep 3 of 6\n\nHow Missions work\n\nEach day Study Sensei prepares one focused Mission \u2014 what deserves your attention now. Start today's Session to practice that Mission, then record what you did. Missions keep study decisions small so learning can stay large.\n\nStep 4 of 6\n\nWhy recommendations are explainable\n\nRecommendations come from your syllabus structure, available time, and study history \u2014 not a black box. When you expand \u201cwhy\u201d, you see the reasons Study Sensei used.\n\nStep 5 of 6\n\nHow Reflections work\n\nReflection after a Session closes practice. Commitment reflection on Home confirms you finished what you chose. Optional reflection in the Decision Journal helps the Study Sensei learn whether guidance was useful. The Educational Timeline asks deeper questions about your learning story. Product Check-in is feedback for the product team \u2014 not educational reflection. Help keeps this map whenever you need it.\n\nStep 6 of 6\n\nHow Study Sensei remembers\n\nThe Decision Journal is Study Sensei\u2019s durable educational memory of significant guidance, your choices, and what followed. The Educational Timeline is the chronological learning story drawn from that Journal \u2014 not a second memory store and not a scoreboard. History keeps practice archives and progress stats as context; educational meaning lives in the Journal and Timeline. After a Reflection, Session notes stay with the Session; optional Sensei reflection deepens Journal memory that Timeline can later interpret. Help keeps this memory map whenever you need it.\n\nContinue to Home\nSkip for now\nHelp & Support\nShowing alpha\n\nReduce decisions. Increase learning.",
+      "text_len": 2245,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#student-main"
+        },
+        {
+          "text": "Home",
+          "href": "/student/"
+        },
+        {
+          "text": "Journey",
+          "href": "/student/journey"
+        },
+        {
+          "text": "Revision",
+          "href": "/student/revision"
+        },
+        {
+          "text": "History",
+          "href": "/student/history"
+        },
+        {
+          "text": "Settings",
+          "href": "/student/profile"
+        },
+        {
+          "text": "Study Plan",
+          "href": "/study-plan/"
+        },
+        {
+          "text": "Help",
+          "href": "/alpha/help"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Menu",
+        "Sign out",
+        "Continue to Home",
+        "Skip for now",
+        "Cancel",
+        "Help & Support"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/26_phase11_missions.png"
+    },
+    {
+      "phase": "PHASE12_study_session",
+      "t": 69.0,
+      "url": "http://127.0.0.1:5128/alpha/onboarding",
+      "title": "Welcome to Kwalitec \u00b7 Kwalitec",
+      "text": "Skip to content\nHome\nJourney\nRevision\nHistory\nSettings\nStudy Plan\nHelp\nSign out\n\nINTERNAL ALPHA\n\nWelcome to Kwalitec\n\nA short orientation \u2014 6 ideas, then Study Sensei guides your study.\n\nStep 1 of 6\n\nWhat Kwalitec is\n\nKwalitec is an Education Operating System for demanding exams. It is the product that hosts your Study Plan, Sessions, and progress \u2014 calmly, from your plan and your evidence.\n\nStep 2 of 6\n\nMeet Study Sensei\n\nStudy Sensei is how Kwalitec guides your daily learning decisions. After this orientation, Study Sensei is your educational mentor for what to focus on, why it matters, and what comes next.\n\nStep 3 of 6\n\nHow Missions work\n\nEach day Study Sensei prepares one focused Mission \u2014 what deserves your attention now. Start today's Session to practice that Mission, then record what you did. Missions keep study decisions small so learning can stay large.\n\nStep 4 of 6\n\nWhy recommendations are explainable\n\nRecommendations come from your syllabus structure, available time, and study history \u2014 not a black box. When you expand \u201cwhy\u201d, you see the reasons Study Sensei used.\n\nStep 5 of 6\n\nHow Reflections work\n\nReflection after a Session closes practice. Commitment reflection on Home confirms you finished what you chose. Optional reflection in the Decision Journal helps the Study Sensei learn whether guidance was useful. The Educational Timeline asks deeper questions about your learning story. Product Check-in is feedback for the product team \u2014 not educational reflection. Help keeps this map whenever you need it.\n\nStep 6 of 6\n\nHow Study Sensei remembers\n\nThe Decision Journal is Study Sensei\u2019s durable educational memory of significant guidance, your choices, and what followed. The Educational Timeline is the chronological learning story drawn from that Journal \u2014 not a second memory store and not a scoreboard. History keeps practice archives and progress stats as context; educational meaning lives in the Journal and Timeline. After a Reflection, Session notes stay with the Session; optional Sensei reflection deepens Journal memory that Timeline can later interpret. Help keeps this memory map whenever you need it.\n\nContinue to Home\nSkip for now\nHelp & Support\nShowing alpha\n\nReduce decisions. Increase learning.",
+      "text_len": 2245,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#student-main"
+        },
+        {
+          "text": "Home",
+          "href": "/student/"
+        },
+        {
+          "text": "Journey",
+          "href": "/student/journey"
+        },
+        {
+          "text": "Revision",
+          "href": "/student/revision"
+        },
+        {
+          "text": "History",
+          "href": "/student/history"
+        },
+        {
+          "text": "Settings",
+          "href": "/student/profile"
+        },
+        {
+          "text": "Study Plan",
+          "href": "/study-plan/"
+        },
+        {
+          "text": "Help",
+          "href": "/alpha/help"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Menu",
+        "Sign out",
+        "Continue to Home",
+        "Skip for now",
+        "Cancel",
+        "Help & Support"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/27_phase12_study_session.png"
+    },
+    {
+      "phase": "PHASE12_session_active",
+      "t": 70.6,
+      "url": "http://127.0.0.1:5128/console/",
+      "title": "Console Home \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nOPERATIONAL DECISIONS\n\nOverview\nOperations\nStudents\nLearning\nAssessments\nContent\nAnalytics\nPlatform\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nYou're set \u2014 open today's mission when you're ready.\n\nKWALITEC CONSOLE \u00b7 INTERNAL ALPHA \u00b7 V2.0.0\n\nConsole Home\n\nOperational pulse \u2014 what needs attention today \u00b7 2026-07-28 20:34 UTC \u00b7 Calendar day (server local date)\n\nATTENTION REQUIRED\nOpen Attention Center\nSUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews\nPLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in\nCONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings\nSTUDENT ISSUES\n0\nNeeds intervention\nNothing queued\nHIGH\nSystem health signals need attention\nOpen\nPLATFORM SUMMARY\nSTUDENTS\n0\nActive participants\n0 active today\nLEARNING\n0\nCheck-ins today\n0 in last 7 days\nASSESSMENTS\n\u2014\nAvg experience\nWould open tomorrow \u2014\nSYSTEM\nNo check-ins yet\nAlpha health\nBuild local\nQUICK ACTIONS\nReview support inbox\nOpen operations\nManage content\nPlatform Intelligence\nOPERATIONAL DETAIL\nRecent support\nInbox\n\nNo Product Check-ins yet.\n\nAttention queue\nCenter\n\nNothing needs action right now.\n\nVision Journal\nOpen\n\nNo Vision entries yet. New entry\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 1314,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Operations",
+          "href": "/console/operational-health"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Learning",
+          "href": "/console/intelligence"
+        },
+        {
+          "text": "Assessments",
+          "href": "/console/evidence-gates"
+        },
+        {
+          "text": "Content",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Analytics",
+          "href": "/console/research"
+        },
+        {
+          "text": "Platform",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Open Attention Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "SUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "PLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "CONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings",
+          "href": "/console/findings"
+        },
+        {
+          "text": "STUDENT ISSUES\n0\nNeeds intervention\nNothing queued",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/operations"
+        },
+        {
+          "text": "Review support inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Open operations",
+          "href": "/console/operational-health"
+        },
+        {
+          "text": "Manage content",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Platform Intelligence",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "Inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/vision"
+        },
+        {
+          "text": "New entry",
+          "href": "/console/vision/new"
+        }
+      ],
+      "ctas": [
+        "Search",
+        "Sign out"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/28_phase12_session_active.png"
+    },
+    {
+      "phase": "PHASE13_session_completion",
+      "t": 71.7,
+      "url": "http://127.0.0.1:5128/console/",
+      "title": "Console Home \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nOPERATIONAL DECISIONS\n\nOverview\nOperations\nStudents\nLearning\nAssessments\nContent\nAnalytics\nPlatform\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nYou're set \u2014 open today's mission when you're ready.\n\nKWALITEC CONSOLE \u00b7 INTERNAL ALPHA \u00b7 V2.0.0\n\nConsole Home\n\nOperational pulse \u2014 what needs attention today \u00b7 2026-07-28 20:34 UTC \u00b7 Calendar day (server local date)\n\nATTENTION REQUIRED\nOpen Attention Center\nSUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews\nPLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in\nCONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings\nSTUDENT ISSUES\n0\nNeeds intervention\nNothing queued\nHIGH\nSystem health signals need attention\nOpen\nPLATFORM SUMMARY\nSTUDENTS\n0\nActive participants\n0 active today\nLEARNING\n0\nCheck-ins today\n0 in last 7 days\nASSESSMENTS\n\u2014\nAvg experience\nWould open tomorrow \u2014\nSYSTEM\nNo check-ins yet\nAlpha health\nBuild local\nQUICK ACTIONS\nReview support inbox\nOpen operations\nManage content\nPlatform Intelligence\nOPERATIONAL DETAIL\nRecent support\nInbox\n\nNo Product Check-ins yet.\n\nAttention queue\nCenter\n\nNothing needs action right now.\n\nVision Journal\nOpen\n\nNo Vision entries yet. New entry\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 1314,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Operations",
+          "href": "/console/operational-health"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Learning",
+          "href": "/console/intelligence"
+        },
+        {
+          "text": "Assessments",
+          "href": "/console/evidence-gates"
+        },
+        {
+          "text": "Content",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Analytics",
+          "href": "/console/research"
+        },
+        {
+          "text": "Platform",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Open Attention Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "SUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "PLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "CONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings",
+          "href": "/console/findings"
+        },
+        {
+          "text": "STUDENT ISSUES\n0\nNeeds intervention\nNothing queued",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/operations"
+        },
+        {
+          "text": "Review support inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Open operations",
+          "href": "/console/operational-health"
+        },
+        {
+          "text": "Manage content",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Platform Intelligence",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "Inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/vision"
+        },
+        {
+          "text": "New entry",
+          "href": "/console/vision/new"
+        }
+      ],
+      "ctas": [
+        "Search",
+        "Sign out"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/29_phase13_session_completion.png"
+    },
+    {
+      "phase": "PHASE14_student_revision",
+      "t": 71.9,
+      "url": "http://127.0.0.1:5128/student/revision",
+      "title": "Revision \u00b7 Kwalitec",
+      "text": "Skip to content\nHome\nJourney\nRevision\nHistory\nSettings\nStudy Plan\nHelp\nSign out\n\nYOUR LEARNING\n\nRevision\n\nRevision that supports today's Mission \u2014 not a second Mission.\n\nNo revision support yet\n\nNo revision support is ready right now. Follow today's Mission on Home \u2014 Revision will appear when there is something worth strengthening.\n\nRevision supports today's Mission when there is something worth strengthening. Until then, follow Mission on Home.\n\nReturn to today's Mission\nShowing revision\n\nReduce decisions. Increase learning.",
+      "text_len": 531,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#student-main"
+        },
+        {
+          "text": "Home",
+          "href": "/student/"
+        },
+        {
+          "text": "Journey",
+          "href": "/student/journey"
+        },
+        {
+          "text": "Revision",
+          "href": "/student/revision"
+        },
+        {
+          "text": "History",
+          "href": "/student/history"
+        },
+        {
+          "text": "Settings",
+          "href": "/student/profile"
+        },
+        {
+          "text": "Study Plan",
+          "href": "/study-plan/"
+        },
+        {
+          "text": "Help",
+          "href": "/alpha/help"
+        },
+        {
+          "text": "Return to today's Mission",
+          "href": "/student/"
+        }
+      ],
+      "ctas": [
+        "Menu",
+        "Sign out",
+        "Return to today's Mission"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/30_phase14_student_revision.png"
+    },
+    {
+      "phase": "PHASE14_student_revision",
+      "t": 72.0,
+      "url": "http://127.0.0.1:5128/student/revision/",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID A7218D8ED763 \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/31_phase14_student_revision.png"
+    },
+    {
+      "phase": "PHASE14_revision",
+      "t": 72.1,
+      "url": "http://127.0.0.1:5128/revision",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID 70E915A287CE \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/32_phase14_revision.png"
+    },
+    {
+      "phase": "PHASE14_analytics",
+      "t": 72.2,
+      "url": "http://127.0.0.1:5128/student/history",
+      "title": "History \u00b7 Kwalitec",
+      "text": "Skip to content\nHome\nJourney\nRevision\nHistory\nSettings\nStudy Plan\nHelp\nSign out\n\nYOUR LEARNING\n\nHistory\n\nPractice archives and progress context \u2014 not Study Sensei\u2019s learning story. Educational meaning lives in the Decision Journal and Educational Timeline.\n\nWhat History shows\n\nHistory shows what you practiced \u2014 completed Sessions, study time, and readiness trends. Those numbers orient you; they are not Study Sensei\u2019s mentor narrative. What happened educationally, why it mattered, what was learned, and how that shapes future guidance live in the Decision Journal and Educational Timeline.\n\nOpen Decision Journal\nEducational Timeline\n\nSTUDY TIME\n\nLess than a minute\n\n0 completed sessions\n\nREADINESS TREND\n\nNot enough history for a trend yet\nRecent sessions\n\nNo sessions completed yet\n\nFinish a Study Session and it will show up here as practice context \u2014 what you covered and how it went. Educational meaning still lives in the Decision Journal and Educational Timeline.\n\nReturn Home\nShowing history\n\nReduce decisions. Increase learning.",
+      "text_len": 1041,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#student-main"
+        },
+        {
+          "text": "Home",
+          "href": "/student/"
+        },
+        {
+          "text": "Journey",
+          "href": "/student/journey"
+        },
+        {
+          "text": "Revision",
+          "href": "/student/revision"
+        },
+        {
+          "text": "History",
+          "href": "/student/history"
+        },
+        {
+          "text": "Settings",
+          "href": "/student/profile"
+        },
+        {
+          "text": "Study Plan",
+          "href": "/study-plan/"
+        },
+        {
+          "text": "Help",
+          "href": "/alpha/help"
+        },
+        {
+          "text": "Open Decision Journal",
+          "href": "/student/decision-journal"
+        },
+        {
+          "text": "Educational Timeline",
+          "href": "/student/educational-timeline"
+        },
+        {
+          "text": "Return Home",
+          "href": "/student/"
+        }
+      ],
+      "ctas": [
+        "Menu",
+        "Sign out",
+        "Open Decision Journal",
+        "Educational Timeline",
+        "Return Home"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/33_phase14_analytics.png"
+    },
+    {
+      "phase": "PHASE15_coach_from_nav",
+      "t": 72.7,
+      "url": "http://127.0.0.1:5128/alpha/help",
+      "title": "Help & Support \u00b7 Kwalitec",
+      "text": "Skip to content\nHome\nJourney\nRevision\nHistory\nSettings\nStudy Plan\nHelp\nSign out\n\nINTERNAL ALPHA\n\nHelp & Support\n\nHow Kwalitec and Study Sensei work together on your educational journey \u2014 and how to reach the Internal Alpha team.\n\nSearch Help topics\n\nORIENTATION\n\nYour educational journey\n\nStudy Sensei is how Kwalitec guides your daily learning decisions. Kwalitec is the product; Study Sensei is your educational mentor for what to focus on, why it matters, and what comes next.\n\nMission \u2014 what deserves your attention today.\nStudy Session \u2014 the practice workflow for that Mission.\nReflection \u2014 a short pause that closes practice or calibrates guidance (see the Reflection map below).\nDecision Journal \u2014 Study Sensei\u2019s durable educational memory of significant guidance and your choices.\nEducational Timeline \u2014 the chronological learning story drawn from the Journal \u2014 not a second memory store.\nHistory \u2014 practice archives and progress stats as context; meaning lives in Journal and Timeline.\nStudy Sensei \u2014 the mentor voice across Mission, Session, Journal, Timeline, and guidance that History only bridges to.\n\nEDUCATIONAL MEMORY\n\nOne educational memory system\n\nThe Decision Journal is Study Sensei\u2019s durable educational memory of significant guidance, your choices, and what followed. The Educational Timeline is the chronological learning story drawn from that Journal \u2014 not a second memory store and not a scoreboard. History keeps practice archives and progress stats as context; educational meaning lives in the Journal and Timeline. After a Reflection, Session notes stay with the Session; optional Sensei reflection deepens Journal memory that Timeline can later interpret.\n\nREFLECTION\n\nOne reflection family\n\nReflection after a Session closes practice. Commitment reflection on Home confirms you finished what you chose. Optional reflection in the Decision Journal helps the Study Sensei learn whether guidance was useful. The Educational Timeline asks deeper questions about your learning story. Product Check-in is feedback for the product team \u2014 not educational reflection.\n\nSession reflection \u2014 closes practice after a Session; optional note; does not score you.\nCommitment reflection \u2014 on Home after you finish what you chose.\nSensei reflection \u2014 optional questions in the Decision Journal about whether guidance helped.\nTimeline reflection \u2014 deeper questions on the Educational Timeline about your learning story.\nGuided Reflection preview \u2014 Home prompts to think through only; nothing is recorded.\nNot reflection: Product Check-in (product research), Calibration (declared coverage), Revision (review practice).\n\nGLOSSARY\n\nEducational glossary\nMission\nToday\u2019s authorised educational focus \u2014 what deserves attention now.\nStudy Session\nThe practice workflow you start for a Mission. ",
+      "text_len": 4886,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#student-main"
+        },
+        {
+          "text": "Home",
+          "href": "/student/"
+        },
+        {
+          "text": "Journey",
+          "href": "/student/journey"
+        },
+        {
+          "text": "Revision",
+          "href": "/student/revision"
+        },
+        {
+          "text": "History",
+          "href": "/student/history"
+        },
+        {
+          "text": "Settings",
+          "href": "/student/profile"
+        },
+        {
+          "text": "Study Plan",
+          "href": "/study-plan/"
+        },
+        {
+          "text": "Help",
+          "href": "/alpha/help"
+        },
+        {
+          "text": "Report a problem",
+          "href": "/alpha/feedback/report-problem"
+        },
+        {
+          "text": "Suggest an improvement",
+          "href": "/alpha/feedback/suggest"
+        },
+        {
+          "text": "Full Product Check-in",
+          "href": "/research/checkin?source=settings"
+        },
+        {
+          "text": "Revisit onboarding",
+          "href": "/alpha/onboarding"
+        }
+      ],
+      "ctas": [
+        "Menu",
+        "Sign out",
+        "Cancel",
+        "Report a problem",
+        "Suggest an improvement",
+        "Full Product Check-in",
+        "Revisit onboarding"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/34_phase15_coach_from_nav.png"
+    },
+    {
+      "phase": "PHASE15_try_student_coach",
+      "t": 72.8,
+      "url": "http://127.0.0.1:5128/student/coach",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID D99A0BE6EE8F \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/35_phase15_try_student_coach.png"
+    },
+    {
+      "phase": "PHASE15_try_coach",
+      "t": 72.9,
+      "url": "http://127.0.0.1:5128/coach",
+      "title": "Page Not Found \u00b7 Kwalitec",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID 1910342A02F5 \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 249,
+      "links": [
+        {
+          "text": "Return Home",
+          "href": "/console/"
+        },
+        {
+          "text": "Help & Support",
+          "href": "/alpha/help"
+        }
+      ],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Return Home",
+        "Help & Support"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/36_phase15_try_coach.png"
+    },
+    {
+      "phase": "PHASE15_try_alpha_help",
+      "t": 73.1,
+      "url": "http://127.0.0.1:5128/alpha/help",
+      "title": "Help & Support \u00b7 Kwalitec",
+      "text": "Skip to content\nHome\nJourney\nRevision\nHistory\nSettings\nStudy Plan\nHelp\nSign out\n\nINTERNAL ALPHA\n\nHelp & Support\n\nHow Kwalitec and Study Sensei work together on your educational journey \u2014 and how to reach the Internal Alpha team.\n\nSearch Help topics\n\nORIENTATION\n\nYour educational journey\n\nStudy Sensei is how Kwalitec guides your daily learning decisions. Kwalitec is the product; Study Sensei is your educational mentor for what to focus on, why it matters, and what comes next.\n\nMission \u2014 what deserves your attention today.\nStudy Session \u2014 the practice workflow for that Mission.\nReflection \u2014 a short pause that closes practice or calibrates guidance (see the Reflection map below).\nDecision Journal \u2014 Study Sensei\u2019s durable educational memory of significant guidance and your choices.\nEducational Timeline \u2014 the chronological learning story drawn from the Journal \u2014 not a second memory store.\nHistory \u2014 practice archives and progress stats as context; meaning lives in Journal and Timeline.\nStudy Sensei \u2014 the mentor voice across Mission, Session, Journal, Timeline, and guidance that History only bridges to.\n\nEDUCATIONAL MEMORY\n\nOne educational memory system\n\nThe Decision Journal is Study Sensei\u2019s durable educational memory of significant guidance, your choices, and what followed. The Educational Timeline is the chronological learning story drawn from that Journal \u2014 not a second memory store and not a scoreboard. History keeps practice archives and progress stats as context; educational meaning lives in the Journal and Timeline. After a Reflection, Session notes stay with the Session; optional Sensei reflection deepens Journal memory that Timeline can later interpret.\n\nREFLECTION\n\nOne reflection family\n\nReflection after a Session closes practice. Commitment reflection on Home confirms you finished what you chose. Optional reflection in the Decision Journal helps the Study Sensei learn whether guidance was useful. The Educational Timeline asks deeper questions about your learning story. Product Check-in is feedback for the product team \u2014 not educational reflection.\n\nSession reflection \u2014 closes practice after a Session; optional note; does not score you.\nCommitment reflection \u2014 on Home after you finish what you chose.\nSensei reflection \u2014 optional questions in the Decision Journal about whether guidance helped.\nTimeline reflection \u2014 deeper questions on the Educational Timeline about your learning story.\nGuided Reflection preview \u2014 Home prompts to think through only; nothing is recorded.\nNot reflection: Product Check-in (product research), Calibration (declared coverage), Revision (review practice).\n\nGLOSSARY\n\nEducational glossary\nMission\nToday\u2019s authorised educational focus \u2014 what deserves attention now.\nStudy Session\nThe practice workflow you start for a Mission. ",
+      "text_len": 4886,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#student-main"
+        },
+        {
+          "text": "Home",
+          "href": "/student/"
+        },
+        {
+          "text": "Journey",
+          "href": "/student/journey"
+        },
+        {
+          "text": "Revision",
+          "href": "/student/revision"
+        },
+        {
+          "text": "History",
+          "href": "/student/history"
+        },
+        {
+          "text": "Settings",
+          "href": "/student/profile"
+        },
+        {
+          "text": "Study Plan",
+          "href": "/study-plan/"
+        },
+        {
+          "text": "Help",
+          "href": "/alpha/help"
+        },
+        {
+          "text": "Report a problem",
+          "href": "/alpha/feedback/report-problem"
+        },
+        {
+          "text": "Suggest an improvement",
+          "href": "/alpha/feedback/suggest"
+        },
+        {
+          "text": "Full Product Check-in",
+          "href": "/research/checkin?source=settings"
+        },
+        {
+          "text": "Revisit onboarding",
+          "href": "/alpha/onboarding"
+        }
+      ],
+      "ctas": [
+        "Menu",
+        "Sign out",
+        "Cancel",
+        "Report a problem",
+        "Suggest an improvement",
+        "Full Product Check-in",
+        "Revisit onboarding"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/37_phase15_try_alpha_help.png"
+    },
+    {
+      "phase": "PHASE16_after_logout",
+      "t": 73.3,
+      "url": "http://127.0.0.1:5128/auth/login",
+      "title": "Sign in \u00b7 Kwalitec",
+      "text": "Education Operating System\n\nKnow exactly what to study next.\n\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAlways know what to study next\nPlans that fit your exam date\nFocused sessions without decision fatigue\nHonest progress you can trust\nEstimated readiness insights as you study\nSustainable pace through exam season\nSign in\n\nContinue to your workspace.\n\nEmail\nPassword\nRemember me\nNew to the Internal Alpha?\n\nKwalitec is invite-only during the Internal Alpha \u2014 sign in with the credentials your coordinator provided.\n\nMissing your details, or need a reset? Contact your coordinator.\n\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "text_len": 664,
+      "links": [],
+      "ctas": [
+        "Light",
+        "Dark",
+        "System",
+        "Sign in"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/38_phase16_after_logout.png"
+    },
+    {
+      "phase": "PHASE16_return_login",
+      "t": 73.8,
+      "url": "http://127.0.0.1:5128/console/",
+      "title": "Console Home \u00b7 Kwalitec Console",
+      "text": "Skip to content\nKwalitec Console\n\nOPERATIONAL DECISIONS\n\nOverview\nOperations\nStudents\nLearning\nAssessments\nContent\nAnalytics\nPlatform\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWelcome back to Kwalitec.\n\nKWALITEC CONSOLE \u00b7 INTERNAL ALPHA \u00b7 V2.0.0\n\nConsole Home\n\nOperational pulse \u2014 what needs attention today \u00b7 2026-07-28 20:35 UTC \u00b7 Calendar day (server local date)\n\nATTENTION REQUIRED\nOpen Attention Center\nSUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews\nPLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in\nCONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings\nSTUDENT ISSUES\n0\nNeeds intervention\nNothing queued\nHIGH\nSystem health signals need attention\nOpen\nPLATFORM SUMMARY\nSTUDENTS\n0\nActive participants\n0 active today\nLEARNING\n0\nCheck-ins today\n0 in last 7 days\nASSESSMENTS\n\u2014\nAvg experience\nWould open tomorrow \u2014\nSYSTEM\nNo check-ins yet\nAlpha health\nBuild local\nQUICK ACTIONS\nReview support inbox\nOpen operations\nManage content\nPlatform Intelligence\nOPERATIONAL DETAIL\nRecent support\nInbox\n\nNo Product Check-ins yet.\n\nAttention queue\nCenter\n\nNothing needs action right now.\n\nVision Journal\nOpen\n\nNo Vision entries yet. New entry\n\nKwalitec Console \u00b7 What needs attention today?",
+      "text_len": 1287,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#console-main"
+        },
+        {
+          "text": "Kwalitec Console",
+          "href": "/console/"
+        },
+        {
+          "text": "Overview",
+          "href": "/console/"
+        },
+        {
+          "text": "Operations",
+          "href": "/console/operational-health"
+        },
+        {
+          "text": "Students",
+          "href": "/console/participants"
+        },
+        {
+          "text": "Learning",
+          "href": "/console/intelligence"
+        },
+        {
+          "text": "Assessments",
+          "href": "/console/evidence-gates"
+        },
+        {
+          "text": "Content",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Analytics",
+          "href": "/console/research"
+        },
+        {
+          "text": "Platform",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "Settings",
+          "href": "/console/settings"
+        },
+        {
+          "text": "Support",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Search",
+          "href": "/console/search"
+        },
+        {
+          "text": "Account",
+          "href": "/settings/"
+        },
+        {
+          "text": "Open Attention Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "SUPPORT\n0\nPending content reviews\nOutstanding Product Check-in reviews",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "PLATFORM HEALTH\n0%\nNeeds attention\nWaiting for first Product Check-in",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "CONTENT REVIEWS\n0\nHigh-severity findings\nOpen Critical / High product findings",
+          "href": "/console/findings"
+        },
+        {
+          "text": "STUDENT ISSUES\n0\nNeeds intervention\nNothing queued",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/operations"
+        },
+        {
+          "text": "Review support inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Open operations",
+          "href": "/console/operational-health"
+        },
+        {
+          "text": "Manage content",
+          "href": "/console/studio/"
+        },
+        {
+          "text": "Platform Intelligence",
+          "href": "/console/alpha-observability"
+        },
+        {
+          "text": "Inbox",
+          "href": "/console/feedback"
+        },
+        {
+          "text": "Center",
+          "href": "/console/attention"
+        },
+        {
+          "text": "Open",
+          "href": "/console/vision"
+        },
+        {
+          "text": "New entry",
+          "href": "/console/vision/new"
+        }
+      ],
+      "ctas": [
+        "Search",
+        "Sign out"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/39_phase16_return_login.png"
+    },
+    {
+      "phase": "PHASE16_return_student_home",
+      "t": 74.0,
+      "url": "http://127.0.0.1:5128/student/",
+      "title": "Home \u00b7 Kwalitec",
+      "text": "Skip to content\nHome\nJourney\nRevision\nHistory\nSettings\nStudy Plan\nHelp\nSign out\n\nWelcome back.\n\nSTUDY SENSEI\n\nTODAY'S MISSION\n\nToday's Mission\n\n30 minutes\n\nWHY\nThis is the highest-value next step for this topic based on your recent practice.\n\nYOU\u2019LL WORK TOWARD\nStudying this topic now can support steady progress toward exam readiness.\n\nExpected readiness change from tonight's focus: Help you judge study preparation honestly and choose the next useful study step..\n\nStart Session\n\nREADINESS\n\nExam Readiness\n\nNot enough history for a trend yet\n\nThis estimate combines syllabus coverage (~0%), average Estimated Knowledge (~0%), review habits (~0%). Confidence: Cannot yet be estimated.\n\nNext Open Today\u2019s Session and complete the next planned study block.\n\nWhy this estimate?\nReview journey\n\nJOURNEY\n\nLearning journey\n\nYour learning story will appear here as you complete sessions.\n\nGUIDANCE\n\nGuidance\n\nToday's why, timing, and next step are covered in the Mission card above.\n\nMORE\nUpcoming milestones and quick actions\nShowing home\n\nReduce decisions. Increase learning.",
+      "text_len": 1073,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#student-main"
+        },
+        {
+          "text": "Home",
+          "href": "/student/"
+        },
+        {
+          "text": "Journey",
+          "href": "/student/journey"
+        },
+        {
+          "text": "Revision",
+          "href": "/student/revision"
+        },
+        {
+          "text": "History",
+          "href": "/student/history"
+        },
+        {
+          "text": "Settings",
+          "href": "/student/profile"
+        },
+        {
+          "text": "Study Plan",
+          "href": "/study-plan/"
+        },
+        {
+          "text": "Help",
+          "href": "/alpha/help"
+        },
+        {
+          "text": "Review journey",
+          "href": "/student/journey"
+        }
+      ],
+      "ctas": [
+        "Menu",
+        "Sign out",
+        "Start Session",
+        "Explain today's mission"
+      ],
+      "terms_found": [],
+      "screenshot": "/tmp/fv001a_blind_capture/40_phase16_return_student_home.png"
+    }
+  ],
+  "timeline": [
+    {
+      "t": 12.0,
+      "phase": "PHASE1_root",
+      "url": "http://127.0.0.1:5128/auth/login?next=%2Fstudent%2F",
+      "title": "Sign in \u00b7 Kwalitec"
+    },
+    {
+      "t": 12.2,
+      "phase": "PHASE1_landing_login",
+      "url": "http://127.0.0.1:5128/auth/login",
+      "title": "Sign in \u00b7 Kwalitec"
+    },
+    {
+      "t": 12.3,
+      "phase": "PHASE2_try_auth_register",
+      "url": "http://127.0.0.1:5128/auth/register",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 12.4,
+      "phase": "PHASE2_try_register",
+      "url": "http://127.0.0.1:5128/register",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 12.5,
+      "phase": "PHASE2_try_signup",
+      "url": "http://127.0.0.1:5128/signup",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 12.5,
+      "phase": "PHASE2_try_auth_signup",
+      "url": "http://127.0.0.1:5128/auth/signup",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 12.6,
+      "phase": "PHASE2_try_join",
+      "url": "http://127.0.0.1:5128/join",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 14.1,
+      "phase": "PHASE2_after_provisioned_login",
+      "url": "http://127.0.0.1:5128/console/",
+      "title": "Console Home \u00b7 Kwalitec Console"
+    },
+    {
+      "t": 14.2,
+      "phase": "PHASE3_post_login_home",
+      "url": "http://127.0.0.1:5128/console/",
+      "title": "Console Home \u00b7 Kwalitec Console"
+    },
+    {
+      "t": 14.6,
+      "phase": "PHASE3_nav_click",
+      "url": "http://127.0.0.1:5128/console/",
+      "title": "Console Home \u00b7 Kwalitec Console"
+    },
+    {
+      "t": 14.6,
+      "phase": "PHASE4_curriculum_studio_index",
+      "url": "http://127.0.0.1:5128/curriculum-studio/",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 14.7,
+      "phase": "PHASE4_create_subject_NOT_FOUND_or_inline",
+      "url": "http://127.0.0.1:5128/curriculum-studio/",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 15.6,
+      "phase": "PHASE4_after_inline_attempt",
+      "url": "http://127.0.0.1:5128/curriculum-studio/",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 16.2,
+      "phase": "PHASE5_workspace_entry",
+      "url": "http://127.0.0.1:5128/curriculum-studio/",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 17.1,
+      "phase": "PHASE5_after_workspace",
+      "url": "http://127.0.0.1:5128/curriculum-studio/",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 17.1,
+      "phase": "PHASE5_6_upload_inputs_NOT_FOUND",
+      "url": "http://127.0.0.1:5128/curriculum-studio/",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 18.0,
+      "phase": "PHASE7_curriculum_review",
+      "url": "http://127.0.0.1:5128/curriculum-studio/",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 19.1,
+      "phase": "PHASE8_publish",
+      "url": "http://127.0.0.1:5128/curriculum-studio/",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 19.2,
+      "phase": "PHASE9_student_home",
+      "url": "http://127.0.0.1:5128/alpha/onboarding",
+      "title": "Welcome to Kwalitec \u00b7 Kwalitec"
+    },
+    {
+      "t": 19.4,
+      "phase": "PHASE9_study_plan_index",
+      "url": "http://127.0.0.1:5128/study-plan/wizard/1",
+      "title": "Study Plan \u00b7 Kwalitec"
+    },
+    {
+      "t": 19.6,
+      "phase": "PHASE9_wizard_step1",
+      "url": "http://127.0.0.1:5128/study-plan/wizard/1",
+      "title": "Study Plan \u00b7 Kwalitec"
+    },
+    {
+      "t": 35.5,
+      "phase": "PHASE9_wizard_after_step_1",
+      "url": "http://127.0.0.1:5128/study-plan/wizard/1",
+      "title": "Study Plan \u00b7 Kwalitec"
+    },
+    {
+      "t": 51.5,
+      "phase": "PHASE9_wizard_after_step_2",
+      "url": "http://127.0.0.1:5128/study-plan/wizard/1",
+      "title": "Study Plan \u00b7 Kwalitec"
+    },
+    {
+      "t": 67.4,
+      "phase": "PHASE9_wizard_after_step_3",
+      "url": "http://127.0.0.1:5128/study-plan/wizard/1",
+      "title": "Study Plan \u00b7 Kwalitec"
+    },
+    {
+      "t": 67.6,
+      "phase": "PHASE10_dashboard",
+      "url": "http://127.0.0.1:5128/alpha/onboarding",
+      "title": "Welcome to Kwalitec \u00b7 Kwalitec"
+    },
+    {
+      "t": 67.7,
+      "phase": "PHASE10_student_home_dashboard",
+      "url": "http://127.0.0.1:5128/alpha/onboarding",
+      "title": "Welcome to Kwalitec \u00b7 Kwalitec"
+    },
+    {
+      "t": 67.8,
+      "phase": "PHASE11_missions",
+      "url": "http://127.0.0.1:5128/alpha/onboarding",
+      "title": "Welcome to Kwalitec \u00b7 Kwalitec"
+    },
+    {
+      "t": 69.0,
+      "phase": "PHASE12_study_session",
+      "url": "http://127.0.0.1:5128/alpha/onboarding",
+      "title": "Welcome to Kwalitec \u00b7 Kwalitec"
+    },
+    {
+      "t": 70.6,
+      "phase": "PHASE12_session_active",
+      "url": "http://127.0.0.1:5128/console/",
+      "title": "Console Home \u00b7 Kwalitec Console"
+    },
+    {
+      "t": 71.7,
+      "phase": "PHASE13_session_completion",
+      "url": "http://127.0.0.1:5128/console/",
+      "title": "Console Home \u00b7 Kwalitec Console"
+    },
+    {
+      "t": 71.9,
+      "phase": "PHASE14_student_revision",
+      "url": "http://127.0.0.1:5128/student/revision",
+      "title": "Revision \u00b7 Kwalitec"
+    },
+    {
+      "t": 72.0,
+      "phase": "PHASE14_student_revision",
+      "url": "http://127.0.0.1:5128/student/revision/",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 72.1,
+      "phase": "PHASE14_revision",
+      "url": "http://127.0.0.1:5128/revision",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 72.2,
+      "phase": "PHASE14_analytics",
+      "url": "http://127.0.0.1:5128/student/history",
+      "title": "History \u00b7 Kwalitec"
+    },
+    {
+      "t": 72.7,
+      "phase": "PHASE15_coach_from_nav",
+      "url": "http://127.0.0.1:5128/alpha/help",
+      "title": "Help & Support \u00b7 Kwalitec"
+    },
+    {
+      "t": 72.8,
+      "phase": "PHASE15_try_student_coach",
+      "url": "http://127.0.0.1:5128/student/coach",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 72.9,
+      "phase": "PHASE15_try_coach",
+      "url": "http://127.0.0.1:5128/coach",
+      "title": "Page Not Found \u00b7 Kwalitec"
+    },
+    {
+      "t": 73.1,
+      "phase": "PHASE15_try_alpha_help",
+      "url": "http://127.0.0.1:5128/alpha/help",
+      "title": "Help & Support \u00b7 Kwalitec"
+    },
+    {
+      "t": 73.3,
+      "phase": "PHASE16_after_logout",
+      "url": "http://127.0.0.1:5128/auth/login",
+      "title": "Sign in \u00b7 Kwalitec"
+    },
+    {
+      "t": 73.8,
+      "phase": "PHASE16_return_login",
+      "url": "http://127.0.0.1:5128/console/",
+      "title": "Console Home \u00b7 Kwalitec Console"
+    },
+    {
+      "t": 74.0,
+      "phase": "PHASE16_return_student_home",
+      "url": "http://127.0.0.1:5128/student/",
+      "title": "Home \u00b7 Kwalitec"
+    }
+  ],
+  "term_hits": [],
+  "elapsed_s": 74.0
+}

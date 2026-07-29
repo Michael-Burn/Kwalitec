@@ -67,17 +67,20 @@ class SessionOutcomeAssembler:
 
 def _summary_message(*, title: str, wrapping_up: bool) -> str:
     if wrapping_up:
-        return f"Wrapping up {title}"
-    return f"You finished {title}"
+        return f"You’re wrapping up {title}."
+    return (
+        f"You completed {title}. "
+        "Here’s why it mattered and what changed for tomorrow."
+    )
 
 
 def _next_transition(*, wrapping_up: bool) -> str:
     if wrapping_up:
-        return "Complete today's session, then reflect briefly"
-    return "Take a brief moment to reflect"
+        return "Finish today’s session, then see what changed"
+    return "See what changed, then plan tomorrow’s focus"
 
 
 def _upcoming_action(*, wrapping_up: bool) -> str:
     if wrapping_up:
         return "Finish session"
-    return "Reflect briefly"
+    return "Review what happens tomorrow"

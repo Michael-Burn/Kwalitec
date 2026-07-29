@@ -1,0 +1,380 @@
+{
+  "surfaces": {
+    "00_public_signin": {
+      "title": "Sign in \u00b7 Kwalitec",
+      "url": "http://127.0.0.1:5001/auth/login",
+      "h1": [
+        "Sign in"
+      ],
+      "h1Count": 1,
+      "primary": [
+        ""
+      ],
+      "primaryCount": 1,
+      "dsCss": false,
+      "dsPage": false,
+      "legacyStat": false,
+      "bootstrapAlert": 0,
+      "navLinks": [],
+      "navCount": 0,
+      "headings": [
+        {
+          "t": "H1",
+          "text": "Sign in"
+        },
+        {
+          "t": "H2",
+          "text": "New to the Internal Alpha?"
+        }
+      ],
+      "theme": "light",
+      "scroll": false,
+      "clsSample": {
+        "hasLanding": true,
+        "hasDsBtn": false,
+        "hasBootstrapBtn": true,
+        "hasDocUpload": false,
+        "hasExamRow": false,
+        "hasSessionShell": false,
+        "hasConsoleShell": false,
+        "hasEosNav": false
+      },
+      "fonts": "Inter, Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif"
+    },
+    "01_founder_home": {
+      "title": "Home \u00b7 Kwalitec Console",
+      "url": "http://127.0.0.1:5001/console/",
+      "h1": [
+        "Home"
+      ],
+      "h1Count": 1,
+      "primary": [
+        "Create Subject"
+      ],
+      "primaryCount": 1,
+      "dsCss": true,
+      "dsPage": true,
+      "legacyStat": false,
+      "bootstrapAlert": 0,
+      "navLinks": [
+        "Home",
+        "Subjects",
+        "Curriculum Studio",
+        "Students",
+        "Support",
+        "Settings"
+      ],
+      "navCount": 6,
+      "headings": [
+        {
+          "t": "H1",
+          "text": "Home"
+        },
+        {
+          "t": "H2",
+          "text": "Current Work"
+        }
+      ],
+      "theme": "light",
+      "scroll": false,
+      "clsSample": {
+        "hasLanding": false,
+        "hasDsBtn": true,
+        "hasBootstrapBtn": false,
+        "hasDocUpload": false,
+        "hasExamRow": false,
+        "hasSessionShell": false,
+        "hasConsoleShell": true,
+        "hasEosNav": false
+      },
+      "fonts": "Inter, Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "http": 200
+    },
+    "02_founder_subjects": {
+      "title": "Subjects \u00b7 Kwalitec Console",
+      "url": "http://127.0.0.1:5001/console/studio/subjects",
+      "h1": [
+        "Subjects"
+      ],
+      "h1Count": 1,
+      "primary": [
+        "Create Subject"
+      ],
+      "primaryCount": 1,
+      "dsCss": true,
+      "dsPage": true,
+      "legacyStat": false,
+      "bootstrapAlert": 0,
+      "navLinks": [
+        "Home",
+        "Subjects",
+        "Curriculum Studio",
+        "Students",
+        "Support",
+        "Settings"
+      ],
+      "navCount": 6,
+      "headings": [
+        {
+          "t": "H1",
+          "text": "Subjects"
+        }
+      ],
+      "theme": "light",
+      "scroll": false,
+      "clsSample": {
+        "hasLanding": false,
+        "hasDsBtn": true,
+        "hasBootstrapBtn": false,
+        "hasDocUpload": false,
+        "hasExamRow": false,
+        "hasSessionShell": false,
+        "hasConsoleShell": true,
+        "hasEosNav": false
+      },
+      "fonts": "Inter, Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "http": 200
+    },
+    "04_student_home": {
+      "title": "Home \u00b7 Kwalitec",
+      "url": "http://127.0.0.1:5001/student/",
+      "h1": [
+        "Home"
+      ],
+      "h1Count": 1,
+      "primary": [
+        "Choose Exam"
+      ],
+      "primaryCount": 1,
+      "dsCss": true,
+      "dsPage": true,
+      "legacyStat": false,
+      "bootstrapAlert": 0,
+      "navLinks": [
+        "Home",
+        "Journey",
+        "Revision",
+        "History",
+        "Settings",
+        "Choose Exam",
+        "Help"
+      ],
+      "navCount": 7,
+      "headings": [
+        {
+          "t": "H1",
+          "text": "Home"
+        },
+        {
+          "t": "H2",
+          "text": "Current Mission"
+        }
+      ],
+      "theme": "light",
+      "scroll": false,
+      "clsSample": {
+        "hasLanding": false,
+        "hasDsBtn": true,
+        "hasBootstrapBtn": false,
+        "hasDocUpload": false,
+        "hasExamRow": false,
+        "hasSessionShell": false,
+        "hasConsoleShell": false,
+        "hasEosNav": true
+      },
+      "fonts": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "http": 200
+    },
+    "05_choose_exam": {
+      "title": "Choose Exam \u00b7 Kwalitec",
+      "url": "http://127.0.0.1:5001/study-plan/wizard/1",
+      "h1": [
+        "Choose Exam"
+      ],
+      "h1Count": 1,
+      "primary": [
+        "Continue"
+      ],
+      "primaryCount": 1,
+      "dsCss": true,
+      "dsPage": true,
+      "legacyStat": false,
+      "bootstrapAlert": 0,
+      "navLinks": [
+        "Dashboard",
+        "Study Plan",
+        "Session",
+        "Analytics",
+        "Settings",
+        "Help",
+        "Product Check-in"
+      ],
+      "navCount": 7,
+      "headings": [
+        {
+          "t": "H1",
+          "text": "Choose Exam"
+        },
+        {
+          "t": "H2",
+          "text": "Ready to begin"
+        },
+        {
+          "t": "H2",
+          "text": "Selected exam"
+        },
+        {
+          "t": "H2",
+          "text": "Coming Soon"
+        },
+        {
+          "t": "H2",
+          "text": "Confirm"
+        }
+      ],
+      "theme": "light",
+      "scroll": true,
+      "clsSample": {
+        "hasLanding": false,
+        "hasDsBtn": true,
+        "hasBootstrapBtn": true,
+        "hasDocUpload": false,
+        "hasExamRow": true,
+        "hasSessionShell": false,
+        "hasConsoleShell": false,
+        "hasEosNav": false
+      },
+      "fonts": "Inter, Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "http": 200
+    },
+    "06_study_session_or_next": {
+      "title": "Choose Exam \u00b7 Kwalitec",
+      "url": "http://127.0.0.1:5001/study-plan/wizard/1",
+      "h1": [
+        "Choose Exam"
+      ],
+      "h1Count": 1,
+      "primary": [
+        "Continue"
+      ],
+      "primaryCount": 1,
+      "dsCss": true,
+      "dsPage": true,
+      "legacyStat": false,
+      "bootstrapAlert": 0,
+      "navLinks": [
+        "Dashboard",
+        "Study Plan",
+        "Session",
+        "Analytics",
+        "Settings",
+        "Help",
+        "Product Check-in"
+      ],
+      "navCount": 7,
+      "headings": [
+        {
+          "t": "H1",
+          "text": "Choose Exam"
+        },
+        {
+          "t": "H2",
+          "text": "Ready to begin"
+        },
+        {
+          "t": "H2",
+          "text": "Selected exam"
+        },
+        {
+          "t": "H2",
+          "text": "Coming Soon"
+        },
+        {
+          "t": "H2",
+          "text": "Confirm"
+        }
+      ],
+      "theme": "light",
+      "scroll": true,
+      "clsSample": {
+        "hasLanding": false,
+        "hasDsBtn": true,
+        "hasBootstrapBtn": true,
+        "hasDocUpload": false,
+        "hasExamRow": true,
+        "hasSessionShell": false,
+        "hasConsoleShell": false,
+        "hasEosNav": false
+      },
+      "fonts": "Inter, Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif"
+    },
+    "07_signin_after_theme": {
+      "title": "Home \u00b7 Kwalitec Console",
+      "url": "http://127.0.0.1:5001/console/",
+      "h1": [
+        "Home"
+      ],
+      "h1Count": 1,
+      "primary": [
+        "Create Subject"
+      ],
+      "primaryCount": 1,
+      "dsCss": true,
+      "dsPage": true,
+      "legacyStat": false,
+      "bootstrapAlert": 0,
+      "navLinks": [
+        "Home",
+        "Subjects",
+        "Curriculum Studio",
+        "Students",
+        "Support",
+        "Settings"
+      ],
+      "navCount": 6,
+      "headings": [
+        {
+          "t": "H1",
+          "text": "Home"
+        },
+        {
+          "t": "H2",
+          "text": "Current Work"
+        }
+      ],
+      "theme": "light",
+      "scroll": false,
+      "clsSample": {
+        "hasLanding": false,
+        "hasDsBtn": true,
+        "hasBootstrapBtn": false,
+        "hasDocUpload": false,
+        "hasExamRow": false,
+        "hasSessionShell": false,
+        "hasConsoleShell": true,
+        "hasEosNav": false
+      },
+      "fonts": "Inter, Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif"
+    }
+  },
+  "journeys": {
+    "post_login_url": "http://127.0.0.1:5001/console/",
+    "workspace": "no workspace link on subjects",
+    "session_after_primary": "http://127.0.0.1:5001/study-plan/wizard/1"
+  },
+  "a11y": {
+    "theme_controls": 2,
+    "focus_sample": {
+      "tag": "A",
+      "name": null,
+      "text": "Kwalitec Console"
+    }
+  },
+  "perf": {
+    "signin_overflow_mobile": 0,
+    "signin_overflow_tablet": 0,
+    "signin_overflow_laptop": 0
+  },
+  "errors": [],
+  "elapsed_s": 8.0
+}

@@ -1,0 +1,4143 @@
+{
+  "programme": "FV-001B-RERUN",
+  "kind": "focus",
+  "subject": "CS1S",
+  "elapsed_s": 68.0,
+  "records": [
+    {
+      "phase": "F_after_create",
+      "t": 2.6,
+      "url": "http://127.0.0.1:5130/console/studio/",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe've created your subject successfully.\nOverview\nCurriculum Studio\n\nKWALITEC CONSOLE \u00b7 CURRICULUM STUDIO\n\nCurriculum Studio\n\nReview, validate, preview, approve, and publish curricula through one Console workflow.\n\nNEXT STEP\n\nOpen a workspace below, or create a subject to start a new curriculum.\n\nPublished 0\nDrafts 1\nPending validation 0\nPending approval 0\nCreate Subject\nSubject code *\n\nUse a short syllabus code such as CS1.\n\nTitle\nOpen Workspace\nSubject code *\n\nOpen an existing subject code to continue its workflow.\n\nWorkspaces\nCS1R\n2026.1 \u00b7 Subject\nRecent activity\nsubject_created: Created subject CS1S\nsources_uploaded: Uploaded sources for ws-cs1r\nsources_uploaded: Uploaded sources for ws-cs1r\nversion_assigned: Assigned version version-1\nworkspace_opened: Opened workspace ws-cs1r\nsubject_created: Created subject CS1R\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Create Subject",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Open Workspace",
+          "vis": true,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Subject code *",
+        "Title",
+        "Subject code *"
+      ],
+      "slot_lines": [],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_00_f_after_create.png"
+    },
+    {
+      "phase": "F_workspace",
+      "t": 3.0,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1s",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe've opened your workspace successfully.\nOverview\nCurriculum Studio\nCS1S\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1S\n\nStage: Subject \u00b7 Status: Active\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 failed\n\nPreview\n\nPreview not ready \u2014 no extracted curriculum topics yet\n\nChecklist\n\n0 of 8 checklist items ready.\n\nValidation findings\n\nOfficial CMP is not present. (blocking)\n\nWhy it matters:\nWithout an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.\n\nWhat to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.\n\nOfficial syllabus is not present. (blocking)\n\nWhy it matters:\nPublication must stay grounded in the official syllabus so student journeys follow authorised curriculum order.\n\nWhat to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.\n\nContent Sources\nUPLOAD DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nCurriculum review\nExtraction, validation & corrections\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n\u2014\n\nTopics\n\n\u2014\n\nNeeds review\n\n\u2014\n\nValidation errors\n\n\u2014\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n\nNo versions yet\n\nNo versions recorded yet. Assign a version label after approval to start version history.\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Official CMP is not present. (blocking)",
+        "Without an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.",
+        "What to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.",
+        "What to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.",
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF)."
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_01_f_workspace.png"
+    },
+    {
+      "phase": "F_after_file_select",
+      "t": 5.9,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1s",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe've opened your workspace successfully.\nOverview\nCurriculum Studio\nCS1S\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1S\n\nStage: Subject \u00b7 Status: Active\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 failed\n\nPreview\n\nPreview not ready \u2014 no extracted curriculum topics yet\n\nChecklist\n\n0 of 8 checklist items ready.\n\nValidation findings\n\nOfficial CMP is not present. (blocking)\n\nWhy it matters:\nWithout an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.\n\nWhat to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.\n\nOfficial syllabus is not present. (blocking)\n\nWhy it matters:\nPublication must stay grounded in the official syllabus so student journeys follow authorised curriculum order.\n\nWhat to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.\n\nContent Sources\nREPLACE DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:07\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\n\nDocument uploaded successfully.\n\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nWe couldn't upload this document. Please try again.\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nDocument 3\nReady\nExtracted \u00b7 completed \u00b7 2 ms\nNormalized \u00b7 completed \u00b7 1 ms\nParsed \u00b7 completed \u00b7 6 ms\nMapped \u00b7 completed \u00b7 13 ms\nCurriculum structure built \u00b7 completed \u00b7 31 ms\nReady \u00b7 completed \u00b7 7 ms\nDocument uploaded successfully.\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n0\n\nTopics\n\n0\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n\nNo versions yet\n\nNo versions recorded yet. Assign a version label after approval to start version history.\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?\n\nDocument uploaded successfully.",
+      "flashes": [],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Official CMP is not present. (blocking)",
+        "Without an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.",
+        "What to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.",
+        "What to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.",
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official CMP \u00b7 official_cmp.pdf",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF)."
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_02_f_after_file_select.png"
+    },
+    {
+      "phase": "F_no_upload_button",
+      "t": 6.2,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1s",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe've opened your workspace successfully.\nOverview\nCurriculum Studio\nCS1S\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1S\n\nStage: Subject \u00b7 Status: Active\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 failed\n\nPreview\n\nPreview not ready \u2014 no extracted curriculum topics yet\n\nChecklist\n\n0 of 8 checklist items ready.\n\nValidation findings\n\nOfficial CMP is not present. (blocking)\n\nWhy it matters:\nWithout an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.\n\nWhat to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.\n\nOfficial syllabus is not present. (blocking)\n\nWhy it matters:\nPublication must stay grounded in the official syllabus so student journeys follow authorised curriculum order.\n\nWhat to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.\n\nContent Sources\nREPLACE DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:07\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\n\nDocument uploaded successfully.\n\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nWe couldn't upload this document. Please try again.\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nDocument 3\nReady\nExtracted \u00b7 completed \u00b7 2 ms\nNormalized \u00b7 completed \u00b7 1 ms\nParsed \u00b7 completed \u00b7 6 ms\nMapped \u00b7 completed \u00b7 13 ms\nCurriculum structure built \u00b7 completed \u00b7 31 ms\nReady \u00b7 completed \u00b7 7 ms\nDocument uploaded successfully.\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n0\n\nTopics\n\n0\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n\nNo versions yet\n\nNo versions recorded yet. Assign a version label after approval to start version history.\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?\n\nDocument uploaded successfully.",
+      "flashes": [],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Official CMP is not present. (blocking)",
+        "Without an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.",
+        "What to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.",
+        "What to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.",
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official CMP \u00b7 official_cmp.pdf",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF)."
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_03_f_no_upload_button.png"
+    },
+    {
+      "phase": "F_process_0",
+      "t": 9.1,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1s",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1S\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1S\n\nStage: Subject \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 8 topics\n\nChecklist\n\n2 of 8 checklist items ready.\n\nContent Sources\nREPLACE DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:07\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 6 ms\nMapped completed 13 ms\nCurriculum structure built completed 31 ms\nReady completed 7 ms\nCurriculum review\nExtraction, validation & corrections\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n\u2014\n\nTopics\n\n\u2014\n\nNeeds review\n\n\u2014\n\nValidation errors\n\n\u2014\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official CMP \u00b7 official_cmp.pdf",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Official CMP"
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_04_f_process_0.png"
+    },
+    {
+      "phase": "F_process_1",
+      "t": 12.0,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1s",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1S\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1S\n\nStage: Subject \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 8 topics\n\nChecklist\n\n2 of 8 checklist items ready.\n\nContent Sources\nREPLACE DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:07\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 6 ms\nMapped completed 13 ms\nCurriculum structure built completed 31 ms\nReady completed 7 ms\nCurriculum review\nExtraction, validation & corrections\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n\u2014\n\nTopics\n\n\u2014\n\nNeeds review\n\n\u2014\n\nValidation errors\n\n\u2014\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official CMP \u00b7 official_cmp.pdf",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Official CMP"
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_05_f_process_1.png"
+    },
+    {
+      "phase": "F_process_2",
+      "t": 14.9,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1s",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1S\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1S\n\nStage: Subject \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 8 topics\n\nChecklist\n\n2 of 8 checklist items ready.\n\nContent Sources\nREPLACE DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:07\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 6 ms\nMapped completed 13 ms\nCurriculum structure built completed 31 ms\nReady completed 7 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n1\n\nTopics\n\n8\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official CMP \u00b7 official_cmp.pdf",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Official CMP"
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_06_f_process_2.png"
+    },
+    {
+      "phase": "F_process_3",
+      "t": 17.7,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1s",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1S\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1S\n\nStage: Subject \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 8 topics\n\nChecklist\n\n2 of 8 checklist items ready.\n\nContent Sources\nREPLACE DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:07\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 6 ms\nMapped completed 13 ms\nCurriculum structure built completed 31 ms\nReady completed 7 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n1\n\nTopics\n\n8\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official CMP \u00b7 official_cmp.pdf",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Official CMP"
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_07_f_process_3.png"
+    },
+    {
+      "phase": "F_process_4",
+      "t": 20.6,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1s",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1S\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1S\n\nStage: Subject \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 8 topics\n\nChecklist\n\n2 of 8 checklist items ready.\n\nContent Sources\nREPLACE DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:07\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 6 ms\nMapped completed 13 ms\nCurriculum structure built completed 31 ms\nReady completed 7 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n1\n\nTopics\n\n8\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official CMP \u00b7 official_cmp.pdf",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Official CMP"
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_08_f_process_4.png"
+    },
+    {
+      "phase": "F_after_advance",
+      "t": 23.5,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1s",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe've advanced the workflow to the next stage.\nOverview\nCurriculum Studio\nCS1S\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1S\n\nStage: Content Sources \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nUpload the Official CMP and Official Syllabus PDFs, then validate the curriculum.\n\nWorkflow\nSubject\nContent Sources\n(current)\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 8 topics\n\nChecklist\n\n2 of 8 checklist items ready.\n\nContent Sources\nREPLACE DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:07\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 6 ms\nMapped completed 13 ms\nCurriculum structure built completed 31 ms\nReady completed 7 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n1\n\nTopics\n\n8\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Upload the Official CMP and Official Syllabus PDFs, then validate the curriculum.",
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official CMP \u00b7 official_cmp.pdf",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Official CMP"
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_09_f_after_advance.png"
+    },
+    {
+      "phase": "F_validate",
+      "t": 27.9,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1s",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe couldn't complete validation. Blocking findings prevent a safe student curriculum. Review the Validation findings, fix CMP or syllabus issues, then try again.\nOverview\nCurriculum Studio\nCS1S\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1S\n\nStage: Content Sources \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nUpload the Official CMP and Official Syllabus PDFs, then validate the curriculum.\n\nWorkflow\nSubject\nContent Sources\n(current)\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 8 topics\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nREPLACE DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:07\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 6 ms\nMapped completed 13 ms\nCurriculum structure built completed 31 ms\nReady completed 7 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n1\n\nTopics\n\n8\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [
+        "We couldn't complete validation. Blocking findings prevent a safe student curriculum. Review the Validation findings, fix CMP or syllabus issues, then try again.",
+        "We couldn't complete validation. Blocking findings prevent a safe student curriculum. Review the Validation findings, fix CMP or syllabus issues, then try again."
+      ],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Upload the Official CMP and Official Syllabus PDFs, then validate the curriculum.",
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official CMP \u00b7 official_cmp.pdf",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Official CMP"
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_10_f_validate.png"
+    },
+    {
+      "phase": "F_validate_reload",
+      "t": 30.3,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1s",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1S\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1S\n\nStage: Content Sources \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nUpload the Official CMP and Official Syllabus PDFs, then validate the curriculum.\n\nWorkflow\nSubject\nContent Sources\n(current)\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 8 topics\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nREPLACE DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:07\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 6 ms\nMapped completed 13 ms\nCurriculum structure built completed 31 ms\nReady completed 7 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n1\n\nTopics\n\n8\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Upload the Official CMP and Official Syllabus PDFs, then validate the curriculum.",
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official CMP \u00b7 official_cmp.pdf",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Official CMP"
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_11_f_validate_reload.png"
+    },
+    {
+      "phase": "F_preview",
+      "t": 34.8,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1s",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe've built the preview successfully \u2014 8 curriculum topics ready to review.\nOverview\nCurriculum Studio\nCS1S\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1S\n\nStage: Content Sources \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nUpload the Official CMP and Official Syllabus PDFs, then validate the curriculum.\n\nWorkflow\nSubject\nContent Sources\n(current)\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 8 topics\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nREPLACE DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:07\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 6 ms\nMapped completed 13 ms\nCurriculum structure built completed 31 ms\nReady completed 7 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n1\n\nTopics\n\n8\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Upload the Official CMP and Official Syllabus PDFs, then validate the curriculum.",
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official CMP \u00b7 official_cmp.pdf",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Official CMP"
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_12_f_preview.png"
+    },
+    {
+      "phase": "F_preview_reload",
+      "t": 37.1,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1s",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1S\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1S\n\nStage: Content Sources \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nUpload the Official CMP and Official Syllabus PDFs, then validate the curriculum.\n\nWorkflow\nSubject\nContent Sources\n(current)\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 8 topics\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nREPLACE DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:07\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 6 ms\nMapped completed 13 ms\nCurriculum structure built completed 31 ms\nReady completed 7 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n1\n\nTopics\n\n8\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Upload the Official CMP and Official Syllabus PDFs, then validate the curriculum.",
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official CMP \u00b7 official_cmp.pdf",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Official CMP"
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_13_f_preview_reload.png"
+    },
+    {
+      "phase": "F_panel_curriculum_structure",
+      "t": 38.5,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1s",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1S\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1S\n\nStage: Content Sources \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nUpload the Official CMP and Official Syllabus PDFs, then validate the curriculum.\n\nWorkflow\nSubject\nContent Sources\n(current)\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 8 topics\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nREPLACE DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:07\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 6 ms\nMapped completed 13 ms\nCurriculum structure built completed 31 ms\nReady completed 7 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\n8 entities \u00b7 33 relationships\n\nCS1S (subject, 100%)\nOfficial CMP CS1R (topic, 60%)\nCore Reading / CMP - CS1R Actuarial Statistics (topic, 60%)\nChapter 1 Data exploration (topic, 60%)\nChapter 2 Probability (topic, 60%)\nChapter 3 Distributions (topic, 60%)\nChapter 4 Inference (topic, 60%)\nChapter 5 Regression (topic, 60%)\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Upload the Official CMP and Official Syllabus PDFs, then validate the curriculum.",
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official CMP \u00b7 official_cmp.pdf",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Official CMP",
+        "Official CMP CS1R (topic, 60%)"
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_14_f_panel_curriculum_structure.png"
+    },
+    {
+      "phase": "F_panel_topic_details",
+      "t": 39.8,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1s",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1S\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1S\n\nStage: Content Sources \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nUpload the Official CMP and Official Syllabus PDFs, then validate the curriculum.\n\nWorkflow\nSubject\nContent Sources\n(current)\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 8 topics\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nREPLACE DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:07\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 6 ms\nMapped completed 13 ms\nCurriculum structure built completed 31 ms\nReady completed 7 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\nEntity id\nLoad\n\nSelect an entity from the Review Queue or enter an entity id.\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Upload the Official CMP and Official Syllabus PDFs, then validate the curriculum.",
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official CMP \u00b7 official_cmp.pdf",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Official CMP"
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_15_f_panel_topic_details.png"
+    },
+    {
+      "phase": "F_panel_validation",
+      "t": 41.1,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1s",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1S\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1S\n\nStage: Content Sources \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nUpload the Official CMP and Official Syllabus PDFs, then validate the curriculum.\n\nWorkflow\nSubject\nContent Sources\n(current)\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 8 topics\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nREPLACE DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:07\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 6 ms\nMapped completed 13 ms\nCurriculum structure built completed 31 ms\nReady completed 7 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\nDocument 3 \u00b7 Passed \u00b7 1 issues\nwarning \u00b7 missing_learning_objective\nDocument has topics/concepts but no learning objectives.\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Upload the Official CMP and Official Syllabus PDFs, then validate the curriculum.",
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official CMP \u00b7 official_cmp.pdf",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Official CMP"
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_16_f_panel_validation.png"
+    },
+    {
+      "phase": "F_panel_documents",
+      "t": 42.5,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1s",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1S\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1S\n\nStage: Content Sources \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nUpload the Official CMP and Official Syllabus PDFs, then validate the curriculum.\n\nWorkflow\nSubject\nContent Sources\n(current)\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 8 topics\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nREPLACE DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:07\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 6 ms\nMapped completed 13 ms\nCurriculum structure built completed 31 ms\nReady completed 7 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nOfficial curriculum documents appear in Content Sources above. Use Extraction status and Review Queue after processing.\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Upload the Official CMP and Official Syllabus PDFs, then validate the curriculum.",
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official CMP \u00b7 official_cmp.pdf",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Official CMP"
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_17_f_panel_documents.png"
+    },
+    {
+      "phase": "F_approve_ok",
+      "t": 46.4,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1s",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe couldn't publish this curriculum. Publication without approval and a version would expose incomplete material to students. Assign a version label, complete approval, then try again.\nOverview\nCurriculum Studio\nCS1S\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1S\n\nStage: Content Sources \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nUpload the Official CMP and Official Syllabus PDFs, then validate the curriculum.\n\nWorkflow\nSubject\nContent Sources\n(current)\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 8 topics\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nREPLACE DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:07\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 6 ms\nMapped completed 13 ms\nCurriculum structure built completed 31 ms\nReady completed 7 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n1\n\nTopics\n\n8\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [
+        "We couldn't publish this curriculum. Publication without approval and a version would expose incomplete material to students. Assign a version label, complete approval, then try again.",
+        "We couldn't publish this curriculum. Publication without approval and a version would expose incomplete material to students. Assign a version label, complete approval, then try again."
+      ],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Upload the Official CMP and Official Syllabus PDFs, then validate the curriculum.",
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official CMP \u00b7 official_cmp.pdf",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Official CMP"
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_18_f_approve_ok.png"
+    },
+    {
+      "phase": "F_approve_reload",
+      "t": 46.8,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1s",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1S\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1S\n\nStage: Content Sources \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nUpload the Official CMP and Official Syllabus PDFs, then validate the curriculum.\n\nWorkflow\nSubject\nContent Sources\n(current)\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 8 topics\n\nChecklist\n\n3 of 8 checklist items ready.\n\nContent Sources\nREPLACE DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:07\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 6 ms\nMapped completed 13 ms\nCurriculum structure built completed 31 ms\nReady completed 7 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n1\n\nTopics\n\n8\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Upload the Official CMP and Official Syllabus PDFs, then validate the curriculum.",
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official CMP \u00b7 official_cmp.pdf",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Official CMP"
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_19_f_approve_reload.png"
+    },
+    {
+      "phase": "F_publish_ok",
+      "t": 52.6,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1s",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe couldn't publish this curriculum. Publication without approval and a version would expose incomplete material to students. Assign a version label, complete approval, then try again.\nOverview\nCurriculum Studio\nCS1S\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1S\n\nStage: Content Sources \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nUpload the Official CMP and Official Syllabus PDFs, then validate the curriculum.\n\nWorkflow\nSubject\nContent Sources\n(current)\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 8 topics\n\nChecklist\n\n4 of 8 checklist items ready.\n\nContent Sources\nREPLACE DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:07\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 6 ms\nMapped completed 13 ms\nCurriculum structure built completed 31 ms\nReady completed 7 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n1\n\nTopics\n\n8\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [
+        "We couldn't publish this curriculum. Publication without approval and a version would expose incomplete material to students. Assign a version label, complete approval, then try again.",
+        "We couldn't publish this curriculum. Publication without approval and a version would expose incomplete material to students. Assign a version label, complete approval, then try again."
+      ],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Upload the Official CMP and Official Syllabus PDFs, then validate the curriculum.",
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official CMP \u00b7 official_cmp.pdf",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Official CMP"
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_20_f_publish_ok.png"
+    },
+    {
+      "phase": "F_publish_state_0",
+      "t": 54.9,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1s",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1S\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1S\n\nStage: Content Sources \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nUpload the Official CMP and Official Syllabus PDFs, then validate the curriculum.\n\nWorkflow\nSubject\nContent Sources\n(current)\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 8 topics\n\nChecklist\n\n4 of 8 checklist items ready.\n\nContent Sources\nREPLACE DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:07\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 6 ms\nMapped completed 13 ms\nCurriculum structure built completed 31 ms\nReady completed 7 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n1\n\nTopics\n\n8\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Upload the Official CMP and Official Syllabus PDFs, then validate the curriculum.",
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official CMP \u00b7 official_cmp.pdf",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Official CMP"
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_21_f_publish_state_0.png"
+    },
+    {
+      "phase": "F_publish_state_1",
+      "t": 57.4,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1s",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1S\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1S\n\nStage: Content Sources \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nUpload the Official CMP and Official Syllabus PDFs, then validate the curriculum.\n\nWorkflow\nSubject\nContent Sources\n(current)\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 8 topics\n\nChecklist\n\n4 of 8 checklist items ready.\n\nContent Sources\nREPLACE DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:07\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 6 ms\nMapped completed 13 ms\nCurriculum structure built completed 31 ms\nReady completed 7 ms\nCurriculum review\nExtraction, validation & corrections\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n\u2014\n\nTopics\n\n\u2014\n\nNeeds review\n\n\u2014\n\nValidation errors\n\n\u2014\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Upload the Official CMP and Official Syllabus PDFs, then validate the curriculum.",
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official CMP \u00b7 official_cmp.pdf",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Official CMP"
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_22_f_publish_state_1.png"
+    },
+    {
+      "phase": "F_publish_state_2",
+      "t": 59.7,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1s",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1S\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1S\n\nStage: Content Sources \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nUpload the Official CMP and Official Syllabus PDFs, then validate the curriculum.\n\nWorkflow\nSubject\nContent Sources\n(current)\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 8 topics\n\nChecklist\n\n4 of 8 checklist items ready.\n\nContent Sources\nREPLACE DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:07\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 1 ms\nParsed completed 6 ms\nMapped completed 13 ms\nCurriculum structure built completed 31 ms\nReady completed 7 ms\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n1\n\nTopics\n\n8\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (uploaded)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Upload the Official CMP and Official Syllabus PDFs, then validate the curriculum.",
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official CMP \u00b7 official_cmp.pdf",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Official CMP"
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_23_f_publish_state_2.png"
+    },
+    {
+      "phase": "F_subjects",
+      "t": 59.9,
+      "url": "http://127.0.0.1:5130/console/studio/subjects",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nSubjects\n\nKWALITEC CONSOLE \u00b7 CURRICULUM AUTHORITY\n\nSubjects\n\nCreate subjects and open workspaces. Students only see a subject as Ready after you publish a verified curriculum.\n\nNEXT STEP\n\nOpen a workspace below, or create a subject to start a new curriculum.\n\nCurriculum workflow\nNew Subject\nUpload Official CMP\nUpload Official Syllabus\nExtraction\nReview & Corrections\nPublish Verified Curriculum\nAvailable to Students (Ready)\n\nOpen Curriculum Studio\n\nCreate Subject\nSubject code\nTitle\nOpen Workspace\nSubject code\nWorkspaces\nCS1R\n2026.1 \u00b7 Subject\nCS1S\n2026.1 \u00b7 Content Sources\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Create Subject",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Open Workspace",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Open Curriculum Studio",
+          "vis": true,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Subject code",
+        "Title",
+        "Subject code"
+      ],
+      "slot_lines": [
+        "Upload Official CMP",
+        "Upload Official Syllabus"
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_24_f_subjects.png"
+    },
+    {
+      "phase": "F_subjects_console",
+      "t": 60.0,
+      "url": "http://127.0.0.1:5130/console/subjects",
+      "text": "404\n\nPage Not Found\n\nThe page you are looking for does not exist.\n\nReference ID 2B1E1760B5CE \u2014 include this if you contact support.\n\nReturn Home\nHelp & Support\nAPPEARANCE\nLight\nDark\nSystem\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2",
+      "flashes": [],
+      "ctas": [
+        {
+          "t": "Light",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Dark",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "System",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Return Home",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Help & Support",
+          "vis": true,
+          "dis": false
+        }
+      ],
+      "labels": [],
+      "slot_lines": [],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_25_f_subjects_console.png"
+    },
+    {
+      "phase": "F_cs1r_compare",
+      "t": 60.3,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1r",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nOverview\nCurriculum Studio\nCS1R\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1R\n\nStage: Subject \u00b7 Status: Active \u00b7 Version 2026.1\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 in_progress\n\nPreview\n\nPreview needs attention \u00b7 not_ready \u00b7 2 topics\n\nChecklist\n\n4 of 8 checklist items ready.\n\nContent Sources\nDOCUMENTS UPLOADED\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nOfficial CMP \u00b7 official_syllabus.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:05\nSIZE\n1.7 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nOfficial Syllabus \u00b7 official_cmp.pdf\n\nVERSION\nv1\nUPLOADED\n2026-07-28 22:05\nSIZE\n1.4 KB\nSTATUS\nReady\nUPLOADED BY\n38\n\nPDF only \u00b7 maximum size applies\n\nReplace\nDownload\nRemove\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nOfficial CMP\nReady\nExtracted completed 2 ms\nNormalized completed 2 ms\nParsed completed 6 ms\nMapped completed 20 ms\nCurriculum structure built completed 62 ms\nReady completed 10 ms\nOfficial Syllabus\nReady\nExtracted completed 653 ms\nNormalized completed 3 ms\nParsed completed 13 ms\nMapped completed 25 ms\nCurriculum structure built completed 44 ms\nReady completed 21 ms\nCurriculum review\nExtraction, validation & corrections\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n\u2014\n\nTopics\n\n\u2014\n\nNeeds review\n\n\u2014\n\nValidation errors\n\n\u2014\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n2026.1 (preview_ready)\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": true,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official CMP \u00b7 official_syllabus.pdf",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF).",
+        "Official Syllabus \u00b7 official_cmp.pdf",
+        "Official CMP",
+        "Official Syllabus"
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_26_f_cs1r_compare.png"
+    },
+    {
+      "phase": "R_incomplete_workspace",
+      "t": 60.8,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1t",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe've opened your workspace successfully.\nOverview\nCurriculum Studio\nCS1T\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1T\n\nStage: Subject \u00b7 Status: Active\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 failed\n\nPreview\n\nPreview not ready \u2014 no extracted curriculum topics yet\n\nChecklist\n\n0 of 8 checklist items ready.\n\nValidation findings\n\nOfficial CMP is not present. (blocking)\n\nWhy it matters:\nWithout an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.\n\nWhat to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.\n\nOfficial syllabus is not present. (blocking)\n\nWhy it matters:\nPublication must stay grounded in the official syllabus so student journeys follow authorised curriculum order.\n\nWhat to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.\n\nContent Sources\nUPLOAD DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n0\n\nTopics\n\n0\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n\nNo versions yet\n\nNo versions recorded yet. Assign a version label after approval to start version history.\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Official CMP is not present. (blocking)",
+        "Without an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.",
+        "What to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.",
+        "What to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.",
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF)."
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_27_r_incomplete_workspace.png"
+    },
+    {
+      "phase": "R_incomplete_publish_attempt",
+      "t": 65.1,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1t",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe couldn't publish this curriculum because a version label is missing. Published packages need an immutable version. Assign a version, complete approval, then try again.\nOverview\nCurriculum Studio\nCS1T\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1T\n\nStage: Subject \u00b7 Status: Active\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 failed\n\nPreview\n\nPreview not ready \u2014 no extracted curriculum topics yet\n\nChecklist\n\n0 of 8 checklist items ready.\n\nValidation findings\n\nOfficial CMP is not present. (blocking)\n\nWhy it matters:\nWithout an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.\n\nWhat to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.\n\nOfficial syllabus is not present. (blocking)\n\nWhy it matters:\nPublication must stay grounded in the official syllabus so student journeys follow authorised curriculum order.\n\nWhat to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.\n\nContent Sources\nUPLOAD DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n0\n\nTopics\n\n0\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n\nNo versions yet\n\nNo versions recorded yet. Assign a version label after approval to start version history.\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [
+        "We couldn't publish this curriculum because a version label is missing. Published packages need an immutable version. Assign a version, complete approval, then try again.",
+        "We couldn't publish this curriculum because a version label is missing. Published packages need an immutable version. Assign a version, complete approval, then try again."
+      ],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Official CMP is not present. (blocking)",
+        "Without an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.",
+        "What to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.",
+        "What to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.",
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF)."
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_28_r_incomplete_publish_attempt.png"
+    },
+    {
+      "phase": "R_incomplete_approve_attempt",
+      "t": 68.0,
+      "url": "http://127.0.0.1:5130/console/studio/workspaces/ws-cs1t",
+      "text": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nOverview\nSubjects\nCurriculum Studio\nReview Queue\nPublishing\nVersions\nQuality\nStudents\nSettings\nSupport\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nWe couldn't publish this curriculum because a version label is missing. Published packages need an immutable version. Assign a version, complete approval, then try again.\nOverview\nCurriculum Studio\nCS1T\n\nCURRICULUM STUDIO \u00b7 WORKSPACE\n\nCS1T\n\nStage: Subject \u00b7 Status: Active\n\nNEXT STEP\n\nConfirm the subject, then advance to Content Sources.\n\nWorkflow\nSubject\n(current)\nContent Sources\nValidation\nPreview\nApproval\nPublish\nValidation\n\nValidation needs attention \u00b7 failed\n\nPreview\n\nPreview not ready \u2014 no extracted curriculum topics yet\n\nChecklist\n\n0 of 8 checklist items ready.\n\nValidation findings\n\nOfficial CMP is not present. (blocking)\n\nWhy it matters:\nWithout an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.\n\nWhat to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.\n\nOfficial syllabus is not present. (blocking)\n\nWhy it matters:\nPublication must stay grounded in the official syllabus so student journeys follow authorised curriculum order.\n\nWhat to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.\n\nContent Sources\nUPLOAD DOCUMENTS\n\nUpload the official curriculum PDFs for this subject. Kwalitec stores and links them automatically \u2014 you never need to manage internal file IDs.\n\nOfficial CMP\nREQUIRED\n\nCurriculum Master Pack \u2014 the authoritative source for sections, topics, and learning objectives.\n\nThis slot accepts Official CMP only (Curriculum Master Pack).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nOfficial Syllabus\nREQUIRED\n\nOfficial syllabus PDF grounding authorised curriculum order.\n\nThis slot accepts Official Syllabus only (official syllabus PDF).\n\nDrag PDF here\n\nor\n\nSelect PDF\n\nPDF only \u00b7 maximum size applies\n\nDocument processing\nProcessing\nVerified\nExtracted\nParsed\nMapped\nCurriculum structure built\nReady\nCurriculum review\n0 awaiting review \u00b7 0 validation errors\nOVERVIEW\nDOCUMENTS\nEXTRACTION STATUS\nCURRICULUM STRUCTURE\nSOURCE EVIDENCE\nVALIDATION\nREVIEW QUEUE\nQUALITY\nTOPIC DETAILS\n\nExtracted curriculum ready for Founder review.\n\nDocuments\n\n0\n\nTopics\n\n0\n\nNeeds review\n\n0\n\nValidation errors\n\n0\n\nActions\nApproval note\nPublication note\nVersion history\nVersion label *\n\nNo versions yet\n\nNo versions recorded yet. Assign a version label after approval to start version history.\n\n\u2190 Back to Curriculum Studio\n\nKwalitec Console \u00b7 What needs attention today?",
+      "flashes": [
+        "We couldn't publish this curriculum because a version label is missing. Published packages need an immutable version. Assign a version, complete approval, then try again.",
+        "We couldn't publish this curriculum because a version label is missing. Published packages need an immutable version. Assign a version, complete approval, then try again."
+      ],
+      "ctas": [
+        {
+          "t": "Search",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Sign out",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Remove",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "OVERVIEW",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "DOCUMENTS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "EXTRACTION STATUS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "CURRICULUM STRUCTURE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "SOURCE EVIDENCE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "VALIDATION",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "REVIEW QUEUE",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "QUALITY",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "TOPIC DETAILS",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Search",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Load",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Advance to Next Stage",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Validate Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Build Preview",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Approve Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Publish Verified Curriculum",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Assign Version",
+          "vis": true,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        },
+        {
+          "t": "Download",
+          "vis": false,
+          "dis": false
+        }
+      ],
+      "labels": [
+        "Search the Console",
+        "Select PDF",
+        "Replace",
+        "Select PDF",
+        "Replace",
+        "Search concepts",
+        "Retrieval profile",
+        "Entity id",
+        "Approval note",
+        "Publication note",
+        "Version label *"
+      ],
+      "slot_lines": [
+        "Official CMP is not present. (blocking)",
+        "Without an Official CMP the Studio cannot derive sections, topics, or learning objectives for students.",
+        "What to do: Upload the Official CMP PDF in Content Sources, then run Validate Curriculum again.",
+        "What to do: Upload the Official Syllabus PDF in Content Sources, then run Validate Curriculum again.",
+        "Official CMP",
+        "This slot accepts Official CMP only (Curriculum Master Pack).",
+        "Official Syllabus",
+        "This slot accepts Official Syllabus only (official syllabus PDF)."
+      ],
+      "screenshot": "/tmp/fv001b_rerun_capture/screenshots/focus_29_r_incomplete_approve_attempt.png"
+    }
+  ],
+  "binding": [
+    {
+      "index": 0,
+      "name": "",
+      "id": "doc-file-cmp",
+      "accept": ".pdf,application/pdf",
+      "texts": [
+        "Upload Official CMP PDF",
+        "Official CMP",
+        "Content Sources",
+        "Content sources"
+      ]
+    },
+    {
+      "index": 1,
+      "name": "",
+      "id": "doc-file-syllabus",
+      "accept": ".pdf,application/pdf",
+      "texts": [
+        "Upload Official Syllabus PDF",
+        "Official Syllabus",
+        "Official CMP",
+        "Content Sources",
+        "Content sources"
+      ]
+    }
+  ]
+}

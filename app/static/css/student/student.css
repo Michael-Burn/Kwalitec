@@ -207,6 +207,63 @@ button.student-signout {
   font: inherit;
 }
 
+/* Appearance controls live in the shared Student shell (RC-2026.07.29-03). */
+.student-topbar .appearance-switcher {
+  align-items: center;
+  display: inline-flex;
+  flex-shrink: 0;
+  gap: 0.15rem;
+  margin-left: 0;
+}
+
+.student-topbar .appearance-switcher-label {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: var(--font-xs, 0.75rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-right: var(--student-space-2);
+  text-transform: uppercase;
+}
+
+.student-topbar .appearance-option {
+  align-items: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  color: rgba(255, 255, 255, 0.68);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.9rem;
+  font-weight: 500;
+  gap: 0.35rem;
+  line-height: 1;
+  min-height: 2.75rem;
+  padding: var(--student-space-2) var(--student-space-3);
+  transition: background-color var(--transition-fast), color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.student-topbar .appearance-option:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--brand-white, #fff);
+}
+
+.student-topbar .appearance-option:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(139, 156, 224, 0.45);
+}
+
+.student-topbar .appearance-option.is-active {
+  background: rgba(59, 79, 184, 0.35);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: var(--brand-white, #fff);
+}
+
+.student-topbar .appearance-option svg {
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
 /* RR-001.2 / XR-05 — compact mobile nav: single topbar row, expand on demand. */
 @media (max-width: 767.98px) {
   .student-topbar-inner {
@@ -1392,6 +1449,21 @@ body[data-nav-pending="true"] .student-main {
 @media (max-width: 575.98px) {
   .welcome-modal-card {
     padding: var(--space-xl);
+  }
+
+  .student-topbar .appearance-switcher-label {
+    display: none;
+  }
+
+  .student-topbar .appearance-option span {
+    display: none;
+  }
+
+  .student-topbar .appearance-option {
+    justify-content: center;
+    min-width: var(--touch-target-min, 2.75rem);
+    min-height: var(--touch-target-min, 2.75rem);
+    padding: 0.45rem;
   }
 }
 

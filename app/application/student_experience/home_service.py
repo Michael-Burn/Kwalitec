@@ -111,14 +111,31 @@ class HomeService:
                         learner.get("exam_countdown_days"),
                     ),
                 )
+            examination_label = str(
+                learner.get("examination_label")
+                or readiness.get("examination_label")
+                or ""
+            ).strip()
+            if not examination_label:
+                # RC-2026.07.29-06 / CQ-002 parity: active Study Plan is the
+                # canonical exam identity when Twin projection is empty.
+                from app.application.student_experience.examination_identity import (
+                    exam_label_from_active_plan,
+                )
+
+                examination_label = exam_label_from_active_plan(sid)
+            recommendation_title = translate_to_student_language(
+                str(
+                    recommendation.get("title")
+                    or recommendation.get("topic_title")
+                    or session.get("topic_title")
+                    or ""
+                )
+            )
             home = StudentHome.create(
                 sid,
                 display_name=str(learner.get("display_name") or ""),
-                examination_label=str(
-                    learner.get("examination_label")
-                    or readiness.get("examination_label")
-                    or ""
-                ),
+                examination_label=examination_label,
                 exam_countdown_days=_first_present_int(
                     readiness.get("exam_countdown_days"),
                     learner.get("exam_countdown_days"),
@@ -127,13 +144,7 @@ class HomeService:
                     readiness.get("exam_readiness"),
                     readiness.get("readiness_score"),
                 ),
-                recommendation_title=translate_to_student_language(
-                    str(
-                        recommendation.get("title")
-                        or recommendation.get("topic_title")
-                        or ""
-                    )
-                ),
+                recommendation_title=recommendation_title,
                 recommendation_summary=translate_to_student_language(
                     str(
                         recommendation.get("summary")

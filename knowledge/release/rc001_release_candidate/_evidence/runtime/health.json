@@ -1,0 +1,41 @@
+{
+    "build_date": "2026-07-28",
+    "build_number": "local",
+    "commit": null,
+    "components": {
+        "database": {
+            "latency_ms": 0.2,
+            "name": "database",
+            "status": "ok"
+        },
+        "instance_storage": {
+            "meta": {
+                "path": "/Users/kwalitec/Developer/kwalitec/instance"
+            },
+            "name": "instance_storage",
+            "status": "ok"
+        },
+        "migrations": {
+            "meta": {
+                "current": "202607280080",
+                "head": "202607280080"
+            },
+            "name": "migrations",
+            "status": "ok"
+        },
+        "queue": {
+            "detail": "manual automation runner (no external broker)",
+            "meta": {
+                "broker": "none",
+                "runner": "app.automation"
+            },
+            "name": "queue",
+            "status": "ok"
+        }
+    },
+    "database": "connected",
+    "environment": "development",
+    "status": "ok",
+    "timestamp": "2026-07-28T23:04:31.639111+00:00",
+    "version": "2.0.0"
+}

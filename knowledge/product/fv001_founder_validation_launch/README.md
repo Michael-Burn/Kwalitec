@@ -41,7 +41,16 @@ Operator dump: `flask fv-metrics`
 | [`VALIDATED_CRI_BOARD.md`](VALIDATED_CRI_BOARD.md) | Founder Validated CRI scores |
 | [`WEEKLY_VALIDATION_SUMMARY.md`](WEEKLY_VALIDATION_SUMMARY.md) | Weekly roll-up |
 | [`ENGINEERING_RECOMMENDATIONS.md`](ENGINEERING_RECOMMENDATIONS.md) | Fix authorisation (Critical/Major only) |
-| [`FOUNDER_ACCEPTANCE_REVIEW.md`](FOUNDER_ACCEPTANCE_REVIEW.md) | End-of-period acceptance |
+| [`FOUNDER_ACCEPTANCE_REVIEW.md`](FOUNDER_ACCEPTANCE_REVIEW.md) | End-of-period acceptance (soak — do not complete early) |
+| [`FOUNDER_BLIND_ACCEPTANCE_REVIEW.md`](FOUNDER_BLIND_ACCEPTANCE_REVIEW.md) | **FV-001A** independent blind walkthrough report |
+| [`FINAL_VERDICT.md`](FINAL_VERDICT.md) | FV-001A recommendation (NO-GO / conditions) |
+| [`SCREEN_REVIEW_LOG.md`](SCREEN_REVIEW_LOG.md) | FV-001A screen-by-screen template log |
+| [`FIRST_IMPRESSIONS.md`](FIRST_IMPRESSIONS.md) | FV-001A opening confidence / confusion |
+| [`JOURNEY_TIMELINE.md`](JOURNEY_TIMELINE.md) | FV-001A timed journey narrative |
+| [`TERMINOLOGY_AUDIT.md`](TERMINOLOGY_AUDIT.md) | FV-001A on-screen terminology |
+| [`UX_FINDINGS.md`](UX_FINDINGS.md) | FV-001A severity-tagged UX register |
+| [`LAUNCH_BLOCKERS.md`](LAUNCH_BLOCKERS.md) | FV-001A Version 1 journey blockers |
+| [`PRIORITISED_ACTIONS.md`](PRIORITISED_ACTIONS.md) | FV-001A P0–P2 actions (docs before engineering) |
 | [`FV001_LAUNCH_REPORT.md`](FV001_LAUNCH_REPORT.md) | Window-open report |
 | [`FV001_COMPLETION_REPORT.md`](FV001_COMPLETION_REPORT.md) | Instrumentation + workflows report |
 

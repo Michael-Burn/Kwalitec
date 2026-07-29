@@ -75,17 +75,55 @@ def recover_flash(exc: BaseException, fallback_key: str) -> str:
             )
         return FLASH_WARNING["validate"]
     if isinstance(exc, PreviewError):
+        detail = str(exc).strip()
+        if "no curriculum" in detail.lower() or "hierarchy" in detail.lower():
+            return (
+                "We couldn't build a meaningful preview — no extracted "
+                "curriculum topics are available yet. Upload Official CMP and "
+                "Official Syllabus, wait for extraction, validate, then try "
+                "again."
+            )
         return FLASH_WARNING["preview"]
     if isinstance(exc, PublicationError):
         detail = str(exc).lower()
+        # Approve path must never surface Publish verbs (PI-002R Phase 3/5).
+        if "approval requires successful validation" in detail or (
+            "validation" in detail and "approval" in detail
+        ):
+            return (
+                "We couldn't approve this curriculum because validation has "
+                "not passed. Approval without validation risks publishing an "
+                "unsafe package. Run Validate Curriculum, fix any findings, "
+                "then try again."
+            )
+        if "approval requires a successful preview" in detail or (
+            "preview" in detail and "approval" in detail
+        ):
+            return (
+                "We couldn't approve this curriculum because preview is not "
+                "ready. Approval needs a reviewable curriculum structure. "
+                "Build preview after validation, then try again."
+            )
+        if "approval requires an assigned version" in detail:
+            return FLASH_WARNING["approve"]
         if "not ready" in detail or "blocking" in detail:
+            if fallback_key == "approve":
+                return (
+                    "We couldn't approve this curriculum because publication "
+                    "readiness gates are incomplete. Complete validation and "
+                    "preview, then try again."
+                )
             return FLASH_WARNING["publish"]
         if "version" in detail:
+            if fallback_key == "approve":
+                return FLASH_WARNING["approve"]
             return (
                 "We couldn't publish this curriculum because a version label "
                 "is missing. Published packages need an immutable version. "
                 "Assign a version, complete approval, then try again."
             )
+        if fallback_key == "approve":
+            return FLASH_WARNING["approve"]
         return FLASH_WARNING["publish"]
     if isinstance(exc, VersionNotFound):
         return (

@@ -109,44 +109,32 @@ class TestOfficialAssetPack:
         assert "hand-built vector" not in text
 
 
-class TestSidebarBrandChrome:
-    def test_sign_out_follows_share_feedback(self) -> None:
-        """BI-001A: Sign Out sits immediately under Product Check-in (not viewport-pinned)."""
-        import re
-
-        text = (ROOT / "app/templates/partials/sidebar.html").read_text(
+class TestStudentShellBrandChrome:
+    def test_eos_shell_sign_out_beside_nav(self) -> None:
+        """RC-2026.07.29-03: Sign out lives in the EOS topbar, not a pinned sidebar."""
+        text = (ROOT / "app/templates/layouts/eos_student.html").read_text(
             encoding="utf-8"
         )
-        feedback_idx = text.index("Product Check-in")
-        signout_idx = text.index("Sign out")
-        assert feedback_idx < signout_idx
+        assert "auth.logout" in text
+        assert "student-signout" in text
         assert "mt-auto" not in text
-        # Logout form must be the next interactive block after Product Check-in.
-        assert re.search(
-            r"Product Check-in\s*</a>\s*<form method=\"post\"[^>]*url_for\('auth\.logout'\)",
-            text,
-            re.DOTALL,
-        )
-        # Must live inside the System nav section, not a bottom-pinned footer.
-        system_block = text.split('nav-section-label">System', 1)[1]
-        system_block = system_block.split("</nav>", 1)[0]
-        assert "Sign out" in system_block
-        assert "px-3 py-3 mt-auto" not in text
+        assert "student/components/navigation.html" in text
+        assert "appearance_switcher" in text
 
-    def test_sidebar_nav_does_not_stretch_for_bottom_pin(self) -> None:
-        """BI-001A: nav must not flex-grow; that created the Feedback↔Sign Out gap."""
-        css = APP_CSS.read_text(encoding="utf-8")
-        assert ".sidebar nav{flex:1" not in css
-        assert "margin-top:auto" not in css.replace(" ", "").lower()
-        assert ".sidebar .sidebar-signout{" in css
-        assert "rgba(255, 255, 255, 0.55)" in css
-        assert ".sidebar .nav-link:focus-visible" in css
+    def test_eos_shell_active_nav_uses_brand_tokens(self) -> None:
+        css = (ROOT / "app/static/css/student/student.css").read_text(
+            encoding="utf-8"
+        )
+        assert ".student-nav-link.is-active" in css
+        assert "brand-white" in css or "#fff" in css
 
     def test_active_nav_uses_brand_blue(self) -> None:
         css = APP_CSS.read_text(encoding="utf-8")
         assert "brand-blue" in css
-        assert ".sidebar .nav-link.active" in css
-
+        student = (ROOT / "app/static/css/student/student.css").read_text(
+            encoding="utf-8"
+        )
+        assert "59, 79, 184" in student or "brand-blue" in student
 
 class TestBrandHttp:
     def test_login_loads_brand_stylesheet(self, client) -> None:

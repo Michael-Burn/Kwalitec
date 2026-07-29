@@ -69,25 +69,23 @@ class TestProductIdentity:
 
 
 class TestOnboardingDedup:
-    def test_wizard_step4_does_not_collect_completed_topics(self, logged_in_client):
+    def test_begin_learning_does_not_collect_completed_topics(self, logged_in_client):
         with logged_in_client.session_transaction() as sess:
             sess["wizard_data"] = {
                 "exam_category": "IFoA",
                 "exam_paper": "CS1",
                 "exam_sitting": "April 2027",
                 "exam_date": "2027-04-15",
+                "weekday_study_minutes": 60,
+                "weekend_study_minutes": 90,
+                "preferred_session_minutes": 60,
             }
-        get_resp = logged_in_client.get("/study-plan/wizard/4")
+        get_resp = logged_in_client.get("/study-plan/review")
         html = get_resp.get_data(as_text=True)
+        assert get_resp.status_code == 200
         assert "Which topics have you already completed" not in html
-
-        post_resp = logged_in_client.post(
-            "/study-plan/wizard/4",
-            data={"current_position": "learning"},
-            follow_redirects=True,
-        )
-        assert post_resp.status_code == 200
+        assert "Begin Learning" in html or "Study Plan" in html
         with logged_in_client.session_transaction() as sess:
             wizard_data = sess["wizard_data"]
-            assert wizard_data["current_position"] == "learning"
+            assert wizard_data.get("current_position") == "not_started"
             assert "completed_curriculum_topics" not in wizard_data

@@ -1,7 +1,7 @@
 """RC-001 accessibility regression tests (B4, B5, B6).
 
 These tests assert the server-rendered ARIA contract for the Welcome dialog
-and the navigation drawer. Focus-trap/focus-return *behaviour* lives in
+and the navigation chrome. Focus-trap/focus-return *behaviour* lives in
 JavaScript (``app/static/js/app.js``) and is evidenced separately in
 ``knowledge/product/rc001/ACCESSIBILITY_VALIDATION.md`` via a Playwright
 keyboard-navigation harness, since this project has no in-repo JS test
@@ -11,12 +11,10 @@ receives carries the attributes that JS behaviour depends on.
 B4's own dialog-markup coverage lives in
 ``tests/presentation/student/test_accessibility.py`` (the canonical
 ``student/`` shell — see that file's ``TestWelcomeModalOnCanonicalStudentHome``
-for why ``/dashboard/`` is not the right target for that assertion). The
-nav-drawer (B5) checks below use ``/settings/profile`` rather than
-``/dashboard/``: both render the same ``partials/sidebar.html`` +
-``partials/topnav.html`` chrome via ``layouts/base.html``, but
-``/dashboard/`` currently 302s in this branch for reasons unrelated to
-RC-001 (pre-existing legacy-dashboard template WIP, out of B1-B10 scope).
+for why ``/dashboard/`` is not the right target for that assertion).
+
+RC-2026.07.29-03: authenticated Student chrome is the EOS topbar + compact
+mobile Menu toggle (not the retired legacy sidebar drawer).
 """
 
 from __future__ import annotations
@@ -25,15 +23,13 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 APP_CSS = (ROOT / "app" / "static" / "css" / "app.css").read_text()
+STUDENT_CSS = (
+    ROOT / "app" / "static" / "css" / "student" / "student.css"
+).read_text()
 
 
 class TestTouchTargets:
-    """B7 — PX-003 flagged the icon-only appearance-switcher buttons at
-    <=575.98px as a "plausible" (unconfirmed) mobile failure candidate.
-    Live Playwright measurement at 375px confirmed it: 36.375x36.375px,
-    below --touch-target-min (44px). Fixed by applying the token inside the
-    existing narrow-width media query; this test locks that in.
-    """
+    """B7 — appearance option hit targets meet --touch-target-min at mobile."""
 
     def test_appearance_option_meets_touch_target_min_at_mobile_width(self):
         assert (
@@ -42,25 +38,22 @@ class TestTouchTargets:
             "min-height:var(--touch-target-min, 2.75rem);"
             "justify-content:center;}"
         ) in APP_CSS
+        assert "min-width: var(--touch-target-min, 2.75rem)" in STUDENT_CSS
+        assert "min-height: var(--touch-target-min, 2.75rem)" in STUDENT_CSS
 
 
 class TestNavigationDrawerAccessibility:
-    """B5 — nav drawer aria-expanded / aria-controls scaffolding.
-
-    The toggle's aria-expanded state itself flips at runtime (JS), but the
-    static attributes it depends on — an id on the drawer to point
-    aria-controls at, and an aria-label on the toggle — must be present in
-    every server response.
-    """
+    """B5 — EOS compact mobile nav aria scaffolding (RC-2026.07.29-03)."""
 
     def test_toggle_has_label_and_controls_target(self, logged_in_client):
         body = logged_in_client.get("/settings/profile").get_data(as_text=True)
-        assert "data-sidebar-toggle" in body
-        assert 'aria-label="Toggle navigation"' in body
-        assert 'id="app-sidebar"' in body
+        assert "student-shell" in body
+        assert "data-student-nav-toggle" in body
+        assert 'aria-controls="student-nav-list"' in body
+        assert 'aria-label="Student experience"' in body
+        assert 'id="app-sidebar"' not in body
 
-    def test_sidebar_backdrop_present_for_close_on_outside_click(
-        self, logged_in_client
-    ):
+    def test_sidebar_backdrop_retired_with_legacy_shell(self, logged_in_client):
         body = logged_in_client.get("/settings/profile").get_data(as_text=True)
-        assert "data-sidebar-close" in body
+        assert "data-sidebar-close" not in body
+        assert "student-nav" in body

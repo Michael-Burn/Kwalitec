@@ -53,31 +53,38 @@ class TestBrandIdentityConstants:
 
 class TestShellTemplateWiring:
     def test_layouts_include_shared_footer(self) -> None:
-        for relative in (
-            "app/templates/layouts/base.html",
-            "app/templates/layouts/auth_base.html",
-        ):
-            text = (ROOT / relative).read_text(encoding="utf-8")
-            assert "partials/app_footer.html" in text
-
-    def test_sidebar_includes_alpha_badge(self) -> None:
-        text = (ROOT / "app/templates/partials/sidebar.html").read_text(
+        eos = (ROOT / "app/templates/layouts/eos_student.html").read_text(
             encoding="utf-8"
         )
-        assert "partials/internal_alpha_badge.html" in text
+        assert "student-footer" in eos
+        auth = (ROOT / "app/templates/layouts/auth_base.html").read_text(
+            encoding="utf-8"
+        )
+        assert "partials/app_footer.html" in auth
+
+    def test_eos_shell_includes_brand_logo(self) -> None:
+        text = (ROOT / "app/templates/layouts/eos_student.html").read_text(
+            encoding="utf-8"
+        )
         assert "partials/brand_logo.html" in text
+        assert "student-brand-logo" in text
 
-    def test_topnav_includes_alpha_badge(self) -> None:
-        text = (ROOT / "app/templates/partials/topnav.html").read_text(
+    def test_eos_shell_includes_appearance_controls(self) -> None:
+        text = (ROOT / "app/templates/layouts/eos_student.html").read_text(
             encoding="utf-8"
         )
-        assert "partials/internal_alpha_badge.html" in text
-        assert "topnav-end" in text
+        assert "appearance_switcher" in text
+        assert "student/components/navigation.html" in text
 
     def test_login_includes_alpha_identity(self) -> None:
         text = (ROOT / "app/templates/auth/login.html").read_text(encoding="utf-8")
         assert "landing-alpha-identity" in text
         assert "partials/internal_alpha_badge.html" in text
+
+    def test_legacy_workspace_chrome_retired(self) -> None:
+        assert not (ROOT / "app/templates/layouts/legacy_workspace.html").exists()
+        assert not (ROOT / "app/templates/partials/sidebar.html").exists()
+        assert not (ROOT / "app/templates/partials/topnav.html").exists()
 
     def test_user_facing_founder_templates_avoid_legacy_names(self) -> None:
         forbidden = (

@@ -96,11 +96,11 @@ class TestBrandTemplateWiring:
         assert ">Kwalitec</span>" not in text
         assert "M12 2L2 7l10 5 10-5-10-5z" not in text
 
-    def test_sidebar_uses_canonical_logo_partial(self) -> None:
-        path = ROOT / "app/templates/partials/sidebar.html"
+    def test_eos_shell_uses_canonical_logo_partial(self) -> None:
+        path = ROOT / "app/templates/layouts/eos_student.html"
         text = path.read_text(encoding="utf-8")
         assert "partials/brand_logo.html" in text
-        assert "sidebar-brand-logo" in text
+        assert "student-brand-logo" in text
         assert ">Kwalitec</span>" not in text
 
     def test_brand_logo_partial_uses_approved_png_only(self) -> None:
@@ -129,14 +129,15 @@ class TestBrandHttpWiring:
         assert "M12 2L2 7l10 5 10-5-10-5z" not in html
 
     def test_authenticated_shell_uses_canonical_logo(self, logged_in_client) -> None:
-        resp = logged_in_client.get("/dashboard/")
+        resp = logged_in_client.get("/student/")
         assert resp.status_code == 200
         html = resp.get_data(as_text=True)
         assert APPROVED_LOGO_STATIC_PATH in html
         assert "logo-icon.svg" not in html
         assert "branding/favicon.svg" in html
         assert "branding/favicon.ico" in html
-        assert "sidebar-brand-logo" in html
+        assert "student-brand-logo" in html
+        assert "student-shell" in html
 
     def test_static_brand_assets_are_servable(self, client) -> None:
         for filename in (

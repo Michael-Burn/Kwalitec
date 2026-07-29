@@ -1,0 +1,6 @@
+git_commit=f17058862baf9aa8c6f416c6fa7bd26739812fb8
+git_branch=feature/ap-002-assessment-engine
+git_status=86 paths dirty/untracked
+worktree_digest=5e8e92256cbd1e728e5ddb8f8ec40b1f9f26ccf1ac84ddb0addd36d02593915e
+NOTE: build_id is sha256 of the manifest file contents (aggregated per-file hashes)
+5e8e92256cbd1e728e5ddb8f8ec40b1f9f26ccf1ac84ddb0addd36d02593915e  knowledge/release/rc001_release_candidate/_evidence/source/worktree_manifest_sha256.txt

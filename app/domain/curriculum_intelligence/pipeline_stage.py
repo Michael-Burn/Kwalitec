@@ -77,7 +77,7 @@ FOUNDER_STAGE_LABELS: dict[PipelineStage, str] = {
     PipelineStage.NORMALIZED: "Normalized",
     PipelineStage.PARSED: "Parsed",
     PipelineStage.MAPPED: "Mapped",
-    PipelineStage.GRAPH_BUILT: "Knowledge Graph Built",
+    PipelineStage.GRAPH_BUILT: "Curriculum structure built",
     PipelineStage.READY_FOR_EMBEDDINGS: "Ready",
     PipelineStage.FAILED: "Failed",
     PipelineStage.CANCELLED: "Cancelled",

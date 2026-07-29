@@ -1,0 +1,37 @@
+%PDF-1.4
+1 0 obj<< /Type /Catalog /Pages 2 0 R >>endobj
+2 0 obj<< /Type /Pages /Kids [3 0 R] /Count 1 >>endobj
+3 0 obj<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>endobj
+4 0 obj<< /Length 1308 >>stream
+BT /F1 14 Tf 50 780 Td (Official CMP CS1V) Tj ET
+BT /F1 11 Tf 50 750 Td (Core Reading / CMP - CS1V Actuarial Statistics) Tj ET
+BT /F1 11 Tf 50 732 Td (Chapter 1 Data exploration) Tj ET
+BT /F1 11 Tf 50 714 Td (Students should be able to summarise datasets and construct plots.) Tj ET
+BT /F1 11 Tf 50 696 Td (Learning objective: Describe measures of central tendency.) Tj ET
+BT /F1 11 Tf 50 678 Td (Chapter 2 Probability) Tj ET
+BT /F1 11 Tf 50 660 Td (Students should apply probability rules to actuarial problems.) Tj ET
+BT /F1 11 Tf 50 642 Td (Learning objective: Apply Bayes theorem to update beliefs.) Tj ET
+BT /F1 11 Tf 50 624 Td (Chapter 3 Distributions) Tj ET
+BT /F1 11 Tf 50 606 Td (Students should identify and use common probability distributions.) Tj ET
+BT /F1 11 Tf 50 588 Td (Learning objective: Identify binomial and normal distributions.) Tj ET
+BT /F1 11 Tf 50 570 Td (Chapter 4 Inference) Tj ET
+BT /F1 11 Tf 50 552 Td (Students should estimate parameters and test hypotheses.) Tj ET
+BT /F1 11 Tf 50 534 Td (Learning objective: Construct confidence intervals.) Tj ET
+BT /F1 11 Tf 50 516 Td (Chapter 5 Regression) Tj ET
+BT /F1 11 Tf 50 498 Td (Students should fit and interpret linear regression models.) Tj ET
+BT /F1 11 Tf 50 480 Td (Learning objective: Interpret regression coefficients.) Tj ET
+endstream
+endobj
+5 0 obj<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000056 00000 n 
+0000000111 00000 n 
+0000000235 00000 n 
+0000001593 00000 n 
+trailer<< /Size 6 /Root 1 0 R >>
+startxref
+1661
+%%EOF

@@ -1,0 +1,458 @@
+{
+  "base_url": "http://127.0.0.1:5055",
+  "started_at": "2026-07-29T09:27:34.986713+00:00",
+  "shots": {
+    "public_01": {
+      "filename": "01_public_home.png",
+      "path": "/Users/kwalitec/Developer/kwalitec/knowledge/engineering/rc20260729_03_student_shell_unification/_evidence/browser_acceptance/01_public_home.png",
+      "url": "http://127.0.0.1:5055/auth/login?next=%2Fdashboard%2F",
+      "dom": {
+        "url": "http://127.0.0.1:5055/auth/login?next=%2Fdashboard%2F",
+        "title": "Sign in · Kwalitec",
+        "theme": "light",
+        "bodySurface": null,
+        "hasStudentShell": false,
+        "headerClass": null,
+        "footerText": "Kwalitec v2.0.0\nInternal Alpha\n·\nFounding Cohort\n·\nBuild RC2",
+        "h1": "Sign in",
+        "scrollX": false,
+        "scrollY": false,
+        "headerBB": null,
+        "footerBB": {
+          "top": 714,
+          "left": 0,
+          "width": 1366,
+          "height": 54
+        },
+        "mainBB": {
+          "top": 0,
+          "left": 0,
+          "width": 1366,
+          "height": 685.21875
+        },
+        "navLinks": [],
+        "activeNav": [],
+        "studentShellSelectorPresent": false,
+        "sessionPage": false,
+        "founderConsole": false
+      },
+      "captured_at_ms": 1785317256780
+    },
+    "public_02": {
+      "filename": "02_theme_light.png",
+      "path": "/Users/kwalitec/Developer/kwalitec/knowledge/engineering/rc20260729_03_student_shell_unification/_evidence/browser_acceptance/02_theme_light.png",
+      "url": "http://127.0.0.1:5055/auth/login?next=%2Fdashboard%2F",
+      "dom": {
+        "url": "http://127.0.0.1:5055/auth/login?next=%2Fdashboard%2F",
+        "title": "Sign in · Kwalitec",
+        "theme": "light",
+        "bodySurface": null,
+        "hasStudentShell": false,
+        "headerClass": null,
+        "footerText": "Kwalitec v2.0.0\nInternal Alpha\n·\nFounding Cohort\n·\nBuild RC2",
+        "h1": "Sign in",
+        "scrollX": false,
+        "scrollY": false,
+        "headerBB": null,
+        "footerBB": {
+          "top": 714,
+          "left": 0,
+          "width": 1366,
+          "height": 54
+        },
+        "mainBB": {
+          "top": 0,
+          "left": 0,
+          "width": 1366,
+          "height": 685.21875
+        },
+        "navLinks": [],
+        "activeNav": [],
+        "studentShellSelectorPresent": false,
+        "sessionPage": false,
+        "founderConsole": false
+      },
+      "captured_at_ms": 1785317257780
+    },
+    "public_03": {
+      "filename": "03_theme_dark.png",
+      "path": "/Users/kwalitec/Developer/kwalitec/knowledge/engineering/rc20260729_03_student_shell_unification/_evidence/browser_acceptance/03_theme_dark.png",
+      "url": "http://127.0.0.1:5055/auth/login?next=%2Fdashboard%2F",
+      "dom": {
+        "url": "http://127.0.0.1:5055/auth/login?next=%2Fdashboard%2F",
+        "title": "Sign in · Kwalitec",
+        "theme": "dark",
+        "bodySurface": null,
+        "hasStudentShell": false,
+        "headerClass": null,
+        "footerText": "Kwalitec v2.0.0\nInternal Alpha\n·\nFounding Cohort\n·\nBuild RC2",
+        "h1": "Sign in",
+        "scrollX": false,
+        "scrollY": false,
+        "headerBB": null,
+        "footerBB": {
+          "top": 714,
+          "left": 0,
+          "width": 1366,
+          "height": 54
+        },
+        "mainBB": {
+          "top": 0,
+          "left": 0,
+          "width": 1366,
+          "height": 685.21875
+        },
+        "navLinks": [],
+        "activeNav": [],
+        "studentShellSelectorPresent": false,
+        "sessionPage": false,
+        "founderConsole": false
+      },
+      "captured_at_ms": 1785317258793
+    },
+    "public_04": {
+      "filename": "04_theme_system.png",
+      "path": "/Users/kwalitec/Developer/kwalitec/knowledge/engineering/rc20260729_03_student_shell_unification/_evidence/browser_acceptance/04_theme_system.png",
+      "url": "http://127.0.0.1:5055/auth/login?next=%2Fdashboard%2F",
+      "dom": {
+        "url": "http://127.0.0.1:5055/auth/login?next=%2Fdashboard%2F",
+        "title": "Sign in · Kwalitec",
+        "theme": "light",
+        "bodySurface": null,
+        "hasStudentShell": false,
+        "headerClass": null,
+        "footerText": "Kwalitec v2.0.0\nInternal Alpha\n·\nFounding Cohort\n·\nBuild RC2",
+        "h1": "Sign in",
+        "scrollX": false,
+        "scrollY": false,
+        "headerBB": null,
+        "footerBB": {
+          "top": 714,
+          "left": 0,
+          "width": 1366,
+          "height": 54
+        },
+        "mainBB": {
+          "top": 0,
+          "left": 0,
+          "width": 1366,
+          "height": 685.21875
+        },
+        "navLinks": [],
+        "activeNav": [],
+        "studentShellSelectorPresent": false,
+        "sessionPage": false,
+        "founderConsole": false
+      },
+      "captured_at_ms": 1785317259782
+    },
+    "student_home": {
+      "filename": "05_student_home.png",
+      "path": "/Users/kwalitec/Developer/kwalitec/knowledge/engineering/rc20260729_03_student_shell_unification/_evidence/browser_acceptance/05_student_home.png",
+      "url": "http://127.0.0.1:5055/study-plan/wizard/1",
+      "dom": {
+        "url": "http://127.0.0.1:5055/study-plan/wizard/1",
+        "title": "Study Plan · Kwalitec",
+        "theme": "light",
+        "bodySurface": null,
+        "hasStudentShell": false,
+        "headerClass": "topnav",
+        "footerText": "Kwalitec v2.0.0\nInternal Alpha\n·\nFounding Cohort\n·\nBuild RC2",
+        "h1": "What examination are you preparing for?",
+        "scrollX": false,
+        "scrollY": true,
+        "headerBB": {
+          "top": 0,
+          "left": 260,
+          "width": 1106,
+          "height": 56
+        },
+        "footerBB": {
+          "top": 1407.375,
+          "left": 260,
+          "width": 1106,
+          "height": 46
+        },
+        "mainBB": {
+          "top": 56,
+          "left": 260,
+          "width": 1106,
+          "height": 1351.375
+        },
+        "navLinks": [
+          "Dashboard",
+          "Study Plan",
+          "Session",
+          "Analytics",
+          "Settings",
+          "Share Feedback",
+          "Help"
+        ],
+        "activeNav": [],
+        "studentShellSelectorPresent": false,
+        "sessionPage": false,
+        "founderConsole": false
+      },
+      "captured_at_ms": 1785317261389
+    },
+    "choose_exam": {
+      "filename": "06_choose_exam.png",
+      "path": "/Users/kwalitec/Developer/kwalitec/knowledge/engineering/rc20260729_03_student_shell_unification/_evidence/browser_acceptance/06_choose_exam.png",
+      "url": "http://127.0.0.1:5055/study-plan/wizard/1",
+      "dom": {
+        "url": "http://127.0.0.1:5055/study-plan/wizard/1",
+        "title": "Study Plan · Kwalitec",
+        "theme": "light",
+        "bodySurface": null,
+        "hasStudentShell": false,
+        "headerClass": "topnav",
+        "footerText": "Kwalitec v2.0.0\nInternal Alpha\n·\nFounding Cohort\n·\nBuild RC2",
+        "h1": "What examination are you preparing for?",
+        "scrollX": false,
+        "scrollY": true,
+        "headerBB": {
+          "top": 0,
+          "left": 260,
+          "width": 1106,
+          "height": 56
+        },
+        "footerBB": {
+          "top": 1327.375,
+          "left": 260,
+          "width": 1106,
+          "height": 46
+        },
+        "mainBB": {
+          "top": 56,
+          "left": 260,
+          "width": 1106,
+          "height": 1271.375
+        },
+        "navLinks": [
+          "Dashboard",
+          "Study Plan",
+          "Session",
+          "Analytics",
+          "Settings",
+          "Share Feedback",
+          "Help"
+        ],
+        "activeNav": [],
+        "studentShellSelectorPresent": false,
+        "sessionPage": false,
+        "founderConsole": false
+      },
+      "captured_at_ms": 1785317262448
+    },
+    "commitment": {
+      "filename": "07_commitment.png",
+      "path": "/Users/kwalitec/Developer/kwalitec/knowledge/engineering/rc20260729_03_student_shell_unification/_evidence/browser_acceptance/07_commitment.png",
+      "url": "http://127.0.0.1:5055/study-plan/wizard/2",
+      "dom": {
+        "url": "http://127.0.0.1:5055/study-plan/wizard/2",
+        "title": "500 Internal Server Error",
+        "theme": null,
+        "bodySurface": null,
+        "hasStudentShell": false,
+        "headerClass": null,
+        "footerText": null,
+        "h1": "Internal Server Error",
+        "scrollX": false,
+        "scrollY": false,
+        "headerBB": null,
+        "footerBB": null,
+        "mainBB": null,
+        "navLinks": [],
+        "activeNav": [],
+        "studentShellSelectorPresent": false,
+        "sessionPage": false,
+        "founderConsole": false
+      },
+      "captured_at_ms": 1785317324190
+    }
+  },
+  "actions": [],
+  "errors": [
+    {
+      "t": "2026-07-29T09:27:42.450634+00:00",
+      "type": "no_ready_radio_rows_found",
+      "url": "http://127.0.0.1:5055/study-plan/wizard/1"
+    },
+    {
+      "t": "2026-07-29T09:28:44.162986+00:00",
+      "type": "wizard_continue_not_found",
+      "url": "http://127.0.0.1:5055/study-plan/wizard/2",
+      "error": "Could not find wizard continue button."
+    },
+    {
+      "t": "2026-07-29T09:28:44.196484+00:00",
+      "type": "commitment_primary_action_not_found",
+      "url": "http://127.0.0.1:5055/study-plan/wizard/2",
+      "error": "Could not find wizard continue button."
+    }
+  ],
+  "console": [
+    {
+      "t": 1785317323.621,
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 500 (INTERNAL SERVER ERROR)"
+    }
+  ],
+  "page_errors": [],
+  "network": [
+    {
+      "t": 1785317323.616,
+      "kind": "response",
+      "url": "http://127.0.0.1:5055/study-plan/wizard/2",
+      "status": 500
+    }
+  ],
+  "navigation": [
+    {
+      "t": 1785317255.714,
+      "url": "http://127.0.0.1:5055/auth/login?next=%2Fdashboard%2F",
+      "main_frame": true
+    },
+    {
+      "t": 1785317256.828,
+      "url": "http://127.0.0.1:5055/auth/login?next=%2Fdashboard%2F",
+      "main_frame": true
+    },
+    {
+      "t": 1785317257.826,
+      "url": "http://127.0.0.1:5055/auth/login?next=%2Fdashboard%2F",
+      "main_frame": true
+    },
+    {
+      "t": 1785317258.839,
+      "url": "http://127.0.0.1:5055/auth/login?next=%2Fdashboard%2F",
+      "main_frame": true
+    },
+    {
+      "t": 1785317259.825,
+      "url": "http://127.0.0.1:5055/auth/login",
+      "main_frame": true
+    },
+    {
+      "t": 1785317260.23,
+      "url": "http://127.0.0.1:5055/study-plan/wizard/1",
+      "main_frame": true
+    },
+    {
+      "t": 1785317261.46,
+      "url": "http://127.0.0.1:5055/study-plan/wizard/1",
+      "main_frame": true
+    },
+    {
+      "t": 1785317261.834,
+      "url": "http://127.0.0.1:5055/study-plan/wizard/1",
+      "main_frame": true
+    },
+    {
+      "t": 1785317262.54,
+      "url": "http://127.0.0.1:5055/study-plan/wizard/1",
+      "main_frame": true
+    },
+    {
+      "t": 1785317323.62,
+      "url": "http://127.0.0.1:5055/study-plan/wizard/2",
+      "main_frame": true
+    }
+  ],
+  "student_login": {
+    "ok": true,
+    "email": "v1.empty@kwalitec.example",
+    "url": "http://127.0.0.1:5055/study-plan/wizard/1"
+  },
+  "explicit_answers": {
+    "did_shell_change_home_to_choose_exam": {
+      "answer": "NO",
+      "home_dom": {
+        "url": "http://127.0.0.1:5055/study-plan/wizard/1",
+        "title": "Study Plan · Kwalitec",
+        "theme": "light",
+        "bodySurface": null,
+        "hasStudentShell": false,
+        "headerClass": "topnav",
+        "footerText": "Kwalitec v2.0.0\nInternal Alpha\n·\nFounding Cohort\n·\nBuild RC2",
+        "h1": "What examination are you preparing for?",
+        "scrollX": false,
+        "scrollY": true,
+        "headerBB": {
+          "top": 0,
+          "left": 260,
+          "width": 1106,
+          "height": 56
+        },
+        "footerBB": {
+          "top": 1407.375,
+          "left": 260,
+          "width": 1106,
+          "height": 46
+        },
+        "mainBB": {
+          "top": 56,
+          "left": 260,
+          "width": 1106,
+          "height": 1351.375
+        },
+        "navLinks": [
+          "Dashboard",
+          "Study Plan",
+          "Session",
+          "Analytics",
+          "Settings",
+          "Share Feedback",
+          "Help"
+        ],
+        "activeNav": [],
+        "studentShellSelectorPresent": false,
+        "sessionPage": false,
+        "founderConsole": false
+      },
+      "choose_exam_dom": {
+        "url": "http://127.0.0.1:5055/study-plan/wizard/1",
+        "title": "Study Plan · Kwalitec",
+        "theme": "light",
+        "bodySurface": null,
+        "hasStudentShell": false,
+        "headerClass": "topnav",
+        "footerText": "Kwalitec v2.0.0\nInternal Alpha\n·\nFounding Cohort\n·\nBuild RC2",
+        "h1": "What examination are you preparing for?",
+        "scrollX": false,
+        "scrollY": true,
+        "headerBB": {
+          "top": 0,
+          "left": 260,
+          "width": 1106,
+          "height": 56
+        },
+        "footerBB": {
+          "top": 1327.375,
+          "left": 260,
+          "width": 1106,
+          "height": 46
+        },
+        "mainBB": {
+          "top": 56,
+          "left": 260,
+          "width": 1106,
+          "height": 1271.375
+        },
+        "navLinks": [
+          "Dashboard",
+          "Study Plan",
+          "Session",
+          "Analytics",
+          "Settings",
+          "Share Feedback",
+          "Help"
+        ],
+        "activeNav": [],
+        "studentShellSelectorPresent": false,
+        "sessionPage": false,
+        "founderConsole": false
+      }
+    }
+  }
+}

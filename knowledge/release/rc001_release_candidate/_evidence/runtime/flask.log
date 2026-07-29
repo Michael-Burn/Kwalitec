@@ -1,0 +1,184 @@
+[INFO] app: Kwalitec logging configured at level DEBUG
+[WARNING] app: SECRET_KEY is using the default value. Set a strong key for production use.
+[INFO] app: Environment: APP_ENV=development, FLASK_ENV=development, config=DevelopmentConfig
+[INFO] app: Using external database (DATABASE_URL is set)
+[INFO] app: SQLAlchemy database driver prefix: sqlite://
+[INFO] alembic.runtime.migration: Context impl SQLiteImpl.
+[INFO] alembic.runtime.migration: Will assume non-transactional DDL.
+[INFO] app: Alembic: current database revision = 202607280080
+[INFO] app: Alembic: head script revision = 202607280080
+[INFO] app: Alembic: database is up to date.
+[INFO] app.services.startup_service: Startup initialization beginning...
+[DEBUG] app.services.startup_service: Skipping curriculum import during Flask CLI command. Import will run on next normal application startup.
+[INFO] app.services.startup_service: Startup initialization complete.
+[INFO] app: Kwalitec application created successfully
+ * Serving Flask app 'run.py'
+ * Debug mode: off
+[INFO] alembic.runtime.migration: Context impl SQLiteImpl.
+[INFO] alembic.runtime.migration: Will assume non-transactional DDL.
+[INFO] kwalitec.observability: http_request method=GET path=/health status=200 duration_ms=10.1 correlation_id=50b092a64d294048ba461ec42c0b8a69
+[INFO] alembic.runtime.migration: Context impl SQLiteImpl.
+[INFO] alembic.runtime.migration: Will assume non-transactional DDL.
+[INFO] kwalitec.observability: http_request method=GET path=/health status=200 duration_ms=18.0 correlation_id=4250518f358348e5aa53b0392087c709
+[INFO] kwalitec.observability: http_request method=GET path=/auth/login status=200 duration_ms=27.5 correlation_id=69fefe55009e48ba9ba299e0405d9a84
+[INFO] kwalitec.observability: http_request method=POST path=/auth/login status=302 duration_ms=185.2 correlation_id=0cb50edcdeb649e9bb1c1d7465d6c648
+[INFO] kwalitec.observability: http_request method=GET path=/console/ status=200 duration_ms=586.5 correlation_id=ee8e10f918a449289e523fa2571801b6
+[INFO] kwalitec.observability: http_request method=GET path=/console/ status=200 duration_ms=247.6 correlation_id=30b7e95bb13142c4bc097163cafa7c12
+[INFO] kwalitec.observability: http_request method=GET path=/founder/ status=308 duration_ms=0.1 correlation_id=2525ac8fddca4afc811630af898da29b
+[INFO] kwalitec.observability: http_request method=GET path=/console/ status=200 duration_ms=214.8 correlation_id=60bf1b3303fa48a4aab9319701bb7670
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/subjects status=200 duration_ms=10.3 correlation_id=f0b3f680ede54a79b7047203f2f6b1e6
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/ status=200 duration_ms=8.3 correlation_id=2fbc038d4430410dab81c06e41e7f933
+[INFO] kwalitec.observability: http_request method=GET path=/founder/operations status=308 duration_ms=0.1 correlation_id=90faea64875c4c62b219427a56949202
+[ERROR] app.founder.dashboard.providers.weekly_brief: Founder Dashboard: weekly brief unavailable
+Traceback (most recent call last):
+  File "/Users/kwalitec/Developer/kwalitec/app/founder/dashboard/providers/weekly_brief.py", line 56, in get_brief
+    return self._service.generate_brief(state, recommendation_set)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kwalitec/Developer/kwalitec/app/founder/briefing/services/briefing_service.py", line 104, in generate_brief
+    return self.generate(
+           ~~~~~~~~~~~~~^
+        state,
+        ^^^^^^
+    ...<2 lines>...
+        output_dir=output_dir,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ).brief
+    ^
+  File "/Users/kwalitec/Developer/kwalitec/app/founder/briefing/services/briefing_service.py", line 87, in generate
+    raise BriefingValidationError(report)
+app.founder.briefing.dto.validation.BriefingValidationError: briefing validation failed: missing_week
+[INFO] kwalitec.observability: http_request method=GET path=/console/operations status=200 duration_ms=216.5 correlation_id=897e04f054cc404c9ff9141514c0abd5
+[INFO] kwalitec.observability: http_request method=GET path=/settings/ status=200 duration_ms=30.4 correlation_id=2b71c78561a34e1aa5b7169c4115623f
+[INFO] kwalitec.observability: http_request method=GET path=/alpha/help status=200 duration_ms=9.5 correlation_id=66d2568a5de145648a1a88ace5c8bb15
+[INFO] alembic.runtime.migration: Context impl SQLiteImpl.
+[INFO] alembic.runtime.migration: Will assume non-transactional DDL.
+[INFO] kwalitec.observability: http_request method=GET path=/health status=200 duration_ms=17.1 correlation_id=5f6128f1352149bba044a41cbd50a426
+[INFO] alembic.runtime.migration: Context impl SQLiteImpl.
+[INFO] alembic.runtime.migration: Will assume non-transactional DDL.
+[INFO] kwalitec.observability: http_request method=GET path=/health/details status=200 duration_ms=9.1 correlation_id=fa08210be4d0471c8f19b62d5358d438
+[INFO] alembic.runtime.migration: Context impl SQLiteImpl.
+[INFO] alembic.runtime.migration: Will assume non-transactional DDL.
+[INFO] kwalitec.observability: http_request method=GET path=/health status=200 duration_ms=34.8 correlation_id=37d6d71bd291401abd9727d9eeb42527
+[INFO] kwalitec.observability: http_request method=GET path=/ status=302 duration_ms=0.9 correlation_id=54929164a84a42928aa73cce74f66cb1
+[INFO] kwalitec.observability: http_request method=GET path=/ status=302 duration_ms=0.2 correlation_id=d81e91ce4d43482e95dade3b4af7d693
+[INFO] alembic.runtime.migration: Context impl SQLiteImpl.
+[INFO] alembic.runtime.migration: Will assume non-transactional DDL.
+[INFO] kwalitec.observability: http_request method=GET path=/health status=200 duration_ms=28.9 correlation_id=091ffbdb344e44f99f58a13275d15c87
+[INFO] kwalitec.observability: http_request method=GET path=/auth/login status=200 duration_ms=5.0 correlation_id=e0f021ebf5e94e06aed09c7c31bcbdcd
+[INFO] kwalitec.observability: http_request method=POST path=/auth/login status=200 duration_ms=7.4 correlation_id=56da50cd35e348a5b4942c5c84928cc0
+[INFO] kwalitec.observability: http_request method=GET path=/auth/login status=200 duration_ms=1.0 correlation_id=c1c3984b41244839b99a77238fe63a0c
+[INFO] kwalitec.observability: http_request method=POST path=/auth/login status=302 duration_ms=86.0 correlation_id=1f336b94e6994b71ae5e98612aa32238
+[INFO] kwalitec.observability: http_request method=GET path=/console/ status=200 duration_ms=594.5 correlation_id=9f36613527644109a7694e8e9565a0c0
+[INFO] app: 404 Not Found: GET /console/subjects correlation_id=16E4194D7DC4
+[INFO] kwalitec.observability: http_request method=GET path=/console/subjects status=404 duration_ms=7.2 correlation_id=16e4194d7dc44bdeab9e367d0b397f98
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/ status=200 duration_ms=2.9 correlation_id=2d35a7edf43441838abce40aee2875d8
+[INFO] kwalitec.observability: http_request method=GET path=/auth/login status=200 duration_ms=6.0 correlation_id=4ff9aec2f1064cf59f197bdda5e2a5f9
+[INFO] kwalitec.observability: http_request method=POST path=/auth/login status=302 duration_ms=139.6 correlation_id=7d5e551b71a243b4b8518cebcc27a223
+[INFO] kwalitec.observability: http_request method=GET path=/console/ status=200 duration_ms=971.4 correlation_id=ea4a05831bc6469a9ef48016bff47d08
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/subjects status=200 duration_ms=6.3 correlation_id=8b3c4a8dbae142e0a2fad60efa857546
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/review-queue status=200 duration_ms=3.2 correlation_id=f3d6117e653e4c7ea1ad8e9aed21ce5b
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/publishing status=200 duration_ms=2.2 correlation_id=cc19c5c8aef84d33a612597af39ac590
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/versions status=200 duration_ms=2.3 correlation_id=1172a5e8770346da9de7fe31b7249c2f
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/quality status=200 duration_ms=2.2 correlation_id=43527955a2664bb1ab4edc2ce43af6d9
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/ status=200 duration_ms=2.5 correlation_id=c6ed1b596c33437fb7d5ac572149860e
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/ status=200 duration_ms=1.9 correlation_id=93aed6bc2f204d8fa19eb8dd7402f11d
+[INFO] kwalitec.observability: http_request method=POST path=/console/studio/subjects status=302 duration_ms=1.9 correlation_id=bcdaa0b89d00464aa9a18a51a1fa8dc6
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/ status=200 duration_ms=2.2 correlation_id=8f6bc28c8bd54659ad27e324bafb91f2
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/ status=200 duration_ms=1.9 correlation_id=91f3fc372d074abea66552a320a25525
+[INFO] kwalitec.observability: http_request method=POST path=/console/studio/workspaces status=302 duration_ms=1.8 correlation_id=fed2f07da79d4bc5a8f58df76f6f8d79
+[DEBUG] app.application.curriculum_studio.structure_preparation_service: Foundation structure unavailable: Subject not found: CS1V
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v status=200 duration_ms=111.9 correlation_id=e05e9347b4ab4b74b58cbc190921ac5b
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v/intelligence/overview status=200 duration_ms=9.1 correlation_id=f14d9250fd6e4e838595008cbb543651
+[INFO] app.infrastructure.adapters.document_storage.local_store: Stored curriculum document key=cs1v/cmp/v1/b7b33a78a7635089-c9753182.pdf bytes=1844
+[INFO] app.infrastructure.adapters.curriculum_retrieval.embedding_extension: CIP-003 indexed 12 embeddings for document=1 job=cip-d9521c60f79a
+[INFO] app.infrastructure.adapters.curriculum_intelligence.pipeline_processing: CIP enqueue document=1 job=cip-d9521c60f79a stage=ready_for_embeddings auto_run=True
+[INFO] app.application.curriculum_studio.document_upload_service: Document uploaded workspace=ws-cs1v kind=cmp id=1 version=1 job=cip-d9521c60f79a
+[INFO] kwalitec.observability: http_request method=POST path=/console/studio/workspaces/ws-cs1v/documents status=200 duration_ms=221.9 correlation_id=bc8251167eda4c30bc2f83d625d43615
+[INFO] app.infrastructure.adapters.document_storage.local_store: Stored curriculum document key=cs1v/syllabus/v1/68b4204d62b21513-5a52e214.pdf bytes=1731
+[INFO] app.infrastructure.adapters.curriculum_retrieval.embedding_extension: CIP-003 indexed 14 embeddings for document=2 job=cip-d178cce3f2b2
+[INFO] app.infrastructure.adapters.curriculum_intelligence.pipeline_processing: CIP enqueue document=2 job=cip-d178cce3f2b2 stage=ready_for_embeddings auto_run=True
+[INFO] app.application.curriculum_studio.document_upload_service: Document uploaded workspace=ws-cs1v kind=syllabus id=2 version=1 job=cip-d178cce3f2b2
+[INFO] kwalitec.observability: http_request method=POST path=/console/studio/workspaces/ws-cs1v/documents status=200 duration_ms=115.4 correlation_id=973660f5e5ec4c8fba68e9985c73ae03
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v status=200 duration_ms=27.5 correlation_id=2b2ee522a7eb4cdeb3c2981f20ecd8d8
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v/intelligence/overview status=200 duration_ms=10.1 correlation_id=8cad84609f684548b796d4654dd0047c
+[INFO] kwalitec.observability: http_request method=POST path=/console/studio/workspaces/ws-cs1v/advance status=302 duration_ms=2.3 correlation_id=02944f2bbe1b458780d0e6c5cfb9e67b
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v status=200 duration_ms=5.3 correlation_id=4dd7a3136d2e4ac5bcfc4678171ae4fe
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v/intelligence/overview status=200 duration_ms=6.1 correlation_id=921328f5e6a04516a96a16aaa4758923
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v/intelligence/knowledge-graph status=200 duration_ms=4.8 correlation_id=616b6cbeafb34813822b3da23b04f3f9
+[INFO] kwalitec.observability: http_request method=POST path=/console/studio/workspaces/ws-cs1v/validate status=302 duration_ms=4.8 correlation_id=fda91b2e97094f97b7b67b90d324700b
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v status=200 duration_ms=8.2 correlation_id=352abf9bcb9b437a9b2593f8b3fb487a
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v/intelligence/overview status=200 duration_ms=7.3 correlation_id=595f13235b444eceab3adafe7532cd7f
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v status=200 duration_ms=4.6 correlation_id=4cf344df704a4205bc6ab30a8c3df06f
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v/intelligence/overview status=200 duration_ms=7.7 correlation_id=1fb2bdb6caa44188aeeed454f52b67e5
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v/intelligence/validation status=200 duration_ms=4.0 correlation_id=bd6580c166cb4c72856e326c23313726
+[DEBUG] app.application.curriculum_studio.structure_preparation_service: Blueprint assign skipped for version-1/ent-631b6d7590: Section already assigned: 'ent-631b6d7590'
+[DEBUG] app.application.curriculum_studio.structure_preparation_service: Blueprint assign skipped for version-1/ent-62e4246bd8: Section already assigned: 'ent-62e4246bd8'
+[INFO] kwalitec.observability: http_request method=POST path=/console/studio/workspaces/ws-cs1v/preview status=302 duration_ms=3.7 correlation_id=95d02cf5874443dc8afe817bc19db3c3
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v status=200 duration_ms=5.7 correlation_id=14fed48e6d8d44b29653b284ade93b47
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v/intelligence/overview status=200 duration_ms=3.8 correlation_id=1fa42c94ef99437b8e4a2f0beddc3207
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v status=200 duration_ms=13.8 correlation_id=75aceb412b9f4c1396d1337856579f46
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v/intelligence/overview status=200 duration_ms=4.5 correlation_id=1b4aa73903a84fd79cdeeda179033c0a
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v/intelligence/knowledge-graph status=200 duration_ms=3.3 correlation_id=4de973b754e641c4abb19bfe688b545e
+[INFO] kwalitec.observability: http_request method=POST path=/console/studio/workspaces/ws-cs1v/approve status=302 duration_ms=1.9 correlation_id=12f008bfde7842de9d5d27c3d391eb92
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v status=200 duration_ms=6.2 correlation_id=830475470bcd468983b752da2bc12095
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v/intelligence/overview status=200 duration_ms=3.8 correlation_id=0d256d27f7634a68ae46fc983847f7a9
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v status=200 duration_ms=6.4 correlation_id=07745af864104a9fae8940fd4ac38b9e
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v/intelligence/overview status=200 duration_ms=4.1 correlation_id=a4fdac7040654d34a7250a1d722c14d5
+[INFO] kwalitec.observability: http_request method=POST path=/console/studio/workspaces/ws-cs1v/publish status=302 duration_ms=25.2 correlation_id=961181f5f67e4e34b04810189bc8a98d
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v status=200 duration_ms=8.5 correlation_id=ad6ae9ded7794820a010dfb88577133d
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v/intelligence/overview status=200 duration_ms=8.0 correlation_id=50a0013f7d554d7f81a6ab0d064ee05b
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v status=200 duration_ms=6.6 correlation_id=f6464d39c3d54a6ea97465df029826c8
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v/intelligence/overview status=200 duration_ms=11.5 correlation_id=0181a9936064440ab797eab24e949eb1
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v status=200 duration_ms=5.9 correlation_id=30cd39bf758642fbae76e708f5f8afdd
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v/intelligence/overview status=200 duration_ms=4.2 correlation_id=ed97603724a845b39257105c5fb5c2a0
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v status=200 duration_ms=6.7 correlation_id=b973615a38f44e7293283ba23c106b7e
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/workspaces/ws-cs1v/intelligence/overview status=200 duration_ms=7.2 correlation_id=52ec8d46b636411d9d5c25a9133f3239
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/subjects status=200 duration_ms=3.1 correlation_id=69b80e3db1cb4035b9669438f4542836
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/subjects status=200 duration_ms=2.2 correlation_id=74e944e969f6413e8ceb9eb559b3b351
+[INFO] kwalitec.observability: http_request method=GET path=/study-plan/wizard/1 status=200 duration_ms=125.5 correlation_id=39d38117ffee481194f8c36fe5e1db9f
+[INFO] kwalitec.observability: http_request method=GET path=/alpha/onboarding status=200 duration_ms=3.9 correlation_id=0a68a62e9cc94e15af102eca19c3a3d6
+[INFO] kwalitec.observability: http_request method=GET path=/student/ status=302 duration_ms=1.7 correlation_id=ad38a9b853ce4137be85c5f1ed37354b
+[INFO] kwalitec.observability: http_request method=GET path=/alpha/onboarding status=200 duration_ms=1.7 correlation_id=0a600dabf5974b7ab4168a94c010ad7a
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/ status=200 duration_ms=3.4 correlation_id=c93bb1eac5c040c08d755cb6006749a2
+[INFO] kwalitec.observability: http_request method=POST path=/console/studio/subjects status=302 duration_ms=1.8 correlation_id=506abf992d444ff0b3986cb98ad941d4
+[INFO] kwalitec.observability: http_request method=GET path=/console/studio/ status=200 duration_ms=2.5 correlation_id=08e3d66ccaf844d29fb53dc630744d13
+[INFO] kwalitec.observability: http_request method=GET path=/auth/login status=200 duration_ms=4.6 correlation_id=1848141822474b2893f0f2ec2356b2f9
+[INFO] kwalitec.observability: http_request method=POST path=/auth/login status=302 duration_ms=79.3 correlation_id=5e62a6bac35e43c7b7ceb4d484227178
+[INFO] kwalitec.observability: http_request method=GET path=/console/ status=200 duration_ms=572.4 correlation_id=aea33561ff72416a86d6caad2eaeb52f
+[INFO] kwalitec.observability: http_request method=GET path=/alpha/onboarding status=200 duration_ms=1.9 correlation_id=4162114b707040e0945ea2544e0b8c19
+[INFO] kwalitec.observability: http_request method=GET path=/study-plan/wizard/1 status=200 duration_ms=116.2 correlation_id=05971fe53ea54c1497dad8bd9151c066
+[INFO] kwalitec.observability: http_request method=POST path=/study-plan/wizard/1 status=302 duration_ms=127.6 correlation_id=f6babc7320b243e1862ca60f70eac571
+[INFO] kwalitec.observability: http_request method=GET path=/study-plan/wizard/2 status=200 duration_ms=6.1 correlation_id=5f1509816cf64adfbead4149657c424e
+[INFO] kwalitec.observability: http_request method=POST path=/study-plan/wizard/2 status=302 duration_ms=11.9 correlation_id=dcd2a640a7c14332b931d69f8a0778d8
+[INFO] kwalitec.observability: http_request method=GET path=/study-plan/wizard/3 status=200 duration_ms=8.3 correlation_id=92f40fe8655843f68700a909a670ee52
+[INFO] kwalitec.observability: http_request method=POST path=/study-plan/wizard/3 status=200 duration_ms=4.0 correlation_id=1ab41d0c9b9f4dd3918208bba2ae5abc
+[INFO] kwalitec.observability: http_request method=GET path=/student/ status=302 duration_ms=1.1 correlation_id=c7027bbbe8bf4e9397f1719c751e21f0
+[INFO] kwalitec.observability: http_request method=GET path=/alpha/onboarding status=200 duration_ms=1.7 correlation_id=2058a53487c84a538d2b2a0c2a0b6e05
+[INFO] kwalitec.observability: http_request method=GET path=/dashboard/ status=302 duration_ms=1.1 correlation_id=bcf43e82c00946cbbe5947b54deb4378
+[INFO] kwalitec.observability: http_request method=GET path=/alpha/onboarding status=200 duration_ms=1.6 correlation_id=c93eb46b1b504c77955249d4f313a18d
+[INFO] kwalitec.observability: http_request method=GET path=/study-plan/ status=302 duration_ms=1.3 correlation_id=b6c56b5029a34f7294d1ba89fe651285
+[INFO] kwalitec.observability: http_request method=GET path=/study-plan/wizard/1 status=200 duration_ms=113.8 correlation_id=b169f5c414864309b15fcf63eb6bbd84
+[INFO] kwalitec.observability: http_request method=GET path=/auth/login status=200 duration_ms=4.7 correlation_id=af952b9d6642435780a03cdd11bf29d2
+[INFO] kwalitec.observability: http_request method=POST path=/auth/login status=302 duration_ms=84.4 correlation_id=00b3f05008f248c0948264d51ef98363
+[INFO] kwalitec.observability: http_request method=GET path=/console/ status=200 duration_ms=573.9 correlation_id=ec651beae05c415eadd463b03a7ce407
+[INFO] kwalitec.observability: http_request method=GET path=/study-plan/wizard/1 status=200 duration_ms=119.2 correlation_id=41f7ea5e6b804eab9829ebea91fd964e
+[INFO] kwalitec.observability: http_request method=POST path=/study-plan/wizard/1 status=302 duration_ms=125.2 correlation_id=f6e4a04a75614bd283f0d5dccc59ff7f
+[INFO] kwalitec.observability: http_request method=GET path=/study-plan/wizard/2 status=200 duration_ms=3.3 correlation_id=23a35257e3c0446fa6ebda0090647e6c
+[INFO] kwalitec.observability: http_request method=POST path=/study-plan/wizard/2 status=302 duration_ms=2.9 correlation_id=5be5f7ea20084b59a09f4b1ccec6bffc
+[INFO] kwalitec.observability: http_request method=GET path=/study-plan/wizard/3 status=200 duration_ms=3.5 correlation_id=89b52b6e11f94cecb469f7cf20392583
+[INFO] kwalitec.observability: http_request method=POST path=/study-plan/wizard/3 status=200 duration_ms=3.9 correlation_id=e1761483b52b47cca31f2b6f4109c51f
+[INFO] kwalitec.observability: http_request method=POST path=/study-plan/wizard/3 status=200 duration_ms=3.9 correlation_id=99c6e22445d84444a2105bdef1d36814
+[INFO] kwalitec.observability: http_request method=POST path=/study-plan/wizard/3 status=200 duration_ms=3.9 correlation_id=dff962c1e7a34f6a8b9de134f74ae488
+[INFO] kwalitec.observability: http_request method=POST path=/study-plan/wizard/3 status=200 duration_ms=4.0 correlation_id=5ec5b0e3d77d4d6e8fb97657dacf27f5
+[INFO] kwalitec.observability: http_request method=POST path=/study-plan/wizard/3 status=200 duration_ms=3.7 correlation_id=95e41aa7fad24d3297a5fd0440c3a01e
+[INFO] kwalitec.observability: http_request method=POST path=/study-plan/wizard/3 status=200 duration_ms=4.0 correlation_id=ec8e0c4db25b4759b3c59a423b33daef
+[INFO] kwalitec.observability: http_request method=GET path=/student/ status=302 duration_ms=1.1 correlation_id=d08f9b5ed93e4520b0da83a6348a2ac7
+[INFO] kwalitec.observability: http_request method=GET path=/alpha/onboarding status=200 duration_ms=1.7 correlation_id=24512bbf6b054d8e917117271356798a
+[INFO] kwalitec.observability: http_request method=GET path=/dashboard/ status=302 duration_ms=1.1 correlation_id=52515a8ea4504473bbc4c5030d2ca4a1
+[INFO] kwalitec.observability: http_request method=GET path=/alpha/onboarding status=200 duration_ms=1.7 correlation_id=61f999bcb3374542a7bddd724c39cbd4
+[INFO] kwalitec.observability: http_request method=GET path=/auth/login status=200 duration_ms=3.2 correlation_id=7acd5470551448c88cfe4190c94504d7
+[INFO] kwalitec.observability: http_request method=POST path=/auth/login status=302 duration_ms=80.9 correlation_id=d96ab3c7af4f4ab7beabdd26a104bad0
+[INFO] kwalitec.observability: http_request method=GET path=/console/ status=200 duration_ms=553.6 correlation_id=5c5d91a707e74dfaa04dad93ff7ff2d8
+[INFO] kwalitec.observability: http_request method=GET path=/study-plan/wizard/1 status=200 duration_ms=114.9 correlation_id=f797dc6719f64a96813ef2b6c1c21a4f
+[INFO] kwalitec.observability: http_request method=GET path=/ status=302 duration_ms=31.9 correlation_id=d1fe8164cb6e4c82a3aa1e3dd479b95e
+[INFO] kwalitec.observability: http_request method=GET path=/auth/login status=200 duration_ms=19.8 correlation_id=b5e7b6ce2e36494fabf26517f48e8058

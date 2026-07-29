@@ -1,8 +1,8 @@
-"""DEP-003 — Student Experience Unification presentation regressions.
+"""RC-2026.07.29-03 — Student shell unification presentation regressions.
 
-Under sole runtime, every student-facing shared blueprint must render inside
-the Education Operating System shell (no legacy sidebar). Dual-run rollback
-keeps the Learning Workspace chrome. Controllers and engines are unchanged.
+Authenticated Student surfaces render inside one Education Operating System
+shell. Legacy workspace chrome and runtime shell switching are retired.
+Controllers and engines are unchanged.
 """
 
 from __future__ import annotations
@@ -16,8 +16,8 @@ from tests.presentation.workflows.helpers import dual_run_flags, login_student
 
 ROOT = Path(__file__).resolve().parents[2]
 
-# Student journey surfaces that must never show legacy chrome under sole.
-SOLE_STUDENT_SHELL_PATHS = (
+# Student journey + shared surfaces that must share one EOS shell.
+STUDENT_SHELL_PATHS = (
     "/student/",
     "/study-plan/",
     "/study-plan/wizard/1",
@@ -33,79 +33,85 @@ def sole_flags():
     return dual_run_flags(SOLE_RUNTIME=True)
 
 
-def _html_under_sole(client, path: str, sole_flags) -> str:
+@pytest.fixture
+def dual_flags():
+    return dual_run_flags(SOLE_RUNTIME=False)
+
+
+def _html(client, path: str, flags) -> str:
     with patch(
         "app.application.config.v2_flags.resolve_v2_feature_flags",
-        return_value=sole_flags,
+        return_value=flags,
     ):
         response = client.get(path, follow_redirects=True)
         assert response.status_code == 200, path
         return response.get_data(as_text=True)
 
 
-@pytest.mark.parametrize("path", SOLE_STUDENT_SHELL_PATHS)
-def test_sole_runtime_student_pages_use_eos_shell(
-    app, client, ctx, user, sole_flags, path
-):
-    login_student(client)
-    html = _html_under_sole(client, path, sole_flags)
+def _assert_eos_shell(html: str) -> None:
     assert "student-shell" in html
     assert "student-topbar" in html
     assert 'aria-label="Student experience"' in html
     assert "student.css" in html
     assert 'id="app-sidebar"' not in html
-    assert "app-shell" not in html or "student-shell" in html
+    assert "app-shell" not in html
     assert "Sign out" in html
+    assert 'aria-label="Appearance"' in html or "appearance-switcher" in html
 
 
-def test_sole_runtime_study_plan_wizard_keeps_form_controls(
-    app, client, ctx, user, sole_flags
+@pytest.mark.parametrize("path", STUDENT_SHELL_PATHS)
+def test_student_pages_use_eos_shell_under_sole(
+    app, client, ctx, user, sole_flags, path
 ):
-    """Login continuity: wizard renders inside EOS without losing controls."""
     login_student(client)
-    html = _html_under_sole(client, "/study-plan/wizard/1", sole_flags)
-    assert "wizard-container" in html or "wizard-form" in html
-    assert "student-shell" in html
-    assert 'id="app-sidebar"' not in html
+    _assert_eos_shell(_html(client, path, sole_flags))
 
 
-def test_sole_runtime_help_keeps_search(app, client, ctx, user, sole_flags):
+@pytest.mark.parametrize("path", STUDENT_SHELL_PATHS)
+def test_student_pages_use_eos_shell_without_sole(
+    app, client, ctx, user, dual_flags, path
+):
+    """Chrome no longer depends on SOLE_RUNTIME (RC-2026.07.29-03)."""
     login_student(client)
-    html = _html_under_sole(client, "/alpha/help", sole_flags)
+    _assert_eos_shell(_html(client, path, dual_flags))
+
+
+def test_choose_exam_keeps_form_controls(app, client, ctx, user, dual_flags):
+    login_student(client)
+    html = _html(client, "/study-plan/wizard/1", dual_flags)
+    assert "wizard-container" in html or "wizard-form" in html or "ds-page" in html
+    _assert_eos_shell(html)
+
+
+def test_help_keeps_search(app, client, ctx, user, sole_flags):
+    login_student(client)
+    html = _html(client, "/alpha/help", sole_flags)
     assert "help-search" in html
-    assert "student-shell" in html
+    _assert_eos_shell(html)
 
 
-def test_dual_run_preserves_legacy_workspace_chrome(app, client, ctx, user):
-    """Rollback path: SOLE_RUNTIME off keeps sidebar for shared pages."""
-    login_student(client)
-    with patch(
-        "app.application.config.v2_flags.resolve_v2_feature_flags",
-        return_value=dual_run_flags(SOLE_RUNTIME=False),
-    ):
-        html = client.get("/study-plan/", follow_redirects=True).get_data(
-            as_text=True
-        )
-    assert 'id="app-sidebar"' in html
-    assert "app-shell" in html
-    assert "student-shell" not in html
-
-
-def test_layout_router_and_eos_shell_exist():
+def test_layout_router_always_selects_eos_shell():
     base = (ROOT / "app/templates/layouts/base.html").read_text(encoding="utf-8")
     assert "layouts/eos_student.html" in base
-    assert "layouts/legacy_workspace.html" in base
-    assert "SOLE_RUNTIME" in base
+    assert "legacy_workspace" not in base
+    assert "SOLE_RUNTIME" not in base
     eos = (ROOT / "app/templates/layouts/eos_student.html").read_text(
         encoding="utf-8"
     )
     assert "student-shell" in eos
     assert "student/components/navigation.html" in eos
     assert "auth.logout" in eos
-    legacy = (ROOT / "app/templates/layouts/legacy_workspace.html").read_text(
-        encoding="utf-8"
-    )
-    assert "partials/sidebar.html" in legacy
+    assert "appearance_switcher" in eos
+    assert not (ROOT / "app/templates/layouts/legacy_workspace.html").exists()
+    assert not (ROOT / "app/templates/partials/sidebar.html").exists()
+    assert not (ROOT / "app/templates/partials/topnav.html").exists()
+
+
+def test_session_base_extends_eos_shell():
+    text = (ROOT / "app/templates/session/base.html").read_text(encoding="utf-8")
+    assert 'extends "layouts/eos_student.html"' in text
+    assert "ds-session-shell" not in text
+    assert "design_system.css" in text
 
 
 def test_student_base_extends_shared_eos_layout():
@@ -114,7 +120,7 @@ def test_student_base_extends_shared_eos_layout():
 
 
 def test_no_blueprints_deleted():
-    """DEP-003 must not remove student or shared educational blueprints."""
+    """Shell unification must not remove student or shared educational blueprints."""
     from app import create_app
 
     app = create_app()

@@ -10,6 +10,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 BRANDING = ROOT / "app" / "static" / "branding"
 SIDEBAR = ROOT / "app" / "templates" / "partials" / "sidebar.html"
+EOS_SHELL = ROOT / "app" / "templates" / "layouts" / "eos_student.html"
 
 
 class TestOpenRedirectProtection:
@@ -110,10 +111,11 @@ class TestSecretKeyProductionGate:
 class TestSidebarActiveState:
     """H-4 — student Dashboard must not activate on Founder routes."""
 
-    def test_sidebar_uses_dashboard_prefix_match(self) -> None:
-        text = SIDEBAR.read_text(encoding="utf-8")
-        assert "request.endpoint.startswith('dashboard.')" in text
-        assert "'dashboard' in request.endpoint" not in text
+    def test_legacy_sidebar_retired(self) -> None:
+        assert not SIDEBAR.exists()
+        text = EOS_SHELL.read_text(encoding="utf-8")
+        assert "student/components/navigation.html" in text
+        assert "url_for('student.home')" in text
 
     def test_founder_page_does_not_mark_student_dashboard_active(
         self, client, ctx, app

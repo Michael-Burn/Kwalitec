@@ -1,0 +1,67 @@
+[INFO] app: Kwalitec logging configured at level DEBUG
+[WARNING] app: SECRET_KEY is using the default value. Set a strong key for production use.
+[INFO] app: Environment: APP_ENV=development, FLASK_ENV=development, config=DevelopmentConfig
+[INFO] app: Using external database (DATABASE_URL is set)
+[INFO] app: SQLAlchemy database driver prefix: sqlite://
+[INFO] alembic.runtime.migration: Context impl SQLiteImpl.
+[INFO] alembic.runtime.migration: Will assume non-transactional DDL.
+[WARNING] app: Alembic: no revision recorded in database (alembic_version table empty or missing). Migrations have NOT been applied.
+[INFO] app: Alembic: head script revision = 202607280080
+[WARNING] app: Alembic: database is BEHIND head (db=None, head=202607280080). Migrations need to be applied.
+[INFO] app.services.startup_service: Startup initialization beginning...
+[DEBUG] app.services.startup_service: Skipping curriculum import during Flask CLI command. Import will run on next normal application startup.
+[INFO] app.services.startup_service: Startup initialization complete.
+[INFO] app: Kwalitec application created successfully
+INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade  -> 202607080001, Create user model
+INFO  [alembic.runtime.migration] Running upgrade 202607080001 -> 202607080002, Create mission models
+INFO  [alembic.runtime.migration] Running upgrade 202607080002 -> 202607080003, Create study plan models
+INFO  [alembic.runtime.migration] Running upgrade 202607080003 -> 202607080004, Create curriculum, learning, and topic_progress models
+INFO  [alembic.runtime.migration] Running upgrade 202607080004 -> 202607080005, Add adaptive learning fields to topic_progress
+INFO  [alembic.runtime.migration] Running upgrade 202607080005 -> 0a272936a47b, add_decision_model
+INFO  [alembic.runtime.migration] Running upgrade 0a272936a47b -> 202609070001, Add preferred_session_minutes to study_plans
+INFO  [alembic.runtime.migration] Running upgrade 202609070001 -> 202609070002, Add curriculum_version to study_plans
+INFO  [alembic.runtime.migration] Running upgrade 202609070002 -> 202609070003, Add curriculum_topic_code to study_plans
+INFO  [alembic.runtime.migration] Running upgrade 202609070003 -> 202609070004, Add archived column to study_plans.
+INFO  [alembic.runtime.migration] Running upgrade 202609070004 -> 202610070001, Create sections table for V2 curriculum architecture.
+INFO  [alembic.runtime.migration] Running upgrade 202610070001 -> 202610070002, Link Topic to Section for the V2 curriculum hierarchy.
+INFO  [alembic.runtime.migration] Running upgrade 202610070002 -> 202611120001, Create twin_snapshots table for durable TwinRepository storage.
+INFO  [alembic.runtime.migration] Running upgrade 202611120001 -> 202607190001, Create V2 durable aggregate, snapshot, and evidence tables.
+INFO  [alembic.runtime.migration] Running upgrade 202611120001 -> 202607130001, Add welcome onboarding flags to users.
+INFO  [alembic.runtime.migration] Running upgrade 202607130001 -> 202607130002, Widen learning_objectives.description to unbounded TEXT.
+INFO  [alembic.runtime.migration] Running upgrade 202607130002 -> 202607150001, Add study_plan_id to missions for recommendation integrity (IA-001).
+INFO  [alembic.runtime.migration] Running upgrade 202607150001 -> 202607160001, Create research feedback and contribution tables for RIP-001.
+INFO  [alembic.runtime.migration] Running upgrade 202607160001 -> 202607160002, Create contributor recognition tables for RIP-002.
+INFO  [alembic.runtime.migration] Running upgrade 202607160002 -> 202607160003, Create Founder Research Command Centre tables for RIP-003.
+INFO  [alembic.runtime.migration] Running upgrade 202607160003 -> 202607170001, Add Revision lifecycle presentation fields to study_plans.
+INFO  [alembic.runtime.migration] Running upgrade 202607170001 -> 202607170002, Create Founder Vision Journal tables (V1SP-001D).
+INFO  [alembic.runtime.migration] Running upgrade 202607170002 -> 202607170003, Add performance indexes for Version 1 hot paths (V1SP-003).
+INFO  [alembic.runtime.migration] Running upgrade 202607170003, 202607190001 -> 202607190002, Merge Alembic heads after V2 aggregate tables.
+INFO  [alembic.runtime.migration] Running upgrade 202607190002 -> 202607230001, ALPHA-001 Internal Alpha infrastructure tables and onboarding flags.
+INFO  [alembic.runtime.migration] Running upgrade 202607230001 -> 202607230002, PR-001 RBAC and account capabilities.
+INFO  [alembic.runtime.migration] Running upgrade 202607230002 -> 202607240001, PRD-001 Phase A — Analytics event store tables.
+INFO  [alembic.runtime.migration] Running upgrade 202607240001 -> 202607260001, Create recommendation_commitments table (EP-008.3A).
+INFO  [alembic.runtime.migration] Running upgrade 202607260001 -> 202607270001, Create Founder Curriculum Studio foundation tables (PI-001A).
+INFO  [alembic.runtime.migration] Running upgrade 202607270001 -> 202607270002, Create Educational Runtime Engine tables (PI-001C).
+INFO  [alembic.runtime.migration] Running upgrade 202607270002 -> 202607270003, Create runtime enrolment routing audit table (PI-002A).
+INFO  [alembic.runtime.migration] Running upgrade 202607270003 -> 202607270004, Add curriculum document file metadata columns (Phase 1 upload).
+INFO  [alembic.runtime.migration] Running upgrade 202607270004 -> 202607270005, CIP-001 curriculum intelligence pipeline tables.
+INFO  [alembic.runtime.migration] Running upgrade 202607270005 -> 202607270006, CIP-002 provenance, confidence, review, validation, audit, and metrics tables.
+INFO  [alembic.runtime.migration] Running upgrade 202607270006 -> 202607270007, CIP-003 embedding metadata, local vector store, and retrieval logs.
+INFO  [alembic.runtime.migration] Running upgrade 202607270007 -> 202607270008, SDT-001 Student Digital Twin foundation tables.
+INFO  [alembic.runtime.migration] Running upgrade 202607270008 -> 202607270009, SDT-002 Educational Reasoning Engine metadata tables.
+INFO  [alembic.runtime.migration] Running upgrade 202607270009 -> 202607270010, SDT-003 Learning Graph structure tables.
+INFO  [alembic.runtime.migration] Running upgrade 202607270010 -> 202607270011, AME-001 Adaptive Mission Engine tables.
+INFO  [alembic.runtime.migration] Running upgrade 202607270011 -> 202607270012, AP-001 Assessment & Learning Feedback Pipeline tables.
+INFO  [alembic.runtime.migration] Running upgrade 202607270012 -> 202607270013, TUTOR-001 Evidence-Backed Intelligent Tutor tables.
+INFO  [alembic.runtime.migration] Running upgrade 202607270013 -> 202607280001, Create Decision Journal tables (ILE-002).
+INFO  [alembic.runtime.migration] Running upgrade 202607280001 -> 202607280002, Create Educational Feedback Review table (ILE-005).
+INFO  [alembic.runtime.migration] Running upgrade 202607190002, 202607280002 -> 202607280010, EI-001 Curriculum Knowledge Graph foundation tables.
+INFO  [alembic.runtime.migration] Running upgrade 202607280010 -> 202607280020, EI-002 Curriculum Extraction — draft edition + provenance tables.
+INFO  [alembic.runtime.migration] Running upgrade 202607280020 -> 202607280030, EI-003 Founder Curriculum Publishing — review, audit, snapshots.
+INFO  [alembic.runtime.migration] Running upgrade 202607280030 -> 202607280040, EI-004 Student Curriculum Binding — instance + node state tables.
+INFO  [alembic.runtime.migration] Running upgrade 202607280040 -> 202607280050, EI-005 Learning Evidence Engine — append-only evidence event store.
+INFO  [alembic.runtime.migration] Running upgrade 202607280050 -> 202607280060, EI-006 Twin Inference Engine — derived node belief store.
+INFO  [alembic.runtime.migration] Running upgrade 202607280060 -> 202607280070, EI-007 Educational Reasoning Engine — derived decision store.
+INFO  [alembic.runtime.migration] Running upgrade 202607280070 -> 202607280080, LP-001 Learner Lifecycle Orchestration — operation checkpoints.

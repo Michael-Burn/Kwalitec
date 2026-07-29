@@ -22,7 +22,11 @@
     {% endblock %}
     {% block extra_head %}{% endblock %}
 </head>
-<body class="student-body" data-student-surface="{{ page.shell.active_surface if page and page.shell else eos_active_surface|default('') }}">
+{% set _student_surface = (
+    study.surface if study is defined and study
+    else (page.shell.active_surface if page and page.shell else eos_active_surface|default(''))
+) %}
+<body class="student-body" data-student-surface="{{ _student_surface }}">
     <a class="student-skip-link" href="#student-main">Skip to content</a>
     <div class="student-shell">
         <header class="student-topbar" role="banner">
@@ -34,6 +38,8 @@
                 </a>
                 <div class="student-topbar-nav">
                     {% include "student/components/navigation.html" %}
+                    {% from "partials/appearance_switcher.html" import appearance_switcher %}
+                    {{ appearance_switcher(group_aria_label='Appearance', show_switcher_label=true) }}
                     {% if current_user.is_authenticated %}
                     <form method="post" action="{{ url_for('auth.logout') }}" class="student-signout-form">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">

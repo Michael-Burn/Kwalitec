@@ -1,0 +1,311 @@
+{
+  "surfaces": {
+    "10_subjects_detail": {
+      "url": "http://127.0.0.1:5001/console/studio/subjects",
+      "title": "Subjects \u00b7 Kwalitec Console",
+      "h1": [
+        "Subjects"
+      ],
+      "h1Count": 1,
+      "primary": [
+        "Create Subject"
+      ],
+      "primaryCount": 1,
+      "secondaryCount": 0,
+      "dsCss": true,
+      "dsPage": true,
+      "empty": [
+        "No subjects yet.\n  \n    Create Subject"
+      ],
+      "stages": [],
+      "headings": [
+        "H1: Subjects"
+      ],
+      "nav": [
+        "Kwalitec Console",
+        "Home",
+        "Subjects",
+        "Curriculum Studio",
+        "Students",
+        "Support",
+        "Settings",
+        "Search"
+      ],
+      "hasDocUpload": false,
+      "hasBootstrapProgress": false,
+      "hasQcPrimary": false,
+      "bodyTextSample": "Skip to content\nKwalitec Console\n\nCURRICULUM AUTHORITY\n\nHome\nSubjects\nCurriculum Studio\nStudents\nSupport\nSettings\nSearch\nSearch the Console\nSearch\nINTERNAL ALPHA\nAccount\nSign out\nSubjects\n\nNo subjects yet.\n\nCreate Subject\n\nKwalitec Console \u00b7 What needs attention today?"
+    },
+    "13_choose_exam_detail": {
+      "url": "http://127.0.0.1:5001/study-plan/wizard/1",
+      "title": "Choose Exam \u00b7 Kwalitec",
+      "h1": [
+        "Choose Exam"
+      ],
+      "h1Count": 1,
+      "primary": [
+        "Continue"
+      ],
+      "primaryCount": 1,
+      "secondaryCount": 2,
+      "dsCss": true,
+      "dsPage": true,
+      "empty": [],
+      "stages": [],
+      "headings": [
+        "H1: Choose Exam",
+        "H2: Ready to begin",
+        "H2: Selected exam",
+        "H2: Coming Soon",
+        "H2: Confirm"
+      ],
+      "nav": [
+        "Dashboard",
+        "Study Plan",
+        "Session",
+        "Analytics",
+        "Settings",
+        "Help",
+        "Product Check-in"
+      ],
+      "hasDocUpload": false,
+      "hasBootstrapProgress": false,
+      "hasQcPrimary": false,
+      "bodyTextSample": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\ncq008.founder@kwalitec.example\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\nChoose Exam\n\nSelect an exam to begin.\n\nSearch exams\nFamily\nAll\nCB1\nCB2\nCB3\nCM1\nCM2\nCP1\nCP2\nCP3\nCS1\nCS2\nSA\nSP\nStatus\nAll\nReady\nComing Soon\nSort\nRecently updated\nAlphabetical\nApply\nReady to begin\nIFoA CB2\nCB2\nIFoA CB2 \u00b7 2026.\nEdition \u00b7 2026\nIFoA CM1\nC"
+    },
+    "14_choose_exam_next": {
+      "url": "http://127.0.0.1:5001/study-plan/wizard/2",
+      "title": "Choose Exam \u00b7 Kwalitec",
+      "h1": [
+        "When is your exam?"
+      ],
+      "h1Count": 1,
+      "primary": [
+        "Continue"
+      ],
+      "primaryCount": 1,
+      "secondaryCount": 1,
+      "dsCss": true,
+      "dsPage": true,
+      "empty": [],
+      "stages": [],
+      "headings": [
+        "H1: When is your exam?",
+        "H2: Confirm"
+      ],
+      "nav": [
+        "Dashboard",
+        "Study Plan",
+        "Session",
+        "Analytics",
+        "Settings",
+        "Help",
+        "Product Check-in"
+      ],
+      "hasDocUpload": false,
+      "hasBootstrapProgress": false,
+      "hasQcPrimary": false,
+      "bodyTextSample": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\ncq008.founder@kwalitec.example\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\nWhen is your exam?\n\nEnter your exam date.\n\nSitting\nSeptember 2026\nApril 2027\nSeptember 2027\nApril 2028\nExam Date\nBack\nContinue\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2"
+    },
+    "14b_step_0": {
+      "url": "http://127.0.0.1:5001/study-plan/wizard/2",
+      "title": "Choose Exam \u00b7 Kwalitec",
+      "h1": [
+        "When is your exam?"
+      ],
+      "h1Count": 1,
+      "primary": [
+        "Continue"
+      ],
+      "primaryCount": 1,
+      "secondaryCount": 1,
+      "dsCss": true,
+      "dsPage": true,
+      "empty": [],
+      "stages": [],
+      "headings": [
+        "H1: When is your exam?",
+        "H2: Confirm"
+      ],
+      "nav": [
+        "Dashboard",
+        "Study Plan",
+        "Session",
+        "Analytics",
+        "Settings",
+        "Help",
+        "Product Check-in"
+      ],
+      "hasDocUpload": false,
+      "hasBootstrapProgress": false,
+      "hasQcPrimary": false,
+      "bodyTextSample": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\ncq008.founder@kwalitec.example\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\nWhen is your exam?\n\nEnter your exam date.\n\nSitting\nSeptember 2026\nApril 2027\nSeptember 2027\nApril 2028\nExam Date\nExam date is required.\nBack\nContinue\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2"
+    },
+    "14b_step_1": {
+      "url": "http://127.0.0.1:5001/study-plan/wizard/2",
+      "title": "Choose Exam \u00b7 Kwalitec",
+      "h1": [
+        "When is your exam?"
+      ],
+      "h1Count": 1,
+      "primary": [
+        "Continue"
+      ],
+      "primaryCount": 1,
+      "secondaryCount": 1,
+      "dsCss": true,
+      "dsPage": true,
+      "empty": [],
+      "stages": [],
+      "headings": [
+        "H1: When is your exam?",
+        "H2: Confirm"
+      ],
+      "nav": [
+        "Dashboard",
+        "Study Plan",
+        "Session",
+        "Analytics",
+        "Settings",
+        "Help",
+        "Product Check-in"
+      ],
+      "hasDocUpload": false,
+      "hasBootstrapProgress": false,
+      "hasQcPrimary": false,
+      "bodyTextSample": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\ncq008.founder@kwalitec.example\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\nWhen is your exam?\n\nEnter your exam date.\n\nSitting\nSeptember 2026\nApril 2027\nSeptember 2027\nApril 2028\nExam Date\nExam date is required.\nBack\nContinue\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2"
+    },
+    "14b_step_2": {
+      "url": "http://127.0.0.1:5001/study-plan/wizard/2",
+      "title": "Choose Exam \u00b7 Kwalitec",
+      "h1": [
+        "When is your exam?"
+      ],
+      "h1Count": 1,
+      "primary": [
+        "Continue"
+      ],
+      "primaryCount": 1,
+      "secondaryCount": 1,
+      "dsCss": true,
+      "dsPage": true,
+      "empty": [],
+      "stages": [],
+      "headings": [
+        "H1: When is your exam?",
+        "H2: Confirm"
+      ],
+      "nav": [
+        "Dashboard",
+        "Study Plan",
+        "Session",
+        "Analytics",
+        "Settings",
+        "Help",
+        "Product Check-in"
+      ],
+      "hasDocUpload": false,
+      "hasBootstrapProgress": false,
+      "hasQcPrimary": false,
+      "bodyTextSample": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\ncq008.founder@kwalitec.example\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\nWhen is your exam?\n\nEnter your exam date.\n\nSitting\nSeptember 2026\nApril 2027\nSeptember 2027\nApril 2028\nExam Date\nExam date is required.\nBack\nContinue\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2"
+    },
+    "14b_step_3": {
+      "url": "http://127.0.0.1:5001/study-plan/wizard/2",
+      "title": "Choose Exam \u00b7 Kwalitec",
+      "h1": [
+        "When is your exam?"
+      ],
+      "h1Count": 1,
+      "primary": [
+        "Continue"
+      ],
+      "primaryCount": 1,
+      "secondaryCount": 1,
+      "dsCss": true,
+      "dsPage": true,
+      "empty": [],
+      "stages": [],
+      "headings": [
+        "H1: When is your exam?",
+        "H2: Confirm"
+      ],
+      "nav": [
+        "Dashboard",
+        "Study Plan",
+        "Session",
+        "Analytics",
+        "Settings",
+        "Help",
+        "Product Check-in"
+      ],
+      "hasDocUpload": false,
+      "hasBootstrapProgress": false,
+      "hasQcPrimary": false,
+      "bodyTextSample": "Skip to content\nINTERNAL ALPHA\nEducation Operating System\nMAIN\nDashboard\nStudy Plan\nSession\nANALYSIS\nAnalytics\nSYSTEM\nSettings\nHelp\nProduct Check-in\nSign out\ncq008.founder@kwalitec.example\nINTERNAL ALPHA\n\u00b7\nFounding Cohort\nAPPEARANCE\nLight\nDark\nSystem\nWhen is your exam?\n\nEnter your exam date.\n\nSitting\nSeptember 2026\nApril 2027\nSeptember 2027\nApril 2028\nExam Date\nExam date is required.\nBack\nContinue\nKwalitec v2.0.0\nInternal Alpha\n\u00b7\nFounding Cohort\n\u00b7\nBuild RC2"
+    },
+    "16_student_home_after": {
+      "url": "http://127.0.0.1:5001/student/",
+      "title": "Home \u00b7 Kwalitec",
+      "h1": [
+        "Home"
+      ],
+      "h1Count": 1,
+      "primary": [
+        "Choose Exam"
+      ],
+      "primaryCount": 1,
+      "secondaryCount": 0,
+      "dsCss": true,
+      "dsPage": true,
+      "empty": [
+        "No exam selected yet. Choose an exam to begin studying.\n  \n    Choose Exam"
+      ],
+      "stages": [],
+      "headings": [
+        "H1: Home",
+        "H2: Current Mission"
+      ],
+      "nav": [
+        "Home",
+        "Journey",
+        "Revision",
+        "History",
+        "Settings",
+        "Choose Exam",
+        "Help"
+      ],
+      "hasDocUpload": false,
+      "hasBootstrapProgress": false,
+      "hasQcPrimary": false,
+      "bodyTextSample": "Skip to content\nHome\nJourney\nRevision\nHistory\nSettings\nChoose Exam\nHelp\nSign out\nHome\nCurrent Mission\n\nNo exam selected yet. Choose an exam to begin studying.\n\nChoose Exam\nShowing home\n\nReduce decisions. Increase learning."
+    }
+  },
+  "notes": [
+    {
+      "post_login": "http://127.0.0.1:5001/console/"
+    },
+    {
+      "workspace_hrefs": []
+    },
+    {
+      "step": "http://127.0.0.1:5001/study-plan/wizard/2",
+      "primary": "Continue"
+    },
+    {
+      "step": "http://127.0.0.1:5001/study-plan/wizard/2",
+      "primary": "Continue"
+    },
+    {
+      "step": "http://127.0.0.1:5001/study-plan/wizard/2",
+      "primary": "Continue"
+    },
+    {
+      "step": "http://127.0.0.1:5001/study-plan/wizard/2",
+      "primary": "Continue"
+    },
+    {
+      "student_primary": "Choose Exam"
+    }
+  ],
+  "errors": []
+}

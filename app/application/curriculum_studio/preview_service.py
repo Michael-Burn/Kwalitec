@@ -19,6 +19,9 @@ from app.application.curriculum_studio.ports.curriculum_management_port import (
 from app.application.curriculum_studio.ports.education_platform_port import (
     EducationPlatformPort,
 )
+from app.application.curriculum_studio.structure_preparation_service import (
+    StructurePreparationService,
+)
 from app.domain.curriculum_studio.preview_summary import (
     PreviewNode,
     PreviewReadiness,
@@ -47,14 +50,21 @@ class PreviewService:
         self._registry = registry
         self._management = management
         self._platform = education_platform
+        self._structure = StructurePreparationService(
+            registry, management=management
+        )
 
     def preview(self, workspace_id: str) -> PreviewSnapshot:
-        """Generate Preview — prefer Management gate preview; fallback structural."""
+        """Generate Preview — prefer prepared structure; advance Management gate."""
         workspace = self._require_workspace(workspace_id)
         hierarchy: list[PreviewNode] = []
         objectives = workspace.objective_ids
         prerequisites = workspace.prerequisite_edges
         workload = workspace.estimated_workload_hours
+
+        # PI-002R: Founder-facing hierarchy comes from the same prepared
+        # structure used at validation (CIP / Foundation / workspace).
+        structure_hierarchy = self._hierarchy_from_structure(workspace_id, workspace)
 
         if workspace.version_id and self._management is not None:
             try:
@@ -62,8 +72,14 @@ class PreviewService:
                     payload = self._management.preview_version(
                         workspace.version_id
                     )
-                    hierarchy = _nodes_from_payload(payload)
-                    if payload.get("objectives"):
+                    mgmt_hierarchy = _nodes_from_payload(payload)
+                    # Prefer prepared structure when present so Preview matches
+                    # the curriculum the Founder validated.
+                    if structure_hierarchy:
+                        hierarchy = structure_hierarchy
+                    else:
+                        hierarchy = mgmt_hierarchy
+                    if payload.get("objectives") and not objectives:
                         objectives = tuple(
                             str(o) for o in payload["objectives"]
                         )
@@ -78,27 +94,7 @@ class PreviewService:
                 hierarchy = []
 
         if not hierarchy:
-            order = 0
-            for section_id in workspace.section_ids:
-                hierarchy.append(
-                    PreviewNode.create(
-                        section_id,
-                        section_id,
-                        kind="section",
-                        order_index=order,
-                    )
-                )
-                order += 1
-            for topic_id in workspace.topic_ids:
-                hierarchy.append(
-                    PreviewNode.create(
-                        topic_id,
-                        topic_id,
-                        kind="topic",
-                        order_index=order,
-                    )
-                )
-                order += 1
+            hierarchy = structure_hierarchy
 
         # Optional student-surface (display only — does not alter readiness)
         platform = optional_platform(self._platform)
@@ -130,6 +126,25 @@ class PreviewService:
         )
         return preview_snapshot(summary)
 
+    def build_for_review(self, workspace_id: str) -> PreviewSnapshot:
+        """Build preview and require meaningful curriculum content.
+
+        Raises:
+            PreviewError: When hierarchy is empty (contradictory success banned).
+        """
+        # Prefer freshly synced extraction when Management preview is thin.
+        try:
+            self._structure.prepare_for_validation(workspace_id)
+        except Exception:  # noqa: BLE001 — preview still attempts existing structure
+            pass
+        snap = self.preview(workspace_id)
+        if snap.node_count <= 0:
+            raise PreviewError(
+                f"Preview has no curriculum topics for {workspace_id}. "
+                "Complete extraction and validation before building preview."
+            )
+        return snap
+
     def approve(
         self,
         workspace_id: str,
@@ -145,31 +160,15 @@ class PreviewService:
             raise PreviewError(
                 f"Preview approval requires validation for {workspace_id}"
             )
-        if not workspace.section_ids and not workspace.topic_ids:
-            # Allow Management preview content to satisfy hierarchy
-            if workspace.version_id and self._management is not None:
-                try:
-                    payload = require_management(
-                        self._management, action="approve_preview"
-                    ).preview_version(workspace.version_id)
-                    if not payload.get("nodes") and not payload.get("hierarchy"):
-                        raise PreviewError(
-                            f"Preview approval requires hierarchy for {workspace_id}"
-                        )
-                except PreviewError:
-                    raise
-                except Exception as exc:
-                    raise PreviewError(
-                        f"Preview approval requires hierarchy for {workspace_id}"
-                    ) from exc
-            else:
-                raise PreviewError(
-                    f"Preview approval requires hierarchy for {workspace_id}"
-                )
+        snap = self.build_for_review(workspace_id)
+        if snap.node_count <= 0:
+            raise PreviewError(
+                f"Preview approval requires hierarchy for {workspace_id}"
+            )
 
         if workspace.version_id and self._management is not None:
             mgmt = require_management(self._management, action="approve_preview")
-            # Ensure Management preview exists, then approve gate
+            # Ensure Management preview exists (advances PREVIEW_READY), then approve
             mgmt.preview_version(workspace.version_id)
             mgmt.approve(
                 workspace.version_id,
@@ -178,6 +177,7 @@ class PreviewService:
                 reason=reason or "preview_approved",
             )
 
+        workspace = self._require_workspace(workspace_id)
         facts = WorkspacePublicationFacts.create(
             cmp_uploaded=workspace.facts.cmp_uploaded,
             official_syllabus_uploaded=workspace.facts.official_syllabus_uploaded,
@@ -254,6 +254,45 @@ class PreviewService:
         )
         return preview_snapshot(summary)
 
+    def _hierarchy_from_structure(
+        self, workspace_id: str, workspace
+    ) -> list[PreviewNode]:
+        nodes: list[PreviewNode] = []
+        order = 0
+        for node_id, title, kind in self._structure.hierarchy_nodes(workspace_id):
+            nodes.append(
+                PreviewNode.create(
+                    node_id,
+                    title,
+                    kind=kind,
+                    order_index=order,
+                )
+            )
+            order += 1
+        if nodes:
+            return nodes
+        for section_id in workspace.section_ids:
+            nodes.append(
+                PreviewNode.create(
+                    section_id,
+                    section_id,
+                    kind="section",
+                    order_index=order,
+                )
+            )
+            order += 1
+        for topic_id in workspace.topic_ids:
+            nodes.append(
+                PreviewNode.create(
+                    topic_id,
+                    topic_id,
+                    kind="topic",
+                    order_index=order,
+                )
+            )
+            order += 1
+        return nodes
+
     def _require_workspace(self, workspace_id: str):
         workspace = self._registry.get_workspace(workspace_id)
         if workspace is None:
@@ -262,6 +301,11 @@ class PreviewService:
 
 
 def _nodes_from_payload(payload: dict) -> list[PreviewNode]:
+    """Map Management preview payloads into PreviewNode hierarchy.
+
+    Management returns section_refs / assignment_sections rather than
+    hierarchy/nodes — both shapes are accepted.
+    """
     raw = payload.get("hierarchy") or payload.get("nodes") or ()
     nodes: list[PreviewNode] = []
     for idx, item in enumerate(raw):
@@ -283,4 +327,32 @@ def _nodes_from_payload(payload: dict) -> list[PreviewNode]:
             nodes.append(
                 PreviewNode.create(str(item), str(item), kind="topic", order_index=idx)
             )
+    if nodes:
+        return nodes
+
+    # Management PreviewSnapshot shape (opaque_dict)
+    section_refs = list(payload.get("section_refs") or ())
+    assignment_sections = list(payload.get("assignment_sections") or ())
+    asset_labels = list(payload.get("asset_labels") or ())
+    order = 0
+    seen: set[str] = set()
+    for ref in (*section_refs, *assignment_sections):
+        token = str(ref).strip()
+        if not token or token in seen:
+            continue
+        seen.add(token)
+        nodes.append(
+            PreviewNode.create(token, token, kind="section", order_index=order)
+        )
+        order += 1
+    if not nodes:
+        for label in asset_labels:
+            token = str(label).strip()
+            if not token or token in seen:
+                continue
+            seen.add(token)
+            nodes.append(
+                PreviewNode.create(token, token, kind="topic", order_index=order)
+            )
+            order += 1
     return nodes
