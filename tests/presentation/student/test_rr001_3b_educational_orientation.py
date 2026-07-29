@@ -23,6 +23,7 @@ from app.presentation.product_language import (
     REJECTED_SYNONYMS,
 )
 from app.presentation.student.view_models import home_vm
+from tests.presentation.student.helpers import render_student_home
 from app.services.alpha_onboarding_service import (
     SENSEI_HANDOFF_SENTENCE,
     AlphaOnboardingService,
@@ -135,7 +136,7 @@ def test_session_reflection_framing_aligns_with_architecture(app, ctx):
     assert "never rates you" in html
 
 
-def test_guided_reflection_preview_named_on_home(app, ctx):
+def test_guided_reflection_preview_not_on_home(app, ctx):
     snap = HomeSnapshot(
         student_id="stu-rr13b",
         greeting="Welcome back",
@@ -161,21 +162,17 @@ def test_guided_reflection_preview_named_on_home(app, ctx):
         has_recommendation=True,
         can_start_session=False,
     )
-    page = SimpleNamespace(
-        home=replace(
-            home_vm(snap),
-            reflection_active=True,
-            reflection_state="available",
-            reflection_headline="Take a quiet minute",
-            reflection_supporting_message="Think through what changed.",
-            reflection_prompts=(),
-            unified_journey_enabled=True,
-        ),
-        shell=SimpleNamespace(active_surface="home", navigation=()),
+    page_home = replace(
+        home_vm(snap),
+        reflection_active=True,
+        reflection_state="available",
+        reflection_headline="Take a quiet minute",
+        reflection_supporting_message="Think through what changed.",
+        reflection_prompts=(),
+        unified_journey_enabled=True,
     )
-    with app.test_request_context("/student/"):
-        html = render_template("student/home.html", page=page, form=None)
-    assert "Guided Reflection preview" in html
-    assert "nothing here is recorded" in html
-    assert "Product Check-in" in html
-    assert "Daily Reflection" not in html
+    html = render_student_home(app, page_home)
+    assert "Guided Reflection preview" not in html
+    assert "nothing here is recorded" not in html
+    assert "Product Check-in" not in html
+    assert "Current Mission" in html

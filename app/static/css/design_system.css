@@ -359,8 +359,9 @@
 
 .ds-mission-panel__subject {
   margin: 0;
-  font-size: var(--font-section);
+  font-size: var(--font-base);
   font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
 }
 
 .ds-current-work__stage {

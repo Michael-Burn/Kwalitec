@@ -6,10 +6,7 @@ and fallback when the readiness surface is incomplete or unavailable.
 
 from __future__ import annotations
 
-from types import SimpleNamespace
 from unittest.mock import patch
-
-from flask import render_template
 
 from app.application.student_experience.dto.explanation_snapshot import (
     ExplanationSnapshot,
@@ -26,6 +23,7 @@ from app.presentation.intelligence_surface.adapter import (
     RuntimeAPresentationAdapter,
 )
 from app.presentation.student.view_models import home_vm
+from tests.presentation.student.helpers import render_student_home
 from app.services.educational_explainability_service import ReadinessNarrative
 
 
@@ -182,7 +180,7 @@ def test_home_vm_binds_authored_readiness_mes():
     assert "cash flow" in page.explanation.suggested_next_action.lower()
 
 
-def test_home_template_renders_readiness_drivers_and_review(app, ctx):
+def test_home_template_does_not_render_readiness_panel(app, ctx):
     snap = HomeSnapshot(
         student_id="1",
         greeting="Welcome back",
@@ -211,21 +209,14 @@ def test_home_template_renders_readiness_drivers_and_review(app, ctx):
         has_recommendation=True,
     )
     page_home = home_vm(snap, unified_journey=False)
-    page = SimpleNamespace(
-        home=page_home,
-        shell=SimpleNamespace(active_surface="home", navigation=()),
-    )
-    with app.test_request_context("/student/"):
-        html = render_template("student/home.html", page=page, form=None)
-    assert 'data-mes-field="readiness_drivers"' in html
-    assert "Curriculum coverage" in html
-    assert 'data-mes-field="readiness_next_action"' in html
-    assert "Practise Geometry proofs" in html
-    assert 'data-mes-field="review_point"' in html
-    assert "Reassess after two more" in html
-    assert "Why this estimate?" in html
-    assert 'data-mes-field="confidence_level"' in html
-    assert "Coverage and practice density" in html
+    html = render_student_home(app, page_home)
+    assert 'data-dashboard-panel="readiness"' not in html
+    assert 'data-mes-field="readiness_drivers"' not in html
+    assert 'data-mes-field="readiness_next_action"' not in html
+    assert 'data-mes-field="review_point"' not in html
+    assert "Why this estimate?" not in html
+    assert 'data-mes-field="confidence_level"' not in html
+    assert "Current Mission" in html
 
 
 def test_fallback_when_readiness_explanation_absent():

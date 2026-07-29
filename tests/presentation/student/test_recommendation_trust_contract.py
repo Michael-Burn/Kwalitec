@@ -4,8 +4,6 @@ from __future__ import annotations
 
 from types import SimpleNamespace
 
-from flask import render_template
-
 from app.application.student_experience.dto.explanation_snapshot import (
     ExplanationSnapshot,
 )
@@ -26,6 +24,7 @@ from app.infrastructure.adapters.educational_runtime_bridge import (
     recommendation_mapper as rec_mapper,
 )
 from app.presentation.student.view_models import home_vm
+from tests.presentation.student.helpers import render_student_home
 
 
 def _schema_complete_row(**overrides):
@@ -162,24 +161,32 @@ def _trust_home_snapshot(**overrides) -> HomeSnapshot:
 
 
 def test_tr_a01_schema_complete_home_binds_trust_mes_fields(app, ctx):
-    """TR-A01: L1 why/next/benefit/coherence + L2 review present."""
-    page_home = home_vm(_trust_home_snapshot(), unified_journey=False)
-    page = SimpleNamespace(
-        home=page_home,
-        shell=SimpleNamespace(active_surface="home", navigation=()),
+    """TR-A01: DX-005A Home — one why-now; deep MES stack not on template."""
+    from app.application.student_experience.dto.home_snapshot import (
+        StartSessionActionSnapshot,
     )
-    with app.test_request_context("/student/"):
-        html = render_template("student/home.html", page=page, form=None)
-    assert 'data-mes-field="why_recommended"' in html
-    assert 'data-mes-field="suggested_next_action"' in html
-    assert 'data-mes-field="expected_benefit"' in html
-    assert 'data-mes-level="1"' in html
-    assert 'data-mes-field="plan_coherence"' in html
-    assert "Supports today" in html
-    assert 'data-mes-field="timeliness"' in html
-    assert "exam window" in html
-    assert 'data-mes-field="review_point"' in html
-    assert "Reassess after tonight" in html
+
+    page_home = home_vm(
+        _trust_home_snapshot(
+            start_session=StartSessionActionSnapshot(
+                label="Start Session",
+                enabled=True,
+                can_start=True,
+                mission_id="m-1",
+                estimated_minutes=25,
+                topic_title="Cash flow statements",
+            ),
+        ),
+        unified_journey=False,
+    )
+    html = render_student_home(app, page_home)
+    assert "Current Mission" in html
+    assert "Why now" in html
+    assert 'data-mes-field' not in html
+    assert 'data-mes-level' not in html
+    assert 'data-mes-disclosure' not in html
+    assert 'data-mes-field="plan_coherence"' not in html
+    assert 'data-mes-field="review_point"' not in html
     assert html.count('data-student-cta="primary"') <= 1
 
 
@@ -206,21 +213,19 @@ def test_tr_a02_alternatives_capped_at_two_on_home(app, ctx):
     snap = _trust_home_snapshot(recommendation_alternatives=alts)
     page_home = home_vm(snap, unified_journey=False)
     assert len(page_home.recommendation_alternatives) == 2
-    page = SimpleNamespace(
-        home=page_home,
-        shell=SimpleNamespace(active_surface="home", navigation=()),
-    )
-    with app.test_request_context("/student/"):
-        html = render_template("student/home.html", page=page, form=None)
-    assert 'data-mes-field="alternatives"' in html
-    assert "Alt A" in html
-    assert "Alt B" in html
-    assert "Alt C" not in html
-    assert "Other options considered" in html
+    html = render_student_home(app, page_home)
+    assert 'data-mes-field="alternatives"' not in html
+    assert "Alt A" not in html
+    assert "Alt B" not in html
+    assert "Other options considered" not in html
 
 
 def test_tr_a03_honest_refusal_hides_alternatives(app, ctx):
     """TR-A03: refusal → no alternatives; cannot-yet confidence; authored title."""
+    from app.application.student_experience.dto.home_snapshot import (
+        StartSessionActionSnapshot,
+    )
+
     explanation = ExplanationSnapshot(
         summary="No recommendation yet",
         why_recommended=(
@@ -251,21 +256,23 @@ def test_tr_a03_honest_refusal_hides_alternatives(app, ctx):
         trust_state=TRUST_STATE_REFUSAL,
         recommendation_alternatives=(),
         can_start_session=True,
+        start_session=StartSessionActionSnapshot(
+            label="Start Session",
+            enabled=True,
+            can_start=True,
+            mission_id="m-refusal",
+            estimated_minutes=25,
+            topic_title="No recommendation yet",
+        ),
     )
     page_home = home_vm(snap, unified_journey=False)
     assert page_home.trust_state == TRUST_STATE_REFUSAL
     assert page_home.recommendation_alternatives == ()
-    page = SimpleNamespace(
-        home=page_home,
-        shell=SimpleNamespace(active_surface="home", navigation=()),
-    )
-    with app.test_request_context("/student/"):
-        html = render_template("student/home.html", page=page, form=None)
+    html = render_student_home(app, page_home)
     assert "No recommendation yet" in html
-    assert "Cannot yet be estimated" in html
+    assert "Cannot yet be estimated" not in html
     assert 'data-mes-field="alternatives"' not in html
-    assert 'data-trust-state="refusal"' in html
-    # Coherence theatre hidden on refusal path.
+    assert 'data-trust-state="refusal"' not in html
     assert "Supports today's mission" not in html
 
 
@@ -301,18 +308,12 @@ def test_tr_a05_single_primary_cta(app, ctx):
         can_start_session=True,
     )
     page_home = home_vm(snap, unified_journey=False)
-    page = SimpleNamespace(
-        home=page_home,
-        shell=SimpleNamespace(active_surface="home", navigation=()),
-    )
-    # Minimal form stub so the Start Session form renders.
     form = SimpleNamespace(
         hidden_tag=lambda: "",
         mission_id=lambda: '<input type="hidden" name="mission_id">',
         session_id=lambda: '<input type="hidden" name="session_id">',
     )
-    with app.test_request_context("/student/"):
-        html = render_template("student/home.html", page=page, form=form)
+    html = render_student_home(app, page_home, form=form)
     assert html.count('data-student-cta="primary"') == 1
 
 
@@ -320,12 +321,7 @@ def test_tr_a06_terminology_guard_on_trust_blocks(app, ctx):
     """TR-A06: no Twin/pipeline/warrant tokens in rendered trust blocks."""
     snap = _trust_home_snapshot()
     page_home = home_vm(snap, unified_journey=False)
-    page = SimpleNamespace(
-        home=page_home,
-        shell=SimpleNamespace(active_surface="home", navigation=()),
-    )
-    with app.test_request_context("/student/"):
-        html = render_template("student/home.html", page=page, form=None)
+    html = render_student_home(app, page_home)
     lowered = html.lower()
     for token in (
         "digital twin",

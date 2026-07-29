@@ -8,6 +8,7 @@ policy — without changing recommendation or MI algorithms.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from types import SimpleNamespace
 
 from flask import render_template
@@ -32,6 +33,7 @@ from app.presentation.product_language import (
     REVISION_MISSION_PRIMACY_SENTENCE,
 )
 from app.presentation.student.view_models import home_vm, revision_vm
+from tests.presentation.student.helpers import render_student_home
 
 
 def test_home_naming_density_policy_published():
@@ -52,7 +54,7 @@ def test_revision_mission_primacy_sentence():
     assert "today's best revision" in REJECTED_SYNONYMS
 
 
-def test_home_template_names_sensei_once_in_hero(app, ctx):
+def test_home_template_mission_first_without_legacy_chrome(app, ctx):
     snap = HomeSnapshot(
         student_id="stu-rr13d",
         greeting="Welcome back",
@@ -79,18 +81,12 @@ def test_home_template_names_sensei_once_in_hero(app, ctx):
         can_start_session=False,
     )
     page_home = home_vm(snap, unified_journey=False)
-    page = SimpleNamespace(
-        home=page_home,
-        shell=SimpleNamespace(active_surface="home", navigation=()),
-        educational=None,
-    )
-    with app.test_request_context("/student/"):
-        html = render_template("student/home.html", page=page, form=None)
-    # Hero narrator chrome names Sensei; Guidance panel does not repeat eyebrow.
-    assert html.count('data-narrator="study-sensei"') == 1
-    assert "Study Sensei" in html
-    assert "Readiness, journey, and guidance" in html
+    html = render_student_home(app, page_home)
+    assert 'data-narrator="study-sensei"' not in html
+    assert "Study Sensei" not in html
+    assert "Readiness, journey, and guidance" not in html
     assert "Readiness, journey, and coach" not in html
+    assert "Current Mission" in html
     assert "Optimising for" not in html
     assert "Focusing on" not in html
     assert "Mission confidence" not in html
@@ -99,7 +95,7 @@ def test_home_template_names_sensei_once_in_hero(app, ctx):
     assert "Review Reflection" not in html
 
 
-def test_home_mi_chrome_uses_educational_priority(app, ctx):
+def test_home_mi_chrome_not_on_home(app, ctx):
     mi = SimpleNamespace(
         has_mission=True,
         eyebrow="Today's Mission",
@@ -134,18 +130,14 @@ def test_home_mi_chrome_uses_educational_priority(app, ctx):
         can_start_session=False,
     )
     page_home = home_vm(snap, unified_journey=False)
-    page_home = SimpleNamespace(**{**page_home.__dict__, "mission_intelligence": mi})
-    page = SimpleNamespace(
-        home=page_home,
-        shell=SimpleNamespace(active_surface="home", navigation=()),
-        educational=None,
-    )
-    with app.test_request_context("/student/"):
-        html = render_template("student/home.html", page=page, form=None)
-    assert "Educational priority: learning value" in html
-    assert "How sure this guidance feels" in html
-    assert "What is still uncertain" in html
-    assert "Sensei reflection" in html
+    page_home = replace(page_home, mission_intelligence=mi)
+    html = render_student_home(app, page_home)
+    assert "Educational priority: learning value" not in html
+    assert "How sure this guidance feels" not in html
+    assert "What is still uncertain" not in html
+    assert "Sensei reflection" not in html
+    assert 'data-mission-intelligence' not in html
+    assert "Current Mission" in html
     assert "Focusing on" not in html
     assert "Optimising for" not in html
 

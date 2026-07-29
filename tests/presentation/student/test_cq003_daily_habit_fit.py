@@ -62,6 +62,14 @@ def test_experience_session_in_progress_cta_is_continue():
 
 
 def test_home_resume_without_unified_journey(app, ctx):
+    from app.presentation.student.services.student_home_service import (
+        StudentHomeService,
+    )
+    from app.presentation.student.view_models import (
+        StudentPageViewModel,
+        StudentShellViewModel,
+    )
+
     page_home = home_vm(
         HomeSnapshot(
             student_id="1",
@@ -89,20 +97,29 @@ def test_home_resume_without_unified_journey(app, ctx):
     assert page_home.quick_actions[0].href == "/session/sess-abc/overview"
     assert page_home.quick_actions[0].label == "Continue"
 
-    page = SimpleNamespace(
+    page = StudentPageViewModel(
+        shell=StudentShellViewModel(
+            active_surface="home",
+            active_label="Home",
+            navigation=(),
+            page_title="Home",
+        ),
         home=page_home,
-        shell=SimpleNamespace(active_surface="home", navigation=()),
-        educational=None,
     )
     with app.test_request_context("/student/"):
-        html = render_template("student/home.html", page=page, form=None)
+        home = StudentHomeService().build_home(page)
+        html = render_template(
+            "student/home.html", page=page, home=home, form=None
+        )
     assert 'data-habit="resume"' in html
     assert 'data-habit="resume-cta"' in html
     assert 'data-session-control="resume"' in html
     assert "/session/sess-abc/overview" in html
-    assert "Why now" not in html
-    assert "I’m doing this next" not in html
+    assert "Continue Session" in html
     assert "Not today" not in html
+    assert "I’m doing this next" not in html
+    # DX-005A allows one operational why-now on resume (not MES stack).
+    assert html.count("Why now") <= 1
 
 
 def test_begin_revision_auto_begins_into_activity(

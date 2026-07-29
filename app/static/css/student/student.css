@@ -281,228 +281,6 @@ button.student-signout {
   max-width: 36rem;
 }
 
-.student-greeting {
-  margin-bottom: var(--student-space-5);
-}
-
-.student-greeting-text {
-  margin: 0;
-  font-family: var(--student-font-display);
-  font-size: 1.35rem;
-  color: var(--student-text);
-}
-
-/* PX-003 decision screen */
-.student-hero {
-  margin: 0 0 var(--student-space-7);
-  padding: var(--student-space-5) 0 var(--student-space-6);
-}
-
-.student-hero-greeting {
-  margin: 0 0 var(--student-space-4);
-  font-family: var(--student-font-body);
-  font-size: 1.05rem;
-  color: var(--student-muted);
-}
-
-.student-hero-eyebrow {
-  margin: 0 0 var(--student-space-2);
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--student-muted);
-  font-weight: 600;
-}
-
-.student-hero-title {
-  margin: 0 0 var(--student-space-3);
-  font-family: var(--student-font-display);
-  font-size: clamp(1.85rem, 4.5vw, 2.6rem);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.12;
-  max-width: 18ch;
-}
-
-.student-hero-duration {
-  margin: 0 0 var(--student-space-3);
-  color: var(--student-muted);
-  font-size: 0.95rem;
-}
-
-.student-hero-purpose {
-  margin: 0;
-  max-width: 36rem;
-  color: var(--student-muted);
-  font-size: 1.1rem;
-  line-height: 1.55;
-}
-
-/* CQ-006 — stacked MES / purpose lines need vertical rhythm. */
-.student-hero-purpose + .student-hero-purpose,
-.student-hero-purpose + .student-muted,
-.student-hero-purpose + .student-session-next,
-.student-muted + .student-hero-purpose,
-.student-muted + .student-session-next,
-.student-hero-duration + .student-hero-purpose,
-.student-mission-status + .student-hero-purpose {
-  margin-top: var(--student-space-3);
-}
-
-.student-hero-purpose-label {
-  display: block;
-  margin-bottom: var(--student-space-2);
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: var(--student-muted);
-}
-
-.student-session-next {
-  margin: var(--student-space-3) 0 0;
-  max-width: 36rem;
-  font-size: 1.05rem;
-  line-height: 1.55;
-  color: var(--student-text);
-}
-
-.student-hero-outcome,
-.student-hero-summary {
-  margin: var(--student-space-3) 0 0;
-  max-width: 36rem;
-  font-size: 0.98rem;
-  line-height: 1.5;
-}
-
-.student-narrator,
-.student-hero [data-narrator="study-sensei"] {
-  margin: 0 0 var(--student-space-2);
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: var(--student-muted);
-}
-
-.student-mission-status {
-  margin: 0 0 var(--student-space-3);
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--brand-navy);
-}
-
-.student-mission-status[data-status="complete"] {
-  color: var(--brand-blue);
-}
-
-/* ILE-004 — Daily Mission Intelligence explainability panel */
-.student-mission-intelligence {
-  margin: var(--student-space-5) 0 0;
-  max-width: 40rem;
-  padding: var(--student-space-4) 0 0;
-  border-top: 1px solid color-mix(in srgb, var(--student-muted) 28%, transparent);
-}
-
-.student-mission-intelligence-title {
-  margin: 0 0 var(--student-space-3);
-  font-size: 1.05rem;
-  font-weight: 600;
-  line-height: 1.35;
-}
-
-.student-mission-intelligence p {
-  margin: 0 0 var(--student-space-3);
-  max-width: 38rem;
-  font-size: 0.98rem;
-  line-height: 1.5;
-  color: var(--student-muted);
-}
-
-.student-mission-intelligence .student-label {
-  display: inline;
-  margin-right: 0.35rem;
-}
-
-.student-mission-evidence {
-  margin: 0 0 var(--student-space-3);
-  padding-left: 1.2rem;
-  max-width: 38rem;
-  color: var(--student-muted);
-  font-size: 0.95rem;
-  line-height: 1.45;
-}
-
-.student-mission-explanation {
-  margin: 0 0 var(--student-space-3);
-  max-width: 38rem;
-}
-
-.student-mission-explanation summary {
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-.student-mission-explanation p {
-  margin-top: var(--student-space-2);
-}
-
-.student-mission-timeline {
-  margin-top: var(--student-space-6);
-  max-width: 22rem;
-}
-
-.student-journey-feedback {
-  margin: var(--student-space-6) 0 0;
-  max-width: 36rem;
-}
-
-.student-journey-feedback-period {
-  margin: 0 0 var(--student-space-3);
-  font-size: 0.92rem;
-}
-
-.student-journey-feedback-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  gap: var(--student-space-4);
-}
-
-.student-journey-feedback-item {
-  margin: 0;
-}
-
-.student-journey-feedback-label {
-  margin: 0;
-  font-size: 0.92rem;
-  color: var(--student-muted, inherit);
-}
-
-.student-journey-feedback-value {
-  margin: var(--student-space-1) 0 0;
-  font-size: 1.05rem;
-  font-weight: 600;
-}
-
-.student-journey-feedback-source,
-.student-journey-feedback-footnote {
-  margin: var(--student-space-1) 0 0;
-  font-size: 0.85rem;
-}
-
-.student-secondary--subordinate {
-  margin-top: var(--student-space-2);
-}
-
-.student-secondary--subordinate .student-panel {
-  background: color-mix(in srgb, var(--student-surface) 92%, var(--student-bg));
-  border-color: color-mix(in srgb, var(--student-card-border) 85%, transparent);
-}
-
 /* RR-001.2 / XR-02 — disclosure for density without removing educational fields. */
 .student-disclosure {
   margin: var(--student-space-5) 0 0;
@@ -539,21 +317,6 @@ button.student-signout {
   border-radius: var(--radius-sm);
 }
 
-.student-mission-intelligence-disclosure .student-mission-intelligence {
-  margin-top: 0;
-  border-top: 0;
-  padding-top: var(--student-space-2);
-}
-
-.student-home-more {
-  max-width: none;
-  margin-bottom: var(--student-space-5);
-}
-
-.student-home-more .student-tertiary {
-  margin-top: var(--student-space-3);
-}
-
 .student-btn-secondary {
   background: transparent;
   border: 1px solid var(--border);
@@ -586,11 +349,6 @@ button.student-signout {
   color: var(--student-muted);
   margin-bottom: var(--student-space-3);
   opacity: 0.65;
-}
-
-.student-hero-empty {
-  margin-top: var(--student-space-4);
-  max-width: 36rem;
 }
 
 .student-flash-stack .student-success,
@@ -672,58 +430,6 @@ button.student-signout {
   color: var(--student-primary);
 }
 
-.student-hero-cta {
-  margin-top: var(--student-space-5);
-}
-
-.student-reflection {
-  margin-top: var(--student-space-4);
-  max-width: 36rem;
-}
-
-.student-reflection-prompts {
-  margin: var(--student-space-4) 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.student-reflection-prompt {
-  margin: 0 0 var(--student-space-4);
-}
-
-.student-reflection-prompt-text {
-  margin: 0 0 var(--student-space-2);
-  font-size: 1rem;
-  line-height: 1.45;
-}
-
-.student-reflection-options,
-.student-reflection-note-placeholder {
-  margin: 0;
-  font-size: 0.92rem;
-}
-
-.student-reflection-controls {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--student-space-3);
-}
-
-/* PX-002A T1-3/a11y: preview-only label — deliberately not button-styled so
-   it never misrepresents itself as an operable control (see home.html). */
-.student-reflection-preview {
-  font-weight: 600;
-  color: var(--student-text);
-}
-
-.student-secondary,
-.student-tertiary {
-  display: grid;
-  gap: var(--student-space-4);
-  margin-bottom: var(--student-space-5);
-}
-
 .student-panel {
   background: var(--student-surface);
   border: 1px solid var(--student-card-border);
@@ -753,17 +459,8 @@ button.student-signout {
   letter-spacing: -0.01em;
 }
 
-.student-panel-metric {
-  margin: 0 0 var(--student-space-2);
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--student-primary);
-}
-
 .student-panel-trend,
-.student-panel-body,
-.student-story,
-.student-coach-insight {
+.student-panel-body {
   margin: 0 0 var(--student-space-3);
   color: var(--student-muted);
   line-height: 1.55;
@@ -781,37 +478,6 @@ button.student-signout {
   border-radius: var(--radius-sm);
 }
 
-.student-milestone-list,
-.student-quick-actions {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--student-space-3);
-}
-
-.student-milestone-title,
-.student-quick-actions a {
-  font-weight: 600;
-  color: var(--student-text);
-  text-decoration: none;
-}
-
-.student-milestone-detail,
-.student-quick-detail {
-  display: block;
-  margin-top: var(--student-space-1);
-  color: var(--student-muted);
-  font-size: 0.9rem;
-}
-
-.student-quick-actions a:focus-visible {
-  outline: none;
-  box-shadow: var(--student-focus);
-  border-radius: var(--radius-sm);
-}
-
 .student-visually-hidden {
   position: absolute;
   width: 1px;
@@ -824,21 +490,9 @@ button.student-signout {
   border: 0;
 }
 
-@media (min-width: 768px) {
-  .student-secondary {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-  .student-tertiary {
-    grid-template-columns: 1.2fr 1fr;
-  }
-}
-
 @media (min-width: 1280px) {
   .student-main {
     max-width: min(var(--student-shell-max), 56rem);
-  }
-  .student-hero-title {
-    max-width: 22ch;
   }
 }
 
@@ -1677,93 +1331,6 @@ a.btn-outline:focus {
   font-size: var(--font-sm);
   margin-top: var(--space-sm);
   max-width: 40rem;
-}
-
-.student-commitment-reflection,
-.student-commitment-chrome {
-  margin: var(--student-space-4) 0 0;
-  max-width: 36rem;
-  padding: var(--student-space-4);
-  border: 1px solid var(--student-card-border);
-  border-radius: var(--student-radius);
-  background: color-mix(in srgb, var(--student-surface) 94%, var(--student-bg));
-}
-
-.student-commitment-reflection > p,
-.student-commitment-chrome > p {
-  margin: 0 0 var(--student-space-2);
-}
-
-.student-commitment-reflection > p:last-child,
-.student-commitment-chrome > p:last-child {
-  margin-bottom: 0;
-}
-
-.student-commitment-reflection-detail {
-  margin: var(--student-space-3) 0;
-}
-
-.student-commitment-reflection-detail > summary {
-  cursor: pointer;
-  color: var(--student-muted);
-  font-size: 0.95rem;
-  font-weight: 600;
-}
-
-.student-commitment-defer {
-  margin-top: var(--student-space-3);
-  max-width: 36rem;
-}
-
-.student-commitment-defer > summary {
-  cursor: pointer;
-  list-style: none;
-  font-weight: 600;
-}
-
-.student-commitment-defer > summary::-webkit-details-marker {
-  display: none;
-}
-
-.student-defer-form {
-  margin-top: var(--student-space-3);
-  padding: var(--student-space-4);
-  border: 1px solid var(--student-card-border);
-  border-radius: var(--student-radius);
-  background: var(--student-surface);
-  display: flex;
-  flex-direction: column;
-  gap: var(--student-space-3);
-}
-
-.student-defer-option {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--student-space-2);
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.student-coach-trust {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--student-space-3);
-}
-
-.student-coach-trust li {
-  margin: 0;
-  line-height: 1.5;
-}
-
-.student-trust-alternatives,
-.student-tutor-guidance,
-.student-hero-explanation {
-  margin: var(--student-space-3) 0 0;
-  max-width: 36rem;
-  line-height: 1.55;
 }
 
 .student-journey-map {

@@ -34,6 +34,7 @@ from app.infrastructure.session.defaults import (
 from app.infrastructure.session.runtime_adapter import SessionRuntimeAdapter
 from app.infrastructure.session.store import SessionDocumentStore
 from app.presentation.student.view_models import home_vm
+from tests.presentation.student.helpers import render_student_home
 
 
 def test_default_why_studying_is_humble_not_generic_roi():
@@ -187,22 +188,19 @@ def test_home_canonicalises_why_label_and_resume_reconnection(app, ctx):
         unified_journey=False,
     )
     assert page_home.session_control == "resume"
-    page = SimpleNamespace(
-        home=page_home,
-        shell=SimpleNamespace(active_surface="home", navigation=()),
-        educational=None,
-    )
-    with app.test_request_context("/student/"):
-        html = render_template("student/home.html", page=page, form=None)
+    html = render_student_home(app, page_home)
     assert 'data-habit="resume"' in html
-    assert 'data-habit="resume-why"' in html
-    assert "Still on this because" in html
-    assert "Soft recall needs deliberate practice." in html
-    assert "Why now" not in html
+    assert "Continue Session" in html
+    assert "Why now" in html
+    assert "Open session" in html or "continue where you left off" in html
+    assert 'data-habit="resume-why"' not in html
+    assert "Still on this because" not in html
     assert "I’m doing this next" not in html
+    assert 'data-trust-coach' not in html
+    assert ">Guidance<" not in html
 
 
-def test_home_guidance_surfaces_basis_instead_of_pointer(app, ctx):
+def test_home_guidance_panel_absent(app, ctx):
     page_home = home_vm(
         HomeSnapshot(
             student_id="1",
@@ -238,20 +236,15 @@ def test_home_guidance_surfaces_basis_instead_of_pointer(app, ctx):
         ),
         unified_journey=False,
     )
-    page = SimpleNamespace(
-        home=page_home,
-        shell=SimpleNamespace(active_surface="home", navigation=()),
-        educational=None,
-    )
-    with app.test_request_context("/student/"):
-        html = render_template("student/home.html", page=page, form=None)
-    assert 'data-trust-coach="alternatives"' in html
-    assert "Also considered" in html
-    assert "Ethics" in html
-    assert "Mission card above" not in html
+    html = render_student_home(app, page_home)
+    assert 'data-trust-coach="alternatives"' not in html
+    assert "Also considered" not in html
+    assert "Ethics" not in html
+    assert "Current Mission" in html
+    assert 'data-mes-field' not in html
 
 
-def test_readiness_disclosure_avoids_evidence_label(app, ctx):
+def test_home_readiness_panel_absent(app, ctx):
     page_home = home_vm(
         HomeSnapshot(
             student_id="1",
@@ -278,14 +271,11 @@ def test_readiness_disclosure_avoids_evidence_label(app, ctx):
         ),
         unified_journey=False,
     )
-    page = SimpleNamespace(
-        home=page_home,
-        shell=SimpleNamespace(active_surface="home", navigation=()),
-        educational=None,
-    )
-    with app.test_request_context("/student/"):
-        html = render_template("student/home.html", page=page, form=None)
-    assert "What this is based on" in html
+    html = render_student_home(app, page_home)
+    assert 'data-dashboard-panel="readiness"' not in html
+    assert "What this is based on" not in html
+    assert 'data-mes-field="readiness_drivers"' not in html
+    assert "Why this estimate?" not in html
     assert ">Evidence<" not in html
 
 

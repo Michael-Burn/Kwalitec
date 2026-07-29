@@ -243,6 +243,8 @@ class MissionPanel:
     primary_href: str = ""
     why_now: str = ""
     status_label: str = ""
+    after_completion: str = ""
+    section_title: str = "Current Mission"
 
     def style(self) -> StyleContract:
         return StyleContract(

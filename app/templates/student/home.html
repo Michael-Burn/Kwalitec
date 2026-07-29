@@ -1,790 +1,129 @@
 {% extends "student/base.html" %}
-{% set title = page.shell.page_title %}
-{% from "student/components/explanation_card.html" import explanation_card %}
-{% from "student/components/educational_experience.html" import educational_experience_panel %}
-{% from "partials/contextual_help.html" import learn_more %}
+{% set title = home.page_title if home else 'Home' %}
+{% from "design_system/macros.html" import
+  ds_mission_panel,
+  ds_learning_queue,
+  ds_recent_progress,
+  ds_empty_operational,
+  ds_button
+%}
 
-{# CQ-006: hero owns the page title — suppress competing shell header. #}
+{# DX-005A: page owns the single H1 — suppress competing shell header. #}
 {% block page_header %}{% endblock %}
 
+{% block extra_head %}
+<link href="{{ versioned_static('css/design_system.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
-{% if page.home %}
-{% set edu = page.educational or page.home.educational %}
-{# P2-MS003–005 — Daily Mission → Guided Session → Reflection: one continuous journey. #}
-{# EP-006.2 — authored MES L1 (why + next) visible; L2 via explanation_card. #}
-{# EP-008.1 — Recommendation Trust: why now, L1 benefit, coherence, refusal, alts. #}
+<article class="ds-page ds-container ds-container--content" aria-labelledby="student-home-title">
+  <header class="ds-page-header">
+    <h1 id="student-home-title" class="ds-page-header__title">{{ home.page_title }}</h1>
+  </header>
 
-{# RR-001.1 / JR-07 — restore syllabus-complete revision acknowledgement on the
-   sole-runtime Home path (same lifecycle service; CQ-002 student POST). #}
-{% if show_revision_acknowledgement and lifecycle %}
-<section class="student-revision-ack mb-4" aria-label="Syllabus complete acknowledgement" data-lifecycle="revision-ack">
-  <p class="student-panel-eyebrow">Learning milestone</p>
-  <h2 class="student-panel-title">{{ lifecycle.acknowledgement_title }}</h2>
-  <p class="student-panel-body">{{ lifecycle.acknowledgement_body }}</p>
-  {% if revision_intro %}
-  <p class="student-muted">{{ revision_intro }}</p>
-  {% endif %}
-  <form method="POST" action="{{ url_for('student.acknowledge_revision') }}" class="student-hero-cta mt-3">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-    <button type="submit" class="btn student-btn-primary" data-lifecycle="revision-ack-submit">Continue</button>
-  </form>
-</section>
-{% endif %}
+  {# ——— Empty: no exam / no plan ——— #}
+  {% if home.state == 'empty' %}
+  <section class="ds-section" aria-labelledby="ds-mission-title" data-student-state="empty">
+    <h2 class="ds-section__title" id="ds-mission-title">Current Mission</h2>
+    {{ ds_empty_operational(
+      home.empty_reason,
+      home.empty_action_label,
+      home.empty_action_href
+    ) }}
+  </section>
 
-<section
-  class="student-hero"
-  data-dashboard-slot="primary"
-  aria-labelledby="student-hero-title"
-  {% if page.home.trust_state %}data-trust-state="{{ page.home.trust_state }}"{% endif %}
-  {% if page.home.unified_journey_enabled %}data-journey-stage="{{ page.home.journey_stage }}"{% endif %}
-  {% if page.home.unified_journey_enabled and page.home.completion_status %}data-mission-status="{{ page.home.completion_status }}"{% endif %}
-  {% if page.home.unified_journey_enabled and page.home.session_phase %}data-session-phase="{{ page.home.session_phase }}"{% endif %}
-  {% if page.home.guided_session_active %}data-guided-session="active"{% endif %}
-  {% if page.home.reflection_active %}data-reflection="active" data-reflection-state="{{ page.home.reflection_state }}"{% endif %}
-  {% if page.home.day_complete %}data-day-complete="true"{% endif %}
->
-  {# CQ-003 / CR2: resume path keeps the hero light (title, duration, Continue). #}
-  {% set habit_resume = page.home.session_control == 'resume' %}
-  <p class="student-hero-greeting">{{ page.home.greeting }}</p>
-  <p class="student-narrator" data-narrator="study-sensei">Study Sensei</p>
-  <p class="student-hero-eyebrow">
-    {% if page.home.reflection_active %}
-      Guided Reflection preview
-    {% elif page.home.guided_session_active and page.home.session_phase != 'ready' %}
-      Guided Study Session
-    {% else %}
-      Today's Mission
+  {# ——— Quiet: plan exists, mission not ready ——— #}
+  {% elif home.state == 'quiet' %}
+  <section class="ds-section" aria-labelledby="ds-mission-title" data-student-state="quiet">
+    <h2 class="ds-section__title" id="ds-mission-title">Current Mission</h2>
+    <p class="ds-list__meta" role="status">{{ home.empty_reason }}</p>
+    {% if home.empty_action_label %}
+      <p class="ds-list__meta">
+        {{ ds_button(home.empty_action_label, href=home.empty_action_href, variant='ghost') }}
+      </p>
     {% endif %}
-  </p>
-  <h2 id="student-hero-title" class="student-hero-title" data-mes-field="title">
-    {% if page.home.reflection_active and page.home.reflection_headline %}
-      {{ page.home.reflection_headline }}
-    {% elif page.home.unified_journey_enabled and page.home.primary_mission_title %}
-      {{ page.home.primary_mission_title }}
-    {% elif page.home.recommendation.has_recommendation and page.home.recommendation.title %}
-      {{ page.home.recommendation.title }}
-    {% else %}
-      Today's Mission
-    {% endif %}
-  </h2>
+  </section>
 
-  {% if page.home.reflection_active %}
-  <p class="student-mission-status" data-status="reflection-{{ page.home.reflection_state }}">
-    Guided Reflection preview — nothing recorded
-  </p>
-  {% elif page.home.unified_journey_enabled and page.home.session_status %}
-  <p class="student-mission-status" data-status="{{ page.home.session_phase or page.home.completion_status }}">
-    {{ page.home.session_status }}{% if page.home.completion_status_label and page.home.session_phase == 'ready' %} · {{ page.home.completion_status_label }}{% endif %}
-  </p>
-  {% elif page.home.unified_journey_enabled and page.home.completion_status_label %}
-  <p class="student-mission-status" data-status="{{ page.home.completion_status }}">
-    {{ page.home.completion_status_label }}
-  </p>
-  {% endif %}
+  {# ——— Day complete: quiet, no Primary ——— #}
+  {% elif home.state == 'day_complete' and home.mission %}
+  {{ ds_mission_panel(
+    home.mission.subject_name,
+    home.mission.objective,
+    primary_label='',
+    status_label=home.mission.status_label,
+    include_primary=false
+  ) }}
+  <p class="ds-list__meta" role="status" data-day-complete="true">{{ home.day_complete_message }}</p>
 
-  {% if page.home.unified_journey_enabled and page.home.estimated_duration_label and not page.home.reflection_active %}
-  <p class="student-hero-duration">{{ page.home.estimated_duration_label }}</p>
-  {% elif page.home.estimated_study_label and not page.home.reflection_active %}
-  <p class="student-hero-duration">{{ page.home.estimated_study_label }}</p>
-  {% endif %}
+  {# ——— L0 Current Mission + exactly one Primary ——— #}
+  {% elif home.mission %}
+  {% set m = home.mission %}
+  {{ ds_mission_panel(
+    m.subject_name,
+    m.objective,
+    primary_label='',
+    why_now=m.why_now,
+    status_label=m.status_label,
+    after_completion=m.after_completion,
+    include_primary=false
+  ) }}
 
-  {% if page.home.reflection_active %}
-  <p class="student-hero-purpose">
-    {% if page.home.session_outcome_summary %}
-      {{ page.home.session_outcome_summary }}
-    {% elif page.home.reflection_supporting_message %}
-      {{ page.home.reflection_supporting_message }}
-    {% else %}
-      A short moment for you — optional, and just for yourself.
-    {% endif %}
-  </p>
-  {% if page.home.completion_loop_echo %}
-  <p class="student-muted" data-mes-field="review_point" data-mes-level="completion">
-    {{ page.home.completion_loop_echo }}
-  </p>
-  {% endif %}
-  {% elif page.home.guided_session_active and page.home.session_learning_objective %}
-  <p class="student-hero-purpose">
-    <span class="student-hero-purpose-label">Focus</span>
-    {{ page.home.session_learning_objective }}
-  </p>
-  {% elif not habit_resume and page.home.explanation and page.home.explanation.why_recommended %}
-  <p class="student-hero-purpose" data-mes-field="why_recommended" data-mes-level="1">
-    <span class="student-hero-purpose-label">Why</span>
-    {{ page.home.explanation.why_recommended }}
-  </p>
-  {% elif not habit_resume and page.home.unified_journey_enabled and page.home.why_it_matters %}
-  <p class="student-hero-purpose">
-    <span class="student-hero-purpose-label">Why</span>
-    {{ page.home.why_it_matters }}
-  </p>
-  {% elif not habit_resume and (page.home.recommendation.summary or page.home.recommendation.reason) %}
-  <p class="student-hero-purpose">
-    {{ page.home.recommendation.summary or page.home.recommendation.reason }}
-  </p>
-  {% elif not habit_resume and page.home.expected_benefit_label %}
-  <p class="student-hero-purpose">{{ page.home.expected_benefit_label }}</p>
-  {% endif %}
-
-  {# CQ-003 / CR2: when resuming an open session, keep the hero light — title,
-     duration, and Continue. Hide start-time MES/commitment density. #}
-
-  {% if habit_resume and not page.home.guided_session_active and not page.home.reflection_active %}
-  <p class="student-mission-status" data-status="in_progress" data-habit="resume">
-    Session in progress — continue where you left off
-  </p>
-  {% if page.home.explanation and page.home.explanation.why_recommended %}
-  <p class="student-hero-purpose" data-habit="resume-why" data-mes-field="why_recommended">
-    <span class="student-hero-purpose-label">Still on this because</span>
-    {{ page.home.explanation.why_recommended }}
-  </p>
-  {% elif page.home.recommendation.summary or page.home.recommendation.reason %}
-  <p class="student-hero-purpose" data-habit="resume-why">
-    <span class="student-hero-purpose-label">Still on this because</span>
-    {{ page.home.recommendation.summary or page.home.recommendation.reason }}
-  </p>
-  {% endif %}
-  {% endif %}
-
-  {% if page.home.explanation and page.home.explanation.timeliness_line and not page.home.guided_session_active and not page.home.reflection_active and not habit_resume %}
-  <p class="student-hero-purpose" data-mes-field="timeliness" data-mes-level="1">
-    <span class="student-hero-purpose-label">Why now</span>
-    {{ page.home.explanation.timeliness_line }}
-  </p>
-  {% endif %}
-
-  {% if page.home.l1_expected_benefit and not page.home.guided_session_active and not page.home.reflection_active and not habit_resume %}
-  <p class="student-hero-outcome" data-mes-field="expected_benefit" data-mes-level="1">
-    <span class="student-hero-purpose-label">You’ll work toward</span>
-    {{ page.home.l1_expected_benefit }}
-  </p>
-  {% endif %}
-
-  {% if page.home.readiness_bridge_line and not page.home.guided_session_active and not page.home.reflection_active and not habit_resume %}
-  <p class="student-muted" data-mes-field="readiness_bridge" data-mes-level="1">
-    {{ page.home.readiness_bridge_line }}
-  </p>
-  {% endif %}
-
-  {% if page.home.explanation and page.home.explanation.suggested_next_action and not page.home.guided_session_active and not page.home.reflection_active and not habit_resume %}
-  <p class="student-session-next" data-mes-field="suggested_next_action" data-mes-level="1">
-    <span class="student-hero-purpose-label">Next</span>
-    {{ page.home.explanation.suggested_next_action }}
-  </p>
-  {% endif %}
-
-  {% if page.home.explanation and page.home.explanation.plan_coherence_label and not page.home.explanation.honest_refusal and not page.home.guided_session_active and not page.home.reflection_active and not habit_resume %}
-  <p class="student-muted student-plan-coherence" data-mes-field="plan_coherence" data-mes-level="1">
-    {{ page.home.explanation.plan_coherence_label }}
-  </p>
-  {% endif %}
-
-  {% if page.home.commitment and page.home.commitment.show_reflection and page.home.commitment.reflection %}
-  <div class="student-commitment-reflection" data-commitment="reflection" data-reflection-field="block" data-reflection-compact="true">
-    <p class="student-panel-eyebrow">Session complete</p>
-    <p data-reflection-field="what_you_did"><span class="student-label">What you did</span> {{ page.home.commitment.reflection.what_you_did }}</p>
-    <p data-reflection-field="what_happens_next"><span class="student-label">What happens next</span> {{ page.home.commitment.reflection.what_happens_next }}</p>
-    <details class="student-commitment-reflection-detail">
-      <summary>More about this session</summary>
-      <p data-reflection-field="what_changed"><span class="student-label">What changed</span> {{ page.home.commitment.reflection.what_changed }}</p>
-      <p data-reflection-field="why_it_mattered"><span class="student-label">Why it mattered</span> {{ page.home.commitment.reflection.why_it_mattered }}</p>
-      <p data-reflection-field="what_was_learned"><span class="student-label">What the system updated</span> {{ page.home.commitment.reflection.what_was_learned }}</p>
-    </details>
-    {% if page.home.commitment.continuity_line %}
-    <p class="student-muted" data-commitment="continuity">{{ page.home.commitment.continuity_line }}</p>
-    {% endif %}
-    {% if reflection_form %}
-    <form method="post" action="{{ url_for('student.acknowledge_reflection') }}" class="student-hero-cta">
-      {{ reflection_form.hidden_tag() }}
-      {{ reflection_form.recommendation_key() }}
-      <button type="submit" class="btn student-btn-primary" data-commitment="reflection-ack">Got it</button>
-    </form>
-    {% endif %}
-  </div>
-  {% elif page.home.commitment and page.home.commitment.is_committed %}
-  <div class="student-commitment-chrome" data-commitment="committed">
-    <p class="student-muted mb-1">Committed for today: {{ page.home.commitment.title }}</p>
-    {% if page.home.commitment.continuity_line %}
-    <p class="student-muted" data-commitment="continuity">{{ page.home.commitment.continuity_line }}</p>
-    {% endif %}
-  </div>
-  {% elif page.home.commitment and page.home.commitment.is_deferred %}
-  <div class="student-commitment-chrome" data-commitment="deferred">
-    <p class="student-muted mb-1">Deferred for today{% if page.home.commitment.deferred_reason_label %} · {{ page.home.commitment.deferred_reason_label }}{% endif %}</p>
-    {% if page.home.commitment.continuity_line %}
-    <p class="student-muted" data-commitment="continuity">{{ page.home.commitment.continuity_line }}</p>
-    {% endif %}
-  </div>
-  {% elif page.home.commitment and page.home.commitment.show_commit_affordance and not page.home.guided_session_active and not page.home.reflection_active and not habit_resume %}
-  <p class="student-muted" data-commitment="confirm">
-    Starting means you’re doing this next.
-  </p>
-  {% if page.home.commitment.continuity_line %}
-  <p class="student-muted" data-commitment="continuity">{{ page.home.commitment.continuity_line }}</p>
-  {% endif %}
-  {% endif %}
-
-  {% if page.home.explanation and page.home.explanation.honest_refusal and page.home.explanation.confidence_label and not page.home.guided_session_active and not page.home.reflection_active and not habit_resume %}
-  <p class="student-muted" data-mes-field="confidence_level" data-mes-level="1" data-trust-state="refusal">
-    <span class="student-label">Confidence</span> {{ page.home.explanation.confidence_label }}
-  </p>
-  {% endif %}
-
-  {% if page.home.unified_journey_enabled and page.home.expected_outcome and not page.home.guided_session_active and not page.home.reflection_active and not page.home.l1_expected_benefit and not habit_resume %}
-  <p class="student-hero-outcome">{{ page.home.expected_outcome }}</p>
-  {% endif %}
-
-  {% if page.home.unified_journey_enabled and page.home.session_progress_summary and not page.home.reflection_active %}
-  <p class="student-hero-summary student-muted">{{ page.home.session_progress_summary }}</p>
-  {% elif page.home.unified_journey_enabled and page.home.mission_summary and page.home.mission_summary != page.home.why_it_matters and not page.home.reflection_active and not habit_resume %}
-  <p class="student-hero-summary student-muted">{{ page.home.mission_summary }}</p>
-  {% endif %}
-
-  {% if page.home.guided_session_active and page.home.session_next_step and not page.home.reflection_active %}
-  <p class="student-session-next" data-session-next="true">
-    <span class="student-hero-purpose-label">Next</span>
-    {{ page.home.session_next_step }}
-  </p>
-  {% endif %}
-
-  {% if page.home.guided_session_active and page.home.session_start_time_label and not page.home.reflection_active %}
-  <p class="student-muted student-session-elapsed" data-elapsed-state="{{ page.home.session_elapsed_state }}">
-    {{ page.home.session_start_time_label }}
-  </p>
-  {% endif %}
-
-  {% if page.home.reflection_active %}
-  {# RR-001.1 / JR-06 / IR-03: preview prompts only — no fake action controls.
-     Commitment reflection (Got it) and session/journal reflection remain the
-     honest interactive paths. #}
-  <div class="student-reflection" data-reflection-experience="true" data-presentation-only="true" data-reflection-honesty="preview-only">
-    {% if page.home.reflection_next_transition %}
-    <p class="student-session-next" data-reflection-next="true">
-      <span class="student-hero-purpose-label">Next</span>
-      {{ page.home.reflection_next_transition }}
-    </p>
-    {% endif %}
-    <ul class="student-reflection-prompts">
-      {% for prompt in page.home.reflection_prompts %}
-      <li class="student-reflection-prompt" data-response-type="{{ prompt.response_type }}">
-        <p class="student-reflection-prompt-text">{{ prompt.prompt }}</p>
-        {% if prompt.response_type == 'choice' and prompt.available_options %}
-        <p class="student-muted student-reflection-options" aria-label="{{ prompt.prompt }}">
-          {% for option in prompt.available_options %}
-          <span class="student-reflection-option" data-presentation-only="true">{{ option }}</span>{% if not loop.last %} · {% endif %}
-          {% endfor %}
-        </p>
-        {% elif prompt.response_type == 'note' %}
-        <p class="student-muted student-reflection-note-placeholder">
-          {{ prompt.optional_note_placeholder or 'Optional note' }}
-        </p>
-        {% endif %}
-      </li>
-      {% endfor %}
-    </ul>
-    <p class="student-muted" data-reflection-honesty="disclaimer">
-      Guided Reflection preview only — private prompts to think through —
-      nothing here is recorded, and there is no action to submit. This is not
-      Session reflection, Sensei reflection, or Product Check-in.
-    </p>
-  </div>
-  {% elif complete_form and page.home.primary_cta_enabled and page.home.session_control == 'complete_runtime_c' %}
-  <form method="post" action="{{ url_for('student.complete_runtime_mission') }}" class="student-hero-cta" data-pilot-cta="complete-mission">
-    {{ complete_form.hidden_tag() }}
-    {{ complete_form.mission_id() }}
-    <button type="submit" class="btn student-btn-primary" data-student-cta="primary" data-session-control="complete_runtime_c">
-      {{ page.home.primary_cta_label or 'Mark mission complete' }}
-    </button>
-  </form>
-  <p class="student-muted">Study the topic using your materials, then mark the mission complete when you meet the “Done when” criteria.</p>
-  {% elif page.home.primary_cta_enabled and page.home.session_control == 'resume' and page.home.session_id %}
-  {# CQ-003 / CR2: deep-link resume — no re-commitment POST on return. #}
-  <p class="student-hero-cta student-session-control" data-session-control="resume">
+  {% if m.primary_kind == 'link' and m.primary_href %}
+  <div
+    class="ds-primary-strip"
+    role="group"
+    aria-label="Primary actions"
+    data-habit="resume"
+    data-session-control="resume"
+  >
     <a
-      class="btn student-btn-primary"
-      href="{{ url_for('session.overview', session_id=page.home.session_id) }}"
+      class="ds-btn ds-btn--primary"
+      href="{{ m.primary_href }}"
       data-student-cta="primary"
       data-session-control="resume"
       data-session-resume="true"
       data-habit="resume-cta"
-    >{{ page.home.session_control_label or page.home.primary_cta_label or 'Continue' }}</a>
-  </p>
-  <p class="student-muted" data-habit="resume-hint">
-    {% if page.home.estimated_duration_label or page.home.estimated_study_label %}
-      {{ page.home.estimated_duration_label or page.home.estimated_study_label }} when you return — pick up mid-session.
-    {% else %}
-      Pick up where you left off — no need to start over.
-    {% endif %}
-  </p>
-  {% elif form and page.home.primary_cta_enabled and page.home.session_control in ('start', 'resume', '') %}
-  <form method="post" action="{{ url_for('student.start_session') }}" class="student-hero-cta">
-    {{ form.hidden_tag() }}
-    {{ form.mission_id() }}
-    {{ form.session_id() }}
-    {% if form.recommendation_key is defined %}{{ form.recommendation_key() }}{% endif %}
-    {% if form.record_commitment is defined %}{{ form.record_commitment() }}{% endif %}
-    <button type="submit" class="btn student-btn-primary" data-student-cta="primary" data-session-control="{{ page.home.session_control or 'start' }}">
-      {{ page.home.session_control_label or page.home.primary_cta_label }}
-    </button>
-  </form>
-  {% if page.home.commitment and page.home.commitment.show_defer_affordance and defer_form and not habit_resume %}
-  <details class="student-commitment-defer" data-commitment="defer-open">
-    <summary class="student-muted">Not today</summary>
-    <form method="post" action="{{ url_for('student.defer_commitment') }}" class="student-defer-form">
-      {{ defer_form.hidden_tag() }}
-      {{ defer_form.recommendation_key() }}
-      <p class="student-label">What’s getting in the way?</p>
-      {% for value, label in defer_form.reason_code.choices %}
-      <label class="student-defer-option">
-        <input type="radio" name="reason_code" value="{{ value }}" data-defer-reason="{{ value }}"{% if defer_form.reason_code.data == value %} checked{% endif %}>
-        {{ label }}
-      </label>
-      {% endfor %}
-      <label class="student-muted">
-        Optional note
-        {{ defer_form.reason_note(maxlength=140, class_="form-control form-control-sm") }}
-      </label>
-      <button type="submit" class="btn btn-sm student-btn-secondary">Save and continue</button>
+    >{{ m.primary_label }}</a>
+  </div>
+  {% elif m.primary_kind == 'start_form' and form %}
+  <div class="ds-primary-strip" role="group" aria-label="Primary actions">
+    <form method="post" action="{{ url_for('student.start_session') }}">
+      {{ form.hidden_tag() }}
+      {{ form.mission_id() }}
+      {{ form.session_id() }}
+      {% if form.recommendation_key is defined %}{{ form.recommendation_key() }}{% endif %}
+      {% if form.record_commitment is defined %}{{ form.record_commitment() }}{% endif %}
+      <button
+        class="ds-btn ds-btn--primary"
+        type="submit"
+        data-student-cta="primary"
+        data-session-control="{{ page.home.session_control if page and page.home and page.home.session_control else 'start' }}"
+      >{{ m.primary_label }}</button>
     </form>
-  </details>
-  {% endif %}
-  {% elif page.home.guided_session_active and page.home.session_control == 'finish' %}
-  {# CQ-002 / CR1: when a real session exists, Finish resumes that session
-     (resume_redirect restores the active surface). Otherwise remain honest
-     presentation-only — no fake write control. #}
-  {% if page.home.session_id %}
-  <p class="student-hero-cta student-session-control" data-session-control="finish">
-    <a
-      class="btn student-btn-primary"
-      href="{{ url_for('session.overview', session_id=page.home.session_id) }}"
-      data-student-cta="primary"
-      data-session-resume="true"
-    >{{ page.home.session_control_label or 'Continue session' }}</a>
-  </p>
-  <p class="student-muted">Return to your open session to wrap up and record progress.</p>
-  {% else %}
-  <p class="student-hero-cta student-session-control" data-session-control="finish" data-presentation-only="true">
-    <span class="student-reflection-preview">{{ page.home.session_control_label or 'Finish' }}</span>
-    <span class="student-muted">Wrap up when you are ready — session progress stays with your learning system.</span>
-  </p>
-  {% endif %}
-  {% elif page.home.day_complete or (page.home.unified_journey_enabled and page.home.completion_status == 'complete') %}
-  <p class="student-muted student-hero-cta" data-mission-complete="true" data-day-complete="true">
-    Today's learning day is complete.
-    {% if page.educational and page.educational.unlocks_next %}
-      Next up: {{ page.educational.unlocks_next }}
-    {% else %}
-      Return tomorrow for your next mission, or open Journey to review progress.
-    {% endif %}
-  </p>
-  {% if page.home.completion_loop_echo %}
-  <p class="student-muted" data-mes-field="review_point" data-mes-level="completion">
-    {{ page.home.completion_loop_echo }}
-  </p>
-  {% endif %}
-  {% elif not page.home.primary_cta_enabled %}
-  <div class="student-empty student-hero-empty" role="status" data-student-state="empty">
-    <p class="student-empty-title">
-      {% if page.educational and page.educational.active %}
-        Today's mission will appear here when your published syllabus is ready.
-      {% else %}
-        A session will be ready when today's mission is available.
-      {% endif %}
-    </p>
-    <p class="student-empty-why student-muted">
-      A quiet mission card is expected until guidance is ready — not a broken Home.
-    </p>
-    <p class="student-empty-actions">
-      <a class="student-panel-action" href="{{ url_for('student.journey') }}">Review Journey</a>
-      <span class="student-muted" aria-hidden="true"> · </span>
-      <a class="student-panel-action" href="{{ url_for('study_plan.index') }}">Open Study Plan</a>
-    </p>
   </div>
-  {% endif %}
-
-  {% if page.home.explanation and page.home.explanation.has_disclosure and not page.home.reflection_active %}
-  <div class="student-hero-explanation" data-mes-disclosure="true">
-    {{ explanation_card(page.home.explanation, alternatives=page.home.recommendation_alternatives) }}
-  </div>
-  {% endif %}
-
-  {% set mi = page.home.mission_intelligence %}
-  {% if mi and mi.has_mission and not page.home.guided_session_active and not page.home.reflection_active %}
-  {# RR-001.2 / XR-02 — keep Mission Intelligence fields unchanged; disclose to
-     reduce Home cognitive density (presentation only). #}
-  <details class="student-disclosure student-mission-intelligence-disclosure" data-home-density="mission-detail">
-    <summary class="student-disclosure-summary">
-      <span class="student-panel-eyebrow">{{ mi.eyebrow }}</span>
-      <span class="student-disclosure-title">{{ mi.focus_question }}</span>
-    </summary>
-  <aside
-    class="student-mission-intelligence"
-    data-mission-intelligence="true"
-    data-lifecycle="{{ mi.lifecycle_phase }}"
-    aria-labelledby="mission-intelligence-heading"
-  >
-    <h3 id="mission-intelligence-heading" class="student-visually-hidden">
-      {{ mi.focus_question }}
-    </h3>
-    {% if mi.educational_purpose %}
-    <p data-mission-field="educational_purpose">
-      <span class="student-label">Purpose</span> {{ mi.educational_purpose }}
-    </p>
-    {% endif %}
-    {% if mi.why_today %}
-    <p data-mission-field="why_today">
-      <span class="student-label">Why today</span> {{ mi.why_today }}
-    </p>
-    {% endif %}
-    {% if mi.why_not_something_else %}
-    <p data-mission-field="why_not_something_else">
-      <span class="student-label">Why not something else</span>
-      {{ mi.why_not_something_else }}
-    </p>
-    {% endif %}
-    {% if mi.supporting_evidence %}
-    <div data-mission-field="supporting_evidence">
-      <p class="student-label">{{ mi.evidence_heading }}</p>
-      <ul class="student-mission-evidence">
-        {% for point in mi.supporting_evidence %}
-        <li>{{ point }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-    {% endif %}
-    {% if mi.estimated_effort %}
-    <p data-mission-field="estimated_effort">
-      <span class="student-label">Estimated effort</span> {{ mi.estimated_effort }}
-    </p>
-    {% endif %}
-    {% if mi.expected_learning_outcome %}
-    <p data-mission-field="expected_learning_outcome">
-      <span class="student-label">Expected benefit</span>
-      {{ mi.expected_learning_outcome }}
-    </p>
-    {% endif %}
-    {% if mi.what_happens_after_completion %}
-    <p data-mission-field="after_completion">
-      <span class="student-label">{{ mi.after_heading }}</span>
-      {{ mi.what_happens_after_completion }}
-    </p>
-    {% endif %}
-    {% if mi.mission_confidence %}
-    <p data-mission-field="mission_confidence">
-      <span class="student-label">How sure this guidance feels</span>
-      {{ mi.mission_confidence }}
-    </p>
-    {% endif %}
-    {% if mi.uncertainty %}
-    <p class="student-muted" data-mission-field="uncertainty">
-      <span class="student-label">What is still uncertain</span> {{ mi.uncertainty }}
-    </p>
-    {% endif %}
-    {% if mi.mission_explanation %}
-    <details class="student-mission-explanation" data-mission-field="mission_explanation">
-      <summary>{{ mi.explainability_heading }}</summary>
-      <p>{{ mi.mission_explanation }}</p>
-    </details>
-    {% endif %}
-    {% if mi.skip_consequence %}
-    <p class="student-muted" data-mission-field="skip_consequence">
-      <span class="student-label">{{ mi.skip_heading }}</span>
-      {{ mi.skip_consequence }}
-    </p>
-    {% endif %}
-    {% if mi.reflection_prompt %}
-    <p data-mission-field="reflection_prompt">
-      <span class="student-label">{{ mi.reflection_heading }}</span>
-      {{ mi.reflection_prompt }}
-    </p>
-    {% endif %}
-    {% if mi.optimisation_axis_label %}
-    <p class="student-muted" data-mission-field="optimisation_axis">
-      Educational priority: {{ mi.optimisation_axis_label | lower }}
-    </p>
-    {% endif %}
-  </aside>
-  </details>
-  {% endif %}
-
-  {% if page.home.unified_journey_enabled and page.home.timeline_steps %}
-  <nav class="student-mission-timeline" aria-label="Today's journey">
-    <p class="student-panel-eyebrow">Today's journey</p>
-    <ol class="student-timeline">
-      {% for step in page.home.timeline_steps %}
-      <li class="student-timeline-item{% if step.status == 'complete' %} is-complete{% endif %}{% if step.status == 'current' %} is-current{% endif %}">
-        <span class="student-timeline-marker" aria-hidden="true"></span>
-        <div>
-          <p class="student-timeline-title">{{ step.label }}</p>
-        </div>
-      </li>
-      {% endfor %}
-    </ol>
-  </nav>
-  {% endif %}
-</section>
-
-{% if page.home.unified_journey_enabled and page.home.experience_feedback_enabled %}
-<section
-  class="student-journey-feedback"
-  data-dashboard-slot="experience-feedback"
-  aria-labelledby="student-journey-feedback-title"
->
-  <p class="student-panel-eyebrow">Your Journey</p>
-  <h2 id="student-journey-feedback-title" class="student-panel-title">This week</h2>
-  {% if page.home.experience_feedback_period_label %}
-  <p class="student-muted student-journey-feedback-period">{{ page.home.experience_feedback_period_label }}</p>
-  {% endif %}
-  <ul class="student-journey-feedback-list">
-    {% for fact in page.home.experience_feedback_facts %}
-    <li class="student-journey-feedback-item" data-feedback-key="{{ fact.key }}">
-      <p class="student-journey-feedback-label">{{ fact.label }}</p>
-      <p class="student-journey-feedback-value">{{ fact.value_label }}</p>
-      <p class="student-muted student-journey-feedback-source">{{ fact.source_description }}</p>
-    </li>
-    {% endfor %}
-  </ul>
-  {% if page.home.experience_feedback_source %}
-  <p class="student-muted student-journey-feedback-footnote">{{ page.home.experience_feedback_source }}</p>
-  {% endif %}
-</section>
-{% endif %}
-
-{% if edu and edu.active %}
-{{ educational_experience_panel(edu, surface='home') }}
-{% endif %}
-
-<section
-  class="student-secondary student-secondary--subordinate"
-  data-dashboard-slot="secondary"
-  data-home-density="secondary"
-  aria-label="Readiness, journey, and guidance"
->
-  <article class="student-panel student-panel--quiet" data-dashboard-panel="readiness" aria-labelledby="student-readiness-title">
-    <p class="student-panel-eyebrow">Readiness</p>
-    <h2 id="student-readiness-title" class="student-panel-title">
-      {% if page.home.readiness.has_readiness %}
-        {{ page.home.readiness.readiness_label }}
-      {% else %}
-        Readiness
-      {% endif %}
-    </h2>
-    {% if page.home.readiness.has_readiness %}
-    <p class="student-panel-metric">{{ page.home.readiness.readiness_percent_label }}</p>
-    {% endif %}
-    {% if page.home.readiness.trend_label %}
-    <p class="student-panel-trend">{{ page.home.readiness.trend_label }}</p>
-    {% endif %}
-    <p class="student-panel-body">
-      {% if page.home.readiness.why_this_estimate %}
-        {{ page.home.readiness.why_this_estimate }}
-      {% elif page.home.readiness.confidence_label %}
-        {{ page.home.readiness.confidence_label }}
-      {% elif page.home.countdown.has_countdown %}
-        {{ page.home.countdown.label }}
-      {% else %}
-        Readiness detail will appear as you study.
-      {% endif %}
-    </p>
-    {% if page.home.readiness.suggested_next_action %}
-    <p class="student-panel-body" data-mes-field="readiness_next_action">
-      <span class="student-label">Next</span> {{ page.home.readiness.suggested_next_action }}
-    </p>
-    {% endif %}
-    {% if page.home.readiness.has_disclosure or page.home.readiness.readiness_drivers or page.home.readiness.review_point %}
-    {% call learn_more('Why this estimate?') %}
-      {% if page.home.readiness.readiness_drivers %}
-      <p class="student-label mb-1">What drives this estimate</p>
-      <ul class="student-evidence-list" data-mes-field="readiness_drivers">
-        {% for driver in page.home.readiness.readiness_drivers %}
-        <li>{{ driver }}</li>
-        {% endfor %}
-      </ul>
-      {% endif %}
-      {% if page.home.readiness.supporting_evidence %}
-      <p class="student-label mb-1">What this is based on</p>
-      <ul class="student-evidence-list" data-mes-field="supporting_evidence">
-        {% for point in page.home.readiness.supporting_evidence %}
-        <li>{{ point }}</li>
-        {% endfor %}
-      </ul>
-      {% elif page.home.explanation and page.home.explanation.evidence_points %}
-      <p class="student-label mb-1">What this is based on</p>
-      <ul class="student-evidence-list">
-        {% for point in page.home.explanation.evidence_points %}
-        <li>{{ point }}</li>
-        {% endfor %}
-      </ul>
-      {% endif %}
-      {% if page.home.readiness.confidence_label or page.home.readiness.confidence_basis %}
-      <p class="student-muted mb-1" data-mes-field="confidence_level">
-        <span class="student-label">Confidence</span>
-        {% if page.home.readiness.confidence_label %}{{ page.home.readiness.confidence_label }}{% endif %}
-        {% if page.home.readiness.confidence_basis and page.home.readiness.confidence_basis != page.home.readiness.confidence_label %}
-          — {{ page.home.readiness.confidence_basis }}
-        {% endif %}
-      </p>
-      {% endif %}
-      {% if page.home.readiness.review_point %}
-      <p class="mb-0" data-mes-field="review_point"><span class="student-label">Review point</span> {{ page.home.readiness.review_point }}</p>
-      {% elif page.home.explanation and page.home.explanation.review_point %}
-      <p class="mb-0" data-mes-field="review_point"><span class="student-label">Review point</span> {{ page.home.explanation.review_point }}</p>
-      {% endif %}
-    {% endcall %}
-    {% endif %}
-    <a class="student-panel-action" href="{{ url_for('student.journey') }}">Review journey</a>
-  </article>
-
-  <article class="student-panel student-panel--quiet" data-dashboard-panel="journey" aria-labelledby="student-journey-title">
-    <p class="student-panel-eyebrow">Journey</p>
-    <h2 id="student-journey-title" class="student-panel-title">Learning journey</h2>
-    <p class="student-panel-body student-story">{{ page.home.journey_story }}</p>
-  </article>
-
-  {# PX-002A T2-8 + RR-001.3D / EGC-R08: Mission card already renders Why /
-     Why now / Next / Benefit when visible. Guidance only repeats those
-     fields outside that state; otherwise it shows commitment status or a
-     pointer. Sensei is named once in the hero — not again as an eyebrow. #}
-  {% set coach_matches_hero_now = not page.home.guided_session_active and not page.home.reflection_active %}
-  <article class="student-panel student-panel--quiet" data-dashboard-panel="coach" aria-labelledby="student-coach-title">
-    <p class="student-panel-eyebrow">Guidance</p>
-    <h2 id="student-coach-title" class="student-panel-title">Guidance</h2>
-    {% if page.home.coach_trust and page.home.coach_trust.has_content and not coach_matches_hero_now %}
-    <ul class="student-coach-trust" data-mes-field="coach_insight" data-trust-coach="structured"{% if page.home.coach_trust.is_refusal %} data-trust-state="refusal"{% endif %}>
-      {% if page.home.coach_trust.why %}
-      <li data-coach-field="why"><span class="student-label">Why</span> {{ page.home.coach_trust.why }}</li>
-      {% endif %}
-      {% if page.home.coach_trust.why_now %}
-      <li data-coach-field="why_now"><span class="student-label">Why now</span> {{ page.home.coach_trust.why_now }}</li>
-      {% endif %}
-      {% if page.home.coach_trust.next %}
-      <li data-coach-field="next"><span class="student-label">Next</span> {{ page.home.coach_trust.next }}</li>
-      {% endif %}
-      {% if page.home.coach_trust.benefit %}
-      <li data-coach-field="benefit"><span class="student-label">Benefit</span> {{ page.home.coach_trust.benefit }}</li>
-      {% endif %}
-    </ul>
-    {% if page.home.commitment and page.home.commitment.coach_status_line %}
-    <p class="student-muted" data-commitment="coach-status">{{ page.home.commitment.coach_status_line }}</p>
-    {% endif %}
-    {% elif page.home.commitment and page.home.commitment.coach_status_line %}
-    <p class="student-panel-body" data-commitment="coach-status">{{ page.home.commitment.coach_status_line }}</p>
-    {% if page.home.commitment.continuity_line %}
-    <p class="student-muted" data-commitment="continuity">{{ page.home.commitment.continuity_line }}</p>
-    {% endif %}
-    {% elif page.home.coach_trust and page.home.coach_trust.has_content %}
-    {# CQ-005: when Mission card already shows Why/Why now/Next, Guidance
-       surfaces trust extras (basis / alternatives) instead of an empty pointer. #}
-    {% if page.home.recommendation_alternatives %}
-    <p class="student-panel-body" data-mes-field="coach_insight" data-trust-coach="alternatives">
-      <span class="student-label">Also considered</span>
-      {{ page.home.recommendation_alternatives[0].title }}{% if page.home.recommendation_alternatives[0].why_recommended %} — {{ page.home.recommendation_alternatives[0].why_recommended }}{% endif %}
-    </p>
-    {% elif page.home.explanation and page.home.explanation.evidence_points %}
-    <p class="student-panel-body" data-mes-field="coach_insight" data-trust-coach="basis">
-      <span class="student-label">What this is based on</span>
-      {{ page.home.explanation.evidence_points[0] }}
-    </p>
-    {% elif page.home.mission_intelligence and page.home.mission_intelligence.why_not_something_else %}
-    <p class="student-panel-body" data-mes-field="coach_insight" data-trust-coach="why-not">
-      <span class="student-label">Why not something else</span>
-      {{ page.home.mission_intelligence.why_not_something_else }}
-    </p>
-    {% else %}
-    <p class="student-panel-body student-coach-insight" data-mes-field="coach_insight" data-trust-coach="pointer">
-      Today's why, timing, and next step are covered in the Mission card above.
-    </p>
-    {% endif %}
-    {% else %}
-    <p class="student-panel-body student-coach-insight" data-mes-field="coach_insight">{{ page.home.coach_insight }}</p>
-    {% endif %}
-    {% if page.home.tutor_available and page.home.tutor_guidance %}
-    <div class="student-tutor-guidance" data-tutor="mission-preview">
-      <p class="student-label">Tutor</p>
-      <p class="student-panel-body">{{ page.home.tutor_guidance }}</p>
-      {% if page.home.tutor_next_action %}
-      <p class="student-muted">{{ page.home.tutor_next_action }}</p>
-      {% endif %}
-      {% if tutor_form %}
-      <form method="post" action="{{ url_for('student.tutor_explain_mission') }}" class="student-tutor-form">
-        {{ tutor_form.hidden_tag() }}
-        {{ tutor_form.submit(class_="btn btn-link btn-sm px-0") }}
-      </form>
-      {% endif %}
-    </div>
-    {% elif tutor_form %}
-    <form method="post" action="{{ url_for('student.tutor_explain_mission') }}" class="student-tutor-form">
-      {{ tutor_form.hidden_tag() }}
-      {{ tutor_form.submit(class_="btn btn-link btn-sm px-0") }}
+  {% elif m.primary_kind == 'revision_ack' %}
+  <div class="ds-primary-strip" role="group" aria-label="Primary actions">
+    <form method="post" action="{{ url_for('student.acknowledge_revision') }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <button
+        class="ds-btn ds-btn--primary"
+        type="submit"
+        data-student-cta="primary"
+        data-lifecycle="revision-ack-submit"
+      >{{ m.primary_label }}</button>
     </form>
-    {% endif %}
-  </article>
-</section>
-
-<details class="student-disclosure student-home-more" data-home-density="tertiary">
-  <summary class="student-disclosure-summary">
-    <span class="student-panel-eyebrow">More</span>
-    <span class="student-disclosure-title">Upcoming milestones and quick actions</span>
-  </summary>
-<section class="student-tertiary" data-dashboard-slot="tertiary" aria-label="Upcoming milestones and quick actions">
-  <div class="student-panel student-panel--quiet" data-dashboard-panel="milestones" aria-labelledby="student-milestones-title">
-    <p class="student-panel-eyebrow">Upcoming</p>
-    <h2 id="student-milestones-title" class="student-panel-title">Upcoming milestones</h2>
-    {% if page.home.milestones %}
-    <ul class="student-milestone-list">
-      {% for milestone in page.home.milestones %}
-      <li>
-        <span class="student-milestone-title">{{ milestone.title }}</span>
-        {% if milestone.detail %}<span class="student-milestone-detail">{{ milestone.detail }}</span>{% endif %}
-      </li>
-      {% endfor %}
-    </ul>
-    {% else %}
-    <div class="student-empty" role="status" data-student-state="empty">
-      <p class="student-empty-title">No upcoming milestones yet</p>
-      <p class="student-empty-description">
-        Milestones appear as your study plan unfolds and session outcomes update your journey.
-      </p>
-      <p class="student-empty-why student-muted">
-        Empty here is expected early on — not a missing feature.
-      </p>
-    </div>
-    {% endif %}
   </div>
+  {% endif %}
+  {% endif %}
 
-  <nav class="student-panel student-panel--quiet" data-dashboard-panel="quick-actions" aria-label="Quick actions">
-    <p class="student-panel-eyebrow">Quick actions</p>
-    <h2 class="student-panel-title">Quick actions</h2>
-    <ul class="student-quick-actions">
-      {% for action in page.home.quick_actions %}
-      <li>
-        <a href="{{ action.href }}">{{ action.label }}</a>
-        {% if action.detail %}<span class="student-quick-detail">{{ action.detail }}</span>{% endif %}
-      </li>
-      {% else %}
-      <li><a href="{{ url_for('student.journey') }}">Open Journey</a></li>
-      <li><a href="{{ url_for('student.revision') }}">Open Revision</a></li>
-      <li><a href="{{ url_for('student.history') }}">Open History</a></li>
-      {% endfor %}
-    </ul>
-  </nav>
-</section>
-</details>
-{% else %}
-<section class="student-empty" aria-label="Home" role="status" data-student-state="empty">
-    <h2 class="student-empty-title">Your first insights will appear here</h2>
-    <p class="student-empty-description">
-      Your learning insights appear after your first Session — readiness, journey, and Study Sensei guidance included.
-    </p>
-    <p class="student-empty-why student-muted">
-      This quiet Home is expected before a Study Plan and Session — not an unfinished product.
-    </p>
-    <div class="student-primary-action">
-        <a class="btn student-btn-primary" href="{{ url_for('study_plan.index') }}" data-student-cta="primary">
-            Open Study Plan
-        </a>
-    </div>
-</section>
-{% endif %}
-{% include "partials/welcome_modal.html" %}
+  {# L1 — Learning Queue (attention-only; omit when empty) #}
+  {% if home.learning_queue and home.state != 'empty' %}
+    {{ ds_learning_queue(home.learning_queue) }}
+  {% endif %}
+
+  {# L2 — Recent Progress (omit when empty) #}
+  {% if home.recent_progress and home.state != 'empty' %}
+    {{ ds_recent_progress(home.recent_progress) }}
+  {% endif %}
+</article>
 {% endblock %}

@@ -4,8 +4,6 @@ from __future__ import annotations
 
 from types import SimpleNamespace
 
-from flask import render_template
-
 from app.application.student_experience.dto.explanation_snapshot import (
     ExplanationSnapshot,
 )
@@ -17,6 +15,7 @@ from app.application.student_experience.profile_service import ProfileService
 from app.domain.session_experience.session_workspace import SessionSurface
 from app.presentation.session.navigation import build_session_steps, page_meta
 from app.presentation.student.view_models import home_vm
+from tests.presentation.student.helpers import render_student_home
 
 
 def test_empty_home_offers_forward_paths(app, ctx):
@@ -29,18 +28,13 @@ def test_empty_home_offers_forward_paths(app, ctx):
         ),
         unified_journey=False,
     )
-    page = SimpleNamespace(
-        home=page_home,
-        shell=SimpleNamespace(active_surface="home", navigation=()),
-        educational=None,
-    )
-    with app.test_request_context("/student/"):
-        html = render_template("student/home.html", page=page, form=None)
+    html = render_student_home(app, page_home)
     assert 'data-student-state="empty"' in html
-    assert "Review Journey" in html
-    assert "Open Study Plan" in html
-    assert "/student/journey" in html
+    assert "Choose Exam" in html
+    assert "ds-btn--primary" in html
     assert "/study-plan/" in html
+    assert "Review Journey" not in html
+    assert "Open Study Plan" not in html
 
 
 def test_session_chrome_hides_phantom_complete_step():

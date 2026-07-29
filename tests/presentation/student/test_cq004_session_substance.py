@@ -32,6 +32,7 @@ from app.infrastructure.session.store import SessionDocumentStore
 from app.presentation.session.messages import FLASH_SUCCESS
 from app.presentation.session.view_models import activity_vm, completion_vm
 from app.presentation.student.view_models import home_vm
+from tests.presentation.student.helpers import render_student_home
 
 
 def test_default_activity_is_topic_threaded():
@@ -220,7 +221,7 @@ def test_completion_card_uses_headline(app, ctx):
     assert "Next step" in html
 
 
-def test_home_commitment_reflection_is_compact(app, ctx):
+def test_home_commitment_reflection_not_on_home(app, ctx):
     reflection = CommitmentReflectionSnapshot(
         what_you_did="Completed: Cash flows",
         what_changed="Reassess after tonight.",
@@ -245,23 +246,9 @@ def test_home_commitment_reflection_is_compact(app, ctx):
         ),
         unified_journey=False,
     )
-    page = SimpleNamespace(
-        home=page_home,
-        shell=SimpleNamespace(active_surface="home", navigation=()),
-    )
-    reflection_form = SimpleNamespace(
-        hidden_tag=lambda: "",
-        recommendation_key=lambda: "",
-    )
-    with app.test_request_context("/student/"):
-        html = render_template(
-            "student/home.html",
-            page=page,
-            form=None,
-            reflection_form=reflection_form,
-        )
-    assert 'data-reflection-compact="true"' in html
-    assert "More about this session" in html
-    assert 'data-reflection-field="what_you_did"' in html
-    assert 'data-reflection-field="what_happens_next"' in html
-    assert 'data-reflection-field="what_was_learned"' in html
+    html = render_student_home(app, page_home)
+    assert 'data-reflection-compact="true"' not in html
+    assert "More about this session" not in html
+    assert 'data-reflection-field="what_you_did"' not in html
+    assert 'data-reflection-field="what_happens_next"' not in html
+    assert 'data-reflection-field="what_was_learned"' not in html

@@ -80,13 +80,15 @@ def _current_tip_payload() -> dict:
 @student_bp.get("/")
 @login_required
 def home():
-    """Student Home — what to do next, and why."""
+    """Student Home — what should I study next? (DX-005A Daily Mission)."""
+    from app.presentation.student.services.student_home_service import (
+        StudentHomeService,
+    )
     from app.services.alpha_onboarding_service import AlphaOnboardingService
     from app.services.presentation_telemetry_service import (
         EVENT_DASHBOARD_OPENED,
         PresentationTelemetryService,
     )
-    from app.services.welcome_service import WelcomeService
 
     # B8 (PX-003): Student Home is the canonical post-login landing surface
     # under SOLE_RUNTIME — mirror the same first-time onboarding gate
@@ -104,42 +106,30 @@ def home():
         context={"surface": "home"},
     )
     form = StartSessionForm()
-    complete_form = CompleteRuntimeMissionForm()
-    defer_form = DeferCommitmentForm()
-    reflection_form = ReflectionAckForm()
-    tutor_form = ExplainMissionTutorForm()
     if page.home:
         form.mission_id.data = page.home.mission_id
         form.session_id.data = page.home.session_id
-        complete_form.mission_id.data = page.home.mission_id
         if page.home.commitment:
             form.recommendation_key.data = (
                 page.home.commitment.recommendation_key or ""
             )
-            defer_form.recommendation_key.data = (
-                page.home.commitment.recommendation_key or ""
-            )
-            reflection_form.recommendation_key.data = (
-                page.home.commitment.recommendation_key or ""
-            )
-    # RR-001.1 / JR-07: syllabus-complete revision acknowledgement must be
-    # reachable under sole runtime (legacy dashboard UI is redirected away).
+    # RR-001.1 / JR-07: syllabus-complete revision acknowledgement remains
+    # reachable as the L0 Primary (Continue) under DX-005A.
     from app.services.learning_lifecycle_service import LearningLifecycleService
 
     lifecycle = LearningLifecycleService.resolve(current_user.id)
+    home = StudentHomeService().build_home(
+        page,
+        show_revision_acknowledgement=lifecycle.show_completion_acknowledgement,
+        revision_ack_title=getattr(lifecycle, "acknowledgement_title", "") or "",
+        revision_ack_body=getattr(lifecycle, "acknowledgement_body", "") or "",
+    )
     return render_template(
         "student/home.html",
-        title=page.shell.page_title,
+        title=home.page_title,
         page=page,
+        home=home,
         form=form,
-        complete_form=complete_form,
-        defer_form=defer_form,
-        reflection_form=reflection_form,
-        tutor_form=tutor_form,
-        show_welcome=WelcomeService.should_show(current_user),
-        show_revision_acknowledgement=lifecycle.show_completion_acknowledgement,
-        lifecycle=lifecycle,
-        revision_intro=LearningLifecycleService.revision_intro_line(),
     )
 
 

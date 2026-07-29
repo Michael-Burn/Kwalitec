@@ -56,9 +56,9 @@ Release Candidate: RC-2026.07.29-01
 
 ## Next
 
-1. **Phase 3 — Founder Workspace** — implementation complete (**IN REVIEW**). Report: `knowledge/implementation/dx006b/DX006B_PHASE3_FOUNDER_WORKSPACE_COMPLETION_REPORT.md`.  
-2. Independent review → mark Phase 3 **CERTIFIED** before any Phase 4 work.  
-3. Then Phase 4 — Student Home (DX-005A).  
+1. **Phase 4 — Student Home** — implementation complete (**IN REVIEW**). Report: `knowledge/implementation/dx006b/DX006B_PHASE4_STUDENT_HOME_COMPLETION_REPORT.md`.  
+2. Independent review → mark Phase 4 **CERTIFIED** before any Phase 5 work.  
+3. Then Phase 5 — Choose Exam (DX-005B).  
 4. Continue mandatory sequence through Phase 6 after each certification.  
 5. Only after programme exit: **CQ-008 — Premium Product Certification**.
 

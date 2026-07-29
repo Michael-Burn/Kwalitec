@@ -22,6 +22,7 @@ from app.application.student_experience.recommendation_commitment import (
 )
 from app.presentation.product_language import APPROVED_TERMS, REJECTED_SYNONYMS
 from app.presentation.student.view_models import home_vm
+from tests.presentation.student.helpers import render_student_home
 from app.services.alpha_onboarding_service import (
     SENSEI_HANDOFF_SENTENCE,
     AlphaOnboardingService,
@@ -72,7 +73,7 @@ def test_commitment_continuity_retires_tip_noun():
     assert "tip" not in reflection.what_happens_next.lower()
 
 
-def test_home_template_names_study_sensei_and_guidance(app, ctx):
+def test_home_template_mission_first_without_guidance_panel(app, ctx):
     snap = HomeSnapshot(
         student_id="stu-rr13a",
         greeting="Welcome back",
@@ -99,18 +100,15 @@ def test_home_template_names_study_sensei_and_guidance(app, ctx):
         can_start_session=False,
     )
     page_home = home_vm(snap, unified_journey=False)
-    page = SimpleNamespace(
-        home=page_home,
-        shell=SimpleNamespace(active_surface="home", navigation=()),
-    )
-    with app.test_request_context("/student/"):
-        html = render_template("student/home.html", page=page, form=None)
-    assert 'data-narrator="study-sensei"' in html
-    assert "Study Sensei" in html
-    assert "Why this guidance?" in html
+    html = render_student_home(app, page_home)
+    assert 'data-narrator="study-sensei"' not in html
+    assert "Study Sensei" not in html
+    assert "Why this guidance?" not in html
     assert "Why this tip?" not in html
     assert "Coach insight" not in html
-    assert ">Guidance<" in html or "Guidance</h2>" in html
+    assert ">Guidance<" not in html
+    assert "Guidance</h2>" not in html
+    assert "Current Mission" in html
     assert "Optimising for" not in html
 
 

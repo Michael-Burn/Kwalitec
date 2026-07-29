@@ -1,19 +1,19 @@
-"""EP-006.2 — Home template MES smoke (L1 why/next + explanation_card)."""
+"""EP-006.2 — Home template mission projection (DX-005A; MES stack off Home)."""
 
 from __future__ import annotations
-
-from types import SimpleNamespace
-
-from flask import render_template
 
 from app.application.student_experience.dto.explanation_snapshot import (
     ExplanationSnapshot,
 )
-from app.application.student_experience.dto.home_snapshot import HomeSnapshot
+from app.application.student_experience.dto.home_snapshot import (
+    HomeSnapshot,
+    StartSessionActionSnapshot,
+)
 from app.presentation.student.view_models import home_vm
+from tests.presentation.student.helpers import render_student_home
 
 
-def test_home_template_renders_mes_l1_and_explanation_card(app, ctx):
+def test_home_template_shows_mission_why_now_without_mes_stack(app, ctx):
     snap = HomeSnapshot(
         student_id="stu-1",
         greeting="Welcome back",
@@ -42,22 +42,24 @@ def test_home_template_renders_mes_l1_and_explanation_card(app, ctx):
             is_complete=True,
         ),
         has_recommendation=True,
-        can_start_session=False,
+        can_start_session=True,
+        start_session=StartSessionActionSnapshot(
+            label="Start Session",
+            enabled=True,
+            can_start=True,
+            mission_id="m1",
+            estimated_minutes=25,
+            topic_title="Cash flow statements",
+        ),
     )
     page_home = home_vm(snap, unified_journey=False)
-    page = SimpleNamespace(
-        home=page_home,
-        shell=SimpleNamespace(active_surface="home", navigation=()),
-    )
-    with app.test_request_context("/student/"):
-        html = render_template("student/home.html", page=page, form=None)
-    assert 'data-mes-field="why_recommended"' in html
+    html = render_student_home(app, page_home)
+    assert "Current Mission" in html
+    assert "Why now" in html
     assert "soft recall on cash flow" in html
-    assert 'data-mes-field="suggested_next_action"' in html
-    assert "25-minute cash flow" in html
-    assert 'data-mes-disclosure="true"' in html
-    assert "Why this guidance?" in html
-    assert "Study Sensei" in html
-    assert 'data-narrator="study-sensei"' in html
-    assert "Reassess after tonight" in html
-    assert "Two recent practice attempts" in html
+    assert 'data-mes-field' not in html
+    assert 'data-mes-disclosure' not in html
+    assert "Study Sensei" not in html
+    assert 'data-narrator="study-sensei"' not in html
+    assert "Why this guidance?" not in html
+    assert "Two recent practice attempts" not in html

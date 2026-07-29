@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from pathlib import Path
-from types import SimpleNamespace
 from unittest.mock import patch
 
 from flask import render_template
@@ -11,7 +10,10 @@ from flask import render_template
 from app.application.student_experience.dto.explanation_snapshot import (
     ExplanationSnapshot,
 )
-from app.application.student_experience.dto.home_snapshot import HomeSnapshot
+from app.application.student_experience.dto.home_snapshot import (
+    HomeSnapshot,
+    StartSessionActionSnapshot,
+)
 from app.presentation.student.view_models import home_vm
 from tests.presentation.workflows.helpers import dual_run_flags, login_student
 
@@ -48,27 +50,50 @@ def _base_snap(**overrides) -> HomeSnapshot:
 
 
 def _render_home(app, page_home, **template_kwargs):
-    page = SimpleNamespace(
+    from app.presentation.student.services.student_home_service import (
+        StudentHomeService,
+    )
+    from app.presentation.student.view_models import (
+        StudentPageViewModel,
+        StudentShellViewModel,
+    )
+
+    page = StudentPageViewModel(
+        shell=StudentShellViewModel(
+            active_surface="home",
+            active_label="Home",
+            navigation=(),
+            page_title="Home",
+        ),
         home=page_home,
-        shell=SimpleNamespace(active_surface="home", navigation=()),
         educational=None,
     )
     with app.test_request_context("/student/"):
+        home = StudentHomeService().build_home(page)
         return render_template(
             "student/home.html",
             page=page,
-            form=None,
+            home=home,
+            form=template_kwargs.pop("form", None),
             **template_kwargs,
         )
 
 
-def test_home_mission_intelligence_is_disclosed_not_removed(app, ctx):
-    """XR-02: MI fields remain; density reduced via disclosure."""
+def test_home_mission_intelligence_relocated_off_home(app, ctx):
+    """DX-005A: Mission Intelligence leaves Home; one why-now remains in L0."""
     snap = _base_snap(
         recommendation_title="Revise equity",
         recommendation_summary="Focus on equity today.",
         has_recommendation=True,
         can_start_session=True,
+        start_session=StartSessionActionSnapshot(
+            label="Start Session",
+            enabled=True,
+            can_start=True,
+            mission_id="m1",
+            estimated_minutes=25,
+            topic_title="Revise equity",
+        ),
         explanation=ExplanationSnapshot(
             summary="Focus on equity today.",
             why_recommended="Purpose text.",
@@ -83,22 +108,20 @@ def test_home_mission_intelligence_is_disclosed_not_removed(app, ctx):
         ),
     )
     html = _render_home(app, home_vm(snap, unified_journey=False))
-    assert 'data-mission-intelligence="true"' in html
-    assert 'data-home-density="mission-detail"' in html
-    assert "student-mission-intelligence-disclosure" in html
-    assert "Why today" in html
-    assert "Expected benefit" in html
-    assert 'data-home-density="tertiary"' in html
-    assert "student-secondary--subordinate" in html
+    assert 'data-mission-intelligence="true"' not in html
+    assert "student-mission-intelligence-disclosure" not in html
+    assert 'data-home-density="tertiary"' not in html
+    assert "Current Mission" in html
+    assert "Why now" in html
 
 
 def test_home_empty_state_is_honest_with_cta(app, ctx):
-    """XR-04: empty Home explains expected quiet state and offers Study Plan."""
+    """DX-005A empty: Reason + Choose Exam Primary."""
     html = _render_home(app, None)
     assert 'data-student-state="empty"' in html
-    assert "not an unfinished product" in html
-    assert "Open Study Plan" in html
-    assert "student-btn-primary" in html
+    assert "Choose Exam" in html
+    assert "ds-btn--primary" in html
+    assert "insights will appear" not in html.lower()
 
 
 def test_flash_success_uses_student_success(app, ctx):

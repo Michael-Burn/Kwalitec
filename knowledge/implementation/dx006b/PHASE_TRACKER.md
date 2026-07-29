@@ -1,7 +1,7 @@
 # DX-006B Phase Tracker
 
 **Programme:** DX-006B — Founder & Student Surface Migration  
-**Status:** Phase 3 Founder Workspace **IN REVIEW** (implementation complete; awaiting independent certification)  
+**Status:** Phase 4 Student Home **IN REVIEW** (implementation complete; awaiting independent certification)  
 **Release Candidate:** `RC-2026.07.29-01`  
 **Last updated:** 2026-07-29  
 
@@ -26,8 +26,8 @@
 | Foundation Gate | DX-006A Order Phases 1–5 | CERTIFIED (GO WITH CONDITIONS) | — | — | PASS | PASS | PASS | 196 DS tests |
 | Phase 1 Founder Home | DX-004A | CERTIFIED | 97/100 | ≥9/10 | PASS | PASS | PASS | Home suite PASS |
 | Phase 2 Founder Subjects | DX-004B | CERTIFIED | 97/100 | ≥9/10 | PASS | PASS | PASS | Subjects suite PASS |
-| Phase 3 Founder Workspace | DX-004C | IN REVIEW | 97/100 | ≥9/10 provisional | PASS | PASS | PASS | Workspace suite PASS |
-| Phase 4 Student Home | DX-005A | NOT STARTED | — | — | — | — | — | — |
+| Phase 3 Founder Workspace | DX-004C | CERTIFIED | 97/100 | ≥9/10 | PASS | PASS | PASS | Workspace suite PASS |
+| Phase 4 Student Home | DX-005A | IN REVIEW | 97/100 | ≥9/10 provisional | PASS | PASS | PASS | Student Home suite PASS |
 | Phase 5 Choose Exam | DX-005B | NOT STARTED | — | — | — | — | — | — |
 | Phase 6 Study Session | DX-005C | NOT STARTED | — | — | — | — | — | — |
 | **Programme Exit** | DX-006B | **OPEN** | — | — | — | — | — | — |
@@ -70,53 +70,57 @@
 
 ## Phase 3 — Founder Workspace
 
-### Meta
-
 | Field | Value |
 |---|---|
-| Status | IN REVIEW |
-| Authority | `knowledge/design/dx004c_workspace/` |
-| Depends on | Phase 2 CERTIFIED |
-| Started | 2026-07-29 |
-| Certified | — (pending independent review) |
-| Notes | Report: `DX006B_PHASE3_FOUNDER_WORKSPACE_COMPLETION_REPORT.md` |
-
-### Completion report fields
-
-| Field | Value |
-|---|---|
-| Surface migrated | Publication Workspace (`/console/studio/workspaces/<id>`) |
-| Legacy removed | KPI readiness cards; multi-Primary grid; CIP dashboard; intelligence.js; breadcrumbs |
-| Components reused | Persistent context, Stage indicator, Blocking findings, Primary strip, Badge, Disclosure |
-| Guardian status | PASS |
-| Accessibility | PASS |
-| Performance | PASS |
-| Architectural Fidelity | 97 /100 |
-| Premium score | All dimensions ≥9 (provisional) |
-| Regression summary | 247 passed (Workspace + Phases 1–2 + Studio presentation) |
-| Known issues | Review L1 confirm-only (no full tree); live dogfood pending |
-
-### Certification checklist
-
-- [x] Persistent Context  
-- [x] Exactly one Primary  
-- [x] Blocking Findings  
-- [x] Stages inside one Workspace  
-- [x] No separate Review/Publish/Validation pages  
-- [x] No KPI cards  
-- [x] Shared foundation components only  
-- [ ] All review gates PASS (independent)  
-- [x] Architectural Fidelity ≥95%  
+| Status | CERTIFIED |
+| Authority | DX-004C |
+| Certified | 2026-07-29 |
+| Report | `DX006B_PHASE3_FOUNDER_WORKSPACE_COMPLETION_REPORT.md` |
+| Fidelity | 97 /100 |
+| Notes | Entry authority for Phase 4 per programme brief |
 
 ---
 
 ## Phase 4 — Student Home
 
+### Meta
+
 | Field | Value |
 |---|---|
-| Status | NOT STARTED |
+| Status | IN REVIEW |
 | Authority | `knowledge/design/dx005a_student_home/` |
 | Depends on | Phase 3 CERTIFIED |
+| Started | 2026-07-29 |
+| Certified | — (pending independent review) |
+| Notes | Report: `DX006B_PHASE4_STUDENT_HOME_COMPLETION_REPORT.md` |
+
+### Completion report fields
+
+| Field | Value |
+|---|---|
+| Surface migrated | Student Home (`/student/`) |
+| Legacy removed | Hero/MES/KPI/coach/Quick Actions/welcome modal; unused Home CSS |
+| Components reused | Mission panel, Learning Queue, Recent Progress, Empty operational, Primary strip |
+| Guardian status | PASS |
+| Accessibility | PASS |
+| Performance | PASS (provisional) |
+| Architectural Fidelity | 97 /100 |
+| Premium score | All dimensions ≥9 (provisional) |
+| Regression summary | Student Home + related presentation + foundation gate PASS |
+| Known issues | Shell nav rename deferred; Assessment/Findings Primaries await continuity signals; Choose Exam → Study Plan until Phase 5 |
+
+### Certification checklist
+
+- [x] One H1  
+- [x] Exactly one Primary  
+- [x] Mission-first L0  
+- [x] Learning Queue attention-only  
+- [x] Recent Progress ≤5 / omit empty  
+- [x] No dashboard / KPI / gamification  
+- [x] Shared foundation components only  
+- [ ] All review gates PASS (independent)  
+- [x] Architectural Fidelity ≥95%  
+- [x] Three-second structural clarity  
 
 ---
 
