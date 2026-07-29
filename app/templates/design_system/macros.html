@@ -205,8 +205,8 @@
 </section>
 {%- endmacro %}
 
-{% macro ds_persistent_context(title, meta_labels=[], stage_label='', status_label='', as_heading=false, title_id='') -%}
-<header class="ds-persistent-context" aria-label="Publication context">
+{% macro ds_persistent_context(title, meta_labels=[], stage_label='', status_label='', as_heading=false, title_id='', aria_label='Publication context') -%}
+<header class="ds-persistent-context" aria-label="{{ aria_label }}">
   {% if as_heading %}
   <h1 class="ds-persistent-context__title"{% if title_id %} id="{{ title_id }}"{% endif %}>{{ title }}</h1>
   {% else %}
@@ -218,6 +218,40 @@
   <span class="ds-list__meta">{{ meta }}</span>
   {% endfor %}
 </header>
+{%- endmacro %}
+
+{% macro ds_session_context(subject, chapter='', objective='', activity_label='', session_progress='', elapsed_label='') -%}
+<header class="ds-persistent-context ds-session-context" aria-label="Session context">
+  <span class="ds-persistent-context__title">{{ subject }}</span>
+  {% if chapter %}<span class="ds-session-context__line">{{ chapter }}</span>{% endif %}
+  {% if objective %}<span class="ds-session-context__line">Objective: {{ objective }}</span>{% endif %}
+  {% if activity_label or session_progress %}
+  <span class="ds-session-context__line">
+    {% if activity_label %}{{ activity_label }}{% endif %}
+    {% if activity_label and session_progress %} · {% endif %}
+    {% if session_progress %}{{ session_progress }}{% endif %}
+  </span>
+  {% endif %}
+  {% if elapsed_label %}<span class="ds-list__meta">{{ elapsed_label }}</span>{% endif %}
+</header>
+{%- endmacro %}
+
+{% macro ds_learning_task(activity, expected_outcome='', estimated_duration='', next_milestone='', instruction='', section_title='Current Learning Task') -%}
+<section class="ds-learning-task" aria-labelledby="ds-learning-task-title">
+  <h2 class="ds-section__title" id="ds-learning-task-title">{{ section_title }}</h2>
+  <p class="ds-learning-task__activity">{{ activity }}</p>
+  {% if expected_outcome %}<p class="ds-list__meta">Outcome · {{ expected_outcome }}</p>{% endif %}
+  {% if estimated_duration %}<p class="ds-list__meta">Duration · {{ estimated_duration }}</p>{% endif %}
+  {% if next_milestone %}<p class="ds-list__meta">Next · {{ next_milestone }}</p>{% endif %}
+  {% if instruction %}<p class="ds-learning-task__instruction">{{ instruction }}</p>{% endif %}
+</section>
+{%- endmacro %}
+
+{% macro ds_disclosure(title, body='', open=false) -%}
+<details class="ds-disclosure"{% if open %} open{% endif %}>
+  <summary>{{ title }}</summary>
+  {% if body %}<div class="ds-disclosure__body">{{ body }}</div>{% endif %}
+</details>
 {%- endmacro %}
 
 {% macro ds_blocking_findings(findings, title='Blocking findings') -%}

@@ -136,10 +136,11 @@ def test_session_overview_shows_begin_session(student_client):
     assert "Start Session" in html
 
 
-def test_session_eyebrow_uses_session_not_learning_session(student_client):
+def test_session_uses_session_not_learning_session(student_client):
     html = student_client.get("/session/sess-lang2/overview").get_data(as_text=True)
-    assert "Session · Step" in html
+    assert ">Session<" in html or "Session" in html
     assert "Learning Session ·" not in html
+    assert "study session" not in html.lower()
 
 
 @pytest.mark.parametrize("surface", list(SessionSurface))
@@ -224,7 +225,8 @@ def test_student_templates_avoid_roadmap_label():
 
 def test_student_home_empty_mentions_learning_insights():
     home = (STUDENT_TEMPLATES / "home.html").read_text(encoding="utf-8").lower()
-    assert "learning insights" in home
+    # DX-005A: empty Home points to Choose Exam (Insights live on History).
+    assert "choose exam" in home or "current mission" in home
 
 
 def test_session_routes_use_flash_constants():

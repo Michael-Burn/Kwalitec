@@ -28,6 +28,9 @@ from app.presentation.session.forms import (
     SubmitAnswerForm,
 )
 from app.presentation.session.messages import FLASH_SUCCESS, FLASH_WARNING
+from app.presentation.session.services.study_session_service import (
+    StudySessionService,
+)
 from app.presentation.session.views import (
     advance_activity,
     begin_session,
@@ -37,6 +40,8 @@ from app.presentation.session.views import (
     resume_redirect_if_needed,
     submit_answer,
 )
+
+_study_session = StudySessionService()
 
 logger = logging.getLogger(__name__)
 
@@ -92,10 +97,12 @@ def overview(session_id: str):
             session_id,
             exc_info=True,
         )
+    study = _study_session.build_page(page)
     return render_template(
         "session/overview.html",
-        title=page.shell.page_title,
+        title=study.page_title,
         page=page,
+        study=study,
         form=form,
         quick_check_embed=quick_check_embed,
     )
@@ -146,10 +153,12 @@ def activity(session_id: str):
     if page.activity and page.activity.next_action_label:
         advance_form.submit.label.text = page.activity.next_action_label
     # CQ-004: keep Quick Check on Overview only — Activity stays focused practice.
+    study = _study_session.build_page(page)
     return render_template(
         "session/activity.html",
-        title=page.shell.page_title,
+        title=study.page_title,
         page=page,
+        study=study,
         answer_form=answer_form,
         advance_form=advance_form,
         quick_check_embed=None,
@@ -222,10 +231,12 @@ def reflection(session_id: str):
         return _missing_session_redirect(session_id, exc)
     form = ContinueReflectionForm()
     form.session_id.data = session_id
+    study = _study_session.build_page(page)
     return render_template(
         "session/reflection.html",
-        title=page.shell.page_title,
+        title=study.page_title,
         page=page,
+        study=study,
         form=form,
     )
 
@@ -282,10 +293,12 @@ def summary(session_id: str):
         return _missing_session_redirect(session_id, exc)
     form = CompleteSessionForm()
     form.session_id.data = session_id
+    study = _study_session.build_page(page)
     return render_template(
         "session/summary.html",
-        title=page.shell.page_title,
+        title=study.page_title,
         page=page,
+        study=study,
         form=form,
     )
 
@@ -305,10 +318,12 @@ def complete(session_id: str):
         return _missing_session_redirect(session_id, exc)
     form = CompleteSessionForm()
     form.session_id.data = session_id
+    study = _study_session.build_page(page)
     return render_template(
         "session/complete.html",
-        title=page.shell.page_title,
+        title=study.page_title,
         page=page,
+        study=study,
         form=form,
     )
 

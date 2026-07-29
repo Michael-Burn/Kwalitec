@@ -36,8 +36,9 @@ def test_session_overview_from_home_handoff(student_client):
     assert response.status_code == 200
     html = response.get_data(as_text=True)
     assert "Start Session" in html or "begin" in html.lower()
-    assert "Session · Step" in html
+    assert "Session" in html
     assert "Learning Session ·" not in html
+    assert "study session" not in html.lower()
 
 
 def test_begin_advances_to_activity(student_client):
@@ -143,7 +144,7 @@ def test_student_nav_surfaces_present(student_client):
         "Revision",
         "History",
         "Settings",
-        "Study Plan",
+        "Choose Exam",
         "Help",
     ):
         assert label in html
@@ -168,6 +169,10 @@ def test_forbidden_terms_absent_from_session(student_client):
 
 
 def test_progress_chrome_lists_linear_steps(student_client):
+    """DX-005C: progress is orientation in persistent context, not destination nav."""
     html = student_client.get("/session/sess-steps/overview").get_data(as_text=True)
-    assert "Session Overview" in html or "overview" in html.lower()
-    assert "Learning Activity" in html or "Reflection" in html
+    assert "Session" in html
+    assert "Session step" in html
+    assert "Current Learning Task" in html
+    assert "ds-btn--primary" in html
+    assert "session-flow" not in html

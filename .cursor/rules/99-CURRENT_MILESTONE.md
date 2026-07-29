@@ -56,10 +56,10 @@ Release Candidate: RC-2026.07.29-01
 
 ## Next
 
-1. **Phase 5 — Choose Exam** — implementation complete (**IN REVIEW**). Report: `knowledge/implementation/dx006b/DX006B_PHASE5_CHOOSE_EXAM_COMPLETION_REPORT.md`.  
-2. Independent review → mark Phase 5 **CERTIFIED** before any Phase 6 work.  
-3. Then Phase 6 — Study Session (DX-005C).  
-4. Only after programme exit: **CQ-008 — Premium Product Certification**.
+1. **Phase 6 — Study Session** — implementation complete (**IN REVIEW**). Report: `knowledge/implementation/dx006b/DX006B_PHASE6_STUDY_SESSION_COMPLETION_REPORT.md`.  
+2. Independent review → mark Phase 6 **CERTIFIED**.  
+3. Then DX-006B programme exit checklist → eligibility for **CQ-008 — Premium Product Certification**.  
+4. Do **not** begin CQ-008 until Study Session is independently reviewed and certified and programme exit is complete.
 
 ---
 

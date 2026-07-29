@@ -15,33 +15,48 @@ PRES_ROOT = (
 TEMPLATE_ROOT = (
     Path(__file__).resolve().parents[3] / "app" / "templates" / "session"
 )
-CSS_PATH = (
+DS_CSS_PATH = (
     Path(__file__).resolve().parents[3]
     / "app"
     / "static"
     / "css"
-    / "session"
-    / "session.css"
+    / "design_system.css"
 )
 
 
-def test_session_css_exists():
-    assert CSS_PATH.is_file()
-    text = CSS_PATH.read_text(encoding="utf-8")
-    assert "--session-primary" in text
-    assert ".session-btn-primary" in text
+def test_design_system_session_styles_exist():
+    assert DS_CSS_PATH.is_file()
+    text = DS_CSS_PATH.read_text(encoding="utf-8")
+    assert ".ds-session-context" in text
+    assert ".ds-learning-task" in text
+    assert ".ds-btn--primary" in text
+
+
+def test_legacy_session_css_removed():
+    legacy = (
+        Path(__file__).resolve().parents[3]
+        / "app"
+        / "static"
+        / "css"
+        / "session"
+        / "session.css"
+    )
+    assert not legacy.exists()
 
 
 def test_base_template_skip_link_and_main():
     text = (TEMPLATE_ROOT / "base.html").read_text(encoding="utf-8")
-    assert "session-skip-link" in text
+    assert "Skip to content" in text
     assert 'id="session-main"' in text
-    assert "session.css" in text
+    assert "design_system.css" in text
 
 
 def test_overview_has_primary_cta_marker():
-    text = (TEMPLATE_ROOT / "overview.html").read_text(encoding="utf-8")
+    text = (TEMPLATE_ROOT / "partials" / "session_body.html").read_text(
+        encoding="utf-8"
+    )
     assert "data-session-cta" in text
+    assert "ds-btn--primary" in text
 
 
 @pytest.mark.parametrize("term", FORBIDDEN_TERMS)
@@ -78,6 +93,8 @@ def test_factory_module_present():
     assert (PRES_ROOT / "view_models.py").is_file()
     assert (PRES_ROOT / "navigation.py").is_file()
     assert (PRES_ROOT / "forms.py").is_file()
+    assert (PRES_ROOT / "services" / "study_session_service.py").is_file()
+    assert (PRES_ROOT / "dto" / "study_session.py").is_file()
 
 
 def test_activity_template_no_side_nav_dashboard():
@@ -87,12 +104,31 @@ def test_activity_template_no_side_nav_dashboard():
 
 
 def test_reflection_template_no_scoring_words():
-    text = (TEMPLATE_ROOT / "reflection.html").read_text(encoding="utf-8").lower()
-    for word in ("score", "points", "badge", "streak", "xp"):
-        assert word not in text
+    body = (TEMPLATE_ROOT / "partials" / "session_body.html").read_text(
+        encoding="utf-8"
+    ).lower()
+    for word in (" score ", " points ", " badge ", " streak ", " +xp", " xp "):
+        assert word not in f" {body} ", word
+    assert "leaderboard" not in body
+    assert "confetti" not in body
 
 
 def test_responsive_css_has_mobile_breakpoint():
-    text = CSS_PATH.read_text(encoding="utf-8")
+    text = DS_CSS_PATH.read_text(encoding="utf-8")
     assert "@media" in text
-    assert "640px" in text
+    assert "768px" in text
+
+
+def test_legacy_progress_theatre_components_removed():
+    components = TEMPLATE_ROOT / "components"
+    for name in (
+        "progress_bar.html",
+        "timer_card.html",
+        "activity_card.html",
+        "question_card.html",
+        "explanation_card.html",
+        "reflection_card.html",
+        "completion_card.html",
+        "navigation.html",
+    ):
+        assert not (components / name).exists(), name

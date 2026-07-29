@@ -34,14 +34,15 @@ def test_eos_shell_owns_welcome_modal_and_contextual_help_styles():
 
 
 def test_session_shell_owns_secondary_button_styles():
-    session_css = _css("session/session.css")
-    assert ".session-btn-secondary" in session_css
-    assert "session-btn-secondary:focus-visible" in session_css or (
-        ".session-btn-secondary:focus" in session_css
-    )
-    assert ".session-support" in session_css
-    assert ".session-reflection-framing" in session_css
-    assert ".session-why-label" in session_css
+    """DX-006B Phase 6: Session chrome lives in design_system.css."""
+    ds = _css("design_system.css")
+    assert ".ds-btn--ghost" in ds
+    assert ".ds-session-context" in ds
+    assert ".ds-learning-task" in ds
+    assert ".ds-session-content" in ds
+    assert ".ds-disclosure" in ds
+    legacy = ROOT / "app/static/css/session/session.css"
+    assert not legacy.exists()
 
 
 def test_home_hero_craft_hooks_are_styled():
@@ -111,42 +112,63 @@ def test_welcome_modal_uses_eos_primary_button():
 
 
 def test_session_overview_why_uses_dedicated_label(app, ctx):
-    page = SimpleNamespace(
-        shell=SimpleNamespace(
-            session_id="sess-1",
-            topic_title="Cash flows",
-            steps=(),
-            page_eyebrow="Session",
-            page_title="Overview",
-            page_description="",
-            active_surface="overview",
-        ),
-        overview=SimpleNamespace(
+    """DX-005C: why-copy becomes one instructional sentence on the learning task."""
+    from app.presentation.session.dto.study_session import (
+        LearningTask,
+        SessionPersistentContext,
+        StudySessionPage,
+    )
+
+    study = StudySessionPage(
+        page_title="Session",
+        surface="overview",
+        context=SessionPersistentContext(
+            subject="Cash flows",
+            chapter="Cash flows",
             objective="Strengthen Cash flows",
-            learning_goal="",
-            why_studying="Soft recall needs deliberate practice.",
-            estimated_duration_label="About 30 minutes",
-            activity_count_label="3 activities",
-            topics=("Cash flows",),
-            expected_improvement_label="",
-            begin_label="Start Session",
-            begin_enabled=True,
-            mission_id="m1",
+            activity_label="Begin practice",
+            session_progress="Session step 1 of 4",
+            elapsed_label="About 30 minutes",
         ),
-        progress=None,
-        activity=None,
+        task=LearningTask(
+            activity="Begin practice",
+            expected_outcome="Strengthen Cash flows",
+            estimated_duration="About 30 minutes",
+            next_milestone="3 activities",
+            instruction="Soft recall needs deliberate practice.",
+        ),
+        primary_label="Start Session",
+        primary_kind="begin_form",
+        primary_enabled=True,
+        blocking_issue="",
+        exit_href="/student/",
+        exit_label="Exit",
+        content_title="Current objective",
+        content_body="Strengthen Cash flows",
+        content_support="",
+        answer_prompt="Your answer",
+        show_answer_input=False,
+        feedback_outcome="",
+        feedback_explanation="",
+        disclosures=(),
+        technical_lines=(),
+        session_id="sess-1",
+        activity_id="",
+        mission_id="m1",
     )
     with app.test_request_context("/session/sess-1/overview"):
         html = render_template(
             "session/overview.html",
-            page=page,
+            page=None,
+            study=study,
             form=None,
             quick_check_embed=None,
         )
-    assert "Why this Session" in html
-    assert "session-why-label" in html
-    assert 'data-session="why"' in html
     assert "Soft recall needs deliberate practice." in html
+    assert "Current Learning Task" in html
+    assert "Why this Session" not in html
+    assert "session-why-label" not in html
+    assert "Study Sensei" not in html
 
 
 def test_history_and_journey_craft_markers():

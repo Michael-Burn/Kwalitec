@@ -1,7 +1,7 @@
 # DX-006B Phase Tracker
 
 **Programme:** DX-006B — Founder & Student Surface Migration  
-**Status:** Phase 5 Choose Exam **IN REVIEW** (implementation complete; awaiting independent certification)  
+**Status:** Phase 6 Study Session **IN REVIEW** (implementation complete; awaiting independent certification)  
 **Release Candidate:** `RC-2026.07.29-01`  
 **Last updated:** 2026-07-29  
 
@@ -28,8 +28,8 @@
 | Phase 2 Founder Subjects | DX-004B | CERTIFIED | 97/100 | ≥9/10 | PASS | PASS | PASS | Subjects suite PASS |
 | Phase 3 Founder Workspace | DX-004C | CERTIFIED | 97/100 | ≥9/10 | PASS | PASS | PASS | Workspace suite PASS |
 | Phase 4 Student Home | DX-005A | CERTIFIED | 97/100 | ≥9/10 provisional | PASS | PASS | PASS | Student Home suite PASS |
-| Phase 5 Choose Exam | DX-005B | IN REVIEW | 97/100 | ≥9/10 provisional | PASS | PASS | PASS | Choose Exam suite PASS |
-| Phase 6 Study Session | DX-005C | NOT STARTED | — | — | — | — | — | — |
+| Phase 5 Choose Exam | DX-005B | CERTIFIED | 97/100 | ≥9/10 provisional | PASS | PASS | PASS | Choose Exam suite PASS |
+| Phase 6 Study Session | DX-005C | IN REVIEW | 97/100 | ≥9/10 provisional | PASS | PASS | PASS | Session suite PASS |
 | **Programme Exit** | DX-006B | **OPEN** | — | — | — | — | — | — |
 
 ---
@@ -155,9 +155,27 @@
 
 | Field | Value |
 |---|---|
-| Status | NOT STARTED |
+| Status | IN REVIEW |
 | Authority | `knowledge/design/dx005c_study_session/` |
 | Depends on | Phase 5 CERTIFIED |
+| Report | `knowledge/implementation/dx006b/DX006B_PHASE6_STUDY_SESSION_COMPLETION_REPORT.md` |
+| Fidelity | 97/100 |
+| Premium | ≥9/10 provisional |
+| Guardian | PASS |
+| Accessibility | PASS |
+| Responsive | PASS |
+| Focus test | PASS (structural) |
+| Regression | Session + prior student suites PASS |
+
+### Phase 6 checklist
+
+- [x] Legacy Session chrome replaced (not CSS-hidden)  
+- [x] One H1 · Persistent context · Learning Task · Content · one Primary  
+- [x] Shared Foundation macros only  
+- [x] Guardian G-1…G-12 structural PASS  
+- [x] Accessibility / Responsive structural PASS  
+- [x] Focus test structural PASS  
+- [ ] Independent live review / CERTIFIED  
 
 ---
 

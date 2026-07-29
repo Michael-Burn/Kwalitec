@@ -149,76 +149,117 @@ def test_activities_complete_flash_exists():
 
 
 def test_overview_intro_echoes_topic(app, ctx):
-    page = SimpleNamespace(
-        shell=SimpleNamespace(
-            session_id="sess-1",
-            topic_title="Cash flows",
-            page_title="Overview",
-            page_eyebrow="Session · Step 1 of 4",
-            page_description="",
-            steps=(),
-            active_surface="overview",
-        ),
-        overview=SimpleNamespace(
+    from app.presentation.session.dto.study_session import (
+        LearningTask,
+        SessionPersistentContext,
+        StudySessionPage,
+    )
+
+    study = StudySessionPage(
+        page_title="Session",
+        surface="overview",
+        context=SessionPersistentContext(
+            subject="Cash flows",
+            chapter="Cash flows",
             objective="Strengthen Cash flows",
-            why_studying="",
-            learning_goal="",
-            estimated_duration_label="About 25 minutes",
-            activity_count_label="3 learning activities",
-            expected_improvement_label="",
-            topics=("Cash flows",),
-            begin_enabled=True,
-            begin_label="Start Session",
-            mission_id="m1",
+            activity_label="Begin practice",
+            session_progress="Session step 1 of 4",
+            elapsed_label="About 25 minutes",
         ),
-        primary_cta_label="Start Session",
-        primary_cta_enabled=True,
+        task=LearningTask(
+            activity="Begin practice",
+            expected_outcome="Strengthen Cash flows",
+            estimated_duration="About 25 minutes",
+            next_milestone="3 learning activities",
+            instruction="Start the session to open the first learning activity.",
+        ),
+        primary_label="Start Session",
+        primary_kind="begin_form",
+        primary_enabled=True,
+        blocking_issue="",
+        exit_href="/student/",
+        exit_label="Exit",
+        content_title="Current objective",
+        content_body="Strengthen Cash flows",
+        content_support="",
+        answer_prompt="Your answer",
+        show_answer_input=False,
+        feedback_outcome="",
+        feedback_explanation="",
+        disclosures=(),
+        technical_lines=("Session ID · sess-1",),
+        session_id="sess-1",
+        activity_id="",
+        mission_id="m1",
     )
     with app.test_request_context("/session/sess-1/overview"):
         html = render_template(
             "session/overview.html",
-            page=page,
+            page=None,
+            study=study,
             form=None,
             quick_check_embed=None,
         )
-    assert "focused practice on Cash flows" in html
+    assert "Cash flows" in html
+    assert "Strengthen Cash flows" in html
     assert "Time remaining" not in html
+    assert "Readiness estimate" not in html
 
 
 def test_completion_card_uses_headline(app, ctx):
-    completion = SimpleNamespace(
-        headline="You completed today's Session on Cash flows",
-        time_studied_label="25 minutes studied",
-        activities_completed_label="3 activities completed",
-        readiness_change_label="",
-        topics_completed=("Cash flows",),
-        learning_insights=("Practice builds recall",),
-        next_recommendation="Review leases tomorrow",
-        next_session_label="",
+    from app.presentation.session.dto.study_session import (
+        LearningTask,
+        SessionPersistentContext,
+        StudySessionPage,
     )
-    page = SimpleNamespace(
-        shell=SimpleNamespace(
-            session_id="sess-1",
-            topic_title="Cash flows",
-            page_title="Summary",
-            page_eyebrow="Session · Step 4 of 4",
-            page_description="",
-            steps=(),
-            active_surface="summary",
+
+    study = StudySessionPage(
+        page_title="Session",
+        surface="summary",
+        context=SessionPersistentContext(
+            subject="Cash flows",
+            chapter="Cash flows",
+            objective="Complete the current practice step",
+            activity_label="Session complete",
+            session_progress="Session step 4 of 4",
+            elapsed_label="25 minutes studied",
         ),
-        completion=completion,
-        primary_cta_label="Return Home",
-        primary_cta_enabled=True,
+        task=LearningTask(
+            activity="Complete session",
+            expected_outcome="Close practice and return to Home",
+            estimated_duration="25 minutes studied",
+            next_milestone="Home",
+            instruction="Practice on Cash flows is finished.",
+        ),
+        primary_label="Return Home",
+        primary_kind="complete_form",
+        primary_enabled=True,
+        blocking_issue="",
+        exit_href="/student/",
+        exit_label="Exit",
+        content_title="Session complete",
+        content_body="Session practice on Cash flows is complete.",
+        content_support="",
+        answer_prompt="Your answer",
+        show_answer_input=False,
+        feedback_outcome="",
+        feedback_explanation="",
+        disclosures=(),
+        technical_lines=("Session ID · sess-1",),
+        session_id="sess-1",
+        activity_id="",
     )
     with app.test_request_context("/session/sess-1/summary"):
         html = render_template(
             "session/summary.html",
-            page=page,
+            page=None,
+            study=study,
             form=None,
         )
-    assert "You completed today" in html
     assert "Cash flows" in html
-    assert "Next step" in html
+    assert "Session practice" in html
+    assert "Return Home" in html or "complete_form" in study.primary_kind
+    assert "Readiness estimate" not in html
 
 
 def test_home_commitment_reflection_not_on_home(app, ctx):

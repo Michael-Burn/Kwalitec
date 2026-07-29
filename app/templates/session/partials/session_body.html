@@ -1,0 +1,162 @@
+{# DX-005C shared Session body
+   Persistent context → Current Learning Task → Learning Content → one Primary
+#}
+{% from "design_system/macros.html" import
+  ds_session_context,
+  ds_learning_task,
+  ds_feedback_block,
+  ds_disclosure,
+  ds_button
+%}
+
+{% set s = study %}
+
+<article class="ds-page ds-container ds-container--content" aria-labelledby="session-page-title">
+  <header class="ds-page-header">
+    <h1 id="session-page-title" class="ds-page-header__title">{{ s.page_title }}</h1>
+  </header>
+
+  {{ ds_session_context(
+    s.context.subject,
+    chapter=s.context.chapter,
+    objective=s.context.objective,
+    activity_label=s.context.activity_label,
+    session_progress=s.context.session_progress,
+    elapsed_label=s.context.elapsed_label
+  ) }}
+
+  {{ ds_learning_task(
+    s.task.activity,
+    expected_outcome=s.task.expected_outcome,
+    estimated_duration=s.task.estimated_duration,
+    next_milestone=s.task.next_milestone,
+    instruction=s.task.instruction
+  ) }}
+
+  {# ——— L1 Learning Content ——— #}
+  <section class="ds-session-content" aria-labelledby="session-content-title">
+    {% if s.content_title %}
+    <h2 id="session-content-title" class="ds-session-content__title">{{ s.content_title }}</h2>
+    {% else %}
+    <h2 id="session-content-title" class="visually-hidden">Learning content</h2>
+    {% endif %}
+
+    {% if s.feedback_outcome %}
+      {{ ds_feedback_block(s.feedback_outcome, explanation=s.feedback_explanation) }}
+    {% endif %}
+
+    {% if s.content_body %}
+    <p class="ds-session-content__body">{{ s.content_body }}</p>
+    {% endif %}
+
+    {% if s.content_support and not (s.surface == 'activity' and s.feedback_outcome) %}
+    <p class="ds-session-content__support">{{ s.content_support }}</p>
+    {% endif %}
+  </section>
+
+  {# ——— Exactly one Primary ——— #}
+  {% if s.blocking_issue %}
+  <p class="ds-session-blocking" role="status">{{ s.blocking_issue }}</p>
+  {% endif %}
+
+  {% if s.primary_kind == 'begin_form' and form %}
+  <div class="ds-primary-strip" role="group" aria-label="Primary actions">
+    <form method="post" action="{{ url_for('session.begin', session_id=s.session_id) }}">
+      {{ form.hidden_tag() }}
+      {{ form.session_id() }}
+      {{ form.mission_id() }}
+      <button
+        class="ds-btn ds-btn--primary"
+        type="submit"
+        data-session-cta="primary"
+        {% if not s.primary_enabled %}disabled{% endif %}
+      >{{ s.primary_label }}</button>
+    </form>
+  </div>
+
+  {% elif s.primary_kind == 'answer_form' and answer_form and s.show_answer_input %}
+  <form
+    method="post"
+    action="{{ url_for('session.answer', session_id=s.session_id) }}"
+    class="ds-session-answer"
+  >
+    {{ answer_form.hidden_tag() }}
+    {{ answer_form.session_id() }}
+    {{ answer_form.activity_id() }}
+    <label class="ds-session-answer__label" for="{{ answer_form.response.id }}" id="session-answer-label">
+      {{ s.answer_prompt }}
+    </label>
+    {{ answer_form.response(
+      class_="ds-textarea",
+      rows="5",
+      autocomplete="off",
+      **{"aria-labelledby": "session-answer-label"}
+    ) }}
+    <div class="ds-primary-strip" role="group" aria-label="Primary actions">
+      <button class="ds-btn ds-btn--primary" type="submit" data-session-cta="primary">
+        {{ s.primary_label }}
+      </button>
+    </div>
+  </form>
+
+  {% elif s.primary_kind == 'advance_form' and advance_form %}
+  <div class="ds-primary-strip" role="group" aria-label="Primary actions">
+    <form method="post" action="{{ url_for('session.advance', session_id=s.session_id) }}">
+      {{ advance_form.hidden_tag() }}
+      {{ advance_form.session_id() }}
+      <button class="ds-btn ds-btn--primary" type="submit" data-session-cta="primary">
+        {{ s.primary_label }}
+      </button>
+    </form>
+  </div>
+
+  {% elif s.primary_kind == 'reflection_form' and form %}
+  <div class="ds-primary-strip ds-session-reflection-form" role="group" aria-label="Primary actions">
+    <form method="post" action="{{ url_for('session.reflection_continue', session_id=s.session_id) }}">
+      {{ form.hidden_tag() }}
+      {{ form.session_id() }}
+      <label class="ds-session-answer__label" for="{{ form.reflection_note.id }}">Optional note</label>
+      {{ form.reflection_note(class_="ds-input", autocomplete="off") }}
+      <button class="ds-btn ds-btn--primary" type="submit" data-session-cta="primary">
+        {{ s.primary_label }}
+      </button>
+    </form>
+  </div>
+
+  {% elif s.primary_kind == 'complete_form' and form %}
+  <div class="ds-primary-strip" role="group" aria-label="Primary actions">
+    <form method="post" action="{{ url_for('session.finish', session_id=s.session_id) }}">
+      {{ form.hidden_tag() }}
+      {{ form.session_id() }}
+      <button
+        class="ds-btn ds-btn--primary"
+        type="submit"
+        data-session-cta="primary"
+        {% if not s.primary_enabled %}disabled{% endif %}
+      >{{ s.primary_label }}</button>
+    </form>
+  </div>
+  {% endif %}
+
+  {# ——— L2 Supporting disclosures ——— #}
+  {% for item in s.disclosures %}
+    {{ ds_disclosure(item.title, body=item.body, open=item.open) }}
+  {% endfor %}
+
+  {# ——— L3 Technical metadata ——— #}
+  {% if s.technical_lines %}
+  <details class="ds-disclosure">
+    <summary>Technical details</summary>
+    <div class="ds-disclosure__body">
+      {% for line in s.technical_lines %}
+      <p class="ds-list__meta">{{ line }}</p>
+      {% endfor %}
+    </div>
+  </details>
+  {% endif %}
+
+  {# ——— Quiet Exit (secondary) ——— #}
+  <div class="ds-session-exit">
+    {{ ds_button(s.exit_label, href=s.exit_href, variant='ghost') }}
+  </div>
+</article>

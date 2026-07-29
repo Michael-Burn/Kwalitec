@@ -153,28 +153,54 @@ def test_session_readiness_labels_are_honest():
     }
 
 
-def test_session_completion_card_uses_estimate_label(app, ctx):
-    completion = SimpleNamespace(
-        time_studied_label="25 min",
-        activities_completed_label="3 activities",
-        readiness_change_label="Readiness estimate moved up a little",
-        topics_completed=("Cash flow",),
-        learning_insights=(),
-        next_recommendation="",
-        next_session_label="",
+def test_session_completion_omits_readiness_kpi(app, ctx):
+    """DX-005C / DX-006B Phase 6: Session must not show readiness theatre."""
+    from app.presentation.session.dto.study_session import (
+        LearningTask,
+        SessionPersistentContext,
+        StudySessionPage,
     )
-    tmpl = (
-        '{% from "session/components/completion_card.html" '
-        "import completion_card %}"
-        "{{ completion_card(completion) }}"
-    )
-    from flask import render_template_string
 
+    study = StudySessionPage(
+        page_title="Session",
+        surface="summary",
+        context=SessionPersistentContext(
+            subject="Cash flow",
+            chapter="Cash flow",
+            objective="Complete the current practice step",
+            activity_label="Session complete",
+            session_progress="Session step 4 of 4",
+        ),
+        task=LearningTask(
+            activity="Complete session",
+            expected_outcome="Close practice and return to Home",
+            estimated_duration="",
+            next_milestone="Home",
+            instruction="Practice on Cash flow is finished.",
+        ),
+        primary_label="Return Home",
+        primary_kind="complete_form",
+        primary_enabled=True,
+        blocking_issue="",
+        exit_href="/student/",
+        exit_label="Exit",
+        content_title="Session complete",
+        content_body="Session practice on Cash flow is complete.",
+        content_support="",
+        answer_prompt="Your answer",
+        show_answer_input=False,
+        feedback_outcome="",
+        feedback_explanation="",
+        disclosures=(),
+        technical_lines=(),
+        session_id="sess-1",
+        activity_id="",
+    )
     with app.test_request_context("/session/complete"):
-        html = render_template_string(tmpl, completion=completion)
-    assert "Readiness estimate" in html
-    assert ">Exam readiness<" not in html
-    assert "moved up a little" in html
+        html = render_template("session/summary.html", study=study, form=None, page=None)
+    assert "Cash flow" in html
+    assert "Readiness estimate" not in html
+    assert "Exam readiness" not in html
 
 
 def test_revision_template_declares_mission_primacy(app, ctx):

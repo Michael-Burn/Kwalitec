@@ -83,15 +83,16 @@ def test_overview_activity_count_labels(count):
         "reflection.html",
         "summary.html",
         "complete.html",
+        "partials/session_body.html",
     ],
 )
 def test_templates_exist(name):
     assert (TEMPLATE_ROOT / name).is_file()
 
 
-@pytest.mark.parametrize(
-    "name",
-    [
+def test_legacy_component_templates_removed():
+    components = TEMPLATE_ROOT / "components"
+    for name in (
         "progress_bar.html",
         "activity_card.html",
         "question_card.html",
@@ -100,10 +101,8 @@ def test_templates_exist(name):
         "completion_card.html",
         "timer_card.html",
         "navigation.html",
-    ],
-)
-def test_component_templates_exist(name):
-    assert (TEMPLATE_ROOT / "components" / name).is_file()
+    ):
+        assert not (components / name).exists()
 
 
 @pytest.mark.parametrize("surface", list(SessionSurface))
