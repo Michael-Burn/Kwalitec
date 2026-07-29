@@ -538,10 +538,119 @@
   font-weight: var(--font-weight-semibold);
 }
 
+/* ——— Choose Exam discovery (DX-005B) ——— */
+
+.ds-exam-catalogue {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.ds-exam-row {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  padding: var(--space-3);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.ds-exam-row--selected,
+.ds-exam-row:has(.ds-exam-row__input:checked) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.ds-exam-row--gated {
+  cursor: default;
+  opacity: 0.85;
+}
+
+.ds-exam-row__input {
+  margin-top: var(--space-1);
+  flex-shrink: 0;
+  accent-color: var(--primary);
+}
+
+.ds-exam-row__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+  flex: 1;
+}
+
+.ds-exam-row__title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.ds-exam-row__title {
+  font-size: var(--font-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.ds-exam-row__desc {
+  font-size: var(--font-support);
+  color: var(--text-secondary);
+}
+
+.ds-exam-row:focus-within {
+  box-shadow: var(--focus-ring);
+}
+
+.ds-exam-soon {
+  opacity: 0.92;
+}
+
+.ds-exam-soon__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.ds-exam-summary__list {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.ds-exam-summary__item {
+  display: grid;
+  grid-template-columns: minmax(8rem, 12rem) 1fr;
+  gap: var(--space-2);
+}
+
+.ds-exam-summary__item dt {
+  margin: 0;
+  font-size: var(--font-support);
+  color: var(--text-muted);
+}
+
+.ds-exam-summary__item dd {
+  margin: 0;
+  font-size: var(--font-base);
+  color: var(--text-primary);
+}
+
 @media (max-width: 767px) {
   .ds-page {
     padding: var(--space-4) var(--space-3);
     gap: var(--space-5);
+  }
+
+  .ds-exam-summary__item {
+    grid-template-columns: 1fr;
+    gap: var(--space-1);
   }
 
   .ds-page-header--with-action {

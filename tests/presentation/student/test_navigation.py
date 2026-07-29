@@ -81,7 +81,7 @@ def test_navigation_labels_student_facing():
         "Revision",
         "History",
         "Settings",
-        "Study Plan",
+        "Choose Exam",
         "Help",
     }
 

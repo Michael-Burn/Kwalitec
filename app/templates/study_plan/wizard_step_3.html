@@ -1,8 +1,8 @@
 {% extends "study_plan/wizard_base.html" %}
-
-{% set wizard_question = "When is your examination?" %}
-{% set wizard_helper = "We use this to determine your study schedule and count down the days remaining." %}
-{% set button_text = "Next" %}
+{% set page_title = 'Choose Exam' %}
+{% set wizard_question = 'When is your exam?' %}
+{% set wizard_helper = 'Enter your exam date.' %}
+{% set button_text = 'Continue' %}
 
 {% block form_content %}
 <form id="wizard-form" method="post" novalidate>
@@ -16,7 +16,6 @@
         </div>
         {% endif %}
         {{ form.exam_sitting(class="form-select") }}
-        <small class="wizard-field-hint">Choose the exam sitting you're targeting.</small>
     </div>
 
     <div class="wizard-field-group">
@@ -27,7 +26,6 @@
         </div>
         {% endif %}
         {{ form.exam_date(class="form-control", type="date") }}
-        <small class="wizard-field-hint">Enter the exact date of your exam.</small>
     </div>
 </form>
 {% endblock %}

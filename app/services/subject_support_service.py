@@ -3,10 +3,11 @@
 Determines whether an examination can produce a real Version 1 study plan
 before a student invests planning time.
 
-Support is a product trust surface:
-- Supported — full syllabus is available; plan creation proceeds normally.
-- Coming Soon — a planned examination that is not yet ready; explain and stop.
-- Not Supported — outside Version 1; explain, stop, and offer supported options.
+Support is a product trust surface (internal statuses). Student-facing
+availability labels (PX-001 / PX-002) are Ready / Coming Soon:
+- Supported → Ready — full syllabus is available; plan creation proceeds.
+- Coming Soon — under preparation; explain and stop.
+- Not Supported — omit from Subject Catalogue or treat as unavailable.
 
 Curriculum discovery (on-disk syllabus JSON) is the source of truth for
 *Supported*. Product announcement lists distinguish Coming Soon from Not
@@ -59,11 +60,18 @@ _COMING_SOON_PAPERS: dict[str, frozenset[str]] = {
     ),
 }
 
+# PX-001 student-facing availability labels (internal enum values unchanged).
 _STATUS_LABELS = {
-    SupportStatus.SUPPORTED: "Supported",
+    SupportStatus.SUPPORTED: "Ready",
     SupportStatus.COMING_SOON: "Coming Soon",
-    SupportStatus.NOT_SUPPORTED: "Not Supported",
+    SupportStatus.NOT_SUPPORTED: "Unavailable",
 }
+
+_COMING_SOON_EXPLANATION = (
+    "This subject’s verified curriculum is still under preparation. "
+    "It will become available when publishing is complete. "
+    "You cannot start studying this exam yet."
+)
 
 
 @dataclass(frozen=True)
@@ -155,11 +163,11 @@ class SubjectSupportService:
                 organisation=org,
                 paper=paper_code,
                 label=_STATUS_LABELS[SupportStatus.NOT_SUPPORTED],
-                title="This examination is not supported yet",
+                title="This examination is unavailable",
                 explanation=(
-                    "Kwalitec builds study plans from a full official syllabus. "
-                    "Custom or free-text subjects are not available in Version 1, "
-                    "so a full plan cannot be created for this choice."
+                    "Kwalitec builds Study Plans from a verified curriculum. "
+                    "Custom or free-text subjects are not available yet, "
+                    "so a Study Plan cannot be created for this choice."
                 ),
                 allows_plan_creation=False,
                 alternatives=alternatives,
@@ -177,10 +185,10 @@ class SubjectSupportService:
                 organisation=org,
                 paper=paper_code,
                 label=_STATUS_LABELS[SupportStatus.SUPPORTED],
-                title=f"{display} is supported",
+                title=f"{display} is Ready",
                 explanation=(
-                    "Kwalitec has the official syllabus for this paper and can "
-                    "build a complete study plan around it."
+                    "Kwalitec has a verified curriculum for this subject and can "
+                    "build a complete Study Plan around it."
                 ),
                 allows_plan_creation=True,
                 alternatives=(),
@@ -194,13 +202,8 @@ class SubjectSupportService:
                 organisation=org,
                 paper=paper_code,
                 label=_STATUS_LABELS[SupportStatus.COMING_SOON],
-                title=f"{display} is coming soon",
-                explanation=(
-                    f"{display} is on Kwalitec's roadmap, but the full syllabus "
-                    "is not available yet. Creating a plan now would produce an "
-                    "incomplete study plan, so plan creation is paused for this "
-                    "paper until it is ready."
-                ),
+                title=f"{display} is Coming Soon",
+                explanation=_COMING_SOON_EXPLANATION,
                 allows_plan_creation=False,
                 alternatives=alternatives,
             )
@@ -216,11 +219,11 @@ class SubjectSupportService:
             organisation=org,
             paper=paper_code,
             label=_STATUS_LABELS[SupportStatus.NOT_SUPPORTED],
-            title=f"{subject_phrase} is not supported",
+            title=f"{subject_phrase} is unavailable",
             explanation=(
-                f"{subject_phrase} is not available in Version 1. Kwalitec only "
-                "creates full study plans for examinations that have a complete "
-                "syllabus ready. Please choose a supported paper instead."
+                f"{subject_phrase} is not available yet. Kwalitec only creates "
+                "Study Plans for subjects with a verified curriculum that is "
+                "Ready. Please choose a Ready subject instead."
             ),
             allows_plan_creation=False,
             alternatives=alternatives,
@@ -264,10 +267,10 @@ class SubjectSupportService:
                 organisation=organisation,
                 paper=paper_code,
                 label=_STATUS_LABELS[SupportStatus.NOT_SUPPORTED],
-                title=f"{display} is not available",
+                title=f"{display} is unavailable",
                 explanation=(
-                    "Founder-published curricula are not enabled for student "
-                    "discovery in this environment."
+                    "This verified curriculum is not available for enrolment "
+                    "in this environment yet."
                 ),
                 allows_plan_creation=False,
                 alternatives=alternatives,
@@ -280,10 +283,10 @@ class SubjectSupportService:
                 organisation=organisation,
                 paper=paper_code,
                 label=_STATUS_LABELS[SupportStatus.NOT_SUPPORTED],
-                title=f"{display} is not published",
+                title=f"{display} is unavailable",
                 explanation=(
-                    "No active published curriculum package is available for "
-                    "this subject. Choose a supported examination instead."
+                    "No verified curriculum is Ready for this subject yet. "
+                    "Choose a Ready subject instead."
                 ),
                 allows_plan_creation=False,
                 alternatives=alternatives,
@@ -295,11 +298,8 @@ class SubjectSupportService:
                 organisation=organisation,
                 paper=paper_code,
                 label=_STATUS_LABELS[SupportStatus.COMING_SOON],
-                title=f"{offer.title} is visible but not open for enrolment",
-                explanation=(
-                    f"{offer.title} ({offer.version_label}) is published, but "
-                    "Runtime C enrolment is not enabled in this environment yet."
-                ),
+                title=f"{offer.title} is Coming Soon",
+                explanation=_COMING_SOON_EXPLANATION,
                 allows_plan_creation=False,
                 alternatives=alternatives,
             )
@@ -309,11 +309,10 @@ class SubjectSupportService:
             organisation=organisation,
             paper=paper_code,
             label=_STATUS_LABELS[SupportStatus.SUPPORTED],
-            title=f"{offer.title} is supported",
+            title=f"{offer.title} is Ready",
             explanation=(
-                f"{offer.title} was published by founders "
-                f"(version {offer.version_label}) and can be enrolled via "
-                "the curriculum-driven educational runtime."
+                f"{offer.title} has a verified curriculum "
+                f"(version {offer.version_label}) and is Ready to enrol."
             ),
             allows_plan_creation=True,
             alternatives=(),
@@ -359,7 +358,7 @@ class SubjectSupportService:
                 organisation=category.code,
                 status=SupportStatus.NOT_SUPPORTED,
                 label=_STATUS_LABELS[SupportStatus.NOT_SUPPORTED],
-                hint="Custom subjects are not available in Version 1.",
+                hint="Custom subjects are not available yet.",
             )
 
         statuses = cls.paper_statuses_for_category(category.code)
@@ -377,8 +376,8 @@ class SubjectSupportService:
             return CategorySupportSummary(
                 organisation=category.code,
                 status=SupportStatus.SUPPORTED,
-                label="Partially Supported",
-                hint=f"Version 1 supports {names}. Other papers are Coming Soon.",
+                label="Partially Ready",
+                hint=f"Ready subjects: {names}. Others are Coming Soon.",
                 supported_paper_codes=supported,
             )
         if supported:
@@ -386,7 +385,7 @@ class SubjectSupportService:
                 organisation=category.code,
                 status=SupportStatus.SUPPORTED,
                 label=_STATUS_LABELS[SupportStatus.SUPPORTED],
-                hint="Full study plans are available for these papers.",
+                hint="Verified curricula are Ready for these subjects.",
                 supported_paper_codes=supported,
             )
         if coming_soon:
@@ -394,13 +393,13 @@ class SubjectSupportService:
                 organisation=category.code,
                 status=SupportStatus.COMING_SOON,
                 label=_STATUS_LABELS[SupportStatus.COMING_SOON],
-                hint="These papers are on the roadmap but not ready yet.",
+                hint="These subjects are under preparation and not selectable yet.",
             )
         return CategorySupportSummary(
             organisation=category.code,
             status=SupportStatus.NOT_SUPPORTED,
             label=_STATUS_LABELS[SupportStatus.NOT_SUPPORTED],
-            hint="Not available in Version 1.",
+            hint="Not available yet.",
         )
 
     @classmethod

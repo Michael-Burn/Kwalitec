@@ -1,8 +1,8 @@
 {% extends "study_plan/wizard_base.html" %}
-
-{% set wizard_question = "How much time can you realistically study?" %}
-{% set wizard_helper = "Be honest about your availability. This determines how much material we schedule each day." %}
-{% set button_text = "Next" %}
+{% set page_title = 'Choose Exam' %}
+{% set wizard_question = 'How much time can you study?' %}
+{% set wizard_helper = 'Set a realistic weekly availability.' %}
+{% set button_text = 'Continue' %}
 
 {% block form_content %}
 <form id="wizard-form" method="post" novalidate>
@@ -41,12 +41,14 @@
             {% for error in form.preferred_session_minutes.errors %}{{ error }}{% endfor %}
         </div>
         {% endif %}
-        <div class="wizard-option-pills">
+        <div class="wizard-option-list">
             {% for subfield in form.preferred_session_minutes %}
             {% if subfield.type != 'CSRFTokenField' %}
-            <label class="wizard-pill" for="{{ subfield.id }}">
+            <label class="wizard-option-row" for="{{ subfield.id }}">
                 {{ subfield(class="wizard-option-input") }}
-                <span>{{ subfield.label.text }}</span>
+                <div class="wizard-option-row-body">
+                    <div class="wizard-option-row-title">{{ subfield.label.text }}</div>
+                </div>
             </label>
             {% endif %}
             {% endfor %}

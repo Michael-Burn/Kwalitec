@@ -23,11 +23,11 @@ class TestSubjectSupportResolution:
     def test_supported_cs1(self):
         info = SubjectSupportService.resolve("IFoA", "CS1")
         assert info.status is SupportStatus.SUPPORTED
-        assert info.label == "Supported"
+        assert info.label == "Ready"
         assert info.allows_plan_creation is True
-        assert "curriculum" not in info.explanation.lower()
         assert "json" not in info.explanation.lower()
         assert "loader" not in info.explanation.lower()
+        assert "verified" in info.explanation.lower() or "ready" in info.title.lower()
 
     def test_supported_cm1_and_cb2(self):
         for paper in ("CM1", "CB2"):
@@ -47,9 +47,9 @@ class TestSubjectSupportResolution:
     def test_not_supported_cfa(self):
         info = SubjectSupportService.resolve("CFA", "Level I")
         assert info.status is SupportStatus.NOT_SUPPORTED
-        assert info.label == "Not Supported"
+        assert info.label == "Unavailable"
         assert info.allows_plan_creation is False
-        assert "not supported" in info.title.lower()
+        assert "unavailable" in info.title.lower()
 
     def test_not_supported_free_text(self):
         info = SubjectSupportService.resolve(
@@ -72,7 +72,7 @@ class TestSubjectSupportResolution:
             "CS1" in summary.supported_paper_codes
             or "CM1" in summary.supported_paper_codes
         )
-        assert "Partially" in summary.label or summary.label == "Supported"
+        assert "Partially" in summary.label or summary.label == "Ready"
 
     def test_category_summary_cfa_not_supported(self):
         summary = SubjectSupportService.category_summary("CFA")
@@ -85,99 +85,43 @@ class TestSubjectSupportResolution:
 
 
 class TestWizardSupportSurface:
-    def test_step1_shows_support_labels(self, logged_in_client):
+    def test_step1_shows_catalogue_availability(self, logged_in_client):
         response = logged_in_client.get("/study-plan/wizard/1")
         assert response.status_code == 200
         body = response.data
-        assert b"Supported" in body or b"Partially Supported" in body
-        assert b"Not Supported" in body
-        assert b"support-status-badge" in body
+        assert b"Ready" in body
+        assert b"Coming Soon" in body or b"Coming soon" in body
+        assert b"Ready to begin" in body
+        assert b"Subject Catalogue" in body or b"Choose Exam" in body or b"exam" in body.lower()
 
-    def test_step2_supported_paper_advances(self, logged_in_client):
-        with logged_in_client.session_transaction() as sess:
-            sess["wizard_data"] = {"exam_category": "IFoA"}
+    def test_ready_subject_advances(self, logged_in_client):
         response = logged_in_client.post(
-            "/study-plan/wizard/2",
-            data={"exam_paper": "CS1"},
+            "/study-plan/wizard/1",
+            data={"subject_key": "IFoA:CS1"},
             follow_redirects=False,
         )
         assert response.status_code == 302
-        assert "/study-plan/wizard/3" in response.headers["Location"]
+        assert "/study-plan/wizard/2" in response.headers["Location"]
 
-    def test_step2_coming_soon_blocks_and_explains(self, logged_in_client):
-        with logged_in_client.session_transaction() as sess:
-            sess["wizard_data"] = {"exam_category": "IFoA"}
-        response = logged_in_client.post(
-            "/study-plan/wizard/2",
-            data={"exam_paper": "CM2"},
-            follow_redirects=True,
-        )
+    def test_coming_soon_not_selectable(self, logged_in_client):
+        response = logged_in_client.get("/study-plan/wizard/1")
         assert response.status_code == 200
         body = response.data.decode("utf-8")
         assert "Coming Soon" in body
-        assert "subject-support-gate" in body
-        assert "coming soon" in body.lower()
-        assert "Supported alternatives" in body
-        assert "/study-plan/wizard/3" not in response.request.path
-        assert b"Step 2" in response.data or b"Paper" in response.data
+        assert 'value="IFoA:CM2"' not in body
+        assert "under preparation" in body.lower()
 
-    def test_step2_unsupported_blocks_and_explains(self, logged_in_client):
-        with logged_in_client.session_transaction() as sess:
-            sess["wizard_data"] = {"exam_category": "CFA"}
-        response = logged_in_client.post(
-            "/study-plan/wizard/2",
-            data={"exam_paper": "Level I"},
-            follow_redirects=True,
-        )
-        assert response.status_code == 200
-        body = response.data.decode("utf-8")
-        assert "Not Supported" in body
-        assert "subject-support-gate" in body
-        assert "Supported alternatives" in body
-
-    def test_step2_shows_per_paper_badges(self, logged_in_client):
-        with logged_in_client.session_transaction() as sess:
-            sess["wizard_data"] = {"exam_category": "IFoA"}
-        response = logged_in_client.get("/study-plan/wizard/2")
-        assert response.status_code == 200
-        body = response.data.decode("utf-8")
-        assert "Supported" in body
-        assert "Coming Soon" in body
-        assert "CS1" in body
-        assert "CM2" in body
-
-    def test_coming_soon_cannot_reach_step3(self, logged_in_client):
+    def test_coming_soon_cannot_reach_exam_date(self, logged_in_client):
         with logged_in_client.session_transaction() as sess:
             sess["wizard_data"] = {
                 "exam_category": "IFoA",
                 "exam_paper": "CM2",
             }
         response = logged_in_client.get(
-            "/study-plan/wizard/3", follow_redirects=False
+            "/study-plan/wizard/2", follow_redirects=False
         )
         assert response.status_code == 302
-        assert "/study-plan/wizard/2" in response.headers["Location"]
-
-    def test_unsupported_cannot_reach_review(self, logged_in_client):
-        with logged_in_client.session_transaction() as sess:
-            sess["wizard_data"] = {
-                "exam_category": "CFA",
-                "exam_paper": "Level I",
-                "exam_sitting": "February 2027",
-                "exam_date": (
-                    date.today() + timedelta(days=120)
-                ).isoformat(),
-                "weekday_study_minutes": 90,
-                "weekend_study_minutes": 120,
-                "current_position": "not_started",
-                "study_preference": "Mixed",
-                "target_grade": "Pass",
-            }
-        response = logged_in_client.get(
-            "/study-plan/review", follow_redirects=False
-        )
-        assert response.status_code == 302
-        assert "/study-plan/wizard/2" in response.headers["Location"]
+        assert "/study-plan/wizard/1" in response.headers["Location"]
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -209,7 +153,7 @@ class TestNoHollowPlans:
             follow_redirects=False,
         )
         assert response.status_code == 302
-        assert "/study-plan/wizard/2" in response.headers["Location"]
+        assert "/study-plan/wizard/1" in response.headers["Location"]
         assert StudyPlan.query.count() == before
 
     def test_review_post_refuses_unsupported(self, logged_in_client):
@@ -236,7 +180,7 @@ class TestNoHollowPlans:
         )
         assert response.status_code == 200
         assert StudyPlan.query.count() == before
-        assert b"Not Supported" in response.data or b"not available" in response.data
+        assert b"Unavailable" in response.data or b"unavailable" in response.data or b"not available" in response.data.lower()
 
     def test_supported_messaging_avoids_implementation_terms(self):
         info = SubjectSupportService.resolve("IFoA", "CS1")

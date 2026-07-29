@@ -31,7 +31,7 @@ _STUDENT_SURFACE_FILES = (
     REPO_ROOT / "app" / "templates" / "analytics" / "index.html",
     REPO_ROOT / "app" / "templates" / "mission" / "index.html",
     REPO_ROOT / "app" / "templates" / "study_plan" / "view.html",
-    REPO_ROOT / "app" / "templates" / "study_plan" / "wizard_step_4.html",
+    REPO_ROOT / "app" / "templates" / "study_plan" / "wizard_step_1.html",
     REPO_ROOT / "app" / "services" / "educational_explainability_service.py",
     REPO_ROOT / "app" / "services" / "readiness_service.py",
     REPO_ROOT / "app" / "services" / "recommendation_service.py",

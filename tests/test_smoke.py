@@ -33,30 +33,20 @@ def _login(client: FlaskClient) -> FlaskClient:
 
 
 def _wizard_step_1(client: FlaskClient) -> FlaskClient:
-    """Submit wizard step 1: select IFoA."""
+    """Submit wizard step 1: Choose Exam (Subject Catalogue)."""
     client.post(
         "/study-plan/wizard/1",
-        data={"exam_category": "IFoA"},
+        data={"subject_key": "IFoA:CS1"},
         follow_redirects=True,
     )
     return client
 
 
 def _wizard_step_2(client: FlaskClient) -> FlaskClient:
-    """Submit wizard step 2: select CS1 paper."""
-    client.post(
-        "/study-plan/wizard/2",
-        data={"exam_paper": "CS1"},
-        follow_redirects=True,
-    )
-    return client
-
-
-def _wizard_step_3(client: FlaskClient) -> FlaskClient:
-    """Submit wizard step 3: sitting and exam date."""
+    """Submit wizard step 2: exam date."""
     future_date = (date.today() + timedelta(days=180)).isoformat()
     client.post(
-        "/study-plan/wizard/3",
+        "/study-plan/wizard/2",
         data={
             "exam_sitting": "April 2027",
             "exam_date": future_date,
@@ -66,23 +56,10 @@ def _wizard_step_3(client: FlaskClient) -> FlaskClient:
     return client
 
 
-def _wizard_step_4(client: FlaskClient) -> FlaskClient:
-    """Submit wizard step 4: current position ('not started', no topic)."""
+def _wizard_step_3(client: FlaskClient) -> FlaskClient:
+    """Submit wizard step 3: study availability."""
     client.post(
-        "/study-plan/wizard/4",
-        data={
-            "current_position": "not_started",
-            "current_topic": "",
-        },
-        follow_redirects=True,
-    )
-    return client
-
-
-def _wizard_step_5(client: FlaskClient) -> FlaskClient:
-    """Submit wizard step 5: study availability."""
-    client.post(
-        "/study-plan/wizard/5",
+        "/study-plan/wizard/3",
         data={
             "weekday_study_minutes": 60,
             "weekend_study_minutes": 90,
@@ -93,35 +70,11 @@ def _wizard_step_5(client: FlaskClient) -> FlaskClient:
     return client
 
 
-def _wizard_step_6(client: FlaskClient) -> FlaskClient:
-    """Submit wizard step 6: learning style."""
-    client.post(
-        "/study-plan/wizard/6",
-        data={"study_preference": "Mixed"},
-        follow_redirects=True,
-    )
-    return client
-
-
-def _wizard_step_7(client: FlaskClient) -> FlaskClient:
-    """Submit wizard step 7: target grade."""
-    client.post(
-        "/study-plan/wizard/7",
-        data={"target_grade": "Pass"},
-        follow_redirects=True,
-    )
-    return client
-
-
 def _complete_wizard(client: FlaskClient) -> FlaskClient:
-    """Run the full wizard from step 1 through step 7."""
+    """Run the PX-002 wizard: Choose Exam → Date → Availability."""
     _wizard_step_1(client)
     _wizard_step_2(client)
     _wizard_step_3(client)
-    _wizard_step_4(client)
-    _wizard_step_5(client)
-    _wizard_step_6(client)
-    _wizard_step_7(client)
     return client
 
 
@@ -182,63 +135,42 @@ class TestSmokeAuthentication:
 
 
 class TestSmokeStudyPlanWizard:
-    """Complete the full Study Plan Wizard and verify results."""
+    """Complete the PX-002 Study Plan Wizard and verify results."""
 
     def test_wizard_step_1_get(self, client, user):
-        """Step 1 renders correctly."""
+        """Choose Exam renders Subject Catalogue."""
         _login(client)
         resp = client.get("/study-plan/wizard/1")
         assert resp.status_code == 200
-        assert b"Examination" in resp.data
+        assert b"Ready" in resp.data
+        assert b"CS1" in resp.data
 
     def test_wizard_step_1_post(self, client, user):
-        """Step 1 posts and redirects to step 2."""
+        """Choose Exam posts and redirects to Exam Date."""
         _login(client)
         resp = client.post(
             "/study-plan/wizard/1",
-            data={"exam_category": "IFoA"},
+            data={"subject_key": "IFoA:CS1"},
             follow_redirects=True,
         )
         assert resp.status_code == 200
         assert resp.request.path == "/study-plan/wizard/2"
 
     def test_wizard_step_2_get(self, client, user):
-        """Step 2 renders correctly."""
+        """Exam Date step renders correctly."""
         _login(client)
         _wizard_step_1(client)
         resp = client.get("/study-plan/wizard/2")
         assert resp.status_code == 200
-        assert b"CS1" in resp.data
-
-    def test_wizard_step_2_post(self, client, user):
-        """Step 2 posts and redirects to step 3."""
-        _login(client)
-        _wizard_step_1(client)
-        resp = client.post(
-            "/study-plan/wizard/2",
-            data={"exam_paper": "CS1"},
-            follow_redirects=True,
-        )
-        assert resp.status_code == 200
-        assert resp.request.path == "/study-plan/wizard/3"
-
-    def test_wizard_step_3_get(self, client, user):
-        """Step 3 renders correctly."""
-        _login(client)
-        _wizard_step_1(client)
-        _wizard_step_2(client)
-        resp = client.get("/study-plan/wizard/3")
-        assert resp.status_code == 200
         assert b"Exam Date" in resp.data or b"Sitting" in resp.data
 
-    def test_wizard_step_3_post(self, client, user):
-        """Step 3 posts and redirects to step 4."""
+    def test_wizard_step_2_post(self, client, user):
+        """Exam Date posts and redirects to Study Availability."""
         _login(client)
         _wizard_step_1(client)
-        _wizard_step_2(client)
         future_date = (date.today() + timedelta(days=180)).isoformat()
         resp = client.post(
-            "/study-plan/wizard/3",
+            "/study-plan/wizard/2",
             data={
                 "exam_sitting": "April 2027",
                 "exam_date": future_date,
@@ -246,54 +178,23 @@ class TestSmokeStudyPlanWizard:
             follow_redirects=True,
         )
         assert resp.status_code == 200
-        assert resp.request.path == "/study-plan/wizard/4"
+        assert resp.request.path == "/study-plan/wizard/3"
 
-    def test_wizard_step_4_get(self, client, user):
-        """Step 4 renders with curriculum topics for IFoA CS1."""
+    def test_wizard_step_3_get(self, client, user):
+        """Study Availability step renders correctly."""
         _login(client)
         _wizard_step_1(client)
         _wizard_step_2(client)
-        _wizard_step_3(client)
-        resp = client.get("/study-plan/wizard/4")
+        resp = client.get("/study-plan/wizard/3")
         assert resp.status_code == 200
-        assert b"Current Position" in resp.data or b"haven" in resp.data
 
-    def test_wizard_step_4_post(self, client, user):
-        """Step 4 posts and redirects to step 5."""
+    def test_wizard_step_3_post_redirects_to_begin_learning(self, client, user):
+        """Study Availability posts and redirects to Begin Learning."""
         _login(client)
         _wizard_step_1(client)
         _wizard_step_2(client)
-        _wizard_step_3(client)
         resp = client.post(
-            "/study-plan/wizard/4",
-            data={
-                "current_position": "not_started",
-                "current_topic": "",
-            },
-            follow_redirects=True,
-        )
-        assert resp.status_code == 200
-        assert resp.request.path == "/study-plan/wizard/5"
-
-    def test_wizard_step_5_get(self, client, user):
-        """Step 5 renders correctly."""
-        _login(client)
-        _wizard_step_1(client)
-        _wizard_step_2(client)
-        _wizard_step_3(client)
-        _wizard_step_4(client)
-        resp = client.get("/study-plan/wizard/5")
-        assert resp.status_code == 200
-
-    def test_wizard_step_5_post(self, client, user):
-        """Step 5 posts and redirects to step 6."""
-        _login(client)
-        _wizard_step_1(client)
-        _wizard_step_2(client)
-        _wizard_step_3(client)
-        _wizard_step_4(client)
-        resp = client.post(
-            "/study-plan/wizard/5",
+            "/study-plan/wizard/3",
             data={
                 "weekday_study_minutes": 60,
                 "weekend_study_minutes": 90,
@@ -302,73 +203,15 @@ class TestSmokeStudyPlanWizard:
             follow_redirects=True,
         )
         assert resp.status_code == 200
-        assert resp.request.path == "/study-plan/wizard/6"
-
-    def test_wizard_step_6_get(self, client, user):
-        """Step 6 renders correctly."""
-        _login(client)
-        _wizard_step_1(client)
-        _wizard_step_2(client)
-        _wizard_step_3(client)
-        _wizard_step_4(client)
-        _wizard_step_5(client)
-        resp = client.get("/study-plan/wizard/6")
-        assert resp.status_code == 200
-        assert b"Learning Style" in resp.data or b"Mixed" in resp.data
-
-    def test_wizard_step_6_post(self, client, user):
-        """Step 6 posts and redirects to step 7."""
-        _login(client)
-        _wizard_step_1(client)
-        _wizard_step_2(client)
-        _wizard_step_3(client)
-        _wizard_step_4(client)
-        _wizard_step_5(client)
-        resp = client.post(
-            "/study-plan/wizard/6",
-            data={"study_preference": "Mixed"},
-            follow_redirects=True,
-        )
-        assert resp.status_code == 200
-        assert resp.request.path == "/study-plan/wizard/7"
-
-    def test_wizard_step_7_get(self, client, user):
-        """Step 7 renders with target grade choices."""
-        _login(client)
-        _wizard_step_1(client)
-        _wizard_step_2(client)
-        _wizard_step_3(client)
-        _wizard_step_4(client)
-        _wizard_step_5(client)
-        _wizard_step_6(client)
-        resp = client.get("/study-plan/wizard/7")
-        assert resp.status_code == 200
-        assert b"Target" in resp.data or b"result" in resp.data.lower()
-
-    def test_wizard_step_7_post_redirects_to_review(self, client, user):
-        """Step 7 posts and redirects to review."""
-        _login(client)
-        _wizard_step_1(client)
-        _wizard_step_2(client)
-        _wizard_step_3(client)
-        _wizard_step_4(client)
-        _wizard_step_5(client)
-        _wizard_step_6(client)
-        resp = client.post(
-            "/study-plan/wizard/7",
-            data={"target_grade": "Pass"},
-            follow_redirects=True,
-        )
-        assert resp.status_code == 200
         assert resp.request.path == "/study-plan/review"
 
     def test_review_page_renders(self, client, user):
-        """Review page renders with all wizard data."""
+        """Begin Learning page renders with wizard data."""
         _login(client)
         _complete_wizard(client)
         resp = client.get("/study-plan/review")
         assert resp.status_code == 200
-        assert b"Review" in resp.data or b"target" in resp.data.lower()
+        assert b"Begin Learning" in resp.data or b"Study Plan" in resp.data
 
     def test_create_study_plan_succeeds(self, client, user):
         """Final confirmation creates the study plan."""
@@ -393,6 +236,7 @@ class TestSmokeStudyPlanWizard:
         assert len(active_plans) == 1, (
             f"Expected exactly 1 active study plan, got {len(active_plans)}"
         )
+
 
     def test_week_plans_generated(self, app, ctx, user):
         """WeekPlans are generated after study plan creation."""
@@ -421,33 +265,29 @@ class TestSmokeStudyPlanWizard:
             f"Expected TopicProgress records for IFoA CS1, but got {tp_count}"
         )
 
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Smoke Test 3 — Dashboard
+# ─────────────────────────────────────────────────────────────────────────────
+
     def test_no_500_during_wizard(self, client, user):
         """No Internal Server Error occurs during the full wizard flow."""
         _login(client)
 
-        # Step 1
         resp = client.get("/study-plan/wizard/1")
         assert resp.status_code == 200
 
         resp = client.post(
             "/study-plan/wizard/1",
-            data={"exam_category": "IFoA"},
+            data={"subject_key": "IFoA:CS1"},
             follow_redirects=True,
         )
         assert resp.status_code == 200
 
-        # Step 2
-        resp = client.post(
-            "/study-plan/wizard/2",
-            data={"exam_paper": "CS1"},
-            follow_redirects=True,
-        )
-        assert resp.status_code == 200
-
-        # Step 3
         future_date = (date.today() + timedelta(days=180)).isoformat()
         resp = client.post(
-            "/study-plan/wizard/3",
+            "/study-plan/wizard/2",
             data={
                 "exam_sitting": "April 2027",
                 "exam_date": future_date,
@@ -456,20 +296,8 @@ class TestSmokeStudyPlanWizard:
         )
         assert resp.status_code == 200
 
-        # Step 4
         resp = client.post(
-            "/study-plan/wizard/4",
-            data={
-                "current_position": "not_started",
-                "current_topic": "",
-            },
-            follow_redirects=True,
-        )
-        assert resp.status_code == 200
-
-        # Step 5
-        resp = client.post(
-            "/study-plan/wizard/5",
+            "/study-plan/wizard/3",
             data={
                 "weekday_study_minutes": 60,
                 "weekend_study_minutes": 90,
@@ -479,23 +307,6 @@ class TestSmokeStudyPlanWizard:
         )
         assert resp.status_code == 200
 
-        # Step 6
-        resp = client.post(
-            "/study-plan/wizard/6",
-            data={"study_preference": "Mixed"},
-            follow_redirects=True,
-        )
-        assert resp.status_code == 200
-
-        # Step 7
-        resp = client.post(
-            "/study-plan/wizard/7",
-            data={"target_grade": "Pass"},
-            follow_redirects=True,
-        )
-        assert resp.status_code == 200
-
-        # Review
         resp = client.post(
             "/study-plan/review",
             data={"confirm": "yes"},
@@ -503,11 +314,6 @@ class TestSmokeStudyPlanWizard:
         )
         assert resp.status_code == 200
         assert b"Internal Server Error" not in resp.data
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# Smoke Test 3 — Dashboard
-# ─────────────────────────────────────────────────────────────────────────────
 
 
 class TestSmokeDashboard:
@@ -1078,29 +884,18 @@ class TestFullEndToEnd:
         )
         assert resp.status_code == 200
 
-        # ── 2. Complete Study Plan Wizard ───────────────────────────────
-        # Step 1
+        # ── 2. Complete Study Plan Wizard (PX-002) ─────────────────────
         resp = client.post(
             "/study-plan/wizard/1",
-            data={"exam_category": "IFoA"},
+            data={"subject_key": "IFoA:CS1"},
             follow_redirects=True,
         )
         assert resp.status_code == 200
         assert resp.request.path == "/study-plan/wizard/2"
 
-        # Step 2
-        resp = client.post(
-            "/study-plan/wizard/2",
-            data={"exam_paper": "CS1"},
-            follow_redirects=True,
-        )
-        assert resp.status_code == 200
-        assert resp.request.path == "/study-plan/wizard/3"
-
-        # Step 3
         future_date = (date.today() + timedelta(days=180)).isoformat()
         resp = client.post(
-            "/study-plan/wizard/3",
+            "/study-plan/wizard/2",
             data={
                 "exam_sitting": "April 2027",
                 "exam_date": future_date,
@@ -1108,46 +903,15 @@ class TestFullEndToEnd:
             follow_redirects=True,
         )
         assert resp.status_code == 200
-        assert resp.request.path == "/study-plan/wizard/4"
+        assert resp.request.path == "/study-plan/wizard/3"
 
-        # Step 4
         resp = client.post(
-            "/study-plan/wizard/4",
-            data={
-                "current_position": "not_started",
-                "current_topic": "",
-            },
-            follow_redirects=True,
-        )
-        assert resp.status_code == 200
-        assert resp.request.path == "/study-plan/wizard/5"
-
-        # Step 5
-        resp = client.post(
-            "/study-plan/wizard/5",
+            "/study-plan/wizard/3",
             data={
                 "weekday_study_minutes": 60,
                 "weekend_study_minutes": 90,
                 "preferred_session_minutes": 60,
             },
-            follow_redirects=True,
-        )
-        assert resp.status_code == 200
-        assert resp.request.path == "/study-plan/wizard/6"
-
-        # Step 6
-        resp = client.post(
-            "/study-plan/wizard/6",
-            data={"study_preference": "Mixed"},
-            follow_redirects=True,
-        )
-        assert resp.status_code == 200
-        assert resp.request.path == "/study-plan/wizard/7"
-
-        # Step 7
-        resp = client.post(
-            "/study-plan/wizard/7",
-            data={"target_grade": "Pass"},
             follow_redirects=True,
         )
         assert resp.status_code == 200

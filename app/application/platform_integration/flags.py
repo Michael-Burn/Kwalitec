@@ -71,9 +71,32 @@ def resolve_founder_student_bridge_flags(
         ``KWALITEC_RUNTIME_C_SUBJECT_ALLOWLIST`` — comma-separated subject
         codes eligible for Runtime C when selected outside the Published
         category (still requires enrolment flag + active package).
+
+    Development default: when APP_ENV is ``development`` and no bridge flags
+    are set, enable discovery + enrolment so Founder publish → Ready is
+    observable locally. Explicit empty environ (tests) and non-development
+    environments keep safe defaults off.
     """
     env = environ if environ is not None else os.environ
-    umbrella = _env_truthy("KWALITEC_FOUNDER_STUDENT_BRIDGE", environ=env)
+    # Explicit empty mapping (unit tests) must keep safe defaults off.
+    if environ is not None and not environ:
+        return FounderStudentBridgeFlags()
+
+    app_env = (
+        env.get("APP_ENV") or env.get("FLASK_ENV") or "development"
+    ).strip().lower()
+    bridge_raw = env.get("KWALITEC_FOUNDER_STUDENT_BRIDGE")
+    discovery_raw = env.get("KWALITEC_PUBLISHED_SUBJECT_DISCOVERY")
+    enrolment_raw = env.get("KWALITEC_RUNTIME_C_ENROLMENT")
+    any_explicit = any(
+        v is not None and str(v).strip() != ""
+        for v in (bridge_raw, discovery_raw, enrolment_raw)
+    )
+    development_default = app_env == "development" and not any_explicit
+
+    umbrella = _env_truthy("KWALITEC_FOUNDER_STUDENT_BRIDGE", environ=env) or (
+        development_default
+    )
     discovery = (
         _env_truthy("KWALITEC_PUBLISHED_SUBJECT_DISCOVERY", environ=env)
         or umbrella

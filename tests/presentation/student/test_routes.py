@@ -36,15 +36,20 @@ def test_student_routes_render_nav(student_client, endpoint, path):
     assert "Revision" in html
     assert "History" in html
     assert "Settings" in html
-    assert "Study Plan" in html
+    assert "Choose Exam" in html
     assert "Help" in html
 
 
-def test_home_shows_recommendation(student_client):
+def test_home_shows_mission_or_empty(student_client):
     response = student_client.get("/student/")
     html = response.get_data(as_text=True)
-    assert "Today" in html or "Recommendation" in html
-    assert "Start" in html
+    assert "Home" in html
+    assert (
+        "Current Mission" in html
+        or "Choose Exam" in html
+        or "Continue Session" in html
+        or "Start Session" in html
+    )
 
 
 def test_journey_shows_topics(student_client):

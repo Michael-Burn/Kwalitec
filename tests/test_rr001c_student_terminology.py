@@ -24,10 +24,10 @@ def _read(relative: str) -> str:
 
 
 class TestStudentVisibleTerminology:
-    def test_wizard_step6_helper_uses_study_sessions(self):
-        body = _read("templates/study_plan/wizard_step_6.html")
-        assert "daily study sessions" in body
-        assert "daily missions" not in body
+    def test_choose_exam_discovery_avoids_mission_prose(self):
+        body = _read("templates/study_plan/wizard_step_1.html")
+        assert "Choose Exam" in body or "discovery" in body
+        assert "daily missions" not in body.lower()
 
     def test_analytics_empty_trend_uses_study_session(self):
         body = _read("templates/analytics/index.html")

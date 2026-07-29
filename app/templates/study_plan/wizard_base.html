@@ -1,56 +1,33 @@
-{% set title = 'Study Plan' %}
+{% set title = page_title or 'Choose Exam' %}
 {% extends "layouts/base.html" %}
+{% from "design_system/macros.html" import ds_button %}
 
 {% block extra_head %}
+<link href="{{ versioned_static('css/design_system.css') }}" rel="stylesheet">
 <link href="{{ versioned_static('css/wizard/wizard.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-{# RR-001.2 / XR-01 — wizard chrome aligned to EOS header/panel/button language. #}
-<div class="wizard-container">
-    <div class="wizard-inner">
-        <header class="wizard-header student-page-header">
-            <div class="wizard-step-indicator" aria-hidden="true">
-                <span class="wizard-step-number">Step {{ step }}</span>
-                <span class="wizard-step-title">{{ step_title }}</span>
-            </div>
-            <p class="student-eyebrow">Study Plan</p>
-            <h1 class="wizard-heading student-page-title">{{ wizard_question or step_title }}</h1>
-            {% if wizard_helper %}
-            <p class="wizard-helper student-page-description">{{ wizard_helper }}</p>
-            {% endif %}
-        </header>
+{# DX-005B: quiet commitment path — no Study Plan theatre, no progress KPI. #}
+<article class="ds-page ds-container ds-container--content wizard-quiet" aria-labelledby="wizard-step-title">
+  <header class="ds-page-header">
+    <h1 id="wizard-step-title" class="ds-page-header__title">{{ wizard_question or step_title }}</h1>
+    {% if wizard_helper %}
+    <p class="ds-page-header__support">{{ wizard_helper }}</p>
+    {% endif %}
+  </header>
 
-        <div class="wizard-progress">
-            <div class="progress" role="progressbar"
-                 aria-label="Study Plan wizard progress"
-                 aria-valuenow="{{ (step / total_steps * 100)|int }}"
-                 aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar" style="width: {{ (step / total_steps * 100)|int }}%"></div>
-            </div>
-            <div class="wizard-progress-labels" aria-hidden="true">
-                {% for i in range(1, total_steps + 1) %}
-                <span class="wizard-progress-dot {% if i <= step %}active{% endif %} {% if i == step %}current{% endif %}"></span>
-                {% endfor %}
-            </div>
-        </div>
+  <div class="ds-form">
+    {% block form_content %}{% endblock %}
+  </div>
 
-        <div class="wizard-card student-panel">
-            {% block form_content %}{% endblock %}
-        </div>
-
-        <div class="wizard-nav">
-            {% if step > 1 %}
-            <a href="{{ url_for('study_plan.wizard_step', step=step-1) }}" class="btn student-btn-secondary btn-ghost">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-                Back
-            </a>
-            {% endif %}
-            <button type="submit" form="wizard-form" class="btn student-btn-primary {% if step == 1 %}w-100{% endif %}">
-                {{ button_text or 'Next' }}
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </button>
-        </div>
-    </div>
-</div>
+  <div class="ds-primary-strip" role="group" aria-label="Step actions">
+    {% if step and step > 1 %}
+    <a href="{{ url_for('study_plan.wizard_step', step=step-1) }}" class="ds-btn ds-btn--ghost">Back</a>
+    {% endif %}
+    <button type="submit" form="wizard-form" class="ds-btn ds-btn--primary">
+      {{ button_text or 'Continue' }}
+    </button>
+  </div>
+</article>
 {% endblock %}

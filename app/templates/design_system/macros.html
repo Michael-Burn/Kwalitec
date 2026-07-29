@@ -274,3 +274,132 @@
   {% if supporting_text %}<span class="ds-list__meta">{{ supporting_text }}</span>{% endif %}
 </span>
 {%- endmacro %}
+
+{# ——— Choose Exam (DX-005B) ——— #}
+
+{% macro ds_exam_ready_list(rows, selected='', field_name='subject_key') -%}
+<div class="ds-exam-catalogue" role="radiogroup" aria-labelledby="ds-ready-title">
+  {% for row in rows %}
+    {% if row.selectable %}
+    <label class="ds-exam-row{% if selected == row.subject_key %} ds-exam-row--selected{% endif %}" for="exam-{{ loop.index0 }}">
+      <input
+        class="ds-exam-row__input"
+        type="radio"
+        name="{{ field_name }}"
+        id="exam-{{ loop.index0 }}"
+        value="{{ row.subject_key }}"
+        {% if selected == row.subject_key %}checked{% endif %}
+      >
+      <span class="ds-exam-row__body">
+        <span class="ds-exam-row__title-row">
+          <span class="ds-exam-row__title">{{ row.title }}</span>
+          {% if row.exam_code %}<span class="ds-catalogue__code">{{ row.exam_code }}</span>{% endif %}
+        </span>
+        {% if row.description %}<span class="ds-exam-row__desc">{{ row.description }}</span>{% endif %}
+        <span class="ds-list__meta">
+          {% if row.scope_label %}{{ row.scope_label }}{% endif %}
+          {% if row.scope_label and row.updated_label %} · {% endif %}
+          {% if row.updated_label %}Updated {{ row.updated_label }}{% endif %}
+        </span>
+      </span>
+    </label>
+    {% else %}
+    <div class="ds-exam-row ds-exam-row--gated" aria-disabled="true">
+      <span class="ds-exam-row__body">
+        <span class="ds-exam-row__title-row">
+          <span class="ds-exam-row__title">{{ row.title }}</span>
+          {% if row.exam_code %}<span class="ds-catalogue__code">{{ row.exam_code }}</span>{% endif %}
+          {{ ds_badge(row.availability_label or 'Ready', tone='neutral') }}
+        </span>
+        {% if row.preparation_line or row.description %}
+        <span class="ds-exam-row__desc">{{ row.preparation_line or row.description }}</span>
+        {% endif %}
+        <span class="ds-list__meta">
+          {% if row.scope_label %}{{ row.scope_label }}{% endif %}
+          {% if row.scope_label and row.updated_label %} · {% endif %}
+          {% if row.updated_label %}Updated {{ row.updated_label }}{% endif %}
+        </span>
+      </span>
+    </div>
+    {% endif %}
+  {% endfor %}
+</div>
+{%- endmacro %}
+
+{% macro ds_exam_coming_soon(rows, notify_available=false) -%}
+{% if rows %}
+<section class="ds-section ds-exam-soon" aria-labelledby="ds-soon-title">
+  <h2 class="ds-section__title" id="ds-soon-title">Coming Soon</h2>
+  <p class="ds-list__meta">This subject’s verified curriculum is still under preparation. You cannot start studying these exams yet.</p>
+  <ul class="ds-list">
+    {% for row in rows %}
+    <li class="ds-exam-soon__row">
+      <span class="ds-exam-row__title">{{ row.title }}</span>
+      {% if row.exam_code %}<span class="ds-catalogue__code">{{ row.exam_code }}</span>{% endif %}
+      {% if notify_available %}
+        {{ ds_button('Notify when available', variant='ghost', type='button', disabled=true, attrs='aria-disabled="true"') }}
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+{%- endmacro %}
+
+{% macro ds_selected_exam_summary(summary) -%}
+<section class="ds-section ds-exam-summary" aria-labelledby="ds-selected-summary-title"{% if not summary %} hidden{% endif %}>
+  <h2 class="ds-section__title" id="ds-selected-summary-title">Selected exam</h2>
+  <dl class="ds-exam-summary__list">
+    <div class="ds-exam-summary__item">
+      <dt>Exam</dt>
+      <dd>{% if summary %}{{ summary.exam_title }}{% if summary.exam_code %} ({{ summary.exam_code }}){% endif %}{% endif %}</dd>
+    </div>
+    <div class="ds-exam-summary__item">
+      <dt>Qualification stage</dt>
+      <dd>{% if summary %}{{ summary.qualification_stage }}{% endif %}</dd>
+    </div>
+    <div class="ds-exam-summary__item">
+      <dt>Expected study path</dt>
+      <dd>{% if summary %}{{ summary.expected_path }}{% endif %}</dd>
+    </div>
+    <div class="ds-exam-summary__item">
+      <dt>Estimated duration</dt>
+      <dd>{% if summary %}{{ summary.estimated_duration }}{% endif %}</dd>
+    </div>
+    <div class="ds-exam-summary__item">
+      <dt>Next step</dt>
+      <dd>{% if summary %}{{ summary.next_step }}{% endif %}</dd>
+    </div>
+  </dl>
+</section>
+{%- endmacro %}
+
+{% macro ds_exam_confirm_summary(exam_title, exam_date='', availability='', defaults_line='') -%}
+<section class="ds-section" aria-labelledby="ds-confirm-title">
+  <h2 class="ds-section__title" id="ds-confirm-title">Confirm</h2>
+  <dl class="ds-exam-summary__list">
+    <div class="ds-exam-summary__item">
+      <dt>Exam</dt>
+      <dd>{{ exam_title }}</dd>
+    </div>
+    {% if exam_date %}
+    <div class="ds-exam-summary__item">
+      <dt>Exam date</dt>
+      <dd>{{ exam_date }}</dd>
+    </div>
+    {% endif %}
+    {% if availability %}
+    <div class="ds-exam-summary__item">
+      <dt>Availability</dt>
+      <dd>{{ availability }}</dd>
+    </div>
+    {% endif %}
+    {% if defaults_line %}
+    <div class="ds-exam-summary__item">
+      <dt>Defaults</dt>
+      <dd class="ds-list__meta">{{ defaults_line }}</dd>
+    </div>
+    {% endif %}
+  </dl>
+</section>
+{%- endmacro %}

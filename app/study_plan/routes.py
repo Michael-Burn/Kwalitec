@@ -26,38 +26,35 @@ from app.application.platform_integration.exceptions import (
     PublishedSubjectNotDiscoverable,
 )
 from app.application.platform_integration.routing import RuntimeRoutingService
+from app.application.platform_integration.subject_catalogue import (
+    SubjectCatalogueService,
+)
 from app.presentation.consolidation import redirect_to_canonical_home
+from app.presentation.student.services.choose_exam_service import ChooseExamService
 from app.services import examination_catalogue as catalogue
 from app.services.curriculum_engine_service import CurriculumEngineService
 from app.services.study_plan_service import StudyPlanService
 from app.services.subject_support_service import SubjectSupportService
 from app.study_plan.forms import (
-    CurrentPositionForm,
-    ExamCategoryForm,
-    ExamPaperForm,
     ExamSittingForm,
     StudyAvailabilityForm,
     StudyPlanReviewForm,
-    StudyPreferenceForm,
-    TargetResultForm,
+    SubjectCatalogueForm,
 )
 
 logger = logging.getLogger(__name__)
 
 study_plan_bp = Blueprint("study_plan", __name__, url_prefix="/study-plan")
 
-TOTAL_STEPS = 7
+# PX-002 / PX-001 visible onboarding path:
+# Welcome → Choose Exam → Exam Date → Study Availability → Begin Learning
+TOTAL_STEPS = 4
 
-# Step titles used for progress display
 STEP_TITLES = {
-    1: "Examination",
-    2: "Paper / Subject",
-    3: "Exam Date",
-    4: "Current Position",
-    5: "Availability",
-    6: "Learning Style",
-    7: "Target",
-    8: "Review",
+    1: "Choose Exam",
+    2: "Exam Date",
+    3: "Study Availability",
+    4: "Begin Learning",
 }
 
 
@@ -206,18 +203,12 @@ def wizard_step(step: int):
 
     if step == 1:
         return _handle_step_1()
-    elif step == 2:
+    if step == 2:
         return _handle_step_2()
-    elif step == 3:
+    if step == 3:
         return _handle_step_3()
-    elif step == 4:
-        return _handle_step_4()
-    elif step == 5:
-        return _handle_step_5()
-    elif step == 6:
-        return _handle_step_6()
-    elif step == 7:
-        return _handle_step_7()
+    if step == 4:
+        return redirect(url_for("study_plan.review"))
     return redirect(url_for("study_plan.wizard_step", step=1))
 
 
@@ -238,18 +229,12 @@ def wizard_step_post(step: int):
 
     if step == 1:
         return _handle_step_1_post()
-    elif step == 2:
+    if step == 2:
         return _handle_step_2_post()
-    elif step == 3:
+    if step == 3:
         return _handle_step_3_post()
-    elif step == 4:
-        return _handle_step_4_post()
-    elif step == 5:
-        return _handle_step_5_post()
-    elif step == 6:
-        return _handle_step_6_post()
-    elif step == 7:
-        return _handle_step_7_post()
+    if step == 4:
+        return redirect(url_for("study_plan.review"))
     return redirect(url_for("study_plan.wizard_step", step=1))
 
 
@@ -263,30 +248,20 @@ def _discovery() -> PublishedSubjectDiscoveryService:
     return PublishedSubjectDiscoveryService()
 
 
-def _wizard_categories():
-    """Examination categories including published subjects when discovery is on."""
-    return _discovery().augmented_categories()
+def _catalogue() -> SubjectCatalogueService:
+    """Return the PX-002 Subject Catalogue projection."""
+    return SubjectCatalogueService(discovery=_discovery())
 
 
 def _resolve_wizard_category(category_code: str):
-    """Resolve a wizard category including the virtual Published category."""
+    """Resolve a wizard category including published subjects."""
     return _discovery().get_category(category_code) or catalogue.get_category(
         category_code
     )
 
 
-def _wizard_paper_choices(category_code: str) -> list[tuple[str, str]]:
-    return _discovery().get_paper_choices(category_code)
-
-
-def _prepare_category_form(form: ExamCategoryForm) -> ExamCategoryForm:
-    """Bind dynamic category choices (includes Published when flagged)."""
-    form.exam_category.choices = _discovery().get_category_choices()
-    return form
-
-
 def _wizard_selection_support(wizard_data: dict):
-    """Resolve PTP-001 support status for the current wizard selection."""
+    """Resolve support status for the current wizard selection."""
     category_code = wizard_data.get("exam_category", "")
     free_text = catalogue.is_free_text_subject(category_code)
     if free_text:
@@ -299,11 +274,7 @@ def _wizard_selection_support(wizard_data: dict):
 
 
 def _require_supported_selection():
-    """Redirect to step 2 when wizard selection cannot create a real plan.
-
-    Returns ``None`` when the selection is Supported; otherwise a redirect
-    response with student-safe explanation.
-    """
+    """Redirect to Choose Exam when selection cannot create a real plan."""
     wizard_data = session.get("wizard_data", {})
     category_code = wizard_data.get("exam_category")
     if not category_code:
@@ -314,160 +285,118 @@ def _require_supported_selection():
         wizard_data.get("exam_paper") or wizard_data.get("free_text_subject")
     )
     if not has_paper:
-        flash("Please choose your paper or subject first.", "info")
-        return redirect(url_for("study_plan.wizard_step", step=2))
+        flash("Please choose your exam first.", "info")
+        return redirect(url_for("study_plan.wizard_step", step=1))
 
     support = _wizard_selection_support(wizard_data)
     if not support.allows_plan_creation:
         flash(support.explanation, "warning")
-        return redirect(url_for("study_plan.wizard_step", step=2))
+        return redirect(url_for("study_plan.wizard_step", step=1))
     return None
 
 
-def _handle_step_1():
-    """Display exam category selection form."""
-    form = _prepare_category_form(ExamCategoryForm())
-    wizard_data = session.get("wizard_data", {})
-    if "exam_category" in wizard_data:
-        form.exam_category.data = wizard_data["exam_category"]
-    categories = _wizard_categories()
+def _apply_deferred_defaults(wizard_data: dict) -> None:
+    """Fold Position / Learning Style / Target with calm defaults (PX-001)."""
+    wizard_data.setdefault("current_position", "not_started")
+    wizard_data.setdefault("current_topic", "")
+    wizard_data.setdefault("study_preference", "Mixed")
+    if not wizard_data.get("target_grade"):
+        category_code = wizard_data.get("exam_category", "")
+        choices = catalogue.get_target_choices(category_code) if category_code else []
+        wizard_data["target_grade"] = choices[0][0] if choices else "Pass"
+
+
+def _prepare_catalogue_form(form: SubjectCatalogueForm) -> SubjectCatalogueForm:
+    """Bind Ready subject choices; Coming Soon is not selectable."""
+    entries = _catalogue().list_entries(include_coming_soon=True)
+    form.subject_key.choices = [
+        (e.subject_key, e.name) for e in entries if e.selectable
+    ]
+    return form
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Step 1 — Choose Exam (Subject Catalogue)
+# ─────────────────────────────────────────────────────────────────────────────
+
+
+def _choose_exam() -> ChooseExamService:
+    """Return the DX-005B Choose Exam discovery projector."""
+    return ChooseExamService(catalogue=_catalogue())
+
+
+def _render_choose_exam(form, *, support_gate=None):
+    selected = (form.subject_key.data or "").strip()
+    discovery = _choose_exam().build(
+        selected_key=selected,
+        query=request.args.get("q", ""),
+        status_filter=request.args.get("status", "all"),
+        sort=request.args.get("sort", "updated"),
+        family_filter=request.args.get("family", "all"),
+    )
     return render_template(
         "study_plan/wizard_step_1.html",
         form=form,
         step=1,
         total_steps=TOTAL_STEPS,
         step_title=STEP_TITLES[1],
-        categories=categories,
-        category_support=SubjectSupportService.category_summaries(),
-    )
-
-
-def _handle_step_1_post():
-    """Process exam category selection form."""
-    form = _prepare_category_form(ExamCategoryForm())
-    if form.validate_on_submit():
-        session["wizard_data"]["exam_category"] = form.exam_category.data
-        # Clear downstream data when category changes
-        for key in ("exam_paper", "free_text_subject", "exam_sitting",
-                    "exam_date", "target_grade"):
-            session["wizard_data"].pop(key, None)
-        session.modified = True
-        return redirect(url_for("study_plan.wizard_step", step=2))
-    categories = _wizard_categories()
-    return render_template(
-        "study_plan/wizard_step_1.html",
-        form=form,
-        step=1,
-        total_steps=TOTAL_STEPS,
-        step_title=STEP_TITLES[1],
-        categories=categories,
-        category_support=SubjectSupportService.category_summaries(),
-    )
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# Step 2 — Paper / subject
-# ─────────────────────────────────────────────────────────────────────────────
-
-
-def _render_step_2(form, category, *, support_gate=None):
-    """Render wizard step 2 with paper-level support labels (PTP-001)."""
-    paper_support = SubjectSupportService.paper_statuses_for_category(category.code)
-    return render_template(
-        "study_plan/wizard_step_2.html",
-        form=form,
-        step=2,
-        total_steps=TOTAL_STEPS,
-        step_title=STEP_TITLES[2],
-        category=category,
-        paper_support=paper_support,
+        discovery=discovery,
         support_gate=support_gate,
     )
 
 
-def _handle_step_2():
-    """Display paper/subject selection form."""
+def _handle_step_1():
+    """Display Subject Catalogue for Choose Exam."""
+    form = _prepare_catalogue_form(SubjectCatalogueForm())
     wizard_data = session.get("wizard_data", {})
-    category_code = wizard_data.get("exam_category")
-    if not category_code:
-        flash("Please complete the wizard from the beginning.", "info")
-        return redirect(url_for("study_plan.wizard_step", step=1))
-
-    form = ExamPaperForm()
-    category = _resolve_wizard_category(category_code)
-    if not category:
-        flash("Invalid examination category. Please start again.", "warning")
-        return redirect(url_for("study_plan.wizard_step", step=1))
-
-    if not category.free_text_subject:
-        form.exam_paper.choices = _wizard_paper_choices(category_code)
-        if "exam_paper" in wizard_data:
-            form.exam_paper.data = wizard_data["exam_paper"]
-    if "free_text_subject" in wizard_data:
-        form.free_text_subject.data = wizard_data["free_text_subject"]
-
-    return _render_step_2(form, category)
+    org = wizard_data.get("exam_category")
+    paper = wizard_data.get("exam_paper")
+    if org and paper:
+        form.subject_key.data = f"{org}:{paper}"
+    return _render_choose_exam(form)
 
 
-def _handle_step_2_post():
-    """Process paper/subject selection form.
-
-    PTP-001: only Supported examinations may advance. Coming Soon and Not
-    Supported selections stay on this step with a clear explanation.
-    """
-    wizard_data = session.get("wizard_data", {})
-    category_code = wizard_data.get("exam_category")
-    if not category_code:
-        flash("Please complete the wizard from the beginning.", "info")
-        return redirect(url_for("study_plan.wizard_step", step=1))
-
-    form = ExamPaperForm()
-    category = _resolve_wizard_category(category_code)
-    if not category:
-        flash("Invalid examination category. Please start again.", "warning")
-        return redirect(url_for("study_plan.wizard_step", step=1))
-
-    if category.free_text_subject:
-        subject_ok = (
-            form.free_text_subject.validate(form)
-            and form.free_text_subject.data.strip()
-        )
-        if subject_ok:
-            subject = form.free_text_subject.data.strip()
-            support = SubjectSupportService.resolve(
-                category_code, subject, free_text_subject=True
+def _handle_step_1_post():
+    """Process Subject Catalogue selection — Ready only."""
+    form = _prepare_catalogue_form(SubjectCatalogueForm())
+    catalogue = _catalogue()
+    if form.validate_on_submit():
+        subject_key = form.subject_key.data
+        entry = catalogue.get_entry(subject_key)
+        parsed = catalogue.parse_subject_key(subject_key)
+        if entry is None or parsed is None or not entry.selectable:
+            gate = (
+                entry.explanation
+                if entry is not None
+                else "Please choose a Ready subject to continue."
             )
-            session["wizard_data"]["free_text_subject"] = subject
-            session["wizard_data"].pop("exam_paper", None)
-            session.modified = True
-            if not support.allows_plan_creation:
-                form.free_text_subject.data = subject
-                return _render_step_2(form, category, support_gate=support)
-            return redirect(url_for("study_plan.wizard_step", step=3))
-        form.free_text_subject.errors = ["Please enter your subject."]
-    else:
-        form.exam_paper.choices = _wizard_paper_choices(category_code)
-        if form.exam_paper.validate(form) and form.exam_paper.data:
-            paper_code = form.exam_paper.data
-            support = SubjectSupportService.resolve(category_code, paper_code)
-            session["wizard_data"]["exam_paper"] = paper_code
-            session["wizard_data"].pop("free_text_subject", None)
-            session.modified = True
-            if not support.allows_plan_creation:
-                form.exam_paper.data = paper_code
-                return _render_step_2(form, category, support_gate=support)
-            return redirect(url_for("study_plan.wizard_step", step=3))
-        form.exam_paper.errors = ["Please select a paper."]
+            # Reuse support gate shape when possible.
+            support = None
+            if parsed is not None:
+                support = SubjectSupportService.resolve(parsed[0], parsed[1])
+            if support is not None and not support.allows_plan_creation:
+                return _render_choose_exam(form, support_gate=support)
+            flash(gate if isinstance(gate, str) else str(gate), "warning")
+            return _render_choose_exam(form)
 
-    return _render_step_2(form, category)
+        org, paper = parsed
+        session["wizard_data"]["exam_category"] = org
+        session["wizard_data"]["exam_paper"] = paper
+        session["wizard_data"]["subject_key"] = subject_key
+        session["wizard_data"].pop("free_text_subject", None)
+        for key in ("exam_sitting", "exam_date", "target_grade"):
+            session["wizard_data"].pop(key, None)
+        session.modified = True
+        return redirect(url_for("study_plan.wizard_step", step=2))
+    return _render_choose_exam(form)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Step 3 — Sitting & exam date
+# Step 2 — Exam Date
 # ─────────────────────────────────────────────────────────────────────────────
 
 
-def _handle_step_3():
+def _handle_step_2():
     """Display exam sitting/date form."""
     blocked = _require_supported_selection()
     if blocked is not None:
@@ -475,10 +404,6 @@ def _handle_step_3():
 
     wizard_data = session.get("wizard_data", {})
     category_code = wizard_data.get("exam_category")
-    if not category_code:
-        flash("Please complete the wizard from the beginning.", "info")
-        return redirect(url_for("study_plan.wizard_step", step=1))
-
     form = ExamSittingForm()
     form.exam_sitting.choices = catalogue.get_sitting_choices(category_code)
     if "exam_sitting" in wizard_data:
@@ -488,13 +413,13 @@ def _handle_step_3():
     return render_template(
         "study_plan/wizard_step_3.html",
         form=form,
-        step=3,
+        step=2,
         total_steps=TOTAL_STEPS,
-        step_title=STEP_TITLES[3],
+        step_title=STEP_TITLES[2],
     )
 
 
-def _handle_step_3_post():
+def _handle_step_2_post():
     """Process exam sitting/date form."""
     blocked = _require_supported_selection()
     if blocked is not None:
@@ -502,10 +427,6 @@ def _handle_step_3_post():
 
     wizard_data = session.get("wizard_data", {})
     category_code = wizard_data.get("exam_category")
-    if not category_code:
-        flash("Please complete the wizard from the beginning.", "info")
-        return redirect(url_for("study_plan.wizard_step", step=1))
-
     form = ExamSittingForm()
     form.exam_sitting.choices = catalogue.get_sitting_choices(category_code)
     if form.validate_on_submit():
@@ -516,143 +437,22 @@ def _handle_step_3_post():
         else:
             session["wizard_data"]["exam_date"] = str(exam_date)
         session.modified = True
-        return redirect(url_for("study_plan.wizard_step", step=4))
+        return redirect(url_for("study_plan.wizard_step", step=3))
     return render_template(
         "study_plan/wizard_step_3.html",
         form=form,
-        step=3,
+        step=2,
         total_steps=TOTAL_STEPS,
-        step_title=STEP_TITLES[3],
+        step_title=STEP_TITLES[2],
     )
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Step 4 — Current position
+# Step 3 — Study Availability
 # ─────────────────────────────────────────────────────────────────────────────
 
 
-def _handle_step_4():
-    """Display current position form."""
-    blocked = _require_supported_selection()
-    if blocked is not None:
-        return blocked
-
-    form = CurrentPositionForm()
-    wizard_data = session.get("wizard_data", {})
-    if "current_position" in wizard_data:
-        form.current_position.data = wizard_data["current_position"]
-    if "current_topic" in wizard_data:
-        form.current_topic.data = wizard_data["current_topic"]
-
-    # Detect curriculum support from on-disk syllabi (not a hardcoded paper map)
-    category_code = wizard_data.get("exam_category", "")
-    paper_code = wizard_data.get("exam_paper", "")
-    curriculum_version = _discover_curriculum_version(category_code, paper_code)
-
-    extra: dict = {}
-    if curriculum_version is not None:
-        engine = CurriculumEngineService()
-        if engine.curriculum_exists(category_code, paper_code, curriculum_version):
-            try:
-                curriculum = engine.load_auto(
-                    category_code, paper_code, curriculum_version
-                )
-                extra["curriculum_topics"] = CurriculumEngineService.get_topics_flat(
-                    curriculum
-                )
-                extra["curriculum_version"] = curriculum_version
-            except Exception:
-                logger.exception(
-                    "Failed to load curriculum topics for %s/%s/%s",
-                    category_code,
-                    paper_code,
-                    curriculum_version,
-                )
-
-    return render_template(
-        "study_plan/wizard_step_4.html",
-        form=form,
-        step=4,
-        total_steps=TOTAL_STEPS,
-        step_title=STEP_TITLES[4],
-        **extra,
-    )
-
-
-def _handle_step_4_post():
-    """Process current position form."""
-    blocked = _require_supported_selection()
-    if blocked is not None:
-        return blocked
-
-    form = CurrentPositionForm()
-    if form.validate_on_submit():
-        session["wizard_data"]["current_position"] = form.current_position.data
-        session["wizard_data"]["current_topic"] = (
-            form.current_topic.data.strip() if form.current_topic.data else ""
-        )
-
-        # Detect curriculum support from on-disk syllabi (not a hardcoded paper map)
-        wizard_data = session.get("wizard_data", {})
-        category_code = wizard_data.get("exam_category", "")
-        paper_code = wizard_data.get("exam_paper", "")
-        curriculum_version = _discover_curriculum_version(category_code, paper_code)
-
-        if curriculum_version is not None:
-            # Curriculum-backed exams: starting topic derived from position only.
-            # Completed topics are declared once in Educational History (calibration).
-            session["wizard_data"].pop("completed_curriculum_topics", None)
-            position = form.current_position.data
-            try:
-                engine = CurriculumEngineService()
-                if engine.curriculum_exists(
-                    category_code, paper_code, curriculum_version
-                ):
-                    curriculum = engine.load_auto(
-                        category_code, paper_code, curriculum_version
-                    )
-                    topics = CurriculumEngineService.get_topics_flat(curriculum)
-                    if position == "learning":
-                        for topic in topics:
-                            session["wizard_data"]["curriculum_current_topic"] = (
-                                topic.code
-                            )
-                            break
-                    elif position == "completed":
-                        session["wizard_data"]["curriculum_current_topic"] = None
-                    elif position == "revising" and topics:
-                        session["wizard_data"]["curriculum_current_topic"] = (
-                            topics[-1].code
-                        )
-            except Exception:
-                logger.exception(
-                    "Failed to derive current topic from curriculum %s/%s/%s",
-                    category_code, paper_code, curriculum_version,
-                )
-        else:
-            # Unsupported examination — clear any curriculum-topic data.
-            session["wizard_data"].pop("completed_curriculum_topics", None)
-
-        # Always remove the legacy single-topic key.
-        session["wizard_data"].pop("curriculum_topic", None)
-
-        session.modified = True
-        return redirect(url_for("study_plan.wizard_step", step=5))
-    return render_template(
-        "study_plan/wizard_step_4.html",
-        form=form,
-        step=4,
-        total_steps=TOTAL_STEPS,
-        step_title=STEP_TITLES[4],
-    )
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# Step 5 — Study availability & session length
-# ─────────────────────────────────────────────────────────────────────────────
-
-
-def _handle_step_5():
+def _handle_step_3():
     """Display study availability form."""
     blocked = _require_supported_selection()
     if blocked is not None:
@@ -669,14 +469,14 @@ def _handle_step_5():
     return render_template(
         "study_plan/wizard_step_5.html",
         form=form,
-        step=5,
+        step=3,
         total_steps=TOTAL_STEPS,
-        step_title=STEP_TITLES[5],
+        step_title=STEP_TITLES[3],
     )
 
 
-def _handle_step_5_post():
-    """Process study availability form."""
+def _handle_step_3_post():
+    """Process study availability, apply deferred defaults, begin learning."""
     blocked = _require_supported_selection()
     if blocked is not None:
         return blocked
@@ -685,152 +485,59 @@ def _handle_step_5_post():
     if form.validate_on_submit():
         session["wizard_data"]["weekday_study_minutes"] = form.weekday_study_minutes.data
         session["wizard_data"]["weekend_study_minutes"] = form.weekend_study_minutes.data
-        session["wizard_data"]["preferred_session_minutes"] = form.preferred_session_minutes.data
-        session.modified = True
-        return redirect(url_for("study_plan.wizard_step", step=6))
-    return render_template(
-        "study_plan/wizard_step_5.html",
-        form=form,
-        step=5,
-        total_steps=TOTAL_STEPS,
-        step_title=STEP_TITLES[5],
-    )
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# Step 6 — Learning style
-# ─────────────────────────────────────────────────────────────────────────────
-
-
-def _handle_step_6():
-    """Display study preference form."""
-    blocked = _require_supported_selection()
-    if blocked is not None:
-        return blocked
-
-    form = StudyPreferenceForm()
-    wizard_data = session.get("wizard_data", {})
-    if "study_preference" in wizard_data:
-        form.study_preference.data = wizard_data["study_preference"]
-    else:
-        form.study_preference.data = "Mixed"
-    return render_template(
-        "study_plan/wizard_step_6.html",
-        form=form,
-        step=6,
-        total_steps=TOTAL_STEPS,
-        step_title=STEP_TITLES[6],
-    )
-
-
-def _handle_step_6_post():
-    """Process study preference form."""
-    blocked = _require_supported_selection()
-    if blocked is not None:
-        return blocked
-
-    form = StudyPreferenceForm()
-    if form.validate_on_submit():
-        session["wizard_data"]["study_preference"] = form.study_preference.data
-        session.modified = True
-        return redirect(url_for("study_plan.wizard_step", step=7))
-    return render_template(
-        "study_plan/wizard_step_6.html",
-        form=form,
-        step=6,
-        total_steps=TOTAL_STEPS,
-        step_title=STEP_TITLES[6],
-    )
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# Step 7 — Target result
-# ─────────────────────────────────────────────────────────────────────────────
-
-
-def _handle_step_7():
-    """Display target result form."""
-    blocked = _require_supported_selection()
-    if blocked is not None:
-        return blocked
-
-    wizard_data = session.get("wizard_data", {})
-    category_code = wizard_data.get("exam_category")
-    if not category_code:
-        flash("Please complete the wizard from the beginning.", "info")
-        return redirect(url_for("study_plan.wizard_step", step=1))
-
-    form = TargetResultForm()
-    form.target_grade.choices = catalogue.get_target_choices(category_code)
-    if "target_grade" in wizard_data:
-        form.target_grade.data = wizard_data["target_grade"]
-    return render_template(
-        "study_plan/wizard_step_7.html",
-        form=form,
-        step=7,
-        total_steps=TOTAL_STEPS,
-        step_title=STEP_TITLES[7],
-    )
-
-
-def _handle_step_7_post():
-    """Process target result form and redirect to review."""
-    blocked = _require_supported_selection()
-    if blocked is not None:
-        return blocked
-
-    wizard_data = session.get("wizard_data", {})
-    category_code = wizard_data.get("exam_category")
-    if not category_code:
-        flash("Please complete the wizard from the beginning.", "info")
-        return redirect(url_for("study_plan.wizard_step", step=1))
-
-    form = TargetResultForm()
-    form.target_grade.choices = catalogue.get_target_choices(category_code)
-    if form.validate_on_submit():
-        session["wizard_data"]["target_grade"] = form.target_grade.data
+        session["wizard_data"]["preferred_session_minutes"] = (
+            form.preferred_session_minutes.data
+        )
+        _apply_deferred_defaults(session["wizard_data"])
         session.modified = True
         return redirect(url_for("study_plan.review"))
     return render_template(
-        "study_plan/wizard_step_7.html",
+        "study_plan/wizard_step_5.html",
         form=form,
-        step=7,
+        step=3,
         total_steps=TOTAL_STEPS,
-        step_title=STEP_TITLES[7],
+        step_title=STEP_TITLES[3],
     )
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Review
+# Review / Begin Learning
 # ─────────────────────────────────────────────────────────────────────────────
 
 
 @study_plan_bp.get("/review")
 @login_required
 def review():
-    """Review the study plan before creation."""
+    """Begin Learning — review the study plan before creation."""
     wizard_data = session.get("wizard_data", {})
 
     if not wizard_data or "exam_category" not in wizard_data:
         flash("Please complete the wizard from the beginning.", "info")
         return redirect(url_for("study_plan.wizard_step", step=1))
 
-    # PTP-001 fail-closed: never present a create review for unsupported exams.
+    _apply_deferred_defaults(wizard_data)
+    session["wizard_data"] = wizard_data
+    session.modified = True
+
+    # Fail-closed: never present create review for unavailable exams.
     support = _wizard_selection_support(wizard_data)
     if not support.allows_plan_creation:
         flash(support.explanation, "warning")
-        return redirect(url_for("study_plan.wizard_step", step=2))
+        return redirect(url_for("study_plan.wizard_step", step=1))
 
     review_data = _build_review_data(wizard_data)
     form = StudyPlanReviewForm()
+    form.confirm.data = "yes"
     return render_template(
         "study_plan/review.html",
         form=form,
         wizard_data=wizard_data,
         review_data=review_data,
-        step=8,
-        total_steps=TOTAL_STEPS + 1,
-        step_title=STEP_TITLES[8],
+        confirm_availability=_confirm_availability_line(review_data),
+        confirm_defaults_line=_confirm_defaults_line(wizard_data),
+        step=4,
+        total_steps=TOTAL_STEPS,
+        step_title=STEP_TITLES[4],
     )
 
 
@@ -844,11 +551,14 @@ def review_post():
         flash("Please complete the wizard from the beginning.", "info")
         return redirect(url_for("study_plan.wizard_step", step=1))
 
+    _apply_deferred_defaults(wizard_data)
+    session["wizard_data"] = wizard_data
+    session.modified = True
+
     form = StudyPlanReviewForm()
     if form.validate_on_submit():
-        if form.confirm.data == "no":
-            session.pop("wizard_data", None)
-            flash("Wizard cancelled. You can start over anytime.", "info")
+        # Change selection is a Secondary link — confirm is always begin.
+        if (form.confirm.data or "yes") == "no":
             return redirect(url_for("study_plan.wizard_step", step=1))
 
         # Validate all required fields are present
@@ -882,7 +592,7 @@ def review_post():
         )
         if not support.allows_plan_creation:
             flash(support.explanation, "warning")
-            return redirect(url_for("study_plan.wizard_step", step=2))
+            return redirect(url_for("study_plan.wizard_step", step=1))
 
         # Build current_stage from position only — curriculum topic is stored separately
         current_stage = _build_current_stage(wizard_data["current_position"])
@@ -906,14 +616,18 @@ def review_post():
                 form=form,
                 wizard_data=wizard_data,
                 review_data=_build_review_data(wizard_data),
-                step=8,
-                total_steps=TOTAL_STEPS + 1,
-                step_title=STEP_TITLES[8],
+                confirm_availability=_confirm_availability_line(
+                    _build_review_data(wizard_data)
+                ),
+                confirm_defaults_line=_confirm_defaults_line(wizard_data),
+                step=4,
+                total_steps=TOTAL_STEPS,
+                step_title=STEP_TITLES[4],
             )
         if curriculum_version is None:
             # Supported exams must bind a curriculum; refuse hollow shells.
             flash(support.explanation, "warning")
-            return redirect(url_for("study_plan.wizard_step", step=2))
+            return redirect(url_for("study_plan.wizard_step", step=1))
 
         # Create the study plan / enrolment
         try:
@@ -942,10 +656,10 @@ def review_post():
                     )
                 except (BridgeEnrolmentBlocked, PublishedSubjectNotDiscoverable) as exc:
                     flash(str(exc), "warning")
-                    return redirect(url_for("study_plan.wizard_step", step=2))
+                    return redirect(url_for("study_plan.wizard_step", step=1))
                 except EnrolmentAlreadyExists:
                     flash(
-                        "You are already enrolled in this published curriculum.",
+                        "You are already enrolled in this subject.",
                         "info",
                     )
                     session.pop("wizard_data", None)
@@ -977,7 +691,7 @@ def review_post():
             # Runtime A — existing JSON study-plan path (unchanged behaviour).
             if curriculum_version == "published":
                 flash(support.explanation, "warning")
-                return redirect(url_for("study_plan.wizard_step", step=2))
+                return redirect(url_for("study_plan.wizard_step", step=1))
 
             study_plan = StudyPlanService.create_study_plan(
                 user_id=current_user.id,
@@ -1038,10 +752,33 @@ def review_post():
         form=form,
         wizard_data=wizard_data,
         review_data=review_data,
-        step=8,
-        total_steps=TOTAL_STEPS + 1,
-        step_title=STEP_TITLES[8],
+        confirm_availability=_confirm_availability_line(review_data),
+        confirm_defaults_line=_confirm_defaults_line(wizard_data),
+        step=4,
+        total_steps=TOTAL_STEPS,
+        step_title=STEP_TITLES[4],
     )
+
+
+def _confirm_availability_line(review_data: dict) -> str:
+    weekday = review_data.get("weekday_study_minutes")
+    weekend = review_data.get("weekend_study_minutes")
+    session_len = review_data.get("preferred_session_minutes")
+    if weekday is None or weekend is None:
+        return ""
+    sitting = review_data.get("exam_sitting") or ""
+    parts = [f"Weekdays {weekday} mins · Weekend {weekend} mins"]
+    if session_len:
+        parts.append(f"Sessions {session_len} mins")
+    if sitting:
+        parts.append(sitting)
+    return " · ".join(parts)
+
+
+def _confirm_defaults_line(wizard_data: dict) -> str:
+    """One quiet line for applied defaults the student did not choose."""
+    # Position / style / target are deferred defaults (PX-001) — disclose once.
+    return "Starting position, learning style, and target applied as defaults."
 
 
 def _build_review_data(wizard_data: dict) -> dict:

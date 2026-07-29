@@ -24,7 +24,7 @@ def test_feature_navigation_unchanged_when_flag_off():
         "Revision",
         "History",
         "Settings",
-        "Study Plan",
+        "Choose Exam",
         "Help",
     ]
     assert all(item.journey_stage == "" for item in nav)

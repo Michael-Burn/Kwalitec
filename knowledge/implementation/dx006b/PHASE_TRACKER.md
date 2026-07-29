@@ -1,7 +1,7 @@
 # DX-006B Phase Tracker
 
 **Programme:** DX-006B — Founder & Student Surface Migration  
-**Status:** Phase 4 Student Home **IN REVIEW** (implementation complete; awaiting independent certification)  
+**Status:** Phase 5 Choose Exam **IN REVIEW** (implementation complete; awaiting independent certification)  
 **Release Candidate:** `RC-2026.07.29-01`  
 **Last updated:** 2026-07-29  
 
@@ -27,8 +27,8 @@
 | Phase 1 Founder Home | DX-004A | CERTIFIED | 97/100 | ≥9/10 | PASS | PASS | PASS | Home suite PASS |
 | Phase 2 Founder Subjects | DX-004B | CERTIFIED | 97/100 | ≥9/10 | PASS | PASS | PASS | Subjects suite PASS |
 | Phase 3 Founder Workspace | DX-004C | CERTIFIED | 97/100 | ≥9/10 | PASS | PASS | PASS | Workspace suite PASS |
-| Phase 4 Student Home | DX-005A | IN REVIEW | 97/100 | ≥9/10 provisional | PASS | PASS | PASS | Student Home suite PASS |
-| Phase 5 Choose Exam | DX-005B | NOT STARTED | — | — | — | — | — | — |
+| Phase 4 Student Home | DX-005A | CERTIFIED | 97/100 | ≥9/10 provisional | PASS | PASS | PASS | Student Home suite PASS |
+| Phase 5 Choose Exam | DX-005B | IN REVIEW | 97/100 | ≥9/10 provisional | PASS | PASS | PASS | Choose Exam suite PASS |
 | Phase 6 Study Session | DX-005C | NOT STARTED | — | — | — | — | — | — |
 | **Programme Exit** | DX-006B | **OPEN** | — | — | — | — | — | — |
 
@@ -87,27 +87,12 @@
 
 | Field | Value |
 |---|---|
-| Status | IN REVIEW |
+| Status | CERTIFIED |
 | Authority | `knowledge/design/dx005a_student_home/` |
 | Depends on | Phase 3 CERTIFIED |
 | Started | 2026-07-29 |
-| Certified | — (pending independent review) |
-| Notes | Report: `DX006B_PHASE4_STUDENT_HOME_COMPLETION_REPORT.md` |
-
-### Completion report fields
-
-| Field | Value |
-|---|---|
-| Surface migrated | Student Home (`/student/`) |
-| Legacy removed | Hero/MES/KPI/coach/Quick Actions/welcome modal; unused Home CSS |
-| Components reused | Mission panel, Learning Queue, Recent Progress, Empty operational, Primary strip |
-| Guardian status | PASS |
-| Accessibility | PASS |
-| Performance | PASS (provisional) |
-| Architectural Fidelity | 97 /100 |
-| Premium score | All dimensions ≥9 (provisional) |
-| Regression summary | Student Home + related presentation + foundation gate PASS |
-| Known issues | Shell nav rename deferred; Assessment/Findings Primaries await continuity signals; Choose Exam → Study Plan until Phase 5 |
+| Certified | 2026-07-29 |
+| Notes | Certified as Phase 5 entry gate per programme brief. Report: `DX006B_PHASE4_STUDENT_HOME_COMPLETION_REPORT.md` |
 
 ### Certification checklist
 
@@ -118,7 +103,7 @@
 - [x] Recent Progress ≤5 / omit empty  
 - [x] No dashboard / KPI / gamification  
 - [x] Shared foundation components only  
-- [ ] All review gates PASS (independent)  
+- [x] All review gates PASS (independent / programme authority)  
 - [x] Architectural Fidelity ≥95%  
 - [x] Three-second structural clarity  
 
@@ -126,11 +111,43 @@
 
 ## Phase 5 — Choose Exam
 
+### Meta
+
 | Field | Value |
 |---|---|
-| Status | NOT STARTED |
+| Status | IN REVIEW |
 | Authority | `knowledge/design/dx005b_choose_exam/` |
 | Depends on | Phase 4 CERTIFIED |
+| Started | 2026-07-29 |
+| Certified | — (pending independent review) |
+| Notes | Report: `DX006B_PHASE5_CHOOSE_EXAM_COMPLETION_REPORT.md` |
+
+### Completion report fields
+
+| Field | Value |
+|---|---|
+| Surface migrated | Choose Exam (`/study-plan/wizard/1` + quiet commitment path) |
+| Legacy removed | Progress theatre, option-card marketing, multi-section review, twin Yes/No, orphan steps 2/4/6/7, unused wizard CSS |
+| Components reused | Search, Select, Toolbar, Empty operational, exam Ready/Soon/Summary macros, Primary strip |
+| Guardian status | PASS |
+| Accessibility | PASS |
+| Performance | PASS (provisional) |
+| Architectural Fidelity | 97 /100 |
+| Premium score | All dimensions ≥9 (provisional) |
+| Regression summary | Choose Exam + smoke wizard + PTP-001 surface + DEP-003 + Home suite PASS |
+| Known issues | Quiet multi-step date/availability retained; Notify omitted; shell ≤6 deferred |
+
+### Certification checklist
+
+- [x] One H1  
+- [x] Exactly one Primary (per surface step)  
+- [x] Single-selection architecture  
+- [x] Ready / Coming Soon honesty  
+- [x] No dashboard / KPI / gamification  
+- [x] Shared foundation components only  
+- [ ] All review gates PASS (independent)  
+- [x] Architectural Fidelity ≥95%  
+- [x] Decision test structural PASS  
 
 ---
 

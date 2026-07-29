@@ -45,9 +45,9 @@ SURFACE_ENDPOINTS: dict[ExperienceSurface, str] = {
 }
 
 # System destinations that complete the single OS nav tree (Phase 1).
-# Study Plan wizard and Help remain shared blueprints — not competing products.
+# Choose Exam (DX-005B) and Help remain shared blueprints — not competing products.
 SYSTEM_NAV_ITEMS: tuple[tuple[str, str, str], ...] = (
-    ("study_plan", "Study Plan", "study_plan.index"),
+    ("study_plan", "Choose Exam", "study_plan.index"),
     ("help", "Help", "alpha.help_centre"),
 )
 

@@ -23,10 +23,10 @@ PUBLISHED_CATEGORY_CODE = "Published"
 
 _PUBLISHED_CATEGORY = ExaminationCategory(
     code=PUBLISHED_CATEGORY_CODE,
-    name="Published Curriculum",
+    name="Subjects",
     description=(
-        "Subjects published by founders through Curriculum Studio. "
-        "Enrolment uses the curriculum-driven educational runtime when enabled."
+        "Verified curricula Ready for enrolment. "
+        "Choose a subject to begin your Study Plan."
     ),
     papers=[],
     sittings=["Custom"],
@@ -112,7 +112,7 @@ class PublishedSubjectDiscoveryService:
                 code=offer.subject_code,
                 name=offer.subject_code,
                 description=(
-                    f"{offer.title} — published {offer.version_label}"
+                    f"{offer.title} — verified curriculum {offer.version_label}"
                 ),
             )
             for offer in offers

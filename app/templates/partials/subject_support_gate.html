@@ -1,4 +1,4 @@
-{# PTP-001 — student-safe support gate (Coming Soon / Not Supported). #}
+{# PX-002 — Coming Soon / Unavailable gate (Ready subjects continue). #}
 <div class="subject-support-gate subject-support-gate--{{ support_gate.status.value }}" role="status" aria-live="polite">
     <div class="subject-support-gate__badge-row">
         <span class="support-status-badge support-status-badge--{{ support_gate.status.value }}">{{ support_gate.label }}</span>
@@ -8,14 +8,14 @@
 
     {% if support_gate.alternatives %}
     <div class="subject-support-gate__alternatives">
-        <h3 class="subject-support-gate__alternatives-heading">Supported alternatives</h3>
+        <h3 class="subject-support-gate__alternatives-heading">Ready alternatives</h3>
         <ul class="subject-support-gate__list">
             {% for _key, label in support_gate.alternatives %}
             <li>{{ label }}</li>
             {% endfor %}
         </ul>
         <p class="subject-support-gate__hint">
-            Go back and choose a Supported paper to continue creating your study plan.
+            Choose a Ready subject to continue.
         </p>
     </div>
     {% endif %}

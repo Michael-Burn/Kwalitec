@@ -1,47 +1,146 @@
-{% extends "study_plan/wizard_base.html" %}
+{% extends "layouts/base.html" %}
+{% set title = discovery.page_title if discovery else 'Choose Exam' %}
+{% from "design_system/macros.html" import
+  ds_button,
+  ds_empty_operational,
+  ds_exam_coming_soon,
+  ds_exam_ready_list,
+  ds_search_input,
+  ds_select,
+  ds_selected_exam_summary,
+  ds_toolbar
+%}
 
-{% set wizard_question = "What examination are you preparing for?" %}
-{% set wizard_helper = "Choose your examining body. Kwalitec shows which examinations can create a full study plan in Version 1." %}
-{% set button_text = "Next" %}
+{% block extra_head %}
+<link href="{{ versioned_static('css/design_system.css') }}" rel="stylesheet">
+{% endblock %}
 
-{% block form_content %}
-<form id="wizard-form" method="post" novalidate>
+{% block content %}
+<article class="ds-page ds-container ds-container--content" aria-labelledby="choose-exam-title">
+  <header class="ds-page-header">
+    <h1 id="choose-exam-title" class="ds-page-header__title">{{ discovery.page_title }}</h1>
+    {% if discovery.support_line %}
+    <p class="ds-page-header__support">{{ discovery.support_line }}</p>
+    {% endif %}
+  </header>
+
+  {% if support_gate %}
+  {% include "partials/subject_support_gate.html" %}
+  {% endif %}
+
+  {# ——— L1 Search & filters ——— #}
+  <form method="get" action="{{ url_for('study_plan.wizard_step', step=1) }}" class="ds-form" role="search">
+    {% call ds_toolbar(label='Find exams') %}
+      {{ ds_search_input(name='q', value=discovery.query, placeholder='Search exams…', label='Search exams', input_id='choose-exam-search') }}
+      {% if discovery.family_options|length > 1 %}
+      {{ ds_select(name='family', options=discovery.family_options, selected=discovery.family_filter, label='Family', select_id='choose-exam-family') }}
+      {% endif %}
+      {{ ds_select(name='status', options=discovery.status_options, selected=discovery.status_filter, label='Status', select_id='choose-exam-status') }}
+      {{ ds_select(name='sort', options=discovery.sort_options, selected=discovery.sort, label='Sort', select_id='choose-exam-sort') }}
+      {{ ds_button('Apply', type='submit', variant='ghost') }}
+    {% endcall %}
+  </form>
+
+  {# ——— Zero filter matches ——— #}
+  {% if discovery.zero_matches %}
+  <section class="ds-section" aria-labelledby="ds-ready-title">
+    <h2 class="ds-section__title" id="ds-ready-title">Ready to begin</h2>
+    {{ ds_empty_operational(
+      'No matches.',
+      'Clear query',
+      url_for('study_plan.wizard_step', step=1)
+    ) }}
+  </section>
+
+  {# ——— Empty Ready ——— #}
+  {% elif discovery.empty_ready %}
+  <section class="ds-section" aria-labelledby="ds-ready-title">
+    <h2 class="ds-section__title" id="ds-ready-title">Ready to begin</h2>
+    {{ ds_empty_operational(
+      'No Ready subjects yet.',
+      'Return later',
+      url_for('student.home')
+    ) }}
+  </section>
+  {{ ds_exam_coming_soon(discovery.coming_soon, notify_available=false) }}
+
+  {# ——— L0 Ready catalogue + selection ——— #}
+  {% else %}
+  <form id="wizard-form" method="post" novalidate class="ds-form">
     {{ form.hidden_tag() }}
 
-    {% if form.exam_category.errors %}
+    {% if form.subject_key.errors %}
     <div class="alert alert-danger" role="alert">
-        {% for error in form.exam_category.errors %}{{ error }}{% endfor %}
+      {% for error in form.subject_key.errors %}{{ error }}{% endfor %}
     </div>
     {% endif %}
 
-    <div class="wizard-option-grid">
-        {% for category in categories %}
-        {% set summary = category_support.get(category.code) %}
-        <label class="wizard-option-card" for="exam_category-{{ loop.index0 }}">
-            <input type="radio" name="exam_category" id="exam_category-{{ loop.index0 }}"
-                   value="{{ category.code }}" class="wizard-option-input"
-                   {% if form.exam_category.data == category.code %}checked{% endif %}>
-            <div class="wizard-option-body">
-                <div class="wizard-option-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
-                    </svg>
-                </div>
-                <div class="wizard-option-text">
-                    <div class="wizard-option-title-row">
-                        <div class="wizard-option-title">{{ category.name }}</div>
-                        {% if summary %}
-                        <span class="support-status-badge support-status-badge--{{ summary.status.value }}">{{ summary.label }}</span>
-                        {% endif %}
-                    </div>
-                    <div class="wizard-option-desc">{{ category.description }}</div>
-                    {% if summary and summary.hint %}
-                    <div class="wizard-option-support-hint">{{ summary.hint }}</div>
-                    {% endif %}
-                </div>
-            </div>
-        </label>
-        {% endfor %}
+    <section class="ds-section" aria-labelledby="ds-ready-title">
+      <h2 class="ds-section__title" id="ds-ready-title">Ready to begin</h2>
+      {% if discovery.ready_offerings %}
+        {{ ds_exam_ready_list(discovery.ready_offerings, selected=discovery.selected_key, field_name='subject_key') }}
+      {% else %}
+        <p class="ds-list__meta">No Ready subjects match these filters.</p>
+      {% endif %}
+    </section>
+
+    {{ ds_selected_exam_summary(discovery.selected_summary) }}
+
+    <div class="ds-primary-strip" role="group" aria-label="Primary actions">
+      <button
+        id="choose-exam-continue"
+        class="ds-btn ds-btn--primary"
+        type="submit"
+        {% if not discovery.primary_enabled %}disabled{% endif %}
+      >{{ discovery.primary_label }}</button>
+      <a class="ds-btn ds-btn--ghost" href="{{ url_for('student.home') }}">Back</a>
     </div>
-</form>
+  </form>
+
+  {{ ds_exam_coming_soon(discovery.coming_soon, notify_available=false) }}
+  {% endif %}
+</article>
+<script>
+(function () {
+  var form = document.getElementById('wizard-form');
+  if (!form) return;
+  var submit = document.getElementById('choose-exam-continue');
+  var summary = document.getElementById('ds-selected-summary-title');
+  var panel = summary ? summary.closest('.ds-exam-summary') : null;
+  var rows = form.querySelectorAll('.ds-exam-row__input');
+  var catalogue = {};
+  {% for row in discovery.ready_offerings if row.selectable %}
+  catalogue[{{ row.subject_key|tojson }}] = {
+    title: {{ row.title|tojson }},
+    code: {{ row.exam_code|tojson }},
+    stage: 'Ready to begin',
+    path: 'Verified curriculum study path',
+    duration: {{ (row.scope_label or 'Structured study path')|tojson }},
+    next: 'Continue to set your exam date'
+  };
+  {% endfor %}
+  function fill(key) {
+    var data = catalogue[key];
+    if (!data || !panel) return;
+    panel.hidden = false;
+    var items = panel.querySelectorAll('.ds-exam-summary__item dd');
+    if (items.length < 5) return;
+    items[0].textContent = data.code ? (data.title + ' (' + data.code + ')') : data.title;
+    items[1].textContent = data.stage;
+    items[2].textContent = data.path;
+    items[3].textContent = data.duration;
+    items[4].textContent = data.next;
+  }
+  function sync() {
+    var checked = form.querySelector('.ds-exam-row__input:checked');
+    if (submit) submit.disabled = !checked;
+    if (checked) fill(checked.value);
+    else if (panel) panel.hidden = true;
+  }
+  rows.forEach(function (input) {
+    input.addEventListener('change', sync);
+  });
+  sync();
+})();
+</script>
 {% endblock %}

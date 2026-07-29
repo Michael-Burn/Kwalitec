@@ -1,4 +1,4 @@
-"""Forms for the exam-aware Study Plan Wizard."""
+"""Forms for the exam-aware Study Plan Wizard (PX-002 Subject Catalogue path)."""
 
 from __future__ import annotations
 
@@ -19,14 +19,24 @@ from wtforms.validators import Optional
 
 from app.services import examination_catalogue as catalogue
 
+# ─────────────────────────────────────────────────────────────────────────────
+# Step 1 — Choose Exam (Subject Catalogue)
+# ─────────────────────────────────────────────────────────────────────────────
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Step 1 — Examination category
-# ─────────────────────────────────────────────────────────────────────────────
+
+class SubjectCatalogueForm(FlaskForm):
+    """Select a Ready subject from the Subject Catalogue."""
+
+    subject_key = RadioField(
+        "Subject",
+        choices=[],  # populated from SubjectCatalogueService
+        validators=[validators.DataRequired("Please choose an exam.")],
+    )
+    submit = SubmitField("Continue")
 
 
 class ExamCategoryForm(FlaskForm):
-    """Step 1: Select the examination category."""
+    """Legacy examining-body step (compat / internal)."""
 
     exam_category = RadioField(
         "Examination",
@@ -74,7 +84,7 @@ class ExamSittingForm(FlaskForm):
         format="%Y-%m-%d",
         validators=[validators.DataRequired("Exam date is required.")],
     )
-    submit = SubmitField("Next")
+    submit = SubmitField("Continue")
 
     def validate_exam_date(form, field):
         """Validate that the exam date is in the future."""
@@ -141,7 +151,7 @@ class StudyAvailabilityForm(FlaskForm):
         default=60,
         validators=[validators.DataRequired()],
     )
-    submit = SubmitField("Next")
+    submit = SubmitField("Continue")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -187,18 +197,11 @@ class TargetResultForm(FlaskForm):
 
 
 class StudyPlanReviewForm(FlaskForm):
-    """Final step: Review and confirm study plan."""
+    """Begin Learning — confirm Study Plan creation."""
 
-    confirm = RadioField(
-        "Does everything look correct?",
-        choices=[
-            ("yes", "Yes, create my study plan"),
-            ("no", "No, let me make changes"),
-        ],
-        default="yes",
-        validators=[validators.DataRequired()],
-    )
-    submit = SubmitField("Confirm")
+    # Quiet confirm — Change selection is a Secondary link, not a twin Primary.
+    confirm = HiddenField(default="yes")
+    submit = SubmitField("Begin Learning")
 
 
 # ─────────────────────────────────────────────────────────────────────────────

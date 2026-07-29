@@ -189,6 +189,7 @@ def test_workspace_pages_use_eos_page_header(app, client, ctx, user):
     assert "student-page-header" in settings_html
     assert "student-panel" in settings_html
 
-    assert "student-page-header" in wizard_html
-    assert "student-btn-primary" in wizard_html
-    assert 'aria-label="Study Plan wizard progress"' in wizard_html
+    assert "ds-page-header" in wizard_html or "student-page-header" in wizard_html
+    assert "ds-btn--primary" in wizard_html or "student-btn-primary" in wizard_html
+    assert "Choose Exam" in wizard_html
+    assert 'aria-label="Study Plan wizard progress"' not in wizard_html
