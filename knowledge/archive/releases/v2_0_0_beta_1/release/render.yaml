@@ -1,0 +1,53 @@
+services:
+  - type: web
+    name: kwalitec
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    releaseCommand: "flask db upgrade"
+    startCommand: "waitress-serve --port=$PORT wsgi:app"
+
+    envVars:
+      - key: APP_ENV
+        value: production
+
+      - key: FLASK_APP
+        value: wsgi.py
+
+      - key: SECRET_KEY
+        generateValue: true
+
+      - key: DATABASE_URL
+        fromDatabase:
+          name: kwalitec-db
+          property: connectionString
+
+      - key: ADMIN_EMAIL
+        sync: false
+
+      - key: ADMIN_PASSWORD
+        sync: false
+
+      # Educational Intelligence Internal Alpha (developer daily use — not public).
+      - key: KWALITEC_EI_INTERNAL_ALPHA
+        value: "1"
+
+      # V2-023 sole-runtime activation: Education Operating System is the only
+      # student runtime. Rollback: unset KWALITEC_V2_SOLE_RUNTIME (or set to 0).
+      # G12 matrix: docs/production/VERSION_1_FLAG_MATRIX.md (EI-001.3).
+      - key: KWALITEC_V2_STUDENT_EXPERIENCE
+        value: "1"
+      - key: KWALITEC_V2_DURABLE_STORE
+        value: "1"
+      - key: KWALITEC_V2_INJECT_ENGINES
+        value: "1"
+      - key: KWALITEC_V2_SEED_DEMO
+        value: "0"
+      - key: KWALITEC_V2_FOUNDER_INTELLIGENCE
+        value: "1"
+      - key: KWALITEC_V2_SOLE_RUNTIME
+        value: "1"
+
+databases:
+  - name: kwalitec-db
+    plan: free

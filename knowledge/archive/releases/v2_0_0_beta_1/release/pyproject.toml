@@ -1,0 +1,41 @@
+[project]
+name = "kwalitec"
+version = "2.0.0-beta.1"
+description = "A disciplined learning system for professional exam preparation."
+requires-python = ">=3.11"
+readme = "README.md"
+license = { text = "MIT" }
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+    "app/founder/knowledge_engine/tests",
+    "app/founder/capability_archive/tests",
+    "app/founder/internal_alpha/tests",
+    "app/founder/dashboard/tests",
+    "app/founder/operational_state/tests",
+    "app/founder/recommendations/tests",
+    "app/founder/briefing/tests",
+    "app/founder/internal_alpha_workflow/tests",
+    "app/automation/tests",
+]
+pythonpath = [".", "src"]
+addopts = [
+    "-v",
+    "--tb=short",
+    "--strict-markers",
+]
+markers = [
+    "integration: slower cross-layer or persistence integration tests",
+]
+
+[tool.ruff]
+target-version = "py311"
+exclude = ["migrations/", ".venv/", "venv/"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
