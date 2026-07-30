@@ -408,6 +408,125 @@ def settings():
     )
 
 
+@founder_dashboard_bp.get("/curriculum-health")
+@founder_required
+def curriculum_health():
+    """UX-001 — lightweight Founder curriculum health (no new architecture)."""
+    from app.founder.dashboard.services.curriculum_health_service import (
+        FounderCurriculumHealthService,
+    )
+
+    health = FounderCurriculumHealthService().build()
+    return render_template(
+        "founder_dashboard/curriculum_health.html",
+        health=health,
+        title=health.page_title,
+    )
+
+
+@founder_dashboard_bp.get("/beta")
+@founder_required
+def beta():
+    """PB-001 — Private Beta Validation evidence dashboard."""
+    from app.founder.dashboard.services.beta_dashboard_service import (
+        FounderBetaDashboardService,
+    )
+
+    page = FounderBetaDashboardService().build()
+    return render_template(
+        "founder_dashboard/beta.html",
+        page=page,
+        title=page.page_title,
+    )
+
+
+@founder_dashboard_bp.post("/beta/enrol")
+@founder_required
+def beta_enrol():
+    """Enrol a student email into the PB-001 cohort."""
+    from flask import flash, redirect, request, url_for
+
+    from app.models.user import User
+    from app.services.private_beta.participant_service import (
+        PrivateBetaParticipantService,
+    )
+
+    email = (request.form.get("email") or "").strip().lower()
+    device = (request.form.get("device_preference") or "").strip() or None
+    if not email:
+        flash("Enter a student email to enrol.", "warning")
+        return redirect(url_for("founder_dashboard.beta"))
+
+    user = User.query.filter_by(email=email).first()
+    if user is None:
+        flash(f"No user found for {email}.", "warning")
+        return redirect(url_for("founder_dashboard.beta"))
+
+    result = PrivateBetaParticipantService.enrol(
+        user_id=user.id,
+        device_preference=device,
+    )
+    if result.ok:
+        flash(f"Enrolled {email} in private beta.", "success")
+    else:
+        flash(result.error or "Could not enrol participant.", "warning")
+    return redirect(url_for("founder_dashboard.beta"))
+
+
+@founder_dashboard_bp.post("/beta/observe")
+@founder_required
+def beta_observe():
+    """Record a founder observation checklist for a beta student."""
+    from flask import flash, redirect, request, url_for
+    from flask_login import current_user
+
+    from app.models.user import User
+    from app.services.private_beta.observation_service import (
+        PrivateBetaObservationService,
+    )
+
+    email = (request.form.get("email") or "").strip().lower()
+    user = User.query.filter_by(email=email).first() if email else None
+    if user is None:
+        flash("Student email not found.", "warning")
+        return redirect(url_for("founder_dashboard.beta"))
+
+    def _flag(name: str) -> bool | None:
+        return True if request.form.get(name) == "1" else None
+
+    result = PrivateBetaObservationService.record(
+        user_id=user.id,
+        observer_user_id=current_user.id,
+        understood_onboarding=_flag("understood_onboarding"),
+        knew_where_to_click=_flag("knew_where_to_click"),
+        understood_todays_mission=_flag("understood_todays_mission"),
+        understood_progress=_flag("understood_progress"),
+        understood_tutor=_flag("understood_tutor"),
+        understood_knowledge_map=_flag("understood_knowledge_map"),
+        became_stuck=_flag("became_stuck"),
+        stuck_where=request.form.get("stuck_where"),
+        notes=request.form.get("notes"),
+    )
+    if result.ok:
+        flash("Observation saved.", "success")
+    else:
+        flash(result.error or "Could not save observation.", "warning")
+    return redirect(url_for("founder_dashboard.beta"))
+
+
+@founder_dashboard_bp.post("/beta/report")
+@founder_required
+def beta_report():
+    """Generate PB001_PRIVATE_BETA_REPORT.md from live evidence."""
+    from flask import flash, redirect, url_for
+
+    from app.services.private_beta.report_emitter import PrivateBetaReportEmitter
+
+    path = PrivateBetaReportEmitter().write()
+    flash(f"Report written to {path}.", "success")
+    return redirect(url_for("founder_dashboard.beta"))
+
+
 @founder_dashboard_bp.route(
     "/feedback/review/<int:submission_id>",
     methods=["GET", "POST"],

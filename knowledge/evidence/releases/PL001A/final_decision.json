@@ -1,0 +1,15 @@
+{
+  "decision": "BLOCKED",
+  "rationale": "Certified engine path works, but the active published CS1 package students would enrol into remains uncertified/noisy. Closed beta requires republishing the certified snapshot as the live package.",
+  "gates": {
+    "full_cs1_pipeline_validated": true,
+    "missions_reflect_curriculum": true,
+    "tutor_grounded": true,
+    "progress_stable": true,
+    "knowledge_graph_ok": true,
+    "review_pack_matches_cert": true,
+    "observatory_meaningful": true,
+    "critical_issue_count": 4,
+    "minor_issue_count": 5
+  }
+}

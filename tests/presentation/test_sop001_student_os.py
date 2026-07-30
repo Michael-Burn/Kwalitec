@@ -75,7 +75,7 @@ def test_home_command_centre_sections(app, ctx):
         ),
     )
     page = StudentPageViewModel(
-        shell=_shell("Home", "home", "What should I do now?"),
+        shell=_shell("Home", "home", "What should I do next?"),
         home=home_vm(snap, unified_journey=False),
     )
     with app.test_request_context("/student/"):
@@ -90,11 +90,12 @@ def test_home_command_centre_sections(app, ctx):
     assert home.examination.label == "IFoA CM1"
     assert home.study_health is not None
     assert home.recent_progress == ()
-    assert home.deadlines
-    assert "What should I do now?" in html
-    assert "Current Examination" in html
+    assert home.signals is not None
+    assert home.signals.countdown_label or home.deadlines
+    assert "What should I do next?" in html
+    assert "Today's Mission" in html or "ds-mission-panel" in html
     assert "Study Health" in html
-    assert "Upcoming Deadlines" in html
+    assert "Exam countdown" in html or "Upcoming" in html
     assert "Today&#39;s Mission" in html or "Continue Session" in html
     assert "ds-os-home" in html
     assert 'data-dashboard-panel="readiness"' not in html

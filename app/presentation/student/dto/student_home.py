@@ -1,4 +1,4 @@
-"""Student Home DTOs (SOP-001 / DX-005A / DX-006B).
+"""Student Home DTOs (SOP-001 / DX-005A / DX-006B / UX-001).
 
 Command-centre presentation only — projects existing Experience VMs.
 No learning, recommendation, or session algorithm changes.
@@ -30,12 +30,16 @@ class HomeMission:
     after_completion: str
     primary_label: str
     primary_kind: str
-    # primary_kind: link | start_form | revision_ack | none
+    # primary_kind: link | start_form | complete_runtime_c | revision_ack | none
     primary_href: str = ""
     duration_label: str = ""
     mission_id: str = ""
     session_id: str = ""
     recommendation_key: str = ""
+    # UX-001 mission card enrichment (presentation only)
+    title: str = ""
+    difficulty_label: str = ""
+    learning_objective: str = ""
 
 
 @dataclass(frozen=True)
@@ -74,13 +78,24 @@ class HomeQuickAction:
 
 
 @dataclass(frozen=True)
+class HomeStudySignals:
+    """UX-001 compact orientation strip — one glance, no duplicate widgets."""
+
+    subject_label: str = ""
+    streak_label: str = ""
+    progress_label: str = ""
+    progress_percent: int | None = None
+    countdown_label: str = ""
+    estimated_study_label: str = ""
+
+
+@dataclass(frozen=True)
 class StudentHomePage:
-    """Student Home command centre (SOP-001).
+    """Student Home command centre (SOP-001 / UX-001).
 
-    Surfaces: Today's Mission / Continue Session, Current Examination,
-    Study Health, Quick Actions, Upcoming Deadlines.
-
-    History owns session archives — ``recent_progress`` stays empty.
+    Surfaces: Today's Mission (primary), study signals, Study Health,
+    Quick Actions. History owns session archives — ``recent_progress``
+    stays empty. Exam countdown lives in signals (not a second widget).
     """
 
     mission: HomeMission | None
@@ -97,5 +112,8 @@ class StudentHomePage:
     empty_action_href: str
     day_complete_message: str = ""
     page_title: str = "Home"
-    page_question: str = "What should I do now?"
+    page_question: str = "What should I do next?"
     mission_section_title: str = "Today's Mission"
+    signals: HomeStudySignals | None = None
+    tutor_available: bool = False
+    tutor_href: str = ""

@@ -39,7 +39,15 @@ class PublishedCurriculumAuthority:
         )
         if row is None:
             return None
-        return self._snapshot(row)
+        snap = self._snapshot(row)
+        if not self._runtime_accepts(snap.package):
+            logger.warning(
+                "Active package for %s rejected: runtime requires certified "
+                "curriculum (or legacy migration authority)",
+                code,
+            )
+            return None
+        return snap
 
     def get_by_version_label(
         self, subject_code: str, version_label: str
@@ -52,7 +60,10 @@ class PublishedCurriculumAuthority:
         ).first()
         if row is None:
             return None
-        return self._snapshot(row)
+        snap = self._snapshot(row)
+        if not self._runtime_accepts(snap.package):
+            return None
+        return snap
 
     def list_published(
         self, subject_code: str | None = None
@@ -65,11 +76,43 @@ class PublishedCurriculumAuthority:
             PublishedCurriculumPackage.subject_code,
             PublishedCurriculumPackage.version_label,
         ).all()
-        return tuple(self._snapshot(r) for r in rows)
+        return tuple(
+            s
+            for r in rows
+            for s in (self._snapshot(r),)
+            if self._runtime_accepts(s.package)
+        )
 
     def is_draft_reachable(self, version_id: int) -> bool:
         """Always False — drafts are not reachable through this authority."""
         _ = version_id
+        return False
+
+    @staticmethod
+    def _runtime_accepts(package: dict[str, Any]) -> bool:
+        """Student Runtime accepts certified packages; legacy during migration.
+
+        Packages without a certification block (pre-EI-002A) remain readable.
+        Packages explicitly marked ``legacy_cip_fallback`` are allowed.
+        Packages marked with a non-certified authority other than legacy are
+        rejected. Raw parser outputs never appear in PublishedCurriculumPackage.
+        """
+        cert = package.get("certification")
+        if not isinstance(cert, dict) or not cert:
+            return True  # pre-EI packages
+        authority = str(cert.get("authority") or "").strip().lower()
+        if authority in {
+            "",
+            "certified_snapshot",
+            "legacy_cip_fallback",
+            "legacy_or_unspecified",
+        }:
+            return True
+        status = str(cert.get("status") or "").strip().lower()
+        if status in {"certified", "certified_with_warnings"}:
+            return True
+        if authority.startswith("legacy"):
+            return True
         return False
 
     def _snapshot(self, row: PublishedCurriculumPackage) -> PublishedPackageSnapshot:

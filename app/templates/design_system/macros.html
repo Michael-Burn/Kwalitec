@@ -131,18 +131,80 @@
 </section>
 {%- endmacro %}
 
-{% macro ds_mission_panel(subject_name, objective, primary_label='', primary_href='', why_now='', status_label='', after_completion='', section_title="Today's Mission", include_primary=true) -%}
-<section class="ds-mission-panel" aria-labelledby="ds-mission-title">
+{% macro ds_mission_panel(subject_name, objective, primary_label='', primary_href='', why_now='', status_label='', after_completion='', section_title="Today's Mission", include_primary=true, title='', duration_label='', difficulty_label='', learning_objective='') -%}
+<section class="ds-mission-panel" aria-labelledby="ds-mission-title" data-ux="mission-panel">
   <h2 class="ds-section__title" id="ds-mission-title">{{ section_title }}</h2>
+  {% if title %}
+  <p class="ds-mission-panel__title">{{ title }}</p>
+  {% endif %}
   <p class="ds-mission-panel__subject">{{ subject_name }}</p>
-  {% if objective %}<p class="ds-mission-panel__objective">Objective · {{ objective }}</p>{% endif %}
-  {% if status_label %}<p class="ds-list__meta">{{ status_label }}</p>{% endif %}
-  {% if why_now %}<p class="ds-list__meta">Why now · {{ why_now }}</p>{% endif %}
-  {% if after_completion %}<p class="ds-list__meta">After · {{ after_completion }}</p>{% endif %}
+  {% set lo = learning_objective or objective %}
+  {% if lo %}<p class="ds-mission-panel__objective">Learning objective · {{ lo }}</p>{% endif %}
+  {% if duration_label or difficulty_label or status_label %}
+  <p class="ds-mission-panel__meta" role="group" aria-label="Mission details">
+    {% if duration_label %}<span class="ds-mission-chip">{{ duration_label }}</span>{% endif %}
+    {% if difficulty_label %}<span class="ds-mission-chip">{{ difficulty_label }}</span>{% endif %}
+    {% if status_label and not duration_label %}<span class="ds-list__meta">{{ status_label }}</span>
+    {% elif status_label and duration_label and duration_label not in status_label %}<span class="ds-list__meta">{{ status_label }}</span>{% endif %}
+  </p>
+  {% endif %}
+  {% if why_now %}<p class="ds-list__meta">Why this mission · {{ why_now }}</p>{% endif %}
+  {% if after_completion %}<p class="ds-list__meta">Expected outcome · {{ after_completion }}</p>{% endif %}
   {% if include_primary and primary_label %}
     {{ ds_primary_action_strip(primary_label, primary_href=primary_href) }}
   {% endif %}
 </section>
+{%- endmacro %}
+
+{% macro ds_study_signals(signals) -%}
+{% if signals %}
+<section class="ds-os-signals" aria-label="Study orientation" data-ux="study-signals">
+  <ul class="ds-os-signals__grid">
+    {% if signals.subject_label %}
+    <li class="ds-os-signals__item">
+      <span class="ds-os-signals__label">Subject</span>
+      <span class="ds-os-signals__value">{{ signals.subject_label }}</span>
+    </li>
+    {% endif %}
+    {% if signals.streak_label %}
+    <li class="ds-os-signals__item">
+      <span class="ds-os-signals__label">Study streak</span>
+      <span class="ds-os-signals__value">{{ signals.streak_label }}</span>
+    </li>
+    {% endif %}
+    {% if signals.progress_label %}
+    <li class="ds-os-signals__item">
+      <span class="ds-os-signals__label">Progress</span>
+      <span class="ds-os-signals__value">{{ signals.progress_label }}</span>
+      {% if signals.progress_percent is not none %}
+      <div
+        class="ds-os-progress__track ds-os-signals__track"
+        role="progressbar"
+        aria-valuenow="{{ signals.progress_percent }}"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-label="{{ signals.progress_label }}"
+      >
+        <div class="ds-os-progress__fill" style="width: {{ signals.progress_percent }}%"></div>
+      </div>
+      {% endif %}
+    </li>
+    {% endif %}
+    {% if signals.countdown_label %}
+    <li class="ds-os-signals__item">
+      <span class="ds-os-signals__label">Exam countdown</span>
+      <span class="ds-os-signals__value">{{ signals.countdown_label }}</span>
+    </li>
+    {% endif %}
+    {% if signals.estimated_study_label %}
+    <li class="ds-os-signals__item">
+      <span class="ds-os-signals__label">Estimated study time</span>
+      <span class="ds-os-signals__value">{{ signals.estimated_study_label }}</span>
+    </li>
+    {% endif %}
+  </ul>
+</section>
+{% endif %}
 {%- endmacro %}
 
 {% macro ds_queue_list(rows, labelled_by='') -%}

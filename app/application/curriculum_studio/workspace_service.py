@@ -209,6 +209,9 @@ class WorkspaceService:
             preview_approved=workspace.facts.preview_approved,
             version_assigned=workspace.facts.version_assigned,
             rollback_snapshot_created=workspace.facts.rollback_snapshot_created,
+            intelligence_certified=workspace.facts.intelligence_certified,
+            calibration_applied=workspace.facts.calibration_applied,
+            legacy_publish_fallback=workspace.facts.legacy_publish_fallback,
         )
         updated = workspace.with_facts(facts)
         self._registry.put_workspace(updated)
@@ -251,6 +254,9 @@ class WorkspaceService:
             preview_approved=workspace.facts.preview_approved,
             version_assigned=workspace.facts.version_assigned,
             rollback_snapshot_created=workspace.facts.rollback_snapshot_created,
+            intelligence_certified=workspace.facts.intelligence_certified,
+            calibration_applied=workspace.facts.calibration_applied,
+            legacy_publish_fallback=workspace.facts.legacy_publish_fallback,
         )
         updated = workspace.with_facts(facts)
         self._registry.put_workspace(updated)

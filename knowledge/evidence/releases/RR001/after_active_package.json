@@ -1,0 +1,17 @@
+{
+  "id": 1,
+  "version_label": "2026.1",
+  "is_active": true,
+  "has_certification": true,
+  "certification": {
+    "authority": "certified_snapshot",
+    "chain_id": "ei-chain-ws-cs1",
+    "snapshot_id": "snap-ae1eaf5e82aabf58",
+    "status": "CERTIFIED_WITH_WARNINGS"
+  },
+  "sections": 5,
+  "topics": 15,
+  "objectives": 73,
+  "source": "certified_snapshot",
+  "curriculum_authority": "certified_snapshot"
+}

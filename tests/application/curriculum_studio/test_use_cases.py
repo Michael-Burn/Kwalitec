@@ -110,11 +110,14 @@ def test_validate_curriculum_use_case(i):
     assert f"ver-v-{i}" in mgmt.validate_calls
 
 
-def test_validate_curriculum_requires_version():
+def test_validate_curriculum_reconciles_missing_version():
+    """Reconciliation creates a Management version when workspace has none."""
     studio, _, _, _ = make_studio_with_ports()
     seed_workspace(studio)
-    with pytest.raises(ValidationError):
-        studio.validation.validate_curriculum("ws-1")
+    assert studio.registry.get_workspace("ws-1").version_id is None
+    snap = studio.validation.validate_curriculum("ws-1")
+    assert snap.passed is True
+    assert studio.registry.get_workspace("ws-1").version_id
 
 
 @pytest.mark.parametrize("i", range(12))
@@ -150,6 +153,7 @@ def test_publish_curriculum_use_case(i):
         f"ws-pub-{i}",
         version_assigned=True,
         rollback_snapshot_created=True,
+        intelligence_certified=True,
         preview_built=True,
         preview_approved=True,
         validation_passed=True,

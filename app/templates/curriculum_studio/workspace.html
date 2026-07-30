@@ -253,6 +253,27 @@
     {% endif %}
   </section>
 
+  {# UX-001 — Curriculum health strip (lightweight Founder tools) #}
+  <section class="ds-section ds-workspace-health" aria-labelledby="workspace-health-title" data-ux="workspace-health">
+    <h2 class="ds-section__title" id="workspace-health-title">Curriculum Health</h2>
+    <ul class="ds-list">
+      <li class="ds-list__row">
+        <span>Publication</span>
+        <span class="ds-list__meta">{{ page.status_label or page.stage_label }}</span>
+      </li>
+      <li class="ds-list__row">
+        <span>Certification</span>
+        <span class="ds-list__meta">See Curriculum Health</span>
+      </li>
+      <li class="ds-list__row">
+        <span>Review pack</span>
+        <span class="ds-list__meta">
+          <a href="{{ url_for('founder_dashboard.curriculum_health') }}">Open health overview</a>
+        </span>
+      </li>
+    </ul>
+  </section>
+
   {# L2 — Supporting information (omit when empty) #}
   {% if page.supporting_lines %}
   <section class="ds-section ds-workspace-supporting" aria-labelledby="supporting-title">

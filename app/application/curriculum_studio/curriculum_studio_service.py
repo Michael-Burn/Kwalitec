@@ -15,6 +15,10 @@ from app.application.curriculum_studio.diff_service import DiffService, DiffSnap
 from app.application.curriculum_studio.dto.dashboard_snapshot import DashboardSnapshot
 from app.application.curriculum_studio.dto.subject_snapshot import SubjectSnapshot
 from app.application.curriculum_studio.dto.workspace_snapshot import WorkspaceSnapshot
+from app.application.curriculum_studio.management_reconciliation_service import (
+    ManagementReconciliationService,
+    ReconciliationResult,
+)
 from app.application.curriculum_studio.ports.curriculum_ingestion_port import (
     CurriculumIngestionPort,
 )
@@ -91,6 +95,9 @@ class CurriculumStudioService:
         self.dashboard = DashboardService(
             self.registry, management=curriculum_management
         )
+        self.reconciliation = ManagementReconciliationService(
+            self.registry, management=curriculum_management
+        )
         self.diagnostics = Diagnostics(
             registry=self.registry,
             ports=self._ports,
@@ -164,12 +171,37 @@ class CurriculumStudioService:
         return self.workspaces.open_workspace(*args, **kwargs)
 
     def get_workspace(self, workspace_id: str) -> WorkspaceSnapshot:
-        """Return a workspace snapshot."""
+        """Return a workspace snapshot after Management reconciliation.
+
+        When Management is unbound (unit tests), skip reconciliation.
+        """
+        try:
+            self.reconcile_workspace(workspace_id)
+        except Exception as exc:  # noqa: BLE001 — port-optional unit paths
+            from app.application.curriculum_studio.exceptions import PortUnavailable
+
+            if not isinstance(exc, PortUnavailable):
+                raise
         return self.workspaces.get_workspace(workspace_id)
 
     def list_workspaces(self) -> tuple[WorkspaceSnapshot, ...]:
-        """List all registered workspace snapshots."""
+        """List workspace snapshots after Management reconciliation."""
+        try:
+            self.reconcile_all()
+        except Exception as exc:  # noqa: BLE001 — port-optional unit paths
+            from app.application.curriculum_studio.exceptions import PortUnavailable
+
+            if not isinstance(exc, PortUnavailable):
+                raise
         return self.workspaces.list_workspaces()
+
+    def reconcile_workspace(self, workspace_id: str) -> ReconciliationResult:
+        """Reconcile one durable workspace with Curriculum Management."""
+        return self.reconciliation.reconcile_workspace(workspace_id)
+
+    def reconcile_all(self) -> tuple[ReconciliationResult, ...]:
+        """Reconcile all durable workspaces with Curriculum Management."""
+        return self.reconciliation.reconcile_all()
 
     def update_structure(self, *args, **kwargs) -> WorkspaceSnapshot:
         """Update structural fields on a workspace."""

@@ -50,7 +50,7 @@ def test_home_has_decision_hierarchy(student_client):
     assert 'data-dashboard-panel="quick-actions"' not in html
     assert 'data-dashboard-panel="readiness"' not in html
     assert 'data-dashboard-panel="coach"' not in html
-    assert "What should I do now?" in html
+    assert "What should I do next?" in html
 
 
 def test_home_has_no_kpi_readiness_on_surface(student_client):

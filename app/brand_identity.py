@@ -8,9 +8,11 @@ recommendations.
 from __future__ import annotations
 
 # Ambient Internal Alpha programme identity (authenticated + public chrome).
+# Build label tracks the Private Beta RC.
+# Student EOS uses a separate Private Beta badge.
 INTERNAL_ALPHA_LABEL = "Internal Alpha"
 FOUNDING_COHORT_LABEL = "Founding Cohort"
-INTERNAL_ALPHA_BUILD_LABEL = "RC2"
+INTERNAL_ALPHA_BUILD_LABEL = "beta.1"
 
 # Official product-area names (user-facing).
 # CONSOLE-001 — Founder Command Centre becomes Kwalitec Console.

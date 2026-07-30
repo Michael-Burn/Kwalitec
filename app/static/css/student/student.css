@@ -1916,3 +1916,43 @@ body[data-nav-pending="true"] .student-main {
 }
 
 
+
+/* ——— UX-001 Closed Beta chrome ——— */
+
+.student-footer-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--student-space-3);
+  margin-top: var(--student-space-2);
+}
+
+.student-beta-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--student-card-border);
+  color: var(--student-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.student-footer-link {
+  color: var(--student-muted);
+  font-size: 0.8rem;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.student-footer-link:hover,
+.student-footer-link:focus-visible {
+  color: var(--text-primary, #1e2430);
+}
+
+.student-footer-link:focus-visible {
+  outline: 2px solid var(--primary, #3B4FB8);
+  outline-offset: 2px;
+}

@@ -194,6 +194,7 @@ def test_publish_requires_management_port():
         preview_approved=True,
         version_assigned=True,
         rollback_snapshot_created=True,
+        intelligence_certified=True,
     )
     # No version + no port
     with pytest.raises((PublicationError, PortUnavailable)):

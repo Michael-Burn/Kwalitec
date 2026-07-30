@@ -1,0 +1,62 @@
+{% extends "founder_dashboard/base.html" %}
+{% from "design_system/macros.html" import ds_badge, ds_button, ds_empty_operational %}
+
+{% block console_content %}
+<article class="ds-page ds-container ds-container--content" aria-labelledby="curriculum-health-title" data-ux="founder-curriculum-health">
+  <header class="ds-page-header">
+    <h1 id="curriculum-health-title" class="ds-page-header__title">{{ health.page_title }}</h1>
+    <p class="ds-page-header__support">{{ health.page_support }}</p>
+  </header>
+
+  {% if health.metrics %}
+  <section class="ds-os-signals" aria-label="Curriculum health summary">
+    <ul class="ds-os-signals__grid">
+      {% for metric in health.metrics %}
+      <li class="ds-os-signals__item">
+        <span class="ds-os-signals__label">{{ metric.label }}</span>
+        <span class="ds-os-signals__value">{{ metric.value }}</span>
+        {% if metric.detail %}<span class="ds-list__meta">{{ metric.detail }}</span>{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {% if health.empty_reason and not health.rows %}
+    {{ ds_empty_operational(
+      health.empty_reason,
+      'Open Curriculum Studio',
+      url_for('curriculum_studio.index'),
+      title='No curriculum health signals yet',
+      explanation=health.empty_reason,
+      context='This page summarises certification and publication readiness for private beta.'
+    ) }}
+  {% else %}
+  <section class="ds-section" aria-labelledby="health-rows-title">
+    <h2 class="ds-section__title" id="health-rows-title">Workspaces</h2>
+    <ul class="ds-list">
+      {% for row in health.rows %}
+      <li>
+        <a class="ds-list__row" href="{{ row.workspace_href }}">
+          <span>
+            <strong>{{ row.subject_label }}</strong>
+            <span class="ds-list__meta">
+              {{ ds_badge(row.publication_status, tone='neutral') }}
+              {{ ds_badge(row.certification_status, tone='neutral') }}
+            </span>
+            <span class="ds-list__meta">{{ row.calibration_label }} · {{ row.review_pack_label }}</span>
+            <span class="ds-list__meta">{{ row.observatory_summary }}</span>
+          </span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  <div class="ds-primary-strip">
+    {{ ds_button('Curriculum Studio', href=url_for('curriculum_studio.index'), variant='primary') }}
+    {{ ds_button('Subjects', href=url_for('curriculum_studio.subjects_hub'), variant='ghost') }}
+  </div>
+</article>
+{% endblock %}

@@ -1,0 +1,194 @@
+{% extends "founder_dashboard/base.html" %}
+{% from "design_system/macros.html" import ds_badge, ds_button, ds_empty_operational %}
+
+{% block console_content %}
+<article class="ds-page ds-container ds-container--content" aria-labelledby="beta-title" data-pb="private-beta-dashboard">
+  <header class="ds-page-header">
+    <h1 id="beta-title" class="ds-page-header__title">{{ page.page_title }}</h1>
+    <p class="ds-page-header__support">{{ page.page_support }}</p>
+    <p class="ds-list__meta" role="status">
+      Decision signal:
+      {{ ds_badge(page.go_recommendation, tone='neutral') }}
+    </p>
+  </header>
+
+  {% if page.metrics %}
+  <section class="ds-os-signals" aria-label="Private beta summary">
+    <ul class="ds-os-signals__grid">
+      {% for metric in page.metrics %}
+      <li class="ds-os-signals__item">
+        <span class="ds-os-signals__label">{{ metric.label }}</span>
+        <span class="ds-os-signals__value">{{ metric.value }}</span>
+        {% if metric.detail %}<span class="ds-list__meta">{{ metric.detail }}</span>{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  <section class="ds-section" aria-labelledby="gates-title">
+    <h2 class="ds-section__title" id="gates-title">Quality gates</h2>
+    <ul class="ds-list">
+      {% for gate in page.quality_gates %}
+      <li class="ds-list__row">
+        <span>
+          <strong>{{ gate.label }}</strong>
+          <span class="ds-list__meta">
+            {{ gate.actual }}{% if gate.unit == '%' %}%{% endif %}
+            / threshold {{ gate.threshold }}{% if gate.unit == '%' %}%{% endif %}
+            · {{ ds_badge('PASS' if gate.passed else 'FAIL', tone='neutral') }}
+          </span>
+          <span class="ds-list__meta">{{ gate.detail }}</span>
+        </span>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  {% if page.empty_reason and not page.participants %}
+    {{ ds_empty_operational(
+      page.empty_reason,
+      'Open Students',
+      url_for('founder_dashboard.participants'),
+      title='No beta cohort yet',
+      explanation=page.empty_reason,
+      context='Enrol students into PB-001 to unlock retention and first-session evidence.'
+    ) }}
+  {% else %}
+  <section class="ds-section" aria-labelledby="cohort-title">
+    <h2 class="ds-section__title" id="cohort-title">Cohort</h2>
+    <ul class="ds-list">
+      {% for row in page.participants %}
+      <li class="ds-list__row">
+        <span>
+          <strong>{{ row.email }}</strong>
+          <span class="ds-list__meta">
+            Enrolled {{ row.enrolled_at }} · Device {{ row.device_preference }}
+          </span>
+          <span class="ds-list__meta">
+            Time to first mission: {{ row.minutes_to_first_mission }} min · Drop-off: {{ row.drop_off }}
+          </span>
+        </span>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  <section class="ds-section" aria-labelledby="enrol-title">
+    <h2 class="ds-section__title" id="enrol-title">Enrol participant</h2>
+    <form method="post" action="{{ url_for('founder_dashboard.beta_enrol') }}" class="mb-3" style="max-width: 28rem;">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <div class="mb-2">
+        <label class="form-label" for="enrol-email">Student email</label>
+        <input class="form-control" id="enrol-email" name="email" type="email" required maxlength="255">
+      </div>
+      <div class="mb-2">
+        <label class="form-label" for="enrol-device">Device preference</label>
+        <select class="form-select" id="enrol-device" name="device_preference">
+          <option value="">Unknown</option>
+          <option value="desktop">Desktop</option>
+          <option value="laptop">Laptop</option>
+          <option value="mobile">Mobile</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary btn-sm">Enrol in private beta</button>
+    </form>
+  </section>
+
+  <section class="ds-section" aria-labelledby="feedback-title">
+    <h2 class="ds-section__title" id="feedback-title">Latest feedback</h2>
+    {% if page.latest_feedback %}
+    <ul class="ds-list">
+      {% for item in page.latest_feedback %}
+      <li class="ds-list__row">
+        <span>
+          <strong>#{{ item.id }} · {{ item.category }}</strong>
+          {{ ds_badge(item.severity, tone='neutral') }}
+          <span class="ds-list__meta">{{ item.created_at }} · {{ item.screen }}</span>
+          <span class="ds-list__meta">{{ item.message }}</span>
+        </span>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="ds-list__meta">No private-beta feedback yet.</p>
+    {% endif %}
+  </section>
+
+  <section class="ds-section" aria-labelledby="obs-title">
+    <h2 class="ds-section__title" id="obs-title">Observations</h2>
+    <p class="ds-list__meta">
+      {{ page.observations_count }} checklist(s) recorded · {{ page.stuck_count }} stuck.
+    </p>
+    <form method="post" action="{{ url_for('founder_dashboard.beta_observe') }}" style="max-width: 36rem;">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <div class="mb-2">
+        <label class="form-label" for="obs-email">Student email</label>
+        <input class="form-control" id="obs-email" name="email" type="email" required>
+      </div>
+      <fieldset class="mb-2">
+        <legend class="form-label">Checklist</legend>
+        {% for field, label in [
+          ('understood_onboarding', 'Understood onboarding'),
+          ('knew_where_to_click', 'Knew where to click'),
+          ('understood_todays_mission', "Understood Today's Mission"),
+          ('understood_progress', 'Understood Progress'),
+          ('understood_tutor', 'Understood Tutor'),
+          ('understood_knowledge_map', 'Understood Knowledge Map'),
+          ('became_stuck', 'Became stuck'),
+        ] %}
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="{{ field }}" id="obs-{{ field }}" value="1">
+          <label class="form-check-label" for="obs-{{ field }}">{{ label }}</label>
+        </div>
+        {% endfor %}
+      </fieldset>
+      <div class="mb-2">
+        <label class="form-label" for="stuck-where">If stuck, where?</label>
+        <input class="form-control" id="stuck-where" name="stuck_where" maxlength="255">
+      </div>
+      <div class="mb-2">
+        <label class="form-label" for="obs-notes">Notes</label>
+        <textarea class="form-control" id="obs-notes" name="notes" rows="2" maxlength="1000"></textarea>
+      </div>
+      <button type="submit" class="btn btn-outline-secondary btn-sm">Save observation</button>
+    </form>
+  </section>
+
+  <section class="ds-section" aria-labelledby="screens-title">
+    <h2 class="ds-section__title" id="screens-title">Screen analytics</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <h3 class="h6">Most visited</h3>
+        <ul class="ds-list">
+          {% for s in page.most_visited %}
+          <li class="ds-list__meta"><code>{{ s.path }}</code> — {{ s.visits }}</li>
+          {% else %}
+          <li class="ds-list__meta">None yet</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h3 class="h6">Least visited</h3>
+        <ul class="ds-list">
+          {% for s in page.least_visited %}
+          <li class="ds-list__meta"><code>{{ s.path }}</code> — {{ s.visits }}</li>
+          {% else %}
+          <li class="ds-list__meta">None yet</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="ds-primary-strip">
+    <form method="post" action="{{ url_for('founder_dashboard.beta_report') }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <button type="submit" class="btn btn-primary btn-sm">Generate end-of-beta report</button>
+    </form>
+    {{ ds_button('Support inbox', href=url_for('founder_dashboard.feedback'), variant='ghost') }}
+    {{ ds_button('Students', href=url_for('founder_dashboard.participants'), variant='ghost') }}
+  </div>
+</article>
+{% endblock %}

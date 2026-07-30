@@ -1,0 +1,243 @@
+{
+  "programme": "PL-001A",
+  "subject": "CS1",
+  "workspace_id": "ws-cs1",
+  "started_at": "2026-07-30T06:05:00Z",
+  "finished_at": "2026-07-30T06:05:11Z",
+  "duration_s": 11.96,
+  "timeline": [
+    {
+      "stage": "baseline_legacy_package",
+      "ok": true,
+      "t_s": 1.45,
+      "timestamp": "2026-07-30T06:05:00Z",
+      "id": 1,
+      "version_label": "2026.1",
+      "is_active": true,
+      "has_certification": false,
+      "sections": 1931,
+      "topics": 5024,
+      "objectives": 21
+    },
+    {
+      "stage": "extract_normalize",
+      "ok": true,
+      "t_s": 7.37,
+      "timestamp": "2026-07-30T06:05:06Z",
+      "syllabus_pages": 8,
+      "syllabus_blocks": 323,
+      "cmp_full_pages": 912,
+      "cmp_full_blocks": 37167,
+      "cmp_window": "30-180",
+      "cmp_window_pages": 151,
+      "cmp_window_blocks": 6651,
+      "extract_s": 5.92
+    },
+    {
+      "stage": "cmp_syllabus_probe",
+      "ok": false,
+      "t_s": 10.01,
+      "timestamp": "2026-07-30T06:05:09Z",
+      "stopped_at_index": 2,
+      "duration_s": 2.63,
+      "cmp_window": "30-180"
+    },
+    {
+      "stage": "review_pack",
+      "ok": true,
+      "t_s": 11.29,
+      "timestamp": "2026-07-30T06:05:10Z",
+      "pack_id": "pack-75cc3e7ff5ea",
+      "artefacts": 8
+    },
+    {
+      "stage": "ei_pipeline_g1_g7",
+      "ok": true,
+      "t_s": 11.29,
+      "timestamp": "2026-07-30T06:05:10Z",
+      "duration_s": 1.28,
+      "source_mode": "syllabus_authoritative",
+      "rationale": "Matches EQ-001 Founder publish shape (official syllabus). CMP body inclusion blocked at Gen2 under production regression gates — see cmp_probe_regression.json.",
+      "chain_id": "ei-chain-ws-cs1",
+      "intelligence_certified": true,
+      "active_snapshot_id": "snap-8292e78b9e051c45",
+      "certified_snapshot_id": "snap-8292e78b9e051c45",
+      "certification_status": "CERTIFIED_WITH_WARNINGS",
+      "snapshot_count": 7
+    },
+    {
+      "stage": "founder_calibration",
+      "ok": true,
+      "t_s": 11.82,
+      "timestamp": "2026-07-30T06:05:11Z",
+      "profile_id": "cal-ws-cs1-0a07e11fac",
+      "generations_rerun": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "intelligence_certified": false,
+      "granularity": "balanced",
+      "hierarchy": "strict_syllabus",
+      "topic_density": "consolidated",
+      "difficulty_bias": "exam_focused",
+      "duration_s": 0.53,
+      "post_cal_certification": null
+    },
+    {
+      "stage": "founder_preview",
+      "ok": true,
+      "t_s": 11.84,
+      "timestamp": "2026-07-30T06:05:11Z",
+      "certification_status": "CERTIFIED_WITH_WARNINGS",
+      "quality_score": 95.79,
+      "warnings": [
+        "objective_syllabus_refs: 1/73 active LOs lack syllabus ref or cmp_only_support flag"
+      ],
+      "sections": 5,
+      "topics": 15,
+      "objectives": 73,
+      "preview_eligible": true,
+      "source": "certified_snapshot"
+    },
+    {
+      "stage": "observatory",
+      "ok": true,
+      "t_s": 11.95,
+      "timestamp": "2026-07-30T06:05:11Z",
+      "trends": 1,
+      "coverage": 2,
+      "decision_quality": 1,
+      "warnings": 1
+    },
+    {
+      "stage": "knowledge_graph",
+      "ok": true,
+      "t_s": 11.95,
+      "timestamp": "2026-07-30T06:05:11Z",
+      "nodes": 93,
+      "edges": 175,
+      "objectives": 73
+    },
+    {
+      "stage": "missions",
+      "ok": true,
+      "t_s": 11.96,
+      "timestamp": "2026-07-30T06:05:11Z",
+      "samples": 5
+    },
+    {
+      "stage": "progress",
+      "ok": true,
+      "t_s": 11.96,
+      "timestamp": "2026-07-30T06:05:11Z",
+      "subject_mastery": 0.0533
+    },
+    {
+      "stage": "adaptive",
+      "ok": true,
+      "t_s": 11.96,
+      "timestamp": "2026-07-30T06:05:11Z",
+      "weak": 14,
+      "missed": 72,
+      "revision": 1,
+      "dependencies": 66
+    },
+    {
+      "stage": "tutor",
+      "ok": true,
+      "t_s": 11.96,
+      "timestamp": "2026-07-30T06:05:11Z",
+      "turns": 2
+    },
+    {
+      "stage": "review_pack_matches_certification",
+      "ok": true,
+      "t_s": 11.96,
+      "timestamp": "2026-07-30T06:05:11Z"
+    },
+    {
+      "stage": "publication_readiness",
+      "ok": true,
+      "t_s": 11.96,
+      "timestamp": "2026-07-30T06:05:11Z",
+      "intelligence_certified": true,
+      "legacy_active_package_uncertified": true,
+      "certified_package_built": true,
+      "note": "PL-001A validates certified package projection + student surfaces. Live Founder Console republish of Gen7 into published_curriculum_packages is recommended polish after CMP full-window certification."
+    }
+  ],
+  "issues": [
+    {
+      "severity": "critical",
+      "area": "publication",
+      "title": "Active CS1 package lacks certification block",
+      "detail": "FV-002 published CS1/2026.1 has no package.certification; Student Runtime uses legacy topic selection, not certified LOs."
+    },
+    {
+      "severity": "critical",
+      "area": "curriculum_fidelity",
+      "title": "Active CS1 package still uses pre-EQ001 noisy structure",
+      "detail": "Published structure has 5024 topics / 1931 sections — not syllabus-first."
+    },
+    {
+      "severity": "minor",
+      "area": "operations",
+      "title": "Full CMP Gen1 scale requires windowed dogfood",
+      "detail": "Full CMP has 912 pages / 37167 blocks; PL-001A ran EI on pages 30-180 plus full syllabus to keep certification tractable. Full-CMP republish remains polish."
+    },
+    {
+      "severity": "critical",
+      "area": "certification_consistency",
+      "title": "CMP+syllabus Gen2 rejected by regression confidence gate",
+      "detail": "Noise elimination improves coverage/noise but dips mean confidence enough to fail RegressionPolicy (failures=[{'accepted': False, 'reason': 'regression_gates_failed', 'gate_failures': ['confidence:0.8493<0.8606'], 'candidate_generation_id': 'gen-ca78c361fec88ce7'}]). Production stop_on_regression=True halts before hierarchy/certification when CMP body is included."
+    },
+    {
+      "severity": "minor",
+      "area": "certification",
+      "title": "CS1 certified with warnings",
+      "detail": "objective_syllabus_refs: 1/73 active LOs lack syllabus ref or cmp_only_support flag"
+    },
+    {
+      "severity": "critical",
+      "area": "calibration",
+      "title": "Calibration re-certification did not produce a decision",
+      "detail": "generations_rerun=[3, 4, 5, 6, 7]; initial Gen7 certification retained for student surfaces where still preview-eligible."
+    },
+    {
+      "severity": "minor",
+      "area": "tutor",
+      "title": "Tutor certified filter is opt-in in production DI",
+      "detail": "EI-002B: certified_tutor= must be bound when package available."
+    },
+    {
+      "severity": "minor",
+      "area": "observatory",
+      "title": "Observatory Founder Console UI not shipped",
+      "detail": "Service + report ready; no Founder UI surface yet."
+    },
+    {
+      "severity": "minor",
+      "area": "knowledge_graph",
+      "title": "Learner Knowledge Graph has no student UI screenshot surface",
+      "detail": "PL-001A captured graph summary + Mermaid projection from service."
+    }
+  ],
+  "quality_gates": {
+    "full_cs1_pipeline_validated": true,
+    "missions_reflect_curriculum": true,
+    "tutor_grounded": true,
+    "progress_stable": true,
+    "knowledge_graph_ok": true,
+    "review_pack_matches_cert": true,
+    "observatory_meaningful": true,
+    "critical_issue_count": 4,
+    "minor_issue_count": 5
+  },
+  "decision": "BLOCKED",
+  "decision_rationale": "Certified engine path works, but the active published CS1 package students would enrol into remains uncertified/noisy. Closed beta requires republishing the certified snapshot as the live package.",
+  "cmp_window": "30-180",
+  "baseline_commit_note": "run against local working tree"
+}

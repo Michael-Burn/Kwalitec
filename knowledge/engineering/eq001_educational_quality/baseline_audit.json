@@ -1,0 +1,582 @@
+{
+  "syllabus": {
+    "label": "syllabus",
+    "pages": 8,
+    "seconds": 0.19,
+    "entity_counts": {
+      "subject": 1,
+      "topic": 31,
+      "module": 6,
+      "subtopic": 86
+    },
+    "chapters_modules": 6,
+    "topics": 117,
+    "objectives": 0,
+    "max_depth": 2,
+    "avg_topics_per_section": 19.5,
+    "avg_objectives_per_topic": 0.0,
+    "duplicate_titles": 4,
+    "empty_nodes": 0,
+    "orphan_nodes": 0,
+    "invalid_parent_refs": 0,
+    "first_40_titles": [
+      [
+        "subject",
+        "CS1",
+        null
+      ],
+      [
+        "topic",
+        "Associateship Qualification",
+        1
+      ],
+      [
+        "topic",
+        "Actuarial Statistics (CS1)",
+        1
+      ],
+      [
+        "topic",
+        "Core Principles",
+        1
+      ],
+      [
+        "topic",
+        "Syllabus for the 2026 Examinations",
+        1
+      ],
+      [
+        "topic",
+        "April 2025",
+        1
+      ],
+      [
+        "topic",
+        "Syllabus Actuarial Statistics (CS1) 2026",
+        2
+      ],
+      [
+        "topic",
+        "Actuarial Statistics (CS1)",
+        2
+      ],
+      [
+        "topic",
+        "Syllabus for the 2026 Examinations",
+        2
+      ],
+      [
+        "topic",
+        "Aim",
+        2
+      ],
+      [
+        "topic",
+        "Links across the Qualifications",
+        2
+      ],
+      [
+        "topic",
+        "Associateship Qualification",
+        2
+      ],
+      [
+        "topic",
+        "Topics and Topic Weightings",
+        2
+      ],
+      [
+        "topic",
+        "Syllabus Actuarial Statistics (CS1) 2026",
+        3
+      ],
+      [
+        "topic",
+        "Objectives",
+        3
+      ],
+      [
+        "module",
+        "Data analysis [10%]",
+        3
+      ],
+      [
+        "subtopic",
+        "Describe the purpose and function of data analysis",
+        3
+      ],
+      [
+        "subtopic",
+        "Aims of a data analysis (e.g. descriptive, inferential and predictive)",
+        3
+      ],
+      [
+        "subtopic",
+        "Stages and suitable tools used to conduct a data analysis to solve real-world pr",
+        3
+      ],
+      [
+        "subtopic",
+        "Sources of data and their characteristics, including extremely large data sets",
+        3
+      ],
+      [
+        "subtopic",
+        "Meaning and value of reproducible research and the elements required to ensure a",
+        3
+      ],
+      [
+        "subtopic",
+        "Complete exploratory data analysis",
+        3
+      ],
+      [
+        "subtopic",
+        "Appropriate tools to calculate suitable summary statistics and undertake explora",
+        3
+      ],
+      [
+        "subtopic",
+        "Interpret and make statistical inferences using Pearson\u2019s, Spearman\u2019s and Kendal",
+        3
+      ],
+      [
+        "subtopic",
+        "Principal component analysis to reduce the dimensionality of a complex data set",
+        3
+      ],
+      [
+        "module",
+        "Random variables and distributions [20%]",
+        3
+      ],
+      [
+        "subtopic",
+        "Understand the characteristics of basic univariate distributions and how to gene",
+        3
+      ],
+      [
+        "subtopic",
+        "Geometric, binomial, negative binomial, hypergeometric, Poisson and uniform disc",
+        3
+      ],
+      [
+        "subtopic",
+        "Normal, lognormal, exponential, gamma, chi-square, t, F, beta and uniform contin",
+        3
+      ],
+      [
+        "subtopic",
+        "Evaluation of probabilities and quantiles associated with these distributions",
+        3
+      ],
+      [
+        "subtopic",
+        "Poisson process and the connection between the Poisson process and the",
+        3
+      ],
+      [
+        "topic",
+        "Poisson distribution",
+        3
+      ],
+      [
+        "subtopic",
+        "Generation of basic discrete and continuous random variables using the inverse",
+        3
+      ],
+      [
+        "subtopic",
+        "Generation of discrete and continuous random variables using statistical softwar",
+        3
+      ],
+      [
+        "subtopic",
+        "Determine the characteristics of jointly distributed random variables",
+        3
+      ],
+      [
+        "subtopic",
+        "Probability function or density function for marginal and conditional distributi",
+        3
+      ],
+      [
+        "subtopic",
+        "The conditions under which random variables are independent",
+        3
+      ],
+      [
+        "topic",
+        "Syllabus Actuarial Statistics (CS1) 2026",
+        4
+      ],
+      [
+        "subtopic",
+        "Covariance, the correlation and the expected value of a function of two jointly ",
+        4
+      ],
+      [
+        "subtopic",
+        "Mean and variance of linear combinations of random variables",
+        4
+      ]
+    ],
+    "sample_objectives": []
+  },
+  "cmp": {
+    "label": "cmp",
+    "pages": 912,
+    "seconds": 90.14,
+    "entity_counts": {
+      "subject": 1,
+      "topic": 3881,
+      "module": 1926,
+      "subtopic": 1007,
+      "learning_objective": 21,
+      "practice_question": 256,
+      "concept": 106,
+      "formula": 128,
+      "example": 21,
+      "source_reference": 1
+    },
+    "chapters_modules": 1926,
+    "topics": 4888,
+    "objectives": 21,
+    "max_depth": 3,
+    "avg_topics_per_section": 2.54,
+    "avg_objectives_per_topic": 0.0,
+    "duplicate_titles": 492,
+    "empty_nodes": 0,
+    "orphan_nodes": 0,
+    "invalid_parent_refs": 0,
+    "first_40_titles": [
+      [
+        "subject",
+        "CS1",
+        null
+      ],
+      [
+        "topic",
+        "AGOGO CDO",
+        1
+      ],
+      [
+        "topic",
+        "Actuarial Statistics",
+        1
+      ],
+      [
+        "topic",
+        "Combined Materials Pack",
+        1
+      ],
+      [
+        "topic",
+        "The Actuarial Education Company",
+        1
+      ],
+      [
+        "topic",
+        "AGOGO CDO",
+        2
+      ],
+      [
+        "topic",
+        "Institute and Faculty Education Limited, a subsidiary of the",
+        2
+      ],
+      [
+        "topic",
+        "These conditions remain in force after you have finished using",
+        2
+      ],
+      [
+        "topic",
+        "AGOGO CDO",
+        3
+      ],
+      [
+        "topic",
+        "Subject CS1",
+        3
+      ],
+      [
+        "module",
+        "Study Guide",
+        3
+      ],
+      [
+        "topic",
+        "Introduction",
+        3
+      ],
+      [
+        "topic",
+        "Contents",
+        3
+      ],
+      [
+        "topic",
+        "Part 1 Section 1 Before you start Page 2",
+        3
+      ],
+      [
+        "topic",
+        "Section 2 Core study material Page 3",
+        3
+      ],
+      [
+        "topic",
+        "Section 3 ActEd study support Page 5",
+        3
+      ],
+      [
+        "topic",
+        "Section 4 Study skills Page 11",
+        3
+      ],
+      [
+        "topic",
+        "Section 5 The examination Page 16",
+        3
+      ],
+      [
+        "topic",
+        "Section 6 Queries and feedback Page 17",
+        3
+      ],
+      [
+        "topic",
+        "Part 2 Section 1 Subject CS1 \u2013 background Page 18",
+        3
+      ],
+      [
+        "topic",
+        "Section 3 Subject CS1 \u2013 the course structure Page 28",
+        3
+      ],
+      [
+        "topic",
+        "Section 5 Subject CS1 \u2013 skills and assessment Page 30",
+        3
+      ],
+      [
+        "topic",
+        "Section 6 Subject CS1 \u2013 frequently asked questions Page 31",
+        3
+      ],
+      [
+        "topic",
+        "AGOGO CDO",
+        4
+      ],
+      [
+        "subtopic",
+        "Before you start",
+        4
+      ],
+      [
+        "topic",
+        "Yellow Tables or the Tables",
+        4
+      ],
+      [
+        "topic",
+        "AGOGO CDO",
+        5
+      ],
+      [
+        "subtopic",
+        "Core study material",
+        5
+      ],
+      [
+        "topic",
+        "Syllabus",
+        5
+      ],
+      [
+        "learning_objective",
+        "relevant individual Syllabus Objectives are included at the start of each course",
+        5
+      ],
+      [
+        "topic",
+        "Core Reading",
+        5
+      ],
+      [
+        "practice_question",
+        "Practice",
+        5
+      ],
+      [
+        "topic",
+        "Accreditation",
+        5
+      ],
+      [
+        "topic",
+        "AGOGO CDO",
+        6
+      ],
+      [
+        "topic",
+        "ActEd text",
+        6
+      ],
+      [
+        "learning_objective",
+        "Core Reading deals with each syllabus objective and covers what is needed to pas",
+        6
+      ],
+      [
+        "concept",
+        "Note",
+        6
+      ],
+      [
+        "topic",
+        "It Bt\uf03d",
+        6
+      ],
+      [
+        "topic",
+        "Copyright",
+        6
+      ],
+      [
+        "topic",
+        "This is Core",
+        6
+      ]
+    ],
+    "sample_objectives": [
+      [
+        "relevant individual Syllabus Objectives are included at the start of each course chapter and a",
+        [
+          5
+        ]
+      ],
+      [
+        "Core Reading deals with each syllabus objective and covers what is needed to pass the exam.",
+        [
+          6
+        ]
+      ],
+      [
+        "explanation of all the syllabus objectives, with worked examples and questions (including some",
+        [
+          8
+        ]
+      ],
+      [
+        "\uf0b7 the relevant syllabus objectives",
+        [
+          8
+        ]
+      ],
+      [
+        "\uf0b7 Objective, personalised feedback from a high quality marker will highlight areas on which",
+        [
+          9
+        ]
+      ],
+      [
+        "face-to-face, where students will need to provide their own device capable of running Excel or R",
+        [
+          10
+        ]
+      ],
+      [
+        "courses to \u2018bed down\u2019 in your mind. Most successful students will probably aim to complete the",
+        [
+          13
+        ]
+      ],
+      [
+        "to the listing of the Syllabus Objectives and to the Core Reading.",
+        [
+          14
+        ]
+      ],
+      [
+        "\uf0b7 The use of a specific command verb within a syllabus objective does not indicate that this",
+        [
+          17
+        ]
+      ],
+      [
+        "is the only form of question which can be asked on the topic covered by that objective.",
+        [
+          17
+        ]
+      ],
+      [
+        "The Syllabus for Subject CS1 is given here. To the right of each objective are the chapter numbers",
+        [
+          21
+        ]
+      ],
+      [
+        "in which the objective is covered in the ActEd course.",
+        [
+          21
+        ]
+      ],
+      [
+        "objectives",
+        [
+          21
+        ]
+      ],
+      [
+        "objectives",
+        [
+          30
+        ]
+      ],
+      [
+        "12/\uf073\uf073 is not a common objective.",
+        [
+          356
+        ]
+      ],
+      [
+        "However the same F result is used for the more common objective of \u2018testing\u2019 whether",
+        [
+          356
+        ]
+      ],
+      [
+        "Syllabus objective 4.2.1 requires students to show that the binomial, Poisson, exponential, gamma",
+        [
+          605
+        ]
+      ],
+      [
+        "The main objective of marking is to provide specific advice on how to improve your chances of",
+        [
+          788
+        ]
+      ],
+      [
+        "The main objective of marking is to provide specific advice on how to improve your chances of",
+        [
+          798
+        ]
+      ],
+      [
+        "The main objective of marking is to provide specific advice on how to improve your chances of",
+        [
+          808
+        ]
+      ]
+    ]
+  },
+  "combined": {
+    "sections": 1932,
+    "topics": 5005,
+    "objectives": 21
+  }
+}

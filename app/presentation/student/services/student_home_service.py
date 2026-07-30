@@ -16,10 +16,13 @@ from app.presentation.student.dto.student_home import (
     HomeQueueRow,
     HomeQuickAction,
     HomeStudyHealth,
+    HomeStudySignals,
     StudentHomePage,
 )
 from app.presentation.student.view_models import (
     HomePageViewModel,
+    JourneyPageViewModel,
+    ProfilePageViewModel,
     RevisionPageViewModel,
     StudentPageViewModel,
 )
@@ -73,7 +76,19 @@ class StudentHomeService:
         queue = self._learning_queue(home, revision=revision)
         examination = self._examination(home)
         study_health = self._study_health(home)
-        deadlines = self._deadlines(home)
+        signals = self._study_signals(
+            home,
+            examination=examination,
+            journey=page.journey,
+            profile=page.profile,
+        )
+        # Exam countdown lives in the signal strip — avoid a duplicate widget.
+        deadlines = self._deadlines(
+            home,
+            omit_exam_countdown=bool(
+                signals and (signals.countdown_label or "").strip()
+            ),
+        )
         # History owns session archives — do not mirror Recent Progress on Home.
         recent: tuple[HomeQueueRow, ...] = ()
 
@@ -90,6 +105,7 @@ class StudentHomeService:
                 examination=examination,
                 study_health=study_health,
                 deadlines=deadlines,
+                signals=signals,
                 state="mission",
                 home=home,
                 revision=revision,
@@ -110,6 +126,7 @@ class StudentHomeService:
                 after_completion="",
                 primary_label="",
                 primary_kind="none",
+                title="Complete for today",
             )
             return self._assemble(
                 mission=mission,
@@ -118,6 +135,7 @@ class StudentHomeService:
                 examination=examination,
                 study_health=study_health,
                 deadlines=deadlines,
+                signals=signals,
                 state="day_complete",
                 home=home,
                 revision=revision,
@@ -134,6 +152,7 @@ class StudentHomeService:
                 examination=examination,
                 study_health=study_health,
                 deadlines=deadlines,
+                signals=signals,
                 state="mission",
                 home=home,
                 revision=revision,
@@ -147,6 +166,7 @@ class StudentHomeService:
                 examination=examination,
                 study_health=study_health,
                 deadlines=deadlines,
+                signals=signals,
                 state="quiet",
                 home=home,
                 revision=revision,
@@ -162,6 +182,7 @@ class StudentHomeService:
             examination=examination,
             study_health=study_health,
             deadlines=deadlines,
+            signals=signals,
             state="empty",
             home=home,
             revision=revision,
@@ -188,6 +209,7 @@ class StudentHomeService:
         empty_action_href: str = "",
         day_complete_message: str = "",
         force_choose_exam_action: bool = False,
+        signals: HomeStudySignals | None = None,
     ) -> StudentHomePage:
         section_title = self._mission_section_title(mission)
         quick_actions = self._quick_actions(
@@ -198,6 +220,10 @@ class StudentHomeService:
             state=state,
             force_choose_exam=force_choose_exam_action or state in {"empty", "quiet"},
         )
+        tutor_available = bool(home.tutor_available)
+        tutor_href = ""
+        if tutor_available or state == "mission":
+            tutor_href = url_for("student.tutor")
         return StudentHomePage(
             mission=mission,
             learning_queue=queue,
@@ -212,6 +238,9 @@ class StudentHomeService:
             empty_action_href=empty_action_href,
             day_complete_message=day_complete_message,
             mission_section_title=section_title,
+            signals=signals,
+            tutor_available=tutor_available,
+            tutor_href=tutor_href,
         )
 
     @staticmethod
@@ -228,8 +257,10 @@ class StudentHomeService:
         """Selection algorithm per DX-005A Architecture §5 (unchanged)."""
         subject = self._subject_name(home)
         objective = self._objective(home)
+        title = self._mission_title(home, objective=objective)
         why_now = self._why_now(home)
         after = self._after_completion(home)
+        difficulty = self._difficulty_label(home)
         duration = (
             home.estimated_duration_label or home.estimated_study_label or ""
         ).strip()
@@ -254,6 +285,9 @@ class StudentHomeService:
                 mission_id=mission_id,
                 session_id=session_id,
                 recommendation_key=rec_key,
+                title=title or "Continue Session",
+                difficulty_label=difficulty,
+                learning_objective=objective or "Continue your open session",
             )
 
         if (
@@ -274,6 +308,41 @@ class StudentHomeService:
                 mission_id=mission_id,
                 session_id=session_id,
                 recommendation_key=rec_key,
+                title=title or "Finish Session",
+                difficulty_label=difficulty,
+                learning_objective=objective or "Wrap up your open session",
+            )
+
+        # 2a. Runtime C mission ready → Mark mission complete (PR-001B).
+        # session_control is complete_runtime_c — not a Guided Session start.
+        if (
+            home.primary_cta_enabled
+            and home.session_control == "complete_runtime_c"
+            and mission_id
+        ):
+            label = (
+                home.session_control_label
+                or home.primary_cta_label
+                or "Mark mission complete"
+            ).strip()
+            return HomeMission(
+                subject_name=subject or "Current subject",
+                objective=objective or "Today's study focus",
+                status_label=self._status_line(
+                    home.completion_status_label or home.session_status or "Ready",
+                    duration,
+                ),
+                why_now=why_now,
+                after_completion=after,
+                primary_label=label,
+                primary_kind="complete_runtime_c",
+                duration_label=duration,
+                mission_id=mission_id,
+                session_id=session_id,
+                recommendation_key=rec_key,
+                title=title or objective or "Today's Mission",
+                difficulty_label=difficulty,
+                learning_objective=objective or "Today's study focus",
             )
 
         # 2–3. Mission ready → Start Session (POST preserves commitment path).
@@ -298,9 +367,122 @@ class StudentHomeService:
                 mission_id=mission_id,
                 session_id=session_id,
                 recommendation_key=rec_key,
+                title=title or objective or "Today's Mission",
+                difficulty_label=difficulty,
+                learning_objective=objective or "Today's study focus",
             )
 
         return None
+
+    def _study_signals(
+        self,
+        home: HomePageViewModel,
+        *,
+        examination: HomeExamination | None,
+        journey: JourneyPageViewModel | None,
+        profile: ProfilePageViewModel | None,
+    ) -> HomeStudySignals | None:
+        """Compact orientation strip — no duplicate exam/deadline widgets."""
+        subject = ""
+        if examination and examination.label:
+            subject = examination.label
+        else:
+            subject = self._subject_name(home)
+        if not subject and not self._has_study_plan_signal(home):
+            return None
+
+        streak = ""
+        if profile and (profile.streak_label or "").strip():
+            streak = profile.streak_label.strip()
+            if streak == "0 days":
+                streak = "No streak yet"
+            elif not streak.lower().endswith("streak"):
+                streak = f"{streak} streak"
+
+        progress_label = ""
+        progress_percent: int | None = None
+        if journey is not None and journey.progress_percent is not None:
+            progress_percent = int(journey.progress_percent)
+            progress_label = (
+                journey.progress_label
+                or f"{progress_percent}% complete"
+            ).strip()
+        elif home.educational and getattr(home.educational, "active", False):
+            progress_percent = int(home.educational.progress_percent or 0)
+            progress_label = (
+                home.educational.progress_label
+                or home.educational.coverage_label
+                or f"{progress_percent}% complete"
+            ).strip()
+        elif home.readiness and home.readiness.has_readiness:
+            raw = (
+                home.readiness.readiness_percent_label
+                or home.readiness.readiness_label
+                or ""
+            ).strip()
+            if raw:
+                progress_label = raw
+
+        countdown = ""
+        if examination and examination.countdown_label:
+            countdown = examination.countdown_label
+        elif home.countdown and home.countdown.has_countdown:
+            countdown = (
+                home.countdown.label
+                or (
+                    f"{home.countdown.days} days"
+                    if home.countdown.days is not None
+                    else ""
+                )
+            ).strip()
+
+        estimated = (
+            home.estimated_duration_label or home.estimated_study_label or ""
+        ).strip()
+
+        if not any(
+            (subject, streak, progress_label, countdown, estimated)
+        ):
+            return None
+        return HomeStudySignals(
+            subject_label=subject,
+            streak_label=streak,
+            progress_label=progress_label,
+            progress_percent=progress_percent,
+            countdown_label=countdown,
+            estimated_study_label=estimated,
+        )
+
+    @staticmethod
+    def _mission_title(home: HomePageViewModel, *, objective: str) -> str:
+        edu = home.educational
+        if edu and getattr(edu, "active", False):
+            title = (edu.mission_title or edu.today_topic_title or "").strip()
+            if title:
+                return title
+        if home.primary_mission_title:
+            return home.primary_mission_title.strip()
+        if home.recommendation and home.recommendation.title:
+            return home.recommendation.title.strip()
+        if home.start_session and home.start_session.topic_title:
+            return home.start_session.topic_title.strip()
+        return (objective or "").strip()
+
+    @staticmethod
+    def _difficulty_label(home: HomePageViewModel) -> str:
+        mi = home.mission_intelligence
+        if mi is not None:
+            for attr in ("difficulty_label", "difficulty", "mission_difficulty"):
+                raw = getattr(mi, attr, None)
+                if isinstance(raw, str) and raw.strip():
+                    return raw.strip()[:40]
+        edu = home.educational
+        if edu and getattr(edu, "active", False):
+            for attr in ("difficulty_label", "feasibility_label"):
+                raw = getattr(edu, attr, None)
+                if isinstance(raw, str) and raw.strip():
+                    return raw.strip()[:40]
+        return ""
 
     def _revision_ack_mission(
         self,
@@ -397,9 +579,18 @@ class StudentHomeService:
             )
         return None
 
-    def _deadlines(self, home: HomePageViewModel) -> tuple[HomeDeadline, ...]:
+    def _deadlines(
+        self,
+        home: HomePageViewModel,
+        *,
+        omit_exam_countdown: bool = False,
+    ) -> tuple[HomeDeadline, ...]:
         rows: list[HomeDeadline] = []
-        if home.countdown and home.countdown.has_countdown:
+        if (
+            not omit_exam_countdown
+            and home.countdown
+            and home.countdown.has_countdown
+        ):
             title = home.countdown.examination_label or home.examination_label
             label = home.countdown.label or (
                 f"{home.countdown.days} days"
@@ -498,6 +689,26 @@ class StudentHomeService:
                     detail="Adjust exam selection if your plan feels stuck",
                 )
             )
+
+        # UX-001 — contextual Tutor / Knowledge Map without cloning shell nav.
+        if state == "mission" and len(actions) < _QUICK_ACTION_MAX:
+            if not any(a.label == "Ask Tutor" for a in actions):
+                actions.append(
+                    HomeQuickAction(
+                        label="Ask Tutor",
+                        href=url_for("student.tutor"),
+                        detail="Why this mission was chosen",
+                    )
+                )
+        if state in {"mission", "quiet", "day_complete"} and len(actions) < _QUICK_ACTION_MAX:
+            if not any(a.label == "Knowledge Map" for a in actions):
+                actions.append(
+                    HomeQuickAction(
+                        label="Knowledge Map",
+                        href=url_for("student.knowledge_graph"),
+                        detail="See your syllabus hierarchy",
+                    )
+                )
 
         return tuple(actions[:_QUICK_ACTION_MAX])
 

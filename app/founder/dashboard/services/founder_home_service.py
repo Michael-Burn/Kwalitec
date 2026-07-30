@@ -50,6 +50,10 @@ _RECENT_MAX = 5
 _EMPTY_TITLE = "No subjects have been created yet."
 _EMPTY_REASON = "Create your first subject to begin building your curriculum."
 _EMPTY_ACTION_LABEL = "Create Subject"
+_SETTLED_TITLE = "No curriculum work needs attention"
+_SETTLED_REASON = (
+    "Published subjects are listed below. Create a subject to begin a new curriculum."
+)
 
 
 @dataclass(frozen=True)
@@ -99,13 +103,21 @@ class FounderHomeService:
         )
         current = self._select_current_work(queue_sorted)
         recent = self._recent_publications()
+        # When publications exist but no incomplete workspaces remain, do not
+        # claim that no subjects have ever been created (projection disagreement).
+        if current is None and recent:
+            empty_title = _SETTLED_TITLE
+            empty_reason = _SETTLED_REASON
+        else:
+            empty_title = _EMPTY_TITLE
+            empty_reason = _EMPTY_REASON
         return FounderHomePage(
             current_work=current,
             queue=queue_rows,
             recent_publications=recent,
             queue_truncated=queue_truncated,
-            empty_title=_EMPTY_TITLE,
-            empty_reason=_EMPTY_REASON,
+            empty_title=empty_title,
+            empty_reason=empty_reason,
             empty_action_label=_EMPTY_ACTION_LABEL,
             empty_action_href=subjects_href,
             subjects_href=subjects_href,

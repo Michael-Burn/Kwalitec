@@ -54,7 +54,7 @@ from tests.education_os.infrastructure.ai.helpers import FakeAIProvider
 
 def test_read_product_version_from_release_artefact() -> None:
     version = read_product_version()
-    assert version == "2.0.0"
+    assert version == "2.0.0-beta.1"
 
 
 def test_load_settings_typed_objects() -> None:

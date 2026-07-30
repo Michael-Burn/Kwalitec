@@ -1,0 +1,72 @@
+{% extends "student/base.html" %}
+{% set title = graph.page_title %}
+{% from "design_system/macros.html" import ds_button, ds_empty_operational, ds_badge %}
+
+{% block page_header %}{% endblock %}
+
+{% block extra_head %}
+<link href="{{ versioned_static('css/design_system.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<article
+  class="ds-page ds-container ds-container--content ds-os-kg"
+  aria-labelledby="student-kg-title"
+  data-ux="knowledge-graph"
+>
+  <header class="ds-page-header">
+    <h1 id="student-kg-title" class="ds-page-header__title student-page-title">{{ graph.page_title }}</h1>
+    <p class="ds-page-header__support">{{ graph.page_question }}</p>
+  </header>
+
+  {% if not graph.roots %}
+    {{ ds_empty_operational(
+      graph.empty_reason,
+      graph.empty_action_label,
+      graph.empty_action_href,
+      title='Knowledge map not ready',
+      explanation=graph.empty_reason,
+      context='The map mirrors your certified syllabus hierarchy — chapters, topics, and learning objectives.'
+    ) }}
+  {% else %}
+
+  <section class="ds-kg-header" aria-label="Syllabus identity">
+    {% if graph.subject_label %}
+    <p class="ds-os-exam__label">{{ graph.subject_label }}</p>
+    {% endif %}
+    {% if graph.certified_source %}
+    <p class="ds-list__meta">{{ ds_badge(graph.certified_source, tone='neutral') }}</p>
+    {% endif %}
+    <p class="ds-list__meta">{{ graph.node_count }} nodes · {{ graph.edge_count }} links</p>
+  </section>
+
+  {% if graph.selected %}
+  <section class="ds-kg-focus" aria-labelledby="kg-focus-title">
+    <h2 class="ds-section__title" id="kg-focus-title">Current focus</h2>
+    <p class="ds-kg-node__title">{{ graph.selected.title }}</p>
+    <p class="ds-list__meta">{{ graph.selected.kind }}{% if graph.selected.progress_label %} · {{ graph.selected.progress_label }}{% endif %}</p>
+    {% if graph.selected.prerequisite_ids %}
+    <p class="ds-list__meta">Prerequisites · {{ graph.selected.prerequisite_ids|length }} linked</p>
+    {% endif %}
+    {% if graph.selected.objective_ids %}
+    <p class="ds-list__meta">Learning objectives · {{ graph.selected.objective_ids|length }}</p>
+    {% endif %}
+  </section>
+  {% endif %}
+
+  <section class="ds-kg-tree" aria-label="Syllabus hierarchy">
+    <h2 class="ds-section__title">Hierarchy</h2>
+    <ul class="ds-kg-list" role="tree" aria-label="Curriculum nodes">
+      {% for node in graph.roots %}
+        {% include "student/components/knowledge_graph_node.html" %}
+      {% endfor %}
+    </ul>
+  </section>
+
+  <div class="ds-session-exit">
+    {{ ds_button('Return Home', href=graph.home_href, variant='ghost') }}
+    {{ ds_button('Open Journey', href=url_for('student.journey'), variant='ghost') }}
+  </div>
+  {% endif %}
+</article>
+{% endblock %}

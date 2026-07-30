@@ -96,7 +96,7 @@ class AppSettings:
         return self.testing or self.environment == "testing"
 
 
-def read_product_version(*, default: str = "2.0.0") -> str:
+def read_product_version(*, default: str = "2.0.0-beta.1") -> str:
     """Read the product version from the VERSION release artefact."""
     try:
         text = VERSION_FILE.read_text(encoding="utf-8").strip()

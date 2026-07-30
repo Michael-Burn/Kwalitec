@@ -1,0 +1,12 @@
+{
+  "decision": "END-TO-END PIPELINE CERTIFIED",
+  "timeline": [
+    {"stage": "Founder Home settled", "ok": true},
+    {"stage": "Publications/Subjects CS1", "ok": true},
+    {"stage": "Discovery CS1 2026.1", "ok": true},
+    {"stage": "Begin Learning enrolment", "ok": true, "identity": "CS1:2026.1"},
+    {"stage": "Home Mark mission complete CTA", "ok": true},
+    {"stage": "Mission complete write-back", "ok": true, "progress": "Topic 2 of 5024 · 1 complete"},
+    {"stage": "Package derive", "ok": true, "sections": 1931, "topics": 5024, "objectives": 21}
+  ]
+}

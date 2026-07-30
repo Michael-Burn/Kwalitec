@@ -87,6 +87,12 @@ class CurriculumIntelligenceProcessingAdapter(DocumentProcessingPort):
             db.session.commit()
             job = self._coordinator.run_job(job.job_id)
             final_stage = job.status
+            self._maybe_run_ei_bridge(
+                workspace_id=workspace_id,
+                subject_code=subject_code,
+                document_id=document_id,
+                stage=final_stage,
+            )
         else:
             doc.processing_stage = DocumentProcessingStage.QUEUED.value
             db.session.flush()
@@ -103,3 +109,42 @@ class CurriculumIntelligenceProcessingAdapter(DocumentProcessingPort):
             document_id=document_id,
             stage=final_stage,
         )
+
+    def _maybe_run_ei_bridge(
+        self,
+        *,
+        workspace_id: str,
+        subject_code: str,
+        document_id: int,
+        stage: str,
+    ) -> None:
+        """EI-002A: bind workspace to Generation Chain after CIP milestones."""
+        try:
+            from flask import current_app, has_app_context
+
+            if has_app_context() and not current_app.config.get(
+                "EI_GENERATION_BRIDGE_ENABLED", True
+            ):
+                return
+            from app.application.curriculum_intelligence.generation_integration_bridge import (  # noqa: E501
+                GenerationIntegrationBridge,
+            )
+            from app.presentation.curriculum_studio.factory import get_studio_service
+
+            studio = get_studio_service()
+            bridge = GenerationIntegrationBridge(registry=studio.registry)
+            bridge.maybe_run_after_cip(
+                workspace_id=workspace_id,
+                stage=stage,
+                document_id=document_id,
+                subject_code=subject_code,
+            )
+            try:
+                db.session.commit()
+            except Exception:  # noqa: BLE001
+                db.session.rollback()
+        except Exception:  # noqa: BLE001 — CIP path must remain operational
+            logger.exception(
+                "EI generation bridge skipped after CIP for workspace %s",
+                workspace_id,
+            )

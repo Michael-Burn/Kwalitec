@@ -1,0 +1,17 @@
+{
+  "outcome": "CERTIFIED_WITH_WARNINGS",
+  "quality_score": 95.79,
+  "coverage": 1.0,
+  "hierarchy_score": 0.8941,
+  "granularity_score": 0.9,
+  "confidence": 0.9463,
+  "evidence_quality": 0.9947,
+  "decision_quality": 0.932,
+  "hard_gate_failures": [],
+  "warnings": [
+    "objective_syllabus_refs: 1/73 active LOs lack syllabus ref or cmp_only_support flag"
+  ],
+  "failure_reasons": [],
+  "snapshot_id": "snap-8292e78b9e051c45",
+  "chain_id": "ei-chain-ws-cs1"
+}

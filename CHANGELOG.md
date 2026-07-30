@@ -6,6 +6,71 @@ The format follows the principles of Keep a Changelog and Semantic Versioning.
 
 ---
 
+# [2.0.0-beta.1] - 2026-07-30 — Private Beta Release Candidate
+
+## Fingerprint
+
+| Field | Value |
+|---|---|
+| Product version | `2.0.0-beta.1` |
+| Release tag | `v2.0.0-beta.1` |
+| Programme | RC-001 — Release Candidate · Private Beta Deployment |
+| Release notes | `RELEASE_NOTES.md` |
+| Private Beta guide | `PRIVATE_BETA_GUIDE.md` |
+| Founder deployment | `FOUNDER_DEPLOYMENT_GUIDE.md` |
+| Evidence report | `knowledge/engineering/rc001_private_beta_deployment/RC001_RELEASE_REPORT.md` |
+
+## Summary
+
+Official Private Beta Release Candidate for Version 2. Feature freeze: no new educational architecture, AI systems, curriculum reasoning, UI redesign, or commercial expansion. Packages Curriculum Intelligence (EI-001/EI-002), Educational Quality (EQ-001), Release Readiness (RR-001), Premium Beta UX (UX-001), Private Beta Validation surfaces (PB-001), and Founder dogfood closures into a reproducible production baseline for 10–20 invite-only users.
+
+## Features completed (shipped in this RC baseline)
+
+- Curriculum Intelligence Engine generations G1–G7 with certification decisions
+- Certified snapshot publication into Student Runtime catalogue
+- Founder Curriculum Studio → certification → publication path (CS1)
+- Student Tutor and Knowledge Map surfaces over certified graph context
+- Private Beta enrolment, feedback, founder observations, and Beta Dashboard
+- Premium Closed/Private Beta student shell (mission-first Home, session focus mode)
+
+## Architecture milestones
+
+- EI-001A–D generation store, agents, policies, certification engine
+- EI-002A Founder integration + EI-002B certified learning facades
+- PublicationBridge dual-read of certified snapshots (RR-001)
+- Alembic head `202607300005` (generation store + private beta tables)
+
+## Educational milestones
+
+- EQ-001 educational quality audit and review pack artefacts
+- RR-001 closed-beta unblock: certified CS1 active catalogue (5/15/73)
+- Confidence scoring on educational nodes; production ε for Gen2 regression
+
+## UX milestones
+
+- UX-001 premium beta experience (signals strip, mission chips, session chrome)
+- Private Beta footer badge, release notes + report-issue affordances
+- Founder Curriculum Health and Private Beta dashboard destinations
+
+## Bug fixes (included)
+
+- RR-001 C1–C4: certified publication authority, Gen2 confidence gate, calibration re-certification
+- Prior RC hotfixes for PostgreSQL migration compatibility and student platform release
+
+## Known limitations
+
+- Educational quality / mission optimisation / tutor intelligence improvements deferred
+- Additional IFoA subjects beyond certified CS1 not in Private Beta scope
+- Public registration remains disabled (invite-only)
+- Commercial readiness / public beta out of scope
+- Instance storage durability residual from DP-003 (no persistent disk proven)
+
+## Private Beta scope
+
+Invite-only cohort of approximately 10–20 users. Founder provisions accounts. Feedback via in-product Private Beta channel and Founder Console Beta Dashboard. Success measured by PB-001 quality gates after real usage — not by this RC alone.
+
+---
+
 # [2.0.0] - 2026-07-20 — Educational Operating System (Version 2 Close)
 
 ## Fingerprint

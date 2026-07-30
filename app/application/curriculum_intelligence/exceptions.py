@@ -58,3 +58,33 @@ class JobNotFoundError(CurriculumIntelligenceError):
 
     def __init__(self, message: str = "Processing job not found.") -> None:
         super().__init__(message, code="job_not_found")
+
+
+class SnapshotImmutableError(CurriculumIntelligenceError):
+    """Attempted to mutate an immutable generation snapshot."""
+
+    def __init__(
+        self, message: str = "Generation snapshots are immutable after creation."
+    ) -> None:
+        super().__init__(message, code="snapshot_immutable")
+
+
+class SnapshotNotFoundError(CurriculumIntelligenceError):
+    """Requested generation snapshot was not found."""
+
+    def __init__(self, message: str = "Generation snapshot not found.") -> None:
+        super().__init__(message, code="snapshot_not_found")
+
+
+class GenerationOrderError(CurriculumIntelligenceError):
+    """Generations must execute in index order without skipping."""
+
+    def __init__(self, message: str, *, code: str = "generation_order") -> None:
+        super().__init__(message, code=code)
+
+
+class LineageAppendError(CurriculumIntelligenceError):
+    """Illegal lineage mutation (history rewrite attempted)."""
+
+    def __init__(self, message: str, *, code: str = "lineage_append_only") -> None:
+        super().__init__(message, code=code)

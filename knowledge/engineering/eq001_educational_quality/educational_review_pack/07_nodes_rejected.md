@@ -1,0 +1,80 @@
+# Nodes rejected (non-curriculum roles)
+
+- [syllabus] `unspecified` pNone: Document 1
+- [syllabus] `qualification_information` p1: Associateship Qualification
+- [syllabus] `front_matter` p1: Actuarial Statistics (CS1)
+- [syllabus] `qualification_information` p1: Core Principles
+- [syllabus] `qualification_information` p1: Syllabus for the 2026 Examinations
+- [syllabus] `publisher_metadata` p1: April 2025
+- [syllabus] `front_matter` p1: [image:/Fm0]
+- [syllabus] `front_matter` p1: [image:/Fm1]
+- [syllabus] `front_matter` p1: [image:/Fm10]
+- [syllabus] `front_matter` p1: [image:/Fm11]
+- [syllabus] `front_matter` p1: [image:/Fm12]
+- [syllabus] `front_matter` p1: [image:/Fm13]
+- [syllabus] `front_matter` p1: [image:/Fm14]
+- [syllabus] `front_matter` p1: [image:/Fm15]
+- [syllabus] `front_matter` p1: [image:/Fm16]
+- [syllabus] `front_matter` p1: [image:/Fm17]
+- [syllabus] `front_matter` p1: [image:/Fm18]
+- [syllabus] `front_matter` p1: [image:/Fm19]
+- [syllabus] `front_matter` p1: [image:/Fm2]
+- [syllabus] `front_matter` p1: [image:/Fm20]
+- [syllabus] `front_matter` p1: [image:/Fm21]
+- [syllabus] `front_matter` p1: [image:/Fm22]
+- [syllabus] `front_matter` p1: [image:/Fm23]
+- [syllabus] `front_matter` p1: [image:/Fm24]
+- [syllabus] `front_matter` p1: [image:/Fm25]
+- [syllabus] `front_matter` p1: [image:/Fm26]
+- [syllabus] `front_matter` p1: [image:/Fm27]
+- [syllabus] `front_matter` p1: [image:/Fm28]
+- [syllabus] `front_matter` p1: [image:/Fm29]
+- [syllabus] `front_matter` p1: [image:/Fm3]
+- [syllabus] `front_matter` p1: [image:/Fm30]
+- [syllabus] `front_matter` p1: [image:/Fm31]
+- [syllabus] `front_matter` p1: [image:/Fm32]
+- [syllabus] `front_matter` p1: [image:/Fm33]
+- [syllabus] `front_matter` p1: [image:/Fm34]
+- [syllabus] `front_matter` p1: [image:/Fm35]
+- [syllabus] `front_matter` p1: [image:/Fm36]
+- [syllabus] `front_matter` p1: [image:/Fm37]
+- [syllabus] `front_matter` p1: [image:/Fm38]
+- [syllabus] `front_matter` p1: [image:/Fm39]
+- [cmp] `unspecified` pNone: Document 2
+- [cmp] `front_matter` p1: Actuarial Statistics
+- [cmp] `front_matter` p1: Combined Materials Pack
+- [cmp] `publisher_metadata` p1: for exams in 2019
+- [cmp] `copyright` p2: All study material produced by ActEd is copyright and is sold for
+- [cmp] `copyright` p2: the exclusive use of the purchaser. The copyright is owned by
+- [cmp] `publisher_metadata` p2: Institute and Faculty Education Limited, a subsidiary of the
+- [cmp] `copyright` p2: Legal action will be taken if these terms are infringed. In
+- [cmp] `front_matter` p3: Subject CS1
+- [cmp] `front_matter` p3: Introduction
+- [cmp] `table_of_contents` p3: Contents
+- [cmp] `table_of_contents` p3: Part 1 Section 1 Before you start Page 2
+- [cmp] `table_of_contents` p3: Section 2 Core study material Page 3
+- [cmp] `table_of_contents` p3: Section 3 ActEd study support Page 5
+- [cmp] `table_of_contents` p3: Section 4 Study skills Page 11
+- [cmp] `table_of_contents` p3: Section 5 The examination Page 16
+- [cmp] `table_of_contents` p3: Section 6 Queries and feedback Page 17
+- [cmp] `table_of_contents` p3: Part 2 Section 1 Subject CS1 – background Page 18
+- [cmp] `table_of_contents` p3: Section 2 Subject CS1 – Syllabus and Core Reading Page 19
+- [cmp] `table_of_contents` p3: Section 3 Subject CS1 – the course structure Page 28
+- [cmp] `table_of_contents` p3: Section 4 Subject CS1 – summary of ActEd products Page 29
+- [cmp] `table_of_contents` p3: Section 5 Subject CS1 – skills and assessment Page 30
+- [cmp] `table_of_contents` p3: Section 6 Subject CS1 – frequently asked questions Page 31
+- [cmp] `assessment_logistics` p5: The examinations require students to demonstrate their understanding of the concepts given in
+- [cmp] `copyright` p6: Copyright
+- [cmp] `copyright` p6: All study material produced by ActEd is copyright and is sold for the exclusive use of the
+- [cmp] `copyright` p6: purchaser. The copyright is owned by Institute and Faculty Education Limited, a subsidiary of the
+- [cmp] `copyright` p6: Legal action will be taken if these terms are infringed. In addition, we may seek to take
+- [cmp] `front_matter` p7: Revision Notes
+- [cmp] `assessment_logistics` p7: Mock Exam
+- [cmp] `assessment_logistics` p8: Paper B Online Resources (PBOR)
+- [cmp] `publisher_metadata` p8: ordered separately or as an addition to paper products. Visit www.ActEd.co.uk for full details
+- [cmp] `publisher_metadata` p10: www.ActEd.co.uk.
+- [cmp] `publisher_metadata` p10: the Online Classroom tutorial units on our website at www.ActEd.co.uk.
+- [cmp] `publisher_metadata` p11: be ordered separately or as an addition to paper products. Visit www.ActEd.co.uk for full details
+- [cmp] `front_matter` p11: Revision Notes
+- [cmp] `assessment_logistics` p12: Mock Exam
+- [cmp] `publisher_metadata` p13: www.ActEd.co.uk.

@@ -1,0 +1,64 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<section class="section-header">
+    <p class="section-eyebrow">Closed Beta</p>
+    <h1 class="section-title">{{ title }}</h1>
+    <p class="section-description">
+        Report a bug, suggestion, confusing screen, missing feature,
+        incorrect recommendation, or general feedback. Your current screen
+        and device details are captured automatically.
+    </p>
+</section>
+
+<form method="post" class="alpha-feedback-form" id="pb-feedback-form" style="max-width: 36rem;" data-pb="beta-feedback">
+    {{ form.hidden_tag() }}
+    {{ form.mission_id() }}
+    {{ form.current_screen() }}
+    {{ form.subject_code() }}
+    {{ form.browser() }}
+    {{ form.device() }}
+    {{ form.path() }}
+    <div class="mb-3">
+        {{ form.category.label(class="form-label") }}
+        {{ form.category(class="form-select") }}
+        {% for error in form.category.errors %}
+        <p class="invalid-feedback d-block" role="alert">{{ error }}</p>
+        {% endfor %}
+    </div>
+    <div class="mb-3">
+        {{ form.message.label(class="form-label") }}
+        {{ form.message(class="form-control") }}
+        {% for error in form.message.errors %}
+        <p class="invalid-feedback d-block" role="alert">{{ error }}</p>
+        {% endfor %}
+    </div>
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Send feedback</button>
+        <a class="btn btn-outline-secondary" href="{{ url_for('alpha.help_centre') }}">Cancel</a>
+    </div>
+</form>
+
+<script>
+(function () {
+  var form = document.getElementById("pb-feedback-form");
+  if (!form) return;
+  var ua = navigator.userAgent || "";
+  var device = /Mobi|Android|iPhone|iPad/i.test(ua) ? "mobile" : "desktop";
+  if (/iPad|Tablet/i.test(ua)) device = "tablet";
+  var browser = "unknown";
+  if (/Edg\//.test(ua)) browser = "Edge";
+  else if (/Chrome\//.test(ua) && !/Chromium/.test(ua)) browser = "Chrome";
+  else if (/Firefox\//.test(ua)) browser = "Firefox";
+  else if (/Safari\//.test(ua) && !/Chrome\//.test(ua)) browser = "Safari";
+  var set = function (name, value) {
+    var el = form.querySelector('[name="' + name + '"]');
+    if (el && !el.value) el.value = value;
+  };
+  set("browser", browser);
+  set("device", device);
+  set("path", window.location.pathname);
+  set("current_screen", document.title || window.location.pathname);
+})();
+</script>
+{% endblock %}

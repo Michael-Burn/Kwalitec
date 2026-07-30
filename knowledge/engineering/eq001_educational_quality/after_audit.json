@@ -1,0 +1,1126 @@
+{
+  "syllabus": {
+    "chapters": 5,
+    "topics": 15,
+    "objectives": 73,
+    "entity_counts": {
+      "subject": 1,
+      "module": 5,
+      "topic": 15,
+      "learning_objective": 73
+    },
+    "front_matter_contamination": 0.0,
+    "quality": {
+      "front_matter_contamination": 0.0,
+      "hierarchy_accuracy_proxy": 1.0,
+      "topic_coherence_proxy": 0.9,
+      "duplicate_rate": 0.0,
+      "objective_density": 4.8667,
+      "mean_topic_title_length": 61.62,
+      "section_balance": 0.9091,
+      "parser_confidence": 0.9145
+    },
+    "sample_titles": [
+      [
+        "subject",
+        "CS1",
+        null
+      ],
+      [
+        "module",
+        "1 Data analysis",
+        3
+      ],
+      [
+        "topic",
+        "1.1 Describe the purpose and function of data analysis",
+        3
+      ],
+      [
+        "learning_objective",
+        "1.1.1 Aims of a data analysis (e.g. descriptive, inferential and predictive)",
+        3
+      ],
+      [
+        "learning_objective",
+        "1.1.2 Stages and suitable tools used to conduct a data analysis to solve real-world problems",
+        3
+      ],
+      [
+        "learning_objective",
+        "1.1.3 Sources of data and their characteristics, including extremely large data sets",
+        3
+      ],
+      [
+        "learning_objective",
+        "1.1.4 Meaning and value of reproducible research and the elements required to ensure a data",
+        3
+      ],
+      [
+        "topic",
+        "1.2 Complete exploratory data analysis",
+        3
+      ],
+      [
+        "learning_objective",
+        "1.2.1 Appropriate tools to calculate suitable summary statistics and undertake exploratory",
+        3
+      ],
+      [
+        "learning_objective",
+        "1.2.2 Interpret and make statistical inferences using Pearson\u2019s, Spearman\u2019s and Kendall\u2019s",
+        3
+      ],
+      [
+        "learning_objective",
+        "1.2.3 Principal component analysis to reduce the dimensionality of a complex data set",
+        3
+      ],
+      [
+        "module",
+        "2 Random variables and distributions",
+        3
+      ],
+      [
+        "topic",
+        "2.1 Understand the characteristics of basic univariate distributions and how to generate samples",
+        3
+      ],
+      [
+        "learning_objective",
+        "2.1.1 Geometric, binomial, negative binomial, hypergeometric, Poisson and uniform discrete",
+        3
+      ],
+      [
+        "learning_objective",
+        "2.1.2 Normal, lognormal, exponential, gamma, chi-square, t, F, beta and uniform continuous",
+        3
+      ],
+      [
+        "learning_objective",
+        "2.1.3 Evaluation of probabilities and quantiles associated with these distributions",
+        3
+      ],
+      [
+        "learning_objective",
+        "2.1.4 Poisson process and the connection between the Poisson process and the",
+        3
+      ],
+      [
+        "learning_objective",
+        "2.1.5 Generation of basic discrete and continuous random variables using the inverse",
+        3
+      ],
+      [
+        "learning_objective",
+        "2.1.6 Generation of discrete and continuous random variables using statistical software",
+        3
+      ],
+      [
+        "topic",
+        "2.2 Determine the characteristics of jointly distributed random variables",
+        3
+      ],
+      [
+        "learning_objective",
+        "2.2.1 Probability function or density function for marginal and conditional distributions of jointly",
+        3
+      ],
+      [
+        "learning_objective",
+        "2.2.2 The conditions under which random variables are independent",
+        3
+      ],
+      [
+        "learning_objective",
+        "2.2.3 Covariance, the correlation and the expected value of a function of two jointly distributed",
+        4
+      ],
+      [
+        "learning_objective",
+        "2.2.4 Mean and variance of linear combinations of random variables",
+        4
+      ],
+      [
+        "topic",
+        "2.3 Evaluate expectations and conditional expectations",
+        4
+      ],
+      [
+        "learning_objective",
+        "2.3.1 Conditional expectation of one random variable given the value of another",
+        4
+      ],
+      [
+        "learning_objective",
+        "2.3.2 Mean and variance of a random variable as an expectation of conditional expected values",
+        4
+      ],
+      [
+        "topic",
+        "2.4 Evaluate and apply generating functions",
+        4
+      ],
+      [
+        "learning_objective",
+        "2.4.1 Moment and cumulant generating functions of a random variable",
+        4
+      ],
+      [
+        "learning_objective",
+        "2.4.2 Moment calculation via series expansion or differentiation of a generating function",
+        4
+      ],
+      [
+        "topic",
+        "2.5 State and apply the central limit theorem",
+        4
+      ],
+      [
+        "learning_objective",
+        "2.5.1 Central limit theorem for a sequence of independent, identically distributed",
+        4
+      ],
+      [
+        "learning_objective",
+        "2.5.2 Comparison of simulated samples from a given distribution with the Normal distribution",
+        4
+      ],
+      [
+        "topic",
+        "2.6 Describe random sampling and the sampling distributions of statistics commonly used in",
+        4
+      ],
+      [
+        "learning_objective",
+        "2.6.1 Random samples from a population",
+        4
+      ],
+      [
+        "learning_objective",
+        "2.6.2 The sampling distribution of a statistic",
+        4
+      ],
+      [
+        "learning_objective",
+        "2.6.3 The mean and variance of a sample mean and the mean of a sample variance in terms",
+        4
+      ],
+      [
+        "learning_objective",
+        "2.6.4 Basic sampling distributions for the sample mean and variance for random samples from",
+        4
+      ],
+      [
+        "learning_objective",
+        "2.6.5 The distribution of the t-statistic for random samples from a normal distribution",
+        4
+      ],
+      [
+        "learning_objective",
+        "2.6.6 The F distribution for the ratio of two sample variances from independent samples taken",
+        4
+      ]
+    ],
+    "sample_objectives": [
+      "1.1.1 Aims of a data analysis (e.g. descriptive, inferential and predictive)",
+      "1.1.2 Stages and suitable tools used to conduct a data analysis to solve real-world problems",
+      "1.1.3 Sources of data and their characteristics, including extremely large data sets",
+      "1.1.4 Meaning and value of reproducible research and the elements required to ensure a data",
+      "1.2.1 Appropriate tools to calculate suitable summary statistics and undertake exploratory",
+      "1.2.2 Interpret and make statistical inferences using Pearson\u2019s, Spearman\u2019s and Kendall\u2019s",
+      "1.2.3 Principal component analysis to reduce the dimensionality of a complex data set",
+      "2.1.1 Geometric, binomial, negative binomial, hypergeometric, Poisson and uniform discrete",
+      "2.1.2 Normal, lognormal, exponential, gamma, chi-square, t, F, beta and uniform continuous",
+      "2.1.3 Evaluation of probabilities and quantiles associated with these distributions",
+      "2.1.4 Poisson process and the connection between the Poisson process and the",
+      "2.1.5 Generation of basic discrete and continuous random variables using the inverse",
+      "2.1.6 Generation of discrete and continuous random variables using statistical software",
+      "2.2.1 Probability function or density function for marginal and conditional distributions of jointly",
+      "2.2.2 The conditions under which random variables are independent",
+      "2.2.3 Covariance, the correlation and the expected value of a function of two jointly distributed",
+      "2.2.4 Mean and variance of linear combinations of random variables",
+      "2.3.1 Conditional expectation of one random variable given the value of another",
+      "2.3.2 Mean and variance of a random variable as an expectation of conditional expected values",
+      "2.4.1 Moment and cumulant generating functions of a random variable",
+      "2.4.2 Moment calculation via series expansion or differentiation of a generating function",
+      "2.5.1 Central limit theorem for a sequence of independent, identically distributed",
+      "2.5.2 Comparison of simulated samples from a given distribution with the Normal distribution",
+      "2.6.1 Random samples from a population",
+      "2.6.2 The sampling distribution of a statistic",
+      "2.6.3 The mean and variance of a sample mean and the mean of a sample variance in terms",
+      "2.6.4 Basic sampling distributions for the sample mean and variance for random samples from",
+      "2.6.5 The distribution of the t-statistic for random samples from a normal distribution",
+      "2.6.6 The F distribution for the ratio of two sample variances from independent samples taken",
+      "3.1.1 Method of moments for constructing estimators of population parameters",
+      "3.1.2 Method of maximum likelihood for constructing estimators of population parameters",
+      "3.1.3 Efficiency, bias, consistency and mean square error of an estimator",
+      "3.1.4 Comparison of estimators using their mean square error and bias or unbiasedness",
+      "3.1.5 Asymptotic distribution of maximum likelihood estimators",
+      "3.1.6 Bootstrap method for estimating properties of an estimator",
+      "3.2.1 Confidence interval for an unknown parameter of a distribution based on a",
+      "3.2.2 Prediction interval for a future observation based on a model fitted to a random sample",
+      "3.2.3 Confidence interval for an unknown parameter using a given sampling distribution",
+      "3.2.4 Confidence intervals for the mean and the variance of a normal distribution",
+      "3.2.5 Confidence intervals for a binomial probability and a Poisson mean, including the use of",
+      "3.2.6 Confidence intervals for two-sample situations involving the normal distribution and the",
+      "3.2.7 Confidence intervals for a difference between two means from paired data",
+      "3.2.8 Bootstrap method to obtain confidence intervals",
+      "3.3.1 Understand the concepts of Null and alternative hypotheses, simple and composite",
+      "3.3.2 Use of basic tests for the one-sample and two-sample situations involving the normal,",
+      "3.3.3 The permutation approach to non-parametric hypothesis tests",
+      "3.3.4 Chi-square test to test the hypothesis that a random sample is from a particular",
+      "3.3.5 A contingency (or two-way) table, and use of a chi-square test to test the independence",
+      "4.1.1 Response and explanatory variables",
+      "4.1.2 Simple regression model (with a single explanatory variable) and multiple linear"
+    ],
+    "noise_roles": {
+      "unspecified": 1,
+      "qualification_information": 8,
+      "front_matter": 100,
+      "publisher_metadata": 10,
+      "educational_content": 128,
+      "learning_objective": 72,
+      "assessment_logistics": 5
+    }
+  },
+  "cmp": {
+    "chapters": 16,
+    "topics": 936,
+    "objectives": 82,
+    "entity_counts": {
+      "subject": 1,
+      "module": 16,
+      "topic": 936,
+      "learning_objective": 82,
+      "practice_question": 249,
+      "formula": 131,
+      "concept": 103,
+      "example": 22,
+      "source_reference": 1
+    },
+    "front_matter_contamination": 0.0,
+    "quality": {
+      "front_matter_contamination": 0.0,
+      "hierarchy_accuracy_proxy": 0.0,
+      "topic_coherence_proxy": 0.8628,
+      "duplicate_rate": 0.0406,
+      "objective_density": 0.0876,
+      "mean_topic_title_length": 32.0,
+      "section_balance": 0.155,
+      "parser_confidence": 0.7983
+    },
+    "sample_titles": [
+      [
+        "subject",
+        "CS1",
+        null
+      ],
+      [
+        "module",
+        "CS1-01: Probability distributions",
+        35
+      ],
+      [
+        "topic",
+        "Probability distributions",
+        35
+      ],
+      [
+        "topic",
+        "1.1 Define basic univariate distributions and use them to calculate probabilities,",
+        35
+      ],
+      [
+        "learning_objective",
+        "1.1.1 Define and explain the key characteristics of the discrete distributions:",
+        35
+      ],
+      [
+        "learning_objective",
+        "1.1.2 Define and explain the key characteristics of the continuous distributions:",
+        35
+      ],
+      [
+        "learning_objective",
+        "1.1.3 Evaluate probabilities and quantiles associated with distributions (by",
+        35
+      ],
+      [
+        "learning_objective",
+        "1.1.4 Define and explain the key characteristics of the Poisson process and",
+        35
+      ],
+      [
+        "learning_objective",
+        "1.1.5 Generate basic discrete and continuous random variables using the inverse",
+        35
+      ],
+      [
+        "learning_objective",
+        "1.1.6 Generate discrete and continuous random variables using statistical",
+        35
+      ],
+      [
+        "topic",
+        "1 Important discrete distributions",
+        37
+      ],
+      [
+        "topic",
+        "1.1 Uniform distribution",
+        37
+      ],
+      [
+        "practice_question",
+        "Practice",
+        37
+      ],
+      [
+        "formula",
+        "Formula",
+        38
+      ],
+      [
+        "formula",
+        "Formula",
+        38
+      ],
+      [
+        "formula",
+        "Formula",
+        38
+      ],
+      [
+        "topic",
+        "1.2 Bernoulli distribution",
+        38
+      ],
+      [
+        "formula",
+        "Formula",
+        38
+      ],
+      [
+        "topic",
+        "1.3 Binomial distribution",
+        39
+      ],
+      [
+        "practice_question",
+        "Practice",
+        40
+      ],
+      [
+        "formula",
+        "Formula",
+        40
+      ],
+      [
+        "formula",
+        "Formula",
+        40
+      ],
+      [
+        "topic",
+        "1.4 Geometric distribution",
+        41
+      ],
+      [
+        "practice_question",
+        "Practice",
+        41
+      ],
+      [
+        "concept",
+        "Warning",
+        42
+      ],
+      [
+        "practice_question",
+        "Practice",
+        42
+      ],
+      [
+        "practice_question",
+        "Practice",
+        42
+      ],
+      [
+        "topic",
+        "1.5 Negative binomial distribution",
+        43
+      ],
+      [
+        "concept",
+        "Note",
+        43
+      ],
+      [
+        "concept",
+        "Note",
+        43
+      ],
+      [
+        "practice_question",
+        "Practice",
+        43
+      ],
+      [
+        "topic",
+        "1.6 Hypergeometric distribution",
+        44
+      ],
+      [
+        "concept",
+        "Note",
+        45
+      ],
+      [
+        "formula",
+        "Formula",
+        45
+      ],
+      [
+        "practice_question",
+        "Practice",
+        45
+      ],
+      [
+        "topic",
+        "1.7 Poisson distribution",
+        46
+      ],
+      [
+        "practice_question",
+        "Practice",
+        47
+      ],
+      [
+        "topic",
+        "1 2! 3!e , we obtain:",
+        47
+      ],
+      [
+        "practice_question",
+        "Practice",
+        48
+      ],
+      [
+        "practice_question",
+        "Practice",
+        49
+      ]
+    ],
+    "sample_objectives": [
+      "1.1.1 Define and explain the key characteristics of the discrete distributions:",
+      "1.1.2 Define and explain the key characteristics of the continuous distributions:",
+      "1.1.3 Evaluate probabilities and quantiles associated with distributions (by",
+      "1.1.4 Define and explain the key characteristics of the Poisson process and",
+      "1.1.5 Generate basic discrete and continuous random variables using the inverse",
+      "1.1.6 Generate discrete and continuous random variables using statistical",
+      "1.4.1 Define and determine the moment generating function of random variables.",
+      "1.4.2 Define and determine the cumulant generating function of random",
+      "1.4.3 Use generating functions to determine the moments and cumulants of",
+      "1.4.4 Identify the applications for which a moment generating function, a",
+      "1.2.1 Explain what is meant by jointly distributed random variables, marginal",
+      "1.2.2 Define the probability function/densi ty function of a marginal distribution",
+      "1.2.3 Specify the conditions under which random variables are independent.",
+      "1.2.4 Define the expected value of a function of two jointly distributed random",
+      "1.2.5 Define the probability function/density function of the sum of two",
+      "1.2.6 Derive the mean and variance of linear combinations of random variables.",
+      "1.2.7 Use generating functions to establish the distribution of linear",
+      "1.3.1 Define the conditional expectation of one random variable given the value of",
+      "1.3.2 Show how the mean and variance of a random variable can be obtained from",
+      "1.5.1 State the Central Limit Theorem for a sequence of independent, identically",
+      "2.2.1 Explain what is meant by a sample, a population and statistical inference.",
+      "2.2.2 Define a random sample from a distribution of a random variable.",
+      "2.2.3 Explain what is meant by a statistic and its sampling distribution.",
+      "2.2.4 Determine the mean and variance of a sample mean and the mean of a",
+      "2.2.5 State and use the basic sampling distributions for the sample mean and the",
+      "2.2.6 State and use the distribution of the t-statistic for random samples from a",
+      "2.2.7 State and use the F distribution for the ratio of two sample variances from",
+      "3.1.1 Describe and apply the method of moments for constructing estimators of",
+      "3.1.2 Describe and apply the method of maximum likelihood for constructing",
+      "3.1.3 Define the terms: efficiency, bias, consistency and mean squared error.",
+      "3.1.4 Define and apply the property of unbiasedness of an estimator.",
+      "3.1.5 Define the mean square error of an estimator and use it to compare",
+      "3.1.6 Describe and apply the asymptotic distribution of maximum likelihood",
+      "3.1.7 Use the bootstrap method to estimate properties of an estimator.",
+      "3.2.1 Define in general terms a confidence interval for an unknown parameter of",
+      "3.2.2 Derive a confidence interval for an unknown parameter using a given",
+      "3.2.3 Calculate confidence intervals for the mean and the variance of a normal",
+      "3.2.4 Calculate confidence intervals for a binomial probability and a Poisson",
+      "3.2.5 Calculate confidence intervals for two-sample situations involving the",
+      "3.2.6 Calculate confidence intervals for a difference between two means from",
+      "3.2.7 Use the bootstrap method to obtain confidence intervals.",
+      "12/\uf073\uf073 is not a common objective.",
+      "However the same F result is used for the more common objective of \u2018testing\u2019 whether",
+      "3.3.1 Explain what is meant by the terms null and alternative hypotheses, simple",
+      "3.3.2 Apply basic tests for the one-samp le and two-sample situations involving",
+      "3.3.3 Apply the permutation approach to non-parametric hypothesis tests.",
+      "3.3.4 Use a chi-square test to test the hypothesis that a random sample is from a",
+      "3.3.5 Explain what is meant by a contingency (or two-way) table, and use a chi-",
+      "2.1.1 Describe the purpose of exploratory data analysis.",
+      "2.1.2 Use appropriate tools to calcul ate suitable summary statistics and"
+    ],
+    "noise_roles": {
+      "unspecified": 1,
+      "front_matter": 824,
+      "publisher_metadata": 32,
+      "copyright": 43,
+      "table_of_contents": 81,
+      "assessment_logistics": 9,
+      "exercise": 253,
+      "qualification_information": 1,
+      "learning_objective": 155,
+      "references": 1,
+      "educational_content": 30322,
+      "formula": 131,
+      "example": 25,
+      "definition": 10,
+      "index": 1
+    }
+  },
+  "syllabus_first_structure": {
+    "sections": 5,
+    "topics": 15,
+    "objectives": 73
+  },
+  "coverage": {
+    "syllabus_objectives": 72,
+    "covered": 62,
+    "partially_covered": 10,
+    "not_found": 0,
+    "extra_cmp": 971,
+    "completeness": 0.9306,
+    "rows": [
+      {
+        "num": "1.1.1",
+        "title": "1.1.1 Aims of a data analysis (e.g. descriptive, inferential and predictive)",
+        "status": "covered",
+        "cmp": "1.1.1 Define and explain the key characteristics of the discrete distributions:",
+        "score": 0.7
+      },
+      {
+        "num": "1.1.2",
+        "title": "1.1.2 Stages and suitable tools used to conduct a data analysis to solve real-world problems",
+        "status": "covered",
+        "cmp": "1.1.2 Define and explain the key characteristics of the continuous distributions:",
+        "score": 0.7
+      },
+      {
+        "num": "1.1.3",
+        "title": "1.1.3 Sources of data and their characteristics, including extremely large data sets",
+        "status": "covered",
+        "cmp": "1.1.3 Evaluate probabilities and quantiles associated with distributions (by",
+        "score": 0.7
+      },
+      {
+        "num": "1.1.4",
+        "title": "1.1.4 Meaning and value of reproducible research and the elements required to ensure a data",
+        "status": "covered",
+        "cmp": "1.1.4 Define and explain the key characteristics of the Poisson process and",
+        "score": 0.7
+      },
+      {
+        "num": "1.2.1",
+        "title": "1.2.1 Appropriate tools to calculate suitable summary statistics and undertake exploratory",
+        "status": "covered",
+        "cmp": "1.2.1 Explain what is meant by jointly distributed random variables, marginal",
+        "score": 0.7
+      },
+      {
+        "num": "1.2.2",
+        "title": "1.2.2 Interpret and make statistical inferences using Pearson\u2019s, Spearman\u2019s and Kendall\u2019s",
+        "status": "covered",
+        "cmp": "1.2.2 Define the probability function/densi ty function of a marginal distribution",
+        "score": 0.7
+      },
+      {
+        "num": "1.2.3",
+        "title": "1.2.3 Principal component analysis to reduce the dimensionality of a complex data set",
+        "status": "covered",
+        "cmp": "1.2.3 Specify the conditions under which random variables are independent.",
+        "score": 0.7
+      },
+      {
+        "num": "2.1.1",
+        "title": "2.1.1 Geometric, binomial, negative binomial, hypergeometric, Poisson and uniform discrete",
+        "status": "covered",
+        "cmp": "2.1.1 Describe the purpose of exploratory data analysis.",
+        "score": 0.7
+      },
+      {
+        "num": "2.1.2",
+        "title": "2.1.2 Normal, lognormal, exponential, gamma, chi-square, t, F, beta and uniform continuous",
+        "status": "covered",
+        "cmp": "2.1.2 Use appropriate tools to calcul ate suitable summary statistics and",
+        "score": 0.7
+      },
+      {
+        "num": "2.1.3",
+        "title": "2.1.3 Evaluation of probabilities and quantiles associated with these distributions",
+        "status": "covered",
+        "cmp": "2.1.3 Define and calculate Pearson\u2019s, Spearman\u2019s and Kendall\u2019s measures of",
+        "score": 0.7
+      },
+      {
+        "num": "2.1.4",
+        "title": "2.1.4 Poisson process and the connection between the Poisson process and the",
+        "status": "covered",
+        "cmp": "2.1.4 Use Principal Components Analys is to reduce the dimensionality of a",
+        "score": 0.7
+      },
+      {
+        "num": "2.1.5",
+        "title": "2.1.5 Generation of basic discrete and continuous random variables using the inverse",
+        "status": "covered",
+        "cmp": "1.1.5 Generate basic discrete and continuous random variables using the inverse",
+        "score": 0.75
+      },
+      {
+        "num": "2.1.6",
+        "title": "2.1.6 Generation of discrete and continuous random variables using statistical software",
+        "status": "covered",
+        "cmp": "1.1.6 Generate discrete and continuous random variables using statistical",
+        "score": 0.625
+      },
+      {
+        "num": "2.2.1",
+        "title": "2.2.1 Probability function or density function for marginal and conditional distributions of jointly",
+        "status": "covered",
+        "cmp": "2.2.1 Explain what is meant by a sample, a population and statistical inference.",
+        "score": 0.7
+      },
+      {
+        "num": "2.2.2",
+        "title": "2.2.2 The conditions under which random variables are independent",
+        "status": "covered",
+        "cmp": "1.2.3 Specify the conditions under which random variables are independent.",
+        "score": 0.857
+      },
+      {
+        "num": "2.2.3",
+        "title": "2.2.3 Covariance, the correlation and the expected value of a function of two jointly distributed",
+        "status": "covered",
+        "cmp": "2.2.3 Explain what is meant by a statistic and its sampling distribution.",
+        "score": 0.7
+      },
+      {
+        "num": "2.2.4",
+        "title": "2.2.4 Mean and variance of linear combinations of random variables",
+        "status": "covered",
+        "cmp": "1.2.6 Derive the mean and variance of linear combinations of random variables.",
+        "score": 0.857
+      },
+      {
+        "num": "2.3.1",
+        "title": "2.3.1 Conditional expectation of one random variable given the value of another",
+        "status": "covered",
+        "cmp": "1.3.1 Define the conditional expectation of one random variable given the value of",
+        "score": 0.778
+      },
+      {
+        "num": "2.3.2",
+        "title": "2.3.2 Mean and variance of a random variable as an expectation of conditional expected values",
+        "status": "partially_covered",
+        "cmp": "2 Important continuous distributions",
+        "score": 0.45
+      },
+      {
+        "num": "2.4.1",
+        "title": "2.4.1 Moment and cumulant generating functions of a random variable",
+        "status": "partially_covered",
+        "cmp": "1 Moment generating functions",
+        "score": 0.5
+      },
+      {
+        "num": "2.4.2",
+        "title": "2.4.2 Moment calculation via series expansion or differentiation of a generating function",
+        "status": "partially_covered",
+        "cmp": "2 Important continuous distributions",
+        "score": 0.45
+      },
+      {
+        "num": "2.5.1",
+        "title": "2.5.1 Central limit theorem for a sequence of independent, identically distributed",
+        "status": "covered",
+        "cmp": "1.5.1 State the Central Limit Theorem for a sequence of independent, identically",
+        "score": 0.75
+      },
+      {
+        "num": "2.5.2",
+        "title": "2.5.2 Comparison of simulated samples from a given distribution with the Normal distribution",
+        "status": "partially_covered",
+        "cmp": "2 Important continuous distributions",
+        "score": 0.45
+      },
+      {
+        "num": "2.6.1",
+        "title": "2.6.1 Random samples from a population",
+        "status": "covered",
+        "cmp": "1.1 Random samples",
+        "score": 0.667
+      },
+      {
+        "num": "2.6.2",
+        "title": "2.6.2 The sampling distribution of a statistic",
+        "status": "partially_covered",
+        "cmp": "2 Important continuous distributions",
+        "score": 0.45
+      },
+      {
+        "num": "2.6.3",
+        "title": "2.6.3 The mean and variance of a sample mean and the mean of a sample variance in terms",
+        "status": "covered",
+        "cmp": "8.1 The sample mean and variance are:",
+        "score": 0.75
+      },
+      {
+        "num": "2.6.4",
+        "title": "2.6.4 Basic sampling distributions for the sample mean and variance for random samples from",
+        "status": "partially_covered",
+        "cmp": "2.2.5 State and use the basic sampling distributions for the sample mean and the",
+        "score": 0.5
+      },
+      {
+        "num": "2.6.5",
+        "title": "2.6.5 The distribution of the t-statistic for random samples from a normal distribution",
+        "status": "partially_covered",
+        "cmp": "2.2.6 State and use the distribution of the t-statistic for random samples from a",
+        "score": 0.571
+      },
+      {
+        "num": "2.6.6",
+        "title": "2.6.6 The F distribution for the ratio of two sample variances from independent samples taken",
+        "status": "partially_covered",
+        "cmp": "2.2.7 State and use the F distribution for the ratio of two sample variances from",
+        "score": 0.5
+      },
+      {
+        "num": "3.1.1",
+        "title": "3.1.1 Method of moments for constructing estimators of population parameters",
+        "status": "covered",
+        "cmp": "3.1.1 Describe and apply the method of moments for constructing estimators of",
+        "score": 0.7
+      },
+      {
+        "num": "3.1.2",
+        "title": "3.1.2 Method of maximum likelihood for constructing estimators of population parameters",
+        "status": "covered",
+        "cmp": "3.1.2 Describe and apply the method of maximum likelihood for constructing",
+        "score": 0.7
+      },
+      {
+        "num": "3.1.3",
+        "title": "3.1.3 Efficiency, bias, consistency and mean square error of an estimator",
+        "status": "covered",
+        "cmp": "3.1.3 Define the terms: efficiency, bias, consistency and mean squared error.",
+        "score": 0.7
+      },
+      {
+        "num": "3.1.4",
+        "title": "3.1.4 Comparison of estimators using their mean square error and bias or unbiasedness",
+        "status": "covered",
+        "cmp": "3.1.4 Define and apply the property of unbiasedness of an estimator.",
+        "score": 0.7
+      },
+      {
+        "num": "3.1.5",
+        "title": "3.1.5 Asymptotic distribution of maximum likelihood estimators",
+        "status": "covered",
+        "cmp": "3.1.5 Define the mean square error of an estimator and use it to compare",
+        "score": 0.7
+      },
+      {
+        "num": "3.1.6",
+        "title": "3.1.6 Bootstrap method for estimating properties of an estimator",
+        "status": "covered",
+        "cmp": "3.1.6 Describe and apply the asymptotic distribution of maximum likelihood",
+        "score": 0.7
+      },
+      {
+        "num": "3.2.1",
+        "title": "3.2.1 Confidence interval for an unknown parameter of a distribution based on a",
+        "status": "covered",
+        "cmp": "3.2.1 Define in general terms a confidence interval for an unknown parameter of",
+        "score": 0.7
+      },
+      {
+        "num": "3.2.2",
+        "title": "3.2.2 Prediction interval for a future observation based on a model fitted to a random sample",
+        "status": "covered",
+        "cmp": "3.2.2 Derive a confidence interval for an unknown parameter using a given",
+        "score": 0.7
+      },
+      {
+        "num": "3.2.3",
+        "title": "3.2.3 Confidence interval for an unknown parameter using a given sampling distribution",
+        "status": "covered",
+        "cmp": "3.2.3 Calculate confidence intervals for the mean and the variance of a normal",
+        "score": 0.7
+      },
+      {
+        "num": "3.2.4",
+        "title": "3.2.4 Confidence intervals for the mean and the variance of a normal distribution",
+        "status": "covered",
+        "cmp": "3.2.3 Calculate confidence intervals for the mean and the variance of a normal",
+        "score": 0.714
+      },
+      {
+        "num": "3.2.5",
+        "title": "3.2.5 Confidence intervals for a binomial probability and a Poisson mean, including the use of",
+        "status": "covered",
+        "cmp": "3.2.5 Calculate confidence intervals for two-sample situations involving the",
+        "score": 0.7
+      },
+      {
+        "num": "3.2.6",
+        "title": "3.2.6 Confidence intervals for two-sample situations involving the normal distribution and the",
+        "status": "covered",
+        "cmp": "3.2.6 Calculate confidence intervals for a difference between two means from",
+        "score": 0.7
+      },
+      {
+        "num": "3.2.7",
+        "title": "3.2.7 Confidence intervals for a difference between two means from paired data",
+        "status": "covered",
+        "cmp": "3.2.7 Use the bootstrap method to obtain confidence intervals.",
+        "score": 0.7
+      },
+      {
+        "num": "3.2.8",
+        "title": "3.2.8 Bootstrap method to obtain confidence intervals",
+        "status": "covered",
+        "cmp": "3.2.7 Use the bootstrap method to obtain confidence intervals.",
+        "score": 0.833
+      },
+      {
+        "num": "3.3.1",
+        "title": "3.3.1 Understand the concepts of Null and alternative hypotheses, simple and composite",
+        "status": "covered",
+        "cmp": "3.3.1 Explain what is meant by the terms null and alternative hypotheses, simple",
+        "score": 0.7
+      },
+      {
+        "num": "3.3.2",
+        "title": "3.3.2 Use of basic tests for the one-sample and two-sample situations involving the normal,",
+        "status": "covered",
+        "cmp": "3.3.2 Apply basic tests for the one-samp le and two-sample situations involving",
+        "score": 0.7
+      },
+      {
+        "num": "3.3.3",
+        "title": "3.3.3 The permutation approach to non-parametric hypothesis tests",
+        "status": "covered",
+        "cmp": "3.3.3 Apply the permutation approach to non-parametric hypothesis tests.",
+        "score": 0.857
+      },
+      {
+        "num": "3.3.4",
+        "title": "3.3.4 Chi-square test to test the hypothesis that a random sample is from a particular",
+        "status": "covered",
+        "cmp": "3.3.4 Use a chi-square test to test the hypothesis that a random sample is from a",
+        "score": 0.75
+      },
+      {
+        "num": "3.3.5",
+        "title": "3.3.5 A contingency (or two-way) table, and use of a chi-square test to test the independence",
+        "status": "covered",
+        "cmp": "3.3.5 Explain what is meant by a contingency (or two-way) table, and use a chi-",
+        "score": 0.7
+      },
+      {
+        "num": "4.1.1",
+        "title": "4.1.1 Response and explanatory variables",
+        "status": "covered",
+        "cmp": "4.1.1 Explain what is meant by response and explanatory variables.",
+        "score": 0.7
+      },
+      {
+        "num": "4.1.2",
+        "title": "4.1.2 Simple regression model (with a single explanatory variable) and multiple linear",
+        "status": "covered",
+        "cmp": "4.1.2 State the simple regression model (with a single explanatory variable).",
+        "score": 0.7
+      },
+      {
+        "num": "4.1.3",
+        "title": "4.1.3 Least squares estimates of the slope and intercept parameters in a simple linear",
+        "status": "covered",
+        "cmp": "4.1.3 Derive the least squares estimates of the slope and intercept parameters in",
+        "score": 0.7
+      },
+      {
+        "num": "4.1.4",
+        "title": "4.1.4 Use of appropriate software to fit a linear regression model to a data set and interpret",
+        "status": "covered",
+        "cmp": "4.1.4 Use appropriate statistical software to fit a simple linear regression model",
+        "score": 0.7
+      },
+      {
+        "num": "4.1.5",
+        "title": "4.1.5 Measures of model fit to select an appropriate set of explanatory variables",
+        "status": "covered",
+        "cmp": "4.1.5 State the multiple linear regre ssion model (with several explanatory",
+        "score": 0.7
+      },
+      {
+        "num": "4.2.1",
+        "title": "4.2.1 Binomial, Poisson, exponential, gamma and normal distributions as an exponential family",
+        "status": "covered",
+        "cmp": "4.2.1 Define an exponential family of distributions. Show that the following",
+        "score": 0.7
+      },
+      {
+        "num": "4.2.2",
+        "title": "4.2.2 Mean, variance, variance function and scale parameter for a generalised linear model",
+        "status": "covered",
+        "cmp": "4.2.2 State the mean and variance for an exponential family, and define the",
+        "score": 0.7
+      },
+      {
+        "num": "4.2.3",
+        "title": "4.2.3 The link function and the canonical link function, referring to the distributions in 4.2.1",
+        "status": "covered",
+        "cmp": "4.2.3 Explain what is meant by the link function and the canonical link function,",
+        "score": 0.7
+      },
+      {
+        "num": "4.2.4",
+        "title": "4.2.4 Variables, factors taking categorical values and interaction terms.",
+        "status": "partially_covered",
+        "cmp": "4 Monte Carlo simulation",
+        "score": 0.45
+      },
+      {
+        "num": "4.2.5",
+        "title": "4.2.5 Definition of the linear predictor, including its form for simple models, including",
+        "status": "covered",
+        "cmp": "4.2.5 Define the deviance and scaled de viance and state how the parameters of",
+        "score": 0.7
+      },
+      {
+        "num": "4.2.6",
+        "title": "4.2.6 Deviance scaled deviance and estimation of the parameters of a generalised linear model",
+        "status": "covered",
+        "cmp": "4.2.6 Define the Pearson and deviance residuals and describe how they may be",
+        "score": 0.7
+      },
+      {
+        "num": "4.2.7",
+        "title": "4.2.7 Choice of a suitable model using an analysis of deviance and examination of the",
+        "status": "covered",
+        "cmp": "4.2.7 Apply statistical tests to determine the acceptability of a fitted model:",
+        "score": 0.7
+      },
+      {
+        "num": "4.2.8",
+        "title": "4.2.8 Pearson and deviance residuals and their use",
+        "status": "covered",
+        "cmp": "4.2.8 Fit a generalised linear model to a data set and interpret the output.",
+        "score": 0.7
+      },
+      {
+        "num": "4.2.9",
+        "title": "4.2.9 Statistical tests to determine the acceptability of a fitted model: Pearson\u2019s chi-square test",
+        "status": "partially_covered",
+        "cmp": "4.2.7 Apply statistical tests to determine the acceptability of a fitted model:",
+        "score": 0.545
+      },
+      {
+        "num": "4.2.10",
+        "title": "4.2.10 Fit a generalised linear model to a data set and interpret the output",
+        "status": "covered",
+        "cmp": "4.2.8 Fit a generalised linear model to a data set and interpret the output.",
+        "score": 0.889
+      },
+      {
+        "num": "5.1.1",
+        "title": "5.1.1 Use of Bayes\u2019 theorem to calculate simple conditional probabilities",
+        "status": "covered",
+        "cmp": "5.1.1 Use Bayes\u2019 theorem to calculat e simple conditional probabilities.",
+        "score": 0.75
+      },
+      {
+        "num": "5.1.2",
+        "title": "5.1.2 Prior distribution, posterior distribution and conjugate prior distribution",
+        "status": "covered",
+        "cmp": "5.1.2 Explain what is meant by a prior di stribution, a posterior distribution and a",
+        "score": 0.7
+      },
+      {
+        "num": "5.1.3",
+        "title": "5.1.3 Posterior distribution for a parameter in simple cases",
+        "status": "covered",
+        "cmp": "5.1.3 Derive the posterior distributi on for a parameter in simple cases.",
+        "score": 0.7
+      },
+      {
+        "num": "5.1.4",
+        "title": "5.1.4 Use of simple loss functions to derive Bayesian estimates of parameters",
+        "status": "covered",
+        "cmp": "5.1.5 Use simple loss functions to derive Bayesian estimates of parameters.",
+        "score": 1.0
+      },
+      {
+        "num": "5.1.5",
+        "title": "5.1.5 Credible intervals in simple cases",
+        "status": "covered",
+        "cmp": "5.1.5 Use simple loss functions to derive Bayesian estimates of parameters.",
+        "score": 0.7
+      },
+      {
+        "num": "5.1.6",
+        "title": "5.1.6 Credibility premium formula and the role played by the credibility factor",
+        "status": "covered",
+        "cmp": "5.1.6 Explain what is meant by the credibility premium formula and describe the",
+        "score": 0.7
+      },
+      {
+        "num": "5.1.7",
+        "title": "5.1.7 Bayesian approach to credibility theory and its use for calculating credibility premiums in",
+        "status": "covered",
+        "cmp": "5.1.7 Explain the Bayesian approach to credibility theory and use it to derive",
+        "score": 0.7
+      },
+      {
+        "num": "5.1.8",
+        "title": "5.1.8 Empirical Bayes approach to credibility theory and its use for deriving credibility",
+        "status": "covered",
+        "cmp": "5.1.8 Explain the empirical Bayes approach to credibility theory and use it to derive",
+        "score": 0.7
+      },
+      {
+        "num": "5.1.9",
+        "title": "5.1.9 Understanding the differences between the two approaches (Bayes v Empirical Bayes)",
+        "status": "covered",
+        "cmp": "5.1.9 Explain the differences between the two approaches ( ie the Bayesian",
+        "score": 0.7
+      }
+    ]
+  },
+  "baseline_combined": {
+    "sections": 1932,
+    "topics": 5005,
+    "objectives": 21
+  },
+  "comparison": {
+    "baseline_combined": {
+      "sections": 1932,
+      "topics": 5005,
+      "objectives": 21
+    },
+    "after_syllabus_first": {
+      "sections": 5,
+      "topics": 15,
+      "objectives": 73
+    },
+    "after_cmp_raw": {
+      "sections": 16,
+      "topics": 936,
+      "objectives": 82
+    }
+  }
+}

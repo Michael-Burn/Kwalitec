@@ -1,0 +1,6 @@
+{
+  "pack_chain_id": "ei-chain-ws-cs1",
+  "cert_chain_id": "ei-chain-ws-cs1",
+  "cert_outcome": "CERTIFIED_WITH_WARNINGS",
+  "consistent": true
+}

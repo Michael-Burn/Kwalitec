@@ -1,0 +1,116 @@
+{% extends "student/base.html" %}
+{% set title = tutor.page_title %}
+{% from "design_system/macros.html" import ds_button, ds_empty_operational, ds_badge %}
+
+{% block page_header %}{% endblock %}
+
+{% block extra_head %}
+<link href="{{ versioned_static('css/design_system.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<article
+  class="ds-page ds-container ds-container--content ds-os-tutor"
+  aria-labelledby="student-tutor-title"
+  data-ux="tutor"
+>
+  <header class="ds-page-header">
+    <h1 id="student-tutor-title" class="ds-page-header__title student-page-title">{{ tutor.page_title }}</h1>
+    <p class="ds-page-header__support">{{ tutor.page_question }}</p>
+  </header>
+
+  {% if tutor.empty_reason and not tutor.can_explain %}
+    {{ ds_empty_operational(
+      tutor.empty_reason,
+      tutor.empty_action_label,
+      tutor.empty_action_href,
+      title='Tutor is waiting for today’s mission',
+      explanation=tutor.empty_reason,
+      context='Tutor explains authorised recommendations — it does not invent new study advice.'
+    ) }}
+  {% else %}
+
+  <section class="ds-tutor-context" aria-labelledby="tutor-context-title">
+    <h2 class="ds-section__title" id="tutor-context-title">Curriculum context</h2>
+    <p class="ds-tutor-context__topic">{{ tutor.topic_title }}</p>
+    <p class="ds-list__meta">Learning objective · {{ tutor.learning_objective }}</p>
+    <p class="ds-list__meta">
+      {{ ds_badge(tutor.certified_source, tone='neutral') }}
+    </p>
+    {% if tutor.conversation_context %}
+    <p class="ds-tutor-context__body">{{ tutor.conversation_context }}</p>
+    {% endif %}
+  </section>
+
+  {% if tutor.error_message %}
+  <p class="ds-tutor-error" role="alert">{{ tutor.error_message }}</p>
+  {% endif %}
+
+  {% if tutor.explanation_summary %}
+  <section class="ds-tutor-response" aria-labelledby="tutor-response-title" data-tutor-state="ready">
+    <h2 class="ds-section__title" id="tutor-response-title">Explanation</h2>
+    <p class="ds-tutor-response__body">{{ tutor.explanation_summary }}</p>
+    {% if tutor.suggested_next_action %}
+    <p class="ds-list__meta">Next · {{ tutor.suggested_next_action }}</p>
+    {% endif %}
+    {% if tutor.citations %}
+    <h3 class="ds-section__title">Sources</h3>
+    <ul class="ds-list">
+      {% for cite in tutor.citations %}
+      <li class="ds-list__row">
+        <span>{{ cite.label }}</span>
+        {% if cite.detail %}<span class="ds-list__meta">{{ cite.detail }}</span>{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </section>
+  {% else %}
+  <section class="ds-tutor-response ds-tutor-response--idle" aria-labelledby="tutor-idle-title" data-tutor-state="idle">
+    <h2 class="ds-section__title" id="tutor-idle-title">Ask for an explanation</h2>
+    <p class="ds-list__meta">{{ tutor.loading_hint }}</p>
+  </section>
+  {% endif %}
+
+  {% if tutor.can_explain %}
+  <div class="ds-primary-strip" role="group" aria-label="Primary actions">
+    <form
+      method="post"
+      action="{{ url_for('student.tutor_explain_mission') }}"
+      data-tutor-form
+    >
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <button class="ds-btn ds-btn--primary" type="submit" data-tutor-submit>
+        Explain today’s mission
+      </button>
+    </form>
+  </div>
+  {% endif %}
+
+  <div class="ds-session-exit">
+    {{ ds_button('Return Home', href=tutor.home_href, variant='ghost') }}
+  </div>
+  {% endif %}
+</article>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+(function () {
+  var form = document.querySelector("[data-tutor-form]");
+  if (!form) return;
+  form.addEventListener("submit", function () {
+    var btn = form.querySelector("[data-tutor-submit]");
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = "Preparing explanation…";
+    }
+    var idle = document.querySelector("[data-tutor-state='idle']");
+    if (idle) {
+      idle.setAttribute("data-tutor-state", "loading");
+      idle.setAttribute("aria-busy", "true");
+    }
+  });
+})();
+</script>
+{% endblock %}

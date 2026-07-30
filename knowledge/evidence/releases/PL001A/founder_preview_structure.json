@@ -1,0 +1,12 @@
+{
+  "certification_status": "CERTIFIED_WITH_WARNINGS",
+  "quality_score": 95.79,
+  "warnings": [
+    "objective_syllabus_refs: 1/73 active LOs lack syllabus ref or cmp_only_support flag"
+  ],
+  "sections": 5,
+  "topics": 15,
+  "objectives": 73,
+  "preview_eligible": true,
+  "source": "certified_snapshot"
+}

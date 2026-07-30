@@ -392,6 +392,9 @@ class DocumentUploadService:
             preview_approved=entity.facts.preview_approved,
             version_assigned=entity.facts.version_assigned,
             rollback_snapshot_created=entity.facts.rollback_snapshot_created,
+            intelligence_certified=entity.facts.intelligence_certified,
+            calibration_applied=entity.facts.calibration_applied,
+            legacy_publish_fallback=entity.facts.legacy_publish_fallback,
         )
         updated = CurriculumWorkspace.create(
             entity.workspace_id,
@@ -413,29 +416,23 @@ class DocumentUploadService:
         self._studio.registry.put_workspace(updated)
 
     def _ensure_workspace_version(self, workspace_id: str) -> str:
-        from app.application.curriculum_studio.exceptions import (
-            SubjectAlreadyExists as StudioSubjectAlreadyExists,
-        )
-        from app.application.curriculum_studio.exceptions import (
-            SubjectNotFound as StudioSubjectNotFound,
-        )
+        """Ensure Management subject/version exist for this durable workspace.
 
-        workspace = self._require_workspace(workspace_id)
-        if workspace.version_id:
-            return workspace.version_id
-        label = workspace.version_label or self._default_version_label()
+        Durable Studio projections survive process restart; Curriculum
+        Management does not. Always reconcile before trusting ``version_id``.
+        """
         try:
-            self._studio.subjects.get_subject(workspace.subject_code)
-        except StudioSubjectNotFound:
-            try:
-                self._studio.create_subject(
-                    workspace.subject_code,
-                    title=workspace.subject_title or workspace.subject_code,
-                )
-            except StudioSubjectAlreadyExists:
-                pass
-        except Exception:
-            pass
+            result = self._studio.reconcile_workspace(workspace_id)
+        except Exception as exc:
+            raise DocumentUploadError(
+                "We couldn't prepare a curriculum version for this upload. "
+                "Create the subject, then try uploading again.",
+                code="version_required",
+            ) from exc
+        if result.version_id:
+            return result.version_id
+        workspace = self._require_workspace(workspace_id)
+        label = workspace.version_label or self._default_version_label()
         try:
             record = self._studio.versions.assign_version(workspace_id, label)
             return record.version_id

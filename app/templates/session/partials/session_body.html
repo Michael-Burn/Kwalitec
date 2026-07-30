@@ -1,5 +1,5 @@
-{# DX-005C shared Session body
-   Persistent context → Current Learning Task → Learning Content → one Primary
+{# DX-005C / UX-001 shared Session body
+   Persistent context → Progress/Timer → Current Learning Task → Content → Primary
 #}
 {% from "design_system/macros.html" import
   ds_session_context,
@@ -11,10 +11,47 @@
 
 {% set s = study %}
 
-<article class="ds-page ds-container ds-container--content" aria-labelledby="session-page-title">
-  <header class="ds-page-header">
+<article
+  class="ds-page ds-container ds-container--content ds-session-page"
+  aria-labelledby="session-page-title"
+  data-ux="study-session"
+  data-session-id="{{ s.session_id }}"
+  data-mission-id="{{ s.mission_id }}"
+  data-session-surface="{{ s.surface }}"
+>
+  <header class="ds-page-header ds-session-page__header">
     <h1 id="session-page-title" class="ds-page-header__title">{{ s.page_title }}</h1>
+    <div class="ds-session-toolbar" role="toolbar" aria-label="Session controls">
+      <button
+        type="button"
+        class="ds-btn ds-btn--ghost ds-session-focus-toggle"
+        data-session-focus-toggle
+        aria-pressed="false"
+      >Focus mode</button>
+      <p class="ds-session-timer" aria-live="polite">
+        <span class="ds-list__meta">Timer</span>
+        <span data-session-timer>{{ s.context.elapsed_label or '00:00' }}</span>
+      </p>
+    </div>
   </header>
+
+  {% if s.context.session_progress %}
+  <div
+    class="ds-session-reading-progress"
+    role="progressbar"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    aria-valuenow="{{ s.reading_progress_percent|default(0) }}"
+    aria-label="Session progress {{ s.context.session_progress }}"
+    data-session-reading-progress
+  >
+    <div
+      class="ds-session-reading-progress__fill"
+      style="width: {{ s.reading_progress_percent|default(0) }}%"
+    ></div>
+    <p class="ds-list__meta">{{ s.context.session_progress }}</p>
+  </div>
+  {% endif %}
 
   {{ ds_session_context(
     s.context.subject,
@@ -22,7 +59,7 @@
     objective=s.context.objective,
     activity_label=s.context.activity_label,
     session_progress=s.context.session_progress,
-    elapsed_label=s.context.elapsed_label
+    elapsed_label=''
   ) }}
 
   {{ ds_learning_task(

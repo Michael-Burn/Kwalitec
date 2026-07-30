@@ -1,0 +1,16 @@
+{
+  "profile_id": "cal-ws-cs1-fe29d5a1d1",
+  "generations_rerun": [
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "intelligence_certified": true,
+  "post_cal_certification": "CERTIFIED_WITH_WARNINGS",
+  "stopped_at_index": null,
+  "rolled_back": false,
+  "review_pack": true,
+  "duration_s": 18.03
+}

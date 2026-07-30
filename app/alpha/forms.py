@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from flask_wtf import FlaskForm
-from wtforms import HiddenField, RadioField, StringField, TextAreaField
+from wtforms import HiddenField, RadioField, SelectField, StringField, TextAreaField
 from wtforms.validators import DataRequired, Length, Optional
 
 from app.services.alpha_feedback_service import (
@@ -70,6 +70,38 @@ class ReportProblemForm(FlaskForm):
         ],
         render_kw={"rows": 4, "maxlength": 500},
     )
+
+
+class PrivateBetaFeedbackForm(FlaskForm):
+    """PB-001 categorised student feedback with auto context capture."""
+
+    category = SelectField(
+        "What are you reporting?",
+        choices=[],
+        validators=[DataRequired(message="Please choose a category.")],
+    )
+    mission_id = HiddenField()
+    current_screen = HiddenField()
+    subject_code = HiddenField()
+    browser = HiddenField()
+    device = HiddenField()
+    path = HiddenField()
+    message = TextAreaField(
+        "Tell us more",
+        validators=[
+            DataRequired(message="Please include a short message."),
+            Length(max=1000),
+        ],
+        render_kw={"rows": 4, "maxlength": 1000},
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        from app.services.private_beta.feedback_service import (
+            PrivateBetaFeedbackService,
+        )
+
+        self.category.choices = PrivateBetaFeedbackService.category_choices()
 
 
 class SuggestImprovementForm(FlaskForm):

@@ -455,6 +455,7 @@ def make_ready_facts() -> WorkspacePublicationFacts:
         preview_approved=True,
         version_assigned=True,
         rollback_snapshot_created=True,
+        intelligence_certified=True,
     )
 
 
@@ -509,5 +510,6 @@ def seed_publishable(
         preview_approved=True,
         version_assigned=True,
         rollback_snapshot_created=True,
+        intelligence_certified=True,
     )
     return studio

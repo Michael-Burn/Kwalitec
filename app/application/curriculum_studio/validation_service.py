@@ -133,6 +133,13 @@ class ValidationService:
         run_management_gate: bool = True,
     ) -> ValidationSnapshot:
         """Validate Curriculum — Management authority; sync validation_passed."""
+        from app.application.curriculum_studio import (
+            management_reconciliation_service as reconcile,
+        )
+
+        reconcile.ManagementReconciliationService(
+            self._registry, management=self._management
+        ).reconcile_workspace(workspace_id)
         workspace = self._require_workspace(workspace_id)
 
         # Materialise extraction + default blueprints before Management gate.

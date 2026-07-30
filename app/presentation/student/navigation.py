@@ -105,11 +105,18 @@ def surface_for_endpoint(endpoint: str | None) -> ExperienceSurface:
     if endpoint.startswith("settings."):
         return ExperienceSurface.PROFILE
     # ILE-002 Decision Journal and ILE-003 Educational Timeline sit under History.
+    # UX-001 Tutor / Knowledge Map sit under Home (mission orientation).
     if endpoint in (
         "student.decision_journal",
         "student.educational_timeline",
     ):
         return ExperienceSurface.HISTORY
+    if endpoint in (
+        "student.tutor",
+        "student.tutor_explain_mission",
+        "student.knowledge_graph",
+    ):
+        return ExperienceSurface.HOME
     for surface, ep in SURFACE_ENDPOINTS.items():
         if ep == endpoint:
             return surface

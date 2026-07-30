@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0-beta.1",
+  "static_asset_version": "2.0.0-beta.1-rc001",
+  "prod_debug_false": true,
+  "csrf_base_enabled": true,
+  "session_secure": true,
+  "session_httponly": true,
+  "remember_secure": true,
+  "static_cache_1y": true,
+  "testing_csrf_off": true,
+  "upload_service_present": true,
+  "founder_login_required_mentions": 32,
+  "large_static_count": 3,
+  "large_static": [
+    [
+      963032,
+      "app/static/assets/branding/approved-kwalitec-logo-on-navy.png"
+    ],
+    [
+      963032,
+      "app/static/assets/branding/original/Final-Approved-Kwalitec-Logo.png"
+    ],
+    [
+      963032,
+      "app/static/assets/branding/original/Approved-Kwalitec-Logo.png"
+    ]
+  ],
+  "password_hash_mentions": true
+}

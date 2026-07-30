@@ -21,6 +21,7 @@ class ProvenanceSubjectKind(StrEnum):
     ENTITY = "entity"
     RELATION = "relation"
     STRUCTURAL_NODE = "structural_node"
+    EDUCATIONAL_NODE = "educational_node"
 
 
 class ProvenanceChainStage(StrEnum):

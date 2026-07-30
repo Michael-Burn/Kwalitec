@@ -1,0 +1,185 @@
+[
+  {
+    "mission_id": "pl001a-msn-1",
+    "topic_id": "node-b58d1e8e9c0e3f95",
+    "topic_title": "1.1 Describe the purpose and function of data analysis",
+    "objective_ids": [
+      "node-52e7482b55b5f21f",
+      "node-9f78d682ba273c2c",
+      "node-e7b996a7351ab718",
+      "node-bfdd622dfe533b8c"
+    ],
+    "objective_titles": [
+      "1.1.1 Aims of a data analysis (e.g. descriptive, inferential and predictive)",
+      "1.1.2 Stages and suitable tools used to conduct a data analysis to solve real-world problems",
+      "1.1.3 Sources of data and their characteristics, including extremely large data sets",
+      "1.1.4 Meaning and value of reproducible research and the elements required to ensure a data"
+    ],
+    "selection_reasons": [
+      "next_uncovered_objective",
+      "prerequisite_ready",
+      "progress_advance"
+    ],
+    "estimated_minutes": 45,
+    "calibration_notes": [
+      "difficulty_bias=exam_focused",
+      "topic_density=consolidated",
+      "granularity=balanced"
+    ],
+    "provenance": {
+      "chain_id": "ei-chain-ws-cs1",
+      "snapshot_id": "snap-8292e78b9e051c45",
+      "authority": "certified_snapshot",
+      "status": "certified_with_warnings",
+      "subject_code": "CS1",
+      "version_label": "2026.7-pl001a",
+      "curriculum_identity": "CS1:2026.7-pl001a"
+    }
+  },
+  {
+    "mission_id": "pl001a-msn-2",
+    "topic_id": "node-0314347654ee97d6",
+    "topic_title": "1.2 Complete exploratory data analysis",
+    "objective_ids": [
+      "node-2d8f40a05baf543c",
+      "node-8571c13eae6230a1",
+      "node-582a66c6c917017d"
+    ],
+    "objective_titles": [
+      "1.2.1 Appropriate tools to calculate suitable summary statistics and undertake exploratory",
+      "1.2.2 Interpret and make statistical inferences using Pearson’s, Spearman’s and Kendall’s",
+      "1.2.3 Principal component analysis to reduce the dimensionality of a complex data set"
+    ],
+    "selection_reasons": [
+      "next_uncovered_objective",
+      "prerequisite_ready",
+      "progress_advance"
+    ],
+    "estimated_minutes": 45,
+    "calibration_notes": [
+      "difficulty_bias=exam_focused",
+      "topic_density=consolidated",
+      "granularity=balanced"
+    ],
+    "provenance": {
+      "chain_id": "ei-chain-ws-cs1",
+      "snapshot_id": "snap-8292e78b9e051c45",
+      "authority": "certified_snapshot",
+      "status": "certified_with_warnings",
+      "subject_code": "CS1",
+      "version_label": "2026.7-pl001a",
+      "curriculum_identity": "CS1:2026.7-pl001a"
+    }
+  },
+  {
+    "mission_id": "pl001a-msn-3",
+    "topic_id": "node-b560ca099d047472",
+    "topic_title": "2.1 Understand the characteristics of basic univariate distributions and how to generate samples",
+    "objective_ids": [
+      "node-b7affe8553686722",
+      "node-7447bc38d6f2de4d",
+      "node-49e53355dcaafabb",
+      "node-5eb8935f916937f9",
+      "node-65dafa2f984c0b6d",
+      "node-63c08a46bf418dc4"
+    ],
+    "objective_titles": [
+      "2.1.1 Geometric, binomial, negative binomial, hypergeometric, Poisson and uniform discrete",
+      "2.1.2 Normal, lognormal, exponential, gamma, chi-square, t, F, beta and uniform continuous",
+      "2.1.3 Evaluation of probabilities and quantiles associated with these distributions",
+      "2.1.4 Poisson process and the connection between the Poisson process and the",
+      "2.1.5 Generation of basic discrete and continuous random variables using the inverse",
+      "2.1.6 Generation of discrete and continuous random variables using statistical software"
+    ],
+    "selection_reasons": [
+      "next_uncovered_objective",
+      "prerequisite_ready",
+      "progress_advance"
+    ],
+    "estimated_minutes": 45,
+    "calibration_notes": [
+      "difficulty_bias=exam_focused",
+      "topic_density=consolidated",
+      "granularity=balanced"
+    ],
+    "provenance": {
+      "chain_id": "ei-chain-ws-cs1",
+      "snapshot_id": "snap-8292e78b9e051c45",
+      "authority": "certified_snapshot",
+      "status": "certified_with_warnings",
+      "subject_code": "CS1",
+      "version_label": "2026.7-pl001a",
+      "curriculum_identity": "CS1:2026.7-pl001a"
+    }
+  },
+  {
+    "mission_id": "pl001a-msn-4",
+    "topic_id": "node-1c896dd384c343bf",
+    "topic_title": "2.2 Determine the characteristics of jointly distributed random variables",
+    "objective_ids": [
+      "node-0ab6bda633556419",
+      "node-a3c954c7e3f419a8",
+      "node-0ee9495d1ef186ef",
+      "node-a0228d85e2efad38"
+    ],
+    "objective_titles": [
+      "2.2.1 Probability function or density function for marginal and conditional distributions of jointly",
+      "2.2.2 The conditions under which random variables are independent",
+      "2.2.3 Covariance, the correlation and the expected value of a function of two jointly distributed",
+      "2.2.4 Mean and variance of linear combinations of random variables"
+    ],
+    "selection_reasons": [
+      "next_uncovered_objective",
+      "prerequisite_ready",
+      "progress_advance"
+    ],
+    "estimated_minutes": 45,
+    "calibration_notes": [
+      "difficulty_bias=exam_focused",
+      "topic_density=consolidated",
+      "granularity=balanced"
+    ],
+    "provenance": {
+      "chain_id": "ei-chain-ws-cs1",
+      "snapshot_id": "snap-8292e78b9e051c45",
+      "authority": "certified_snapshot",
+      "status": "certified_with_warnings",
+      "subject_code": "CS1",
+      "version_label": "2026.7-pl001a",
+      "curriculum_identity": "CS1:2026.7-pl001a"
+    }
+  },
+  {
+    "mission_id": "pl001a-msn-5",
+    "topic_id": "node-4d28e149228bc793",
+    "topic_title": "2.3 Evaluate expectations and conditional expectations",
+    "objective_ids": [
+      "node-5e3338c938d221fa",
+      "node-df41a10a42ed5752"
+    ],
+    "objective_titles": [
+      "2.3.1 Conditional expectation of one random variable given the value of another",
+      "2.3.2 Mean and variance of a random variable as an expectation of conditional expected values"
+    ],
+    "selection_reasons": [
+      "next_uncovered_objective",
+      "prerequisite_ready",
+      "progress_advance"
+    ],
+    "estimated_minutes": 45,
+    "calibration_notes": [
+      "difficulty_bias=exam_focused",
+      "topic_density=consolidated",
+      "granularity=balanced"
+    ],
+    "provenance": {
+      "chain_id": "ei-chain-ws-cs1",
+      "snapshot_id": "snap-8292e78b9e051c45",
+      "authority": "certified_snapshot",
+      "status": "certified_with_warnings",
+      "subject_code": "CS1",
+      "version_label": "2026.7-pl001a",
+      "curriculum_identity": "CS1:2026.7-pl001a"
+    }
+  }
+]

@@ -1,6 +1,6 @@
 [project]
 name = "kwalitec"
-version = "2.0.0"
+version = "2.0.0-beta.1"
 description = "A disciplined learning system for professional exam preparation."
 requires-python = ">=3.11"
 readme = "README.md"

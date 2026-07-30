@@ -26,6 +26,17 @@ from app.models.assessment_pipeline import (
     ApPerformanceSummary,
 )
 from app.models.curriculum import Curriculum, Section, Topic
+from app.models.curriculum_generation import (
+    EiCalibrationProfile,
+    EiCertificationRecord,
+    EiDecisionLedgerEntry,
+    EiEducationalNode,
+    EiGeneration,
+    EiGenerationChain,
+    EiGenerationSnapshot,
+    EiLineageOperation,
+    EiRegressionReport,
+)
 from app.models.curriculum_intelligence import (
     CipAuditEvent,
     CipConfidenceFactor,
@@ -117,6 +128,14 @@ from app.models.learning_graph import (
 )
 from app.models.mission import Mission, MissionTask
 from app.models.platform_integration import RuntimeEnrolmentRoutingAudit
+from app.models.private_beta import (
+    FEEDBACK_CATEGORIES,
+    FEEDBACK_SEVERITIES,
+    OBSERVATION_FIELDS,
+    PrivateBetaFeedback,
+    PrivateBetaObservation,
+    PrivateBetaParticipant,
+)
 from app.models.recommendation_commitment import RecommendationCommitment
 from app.models.research_feedback import (
     FEATURE_AREA_CHOICES,
@@ -228,6 +247,15 @@ __all__ = [
     "CipEmbeddingRecord",
     "CipLocalVectorEntry",
     "CipRetrievalLog",
+    "EiGenerationChain",
+    "EiGeneration",
+    "EiGenerationSnapshot",
+    "EiEducationalNode",
+    "EiLineageOperation",
+    "EiRegressionReport",
+    "EiCertificationRecord",
+    "EiDecisionLedgerEntry",
+    "EiCalibrationProfile",
     "SciStudentCurriculumInstance",
     "SciCurriculumNodeState",
     "LeeEvidenceEvent",
@@ -287,6 +315,12 @@ __all__ = [
     "V2EvidenceEvent",
     "PresentationEvent",
     "AlphaFeedbackSubmission",
+    "PrivateBetaParticipant",
+    "PrivateBetaFeedback",
+    "PrivateBetaObservation",
+    "FEEDBACK_CATEGORIES",
+    "FEEDBACK_SEVERITIES",
+    "OBSERVATION_FIELDS",
     "AnalyticsEventRecord",
     "AnalyticsOutboxRecord",
     "AnalyticsAuditLogRecord",

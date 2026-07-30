@@ -1,0 +1,12 @@
+{
+  "certified_loaded": true,
+  "mission_topic_sample": [
+    "1.1 Describe the purpose and function of data analysis",
+    "1.2 Complete exploratory data analysis",
+    "2.1 Understand the characteristics of basic univariate distributions and how to generate samples",
+    "2.2 Determine the characteristics of jointly distributed random variables",
+    "2.3 Evaluate expectations and conditional expectations"
+  ],
+  "missions_ok": true,
+  "observatory_ok": true
+}

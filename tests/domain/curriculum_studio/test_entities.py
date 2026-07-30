@@ -233,16 +233,31 @@ def test_checklist_ready_when_all_facts_true():
     assert checklist.item(ChecklistItemCode.READY_TO_PUBLISH).satisfied is True
 
 
-@pytest.mark.parametrize("code", list(CHECKLIST_ORDER[:-1]))
+@pytest.mark.parametrize(
+    "code",
+    [
+        ChecklistItemCode.CMP_UPLOADED,
+        ChecklistItemCode.OFFICIAL_SYLLABUS_UPLOADED,
+        ChecklistItemCode.VALIDATION_PASSED,
+        ChecklistItemCode.BLUEPRINT_ASSIGNED,
+        ChecklistItemCode.PREVIEW_BUILT,
+        ChecklistItemCode.PREVIEW_APPROVED,
+        ChecklistItemCode.VERSION_ASSIGNED,
+        ChecklistItemCode.ROLLBACK_SNAPSHOT_CREATED,
+        ChecklistItemCode.INTELLIGENCE_CERTIFIED,
+    ],
+)
 def test_checklist_ready_requires_each_prerequisite(code):
     kwargs = {
         "cmp_uploaded": True,
         "official_syllabus_uploaded": True,
         "validation_passed": True,
         "blueprint_assigned": True,
+        "preview_built": True,
         "preview_approved": True,
         "version_assigned": True,
         "rollback_snapshot_created": True,
+        "intelligence_certified": True,
     }
     field_map = {
         ChecklistItemCode.CMP_UPLOADED: "cmp_uploaded",
@@ -253,6 +268,7 @@ def test_checklist_ready_requires_each_prerequisite(code):
         ChecklistItemCode.PREVIEW_APPROVED: "preview_approved",
         ChecklistItemCode.VERSION_ASSIGNED: "version_assigned",
         ChecklistItemCode.ROLLBACK_SNAPSHOT_CREATED: "rollback_snapshot_created",
+        ChecklistItemCode.INTELLIGENCE_CERTIFIED: "intelligence_certified",
     }
     kwargs[field_map[code]] = False
     checklist = PublicationChecklist.compute(make_facts(**kwargs))

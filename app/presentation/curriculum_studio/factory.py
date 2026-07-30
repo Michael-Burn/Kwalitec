@@ -39,10 +39,33 @@ _G_UPLOAD_KEY = "curriculum_document_upload_service"
 
 def build_studio_service() -> CurriculumStudioService:
     """Construct CurriculumStudioService with production Management/Ingestion ports."""
-    return CurriculumStudioService.create(
+    service = CurriculumStudioService.create(
         curriculum_management=CurriculumManagementAdapter(),
         curriculum_ingestion=CurriculumIngestionAdapter(),
     )
+    _bind_certified_preview(service)
+    return service
+
+
+def _bind_certified_preview(service: CurriculumStudioService) -> None:
+    """Wire EI certified-snapshot dual-read into structure prep / preview."""
+    try:
+        from app.application.platform_integration.publication_bridge import (
+            bind_certified_structure_loader,
+        )
+
+        structure = getattr(service.preview, "_structure", None)
+        if structure is not None:
+            bind_certified_structure_loader(structure)
+        validation_structure = getattr(service.validation, "_structure", None)
+        if validation_structure is not None:
+            bind_certified_structure_loader(validation_structure)
+    except Exception:  # noqa: BLE001 — Studio must boot without EI store
+        import logging
+
+        logging.getLogger(__name__).exception(
+            "Failed to bind certified snapshot preview for Curriculum Studio"
+        )
 
 
 def build_document_upload_service(
@@ -84,6 +107,16 @@ def init_curriculum_studio(flask_app: Flask) -> CurriculumStudioService:
     flask_app.config[_UPLOAD_CONFIG_KEY] = build_document_upload_service(
         flask_app, studio=service
     )
+    # Bounded-context recovery: durable Studio projections may outlive the
+    # in-memory Curriculum Management catalogue across process restart.
+    try:
+        service.reconcile_all()
+    except Exception:  # noqa: BLE001 — boot must not fail closed on reconcile
+        import logging
+
+        logging.getLogger(__name__).exception(
+            "Curriculum Management reconciliation at Studio init failed"
+        )
     return service
 
 

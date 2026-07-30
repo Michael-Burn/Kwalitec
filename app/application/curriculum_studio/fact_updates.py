@@ -1,4 +1,4 @@
-"""Helpers for copying WorkspacePublicationFacts (FV-001A)."""
+"""Helpers for copying WorkspacePublicationFacts (FV-001A / EI-002A)."""
 
 from __future__ import annotations
 
@@ -33,5 +33,12 @@ def copy_publication_facts(
         version_assigned=_pick("version_assigned", facts.version_assigned),
         rollback_snapshot_created=_pick(
             "rollback_snapshot_created", facts.rollback_snapshot_created
+        ),
+        intelligence_certified=_pick(
+            "intelligence_certified", facts.intelligence_certified
+        ),
+        calibration_applied=_pick("calibration_applied", facts.calibration_applied),
+        legacy_publish_fallback=_pick(
+            "legacy_publish_fallback", facts.legacy_publish_fallback
         ),
     )

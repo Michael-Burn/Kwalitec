@@ -77,12 +77,20 @@ def workspace_to_projection_payload(
                 "preview_approved": facts.preview_approved,
                 "version_assigned": facts.version_assigned,
                 "rollback_snapshot_created": facts.rollback_snapshot_created,
+                "intelligence_certified": facts.intelligence_certified,
+                "calibration_applied": facts.calibration_applied,
+                "legacy_publish_fallback": facts.legacy_publish_fallback,
             },
             separators=(",", ":"),
         ),
         "structure_json": json.dumps(structure, separators=(",", ":")),
         "workflow_history_json": json.dumps(history, separators=(",", ":")),
         "metadata_json": json.dumps(metadata, separators=(",", ":")),
+        "active_chain_id": metadata.get("ei_chain_id") or None,
+        "certified_snapshot_id": metadata.get("ei_certified_snapshot_id") or None,
+        "calibration_profile_id": metadata.get("ei_calibration_profile_id") or None,
+        "certification_status": metadata.get("ei_certification_status") or None,
+        "review_pack_ref": metadata.get("ei_review_pack_ref") or None,
         "estimated_workload_hours": workspace.estimated_workload_hours,
         "notes": workspace.notes,
     }
@@ -126,6 +134,9 @@ def projection_row_to_workspace(row: Any) -> CurriculumWorkspace:
         preview_approved=bool(facts_raw.get("preview_approved")),
         version_assigned=bool(facts_raw.get("version_assigned")),
         rollback_snapshot_created=bool(facts_raw.get("rollback_snapshot_created")),
+        intelligence_certified=bool(facts_raw.get("intelligence_certified")),
+        calibration_applied=bool(facts_raw.get("calibration_applied")),
+        legacy_publish_fallback=bool(facts_raw.get("legacy_publish_fallback")),
     )
     edges = tuple(
         (str(a), str(b))

@@ -1,0 +1,201 @@
+{
+  "pack_id": "pack-75cc3e7ff5ea",
+  "chain_id": "ei-chain-ws-cs1",
+  "workspace_id": "ws-cs1",
+  "generation_comparison": [
+    {
+      "generation_index": 1,
+      "generation_id": "gen-4359fc5123fa4907",
+      "purpose": "raw_educational_graph",
+      "metrics": {
+        "coverage": 0.5977,
+        "hierarchy": 0.0,
+        "duplicates": 0.0,
+        "noise": 0.0805,
+        "granularity": 0.0,
+        "confidence": 0.8531,
+        "active_node_count": 323,
+        "rejected_node_count": 0,
+        "low_confidence_share": 0.0,
+        "chapters": 0,
+        "sections": 0,
+        "topics": 0,
+        "objectives": 0,
+        "evidence_quality": 0.75
+      },
+      "active_nodes": 323,
+      "rejected_nodes": 0,
+      "generation_hash": "ecdb72f278de53fecd52bb1220288e4e2c9fc7bdb9bfec4908e1262aec391c6f"
+    },
+    {
+      "generation_index": 2,
+      "generation_id": "gen-de814cc063f54d16",
+      "purpose": "noise_elimination",
+      "metrics": {
+        "coverage": 0.65,
+        "hierarchy": 0.0,
+        "duplicates": 0.0,
+        "noise": 0.0,
+        "granularity": 0.0,
+        "confidence": 0.8621,
+        "active_node_count": 297,
+        "rejected_node_count": 26,
+        "low_confidence_share": 0.0,
+        "chapters": 0,
+        "sections": 0,
+        "topics": 0,
+        "objectives": 0,
+        "evidence_quality": 0.75
+      },
+      "active_nodes": 297,
+      "rejected_nodes": 26,
+      "generation_hash": "d8bc7374921f157cd0b915d28379ca8f87d223e7d774a946ad1fd2f4eb74fc08"
+    },
+    {
+      "generation_index": 3,
+      "generation_id": "gen-d3cdbb61a3165488",
+      "purpose": "hierarchy_construction",
+      "metrics": {
+        "coverage": 1.0,
+        "hierarchy": 0.8941,
+        "duplicates": 0.0,
+        "noise": 0.0,
+        "granularity": 0.9,
+        "confidence": 0.9145,
+        "active_node_count": 94,
+        "rejected_node_count": 217,
+        "low_confidence_share": 0.0,
+        "chapters": 5,
+        "sections": 0,
+        "topics": 15,
+        "objectives": 73,
+        "evidence_quality": 0.9947
+      },
+      "active_nodes": 94,
+      "rejected_nodes": 217,
+      "generation_hash": "f8e16bf1b397639a5978ddcddd7136c280a34b62dbdbceedf8c74faca1acbf81"
+    },
+    {
+      "generation_index": 4,
+      "generation_id": "gen-48360a3d41121534",
+      "purpose": "concept_formation",
+      "metrics": {
+        "coverage": 1.0,
+        "hierarchy": 0.8941,
+        "duplicates": 0.0,
+        "noise": 0.0,
+        "granularity": 0.9,
+        "confidence": 0.9206,
+        "active_node_count": 94,
+        "rejected_node_count": 217,
+        "low_confidence_share": 0.0,
+        "chapters": 5,
+        "sections": 0,
+        "topics": 15,
+        "objectives": 73,
+        "evidence_quality": 0.9947
+      },
+      "active_nodes": 94,
+      "rejected_nodes": 217,
+      "generation_hash": "f52473ebc2a12d3ed2805ee67c9af10c6ca1012be3ba6eca9d047650ee9d2e94"
+    },
+    {
+      "generation_index": 5,
+      "generation_id": "gen-cfafe2e0bb4d8b34",
+      "purpose": "objective_intelligence",
+      "metrics": {
+        "coverage": 1.0,
+        "hierarchy": 0.8941,
+        "duplicates": 0.0,
+        "noise": 0.0,
+        "granularity": 0.9,
+        "confidence": 0.9463,
+        "active_node_count": 94,
+        "rejected_node_count": 217,
+        "low_confidence_share": 0.0,
+        "chapters": 5,
+        "sections": 0,
+        "topics": 15,
+        "objectives": 73,
+        "evidence_quality": 0.9947
+      },
+      "active_nodes": 94,
+      "rejected_nodes": 217,
+      "generation_hash": "8cfcaa61312bab0eb9bdb0dd68342ca890d13e02973cd65b886f1e58f3f3f91a"
+    },
+    {
+      "generation_index": 6,
+      "generation_id": "gen-358441f21b44e6dc",
+      "purpose": "educational_reconciliation",
+      "metrics": {
+        "coverage": 1.0,
+        "hierarchy": 0.8941,
+        "duplicates": 0.0,
+        "noise": 0.0,
+        "granularity": 0.9,
+        "confidence": 0.9463,
+        "active_node_count": 94,
+        "rejected_node_count": 217,
+        "low_confidence_share": 0.0,
+        "chapters": 5,
+        "sections": 0,
+        "topics": 15,
+        "objectives": 73,
+        "evidence_quality": 0.9947
+      },
+      "active_nodes": 94,
+      "rejected_nodes": 217,
+      "generation_hash": "3b2fbfa035070128043cd5f6aabfae9fcdc7f0f6d7a52635e5c2f5a1a4a0600e"
+    },
+    {
+      "generation_index": 7,
+      "generation_id": "gen-8292e78b9e051c45",
+      "purpose": "educational_certification",
+      "metrics": {
+        "coverage": 1.0,
+        "hierarchy": 0.8941,
+        "duplicates": 0.0,
+        "noise": 0.0,
+        "granularity": 0.9,
+        "confidence": 0.9463,
+        "active_node_count": 94,
+        "rejected_node_count": 217,
+        "low_confidence_share": 0.0,
+        "chapters": 5,
+        "sections": 0,
+        "topics": 15,
+        "objectives": 73,
+        "evidence_quality": 0.9947
+      },
+      "active_nodes": 94,
+      "rejected_nodes": 217,
+      "generation_hash": "09832f1fb46312e7161b773b2480c9fcdd36615f826fb5923c251648c33b668a"
+    }
+  ],
+  "artefact_names": [
+    "01_generation_comparison.md",
+    "02_decision_summary.md",
+    "03_coverage_matrix.md",
+    "04_hierarchy_report.md",
+    "05_evidence_report.md",
+    "06_decision_ledger_summary.md",
+    "07_regression_report.md",
+    "08_certification_report.md"
+  ],
+  "coverage_matrix": {
+    "covered": 72,
+    "missing": 0,
+    "unexpected": 1,
+    "completeness": 1.0,
+    "hierarchy_consistent": "False",
+    "source": "coverage_report_node"
+  },
+  "hierarchy_report": {
+    "chapters": 5,
+    "topics": 15,
+    "objectives": 73,
+    "hierarchy_score": 0.8941,
+    "parent_justification_failures": [],
+    "role_chain_ok": true
+  }
+}

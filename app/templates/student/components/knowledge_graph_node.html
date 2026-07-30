@@ -1,0 +1,35 @@
+{# Recursive knowledge-graph node — minimal hierarchy. Expects `node`. #}
+<li
+  class="ds-kg-node{% if node.is_current %} ds-kg-node--current{% endif %}"
+  role="treeitem"
+  aria-expanded="{{ 'true' if node.children else 'false' }}"
+  data-node-id="{{ node.node_id }}"
+  data-kind="{{ node.kind }}"
+>
+  <details class="ds-kg-details"{% if node.is_current or node.children|length <= 6 %} open{% endif %}>
+    <summary class="ds-kg-summary">
+      <span class="ds-kg-node__title">{{ node.title }}</span>
+      <span class="ds-list__meta">
+        {{ node.kind }}
+        {% if node.progress_label %} · {{ node.progress_label }}{% endif %}
+        {% if node.difficulty %} · {{ node.difficulty }}{% endif %}
+        {% if node.estimated_minutes %} · {{ node.estimated_minutes }} min{% endif %}
+      </span>
+    </summary>
+    {% if node.prerequisite_ids %}
+    <p class="ds-list__meta">Prerequisites · {{ node.prerequisite_ids|join(', ') }}</p>
+    {% endif %}
+    {% if node.objective_ids and not node.children %}
+    <p class="ds-list__meta">Objectives · {{ node.objective_ids|length }}</p>
+    {% endif %}
+    {% if node.children %}
+    <ul class="ds-kg-list" role="group">
+      {% for child in node.children %}
+        {% with node=child %}
+          {% include "student/components/knowledge_graph_node.html" %}
+        {% endwith %}
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </details>
+</li>

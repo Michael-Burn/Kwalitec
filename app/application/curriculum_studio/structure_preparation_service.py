@@ -27,10 +27,26 @@ logger = logging.getLogger(__name__)
 DEFAULT_BLUEPRINT_PROFILE_ID = "founder-default"
 
 # CIP entity kinds that represent Founder-visible curriculum structure.
-_SECTION_KINDS = frozenset({"module", "subject"})
+_SECTION_KINDS = frozenset({"module"})
 _TOPIC_KINDS = frozenset({"topic", "subtopic"})
 _OBJECTIVE_KINDS = frozenset({"learning_objective"})
 
+# EQ-001: non-educational roles must never enter Founder structure.
+_NON_CURRICULUM_ROLES = frozenset(
+    {
+        "navigation",
+        "publisher_metadata",
+        "front_matter",
+        "table_of_contents",
+        "copyright",
+        "qualification_information",
+        "assessment_logistics",
+        "appendix",
+        "index",
+        "references",
+        "blank_artefact",
+    }
+)
 
 @dataclass(frozen=True)
 class PreparedStructure:
@@ -43,6 +59,10 @@ class PreparedStructure:
     topic_titles: tuple[tuple[str, str], ...]
     blueprint_assigned: bool
     source: str
+    # Optional rich objective rows: (objective_id, title, parent_topic_id)
+    objective_rows: tuple[tuple[str, str, str], ...] = ()
+    # Optional topic → section parent map from CIP.
+    topic_section_refs: tuple[tuple[str, str], ...] = ()
 
 
 class StructurePreparationService:
@@ -113,6 +133,9 @@ class StructurePreparationService:
             preview_approved=updated.facts.preview_approved,
             version_assigned=updated.facts.version_assigned,
             rollback_snapshot_created=updated.facts.rollback_snapshot_created,
+            intelligence_certified=updated.facts.intelligence_certified,
+            calibration_applied=updated.facts.calibration_applied,
+            legacy_publish_fallback=updated.facts.legacy_publish_fallback,
         )
         final = self._registry.get_workspace(workspace_id) or updated
         self._registry.put_workspace(final.with_facts(facts))
@@ -152,6 +175,15 @@ class StructurePreparationService:
         workspace = self._registry.get_workspace(workspace_id)
         subject = workspace.subject_code if workspace else ""
         prepared = self._load_structure(workspace_id, subject)
+        section_ids = {sid for sid, _ in prepared.section_titles}
+        topic_section = {
+            tid: sid
+            for tid, sid in prepared.topic_section_refs
+            if tid and sid and sid in section_ids
+        }
+        default_section = (
+            prepared.section_titles[0][0] if prepared.section_titles else ""
+        )
         sections = [
             {
                 "section_id": sid,
@@ -168,7 +200,7 @@ class StructurePreparationService:
                 "topic_id": tid,
                 "code": tid,
                 "title": title,
-                "section_ref": sections[0]["section_id"] if sections else "",
+                "section_ref": topic_section.get(tid) or default_section,
                 "number": str(idx + 1),
                 "order_index": idx + 1,
                 "prerequisite_ids": [],
@@ -176,21 +208,33 @@ class StructurePreparationService:
             }
             for idx, (tid, title) in enumerate(prepared.topic_titles)
         ]
-        objectives = [
-            {
-                "objective_id": oid,
-                "code": oid,
-                "text": oid,
-                "topic_ref": topics[0]["topic_id"] if topics else "",
-                "number": str(idx + 1),
-                "order_index": idx + 1,
-                "estimated_minutes": 20,
-                "learning_type": "concept",
-                "cognitive_level": "understand",
-                "source_ids": [],
-            }
-            for idx, oid in enumerate(prepared.objective_ids)
-        ]
+        topic_ids = {t["topic_id"] for t in topics}
+        default_topic = topics[0]["topic_id"] if topics else ""
+        title_by_oid = {
+            oid: title for oid, title, _parent in prepared.objective_rows
+        }
+        parent_by_oid = {
+            oid: parent for oid, _title, parent in prepared.objective_rows
+        }
+        objectives = []
+        for idx, oid in enumerate(prepared.objective_ids):
+            text = title_by_oid.get(oid) or oid
+            parent = parent_by_oid.get(oid) or ""
+            topic_ref = parent if parent in topic_ids else default_topic
+            objectives.append(
+                {
+                    "objective_id": oid,
+                    "code": oid,
+                    "text": text,
+                    "topic_ref": topic_ref,
+                    "number": str(idx + 1),
+                    "order_index": idx + 1,
+                    "estimated_minutes": 20,
+                    "learning_type": "concept",
+                    "cognitive_level": "understand",
+                    "source_ids": [],
+                }
+            )
         return {
             "section_count": len(sections),
             "topic_count": len(topics),
@@ -198,11 +242,16 @@ class StructurePreparationService:
             "sections": sections,
             "topics": topics,
             "objectives": objectives,
+            "source": prepared.source,
         }
 
     def _load_structure(
         self, workspace_id: str, subject_code: str
     ) -> PreparedStructure:
+        # EI-001D dual-read: prefer certified generation snapshot when bound.
+        certified = self._from_certified_snapshot(workspace_id)
+        if certified.section_ids or certified.topic_ids:
+            return certified
         cip = self._from_cip(workspace_id)
         if cip.section_ids or cip.topic_ids:
             return cip
@@ -218,6 +267,65 @@ class StructurePreparationService:
             blueprint_assigned=False,
             source="empty",
         )
+
+    def _from_certified_snapshot(self, workspace_id: str) -> PreparedStructure:
+        """Prefer EI-001 certified snapshot when a preview loader is configured.
+
+        No UI changes — interface only. Preview consumes certified snapshots only.
+        """
+        loader = getattr(self, "_certified_preview", None)
+        if loader is None:
+            return PreparedStructure(
+                section_ids=(),
+                topic_ids=(),
+                objective_ids=(),
+                section_titles=(),
+                topic_titles=(),
+                blueprint_assigned=False,
+                source="certified_unavailable",
+            )
+        try:
+            certified = loader.get_certified_for_workspace(workspace_id)
+            if certified is None:
+                return PreparedStructure(
+                    section_ids=(),
+                    topic_ids=(),
+                    objective_ids=(),
+                    section_titles=(),
+                    topic_titles=(),
+                    blueprint_assigned=False,
+                    source="certified_empty",
+                )
+            projected = loader.project(certified)
+            return PreparedStructure(
+                section_ids=projected.section_ids,
+                topic_ids=projected.topic_ids,
+                objective_ids=projected.objective_ids,
+                section_titles=projected.section_titles,
+                topic_titles=projected.topic_titles,
+                blueprint_assigned=False,
+                source="certified_snapshot",
+                objective_rows=projected.objective_rows,
+                topic_section_refs=projected.topic_section_refs,
+            )
+        except Exception:  # noqa: BLE001 — dual-read must never break CIP path
+            logger.exception(
+                "Certified snapshot dual-read failed for workspace %s",
+                workspace_id,
+            )
+            return PreparedStructure(
+                section_ids=(),
+                topic_ids=(),
+                objective_ids=(),
+                section_titles=(),
+                topic_titles=(),
+                blueprint_assigned=False,
+                source="certified_error",
+            )
+
+    def bind_certified_preview(self, preview_service: object) -> None:
+        """Inject Founder Preview certified-snapshot loader (EI-001D interface)."""
+        self._certified_preview = preview_service
 
     def _from_cip(self, workspace_id: str) -> PreparedStructure:
         try:
@@ -278,33 +386,90 @@ class StructurePreparationService:
             .order_by(CipCurriculumEntity.id.asc())
             .all()
         )
-        section_titles: list[tuple[str, str]] = []
-        topic_titles: list[tuple[str, str]] = []
-        objectives: list[str] = []
-        seen: set[str] = set()
-        for entity in entities:
-            kind = (entity.kind or "").strip().lower()
-            eid = (entity.entity_id or "").strip()
-            title = (entity.title or eid or kind).strip()
-            if not eid or eid in seen:
-                continue
-            seen.add(eid)
-            if kind in _SECTION_KINDS:
-                section_titles.append((eid, title or eid))
-            elif kind in _TOPIC_KINDS:
-                topic_titles.append((eid, title or eid))
-            elif kind in _OBJECTIVE_KINDS:
-                objectives.append(title or eid)
+        # Syllabus-first: when an official syllabus document is present, use it
+        # as the authoritative hierarchy (WHAT). CMP remains instructional (HOW)
+        # and must not flood sections/topics with front-matter noise.
+        kind_by_doc = {
+            int(d.id): (d.kind or "").strip().lower() for d in docs if d.id is not None
+        }
+        syllabus_doc_ids = {
+            did
+            for did, k in kind_by_doc.items()
+            if k in {"syllabus", "official_syllabus"}
+        }
+        prefer_syllabus = bool(syllabus_doc_ids)
 
-        return PreparedStructure(
-            section_ids=tuple(s for s, _ in section_titles),
-            topic_ids=tuple(t for t, _ in topic_titles),
-            objective_ids=tuple(objectives),
-            section_titles=tuple(section_titles),
-            topic_titles=tuple(topic_titles),
-            blueprint_assigned=False,
-            source="cip",
-        )
+        def _content_role(entity: object) -> str:
+            raw = getattr(entity, "attributes_json", None) or "{}"
+            try:
+                import json
+
+                data = json.loads(raw) if isinstance(raw, str) else {}
+            except Exception:  # noqa: BLE001
+                return ""
+            if isinstance(data, dict):
+                return str(data.get("content_role") or "").strip().lower()
+            return ""
+
+        def _collect(source_entities: list) -> PreparedStructure:
+            section_titles: list[tuple[str, str]] = []
+            topic_titles: list[tuple[str, str]] = []
+            objective_rows: list[tuple[str, str, str]] = []
+            topic_section_refs: list[tuple[str, str]] = []
+            seen: set[str] = set()
+            for entity in source_entities:
+                role = _content_role(entity)
+                if role in _NON_CURRICULUM_ROLES:
+                    continue
+                kind = (entity.kind or "").strip().lower()
+                eid = (entity.entity_id or "").strip()
+                title = (entity.title or eid or kind).strip()
+                parent = (getattr(entity, "parent_entity_id", None) or "").strip()
+                if not eid or eid in seen:
+                    continue
+                # Never promote subject root into a section slot.
+                if kind == "subject":
+                    continue
+                seen.add(eid)
+                if kind in _SECTION_KINDS:
+                    section_titles.append((eid, title or eid))
+                elif kind in _TOPIC_KINDS:
+                    topic_titles.append((eid, title or eid))
+                    if parent:
+                        topic_section_refs.append((eid, parent))
+                elif kind in _OBJECTIVE_KINDS:
+                    # Stable entity identity — never use free-text title as id.
+                    objective_rows.append((eid, title or eid, parent))
+            return PreparedStructure(
+                section_ids=tuple(s for s, _ in section_titles),
+                topic_ids=tuple(t for t, _ in topic_titles),
+                objective_ids=tuple(
+                    oid for oid, _title, _parent in objective_rows
+                ),
+                section_titles=tuple(section_titles),
+                topic_titles=tuple(topic_titles),
+                blueprint_assigned=False,
+                source="cip_syllabus" if prefer_syllabus else "cip",
+                objective_rows=tuple(objective_rows),
+                topic_section_refs=tuple(topic_section_refs),
+            )
+
+        if prefer_syllabus:
+            syllabus_entities = [
+                e
+                for e in entities
+                if int(getattr(e, "document_id", 0) or 0) in syllabus_doc_ids
+            ]
+            prepared = _collect(syllabus_entities)
+            if prepared.section_ids or prepared.topic_ids or prepared.objective_ids:
+                return prepared
+            logger.info(
+                "Syllabus CIP entities empty after EQ-001 filter; "
+                "falling back to all documents workspace=%s",
+                workspace_id,
+            )
+
+        return _collect(list(entities))
 
     def _from_foundation(self, subject_code: str) -> PreparedStructure:
         code = (subject_code or "").strip().upper()

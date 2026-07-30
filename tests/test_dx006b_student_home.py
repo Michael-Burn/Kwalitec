@@ -198,8 +198,8 @@ def test_template_mission_first_no_legacy_chrome(app, ctx):
     assert "welcome_modal" not in html
     assert "ds-mission-panel" in html
     assert "design_system.css" in html or "ds-page" in html
-    assert "What should I do now?" in html
-    assert "Current Examination" in html
+    assert "What should I do next?" in html
+    assert "Today's Mission" in html or "Continue Session" in html
     assert "CS1 FR" in html
 
 
@@ -277,3 +277,35 @@ def test_plan_signal_without_ready_mission_is_quiet(app, ctx):
     assert page.state == "quiet"
     assert "No exam selected" not in page.empty_reason
     assert "session will be ready" in page.empty_reason.lower()
+
+
+def test_runtime_c_complete_control_is_actionable_mission(app, ctx):
+    """Runtime C home with complete_runtime_c must not fall into quiet."""
+    home = home_vm(
+        HomeSnapshot(
+            student_id="1",
+            examination_label="CS1 (CS1)",
+            has_recommendation=True,
+            recommendation_title="Study first topic",
+            can_start_session=False,
+        ),
+        unified_journey=False,
+    )
+    home = replace(
+        home,
+        primary_cta_enabled=True,
+        primary_cta_label="Mark mission complete",
+        session_control="complete_runtime_c",
+        session_control_label="Mark mission complete",
+        mission_id="msn_test_runtime_c",
+        primary_mission_title="Study first topic",
+        completion_status_label="Ready to study",
+        estimated_duration_label="30 min",
+    )
+    with app.test_request_context("/student/"):
+        page = StudentHomeService().build_home(_page(home))
+    assert page.state == "mission"
+    assert page.mission is not None
+    assert page.mission.primary_kind == "complete_runtime_c"
+    assert page.mission.mission_id == "msn_test_runtime_c"
+    assert "Mark mission complete" in page.mission.primary_label

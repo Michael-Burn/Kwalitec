@@ -1,0 +1,54 @@
+[
+  {
+    "question": "Explain this learning objective in exam terms.",
+    "primary_node_id": "node-52e7482b55b5f21f",
+    "allowed_node_ids": [
+      "node-52e7482b55b5f21f",
+      "node-9f78d682ba273c2c",
+      "node-b58d1e8e9c0e3f95",
+      "node-e7b996a7351ab718",
+      "node-bfdd622dfe533b8c"
+    ],
+    "rejected_foreign_ids": [
+      "foreign-injected-node"
+    ],
+    "excerpts": [
+      [
+        "node-52e7482b55b5f21f",
+        "Official CS1 objective text for tutor grounding."
+      ]
+    ],
+    "provenance": {
+      "chain_id": "ei-chain-ws-cs1",
+      "snapshot_id": "snap-8292e78b9e051c45",
+      "authority": "certified_snapshot",
+      "status": "certified_with_warnings",
+      "subject_code": "CS1",
+      "version_label": "2026.7-pl001a",
+      "curriculum_identity": "CS1:2026.7-pl001a"
+    },
+    "grounded": true
+  },
+  {
+    "question": "What should I revise next related to this?",
+    "primary_node_id": "node-2d8f40a05baf543c",
+    "allowed_node_ids": [
+      "node-2d8f40a05baf543c",
+      "node-0314347654ee97d6",
+      "node-b58d1e8e9c0e3f95",
+      "node-8571c13eae6230a1",
+      "node-582a66c6c917017d"
+    ],
+    "rejected_foreign_ids": [],
+    "provenance": {
+      "chain_id": "ei-chain-ws-cs1",
+      "snapshot_id": "snap-8292e78b9e051c45",
+      "authority": "certified_snapshot",
+      "status": "certified_with_warnings",
+      "subject_code": "CS1",
+      "version_label": "2026.7-pl001a",
+      "curriculum_identity": "CS1:2026.7-pl001a"
+    },
+    "grounded": true
+  }
+]

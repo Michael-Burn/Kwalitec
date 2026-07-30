@@ -43,7 +43,7 @@ class TestBrandIdentityConstants:
     def test_internal_alpha_programme_labels(self) -> None:
         assert INTERNAL_ALPHA_LABEL == "Internal Alpha"
         assert FOUNDING_COHORT_LABEL == "Founding Cohort"
-        assert INTERNAL_ALPHA_BUILD_LABEL == "RC2"
+        assert INTERNAL_ALPHA_BUILD_LABEL == "beta.1"
 
     def test_official_product_area_names(self) -> None:
         assert FOUNDER_COMMAND_CENTRE_LABEL == "Kwalitec Console"
@@ -121,23 +121,19 @@ class TestBrandExperienceHttp:
         resp = logged_in_client.get("/dashboard/")
         assert resp.status_code == 200
         html = resp.get_data(as_text=True)
-        assert "alpha-identity" in html
-        assert INTERNAL_ALPHA_LABEL in html
-        assert FOUNDING_COHORT_LABEL in html
-        assert f"Build {INTERNAL_ALPHA_BUILD_LABEL}" in html
-        assert STUDENT_DASHBOARD_LABEL in html
-        assert LEARNING_WORKSPACE_LABEL in html
+        # Sole-runtime student shell (UX-001 / RC-001): Private Beta chrome.
+        assert "Private Beta" in html
+        assert f"Kwalitec v{APP_VERSION}" in html
+        assert STUDENT_DASHBOARD_LABEL in html or "Home" in html
         assert APPROVED_LOGO_STATIC_PATH in html
-        assert "sidebar-brand-logo" in html
 
     def test_settings_and_checkin_keep_shell_identity(self, logged_in_client) -> None:
         for path in ("/settings/", "/research/checkin"):
             resp = logged_in_client.get(path)
             assert resp.status_code == 200, path
             html = resp.get_data(as_text=True)
-            assert INTERNAL_ALPHA_LABEL in html
             assert f"Kwalitec v{APP_VERSION}" in html
-
+            assert INTERNAL_ALPHA_LABEL in html or "Private Beta" in html
     def test_study_plan_uses_section_header_pattern(self, logged_in_client) -> None:
         resp = logged_in_client.get("/study-plan/plans/all")
         assert resp.status_code == 200

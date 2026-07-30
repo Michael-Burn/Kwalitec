@@ -189,6 +189,7 @@ def test_curriculum_identity_flows_validate_preview_approve_publish():
         "ws-id",
         version_assigned=True,
         rollback_snapshot_created=True,
+        intelligence_certified=True,
     )
     pub = studio.publication.publish("ws-id")
     assert pub.lifecycle_status == "published"

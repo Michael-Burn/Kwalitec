@@ -1,0 +1,96 @@
+# Syllabus hierarchy (EQ-001)
+
+- [subject] CS1
+  - [module] 1 Data analysis
+    - [topic] 1.1 Describe the purpose and function of data analysis
+      - [learning_objective] 1.1.1 Aims of a data analysis (e.g. descriptive, inferential and predictive)
+      - [learning_objective] 1.1.2 Stages and suitable tools used to conduct a data analysis to solve real-world problems
+      - [learning_objective] 1.1.3 Sources of data and their characteristics, including extremely large data sets
+      - [learning_objective] 1.1.4 Meaning and value of reproducible research and the elements required to ensure a data
+    - [topic] 1.2 Complete exploratory data analysis
+      - [learning_objective] 1.2.1 Appropriate tools to calculate suitable summary statistics and undertake exploratory
+      - [learning_objective] 1.2.2 Interpret and make statistical inferences using Pearson’s, Spearman’s and Kendall’s
+      - [learning_objective] 1.2.3 Principal component analysis to reduce the dimensionality of a complex data set
+  - [module] 2 Random variables and distributions
+    - [topic] 2.1 Understand the characteristics of basic univariate distributions and how to generate samples
+      - [learning_objective] 2.1.1 Geometric, binomial, negative binomial, hypergeometric, Poisson and uniform discrete
+      - [learning_objective] 2.1.2 Normal, lognormal, exponential, gamma, chi-square, t, F, beta and uniform continuous
+      - [learning_objective] 2.1.3 Evaluation of probabilities and quantiles associated with these distributions
+      - [learning_objective] 2.1.4 Poisson process and the connection between the Poisson process and the
+      - [learning_objective] 2.1.5 Generation of basic discrete and continuous random variables using the inverse
+      - [learning_objective] 2.1.6 Generation of discrete and continuous random variables using statistical software
+    - [topic] 2.2 Determine the characteristics of jointly distributed random variables
+      - [learning_objective] 2.2.1 Probability function or density function for marginal and conditional distributions of jointly
+      - [learning_objective] 2.2.2 The conditions under which random variables are independent
+      - [learning_objective] 2.2.3 Covariance, the correlation and the expected value of a function of two jointly distributed
+      - [learning_objective] 2.2.4 Mean and variance of linear combinations of random variables
+    - [topic] 2.3 Evaluate expectations and conditional expectations
+      - [learning_objective] 2.3.1 Conditional expectation of one random variable given the value of another
+      - [learning_objective] 2.3.2 Mean and variance of a random variable as an expectation of conditional expected values
+    - [topic] 2.4 Evaluate and apply generating functions
+      - [learning_objective] 2.4.1 Moment and cumulant generating functions of a random variable
+      - [learning_objective] 2.4.2 Moment calculation via series expansion or differentiation of a generating function
+    - [topic] 2.5 State and apply the central limit theorem
+      - [learning_objective] 2.5.1 Central limit theorem for a sequence of independent, identically distributed
+      - [learning_objective] 2.5.2 Comparison of simulated samples from a given distribution with the Normal distribution
+    - [topic] 2.6 Describe random sampling and the sampling distributions of statistics commonly used in
+      - [learning_objective] 2.6.1 Random samples from a population
+      - [learning_objective] 2.6.2 The sampling distribution of a statistic
+      - [learning_objective] 2.6.3 The mean and variance of a sample mean and the mean of a sample variance in terms
+      - [learning_objective] 2.6.4 Basic sampling distributions for the sample mean and variance for random samples from
+      - [learning_objective] 2.6.5 The distribution of the t-statistic for random samples from a normal distribution
+      - [learning_objective] 2.6.6 The F distribution for the ratio of two sample variances from independent samples taken
+  - [module] 3 Statistical inference
+    - [topic] 3.1 Construct estimators and discuss their properties
+      - [learning_objective] 3.1.1 Method of moments for constructing estimators of population parameters
+      - [learning_objective] 3.1.2 Method of maximum likelihood for constructing estimators of population parameters
+      - [learning_objective] 3.1.3 Efficiency, bias, consistency and mean square error of an estimator
+      - [learning_objective] 3.1.4 Comparison of estimators using their mean square error and bias or unbiasedness
+      - [learning_objective] 3.1.5 Asymptotic distribution of maximum likelihood estimators
+      - [learning_objective] 3.1.6 Bootstrap method for estimating properties of an estimator
+    - [topic] 3.2 Calculate confidence intervals and prediction intervals
+      - [learning_objective] 3.2.1 Confidence interval for an unknown parameter of a distribution based on a
+      - [learning_objective] 3.2.2 Prediction interval for a future observation based on a model fitted to a random sample
+      - [learning_objective] 3.2.3 Confidence interval for an unknown parameter using a given sampling distribution
+      - [learning_objective] 3.2.4 Confidence intervals for the mean and the variance of a normal distribution
+      - [learning_objective] 3.2.5 Confidence intervals for a binomial probability and a Poisson mean, including the use of
+      - [learning_objective] 3.2.6 Confidence intervals for two-sample situations involving the normal distribution and the
+      - [learning_objective] 3.2.7 Confidence intervals for a difference between two means from paired data
+      - [learning_objective] 3.2.8 Bootstrap method to obtain confidence intervals
+    - [topic] 3.3 Apply the concepts of hypothesis testing and goodness of fit
+      - [learning_objective] 3.3.1 Understand the concepts of Null and alternative hypotheses, simple and composite
+      - [learning_objective] 3.3.2 Use of basic tests for the one-sample and two-sample situations involving the normal,
+      - [learning_objective] 3.3.3 The permutation approach to non-parametric hypothesis tests
+      - [learning_objective] 3.3.4 Chi-square test to test the hypothesis that a random sample is from a particular
+      - [learning_objective] 3.3.5 A contingency (or two-way) table, and use of a chi-square test to test the independence
+  - [module] 4 Regression theory and applications
+    - [topic] 4.1 Understand and use linear regression models
+      - [learning_objective] 4.1.1 Response and explanatory variables
+      - [learning_objective] 4.1.2 Simple regression model (with a single explanatory variable) and multiple linear
+      - [learning_objective] 4.1.3 Least squares estimates of the slope and intercept parameters in a simple linear
+      - [learning_objective] 4.1.4 Use of appropriate software to fit a linear regression model to a data set and interpret
+      - [learning_objective] 4.1.5 Measures of model fit to select an appropriate set of explanatory variables
+    - [topic] 4.2 Understand and use generalised linear models
+      - [learning_objective] 4.2.1 Binomial, Poisson, exponential, gamma and normal distributions as an exponential family
+      - [learning_objective] 4.2.2 Mean, variance, variance function and scale parameter for a generalised linear model
+      - [learning_objective] 4.2.3 The link function and the canonical link function, referring to the distributions in 4.2.1
+      - [learning_objective] 4.2.4 Variables, factors taking categorical values and interaction terms.
+      - [learning_objective] 4.2.5 Definition of the linear predictor, including its form for simple models, including
+      - [learning_objective] 4.2.6 Deviance scaled deviance and estimation of the parameters of a generalised linear model
+      - [learning_objective] 4.2.7 Choice of a suitable model using an analysis of deviance and examination of the
+      - [learning_objective] 4.2.8 Pearson and deviance residuals and their use
+      - [learning_objective] 4.2.9 Statistical tests to determine the acceptability of a fitted model: Pearson’s chi-square test
+      - [learning_objective] 4.2.10 Fit a generalised linear model to a data set and interpret the output
+  - [module] 5 Bayesian statistics
+    - [topic] 5.1 Explain fundamental concepts of Bayesian statistics and use these concepts to calculate
+      - [learning_objective] 5.1.1 Use of Bayes’ theorem to calculate simple conditional probabilities
+      - [learning_objective] 5.1.2 Prior distribution, posterior distribution and conjugate prior distribution
+      - [learning_objective] 5.1.3 Posterior distribution for a parameter in simple cases
+      - [learning_objective] 5.1.4 Use of simple loss functions to derive Bayesian estimates of parameters
+      - [learning_objective] 5.1.5 Credible intervals in simple cases
+      - [learning_objective] 5.1.6 Credibility premium formula and the role played by the credibility factor
+      - [learning_objective] 5.1.7 Bayesian approach to credibility theory and its use for calculating credibility premiums in
+      - [learning_objective] 5.1.8 Empirical Bayes approach to credibility theory and its use for deriving credibility
+      - [learning_objective] 5.1.9 Understanding the differences between the two approaches (Bayes v Empirical Bayes)
+        - [learning_objective] In each examination, candidates will be expected to demonstrate, through their answers, that they have
+  - [topic] 1 Jln Kilang Timor #06-01 · Singapore 159303

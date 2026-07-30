@@ -1,0 +1,8 @@
+{
+  "C1_active_catalogue_certified": true,
+  "C2_legacy_noise_replaced": true,
+  "C3_cmp_syllabus_g1_g7": true,
+  "C4_calibration_recert": true,
+  "syllabus_pipeline": true,
+  "student_surfaces": true
+}

@@ -17,6 +17,7 @@ from app.alpha import alpha_bp
 from app.alpha.forms import (
     ExplanationClearForm,
     MissionHelpfulForm,
+    PrivateBetaFeedbackForm,
     ReportProblemForm,
     SuggestImprovementForm,
     TelemetryIngestForm,
@@ -137,6 +138,78 @@ def feedback_report_problem():
         template="alpha/feedback_report_problem.html",
         title="Report a problem",
         include_reference=True,
+    )
+
+
+@alpha_bp.route("/feedback/beta", methods=["GET", "POST"])
+@login_required
+def feedback_beta():
+    """PB-001 categorised private-beta feedback with auto context."""
+    form = PrivateBetaFeedbackForm()
+    if request.method == "GET":
+        form.mission_id.data = request.args.get("mission_id", "")
+        form.current_screen.data = request.args.get("screen", "")
+        form.subject_code.data = request.args.get("subject", "")
+        form.path.data = request.args.get("path", request.path)
+        category = (request.args.get("category") or "").strip().lower()
+        if category:
+            form.category.data = category
+
+    if form.validate_on_submit():
+        from app.services.private_beta.feedback_service import (
+            PrivateBetaFeedbackService,
+        )
+
+        mission_raw = (form.mission_id.data or "").strip()
+        mission_id = int(mission_raw) if mission_raw.isdigit() else None
+        result = PrivateBetaFeedbackService.submit(
+            user_id=current_user.id,
+            category=form.category.data,
+            message=form.message.data,
+            current_screen=form.current_screen.data,
+            subject_code=form.subject_code.data,
+            browser=form.browser.data,
+            device=form.device.data,
+            user_agent=request.headers.get("User-Agent"),
+            path=form.path.data or request.path,
+            mission_id=mission_id,
+        )
+        if not result.ok:
+            flash(result.error or "Could not save feedback.", "warning")
+            return render_template(
+                "alpha/feedback_beta.html",
+                title="Send beta feedback",
+                form=form,
+            )
+
+        PresentationTelemetryService.record(
+            EVENT_FEEDBACK_SUBMITTED,
+            user_id=current_user.id,
+            resource_type="private_beta_feedback",
+            resource_id=result.feedback_id,
+            path=request.path,
+            context={
+                "category": form.category.data or "",
+                "severity": result.severity or "",
+            },
+        )
+        flash(
+            "Thank you — your feedback helps private beta validation.",
+            "success",
+        )
+        next_url = request.args.get("next") or canonical_home_url()
+        if (
+            isinstance(next_url, str)
+            and next_url.startswith("/")
+            and not next_url.startswith("//")
+        ):
+            return redirect(next_url)
+        return redirect_to_canonical_home()
+
+    return render_template(
+        "alpha/feedback_beta.html",
+        title="Send beta feedback",
+        form=form,
     )
 
 

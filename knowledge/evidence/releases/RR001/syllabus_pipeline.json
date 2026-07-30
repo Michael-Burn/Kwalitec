@@ -1,0 +1,25 @@
+{
+  "ok": true,
+  "duration_s": 8.95,
+  "source_mode": "syllabus_authoritative",
+  "chain_id": "ei-chain-ws-cs1",
+  "intelligence_certified": true,
+  "certification": "CERTIFIED_WITH_WARNINGS",
+  "certified_snapshot_id": "snap-1db8c079c8bc43e0",
+  "metrics": {
+    "coverage": 1.0,
+    "hierarchy": 0.8941,
+    "duplicates": 0.0,
+    "noise": 0.0,
+    "granularity": 0.9,
+    "confidence": 0.9463,
+    "active_node_count": 94,
+    "rejected_node_count": 217,
+    "low_confidence_share": 0.0,
+    "chapters": 5,
+    "sections": 0,
+    "topics": 15,
+    "objectives": 73,
+    "evidence_quality": 0.9947
+  }
+}

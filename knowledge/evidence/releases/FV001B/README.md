@@ -15,4 +15,6 @@
 | 05 | Published / Ready | `05_published.png` |
 | 06 | Student Experience (after Switch) | `06_student_home.png` |
 
-Screenshots are captured after Render deploy confirmation. Until then this folder holds the capture plan only.
+**Deploy confirmed:** commit `6abacdd7d14176a0ada980bf08ea8595295c7b2f`, migration `202607290001`, static JS assets HTTP 200.
+
+PNG captures above are for operator dogfood after authenticated Founder → Student walkthrough. Public probes and regression mesh certified the release without storing screenshot binaries in this folder yet.

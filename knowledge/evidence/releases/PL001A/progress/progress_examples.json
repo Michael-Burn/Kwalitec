@@ -1,0 +1,117 @@
+{
+  "curriculum_identity": "CS1:2026.7-pl001a",
+  "subject_mastery": 0.0533,
+  "missed_objectives": [
+    "node-74875524c1f9a4b4",
+    "node-033d597d27c9f1eb",
+    "node-8ddd6d8671f594c9",
+    "node-faf4ce8301027ee9",
+    "node-930bc7de78464ff2",
+    "node-2d8f40a05baf543c",
+    "node-8571c13eae6230a1",
+    "node-582a66c6c917017d",
+    "node-0ab6bda633556419",
+    "node-a3c954c7e3f419a8",
+    "node-0ee9495d1ef186ef",
+    "node-a0228d85e2efad38",
+    "node-1fddef5c563c6dd5",
+    "node-38b8b2f8abf449e0",
+    "node-4bfa9e95f11e7e54",
+    "node-cbbe16141c6152cf",
+    "node-aaaa5844cdd35f2e",
+    "node-21b26514a65293c6",
+    "node-41cc9914cf3291d1",
+    "node-a29b449ee7c34065",
+    "node-5100c3e1d56dd67b",
+    "node-a5eed9cabf7eeeb2",
+    "node-1dd3684b790ec06b",
+    "node-d6886df8b037842d",
+    "node-83e889608420dc82",
+    "node-16cca00d65122dab",
+    "node-146241809768e07d",
+    "node-9d7c0596da211477",
+    "node-13541ea3092fdde8",
+    "node-f1a244a13efbd53c"
+  ],
+  "chapter_count": 5,
+  "topic_count": 15,
+  "objective_count": 73,
+  "stable_repeat": true,
+  "sample_objectives": [
+    {
+      "node_id": "node-74875524c1f9a4b4",
+      "mastery": 0.0,
+      "attempts": 0
+    },
+    {
+      "node_id": "node-033d597d27c9f1eb",
+      "mastery": 0.0,
+      "attempts": 0
+    },
+    {
+      "node_id": "node-8ddd6d8671f594c9",
+      "mastery": 0.0,
+      "attempts": 0
+    },
+    {
+      "node_id": "node-faf4ce8301027ee9",
+      "mastery": 0.0,
+      "attempts": 0
+    },
+    {
+      "node_id": "node-930bc7de78464ff2",
+      "mastery": 0.0,
+      "attempts": 0
+    },
+    {
+      "node_id": "node-2d8f40a05baf543c",
+      "mastery": 0.0,
+      "attempts": 0
+    },
+    {
+      "node_id": "node-8571c13eae6230a1",
+      "mastery": 0.0,
+      "attempts": 0
+    },
+    {
+      "node_id": "node-582a66c6c917017d",
+      "mastery": 0.0,
+      "attempts": 0
+    },
+    {
+      "node_id": "node-0ab6bda633556419",
+      "mastery": 0.0,
+      "attempts": 0
+    },
+    {
+      "node_id": "node-a3c954c7e3f419a8",
+      "mastery": 0.0,
+      "attempts": 0
+    },
+    {
+      "node_id": "node-0ee9495d1ef186ef",
+      "mastery": 0.0,
+      "attempts": 0
+    },
+    {
+      "node_id": "node-a0228d85e2efad38",
+      "mastery": 0.0,
+      "attempts": 0
+    },
+    {
+      "node_id": "node-1fddef5c563c6dd5",
+      "mastery": 0.0,
+      "attempts": 0
+    },
+    {
+      "node_id": "node-38b8b2f8abf449e0",
+      "mastery": 0.0,
+      "attempts": 0
+    },
+    {
+      "node_id": "node-4bfa9e95f11e7e54",
+      "mastery": 0.0,
+      "attempts": 0
+    }
+  ]
+}

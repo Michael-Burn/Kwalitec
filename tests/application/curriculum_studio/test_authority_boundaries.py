@@ -96,6 +96,7 @@ def test_publish_always_delegates_to_management(i):
         f"ws-{i}",
         version_assigned=True,
         rollback_snapshot_created=True,
+        intelligence_certified=True,
         preview_built=True,
         preview_approved=True,
         validation_passed=True,

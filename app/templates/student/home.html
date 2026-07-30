@@ -2,11 +2,12 @@
 {% set title = home.page_title if home else 'Home' %}
 {% from "design_system/macros.html" import
   ds_mission_panel,
+  ds_study_signals,
   ds_empty_operational,
   ds_button
 %}
 
-{# SOP-001: page owns the single H1 — suppress competing shell header. #}
+{# SOP-001 / UX-001: page owns the single H1 — suppress competing shell header. #}
 {% block page_header %}{% endblock %}
 
 {% block extra_head %}
@@ -18,25 +19,12 @@
   class="ds-page ds-container ds-container--content ds-os-home"
   aria-labelledby="student-home-title"
   data-sop="command-centre"
+  data-ux="premium-home"
 >
   <header class="ds-page-header">
     <h1 id="student-home-title" class="ds-page-header__title student-page-title">{{ home.page_title }}</h1>
     <p class="ds-page-header__support">{{ home.page_question }}</p>
   </header>
-
-  {# ——— Current Examination ——— #}
-  {% if home.examination %}
-  <section class="ds-os-exam" aria-labelledby="os-exam-title" data-sop-section="current-examination">
-    <h2 class="ds-section__title" id="os-exam-title">Current Examination</h2>
-    <p class="ds-os-exam__label">{{ home.examination.label }}</p>
-    {% if home.examination.countdown_label %}
-    <p class="ds-list__meta">{{ home.examination.countdown_label }}</p>
-    {% endif %}
-    {% if home.examination.detail %}
-    <p class="ds-list__meta">{{ home.examination.detail }}</p>
-    {% endif %}
-  </section>
-  {% endif %}
 
   {# ——— Empty: no exam / no plan ——— #}
   {% if home.state == 'empty' %}
@@ -48,12 +36,15 @@
       home.empty_action_href,
       title=home.empty_reason,
       explanation='Choose an exam to open your Study Plan and unlock today’s Mission.',
-      context='Home answers one question: what should I do now?'
+      context='Home answers one question: what should I do next?'
     ) }}
   </section>
 
   {# ——— Quiet: plan exists, mission not ready ——— #}
   {% elif home.state == 'quiet' %}
+  {% if home.signals %}
+    {{ ds_study_signals(home.signals) }}
+  {% endif %}
   <section class="ds-section" aria-labelledby="ds-mission-title" data-student-state="quiet" data-sop-section="todays-mission">
     <h2 class="ds-section__title" id="ds-mission-title">{{ home.mission_section_title }}</h2>
     <p class="ds-list__meta" role="status">{{ home.empty_reason }}</p>
@@ -66,15 +57,22 @@
 
   {# ——— Day complete: quiet, no Primary ——— #}
   {% elif home.state == 'day_complete' and home.mission %}
+  {% if home.signals %}
+    {{ ds_study_signals(home.signals) }}
+  {% endif %}
   {{ ds_mission_panel(
     home.mission.subject_name,
     home.mission.objective,
     primary_label='',
     status_label=home.mission.status_label,
     include_primary=false,
-    section_title=home.mission_section_title
+    section_title=home.mission_section_title,
+    title=home.mission.title,
+    duration_label=home.mission.duration_label,
+    difficulty_label=home.mission.difficulty_label,
+    learning_objective=home.mission.learning_objective
   ) }}
-  <p class="ds-list__meta" role="status" data-day-complete="true">{{ home.day_complete_message }}</p>
+  <p class="ds-list__meta ds-success-line" role="status" data-day-complete="true">{{ home.day_complete_message }}</p>
 
   {# ——— L0 Today's Mission / Continue Session + exactly one Primary ——— #}
   {% elif home.mission %}
@@ -87,7 +85,11 @@
     status_label=m.status_label,
     after_completion=m.after_completion,
     include_primary=false,
-    section_title=home.mission_section_title
+    section_title=home.mission_section_title,
+    title=m.title,
+    duration_label=m.duration_label,
+    difficulty_label=m.difficulty_label,
+    learning_objective=m.learning_objective
   ) }}
 
   {% if m.primary_kind == 'link' and m.primary_href %}
@@ -124,6 +126,25 @@
       >{{ m.primary_label }}</button>
     </form>
   </div>
+  {% elif m.primary_kind == 'complete_runtime_c' and complete_form %}
+  <div
+    class="ds-primary-strip"
+    role="group"
+    aria-label="Primary actions"
+    data-sop-section="todays-mission"
+    data-session-control="complete_runtime_c"
+  >
+    <form method="post" action="{{ url_for('student.complete_runtime_mission') }}">
+      {{ complete_form.hidden_tag() }}
+      {{ complete_form.mission_id() }}
+      <button
+        class="ds-btn ds-btn--primary"
+        type="submit"
+        data-student-cta="primary"
+        data-session-control="complete_runtime_c"
+      >{{ m.primary_label }}</button>
+    </form>
+  </div>
   {% elif m.primary_kind == 'revision_ack' %}
   <div
     class="ds-primary-strip"
@@ -141,6 +162,10 @@
       >{{ m.primary_label }}</button>
     </form>
   </div>
+  {% endif %}
+
+  {% if home.signals %}
+    {{ ds_study_signals(home.signals) }}
   {% endif %}
   {% endif %}
 
@@ -180,10 +205,10 @@
   {# Empty state Primary already covers Choose Exam — omit duplicate Quick Actions. #}
   {% endif %}
 
-  {# ——— Upcoming Deadlines ——— #}
+  {# ——— Upcoming milestones (exam countdown lives in signals) ——— #}
   {% if home.deadlines and home.state != 'empty' %}
   <section class="ds-os-deadlines" aria-labelledby="os-deadlines-title" data-sop-section="upcoming-deadlines">
-    <h2 class="ds-section__title" id="os-deadlines-title">Upcoming Deadlines</h2>
+    <h2 class="ds-section__title" id="os-deadlines-title">Upcoming</h2>
     <ul class="ds-list">
       {% for item in home.deadlines %}
       <li class="ds-list__row">

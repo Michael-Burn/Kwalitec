@@ -12,6 +12,9 @@ import uuid
 from datetime import UTC, date, datetime
 from typing import Any
 
+from app.application.curriculum_intelligence.certified_mission_engine import (
+    CertifiedMissionEngine,
+)
 from app.application.curriculum_studio_foundation.authority import (
     PublishedCurriculumAuthority,
 )
@@ -97,6 +100,7 @@ class EducationalRuntimeEngineService:
         artefacts: EducationalEngineFoundationService | None = None,
         coexistence: RuntimeCoexistencePolicy | None = None,
         quality: EducationalQualityCertifier | None = None,
+        certified_missions: CertifiedMissionEngine | None = None,
     ) -> None:
         self._authority = authority or PublishedCurriculumAuthority()
         self._artefacts = artefacts or EducationalEngineFoundationService(
@@ -106,6 +110,8 @@ class EducationalRuntimeEngineService:
             authority=self._authority
         )
         self._quality = quality or EducationalQualityCertifier()
+        # EI-002B: optional certified LO mission selector (defaults on).
+        self._certified_missions = certified_missions or CertifiedMissionEngine()
 
     # ── Enrolment ─────────────────────────────────────────────────────────
 
@@ -289,12 +295,22 @@ class EducationalRuntimeEngineService:
                 completed_topic_ids=progress.completed_topic_ids,
             )
 
-        template = self._mission_template_for_topic(
-            artefacts, progress.current_topic_id
+        package = self._authority.get_active(enrolment.subject_code)
+        package_dict = package.package if package is not None else {}
+        certified_spec = self._select_certified_mission(
+            package_dict,
+            completed_topic_ids=progress.completed_topic_ids,
+            artefacts=artefacts,
         )
+        topic_id = (
+            certified_spec.topic_id
+            if certified_spec is not None
+            else progress.current_topic_id
+        )
+        template = self._mission_template_for_topic(artefacts, topic_id)
         if template is None:
             raise IllegalRuntimeState(
-                f"no mission template for topic {progress.current_topic_id}"
+                f"no mission template for topic {topic_id}"
             )
 
         # EQ-M07: refuse generation when prerequisites are not satisfied
@@ -314,6 +330,11 @@ class EducationalRuntimeEngineService:
                 f"unsatisfied prerequisites: {missing}"
             )
 
+        objective_ids = list(
+            certified_spec.objective_ids
+            if certified_spec is not None
+            else template.objective_ids
+        )
         mission = RuntimeMissionInstance(
             mission_instance_id=_new_id("msn"),
             plan_instance_id=plan.plan_instance_id,
@@ -329,6 +350,26 @@ class EducationalRuntimeEngineService:
         )
         db.session.add(mission)
         plan.current_topic_id = template.topic_id
+        payload: dict[str, Any] = {
+            "template_id": template.template_id,
+            "mission_date": day.isoformat(),
+            "title": template.title,
+            "objective_ids": objective_ids,
+            "estimated_duration_minutes": template.estimated_duration_minutes,
+        }
+        if certified_spec is not None:
+            payload["certified_mission_id"] = certified_spec.mission_id
+            payload["selection_reasons"] = [
+                r.value for r in certified_spec.selection_reasons
+            ]
+            payload["curriculum_provenance"] = {
+                "chain_id": certified_spec.provenance.chain_id,
+                "snapshot_id": certified_spec.provenance.snapshot_id,
+                "authority": certified_spec.provenance.authority,
+                "status": certified_spec.provenance.status,
+            }
+            if certified_spec.calibration_notes:
+                payload["calibration_notes"] = list(certified_spec.calibration_notes)
         self._append_event(
             event_type=EducationalEventType.MISSION_GENERATED,
             user_id=user_id,
@@ -337,13 +378,7 @@ class EducationalRuntimeEngineService:
             plan_instance_id=plan.plan_instance_id,
             topic_id=template.topic_id,
             mission_instance_id=mission.mission_instance_id,
-            payload={
-                "template_id": template.template_id,
-                "mission_date": day.isoformat(),
-                "title": template.title,
-                "objective_ids": list(template.objective_ids),
-                "estimated_duration_minutes": template.estimated_duration_minutes,
-            },
+            payload=payload,
         )
         db.session.commit()
         return self._mission_snapshot(
@@ -643,6 +678,56 @@ class EducationalRuntimeEngineService:
                 f"no active published curriculum for subject {subject_code}"
             )
         return snapshot
+
+    def _select_certified_mission(
+        self,
+        package: dict[str, Any],
+        *,
+        completed_topic_ids: tuple[str, ...] | list[str],
+        artefacts: EducationalArtefactSnapshot,
+    ):
+        """EI-002B: select Daily Mission from certified LOs when package is certified.
+
+        Pre-EI / empty certification packages keep legacy current-topic selection.
+        """
+        cert = package.get("certification") if isinstance(package, dict) else None
+        if not isinstance(cert, dict) or not cert:
+            return None
+        authority = str(cert.get("authority") or "").strip().lower()
+        status = str(cert.get("status") or "").strip().lower()
+        if authority not in {
+            "",
+            "certified_snapshot",
+            "legacy_cip_fallback",
+            "legacy_or_unspecified",
+        } and status not in {"certified", "certified_with_warnings"}:
+            if not authority.startswith("legacy"):
+                return None
+        # Mastered objectives inferred from completed topics' objective lists.
+        mastered: list[str] = []
+        completed = set(completed_topic_ids)
+        for topic in artefacts.topics:
+            tid = str(topic.get("topic_id") or "")
+            if tid in completed:
+                mastered.extend(str(o) for o in (topic.get("objective_ids") or ()))
+        calibration = None
+        structure = package.get("structure") if isinstance(package, dict) else {}
+        struct_cal = (
+            structure.get("calibration") if isinstance(structure, dict) else None
+        )
+        if isinstance(struct_cal, dict):
+            calibration = dict(struct_cal)
+        elif isinstance(package.get("calibration"), dict):
+            calibration = dict(package["calibration"])
+        try:
+            return self._certified_missions.generate(
+                package,
+                completed_node_ids=tuple(completed_topic_ids),
+                mastered_objective_ids=tuple(dict.fromkeys(mastered)),
+                calibration=calibration,
+            )
+        except ValueError:
+            return None
 
     def _require_enrolment(self, user_id: int, subject_code: str) -> RuntimeEnrolment:
         code = (subject_code or "").strip().upper()

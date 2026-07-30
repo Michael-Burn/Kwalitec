@@ -21,6 +21,8 @@ class ChecklistItemCode(StrEnum):
     PREVIEW_APPROVED = "preview_approved"
     VERSION_ASSIGNED = "version_assigned"
     ROLLBACK_SNAPSHOT_CREATED = "rollback_snapshot_created"
+    INTELLIGENCE_CERTIFIED = "intelligence_certified"
+    CALIBRATION_APPLIED = "calibration_applied"
     READY_TO_PUBLISH = "ready_to_publish"
 
 
@@ -42,6 +44,8 @@ CHECKLIST_ORDER: tuple[ChecklistItemCode, ...] = (
     ChecklistItemCode.PREVIEW_APPROVED,
     ChecklistItemCode.VERSION_ASSIGNED,
     ChecklistItemCode.ROLLBACK_SNAPSHOT_CREATED,
+    ChecklistItemCode.INTELLIGENCE_CERTIFIED,
+    ChecklistItemCode.CALIBRATION_APPLIED,
     ChecklistItemCode.READY_TO_PUBLISH,
 )
 
@@ -54,10 +58,14 @@ CHECKLIST_LABELS: dict[ChecklistItemCode, str] = {
     ChecklistItemCode.PREVIEW_APPROVED: "Preview Approved",
     ChecklistItemCode.VERSION_ASSIGNED: "Version Assigned",
     ChecklistItemCode.ROLLBACK_SNAPSHOT_CREATED: "Rollback Snapshot Created",
+    ChecklistItemCode.INTELLIGENCE_CERTIFIED: "Intelligence Certified",
+    ChecklistItemCode.CALIBRATION_APPLIED: "Calibration Applied",
     ChecklistItemCode.READY_TO_PUBLISH: "Ready To Publish",
 }
 
 # Prerequisite codes that must be satisfied for READY_TO_PUBLISH.
+# Calibration is optional (Founder may skip style calibration).
+# Intelligence may be satisfied via legacy_publish_fallback during migration.
 _READINESS_PREREQUISITES: tuple[ChecklistItemCode, ...] = (
     ChecklistItemCode.CMP_UPLOADED,
     ChecklistItemCode.OFFICIAL_SYLLABUS_UPLOADED,
@@ -67,6 +75,7 @@ _READINESS_PREREQUISITES: tuple[ChecklistItemCode, ...] = (
     ChecklistItemCode.PREVIEW_APPROVED,
     ChecklistItemCode.VERSION_ASSIGNED,
     ChecklistItemCode.ROLLBACK_SNAPSHOT_CREATED,
+    ChecklistItemCode.INTELLIGENCE_CERTIFIED,
 )
 
 
@@ -85,6 +94,9 @@ class WorkspacePublicationFacts:
     preview_approved: bool = False
     version_assigned: bool = False
     rollback_snapshot_created: bool = False
+    intelligence_certified: bool = False
+    calibration_applied: bool = False
+    legacy_publish_fallback: bool = False
 
     @classmethod
     def create(
@@ -98,6 +110,9 @@ class WorkspacePublicationFacts:
         preview_approved: bool = False,
         version_assigned: bool = False,
         rollback_snapshot_created: bool = False,
+        intelligence_certified: bool = False,
+        calibration_applied: bool = False,
+        legacy_publish_fallback: bool = False,
     ) -> WorkspacePublicationFacts:
         """Construct facts from boolean inputs."""
         return cls(
@@ -109,10 +124,16 @@ class WorkspacePublicationFacts:
             preview_approved=bool(preview_approved),
             version_assigned=bool(version_assigned),
             rollback_snapshot_created=bool(rollback_snapshot_created),
+            intelligence_certified=bool(intelligence_certified),
+            calibration_applied=bool(calibration_applied),
+            legacy_publish_fallback=bool(legacy_publish_fallback),
         )
 
     def fact_for(self, code: ChecklistItemCode) -> bool:
         """Return the raw fact for a non-derived checklist code."""
+        intelligence_satisfied = (
+            self.intelligence_certified or self.legacy_publish_fallback
+        )
         mapping = {
             ChecklistItemCode.CMP_UPLOADED: self.cmp_uploaded,
             ChecklistItemCode.OFFICIAL_SYLLABUS_UPLOADED: (
@@ -126,6 +147,8 @@ class WorkspacePublicationFacts:
             ChecklistItemCode.ROLLBACK_SNAPSHOT_CREATED: (
                 self.rollback_snapshot_created
             ),
+            ChecklistItemCode.INTELLIGENCE_CERTIFIED: intelligence_satisfied,
+            ChecklistItemCode.CALIBRATION_APPLIED: self.calibration_applied,
         }
         if code is ChecklistItemCode.READY_TO_PUBLISH:
             return all(mapping[c] for c in _READINESS_PREREQUISITES)
@@ -211,12 +234,14 @@ class PublicationChecklist:
 
     @property
     def blocking_codes(self) -> tuple[ChecklistItemCode, ...]:
-        """Codes that are not yet satisfied (excluding READY when blocked)."""
+        """Codes that are not yet satisfied (excluding READY and optional items)."""
+        optional = {ChecklistItemCode.CALIBRATION_APPLIED}
         return tuple(
             item.code
             for item in self.items
             if (
                 not item.satisfied
                 and item.code is not ChecklistItemCode.READY_TO_PUBLISH
+                and item.code not in optional
             )
         )

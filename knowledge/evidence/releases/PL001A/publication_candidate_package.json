@@ -1,0 +1,1087 @@
+{
+  "subject_code": "CS1",
+  "version_label": "2026.7-pl001a",
+  "certification": {
+    "chain_id": "ei-chain-ws-cs1",
+    "snapshot_id": "snap-8292e78b9e051c45",
+    "status": "certified_with_warnings",
+    "authority": "certified_snapshot",
+    "certification_outcome": "CERTIFIED_WITH_WARNINGS",
+    "quality_score": 95.79,
+    "coverage": 1.0,
+    "warnings": [
+      "objective_syllabus_refs: 1/73 active LOs lack syllabus ref or cmp_only_support flag"
+    ]
+  },
+  "structure": {
+    "sections": [
+      {
+        "section_id": "node-f58907f55df8b703",
+        "code": "1",
+        "title": "1 Data analysis",
+        "number": "1",
+        "order_index": 1
+      },
+      {
+        "section_id": "node-22fb4ce971c0124e",
+        "code": "2",
+        "title": "2 Random variables and distributions",
+        "number": "2",
+        "order_index": 2
+      },
+      {
+        "section_id": "node-4e426a3ee2d53154",
+        "code": "3",
+        "title": "3 Statistical inference",
+        "number": "3",
+        "order_index": 3
+      },
+      {
+        "section_id": "node-bb34726e2147cede",
+        "code": "4",
+        "title": "4 Regression theory and applications",
+        "number": "4",
+        "order_index": 4
+      },
+      {
+        "section_id": "node-ab7a6adccd8ba6c9",
+        "code": "5",
+        "title": "5 Bayesian statistics",
+        "number": "5",
+        "order_index": 5
+      }
+    ],
+    "topics": [
+      {
+        "topic_id": "node-b58d1e8e9c0e3f95",
+        "code": "T1",
+        "title": "1.1 Describe the purpose and function of data analysis",
+        "section_ref": "node-f58907f55df8b703",
+        "number": "T1",
+        "order_index": 1,
+        "estimated_minutes": 45,
+        "difficulty": "foundational",
+        "prerequisite_ids": [],
+        "learning_objective_refs": [
+          "node-52e7482b55b5f21f",
+          "node-9f78d682ba273c2c",
+          "node-e7b996a7351ab718",
+          "node-bfdd622dfe533b8c"
+        ]
+      },
+      {
+        "topic_id": "node-0314347654ee97d6",
+        "code": "T2",
+        "title": "1.2 Complete exploratory data analysis",
+        "section_ref": "node-f58907f55df8b703",
+        "number": "T2",
+        "order_index": 2,
+        "estimated_minutes": 45,
+        "difficulty": "intermediate",
+        "prerequisite_ids": [
+          "node-b58d1e8e9c0e3f95"
+        ],
+        "learning_objective_refs": [
+          "node-2d8f40a05baf543c",
+          "node-8571c13eae6230a1",
+          "node-582a66c6c917017d"
+        ]
+      },
+      {
+        "topic_id": "node-b560ca099d047472",
+        "code": "T3",
+        "title": "2.1 Understand the characteristics of basic univariate distributions and how to generate samples",
+        "section_ref": "node-22fb4ce971c0124e",
+        "number": "T3",
+        "order_index": 3,
+        "estimated_minutes": 45,
+        "difficulty": "intermediate",
+        "prerequisite_ids": [
+          "node-0314347654ee97d6"
+        ],
+        "learning_objective_refs": [
+          "node-b7affe8553686722",
+          "node-7447bc38d6f2de4d",
+          "node-49e53355dcaafabb",
+          "node-5eb8935f916937f9",
+          "node-65dafa2f984c0b6d",
+          "node-63c08a46bf418dc4"
+        ]
+      },
+      {
+        "topic_id": "node-1c896dd384c343bf",
+        "code": "T4",
+        "title": "2.2 Determine the characteristics of jointly distributed random variables",
+        "section_ref": "node-22fb4ce971c0124e",
+        "number": "T4",
+        "order_index": 4,
+        "estimated_minutes": 45,
+        "difficulty": "intermediate",
+        "prerequisite_ids": [
+          "node-b560ca099d047472"
+        ],
+        "learning_objective_refs": [
+          "node-0ab6bda633556419",
+          "node-a3c954c7e3f419a8",
+          "node-0ee9495d1ef186ef",
+          "node-a0228d85e2efad38"
+        ]
+      },
+      {
+        "topic_id": "node-4d28e149228bc793",
+        "code": "T5",
+        "title": "2.3 Evaluate expectations and conditional expectations",
+        "section_ref": "node-22fb4ce971c0124e",
+        "number": "T5",
+        "order_index": 5,
+        "estimated_minutes": 45,
+        "difficulty": "intermediate",
+        "prerequisite_ids": [
+          "node-1c896dd384c343bf"
+        ],
+        "learning_objective_refs": [
+          "node-5e3338c938d221fa",
+          "node-df41a10a42ed5752"
+        ]
+      },
+      {
+        "topic_id": "node-4e9bcb0dd3851593",
+        "code": "T6",
+        "title": "2.4 Evaluate and apply generating functions",
+        "section_ref": "node-22fb4ce971c0124e",
+        "number": "T6",
+        "order_index": 6,
+        "estimated_minutes": 45,
+        "difficulty": "intermediate",
+        "prerequisite_ids": [
+          "node-4d28e149228bc793"
+        ],
+        "learning_objective_refs": [
+          "node-56ea3221298c0cf7",
+          "node-d1b16f5f2e9f96f0"
+        ]
+      },
+      {
+        "topic_id": "node-c92260fdcbc56495",
+        "code": "T7",
+        "title": "2.5 State and apply the central limit theorem",
+        "section_ref": "node-22fb4ce971c0124e",
+        "number": "T7",
+        "order_index": 7,
+        "estimated_minutes": 45,
+        "difficulty": "intermediate",
+        "prerequisite_ids": [
+          "node-4e9bcb0dd3851593"
+        ],
+        "learning_objective_refs": [
+          "node-a2aa67f19be6ccee",
+          "node-0aaa627eb2adb37f"
+        ]
+      },
+      {
+        "topic_id": "node-e3f41751f27a8a05",
+        "code": "T8",
+        "title": "2.6 Describe random sampling and the sampling distributions of statistics commonly used in",
+        "section_ref": "node-22fb4ce971c0124e",
+        "number": "T8",
+        "order_index": 8,
+        "estimated_minutes": 45,
+        "difficulty": "intermediate",
+        "prerequisite_ids": [
+          "node-c92260fdcbc56495"
+        ],
+        "learning_objective_refs": [
+          "node-4c405d1cfec2d855",
+          "node-97f67dad2c53fe9e",
+          "node-8a953a15f299e00e",
+          "node-0104b08e8376ddbb",
+          "node-d995d9bfff74d6e7",
+          "node-65fd24f95f430c47"
+        ]
+      },
+      {
+        "topic_id": "node-71a1cb8b0dda0eaa",
+        "code": "T9",
+        "title": "3.1 Construct estimators and discuss their properties",
+        "section_ref": "node-4e426a3ee2d53154",
+        "number": "T9",
+        "order_index": 9,
+        "estimated_minutes": 45,
+        "difficulty": "intermediate",
+        "prerequisite_ids": [
+          "node-e3f41751f27a8a05"
+        ],
+        "learning_objective_refs": [
+          "node-1b1d299e8fc7b3f0",
+          "node-95e1324c3b0d78cd",
+          "node-5b5390d2edcd60c8",
+          "node-835cc5b931b22c8e",
+          "node-93b49f28e2d4b04f",
+          "node-f5a6c2df175a62a7"
+        ]
+      },
+      {
+        "topic_id": "node-402f25153310c25b",
+        "code": "T10",
+        "title": "3.2 Calculate confidence intervals and prediction intervals",
+        "section_ref": "node-4e426a3ee2d53154",
+        "number": "T10",
+        "order_index": 10,
+        "estimated_minutes": 45,
+        "difficulty": "intermediate",
+        "prerequisite_ids": [
+          "node-71a1cb8b0dda0eaa"
+        ],
+        "learning_objective_refs": [
+          "node-1dd3684b790ec06b",
+          "node-d6886df8b037842d",
+          "node-83e889608420dc82",
+          "node-16cca00d65122dab",
+          "node-146241809768e07d",
+          "node-9d7c0596da211477",
+          "node-13541ea3092fdde8",
+          "node-f1a244a13efbd53c"
+        ]
+      },
+      {
+        "topic_id": "node-ba7a206a0c8a5655",
+        "code": "T11",
+        "title": "3.3 Apply the concepts of hypothesis testing and goodness of fit",
+        "section_ref": "node-4e426a3ee2d53154",
+        "number": "T11",
+        "order_index": 11,
+        "estimated_minutes": 45,
+        "difficulty": "intermediate",
+        "prerequisite_ids": [
+          "node-402f25153310c25b"
+        ],
+        "learning_objective_refs": [
+          "node-c92d1f12b5bf136b",
+          "node-80e19b6c4da3a047",
+          "node-4ede3e138e80053e",
+          "node-9f5e3b2cc8427285",
+          "node-afed50af3fa33668"
+        ]
+      },
+      {
+        "topic_id": "node-011388b39127eccc",
+        "code": "T12",
+        "title": "4.1 Understand and use linear regression models",
+        "section_ref": "node-bb34726e2147cede",
+        "number": "T12",
+        "order_index": 12,
+        "estimated_minutes": 45,
+        "difficulty": "intermediate",
+        "prerequisite_ids": [
+          "node-ba7a206a0c8a5655"
+        ],
+        "learning_objective_refs": [
+          "node-74875524c1f9a4b4",
+          "node-033d597d27c9f1eb",
+          "node-8ddd6d8671f594c9",
+          "node-faf4ce8301027ee9",
+          "node-930bc7de78464ff2"
+        ]
+      },
+      {
+        "topic_id": "node-4ca5aa5dab83f318",
+        "code": "T13",
+        "title": "4.2 Understand and use generalised linear models",
+        "section_ref": "node-bb34726e2147cede",
+        "number": "T13",
+        "order_index": 13,
+        "estimated_minutes": 45,
+        "difficulty": "intermediate",
+        "prerequisite_ids": [
+          "node-011388b39127eccc"
+        ],
+        "learning_objective_refs": [
+          "node-1fd0fc508a4c9a01",
+          "node-6dd8e27a436d1b44",
+          "node-589de080db7b4967",
+          "node-dd045d0357a0a598",
+          "node-2e5b554e66cfcc5f",
+          "node-fa63f1ba4fe383c8",
+          "node-4ee5feefcc0f43b8",
+          "node-d2a9154cc4b22fae",
+          "node-5557d4ef98bd22a3",
+          "node-ce49a0449135d9f6"
+        ]
+      },
+      {
+        "topic_id": "node-28eb829ce344fe82",
+        "code": "T14",
+        "title": "5.1 Explain fundamental concepts of Bayesian statistics and use these concepts to calculate",
+        "section_ref": "node-ab7a6adccd8ba6c9",
+        "number": "T14",
+        "order_index": 14,
+        "estimated_minutes": 45,
+        "difficulty": "intermediate",
+        "prerequisite_ids": [
+          "node-4ca5aa5dab83f318"
+        ],
+        "learning_objective_refs": [
+          "node-1fddef5c563c6dd5",
+          "node-38b8b2f8abf449e0",
+          "node-4bfa9e95f11e7e54",
+          "node-cbbe16141c6152cf",
+          "node-aaaa5844cdd35f2e",
+          "node-21b26514a65293c6",
+          "node-41cc9914cf3291d1",
+          "node-a29b449ee7c34065",
+          "node-5100c3e1d56dd67b",
+          "node-a5eed9cabf7eeeb2"
+        ]
+      },
+      {
+        "topic_id": "node-27dc1ce4f2a0db13",
+        "code": "T15",
+        "title": "1 Jln Kilang Timor #06-01 · Singapore 159303",
+        "section_ref": "node-f58907f55df8b703",
+        "number": "T15",
+        "order_index": 15,
+        "estimated_minutes": 45,
+        "difficulty": "intermediate",
+        "prerequisite_ids": [
+          "node-28eb829ce344fe82"
+        ],
+        "learning_objective_refs": []
+      }
+    ],
+    "objectives": [
+      {
+        "objective_id": "node-52e7482b55b5f21f",
+        "code": "O1",
+        "text": "1.1.1 Aims of a data analysis (e.g. descriptive, inferential and predictive)",
+        "topic_ref": "node-b58d1e8e9c0e3f95",
+        "number": "O1",
+        "order_index": 1,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-9f78d682ba273c2c",
+        "code": "O2",
+        "text": "1.1.2 Stages and suitable tools used to conduct a data analysis to solve real-world problems",
+        "topic_ref": "node-b58d1e8e9c0e3f95",
+        "number": "O2",
+        "order_index": 2,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-e7b996a7351ab718",
+        "code": "O3",
+        "text": "1.1.3 Sources of data and their characteristics, including extremely large data sets",
+        "topic_ref": "node-b58d1e8e9c0e3f95",
+        "number": "O3",
+        "order_index": 3,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-bfdd622dfe533b8c",
+        "code": "O4",
+        "text": "1.1.4 Meaning and value of reproducible research and the elements required to ensure a data",
+        "topic_ref": "node-b58d1e8e9c0e3f95",
+        "number": "O4",
+        "order_index": 4,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-2d8f40a05baf543c",
+        "code": "O5",
+        "text": "1.2.1 Appropriate tools to calculate suitable summary statistics and undertake exploratory",
+        "topic_ref": "node-0314347654ee97d6",
+        "number": "O5",
+        "order_index": 5,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-8571c13eae6230a1",
+        "code": "O6",
+        "text": "1.2.2 Interpret and make statistical inferences using Pearson’s, Spearman’s and Kendall’s",
+        "topic_ref": "node-0314347654ee97d6",
+        "number": "O6",
+        "order_index": 6,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-582a66c6c917017d",
+        "code": "O7",
+        "text": "1.2.3 Principal component analysis to reduce the dimensionality of a complex data set",
+        "topic_ref": "node-0314347654ee97d6",
+        "number": "O7",
+        "order_index": 7,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-b7affe8553686722",
+        "code": "O8",
+        "text": "2.1.1 Geometric, binomial, negative binomial, hypergeometric, Poisson and uniform discrete",
+        "topic_ref": "node-b560ca099d047472",
+        "number": "O8",
+        "order_index": 8,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-7447bc38d6f2de4d",
+        "code": "O9",
+        "text": "2.1.2 Normal, lognormal, exponential, gamma, chi-square, t, F, beta and uniform continuous",
+        "topic_ref": "node-b560ca099d047472",
+        "number": "O9",
+        "order_index": 9,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-49e53355dcaafabb",
+        "code": "O10",
+        "text": "2.1.3 Evaluation of probabilities and quantiles associated with these distributions",
+        "topic_ref": "node-b560ca099d047472",
+        "number": "O10",
+        "order_index": 10,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-5eb8935f916937f9",
+        "code": "O11",
+        "text": "2.1.4 Poisson process and the connection between the Poisson process and the",
+        "topic_ref": "node-b560ca099d047472",
+        "number": "O11",
+        "order_index": 11,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-65dafa2f984c0b6d",
+        "code": "O12",
+        "text": "2.1.5 Generation of basic discrete and continuous random variables using the inverse",
+        "topic_ref": "node-b560ca099d047472",
+        "number": "O12",
+        "order_index": 12,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-63c08a46bf418dc4",
+        "code": "O13",
+        "text": "2.1.6 Generation of discrete and continuous random variables using statistical software",
+        "topic_ref": "node-b560ca099d047472",
+        "number": "O13",
+        "order_index": 13,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-0ab6bda633556419",
+        "code": "O14",
+        "text": "2.2.1 Probability function or density function for marginal and conditional distributions of jointly",
+        "topic_ref": "node-1c896dd384c343bf",
+        "number": "O14",
+        "order_index": 14,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-a3c954c7e3f419a8",
+        "code": "O15",
+        "text": "2.2.2 The conditions under which random variables are independent",
+        "topic_ref": "node-1c896dd384c343bf",
+        "number": "O15",
+        "order_index": 15,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-0ee9495d1ef186ef",
+        "code": "O16",
+        "text": "2.2.3 Covariance, the correlation and the expected value of a function of two jointly distributed",
+        "topic_ref": "node-1c896dd384c343bf",
+        "number": "O16",
+        "order_index": 16,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-a0228d85e2efad38",
+        "code": "O17",
+        "text": "2.2.4 Mean and variance of linear combinations of random variables",
+        "topic_ref": "node-1c896dd384c343bf",
+        "number": "O17",
+        "order_index": 17,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-5e3338c938d221fa",
+        "code": "O18",
+        "text": "2.3.1 Conditional expectation of one random variable given the value of another",
+        "topic_ref": "node-4d28e149228bc793",
+        "number": "O18",
+        "order_index": 18,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-df41a10a42ed5752",
+        "code": "O19",
+        "text": "2.3.2 Mean and variance of a random variable as an expectation of conditional expected values",
+        "topic_ref": "node-4d28e149228bc793",
+        "number": "O19",
+        "order_index": 19,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-56ea3221298c0cf7",
+        "code": "O20",
+        "text": "2.4.1 Moment and cumulant generating functions of a random variable",
+        "topic_ref": "node-4e9bcb0dd3851593",
+        "number": "O20",
+        "order_index": 20,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-d1b16f5f2e9f96f0",
+        "code": "O21",
+        "text": "2.4.2 Moment calculation via series expansion or differentiation of a generating function",
+        "topic_ref": "node-4e9bcb0dd3851593",
+        "number": "O21",
+        "order_index": 21,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-a2aa67f19be6ccee",
+        "code": "O22",
+        "text": "2.5.1 Central limit theorem for a sequence of independent, identically distributed",
+        "topic_ref": "node-c92260fdcbc56495",
+        "number": "O22",
+        "order_index": 22,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-0aaa627eb2adb37f",
+        "code": "O23",
+        "text": "2.5.2 Comparison of simulated samples from a given distribution with the Normal distribution",
+        "topic_ref": "node-c92260fdcbc56495",
+        "number": "O23",
+        "order_index": 23,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-4c405d1cfec2d855",
+        "code": "O24",
+        "text": "2.6.1 Random samples from a population",
+        "topic_ref": "node-e3f41751f27a8a05",
+        "number": "O24",
+        "order_index": 24,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-97f67dad2c53fe9e",
+        "code": "O25",
+        "text": "2.6.2 The sampling distribution of a statistic",
+        "topic_ref": "node-e3f41751f27a8a05",
+        "number": "O25",
+        "order_index": 25,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-8a953a15f299e00e",
+        "code": "O26",
+        "text": "2.6.3 The mean and variance of a sample mean and the mean of a sample variance in terms",
+        "topic_ref": "node-e3f41751f27a8a05",
+        "number": "O26",
+        "order_index": 26,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-0104b08e8376ddbb",
+        "code": "O27",
+        "text": "2.6.4 Basic sampling distributions for the sample mean and variance for random samples from",
+        "topic_ref": "node-e3f41751f27a8a05",
+        "number": "O27",
+        "order_index": 27,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-d995d9bfff74d6e7",
+        "code": "O28",
+        "text": "2.6.5 The distribution of the t-statistic for random samples from a normal distribution",
+        "topic_ref": "node-e3f41751f27a8a05",
+        "number": "O28",
+        "order_index": 28,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-65fd24f95f430c47",
+        "code": "O29",
+        "text": "2.6.6 The F distribution for the ratio of two sample variances from independent samples taken",
+        "topic_ref": "node-e3f41751f27a8a05",
+        "number": "O29",
+        "order_index": 29,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-1b1d299e8fc7b3f0",
+        "code": "O30",
+        "text": "3.1.1 Method of moments for constructing estimators of population parameters",
+        "topic_ref": "node-71a1cb8b0dda0eaa",
+        "number": "O30",
+        "order_index": 30,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-95e1324c3b0d78cd",
+        "code": "O31",
+        "text": "3.1.2 Method of maximum likelihood for constructing estimators of population parameters",
+        "topic_ref": "node-71a1cb8b0dda0eaa",
+        "number": "O31",
+        "order_index": 31,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-5b5390d2edcd60c8",
+        "code": "O32",
+        "text": "3.1.3 Efficiency, bias, consistency and mean square error of an estimator",
+        "topic_ref": "node-71a1cb8b0dda0eaa",
+        "number": "O32",
+        "order_index": 32,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-835cc5b931b22c8e",
+        "code": "O33",
+        "text": "3.1.4 Comparison of estimators using their mean square error and bias or unbiasedness",
+        "topic_ref": "node-71a1cb8b0dda0eaa",
+        "number": "O33",
+        "order_index": 33,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-93b49f28e2d4b04f",
+        "code": "O34",
+        "text": "3.1.5 Asymptotic distribution of maximum likelihood estimators",
+        "topic_ref": "node-71a1cb8b0dda0eaa",
+        "number": "O34",
+        "order_index": 34,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-f5a6c2df175a62a7",
+        "code": "O35",
+        "text": "3.1.6 Bootstrap method for estimating properties of an estimator",
+        "topic_ref": "node-71a1cb8b0dda0eaa",
+        "number": "O35",
+        "order_index": 35,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-1dd3684b790ec06b",
+        "code": "O36",
+        "text": "3.2.1 Confidence interval for an unknown parameter of a distribution based on a",
+        "topic_ref": "node-402f25153310c25b",
+        "number": "O36",
+        "order_index": 36,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-d6886df8b037842d",
+        "code": "O37",
+        "text": "3.2.2 Prediction interval for a future observation based on a model fitted to a random sample",
+        "topic_ref": "node-402f25153310c25b",
+        "number": "O37",
+        "order_index": 37,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-83e889608420dc82",
+        "code": "O38",
+        "text": "3.2.3 Confidence interval for an unknown parameter using a given sampling distribution",
+        "topic_ref": "node-402f25153310c25b",
+        "number": "O38",
+        "order_index": 38,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-16cca00d65122dab",
+        "code": "O39",
+        "text": "3.2.4 Confidence intervals for the mean and the variance of a normal distribution",
+        "topic_ref": "node-402f25153310c25b",
+        "number": "O39",
+        "order_index": 39,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-146241809768e07d",
+        "code": "O40",
+        "text": "3.2.5 Confidence intervals for a binomial probability and a Poisson mean, including the use of",
+        "topic_ref": "node-402f25153310c25b",
+        "number": "O40",
+        "order_index": 40,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-9d7c0596da211477",
+        "code": "O41",
+        "text": "3.2.6 Confidence intervals for two-sample situations involving the normal distribution and the",
+        "topic_ref": "node-402f25153310c25b",
+        "number": "O41",
+        "order_index": 41,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-13541ea3092fdde8",
+        "code": "O42",
+        "text": "3.2.7 Confidence intervals for a difference between two means from paired data",
+        "topic_ref": "node-402f25153310c25b",
+        "number": "O42",
+        "order_index": 42,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-f1a244a13efbd53c",
+        "code": "O43",
+        "text": "3.2.8 Bootstrap method to obtain confidence intervals",
+        "topic_ref": "node-402f25153310c25b",
+        "number": "O43",
+        "order_index": 43,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-c92d1f12b5bf136b",
+        "code": "O44",
+        "text": "3.3.1 Understand the concepts of Null and alternative hypotheses, simple and composite",
+        "topic_ref": "node-ba7a206a0c8a5655",
+        "number": "O44",
+        "order_index": 44,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-80e19b6c4da3a047",
+        "code": "O45",
+        "text": "3.3.2 Use of basic tests for the one-sample and two-sample situations involving the normal,",
+        "topic_ref": "node-ba7a206a0c8a5655",
+        "number": "O45",
+        "order_index": 45,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-4ede3e138e80053e",
+        "code": "O46",
+        "text": "3.3.3 The permutation approach to non-parametric hypothesis tests",
+        "topic_ref": "node-ba7a206a0c8a5655",
+        "number": "O46",
+        "order_index": 46,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-9f5e3b2cc8427285",
+        "code": "O47",
+        "text": "3.3.4 Chi-square test to test the hypothesis that a random sample is from a particular",
+        "topic_ref": "node-ba7a206a0c8a5655",
+        "number": "O47",
+        "order_index": 47,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-afed50af3fa33668",
+        "code": "O48",
+        "text": "3.3.5 A contingency (or two-way) table, and use of a chi-square test to test the independence",
+        "topic_ref": "node-ba7a206a0c8a5655",
+        "number": "O48",
+        "order_index": 48,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-74875524c1f9a4b4",
+        "code": "O49",
+        "text": "4.1.1 Response and explanatory variables",
+        "topic_ref": "node-011388b39127eccc",
+        "number": "O49",
+        "order_index": 49,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-033d597d27c9f1eb",
+        "code": "O50",
+        "text": "4.1.2 Simple regression model (with a single explanatory variable) and multiple linear",
+        "topic_ref": "node-011388b39127eccc",
+        "number": "O50",
+        "order_index": 50,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-8ddd6d8671f594c9",
+        "code": "O51",
+        "text": "4.1.3 Least squares estimates of the slope and intercept parameters in a simple linear",
+        "topic_ref": "node-011388b39127eccc",
+        "number": "O51",
+        "order_index": 51,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-faf4ce8301027ee9",
+        "code": "O52",
+        "text": "4.1.4 Use of appropriate software to fit a linear regression model to a data set and interpret",
+        "topic_ref": "node-011388b39127eccc",
+        "number": "O52",
+        "order_index": 52,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-930bc7de78464ff2",
+        "code": "O53",
+        "text": "4.1.5 Measures of model fit to select an appropriate set of explanatory variables",
+        "topic_ref": "node-011388b39127eccc",
+        "number": "O53",
+        "order_index": 53,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-1fd0fc508a4c9a01",
+        "code": "O54",
+        "text": "4.2.1 Binomial, Poisson, exponential, gamma and normal distributions as an exponential family",
+        "topic_ref": "node-4ca5aa5dab83f318",
+        "number": "O54",
+        "order_index": 54,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-6dd8e27a436d1b44",
+        "code": "O55",
+        "text": "4.2.2 Mean, variance, variance function and scale parameter for a generalised linear model",
+        "topic_ref": "node-4ca5aa5dab83f318",
+        "number": "O55",
+        "order_index": 55,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-589de080db7b4967",
+        "code": "O56",
+        "text": "4.2.3 The link function and the canonical link function, referring to the distributions in 4.2.1",
+        "topic_ref": "node-4ca5aa5dab83f318",
+        "number": "O56",
+        "order_index": 56,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-dd045d0357a0a598",
+        "code": "O57",
+        "text": "4.2.4 Variables, factors taking categorical values and interaction terms.",
+        "topic_ref": "node-4ca5aa5dab83f318",
+        "number": "O57",
+        "order_index": 57,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-2e5b554e66cfcc5f",
+        "code": "O58",
+        "text": "4.2.5 Definition of the linear predictor, including its form for simple models, including",
+        "topic_ref": "node-4ca5aa5dab83f318",
+        "number": "O58",
+        "order_index": 58,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-fa63f1ba4fe383c8",
+        "code": "O59",
+        "text": "4.2.6 Deviance scaled deviance and estimation of the parameters of a generalised linear model",
+        "topic_ref": "node-4ca5aa5dab83f318",
+        "number": "O59",
+        "order_index": 59,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-4ee5feefcc0f43b8",
+        "code": "O60",
+        "text": "4.2.7 Choice of a suitable model using an analysis of deviance and examination of the",
+        "topic_ref": "node-4ca5aa5dab83f318",
+        "number": "O60",
+        "order_index": 60,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-d2a9154cc4b22fae",
+        "code": "O61",
+        "text": "4.2.8 Pearson and deviance residuals and their use",
+        "topic_ref": "node-4ca5aa5dab83f318",
+        "number": "O61",
+        "order_index": 61,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-5557d4ef98bd22a3",
+        "code": "O62",
+        "text": "4.2.9 Statistical tests to determine the acceptability of a fitted model: Pearson’s chi-square test",
+        "topic_ref": "node-4ca5aa5dab83f318",
+        "number": "O62",
+        "order_index": 62,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-ce49a0449135d9f6",
+        "code": "O63",
+        "text": "4.2.10 Fit a generalised linear model to a data set and interpret the output",
+        "topic_ref": "node-4ca5aa5dab83f318",
+        "number": "O63",
+        "order_index": 63,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-1fddef5c563c6dd5",
+        "code": "O64",
+        "text": "5.1.1 Use of Bayes’ theorem to calculate simple conditional probabilities",
+        "topic_ref": "node-28eb829ce344fe82",
+        "number": "O64",
+        "order_index": 64,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-38b8b2f8abf449e0",
+        "code": "O65",
+        "text": "5.1.2 Prior distribution, posterior distribution and conjugate prior distribution",
+        "topic_ref": "node-28eb829ce344fe82",
+        "number": "O65",
+        "order_index": 65,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-4bfa9e95f11e7e54",
+        "code": "O66",
+        "text": "5.1.3 Posterior distribution for a parameter in simple cases",
+        "topic_ref": "node-28eb829ce344fe82",
+        "number": "O66",
+        "order_index": 66,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-cbbe16141c6152cf",
+        "code": "O67",
+        "text": "5.1.4 Use of simple loss functions to derive Bayesian estimates of parameters",
+        "topic_ref": "node-28eb829ce344fe82",
+        "number": "O67",
+        "order_index": 67,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-aaaa5844cdd35f2e",
+        "code": "O68",
+        "text": "5.1.5 Credible intervals in simple cases",
+        "topic_ref": "node-28eb829ce344fe82",
+        "number": "O68",
+        "order_index": 68,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-21b26514a65293c6",
+        "code": "O69",
+        "text": "5.1.6 Credibility premium formula and the role played by the credibility factor",
+        "topic_ref": "node-28eb829ce344fe82",
+        "number": "O69",
+        "order_index": 69,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-41cc9914cf3291d1",
+        "code": "O70",
+        "text": "5.1.7 Bayesian approach to credibility theory and its use for calculating credibility premiums in",
+        "topic_ref": "node-28eb829ce344fe82",
+        "number": "O70",
+        "order_index": 70,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-a29b449ee7c34065",
+        "code": "O71",
+        "text": "5.1.8 Empirical Bayes approach to credibility theory and its use for deriving credibility",
+        "topic_ref": "node-28eb829ce344fe82",
+        "number": "O71",
+        "order_index": 71,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-5100c3e1d56dd67b",
+        "code": "O72",
+        "text": "5.1.9 Understanding the differences between the two approaches (Bayes v Empirical Bayes)",
+        "topic_ref": "node-28eb829ce344fe82",
+        "number": "O72",
+        "order_index": 72,
+        "estimated_minutes": 20
+      },
+      {
+        "objective_id": "node-a5eed9cabf7eeeb2",
+        "code": "O73",
+        "text": "In each examination, candidates will be expected to demonstrate, through their answers, that they have",
+        "topic_ref": "node-28eb829ce344fe82",
+        "number": "O73",
+        "order_index": 73,
+        "estimated_minutes": 20
+      }
+    ],
+    "prerequisite_edges": [
+      [
+        "node-0314347654ee97d6",
+        "node-b58d1e8e9c0e3f95"
+      ],
+      [
+        "node-b560ca099d047472",
+        "node-0314347654ee97d6"
+      ],
+      [
+        "node-1c896dd384c343bf",
+        "node-b560ca099d047472"
+      ],
+      [
+        "node-4d28e149228bc793",
+        "node-1c896dd384c343bf"
+      ],
+      [
+        "node-4e9bcb0dd3851593",
+        "node-4d28e149228bc793"
+      ],
+      [
+        "node-c92260fdcbc56495",
+        "node-4e9bcb0dd3851593"
+      ],
+      [
+        "node-e3f41751f27a8a05",
+        "node-c92260fdcbc56495"
+      ],
+      [
+        "node-71a1cb8b0dda0eaa",
+        "node-e3f41751f27a8a05"
+      ],
+      [
+        "node-402f25153310c25b",
+        "node-71a1cb8b0dda0eaa"
+      ],
+      [
+        "node-ba7a206a0c8a5655",
+        "node-402f25153310c25b"
+      ],
+      [
+        "node-011388b39127eccc",
+        "node-ba7a206a0c8a5655"
+      ],
+      [
+        "node-4ca5aa5dab83f318",
+        "node-011388b39127eccc"
+      ],
+      [
+        "node-28eb829ce344fe82",
+        "node-4ca5aa5dab83f318"
+      ],
+      [
+        "node-27dc1ce4f2a0db13",
+        "node-28eb829ce344fe82"
+      ]
+    ],
+    "calibration": {
+      "difficulty_bias": "exam_focused",
+      "topic_density": "consolidated",
+      "granularity": "balanced",
+      "hierarchy": "strict_syllabus"
+    },
+    "source": "certified_snapshot",
+    "curriculum_authority": "certified_snapshot",
+    "metadata": [
+      [
+        "provider",
+        "PL-001A"
+      ],
+      [
+        "workspace_id",
+        "ws-cs1"
+      ]
+    ]
+  }
+}

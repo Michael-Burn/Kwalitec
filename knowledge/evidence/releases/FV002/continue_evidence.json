@@ -1,0 +1,97 @@
+{
+  "decision": "PIPELINE BLOCKED",
+  "timeline": [
+    {
+      "stage": "Founder Login",
+      "ok": true,
+      "t": 5.8,
+      "timestamp": "2026-07-29T22:17:07Z",
+      "url": "http://127.0.0.1:5056/console/"
+    },
+    {
+      "stage": "Documents Ready",
+      "ok": true,
+      "t": 6.2,
+      "timestamp": "2026-07-29T22:17:07Z",
+      "url": "http://127.0.0.1:5056/console/studio/workspaces/ws-cs1",
+      "docs": {
+        "cmp": "ready_for_embeddings",
+        "syllabus": "ready_for_embeddings"
+      }
+    },
+    {
+      "stage": "Advance",
+      "ok": true,
+      "t": 13.3,
+      "timestamp": "2026-07-29T22:17:14Z",
+      "url": "http://127.0.0.1:5056/console/studio/workspaces/ws-cs1",
+      "clicked": "Continue",
+      "flashes": []
+    },
+    {
+      "stage": "Validate",
+      "ok": false,
+      "t": 15.3,
+      "timestamp": "2026-07-29T22:17:16Z",
+      "url": "http://127.0.0.1:5056/console/studio/workspaces/ws-cs1",
+      "clicked": null,
+      "flashes": []
+    },
+    {
+      "stage": "Preview",
+      "ok": false,
+      "t": 17.3,
+      "timestamp": "2026-07-29T22:17:18Z",
+      "url": "http://127.0.0.1:5056/console/studio/workspaces/ws-cs1",
+      "clicked": null,
+      "flashes": []
+    },
+    {
+      "stage": "Hierarchy Verified",
+      "ok": true,
+      "t": 17.4,
+      "timestamp": "2026-07-29T22:17:18Z",
+      "url": "http://127.0.0.1:5056/console/studio/workspaces/ws-cs1",
+      "counts": {
+        "section": 0,
+        "topic": 0,
+        "objective": 0
+      }
+    },
+    {
+      "stage": "Approve",
+      "ok": false,
+      "t": 19.4,
+      "timestamp": "2026-07-29T22:17:20Z",
+      "url": "http://127.0.0.1:5056/console/studio/workspaces/ws-cs1",
+      "clicked": null,
+      "flashes": []
+    },
+    {
+      "stage": "Publish",
+      "ok": false,
+      "t": 21.2,
+      "timestamp": "2026-07-29T22:17:22Z",
+      "url": "http://127.0.0.1:5056/console/studio/workspaces/ws-cs1",
+      "clicked": null,
+      "flashes": []
+    },
+    {
+      "stage": "Founder surfaces agree",
+      "ok": true,
+      "t": 21.3,
+      "timestamp": "2026-07-29T22:17:22Z",
+      "url": "http://127.0.0.1:5056/console/",
+      "inconsistent": false
+    },
+    {
+      "stage": "Choose Exam",
+      "ok": false,
+      "t": 27.9,
+      "timestamp": "2026-07-29T22:17:29Z",
+      "url": "http://127.0.0.1:5056/student/",
+      "selected": false
+    }
+  ],
+  "finished": "2026-07-29T22:17:29Z"
+}

@@ -62,8 +62,25 @@ class PublicationService:
                 f"Not ready to publish {workspace_id}: "
                 f"blocking={list(snap.blocking_codes)}"
             )
+        self._assert_certified_or_legacy(workspace_id)
         return snap
 
+    def _assert_certified_or_legacy(self, workspace_id: str) -> None:
+        """Publication consumes certified snapshots; legacy is migration-only."""
+        workspace = self._require_workspace(workspace_id)
+        if workspace.facts.intelligence_certified:
+            return
+        if workspace.facts.legacy_publish_fallback:
+            logger.warning(
+                "Publishing workspace %s via legacy CIP fallback (migration)",
+                workspace_id,
+            )
+            return
+        raise PublicationError(
+            f"Publication requires a certified curriculum snapshot for "
+            f"{workspace_id}. Run the EI pipeline or mark legacy fallback "
+            "during migration."
+        )
     def approve(
         self,
         workspace_id: str,
@@ -73,6 +90,7 @@ class PublicationService:
         reason: str = "",
     ) -> PublicationSnapshot:
         """Approve Curriculum — Management authority."""
+        self._reconcile(workspace_id)
         mgmt = require_management(self._management, action="approve")
         workspace = self._require_workspace(workspace_id)
         if not workspace.version_id:
@@ -105,6 +123,9 @@ class PublicationService:
             preview_approved=True,
             version_assigned=workspace.facts.version_assigned,
             rollback_snapshot_created=workspace.facts.rollback_snapshot_created,
+            intelligence_certified=workspace.facts.intelligence_certified,
+            calibration_applied=workspace.facts.calibration_applied,
+            legacy_publish_fallback=workspace.facts.legacy_publish_fallback,
         )
         self._registry.put_workspace(workspace.with_facts(facts))
         self._registry.record_activity(
@@ -125,6 +146,7 @@ class PublicationService:
         actor_id: str | None = None,
     ) -> PublicationSnapshot:
         """Publish Curriculum — Management authority + Foundation Ready bridge."""
+        self._reconcile(workspace_id)
         mgmt = require_management(self._management, action="publish")
         workspace = self._require_workspace(workspace_id)
         self._ensure_rollback_snapshot(workspace_id)
@@ -260,6 +282,9 @@ class PublicationService:
         preview_approved: bool | None = None,
         version_assigned: bool | None = None,
         rollback_snapshot_created: bool | None = None,
+        intelligence_certified: bool | None = None,
+        calibration_applied: bool | None = None,
+        legacy_publish_fallback: bool | None = None,
     ) -> PublicationSnapshot:
         """Update publication facts (inputs only — checklist is recomputed).
 
@@ -281,6 +306,9 @@ class PublicationService:
             preview_approved=preview_approved,
             version_assigned=version_assigned,
             rollback_snapshot_created=rollback_snapshot_created,
+            intelligence_certified=intelligence_certified,
+            calibration_applied=calibration_applied,
+            legacy_publish_fallback=legacy_publish_fallback,
         )
         self._registry.put_workspace(workspace.with_facts(facts))
         return self.checklist(workspace_id)
@@ -316,3 +344,13 @@ class PublicationService:
         if workspace is None:
             raise WorkspaceNotFound(f"Workspace not found: {workspace_id!r}")
         return workspace
+
+    def _reconcile(self, workspace_id: str) -> None:
+        """Restore Management subject/version from durable Studio projection."""
+        from app.application.curriculum_studio import (
+            management_reconciliation_service as reconcile,
+        )
+
+        reconcile.ManagementReconciliationService(
+            self._registry, management=self._management
+        ).reconcile_workspace(workspace_id)

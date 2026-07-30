@@ -26,7 +26,7 @@ def test_v2_release_artefacts_exist(path: Path) -> None:
 
 def test_version_file_is_v2() -> None:
     text = (REPO_ROOT / "VERSION").read_text(encoding="utf-8").strip()
-    assert text == "2.0.0"
+    assert text == "2.0.0-beta.1"
 
 
 def test_release_notes_reference_v2() -> None:

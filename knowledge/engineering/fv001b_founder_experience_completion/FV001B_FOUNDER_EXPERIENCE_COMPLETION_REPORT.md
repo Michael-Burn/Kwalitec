@@ -169,6 +169,29 @@ Evidence folder: [`knowledge/evidence/releases/FV001B/`](../../evidence/releases
 
 ---
 
+## Production verification (post-deploy)
+
+| Check | Result |
+|-------|--------|
+| Release commit | `6abacdd7d14176a0ada980bf08ea8595295c7b2f` |
+| Host | https://kwalitec.onrender.com |
+| `/health` commit | `6abacdd…` |
+| Alembic | `current=202607290001` = `head=202607290001` |
+| `/health/details` | 200 |
+| `/auth/login` | 200 |
+| `/auth/experience` | 302 (auth redirect — route registered) |
+| `experience_preference.js` | 200 |
+| `experience_selection.js` | 200 |
+| `curriculum_preview_tree.js` | 200 |
+| `/student/` | 302 (auth) |
+| `/console/` | 302 (auth) |
+
+Authenticated founder/student walkthrough and visual PNG captures remain operator dogfood (credentials not used in this agent cert path). Automated mesh + public production probes pass.
+
+---
+
 ## Final decision
 
-See release certification footer after deploy verification.
+**FOUNDER VALIDATION READY**
+
+Resume **FV-001** with a brand-new curriculum upload and complete the Founder → Student educational pipeline. No further UX programmes until FV-001 finishes unless a new P0 defect appears.

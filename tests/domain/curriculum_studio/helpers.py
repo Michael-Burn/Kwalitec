@@ -25,6 +25,9 @@ def make_facts(**kwargs) -> WorkspacePublicationFacts:
         "preview_approved": False,
         "version_assigned": False,
         "rollback_snapshot_created": False,
+        "intelligence_certified": False,
+        "calibration_applied": False,
+        "legacy_publish_fallback": False,
     }
     defaults.update(kwargs)
     return WorkspacePublicationFacts.create(**defaults)
@@ -40,6 +43,7 @@ def make_ready_facts() -> WorkspacePublicationFacts:
         preview_approved=True,
         version_assigned=True,
         rollback_snapshot_created=True,
+        intelligence_certified=True,
     )
 
 

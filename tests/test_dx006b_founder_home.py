@@ -102,6 +102,39 @@ def test_queue_priority_and_primary(app):
     assert page.current_work.subject_name == "C"
 
 
+def test_published_only_home_does_not_claim_no_subjects(app):
+    """Issue 1: Recent Publications must not co-exist with first-time empty CTA."""
+
+    @dataclass
+    class _Pkg:
+        subject_code: str = "CS1"
+        published_at: str = "2026-07-29T12:00:00+00:00"
+        is_active: bool = True
+
+    studio = _FakeStudio(
+        workspaces=(
+            _ws(
+                workspace_id="ws-p",
+                subject_code="CS1",
+                stage="publication",
+                ready=True,
+                status="published",
+            ),
+        )
+    )
+    with app.test_request_context("/console/"):
+        page = FounderHomeService(
+            studio=studio,
+            authority=_FakeAuthority(packages=(_Pkg(),)),
+        ).build_home()
+    assert page.current_work is None
+    assert page.queue == ()
+    assert len(page.recent_publications) == 1
+    assert page.empty_title == "No curriculum work needs attention"
+    assert "No subjects have been created yet" not in page.empty_title
+    assert "Published subjects are listed below" in page.empty_reason
+
+
 def test_published_workspaces_excluded_from_queue(app):
     studio = _FakeStudio(
         workspaces=(
@@ -121,3 +154,4 @@ def test_published_workspaces_excluded_from_queue(app):
         ).build_home()
     assert page.queue == ()
     assert page.current_work is None
+    assert page.empty_title == "No subjects have been created yet."

@@ -491,6 +491,26 @@ class CurriculumStudioFoundationService:
                 for d in version.documents
             ],
         }
+        # EI-002A: surface certification provenance for Student Runtime.
+        certification = {}
+        if isinstance(structure, dict):
+            if structure.get("ei_chain_id"):
+                certification["chain_id"] = structure["ei_chain_id"]
+            if structure.get("ei_certified_snapshot_id"):
+                certification["snapshot_id"] = structure[
+                    "ei_certified_snapshot_id"
+                ]
+            if structure.get("ei_certification_status"):
+                certification["status"] = structure["ei_certification_status"]
+            if structure.get("curriculum_authority"):
+                certification["authority"] = structure["curriculum_authority"]
+        if certification:
+            package["certification"] = certification
+        else:
+            # Legacy packages without EI binding remain readable during migration.
+            package["certification"] = {
+                "authority": "legacy_or_unspecified",
+            }
         if activate:
             (
                 PublishedCurriculumPackage.query.filter_by(
@@ -498,16 +518,31 @@ class CurriculumStudioFoundationService:
                     is_active=True,
                 ).update({"is_active": False})
             )
-        published = PublishedCurriculumPackage(
-            subject_code=version.subject.subject_code,
-            version_id=version.id,
-            version_label=version.version_label,
-            package_json=json.dumps(package, default=str, sort_keys=True),
-            is_active=activate,
-            published_by=(actor_id or "").strip(),
-            source_ingestion_job_id=version.ingestion_job_id,
+        existing = (
+            PublishedCurriculumPackage.query.filter_by(
+                subject_code=version.subject.subject_code,
+                version_label=version.version_label,
+            ).one_or_none()
         )
-        db.session.add(published)
+        package_json = json.dumps(package, default=str, sort_keys=True)
+        if existing is not None:
+            existing.version_id = version.id
+            existing.package_json = package_json
+            existing.is_active = activate
+            existing.published_by = (actor_id or "").strip()
+            existing.source_ingestion_job_id = version.ingestion_job_id
+            published = existing
+        else:
+            published = PublishedCurriculumPackage(
+                subject_code=version.subject.subject_code,
+                version_id=version.id,
+                version_label=version.version_label,
+                package_json=package_json,
+                is_active=activate,
+                published_by=(actor_id or "").strip(),
+                source_ingestion_job_id=version.ingestion_job_id,
+            )
+            db.session.add(published)
         version.stage = FoundationStage.PUBLISH.value
         version.publication_state = FoundationPublicationState.PUBLISHED.value
         version.updated_at = _utc_now()

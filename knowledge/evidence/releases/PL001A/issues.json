@@ -1,0 +1,56 @@
+[
+  {
+    "severity": "critical",
+    "area": "publication",
+    "title": "Active CS1 package lacks certification block",
+    "detail": "FV-002 published CS1/2026.1 has no package.certification; Student Runtime uses legacy topic selection, not certified LOs."
+  },
+  {
+    "severity": "critical",
+    "area": "curriculum_fidelity",
+    "title": "Active CS1 package still uses pre-EQ001 noisy structure",
+    "detail": "Published structure has 5024 topics / 1931 sections — not syllabus-first."
+  },
+  {
+    "severity": "minor",
+    "area": "operations",
+    "title": "Full CMP Gen1 scale requires windowed dogfood",
+    "detail": "Full CMP has 912 pages / 37167 blocks; PL-001A ran EI on pages 30-180 plus full syllabus to keep certification tractable. Full-CMP republish remains polish."
+  },
+  {
+    "severity": "critical",
+    "area": "certification_consistency",
+    "title": "CMP+syllabus Gen2 rejected by regression confidence gate",
+    "detail": "Noise elimination improves coverage/noise but dips mean confidence enough to fail RegressionPolicy (failures=[{'accepted': False, 'reason': 'regression_gates_failed', 'gate_failures': ['confidence:0.8493<0.8606'], 'candidate_generation_id': 'gen-ca78c361fec88ce7'}]). Production stop_on_regression=True halts before hierarchy/certification when CMP body is included."
+  },
+  {
+    "severity": "minor",
+    "area": "certification",
+    "title": "CS1 certified with warnings",
+    "detail": "objective_syllabus_refs: 1/73 active LOs lack syllabus ref or cmp_only_support flag"
+  },
+  {
+    "severity": "critical",
+    "area": "calibration",
+    "title": "Calibration re-certification did not produce a decision",
+    "detail": "generations_rerun=[3, 4, 5, 6, 7]; initial Gen7 certification retained for student surfaces where still preview-eligible."
+  },
+  {
+    "severity": "minor",
+    "area": "tutor",
+    "title": "Tutor certified filter is opt-in in production DI",
+    "detail": "EI-002B: certified_tutor= must be bound when package available."
+  },
+  {
+    "severity": "minor",
+    "area": "observatory",
+    "title": "Observatory Founder Console UI not shipped",
+    "detail": "Service + report ready; no Founder UI surface yet."
+  },
+  {
+    "severity": "minor",
+    "area": "knowledge_graph",
+    "title": "Learner Knowledge Graph has no student UI screenshot surface",
+    "detail": "PL-001A captured graph summary + Mermaid projection from service."
+  }
+]

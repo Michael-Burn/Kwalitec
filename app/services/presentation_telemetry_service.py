@@ -26,6 +26,9 @@ EVENT_JOURNEY_OPENED = "journey_opened"
 EVENT_READINESS_OPENED = "readiness_opened"
 EVENT_PROVENANCE_EXPANDED = "provenance_expanded"
 EVENT_FEEDBACK_SUBMITTED = "feedback_submitted"
+EVENT_TUTOR_OPENED = "tutor_opened"
+EVENT_TUTOR_QUESTION = "tutor_question"
+EVENT_KNOWLEDGE_MAP_OPENED = "knowledge_map_opened"
 
 ALLOWED_EVENTS = frozenset(
     {
@@ -38,6 +41,9 @@ ALLOWED_EVENTS = frozenset(
         EVENT_READINESS_OPENED,
         EVENT_PROVENANCE_EXPANDED,
         EVENT_FEEDBACK_SUBMITTED,
+        EVENT_TUTOR_OPENED,
+        EVENT_TUTOR_QUESTION,
+        EVENT_KNOWLEDGE_MAP_OPENED,
     }
 )
 

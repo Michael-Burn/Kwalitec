@@ -207,6 +207,12 @@ class StudioWorkspaceProjection(db.Model):
     structure_json: str = db.Column(db.Text, nullable=False, default="{}")
     workflow_history_json: str = db.Column(db.Text, nullable=False, default="[]")
     metadata_json: str = db.Column(db.Text, nullable=False, default="{}")
+    # EI-002A — Generation Chain binding (mirrors metadata; queryable).
+    active_chain_id: str | None = db.Column(db.String(64), nullable=True, index=True)
+    certified_snapshot_id: str | None = db.Column(db.String(64), nullable=True)
+    calibration_profile_id: str | None = db.Column(db.String(64), nullable=True)
+    certification_status: str | None = db.Column(db.String(64), nullable=True)
+    review_pack_ref: str | None = db.Column(db.String(255), nullable=True)
     estimated_workload_hours: float | None = db.Column(db.Float, nullable=True)
     notes: str = db.Column(db.Text, nullable=False, default="")
     updated_at: datetime = db.Column(

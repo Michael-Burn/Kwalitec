@@ -71,3 +71,5 @@ class StudySessionPage:
     session_id: str
     activity_id: str
     mission_id: str = ""
+    # UX-001 — reading progress for calm session chrome (0–100).
+    reading_progress_percent: int = 0

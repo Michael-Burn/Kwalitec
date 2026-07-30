@@ -106,9 +106,11 @@ def home():
         context={"surface": "home"},
     )
     form = StartSessionForm()
+    complete_form = CompleteRuntimeMissionForm()
     if page.home:
         form.mission_id.data = page.home.mission_id
         form.session_id.data = page.home.session_id
+        complete_form.mission_id.data = page.home.mission_id
         if page.home.commitment:
             form.recommendation_key.data = (
                 page.home.commitment.recommendation_key or ""
@@ -130,6 +132,35 @@ def home():
         page=page,
         home=home,
         form=form,
+        complete_form=complete_form,
+    )
+
+
+@student_bp.get("/tutor")
+@login_required
+def tutor():
+    """UX-001 — Student Tutor surface (explainability, not new reasoning)."""
+    from app.presentation.student.services.student_tutor_presentation_service import (
+        StudentTutorPresentationService,
+    )
+    from app.services.presentation_telemetry_service import (
+        EVENT_TUTOR_OPENED,
+        PresentationTelemetryService,
+    )
+
+    page = load_page(ExperienceSurface.HOME)
+    PresentationTelemetryService.record(
+        EVENT_TUTOR_OPENED,
+        user_id=current_user.id,
+        path="/student/tutor",
+        context={"surface": "tutor"},
+    )
+    tutor_page = StudentTutorPresentationService().build(page)
+    return render_template(
+        "student/tutor.html",
+        title=tutor_page.page_title,
+        page=page,
+        tutor=tutor_page,
     )
 
 
@@ -144,7 +175,7 @@ def tutor_explain_mission():
     form = ExplainMissionTutorForm()
     if not form.validate_on_submit():
         flash("Please try explaining today's mission again.", "warning")
-        return redirect(url_for("student.home"))
+        return redirect(url_for("student.tutor"))
 
     from app.application.intelligent_tutor.intelligent_tutor_service import (
         IntelligentTutorService,
@@ -152,14 +183,26 @@ def tutor_explain_mission():
     from app.application.student_digital_twin.student_digital_twin_service import (
         StudentDigitalTwinService,
     )
+    from app.presentation.student.services.student_tutor_presentation_service import (
+        StudentTutorPresentationService,
+        TutorCitation,
+    )
 
+    page = load_page(ExperienceSurface.HOME)
     twins = StudentDigitalTwinService().list_twins_for_student(str(current_user.id))
     if not twins:
-        flash(
-            "Tutor guidance will appear once your learning Twin is available.",
-            "info",
+        tutor_page = StudentTutorPresentationService().build(
+            page,
+            error_message=(
+                "Tutor guidance will appear once your learning Twin is available."
+            ),
         )
-        return redirect(url_for("student.home"))
+        return render_template(
+            "student/tutor.html",
+            title=tutor_page.page_title,
+            page=page,
+            tutor=tutor_page,
+        ), 200
 
     try:
         response = IntelligentTutorService().explain_mission(
@@ -169,17 +212,118 @@ def tutor_explain_mission():
         )
     except ValueError as exc:
         logger.warning("tutor_explain_mission_failed: %s", exc)
-        flash(
-            "The Tutor could not explain today's mission just now. "
-            "Please try again shortly.",
-            "warning",
+        tutor_page = StudentTutorPresentationService().build(
+            page,
+            error_message=(
+                "The Tutor could not explain today's mission just now. "
+                "Please try again shortly."
+            ),
         )
-        return redirect(url_for("student.home"))
+        return render_template(
+            "student/tutor.html",
+            title=tutor_page.page_title,
+            page=page,
+            tutor=tutor_page,
+        ), 200
 
-    flash(response.explanation.summary, "success")
-    if response.suggested_next_action:
-        flash(response.suggested_next_action, "info")
-    return redirect(url_for("student.home"))
+    citations: list[TutorCitation] = []
+    explanation = response.explanation
+    for point in getattr(explanation, "evidence_points", ()) or ():
+        text = str(point).strip()
+        if text:
+            citations.append(TutorCitation(label=text[:160]))
+    source = ""
+    for attr in ("curriculum_source", "source_label", "authority_label"):
+        raw = getattr(explanation, attr, None)
+        if isinstance(raw, str) and raw.strip():
+            source = raw.strip()
+            break
+
+    tutor_page = StudentTutorPresentationService().build(
+        page,
+        explanation_summary=getattr(explanation, "summary", "") or "",
+        suggested_next_action=response.suggested_next_action or "",
+        citations=tuple(citations[:8]),
+        certified_source=source,
+    )
+    from app.services.presentation_telemetry_service import (
+        EVENT_TUTOR_QUESTION,
+        PresentationTelemetryService,
+    )
+
+    PresentationTelemetryService.record(
+        EVENT_TUTOR_QUESTION,
+        user_id=current_user.id,
+        path="/student/tutor",
+        context={"surface": "tutor", "action": "explain_mission"},
+    )
+    return render_template(
+        "student/tutor.html",
+        title=tutor_page.page_title,
+        page=page,
+        tutor=tutor_page,
+    )
+
+
+@student_bp.get("/knowledge-graph")
+@login_required
+def knowledge_graph():
+    """UX-001 — first student-facing Knowledge Map (certified hierarchy)."""
+    from app.presentation.student.services import (
+        student_knowledge_graph_presentation_service as kg_svc,
+    )
+
+    page = load_page(ExperienceSurface.HOME)
+    subject_code = ""
+    examination_label = ""
+    current_topic_id = ""
+    completed: tuple[str, ...] = ()
+    if page.home:
+        examination_label = (page.home.examination_label or "").strip()
+        edu = page.home.educational
+        if edu and getattr(edu, "active", False):
+            subject_code = (edu.subject_code or "").strip()
+            examination_label = examination_label or (
+                edu.examination_label or ""
+            ).strip()
+            current_topic_id = (edu.today_topic_code or "").strip()
+    if page.journey:
+        examination_label = examination_label or (
+            page.journey.examination_label or ""
+        ).strip()
+        if page.journey.current:
+            current_topic_id = current_topic_id or (
+                page.journey.current.topic_id or ""
+            ).strip()
+        completed = tuple(
+            (t.topic_id or "").strip()
+            for t in (page.journey.completed or ())
+            if (t.topic_id or "").strip()
+        )
+
+    graph = kg_svc.StudentKnowledgeGraphPresentationService().build(
+        subject_code=subject_code,
+        examination_label=examination_label,
+        current_topic_id=current_topic_id,
+        completed_topic_ids=completed,
+    )
+    from app.services.presentation_telemetry_service import (
+        EVENT_KNOWLEDGE_MAP_OPENED,
+        PresentationTelemetryService,
+    )
+
+    PresentationTelemetryService.record(
+        EVENT_KNOWLEDGE_MAP_OPENED,
+        user_id=current_user.id,
+        path="/student/knowledge-graph",
+        context={"surface": "knowledge_map", "subject": subject_code or ""},
+    )
+    return render_template(
+        "student/knowledge_graph.html",
+        title=graph.page_title,
+        page=page,
+        graph=graph,
+    )
 
 
 @student_bp.get("/journey")

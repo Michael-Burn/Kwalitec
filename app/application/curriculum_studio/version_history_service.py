@@ -92,6 +92,9 @@ class VersionHistoryService:
             preview_approved=workspace.facts.preview_approved,
             version_assigned=True,
             rollback_snapshot_created=workspace.facts.rollback_snapshot_created,
+            intelligence_certified=workspace.facts.intelligence_certified,
+            calibration_applied=workspace.facts.calibration_applied,
+            legacy_publish_fallback=workspace.facts.legacy_publish_fallback,
         )
         updated = CurriculumWorkspace.create(
             workspace.workspace_id,
@@ -161,6 +164,9 @@ class VersionHistoryService:
                 preview_approved=workspace.facts.preview_approved,
                 version_assigned=workspace.facts.version_assigned,
                 rollback_snapshot_created=True,
+                intelligence_certified=workspace.facts.intelligence_certified,
+                calibration_applied=workspace.facts.calibration_applied,
+                legacy_publish_fallback=workspace.facts.legacy_publish_fallback,
             )
             self._registry.put_workspace(workspace.with_facts(facts))
         return version_record_snapshot(updated)

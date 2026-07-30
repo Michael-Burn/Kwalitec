@@ -35,6 +35,7 @@ class StudySessionService:
         content = self._content(page, surface)
         disclosures = self._disclosures(page, surface)
         technical = self._technical(page)
+        reading_progress = self._reading_progress_percent(page, surface)
 
         return StudySessionPage(
             page_title=_PAGE_TITLE,
@@ -59,7 +60,38 @@ class StudySessionService:
             session_id=page.shell.session_id,
             activity_id=(page.activity.activity_id if page.activity else ""),
             mission_id=(page.overview.mission_id if page.overview else "") or "",
+            reading_progress_percent=reading_progress,
         )
+
+    @staticmethod
+    def _reading_progress_percent(
+        page: SessionPageViewModel, surface: SessionSurface
+    ) -> int:
+        """Map session position to a calm 0–100 reading bar (presentation only)."""
+        if page.progress and page.progress.has_progress and page.progress.total:
+            done = max(0, int(page.progress.completed))
+            total = max(1, int(page.progress.total))
+            # Show current step as in-progress (not yet complete).
+            pct = int(round(100 * min(total, done + 1) / total))
+            return max(0, min(100, pct))
+        steps = page.shell.steps or ()
+        if steps:
+            active = next((s for s in steps if s.is_active), None)
+            if active:
+                return max(
+                    0,
+                    min(100, int(round(100 * active.step_number / len(steps)))),
+                )
+            if surface in {SessionSurface.SUMMARY, SessionSurface.COMPLETE}:
+                return 100
+        surface_pct = {
+            SessionSurface.OVERVIEW: 15,
+            SessionSurface.ACTIVITY: 45,
+            SessionSurface.REFLECTION: 75,
+            SessionSurface.SUMMARY: 90,
+            SessionSurface.COMPLETE: 100,
+        }
+        return surface_pct.get(surface, 0)
 
     def _context(
         self, page: SessionPageViewModel, surface: SessionSurface

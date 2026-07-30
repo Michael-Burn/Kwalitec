@@ -1,0 +1,185 @@
+{
+  "duration_s": 180.74,
+  "cmp_window": "30-180",
+  "stopped_at_index": null,
+  "rolled_back": false,
+  "accepted_indices": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "rejected_indices": [],
+  "certification": "CERTIFIED_WITH_WARNINGS",
+  "generations": [
+    {
+      "index": 1,
+      "active": 6974,
+      "rejected": 0,
+      "confidence": 0.8493,
+      "coverage": 0.5701,
+      "noise": 0.1229
+    },
+    {
+      "index": 2,
+      "active": 6117,
+      "rejected": 857,
+      "confidence": 0.8493,
+      "coverage": 0.65,
+      "noise": 0.0
+    },
+    {
+      "index": 3,
+      "active": 94,
+      "rejected": 6645,
+      "confidence": 0.9145,
+      "coverage": 1.0,
+      "noise": 0.0
+    },
+    {
+      "index": 4,
+      "active": 94,
+      "rejected": 6645,
+      "confidence": 0.9206,
+      "coverage": 1.0,
+      "noise": 0.0
+    },
+    {
+      "index": 5,
+      "active": 94,
+      "rejected": 6645,
+      "confidence": 0.9463,
+      "coverage": 1.0,
+      "noise": 0.0
+    },
+    {
+      "index": 6,
+      "active": 95,
+      "rejected": 6645,
+      "confidence": 0.9463,
+      "coverage": 1.0,
+      "noise": 0.0
+    },
+    {
+      "index": 7,
+      "active": 96,
+      "rejected": 6645,
+      "confidence": 0.9463,
+      "coverage": 1.0,
+      "noise": 0.0
+    }
+  ],
+  "regression_reports": [
+    {
+      "accepted": true,
+      "reason": "accepted",
+      "gate_failures": [],
+      "candidate_generation_id": "gen-1d8a2030fc9331f2"
+    },
+    {
+      "accepted": true,
+      "reason": "accepted",
+      "gate_failures": [],
+      "candidate_generation_id": "gen-4b6db12ed84f8b5c"
+    },
+    {
+      "accepted": true,
+      "reason": "accepted",
+      "gate_failures": [],
+      "candidate_generation_id": "gen-f421e4fe89fcaa6d"
+    },
+    {
+      "accepted": true,
+      "reason": "accepted",
+      "gate_failures": [],
+      "candidate_generation_id": "gen-121a37dcb540a987"
+    },
+    {
+      "accepted": true,
+      "reason": "accepted",
+      "gate_failures": [],
+      "candidate_generation_id": "gen-2a994702dbc54591"
+    },
+    {
+      "accepted": true,
+      "reason": "accepted",
+      "gate_failures": [],
+      "candidate_generation_id": "gen-f8426f889dd1e6c3"
+    },
+    {
+      "accepted": true,
+      "reason": "accepted",
+      "gate_failures": [],
+      "candidate_generation_id": "gen-7bc3c62d76c9ee31"
+    },
+    {
+      "accepted": true,
+      "reason": "accepted",
+      "gate_failures": [],
+      "candidate_generation_id": "gen-b95a50a0fd90b36c"
+    },
+    {
+      "accepted": true,
+      "reason": "accepted",
+      "gate_failures": [],
+      "candidate_generation_id": "gen-6ae48793f51c625b"
+    },
+    {
+      "accepted": true,
+      "reason": "accepted",
+      "gate_failures": [],
+      "candidate_generation_id": "gen-f385fc15021229c1"
+    },
+    {
+      "accepted": true,
+      "reason": "accepted",
+      "gate_failures": [],
+      "candidate_generation_id": "gen-893a23e6654d3e38"
+    },
+    {
+      "accepted": true,
+      "reason": "accepted",
+      "gate_failures": [],
+      "candidate_generation_id": "gen-f0da762bffb0e7b1"
+    },
+    {
+      "accepted": true,
+      "reason": "accepted",
+      "gate_failures": [],
+      "candidate_generation_id": "gen-9be3715f5c54b611"
+    },
+    {
+      "accepted": true,
+      "reason": "accepted",
+      "gate_failures": [],
+      "candidate_generation_id": "gen-9c89a65080f4a5d6"
+    },
+    {
+      "accepted": true,
+      "reason": "accepted",
+      "gate_failures": [],
+      "candidate_generation_id": "gen-fbc037521a016a62"
+    },
+    {
+      "accepted": true,
+      "reason": "accepted",
+      "gate_failures": [],
+      "candidate_generation_id": "gen-cc1da87043e46c0a"
+    },
+    {
+      "accepted": true,
+      "reason": "accepted",
+      "gate_failures": [],
+      "candidate_generation_id": "gen-5f3c3aa9fded2456"
+    },
+    {
+      "accepted": true,
+      "reason": "accepted",
+      "gate_failures": [],
+      "candidate_generation_id": "gen-efcb8a53f158579a"
+    }
+  ]
+}

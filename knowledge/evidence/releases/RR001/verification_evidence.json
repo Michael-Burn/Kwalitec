@@ -1,0 +1,162 @@
+{
+  "programme": "RR-001",
+  "subject": "CS1",
+  "workspace_id": "ws-cs1",
+  "started_at": "2026-07-30T06:34:35Z",
+  "pl001a_blockers": [
+    "C1",
+    "C2",
+    "C3",
+    "C4"
+  ],
+  "finished_at": "2026-07-30T06:38:10Z",
+  "duration_s": 216.47,
+  "before": {
+    "id": 1,
+    "version_label": "2026.1",
+    "is_active": true,
+    "has_certification": true,
+    "certification": {
+      "authority": "certified_snapshot",
+      "chain_id": "ei-chain-ws-cs1",
+      "snapshot_id": "snap-597197074de6b7bf",
+      "status": "CERTIFIED_WITH_WARNINGS"
+    },
+    "sections": 5,
+    "topics": 15,
+    "objectives": 73,
+    "source": "certified_snapshot",
+    "curriculum_authority": "certified_snapshot"
+  },
+  "after": {
+    "id": 1,
+    "version_label": "2026.1",
+    "is_active": true,
+    "has_certification": true,
+    "certification": {
+      "authority": "certified_snapshot",
+      "chain_id": "ei-chain-ws-cs1",
+      "snapshot_id": "snap-ae1eaf5e82aabf58",
+      "status": "CERTIFIED_WITH_WARNINGS"
+    },
+    "sections": 5,
+    "topics": 15,
+    "objectives": 73,
+    "source": "certified_snapshot",
+    "curriculum_authority": "certified_snapshot"
+  },
+  "blockers": {
+    "C1_active_catalogue_certified": true,
+    "C2_legacy_noise_replaced": true,
+    "C3_cmp_syllabus_g1_g7": true,
+    "C4_calibration_recert": true,
+    "syllabus_pipeline": true,
+    "student_surfaces": true
+  },
+  "timeline": [
+    {
+      "stage": "baseline_active_package",
+      "ok": true,
+      "t_s": 1.57,
+      "timestamp": "2026-07-30T06:34:35Z",
+      "has_certification": true,
+      "topics": 15,
+      "sections": 5
+    },
+    {
+      "stage": "extract_normalize",
+      "ok": true,
+      "t_s": 7.71,
+      "timestamp": "2026-07-30T06:34:41Z",
+      "syllabus_pages": 8,
+      "cmp_window": "30-180"
+    },
+    {
+      "stage": "cmp_syllabus_g1_g7",
+      "ok": true,
+      "t_s": 188.46,
+      "timestamp": "2026-07-30T06:37:42Z",
+      "stopped_at_index": null,
+      "certification": "CERTIFIED_WITH_WARNINGS",
+      "duration_s": 180.74,
+      "accepted_indices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "stage": "syllabus_g1_g7",
+      "ok": true,
+      "t_s": 197.41,
+      "timestamp": "2026-07-30T06:37:51Z",
+      "intelligence_certified": true,
+      "certification": "CERTIFIED_WITH_WARNINGS",
+      "duration_s": 8.95
+    },
+    {
+      "stage": "calibration_recert",
+      "ok": true,
+      "t_s": 215.44,
+      "timestamp": "2026-07-30T06:38:09Z",
+      "intelligence_certified": true,
+      "post_cal_certification": "CERTIFIED_WITH_WARNINGS",
+      "generations_rerun": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "duration_s": 18.03
+    },
+    {
+      "stage": "catalogue_cutover",
+      "ok": true,
+      "t_s": 215.56,
+      "timestamp": "2026-07-30T06:38:09Z",
+      "package_id": 1,
+      "version_label": "2026.1",
+      "is_active": true,
+      "duration_s": 0.12
+    },
+    {
+      "stage": "active_catalogue_certified",
+      "ok": true,
+      "t_s": 215.56,
+      "timestamp": "2026-07-30T06:38:09Z",
+      "has_certification": true,
+      "topics": 15,
+      "objectives": 73,
+      "sections": 5
+    },
+    {
+      "stage": "student_runtime_certified",
+      "ok": true,
+      "t_s": 215.56,
+      "timestamp": "2026-07-30T06:38:09Z",
+      "loaded": true,
+      "authority": "certified_snapshot",
+      "status": "CERTIFIED_WITH_WARNINGS",
+      "topics": 15,
+      "objectives": 73,
+      "sections": 5
+    },
+    {
+      "stage": "student_surfaces",
+      "ok": true,
+      "t_s": 216.47,
+      "timestamp": "2026-07-30T06:38:10Z",
+      "certified_loaded": true,
+      "missions_ok": true,
+      "observatory_ok": true
+    }
+  ],
+  "issues": [],
+  "decision": "READY FOR CLOSED BETA",
+  "decision_rationale": "All PL-001A blockers C1–C4 resolved; active CS1 catalogue is certified and Student Runtime loads the certified package."
+}

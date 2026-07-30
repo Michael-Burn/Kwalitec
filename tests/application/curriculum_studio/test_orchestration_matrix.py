@@ -31,8 +31,10 @@ def test_fact_masks_partial_ready(mask):
     studio = seed_workspace()
     kwargs = {key: bool(mask & (1 << i)) for i, key in enumerate(FACT_KEYS[:7])}
     kwargs["rollback_snapshot_created"] = bool(mask & 64)
+    # EI-002A: intelligence certification is a separate readiness gate.
+    kwargs["intelligence_certified"] = True
     snap = studio.publication.update_facts("ws-1", **kwargs)
-    ready = all(kwargs.values())
+    ready = all(kwargs[k] for k in FACT_KEYS) and kwargs["intelligence_certified"]
     assert snap.ready_to_publish is ready
 
 
@@ -108,6 +110,7 @@ def test_full_thin_port_pipeline(i):
         preview_approved=True,
         version_assigned=True,
         rollback_snapshot_created=True,
+        intelligence_certified=True,
     )
     pub = studio.publication.publish(wid)
     assert pub.lifecycle_status == "published"

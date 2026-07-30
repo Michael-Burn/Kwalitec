@@ -104,8 +104,9 @@ class TestFounderHappyPath:
         studio.publication.update_facts(
             "ws-op03",
             rollback_snapshot_created=True,
+            intelligence_certified=True,
             preview_built=True,
-        preview_approved=True,
+            preview_approved=True,
             validation_passed=True,
             cmp_uploaded=True,
             official_syllabus_uploaded=True,

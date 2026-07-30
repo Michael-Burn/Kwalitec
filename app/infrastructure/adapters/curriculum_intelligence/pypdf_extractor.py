@@ -152,9 +152,22 @@ class PyPdfExtractionAdapter(PdfExtractionPort):
                     kind = BlockKind.LIST_ITEM
                 elif _HEADING_LINE.match(line) and len(line.split()) <= 12:
                     kind = BlockKind.HEADING
-                elif len(lines) == 1 and len(line) < 90 and not line.endswith("."):
-                    # Single short line — possible heading
-                    if line[:1].isupper():
+                elif (
+                    len(lines) == 1
+                    and 3 <= len(line) < 80
+                    and not line.endswith(".")
+                    and " page " not in line.lower()
+                ):
+                    # Single short line — possible heading (EQ-001: avoid chrome).
+                    letters = [c for c in line if c.isalpha()]
+                    upper_ratio = (
+                        sum(1 for c in letters if c.isupper()) / len(letters)
+                        if letters
+                        else 0.0
+                    )
+                    if line[:1].isupper() and (
+                        upper_ratio >= 0.7 or len(line.split()) <= 6
+                    ):
                         kind = BlockKind.HEADING
                 blocks.append(
                     ExtractedBlock(

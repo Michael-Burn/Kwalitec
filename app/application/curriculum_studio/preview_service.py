@@ -153,6 +153,9 @@ class PreviewService:
             preview_approved=workspace.facts.preview_approved,
             version_assigned=workspace.facts.version_assigned,
             rollback_snapshot_created=workspace.facts.rollback_snapshot_created,
+            intelligence_certified=workspace.facts.intelligence_certified,
+            calibration_applied=workspace.facts.calibration_applied,
+            legacy_publish_fallback=workspace.facts.legacy_publish_fallback,
         )
         self._registry.put_workspace(workspace.with_facts(facts))
         self._registry.record_activity(
@@ -206,6 +209,9 @@ class PreviewService:
             preview_approved=True,
             version_assigned=workspace.facts.version_assigned,
             rollback_snapshot_created=workspace.facts.rollback_snapshot_created,
+            intelligence_certified=workspace.facts.intelligence_certified,
+            calibration_applied=workspace.facts.calibration_applied,
+            legacy_publish_fallback=workspace.facts.legacy_publish_fallback,
         )
         self._registry.put_workspace(workspace.with_facts(facts))
         self._registry.record_activity(
@@ -248,6 +254,9 @@ class PreviewService:
             preview_approved=False,
             version_assigned=workspace.facts.version_assigned,
             rollback_snapshot_created=workspace.facts.rollback_snapshot_created,
+            intelligence_certified=workspace.facts.intelligence_certified,
+            calibration_applied=workspace.facts.calibration_applied,
+            legacy_publish_fallback=workspace.facts.legacy_publish_fallback,
         )
         self._registry.put_workspace(workspace.with_facts(facts))
         snap = self.preview(workspace_id)

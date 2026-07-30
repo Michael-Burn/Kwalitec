@@ -1,0 +1,84 @@
+{
+  "captured_at": "2026-07-29T18:21:54.893271+00:00",
+  "base_url": "https://kwalitec.onrender.com",
+  "commit_expected": "a15a8decf76cf2fcbb739b5cc20793de375e6fe9",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "shots": [
+    {
+      "name": "01_founder_console_light",
+      "path": "knowledge/evidence/releases/RC20260729_09/01_founder_console_light.png",
+      "url": "https://kwalitec.onrender.com/console/",
+      "theme": "light",
+      "title": "Home \u00b7 Kwalitec Console",
+      "h1": "Home"
+    },
+    {
+      "name": "02_founder_console_dark",
+      "path": "knowledge/evidence/releases/RC20260729_09/02_founder_console_dark.png",
+      "url": "https://kwalitec.onrender.com/console/",
+      "theme": "dark",
+      "title": "Home \u00b7 Kwalitec Console",
+      "h1": "Home"
+    },
+    {
+      "name": "03_student_home_light",
+      "path": "knowledge/evidence/releases/RC20260729_09/03_student_home_light.png",
+      "url": "https://kwalitec.onrender.com/student/",
+      "theme": "light",
+      "title": "Home \u00b7 Kwalitec",
+      "h1": "Home"
+    },
+    {
+      "name": "04_student_home_dark",
+      "path": "knowledge/evidence/releases/RC20260729_09/04_student_home_dark.png",
+      "url": "https://kwalitec.onrender.com/student/",
+      "theme": "dark",
+      "title": "Home \u00b7 Kwalitec",
+      "h1": "Home"
+    },
+    {
+      "name": "05_journey",
+      "path": "knowledge/evidence/releases/RC20260729_09/05_journey.png",
+      "url": "https://kwalitec.onrender.com/student/journey",
+      "theme": "light",
+      "title": "Journey \u00b7 Kwalitec",
+      "h1": "Journey"
+    },
+    {
+      "name": "06_history",
+      "path": "knowledge/evidence/releases/RC20260729_09/06_history.png",
+      "url": "https://kwalitec.onrender.com/student/history",
+      "theme": "light",
+      "title": "History \u00b7 Kwalitec",
+      "h1": "History"
+    },
+    {
+      "name": "07_revision",
+      "path": "knowledge/evidence/releases/RC20260729_09/07_revision.png",
+      "url": "https://kwalitec.onrender.com/student/revision",
+      "theme": "light",
+      "title": "Revision \u00b7 Kwalitec",
+      "h1": "Revision"
+    },
+    {
+      "name": "08_settings",
+      "path": "knowledge/evidence/releases/RC20260729_09/08_settings.png",
+      "url": "https://kwalitec.onrender.com/student/profile",
+      "theme": "light",
+      "title": "Settings \u00b7 Kwalitec",
+      "h1": "Settings"
+    },
+    {
+      "name": "09_choose_exam",
+      "path": "knowledge/evidence/releases/RC20260729_09/09_choose_exam.png",
+      "url": "https://kwalitec.onrender.com/study-plan/wizard/1",
+      "theme": "light",
+      "title": "Choose Exam \u00b7 Kwalitec",
+      "h1": "Choose Exam"
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,276 @@
+{
+  "curriculum_identity": "CS1:2026.7-pl001a",
+  "is_certified": true,
+  "node_count": 93,
+  "edge_count": 175,
+  "chapters": [
+    {
+      "id": "node-f58907f55df8b703",
+      "title": "1 Data analysis"
+    },
+    {
+      "id": "node-22fb4ce971c0124e",
+      "title": "2 Random variables and distributions"
+    },
+    {
+      "id": "node-4e426a3ee2d53154",
+      "title": "3 Statistical inference"
+    },
+    {
+      "id": "node-bb34726e2147cede",
+      "title": "4 Regression theory and applications"
+    },
+    {
+      "id": "node-ab7a6adccd8ba6c9",
+      "title": "5 Bayesian statistics"
+    }
+  ],
+  "topics": [
+    {
+      "id": "node-b58d1e8e9c0e3f95",
+      "title": "1.1 Describe the purpose and function of data analysis"
+    },
+    {
+      "id": "node-0314347654ee97d6",
+      "title": "1.2 Complete exploratory data analysis"
+    },
+    {
+      "id": "node-b560ca099d047472",
+      "title": "2.1 Understand the characteristics of basic univariate distributions and how to generate samples"
+    },
+    {
+      "id": "node-1c896dd384c343bf",
+      "title": "2.2 Determine the characteristics of jointly distributed random variables"
+    },
+    {
+      "id": "node-4d28e149228bc793",
+      "title": "2.3 Evaluate expectations and conditional expectations"
+    },
+    {
+      "id": "node-4e9bcb0dd3851593",
+      "title": "2.4 Evaluate and apply generating functions"
+    },
+    {
+      "id": "node-c92260fdcbc56495",
+      "title": "2.5 State and apply the central limit theorem"
+    },
+    {
+      "id": "node-e3f41751f27a8a05",
+      "title": "2.6 Describe random sampling and the sampling distributions of statistics commonly used in"
+    },
+    {
+      "id": "node-71a1cb8b0dda0eaa",
+      "title": "3.1 Construct estimators and discuss their properties"
+    },
+    {
+      "id": "node-402f25153310c25b",
+      "title": "3.2 Calculate confidence intervals and prediction intervals"
+    },
+    {
+      "id": "node-ba7a206a0c8a5655",
+      "title": "3.3 Apply the concepts of hypothesis testing and goodness of fit"
+    },
+    {
+      "id": "node-011388b39127eccc",
+      "title": "4.1 Understand and use linear regression models"
+    },
+    {
+      "id": "node-4ca5aa5dab83f318",
+      "title": "4.2 Understand and use generalised linear models"
+    },
+    {
+      "id": "node-28eb829ce344fe82",
+      "title": "5.1 Explain fundamental concepts of Bayesian statistics and use these concepts to calculate"
+    },
+    {
+      "id": "node-27dc1ce4f2a0db13",
+      "title": "1 Jln Kilang Timor #06-01 · Singapore 159303"
+    }
+  ],
+  "objectives": [
+    {
+      "id": "node-74875524c1f9a4b4",
+      "title": "4.1.1 Response and explanatory variables"
+    },
+    {
+      "id": "node-033d597d27c9f1eb",
+      "title": "4.1.2 Simple regression model (with a single explanatory variable) and multiple linear"
+    },
+    {
+      "id": "node-8ddd6d8671f594c9",
+      "title": "4.1.3 Least squares estimates of the slope and intercept parameters in a simple linear"
+    },
+    {
+      "id": "node-faf4ce8301027ee9",
+      "title": "4.1.4 Use of appropriate software to fit a linear regression model to a data set and interpret"
+    },
+    {
+      "id": "node-930bc7de78464ff2",
+      "title": "4.1.5 Measures of model fit to select an appropriate set of explanatory variables"
+    },
+    {
+      "id": "node-2d8f40a05baf543c",
+      "title": "1.2.1 Appropriate tools to calculate suitable summary statistics and undertake exploratory"
+    },
+    {
+      "id": "node-8571c13eae6230a1",
+      "title": "1.2.2 Interpret and make statistical inferences using Pearson’s, Spearman’s and Kendall’s"
+    },
+    {
+      "id": "node-582a66c6c917017d",
+      "title": "1.2.3 Principal component analysis to reduce the dimensionality of a complex data set"
+    },
+    {
+      "id": "node-0ab6bda633556419",
+      "title": "2.2.1 Probability function or density function for marginal and conditional distributions of jointly"
+    },
+    {
+      "id": "node-a3c954c7e3f419a8",
+      "title": "2.2.2 The conditions under which random variables are independent"
+    },
+    {
+      "id": "node-0ee9495d1ef186ef",
+      "title": "2.2.3 Covariance, the correlation and the expected value of a function of two jointly distributed"
+    },
+    {
+      "id": "node-a0228d85e2efad38",
+      "title": "2.2.4 Mean and variance of linear combinations of random variables"
+    },
+    {
+      "id": "node-1fddef5c563c6dd5",
+      "title": "5.1.1 Use of Bayes’ theorem to calculate simple conditional probabilities"
+    },
+    {
+      "id": "node-38b8b2f8abf449e0",
+      "title": "5.1.2 Prior distribution, posterior distribution and conjugate prior distribution"
+    },
+    {
+      "id": "node-4bfa9e95f11e7e54",
+      "title": "5.1.3 Posterior distribution for a parameter in simple cases"
+    },
+    {
+      "id": "node-cbbe16141c6152cf",
+      "title": "5.1.4 Use of simple loss functions to derive Bayesian estimates of parameters"
+    },
+    {
+      "id": "node-aaaa5844cdd35f2e",
+      "title": "5.1.5 Credible intervals in simple cases"
+    },
+    {
+      "id": "node-21b26514a65293c6",
+      "title": "5.1.6 Credibility premium formula and the role played by the credibility factor"
+    },
+    {
+      "id": "node-41cc9914cf3291d1",
+      "title": "5.1.7 Bayesian approach to credibility theory and its use for calculating credibility premiums in"
+    },
+    {
+      "id": "node-a29b449ee7c34065",
+      "title": "5.1.8 Empirical Bayes approach to credibility theory and its use for deriving credibility"
+    },
+    {
+      "id": "node-5100c3e1d56dd67b",
+      "title": "5.1.9 Understanding the differences between the two approaches (Bayes v Empirical Bayes)"
+    },
+    {
+      "id": "node-a5eed9cabf7eeeb2",
+      "title": "In each examination, candidates will be expected to demonstrate, through their answers, that they have"
+    },
+    {
+      "id": "node-1dd3684b790ec06b",
+      "title": "3.2.1 Confidence interval for an unknown parameter of a distribution based on a"
+    },
+    {
+      "id": "node-d6886df8b037842d",
+      "title": "3.2.2 Prediction interval for a future observation based on a model fitted to a random sample"
+    },
+    {
+      "id": "node-83e889608420dc82",
+      "title": "3.2.3 Confidence interval for an unknown parameter using a given sampling distribution"
+    },
+    {
+      "id": "node-16cca00d65122dab",
+      "title": "3.2.4 Confidence intervals for the mean and the variance of a normal distribution"
+    },
+    {
+      "id": "node-146241809768e07d",
+      "title": "3.2.5 Confidence intervals for a binomial probability and a Poisson mean, including the use of"
+    },
+    {
+      "id": "node-9d7c0596da211477",
+      "title": "3.2.6 Confidence intervals for two-sample situations involving the normal distribution and the"
+    },
+    {
+      "id": "node-13541ea3092fdde8",
+      "title": "3.2.7 Confidence intervals for a difference between two means from paired data"
+    },
+    {
+      "id": "node-f1a244a13efbd53c",
+      "title": "3.2.8 Bootstrap method to obtain confidence intervals"
+    },
+    {
+      "id": "node-1fd0fc508a4c9a01",
+      "title": "4.2.1 Binomial, Poisson, exponential, gamma and normal distributions as an exponential family"
+    },
+    {
+      "id": "node-6dd8e27a436d1b44",
+      "title": "4.2.2 Mean, variance, variance function and scale parameter for a generalised linear model"
+    },
+    {
+      "id": "node-589de080db7b4967",
+      "title": "4.2.3 The link function and the canonical link function, referring to the distributions in 4.2.1"
+    },
+    {
+      "id": "node-dd045d0357a0a598",
+      "title": "4.2.4 Variables, factors taking categorical values and interaction terms."
+    },
+    {
+      "id": "node-2e5b554e66cfcc5f",
+      "title": "4.2.5 Definition of the linear predictor, including its form for simple models, including"
+    },
+    {
+      "id": "node-fa63f1ba4fe383c8",
+      "title": "4.2.6 Deviance scaled deviance and estimation of the parameters of a generalised linear model"
+    },
+    {
+      "id": "node-4ee5feefcc0f43b8",
+      "title": "4.2.7 Choice of a suitable model using an analysis of deviance and examination of the"
+    },
+    {
+      "id": "node-d2a9154cc4b22fae",
+      "title": "4.2.8 Pearson and deviance residuals and their use"
+    },
+    {
+      "id": "node-5557d4ef98bd22a3",
+      "title": "4.2.9 Statistical tests to determine the acceptability of a fitted model: Pearson’s chi-square test"
+    },
+    {
+      "id": "node-ce49a0449135d9f6",
+      "title": "4.2.10 Fit a generalised linear model to a data set and interpret the output"
+    }
+  ],
+  "sample_prerequisites": {
+    "node-b58d1e8e9c0e3f95": [],
+    "node-0314347654ee97d6": [
+      "node-b58d1e8e9c0e3f95"
+    ],
+    "node-b560ca099d047472": [
+      "node-0314347654ee97d6"
+    ],
+    "node-1c896dd384c343bf": [
+      "node-b560ca099d047472"
+    ],
+    "node-4d28e149228bc793": [
+      "node-1c896dd384c343bf"
+    ],
+    "node-4e9bcb0dd3851593": [
+      "node-4d28e149228bc793"
+    ],
+    "node-c92260fdcbc56495": [
+      "node-4e9bcb0dd3851593"
+    ],
+    "node-e3f41751f27a8a05": [
+      "node-c92260fdcbc56495"
+    ]
+  }
+}

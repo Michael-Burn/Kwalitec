@@ -45,10 +45,15 @@ FACT_FIELDS = (
 
 @pytest.mark.parametrize("mask", range(256))
 def test_checklist_ready_iff_all_eight_facts(mask):
-    """Exhaustive 2^8 fact combinations — READY only when mask == 255."""
+    """Exhaustive 2^8 fact combinations — READY only when mask == 255.
+
+    EI-002A intelligence certification is held true so this matrix still
+    isolates the original eight publication facts.
+    """
     kwargs = {
         field: bool(mask & (1 << i)) for i, field in enumerate(FACT_FIELDS)
     }
+    kwargs["intelligence_certified"] = True
     checklist = PublicationChecklist.compute(make_facts(**kwargs))
     assert checklist.ready_to_publish is (mask == 255)
 
@@ -121,6 +126,8 @@ def test_facts_fact_for_each_code(code):
         preview_approved=True,
         version_assigned=True,
         rollback_snapshot_created=True,
+        intelligence_certified=True,
+        calibration_applied=True,
     )
     assert facts.fact_for(code) is True
 

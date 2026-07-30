@@ -128,6 +128,7 @@ def test_end_to_end_founder_path():
         "ws-e2e",
         version_assigned=True,
         rollback_snapshot_created=True,
+        intelligence_certified=True,
         preview_built=True,
         preview_approved=True,
         validation_passed=True,

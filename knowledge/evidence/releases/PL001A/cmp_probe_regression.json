@@ -1,0 +1,35 @@
+{
+  "accepted": [
+    {
+      "index": 1,
+      "active": 6974,
+      "rejected": 0,
+      "confidence": 0.8606,
+      "coverage": 0.5701,
+      "noise": 0.1229
+    }
+  ],
+  "rejected": [
+    {
+      "index": 2,
+      "active": 6117,
+      "rejected_nodes": 857,
+      "confidence": 0.8493,
+      "coverage": 0.65,
+      "noise": 0.0
+    }
+  ],
+  "regression_reports": [
+    {
+      "accepted": false,
+      "reason": "regression_gates_failed",
+      "gate_failures": [
+        "confidence:0.8493<0.8606"
+      ],
+      "candidate_generation_id": "gen-ca78c361fec88ce7"
+    }
+  ],
+  "stopped_at_index": 2,
+  "duration_s": 2.63,
+  "cmp_window": "30-180"
+}

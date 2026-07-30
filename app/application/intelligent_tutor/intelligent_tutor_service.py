@@ -93,6 +93,8 @@ class IntelligentTutorService:
         generation: TutorGenerationPort | None = None,
         persistence: IntelligentTutorPersistenceService | None = None,
         explanations: TutorExplanationService | None = None,
+        certified_tutor: Any | None = None,
+        curriculum_authority: Any | None = None,
     ) -> None:
         self._twins = twins or StudentDigitalTwinService()
         self._graphs = graphs or LearningGraphService()
@@ -103,6 +105,9 @@ class IntelligentTutorService:
         self._generation = generation or DeterministicTutorGeneration()
         self._persistence = persistence or IntelligentTutorPersistenceService()
         self._explanations = explanations or TutorExplanationService()
+        # EI-002B: optional certified-node filter for Tutor context.
+        self._certified_tutor = certified_tutor
+        self._curriculum_authority = curriculum_authority
 
     # ------------------------------------------------------------------
     # Session lifecycle
@@ -458,6 +463,20 @@ class IntelligentTutorService:
             )
         )
 
+        certified_meta: dict[str, Any] = {}
+        (
+            concept_ids,
+            curriculum_excerpts,
+            curriculum_ids,
+            certified_meta,
+        ) = self._filter_to_certified_curriculum(
+            twin,
+            primary=primary,
+            concept_ids=concept_ids,
+            curriculum_excerpts=curriculum_excerpts,
+            curriculum_ids=curriculum_ids,
+        )
+
         return TutorContext(
             context_id=f"ctx-{uuid.uuid4().hex[:12]}",
             twin_id=twin.twin_id,
@@ -494,6 +513,7 @@ class IntelligentTutorService:
                 "engine_version": self.ENGINE_VERSION,
                 "generation_backend": self._generation.backend_name,
                 **self._ri001_coach_metadata(twin.student.student_id),
+                **certified_meta,
             },
         )
 
@@ -637,6 +657,75 @@ class IntelligentTutorService:
     # ------------------------------------------------------------------
     # Internals
     # ------------------------------------------------------------------
+
+    def _filter_to_certified_curriculum(
+        self,
+        twin: StudentDigitalTwin,
+        *,
+        primary: str,
+        concept_ids: tuple[str, ...],
+        curriculum_excerpts: list[str],
+        curriculum_ids: list[str],
+    ) -> tuple[tuple[str, ...], list[str], list[str], dict[str, Any]]:
+        """EI-002B: constrain Tutor references to certified curriculum nodes.
+
+        When no certified package / filter is configured, returns inputs unchanged.
+        """
+        if self._certified_tutor is None:
+            return concept_ids, curriculum_excerpts, curriculum_ids, {}
+        subject = ""
+        meta = getattr(twin, "metadata", None) or {}
+        if isinstance(meta, dict):
+            subject = str(meta.get("subject_code") or "").strip()
+        student = getattr(twin, "student", None)
+        if not subject and student is not None:
+            subject = str(getattr(student, "subject_code", "") or "").strip()
+        if not subject:
+            return concept_ids, curriculum_excerpts, curriculum_ids, {}
+        try:
+            authority = self._curriculum_authority
+            if authority is None:
+                from app.application.curriculum_studio_foundation.authority import (
+                    PublishedCurriculumAuthority,
+                )
+
+                authority = PublishedCurriculumAuthority()
+            snap = authority.get_active(subject)
+            if snap is None:
+                return concept_ids, curriculum_excerpts, curriculum_ids, {}
+            excerpt_pairs = tuple(
+                (curriculum_ids[i] if i < len(curriculum_ids) else primary, text)
+                for i, text in enumerate(curriculum_excerpts)
+            )
+            certified = self._certified_tutor.build(
+                snap.package,
+                primary_node_id=primary if primary else "",
+                candidate_node_ids=concept_ids,
+                excerpts=excerpt_pairs,
+            )
+            allowed = set(certified.allowed_node_ids)
+            filtered_concepts = tuple(c for c in concept_ids if c in allowed) or (
+                certified.primary_node_id,
+            )
+            filtered_excerpts = [text for _nid, text in certified.excerpts]
+            filtered_ids = [nid for nid, _text in certified.excerpts]
+            return (
+                filtered_concepts,
+                filtered_excerpts or curriculum_excerpts,
+                filtered_ids or [c for c in curriculum_ids if c in allowed],
+                {
+                    "curriculum_provenance": {
+                        "chain_id": certified.provenance.chain_id,
+                        "snapshot_id": certified.provenance.snapshot_id,
+                        "authority": certified.provenance.authority,
+                        "status": certified.provenance.status,
+                    },
+                    "certified_tutor_context_id": certified.context_id,
+                    "rejected_foreign_node_ids": list(certified.rejected_foreign_ids),
+                },
+            )
+        except Exception:  # noqa: BLE001 — never break Tutor assembly
+            return concept_ids, curriculum_excerpts, curriculum_ids, {}
 
     def _require_twin(self, twin_id: str) -> StudentDigitalTwin:
         twin = self._twins.get(twin_id)

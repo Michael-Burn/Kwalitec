@@ -1,0 +1,475 @@
+{
+  "weak_concepts": [
+    {
+      "signal_id": "weak_2a6822d7",
+      "kind": "weak_concept",
+      "node_id": "node-011388b39127eccc",
+      "priority": 1.0,
+      "rationale": "topic mastery 0.00 below threshold 0.55",
+      "related_node_ids": [
+        "node-ba7a206a0c8a5655"
+      ]
+    },
+    {
+      "signal_id": "weak_415945e9",
+      "kind": "weak_concept",
+      "node_id": "node-0314347654ee97d6",
+      "priority": 1.0,
+      "rationale": "topic mastery 0.00 below threshold 0.55",
+      "related_node_ids": [
+        "node-b58d1e8e9c0e3f95"
+      ]
+    },
+    {
+      "signal_id": "weak_92c1f0e3",
+      "kind": "weak_concept",
+      "node_id": "node-1c896dd384c343bf",
+      "priority": 1.0,
+      "rationale": "topic mastery 0.00 below threshold 0.55",
+      "related_node_ids": [
+        "node-b560ca099d047472"
+      ]
+    },
+    {
+      "signal_id": "weak_eeeb62fd",
+      "kind": "weak_concept",
+      "node_id": "node-27dc1ce4f2a0db13",
+      "priority": 1.0,
+      "rationale": "topic mastery 0.00 below threshold 0.55",
+      "related_node_ids": [
+        "node-28eb829ce344fe82"
+      ]
+    },
+    {
+      "signal_id": "weak_6b6bd99e",
+      "kind": "weak_concept",
+      "node_id": "node-28eb829ce344fe82",
+      "priority": 1.0,
+      "rationale": "topic mastery 0.00 below threshold 0.55",
+      "related_node_ids": [
+        "node-4ca5aa5dab83f318"
+      ]
+    },
+    {
+      "signal_id": "weak_6f04008e",
+      "kind": "weak_concept",
+      "node_id": "node-402f25153310c25b",
+      "priority": 1.0,
+      "rationale": "topic mastery 0.00 below threshold 0.55",
+      "related_node_ids": [
+        "node-71a1cb8b0dda0eaa"
+      ]
+    },
+    {
+      "signal_id": "weak_42899062",
+      "kind": "weak_concept",
+      "node_id": "node-4ca5aa5dab83f318",
+      "priority": 1.0,
+      "rationale": "topic mastery 0.00 below threshold 0.55",
+      "related_node_ids": [
+        "node-011388b39127eccc"
+      ]
+    },
+    {
+      "signal_id": "weak_0b1e2ba9",
+      "kind": "weak_concept",
+      "node_id": "node-4d28e149228bc793",
+      "priority": 1.0,
+      "rationale": "topic mastery 0.00 below threshold 0.55",
+      "related_node_ids": [
+        "node-1c896dd384c343bf"
+      ]
+    },
+    {
+      "signal_id": "weak_5e139446",
+      "kind": "weak_concept",
+      "node_id": "node-4e9bcb0dd3851593",
+      "priority": 1.0,
+      "rationale": "topic mastery 0.00 below threshold 0.55",
+      "related_node_ids": [
+        "node-4d28e149228bc793"
+      ]
+    },
+    {
+      "signal_id": "weak_bcc089af",
+      "kind": "weak_concept",
+      "node_id": "node-71a1cb8b0dda0eaa",
+      "priority": 1.0,
+      "rationale": "topic mastery 0.00 below threshold 0.55",
+      "related_node_ids": [
+        "node-e3f41751f27a8a05"
+      ]
+    },
+    {
+      "signal_id": "weak_d38c1148",
+      "kind": "weak_concept",
+      "node_id": "node-b560ca099d047472",
+      "priority": 1.0,
+      "rationale": "topic mastery 0.00 below threshold 0.55",
+      "related_node_ids": [
+        "node-0314347654ee97d6"
+      ]
+    },
+    {
+      "signal_id": "weak_54b536c4",
+      "kind": "weak_concept",
+      "node_id": "node-ba7a206a0c8a5655",
+      "priority": 1.0,
+      "rationale": "topic mastery 0.00 below threshold 0.55",
+      "related_node_ids": [
+        "node-402f25153310c25b"
+      ]
+    },
+    {
+      "signal_id": "weak_b9d62719",
+      "kind": "weak_concept",
+      "node_id": "node-c92260fdcbc56495",
+      "priority": 1.0,
+      "rationale": "topic mastery 0.00 below threshold 0.55",
+      "related_node_ids": [
+        "node-4e9bcb0dd3851593"
+      ]
+    },
+    {
+      "signal_id": "weak_751c87df",
+      "kind": "weak_concept",
+      "node_id": "node-e3f41751f27a8a05",
+      "priority": 1.0,
+      "rationale": "topic mastery 0.00 below threshold 0.55",
+      "related_node_ids": [
+        "node-c92260fdcbc56495"
+      ]
+    }
+  ],
+  "missed_objectives": [
+    {
+      "signal_id": "miss_f4729b8e",
+      "kind": "missed_objective",
+      "node_id": "node-0104b08e8376ddbb",
+      "priority": 0.85,
+      "rationale": "certified learning objective not yet covered",
+      "related_node_ids": [
+        "node-e3f41751f27a8a05"
+      ]
+    },
+    {
+      "signal_id": "miss_4722488e",
+      "kind": "missed_objective",
+      "node_id": "node-033d597d27c9f1eb",
+      "priority": 0.85,
+      "rationale": "certified learning objective not yet covered",
+      "related_node_ids": [
+        "node-011388b39127eccc"
+      ]
+    },
+    {
+      "signal_id": "miss_e2b31a23",
+      "kind": "missed_objective",
+      "node_id": "node-0aaa627eb2adb37f",
+      "priority": 0.85,
+      "rationale": "certified learning objective not yet covered",
+      "related_node_ids": [
+        "node-c92260fdcbc56495"
+      ]
+    },
+    {
+      "signal_id": "miss_e4e52f6e",
+      "kind": "missed_objective",
+      "node_id": "node-0ab6bda633556419",
+      "priority": 0.85,
+      "rationale": "certified learning objective not yet covered",
+      "related_node_ids": [
+        "node-1c896dd384c343bf"
+      ]
+    },
+    {
+      "signal_id": "miss_98de7d41",
+      "kind": "missed_objective",
+      "node_id": "node-0ee9495d1ef186ef",
+      "priority": 0.85,
+      "rationale": "certified learning objective not yet covered",
+      "related_node_ids": [
+        "node-1c896dd384c343bf"
+      ]
+    },
+    {
+      "signal_id": "miss_651fe50e",
+      "kind": "missed_objective",
+      "node_id": "node-13541ea3092fdde8",
+      "priority": 0.85,
+      "rationale": "certified learning objective not yet covered",
+      "related_node_ids": [
+        "node-402f25153310c25b"
+      ]
+    },
+    {
+      "signal_id": "miss_9564eca6",
+      "kind": "missed_objective",
+      "node_id": "node-146241809768e07d",
+      "priority": 0.85,
+      "rationale": "certified learning objective not yet covered",
+      "related_node_ids": [
+        "node-402f25153310c25b"
+      ]
+    },
+    {
+      "signal_id": "miss_040f4d14",
+      "kind": "missed_objective",
+      "node_id": "node-16cca00d65122dab",
+      "priority": 0.85,
+      "rationale": "certified learning objective not yet covered",
+      "related_node_ids": [
+        "node-402f25153310c25b"
+      ]
+    },
+    {
+      "signal_id": "miss_b1d8fe14",
+      "kind": "missed_objective",
+      "node_id": "node-1b1d299e8fc7b3f0",
+      "priority": 0.85,
+      "rationale": "certified learning objective not yet covered",
+      "related_node_ids": [
+        "node-71a1cb8b0dda0eaa"
+      ]
+    },
+    {
+      "signal_id": "miss_cfdaf06b",
+      "kind": "missed_objective",
+      "node_id": "node-1dd3684b790ec06b",
+      "priority": 0.85,
+      "rationale": "certified learning objective not yet covered",
+      "related_node_ids": [
+        "node-402f25153310c25b"
+      ]
+    },
+    {
+      "signal_id": "miss_1e184e4c",
+      "kind": "missed_objective",
+      "node_id": "node-1fd0fc508a4c9a01",
+      "priority": 0.85,
+      "rationale": "certified learning objective not yet covered",
+      "related_node_ids": [
+        "node-4ca5aa5dab83f318"
+      ]
+    },
+    {
+      "signal_id": "miss_2dec2865",
+      "kind": "missed_objective",
+      "node_id": "node-1fddef5c563c6dd5",
+      "priority": 0.85,
+      "rationale": "certified learning objective not yet covered",
+      "related_node_ids": [
+        "node-28eb829ce344fe82"
+      ]
+    },
+    {
+      "signal_id": "miss_3d05ac67",
+      "kind": "missed_objective",
+      "node_id": "node-21b26514a65293c6",
+      "priority": 0.85,
+      "rationale": "certified learning objective not yet covered",
+      "related_node_ids": [
+        "node-28eb829ce344fe82"
+      ]
+    },
+    {
+      "signal_id": "miss_abd644e0",
+      "kind": "missed_objective",
+      "node_id": "node-2d8f40a05baf543c",
+      "priority": 0.85,
+      "rationale": "certified learning objective not yet covered",
+      "related_node_ids": [
+        "node-0314347654ee97d6"
+      ]
+    },
+    {
+      "signal_id": "miss_ff95f0f6",
+      "kind": "missed_objective",
+      "node_id": "node-2e5b554e66cfcc5f",
+      "priority": 0.85,
+      "rationale": "certified learning objective not yet covered",
+      "related_node_ids": [
+        "node-4ca5aa5dab83f318"
+      ]
+    }
+  ],
+  "revision_priorities": [
+    {
+      "signal_id": "rev_c5972a09",
+      "kind": "revision_priority",
+      "node_id": "node-0314347654ee97d6",
+      "priority": 1.1,
+      "rationale": "revision ready: prerequisites satisfied; weak mastery on node-0314347654ee97d6",
+      "related_node_ids": [
+        "node-b58d1e8e9c0e3f95"
+      ]
+    }
+  ],
+  "concept_dependencies": [
+    {
+      "signal_id": "dep_3e6dc1f4",
+      "kind": "concept_dependency",
+      "node_id": "node-011388b39127eccc",
+      "priority": 0.9,
+      "rationale": "blocks objective node-1fd0fc508a4c9a01 via topic node-4ca5aa5dab83f318",
+      "related_node_ids": [
+        "node-4ca5aa5dab83f318",
+        "node-1fd0fc508a4c9a01"
+      ]
+    },
+    {
+      "signal_id": "dep_c288ff89",
+      "kind": "concept_dependency",
+      "node_id": "node-011388b39127eccc",
+      "priority": 0.9,
+      "rationale": "blocks objective node-6dd8e27a436d1b44 via topic node-4ca5aa5dab83f318",
+      "related_node_ids": [
+        "node-4ca5aa5dab83f318",
+        "node-6dd8e27a436d1b44"
+      ]
+    },
+    {
+      "signal_id": "dep_cd884c71",
+      "kind": "concept_dependency",
+      "node_id": "node-011388b39127eccc",
+      "priority": 0.9,
+      "rationale": "blocks objective node-589de080db7b4967 via topic node-4ca5aa5dab83f318",
+      "related_node_ids": [
+        "node-4ca5aa5dab83f318",
+        "node-589de080db7b4967"
+      ]
+    },
+    {
+      "signal_id": "dep_0b1e5f9b",
+      "kind": "concept_dependency",
+      "node_id": "node-011388b39127eccc",
+      "priority": 0.9,
+      "rationale": "blocks objective node-dd045d0357a0a598 via topic node-4ca5aa5dab83f318",
+      "related_node_ids": [
+        "node-4ca5aa5dab83f318",
+        "node-dd045d0357a0a598"
+      ]
+    },
+    {
+      "signal_id": "dep_718f7b4a",
+      "kind": "concept_dependency",
+      "node_id": "node-011388b39127eccc",
+      "priority": 0.9,
+      "rationale": "blocks objective node-2e5b554e66cfcc5f via topic node-4ca5aa5dab83f318",
+      "related_node_ids": [
+        "node-4ca5aa5dab83f318",
+        "node-2e5b554e66cfcc5f"
+      ]
+    },
+    {
+      "signal_id": "dep_3280081b",
+      "kind": "concept_dependency",
+      "node_id": "node-011388b39127eccc",
+      "priority": 0.9,
+      "rationale": "blocks objective node-fa63f1ba4fe383c8 via topic node-4ca5aa5dab83f318",
+      "related_node_ids": [
+        "node-4ca5aa5dab83f318",
+        "node-fa63f1ba4fe383c8"
+      ]
+    },
+    {
+      "signal_id": "dep_ccc9f609",
+      "kind": "concept_dependency",
+      "node_id": "node-011388b39127eccc",
+      "priority": 0.9,
+      "rationale": "blocks objective node-4ee5feefcc0f43b8 via topic node-4ca5aa5dab83f318",
+      "related_node_ids": [
+        "node-4ca5aa5dab83f318",
+        "node-4ee5feefcc0f43b8"
+      ]
+    },
+    {
+      "signal_id": "dep_8f161965",
+      "kind": "concept_dependency",
+      "node_id": "node-011388b39127eccc",
+      "priority": 0.9,
+      "rationale": "blocks objective node-d2a9154cc4b22fae via topic node-4ca5aa5dab83f318",
+      "related_node_ids": [
+        "node-4ca5aa5dab83f318",
+        "node-d2a9154cc4b22fae"
+      ]
+    },
+    {
+      "signal_id": "dep_01f7e8e9",
+      "kind": "concept_dependency",
+      "node_id": "node-011388b39127eccc",
+      "priority": 0.9,
+      "rationale": "blocks objective node-5557d4ef98bd22a3 via topic node-4ca5aa5dab83f318",
+      "related_node_ids": [
+        "node-4ca5aa5dab83f318",
+        "node-5557d4ef98bd22a3"
+      ]
+    },
+    {
+      "signal_id": "dep_ad152b8a",
+      "kind": "concept_dependency",
+      "node_id": "node-011388b39127eccc",
+      "priority": 0.9,
+      "rationale": "blocks objective node-ce49a0449135d9f6 via topic node-4ca5aa5dab83f318",
+      "related_node_ids": [
+        "node-4ca5aa5dab83f318",
+        "node-ce49a0449135d9f6"
+      ]
+    },
+    {
+      "signal_id": "dep_20a86104",
+      "kind": "concept_dependency",
+      "node_id": "node-0314347654ee97d6",
+      "priority": 0.9,
+      "rationale": "blocks objective node-b7affe8553686722 via topic node-b560ca099d047472",
+      "related_node_ids": [
+        "node-b560ca099d047472",
+        "node-b7affe8553686722"
+      ]
+    },
+    {
+      "signal_id": "dep_903b2ec5",
+      "kind": "concept_dependency",
+      "node_id": "node-0314347654ee97d6",
+      "priority": 0.9,
+      "rationale": "blocks objective node-7447bc38d6f2de4d via topic node-b560ca099d047472",
+      "related_node_ids": [
+        "node-b560ca099d047472",
+        "node-7447bc38d6f2de4d"
+      ]
+    },
+    {
+      "signal_id": "dep_8d997ad3",
+      "kind": "concept_dependency",
+      "node_id": "node-0314347654ee97d6",
+      "priority": 0.9,
+      "rationale": "blocks objective node-49e53355dcaafabb via topic node-b560ca099d047472",
+      "related_node_ids": [
+        "node-b560ca099d047472",
+        "node-49e53355dcaafabb"
+      ]
+    },
+    {
+      "signal_id": "dep_805658db",
+      "kind": "concept_dependency",
+      "node_id": "node-0314347654ee97d6",
+      "priority": 0.9,
+      "rationale": "blocks objective node-5eb8935f916937f9 via topic node-b560ca099d047472",
+      "related_node_ids": [
+        "node-b560ca099d047472",
+        "node-5eb8935f916937f9"
+      ]
+    },
+    {
+      "signal_id": "dep_0442cef7",
+      "kind": "concept_dependency",
+      "node_id": "node-0314347654ee97d6",
+      "priority": 0.9,
+      "rationale": "blocks objective node-65dafa2f984c0b6d via topic node-b560ca099d047472",
+      "related_node_ids": [
+        "node-b560ca099d047472",
+        "node-65dafa2f984c0b6d"
+      ]
+    }
+  ]
+}

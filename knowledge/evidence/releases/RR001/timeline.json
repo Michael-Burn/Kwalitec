@@ -1,0 +1,103 @@
+[
+  {
+    "stage": "baseline_active_package",
+    "ok": true,
+    "t_s": 1.57,
+    "timestamp": "2026-07-30T06:34:35Z",
+    "has_certification": true,
+    "topics": 15,
+    "sections": 5
+  },
+  {
+    "stage": "extract_normalize",
+    "ok": true,
+    "t_s": 7.71,
+    "timestamp": "2026-07-30T06:34:41Z",
+    "syllabus_pages": 8,
+    "cmp_window": "30-180"
+  },
+  {
+    "stage": "cmp_syllabus_g1_g7",
+    "ok": true,
+    "t_s": 188.46,
+    "timestamp": "2026-07-30T06:37:42Z",
+    "stopped_at_index": null,
+    "certification": "CERTIFIED_WITH_WARNINGS",
+    "duration_s": 180.74,
+    "accepted_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  {
+    "stage": "syllabus_g1_g7",
+    "ok": true,
+    "t_s": 197.41,
+    "timestamp": "2026-07-30T06:37:51Z",
+    "intelligence_certified": true,
+    "certification": "CERTIFIED_WITH_WARNINGS",
+    "duration_s": 8.95
+  },
+  {
+    "stage": "calibration_recert",
+    "ok": true,
+    "t_s": 215.44,
+    "timestamp": "2026-07-30T06:38:09Z",
+    "intelligence_certified": true,
+    "post_cal_certification": "CERTIFIED_WITH_WARNINGS",
+    "generations_rerun": [
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "duration_s": 18.03
+  },
+  {
+    "stage": "catalogue_cutover",
+    "ok": true,
+    "t_s": 215.56,
+    "timestamp": "2026-07-30T06:38:09Z",
+    "package_id": 1,
+    "version_label": "2026.1",
+    "is_active": true,
+    "duration_s": 0.12
+  },
+  {
+    "stage": "active_catalogue_certified",
+    "ok": true,
+    "t_s": 215.56,
+    "timestamp": "2026-07-30T06:38:09Z",
+    "has_certification": true,
+    "topics": 15,
+    "objectives": 73,
+    "sections": 5
+  },
+  {
+    "stage": "student_runtime_certified",
+    "ok": true,
+    "t_s": 215.56,
+    "timestamp": "2026-07-30T06:38:09Z",
+    "loaded": true,
+    "authority": "certified_snapshot",
+    "status": "CERTIFIED_WITH_WARNINGS",
+    "topics": 15,
+    "objectives": 73,
+    "sections": 5
+  },
+  {
+    "stage": "student_surfaces",
+    "ok": true,
+    "t_s": 216.47,
+    "timestamp": "2026-07-30T06:38:10Z",
+    "certified_loaded": true,
+    "missions_ok": true,
+    "observatory_ok": true
+  }
+]

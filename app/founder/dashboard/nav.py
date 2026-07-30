@@ -65,6 +65,16 @@ COMMAND_CENTRE_SECONDARY_NAV: tuple[CommandCentreNavItem, ...] = (
     CommandCentreNavItem(
         "founder_dashboard.runtime_health", "Runtime Health", "runtime_health"
     ),
+    CommandCentreNavItem(
+        "founder_dashboard.curriculum_health",
+        "Curriculum Health",
+        "curriculum_health",
+    ),
+    CommandCentreNavItem(
+        "founder_dashboard.beta",
+        "Private Beta",
+        "beta",
+    ),
     CommandCentreNavItem("founder_dashboard.findings", "Findings", "findings"),
     CommandCentreNavItem(
         "founder_dashboard.internal_alpha", "Internal Alpha", "internal_alpha"
@@ -110,6 +120,11 @@ def active_section_id(endpoint: str | None) -> str:
         "founder_dashboard.operations",
         "founder_dashboard.attention",
         "founder_dashboard.runtime_health",
+        "founder_dashboard.curriculum_health",
+        "founder_dashboard.beta",
+        "founder_dashboard.beta_enrol",
+        "founder_dashboard.beta_observe",
+        "founder_dashboard.beta_report",
         "founder_dashboard.alpha_observability",
         "founder_dashboard.internal_alpha",
         "founder_dashboard.releases",
