@@ -216,11 +216,11 @@
                     <article class="settings-info-card">
                         <div class="settings-info-card-icon" aria-hidden="true">{{ icon('shield', size=18) }}</div>
                         <div class="settings-info-card-body">
-                            <h3 class="settings-info-card-title">Password &amp; sessions</h3>
-                            <p class="settings-info-card-value">Managed by your account</p>
-                            <p class="settings-info-card-desc">Password change and session controls will appear here when shipped.</p>
+                            <h3 class="settings-info-card-title">Password</h3>
+                            <p class="settings-info-card-value">Change your sign-in password</p>
+                            <p class="settings-info-card-desc">Choose a familiar password so signing in stays easy.</p>
                         </div>
-                        <span class="settings-info-card-action settings-info-card-action--muted" aria-disabled="true">Soon</span>
+                        <a class="settings-info-card-action" href="{{ url_for('settings.change_password') }}">Change</a>
                     </article>
                 </div>
             </section>

@@ -130,6 +130,31 @@ def update_profile():
     return redirect(url_for("settings.profile"))
 
 
+@settings_bp.route("/password", methods=["GET", "POST"])
+@login_required
+def change_password():
+    """Let the signed-in user set a familiar password (no email reset)."""
+    from app.settings.forms import ChangePasswordForm
+
+    form = ChangePasswordForm()
+    if form.validate_on_submit():
+        if not current_user.check_password(form.current_password.data):
+            flash("Current password is incorrect.", "danger")
+        elif form.current_password.data == form.new_password.data:
+            flash("Choose a new password that differs from your current one.", "danger")
+        else:
+            current_user.set_password(form.new_password.data)
+            db.session.commit()
+            flash("Password updated. Use it the next time you sign in.", "success")
+            return redirect(url_for("settings.change_password"))
+
+    return render_template(
+        "settings/index.html",
+        title="Change password",
+        section="password",
+        password_form=form,
+    )
+
 @settings_bp.get("/preferences")
 @login_required
 def preferences():

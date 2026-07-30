@@ -26,6 +26,11 @@
                 {{ icon('profile', class='me-2') }}
                 Profile
             </a>
+            <a class="settings-nav-link{% if current_section == 'password' %} active{% endif %}"
+               href="{{ url_for('settings.change_password') }}">
+                {{ icon('shield', class='me-2') }}
+                Password
+            </a>
             <a class="settings-nav-link{% if current_section == 'preferences' %} active{% endif %}"
                href="{{ url_for('settings.preferences') }}">
                 {{ icon('preferences', class='me-2') }}
@@ -129,6 +134,10 @@
                             <input type="email" class="form-control" value="{{ current_user.email }}" disabled readonly>
                             <div class="form-text text-muted">Your email is used for login and cannot be changed here.</div>
                         </div>
+                        <p class="small text-muted mb-3">
+                            To choose a familiar password,
+                            <a href="{{ url_for('settings.change_password') }}">update your password</a>.
+                        </p>
                         <button type="submit" class="btn student-btn-primary">Save Profile</button>
                     </div>
                 </form>
@@ -186,6 +195,43 @@
                 </div>
         </div>
         {% endif %}
+
+        {# Password Section #}
+        {% elif current_section == 'password' %}
+        <div class="student-panel student-panel--quiet mb-4" id="change-password">
+                <form method="post" action="{{ url_for('settings.change_password') }}" autocomplete="off">
+                    {{ password_form.hidden_tag() }}
+                    <div class="settings-section">
+                        <h2 class="settings-section-title student-panel-title">Change password</h2>
+                        <p class="text-muted small mb-3">
+                            Set a password you will remember. You will stay signed in after updating.
+                        </p>
+                        <div class="mb-3">
+                            {{ password_form.current_password.label(class="form-label") }}
+                            {{ password_form.current_password(class="form-control", autocomplete="current-password") }}
+                            {% for error in password_form.current_password.errors %}
+                            <div class="invalid-feedback d-block">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="mb-3">
+                            {{ password_form.new_password.label(class="form-label") }}
+                            {{ password_form.new_password(class="form-control", autocomplete="new-password") }}
+                            <div class="form-text text-muted">At least 8 characters.</div>
+                            {% for error in password_form.new_password.errors %}
+                            <div class="invalid-feedback d-block">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="mb-3">
+                            {{ password_form.confirm_password.label(class="form-label") }}
+                            {{ password_form.confirm_password(class="form-control", autocomplete="new-password") }}
+                            {% for error in password_form.confirm_password.errors %}
+                            <div class="invalid-feedback d-block">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        {{ password_form.submit(class="btn student-btn-primary") }}
+                    </div>
+                </form>
+        </div>
         {% endif %}
 
         {# Preferences Section #}
