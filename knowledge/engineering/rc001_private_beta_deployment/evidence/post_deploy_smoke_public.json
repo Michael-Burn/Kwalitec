@@ -1,0 +1,26 @@
+{
+  "health": {
+    "status": "ok",
+    "version": "2.0.0-beta.1",
+    "commit": "7302bb7f955e4f2e8512d5af28ee258f34abbc00",
+    "migrations": {
+      "meta": {
+        "current": "202607300005",
+        "head": "202607300005"
+      },
+      "name": "migrations",
+      "status": "ok"
+    },
+    "database": "connected",
+    "environment": "production"
+  },
+  "ready_status": "ok",
+  "login": {
+    "bytes": 10878,
+    "has_version": true,
+    "has_kwalitec_v": true,
+    "has_build_beta": true,
+    "has_internal_alpha": true,
+    "has_sign_in": true
+  }
+}

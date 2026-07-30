@@ -1,0 +1,132 @@
+{
+  "skipped": false,
+  "has_session_cookie": true,
+  "login_redirect": "405|https://kwalitec.onrender.com/auth/experience",
+  "checks": {
+    "founder_home": {
+      "status": 200,
+      "final_url": "https://kwalitec.onrender.com/console/",
+      "bytes": 10512,
+      "server_error": false,
+      "has_version": true,
+      "has_private_beta": false,
+      "redirected_to_login": false
+    },
+    "beta_dashboard": {
+      "status": 200,
+      "final_url": "https://kwalitec.onrender.com/console/beta",
+      "bytes": 20971,
+      "server_error": false,
+      "has_version": true,
+      "has_private_beta": true,
+      "redirected_to_login": false
+    },
+    "curriculum_health": {
+      "status": 200,
+      "final_url": "https://kwalitec.onrender.com/console/curriculum-health",
+      "bytes": 11339,
+      "server_error": false,
+      "has_version": true,
+      "has_private_beta": false,
+      "redirected_to_login": false
+    },
+    "student_home": {
+      "status": 200,
+      "final_url": "https://kwalitec.onrender.com/student/",
+      "bytes": 10368,
+      "server_error": false,
+      "has_version": true,
+      "has_private_beta": true,
+      "redirected_to_login": false
+    },
+    "tutor": {
+      "status": 200,
+      "final_url": "https://kwalitec.onrender.com/student/tutor",
+      "bytes": 10636,
+      "server_error": false,
+      "has_version": true,
+      "has_private_beta": true,
+      "redirected_to_login": false
+    },
+    "knowledge_graph": {
+      "status": 200,
+      "final_url": "https://kwalitec.onrender.com/student/knowledge-graph",
+      "bytes": 10154,
+      "server_error": false,
+      "has_version": true,
+      "has_private_beta": true,
+      "redirected_to_login": false
+    },
+    "journey": {
+      "status": 200,
+      "final_url": "https://kwalitec.onrender.com/student/journey",
+      "bytes": 11305,
+      "server_error": false,
+      "has_version": true,
+      "has_private_beta": true,
+      "redirected_to_login": false
+    },
+    "help": {
+      "status": 200,
+      "final_url": "https://kwalitec.onrender.com/alpha/help",
+      "bytes": 33110,
+      "server_error": false,
+      "has_version": true,
+      "has_private_beta": true,
+      "redirected_to_login": false
+    },
+    "feedback_beta": {
+      "status": 200,
+      "final_url": "https://kwalitec.onrender.com/alpha/feedback/beta",
+      "bytes": 13387,
+      "server_error": false,
+      "has_version": true,
+      "has_private_beta": true,
+      "redirected_to_login": false
+    },
+    "settings": {
+      "status": 302,
+      "final_url": "https://kwalitec.onrender.com/settings/",
+      "bytes": 219,
+      "server_error": false,
+      "has_version": false,
+      "has_private_beta": false,
+      "redirected_to_login": false
+    }
+  },
+  "extended_checks": {
+    "studio_hub": {
+      "status": 404,
+      "final_url": "https://kwalitec.onrender.com/curriculum-studio/",
+      "bytes": 5987,
+      "server_error": false,
+      "redirected_to_login": false
+    },
+    "studio_workspaces": {
+      "status": 404,
+      "final_url": "https://kwalitec.onrender.com/curriculum-studio/workspaces",
+      "bytes": 5987,
+      "server_error": false,
+      "redirected_to_login": false
+    },
+    "missions": {
+      "status": 302,
+      "final_url": "https://kwalitec.onrender.com/missions/",
+      "bytes": 205,
+      "server_error": false,
+      "redirected_to_login": false
+    },
+    "releases": {
+      "status": 200,
+      "final_url": "https://kwalitec.onrender.com/console/releases",
+      "bytes": 9893,
+      "server_error": false,
+      "redirected_to_login": false
+    },
+    "studio_subjects": {
+      "status": 200,
+      "final_url": "https://kwalitec.onrender.com/console/studio/subjects",
+      "server_error": false
+    }
+  }
+}
