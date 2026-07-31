@@ -16,7 +16,7 @@ Canonical baseline document: **[`FOUNDER_VALIDATION_BUILD.md`](FOUNDER_VALIDATIO
 | Static fingerprint | `2.0.0-beta.1-rf001` |
 | Environment | Production (`https://kwalitec.onrender.com`) |
 | Database version | Alembic `202607300005` |
-| Commit hash | *(RF-001 release commit on `main` — recorded after commit)* |
+| Commit hash | `8915930c913d5cd08f19c1ab69fc8a8f6bf37696` |
 | Deployment date | 2026-07-31 |
 
 ---

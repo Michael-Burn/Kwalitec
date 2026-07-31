@@ -74,7 +74,7 @@ Captured 2026-07-31 before RF-001 push:
 |-------|--------|
 | Build identifier | `FV-001` / `2.0.0-beta.1-rf001` |
 | Pre-deploy live commit | `d94d514…` |
-| RF-001 release commit | *(filled at commit time in validation build doc)* |
+| RF-001 release commit | `8915930c913d5cd08f19c1ab69fc8a8f6bf37696` |
 | Database revision | `202607300005` |
 | Runtime | Waitress on Render free plan |
 
