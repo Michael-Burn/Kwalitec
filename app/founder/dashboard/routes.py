@@ -652,3 +652,64 @@ def review_submission(submission_id: int):
 def award_founders_circle(user_id: int):
     """Award Founder's Circle from Students."""
     return handle_award_founders_circle(user_id)
+
+
+@founder_dashboard_bp.get("/participants/<int:user_id>/baseline")
+@founder_required
+def student_baseline(user_id: int):
+    """Inspect Baseline rows and Twin birth ids for a student (SB-001A)."""
+    from app.application.student_baseline import StudentBaselineService
+    from app.models.user import User
+
+    user = User.query.get(user_id)
+    if user is None:
+        flash("Student not found.", "warning")
+        return redirect(url_for("founder_dashboard.participants"))
+    rows = StudentBaselineService.list_for_user(user_id)
+    views = [StudentBaselineService.resume_view(r) for r in rows]
+    return render_template(
+        "founder_dashboard/student_baseline.html",
+        title="Student Baseline",
+        student=user,
+        baselines=list(zip(rows, views, strict=True)),
+    )
+
+
+@founder_dashboard_bp.post(
+    "/participants/<int:user_id>/baseline/<path:subject_key>/reset"
+)
+@founder_required
+def student_baseline_reset(user_id: int, subject_key: str):
+    """Founder reset — supersede Baseline; never delete study history."""
+    from app.application.student_baseline import StudentBaselineService
+
+    result = StudentBaselineService.founder_reset(user_id, subject_key)
+    if result is None:
+        flash("No complete Baseline to reset for that subject.", "info")
+    else:
+        flash(
+            "Baseline reset. Study history is intact — student must re-baseline "
+            "before future planning for this subject.",
+            "success",
+        )
+    return redirect(
+        url_for("founder_dashboard.student_baseline", user_id=user_id)
+    )
+
+
+@founder_dashboard_bp.post(
+    "/participants/<int:user_id>/baseline/<path:subject_key>/restart"
+)
+@founder_required
+def student_baseline_restart(user_id: int, subject_key: str):
+    """Founder-triggered restart — supersede + open draft for student."""
+    from app.application.student_baseline import StudentBaselineService
+
+    try:
+        StudentBaselineService.restart_for_student(user_id, subject_key)
+        flash("Baseline restarted as a new draft for the student.", "success")
+    except ValueError as exc:
+        flash(str(exc), "info")
+    return redirect(
+        url_for("founder_dashboard.student_baseline", user_id=user_id)
+    )

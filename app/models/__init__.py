@@ -166,6 +166,7 @@ from app.models.student_digital_twin import (
     SdtRecommendation,
     SdtStudentDigitalTwin,
 )
+from app.models.student_baseline import StudentBaseline
 from app.models.study_plan import StudyPlan, WeekPlan
 from app.models.subject import Subject
 from app.models.topic_progress import TopicProgress
@@ -309,6 +310,7 @@ __all__ = [
     "DecisionJournalEvidenceEvent",
     "EducationalFeedbackReview",
     "RecommendationCommitment",
+    "StudentBaseline",
     "TwinSnapshot",
     "V2AggregateDocument",
     "V2AggregateSnapshot",

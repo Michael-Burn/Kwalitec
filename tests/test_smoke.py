@@ -78,16 +78,42 @@ def _complete_wizard(client: FlaskClient) -> FlaskClient:
     return client
 
 
-def _create_plan(client: FlaskClient, user) -> StudyPlan:
-    """Login, complete wizard, and create a study plan. Returns the plan."""
-    _login(client)
-    _complete_wizard(client)
-    resp = client.post(
-        "/study-plan/review",
-        data={"confirm": "yes"},
+def _complete_baseline(client: FlaskClient) -> FlaskClient:
+    """SB-001A progressive Baseline → Twin birth → Study Plan."""
+    client.post(
+        "/baseline/step/1",
+        data={"experience": "brand_new"},
         follow_redirects=True,
     )
-    assert resp.status_code == 200
+    client.post(
+        "/baseline/step/2",
+        data={"position_mode": "start_beginning"},
+        follow_redirects=True,
+    )
+    client.post(
+        "/baseline/step/3",
+        data={"exam_history": "first_sitting"},
+        follow_redirects=True,
+    )
+    client.post(
+        "/baseline/step/4",
+        data={"learning_objective": "recommend"},
+        follow_redirects=True,
+    )
+    client.post(
+        "/baseline/step/5",
+        data={"confidence": "moderate"},
+        follow_redirects=True,
+    )
+    client.post("/baseline/step/6", data={}, follow_redirects=True)
+    return client
+
+
+def _create_plan(client: FlaskClient, user) -> StudyPlan:
+    """Login, complete wizard + Baseline, and create a study plan."""
+    _login(client)
+    _complete_wizard(client)
+    _complete_baseline(client)
     plan = StudyPlan.query.filter_by(user_id=user.id, active=True).first()
     assert plan is not None, "Study plan was not created"
     return plan
@@ -188,8 +214,8 @@ class TestSmokeStudyPlanWizard:
         resp = client.get("/study-plan/wizard/3")
         assert resp.status_code == 200
 
-    def test_wizard_step_3_post_redirects_to_begin_learning(self, client, user):
-        """Study Availability posts and redirects to Begin Learning."""
+    def test_wizard_step_3_post_redirects_to_baseline(self, client, user):
+        """Study Availability posts and redirects to Baseline."""
         _login(client)
         _wizard_step_1(client)
         _wizard_step_2(client)
@@ -203,28 +229,50 @@ class TestSmokeStudyPlanWizard:
             follow_redirects=True,
         )
         assert resp.status_code == 200
-        assert resp.request.path == "/study-plan/review"
+        assert "/baseline" in resp.request.path
 
-    def test_review_page_renders(self, client, user):
-        """Begin Learning page renders with wizard data."""
+    def test_baseline_experience_renders(self, client, user):
+        """Baseline entry renders after the PX-002 wizard."""
         _login(client)
         _complete_wizard(client)
-        resp = client.get("/study-plan/review")
+        resp = client.get("/baseline/step/1")
         assert resp.status_code == 200
-        assert b"Begin Learning" in resp.data or b"Study Plan" in resp.data
+        assert b"Brand new" in resp.data
 
     def test_create_study_plan_succeeds(self, client, user):
-        """Final confirmation creates the study plan."""
+        """Baseline finalize creates the study plan."""
         _login(client)
         _complete_wizard(client)
         resp = client.post(
-            "/study-plan/review",
-            data={"confirm": "yes"},
+            "/baseline/step/1",
+            data={"experience": "brand_new"},
             follow_redirects=True,
         )
         assert resp.status_code == 200
-        assert "/calibration/" in resp.request.path
-        assert b"history" in resp.data.lower() or b"starting" in resp.data.lower()
+        client.post(
+            "/baseline/step/2",
+            data={"position_mode": "start_beginning"},
+            follow_redirects=True,
+        )
+        client.post(
+            "/baseline/step/3",
+            data={"exam_history": "first_sitting"},
+            follow_redirects=True,
+        )
+        client.post(
+            "/baseline/step/4",
+            data={"learning_objective": "recommend"},
+            follow_redirects=True,
+        )
+        client.post(
+            "/baseline/step/5",
+            data={"confidence": "moderate"},
+            follow_redirects=True,
+        )
+        resp = client.post("/baseline/step/6", data={}, follow_redirects=True)
+        assert resp.status_code == 200
+        plan = StudyPlan.query.filter_by(user_id=user.id, active=True).first()
+        assert plan is not None
 
     def test_exactly_one_study_plan_created(self, app, ctx, user):
         """Only one StudyPlan should be created for the user."""
@@ -306,14 +354,12 @@ class TestSmokeStudyPlanWizard:
             follow_redirects=True,
         )
         assert resp.status_code == 200
-
-        resp = client.post(
-            "/study-plan/review",
-            data={"confirm": "yes"},
-            follow_redirects=True,
-        )
-        assert resp.status_code == 200
+        assert "/baseline" in resp.request.path
         assert b"Internal Server Error" not in resp.data
+
+        _complete_baseline(client)
+        assert StudyPlan.query.filter_by(user_id=user.id, active=True).first()
+        assert b"Internal Server Error" not in client.get("/student/").data
 
 
 class TestSmokeDashboard:
@@ -915,31 +961,19 @@ class TestFullEndToEnd:
             follow_redirects=True,
         )
         assert resp.status_code == 200
-        assert resp.request.path == "/study-plan/review"
+        assert "/baseline" in resp.request.path
 
-        # Review — GET
-        resp = client.get("/study-plan/review")
-        assert resp.status_code == 200
+        # SB-001A Baseline progressive capture → Twin → Study Plan
+        _complete_baseline(client)
+        assert StudyPlan.query.filter_by(user_id=user.id, active=True).first()
 
-        # Review — POST (Create) → first plan launches Student Calibration
-        resp = client.post(
-            "/study-plan/review",
-            data={"confirm": "yes"},
-            follow_redirects=True,
-        )
-        assert resp.status_code == 200
-        assert "/calibration/" in resp.request.path
-        assert b"Internal Server Error" not in resp.data
-
-        # Calibration skip (empty-history Birth Twin) → dashboard
-        plan = StudyPlan.query.filter_by(user_id=user.id, active=True).one()
-        resp = client.post(
+        # Deprecated Calibration routes redirect safely into Baseline
+        plan = StudyPlan.query.filter_by(user_id=user.id, active=True).first()
+        resp = client.get(
             f"/calibration/after-plan/{plan.id}",
-            data={"skip_beginner": "I'm starting from scratch — skip detail"},
             follow_redirects=True,
         )
         assert resp.status_code == 200
-        assert "/dashboard" in resp.request.path
         assert b"Internal Server Error" not in resp.data
 
         # ── Verify exactly one StudyPlan ────────────────────────────────

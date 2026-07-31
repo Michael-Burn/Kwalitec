@@ -1,0 +1,25 @@
+{% extends "student_baseline/base.html" %}
+
+{% block form_content %}
+<form id="wizard-form" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <div class="wizard-field-group">
+        <div class="wizard-option-list">
+            {% for subfield in form.exam_history %}
+            {% if subfield.type != 'CSRFTokenField' %}
+            <label class="wizard-option-row" for="{{ subfield.id }}">
+                {{ subfield(class="wizard-option-input") }}
+                <div class="wizard-option-row-body">
+                    <div class="wizard-option-row-title">{{ subfield.label.text }}</div>
+                </div>
+            </label>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="wizard-field-group">
+        <label class="form-label" for="highest_mark">{{ form.highest_mark.label.text }}</label>
+        {{ form.highest_mark(class="form-control", placeholder="Optional") }}
+    </div>
+</form>
+{% endblock %}

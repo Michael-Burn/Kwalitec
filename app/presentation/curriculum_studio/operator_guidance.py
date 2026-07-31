@@ -75,6 +75,11 @@ def recover_flash(exc: BaseException, fallback_key: str) -> str:
     if isinstance(exc, WorkflowGateBlocked):
         return format_gate_blocked(exc)
     if isinstance(exc, WorkflowError):
+        detail = str(exc).lower()
+        if "already at subject" in detail:
+            return FLASH_WARNING.get("retreat", FLASH_WARNING["advance"])
+        if fallback_key in {"retreat", "reset"}:
+            return FLASH_WARNING.get(fallback_key, FLASH_WARNING["advance"])
         return FLASH_WARNING["advance"]
     if isinstance(exc, ValidationError):
         detail = str(exc).strip()
@@ -101,7 +106,10 @@ def recover_flash(exc: BaseException, fallback_key: str) -> str:
             )
         return FLASH_WARNING["preview"]
     if isinstance(exc, PublicationError):
-        detail = str(exc).lower()
+        detail_raw = str(exc).strip()
+        detail = detail_raw.lower()
+        if fallback_key in {"archive_subject", "delete_draft"} and detail_raw:
+            return detail_raw
         # Approve path must never surface Publish verbs (PI-002R Phase 3/5).
         if "approval requires successful validation" in detail or (
             "validation" in detail and "approval" in detail
@@ -140,7 +148,9 @@ def recover_flash(exc: BaseException, fallback_key: str) -> str:
             )
         if fallback_key == "approve":
             return FLASH_WARNING["approve"]
-        return FLASH_WARNING["publish"]
+        if detail_raw and fallback_key in {"archive_subject", "delete_draft"}:
+            return detail_raw
+        return FLASH_WARNING.get(fallback_key, FLASH_WARNING["publish"])
     if isinstance(exc, VersionNotFound):
         return (
             "We couldn't find that curriculum version. Version history must "
@@ -155,6 +165,17 @@ def recover_flash(exc: BaseException, fallback_key: str) -> str:
                 "exists. Choose a new version label (for example 2026.2), "
                 "then try again."
             )
+        if "yyyy.n" in detail or "invalid version label" in detail:
+            return (
+                "We couldn't assign this version because the label format is "
+                "invalid. Use YYYY.N (for example 2026.1), then try again."
+            )
+        if "subject" in detail and "missing" in detail:
+            return (
+                "We couldn't assign this version because the subject is "
+                "missing from Curriculum Management. Refresh the workspace "
+                "to restore it, then try again."
+            )
         return FLASH_WARNING["version"]
     if isinstance(exc, PortUnavailable):
         return (
@@ -163,6 +184,12 @@ def recover_flash(exc: BaseException, fallback_key: str) -> str:
             "then try again. If it persists, contact support."
         )
     if isinstance(exc, PolicyViolation):
+        detail = str(exc).lower()
+        if "yyyy.n" in detail or "version_label" in detail:
+            return (
+                "We couldn't assign this version because the label format is "
+                "invalid. Use YYYY.N (for example 2026.1), then try again."
+            )
         return (
             "We couldn't complete this step because a Studio policy rejected "
             "it. Policies protect students from unsafe curricula. Follow the "

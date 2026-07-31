@@ -1,0 +1,52 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.6, pytest-8.3.4, pluggy-1.6.0
+rootdir: /Users/kwalitec/Developer/kwalitec
+configfile: pyproject.toml
+collected 108 items
+
+tests/presentation/session/test_ownership.py ..                          [  1%]
+tests/presentation/session/test_regression.py .......................... [ 25%]
+..F                                                                      [ 28%]
+tests/presentation/session/test_routes.py .......F...                    [ 38%]
+tests/presentation/session/test_commitment_completion_link.py FF         [ 40%]
+tests/application/mission_engine/test_builder_validator.py ............. [ 52%]
+........                                                                 [ 60%]
+tests/application/mission_engine/test_engine.py ..................       [ 76%]
+tests/application/mission_engine_v2/test_validator.py .................. [ 93%]
+.......                                                                  [100%]
+
+=================================== FAILURES ===================================
+/Users/kwalitec/Developer/kwalitec/tests/presentation/session/test_regression.py:83: AssertionError: assert '/student' in '/session/sess-e2e/summary'
+/Users/kwalitec/Developer/kwalitec/tests/presentation/session/test_routes.py:144: AssertionError: assert '/student' in '/session/sess-1/summary'
+/Users/kwalitec/Developer/kwalitec/tests/presentation/session/test_commitment_completion_link.py:64: AssertionError: assert '/student' in '/session/sess-1/summary'
+/Users/kwalitec/Developer/kwalitec/tests/presentation/session/test_commitment_completion_link.py:87: AssertionError: assert '/student' in '/session/sess-1/summary'
+=============================== warnings summary ===============================
+tests/presentation/session/test_commitment_completion_link.py::test_v2_session_finish_marks_commitment_completed
+  /Users/kwalitec/Developer/kwalitec/app/application/student_experience/recommendation_commitment.py:342: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    now = datetime.utcnow()
+
+tests/presentation/session/test_commitment_completion_link.py::test_v2_session_finish_marks_commitment_completed
+tests/presentation/session/test_commitment_completion_link.py::test_v2_session_finish_marks_commitment_completed
+tests/presentation/session/test_commitment_completion_link.py::test_v2_session_finish_marks_commitment_completed
+tests/presentation/session/test_commitment_completion_link.py::test_v2_session_finish_marks_commitment_completed
+tests/presentation/session/test_commitment_completion_link.py::test_v2_session_finish_marks_commitment_completed
+tests/presentation/session/test_commitment_completion_link.py::test_v2_session_finish_marks_commitment_completed
+tests/presentation/session/test_commitment_completion_link.py::test_v2_session_finish_marks_commitment_completed
+  /Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/sqlalchemy/sql/schema.py:3623: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+tests/presentation/session/test_commitment_completion_link.py::test_v2_session_finish_marks_commitment_completed
+  /Users/kwalitec/Developer/kwalitec/app/services/decision_journal_service.py:161: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    now = recorded_at or datetime.utcnow()
+
+tests/presentation/session/test_commitment_completion_link.py::test_v2_session_finish_marks_commitment_completed
+  /Users/kwalitec/Developer/kwalitec/app/application/student_experience/recommendation_commitment.py:475: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    row.session_started_at = row.session_started_at or datetime.utcnow()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/presentation/session/test_regression.py::test_full_http_session_flow
+FAILED tests/presentation/session/test_routes.py::test_finish_returns_home - ...
+FAILED tests/presentation/session/test_commitment_completion_link.py::test_v2_session_finish_marks_commitment_completed
+FAILED tests/presentation/session/test_commitment_completion_link.py::test_v2_session_finish_fails_open_without_commitment
+================== 4 failed, 104 passed, 10 warnings in 9.86s ==================

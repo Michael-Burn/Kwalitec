@@ -2,11 +2,26 @@
 
 from __future__ import annotations
 
+import re
+
 from flask_wtf import FlaskForm
 from wtforms import HiddenField, StringField, SubmitField, TextAreaField
-from wtforms.validators import DataRequired, Length, Optional
+from wtforms.validators import DataRequired, Length, Optional, ValidationError
 
 _REQUIRED = {"aria-required": "true"}
+_VERSION_LABEL_RE = re.compile(r"^\d{4}\.\d+$")
+
+
+def _assert_version_label(_form: FlaskForm, field: StringField) -> None:
+    """Require Curriculum Management YYYY.N labels (e.g. 2026.1)."""
+    raw = (field.data or "").strip()
+    if not raw:
+        return
+    if not _VERSION_LABEL_RE.match(raw):
+        raise ValidationError(
+            "Version label must match YYYY.N (for example 2026.1) so "
+            "publication history stays accurate."
+        )
 
 
 class CreateSubjectForm(FlaskForm):
@@ -62,6 +77,16 @@ class AdvanceWorkflowForm(FlaskForm):
     submit = SubmitField("Continue")
 
 
+class RetreatWorkflowForm(FlaskForm):
+    workspace_id = HiddenField(validators=[DataRequired()])
+    submit = SubmitField("Back")
+
+
+class ResetWorkflowForm(FlaskForm):
+    workspace_id = HiddenField(validators=[DataRequired()])
+    submit = SubmitField("Restart workflow")
+
+
 class ValidateWorkspaceForm(FlaskForm):
     workspace_id = HiddenField(validators=[DataRequired()])
     submit = SubmitField("Validate")
@@ -102,16 +127,28 @@ class AssignVersionForm(FlaskForm):
         validators=[
             DataRequired(
                 message=(
-                    "Version label is required. Enter a label such as 1.0.0 "
+                    "Version label is required. Enter a label such as 2026.1 "
                     "so you can track published versions, then try again."
                 )
             ),
             Length(max=64),
+            _assert_version_label,
         ],
         render_kw={
-            "placeholder": "e.g. 1.0.0",
+            "placeholder": "e.g. 2026.1",
             "autocomplete": "off",
+            "aria-describedby": "help-version-label",
             **_REQUIRED,
         },
     )
     submit = SubmitField("Assign version")
+
+
+class ArchiveSubjectForm(FlaskForm):
+    workspace_id = HiddenField(validators=[DataRequired()])
+    submit = SubmitField("Archive")
+
+
+class DeleteDraftSubjectForm(FlaskForm):
+    workspace_id = HiddenField(validators=[DataRequired()])
+    submit = SubmitField("Delete draft")

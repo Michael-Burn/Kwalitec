@@ -107,6 +107,21 @@ FLASH_SUCCESS = {
         "We've assigned the version successfully. "
         "Publish when everything looks right."
     ),
+    "workflow_retreated": (
+        "We've moved you back one step. Your work so far is still saved."
+    ),
+    "workflow_reset": (
+        "We've restarted this workflow at Upload. Previous documents remain "
+        "available if you need them."
+    ),
+    "subject_archived": (
+        "We've archived this subject. It remains in history and no longer "
+        "appears in the active catalogue."
+    ),
+    "draft_deleted": (
+        "We've deleted this draft subject. You can create it again from "
+        "Subjects when needed."
+    ),
     "sources_uploaded": (
         "We've uploaded your curriculum documents successfully. "
         "Processing starts next."
@@ -150,7 +165,26 @@ FLASH_WARNING = {
     "version": (
         "We couldn't assign this version. Clear version labels keep your "
         "publication history accurate. Enter a valid version label "
-        "(for example 1.0.0), then try again."
+        "(for example 2026.1), then try again."
+    ),
+    "retreat": (
+        "We couldn't go back. You are already at the first publication step. "
+        "Continue forward, or restart the workflow if you need to begin "
+        "again, then try again."
+    ),
+    "reset": (
+        "We couldn't restart this workflow. Refresh the workspace, then try "
+        "again."
+    ),
+    "archive_subject": (
+        "We couldn't archive this subject. Published subjects can be "
+        "archived to protect student history; drafts should be deleted "
+        "instead. Choose the matching action, then try again."
+    ),
+    "delete_draft": (
+        "We couldn't delete this draft. Published and archived subjects are "
+        "protected — archive published subjects instead of deleting them, "
+        "then try again."
     ),
     "upload": (
         "We couldn't upload documents. Official CMP and Official Syllabus "

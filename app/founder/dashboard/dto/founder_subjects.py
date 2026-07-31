@@ -20,6 +20,9 @@ class SubjectCatalogueRow:
     published_at: str
     workspace_href: str
     status_filter_keys: tuple[str, ...]
+    can_delete_draft: bool = False
+    can_archive: bool = False
+    lifecycle_note: str = ""
 
 
 @dataclass(frozen=True)

@@ -77,6 +77,7 @@
             <span aria-hidden="true">*</span>
           </label>
           {{ version_form.version_label(class_='ds-input') }}
+          <p id="help-version-label" class="ds-list__meta">Use YYYY.N such as 2026.1.</p>
           {{ primary_submit(version_form, page.primary_label) }}
         </form>
       {% endif %}
@@ -84,6 +85,22 @@
         <span class="ds-list__meta" role="status">Blocking: {{ page.blocking_count }}</span>
       {% endif %}
     </div>
+    {% if page.can_retreat or page.can_reset %}
+    <div class="ds-form__actions ds-workspace-recovery" role="group" aria-label="Workflow recovery">
+      {% if page.can_retreat %}
+      <form method="post" action="{{ url_for('curriculum_studio.retreat', workspace_id=page.workspace_id) }}">
+        {{ retreat_form.hidden_tag() }}{{ retreat_form.workspace_id }}
+        {{ secondary_submit(retreat_form, 'Back') }}
+      </form>
+      {% endif %}
+      {% if page.can_reset %}
+      <form method="post" action="{{ url_for('curriculum_studio.reset_workflow', workspace_id=page.workspace_id) }}">
+        {{ reset_form.hidden_tag() }}{{ reset_form.workspace_id }}
+        {{ secondary_submit(reset_form, 'Restart workflow') }}
+      </form>
+      {% endif %}
+    </div>
+    {% endif %}
   </section>
 
   {# Blocking findings — only when present #}
@@ -350,6 +367,7 @@
         {{ version_form.version_label.label.text }}
       </label>
       {{ version_form.version_label(class_='ds-input') }}
+      <p id="help-version-label-details" class="ds-list__meta">Use YYYY.N such as 2026.1.</p>
       {{ secondary_submit(version_form, 'Assign version') }}
     </form>
     {% endif %}

@@ -1,0 +1,3 @@
+[INFO] app: Alembic: head script revision = 202607310002
+[WARNING] app: Alembic: database is BEHIND head (db=202607300004, head=202607310002). Migrations need to be applied.
+202607310002 (head)

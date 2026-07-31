@@ -16,6 +16,7 @@ from app.application.curriculum_studio.dto.workspace_snapshot import (
 from app.application.curriculum_studio.exceptions import WorkspaceNotFound
 from app.domain.curriculum_studio.workflow_stage import (
     WorkflowStage,
+    previous_stage,
     resolve_workflow_stage,
 )
 from app.founder.dashboard.dto.founder_workspace import (
@@ -114,6 +115,10 @@ class FounderWorkspaceService:
         )
         stage_idx = founder_stage_index(workspace.current_stage)
         domain = resolve_workflow_stage(workspace.current_stage)
+        can_retreat = previous_stage(domain) is not None
+        # Restart is available for any in-progress (non-terminal abandoned) workspace.
+        status_token = (workspace.status or "").strip().lower()
+        can_reset = status_token not in {"archived", "abandoned"}
         processing = founder_label == "Upload" and (
             domain is WorkflowStage.VALIDATION or cmp_uploaded
         )
@@ -171,6 +176,8 @@ class FounderWorkspaceService:
             empty_version_message=EMPTY_VERSION_HISTORY_GUIDANCE,
             workspace_id=workspace.workspace_id,
             subjects_href=url_for("curriculum_studio.subjects_hub"),
+            can_retreat=can_retreat,
+            can_reset=can_reset,
         )
 
     def _select_primary(

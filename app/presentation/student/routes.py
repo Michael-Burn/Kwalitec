@@ -37,6 +37,26 @@ from app.presentation.student.views import load_page, start_todays_session
 logger = logging.getLogger(__name__)
 
 
+def _baseline_gate_redirect():
+    """If an active plan lacks a complete Baseline, send the student there."""
+    from app.application.student_baseline import StudentBaselineService
+    from app.services.study_plan_service import StudyPlanService
+
+    plan = StudyPlanService.get_user_active_plan(current_user.id)
+    if plan is None:
+        return None
+    parts = (plan.exam_name or "").split(" ", 1)
+    if len(parts) != 2:
+        return None
+    subject_key = StudentBaselineService.subject_key(parts[0], parts[1])
+    complete = StudentBaselineService.get_complete(current_user.id, subject_key)
+    if complete is not None:
+        return None
+    return redirect(
+        url_for("student_baseline.for_plan", study_plan_id=plan.id)
+    )
+
+
 def _current_tip_payload() -> dict:
     """Read today's tip projection for commitment recording (pass-through)."""
     from app.presentation.student.factory import get_experience_service
@@ -100,6 +120,11 @@ def home():
     # to (see app/presentation/consolidation.py).
     if AlphaOnboardingService.should_show(current_user):
         return redirect(url_for("alpha.onboarding"))
+
+    # SB-001A: active Study Plan without Baseline redirects to Baseline.
+    baseline_gate = _baseline_gate_redirect()
+    if baseline_gate is not None:
+        return baseline_gate
 
     page = load_page(ExperienceSurface.HOME)
     PresentationTelemetryService.record(

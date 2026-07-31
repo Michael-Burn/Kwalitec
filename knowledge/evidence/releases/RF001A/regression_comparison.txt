@@ -1,0 +1,6 @@
+RF-001 baseline: 45616 passed, 159 failed, 9 skipped, 350.92s
+RF-001A:         45654 passed, 159 failed, 9 skipped, 321.67s
+New failures: 0
+Resolved: 0
+Unchanged: 159
+Passed delta: +38 (includes BF-001 remediation coverage)

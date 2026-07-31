@@ -85,9 +85,18 @@ def test_assign_version_requires_label(app_ctx):
     assert form.version_label.errors
 
 
-def test_assign_version_accepts_semver(app_ctx):
+def test_assign_version_rejects_semver(app_ctx):
     form = AssignVersionForm(
         data={"workspace_id": "ws-1", "version_label": "1.0.0"},
+        meta={"csrf": False},
+    )
+    assert form.validate() is False
+    assert any("YYYY.N" in e for e in form.version_label.errors)
+
+
+def test_assign_version_accepts_year_dot_n(app_ctx):
+    form = AssignVersionForm(
+        data={"workspace_id": "ws-1", "version_label": "2026.1"},
         meta={"csrf": False},
     )
     assert form.validate() is True

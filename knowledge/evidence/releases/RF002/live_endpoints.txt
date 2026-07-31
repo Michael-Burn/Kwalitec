@@ -1,0 +1,21 @@
+# RF-002 live endpoint probe — 2026-07-31
+
+Source: curl against https://kwalitec.onrender.com
+
+```
+/health          status=ok  commit=e4d5a1b6271630f5bcd6047239d087fa075176da
+/health/ready    ready=true
+/health/details  migrations current=head=202607300005  database=ok
+/static/css/design_system.css  HTTP 200
+/auth/login                    HTTP 200
+/baseline/                     HTTP 404  (SB-001A not deployed on live)
+/student/                      HTTP 302  (auth gate)
+```
+
+Candidate Alembic heads (local working tree):
+```
+202607300005 (head)
+202607310001 (head)
+```
+
+Conclusion: live RF-001 tip healthy; Baseline educational surface not yet cut over.

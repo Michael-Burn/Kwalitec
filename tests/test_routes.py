@@ -223,9 +223,9 @@ class TestSecurityHeaders:
 
 
 class TestStudyPlanWizardPx002:
-    """PX-002 onboarding path — Choose Exam → Date → Availability → Begin Learning."""
+    """PX-002 onboarding path — Choose Exam → Date → Availability → Baseline."""
 
-    def test_step4_redirects_to_begin_learning(self, logged_in_client):
+    def test_step4_redirects_to_baseline(self, logged_in_client):
         with logged_in_client.session_transaction() as sess:
             sess["wizard_data"] = {
                 "exam_category": "IFoA",
@@ -243,9 +243,9 @@ class TestStudyPlanWizardPx002:
             "/study-plan/wizard/4", follow_redirects=False
         )
         assert response.status_code == 302
-        assert "/study-plan/review" in response.headers["Location"]
+        assert "/baseline" in response.headers["Location"]
 
-    def test_coming_soon_cannot_open_begin_learning(self, logged_in_client):
+    def test_coming_soon_cannot_open_baseline_via_review(self, logged_in_client):
         with logged_in_client.session_transaction() as sess:
             sess["wizard_data"] = {
                 "exam_category": "IFoA",
@@ -263,10 +263,11 @@ class TestStudyPlanWizardPx002:
             "/study-plan/review", follow_redirects=False
         )
         assert response.status_code == 302
-        assert "/study-plan/wizard/1" in response.headers["Location"]
+        # Review now forwards to Baseline; unsupported subjects fail at Baseline gate.
+        assert "/baseline" in response.headers["Location"]
 
-    def test_review_does_not_show_completed_topics(self, logged_in_client):
-        """Begin Learning no longer duplicates Educational History coverage capture."""
+    def test_review_redirects_to_baseline(self, logged_in_client):
+        """SB-001A: review no longer creates a plan — Baseline owns finalize."""
         with logged_in_client.session_transaction() as sess:
             sess["wizard_data"] = {
                 "exam_category": "IFoA",
@@ -280,10 +281,11 @@ class TestStudyPlanWizardPx002:
                 "study_preference": "Mixed",
                 "target_grade": "Pass",
             }
-        response = logged_in_client.get("/study-plan/review")
-        assert response.status_code == 200
-        assert b"completed topic" not in response.data.lower()
-        assert b"Begin Learning" in response.data or b"Study Plan" in response.data
+        response = logged_in_client.get(
+            "/study-plan/review", follow_redirects=False
+        )
+        assert response.status_code == 302
+        assert "/baseline" in response.headers["Location"]
 
 
 class TestStudyPlanManagementRoutes:

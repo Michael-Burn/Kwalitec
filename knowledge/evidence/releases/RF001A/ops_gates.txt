@@ -1,0 +1,41 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.6, pytest-8.3.4, pluggy-1.6.0
+rootdir: /Users/kwalitec/Developer/kwalitec
+configfile: pyproject.toml
+collected 159 items
+
+tests/presentation/curriculum_studio/test_bf001_blocker_remediation.py . [  0%]
+............                                                             [  8%]
+tests/presentation/workflows/test_workflow_founder_studio.py ........... [ 15%]
+...............                                                          [ 24%]
+tests/presentation/workflows/test_workflow_student_session.py .......... [ 30%]
+..........                                                               [ 37%]
+tests/presentation/workflows/test_workflow_founder_nav.py .............. [ 45%]
+....                                                                     [ 48%]
+tests/presentation/workflows/test_workflow_consistency.py .............. [ 57%]
+.......................                                                  [ 71%]
+tests/operational/test_alpha_smoke_founder.py ........                   [ 76%]
+tests/operational/test_alpha_smoke_student.py ......                     [ 80%]
+tests/test_v1s008_educational_integrity.py .........                     [ 86%]
+tests/test_dx006b_founder_home.py ....                                   [ 88%]
+tests/test_dx006b_student_home.py ..........                             [ 94%]
+tests/test_dx006b_founder_subjects.py ........                           [100%]
+
+=============================== warnings summary ===============================
+tests/presentation/workflows/test_workflow_student_session.py: 3 warnings
+tests/presentation/workflows/test_workflow_consistency.py: 4 warnings
+tests/operational/test_alpha_smoke_student.py: 5 warnings
+  /Users/kwalitec/Developer/kwalitec/app/application/student_experience/recommendation_commitment.py:595: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    since = datetime.utcnow() - timedelta(days=max(1, within_days))
+
+tests/operational/test_alpha_smoke_student.py::test_student_surfaces_return_200
+tests/operational/test_alpha_smoke_student.py::test_student_surfaces_return_200
+tests/operational/test_alpha_smoke_student.py::test_student_home_journey_and_insights
+tests/operational/test_alpha_smoke_student.py::test_student_home_journey_and_insights
+tests/operational/test_alpha_smoke_student.py::test_dual_run_back_link_visibility
+tests/operational/test_alpha_smoke_student.py::test_dual_run_back_link_visibility
+  /Users/kwalitec/Developer/kwalitec/.venv/lib/python3.14/site-packages/sqlalchemy/sql/schema.py:3623: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+====================== 159 passed, 18 warnings in 13.49s =======================

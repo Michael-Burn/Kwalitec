@@ -213,6 +213,7 @@ class FounderSubjectsService:
         if pkg is not None:
             published_at = (getattr(pkg, "published_at", None) or "").strip()
         keys = self._filter_keys(workspace, pub_status, updated_at)
+        can_delete, can_archive, note = self._lifecycle_actions(workspace, pub_status)
         row = SubjectCatalogueRow(
             subject_id=workspace.workspace_id,
             name=name,
@@ -228,8 +229,29 @@ class FounderSubjectsService:
                 workspace_id=workspace.workspace_id,
             ),
             status_filter_keys=keys,
+            can_delete_draft=can_delete,
+            can_archive=can_archive,
+            lifecycle_note=note,
         )
         return _RowCandidate(row=row, workspace=workspace)
+
+    @staticmethod
+    def _lifecycle_actions(
+        workspace: WorkspaceSnapshot,
+        publication_status: str,
+    ) -> tuple[bool, bool, str]:
+        """Return (can_delete_draft, can_archive, lifecycle_note)."""
+        status = (workspace.status or "").strip().lower()
+        if status == "archived" or publication_status == "Archived":
+            return (
+                False,
+                False,
+                "Archived — retained for publication history.",
+            )
+        if status == "published" or publication_status == "Published":
+            return False, True, ""
+        # Draft / in progress — delete allowed; archive directed elsewhere.
+        return True, False, ""
 
     def _filter_keys(
         self,

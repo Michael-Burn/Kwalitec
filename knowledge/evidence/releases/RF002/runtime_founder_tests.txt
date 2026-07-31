@@ -1,0 +1,43 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.6, pytest-8.3.4, pluggy-1.6.0
+rootdir: /Users/kwalitec/Developer/kwalitec
+configfile: pyproject.toml
+collected 61 items
+
+tests/application/platform_integration/test_bridge.py ................   [ 26%]
+tests/application/platform_integration/test_e2e_demo.py .                [ 27%]
+tests/application/educational_runtime_engine/test_integration.py ....... [ 39%]
+                                                                         [ 39%]
+tests/test_ux002a_data_lifecycle.py ...                                  [ 44%]
+tests/presentation/curriculum_studio/test_bf001_blocker_remediation.py . [ 45%]
+............                                                             [ 65%]
+tests/certification/test_pr001a_founder_operations.py .................. [ 95%]
+...                                                                      [100%]
+
+=============================== warnings summary ===============================
+tests/application/platform_integration/test_bridge.py: 278 warnings
+tests/application/platform_integration/test_e2e_demo.py: 139 warnings
+tests/application/educational_runtime_engine/test_integration.py: 139 warnings
+tests/test_ux002a_data_lifecycle.py: 12 warnings
+  /Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/sqlalchemy/sql/schema.py:3623: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+tests/test_ux002a_data_lifecycle.py::TestUx002AStudyPlanDeleteLifecycle::test_delete_study_plan_with_research_feedback_succeeds
+tests/test_ux002a_data_lifecycle.py::TestUx002AStudyPlanDeleteLifecycle::test_delete_route_returns_redirect_not_500
+  /Users/kwalitec/Developer/kwalitec/app/services/study_plan_service.py:1084: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    study_plan = StudyPlan.query.get(study_plan_id)
+
+tests/test_ux002a_data_lifecycle.py::TestUx002AStudyPlanDeleteLifecycle::test_delete_study_plan_with_research_feedback_succeeds
+  /Users/kwalitec/Developer/kwalitec/tests/test_ux002a_data_lifecycle.py:99: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    assert StudyPlan.query.get(plan_id) is None
+
+tests/test_ux002a_data_lifecycle.py::TestUx002AStudyPlanDeleteLifecycle::test_delete_route_returns_redirect_not_500
+  /Users/kwalitec/Developer/kwalitec/app/study_plan/routes.py:818: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    study_plan = StudyPlan.query.get(study_plan_id)
+
+tests/test_ux002a_data_lifecycle.py::TestUx002AStudyPlanDeleteLifecycle::test_delete_route_returns_redirect_not_500
+  /Users/kwalitec/Developer/kwalitec/tests/test_ux002a_data_lifecycle.py:115: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    assert StudyPlan.query.get(plan.id) is None
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================= 61 passed, 573 warnings in 7.12s =======================

@@ -217,6 +217,6 @@ class FounderStudentEnrolmentBridge:
             enrolment_id=None,
             curriculum_identity=None,
             study_plan_id=study_plan.id,
-            redirect_target="calibration",
+            redirect_target="student_home",
             message=f"Study plan {study_plan.id} created (Runtime A).",
         )

@@ -22,8 +22,8 @@
   }
 
   function buildForest(nodes) {
-    var byId = Object
-    var children = Object
+    var byId = {};
+    var children = {};
     var roots = [];
     (nodes || []).forEach(function (n, idx) {
       var id = String(n.node_id || "");
@@ -108,13 +108,27 @@
   CurriculumPreviewTree.prototype._bind = function () {
     var self = this;
     this.root.querySelectorAll("[data-preview-expand-all]").forEach(function (btn) {
+      btn.setAttribute("type", "button");
       btn.addEventListener("click", function () {
         self.expandAll();
       });
+      btn.addEventListener("keydown", function (evt) {
+        if (evt.key === "Enter" || evt.key === " ") {
+          evt.preventDefault();
+          self.expandAll();
+        }
+      });
     });
     this.root.querySelectorAll("[data-preview-collapse-all]").forEach(function (btn) {
+      btn.setAttribute("type", "button");
       btn.addEventListener("click", function () {
         self.collapseAll();
+      });
+      btn.addEventListener("keydown", function (evt) {
+        if (evt.key === "Enter" || evt.key === " ") {
+          evt.preventDefault();
+          self.collapseAll();
+        }
       });
     });
     if (this.viewport) {
@@ -130,6 +144,14 @@
         var id = toggle.getAttribute("data-preview-toggle");
         if (!id) return;
         self.toggle(id);
+      });
+      this.list.addEventListener("keydown", function (evt) {
+        var toggle = evt.target.closest("[data-preview-toggle]");
+        if (!toggle) return;
+        if (evt.key !== "Enter" && evt.key !== " ") return;
+        evt.preventDefault();
+        var id = toggle.getAttribute("data-preview-toggle");
+        if (id) self.toggle(id);
       });
     }
   };

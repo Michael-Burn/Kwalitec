@@ -66,6 +66,8 @@ class FounderWorkspacePage:
     section_count: int = 0
     preview_built: bool = False
     preview_approved: bool = False
+    can_retreat: bool = False
+    can_reset: bool = False
 
     # Compatibility aliases for legacy presentation helpers / tests.
     @property

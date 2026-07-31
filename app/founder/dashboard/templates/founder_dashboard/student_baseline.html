@@ -1,0 +1,74 @@
+{% extends "founder_dashboard/base.html" %}
+
+{% block console_content %}
+<article class="ds-page ds-container ds-container--content" aria-labelledby="baseline-title">
+  <header class="ds-page-header">
+    <h1 id="baseline-title" class="ds-page-header__title">Baseline — {{ student.email }}</h1>
+    <p class="ds-page-header__support">
+      Inspect Twin initialisation origin. Reset never deletes study history.
+    </p>
+  </header>
+
+  <p><a href="{{ url_for('founder_dashboard.participants') }}">← Students</a></p>
+
+  {% if baselines %}
+  <div class="table-responsive founder-table-wrap">
+    <table class="table table-sm align-middle founder-table">
+      <thead>
+        <tr>
+          <th>Subject</th>
+          <th>Status</th>
+          <th>Phase / topic</th>
+          <th>Objective</th>
+          <th>Confidence</th>
+          <th>Twin snapshot</th>
+          <th>Plan / enrol</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row, view in baselines %}
+        <tr>
+          <td>{{ row.subject_key }}</td>
+          <td>{{ row.status }}</td>
+          <td>
+            {{ view.study_phase or '—' }}
+            {% if view.curriculum_topic_code %} · {{ view.curriculum_topic_code }}{% endif %}
+          </td>
+          <td>{{ view.learning_objective or '—' }}</td>
+          <td>{{ view.confidence or '—' }}</td>
+          <td><code>{{ view.twin_snapshot_id or '—' }}</code></td>
+          <td>
+            {% if view.study_plan_id %}plan {{ view.study_plan_id }}{% endif %}
+            {% if view.enrolment_id %}enrol {{ view.enrolment_id }}{% endif %}
+            {% if not view.study_plan_id and not view.enrolment_id %}—{% endif %}
+          </td>
+          <td class="text-end founder-table-actions">
+            {% if row.status == 'complete' %}
+            <form method="post"
+                  action="{{ url_for('founder_dashboard.student_baseline_restart', user_id=student.id, subject_key=row.subject_key) }}"
+                  class="d-inline">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+              <button class="console-btn console-btn--secondary" type="submit">Restart</button>
+            </form>
+            <form method="post"
+                  action="{{ url_for('founder_dashboard.student_baseline_reset', user_id=student.id, subject_key=row.subject_key) }}"
+                  class="d-inline">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+              <button class="console-btn console-btn--secondary" type="submit">Reset</button>
+            </form>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="ds-empty-operational" role="status">
+    <h3 class="ds-empty-operational__title">No Baseline yet</h3>
+    <p class="ds-empty-operational__reason">This student has not completed Baseline for any subject.</p>
+  </div>
+  {% endif %}
+</article>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "layouts/base.html" %}
+
+{% block extra_head %}
+<link href="{{ versioned_static('css/design_system.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<article class="ds-page ds-container ds-container--content" aria-labelledby="baseline-resume-title">
+  <header class="ds-page-header">
+    <h1 id="baseline-resume-title" class="ds-page-header__title">You're already set</h1>
+    <p class="ds-page-header__support">
+      We know where you are. No need to answer Baseline again unless you want to.
+    </p>
+  </header>
+
+  <dl class="ds-definition-list">
+    {% if labels.get('position') or resume.curriculum_topic_code %}
+    <dt>Current position</dt>
+    <dd>
+      {{ labels.get('position') or 'Recorded' }}
+      {% if resume.curriculum_topic_code %} · {{ resume.curriculum_topic_code }}{% endif %}
+    </dd>
+    {% endif %}
+    {% if resume.study_phase %}
+    <dt>Study phase</dt><dd>{{ resume.study_phase }}</dd>
+    {% endif %}
+    {% if labels.get('objective') %}
+    <dt>Objective</dt><dd>{{ labels.objective }}</dd>
+    {% endif %}
+  </dl>
+
+  <div class="ds-primary-strip" role="group">
+    <a href="{{ url_for('student.home') if from_plan is not defined else url_for('student.home') }}" class="ds-btn ds-btn--primary">Continue to Home</a>
+    <form method="post" action="{{ url_for('student_baseline.restart') }}" style="display:inline">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <button type="submit" class="ds-btn ds-btn--ghost">Restart Baseline</button>
+    </form>
+  </div>
+</article>
+{% endblock %}

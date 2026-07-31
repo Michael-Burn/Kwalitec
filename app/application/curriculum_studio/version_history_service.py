@@ -60,13 +60,19 @@ class VersionHistoryService:
         """Assign a Management version to a workspace and mirror locally."""
         workspace = self._require_workspace(workspace_id)
         mgmt = require_management(self._management, action="assign_version")
-        summary = mgmt.create_version(
-            workspace.subject_code,
-            version_label,
-            version_id=version_id,
-            parent_version_id=parent_version_id,
-            notes=notes,
-        )
+        # Ensure Management still has the subject after process restart.
+        self._ensure_management_subject(mgmt, workspace)
+        label = (version_label or "").strip()
+        try:
+            summary = mgmt.create_version(
+                workspace.subject_code,
+                label,
+                version_id=version_id,
+                parent_version_id=parent_version_id,
+                notes=notes,
+            )
+        except Exception as exc:
+            raise self._map_management_version_error(exc, label) from exc
         vid = as_str(summary.get("version_id") or version_id)
         if not vid:
             raise VersionError("Management create_version returned no version_id")
@@ -311,6 +317,40 @@ class VersionHistoryService:
         if record is None:
             raise VersionNotFound(f"Version not found: {version_id!r}")
         return record
+
+    def _ensure_management_subject(self, mgmt, workspace) -> None:  # noqa: ANN001
+        """Restore Management subject identity when durable Studio outlives it."""
+        code = workspace.subject_code.strip().upper()
+        if mgmt.get_subject_summary(code) is not None:
+            return
+        title = (workspace.subject_title or code).strip() or code
+        try:
+            mgmt.create_subject(code, title=title)
+        except Exception as exc:
+            if mgmt.get_subject_summary(code) is not None:
+                return
+            raise VersionError(
+                f"Cannot assign version; subject {code} is missing in Management: "
+                f"{exc}"
+            ) from exc
+
+    @staticmethod
+    def _map_management_version_error(exc: Exception, label: str) -> VersionError:
+        """Translate Management exceptions into Studio VersionError copy."""
+        detail = str(exc)
+        lower = detail.lower()
+        if "already exists" in lower or "duplicate" in lower:
+            return VersionError(f"Version already exists: {label!r}")
+        if "yyyy.n" in lower or "version_label must match" in lower:
+            return VersionError(
+                f"Invalid version label {label!r}; must match YYYY.N "
+                "(for example 2026.1)"
+            )
+        if "subject not found" in lower:
+            return VersionError(
+                f"Cannot assign version; subject is missing in Management: {detail}"
+            )
+        return VersionError(detail or "Version assignment failed")
 
 
 def _record_from_summary(

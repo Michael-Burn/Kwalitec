@@ -23,11 +23,15 @@ from app.presentation.curriculum_studio import studio_bp
 from app.presentation.curriculum_studio.forms import (
     AdvanceWorkflowForm,
     ApproveWorkspaceForm,
+    ArchiveSubjectForm,
     AssignVersionForm,
     CreateSubjectForm,
     CreateWorkspaceForm,
+    DeleteDraftSubjectForm,
     PreviewWorkspaceForm,
     PublishWorkspaceForm,
+    ResetWorkflowForm,
+    RetreatWorkflowForm,
     ValidateWorkspaceForm,
 )
 from app.presentation.curriculum_studio.founder_stages import founder_stage_label
@@ -211,6 +215,10 @@ def workspace(workspace_id: str):
         return redirect(url_for("curriculum_studio.index"))
     advance = AdvanceWorkflowForm()
     advance.workspace_id.data = workspace_id
+    retreat = RetreatWorkflowForm()
+    retreat.workspace_id.data = workspace_id
+    reset = ResetWorkflowForm()
+    reset.workspace_id.data = workspace_id
     validate = ValidateWorkspaceForm()
     validate.workspace_id.data = workspace_id
     preview = PreviewWorkspaceForm()
@@ -246,6 +254,8 @@ def workspace(workspace_id: str):
         title=page.subject_name,
         page=page,
         advance_form=advance,
+        retreat_form=retreat,
+        reset_form=reset,
         validate_form=validate,
         preview_form=preview,
         approve_form=approve,
@@ -270,6 +280,40 @@ def advance(workspace_id: str):
     except Exception as exc:
         logger.warning("Advance workflow failed: %s", exc)
         flash(recover_flash(exc, "advance"), "warning")
+    return _workspace_redirect(workspace_id)
+
+
+@studio_bp.post("/workspaces/<workspace_id>/retreat")
+@founder_required
+def retreat(workspace_id: str):
+    """BF-001: move one workflow stage backward without data loss."""
+    form = RetreatWorkflowForm()
+    if not form.validate_on_submit():
+        flash(FLASH_WARNING["retreat"], "warning")
+        return _workspace_redirect(workspace_id)
+    try:
+        service().workflow.retreat(workspace_id, actor_id=actor_id())
+        flash(FLASH_SUCCESS["workflow_retreated"], "success")
+    except Exception as exc:
+        logger.warning("Retreat workflow failed: %s", exc)
+        flash(recover_flash(exc, "retreat"), "warning")
+    return _workspace_redirect(workspace_id)
+
+
+@studio_bp.post("/workspaces/<workspace_id>/reset")
+@founder_required
+def reset_workflow(workspace_id: str):
+    """BF-001: restart in-progress workflow at Upload (SUBJECT)."""
+    form = ResetWorkflowForm()
+    if not form.validate_on_submit():
+        flash(FLASH_WARNING["reset"], "warning")
+        return _workspace_redirect(workspace_id)
+    try:
+        service().workflow.reset(workspace_id, actor_id=actor_id())
+        flash(FLASH_SUCCESS["workflow_reset"], "success")
+    except Exception as exc:
+        logger.warning("Reset workflow failed: %s", exc)
+        flash(recover_flash(exc, "reset"), "warning")
     return _workspace_redirect(workspace_id)
 
 
@@ -384,9 +428,25 @@ def publish(workspace_id: str):
 def assign_version(workspace_id: str):
     form = AssignVersionForm()
     if not form.validate_on_submit():
-        flash(FLASH_WARNING["version"], "warning")
+        # Prefer field-level validation copy (format / required) over generic.
+        field_error = ""
+        if form.version_label.errors:
+            field_error = form.version_label.errors[0]
+        flash(field_error or FLASH_WARNING["version"], "warning")
         return _workspace_redirect(workspace_id)
     try:
+        # Reconcile Management subject before create_version (process restart).
+        try:
+            service().reconcile_workspace(workspace_id)
+        except Exception as reconcile_exc:  # noqa: BLE001
+            from app.application.curriculum_studio.exceptions import PortUnavailable
+
+            if not isinstance(reconcile_exc, PortUnavailable):
+                logger.info(
+                    "Pre-assign reconcile for %s: %s",
+                    workspace_id,
+                    reconcile_exc,
+                )
         service().versions.assign_version(
             workspace_id,
             form.version_label.data.strip(),
@@ -396,6 +456,41 @@ def assign_version(workspace_id: str):
         logger.warning("Assign version failed: %s", exc)
         flash(recover_flash(exc, "version"), "warning")
     return _workspace_redirect(workspace_id)
+
+
+@studio_bp.post("/workspaces/<workspace_id>/archive")
+@founder_required
+def archive_subject(workspace_id: str):
+    """BF-001: archive a published subject (protects student history)."""
+    form = ArchiveSubjectForm()
+    if not form.validate_on_submit():
+        flash(FLASH_WARNING["archive_subject"], "warning")
+        return redirect(url_for("curriculum_studio.subjects_hub"))
+    try:
+        service().archive_workspace(workspace_id, actor_id=actor_id())
+        flash(FLASH_SUCCESS["subject_archived"], "success")
+    except Exception as exc:
+        logger.warning("Archive subject failed: %s", exc)
+        flash(recover_flash(exc, "archive_subject"), "warning")
+    return redirect(url_for("curriculum_studio.subjects_hub", status="archived"))
+
+
+@studio_bp.post("/workspaces/<workspace_id>/delete-draft")
+@founder_required
+def delete_draft_subject(workspace_id: str):
+    """BF-001: permanently remove an unpublished draft subject."""
+    form = DeleteDraftSubjectForm()
+    if not form.validate_on_submit():
+        flash(FLASH_WARNING["delete_draft"], "warning")
+        return redirect(url_for("curriculum_studio.subjects_hub"))
+    try:
+        service().delete_draft(workspace_id)
+        flash(FLASH_SUCCESS["draft_deleted"], "success")
+    except Exception as exc:
+        logger.warning("Delete draft failed: %s", exc)
+        flash(recover_flash(exc, "delete_draft"), "warning")
+        return redirect(url_for("curriculum_studio.subjects_hub"))
+    return redirect(url_for("curriculum_studio.subjects_hub"))
 
 
 # ------------------------------------------------------------------ documents

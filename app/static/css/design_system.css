@@ -343,7 +343,8 @@
   display: table;
 }
 
-.ds-catalogue__list {
+/* Higher specificity than .ds-list so the mobile list stays hidden on desktop. */
+.ds-catalogue__list.ds-list {
   display: none;
 }
 
@@ -1022,7 +1023,7 @@ a.ds-list__row:hover {
     display: none;
   }
 
-  .ds-catalogue__list {
+  .ds-catalogue__list.ds-list {
     display: flex;
   }
 

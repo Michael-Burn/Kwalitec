@@ -46,15 +46,15 @@ logger = logging.getLogger(__name__)
 
 study_plan_bp = Blueprint("study_plan", __name__, url_prefix="/study-plan")
 
-# PX-002 / PX-001 visible onboarding path:
-# Welcome → Choose Exam → Exam Date → Study Availability → Begin Learning
+# PX-002 / SB-001A visible onboarding path:
+# Welcome → Choose Exam → Exam Date → Study Availability → Baseline → Home
 TOTAL_STEPS = 4
 
 STEP_TITLES = {
     1: "Choose Exam",
     2: "Exam Date",
     3: "Study Availability",
-    4: "Begin Learning",
+    4: "Baseline",
 }
 
 
@@ -210,7 +210,7 @@ def wizard_step(step: int):
     if step == 3:
         return _handle_step_3()
     if step == 4:
-        return redirect(url_for("study_plan.review"))
+        return redirect(url_for("student_baseline.start"))
     return redirect(url_for("study_plan.wizard_step", step=1))
 
 
@@ -236,7 +236,7 @@ def wizard_step_post(step: int):
     if step == 3:
         return _handle_step_3_post()
     if step == 4:
-        return redirect(url_for("study_plan.review"))
+        return redirect(url_for("student_baseline.start"))
     return redirect(url_for("study_plan.wizard_step", step=1))
 
 
@@ -496,7 +496,7 @@ def _handle_step_3_post():
         )
         _apply_deferred_defaults(session["wizard_data"])
         session.modified = True
-        return redirect(url_for("study_plan.review"))
+        return redirect(url_for("student_baseline.start"))
     return render_template(
         "study_plan/wizard_step_5.html",
         form=form,
@@ -514,7 +514,7 @@ def _handle_step_3_post():
 @study_plan_bp.get("/review")
 @login_required
 def review():
-    """Begin Learning — review the study plan before creation."""
+    """Begin Learning — SB-001A routes through Baseline before plan creation."""
     wizard_data = session.get("wizard_data", {})
 
     if not wizard_data or "exam_category" not in wizard_data:
@@ -524,253 +524,17 @@ def review():
     _apply_deferred_defaults(wizard_data)
     session["wizard_data"] = wizard_data
     session.modified = True
-
-    # Fail-closed: never present create review for unavailable exams.
-    support = _wizard_selection_support(wizard_data)
-    if not support.allows_plan_creation:
-        flash(support.explanation, "warning")
-        return redirect(url_for("study_plan.wizard_step", step=1))
-
-    review_data = _build_review_data(wizard_data)
-    form = StudyPlanReviewForm()
-    form.confirm.data = "yes"
-    return render_template(
-        "study_plan/review.html",
-        form=form,
-        wizard_data=wizard_data,
-        review_data=review_data,
-        confirm_availability=_confirm_availability_line(review_data),
-        confirm_defaults_line=_confirm_defaults_line(wizard_data),
-        step=4,
-        total_steps=TOTAL_STEPS,
-        step_title=STEP_TITLES[4],
-    )
+    return redirect(url_for("student_baseline.start"))
 
 
 @study_plan_bp.post("/review")
 @login_required
 def review_post():
-    """Handle study plan creation."""
-    wizard_data = session.get("wizard_data", {})
+    """Legacy POST — SB-001A finalise lives on Baseline confirm."""
+    return redirect(url_for("student_baseline.start"))
 
-    if not wizard_data or "exam_category" not in wizard_data:
-        flash("Please complete the wizard from the beginning.", "info")
-        return redirect(url_for("study_plan.wizard_step", step=1))
 
-    _apply_deferred_defaults(wizard_data)
-    session["wizard_data"] = wizard_data
-    session.modified = True
-
-    form = StudyPlanReviewForm()
-    if form.validate_on_submit():
-        # Change selection is a Secondary link — confirm is always begin.
-        if (form.confirm.data or "yes") == "no":
-            return redirect(url_for("study_plan.wizard_step", step=1))
-
-        # Validate all required fields are present
-        required_fields = [
-            "exam_category",
-            "exam_sitting",
-            "exam_date",
-            "weekday_study_minutes",
-            "weekend_study_minutes",
-            "current_position",
-            "study_preference",
-            "target_grade",
-        ]
-        missing = [
-            f for f in required_fields if f not in wizard_data or not wizard_data[f]
-        ]
-        if missing:
-            flash(
-                "Missing required fields: "
-                f"{', '.join(missing)}. Please restart the wizard.",
-                "danger",
-            )
-            session.pop("wizard_data", None)
-            return redirect(url_for("study_plan.wizard_step", step=1))
-
-        # Build the exam_name from category + paper/subject
-        category_code = wizard_data["exam_category"]
-        if catalogue.is_free_text_subject(category_code):
-            paper_or_subject = wizard_data.get("free_text_subject", "")
-        else:
-            paper_or_subject = wizard_data.get("exam_paper", "")
-        exam_name = catalogue.format_exam_name(category_code, paper_or_subject)
-
-        # PTP-001 fail-closed: refuse hollow-plan creation.
-        support = SubjectSupportService.resolve(
-            category_code,
-            paper_or_subject,
-            free_text_subject=catalogue.is_free_text_subject(category_code),
-        )
-        if not support.allows_plan_creation:
-            flash(support.explanation, "warning")
-            return redirect(url_for("study_plan.wizard_step", step=1))
-
-        # Build current_stage from position only — curriculum topic is stored separately
-        current_stage = _build_current_stage(wizard_data["current_position"])
-
-        # Extract curriculum topic code for dedicated column.
-        # Prefer the auto-derived key from step 4; fall back to the
-        # legacy key for backwards compatibility.
-        curriculum_topic_code = (
-            wizard_data.get("curriculum_current_topic")
-            or wizard_data.get("curriculum_topic")
-            or None
-        )
-
-        # ── Curriculum version resolution ──────────────────────────
-        curriculum_version = _resolve_curriculum_version(
-            category_code, paper_or_subject
-        )
-        if curriculum_version is False:
-            # A failure sentinel means the curriculum was not found;
-            # a friendly message has already been flashed.
-            return render_template(
-                "study_plan/review.html",
-                form=form,
-                wizard_data=wizard_data,
-                review_data=_build_review_data(wizard_data),
-                confirm_availability=_confirm_availability_line(
-                    _build_review_data(wizard_data)
-                ),
-                confirm_defaults_line=_confirm_defaults_line(wizard_data),
-                step=4,
-                total_steps=TOTAL_STEPS,
-                step_title=STEP_TITLES[4],
-            )
-        if curriculum_version is None:
-            # Supported exams must bind a curriculum; refuse hollow shells.
-            flash(support.explanation, "warning")
-            return redirect(url_for("study_plan.wizard_step", step=1))
-
-        # Create the study plan / enrolment
-        try:
-            exam_date_str = wizard_data["exam_date"]
-            if isinstance(exam_date_str, str):
-                exam_date = date.fromisoformat(exam_date_str)
-            else:
-                exam_date = exam_date_str
-
-            preferred_session = int(wizard_data.get("preferred_session_minutes", 60))
-
-            completed_curriculum_topics = wizard_data.get(
-                "completed_curriculum_topics", []
-            )
-
-            bridge = FounderStudentEnrolmentBridge()
-            if bridge.should_use_bridge(
-                category_code=category_code, subject_code=paper_or_subject
-            ):
-                try:
-                    result = bridge.enrol(
-                        user_id=current_user.id,
-                        category_code=category_code,
-                        subject_code=paper_or_subject,
-                        exam_date=exam_date,
-                    )
-                except (BridgeEnrolmentBlocked, PublishedSubjectNotDiscoverable) as exc:
-                    flash(str(exc), "warning")
-                    return redirect(url_for("study_plan.wizard_step", step=1))
-                except EnrolmentAlreadyExists:
-                    flash(
-                        "You are already enrolled in this subject.",
-                        "info",
-                    )
-                    session.pop("wizard_data", None)
-                    return redirect_to_canonical_home()
-
-                session.pop("wizard_data", None)
-                logger.info(
-                    "PI-002A bridge enrolment user=%s subject=%s runtime=%s audit=%s",
-                    current_user.id,
-                    paper_or_subject,
-                    result.runtime_authority.value,
-                    result.audit_id,
-                )
-                flash(result.message, "success")
-                if result.runtime_authority == RuntimeAuthority.PUBLISHED_CURRICULUM:
-                    return redirect_to_canonical_home()
-                if result.study_plan_id is not None:
-                    return redirect(
-                        url_for(
-                            "calibration.start",
-                            study_plan_id=result.study_plan_id,
-                        )
-                    )
-                return redirect_to_canonical_home()
-
-            # Runtime A — existing JSON study-plan path (unchanged behaviour).
-            if curriculum_version == "published":
-                flash(support.explanation, "warning")
-                return redirect(url_for("study_plan.wizard_step", step=1))
-
-            study_plan = StudyPlanService.create_study_plan(
-                user_id=current_user.id,
-                exam_name=exam_name,
-                exam_sitting=wizard_data["exam_sitting"],
-                exam_date=exam_date,
-                weekday_study_minutes=int(wizard_data["weekday_study_minutes"]),
-                weekend_study_minutes=int(wizard_data["weekend_study_minutes"]),
-                current_stage=current_stage,
-                study_preference=wizard_data["study_preference"],
-                target_grade=wizard_data["target_grade"],
-                preferred_session_minutes=preferred_session,
-                curriculum_version=curriculum_version,
-                curriculum_topic_code=curriculum_topic_code,
-                completed_curriculum_topics=completed_curriculum_topics,
-            )
-
-            # Auditable Runtime A selection (default production path).
-            router = RuntimeRoutingService()
-            decision = router.resolve(
-                subject_code=paper_or_subject, category_code=category_code
-            )
-            router.record_decision(
-                user_id=current_user.id,
-                decision=decision,
-                study_plan_id=study_plan.id,
-                commit=True,
-            )
-
-            session.pop("wizard_data", None)
-
-            logger.info(
-                "Study plan %d created for user %s", study_plan.id, current_user.id
-            )
-            # VP-001: LP-001 onboard when a published CKG edition exists so
-            # RI-001 Preferred Authority can serve Experience Models.
-            from app.infrastructure.adapters.learner_lifecycle import (
-                onboard_after_enrolment,
-            )
-
-            onboard_after_enrolment(
-                student_id=current_user.id,
-                subject_code=paper_or_subject,
-                correlation_id=f"vp001-wizard-{study_plan.id}",
-            )
-            # Product law (Capability 3.6.3 / 3.8.1): Calibration begins
-            # immediately after Study Plan success — not login / settings /
-            # dashboard. Birth Twin is authored on the Calibration path.
-            return redirect(url_for("calibration.start", study_plan_id=study_plan.id))
-        except ValueError as e:
-            logger.warning("Study plan creation failed: %s", e)
-            flash(str(e), "danger")
-            form.confirm.errors = [str(e)]
-
-    review_data = _build_review_data(wizard_data)
-    return render_template(
-        "study_plan/review.html",
-        form=form,
-        wizard_data=wizard_data,
-        review_data=review_data,
-        confirm_availability=_confirm_availability_line(review_data),
-        confirm_defaults_line=_confirm_defaults_line(wizard_data),
-        step=4,
-        total_steps=TOTAL_STEPS,
-        step_title=STEP_TITLES[4],
-    )
+# Review create-on-POST removed — SB-001A Baseline finalize owns plan creation.
 
 
 def _confirm_availability_line(review_data: dict) -> str:

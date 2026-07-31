@@ -1,0 +1,147 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.6, pytest-8.3.4, pluggy-1.6.0
+rootdir: /Users/kwalitec/Developer/kwalitec
+configfile: pyproject.toml
+collected 210 items
+
+tests/application/student_baseline/test_mapper_and_service.py ........   [  3%]
+tests/presentation/student_baseline/test_sb001a_baseline.py ........     [  7%]
+tests/test_smoke.py .................................................... [ 32%]
+                                                                         [ 32%]
+tests/application/test_study_plan_calibration_integration.py ........... [ 37%]
+.....                                                                    [ 40%]
+tests/application/test_student_calibration_builder.py .................. [ 48%]
+............                                                             [ 54%]
+tests/application/test_calibration_birth_persistence.py ..............   [ 60%]
+tests/application/test_twin_repository.py .........................      [ 72%]
+tests/application/test_twin_provider.py .......................          [ 83%]
+tests/application/test_twin_update_coordinator.py ...................... [ 94%]
+.........                                                                [ 98%]
+tests/test_routes.py ...                                                 [100%]
+
+=============================== warnings summary ===============================
+tests/application/student_baseline/test_mapper_and_service.py: 3 warnings
+tests/presentation/student_baseline/test_sb001a_baseline.py: 5 warnings
+tests/test_smoke.py: 31 warnings
+tests/application/test_study_plan_calibration_integration.py: 1 warning
+  /Users/kwalitec/Developer/kwalitec/app/application/student_baseline/service.py:116: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    created_at=datetime.utcnow(),
+
+tests/application/student_baseline/test_mapper_and_service.py: 3 warnings
+tests/presentation/student_baseline/test_sb001a_baseline.py: 5 warnings
+tests/test_smoke.py: 31 warnings
+tests/application/test_study_plan_calibration_integration.py: 1 warning
+  /Users/kwalitec/Developer/kwalitec/app/application/student_baseline/service.py:117: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    updated_at=datetime.utcnow(),
+
+tests/application/student_baseline/test_mapper_and_service.py: 7 warnings
+tests/presentation/student_baseline/test_sb001a_baseline.py: 5 warnings
+tests/test_smoke.py: 145 warnings
+tests/application/test_study_plan_calibration_integration.py: 5 warnings
+  /Users/kwalitec/Developer/kwalitec/app/application/student_baseline/service.py:166: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    row.updated_at = datetime.utcnow()
+
+tests/application/student_baseline/test_mapper_and_service.py: 3 warnings
+tests/presentation/student_baseline/test_sb001a_baseline.py: 4 warnings
+tests/test_smoke.py: 29 warnings
+tests/application/test_study_plan_calibration_integration.py: 1 warning
+  /Users/kwalitec/Developer/kwalitec/app/application/student_baseline/service.py:219: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    row.completed_at = datetime.utcnow()
+
+tests/application/student_baseline/test_mapper_and_service.py: 3 warnings
+tests/presentation/student_baseline/test_sb001a_baseline.py: 4 warnings
+tests/test_smoke.py: 29 warnings
+tests/application/test_study_plan_calibration_integration.py: 1 warning
+  /Users/kwalitec/Developer/kwalitec/app/application/student_baseline/service.py:220: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    row.updated_at = datetime.utcnow()
+
+tests/application/student_baseline/test_mapper_and_service.py: 7 warnings
+tests/presentation/student_baseline/test_sb001a_baseline.py: 306 warnings
+tests/test_smoke.py: 4819 warnings
+tests/application/test_study_plan_calibration_integration.py: 454 warnings
+  /Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/sqlalchemy/sql/schema.py:3623: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+tests/application/student_baseline/test_mapper_and_service.py::TestBaselineService::test_restart_preserves_study_attempts
+  /Users/kwalitec/Developer/kwalitec/app/application/student_baseline/service.py:266: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    complete.updated_at = datetime.utcnow()
+
+tests/application/student_baseline/test_mapper_and_service.py::TestBaselineService::test_restart_preserves_study_attempts
+  /Users/kwalitec/Developer/kwalitec/app/application/student_baseline/service.py:275: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    created_at=datetime.utcnow(),
+
+tests/application/student_baseline/test_mapper_and_service.py::TestBaselineService::test_restart_preserves_study_attempts
+  /Users/kwalitec/Developer/kwalitec/app/application/student_baseline/service.py:276: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    updated_at=datetime.utcnow(),
+
+tests/application/student_baseline/test_mapper_and_service.py::TestBaselineService::test_founder_reset_does_not_delete_plan
+  /Users/kwalitec/Developer/kwalitec/app/application/student_baseline/service.py:289: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    complete.updated_at = datetime.utcnow()
+
+tests/presentation/student_baseline/test_sb001a_baseline.py: 1 warning
+tests/test_smoke.py: 320 warnings
+tests/application/test_study_plan_calibration_integration.py: 10 warnings
+  /Users/kwalitec/Developer/kwalitec/app/application/student_baseline/service.py:105: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    existing.updated_at = datetime.utcnow()
+
+tests/test_smoke.py: 210 warnings
+tests/application/test_study_plan_calibration_integration.py: 5 warnings
+  /Users/kwalitec/Developer/kwalitec/app/services/recommendation_service.py:61: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return datetime.utcnow().replace(microsecond=0).isoformat()
+
+tests/test_smoke.py::TestSmokeStudyPlanWizard::test_no_500_during_wizard
+tests/application/test_study_plan_calibration_integration.py::TestStudyPlanRouteLaunchesCalibration::test_baseline_finalize_persists_and_home_reachable
+  /Users/kwalitec/Developer/kwalitec/app/application/student_experience/recommendation_commitment.py:595: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    since = datetime.utcnow() - timedelta(days=max(1, within_days))
+
+tests/test_smoke.py::TestSmokeExport::test_backup_export_returns_200
+tests/test_smoke.py::TestSmokeExport::test_backup_contains_expected_sections
+tests/test_smoke.py::TestSmokeExport::test_backup_includes_study_plan_data
+tests/test_smoke.py::TestSmokeExport::test_no_exceptions_on_backup
+tests/test_smoke.py::TestFullEndToEnd::test_complete_user_journey
+  /Users/kwalitec/Developer/kwalitec/app/settings/routes.py:330: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    "exported_at": datetime.utcnow().isoformat(),
+
+tests/test_smoke.py::TestSmokeExport::test_backup_export_returns_200
+tests/test_smoke.py::TestSmokeExport::test_backup_contains_expected_sections
+tests/test_smoke.py::TestSmokeExport::test_backup_includes_study_plan_data
+tests/test_smoke.py::TestSmokeExport::test_no_exceptions_on_backup
+tests/test_smoke.py::TestFullEndToEnd::test_complete_user_journey
+  /Users/kwalitec/Developer/kwalitec/app/settings/routes.py:355: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    f"{datetime.utcnow().strftime('%Y-%m-%d')}.json"
+
+tests/test_smoke.py::TestSmokeStudyPlanLifecycle::test_complete_lifecycle
+tests/test_smoke.py::TestSmokeStudyPlanLifecycle::test_create_edit_archive_set_active_sequence
+  /Users/kwalitec/Developer/kwalitec/app/study_plan/routes.py:863: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    study_plan = StudyPlan.query.get(study_plan_id)
+
+tests/test_smoke.py::TestSmokeStudyPlanLifecycle::test_complete_lifecycle
+tests/test_smoke.py::TestSmokeStudyPlanLifecycle::test_create_edit_archive_set_active_sequence
+  /Users/kwalitec/Developer/kwalitec/app/services/study_plan_service.py:1135: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    study_plan = StudyPlan.query.get(study_plan_id)
+
+tests/test_smoke.py::TestSmokeStudyPlanLifecycle::test_complete_lifecycle
+tests/test_smoke.py::TestSmokeStudyPlanLifecycle::test_create_edit_archive_set_active_sequence
+  /Users/kwalitec/Developer/kwalitec/app/study_plan/routes.py:898: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    study_plan = StudyPlan.query.get(study_plan_id)
+
+tests/test_smoke.py::TestSmokeStudyPlanLifecycle::test_complete_lifecycle
+tests/test_smoke.py::TestSmokeStudyPlanLifecycle::test_complete_lifecycle
+  /Users/kwalitec/Developer/kwalitec/app/study_plan/routes.py:818: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    study_plan = StudyPlan.query.get(study_plan_id)
+
+tests/test_smoke.py::TestSmokeStudyPlanLifecycle::test_complete_lifecycle
+tests/test_smoke.py::TestSmokeStudyPlanLifecycle::test_complete_lifecycle
+  /Users/kwalitec/Developer/kwalitec/app/services/study_plan_service.py:1084: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    study_plan = StudyPlan.query.get(study_plan_id)
+
+tests/test_smoke.py::TestSmokeStudyPlanLifecycle::test_complete_lifecycle
+  /Users/kwalitec/Developer/kwalitec/tests/test_smoke.py:831: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    assert StudyPlan.query.get(plan_id_2) is None
+
+tests/test_smoke.py::TestSmokeStudyPlanLifecycle::test_complete_lifecycle
+  /Users/kwalitec/Developer/kwalitec/tests/test_smoke.py:845: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    assert StudyPlan.query.get(plan_id_1) is None
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+===================== 210 passed, 6476 warnings in 27.85s ======================

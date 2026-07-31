@@ -74,11 +74,12 @@
         <th scope="col">Stage</th>
         <th scope="col">Updated</th>
         <th scope="col">Status</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
       {% for row in rows %}
-      <tr class="ds-catalogue__row">
+      <tr class="ds-catalogue__row" data-subject-id="{{ row.subject_id }}">
         <th scope="row">
           <a class="ds-catalogue__name" href="{{ row.workspace_href }}">{{ row.name }}</a>
           {% if row.code and row.code != row.name %}
@@ -88,13 +89,33 @@
         <td>{{ row.stage_label }}</td>
         <td><span class="ds-list__meta">{{ row.updated_label }}</span></td>
         <td>{{ ds_badge(row.publication_status, tone='neutral') }}</td>
+        <td>
+          {% if row.can_archive %}
+          <form method="post" action="{{ url_for('curriculum_studio.archive_subject', workspace_id=row.subject_id) }}" class="ds-catalogue__action">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="workspace_id" value="{{ row.subject_id }}">
+            <button type="submit" class="ds-btn ds-btn--ghost" name="submit" value="Archive">Archive</button>
+          </form>
+          {% elif row.can_delete_draft %}
+          <form method="post" action="{{ url_for('curriculum_studio.delete_draft_subject', workspace_id=row.subject_id) }}" class="ds-catalogue__action">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="workspace_id" value="{{ row.subject_id }}">
+            <button type="submit" class="ds-btn ds-btn--ghost" name="submit" value="Delete draft">Delete draft</button>
+          </form>
+          {% elif row.lifecycle_note %}
+          <span class="ds-list__meta">{{ row.lifecycle_note }}</span>
+          {% else %}
+          <span class="ds-list__meta">—</span>
+          {% endif %}
+        </td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
-  <ul class="ds-catalogue__list ds-list">
+  {# Mobile-only duplicate markup; hidden on desktop via .ds-catalogue__list.ds-list #}
+  <ul class="ds-catalogue__list ds-list" aria-hidden="true">
     {% for row in rows %}
-    <li>
+    <li data-subject-id="{{ row.subject_id }}">
       <a class="ds-list__row ds-catalogue__list-row" href="{{ row.workspace_href }}">
         <span>
           <span class="ds-catalogue__name">{{ row.name }}</span>
@@ -104,6 +125,21 @@
           <span class="ds-list__meta">{{ row.stage_label }} · {{ row.updated_label }} · {{ row.publication_status }}</span>
         </span>
       </a>
+      {% if row.can_archive %}
+      <form method="post" action="{{ url_for('curriculum_studio.archive_subject', workspace_id=row.subject_id) }}" class="ds-catalogue__action">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <input type="hidden" name="workspace_id" value="{{ row.subject_id }}">
+        <button type="submit" class="ds-btn ds-btn--ghost" name="submit" value="Archive">Archive</button>
+      </form>
+      {% elif row.can_delete_draft %}
+      <form method="post" action="{{ url_for('curriculum_studio.delete_draft_subject', workspace_id=row.subject_id) }}" class="ds-catalogue__action">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <input type="hidden" name="workspace_id" value="{{ row.subject_id }}">
+        <button type="submit" class="ds-btn ds-btn--ghost" name="submit" value="Delete draft">Delete draft</button>
+      </form>
+      {% elif row.lifecycle_note %}
+      <span class="ds-list__meta">{{ row.lifecycle_note }}</span>
+      {% endif %}
     </li>
     {% endfor %}
   </ul>

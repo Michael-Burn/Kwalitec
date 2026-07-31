@@ -207,6 +207,14 @@ class CurriculumStudioService:
         """Update structural fields on a workspace."""
         return self.workspaces.update_structure(*args, **kwargs)
 
+    def archive_workspace(self, *args, **kwargs) -> WorkspaceSnapshot:
+        """Archive a published subject workspace (protects student history)."""
+        return self.workspaces.archive_workspace(*args, **kwargs)
+
+    def delete_draft(self, *args, **kwargs) -> None:
+        """Delete an unpublished draft workspace."""
+        return self.workspaces.delete_draft(*args, **kwargs)
+
     def upload_sources(self, *args, **kwargs) -> WorkspaceSnapshot:
         """Upload Curriculum Sources."""
         return self.workspaces.upload_sources(*args, **kwargs)

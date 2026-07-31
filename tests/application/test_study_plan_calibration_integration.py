@@ -250,9 +250,9 @@ class TestDashboardAfterCalibration:
 
 
 class TestStudyPlanRouteLaunchesCalibration:
-    def test_first_study_plan_redirects_to_calibration(
-        self, client, ctx, user
-    ) -> None:
+    """SB-001A: review / Calibration UI redirect into Baseline."""
+
+    def test_review_redirects_to_baseline(self, client, ctx, user) -> None:
         client.post(
             "/auth/login",
             data={"email": "test@kwalitec.example", "password": "password123"},
@@ -279,17 +279,11 @@ class TestStudyPlanRouteLaunchesCalibration:
             follow_redirects=False,
         )
         assert resp.status_code == 302
-        location = resp.headers["Location"]
-        assert "/calibration/after-plan/" in location
+        assert "/baseline" in resp.headers["Location"]
 
-        plan = StudyPlanService.get_user_active_plan(user.id)
-        assert plan is not None
-        assert f"/calibration/after-plan/{plan.id}" in location
-
-    def test_calibration_skip_beginner_redirects_to_dashboard(
+    def test_calibration_route_redirects_to_baseline(
         self, client, ctx, user
     ) -> None:
-        reset_shared_twin_repository()
         client.post(
             "/auth/login",
             data={"email": "test@kwalitec.example", "password": "password123"},
@@ -308,7 +302,35 @@ class TestStudyPlanRouteLaunchesCalibration:
             preferred_session_minutes=60,
             curriculum_version="2026",
         )
-        assert plan.curriculum_id is not None
+
+        resp = client.get(
+            f"/calibration/after-plan/{plan.id}",
+            follow_redirects=False,
+        )
+        assert resp.status_code == 302
+        assert "/baseline/" in resp.headers["Location"]
+
+    def test_calibration_post_redirects_to_baseline(
+        self, client, ctx, user
+    ) -> None:
+        client.post(
+            "/auth/login",
+            data={"email": "test@kwalitec.example", "password": "password123"},
+            follow_redirects=True,
+        )
+        plan = StudyPlanService.create_study_plan(
+            user_id=user.id,
+            exam_name="IFoA CS1",
+            exam_sitting="April 2027",
+            exam_date=_future_exam_date(),
+            weekday_study_minutes=60,
+            weekend_study_minutes=90,
+            current_stage="I haven't started",
+            study_preference="Mixed",
+            target_grade="Pass",
+            preferred_session_minutes=60,
+            curriculum_version="2026",
+        )
 
         resp = client.post(
             f"/calibration/after-plan/{plan.id}",
@@ -316,21 +338,9 @@ class TestStudyPlanRouteLaunchesCalibration:
             follow_redirects=False,
         )
         assert resp.status_code == 302
-        assert "/dashboard" in resp.headers["Location"]
+        assert "/baseline/" in resp.headers["Location"]
 
-        coordinator = StudyPlanCalibrationCoordinator()
-        launch = coordinator.build_launch_context(
-            study_plan_id=plan.id,
-            authorised_student_identity=str(user.id),
-            curriculum_id=plan.curriculum_id,
-            current_exam="CS1",
-            sitting_label=plan.exam_sitting,
-            sitting_date=plan.exam_date,
-        )
-        assert not isinstance(launch, CalibrationLaunchBlocked)
-        assert coordinator.twin_already_exists(launch)
-
-    def test_calibration_abandon_does_not_invent_twin(
+    def test_baseline_finalize_persists_and_home_reachable(
         self, client, ctx, user
     ) -> None:
         reset_shared_twin_repository()
@@ -339,108 +349,35 @@ class TestStudyPlanRouteLaunchesCalibration:
             data={"email": "test@kwalitec.example", "password": "password123"},
             follow_redirects=True,
         )
-        plan = StudyPlanService.create_study_plan(
-            user_id=user.id,
-            exam_name="IFoA CS1",
-            exam_sitting="April 2027",
-            exam_date=_future_exam_date(),
-            weekday_study_minutes=60,
-            weekend_study_minutes=90,
-            current_stage="I haven't started",
-            study_preference="Mixed",
-            target_grade="Pass",
-            preferred_session_minutes=60,
-            curriculum_version="2026",
-        )
-
-        resp = client.post(
-            f"/calibration/after-plan/{plan.id}",
-            data={"abandon": "Continue without declaring history"},
-            follow_redirects=False,
-        )
-        assert resp.status_code == 302
-        assert "/dashboard" in resp.headers["Location"]
-
-        coordinator = StudyPlanCalibrationCoordinator()
-        launch = coordinator.build_launch_context(
-            study_plan_id=plan.id,
-            authorised_student_identity=str(user.id),
-            curriculum_id=plan.curriculum_id,
-            current_exam="CS1",
-            sitting_label=plan.exam_sitting,
-            sitting_date=plan.exam_date,
-        )
-        assert not isinstance(launch, CalibrationLaunchBlocked)
-        assert not coordinator.twin_already_exists(launch)
-
-    def test_calibration_complete_persists_and_dashboard_reachable(
-        self, client, ctx, user, monkeypatch
-    ) -> None:
-        reset_shared_twin_repository()
-        monkeypatch.setenv("KWALITEC_EI_INTERNAL_ALPHA", "1")
-        client.post(
-            "/auth/login",
-            data={"email": "test@kwalitec.example", "password": "password123"},
-            follow_redirects=True,
-        )
-        plan = StudyPlanService.create_study_plan(
-            user_id=user.id,
-            exam_name="IFoA CS1",
-            exam_sitting="April 2027",
-            exam_date=_future_exam_date(),
-            weekday_study_minutes=60,
-            weekend_study_minutes=90,
-            current_stage="I haven't started",
-            study_preference="Mixed",
-            target_grade="Pass",
-            preferred_session_minutes=60,
-            curriculum_version="2026",
-        )
-
-        resp = client.post(
-            f"/calibration/after-plan/{plan.id}",
-            data={
-                "previously_studied": "previously_studied",
-                "core_reading_completed": "whole_paper",
-                "previous_attempts_count": "1",
-                "study_objective": "revision",
-                "confirm": "yes",
-            },
-            follow_redirects=False,
-        )
-        assert resp.status_code == 302
-        assert "/dashboard" in resp.headers["Location"]
-
-        dash = client.get("/dashboard/", follow_redirects=True)
-        assert dash.status_code == 200
-
-        coordinator = StudyPlanCalibrationCoordinator()
-        launch = coordinator.build_launch_context(
-            study_plan_id=plan.id,
-            authorised_student_identity=str(user.id),
-            curriculum_id=plan.curriculum_id,
-            current_exam="CS1",
-            sitting_label=plan.exam_sitting,
-            sitting_date=plan.exam_date,
-        )
-        assert not isinstance(launch, CalibrationLaunchBlocked)
-        assert coordinator.twin_already_exists(launch)
-
-        # Second submit must not duplicate Birth Twin.
-        again = client.post(
-            f"/calibration/after-plan/{plan.id}",
-            data={
-                "previously_studied": "previously_studied",
-                "core_reading_completed": "whole_paper",
-                "previous_attempts_count": "1",
-                "study_objective": "revision",
-                "confirm": "yes",
-            },
-            follow_redirects=False,
-        )
-        assert again.status_code == 302
-        assert "/dashboard" in again.headers["Location"]
-
+        future = _future_exam_date().isoformat()
+        with client.session_transaction() as sess:
+            sess["wizard_data"] = {
+                "exam_category": "IFoA",
+                "exam_paper": "CS1",
+                "exam_sitting": "April 2027",
+                "exam_date": future,
+                "weekday_study_minutes": 60,
+                "weekend_study_minutes": 90,
+                "preferred_session_minutes": 60,
+                "study_preference": "Mixed",
+                "target_grade": "Pass",
+                "curriculum_version": "2026",
+            }
+        for path, data in (
+            ("/baseline/step/1", {"experience": "brand_new"}),
+            ("/baseline/step/2", {"position_mode": "start_beginning"}),
+            ("/baseline/step/3", {"exam_history": "first_sitting"}),
+            ("/baseline/step/4", {"learning_objective": "recommend"}),
+            ("/baseline/step/5", {"confidence": "moderate"}),
+        ):
+            resp_step = client.post(path, data=data, follow_redirects=True)
+            assert resp_step.status_code == 200
+        resp = client.post("/baseline/step/6", data={}, follow_redirects=True)
+        assert resp.status_code == 200
+        plan = StudyPlanService.get_user_active_plan(user.id)
+        assert plan is not None
+        home = client.get("/student/", follow_redirects=True)
+        assert home.status_code == 200
 
 class TestFrameworkIndependence:
     def test_application_integration_has_no_flask_or_orm_imports(self) -> None:

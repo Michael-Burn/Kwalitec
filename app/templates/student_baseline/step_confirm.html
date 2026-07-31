@@ -1,0 +1,30 @@
+{% extends "student_baseline/base.html" %}
+
+{% block form_content %}
+<form id="wizard-form" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <div class="wizard-field-group">
+        <dl class="ds-definition-list">
+            {% if summary.get('experience') %}
+            <dt>Experience</dt><dd>{{ summary.experience }}</dd>
+            {% endif %}
+            {% if summary.get('position') %}
+            <dt>Position</dt>
+            <dd>
+              {{ summary.position }}
+              {% if baseline.curriculum_topic_code %} · {{ baseline.curriculum_topic_code }}{% endif %}
+            </dd>
+            {% endif %}
+            {% if summary.get('exam_history') %}
+            <dt>Exam history</dt><dd>{{ summary.exam_history }}</dd>
+            {% endif %}
+            {% if summary.get('objective') %}
+            <dt>Objective</dt><dd>{{ summary.objective }}</dd>
+            {% endif %}
+            {% if summary.get('confidence') %}
+            <dt>Confidence</dt><dd>{{ summary.confidence }}</dd>
+            {% endif %}
+        </dl>
+    </div>
+</form>
+{% endblock %}

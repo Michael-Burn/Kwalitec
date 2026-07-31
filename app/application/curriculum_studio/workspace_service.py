@@ -12,6 +12,7 @@ from app.application.curriculum_studio.dto.workspace_snapshot import (
     WorkspaceSnapshot,
 )
 from app.application.curriculum_studio.exceptions import (
+    PublicationError,
     WorkspaceAlreadyExists,
     WorkspaceNotFound,
 )
@@ -21,7 +22,10 @@ from app.application.curriculum_studio.ports.curriculum_ingestion_port import (
 from app.application.curriculum_studio.ports.curriculum_management_port import (
     CurriculumManagementPort,
 )
-from app.domain.curriculum_studio.curriculum_workspace import CurriculumWorkspace
+from app.domain.curriculum_studio.curriculum_workspace import (
+    CurriculumWorkspace,
+    WorkspaceStatus,
+)
 from app.domain.curriculum_studio.publication_checklist import (
     WorkspacePublicationFacts,
 )
@@ -261,6 +265,94 @@ class WorkspaceService:
         updated = workspace.with_facts(facts)
         self._registry.put_workspace(updated)
         return workspace_snapshot(updated)
+
+    def archive_workspace(
+        self,
+        workspace_id: str,
+        *,
+        actor_id: str | None = None,
+        occurred_at: str = "",
+    ) -> WorkspaceSnapshot:
+        """Archive a published (or ready) subject workspace.
+
+        Protects student-facing history: published subjects are archived,
+        not deleted. Drafts should use ``delete_draft`` instead.
+        """
+        workspace = self._require_workspace(workspace_id)
+        status = workspace.status
+        if status is WorkspaceStatus.ARCHIVED:
+            return workspace_snapshot(workspace)
+        if status is WorkspaceStatus.ABANDONED:
+            raise PublicationError(
+                "Abandoned drafts cannot be archived. Create a new subject "
+                "instead."
+            )
+        if status is not WorkspaceStatus.PUBLISHED and not (
+            workspace.facts.preview_approved and workspace.facts.version_assigned
+        ):
+            # Prefer archive when publication history matters; drafts delete.
+            if (
+                status is WorkspaceStatus.ACTIVE
+                and not workspace.facts.version_assigned
+            ):
+                raise PublicationError(
+                    "Draft subjects are deleted rather than archived. Use "
+                    "Delete draft to remove an unfinished subject."
+                )
+        # Archive Management version when present (best-effort).
+        if workspace.version_id and self._management is not None:
+            try:
+                mgmt = require_management(self._management, action="archive")
+                mgmt.archive(
+                    workspace.version_id,
+                    actor_id=actor_id,
+                    occurred_at=occurred_at,
+                )
+            except Exception:  # noqa: BLE001 — Studio archive still proceeds
+                pass
+        updated = workspace.with_status(WorkspaceStatus.ARCHIVED)
+        self._registry.put_workspace(updated)
+        self._registry.record_activity(
+            "subject_archived",
+            f"Archived subject {workspace.subject_code}",
+            workspace_id=workspace_id,
+            subject_code=workspace.subject_code,
+            version_id=workspace.version_id,
+            occurred_at=occurred_at,
+        )
+        return workspace_snapshot(updated)
+
+    def delete_draft(
+        self,
+        workspace_id: str,
+        *,
+        occurred_at: str = "",
+    ) -> None:
+        """Permanently remove an unpublished draft workspace.
+
+        Published subjects cannot be deleted — archive them instead so
+        student enrolment history remains intact.
+        """
+        workspace = self._require_workspace(workspace_id)
+        if workspace.status is WorkspaceStatus.PUBLISHED:
+            raise PublicationError(
+                "Published subjects cannot be deleted because students may "
+                "already rely on them. Archive the subject instead."
+            )
+        if workspace.status is WorkspaceStatus.ARCHIVED:
+            raise PublicationError(
+                "Archived subjects are retained for publication history and "
+                "cannot be deleted."
+            )
+        code = workspace.subject_code
+        self._registry.delete_workspace(workspace_id)
+        self._registry.record_activity(
+            "draft_deleted",
+            f"Deleted draft subject {code}",
+            workspace_id=workspace_id,
+            subject_code=code,
+            occurred_at=occurred_at,
+        )
 
     def _require_workspace(self, workspace_id: str) -> CurriculumWorkspace:
         workspace = self._registry.get_workspace(workspace_id)
