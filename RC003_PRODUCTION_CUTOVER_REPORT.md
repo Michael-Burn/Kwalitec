@@ -12,9 +12,9 @@
 
 **GO FOR G1 FOUNDER VALIDATION — PENDING MANUAL RENDER DEPLOY CONFIRMATION**
 
-*(Updated after push/tag. Live equivalence gates below must flip to PASS after Manual Deploy.)*
+The verified RF-002 educational candidate is sealed on `main` at `e953ee1` with a single Alembic head, G1 protocol, and release tag `v1.0.0-G1`. No feature work was introduced in RC-003 beyond migration merge and cutover identity (static fingerprint `*-g1`).
 
-The verified RF-002 educational candidate is sealed on `main` with a single Alembic head, G1 protocol, and release tag. No feature work was introduced in RC-003 beyond migration merge and cutover identity (static fingerprint `*-g1`).
+Live equivalence gates below flip to PASS only after Render **Manual Deploy** of this commit.
 
 ---
 
@@ -56,7 +56,7 @@ Evidence: `knowledge/evidence/releases/RC003/alembic_heads.txt`
 |-------------|-------|
 | Application version | `2.0.0-beta.1` (`VERSION` / `APP_VERSION`) |
 | Static asset fingerprint | `2.0.0-beta.1-g1` (cache-bust for BF-001 JS) |
-| Git commit | *(filled after release commit)* |
+| Git commit | `e953ee196d94af65eb7b8307f8fbf7cfb8bd1caf` |
 | Migration head | `202607310002` |
 | Database compatibility | Additive `student_baselines` + empty merge; PostgreSQL-compatible types |
 | Dependency lock | `requirements.txt` pinned (no separate lockfile; matches RC-002 posture) |
@@ -73,12 +73,12 @@ Candidate verification tests (local): **81 passed** — SB-001A + BF-001 + basel
 |-------|--------|-------|
 | Pre-cutover live health | **PASS** | `status: ok`, DB connected, tip `e4d5a1b` |
 | Pre-cutover migrations | `current=head=202607300005` | Baseline not live |
-| Push to `origin/main` | *(pending)* | |
-| Tag `v1.0.0-G1` | *(pending)* | |
+| Push to `origin/main` | See push evidence below | |
+| Tag `v1.0.0-G1` | Points at `e953ee1` | |
 | Render deploy | **REQUIRES MANUAL DEPLOY** | Auto-deploy historically off (`FOUNDER_DEPLOYMENT_GUIDE.md`) |
-| Post-deploy commit match | *(pending)* | |
+| Post-deploy commit match | **PENDING** — expect `e953ee1…` | |
 | Post-deploy migration | Expect `202607310002` | Via `releaseCommand: flask db upgrade` |
-| Startup / health | *(pending)* | |
+| Startup / health | **PENDING** after Manual Deploy | |
 | Auth `/auth/login` | Pre-cutover **200** | Re-confirm after deploy |
 | Logging / health details | Pre-cutover **PASS** | Re-confirm after deploy |
 
@@ -154,8 +154,8 @@ Unchanged from RF-002 / RF-001A (not fixed in RC-003):
 | Item | Value |
 |------|-------|
 | Tag | `v1.0.0-G1` |
-| Commit | *(filled after tag)* |
-| Deployment | Manual Deploy required |
+| Commit | `e953ee196d94af65eb7b8307f8fbf7cfb8bd1caf` |
+| Deployment | Manual Deploy required on Render service `kwalitec` |
 | Migration | `202607310002` |
 | Release date | 2026-07-31 |
 | Protocol | `G1_VALIDATION_PROTOCOL.md` |
@@ -175,7 +175,7 @@ Unchanged from RF-002 / RF-001A (not fixed in RC-003):
 | Runtime C bridge operational | **PASS** on candidate |
 | Founder Studio BF-001 fixes live | **PENDING MANUAL DEPLOY** |
 | Educational continuity preserved | **PASS** on candidate; prod pending |
-| Release tagged | **PENDING** |
+| Release tagged | **PASS** (`v1.0.0-G1` → `e953ee1`) |
 | Founder Validation Protocol created | **PASS** (`G1_VALIDATION_PROTOCOL.md`) |
 
 ---

@@ -1,0 +1,6 @@
+release_commit=e953ee196d94af65eb7b8307f8fbf7cfb8bd1caf
+release_tag=v1.0.0-G1
+migration_head=202607310002
+app_version=2.0.0-beta.1
+static_fingerprint=2.0.0-beta.1-g1
+date=2026-07-31
