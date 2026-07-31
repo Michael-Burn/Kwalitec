@@ -75,6 +75,7 @@ class OverviewViewModel:
     estimated_duration_label: str = ""
     activity_count_label: str = ""
     topics: tuple[str, ...] = ()
+    learning_objectives: tuple[str, ...] = ()
     expected_improvement_label: str = ""
     begin_label: str = "Start Session"
     begin_enabled: bool = False
@@ -94,10 +95,17 @@ class ActivityViewModel:
     next_action_label: str = "Continue"
     topic_title: str = ""
     position_label: str = ""
+    activity_type: str = ""
+    stage_label: str = ""
     has_hints: bool = False
     has_explanation: bool = False
     is_final: bool = False
     session_id: str = ""
+    feedback_outcome: str = ""
+    model_answer: str = ""
+    common_mistake: str = ""
+    next_action: str = ""
+    scored_correct: bool | None = None
 
 
 @dataclass(frozen=True)
@@ -126,6 +134,40 @@ class CompletionViewModel:
     session_id: str = ""
     headline: str = "Session complete"
     primary_topic: str = ""
+    # KWP-002 — completion moment / Journey update (presentation only).
+    journey_update_label: str = ""
+    finish_outcome_label: str = ""
+    # KWP-005 — Sitting Report presentation fields.
+    what_studied: str = ""
+    performance_summary: str = ""
+    progress_explanation: str = ""
+    tomorrow_preview: str = ""
+    assessment_mode_active: bool = False
+    assessment_summary: str = ""
+    exercises_assigned: tuple[str, ...] = ()
+    exercises_completed: tuple[str, ...] = ()
+    strengthened: tuple[str, ...] = ()
+    needs_reinforcement: tuple[str, ...] = ()
+    syllabus_refs: tuple[str, ...] = ()
+    learning_objectives: tuple[str, ...] = ()
+    sitting_report_ready: bool = False
+    # KWP-007 — Learning Strategy recommendation + WHY
+    strategy_title: str = ""
+    strategy_body: str = ""
+    strategy_explanation: str = ""
+    strategy_spacing_guidance: str = ""
+    strategy_momentum_guidance: str = ""
+    strategy_confidence_guidance: str = ""
+    # KWP-008 — Learning Diagnostics guidance (no labels)
+    diagnostic_guidance: str = ""
+    diagnostic_explanation: str = ""
+    # KWP-009 — Learning Difficulty / load guidance (no band labels)
+    difficulty_title: str = ""
+    difficulty_guidance: str = ""
+    difficulty_explanation: str = ""
+    # KWP-010 — Intervention Effectiveness (natural feedback; no verdict labels)
+    effectiveness_feedback: str = ""
+    effectiveness_explanation: str = ""
 
 
 @dataclass(frozen=True)
@@ -203,6 +245,7 @@ def overview_vm(snap: OverviewSnapshot) -> OverviewViewModel:
         estimated_duration_label=duration,
         activity_count_label=activities,
         topics=snap.topics,
+        learning_objectives=tuple(snap.learning_objectives or ()),
         expected_improvement_label=improvement,
         begin_label=(begin.label if begin else "Start Session"),
         begin_enabled=bool(snap.can_begin),
@@ -215,6 +258,10 @@ def activity_vm(snap: ActivitySnapshot) -> ActivityViewModel:
     next_label = snap.next_action_label or "Continue"
     if snap.is_final_activity and next_label == "Continue":
         next_label = "Continue to Reflection"
+    stage = (snap.stage_label or "").strip()
+    position = f"Activity {snap.activity_index} of {snap.activities_total}"
+    if stage:
+        position = f"{stage} · {position}"
     return ActivityViewModel(
         activity_id=snap.activity_id,
         question=snap.question,
@@ -225,11 +272,18 @@ def activity_vm(snap: ActivitySnapshot) -> ActivityViewModel:
         explanation=snap.explanation,
         next_action_label=next_label,
         topic_title=snap.topic_title,
-        position_label=f"Activity {snap.activity_index} of {snap.activities_total}",
+        position_label=position,
+        activity_type=snap.activity_type or "",
+        stage_label=stage,
         has_hints=snap.has_hints,
         has_explanation=snap.has_explanation,
         is_final=snap.is_final_activity,
         session_id=snap.session_id,
+        feedback_outcome=snap.feedback_outcome,
+        model_answer=snap.model_answer,
+        common_mistake=snap.common_mistake,
+        next_action=snap.next_action,
+        scored_correct=snap.scored_correct,
     )
 
 
@@ -261,6 +315,11 @@ def reflection_vm(snap: ReflectionSnapshot) -> ReflectionViewModel:
 
 
 def completion_vm(snap: CompletionSnapshot) -> CompletionViewModel:
+    from app.presentation.session.sitting_report import (
+        build_sitting_report,
+        insights_from_sitting_report,
+    )
+
     time_label = ""
     if snap.time_studied_minutes is not None:
         time_label = f"{snap.time_studied_minutes} minutes studied"
@@ -268,21 +327,56 @@ def completion_vm(snap: CompletionSnapshot) -> CompletionViewModel:
     next_session = ""
     if snap.estimated_next_session_minutes is not None:
         next_session = (
-            f"Next session · about {snap.estimated_next_session_minutes} minutes"
+            f"Next Session · about {snap.estimated_next_session_minutes} minutes"
         )
     home = snap.return_home
     primary_topic = ""
     if snap.topics_completed:
         primary_topic = str(snap.topics_completed[0]).strip()
-    if primary_topic:
-        headline = f"You completed today's Session on {primary_topic}"
-    else:
-        headline = "You completed today's Session"
-    insights = snap.learning_insights
+    meta_pairs = tuple(snap.metadata or ())
+    meta = dict(meta_pairs)
+    if not primary_topic:
+        primary_topic = str(meta.get("topic_title") or "").strip()
+
+    opaque = _sitting_opaque_from_metadata_pairs(meta_pairs)
+    sitting = build_sitting_report(
+        topic_title=primary_topic,
+        opaque_summary=opaque,
+        metadata=meta,
+        next_recommendation=snap.next_recommendation,
+    )
+    insights = insights_from_sitting_report(sitting) or snap.learning_insights
     if not insights and primary_topic:
         insights = (
-            f"Completing practice on {primary_topic} builds exam-ready recall",
+            f"Today's practice on {primary_topic} updates your Learning Insights",
         )
+    if primary_topic:
+        headline = sitting.headline or f"Sitting Report · {primary_topic}"
+    else:
+        headline = sitting.headline or "Sitting Report"
+    journey_update = sitting.progress_explanation or ""
+    if not journey_update:
+        if primary_topic and snap.next_recommendation:
+            journey_update = (
+                f"You completed {primary_topic}. "
+                f"Next focus: {snap.next_recommendation}."
+            )
+        elif primary_topic:
+            journey_update = (
+                f"You completed {primary_topic}. "
+                "Your Journey is ready with the next step."
+            )
+        elif snap.next_recommendation:
+            journey_update = (
+                f"Journey updated · next focus: {snap.next_recommendation}."
+            )
+        else:
+            journey_update = "Journey updated from today's honest practice."
+    finish_outcome = (
+        sitting.finish_outcome_label
+        or snap.exam_readiness_change_label
+        or ""
+    )
     return CompletionViewModel(
         topics_completed=snap.topics_completed,
         time_studied_label=time_label,
@@ -296,7 +390,113 @@ def completion_vm(snap: CompletionSnapshot) -> CompletionViewModel:
         session_id=snap.session_id,
         headline=headline,
         primary_topic=primary_topic,
+        journey_update_label=journey_update,
+        finish_outcome_label=finish_outcome,
+        what_studied=sitting.what_studied,
+        performance_summary=sitting.performance_summary,
+        progress_explanation=sitting.progress_explanation,
+        tomorrow_preview=sitting.tomorrow_preview
+        or (
+            f"Up next · {snap.next_recommendation}"
+            if snap.next_recommendation
+            else ""
+        ),
+        assessment_mode_active=sitting.assessment_mode_active,
+        assessment_summary=sitting.assessment_summary,
+        exercises_assigned=sitting.exercises_assigned,
+        exercises_completed=sitting.exercises_completed,
+        strengthened=sitting.strengthened,
+        needs_reinforcement=sitting.needs_reinforcement,
+        syllabus_refs=sitting.syllabus_refs,
+        learning_objectives=sitting.learning_objectives
+        or tuple(v for k, v in meta_pairs if k == "learning_objective"),
+        sitting_report_ready=sitting.has_report,
+        strategy_title=sitting.strategy_title,
+        strategy_body=sitting.strategy_body,
+        strategy_explanation=sitting.strategy_explanation,
+        strategy_spacing_guidance=sitting.strategy_spacing_guidance,
+        strategy_momentum_guidance=sitting.strategy_momentum_guidance,
+        strategy_confidence_guidance=sitting.strategy_confidence_guidance,
+        diagnostic_guidance=sitting.diagnostic_guidance,
+        diagnostic_explanation=sitting.diagnostic_explanation,
+        difficulty_title=sitting.difficulty_title,
+        difficulty_guidance=sitting.difficulty_guidance,
+        difficulty_explanation=sitting.difficulty_explanation,
+        effectiveness_feedback=sitting.effectiveness_feedback,
+        effectiveness_explanation=sitting.effectiveness_explanation,
     )
+
+
+def _sitting_opaque_from_metadata_pairs(
+    pairs: tuple[tuple[str, str], ...],
+) -> dict:
+    """Rebuild opaque sitting facts from CompletionSnapshot metadata pairs."""
+    meta = dict(pairs)
+    objectives = tuple(v for k, v in pairs if k == "learning_objective" and v)
+    activities: list[dict] = []
+    for key, value in pairs:
+        if key != "activity_item":
+            continue
+        parts = str(value).split("|", 2)
+        stage = parts[0] if parts else ""
+        title = parts[1] if len(parts) > 1 else ""
+        done = parts[2] == "1" if len(parts) > 2 else False
+        refs = tuple(v for k, v in pairs if k == "syllabus_ref" and v)
+        activities.append(
+            {
+                "stage": stage,
+                "title": title,
+                "completed": done,
+                "syllabus_refs": refs if stage == "practice" else (),
+            }
+        )
+    observations = [
+        {"type_id": v} for k, v in pairs if k == "observation_type" and v
+    ]
+    return {
+        "topic_title": meta.get("topic_title") or "",
+        "learning_objectives": objectives,
+        "activities": activities,
+        "observations": observations,
+        "observation_type_ids": [o["type_id"] for o in observations],
+        "syllabus_refs": tuple(v for k, v in pairs if k == "syllabus_ref" and v),
+        "progress_advanced": meta.get("progress_advanced") == "true",
+        "mission_completed": meta.get("mission_completed") == "true",
+        "evidence_disposition": meta.get("evidence_disposition") or "",
+        "finish_review": {
+            "verdict": meta.get("finish_review") or "",
+            "label": meta.get("finish_review_label") or "",
+        },
+        "substance": "package",
+        # KWP-011 — carry frozen intelligence markers into opaque for report.
+        "intelligence_snapshot": (
+            {
+                "student_sitting_report": {
+                    k: meta[k]
+                    for k in (
+                        "strategy_title",
+                        "strategy_body",
+                        "strategy_explanation",
+                        "strategy_spacing_guidance",
+                        "strategy_momentum_guidance",
+                        "strategy_confidence_guidance",
+                        "diagnostic_guidance",
+                        "diagnostic_explanation",
+                        "difficulty_title",
+                        "difficulty_guidance",
+                        "difficulty_explanation",
+                        "effectiveness_feedback",
+                        "effectiveness_explanation",
+                    )
+                    if meta.get(k)
+                },
+                "captured_at": meta.get("intelligence_captured_at") or "",
+            }
+            if meta.get("intelligence_captured") == "true"
+            or meta.get("strategy_title")
+            else None
+        ),
+    }
 
 
 def _primary_cta(surface, overview, activity, reflection, completion):

@@ -32,7 +32,7 @@ def test_student_routes_render_nav(student_client, endpoint, path):
     for _ep, label_path in STUDENT_ROUTES:
         assert label_path.rstrip("/") in html or label_path in html
     assert "Home" in html
-    assert "Journey" in html
+    assert "Syllabus" in html
     assert "Revision" in html
     assert "History" in html
     assert "Settings" in html
@@ -55,7 +55,7 @@ def test_home_shows_mission_or_empty(student_client):
 def test_journey_shows_topics(student_client):
     response = student_client.get("/student/journey")
     html = response.get_data(as_text=True)
-    assert "Equity method" in html or "Current" in html or "Journey" in html
+    assert "Equity method" in html or "Current" in html or "Syllabus" in html or "Journey" in html
     assert "graph" not in html.lower() or "curriculum graph" not in html.lower()
 
 

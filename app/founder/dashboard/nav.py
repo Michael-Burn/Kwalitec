@@ -30,7 +30,7 @@ COMMAND_CENTRE_NAV: tuple[CommandCentreNavItem, ...] = (
     CommandCentreNavItem(
         "founder_dashboard.participants", "Students", "students"
     ),
-    CommandCentreNavItem("founder_dashboard.feedback", "Support", "support"),
+    CommandCentreNavItem("founder_dashboard.feedback", "Feedback", "support"),
     CommandCentreNavItem("founder_dashboard.settings", "Settings", "settings"),
 )
 
@@ -77,6 +77,11 @@ COMMAND_CENTRE_SECONDARY_NAV: tuple[CommandCentreNavItem, ...] = (
     ),
     CommandCentreNavItem("founder_dashboard.findings", "Findings", "findings"),
     CommandCentreNavItem(
+        "founder_dashboard.v1_readiness",
+        "Version 1 Readiness",
+        "v1_readiness",
+    ),
+    CommandCentreNavItem(
         "founder_dashboard.internal_alpha", "Internal Alpha", "internal_alpha"
     ),
     CommandCentreNavItem(
@@ -100,6 +105,7 @@ def active_section_id(endpoint: str | None) -> str:
         return "home"
     if endpoint in {
         "founder_dashboard.feedback",
+        "founder_dashboard.feedback_checkins",
         "founder_dashboard.review_submission",
         "founder_dashboard.findings",
         "founder_dashboard.finding_detail",
@@ -132,6 +138,7 @@ def active_section_id(endpoint: str | None) -> str:
         "founder_dashboard.evidence_gates",
         "founder_dashboard.research",
         "founder_dashboard.search",
+        "founder_dashboard.v1_readiness",
     }:
         return "settings"
     if endpoint == "founder_dashboard.participants":

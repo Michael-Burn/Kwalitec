@@ -74,6 +74,33 @@ def record_session_evidence(
     sid = int(student_id)
     instance = resolve_active_instance(sid, subject_code=subject_code)
     if instance is None:
+        # V1S-007: attempt SCI ensure for Runtime C students before skipping.
+        try:
+            from app.application.educational_experience import (
+                EducationalExperienceService,
+            )
+            from app.application.educational_runtime_engine import ensure_active_sci
+
+            enrolment = EducationalExperienceService().find_enrolment_for_experience(
+                sid
+            )
+            if enrolment is not None:
+                ensure_active_sci(
+                    student_id=sid,
+                    subject_code=subject_code or enrolment.subject_code,
+                    correlation_id=f"v1s007-evidence-{session_id}",
+                    require=False,
+                )
+                instance = resolve_active_instance(
+                    sid, subject_code=subject_code or enrolment.subject_code
+                )
+        except Exception:  # noqa: BLE001 — evidence remains fail-open
+            logger.debug(
+                "VP-001 SCI ensure before evidence failed student=%s",
+                sid,
+                exc_info=True,
+            )
+    if instance is None:
         logger.debug(
             "VP-001 evidence skipped student=%s session=%s reason=no_active_sci",
             sid,

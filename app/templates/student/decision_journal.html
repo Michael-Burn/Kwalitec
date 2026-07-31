@@ -87,7 +87,7 @@
                     </summary>
                     {% if entry.supporting_evidence_summary %}
                     <p class="student-card-body">
-                        <strong>Evidence at the time:</strong>
+                        <strong>What this was based on:</strong>
                         {{ entry.supporting_evidence_summary }}
                     </p>
                     {% endif %}
@@ -104,7 +104,7 @@
                     </p>
                     {% endif %}
                     {% if entry.evidence_updates %}
-                    <p class="student-muted">Evidence updates (appended, never rewritten):</p>
+                    <p class="student-muted">Later notes (appended, never rewritten):</p>
                     <ul class="student-evidence-list">
                         {% for update in entry.evidence_updates %}
                         <li>

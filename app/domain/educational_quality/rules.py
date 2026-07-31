@@ -6,6 +6,12 @@ from dataclasses import dataclass, field
 from datetime import date
 from typing import Any
 
+from app.domain.educational_runtime_engine.student_facing_identity import (
+    is_internal_node_identifier,
+    sanitize_student_text,
+    student_syllabus_code,
+)
+
 EXPLANATION_SCHEMA_VERSION = "eq001/p001.2/v1"
 EXPLANATION_LEVEL_MISSION = "level_1"
 EXPLANATION_LEVEL_JOURNEY = "level_2"
@@ -33,6 +39,7 @@ FORBIDDEN_JARGON = (
     "entity_id",
     "runtime c",
     "pi-001",
+    "node-",
 )
 
 
@@ -75,9 +82,29 @@ def build_mission_educational_rationale(
     objective_codes: tuple[str, ...],
     prerequisite_ids: tuple[str, ...],
 ) -> str:
+    human_code = student_syllabus_code(
+        code=topic_code, title=topic_title
+    ) or (
+        sanitize_student_text(topic_code)
+        if not is_internal_node_identifier(topic_code)
+        else ""
+    )
+    human_title = sanitize_student_text(topic_title) or human_code
+    safe_objectives = tuple(
+        code
+        for c in objective_codes
+        if (
+            code := student_syllabus_code(code=c, title=c)
+            or (
+                sanitize_student_text(c)
+                if not is_internal_node_identifier(c)
+                else ""
+            )
+        )
+    )
     objective_clause = (
-        f" It advances learning objective(s) {', '.join(objective_codes)}."
-        if objective_codes
+        f" It advances learning objective(s) {', '.join(safe_objectives)}."
+        if safe_objectives
         else ""
     )
     prereq_clause = (
@@ -85,8 +112,9 @@ def build_mission_educational_rationale(
         if prerequisite_ids
         else " This topic is an entry point in the published syllabus order."
     )
+    label = f"{human_code} — {human_title}" if human_code else human_title
     return (
-        f"Today focuses on {topic_code} — {topic_title} because it is the next "
+        f"Today focuses on {label} because it is the next "
         f"incomplete topic in syllabus order.{objective_clause}{prereq_clause}"
     )
 
@@ -102,38 +130,57 @@ def build_mission_explanation(
     educational_rationale: str,
     prerequisites_satisfied: bool,
 ) -> dict[str, Any]:
+    del topic_id  # Internal only — never surface in student evidence.
+    del objective_ids
+    human_code = student_syllabus_code(
+        code=topic_code, title=topic_title
+    ) or sanitize_student_text(topic_code)
+    human_title = sanitize_student_text(topic_title) or human_code
     confidence = (
         CONFIDENCE_HIGH if prerequisites_satisfied else CONFIDENCE_LOW
     )
     evidence = [
-        f"Published topic {topic_code} ({topic_id})",
+        (
+            f"Published topic {human_code}"
+            if human_code
+            else f"Published topic {human_title}"
+        ),
         f"Estimated duration {estimated_duration_minutes} minutes",
     ]
-    if objective_codes:
-        evidence.append(
-            "Learning objectives: " + ", ".join(objective_codes)
+    safe_objectives = tuple(
+        code
+        for c in objective_codes
+        if (
+            code := student_syllabus_code(code=c, title=c)
+            or (
+                sanitize_student_text(c)
+                if not is_internal_node_identifier(c)
+                else ""
+            )
         )
-    elif objective_ids:
+    )
+    if safe_objectives:
         evidence.append(
-            "Learning objective ids: " + ", ".join(objective_ids)
+            "Learning objectives: " + ", ".join(safe_objectives)
         )
     evidence.append(
         "Prerequisites satisfied"
         if prerequisites_satisfied
         else "Prerequisites not yet satisfied"
     )
+    label = f"{human_code} — {human_title}" if human_code else human_title
     return {
-        "judgement": f"Study {topic_code} — {topic_title}",
-        "why_this_mission": educational_rationale,
-        "why_this_plan": educational_rationale,
+        "judgement": f"Study {label}",
+        "why_this_mission": sanitize_student_text(educational_rationale),
+        "why_this_plan": sanitize_student_text(educational_rationale),
         "supporting_evidence": evidence,
         "confidence_level": confidence,
         "expected_benefit": (
-            f"First-pass syllabus coverage progress on {topic_code}. "
+            f"First-pass syllabus coverage progress on {human_code or human_title}. "
             "Mission completion is study progress only, not mastery."
         ),
         "suggested_next_action": (
-            f"Complete today's mission tasks for {topic_code}."
+            f"Complete today's mission tasks for {human_code or human_title}."
         ),
         "review_point": "After mission completion or the next study day",
         "plan_drivers": [
@@ -189,17 +236,32 @@ def build_journey_explanation(
             "mission completion alone does not certify mastery."
         )
     else:
-        code = current_topic_code or current_topic_id
-        title = current_topic_title or code
+        code = student_syllabus_code(
+            code=current_topic_code or "",
+            title=current_topic_title or "",
+        ) or sanitize_student_text(current_topic_code or "")
+        title = sanitize_student_text(current_topic_title or "") or code
+        if code and title and code not in title:
+            label = f"{code} — {title}"
+        else:
+            label = title or code
         why_today = (
-            f"Today's topic is {code} — {title} because it is the next incomplete "
+            f"Today's topic is {label} because it is the next incomplete "
             "topic in published syllabus order with satisfied prerequisites."
         )
         if next_topic_id:
-            ncode = next_topic_code or next_topic_id
-            ntitle = next_topic_title or ncode
+            ncode = student_syllabus_code(
+                code=next_topic_code or "",
+                title=next_topic_title or "",
+            ) or sanitize_student_text(next_topic_code or "")
+            ntitle = sanitize_student_text(next_topic_title or "") or ncode
+            nlabel = (
+                f"{ncode} — {ntitle}"
+                if ncode and ntitle and ncode not in ntitle
+                else (ntitle or ncode)
+            )
             unlocks_next = (
-                f"Completing today's mission unlocks {ncode} — {ntitle}."
+                f"Completing today's mission unlocks {nlabel}."
             )
         else:
             unlocks_next = (
@@ -207,10 +269,13 @@ def build_journey_explanation(
             )
 
     if previous_topic_id:
-        pcode = previous_topic_code or previous_topic_id
+        pcode = student_syllabus_code(
+            code=previous_topic_code or "",
+            title="",
+        ) or sanitize_student_text(previous_topic_code or "")
         why_previous = (
-            f"Topic {pcode} is complete because its curriculum-bound mission "
-            "was completed and recorded as study progress."
+            f"Topic {pcode or 'the previous unit'} is complete because its "
+            "curriculum-bound mission was completed and recorded as study progress."
         )
     else:
         why_previous = (

@@ -69,7 +69,7 @@ def test_resume_mission_is_continue_session(app, ctx):
         page = StudentHomeService().build_home(_page(home))
     assert page.state == "mission"
     assert page.mission is not None
-    assert page.mission.primary_label == "Continue Session"
+    assert page.mission.primary_label == "Continue"
     assert page.mission.primary_kind == "link"
     assert "/session/sess-abc/overview" in page.mission.primary_href
     assert "Open session" in page.mission.why_now
@@ -100,7 +100,7 @@ def test_start_mission_uses_start_form(app, ctx):
         page = StudentHomeService().build_home(_page(home))
     assert page.mission is not None
     assert page.mission.primary_kind == "start_form"
-    assert page.mission.primary_label == "Start Session"
+    assert page.mission.primary_label == "Start Today's Session"
     assert page.mission.subject_name == "CS1 FR"
     assert "Lease liability" in page.mission.objective
 
@@ -198,8 +198,12 @@ def test_template_mission_first_no_legacy_chrome(app, ctx):
     assert "welcome_modal" not in html
     assert "ds-mission-panel" in html
     assert "design_system.css" in html or "ds-page" in html
-    assert "What should I do next?" in html
-    assert "Today's Mission" in html or "Continue Session" in html
+    assert (
+        "What should I do next?" in html
+        or "Where you stand" in html
+        or "Where you are, what to do today" in html
+    )
+    assert "Today's Session" in html or "Today's Mission" in html or "Continue Session" in html
     assert "CS1 FR" in html
 
 
@@ -294,9 +298,9 @@ def test_runtime_c_complete_control_is_actionable_mission(app, ctx):
     home = replace(
         home,
         primary_cta_enabled=True,
-        primary_cta_label="Mark mission complete",
+        primary_cta_label="Confirm today's Mission",
         session_control="complete_runtime_c",
-        session_control_label="Mark mission complete",
+        session_control_label="Confirm today's Mission",
         mission_id="msn_test_runtime_c",
         primary_mission_title="Study first topic",
         completion_status_label="Ready to study",
@@ -308,4 +312,4 @@ def test_runtime_c_complete_control_is_actionable_mission(app, ctx):
     assert page.mission is not None
     assert page.mission.primary_kind == "complete_runtime_c"
     assert page.mission.mission_id == "msn_test_runtime_c"
-    assert "Mark mission complete" in page.mission.primary_label
+    assert "Confirm today's Mission" in page.mission.primary_label

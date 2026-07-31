@@ -68,6 +68,9 @@ class RecordingRuntimeEngine:
         session_id: str,
         activity_id: str,
         response: str,
+        scored_correct: bool | None = None,
+        structured: bool = False,
+        score_payload: dict[str, Any] | None = None,
     ) -> dict[str, Any]:
         self.calls.append(
             (
@@ -77,10 +80,17 @@ class RecordingRuntimeEngine:
                     "session_id": session_id,
                     "activity_id": activity_id,
                     "response": response,
+                    "scored_correct": scored_correct,
+                    "structured": structured,
                 },
             )
         )
-        return {"recorded": True, "activity_id": activity_id, "engine": True}
+        return {
+            "recorded": True,
+            "activity_id": activity_id,
+            "engine": True,
+            "scored_correct": scored_correct,
+        }
 
     def complete_session_opaque(
         self, student_id: str, *, session_id: str

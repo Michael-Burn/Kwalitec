@@ -1,5 +1,10 @@
 """Mission Adapter — sole public entry point for mission generation.
 
+**V1S-002 status: ARCHIVE** — tests-only migration router between
+MissionEngine and MissionEngineV2. Not on the student production spine.
+Student mission authority is ``EducationalRuntimeEngineService`` +
+``CertifiedMissionEngine``. Do not wire this adapter into Home / session.
+
 Routes between Mission Engine V1 and Mission Engine 2.0 contracts.
 Responsible only for routing, comparison, auditing, and migration safety.
 Contains NO educational logic.
@@ -13,6 +18,10 @@ Prefer explicit imports such as
 from __future__ import annotations
 
 from typing import Any
+
+# V1S-002 — package disposition for runtime ownership registry.
+V1S002_DISPOSITION = "ARCHIVE"
+V1S002_STUDENT_SPINE = False
 
 __all__ = [
     "AdapterRequest",

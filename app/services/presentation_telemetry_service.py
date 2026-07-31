@@ -29,6 +29,23 @@ EVENT_FEEDBACK_SUBMITTED = "feedback_submitted"
 EVENT_TUTOR_OPENED = "tutor_opened"
 EVENT_TUTOR_QUESTION = "tutor_question"
 EVENT_KNOWLEDGE_MAP_OPENED = "knowledge_map_opened"
+# KWP-013 — Adaptive Study Workspace engagement.
+EVENT_WORKSPACE_OPENED = "workspace_opened"
+EVENT_WORKSPACE_INTERACTION = "workspace_interaction"
+EVENT_LEARNING_JOURNEY_OPENED = "learning_journey_opened"
+EVENT_FORECAST_VIEWED = "forecast_viewed"
+EVENT_INSIGHT_USEFUL = "insight_useful"
+# KWP-015 — Educational Authoring / Learning Episodes.
+EVENT_EPISODE_STARTED = "episode_started"
+EVENT_EPISODE_COMPLETED = "episode_completed"
+EVENT_EPISODE_ABANDONED = "episode_abandoned"
+EVENT_TOMORROW_PREVIEW_OPENED = "tomorrow_preview_opened"
+EVENT_START_TOMORROW_USED = "start_tomorrow_used"
+EVENT_START_EARLY_USED = "start_early_used"
+EVENT_LEARNING_EPISODE_STARTED = "learning_episode_started"
+EVENT_LEARNING_EPISODE_COMPLETED = "learning_episode_completed"
+EVENT_LEARNING_EPISODE_ABANDONED = "learning_episode_abandoned"
+EVENT_EPISODE_REFLECTION_COMPLETED = "episode_reflection_completed"
 
 ALLOWED_EVENTS = frozenset(
     {
@@ -44,6 +61,21 @@ ALLOWED_EVENTS = frozenset(
         EVENT_TUTOR_OPENED,
         EVENT_TUTOR_QUESTION,
         EVENT_KNOWLEDGE_MAP_OPENED,
+        EVENT_WORKSPACE_OPENED,
+        EVENT_WORKSPACE_INTERACTION,
+        EVENT_LEARNING_JOURNEY_OPENED,
+        EVENT_FORECAST_VIEWED,
+        EVENT_INSIGHT_USEFUL,
+        EVENT_EPISODE_STARTED,
+        EVENT_EPISODE_COMPLETED,
+        EVENT_EPISODE_ABANDONED,
+        EVENT_TOMORROW_PREVIEW_OPENED,
+        EVENT_START_TOMORROW_USED,
+        EVENT_START_EARLY_USED,
+        EVENT_LEARNING_EPISODE_STARTED,
+        EVENT_LEARNING_EPISODE_COMPLETED,
+        EVENT_LEARNING_EPISODE_ABANDONED,
+        EVENT_EPISODE_REFLECTION_COMPLETED,
     }
 )
 

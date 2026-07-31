@@ -1,0 +1,186 @@
+{% extends "student/base.html" %}
+{% set title = "My Learning Journey" %}
+{% from "design_system/macros.html" import ds_button, ds_empty_operational %}
+
+{% block extra_head %}
+<link href="{{ versioned_static('css/design_system.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block page_header %}{% endblock %}
+
+{% block content %}
+<article
+  class="ds-page ds-container ds-container--content ds-os-learning-journey"
+  aria-labelledby="learning-journey-title"
+  data-educational-memory="learning-journey"
+>
+  <header class="ds-page-header">
+    <h1 id="learning-journey-title" class="ds-page-header__title student-page-title">
+      {{ journey.headline or "My Learning Journey" }}
+    </h1>
+    <p class="ds-page-header__support">
+      What kind of learner have I become? Your educational story across sittings —
+      not a dashboard of scores.
+    </p>
+  </header>
+
+  {% if journey.has_memory %}
+  <section class="ds-section" aria-labelledby="journey-story-title" data-educational-memory="story">
+    <h2 id="journey-story-title" class="ds-section__title">Your story</h2>
+    {% for paragraph in journey.story_paragraphs %}
+    <p class="ds-list__meta">{{ paragraph }}</p>
+    {% endfor %}
+    <p class="ds-list__meta">
+      {{ journey.sitting_count }} sittings · {{ journey.topic_count }} topics
+    </p>
+  </section>
+
+  {% if journey.forecast_guidance %}
+  <section
+    class="ds-section"
+    aria-labelledby="journey-forecast-title"
+    data-readiness-forecast="trajectory"
+  >
+    <h2 id="journey-forecast-title" class="ds-section__title">
+      Readiness Forecast
+    </h2>
+    <p class="ds-list__meta">
+      Where your current learning journey is likely to take you — a directional
+      estimate, not a guarantee.
+    </p>
+    {% if journey.forecast_title %}
+    <p class="ds-list__meta"><strong>{{ journey.forecast_title }}</strong></p>
+    {% endif %}
+    <p class="ds-list__meta">{{ journey.forecast_guidance }}</p>
+    {% if journey.forecast_explanation %}
+    <p class="ds-list__meta">{{ journey.forecast_explanation }}</p>
+    {% endif %}
+    {% if journey.forecast_trend or journey.forecast_projected_stage or journey.forecast_confidence %}
+    <dl class="ds-list">
+      {% if journey.forecast_trend %}
+      <div class="ds-list__row">
+        <dt>Current trend</dt>
+        <dd class="ds-list__meta">{{ journey.forecast_trend }}</dd>
+      </div>
+      {% endif %}
+      {% if journey.forecast_projected_stage %}
+      <div class="ds-list__row">
+        <dt>Projected readiness</dt>
+        <dd class="ds-list__meta">{{ journey.forecast_projected_stage }}</dd>
+      </div>
+      {% endif %}
+      {% if journey.forecast_confidence %}
+      <div class="ds-list__row">
+        <dt>Confidence</dt>
+        <dd class="ds-list__meta">{{ journey.forecast_confidence }}</dd>
+      </div>
+      {% endif %}
+    </dl>
+    {% endif %}
+    {% if journey.forecast_factors %}
+    <p class="ds-list__meta">
+      Most influential factors:
+      {{ journey.forecast_factors | join(', ') }}.
+    </p>
+    {% endif %}
+    {% if journey.forecast_assumptions %}
+    <p class="ds-list__meta">Key assumptions</p>
+    <ul class="ds-list">
+      {% for assumption in journey.forecast_assumptions %}
+      <li class="ds-list__meta">{{ assumption }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </section>
+  {% endif %}
+
+  {% if journey.milestones %}
+  <section class="ds-section" aria-labelledby="journey-milestones-title" data-educational-memory="milestones">
+    <h2 id="journey-milestones-title" class="ds-section__title">Educational milestones</h2>
+    <p class="ds-list__meta">Moments of growth — not points or badges.</p>
+    <ul class="ds-list">
+      {% for milestone in journey.milestones %}
+      <li class="ds-list__row">
+        <span>
+          <strong>{{ milestone.title }}</strong>
+          {% if milestone.topic_title %} · {{ milestone.topic_title }}{% endif %}
+        </span>
+        <span class="ds-list__meta">{{ milestone.narrative }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {% if journey.patterns %}
+  <section class="ds-section" aria-labelledby="journey-patterns-title" data-educational-memory="patterns">
+    <h2 id="journey-patterns-title" class="ds-section__title">Patterns over time</h2>
+    <ul class="ds-list">
+      {% for pattern in journey.patterns %}
+      <li class="ds-list__row">
+        <span><strong>{{ pattern.title }}</strong></span>
+        <span class="ds-list__meta">{{ pattern.narrative }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {% if journey.timeline %}
+  <section class="ds-section" aria-labelledby="journey-timeline-title" data-educational-memory="timeline">
+    <h2 id="journey-timeline-title" class="ds-section__title">Learning timeline</h2>
+    <ol class="ds-list">
+      {% for entry in journey.timeline %}
+      <li class="ds-list__row" data-timeline-kind="{{ entry.kind }}">
+        <span>
+          <strong>{{ entry.title }}</strong>
+          {% if entry.topic_title %} · {{ entry.topic_title }}{% endif %}
+        </span>
+        <span class="ds-list__meta">{{ entry.body }}</span>
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
+  {% endif %}
+
+  {% if journey.sitting_archives %}
+  <section class="ds-section" aria-labelledby="journey-archives-title" data-educational-memory="sitting-archives">
+    <h2 id="journey-archives-title" class="ds-section__title">Sitting Reports</h2>
+    <p class="ds-list__meta">
+      Revisit the guidance from that sitting — next steps, focus areas, pace,
+      and what helped — exactly as it was recorded then.
+    </p>
+    <ul class="ds-list">
+      {% for archive in journey.sitting_archives %}
+      <li class="ds-list__row">
+        <span>
+          {{ archive.topic_title }}
+          {% if archive.sitting_summary %}
+          <span class="ds-list__meta"> · {{ archive.sitting_summary }}</span>
+          {% endif %}
+        </span>
+        {% if archive.sitting_report_href %}
+        <a href="{{ archive.sitting_report_href }}">Open Sitting Report</a>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  <div class="ds-primary-strip">
+    {{ ds_button('Back to History', href=url_for('student.history'), variant='ghost') }}
+  </div>
+
+  {% else %}
+  {{ ds_empty_operational(
+    journey.empty_message or 'Complete a few study sittings and your educational story will appear here.',
+    'Go to Home',
+    url_for('student.home'),
+    title='Your learning journey starts with honest practice',
+    explanation=journey.empty_message or 'Complete a few study sittings and your educational story will appear here.',
+    context='My Learning Journey answers one question: what kind of learner have I become?'
+  ) }}
+  {% endif %}
+</article>
+{% endblock %}

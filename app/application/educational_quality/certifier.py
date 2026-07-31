@@ -26,6 +26,9 @@ from app.domain.educational_quality import (
     contains_forbidden_jargon,
     project_study_plan_pacing,
 )
+from app.domain.educational_runtime_engine.student_facing_identity import (
+    student_syllabus_code,
+)
 
 if TYPE_CHECKING:
     from app.application.educational_runtime_engine.dto import (
@@ -746,9 +749,22 @@ class EducationalQualityCertifier:
             for o in artefacts.objectives
             if o["objective_id"] in set(template.objective_ids)
         ]
+        topic_title = str(topic.get("title") or template.topic_code)
+        human_topic_code = student_syllabus_code(
+            code=str(template.topic_code or topic.get("code") or ""),
+            title=topic_title,
+            number=str(topic.get("number") or ""),
+        ) or str(template.topic_code or "")
         objective_codes = tuple(
-            str(o.get("code") or o["objective_id"]) for o in objectives
+            student_syllabus_code(
+                code=str(o.get("code") or ""),
+                title=str(o.get("text") or o.get("title") or ""),
+                number=str(o.get("number") or ""),
+            )
+            or str(o.get("number") or o.get("text") or "")
+            for o in objectives
         )
+        objective_codes = tuple(c for c in objective_codes if c)
         prerequisite_ids = tuple(
             getattr(template, "prerequisite_ids", ())
             or tuple(topic.get("prerequisite_ids") or ())
@@ -760,16 +776,15 @@ class EducationalQualityCertifier:
         )
         completion = str(
             getattr(template, "completion_definition", "")
-            or build_mission_completion_definition(topic_code=template.topic_code)
+            or build_mission_completion_definition(topic_code=human_topic_code)
         )
-        rationale = str(
-            getattr(template, "educational_rationale", "")
-            or build_mission_educational_rationale(
-                topic_code=template.topic_code,
-                topic_title=str(topic.get("title") or template.topic_code),
-                objective_codes=objective_codes,
-                prerequisite_ids=prerequisite_ids,
-            )
+        # Always rebuild rationale with human codes (MISSION-002) — template may
+        # still carry node-id codes from older package projections.
+        rationale = build_mission_educational_rationale(
+            topic_code=human_topic_code,
+            topic_title=topic_title,
+            objective_codes=objective_codes,
+            prerequisite_ids=prerequisite_ids,
         )
         validation = build_prerequisite_validation(
             required_ids=prerequisite_ids,
@@ -777,8 +792,8 @@ class EducationalQualityCertifier:
         )
         explanation = build_mission_explanation(
             topic_id=template.topic_id,
-            topic_code=template.topic_code,
-            topic_title=str(topic.get("title") or template.topic_code),
+            topic_code=human_topic_code,
+            topic_title=topic_title,
             objective_ids=tuple(template.objective_ids),
             objective_codes=objective_codes,
             estimated_duration_minutes=duration,
@@ -787,7 +802,7 @@ class EducationalQualityCertifier:
         )
         return MissionQualityEnvelope(
             topic_id=template.topic_id,
-            topic_code=template.topic_code,
+            topic_code=human_topic_code,
             objective_ids=tuple(template.objective_ids),
             estimated_duration_minutes=duration,
             completion_definition=completion,
@@ -818,16 +833,24 @@ class EducationalQualityCertifier:
         nxt = topic_by_id.get(next_topic_id or "")
         payload = build_journey_explanation(
             current_topic_id=progress.current_topic_id,
-            current_topic_code=(
-                str(current.get("code")) if current else progress.current_topic_id
+            current_topic_code=student_syllabus_code(
+                code=str(current.get("code") or "") if current else "",
+                title=str(current.get("title") or "") if current else "",
+                number=str(current.get("number") or "") if current else "",
             ),
             current_topic_title=str(current.get("title")) if current else None,
             previous_topic_id=previous_topic_id,
-            previous_topic_code=(
-                str(previous.get("code")) if previous else previous_topic_id
+            previous_topic_code=student_syllabus_code(
+                code=str(previous.get("code") or "") if previous else "",
+                title=str(previous.get("title") or "") if previous else "",
+                number=str(previous.get("number") or "") if previous else "",
             ),
             next_topic_id=next_topic_id,
-            next_topic_code=str(nxt.get("code")) if nxt else next_topic_id,
+            next_topic_code=student_syllabus_code(
+                code=str(nxt.get("code") or "") if nxt else "",
+                title=str(nxt.get("title") or "") if nxt else "",
+                number=str(nxt.get("number") or "") if nxt else "",
+            ),
             next_topic_title=str(nxt.get("title")) if nxt else None,
             coverage_ratio=progress.coverage_ratio,
             journey_stage=progress.journey_stage,

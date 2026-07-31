@@ -1,6 +1,7 @@
 {#
   Canonical browser / social brand metadata (BI-001).
   Include from every root layout so favicon, PWA, and OG tags stay consistent.
+  Absolute OG / canonical URLs prefer APP_URL (custom domain) when configured.
 #}
 <link rel="icon" href="{{ versioned_static('branding/favicon.ico') }}" sizes="any">
 <link rel="icon" type="image/svg+xml" href="{{ versioned_static('branding/favicon.svg') }}">
@@ -8,6 +9,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="{{ versioned_static('branding/favicon-16.png') }}">
 <link rel="apple-touch-icon" href="{{ versioned_static('branding/apple-touch-icon.png') }}">
 <link rel="manifest" href="{{ versioned_static('branding/manifest.webmanifest') }}">
+<link rel="canonical" href="{{ canonical_page_url }}">
 <meta name="application-name" content="Kwalitec">
 <meta name="apple-mobile-web-app-title" content="Kwalitec">
 <meta name="theme-color" content="#0D1B2A">
@@ -15,8 +17,9 @@
 <meta property="og:title" content="{{ title ~ ' · ' if title else '' }}Kwalitec">
 <meta property="og:description" content="{{ product_value_proposition }} · {{ product_descriptor }}">
 <meta property="og:type" content="website">
-<meta property="og:image" content="{{ versioned_static('branding/social-preview.png', _external=True) }}">
+<meta property="og:url" content="{{ canonical_page_url }}">
+<meta property="og:image" content="{{ social_preview_url }}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ title ~ ' · ' if title else '' }}Kwalitec">
 <meta name="twitter:description" content="{{ product_value_proposition }} · {{ product_descriptor }}">
-<meta name="twitter:image" content="{{ versioned_static('branding/social-preview.png', _external=True) }}">
+<meta name="twitter:image" content="{{ social_preview_url }}">

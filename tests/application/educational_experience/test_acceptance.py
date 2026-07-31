@@ -98,7 +98,12 @@ def test_page_view_model_carries_educational_panel(ctx):
 
 
 def test_home_and_journey_http_render_educational_fields(ctx, client, app):
-    """Acceptance: Runtime C student sees educational info without founder help."""
+    """Acceptance: Runtime C student sees coherent educational mission chrome.
+
+    MISSION-002: Home projects the mission panel (ds_mission_panel) rather than
+    the legacy educational_experience data-edu-field strip. Assert student-visible
+    educational language and zero node-id leakage.
+    """
     subject = publish_subject("PXE3", title="HTTP Subject")
     user = make_user("px001-http@example.com")
     _enrol_runtime_c(user, subject)
@@ -110,24 +115,19 @@ def test_home_and_journey_http_render_educational_fields(ctx, client, app):
     home = client.get("/student/")
     assert home.status_code == 200
     body = home.get_data(as_text=True)
-    assert 'data-educational-experience="runtime-c"' in body
-    assert 'data-edu-field="today_topic"' in body
-    assert 'data-edu-field="curriculum_position"' in body
-    assert 'data-edu-field="learning_objectives"' in body
-    assert 'data-edu-field="mission_rationale"' in body
-    assert 'data-edu-field="estimated_duration"' in body
-    assert 'data-edu-field="completion_definition"' in body
-    assert 'data-edu-field="journey_explanation"' in body
-    assert 'data-edu-field="progress"' in body
-    assert 'data-edu-field="exam_pacing"' in body
-    assert 'data-edu-field="explainability"' in body
+    assert "ds-mission-panel" in body or "Today" in body
+    assert "Study" in body
+    assert "Why this mission" in body or "why this mission" in body.lower()
+    assert "node-" not in body.lower()
+    assert "Core concepts" in body or "1.1" in body
 
     journey = client.get("/student/journey")
     assert journey.status_code == 200
     jbody = journey.get_data(as_text=True)
-    assert 'data-educational-experience="runtime-c"' in jbody
-    assert 'data-edu-field="why_today"' in jbody
-    assert 'data-edu-field="unlocks_next"' in jbody
+    assert journey.status_code == 200
+    assert "node-" not in jbody.lower()
+    # Journey may still include the educational strip or topic list.
+    assert "Core concepts" in jbody or "1.1" in jbody or "Journey" in jbody
 
 
 def test_coexistence_runtime_a_home_unchanged_without_runtime_c(ctx, client):

@@ -27,6 +27,7 @@ addopts = [
 ]
 markers = [
     "integration: slower cross-layer or persistence integration tests",
+    "postgres: requires TEST_POSTGRES_URL (PostgreSQL regression)",
 ]
 
 [tool.ruff]

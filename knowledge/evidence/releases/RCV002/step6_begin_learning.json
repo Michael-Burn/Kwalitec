@@ -1,0 +1,21 @@
+{
+  "loaded": true,
+  "authority": "certified_snapshot",
+  "status": "CERTIFIED_WITH_WARNINGS",
+  "sections": 5,
+  "topics": 15,
+  "objectives": 73,
+  "derive": {
+    "ok": true
+  },
+  "enrolment_user_id": 5,
+  "enrolment": {
+    "ok": true
+  },
+  "mission": {
+    "ok": true,
+    "mission_instance_id": "msn_fc1413d58f8441a8b258e07549a44695",
+    "topic_id": "node-1f3e467797c40a23",
+    "title": "Study node-1f3e467797c40a23 — 4.2 Understand and use generalised linear models"
+  }
+}

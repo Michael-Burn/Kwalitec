@@ -7,6 +7,7 @@ Must NEVER determine Journey / Topic Complete.
 from __future__ import annotations
 
 from app.application.learning_session.dto.completion_result import CompletionResult
+from app.application.learning_session.dto.finish_review import FinishReview
 from app.application.learning_session.policies.reflection_policy import (
     ReflectionPolicy,
 )
@@ -19,9 +20,16 @@ class CompletionPolicy:
 
     REQUIRE_REFLECTION = True
     REQUIRE_EVIDENCE = False
+    # LXP-003 / P2: when True, finish review must be present for is_complete.
+    REQUIRE_FINISH_REVIEW = False
 
     @staticmethod
-    def evaluate(session: LearningSession) -> CompletionResult:
+    def evaluate(
+        session: LearningSession,
+        *,
+        finish_review: FinishReview | None = None,
+        require_finish_review: bool | None = None,
+    ) -> CompletionResult:
         """Evaluate whether the Learning Session is educationally complete.
 
         Journey completion is always False — that authority belongs to the
@@ -29,6 +37,12 @@ class CompletionPolicy:
         """
         blockers: list[str] = []
         session_finished = session.state == SessionState.COMPLETED
+        need_review = (
+            CompletionPolicy.REQUIRE_FINISH_REVIEW
+            if require_finish_review is None
+            else bool(require_finish_review)
+        )
+        review_satisfied = finish_review is not None
         reflection_required = (
             CompletionPolicy.REQUIRE_REFLECTION and session_finished
         )
@@ -56,6 +70,8 @@ class CompletionPolicy:
 
         if not session_finished:
             blockers.append("session_not_finished")
+            if need_review and not review_satisfied:
+                blockers.append("finish_review_absent")
             return CompletionResult(
                 is_complete=False,
                 session_finished=False,
@@ -66,6 +82,9 @@ class CompletionPolicy:
                 reason="Session has not finished; completion is not yet evaluable",
                 journey_complete=False,
             )
+
+        if need_review and not review_satisfied:
+            blockers.append("finish_review_absent")
 
         if reflection_required and not reflection_satisfied:
             blockers.append("reflection_unsatisfied")
@@ -99,4 +118,9 @@ class CompletionPolicy:
     @staticmethod
     def rejects_mastery_estimation() -> bool:
         """Completion evaluation never estimates mastery."""
+        return True
+
+    @staticmethod
+    def rejects_silent_completion() -> bool:
+        """P2 product path never auto-completes without finish review."""
         return True

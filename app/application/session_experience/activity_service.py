@@ -79,8 +79,22 @@ class ActivityService:
             sid, session_id=sess, activity_id=aid, response=text
         )
         if self._runtime is not None and self._runtime.is_available():
+            scored_raw = (result or {}).get("scored_correct")
+            scored_correct: bool | None
+            if scored_raw is True:
+                scored_correct = True
+            elif scored_raw is False:
+                scored_correct = False
+            else:
+                scored_correct = None
             self._runtime.record_response(
-                sid, session_id=sess, activity_id=aid, response=text
+                sid,
+                session_id=sess,
+                activity_id=aid,
+                response=text,
+                scored_correct=scored_correct,
+                structured=bool((result or {}).get("emit_structured")),
+                score_payload=dict((result or {}).get("score_payload") or {}),
             )
         current = engine.get_current_activity(sid, session_id=sess) or {}
         merged = {**current, **(result or {})}
@@ -90,6 +104,7 @@ class ActivityService:
                 merged,
                 phase=ActivityPhase.EXPLAINED
                 if merged.get("explanation")
+                or merged.get("feedback_outcome")
                 else ActivityPhase.COMPLETED,
             )
         except ValueError as exc:
@@ -172,6 +187,17 @@ def _build_activity(
         activities_total=activities_total,
         next_action_label=next_label,
         topic_title=str(opaque.get("topic_title") or opaque.get("topic") or ""),
+        activity_type=str(
+            opaque.get("activity_type") or opaque.get("stage") or ""
+        ),
+        stage_label=str(opaque.get("stage_label") or ""),
+        feedback_outcome=str(opaque.get("feedback_outcome") or ""),
+        model_answer=str(opaque.get("model_answer") or ""),
+        common_mistake=str(opaque.get("common_mistake") or ""),
+        next_action=str(
+            opaque.get("next_action") or opaque.get("next_action_label") or ""
+        ),
+        scored_correct=_optional_bool(opaque.get("scored_correct")),
     )
 
 
@@ -186,6 +212,14 @@ def _explanation_text(value: Any) -> str:
                 return text
         return ""
     return str(value).strip()
+
+
+def _optional_bool(value: Any) -> bool | None:
+    if value is True:
+        return True
+    if value is False:
+        return False
+    return None
 
 
 def _require_id(value: str, field: str = "student_id") -> str:

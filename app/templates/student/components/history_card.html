@@ -1,6 +1,6 @@
 {# History Card — session summary, duration, outcome #}
 {% macro history_card(session) %}
-<article class="student-card student-card--history" aria-label="Completed session">
+<article class="student-card student-card--history" aria-label="Completed session" data-sitting-history="true">
     <h3 class="student-card-title student-card-title--sm">{{ session.topic_title }}</h3>
     <dl class="student-meta-row">
         {% if session.completed_at %}
@@ -20,5 +20,18 @@
             <dd>{{ session.outcome_label }}</dd>
         </div>
     </dl>
+    {% if session.insight_line %}
+    <p class="ds-list__meta">{{ session.insight_line }}</p>
+    {% endif %}
+    {% if session.progress_line %}
+    <p class="ds-list__meta">{{ session.progress_line }}</p>
+    {% endif %}
+    {% if session.sitting_report_href %}
+    <p class="ds-list__meta">
+      <a href="{{ session.sitting_report_href }}" data-sitting-report-archive="true">
+        Open Sitting Report
+      </a>
+    </p>
+    {% endif %}
 </article>
 {% endmacro %}

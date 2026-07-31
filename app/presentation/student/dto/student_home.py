@@ -1,12 +1,17 @@
-"""Student Home DTOs (SOP-001 / DX-005A / DX-006B / UX-001).
+"""Student Home DTOs (SOP-001 / DX-005A / DX-006B / UX-001 / KWP-013).
 
 Command-centre presentation only — projects existing Experience VMs.
 No learning, recommendation, or session algorithm changes.
+
+KWP-013 attaches an Adaptive Study Workspace projection so Home reads as
+one coherent study environment rather than independent feature cards.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
+
+from app.presentation.student.dto.adaptive_workspace import AdaptiveStudyWorkspace
 
 
 @dataclass(frozen=True)
@@ -90,12 +95,38 @@ class HomeStudySignals:
 
 
 @dataclass(frozen=True)
-class StudentHomePage:
-    """Student Home command centre (SOP-001 / UX-001).
+class HomeBriefingSection:
+    """Exam Week Briefing block on Home (KWP-006)."""
 
-    Surfaces: Today's Mission (primary), study signals, Study Health,
+    has_briefing: bool = False
+    title: str = "This Week"
+    strengthened: tuple[str, ...] = ()
+    needs_reinforcement: tuple[str, ...] = ()
+    consistency_label: str = ""
+    recommended_focus: str = ""
+    recommended_detail: str = ""
+    readiness_stage: str = ""
+    summary_line: str = ""
+
+
+@dataclass(frozen=True)
+class HomeInsightRow:
+    """One Home insight answering a command-centre question."""
+
+    kind: str
+    label: str
+    body: str
+
+
+@dataclass(frozen=True)
+class StudentHomePage:
+    """Student Home command centre (SOP-001 / UX-001 / KWP-006 / KWP-013).
+
+    Surfaces: Adaptive Study Workspace (primary), Today's Mission, study
+    signals, Exam Week Briefing (folded into workspace when present),
     Quick Actions. History owns session archives — ``recent_progress``
-    stays empty. Exam countdown lives in signals (not a second widget).
+    stays empty as a queue; progress narrative lives on the workspace.
+    Exam countdown lives in signals (not a second widget).
     """
 
     mission: HomeMission | None
@@ -112,8 +143,14 @@ class StudentHomePage:
     empty_action_href: str
     day_complete_message: str = ""
     page_title: str = "Home"
-    page_question: str = "What should I do next?"
+    page_question: str = "Where you stand — and what to do today."
     mission_section_title: str = "Today's Mission"
     signals: HomeStudySignals | None = None
     tutor_available: bool = False
     tutor_href: str = ""
+    # KWP-006 — Exam Week Briefing + Home Insights (presentation only).
+    briefing: HomeBriefingSection | None = None
+    insights: tuple[HomeInsightRow, ...] = ()
+    syllabus_position: str = ""
+    # KWP-013 — Adaptive Study Workspace composition.
+    workspace: AdaptiveStudyWorkspace | None = None

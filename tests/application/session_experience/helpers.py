@@ -45,6 +45,25 @@ class FakeSessionRuntimePort:
         self.begin_calls.append((student_id, session_id))
         return {"session_id": session_id, "status": "in_progress"}
 
+    def pause_session(self, student_id: str, *, session_id: str) -> dict[str, Any]:
+        return {"session_id": session_id, "status": "paused", "phase": "paused"}
+
+    def resume_session(self, student_id: str, *, session_id: str) -> dict[str, Any]:
+        return {
+            "session_id": session_id,
+            "status": "in_progress",
+            "phase": "active",
+            "active_surface": "activity",
+        }
+
+    def request_finish(self, student_id: str, *, session_id: str) -> dict[str, Any]:
+        return {
+            "session_id": session_id,
+            "status": "ready_to_finish",
+            "phase": "ready_to_finish",
+            "finish_review_required": True,
+        }
+
     def get_runtime_snapshot(
         self, student_id: str, *, session_id: str
     ) -> dict[str, Any] | None:
@@ -55,6 +74,10 @@ class FakeSessionRuntimePort:
             "estimated_remaining_minutes": 20,
             "current_topic": "Equity method",
             "overall_progress": 1 / 3,
+            "active_surface": "activity",
+            "checklist": [
+                {"id": "read", "label": "Read today's topic", "done": False},
+            ],
         }
 
     def record_response(
@@ -64,15 +87,66 @@ class FakeSessionRuntimePort:
         session_id: str,
         activity_id: str,
         response: str,
+        scored_correct: bool | None = None,
+        structured: bool = False,
+        score_payload: dict | None = None,
     ) -> dict[str, Any]:
-        self.response_calls.append((student_id, session_id, activity_id, response))
-        return {"recorded": True, "activity_id": activity_id}
+        self.response_calls.append(
+            (student_id, session_id, activity_id, response, scored_correct)
+        )
+        return {
+            "recorded": True,
+            "activity_id": activity_id,
+            "scored_correct": scored_correct,
+        }
+
+    def update_checklist(
+        self,
+        student_id: str,
+        *,
+        session_id: str,
+        item_id: str,
+        done: bool,
+    ) -> dict[str, Any]:
+        return {
+            "session_id": session_id,
+            "student_id": student_id,
+            "item_id": item_id,
+            "done": done,
+        }
+
+    def save_surface(
+        self,
+        student_id: str,
+        *,
+        session_id: str,
+        surface: str,
+    ) -> dict[str, Any]:
+        return {
+            "session_id": session_id,
+            "student_id": student_id,
+            "active_surface": surface,
+        }
 
     def complete_session(
-        self, student_id: str, *, session_id: str
+        self,
+        student_id: str,
+        *,
+        session_id: str,
+        finish_verdict: str | None = None,
+        finish_notes: str | None = None,
     ) -> dict[str, Any]:
         self.complete_calls.append(session_id)
-        return {"session_id": session_id, "status": "completed"}
+        return {
+            "session_id": session_id,
+            "status": "completed",
+            "mission_completed": False,
+            "finish_review": (
+                {"verdict": finish_verdict, "notes": finish_notes or ""}
+                if finish_verdict
+                else None
+            ),
+        }
 
     def get_reflection(
         self, student_id: str, *, session_id: str

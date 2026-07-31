@@ -41,7 +41,7 @@ SURFACE_LABELS: dict[ExperienceSurface, str] = {
     # the legacy Learning Workspace home, which keeps "Dashboard" since it is
     # the genuine multi-metric overview screen.
     ExperienceSurface.HOME: "Home",
-    ExperienceSurface.JOURNEY: "Journey",
+    ExperienceSurface.JOURNEY: "Syllabus",
     ExperienceSurface.REVISION: "Revision",
     # PX-002A: renamed from "Analytics" — that label was reused verbatim by
     # the legacy Analytics KPI dashboard for a structurally different screen.

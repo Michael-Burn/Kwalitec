@@ -138,6 +138,20 @@ def _validate_env_vars(config_object: type) -> None:
         if not csrf_enabled:
             issues.append("WTF_CSRF_ENABLED must remain True in production.")
 
+        from app.config import _normalize_app_url
+
+        app_url = _normalize_app_url(os.getenv("APP_URL"))
+        if not app_url:
+            logger.warning(
+                "APP_URL is unset. Set APP_URL to the canonical https:// "
+                "custom domain (or Render URL) so sitemap, robots.txt, and "
+                "Open Graph absolute links resolve correctly."
+            )
+        elif not app_url.lower().startswith("https://"):
+            logger.warning(
+                "APP_URL should use https:// in production (got %s).",
+                app_url.split("://", 1)[0] + "://…",
+            )
     # Temporary diagnostic: log only the SQLAlchemy driver prefix (no credentials)
     try:
         driver_prefix = _sqlalchemy_driver_prefix()
@@ -518,7 +532,25 @@ def _init_extensions(app: Flask) -> None:
     """Initialize Flask extensions."""
     preferred_scheme = app.config.get("PREFERRED_URL_SCHEME")
     if preferred_scheme:
-        app.config.setdefault("PREFERRED_URL_SCHEME", preferred_scheme)
+        app.config["PREFERRED_URL_SCHEME"] = preferred_scheme
+
+    # Align Flask absolute URL generation with the configured public origin
+    # without forcing SERVER_NAME (which would break dual-host cutovers).
+    app_url = (app.config.get("APP_URL") or "").strip()
+    if app_url:
+        logger.info("Canonical APP_URL=%s", app_url)
+
+    server_name = app.config.get("SERVER_NAME")
+    if server_name:
+        logger.info(
+            "Flask SERVER_NAME=%s (ensure Host header matches during cutover)",
+            server_name,
+        )
+
+    cookie_domain = app.config.get("SESSION_COOKIE_DOMAIN")
+    if cookie_domain:
+        app.config.setdefault("REMEMBER_COOKIE_DOMAIN", cookie_domain)
+        logger.info("SESSION_COOKIE_DOMAIN=%s", cookie_domain)
 
     db.init_app(app)
     migrate.init_app(app, db)
@@ -667,6 +699,34 @@ def _canonical_session_entry_url_for_templates() -> str:
     return canonical_session_entry_url()
 
 
+def _canonical_page_url_for_templates() -> str:
+    """Absolute canonical URL for the current request (APP_URL-aware)."""
+    from flask import request
+
+    from app.public_url import absolute_public_url, public_base_url
+
+    base = public_base_url()
+    path = request.path or "/"
+    query = request.query_string.decode("utf-8") if request.query_string else ""
+    target = path if not query else f"{path}?{query}"
+    if base:
+        return absolute_public_url(target)
+    return request.url
+
+
+def _social_preview_url_for_templates() -> str:
+    """Absolute social-preview image URL preferring ``APP_URL``."""
+    from app.public_url import absolute_public_url, configured_app_url
+    from app.static_assets import versioned_static
+    from app.version import STATIC_ASSET_VERSION
+
+    if configured_app_url():
+        return absolute_public_url(
+            f"/static/branding/social-preview.png?v={STATIC_ASSET_VERSION}"
+        )
+    return versioned_static("branding/social-preview.png", _external=True)
+
+
 def _eos_navigation_for_templates():
     """Canonical EOS nav tree for templates without a Student ``page`` model."""
     from flask import request
@@ -721,6 +781,7 @@ def _register_template_context(app: Flask) -> None:
             REVISION_WORKSPACE_LABEL,
             STUDENT_DASHBOARD_LABEL,
         )
+        from app.public_url import public_base_url
         from app.services.product_communication_service import (
             ProductCommunicationService,
         )
@@ -766,6 +827,10 @@ def _register_template_context(app: Flask) -> None:
             "v2_flags": _resolve_v2_flags_for_templates(),
             "canonical_home_url": _canonical_home_url_for_templates(),
             "canonical_session_entry_url": _canonical_session_entry_url_for_templates(),
+            # Production / custom-domain absolute metadata (APP_URL-aware).
+            "app_url": public_base_url(),
+            "canonical_page_url": _canonical_page_url_for_templates(),
+            "social_preview_url": _social_preview_url_for_templates(),
             # DEP-003 — EOS chrome for shared student pages (Study Plan, Help, …).
             "eos_navigation": _eos_navigation_for_templates(),
             "eos_active_surface": _eos_active_surface_for_templates(),
@@ -923,6 +988,56 @@ def _register_routes(app: Flask) -> None:
         from app.presentation.consolidation import redirect_to_canonical_home
 
         return redirect_to_canonical_home()
+
+    @app.get("/robots.txt")
+    def robots_txt():
+        """Serve robots.txt with Sitemap pointing at the public origin."""
+        from flask import Response
+
+        from app.public_url import absolute_public_url
+
+        sitemap = absolute_public_url("/sitemap.xml")
+        lines = [
+            "User-agent: *",
+            "Disallow: /console/",
+            "Disallow: /founder/",
+            "Disallow: /settings/",
+            "Disallow: /missions/",
+            "Disallow: /mission/",
+            "Disallow: /study-plan/",
+            "Disallow: /student/",
+            "Disallow: /session/",
+            "Disallow: /curriculum-studio/",
+            "Disallow: /alpha/",
+            "Disallow: /health",
+            "Allow: /auth/login",
+            "Allow: /",
+            f"Sitemap: {sitemap}",
+            "",
+        ]
+        return Response("\n".join(lines), mimetype="text/plain; charset=utf-8")
+
+    @app.get("/sitemap.xml")
+    def sitemap_xml():
+        """Minimal public sitemap using the configured production domain."""
+        from flask import Response
+
+        from app.public_url import absolute_public_url
+
+        locs = [
+            absolute_public_url("/"),
+            absolute_public_url("/auth/login"),
+        ]
+        url_entries = "\n".join(
+            f"  <url><loc>{loc}</loc></url>" for loc in locs
+        )
+        body = (
+            '<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+            f"{url_entries}\n"
+            "</urlset>\n"
+        )
+        return Response(body, mimetype="application/xml; charset=utf-8")
 
     # CONSOLE-001 — preserve bookmarks to the former /founder portal.
     @app.route("/founder/", defaults={"path": ""}, methods=["GET", "POST"])

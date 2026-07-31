@@ -23,6 +23,10 @@ htmlcov/
 .vscode/
 .alpha_participant_credentials.txt
 
+# Local profiling / import traces (never commit)
+imports.log
+*.log
+
 # Stage 1 private ops (PII — never commit)
 ops/*.local.md
 ops/*.local.txt

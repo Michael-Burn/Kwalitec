@@ -13,6 +13,15 @@ class DependencyType(StrEnum):
 
     REQUIRES is the hard prerequisite edge used for eligibility and
     topological ordering. Other kinds are advisory or associative.
+
+    KWP-014 educational relationship vocabulary (soft unless noted)::
+
+        prerequisite            → REQUIRES (hard)
+        foundation              → FOUNDATION
+        extension               → EXTENSION
+        frequently revised together → REVISION
+        high dependency         → HIGH_DEPENDENCY
+        optional reinforcement  → OPTIONAL
     """
 
     REQUIRES = "requires"
@@ -20,6 +29,9 @@ class DependencyType(StrEnum):
     RELATED = "related"
     OPTIONAL = "optional"
     REVISION = "revision"
+    FOUNDATION = "foundation"
+    EXTENSION = "extension"
+    HIGH_DEPENDENCY = "high_dependency"
 
 
 # Hard dependency kinds that block eligibility when unsatisfied.
@@ -34,6 +46,9 @@ SOFT_DEPENDENCY_TYPES: frozenset[DependencyType] = frozenset(
         DependencyType.RELATED,
         DependencyType.OPTIONAL,
         DependencyType.REVISION,
+        DependencyType.FOUNDATION,
+        DependencyType.EXTENSION,
+        DependencyType.HIGH_DEPENDENCY,
     }
 )
 

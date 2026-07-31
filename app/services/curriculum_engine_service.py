@@ -78,7 +78,11 @@ class CurriculumEngineService:
         return self._repo.exists(exam, paper, version)
 
     def load_curriculum(self, exam: str, paper: str, version: str) -> Curriculum:
-        """Load a curriculum from disk, validate, cache, and return it.
+        """Load a V1-format curriculum from disk (legacy).
+
+        Prefer :meth:`load_auto` for all new callers — it is the canonical
+        V1/V2 detection entry point. This method remains for historical
+        V1-only call sites and tests (ADR-003 compatibility).
 
         Args:
             exam: Organisation name.

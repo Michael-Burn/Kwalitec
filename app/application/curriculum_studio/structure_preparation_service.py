@@ -19,6 +19,9 @@ from app.application.curriculum_studio.ports.curriculum_management_port import (
 from app.domain.curriculum_studio.publication_checklist import (
     WorkspacePublicationFacts,
 )
+from app.domain.educational_runtime_engine.student_facing_identity import (
+    student_syllabus_code,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -187,7 +190,10 @@ class StructurePreparationService:
         sections = [
             {
                 "section_id": sid,
-                "code": sid,
+                "code": student_syllabus_code(
+                    code="", title=title, number=str(idx + 1)
+                )
+                or str(idx + 1),
                 "title": title,
                 "number": str(idx + 1),
                 "order_index": idx + 1,
@@ -198,7 +204,10 @@ class StructurePreparationService:
         topics = [
             {
                 "topic_id": tid,
-                "code": tid,
+                "code": student_syllabus_code(
+                    code="", title=title, number=str(idx + 1)
+                )
+                or str(idx + 1),
                 "title": title,
                 "section_ref": topic_section.get(tid) or default_section,
                 "number": str(idx + 1),
@@ -218,14 +227,17 @@ class StructurePreparationService:
         }
         objectives = []
         for idx, oid in enumerate(prepared.objective_ids):
-            text = title_by_oid.get(oid) or oid
+            text = title_by_oid.get(oid) or ""
             parent = parent_by_oid.get(oid) or ""
             topic_ref = parent if parent in topic_ids else default_topic
+            human_code = student_syllabus_code(
+                code="", title=text, number=str(idx + 1)
+            ) or str(idx + 1)
             objectives.append(
                 {
                     "objective_id": oid,
-                    "code": oid,
-                    "text": text,
+                    "code": human_code,
+                    "text": text or f"Learning objective {idx + 1}",
                     "topic_ref": topic_ref,
                     "number": str(idx + 1),
                     "order_index": idx + 1,

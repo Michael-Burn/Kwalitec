@@ -1,0 +1,16 @@
+{
+  "counts": {
+    "ei_generation_chains": 1,
+    "ei_generations": 12,
+    "ei_generation_snapshots": 12,
+    "ei_educational_nodes": 3762,
+    "ei_certification_records": 2,
+    "ei_calibration_profiles": 3,
+    "runtime_enrolments": 0
+  },
+  "workspace": {
+    "certification_status": "CERTIFIED_WITH_WARNINGS",
+    "certified_snapshot_id": "snap-b8a3d3ea939763d5",
+    "active_chain_id": "ei-chain-ws-cs1"
+  }
+}

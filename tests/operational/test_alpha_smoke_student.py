@@ -36,7 +36,7 @@ def test_student_home_journey_and_insights(student_client):
     home = student_client.get("/student/").get_data(as_text=True)
     assert "Start" in home or "session" in home.lower()
     journey = student_client.get("/student/journey").get_data(as_text=True)
-    assert "Journey" in journey
+    assert "Syllabus" in journey or "Journey" in journey
     insights = student_client.get("/student/revision").get_data(as_text=True)
     assert "Revision" in insights or "insight" in insights.lower()
 

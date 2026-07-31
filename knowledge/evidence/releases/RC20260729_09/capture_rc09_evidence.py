@@ -15,9 +15,14 @@ from pathlib import Path
 
 from playwright.sync_api import sync_playwright
 
-BASE_URL = os.environ.get("KWALITEC_BASE_URL", "https://kwalitec.onrender.com").rstrip(
-    "/"
-)
+BASE_URL = (
+    os.environ.get("KWALITEC_BASE_URL") or os.environ.get("APP_URL") or ""
+).rstrip("/")
+if not BASE_URL:
+    raise SystemExit(
+        "Set KWALITEC_BASE_URL or APP_URL to the production origin "
+        "(e.g. https://app.example.com)."
+    )
 OUT_DIR = Path(__file__).resolve().parent
 DESKTOP = {"width": 1440, "height": 900}
 COMMIT = "a15a8decf76cf2fcbb739b5cc20793de375e6fe9"

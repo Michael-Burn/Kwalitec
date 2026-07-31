@@ -290,6 +290,17 @@ class SessionActivityAdapter:
         )
         enriched.setdefault("activity_index", index)
         enriched.setdefault("activities_total", total)
+        # Preserve package-derived substance — do not overwrite with Core methods.
+        if str(enriched.get("substance") or "") == "package":
+            enriched.setdefault("authority", "learning_activity_engine")
+            if index >= total:
+                enriched["next_action_label"] = str(
+                    enriched.get("next_action_label") or "Continue to Reflection"
+                )
+            else:
+                enriched.setdefault("next_action_label", "Continue")
+            return enriched
+
         if not str(enriched.get("topic_title") or "").strip():
             enriched["topic_title"] = topic
         resolved_topic = str(enriched.get("topic_title") or topic).strip()

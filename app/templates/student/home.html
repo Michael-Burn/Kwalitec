@@ -1,13 +1,16 @@
 {% extends "student/base.html" %}
 {% set title = home.page_title if home else 'Home' %}
+{% set ws = home.workspace if home and home.workspace and home.workspace.enabled else none %}
 {% from "design_system/macros.html" import
   ds_mission_panel,
   ds_study_signals,
   ds_empty_operational,
   ds_button
 %}
+{% from "student/components/explanation_card.html" import explanation_card %}
+{% from "student/components/readiness_card.html" import readiness_card %}
 
-{# SOP-001 / UX-001: page owns the single H1 — suppress competing shell header. #}
+{# SOP-001 / UX-001 / KWP-013: page owns the single H1 — suppress competing shell header. #}
 {% block page_header %}{% endblock %}
 
 {% block extra_head %}
@@ -16,10 +19,12 @@
 
 {% block content %}
 <article
-  class="ds-page ds-container ds-container--content ds-os-home"
+  class="ds-page ds-container ds-container--content ds-os-home ds-os-workspace"
   aria-labelledby="student-home-title"
   data-sop="command-centre"
   data-ux="premium-home"
+  data-kwp="013"
+  data-workspace="adaptive-study"
 >
   <header class="ds-page-header">
     <h1 id="student-home-title" class="ds-page-header__title student-page-title">{{ home.page_title }}</h1>
@@ -28,24 +33,53 @@
 
   {# ——— Empty: no exam / no plan ——— #}
   {% if home.state == 'empty' %}
-  <section class="ds-section" aria-labelledby="ds-mission-title" data-student-state="empty" data-sop-section="todays-mission">
+  <section class="ds-section" aria-labelledby="ds-mission-title" data-student-state="empty" data-sop-section="todays-session">
     <h2 class="ds-section__title" id="ds-mission-title">{{ home.mission_section_title }}</h2>
     {{ ds_empty_operational(
       home.empty_reason,
       home.empty_action_label,
       home.empty_action_href,
       title=home.empty_reason,
-      explanation='Choose an exam to open your Study Plan and unlock today’s Mission.',
-      context='Home answers one question: what should I do next?'
+      explanation='Choose an exam to open your Study Plan and unlock today’s Session.',
+      context='Home answers where you stand and what to do today.'
     ) }}
   </section>
 
-  {# ——— Quiet: plan exists, mission not ready ——— #}
-  {% elif home.state == 'quiet' %}
-  {% if home.signals %}
-    {{ ds_study_signals(home.signals) }}
+  {% else %}
+
+  {# ——— Morning Brief (KWP-013) ——— #}
+  {% if ws and ws.morning_brief and ws.morning_brief.has_brief %}
+  {% set brief = ws.morning_brief %}
+  <section
+    class="ds-os-workspace__brief"
+    aria-labelledby="ws-brief-title"
+    data-workspace-section="morning-brief"
+  >
+    <h2 class="ds-section__title" id="ws-brief-title">Morning Brief</h2>
+    {% if brief.greeting %}
+    <p class="ds-os-workspace__greeting">{{ brief.greeting }}</p>
+    {% endif %}
+    {% if brief.momentum_line %}
+    <p class="ds-os-workspace__line">{{ brief.momentum_line }}</p>
+    {% endif %}
+    {% if brief.yesterday_line %}
+    <p class="ds-os-workspace__line">{{ brief.yesterday_line }}</p>
+    {% endif %}
+    {% if brief.today_line %}
+    <p class="ds-os-workspace__line">{{ brief.today_line }}</p>
+    {% endif %}
+    {% if brief.estimated_study_label %}
+    <p class="ds-os-workspace__duration">
+      <span class="ds-os-workspace__label">Estimated study time</span>
+      <span>{{ brief.estimated_study_label }}</span>
+    </p>
+    {% endif %}
+  </section>
   {% endif %}
-  <section class="ds-section" aria-labelledby="ds-mission-title" data-student-state="quiet" data-sop-section="todays-mission">
+
+  {# ——— Quiet: plan exists, session not ready ——— #}
+  {% if home.state == 'quiet' %}
+  <section class="ds-section" aria-labelledby="ds-mission-title" data-student-state="quiet" data-workspace-section="todays-mission">
     <h2 class="ds-section__title" id="ds-mission-title">{{ home.mission_section_title }}</h2>
     <p class="ds-list__meta" role="status">{{ home.empty_reason }}</p>
     {% if home.empty_action_label %}
@@ -55,11 +89,8 @@
     {% endif %}
   </section>
 
-  {# ——— Day complete: quiet, no Primary ——— #}
+  {# ——— Day complete ——— #}
   {% elif home.state == 'day_complete' and home.mission %}
-  {% if home.signals %}
-    {{ ds_study_signals(home.signals) }}
-  {% endif %}
   {{ ds_mission_panel(
     home.mission.subject_name,
     home.mission.objective,
@@ -74,9 +105,10 @@
   ) }}
   <p class="ds-list__meta ds-success-line" role="status" data-day-complete="true">{{ home.day_complete_message }}</p>
 
-  {# ——— L0 Today's Mission / Continue Session + exactly one Primary ——— #}
+  {# ——— Today's Mission + Primary CTA ——— #}
   {% elif home.mission %}
   {% set m = home.mission %}
+  <div data-workspace-section="todays-mission">
   {{ ds_mission_panel(
     m.subject_name,
     m.objective,
@@ -91,6 +123,17 @@
     difficulty_label=m.difficulty_label,
     learning_objective=m.learning_objective
   ) }}
+
+  {% if page and page.home and page.home.explanation and page.home.explanation.has_content %}
+  <div class="ds-os-why-session" data-sop-section="why-session">
+    {{ explanation_card(
+      page.home.explanation,
+      alternatives=page.home.recommendation_alternatives if page.home.recommendation_alternatives is defined else none,
+      show_l1_benefit_again=false,
+      eyebrow='Why this Session?'
+    ) }}
+  </div>
+  {% endif %}
 
   {% if m.primary_kind == 'link' and m.primary_href %}
   <div
@@ -111,7 +154,7 @@
     >{{ m.primary_label }}</a>
   </div>
   {% elif m.primary_kind == 'start_form' and form %}
-  <div class="ds-primary-strip" role="group" aria-label="Primary actions" data-sop-section="todays-mission">
+  <div class="ds-primary-strip" role="group" aria-label="Primary actions" data-sop-section="todays-session">
     <form method="post" action="{{ url_for('student.start_session') }}">
       {{ form.hidden_tag() }}
       {{ form.mission_id() }}
@@ -123,6 +166,7 @@
         type="submit"
         data-student-cta="primary"
         data-session-control="{{ page.home.session_control if page and page.home and page.home.session_control else 'start' }}"
+        data-workspace-action="begin-session"
       >{{ m.primary_label }}</button>
     </form>
   </div>
@@ -131,8 +175,9 @@
     class="ds-primary-strip"
     role="group"
     aria-label="Primary actions"
-    data-sop-section="todays-mission"
+    data-sop-section="todays-session"
     data-session-control="complete_runtime_c"
+    data-product="non-commercial"
   >
     <form method="post" action="{{ url_for('student.complete_runtime_mission') }}">
       {{ complete_form.hidden_tag() }}
@@ -163,29 +208,339 @@
     </form>
   </div>
   {% endif %}
-
-  {% if home.signals %}
-    {{ ds_study_signals(home.signals) }}
-  {% endif %}
+  </div>
   {% endif %}
 
-  {# ——— Study Health (calm signal — not analytics) ——— #}
-  {% if home.study_health and home.state != 'empty' %}
+  {# ——— Learning Episode(s) (KWP-015 Educational Authoring) ——— #}
+  {% if ws and ws.mission_composition and ws.mission_composition.has_composition %}
+  {% set mc = ws.mission_composition %}
+  {% if mc.mission_narrative %}
+  <p class="ds-os-workspace__line" data-workspace-section="mission-narrative" data-kwp="015-mission-narrative">{{ mc.mission_narrative }}</p>
+  {% endif %}
+  {% for episode in mc.episodes %}
+  {% if episode.has_episode %}
   <section
-    class="ds-os-health ds-os-health--{{ home.study_health.tone }}"
-    aria-labelledby="os-health-title"
-    data-sop-section="study-health"
+    class="ds-os-workspace__episode"
+    aria-labelledby="ws-episode-title-{{ loop.index }}"
+    data-workspace-section="learning-episode"
+    data-kwp="015-learning-episode"
   >
-    <h2 class="ds-section__title" id="os-health-title">Study Health</h2>
-    <p class="ds-os-health__status">{{ home.study_health.status_label }}</p>
-    {% if home.study_health.detail %}
-    <p class="ds-list__meta">{{ home.study_health.detail }}</p>
+    <h2 class="ds-section__title" id="ws-episode-title-{{ loop.index }}">
+      {% if mc.episodes|length > 1 %}Learning Episode {{ episode.sequence }}{% else %}Learning Episode{% endif %}
+    </h2>
+    {% if episode.educational_context %}
+    <p class="ds-os-workspace__line">{{ episode.educational_context }}</p>
+    {% endif %}
+    {% if episode.learning_objective %}
+    <p class="ds-os-workspace__label">Learning objective</p>
+    <p class="ds-os-workspace__focus-topic">{{ episode.learning_objective }}</p>
+    {% endif %}
+    {% if episode.concept_focus %}
+    <p class="ds-os-workspace__label">Concept focus</p>
+    <ol class="ds-os-workspace__concepts">
+      {% for concept in episode.concept_focus %}
+      <li>{{ concept }}</li>
+      {% endfor %}
+    </ol>
+    {% endif %}
+    {% if episode.activity_labels %}
+    <p class="ds-os-workspace__label">Session stages</p>
+    <p class="ds-os-workspace__line">{{ episode.activity_labels|join(' · ') }}</p>
+    <p class="ds-list__meta">These become your Session stages when you begin.</p>
+    {% endif %}
+    {% if episode.success_criteria %}
+    <p class="ds-os-workspace__label">Success looks like</p>
+    <ul class="ds-os-workspace__criteria">
+      {% for criterion in episode.success_criteria %}
+      <li>{{ criterion }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% if episode.estimated_duration_label %}
+    <p class="ds-os-workspace__duration">
+      <span class="ds-os-workspace__label">Estimated duration</span>
+      {{ episode.estimated_duration_label }}
+    </p>
+    {% endif %}
+    {% if episode.connection %}
+    <p class="ds-list__meta">{{ episode.connection }}</p>
+    {% endif %}
+  </section>
+  {% endif %}
+  {% endfor %}
+  {% if mc.checkpoint_prompt %}
+  <p class="ds-list__meta" data-kwp="015-checkpoint">{{ mc.checkpoint_prompt }}</p>
+  {% endif %}
+  {% if mc.reflection_prompt %}
+  <p class="ds-list__meta" data-kwp="015-reflection">{{ mc.reflection_prompt }}</p>
+  {% endif %}
+  {% elif ws and ws.mission_composition and ws.mission_composition.composition_quiet_reason and home.mission %}
+  <section
+    class="ds-section"
+    aria-labelledby="ws-episode-quiet-title"
+    data-workspace-section="learning-episode"
+    data-student-state="quiet"
+    data-kwp="015-episode-quiet"
+  >
+    <h2 class="ds-section__title" id="ws-episode-quiet-title">Learning Episode</h2>
+    <p class="ds-list__meta" role="status">{{ ws.mission_composition.composition_quiet_reason }}</p>
+  </section>
+  {% endif %}
+
+  {# ——— Session Plan (hidden when Learning Episode already carries the arc — V1S-005 DF-005) ——— #}
+  {% if ws and ws.session_plan and ws.session_plan.has_plan and not (ws.mission_composition and ws.mission_composition.has_composition) %}
+  {% set plan = ws.session_plan %}
+  <section
+    class="ds-os-workspace__plan"
+    aria-labelledby="ws-plan-title"
+    data-workspace-section="session-plan"
+  >
+    <h2 class="ds-section__title" id="ws-plan-title">Session Plan</h2>
+    {% if plan.objective %}
+    <p class="ds-os-workspace__focus-topic">{{ plan.objective }}</p>
+    {% endif %}
+    <dl class="ds-os-briefing__meta">
+      {% if plan.duration_label %}
+      <div>
+        <dt>How long</dt>
+        <dd>{{ plan.duration_label }}</dd>
+      </div>
+      {% endif %}
+      {% if plan.status_label %}
+      <div>
+        <dt>Status</dt>
+        <dd>{{ plan.status_label }}</dd>
+      </div>
+      {% endif %}
+    </dl>
+    {% if plan.after_completion %}
+    <p class="ds-list__meta">{{ plan.after_completion }}</p>
     {% endif %}
   </section>
   {% endif %}
 
-  {# ——— Quick Actions (contextual only; ≤3; never shell-nav clone) ——— #}
-  {% if home.quick_actions and home.state != 'empty' %}
+  {# ——— Current Focus — demoted when Episode present; keep curriculum why only (DF-005) ——— #}
+  {% if ws and ws.current_focus and ws.current_focus.has_focus %}
+  {% set focus = ws.current_focus %}
+  {% if ws.mission_composition and ws.mission_composition.has_composition %}
+  {% if focus.curriculum_why %}
+  <p class="ds-os-workspace__line" data-kwp="014-curriculum-why" data-workspace-section="current-focus">{{ focus.curriculum_why }}</p>
+  {% endif %}
+  {% else %}
+  <section
+    class="ds-os-workspace__focus"
+    aria-labelledby="ws-focus-title"
+    data-workspace-section="current-focus"
+  >
+    <h2 class="ds-section__title" id="ws-focus-title">Current Focus</h2>
+    <p class="ds-os-workspace__label">Today's focus is</p>
+    <p class="ds-os-workspace__focus-topic">{{ focus.topic_title }}</p>
+    {% if focus.curriculum_why %}
+    <p class="ds-os-workspace__line" data-kwp="014-curriculum-why">{{ focus.curriculum_why }}</p>
+    {% endif %}
+    {% if focus.guidance %}
+    <p class="ds-os-workspace__line">{{ focus.guidance }}</p>
+    {% endif %}
+    {% if focus.detail %}
+    <p class="ds-list__meta">{{ focus.detail }}</p>
+    {% endif %}
+  </section>
+  {% endif %}
+  {% endif %}
+
+  {# ——— Study Signals ——— #}
+  {% if home.signals %}
+  <div data-workspace-section="study-signals">
+    {{ ds_study_signals(home.signals) }}
+  </div>
+  {% endif %}
+
+  {# ——— Recent Progress (narrative) ——— #}
+  {% if ws and ws.progress_narrative and ws.progress_narrative.has_narrative %}
+  {% set progress = ws.progress_narrative %}
+  <section
+    class="ds-os-workspace__progress"
+    aria-labelledby="ws-progress-title"
+    data-workspace-section="recent-progress"
+  >
+    <h2 class="ds-section__title" id="ws-progress-title">Recent Progress</h2>
+    {% if progress.headline %}
+    <p class="ds-os-workspace__focus-topic">{{ progress.headline }}</p>
+    {% endif %}
+    {% if progress.body %}
+    <p class="ds-os-workspace__line">{{ progress.body }}</p>
+    {% endif %}
+  </section>
+  {% endif %}
+
+  {# ——— Tomorrow Preview (KWP-015) ——— #}
+  {% if ws and ws.mission_composition and ws.mission_composition.tomorrow_preview and ws.mission_composition.tomorrow_preview.has_preview %}
+  {% set tomorrow = ws.mission_composition.tomorrow_preview %}
+  <section
+    class="ds-os-workspace__tomorrow"
+    aria-labelledby="ws-tomorrow-title"
+    data-workspace-section="tomorrow-preview"
+    data-kwp="015-tomorrow-preview"
+  >
+    <h2 class="ds-section__title" id="ws-tomorrow-title">Tomorrow Preview</h2>
+    <p class="ds-os-workspace__focus-topic">{{ tomorrow.topic_title }}</p>
+    {% if tomorrow.continuity_line %}
+    <p class="ds-os-workspace__line">{{ tomorrow.continuity_line }}</p>
+    {% endif %}
+    {% if tomorrow.estimated_duration_label %}
+    <p class="ds-os-workspace__duration">
+      <span class="ds-os-workspace__label">Estimated duration</span>
+      {{ tomorrow.estimated_duration_label }}
+    </p>
+    {% endif %}
+    {% if tomorrow.start_early_available %}
+    <p class="ds-list__meta" data-cta-honesty="start-early-preview">
+      Preview only — tomorrow's topic opens after today's Session.
+      {% if tomorrow.start_early_detail %}{{ tomorrow.start_early_detail }}{% endif %}
+    </p>
+    {% endif %}
+  </section>
+  {% endif %}
+
+  {# ——— Extra Study (KWP-015) ——— #}
+  {% if ws and ws.mission_composition and ws.mission_composition.extra_study %}
+  <section
+    class="ds-os-workspace__extra"
+    aria-labelledby="ws-extra-title"
+    data-workspace-section="extra-study"
+    data-kwp="015-extra-study"
+  >
+    <h2 class="ds-section__title" id="ws-extra-title">Extra Study</h2>
+    <ul class="ds-list">
+      {% for offer in ws.mission_composition.extra_study %}
+      <li>
+        {% if offer.href %}
+        <a class="ds-list__row" href="{{ offer.href }}" data-workspace-action="{{ offer.kind }}">
+          <span>{{ offer.label }}</span>
+          {% if offer.detail %}
+          <span class="ds-list__meta">{{ offer.detail }}</span>
+          {% endif %}
+        </a>
+        {% else %}
+        <div class="ds-list__row">
+          <span>{{ offer.label }}</span>
+          {% if offer.detail %}
+          <span class="ds-list__meta">{{ offer.detail }}</span>
+          {% endif %}
+        </div>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {# ——— Forecast (KWP-012 reuse — one concise line) ——— #}
+  {% if ws and ws.forecast and ws.forecast.has_forecast %}
+  {% set forecast = ws.forecast %}
+  <section
+    class="ds-os-workspace__forecast"
+    aria-labelledby="ws-forecast-title"
+    data-workspace-section="forecast"
+    data-kwp-section="readiness-forecast"
+  >
+    <h2 class="ds-section__title" id="ws-forecast-title">{{ forecast.title or 'Readiness Forecast' }}</h2>
+    <p class="ds-os-workspace__line">{{ forecast.guidance }}</p>
+    {% if forecast.href %}
+    <p class="ds-list__meta">
+      <a href="{{ forecast.href }}" data-workspace-action="view-forecast">View Readiness Forecast</a>
+    </p>
+    {% endif %}
+  </section>
+  {% endif %}
+
+  {# ——— Learning Journey Highlights (KWP-011 reuse) ——— #}
+  {% if ws and ws.journey_highlights and ws.journey_highlights.has_highlights %}
+  {% set journey = ws.journey_highlights %}
+  <section
+    class="ds-os-workspace__journey"
+    aria-labelledby="ws-journey-title"
+    data-workspace-section="learning-journey"
+    data-kwp-section="educational-memory"
+  >
+    <h2 class="ds-section__title" id="ws-journey-title">From your learning story</h2>
+    {% if journey.milestone %}
+    <div class="ds-os-workspace__highlight">
+      <p class="ds-os-workspace__label">Milestone</p>
+      <p class="ds-os-workspace__line">{{ journey.milestone }}</p>
+    </div>
+    {% endif %}
+    {% if journey.pattern %}
+    <div class="ds-os-workspace__highlight">
+      <p class="ds-os-workspace__label">Pattern</p>
+      <p class="ds-os-workspace__line">{{ journey.pattern }}</p>
+    </div>
+    {% endif %}
+    {% if journey.improvement %}
+    <div class="ds-os-workspace__highlight">
+      <p class="ds-os-workspace__label">Recent improvement</p>
+      <p class="ds-os-workspace__line">{{ journey.improvement }}</p>
+    </div>
+    {% endif %}
+    {% if journey.href %}
+    <p class="ds-list__meta">
+      <a href="{{ journey.href }}" data-workspace-action="view-journey">View My Learning Journey</a>
+    </p>
+    {% endif %}
+  </section>
+  {% endif %}
+
+  {# ——— Exam Readiness (quiet secondary — Runtime A only; DF-002 isolation) ——— #}
+  {% if page and page.home and page.home.readiness and page.home.readiness.has_readiness %}
+  {% if not (page.home.educational and page.home.educational.active) %}
+  <div class="ds-os-readiness" data-sop-section="exam-readiness" data-workspace-section="readiness">
+    {{ readiness_card(page.home.readiness) }}
+  </div>
+  {% endif %}
+  {% endif %}
+
+  {# ——— Quick Actions (workspace set) ——— #}
+  {% if ws and ws.quick_actions %}
+  <section
+    class="ds-os-actions"
+    aria-labelledby="ws-actions-title"
+    data-workspace-section="quick-actions"
+  >
+    <h2 class="ds-section__title" id="ws-actions-title">Quick Actions</h2>
+    <ul class="ds-list">
+      {% for action in ws.quick_actions %}
+      <li>
+        {% if action.kind == 'start_form' and form and home.mission and home.mission.primary_kind == 'start_form' %}
+        <form method="post" action="{{ url_for('student.start_session') }}" class="ds-list__row ds-os-workspace__action-form">
+          {{ form.hidden_tag() }}
+          {{ form.mission_id() }}
+          {{ form.session_id() }}
+          {% if form.recommendation_key is defined %}{{ form.recommendation_key() }}{% endif %}
+          {% if form.record_commitment is defined %}{{ form.record_commitment() }}{% endif %}
+          <button type="submit" class="ds-os-workspace__action-btn" data-workspace-action="begin-session">
+            <span>{{ action.label }}</span>
+            {% if action.detail %}
+            <span class="ds-list__meta">{{ action.detail }}</span>
+            {% endif %}
+          </button>
+        </form>
+        {% elif action.href %}
+        <a
+          class="ds-list__row"
+          href="{{ action.href }}"
+          data-workspace-action="{{ action.label|lower|replace(' ', '-') }}"
+        >
+          <span>{{ action.label }}</span>
+          {% if action.detail %}
+          <span class="ds-list__meta">{{ action.detail }}</span>
+          {% endif %}
+        </a>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% elif home.quick_actions %}
   <section class="ds-os-actions" aria-labelledby="os-actions-title" data-sop-section="quick-actions">
     <h2 class="ds-section__title" id="os-actions-title">Quick Actions</h2>
     <ul class="ds-list">
@@ -201,25 +556,8 @@
       {% endfor %}
     </ul>
   </section>
-  {% elif home.quick_actions and home.state == 'empty' %}
-  {# Empty state Primary already covers Choose Exam — omit duplicate Quick Actions. #}
   {% endif %}
 
-  {# ——— Upcoming milestones (exam countdown lives in signals) ——— #}
-  {% if home.deadlines and home.state != 'empty' %}
-  <section class="ds-os-deadlines" aria-labelledby="os-deadlines-title" data-sop-section="upcoming-deadlines">
-    <h2 class="ds-section__title" id="os-deadlines-title">Upcoming</h2>
-    <ul class="ds-list">
-      {% for item in home.deadlines %}
-      <li class="ds-list__row">
-        <span>{{ item.title }}</span>
-        {% if item.detail %}
-        <span class="ds-list__meta">{{ item.detail }}</span>
-        {% endif %}
-      </li>
-      {% endfor %}
-    </ul>
-  </section>
-  {% endif %}
+  {% endif %}{# end non-empty #}
 </article>
 {% endblock %}

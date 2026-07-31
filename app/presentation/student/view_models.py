@@ -208,6 +208,12 @@ class JourneyPageViewModel:
     primary_cta_enabled: bool = False
     # PX-001 — Runtime C educational enrichment (optional).
     educational: EducationalExperienceViewModel | None = None
+    # KWP-002 — Journey narrative (presentation only; Progress remains AUTHORITY).
+    up_next: JourneyTopicViewModel | None = None
+    remaining_topics: tuple[JourneyTopicViewModel, ...] = ()
+    needs_attention: tuple[JourneyTopicViewModel, ...] = ()
+    learning_insights: tuple[str, ...] = ()
+    learning_insights_status: str = ""  # ready | building | ""
 
 
 @dataclass(frozen=True)
@@ -239,6 +245,35 @@ class HistorySessionViewModel:
     completed_at: str = ""
     duration_label: str = ""
     outcome_label: str = "Completed"
+    insight_line: str = ""
+    progress_line: str = ""
+    sitting_report_href: str = ""
+
+
+@dataclass(frozen=True)
+class LearningJourneyPageViewModel:
+    """KWP-011 — My Learning Journey (educational story, not analytics)."""
+
+    headline: str = ""
+    story_paragraphs: tuple[str, ...] = ()
+    timeline: tuple[dict[str, str], ...] = ()
+    patterns: tuple[dict[str, str], ...] = ()
+    milestones: tuple[dict[str, str], ...] = ()
+    sitting_archives: tuple[dict[str, str], ...] = ()
+    sitting_count: int = 0
+    topic_count: int = 0
+    has_memory: bool = False
+    empty_message: str = ""
+    # KWP-012 — Readiness Forecast / Study Trajectory (projection only).
+    forecast_title: str = ""
+    forecast_guidance: str = ""
+    forecast_explanation: str = ""
+    forecast_trend: str = ""
+    forecast_projected_stage: str = ""
+    forecast_confidence: str = ""
+    forecast_assumptions: tuple[str, ...] = ()
+    forecast_factors: tuple[str, ...] = ()
+    has_forecast: bool = False
 
 
 @dataclass(frozen=True)
@@ -257,6 +292,9 @@ class HistoryPageViewModel:
     # EP-008.3 educational narrative.
     recommendation_narrative: tuple[RecommendationNarrativeEntryViewModel, ...] = ()
     recommendation_narrative_header: str = ""
+    # KWP-011 bridge.
+    learning_journey_href: str = ""
+    learning_journey_teaser: str = ""
 
 
 @dataclass(frozen=True)
@@ -495,16 +533,28 @@ def format_readiness_percent(value: float | None) -> str:
     return f"{pct}%"
 
 
+def format_readiness_stage(value: float | None, *, existing_label: str = "") -> str:
+    """Prefer calm stage language over percentages (KWP-006)."""
+    from app.presentation.student.exam_week_briefing import readiness_stage_label
+
+    return readiness_stage_label(value, existing_label=existing_label)
+
+
 def format_benefit(delta: float | None, fallback: str = "") -> str:
     """Format expected readiness improvement for display."""
     if fallback:
         return fallback
     if delta is None:
         return ""
-    pct = abs(delta)
-    if pct <= 1.0:
-        pct = pct * 100
-    return f"About {pct:.0f}% readiness gain"
+    # Prefer qualitative benefit language — avoid marketing % gains.
+    magnitude = abs(float(delta))
+    if magnitude <= 1.0:
+        magnitude *= 100
+    if magnitude < 3:
+        return "A small readiness lift"
+    if magnitude < 8:
+        return "A meaningful readiness lift"
+    return "A strong readiness lift"
 
 
 def contains_forbidden_term(text: str) -> bool:
@@ -728,7 +778,11 @@ def home_vm(
             has_countdown=snap.exam_countdown_days is not None,
         ),
         readiness=ReadinessCardViewModel(
-            readiness_label=snap.exam_readiness_label or "Exam Readiness",
+            readiness_label=format_readiness_stage(
+                snap.exam_readiness,
+                existing_label=snap.exam_readiness_label or "",
+            )
+            or "Building",
             readiness_percent_label=format_readiness_percent(snap.exam_readiness),
             trend_label=trend,
             confidence_label=_home_readiness_confidence(snap),
@@ -1319,15 +1373,28 @@ def _load_experience_feedback(student_id: str) -> object | None:
         return None
 
 
-def journey_vm(snap: JourneySnapshot) -> JourneyPageViewModel:
+def journey_vm(
+    snap: JourneySnapshot,
+    *,
+    revision: RevisionSnapshot | None = None,
+    history: HistorySnapshot | None = None,
+) -> JourneyPageViewModel:
     has_current = snap.current_topic is not None
+    upcoming = tuple(_topic_vm(t) for t in snap.upcoming_topics)
+    needs_attention = _needs_attention_topics(revision=revision, history=history)
+    insights = _journey_learning_insights(history=history, revision=revision)
+    status = ""
+    if insights:
+        status = "ready"
+    elif has_current or upcoming or needs_attention:
+        status = "building"
     return JourneyPageViewModel(
         examination_label=snap.examination_label,
         current=_topic_vm(snap.current_topic) if snap.current_topic else None,
         completed=tuple(_topic_vm(t) for t in snap.completed_topics),
-        upcoming=tuple(_topic_vm(t) for t in snap.upcoming_topics),
+        upcoming=upcoming,
         progress_percent=snap.progress_percent,
-        progress_label=f"{snap.progress_percent}% complete",
+        progress_label=f"{snap.progress_percent}% through your syllabus",
         estimated_completion_label=snap.estimated_completion_label,
         prerequisite_notes=snap.prerequisite_visibility,
         completed_count=snap.completed_count,
@@ -1336,7 +1403,83 @@ def journey_vm(snap: JourneySnapshot) -> JourneyPageViewModel:
         if has_current
         else "Explore your journey",
         primary_cta_enabled=has_current or bool(snap.upcoming_topics),
+        up_next=upcoming[0] if upcoming else None,
+        remaining_topics=upcoming[1:] if len(upcoming) > 1 else (),
+        needs_attention=needs_attention,
+        learning_insights=insights,
+        learning_insights_status=status,
     )
+
+
+def _needs_attention_topics(
+    *,
+    revision: RevisionSnapshot | None,
+    history: HistorySnapshot | None,
+) -> tuple[JourneyTopicViewModel, ...]:
+    """Weak Topic Centre projection from existing Revision / History facts."""
+    items: list[JourneyTopicViewModel] = []
+    seen: set[str] = set()
+    if revision is not None:
+        options = ()
+        if revision.primary is not None:
+            options = (revision.primary,) + tuple(revision.alternatives or ())
+        else:
+            options = tuple(revision.alternatives or ())
+        for option in options[:5]:
+            title = (option.topic_title or "").strip()
+            if not title or title.lower() in seen:
+                continue
+            seen.add(title.lower())
+            note = (option.expected_benefit or "").strip()
+            if option.explanation and option.explanation.why_recommended:
+                note = note or option.explanation.why_recommended
+            items.append(
+                JourneyTopicViewModel(
+                    topic_id=option.option_id,
+                    title=title,
+                    status_label=option.priority_label or "Strengthen",
+                    prerequisite_note=note,
+                )
+            )
+    if history is not None:
+        for topic in history.revision_history[:5]:
+            title = str(topic).strip()
+            if not title or title.lower() in seen:
+                continue
+            seen.add(title.lower())
+            items.append(
+                JourneyTopicViewModel(
+                    topic_id=f"hist-{len(items)}",
+                    title=title,
+                    status_label="Recent practice",
+                    prerequisite_note="From your recent Sessions — worth reinforcing.",
+                )
+            )
+    return tuple(items[:5])
+
+
+def _journey_learning_insights(
+    *,
+    history: HistorySnapshot | None,
+    revision: RevisionSnapshot | None,
+) -> tuple[str, ...]:
+    lines: list[str] = []
+    if history and history.mastered_topics:
+        sample = ", ".join(history.mastered_topics[:3])
+        lines.append(f"You have strengthened: {sample}.")
+    if history and history.completed_sessions:
+        latest = history.completed_sessions[0]
+        topic = (latest.topic_title or "a Session").strip()
+        lines.append(f"Your most recent Session covered {topic}.")
+    if revision and revision.primary:
+        title = (revision.primary.topic_title or "").strip()
+        if title:
+            lines.append(f"Revision suggests reinforcing {title} next.")
+    if history and len(history.readiness_progression) >= 2:
+        trend = _readiness_trend_label(history.readiness_progression)
+        if trend:
+            lines.append(trend + ".")
+    return tuple(lines[:3])
 
 
 def journey_card_vm(snap: JourneySnapshot) -> JourneyCardViewModel:
@@ -1387,6 +1530,20 @@ def history_vm(snap: HistorySnapshot) -> HistoryPageViewModel:
         )
         for entry in (snap.recommendation_narrative or ())
     )
+    journey_href = ""
+    journey_teaser = ""
+    try:
+        from flask import has_request_context, url_for
+
+        if has_request_context():
+            journey_href = url_for("student.learning_journey")
+            journey_teaser = (
+                "See how your understanding has developed across sittings — "
+                "My Learning Journey."
+            )
+    except Exception:  # noqa: BLE001 — presentation must stay resilient
+        journey_href = ""
+        journey_teaser = ""
     return HistoryPageViewModel(
         sessions=tuple(_session_vm(s) for s in snap.completed_sessions),
         total_study_label=format_minutes(snap.total_study_minutes)
@@ -1402,7 +1559,148 @@ def history_vm(snap: HistorySnapshot) -> HistoryPageViewModel:
         primary_cta_enabled=True,
         recommendation_narrative=narrative,
         recommendation_narrative_header=(snap.recommendation_narrative_header or ""),
+        learning_journey_href=journey_href,
+        learning_journey_teaser=journey_teaser,
     )
+
+
+def learning_journey_vm(
+    narrative,
+    *,
+    forecast=None,
+) -> LearningJourneyPageViewModel:
+    """Project Educational Memory narrative for My Learning Journey."""
+    from app.application.educational_memory.dto import LearningJourneyNarrative
+
+    forecast_vm = _forecast_fields(forecast)
+
+    if not isinstance(narrative, LearningJourneyNarrative):
+        return LearningJourneyPageViewModel(
+            headline="My Learning Journey",
+            empty_message=(
+                "Complete a few study sittings and your educational story "
+                "will appear here."
+            ),
+            **forecast_vm,
+        )
+    timeline = tuple(
+        {
+            "title": e.title,
+            "body": e.body,
+            "topic_title": e.topic_title,
+            "recorded_at": e.recorded_at,
+            "session_id": e.session_id,
+            "kind": e.kind.value,
+        }
+        for e in narrative.timeline
+        if e.kind.value != "sitting_recorded"
+    )
+    patterns = tuple(
+        {
+            "title": p.title,
+            "narrative": p.narrative,
+        }
+        for p in narrative.patterns
+    )
+    milestones = tuple(
+        {
+            "title": m.title,
+            "narrative": m.narrative,
+            "topic_title": m.topic_title,
+            "recorded_at": m.recorded_at,
+        }
+        for m in narrative.milestones
+    )
+    archives = []
+    for row in narrative.sitting_archives:
+        href = ""
+        session_id = str(row.get("session_id") or "")
+        if session_id:
+            try:
+                from flask import has_request_context, url_for
+
+                if has_request_context():
+                    href = url_for("session.complete", session_id=session_id)
+            except Exception:  # noqa: BLE001
+                href = ""
+        # V1S-005 DF-007: student-safe sitting summary only — never surface
+        # raw strategy_title (engine-adjacent vocabulary) on Learning Journey.
+        topic_title = str(row.get("topic_title") or "").strip()
+        recorded_at = str(row.get("recorded_at") or "").strip()
+        sitting_summary = recorded_at or "Study sitting"
+        archives.append(
+            {
+                "session_id": session_id,
+                "topic_title": topic_title,
+                "recorded_at": recorded_at,
+                "sitting_summary": sitting_summary,
+                "sitting_report_href": href,
+            }
+        )
+    return LearningJourneyPageViewModel(
+        headline=narrative.headline or "My Learning Journey",
+        story_paragraphs=narrative.story_paragraphs,
+        timeline=timeline,
+        patterns=patterns,
+        milestones=milestones,
+        sitting_archives=tuple(archives),
+        sitting_count=narrative.sitting_count,
+        topic_count=narrative.topic_count,
+        has_memory=narrative.has_memory,
+        empty_message=(
+            ""
+            if narrative.has_memory
+            else (
+                "Complete a few study sittings and your educational story "
+                "will appear here."
+            )
+        ),
+        **forecast_vm,
+    )
+
+
+def _forecast_fields(forecast) -> dict:
+    """Flatten ReadinessForecast into Learning Journey VM fields."""
+    from app.application.readiness_forecast.dto import ReadinessForecast
+
+    if not isinstance(forecast, ReadinessForecast) or not forecast.has_forecast:
+        # Still surface thin-history guidance when engine returned a report.
+        if isinstance(forecast, ReadinessForecast) and forecast.guidance:
+            return {
+                "forecast_title": forecast.title,
+                "forecast_guidance": forecast.guidance,
+                "forecast_explanation": forecast.explanation,
+                "forecast_trend": forecast.trajectory.current_trend_title,
+                "forecast_projected_stage": (
+                    forecast.trajectory.projected_readiness_stage
+                ),
+                "forecast_confidence": forecast.trajectory.confidence_title,
+                "forecast_assumptions": forecast.trajectory.key_assumptions,
+                "forecast_factors": forecast.trajectory.influential_factors,
+                "has_forecast": False,
+            }
+        return {
+            "forecast_title": "",
+            "forecast_guidance": "",
+            "forecast_explanation": "",
+            "forecast_trend": "",
+            "forecast_projected_stage": "",
+            "forecast_confidence": "",
+            "forecast_assumptions": (),
+            "forecast_factors": (),
+            "has_forecast": False,
+        }
+    return {
+        "forecast_title": forecast.title,
+        "forecast_guidance": forecast.guidance,
+        "forecast_explanation": forecast.explanation,
+        "forecast_trend": forecast.trajectory.current_trend_title,
+        "forecast_projected_stage": forecast.trajectory.projected_readiness_stage,
+        "forecast_confidence": forecast.trajectory.confidence_title,
+        "forecast_assumptions": forecast.trajectory.key_assumptions,
+        "forecast_factors": forecast.trajectory.influential_factors,
+        "has_forecast": True,
+    }
 
 
 def decision_journal_page_vm(timeline) -> StudentPageViewModel:
@@ -1603,7 +1901,7 @@ def page_from_dashboard(
         # PX-002A T1-1: "Home" retired the "Dashboard" collision with the
         # legacy Learning Workspace home (still "Student Dashboard").
         "home": "Home" if not use_unified else "Today",
-        "journey": "Journey" if not use_unified else "Exam Readiness",
+        "journey": "Syllabus" if not use_unified else "Exam Readiness",
         "revision": "Revision",
         # PX-002A: renamed from "Analytics" — see SURFACE_LABELS note.
         "history": "History" if not use_unified else "Archive",
@@ -1636,7 +1934,13 @@ def page_from_dashboard(
     return StudentPageViewModel(
         shell=shell,
         home=home,
-        journey=journey_vm(dash.journey) if dash.journey else None,
+        journey=journey_vm(
+            dash.journey,
+            revision=dash.revision,
+            history=dash.history,
+        )
+        if dash.journey
+        else None,
         revision=revision_vm(dash.revision) if dash.revision else None,
         history=history_vm(dash.history) if dash.history else None,
         profile=profile_vm(dash.profile) if dash.profile else None,
@@ -1695,12 +1999,31 @@ def _revision_option_vm(
 
 
 def _session_vm(session: CompletedSessionSnapshot) -> HistorySessionViewModel:
+    topic = (session.topic_title or "Session").strip()
+    href = ""
+    if session.session_id:
+        try:
+            from flask import has_request_context, url_for
+
+            if has_request_context():
+                href = url_for(
+                    "session.complete", session_id=session.session_id
+                )
+        except Exception:  # noqa: BLE001
+            href = ""
     return HistorySessionViewModel(
         session_id=session.session_id,
-        topic_title=session.topic_title,
+        topic_title=topic,
         completed_at=session.completed_at,
         duration_label=format_minutes(session.study_minutes),
-        outcome_label="Completed",
+        outcome_label="Session complete",
+        insight_line=f"Sitting on {topic}",
+        progress_line=(
+            "Revisit the Sitting Report as it was written that day."
+            if href
+            else "Open Journey to see how this Session shaped your path."
+        ),
+        sitting_report_href=href,
     )
 
 

@@ -1,18 +1,21 @@
 """Coexistence policy between JSON Runtime A and published-curriculum Runtime C.
 
-PI-001C does not cut over existing bundled JSON subjects. The curriculum-driven
-runtime activates only when a student enrols against an active published
-package. Existing StudyPlanService / PlanningService paths remain authoritative
-for JSON-backed exams until an evidence-backed cutover programme.
+V1S-007 / A9 — Educational Runtime Singularity: student educational execution
+for published curricula runs exclusively through the Educational Runtime
+(Runtime C). JSON Runtime A may remain as on-disk syllabus substrate and as a
+TEMPORARY path for students without Runtime C enrolment (RI-002 retirement),
+but must never be used as a fallback when Educational Runtime is already the
+authority for that student.
+
+V1S-002 dogfood cutover: when Runtime C enrolment is enabled and an active
+published package exists for CS1 / CB2 / CM1, platform routing selects
+``PUBLISHED_CURRICULUM`` as the sole student curriculum authority for that
+subject (including legacy IFoA catalogue selections).
 
 PI-002A adds a student-facing Founder → Student bridge with feature flags and
-audited routing. The student wizard routes to Runtime C only when
-``KWALITEC_RUNTIME_C_ENROLMENT`` (or the umbrella
-``KWALITEC_FOUNDER_STUDENT_BRIDGE``) is enabled and the selection matches the
-Published category or the Runtime C allowlist. This coexistence helper remains
-the engine-level check used by ``EducationalRuntimeEngineService``; flag gating
-for live student enrolment lives in
-``app.application.platform_integration``.
+audited routing. This coexistence helper remains the engine-level check used
+by ``EducationalRuntimeEngineService``; flag gating for live student enrolment
+lives in ``app.application.platform_integration``.
 """
 
 from __future__ import annotations
@@ -47,13 +50,20 @@ class RuntimeCoexistencePolicy:
     def resolve_for_enrolment(self, subject_code: str) -> RuntimeAuthority:
         """Published package present → curriculum runtime may enrol.
 
-        Absence of a published package keeps the subject on JSON Runtime A
-        (or unsupported). This method does not disable Runtime A.
+        Absence of a published package keeps the subject on JSON substrate
+        (or unsupported). This method does not authorise Runtime A fallback
+        from an existing Educational Runtime enrolment (A9).
         """
         if self.has_published_curriculum(subject_code):
             return RuntimeAuthority.PUBLISHED_CURRICULUM
         return RuntimeAuthority.JSON_BUNDLED
 
     def json_runtime_remains_default(self) -> bool:
-        """Existing student paths remain on Runtime A until cutover."""
+        """JSON Runtime A substrate still exists pending RI-002 hard removal.
+
+        Dogfood / Runtime C enrolments must not fall back to JSON execution
+        (V1S-007 A9). This flag means the package remains in-repo as substrate
+        and TEMPORARY non–Runtime-C path only — not an alternate educational
+        execution path for enrolled Educational Runtime students.
+        """
         return True

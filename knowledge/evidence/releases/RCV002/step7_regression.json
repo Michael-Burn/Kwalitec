@@ -1,0 +1,47 @@
+{
+  "certified_preview_loaded": true,
+  "ei_inventory": {
+    "counts": {
+      "ei_generation_chains": 1,
+      "ei_generations": 12,
+      "ei_generation_snapshots": 12,
+      "ei_educational_nodes": 3762,
+      "ei_certification_records": 2,
+      "ei_calibration_profiles": 3,
+      "runtime_enrolments": 1
+    },
+    "workspace": {
+      "certification_status": "CERTIFIED_WITH_WARNINGS",
+      "certified_snapshot_id": "snap-b8a3d3ea939763d5",
+      "active_chain_id": "ei-chain-ws-cs1"
+    }
+  },
+  "package": {
+    "id": 1,
+    "version_label": "2026.1",
+    "is_active": true,
+    "published_by": "rcv002",
+    "has_certification": true,
+    "certification": {
+      "authority": "certified_snapshot",
+      "chain_id": "ei-chain-ws-cs1",
+      "snapshot_id": "snap-b8a3d3ea939763d5",
+      "status": "CERTIFIED_WITH_WARNINGS"
+    },
+    "sections": 5,
+    "topics": 15,
+    "objectives": 73,
+    "source": "certified_snapshot"
+  },
+  "foundation": {
+    "id": 1,
+    "version_label": "2026.1",
+    "publication_state": "published",
+    "sections": 5,
+    "topics": 15,
+    "objectives": 73,
+    "source": "certified_snapshot"
+  },
+  "observatory_ok": true,
+  "student_surface_imports_ok": true
+}

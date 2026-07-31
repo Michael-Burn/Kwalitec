@@ -171,4 +171,4 @@ class TestFounderDashboardRoutes:
         )
         response = client.get("/research/founder", follow_redirects=False)
         assert response.status_code == 302
-        assert "/console/feedback" in response.headers["Location"]
+        assert "/console/feedback/checkins" in response.headers["Location"]

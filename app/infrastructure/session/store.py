@@ -41,6 +41,26 @@ class SessionDocumentStore:
             return
         self._docs[(namespace, key.strip())] = deepcopy(document)
 
+    def list_documents(self, namespace: str) -> list[dict[str, Any]]:
+        """Return all documents in ``namespace`` (best-effort for metrics)."""
+        ns = namespace.strip()
+        if self._backing_factory is not None:
+            repo = self._backing_factory()
+            prefix = f"{ns}:"
+            results: list[dict[str, Any]] = []
+            for aggregate_id in repo.list_ids():
+                if not str(aggregate_id).startswith(prefix):
+                    continue
+                doc = repo.get(aggregate_id)
+                if isinstance(doc, dict):
+                    results.append(deepcopy(doc))
+            return results
+        return [
+            deepcopy(doc)
+            for (stored_ns, _key), doc in self._docs.items()
+            if stored_ns == ns and isinstance(doc, dict)
+        ]
+
     def delete(self, namespace: str, key: str) -> None:
         if self._backing_factory is not None:
             self._backing_factory().delete(self._key(namespace, key))

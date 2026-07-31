@@ -23,8 +23,12 @@ from app.presentation.session import session_bp
 from app.presentation.session.forms import (
     AdvanceActivityForm,
     BeginSessionForm,
+    ChecklistItemForm,
     CompleteSessionForm,
     ContinueReflectionForm,
+    FinishReviewForm,
+    PauseSessionForm,
+    ResumeSessionForm,
     SubmitAnswerForm,
 )
 from app.presentation.session.messages import FLASH_SUCCESS, FLASH_WARNING
@@ -37,8 +41,12 @@ from app.presentation.session.views import (
     complete_and_return,
     continue_reflection,
     load_page,
+    pause_session,
+    request_finish,
     resume_redirect_if_needed,
+    resume_session,
     submit_answer,
+    update_checklist,
 )
 
 _study_session = StudySessionService()
@@ -129,6 +137,93 @@ def begin(session_id: str):
         return redirect(url_for("session.overview", session_id=session_id))
     flash(FLASH_SUCCESS["begun"], "success")
     return redirect(url_for("session.activity", session_id=session_id))
+
+
+@session_bp.post("/<session_id>/pause")
+@login_required
+def pause(session_id: str):
+    """Pause Study Session — safe leave; progress retained for resume."""
+    form = PauseSessionForm()
+    if not form.validate_on_submit():
+        flash(FLASH_WARNING["pause_failed"], "warning")
+        return redirect(url_for("session.activity", session_id=session_id))
+    try:
+        pause_session(session_id=session_id)
+    except SessionOwnershipError as exc:
+        return _guard_ownership(exc)
+    except PortUnavailable:
+        flash(FLASH_WARNING["pause_failed"], "warning")
+        return redirect(url_for("session.activity", session_id=session_id))
+    except SessionExperienceError as exc:
+        logger.warning("Pause session failed: %s", exc)
+        flash(FLASH_WARNING["pause_failed"], "warning")
+        return redirect(url_for("session.activity", session_id=session_id))
+    flash(FLASH_SUCCESS["paused"], "success")
+    return redirect(url_for("student.home"))
+
+
+@session_bp.post("/<session_id>/resume")
+@login_required
+def resume(session_id: str):
+    """Resume a paused Study Session at the persisted surface."""
+    form = ResumeSessionForm()
+    if not form.validate_on_submit():
+        flash(FLASH_WARNING["resume_failed"], "warning")
+        return redirect(url_for("session.overview", session_id=session_id))
+    try:
+        resume_session(session_id=session_id)
+    except SessionOwnershipError as exc:
+        return _guard_ownership(exc)
+    except PortUnavailable:
+        flash(FLASH_WARNING["resume_failed"], "warning")
+        return redirect(url_for("session.overview", session_id=session_id))
+    except SessionExperienceError as exc:
+        logger.warning("Resume session failed: %s", exc)
+        flash(FLASH_WARNING["resume_failed"], "warning")
+        return redirect(url_for("session.overview", session_id=session_id))
+    flash(FLASH_SUCCESS["resumed"], "success")
+    return redirect(url_for("session.activity", session_id=session_id))
+
+
+@session_bp.post("/<session_id>/checklist")
+@login_required
+def checklist(session_id: str):
+    """Toggle a plan-checklist item (session progress only)."""
+    form = ChecklistItemForm()
+    if not form.validate_on_submit():
+        return redirect(url_for("session.overview", session_id=session_id))
+    try:
+        update_checklist(
+            session_id=session_id,
+            item_id=(form.item_id.data or "").strip(),
+            done=str(form.done.data or "").strip() in {"1", "true", "yes", "on"},
+        )
+    except SessionOwnershipError as exc:
+        return _guard_ownership(exc)
+    except SessionExperienceError as exc:
+        logger.warning("Checklist update failed: %s", exc)
+        return redirect(url_for("session.overview", session_id=session_id))
+    flash(FLASH_SUCCESS["checklist_updated"], "success")
+    return redirect(url_for("session.overview", session_id=session_id))
+
+
+@session_bp.post("/<session_id>/finish/start")
+@login_required
+def finish_start(session_id: str):
+    """Enter Ready to Finish — Finish Review required before close."""
+    try:
+        request_finish(session_id=session_id)
+    except SessionOwnershipError as exc:
+        return _guard_ownership(exc)
+    except PortUnavailable:
+        flash(FLASH_WARNING["complete_unavailable"], "warning")
+        return redirect(url_for("session.activity", session_id=session_id))
+    except SessionExperienceError as exc:
+        logger.warning("Request finish failed: %s", exc)
+        flash(FLASH_WARNING["complete_failed"], "warning")
+        return redirect(url_for("session.activity", session_id=session_id))
+    flash(FLASH_SUCCESS["ready_to_finish"], "success")
+    return redirect(url_for("session.summary", session_id=session_id))
 
 
 @session_bp.get("/<session_id>/activity")
@@ -281,7 +376,7 @@ def reflection_continue(session_id: str):
 @session_bp.get("/<session_id>/summary")
 @login_required
 def summary(session_id: str):
-    """Session Summary — outcomes and next recommendation."""
+    """Session Summary / Finish Review — Yes / Partially / No when P2 ON."""
     try:
         resume = resume_redirect_if_needed(session_id, SessionSurface.SUMMARY)
         if resume is not None:
@@ -291,7 +386,13 @@ def summary(session_id: str):
         return _guard_ownership(exc)
     except (SessionNotFound, WorkspaceNotFound) as exc:
         return _missing_session_redirect(session_id, exc)
-    form = CompleteSessionForm()
+    from app.application.config.v2_flags import resolve_v2_feature_flags
+
+    product = bool(resolve_v2_feature_flags().SR_SESSION_COMPLETION_PRODUCT)
+    if product:
+        form = FinishReviewForm()
+    else:
+        form = CompleteSessionForm()
     form.session_id.data = session_id
     study = _study_session.build_page(page)
     return render_template(
@@ -300,6 +401,7 @@ def summary(session_id: str):
         page=page,
         study=study,
         form=form,
+        finish_review_required=product,
     )
 
 
@@ -325,29 +427,68 @@ def complete(session_id: str):
         page=page,
         study=study,
         form=form,
+        finish_review_required=False,
     )
 
 
 @session_bp.post("/<session_id>/complete")
 @login_required
 def finish(session_id: str):
-    """Complete the session and return to Student Home."""
-    form = CompleteSessionForm()
-    if not form.validate_on_submit():
-        flash(FLASH_WARNING["complete_invalid"], "warning")
-        return redirect(url_for("session.complete", session_id=session_id))
+    """Complete the session after Finish Review (P2) or return-home (rollback)."""
+    from app.application.config.v2_flags import resolve_v2_feature_flags
+
+    product = bool(resolve_v2_feature_flags().SR_SESSION_COMPLETION_PRODUCT)
+    if product:
+        form = FinishReviewForm()
+        if not form.validate_on_submit():
+            flash(FLASH_WARNING["finish_review_required"], "warning")
+            return redirect(url_for("session.summary", session_id=session_id))
+        verdict = (form.completion_status.data or "").strip().lower()
+        notes = form.notes.data
+        redirect_surface = "session.summary"
+    else:
+        form = CompleteSessionForm()
+        if not form.validate_on_submit():
+            flash(FLASH_WARNING["complete_invalid"], "warning")
+            return redirect(url_for("session.complete", session_id=session_id))
+        verdict = None
+        notes = None
+        redirect_surface = "session.complete"
     try:
-        complete_and_return(session_id=session_id)
+        complete_and_return(
+            session_id=session_id,
+            finish_verdict=verdict,
+            finish_notes=notes,
+        )
     except SessionOwnershipError as exc:
         return _guard_ownership(exc)
     except PortUnavailable:
         flash(FLASH_WARNING["complete_unavailable"], "warning")
-        return redirect(url_for("session.complete", session_id=session_id))
+        return redirect(url_for(redirect_surface, session_id=session_id))
     except (SessionNotFound, WorkspaceNotFound) as exc:
         return _missing_session_redirect(session_id, exc)
     except SessionExperienceError as exc:
         logger.warning("Complete session failed: %s", exc)
+        message = str(exc).lower()
+        if "finish review" in message:
+            flash(FLASH_WARNING["finish_review_required"], "warning")
+            return redirect(url_for("session.summary", session_id=session_id))
+        if "evidence" in message or "practice" in message or "reading" in message:
+            # Prefer the honest Authority explanation when present.
+            detail = str(exc).strip()
+            flash(
+                detail if detail else FLASH_WARNING["evidence_rejected"],
+                "warning",
+            )
+            return redirect(url_for("session.summary", session_id=session_id))
         flash(FLASH_WARNING["complete_failed"], "warning")
-        return redirect(url_for("session.complete", session_id=session_id))
+        return redirect(url_for(redirect_surface, session_id=session_id))
     flash(FLASH_SUCCESS["completed"], "success")
-    return redirect(url_for("student.home"))
+    return redirect(url_for("session.complete", session_id=session_id))
+
+
+@session_bp.post("/<session_id>/finish")
+@login_required
+def finish_review(session_id: str):
+    """Alias POST for Finish Review form on the Summary surface."""
+    return finish(session_id)

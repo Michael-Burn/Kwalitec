@@ -199,16 +199,46 @@ def build_production_session_experience(
         flags=active, experience_store=shared
     )
     engines = build_opaque_engines(flags=active)
+    runtime_engine = engines.get("runtime_engine")
+    activity_engine = engines.get("activity_engine")
+    if active.SR_SESSION_PRIMARY and runtime_engine is None:
+        from app.infrastructure.adapters.learning_session.persistence import (
+            LearningSessionPersistenceAdapter,
+        )
+        from app.infrastructure.adapters.learning_session.runtime_engine import (
+            LearningSessionRuntimeEngine,
+        )
+
+        runtime_engine = LearningSessionRuntimeEngine(
+            persistence=LearningSessionPersistenceAdapter(store=session_store)
+        )
+    if active.SR_SESSION_SUBSTANCE:
+        from app.infrastructure.adapters.learning_session import (
+            package_activity_engine as pkg_engine,
+        )
+        from app.infrastructure.adapters.learning_session.persistence import (
+            LearningSessionPersistenceAdapter,
+        )
+
+        persistence = LearningSessionPersistenceAdapter(store=session_store)
+        if isinstance(runtime_engine, object) and hasattr(
+            runtime_engine, "persistence"
+        ):
+            persistence = getattr(runtime_engine, "persistence", persistence)
+        activity_engine = pkg_engine.PackageActivityEngine(
+            store=session_store,
+            persistence=persistence,
+        )
     composition = SessionExperienceComposition(
         store=session_store,
         experience_store=shared,
-        runtime_engine=engines.get("runtime_engine"),
-        activity_engine=engines.get("activity_engine"),
+        runtime_engine=runtime_engine,
+        activity_engine=activity_engine,
         twin_engine=engines.get("twin_engine"),
         decision_engine=engines.get("decision_engine"),
         mission_engine=engines.get("mission_engine"),
-        seed_demo_learners=seed,
+        seed_demo_learners=seed and not active.SR_SESSION_SUBSTANCE,
     )
-    if seed:
+    if seed and not active.SR_SESSION_SUBSTANCE:
         composition.seed_learner("default", demo=True)
     return composition, composition.build_service()

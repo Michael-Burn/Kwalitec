@@ -218,7 +218,7 @@ jobs:
           head = scripts.get_current_head()
           assert head, "No Alembic head"
           print("Alembic head:", head)
-          assert head == "202607270013", head
+          assert head == "202607300005", head
           PY
 
       # EI-001.2 / ER-RB-07: hard gate — unaccepted advisories fail the job.

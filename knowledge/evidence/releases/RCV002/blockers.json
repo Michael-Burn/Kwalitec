@@ -1,0 +1,10 @@
+{
+  "step1_g1_g7": true,
+  "step2_calibration": true,
+  "step3_cert_artefacts": true,
+  "step4_publish": true,
+  "step5_package_nonempty": true,
+  "step5_local_parity_5_15_73": true,
+  "step6_begin_learning": true,
+  "step7_regression": true
+}

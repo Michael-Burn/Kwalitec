@@ -1,0 +1,1239 @@
+{
+  "id": 1,
+  "parsed_structure_json": {
+    "objective_count": 0,
+    "objectives": [],
+    "section_count": 7,
+    "sections": [
+      {
+        "code": "ent-e7b8cfc129",
+        "number": "1",
+        "order_index": 1,
+        "section_id": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "CS1"
+      },
+      {
+        "code": "ent-3d481008d8",
+        "number": "2",
+        "order_index": 2,
+        "section_id": "ent-3d481008d8",
+        "source_ids": [],
+        "title": "Data analysis [10%]"
+      },
+      {
+        "code": "ent-1f130132e5",
+        "number": "3",
+        "order_index": 3,
+        "section_id": "ent-1f130132e5",
+        "source_ids": [],
+        "title": "Random variables and distributions [20%]"
+      },
+      {
+        "code": "ent-00f715d993",
+        "number": "4",
+        "order_index": 4,
+        "section_id": "ent-00f715d993",
+        "source_ids": [],
+        "title": "Statistical inference [25%]"
+      },
+      {
+        "code": "ent-5c4797b087",
+        "number": "5",
+        "order_index": 5,
+        "section_id": "ent-5c4797b087",
+        "source_ids": [],
+        "title": "Regression theory and applications [30%]"
+      },
+      {
+        "code": "ent-9ee1801fa1",
+        "number": "6",
+        "order_index": 6,
+        "section_id": "ent-9ee1801fa1",
+        "source_ids": [],
+        "title": "Bayesian statistics [15%]"
+      },
+      {
+        "code": "ent-57d991fc01",
+        "number": "7",
+        "order_index": 7,
+        "section_id": "ent-57d991fc01",
+        "source_ids": [],
+        "title": "Jln Kilang Timor #06-01 \u00b7 Singapore 159303"
+      }
+    ],
+    "topic_count": 117,
+    "topics": [
+      {
+        "code": "ent-4c950ed640",
+        "number": "1",
+        "order_index": 1,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Associateship Qualification",
+        "topic_id": "ent-4c950ed640"
+      },
+      {
+        "code": "ent-0716bdaaae",
+        "number": "2",
+        "order_index": 2,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Actuarial Statistics (CS1)",
+        "topic_id": "ent-0716bdaaae"
+      },
+      {
+        "code": "ent-b87c71c354",
+        "number": "3",
+        "order_index": 3,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Core Principles",
+        "topic_id": "ent-b87c71c354"
+      },
+      {
+        "code": "ent-f7395707d0",
+        "number": "4",
+        "order_index": 4,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Syllabus for the 2026 Examinations",
+        "topic_id": "ent-f7395707d0"
+      },
+      {
+        "code": "ent-afb8ef1d28",
+        "number": "5",
+        "order_index": 5,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "April 2025",
+        "topic_id": "ent-afb8ef1d28"
+      },
+      {
+        "code": "ent-8a9c10f88c",
+        "number": "6",
+        "order_index": 6,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Syllabus Actuarial Statistics (CS1) 2026",
+        "topic_id": "ent-8a9c10f88c"
+      },
+      {
+        "code": "ent-54016f46e7",
+        "number": "7",
+        "order_index": 7,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Actuarial Statistics (CS1)",
+        "topic_id": "ent-54016f46e7"
+      },
+      {
+        "code": "ent-b6a6c2b556",
+        "number": "8",
+        "order_index": 8,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Syllabus for the 2026 Examinations",
+        "topic_id": "ent-b6a6c2b556"
+      },
+      {
+        "code": "ent-d8590f81c9",
+        "number": "9",
+        "order_index": 9,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Aim",
+        "topic_id": "ent-d8590f81c9"
+      },
+      {
+        "code": "ent-1a706cd5e2",
+        "number": "10",
+        "order_index": 10,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Links across the Qualifications",
+        "topic_id": "ent-1a706cd5e2"
+      },
+      {
+        "code": "ent-e9096092d2",
+        "number": "11",
+        "order_index": 11,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Associateship Qualification",
+        "topic_id": "ent-e9096092d2"
+      },
+      {
+        "code": "ent-50b6169178",
+        "number": "12",
+        "order_index": 12,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Topics and Topic Weightings",
+        "topic_id": "ent-50b6169178"
+      },
+      {
+        "code": "ent-594d0ed4fc",
+        "number": "13",
+        "order_index": 13,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Syllabus Actuarial Statistics (CS1) 2026",
+        "topic_id": "ent-594d0ed4fc"
+      },
+      {
+        "code": "ent-7fdd0c3f7a",
+        "number": "14",
+        "order_index": 14,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Objectives",
+        "topic_id": "ent-7fdd0c3f7a"
+      },
+      {
+        "code": "ent-a403f51f88",
+        "number": "15",
+        "order_index": 15,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Describe the purpose and function of data analysis",
+        "topic_id": "ent-a403f51f88"
+      },
+      {
+        "code": "ent-3806c7482b",
+        "number": "16",
+        "order_index": 16,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Aims of a data analysis (e.g. descriptive, inferential and predictive)",
+        "topic_id": "ent-3806c7482b"
+      },
+      {
+        "code": "ent-6a3957a16c",
+        "number": "17",
+        "order_index": 17,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Stages and suitable tools used to conduct a data analysis to solve real-world problems",
+        "topic_id": "ent-6a3957a16c"
+      },
+      {
+        "code": "ent-f5f8960264",
+        "number": "18",
+        "order_index": 18,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Sources of data and their characteristics, including extremely large data sets",
+        "topic_id": "ent-f5f8960264"
+      },
+      {
+        "code": "ent-6d6375e40c",
+        "number": "19",
+        "order_index": 19,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Meaning and value of reproducible research and the elements required to ensure a data",
+        "topic_id": "ent-6d6375e40c"
+      },
+      {
+        "code": "ent-9c4cb5574e",
+        "number": "20",
+        "order_index": 20,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Complete exploratory data analysis",
+        "topic_id": "ent-9c4cb5574e"
+      },
+      {
+        "code": "ent-94456278e0",
+        "number": "21",
+        "order_index": 21,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Appropriate tools to calculate suitable summary statistics and undertake exploratory",
+        "topic_id": "ent-94456278e0"
+      },
+      {
+        "code": "ent-4b21b6fa92",
+        "number": "22",
+        "order_index": 22,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Interpret and make statistical inferences using Pearson\u2019s, Spearman\u2019s and Kendall\u2019s",
+        "topic_id": "ent-4b21b6fa92"
+      },
+      {
+        "code": "ent-24420bc738",
+        "number": "23",
+        "order_index": 23,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Principal component analysis to reduce the dimensionality of a complex data set",
+        "topic_id": "ent-24420bc738"
+      },
+      {
+        "code": "ent-d657ef6485",
+        "number": "24",
+        "order_index": 24,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Understand the characteristics of basic univariate distributions and how to generate samples",
+        "topic_id": "ent-d657ef6485"
+      },
+      {
+        "code": "ent-603da2d7b5",
+        "number": "25",
+        "order_index": 25,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Geometric, binomial, negative binomial, hypergeometric, Poisson and uniform discrete",
+        "topic_id": "ent-603da2d7b5"
+      },
+      {
+        "code": "ent-5cda1b0ebd",
+        "number": "26",
+        "order_index": 26,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Normal, lognormal, exponential, gamma, chi-square, t, F, beta and uniform continuous",
+        "topic_id": "ent-5cda1b0ebd"
+      },
+      {
+        "code": "ent-2e5acbd591",
+        "number": "27",
+        "order_index": 27,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Evaluation of probabilities and quantiles associated with these distributions",
+        "topic_id": "ent-2e5acbd591"
+      },
+      {
+        "code": "ent-d6218a01f4",
+        "number": "28",
+        "order_index": 28,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Poisson process and the connection between the Poisson process and the",
+        "topic_id": "ent-d6218a01f4"
+      },
+      {
+        "code": "ent-56f710b8db",
+        "number": "29",
+        "order_index": 29,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Poisson distribution",
+        "topic_id": "ent-56f710b8db"
+      },
+      {
+        "code": "ent-2c48deeee7",
+        "number": "30",
+        "order_index": 30,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Generation of basic discrete and continuous random variables using the inverse",
+        "topic_id": "ent-2c48deeee7"
+      },
+      {
+        "code": "ent-d99b69b457",
+        "number": "31",
+        "order_index": 31,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Generation of discrete and continuous random variables using statistical software",
+        "topic_id": "ent-d99b69b457"
+      },
+      {
+        "code": "ent-4d05d1f432",
+        "number": "32",
+        "order_index": 32,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Determine the characteristics of jointly distributed random variables",
+        "topic_id": "ent-4d05d1f432"
+      },
+      {
+        "code": "ent-c99fd92a74",
+        "number": "33",
+        "order_index": 33,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Probability function or density function for marginal and conditional distributions of jointly",
+        "topic_id": "ent-c99fd92a74"
+      },
+      {
+        "code": "ent-4c88ce9939",
+        "number": "34",
+        "order_index": 34,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "The conditions under which random variables are independent",
+        "topic_id": "ent-4c88ce9939"
+      },
+      {
+        "code": "ent-4bcdd3305c",
+        "number": "35",
+        "order_index": 35,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Syllabus Actuarial Statistics (CS1) 2026",
+        "topic_id": "ent-4bcdd3305c"
+      },
+      {
+        "code": "ent-fafb8398db",
+        "number": "36",
+        "order_index": 36,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Covariance, the correlation and the expected value of a function of two jointly distributed",
+        "topic_id": "ent-fafb8398db"
+      },
+      {
+        "code": "ent-673e287c72",
+        "number": "37",
+        "order_index": 37,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Mean and variance of linear combinations of random variables",
+        "topic_id": "ent-673e287c72"
+      },
+      {
+        "code": "ent-756decc810",
+        "number": "38",
+        "order_index": 38,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Evaluate expectations and conditional expectations",
+        "topic_id": "ent-756decc810"
+      },
+      {
+        "code": "ent-d1dfe8d797",
+        "number": "39",
+        "order_index": 39,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Conditional expectation of one random variable given the value of another",
+        "topic_id": "ent-d1dfe8d797"
+      },
+      {
+        "code": "ent-c4912d2942",
+        "number": "40",
+        "order_index": 40,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Mean and variance of a random variable as an expectation of conditional expected values",
+        "topic_id": "ent-c4912d2942"
+      },
+      {
+        "code": "ent-4d91fd14e9",
+        "number": "41",
+        "order_index": 41,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Evaluate and apply generating functions",
+        "topic_id": "ent-4d91fd14e9"
+      },
+      {
+        "code": "ent-99f74a6914",
+        "number": "42",
+        "order_index": 42,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Moment and cumulant generating functions of a random variable",
+        "topic_id": "ent-99f74a6914"
+      },
+      {
+        "code": "ent-92b00222f7",
+        "number": "43",
+        "order_index": 43,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Moment calculation via series expansion or differentiation of a generating function",
+        "topic_id": "ent-92b00222f7"
+      },
+      {
+        "code": "ent-51a83fe879",
+        "number": "44",
+        "order_index": 44,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "State and apply the central limit theorem",
+        "topic_id": "ent-51a83fe879"
+      },
+      {
+        "code": "ent-363a264fdc",
+        "number": "45",
+        "order_index": 45,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Central limit theorem for a sequence of independent, identically distributed",
+        "topic_id": "ent-363a264fdc"
+      },
+      {
+        "code": "ent-8fcb530798",
+        "number": "46",
+        "order_index": 46,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Comparison of simulated samples from a given distribution with the Normal distribution",
+        "topic_id": "ent-8fcb530798"
+      },
+      {
+        "code": "ent-301f9482fd",
+        "number": "47",
+        "order_index": 47,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Describe random sampling and the sampling distributions of statistics commonly used in",
+        "topic_id": "ent-301f9482fd"
+      },
+      {
+        "code": "ent-e5a8f4c1cf",
+        "number": "48",
+        "order_index": 48,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Random samples from a population",
+        "topic_id": "ent-e5a8f4c1cf"
+      },
+      {
+        "code": "ent-f9bc6dbd22",
+        "number": "49",
+        "order_index": 49,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "The sampling distribution of a statistic",
+        "topic_id": "ent-f9bc6dbd22"
+      },
+      {
+        "code": "ent-20eeae29a6",
+        "number": "50",
+        "order_index": 50,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "The mean and variance of a sample mean and the mean of a sample variance in terms",
+        "topic_id": "ent-20eeae29a6"
+      },
+      {
+        "code": "ent-2bd5cefd79",
+        "number": "51",
+        "order_index": 51,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Basic sampling distributions for the sample mean and variance for random samples from",
+        "topic_id": "ent-2bd5cefd79"
+      },
+      {
+        "code": "ent-b3f610ea69",
+        "number": "52",
+        "order_index": 52,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "The distribution of the t-statistic for random samples from a normal distribution",
+        "topic_id": "ent-b3f610ea69"
+      },
+      {
+        "code": "ent-f7476e101f",
+        "number": "53",
+        "order_index": 53,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "The F distribution for the ratio of two sample variances from independent samples taken",
+        "topic_id": "ent-f7476e101f"
+      },
+      {
+        "code": "ent-2bf8fe551f",
+        "number": "54",
+        "order_index": 54,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Construct estimators and discuss their properties",
+        "topic_id": "ent-2bf8fe551f"
+      },
+      {
+        "code": "ent-ebba35ef25",
+        "number": "55",
+        "order_index": 55,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Method of moments for constructing estimators of population parameters",
+        "topic_id": "ent-ebba35ef25"
+      },
+      {
+        "code": "ent-8a3a88f6dd",
+        "number": "56",
+        "order_index": 56,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Method of maximum likelihood for constructing estimators of population parameters",
+        "topic_id": "ent-8a3a88f6dd"
+      },
+      {
+        "code": "ent-4e35b3d3f4",
+        "number": "57",
+        "order_index": 57,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Efficiency, bias, consistency and mean square error of an estimator",
+        "topic_id": "ent-4e35b3d3f4"
+      },
+      {
+        "code": "ent-c04e42eefe",
+        "number": "58",
+        "order_index": 58,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Comparison of estimators using their mean square error and bias or unbiasedness",
+        "topic_id": "ent-c04e42eefe"
+      },
+      {
+        "code": "ent-156bb7af30",
+        "number": "59",
+        "order_index": 59,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Asymptotic distribution of maximum likelihood estimators",
+        "topic_id": "ent-156bb7af30"
+      },
+      {
+        "code": "ent-02cbac185a",
+        "number": "60",
+        "order_index": 60,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Bootstrap method for estimating properties of an estimator",
+        "topic_id": "ent-02cbac185a"
+      },
+      {
+        "code": "ent-3e7481fc63",
+        "number": "61",
+        "order_index": 61,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Calculate confidence intervals and prediction intervals",
+        "topic_id": "ent-3e7481fc63"
+      },
+      {
+        "code": "ent-9097d87153",
+        "number": "62",
+        "order_index": 62,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Confidence interval for an unknown parameter of a distribution based on a",
+        "topic_id": "ent-9097d87153"
+      },
+      {
+        "code": "ent-95b8ee0fa2",
+        "number": "63",
+        "order_index": 63,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Prediction interval for a future observation based on a model fitted to a random sample",
+        "topic_id": "ent-95b8ee0fa2"
+      },
+      {
+        "code": "ent-aabab826ec",
+        "number": "64",
+        "order_index": 64,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Syllabus Actuarial Statistics (CS1) 2026",
+        "topic_id": "ent-aabab826ec"
+      },
+      {
+        "code": "ent-15f196f031",
+        "number": "65",
+        "order_index": 65,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Confidence interval for an unknown parameter using a given sampling distribution",
+        "topic_id": "ent-15f196f031"
+      },
+      {
+        "code": "ent-07303b0c8f",
+        "number": "66",
+        "order_index": 66,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Confidence intervals for the mean and the variance of a normal distribution",
+        "topic_id": "ent-07303b0c8f"
+      },
+      {
+        "code": "ent-1046f44d76",
+        "number": "67",
+        "order_index": 67,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Confidence intervals for a binomial probability and a Poisson mean, including the use of",
+        "topic_id": "ent-1046f44d76"
+      },
+      {
+        "code": "ent-27da72a767",
+        "number": "68",
+        "order_index": 68,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Confidence intervals for two-sample situations involving the normal distribution and the",
+        "topic_id": "ent-27da72a767"
+      },
+      {
+        "code": "ent-2cf1ea58d9",
+        "number": "69",
+        "order_index": 69,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Confidence intervals for a difference between two means from paired data",
+        "topic_id": "ent-2cf1ea58d9"
+      },
+      {
+        "code": "ent-ec35e6d96f",
+        "number": "70",
+        "order_index": 70,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Bootstrap method to obtain confidence intervals",
+        "topic_id": "ent-ec35e6d96f"
+      },
+      {
+        "code": "ent-be9aefb862",
+        "number": "71",
+        "order_index": 71,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Apply the concepts of hypothesis testing and goodness of fit",
+        "topic_id": "ent-be9aefb862"
+      },
+      {
+        "code": "ent-e0f6695bff",
+        "number": "72",
+        "order_index": 72,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Understand the concepts of Null and alternative hypotheses, simple and composite",
+        "topic_id": "ent-e0f6695bff"
+      },
+      {
+        "code": "ent-0e691d9ac4",
+        "number": "73",
+        "order_index": 73,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Use of basic tests for the one-sample and two-sample situations involving the normal,",
+        "topic_id": "ent-0e691d9ac4"
+      },
+      {
+        "code": "ent-451306e1c9",
+        "number": "74",
+        "order_index": 74,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "The permutation approach to non-parametric hypothesis tests",
+        "topic_id": "ent-451306e1c9"
+      },
+      {
+        "code": "ent-e31176bbc2",
+        "number": "75",
+        "order_index": 75,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Chi-square test to test the hypothesis that a random sample is from a particular",
+        "topic_id": "ent-e31176bbc2"
+      },
+      {
+        "code": "ent-1d8357f857",
+        "number": "76",
+        "order_index": 76,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "A contingency (or two-way) table, and use of a chi-square test to test the independence",
+        "topic_id": "ent-1d8357f857"
+      },
+      {
+        "code": "ent-a7499bb8f6",
+        "number": "77",
+        "order_index": 77,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Understand and use linear regression models",
+        "topic_id": "ent-a7499bb8f6"
+      },
+      {
+        "code": "ent-338caad24c",
+        "number": "78",
+        "order_index": 78,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Response and explanatory variables",
+        "topic_id": "ent-338caad24c"
+      },
+      {
+        "code": "ent-ea90c803f6",
+        "number": "79",
+        "order_index": 79,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Simple regression model (with a single explanatory variable) and multiple linear",
+        "topic_id": "ent-ea90c803f6"
+      },
+      {
+        "code": "ent-bba9f58518",
+        "number": "80",
+        "order_index": 80,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Least squares estimates of the slope and intercept parameters in a simple linear",
+        "topic_id": "ent-bba9f58518"
+      },
+      {
+        "code": "ent-e6acf31994",
+        "number": "81",
+        "order_index": 81,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Use of appropriate software to fit a linear regression model to a data set and interpret",
+        "topic_id": "ent-e6acf31994"
+      },
+      {
+        "code": "ent-f4b3ca6aea",
+        "number": "82",
+        "order_index": 82,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Measures of model fit to select an appropriate set of explanatory variables",
+        "topic_id": "ent-f4b3ca6aea"
+      },
+      {
+        "code": "ent-a8156d05f1",
+        "number": "83",
+        "order_index": 83,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Syllabus Actuarial Statistics (CS1) 2026",
+        "topic_id": "ent-a8156d05f1"
+      },
+      {
+        "code": "ent-8d25b029eb",
+        "number": "84",
+        "order_index": 84,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Understand and use generalised linear models",
+        "topic_id": "ent-8d25b029eb"
+      },
+      {
+        "code": "ent-32488673c7",
+        "number": "85",
+        "order_index": 85,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Binomial, Poisson, exponential, gamma and normal distributions as an exponential family",
+        "topic_id": "ent-32488673c7"
+      },
+      {
+        "code": "ent-ccc2a3e0a6",
+        "number": "86",
+        "order_index": 86,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Mean, variance, variance function and scale parameter for a generalised linear model",
+        "topic_id": "ent-ccc2a3e0a6"
+      },
+      {
+        "code": "ent-ccc83ce859",
+        "number": "87",
+        "order_index": 87,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "The link function and the canonical link function, referring to the distributions in 4.2.1",
+        "topic_id": "ent-ccc83ce859"
+      },
+      {
+        "code": "ent-0e878c6950",
+        "number": "88",
+        "order_index": 88,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Variables, factors taking categorical values and interaction terms.",
+        "topic_id": "ent-0e878c6950"
+      },
+      {
+        "code": "ent-0ab0c35793",
+        "number": "89",
+        "order_index": 89,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Definition of the linear predictor, including its form for simple models, including",
+        "topic_id": "ent-0ab0c35793"
+      },
+      {
+        "code": "ent-a271830a9a",
+        "number": "90",
+        "order_index": 90,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Deviance scaled deviance and estimation of the parameters of a generalised linear model",
+        "topic_id": "ent-a271830a9a"
+      },
+      {
+        "code": "ent-217c341c3f",
+        "number": "91",
+        "order_index": 91,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Choice of a suitable model using an analysis of deviance and examination of the",
+        "topic_id": "ent-217c341c3f"
+      },
+      {
+        "code": "ent-2a15730d18",
+        "number": "92",
+        "order_index": 92,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Pearson and deviance residuals and their use",
+        "topic_id": "ent-2a15730d18"
+      },
+      {
+        "code": "ent-2099a569af",
+        "number": "93",
+        "order_index": 93,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Statistical tests to determine the acceptability of a fitted model: Pearson\u2019s chi-square test",
+        "topic_id": "ent-2099a569af"
+      },
+      {
+        "code": "ent-12712a76d3",
+        "number": "94",
+        "order_index": 94,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Fit a generalised linear model to a data set and interpret the output",
+        "topic_id": "ent-12712a76d3"
+      },
+      {
+        "code": "ent-46dbe038a0",
+        "number": "95",
+        "order_index": 95,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Explain fundamental concepts of Bayesian statistics and use these concepts to calculate",
+        "topic_id": "ent-46dbe038a0"
+      },
+      {
+        "code": "ent-4319313764",
+        "number": "96",
+        "order_index": 96,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Bayesian estimators",
+        "topic_id": "ent-4319313764"
+      },
+      {
+        "code": "ent-c7763a9207",
+        "number": "97",
+        "order_index": 97,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Use of Bayes\u2019 theorem to calculate simple conditional probabilities",
+        "topic_id": "ent-c7763a9207"
+      },
+      {
+        "code": "ent-f1a227a335",
+        "number": "98",
+        "order_index": 98,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Prior distribution, posterior distribution and conjugate prior distribution",
+        "topic_id": "ent-f1a227a335"
+      },
+      {
+        "code": "ent-fd18bc285a",
+        "number": "99",
+        "order_index": 99,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Posterior distribution for a parameter in simple cases",
+        "topic_id": "ent-fd18bc285a"
+      },
+      {
+        "code": "ent-f6f3051306",
+        "number": "100",
+        "order_index": 100,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Use of simple loss functions to derive Bayesian estimates of parameters",
+        "topic_id": "ent-f6f3051306"
+      },
+      {
+        "code": "ent-5a15798a0e",
+        "number": "101",
+        "order_index": 101,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Credible intervals in simple cases",
+        "topic_id": "ent-5a15798a0e"
+      },
+      {
+        "code": "ent-9be68be595",
+        "number": "102",
+        "order_index": 102,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Credibility premium formula and the role played by the credibility factor",
+        "topic_id": "ent-9be68be595"
+      },
+      {
+        "code": "ent-5841f62784",
+        "number": "103",
+        "order_index": 103,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Bayesian approach to credibility theory and its use for calculating credibility premiums in",
+        "topic_id": "ent-5841f62784"
+      },
+      {
+        "code": "ent-a8a4a0925b",
+        "number": "104",
+        "order_index": 104,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Empirical Bayes approach to credibility theory and its use for deriving credibility",
+        "topic_id": "ent-a8a4a0925b"
+      },
+      {
+        "code": "ent-64c826ce27",
+        "number": "105",
+        "order_index": 105,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Understanding the differences between the two approaches (Bayes v Empirical Bayes)",
+        "topic_id": "ent-64c826ce27"
+      },
+      {
+        "code": "ent-c8b89a6793",
+        "number": "106",
+        "order_index": 106,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Assessment",
+        "topic_id": "ent-c8b89a6793"
+      },
+      {
+        "code": "ent-c070a4fd2c",
+        "number": "107",
+        "order_index": 107,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Syllabus Actuarial Statistics (CS1) 2026",
+        "topic_id": "ent-c070a4fd2c"
+      },
+      {
+        "code": "ent-a11a9b025e",
+        "number": "108",
+        "order_index": 108,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Topic weighting",
+        "topic_id": "ent-a11a9b025e"
+      },
+      {
+        "code": "ent-884cdcdb86",
+        "number": "109",
+        "order_index": 109,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "IFoA Guidance and Regulations",
+        "topic_id": "ent-884cdcdb86"
+      },
+      {
+        "code": "ent-398a5a3b75",
+        "number": "110",
+        "order_index": 110,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Beijing",
+        "topic_id": "ent-398a5a3b75"
+      },
+      {
+        "code": "ent-124506f89b",
+        "number": "111",
+        "order_index": 111,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Edinburgh",
+        "topic_id": "ent-124506f89b"
+      },
+      {
+        "code": "ent-85ee526666",
+        "number": "112",
+        "order_index": 112,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "London (registered office)",
+        "topic_id": "ent-85ee526666"
+      },
+      {
+        "code": "ent-f6943b08b1",
+        "number": "113",
+        "order_index": 113,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Malaysia",
+        "topic_id": "ent-f6943b08b1"
+      },
+      {
+        "code": "ent-b993ef056a",
+        "number": "114",
+        "order_index": 114,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Oxford",
+        "topic_id": "ent-b993ef056a"
+      },
+      {
+        "code": "ent-1ee2667b1f",
+        "number": "115",
+        "order_index": 115,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Singapore",
+        "topic_id": "ent-1ee2667b1f"
+      },
+      {
+        "code": "ent-a4cf2fdaad",
+        "number": "116",
+        "order_index": 116,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Lingkaran Syed Putra 59200 \u00b7 Kuala Lumpur",
+        "topic_id": "ent-a4cf2fdaad"
+      },
+      {
+        "code": "ent-7900622f4b",
+        "number": "117",
+        "order_index": 117,
+        "prerequisite_ids": [],
+        "section_ref": "ent-e7b8cfc129",
+        "source_ids": [],
+        "title": "Pacific Tech Centre \u00b7",
+        "topic_id": "ent-7900622f4b"
+      }
+    ]
+  }
+}

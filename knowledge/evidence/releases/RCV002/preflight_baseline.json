@@ -1,0 +1,70 @@
+{
+  "captured_at": "2026-07-30T11:21:07Z",
+  "database": {
+    "name": "kwalitec",
+    "user": "kwalitec_user",
+    "host": "dpg-d97bmbm8bjmc73c497e0-a.oregon-postgres.render.com:5432"
+  },
+  "counts": {
+    "ei_generation_chains": 0,
+    "ei_generations": 0,
+    "ei_generation_snapshots": 0,
+    "ei_educational_nodes": 0,
+    "ei_certification_records": 0,
+    "ei_calibration_profiles": 0,
+    "runtime_enrolments": 0
+  },
+  "active_package": {
+    "id": 1,
+    "version_label": "2026.1",
+    "is_active": true,
+    "published_by": "1",
+    "published_at": "2026-07-29 20:29:54.966711",
+    "sections": 7,
+    "topics": 117,
+    "objectives": 0,
+    "has_certification": false,
+    "source": null
+  },
+  "foundation_versions": [
+    {
+      "id": 1,
+      "label": "2026.1",
+      "stage": "publish",
+      "publication_state": "published",
+      "sections": 7,
+      "topics": 117,
+      "objectives": 0,
+      "source": null
+    }
+  ],
+  "workspace": {
+    "workspace_id": "ws-cs1",
+    "status": "published",
+    "version_id": "version-1",
+    "version_label": "2026.1",
+    "certification_status": null,
+    "certified_snapshot_id": null,
+    "active_chain_id": null,
+    "facts": {
+      "cmp_uploaded": true,
+      "official_syllabus_uploaded": true,
+      "validation_passed": true,
+      "blueprint_assigned": true,
+      "preview_built": true,
+      "preview_approved": true,
+      "version_assigned": true,
+      "rollback_snapshot_created": true
+    },
+    "structure": {
+      "sections": 7,
+      "topics": 117,
+      "objectives": 0
+    }
+  },
+  "pgfix001_flush_present": true,
+  "local_pdfs": {
+    "syllabus": true,
+    "cmp": true
+  }
+}

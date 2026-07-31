@@ -13,6 +13,7 @@ from app.founder.dashboard import founder_dashboard_bp
 from app.founder.dashboard.access import founder_required, is_founder_user
 from app.founder.dashboard.feedback_handlers import (
     handle_award_founders_circle,
+    handle_feedback_hub_request,
     handle_feedback_request,
     handle_finding_detail,
     handle_review_submission,
@@ -199,10 +200,17 @@ def attention():
     )
 
 
-@founder_dashboard_bp.route("/feedback", methods=["GET", "POST"])
+@founder_dashboard_bp.get("/feedback")
 @founder_required
 def feedback():
-    """Support — Product Check-in inbox and submission workflow."""
+    """Support — Unified Founder Feedback Hub (FH-001)."""
+    return handle_feedback_hub_request()
+
+
+@founder_dashboard_bp.route("/feedback/checkins", methods=["GET", "POST"])
+@founder_required
+def feedback_checkins():
+    """Support — Product Check-in specialist inbox and submission workflow."""
     return handle_feedback_request()
 
 
@@ -227,6 +235,20 @@ def findings():
         status=status or "",
         workflow_labels=WORKFLOW_LABELS,
         finding_form=ProductFindingForm(),
+    )
+
+
+@founder_dashboard_bp.get("/v1-readiness")
+@founder_required
+def v1_readiness():
+    """Version 1 Readiness Dashboard — dogfooding go/no-go (V1S-002)."""
+    from app.services.v1_readiness_dashboard import build_v1_readiness_snapshot
+
+    snapshot = build_v1_readiness_snapshot()
+    return render_template(
+        "founder_dashboard/v1_readiness.html",
+        title="Version 1 Readiness",
+        snapshot=snapshot,
     )
 
 
@@ -279,16 +301,94 @@ def internal_alpha():
 @founder_required
 def alpha_observability():
     """Platform Intelligence — presentation telemetry and lightweight feedback."""
+    from app.presentation.session.factory import get_session_experience_composition
     from app.services.alpha_feedback_service import AlphaFeedbackService
+    from app.services.educational_authoring_metrics import (
+        EducationalAuthoringMetrics,
+        EducationalAuthoringMetricsSnapshot,
+    )
+    from app.services.educational_memory_metrics import (
+        EducationalMemoryMetrics,
+        EducationalMemoryMetricsSnapshot,
+    )
+    from app.services.educational_yield_metrics import (
+        EducationalYieldMetrics,
+        EducationalYieldSnapshot,
+    )
+    from app.services.intervention_effectiveness_metrics import (
+        InterventionEffectivenessMetrics,
+        InterventionEffectivenessMetricsSnapshot,
+    )
+    from app.services.knowledge_architecture_metrics import (
+        KnowledgeArchitectureMetrics,
+        KnowledgeArchitectureMetricsSnapshot,
+    )
+    from app.services.learning_diagnostics_metrics import (
+        LearningDiagnosticsMetrics,
+        LearningDiagnosticsMetricsSnapshot,
+    )
+    from app.services.learning_difficulty_metrics import (
+        LearningDifficultyMetrics,
+        LearningDifficultyMetricsSnapshot,
+    )
+    from app.services.learning_strategy_metrics import (
+        LearningStrategyMetrics,
+        LearningStrategyMetricsSnapshot,
+    )
     from app.services.presentation_telemetry_service import (
         PresentationTelemetryService,
     )
+    from app.services.readiness_forecast_metrics import (
+        ReadinessForecastMetrics,
+        ReadinessForecastMetricsSnapshot,
+    )
     from app.services.release_info_service import ReleaseInfoService
+    from app.services.study_workspace_metrics import (
+        StudyWorkspaceMetrics,
+        StudyWorkspaceMetricsSnapshot,
+    )
 
     events = PresentationTelemetryService.recent(limit=40)
     event_counts = PresentationTelemetryService.count_by_type()
     feedback = AlphaFeedbackService.recent(limit=40)
     release = ReleaseInfoService.current()
+    composition = get_session_experience_composition()
+    if composition is not None and getattr(composition, "store", None) is not None:
+        yield_metrics = EducationalYieldMetrics.from_store(composition.store)
+        strategy_metrics = LearningStrategyMetrics.from_store(composition.store)
+        diagnostics_metrics = LearningDiagnosticsMetrics.from_store(
+            composition.store
+        )
+        difficulty_metrics = LearningDifficultyMetrics.from_store(
+            composition.store
+        )
+        effectiveness_metrics = InterventionEffectivenessMetrics.from_store(
+            composition.store
+        )
+        memory_metrics = EducationalMemoryMetrics.from_store(composition.store)
+        forecast_metrics = ReadinessForecastMetrics.from_store(composition.store)
+    else:
+        yield_metrics = EducationalYieldSnapshot()
+        strategy_metrics = LearningStrategyMetricsSnapshot()
+        diagnostics_metrics = LearningDiagnosticsMetricsSnapshot()
+        difficulty_metrics = LearningDifficultyMetricsSnapshot()
+        effectiveness_metrics = InterventionEffectivenessMetricsSnapshot()
+        memory_metrics = EducationalMemoryMetricsSnapshot()
+        forecast_metrics = ReadinessForecastMetricsSnapshot()
+    try:
+        workspace_metrics = StudyWorkspaceMetrics.from_telemetry()
+    except Exception:  # noqa: BLE001
+        workspace_metrics = StudyWorkspaceMetricsSnapshot()
+    try:
+        knowledge_architecture_metrics = (
+            KnowledgeArchitectureMetrics.from_telemetry()
+        )
+    except Exception:  # noqa: BLE001
+        knowledge_architecture_metrics = KnowledgeArchitectureMetricsSnapshot()
+    try:
+        educational_authoring_metrics = EducationalAuthoringMetrics.from_telemetry()
+    except Exception:  # noqa: BLE001
+        educational_authoring_metrics = EducationalAuthoringMetricsSnapshot()
     return render_template(
         "founder_dashboard/alpha_observability.html",
         title="Platform Intelligence",
@@ -296,6 +396,16 @@ def alpha_observability():
         event_counts=event_counts,
         feedback=feedback,
         release=release,
+        educational_yield=yield_metrics,
+        learning_strategy=strategy_metrics,
+        learning_diagnostics=diagnostics_metrics,
+        learning_difficulty=difficulty_metrics,
+        intervention_effectiveness=effectiveness_metrics,
+        educational_memory=memory_metrics,
+        readiness_forecast=forecast_metrics,
+        study_workspace=workspace_metrics,
+        knowledge_architecture=knowledge_architecture_metrics,
+        educational_authoring=educational_authoring_metrics,
     )
 
 

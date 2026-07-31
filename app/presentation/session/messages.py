@@ -9,13 +9,17 @@ from __future__ import annotations
 FLASH_SUCCESS = {
     "resumed": "Welcome back — continuing where you left off.",
     "begun": "Session started. Stay focused — one activity at a time.",
+    "paused": "Session paused. You can resume from Home whenever you're ready.",
     "activities_complete": (
         "Activities complete — a short reflection closes today's practice."
     ),
-    "completed": (
-        "Session complete. Your home view is ready with today's progress "
-        "and the next step."
+    "ready_to_finish": (
+        "Ready to finish — tell us honestly how today's planned study went."
     ),
+    "completed": (
+        "Session complete. Your Journey and Home are ready with today's next step."
+    ),
+    "checklist_updated": "Plan checklist updated.",
 }
 
 FLASH_WARNING = {
@@ -30,6 +34,8 @@ FLASH_WARNING = {
     "begin_failed": (
         "We couldn't start this session. Please try again from the overview."
     ),
+    "pause_failed": "We couldn't pause this session. Please try again.",
+    "resume_failed": "We couldn't resume this session. Please try again.",
     "answer_required": "Please enter an answer before continuing.",
     "activity_unavailable": (
         "This activity is temporarily unavailable. Please try again shortly."
@@ -46,6 +52,14 @@ FLASH_WARNING = {
     ),
     "reflection_failed": (
         "We couldn't continue from reflection. Please try again."
+    ),
+    "finish_review_required": (
+        "Please choose Yes, Partially, or No before finishing. Try again."
+    ),
+    "evidence_rejected": (
+        "We need a bit more practice before counting this topic complete. "
+        "Continue with practice, or choose Partially / No if today's planned "
+        "study did not fully happen. Try again when you're ready."
     ),
     "complete_invalid": (
         "We couldn't complete this session. Please try again."

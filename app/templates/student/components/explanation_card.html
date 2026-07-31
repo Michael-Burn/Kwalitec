@@ -3,15 +3,15 @@
    Pass-through only — does not invent educational meaning.
    EP-008.1 — alternatives + review/completion loop in disclosure.
 #}
-{% macro explanation_card(explanation, alternatives=None, show_l1_benefit_again=True) %}
+{% macro explanation_card(explanation, alternatives=None, show_l1_benefit_again=True, eyebrow='Why this guidance?') %}
 {% if explanation and explanation.has_content %}
 {% set points = explanation.evidence_points or () %}
 {% set alts = alternatives if alternatives is not none else () %}
 <details class="student-card student-card--explanation student-provenance" data-provenance="true" data-mes-level="2"{% if explanation.honest_refusal %} data-trust-state="refusal"{% endif %}>
     <summary class="student-provenance__summary">
-        <span class="student-card-eyebrow">Why this guidance?</span>
+        <span class="student-card-eyebrow">{{ eyebrow }}</span>
         <span class="student-card-title" id="explanation-title">
-            {{ explanation.summary or 'Why this guidance' }}
+            {{ explanation.summary or eyebrow }}
         </span>
     </summary>
     {% if explanation.why_recommended %}

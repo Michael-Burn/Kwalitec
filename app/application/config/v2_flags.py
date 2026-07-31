@@ -208,6 +208,41 @@ class Version2FeatureFlags:
     # RI-001: Preferred Authority routing (default ON). Explicitly set
     # KWALITEC_RUNTIME_INTEGRATION=0/false/off to force Runtime A only.
     ENABLE_RUNTIME_INTEGRATION: bool = True
+        # SR-001A P0 / MISSION-002: mission brief coherence (selection + presentation).
+    # Default ON after MISSION-002; set SR_MISSION_BRIEF_COHERENCE=0 to roll back
+    # presentation/selection behaviour in emergency (prefer code revert).
+    SR_MISSION_BRIEF_COHERENCE: bool = True
+    # KWP-002: Commercial Loop Profile — one switch enables the SR student-value
+    # bundle (Session Primary + Substance + Completion Product + Evidence Gate +
+    # Twin daily loop + Progress singularity). Individual SR_* env vars still
+    # override when set. Default OFF in bare process; production sets
+    # KWALITEC_COMMERCIAL_LOOP=1 (see render.yaml).
+    SR_COMMERCIAL_LOOP: bool = False
+    # SR-001A P1 / SR-002: Home Primary → Start/Resume Session → /session/*.
+    # Default OFF unless Commercial Loop is ON; set SR_SESSION_PRIMARY=1/0
+    # to force. When OFF, Runtime C Mark-complete Primary is restored (rollback).
+    SR_SESSION_PRIMARY: bool = False
+    # SR-001A P1 emergency/accessibility Mark-complete when session primary is ON.
+    # Never default ON after P1; labelled non-product when exposed.
+    # Never enabled by Commercial Loop.
+    SR_PILOT_MARK_COMPLETE: bool = False
+    # SR-001A P2 / LXP-003: Session product completion (pause/resume, finish review).
+    # Default OFF unless Commercial Loop is ON.
+    # When ON, Finish Review (Yes/Partially/No) is required before session close.
+    SR_SESSION_COMPLETION_PRODUCT: bool = False
+    # SR-001A P3 / LXP-004A: Session educational substance (Read → Practice → Reflect).
+    # Default OFF unless Commercial Loop is ON.
+    SR_SESSION_SUBSTANCE: bool = False
+    # SR-001A P4 / EV-001B: Evidence Before Completion gate.
+    # Default OFF unless Commercial Loop is ON.
+    SR_EVIDENCE_GATE: bool = False
+    # SR-001A P5 / SDT-004: Twin daily-loop activation.
+    # Default OFF unless Commercial Loop is ON.
+    # Twin observes Accepted Educational+ only — never evaluates evidence.
+    SR_TWIN_DAILY_LOOP: bool = False
+    # SR-001A P6 / SR-003: Progress singularity — one Progress Engine.
+    # Default OFF unless Commercial Loop is ON.
+    SR_PROGRESS_SINGULARITY: bool = False
 
 
 _FALSY = frozenset({"0", "false", "no", "off"})
@@ -486,7 +521,50 @@ def resolve_v2_feature_flags(
         ENABLE_RUNTIME_INTEGRATION=_env_default_true(
             "KWALITEC_RUNTIME_INTEGRATION", environ=environ
         ),
+        SR_MISSION_BRIEF_COHERENCE=_env_default_true(
+            "SR_MISSION_BRIEF_COHERENCE", environ=environ
+        ),
+        SR_COMMERCIAL_LOOP=_commercial_loop_enabled(environ=environ),
+        SR_SESSION_PRIMARY=_sr_bundle_flag(
+            "SR_SESSION_PRIMARY", environ=environ
+        ),
+        SR_PILOT_MARK_COMPLETE=_env_truthy(
+            "SR_PILOT_MARK_COMPLETE", environ=environ
+        ),
+        SR_SESSION_COMPLETION_PRODUCT=_sr_bundle_flag(
+            "SR_SESSION_COMPLETION_PRODUCT", environ=environ
+        ),
+        SR_SESSION_SUBSTANCE=_sr_bundle_flag(
+            "SR_SESSION_SUBSTANCE", environ=environ
+        ),
+        SR_EVIDENCE_GATE=_sr_bundle_flag("SR_EVIDENCE_GATE", environ=environ),
+        SR_TWIN_DAILY_LOOP=_sr_bundle_flag(
+            "SR_TWIN_DAILY_LOOP", environ=environ
+        ),
+        SR_PROGRESS_SINGULARITY=_sr_bundle_flag(
+            "SR_PROGRESS_SINGULARITY", environ=environ
+        ),
     )
+
+
+def _commercial_loop_enabled(*, environ: dict[str, str] | None = None) -> bool:
+    """KWP-002 Commercial Loop Profile master switch."""
+    return _env_truthy("KWALITEC_COMMERCIAL_LOOP", environ=environ) or _env_truthy(
+        "SR_COMMERCIAL_LOOP", environ=environ
+    )
+
+
+def _sr_bundle_flag(name: str, *, environ: dict[str, str] | None = None) -> bool:
+    """Resolve an SR student-value flag, inheriting Commercial Loop when unset.
+
+    Explicit env tokens win. When the variable is absent, Commercial Loop ON
+    enables the flag. Pilot Mark-complete is never inherited this way.
+    """
+    env = environ if environ is not None else os.environ
+    raw = env.get(name)
+    if raw is not None and str(raw).strip() != "":
+        return str(raw).strip().lower() in _TRUTHY
+    return _commercial_loop_enabled(environ=environ)
 
 
 # Process default — resolved at import for convenience; prefer resolve_* in apps.

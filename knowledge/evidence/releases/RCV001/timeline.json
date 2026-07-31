@@ -1,0 +1,50 @@
+[
+  {
+    "stage": "production_target",
+    "ok": true,
+    "t_s": 12.25,
+    "timestamp": "2026-07-30T10:59:08Z",
+    "dialect": "postgresql",
+    "database": "kwalitec",
+    "user": "kwalitec_user",
+    "host": "dpg-d97bmbm8bjmc73c497e0-a.oregon-postgres.render.com"
+  },
+  {
+    "stage": "baseline_active_package",
+    "ok": true,
+    "t_s": 12.88,
+    "timestamp": "2026-07-30T10:59:08Z",
+    "sections": 7,
+    "topics": 117,
+    "objectives": 0,
+    "has_certification": false
+  },
+  {
+    "stage": "step1_prerequisites",
+    "ok": true,
+    "t_s": 14.21,
+    "timestamp": "2026-07-30T10:59:10Z",
+    "enrollments": 0
+  },
+  {
+    "stage": "extract_normalize",
+    "ok": true,
+    "t_s": 20.11,
+    "timestamp": "2026-07-30T10:59:16Z",
+    "syllabus_pages": 8,
+    "cmp_window": "30-180"
+  },
+  {
+    "stage": "cmp_syllabus_g1_g7",
+    "ok": false,
+    "t_s": 24.98,
+    "timestamp": "2026-07-30T10:59:20Z"
+  },
+  {
+    "stage": "step2_syllabus_g1_g7",
+    "ok": false,
+    "t_s": 24.98,
+    "timestamp": "2026-07-30T10:59:20Z",
+    "duration_s": 0.0
+  }
+]

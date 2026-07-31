@@ -52,7 +52,7 @@ class StudySessionPage:
     primary_label: str
     primary_kind: str
     # primary_kind: begin_form | answer_form | advance_form |
-    #               reflection_form | complete_form | none
+    #               reflection_form | complete_form | finish_review_form | none
     primary_enabled: bool
     blocking_issue: str
     exit_href: str
@@ -73,3 +73,54 @@ class StudySessionPage:
     mission_id: str = ""
     # UX-001 — reading progress for calm session chrome (0–100).
     reading_progress_percent: int = 0
+    # LXP-003 / P2 product controls
+    show_pause: bool = False
+    finish_review_required: bool = False
+    lifecycle_label: str = ""
+    checklist: tuple[tuple[str, str, bool], ...] = ()
+    # checklist items: (item_id, label, done)
+    # LXP-004A / P3 educational substance
+    learning_objectives: tuple[str, ...] = ()
+    activity_type: str = ""
+    stage_label: str = ""
+    educational_flow_label: str = ""
+    # KWP-002 completion moment
+    journey_update_label: str = ""
+    finish_outcome_label: str = ""
+    learning_insights: tuple[str, ...] = ()
+    next_recommendation: str = ""
+    completion_headline: str = ""
+    # KWP-004 assessable practice feedback
+    model_answer: str = ""
+    common_mistake: str = ""
+    feedback_next_action: str = ""
+    # KWP-005 Sitting Report
+    what_studied: str = ""
+    performance_summary: str = ""
+    progress_explanation: str = ""
+    tomorrow_preview: str = ""
+    assessment_mode_active: bool = False
+    assessment_summary: str = ""
+    exercises_assigned: tuple[str, ...] = ()
+    exercises_completed: tuple[str, ...] = ()
+    strengthened: tuple[str, ...] = ()
+    needs_reinforcement: tuple[str, ...] = ()
+    syllabus_refs: tuple[str, ...] = ()
+    sitting_report_ready: bool = False
+    # KWP-007 Learning Strategy
+    strategy_title: str = ""
+    strategy_body: str = ""
+    strategy_explanation: str = ""
+    strategy_spacing_guidance: str = ""
+    strategy_momentum_guidance: str = ""
+    strategy_confidence_guidance: str = ""
+    # KWP-008 Learning Diagnostics (guidance; never category labels)
+    diagnostic_guidance: str = ""
+    diagnostic_explanation: str = ""
+    # KWP-009 Learning Difficulty (guidance; never band labels)
+    difficulty_title: str = ""
+    difficulty_guidance: str = ""
+    difficulty_explanation: str = ""
+    # KWP-010 Intervention Effectiveness (natural feedback; never verdict labels)
+    effectiveness_feedback: str = ""
+    effectiveness_explanation: str = ""

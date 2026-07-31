@@ -40,6 +40,12 @@ from app.application.educational_runtime_engine.service import (
     EducationalRuntimeEngineService,
 )
 from app.domain.educational_runtime_engine.state import EnrolmentStatus
+from app.domain.educational_runtime_engine.student_facing_identity import (
+    contains_internal_node_identifier,
+    sanitize_student_text,
+    student_mission_title,
+    student_syllabus_code,
+)
 from app.models.educational_runtime_engine import RuntimeEnrolment
 
 logger = logging.getLogger(__name__)
@@ -102,18 +108,38 @@ class EducationalExperienceService:
         *,
         user_id: int,
         mission_instance_id: str,
+        advance_progress: bool = True,
+        evidence_package_id: str | None = None,
     ) -> EducationalExperienceSnapshot | None:
         """Complete a Runtime C mission and return the refreshed experience.
 
         Thin student-facing wrapper over the educational runtime engine.
         Does not change mission selection or pacing algorithms.
+
+        EV-001B: when ``SR_EVIDENCE_GATE`` is ON, Home Mark-complete must not
+        invent unscoped TOPIC_COMPLETED — call sites that bypass the session
+        evidence package are rejected.
         """
+        from app.application.config.v2_flags import resolve_v2_feature_flags
+
+        flags = resolve_v2_feature_flags()
         mid = (mission_instance_id or "").strip()
         if not mid:
             raise MissionInstanceNotFound("")
+        if flags.SR_EVIDENCE_GATE and not evidence_package_id:
+            from app.application.educational_runtime_engine.exceptions import (
+                IllegalRuntimeState,
+            )
+
+            raise IllegalRuntimeState(
+                "Evidence Before Completion requires an accepted evidence "
+                "package before mission completion (EV-001B)"
+            )
         self._runtime.complete_mission(
             user_id=user_id,
             mission_instance_id=mid,
+            advance_progress=advance_progress,
+            evidence_package_id=evidence_package_id,
         )
         return self.load_for_user(user_id, ensure_mission=True)
 
@@ -241,6 +267,10 @@ class EducationalExperienceService:
         section_by_topic = _section_titles_by_topic(artefacts)
 
         current_id = progress.current_topic_id or ""
+        # MISSION-002: when today's mission is open, student position tracks
+        # the mission topic so title / why-now / position share one artefact.
+        if mission is not None and (mission.topic_id or "").strip():
+            current_id = mission.topic_id
         current = topic_lookup.get(current_id) or {}
         topic_ids = list(progress.topic_ids)
         position_index = (
@@ -252,7 +282,11 @@ class EducationalExperienceService:
         topic_title = str(
             current.get("title") or current.get("text") or "Current topic"
         )
-        topic_code = str(current.get("topic_code") or current.get("code") or "")
+        topic_code = student_syllabus_code(
+            code=str(current.get("topic_code") or current.get("code") or ""),
+            title=topic_title,
+            number=str(current.get("number") or ""),
+        )
         section_title = section_by_topic.get(current_id, "")
         coverage_percent = int(round(float(progress.coverage_ratio) * 100))
         completed_count = len(progress.completed_topic_ids)
@@ -289,6 +323,9 @@ class EducationalExperienceService:
             progress=progress,
             topic_lookup=topic_lookup,
             current_title=topic_title,
+            mission_topic_id=current_id,
+            mission_topic_code=topic_code,
+            mission_topic_title=topic_title,
         )
         pacing_edu = self._pacing_education(
             pacing,
@@ -328,6 +365,12 @@ class EducationalExperienceService:
         topic_title = str(
             topic.get("title") or topic.get("text") or mission.title
         )
+        human_code = student_syllabus_code(
+            code=mission.topic_code
+            or str(topic.get("topic_code") or topic.get("code") or ""),
+            title=topic_title,
+            number=str(topic.get("number") or ""),
+        )
         minutes = 0
         rationale = ""
         completion = ""
@@ -338,8 +381,8 @@ class EducationalExperienceService:
 
         if isinstance(quality, MissionQualityEnvelope):
             minutes = int(quality.estimated_duration_minutes or 0)
-            rationale = (quality.educational_rationale or "").strip()
-            completion = (quality.completion_definition or "").strip()
+            rationale = sanitize_student_text(quality.educational_rationale or "")
+            completion = sanitize_student_text(quality.completion_definition or "")
             objective_ids = tuple(quality.objective_ids or ())
             explanation = dict(quality.explanation or {})
             prereq = dict(quality.prerequisite_validation or {})
@@ -355,27 +398,51 @@ class EducationalExperienceService:
                 prereq_label = "Prerequisite status needs review"
 
         learning_objectives = tuple(
-            _objective_label(oid, objective_lookup) for oid in objective_ids
+            label
+            for oid in objective_ids
+            if (label := _objective_label(oid, objective_lookup))
         )
-        if not learning_objectives and objective_ids:
-            learning_objectives = objective_ids
 
-        why = str(
-            explanation.get("why_this_mission")
-            or explanation.get("why_this_plan")
-            or rationale
-            or ""
-        ).strip()
+        why = sanitize_student_text(
+            str(
+                explanation.get("why_this_mission")
+                or explanation.get("why_this_plan")
+                or rationale
+                or ""
+            )
+        )
         evidence_raw = explanation.get("supporting_evidence") or ()
         if isinstance(evidence_raw, str):
-            evidence = (evidence_raw,)
+            evidence = tuple(
+                item
+                for item in (sanitize_student_text(evidence_raw),)
+                if item and not contains_internal_node_identifier(item)
+            )
         else:
-            evidence = tuple(str(item) for item in evidence_raw if item)
+            evidence = tuple(
+                sanitized
+                for item in evidence_raw
+                if item
+                and (sanitized := sanitize_student_text(str(item)))
+                and not contains_internal_node_identifier(sanitized)
+            )
+
+        # Prefer live syllabus identity over persisted chrome — repairs DF-016
+        # titles already stored as ``Study 1 — .1 …``.
+        if topic_title:
+            title = student_mission_title(code=human_code, title=topic_title)
+        else:
+            title = student_mission_title(
+                code=human_code,
+                title=sanitize_student_text(mission.title),
+            )
+        if contains_internal_node_identifier(title):
+            title = student_mission_title(code=human_code, title=topic_title)
 
         return MissionEducationSnapshot(
             mission_instance_id=mission.mission_instance_id,
-            title=mission.title or topic_title,
-            topic_code=mission.topic_code or str(topic.get("topic_code") or ""),
+            title=title,
+            topic_code=human_code,
             topic_title=topic_title,
             learning_objectives=learning_objectives,
             estimated_duration_minutes=minutes,
@@ -384,21 +451,26 @@ class EducationalExperienceService:
             educational_rationale=rationale or why,
             prerequisite_status_label=prereq_label,
             prerequisite_satisfied=prereq_ok,
-            task_descriptions=tuple(mission.task_descriptions or ()),
+            task_descriptions=tuple(
+                sanitize_student_text(t) for t in (mission.task_descriptions or ())
+                if sanitize_student_text(t)
+            ),
             status=mission.status,
             why_this_mission=why,
             supporting_evidence=evidence,
             confidence_label=str(
                 explanation.get("confidence_level") or ""
             ).strip(),
-            expected_benefit=str(
-                explanation.get("expected_benefit") or ""
-            ).strip(),
-            suggested_next_action=str(
-                explanation.get("suggested_next_action") or ""
-            ).strip(),
+            expected_benefit=sanitize_student_text(
+                str(explanation.get("expected_benefit") or "")
+            ),
+            suggested_next_action=sanitize_student_text(
+                str(explanation.get("suggested_next_action") or "")
+            ),
             review_point=str(explanation.get("review_point") or "").strip(),
-            judgement=str(explanation.get("judgement") or "").strip(),
+            judgement=sanitize_student_text(
+                str(explanation.get("judgement") or "")
+            ),
         )
 
     def _journey_education(
@@ -408,6 +480,9 @@ class EducationalExperienceService:
         progress: ProgressSnapshot,
         topic_lookup: dict[str, dict],
         current_title: str,
+        mission_topic_id: str = "",
+        mission_topic_code: str = "",
+        mission_topic_title: str = "",
     ) -> JourneyEducationSnapshot:
         completed = tuple(
             (
@@ -415,7 +490,7 @@ class EducationalExperienceService:
                 str(
                     (topic_lookup.get(tid) or {}).get("title")
                     or (topic_lookup.get(tid) or {}).get("text")
-                    or tid
+                    or "Completed topic"
                 ),
             )
             for tid in progress.completed_topic_ids
@@ -426,19 +501,37 @@ class EducationalExperienceService:
                 str(
                     (topic_lookup.get(tid) or {}).get("title")
                     or (topic_lookup.get(tid) or {}).get("text")
-                    or tid
+                    or "Upcoming topic"
                 ),
             )
             for tid in progress.incomplete_topic_ids
-            if tid != progress.current_topic_id
+            if tid != (mission_topic_id or progress.current_topic_id)
         )
+        # Align why-today with mission topic when present (MISSION-002).
+        if mission_topic_id and mission_topic_title:
+            label = (
+                f"{mission_topic_code} — {mission_topic_title}"
+                if mission_topic_code
+                and mission_topic_code not in mission_topic_title
+                else mission_topic_title
+            )
+            why_today = (
+                f"Today's topic is {label} because it is the next incomplete "
+                "topic in published syllabus order with satisfied prerequisites."
+            )
+        else:
+            why_today = sanitize_student_text(explanation.why_today or "")
         return JourneyEducationSnapshot(
-            why_today=(explanation.why_today or "").strip(),
-            why_previous_complete=(
+            why_today=why_today,
+            why_previous_complete=sanitize_student_text(
                 explanation.why_previous_complete or ""
-            ).strip(),
-            unlocks_next=(explanation.unlocks_next or "").strip(),
-            supporting_evidence=tuple(explanation.supporting_evidence or ()),
+            ),
+            unlocks_next=sanitize_student_text(explanation.unlocks_next or ""),
+            supporting_evidence=tuple(
+                sanitize_student_text(item)
+                for item in (explanation.supporting_evidence or ())
+                if sanitize_student_text(item)
+            ),
             current_topic_title=current_title,
             completed_topics=completed,
             upcoming_topics=upcoming,
@@ -546,15 +639,22 @@ def _section_titles_by_topic(artefacts: Any) -> dict[str, str]:
 
 def _objective_label(objective_id: str, lookup: dict[str, dict]) -> str:
     obj = lookup.get(objective_id) or {}
-    code = str(obj.get("code") or obj.get("number") or "").strip()
     text = str(obj.get("text") or obj.get("title") or "").strip()
+    code = student_syllabus_code(
+        code=str(obj.get("code") or obj.get("number") or "").strip(),
+        title=text,
+        number=str(obj.get("number") or "").strip(),
+    )
     if code and text:
+        if code in text:
+            return text
         return f"{code} — {text}"
     if text:
         return text
     if code:
         return code
-    return objective_id
+    # Never emit internal node identifiers to students.
+    return ""
 
 
 def _minutes_label(minutes: int) -> str:

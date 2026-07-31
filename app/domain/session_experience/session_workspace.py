@@ -41,7 +41,7 @@ SURFACE_LABELS: dict[SessionSurface, str] = {
     SessionSurface.ACTIVITY: "Learning Activity",
     SessionSurface.REFLECTION: "Reflection",
     SessionSurface.SUMMARY: "Session Summary",
-    SessionSurface.COMPLETE: "Complete",
+    SessionSurface.COMPLETE: "Sitting Report",
 }
 
 

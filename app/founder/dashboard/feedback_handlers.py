@@ -25,7 +25,10 @@ from app.services.research_insight_service import (
     TIME_WINDOW_LABELS,
 )
 
-FEEDBACK_ENDPOINT = "founder_dashboard.feedback"
+# Unified Hub (FH-001) — Feedback landing.
+FEEDBACK_HUB_ENDPOINT = "founder_dashboard.feedback"
+# Product Check-in specialist inbox (RIP-003) — editing surface.
+FEEDBACK_ENDPOINT = "founder_dashboard.feedback_checkins"
 FINDING_DETAIL_ENDPOINT = "founder_dashboard.finding_detail"
 REVIEW_ENDPOINT = "founder_dashboard.review_submission"
 PARTICIPANTS_ENDPOINT = "founder_dashboard.participants"
@@ -86,8 +89,47 @@ def redirect_to_feedback(**kwargs: object):
     return redirect(url_for(FEEDBACK_ENDPOINT, **kwargs))
 
 
+def hub_filters_from_request():
+    """Build Hub filters from query string parameters."""
+    from app.services.founder_feedback_hub import HubFilters
+
+    source = (request.args.get("source") or "").strip() or None
+    if source == "product_checkin":
+        source = "research"
+    return HubFilters(
+        source=source,
+        severity=(request.args.get("severity") or "").strip() or None,
+        status=(request.args.get("status") or "").strip() or None,
+        subject=(request.args.get("subject") or "").strip() or None,
+        date_from=parse_optional_date(request.args.get("date_from")),
+        date_to=parse_optional_date(request.args.get("date_to")),
+        student=(request.args.get("student") or "").strip() or None,
+        keyword=(request.args.get("keyword") or "").strip() or None,
+    )
+
+
+def handle_feedback_hub_request():
+    """Founder Feedback Hub — read-only multi-source aggregation (FH-001)."""
+    from app.services.founder_feedback_hub import FounderFeedbackHubService
+
+    filters = hub_filters_from_request()
+    page = parse_optional_int(request.args.get("page")) or 1
+    hub = FounderFeedbackHubService().list_items(filters, page=page)
+
+    return render_template(
+        "founder_dashboard/feedback_hub.html",
+        title="Feedback",
+        hub=hub,
+        source_options=FounderFeedbackHubService.source_options(),
+        feedback_hub_endpoint=FEEDBACK_HUB_ENDPOINT,
+        feedback_checkins_endpoint=FEEDBACK_ENDPOINT,
+        beta_endpoint="founder_dashboard.beta",
+        alpha_endpoint="founder_dashboard.alpha_observability",
+    )
+
+
 def handle_feedback_request():
-    """Process GET/POST for the Feedback section (live Product Check-in inbox)."""
+    """Process GET/POST for Product Check-in inbox (specialist editing surface)."""
     from app.research.forms import (
         FounderNoteForm,
         ProductFindingForm,
@@ -266,7 +308,7 @@ def handle_feedback_request():
 
     return render_template(
         "founder_dashboard/feedback.html",
-        title="Feedback",
+        title="Product Check-in",
         context=context,
         filter_form=filter_form,
         note_form=note_form,

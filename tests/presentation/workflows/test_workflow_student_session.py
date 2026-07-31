@@ -140,7 +140,7 @@ def test_student_nav_surfaces_present(student_client):
     html = student_client.get("/student/").get_data(as_text=True)
     for label in (
         "Home",
-        "Journey",
+        "Syllabus",
         "Revision",
         "History",
         "Settings",

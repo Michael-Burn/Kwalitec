@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
 from typing import Any
 from uuid import uuid4
 
@@ -25,6 +26,7 @@ from app.domain.session_experience.learning_session import (
 from app.domain.session_experience.session_workspace import (
     SessionSurface,
     SessionWorkspace,
+    SessionWorkspaceStatus,
 )
 
 
@@ -83,17 +85,40 @@ class SessionService:
             active_surface=SessionSurface.OVERVIEW,
             topic_title=(session.topics[0] if session.topics else session.objective),
         )
+        # LXP-003 recovery: restore persisted surface only for in-progress sessions.
+        status = str(opaque.get("status") or "").strip().lower()
+        if status in {"in_progress", "paused", "ready_to_finish"} and hasattr(
+            runtime, "get_runtime_snapshot"
+        ):
+            snap = (
+                runtime.get_runtime_snapshot(sid, session_id=resolved_session_id)
+                or {}
+            )
+            surface_raw = str(snap.get("active_surface") or "").strip().lower()
+            if surface_raw and surface_raw != SessionSurface.OVERVIEW.value:
+                try:
+                    restored = SessionSurface(surface_raw)
+                    if restored is not SessionSurface.COMPLETE:
+                        workspace = workspace.navigate_to(restored)
+                    if snap.get("paused") or status == "paused":
+                        workspace = workspace.with_status(
+                            SessionWorkspaceStatus.PAUSED
+                        )
+                except ValueError:
+                    pass
         self._registry.put_workspace(workspace)
         self._registry.put_session(session)
-        return overview_snapshot(session)
+        return _overview_with_substance(overview_snapshot(session), opaque)
 
     def overview(self, student_id: str, *, session_id: str) -> OverviewSnapshot:
         """Return the Session Overview projection."""
         sid = _require_id(student_id, "student_id")
         sess = _require_id(session_id, "session_id")
+        runtime = self._require_runtime()
+        opaque = runtime.get_session_overview(sid, session_id=sess) or {}
         cached = self._registry.get_session(sess)
         if cached is not None and cached.student_id == sid:
-            return overview_snapshot(cached)
+            return _overview_with_substance(overview_snapshot(cached), opaque)
         return self.open_session(sid, session_id=sess)
 
     def begin(
@@ -115,9 +140,82 @@ class SessionService:
         workspace = self._registry.get_workspace_for_session(sess)
         if workspace is not None:
             self._registry.put_workspace(
-                workspace.navigate_to(SessionSurface.ACTIVITY)
+                workspace.navigate_to(SessionSurface.ACTIVITY).with_status(
+                    SessionWorkspaceStatus.ACTIVE
+                )
             )
+        if hasattr(runtime, "save_surface"):
+            runtime.save_surface(sid, session_id=sess, surface="activity")
         return overview_snapshot(updated)
+
+    def pause(self, student_id: str, *, session_id: str) -> OverviewSnapshot:
+        """Pause an in-progress session (safe leave)."""
+        sid = _require_id(student_id, "student_id")
+        sess = _require_id(session_id, "session_id")
+        runtime = self._require_runtime()
+        if hasattr(runtime, "pause_session"):
+            runtime.pause_session(sid, session_id=sess)
+        workspace = self._registry.get_workspace_for_session(sess)
+        if workspace is not None:
+            self._registry.put_workspace(
+                workspace.with_status(SessionWorkspaceStatus.PAUSED)
+            )
+            if hasattr(runtime, "save_surface"):
+                runtime.save_surface(
+                    sid,
+                    session_id=sess,
+                    surface=workspace.active_surface.value,
+                )
+        handle = self._registry.get_session(sess)
+        if handle is None:
+            return self.open_session(sid, session_id=sess)
+        return overview_snapshot(handle)
+
+    def resume(self, student_id: str, *, session_id: str) -> OverviewSnapshot:
+        """Resume a paused session at the persisted surface."""
+        sid = _require_id(student_id, "student_id")
+        sess = _require_id(session_id, "session_id")
+        runtime = self._require_runtime()
+        surface = "activity"
+        if hasattr(runtime, "resume_session"):
+            result = runtime.resume_session(sid, session_id=sess) or {}
+            surface = str(result.get("active_surface") or surface)
+        workspace = self._registry.get_workspace_for_session(sess)
+        if workspace is None:
+            self.open_session(sid, session_id=sess)
+            workspace = self._registry.get_workspace_for_session(sess)
+        if workspace is not None:
+            try:
+                target = SessionSurface(surface)
+            except ValueError:
+                target = SessionSurface.ACTIVITY
+            self._registry.put_workspace(
+                workspace.navigate_to(target).with_status(
+                    SessionWorkspaceStatus.ACTIVE
+                )
+            )
+        handle = self._registry.get_session(sess)
+        if handle is None:
+            return self.open_session(sid, session_id=sess)
+        return overview_snapshot(handle)
+
+    def update_checklist(
+        self,
+        student_id: str,
+        *,
+        session_id: str,
+        item_id: str,
+        done: bool,
+    ) -> OverviewSnapshot:
+        """Toggle a plan-checklist item (presentation progress only)."""
+        sid = _require_id(student_id, "student_id")
+        sess = _require_id(session_id, "session_id")
+        runtime = self._require_runtime()
+        if hasattr(runtime, "update_checklist"):
+            runtime.update_checklist(
+                sid, session_id=sess, item_id=item_id, done=done
+            )
+        return self.overview(sid, session_id=sess)
 
     def _resolve_session_id(
         self,
@@ -216,6 +314,40 @@ def _build_learning_session(
             session_id=session_id,
             mission_id=None if mid is None else str(mid),
         ),
+    )
+
+
+def _overview_with_substance(
+    snap: OverviewSnapshot, opaque: dict[str, Any]
+) -> OverviewSnapshot:
+    """Attach package-derived learning objectives when present on overview opaque."""
+    raw = opaque.get("learning_objectives") or ()
+    if isinstance(raw, str) and raw.strip():
+        objectives = (raw.strip(),)
+    else:
+        labels: list[str] = []
+        for item in raw:
+            if isinstance(item, str) and item.strip():
+                labels.append(item.strip())
+                continue
+            if isinstance(item, dict):
+                text = str(item.get("text") or "").strip()
+                if not text:
+                    continue
+                code = str(item.get("code") or "").strip()
+                labels.append(f"{code}: {text}" if code else text)
+        objectives = tuple(labels)
+    substance = str(opaque.get("substance") or "").strip()
+    meta = list(snap.metadata)
+    if substance:
+        meta = [(k, v) for k, v in meta if k != "substance"]
+        meta.append(("substance", substance))
+    if not objectives and not substance:
+        return snap
+    return replace(
+        snap,
+        learning_objectives=objectives or snap.learning_objectives,
+        metadata=tuple(meta),
     )
 
 

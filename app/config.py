@@ -105,6 +105,47 @@ def _env_int(name: str, default: int) -> int:
         return default
 
 
+def _env_optional_str(name: str) -> str | None:
+    """Return a stripped env string, or ``None`` when unset/blank."""
+    raw = os.getenv(name)
+    if raw is None:
+        return None
+    value = str(raw).strip()
+    return value or None
+
+
+def _normalize_app_url(raw: str | None) -> str:
+    """Return a normalised origin (no trailing slash / path), or ``""``."""
+    value = (raw or "").strip()
+    if not value:
+        return ""
+    if "://" not in value:
+        value = f"https://{value}"
+    parts = urlsplit(value)
+    if not parts.netloc:
+        return ""
+    scheme = parts.scheme or "https"
+    return f"{scheme}://{parts.netloc}".rstrip("/")
+
+
+def _env_app_url() -> str:
+    """Canonical public origin from ``APP_URL`` (empty when unset)."""
+    return _normalize_app_url(os.getenv("APP_URL"))
+
+
+def _preferred_url_scheme(default: str = "http") -> str:
+    """Resolve URL scheme from ``PREFERRED_URL_SCHEME`` or ``APP_URL``."""
+    explicit = _env_optional_str("PREFERRED_URL_SCHEME")
+    if explicit:
+        return explicit.lower()
+    app_url = _env_app_url()
+    if app_url:
+        scheme = urlsplit(app_url).scheme
+        if scheme:
+            return scheme.lower()
+    return default
+
+
 class BaseConfig:
     """Shared application configuration."""
 
@@ -115,9 +156,22 @@ class BaseConfig:
     WTF_CSRF_ENABLED = True
     WTF_CSRF_TIME_LIMIT = None  # session-bound tokens; audit in production docs
 
+    # Canonical public origin for custom domains (https://app.example.com).
+    # Drives sitemap/robots/OG absolute URLs; leave unset in local development.
+    APP_URL = _env_app_url()
+
+    # Optional Flask SERVER_NAME (host[:port]) for offline absolute URL
+    # generation. Prefer leaving unset on Render so ProxyFix + Host work for
+    # both the *.onrender.com hostname and a custom domain during cutover.
+    SERVER_NAME = _env_optional_str("SERVER_NAME")
+
     # Session defaults (overridden for production hardening).
     SESSION_COOKIE_HTTPONLY = True
     SESSION_COOKIE_SAMESITE = "Lax"
+    # Host-only cookies by default (correct for a single custom domain).
+    # Set SESSION_COOKIE_DOMAIN only when sharing cookies across subdomains
+    # (e.g. ``.example.com``). Do not set it to the old *.onrender.com host.
+    SESSION_COOKIE_DOMAIN = _env_optional_str("SESSION_COOKIE_DOMAIN")
     PERMANENT_SESSION_LIFETIME = timedelta(
         hours=_env_int("SESSION_LIFETIME_HOURS", 12)
     )
@@ -126,7 +180,7 @@ class BaseConfig:
     TRUSTED_PROXY_HOPS = _env_int("TRUSTED_PROXY_HOPS", 0)
 
     # Prefer HTTPS URL generation when behind TLS termination.
-    PREFERRED_URL_SCHEME = os.getenv("PREFERRED_URL_SCHEME", "http")
+    PREFERRED_URL_SCHEME = _preferred_url_scheme("http")
 
     # Observability thresholds (ms).
     SLOW_REQUEST_THRESHOLD_MS = _env_int("SLOW_REQUEST_THRESHOLD_MS", 1000)
@@ -170,18 +224,21 @@ class ProductionConfig(BaseConfig):
     """Production configuration."""
 
     DEBUG = False
-    PREFERRED_URL_SCHEME = "https"
+    # Honour APP_URL scheme when set; otherwise force https behind Render TLS.
+    PREFERRED_URL_SCHEME = _preferred_url_scheme("https")
     TRUSTED_PROXY_HOPS = _env_int("TRUSTED_PROXY_HOPS", 1)
 
     # Session cookie hardening (HTTPS deployments; Render terminates TLS).
     SESSION_COOKIE_SECURE = True
     SESSION_COOKIE_HTTPONLY = True
     SESSION_COOKIE_SAMESITE = "Lax"
+    SESSION_COOKIE_DOMAIN = _env_optional_str("SESSION_COOKIE_DOMAIN")
 
     # Flask-Login remember-me cookie — mirror session flags.
     REMEMBER_COOKIE_SECURE = True
     REMEMBER_COOKIE_HTTPONLY = True
     REMEMBER_COOKIE_SAMESITE = "Lax"
+    REMEMBER_COOKIE_DOMAIN = _env_optional_str("SESSION_COOKIE_DOMAIN")
 
     # Browser-cache fingerprinted / versioned static assets for one year.
     # HTML responses still receive Cache-Control: no-store via middleware.

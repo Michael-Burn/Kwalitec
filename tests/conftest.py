@@ -7,9 +7,24 @@ import tempfile
 from datetime import date, timedelta
 
 import pytest
+from sqlalchemy import event
 
 from app import create_app
 from app.extensions import db as _db
+
+
+def _enable_sqlite_foreign_keys(dbapi_connection, _connection_record) -> None:
+    """Enforce SQLite foreign keys on every connection (PGFIX-001).
+
+    SQLite defaults to ``PRAGMA foreign_keys=OFF``, which masked the
+    ``SqlAlchemyGenerationStore.append_snapshot`` parent/child flush-order bug
+    that PostgreSQL rejects. Tests must exercise the same integrity rules.
+    """
+    cursor = dbapi_connection.cursor()
+    try:
+        cursor.execute("PRAGMA foreign_keys=ON")
+    finally:
+        cursor.close()
 
 
 @pytest.fixture(scope="session")
@@ -46,6 +61,11 @@ def app():
     )
 
     with app.app_context():
+        # Must run after create_app binds the engine.
+        event.listen(_db.engine, "connect", _enable_sqlite_foreign_keys)
+        # Apply immediately on the already-open pooled connection(s).
+        with _db.engine.connect() as connection:
+            connection.exec_driver_sql("PRAGMA foreign_keys=ON")
         _db.create_all()
 
     yield app

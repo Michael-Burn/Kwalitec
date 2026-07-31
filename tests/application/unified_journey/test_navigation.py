@@ -20,7 +20,7 @@ def test_feature_navigation_unchanged_when_flag_off():
     labels = [item.label for item in nav]
     assert labels == [
         "Home",
-        "Journey",
+        "Syllabus",
         "Revision",
         "History",
         "Settings",

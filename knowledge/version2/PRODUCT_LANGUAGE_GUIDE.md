@@ -206,7 +206,63 @@ must use **Session** / **Today's Session** per §1. Shared chrome (sidebar,
 welcome modal) uses the approved Session terminology.
 ---
 
-## 10. Related documents
+## 10. Version 1 Adaptive Workspace vocabulary (RC-002)
+
+Normative labels for Adaptive Study Workspace and related student surfaces.
+Keep these exact strings in student-facing copy where the product uses them.
+
+| Approved term | Use for |
+|---------------|---------|
+| **Study Sensei** | Named mentor once in Home hero chrome |
+| **Guidance** | Guidance panel / explainable advice |
+| **Recommendation** | Primary recommended next action |
+| **Syllabus** | Official curriculum structure |
+| **Sitting Report** | End-of-sitting summary after Session |
+| **Assessment Mode** | Assessment-oriented study mode |
+| **Exam Week Briefing** | Near-exam briefing surface |
+| **Learning Strategy** | Internal strategy authority (founder/ops; scrub on student path) |
+| **Learning Diagnostics** | Internal diagnostics authority |
+| **Learning Difficulty** | Internal difficulty authority |
+| **Intervention Effectiveness** | Internal effectiveness authority |
+| **Educational Memory** | Continuity / memory authority |
+| **My Learning Journey** | Narrative journey of sittings |
+| **Learning Timeline** | Chronological learning events |
+| **Readiness Forecast** | Forward readiness projection |
+| **Study Trajectory** | Trajectory / momentum language |
+| **Adaptive Study Workspace** | Certified Home composition |
+| **Morning Brief** | Start-of-day brief |
+| **Current Focus** | Today's focus topic |
+| **Session Plan** | Planned sitting structure |
+| **Curriculum Map** | Map of syllabus relationships |
+| **Knowledge Architecture** | Knowledge relationship authority |
+| **Learning Episode** | Authored episode for the sitting |
+| **Educational Authoring** | Authoring composition authority |
+| **Tomorrow Preview** | Continuity into the next sitting |
+| **Extra Study** | Optional spare-capacity study |
+| **Study Health** | Study-health indicator |
+| **Decision Journal** | Student decision / reflection journal |
+| **Educational Timeline** | Educational event timeline |
+| **Session reflection** | Post-session reflection form |
+| **Commitment reflection** | Commitment follow-up reflection |
+| **Sensei reflection** | Sensei-oriented journal reflection |
+| **Timeline reflection** | Timeline-oriented reflection |
+| **Guided Reflection preview** | Preview of guided reflection |
+| **Product Check-in** | Product feedback check-in |
+| **Calibration** | Confidence / calibration check |
+
+### Additional preferred CTAs
+
+| Surface | Preferred label |
+|---------|-----------------|
+| Home / Mission | **Start Session** |
+| Studio structure | **Confirm structure** |
+| Studio versioning | **Assign version** |
+| Studio documents | **Upload documents** |
+| Studio findings | **Resolve findings** |
+
+---
+
+## 11. Related documents
 
 - [`DESIGN_SYSTEM.md`](DESIGN_SYSTEM.md) — visual and layout rules
 - [`STUDENT_EXPERIENCE.md`](STUDENT_EXPERIENCE.md) — learner surfaces and vocabulary mapping

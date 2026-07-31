@@ -1,0 +1,34 @@
+{
+  "active_documents": [
+    {
+      "id": 3,
+      "kind": "cmp",
+      "checksum_sha256": "6cb786c59ea439603377ea57d6b1d2251d7563bdb70045344c8d603b026749d8",
+      "storage_key": "cs1/cmp/v1/6cb786c59ea43960-16f43926.pdf",
+      "processing_stage": "ready_for_embeddings"
+    },
+    {
+      "id": 4,
+      "kind": "syllabus",
+      "checksum_sha256": "adad4b0985279dfcab192733a24b4de3d984006d46b5e0724f67042a06701412",
+      "storage_key": "cs1/syllabus/v1/adad4b0985279dfc-50deeae5.pdf",
+      "processing_stage": "ready_for_embeddings"
+    }
+  ],
+  "workspace": {
+    "workspace_id": "ws-cs1",
+    "status": "published",
+    "version_label": "2026.1",
+    "certification_status": null
+  },
+  "foundation_versions": [
+    {
+      "id": 1,
+      "version_label": "2026.1",
+      "publication_state": "published"
+    }
+  ],
+  "runtime_enrolments": 0,
+  "local_syllabus_readable": true,
+  "local_cmp_readable": true
+}

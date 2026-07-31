@@ -37,3 +37,21 @@ class SyllabusAlreadyComplete(EducationalRuntimeError):  # noqa: N818
 
 class IllegalRuntimeState(EducationalRuntimeError):  # noqa: N818
     """Requested runtime operation violates state rules."""
+
+
+class EducationalPrerequisiteMissing(EducationalRuntimeError):  # noqa: N818
+    """Educational Runtime cannot continue — required object is absent.
+
+    V1S-007 / A9: surfaced to the student instead of falling back to Runtime A.
+    """
+
+    def __init__(
+        self,
+        message: str,
+        *,
+        missing_prerequisite: str | None = None,
+        subject_code: str | None = None,
+    ) -> None:
+        super().__init__(message)
+        self.missing_prerequisite = missing_prerequisite
+        self.subject_code = subject_code

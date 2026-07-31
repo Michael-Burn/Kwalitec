@@ -32,6 +32,7 @@ class OverviewSnapshot:
     topic_count: int = 0
     expected_readiness_improvement: float | None = None
     why_studying: str = ""
+    learning_objectives: tuple[str, ...] = ()
     begin_action: BeginSessionActionSnapshot | None = None
     can_begin: bool = False
     metadata: tuple[tuple[str, str], ...] = field(default_factory=tuple)

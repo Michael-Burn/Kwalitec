@@ -42,6 +42,312 @@
         </div>
     </section>
 
+    <section class="console-section" aria-labelledby="edu-yield-title">
+        <h2 id="edu-yield-title" class="console-section-title">Educational+ yield</h2>
+        <div class="console-card">
+            {% set y = educational_yield %}
+            {% if y and y.sittings_total %}
+            <ul class="console-activity-list mb-0">
+                <li>Educational+ rate — {{ '%.0f'|format(y.educational_plus_rate * 100) }}% ({{ y.educational_plus_accepted }} / {{ y.sittings_total }} sittings)</li>
+                <li>Behavioural-only sittings — {{ y.behavioural_only }} ({{ '%.0f'|format(y.behavioural_rate * 100) }}%)</li>
+                <li>Learning Yield — {{ '%.2f'|format(y.learning_yield) }} Educational+ observations per Session</li>
+                <li>Educational vs Behavioural practice observations — {{ y.educational_observations }} / {{ y.behavioural_practice_observations }}</li>
+                <li>Twin-updated sittings — {{ y.twin_updated_sittings }} · first Twin activation signals — {{ y.first_twin_activation_sittings }}</li>
+                <li>Restricted / Rejected — {{ y.restricted }} / {{ y.rejected }}</li>
+                <li>Finish Review Yes / Partially / No — {{ y.finish_review_yes }} / {{ y.finish_review_partial }} / {{ y.finish_review_no }}</li>
+                <li>Reflection completion — {{ '%.0f'|format(y.reflection_rate * 100) }}% ({{ y.reflection_submitted }} sittings)</li>
+                <li>Evidence density — {{ '%.2f'|format(y.average_observation_density) }} observations per Session</li>
+            </ul>
+            {% else %}
+            <p class="console-empty mb-0">No Evidence Packages recorded yet — Learning Yield appears after scored Sessions.</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="console-section" aria-labelledby="learning-strategy-title">
+        <h2 id="learning-strategy-title" class="console-section-title">Learning Strategy</h2>
+        <div class="console-card">
+            {% set s = learning_strategy %}
+            {% if s and s.sittings_evaluated %}
+            <ul class="console-activity-list mb-0">
+                <li>Sittings evaluated — {{ s.sittings_evaluated }}</li>
+                <li>Advance rate — {{ '%.0f'|format(s.advance_rate * 100) }}%</li>
+                <li>Reinforcement / consolidate rate — {{ '%.0f'|format(s.reinforcement_rate * 100) }}%</li>
+                <li>Recovery rate — {{ '%.0f'|format(s.recovery_rate * 100) }}%</li>
+                <li>Scheduled revision rate — {{ '%.0f'|format(s.revision_rate * 100) }}%</li>
+                <li>Immediate spacing rate — {{ '%.0f'|format(s.immediate_spacing_rate * 100) }}%</li>
+                <li>Over / under confidence (internal) — {{ '%.0f'|format(s.over_confident_rate * 100) }}% / {{ '%.0f'|format(s.under_confident_rate * 100) }}%</li>
+                <li>Strategy distribution —
+                    {% for key, count in s.strategy_counts.items() %}
+                    {{ key }}={{ count }}{% if not loop.last %}, {% endif %}
+                    {% else %}—{% endfor %}
+                </li>
+            </ul>
+            {% else %}
+            <p class="console-empty mb-0">No strategy recommendations yet — appear after Evidence Packages are recorded.</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="console-section" aria-labelledby="learning-diagnostics-title">
+        <h2 id="learning-diagnostics-title" class="console-section-title">Learning Diagnostics</h2>
+        <div class="console-card">
+            {% set d = learning_diagnostics %}
+            {% if d and d.sittings_evaluated %}
+            <ul class="console-activity-list mb-0">
+                <li>Sittings evaluated — {{ d.sittings_evaluated }}</li>
+                <li>Confidence mismatch rate — {{ '%.0f'|format(d.confidence_mismatch_rate * 100) }}%</li>
+                <li>Retention decay rate — {{ '%.0f'|format(d.retention_decay_rate * 100) }}%</li>
+                <li>Prerequisite weakness rate — {{ '%.0f'|format(d.prerequisite_weakness_rate * 100) }}%</li>
+                <li>Conceptual misunderstanding rate — {{ '%.0f'|format(d.conceptual_misunderstanding_rate * 100) }}%</li>
+                <li>Formula recall / calculation rates — {{ '%.0f'|format(d.formula_recall_rate * 100) }}% / {{ '%.0f'|format(d.calculation_accuracy_rate * 100) }}%</li>
+                <li>Reading / exam technique rates — {{ '%.0f'|format(d.reading_interpretation_rate * 100) }}% / {{ '%.0f'|format(d.exam_technique_rate * 100) }}%</li>
+                <li>Inconsistent practice rate — {{ '%.0f'|format(d.inconsistent_practice_rate * 100) }}%</li>
+                <li>Primary category distribution —
+                    {% for key, count in d.category_counts.items() %}
+                    {{ key }}={{ count }}{% if not loop.last %}, {% endif %}
+                    {% else %}—{% endfor %}
+                </li>
+            </ul>
+            {% else %}
+            <p class="console-empty mb-0">No diagnostic trends yet — appear after Evidence Packages are recorded.</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="console-section" aria-labelledby="learning-difficulty-title">
+        <h2 id="learning-difficulty-title" class="console-section-title">Learning Difficulty</h2>
+        <div class="console-card">
+            {% set ld = learning_difficulty %}
+            {% if ld and ld.sittings_evaluated %}
+            <ul class="console-activity-list mb-0">
+                <li>Sittings evaluated — {{ ld.sittings_evaluated }}</li>
+                <li>Average load points — {{ '%.0f'|format(ld.average_load_points) }}</li>
+                <li>Consolidation rate — {{ '%.0f'|format(ld.consolidation_rate * 100) }}%</li>
+                <li>Reduce session length rate — {{ '%.0f'|format(ld.reduce_length_rate * 100) }}%</li>
+                <li>Recovery after difficult topics — {{ '%.0f'|format(ld.recovery_after_difficult_rate * 100) }}%</li>
+                <li>Pacing (slow / maintain / accelerate) — {{ '%.0f'|format(ld.slow_pacing_rate * 100) }}% / {{ '%.0f'|format(ld.maintain_pacing_rate * 100) }}% / {{ '%.0f'|format(ld.accelerate_pacing_rate * 100) }}%</li>
+                <li>Highest load topics —
+                    {% for topic, avg in ld.highest_load_topics %}
+                    {{ topic }}={{ '%.0f'|format(avg) }}{% if not loop.last %}, {% endif %}
+                    {% else %}—{% endfor %}
+                </li>
+                <li>Average reinforcement by topic —
+                    {% for topic, avg in ld.average_reinforcement_by_topic.items() %}
+                    {{ topic }}={{ '%.1f'|format(avg) }}{% if not loop.last %}, {% endif %}
+                    {% else %}—{% endfor %}
+                </li>
+                <li>Recommendation distribution —
+                    {% for key, count in ld.recommendation_counts.items() %}
+                    {{ key }}={{ count }}{% if not loop.last %}, {% endif %}
+                    {% else %}—{% endfor %}
+                </li>
+            </ul>
+            {% else %}
+            <p class="console-empty mb-0">No difficulty trends yet — appear after Evidence Packages are recorded.</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="console-section" aria-labelledby="intervention-effectiveness-title">
+        <h2 id="intervention-effectiveness-title" class="console-section-title">Intervention Effectiveness</h2>
+        <div class="console-card">
+            {% set ie = intervention_effectiveness %}
+            {% if ie and ie.pairs_evaluated %}
+            <ul class="console-activity-list mb-0">
+                <li>Recommendation pairs evaluated — {{ ie.pairs_evaluated }}</li>
+                <li>Effective / partial / ineffective — {{ '%.0f'|format(ie.overall_effective_rate * 100) }}% / {{ '%.0f'|format(ie.overall_partial_rate * 100) }}% / {{ '%.0f'|format(ie.overall_ineffective_rate * 100) }}%</li>
+                <li>Insufficient evidence — {{ '%.0f'|format(ie.insufficient_rate * 100) }}%</li>
+                <li>Consolidation recovery rate — {{ '%.0f'|format(ie.recovery_after_consolidation_rate * 100) }}%</li>
+                <li>Reinforcement effective rate — {{ '%.0f'|format(ie.reinforcement_effective_rate * 100) }}%</li>
+                <li>Challenge success rate — {{ '%.0f'|format(ie.challenge_success_rate * 100) }}%</li>
+                <li>Spacing effectiveness — {{ '%.0f'|format(ie.increase_spacing_effective_rate * 100) }}%</li>
+                <li>Reduce session length effectiveness — {{ '%.0f'|format(ie.reduce_length_effective_rate * 100) }}%</li>
+                <li>Most effective recommendations —
+                    {% for kind, rate in ie.most_effective %}
+                    {{ kind }}={{ '%.0f'|format(rate * 100) }}%{% if not loop.last %}, {% endif %}
+                    {% else %}—{% endfor %}
+                </li>
+                <li>Least effective recommendations —
+                    {% for kind, rate in ie.least_effective %}
+                    {{ kind }}={{ '%.0f'|format(rate * 100) }}%{% if not loop.last %}, {% endif %}
+                    {% else %}—{% endfor %}
+                </li>
+                <li>Verdict distribution —
+                    {% for key, count in ie.verdict_counts.items() %}
+                    {{ key }}={{ count }}{% if not loop.last %}, {% endif %}
+                    {% else %}—{% endfor %}
+                </li>
+            </ul>
+            {% else %}
+            <p class="console-empty mb-0">No intervention outcomes yet — appear after consecutive same-topic Evidence Packages.</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="console-section" aria-labelledby="educational-memory-title">
+        <h2 id="educational-memory-title" class="console-section-title">Educational Memory</h2>
+        <div class="console-card">
+            {% set em = educational_memory %}
+            {% if em and em.sittings_total %}
+            <ul class="console-activity-list mb-0">
+                <li>Sittings with memory snapshot — {{ em.sittings_with_memory }} / {{ em.sittings_total }}</li>
+                <li>Snapshot coverage — {{ '%.0f'|format(em.snapshot_coverage * 100) }}%</li>
+                <li>Recommendation persistence — {{ '%.0f'|format(em.recommendation_persistence_rate * 100) }}%</li>
+                <li>Timeline entries — {{ em.timeline_entry_count }}</li>
+                <li>Timeline completeness — {{ '%.0f'|format(em.timeline_completeness * 100) }}%</li>
+                <li>Average recovery duration (sittings) — {{ '%.1f'|format(em.average_recovery_duration_sittings) }}</li>
+                <li>Average mastery duration (sittings) — {{ '%.1f'|format(em.average_mastery_duration_sittings) }}</li>
+                <li>Retention recovery rate — {{ '%.0f'|format(em.retention_recovery_rate * 100) }}%</li>
+                <li>Learners with journey narrative — {{ em.learners_with_journey }}</li>
+                <li>Growth trajectories —
+                    {% for label in em.growth_trajectory_labels %}
+                    {{ label }}{% if not loop.last %}, {% endif %}
+                    {% else %}—{% endfor %}
+                </li>
+                <li>Pattern distribution —
+                    {% for key, count in em.pattern_counts.items() %}
+                    {{ key }}={{ count }}{% if not loop.last %}, {% endif %}
+                    {% else %}—{% endfor %}
+                </li>
+                <li>Milestone distribution —
+                    {% for key, count in em.milestone_counts.items() %}
+                    {{ key }}={{ count }}{% if not loop.last %}, {% endif %}
+                    {% else %}—{% endfor %}
+                </li>
+                <li>Repeated misconceptions —
+                    {% for key, count in em.repeated_misconception_categories.items() %}
+                    {{ key }}={{ count }}{% if not loop.last %}, {% endif %}
+                    {% else %}—{% endfor %}
+                </li>
+            </ul>
+            {% else %}
+            <p class="console-empty mb-0">No educational memory yet — appear after Evidence Packages receive intelligence snapshots.</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="console-section" aria-labelledby="readiness-forecast-title">
+        <h2 id="readiness-forecast-title" class="console-section-title">Readiness Forecast</h2>
+        <div class="console-card">
+            {% set rf = readiness_forecast %}
+            {% if rf and rf.learners_forecasted %}
+            <ul class="console-activity-list mb-0">
+                <li>Learners forecasted — {{ rf.learners_forecasted }}</li>
+                <li>Sittings scanned — {{ rf.sittings_scanned }}</li>
+                <li>On-track rate — {{ '%.0f'|format(rf.on_track_rate * 100) }}%</li>
+                <li>Below-pace rate — {{ '%.0f'|format(rf.below_pace_rate * 100) }}%</li>
+                <li>Recovery projections — {{ rf.recovery_projection_count }}</li>
+                <li>Average projected readiness — {{ '%.0f'|format(rf.average_projected_readiness * 100) }}%</li>
+                <li>Forecast accuracy (retrospective) — {{ '%.0f'|format(rf.forecast_accuracy * 100) }}%
+                    {% if rf.accuracy_pairs %} ({{ rf.accuracy_pairs }} pairs){% endif %}
+                </li>
+                <li>Established confidence rate — {{ '%.0f'|format(rf.established_confidence_rate * 100) }}%</li>
+                <li>Trajectory distribution —
+                    {% for key, count in rf.label_counts.items() %}
+                    {{ key }}={{ count }}{% if not loop.last %}, {% endif %}
+                    {% else %}—{% endfor %}
+                </li>
+                <li>Trend distribution —
+                    {% for key, count in rf.trend_counts.items() %}
+                    {{ key }}={{ count }}{% if not loop.last %}, {% endif %}
+                    {% else %}—{% endfor %}
+                </li>
+                <li>Forecast confidence —
+                    {% for key, count in rf.confidence_counts.items() %}
+                    {{ key }}={{ count }}{% if not loop.last %}, {% endif %}
+                    {% else %}—{% endfor %}
+                </li>
+                <li>Readiness progression —
+                    {% for label in rf.readiness_progression_labels %}
+                    {{ label }}{% if not loop.last %}, {% endif %}
+                    {% else %}—{% endfor %}
+                </li>
+            </ul>
+            {% else %}
+            <p class="console-empty mb-0">No readiness forecasts yet — appear after learners have at least two Evidence Packages.</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="console-section" aria-labelledby="study-workspace-title">
+        <h2 id="study-workspace-title" class="console-section-title">Adaptive Study Workspace</h2>
+        <div class="console-card">
+            {% set sw = study_workspace %}
+            {% if sw and (sw.workspace_opens or sw.mission_completions or sw.journey_opens) %}
+            <ul class="console-activity-list mb-0">
+                <li>Workspace opens — {{ sw.workspace_opens }}</li>
+                <li>Workspace interactions — {{ sw.workspace_interactions }}</li>
+                <li>Mission starts — {{ sw.mission_starts }}</li>
+                <li>Mission completions — {{ sw.mission_completions }}</li>
+                <li>Mission completion rate — {{ '%.0f'|format(sw.mission_completion_rate * 100) }}%</li>
+                <li>Insight usefulness signals — {{ sw.insight_usefulness_signals }}</li>
+                <li>Journey usage — {{ sw.journey_opens }} ({{ '%.0f'|format(sw.journey_usage_rate * 100) }}% of opens)</li>
+                <li>Forecast usage — {{ sw.forecast_views }} ({{ '%.0f'|format(sw.forecast_usage_rate * 100) }}% of opens)</li>
+                <li>Unique learners engaged — {{ sw.unique_learners }}</li>
+                <li>Engagement rate — {{ '%.0f'|format(sw.engagement_rate * 100) }}%</li>
+            </ul>
+            {% else %}
+            <p class="console-empty mb-0">No workspace engagement yet — appear after learners open Adaptive Study Workspace on Home.</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="console-section" aria-labelledby="knowledge-architecture-title">
+        <h2 id="knowledge-architecture-title" class="console-section-title">Knowledge Architecture</h2>
+        <div class="console-card">
+            {% set ka = knowledge_architecture %}
+            {% if ka and (ka.node_count or ka.curriculum_map_opens or ka.edge_count) %}
+            <ul class="console-activity-list mb-0">
+                <li>Curriculum nodes — {{ ka.node_count }}</li>
+                <li>Educational edges — {{ ka.edge_count }} (prerequisites {{ ka.prerequisite_edge_count }}, revision {{ ka.revision_edge_count }})</li>
+                <li>Knowledge graph completeness — {{ '%.0f'|format(ka.completeness_ratio * 100) }}%</li>
+                <li>Curriculum coverage — {{ '%.0f'|format(ka.curriculum_coverage_ratio * 100) }}%</li>
+                <li>Pathways — {{ ka.pathway_count }}</li>
+                <li>Revision pathways generated — {{ ka.revision_paths_generated }}</li>
+                <li>Recovery paths — {{ ka.recovery_path_count }}</li>
+                <li>Revision pathway usage — {{ ka.revision_pathway_usage }}</li>
+                <li>Curriculum Map opens — {{ ka.curriculum_map_opens }}</li>
+                {% if ka.bottleneck_topic_ids %}
+                <li>Dependency bottlenecks — {{ ka.bottleneck_topic_ids|join(', ') }}</li>
+                {% endif %}
+                {% if ka.difficult_chain_lengths %}
+                <li>Difficult prerequisite chain lengths — {{ ka.difficult_chain_lengths|join(', ') }}</li>
+                {% endif %}
+            </ul>
+            {% else %}
+            <p class="console-empty mb-0">No curriculum graph metrics yet — appear after a syllabus graph is loaded or learners open Curriculum Map.</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="console-section" aria-labelledby="educational-authoring-title">
+        <h2 id="educational-authoring-title" class="console-section-title">Educational Authoring</h2>
+        <div class="console-card">
+            {% set ea = educational_authoring %}
+            {% if ea and (ea.mission_completions or ea.episode_completions or ea.episode_starts or ea.tomorrow_preview_opens or ea.start_tomorrow_usage or ea.reflection_completions) %}
+            <ul class="console-activity-list mb-0">
+                <li>Mission completions — {{ ea.mission_completions }}</li>
+                <li>Episode starts — {{ ea.episode_starts }}</li>
+                <li>Episode completions — {{ ea.episode_completions }}</li>
+                <li>Average episode duration — {% if ea.average_episode_duration_minutes %}{{ '%.0f'|format(ea.average_episode_duration_minutes) }} min{% else %}—{% endif %}</li>
+                <li>Episode abandonments — {{ ea.episode_abandonments }}</li>
+                <li>Tomorrow Preview opens — {{ ea.tomorrow_preview_opens }}</li>
+                <li>Start Tomorrow usage — {{ ea.start_tomorrow_usage }}</li>
+                <li>Reflection completions — {{ ea.reflection_completions }}</li>
+                {% if ea.most_difficult_episodes %}
+                <li>Most difficult episodes — {{ ea.most_difficult_episodes|join(', ') }}</li>
+                {% endif %}
+                {% if ea.most_successful_episodes %}
+                <li>Most successful episodes — {{ ea.most_successful_episodes|join(', ') }}</li>
+                {% endif %}
+            </ul>
+            {% else %}
+            <p class="console-empty mb-0">No Learning Episode metrics yet — appear after learners engage authored missions on Adaptive Study Workspace.</p>
+            {% endif %}
+        </div>
+    </section>
+
     <section class="console-section" aria-labelledby="events-title">
         <h2 id="events-title" class="console-section-title">Recent presentation events</h2>
         <div class="console-card">
@@ -96,7 +402,7 @@
                     </thead>
                     <tbody>
                         {% for item in feedback %}
-                        <tr>
+                        <tr id="feedback-{{ item.id }}"{% if request.args.get('feedback_id')|string == item.id|string %} class="table-active"{% endif %}>
                             <td class="small">{{ item.created_at }}</td>
                             <td class="small">{{ item.kind }}</td>
                             <td class="small">{{ item.rating or '—' }}</td>

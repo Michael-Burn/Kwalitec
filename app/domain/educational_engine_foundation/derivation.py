@@ -17,6 +17,10 @@ from app.domain.educational_quality.rules import (
     build_mission_completion_definition,
     build_mission_educational_rationale,
 )
+from app.domain.educational_runtime_engine.student_facing_identity import (
+    student_mission_title,
+    student_syllabus_code,
+)
 
 
 @dataclass(frozen=True)
@@ -312,7 +316,12 @@ def _derive_topics(
         topics.append(
             CurriculumTopicNode(
                 topic_id=topic_id,
-                code=str(raw.get("code") or raw.get("number") or topic_id).strip(),
+                code=student_syllabus_code(
+                    code=str(raw.get("code") or "").strip(),
+                    title=str(raw.get("title") or "").strip(),
+                    number=str(raw.get("number") or index).strip(),
+                )
+                or str(raw.get("number") or index).strip(),
                 title=_text(raw.get("title"), "topic title"),
                 section_id=_text(raw.get("section_ref"), "topic section_ref"),
                 number=str(raw.get("number") or index).strip(),
@@ -341,7 +350,12 @@ def _derive_objectives(
         objectives.append(
             CurriculumObjectiveNode(
                 objective_id=objective_id,
-                code=str(raw.get("code") or raw.get("number") or objective_id).strip(),
+                code=student_syllabus_code(
+                    code=str(raw.get("code") or "").strip(),
+                    title=str(raw.get("text") or "").strip(),
+                    number=str(raw.get("number") or index).strip(),
+                )
+                or str(raw.get("number") or index).strip(),
                 text=_text(raw.get("text"), "objective text"),
                 topic_id=_text(raw.get("topic_ref"), "objective topic_ref"),
                 number=str(raw.get("number") or index).strip(),
@@ -465,32 +479,49 @@ def _mission_template_for_topic(
     topic: CurriculumTopicNode,
     objectives: list[CurriculumObjectiveNode],
 ) -> MissionTemplate:
-    task_descriptions = [f"Study {topic.code} — {topic.title}"]
+    human_code = student_syllabus_code(
+        code=topic.code,
+        title=topic.title,
+        number=topic.number,
+    ) or topic.number or topic.code
+    task_descriptions = [student_mission_title(code=human_code, title=topic.title)]
     if objectives:
         lead = objectives[0]
-        task_descriptions.append(f"Work through objective {lead.code}: {lead.text}")
+        lead_code = student_syllabus_code(
+            code=lead.code, title=lead.text, number=lead.number
+        ) or lead.number
+        task_descriptions.append(
+            f"Work through objective {lead_code}: {lead.text}"
+            if lead_code
+            else f"Work through: {lead.text}"
+        )
     if len(objectives) > 1:
         task_descriptions.append(
-            f"Consolidate {len(objectives)} learning objectives for {topic.code}"
+            f"Consolidate {len(objectives)} learning objectives for {human_code}"
         )
-    objective_codes = tuple(objective.code for objective in objectives)
+    objective_codes = tuple(
+        student_syllabus_code(code=o.code, title=o.text, number=o.number)
+        or o.number
+        or o.text
+        for o in objectives
+    )
     duration = topic.estimated_minutes
     if duration <= 0:
         duration = max(30, sum(max(0, o.estimated_minutes) for o in objectives) or 30)
     return MissionTemplate(
         template_id=f"{topic.topic_id}:learn",
         topic_id=topic.topic_id,
-        topic_code=topic.code,
+        topic_code=human_code,
         mission_kind="learn_topic",
-        title=f"Study {topic.code} — {topic.title}",
+        title=student_mission_title(code=human_code, title=topic.title),
         task_descriptions=tuple(task_descriptions),
         objective_ids=tuple(objective.objective_id for objective in objectives),
         estimated_duration_minutes=duration,
         completion_definition=build_mission_completion_definition(
-            topic_code=topic.code
+            topic_code=human_code
         ),
         educational_rationale=build_mission_educational_rationale(
-            topic_code=topic.code,
+            topic_code=human_code,
             topic_title=topic.title,
             objective_codes=objective_codes,
             prerequisite_ids=topic.prerequisite_ids,

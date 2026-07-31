@@ -152,16 +152,16 @@ class FounderStudentEnrolmentBridge:
             study_plan_id=None,
             commit=True,
         )
-        # VP-001: materialise SCI + decisions + experience when a published
-        # CKG edition exists for this subject (LP-001 fail-open).
-        from app.infrastructure.adapters.learner_lifecycle import (
-            onboard_after_enrolment,
-        )
+        # V1S-007 / A9: SCI is mandatory for Runtime C — ensure (create CKG
+        # bridge from published package when needed) rather than fail-open
+        # into a Runtime A session path later.
+        from app.application.educational_runtime_engine import ensure_active_sci
 
-        onboard_after_enrolment(
+        ensure_active_sci(
             student_id=user_id,
             subject_code=decision.subject_code,
-            correlation_id=f"vp001-bridge-c-{journey.enrolment.enrolment_id}",
+            correlation_id=f"v1s007-bridge-c-{journey.enrolment.enrolment_id}",
+            require=False,
         )
         return EnrolmentBridgeResult(
             runtime_authority=RuntimeAuthority.PUBLISHED_CURRICULUM,

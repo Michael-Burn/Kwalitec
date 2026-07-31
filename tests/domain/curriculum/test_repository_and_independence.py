@@ -233,6 +233,9 @@ def test_value_object_enums_exhaustive() -> None:
         DependencyType.RELATED,
         DependencyType.OPTIONAL,
         DependencyType.REVISION,
+        DependencyType.FOUNDATION,
+        DependencyType.EXTENSION,
+        DependencyType.HIGH_DEPENDENCY,
     }
     assert set(TopicDifficulty) == {
         TopicDifficulty.FOUNDATIONAL,

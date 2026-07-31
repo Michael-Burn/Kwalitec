@@ -20,7 +20,7 @@ FLOW_STEP_LABELS: dict[SessionSurface, str] = {
     SessionSurface.ACTIVITY: "Complete learning activities",
     SessionSurface.REFLECTION: "Reflect on what you learned",
     SessionSurface.SUMMARY: "Review session summary",
-    SessionSurface.COMPLETE: "Return home",
+    SessionSurface.COMPLETE: "Review your Sitting Report",
 }
 
 

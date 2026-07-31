@@ -7,6 +7,7 @@ to the Learning Journey Engine.
 from __future__ import annotations
 
 from app.application.learning_session.dto.completion_result import CompletionResult
+from app.application.learning_session.dto.finish_review import FinishReview
 from app.application.learning_session.policies.completion_policy import (
     CompletionPolicy,
 )
@@ -16,9 +17,19 @@ from app.domain.learning_journey.entities.learning_session import LearningSessio
 class CompletionEvaluator:
     """Session-local completion evaluation (never journey completion)."""
 
-    def evaluate(self, session: LearningSession) -> CompletionResult:
+    def evaluate(
+        self,
+        session: LearningSession,
+        *,
+        finish_review: FinishReview | None = None,
+        require_finish_review: bool = False,
+    ) -> CompletionResult:
         """Evaluate educational completeness of ``session`` only."""
-        result = CompletionPolicy.evaluate(session)
+        result = CompletionPolicy.evaluate(
+            session,
+            finish_review=finish_review,
+            require_finish_review=require_finish_review,
+        )
         # Hard invariant: session runtime never claims journey completion.
         if result.journey_complete:
             return CompletionResult(

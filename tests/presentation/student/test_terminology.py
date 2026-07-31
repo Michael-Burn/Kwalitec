@@ -21,6 +21,7 @@ def test_student_vocabulary_present(student_client, endpoint, path):
         word in html
         for word in (
             "Home",
+            "Syllabus",
             "Journey",
             "Revision",
             "History",

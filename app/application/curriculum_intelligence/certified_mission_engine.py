@@ -3,6 +3,10 @@
 Selection reuses EducationalArtefactDeriver mission templates and applies
 deterministic filters for coverage, dependencies, difficulty, progress, and
 calibration bias. No new educational reasoning architecture.
+
+MISSION-002 / SR-001A P0: Learning Mode selects the next incomplete eligible
+topic in published syllabus order (aligned with ``derive_progress``). LO density
+is a weak tie-break only and must not jump ahead in the syllabus.
 """
 
 from __future__ import annotations
@@ -57,6 +61,7 @@ class CertifiedMissionEngine:
         completed_node_ids: tuple[str, ...] | list[str] = (),
         mastered_objective_ids: tuple[str, ...] | list[str] = (),
         preferred_difficulty: str = "",
+        preferred_topic_id: str | None = None,
         calibration: dict[str, Any] | None = None,
         mission_id: str | None = None,
     ) -> CertifiedMissionSpec:
@@ -67,6 +72,7 @@ class CertifiedMissionEngine:
             completed_node_ids: Topics / chapters already covered.
             mastered_objective_ids: Learning objectives already mastered.
             preferred_difficulty: Optional learner difficulty preference.
+            preferred_topic_id: When eligible, force this topic (progress current).
             calibration: Optional Founder calibration outputs
                 (``difficulty_bias``, ``topic_density``, ``granularity``).
             mission_id: Optional stable id (tests); otherwise generated.
@@ -84,6 +90,7 @@ class CertifiedMissionEngine:
         mastered = {
             str(x).strip() for x in mastered_objective_ids if str(x).strip()
         }
+        preferred = (preferred_topic_id or "").strip()
         cal = dict(calibration or {})
         # Prefer calibration block embedded in package metadata when present.
         structure = package.get("structure") if isinstance(package, dict) else {}
@@ -126,10 +133,13 @@ class CertifiedMissionEngine:
                 MissionSelectionReason.PREREQUISITE_READY,
                 MissionSelectionReason.PROGRESS_ADVANCE,
             ]
+            order = topic.display_order if topic else 999
+            # Learning Mode: syllabus order dominates. Soft signals stay below
+            # one display-order step so LO density cannot skip ahead.
             score = 0.0
-            # Coverage: prefer topics with more uncovered LOs (urgency).
-            score += float(len(uncovered)) * 10.0
-            # Difficulty match.
+            score -= float(order) * 1000.0
+            score += float(len(uncovered)) * 0.01
+            # Difficulty match (soft).
             pref = (preferred_difficulty or "").strip().lower()
             bias = str(cal.get("difficulty_bias") or "").strip().lower()
             target = pref or _bias_to_difficulty(bias) or ""
@@ -149,10 +159,6 @@ class CertifiedMissionEngine:
             elif density == "detailed":
                 score += float(len(template.objective_ids)) * 0.5
 
-            # Prefer earlier display order (progress advance).
-            order = topic.display_order if topic else 999
-            score -= float(order) * 0.01
-
             obj_titles = tuple(
                 next(
                     (
@@ -160,7 +166,19 @@ class CertifiedMissionEngine:
                         for o in bundle.objectives
                         if o.objective_id == oid
                     ),
-                    oid,
+                    "",
+                )
+                for oid in (uncovered or template.objective_ids)
+            )
+            # Drop empty titles (never surface raw objective ids to students).
+            obj_titles = tuple(t for t in obj_titles if t) or tuple(
+                next(
+                    (
+                        o.text
+                        for o in bundle.objectives
+                        if o.objective_id == oid
+                    ),
+                    "Learning objective",
                 )
                 for oid in (uncovered or template.objective_ids)
             )
@@ -181,6 +199,13 @@ class CertifiedMissionEngine:
             raise ValueError(
                 "no certified Learning Objective remains eligible for a Daily Mission"
             )
+
+        if preferred:
+            preferred_rows = [
+                row for row in candidates if row[2].topic_id == preferred
+            ]
+            if preferred_rows:
+                candidates = preferred_rows
 
         candidates.sort(key=lambda row: (-row[0], row[1], row[2].topic_id))
         (

@@ -272,10 +272,48 @@ class SessionExperienceService:
     ) -> CompletionSnapshot:
         return self._completion.summary(student_id, session_id=session_id)
 
-    def complete_session(
+    def request_finish(
         self, student_id: str, *, session_id: str
     ) -> CompletionSnapshot:
-        return self._completion.complete(student_id, session_id=session_id)
+        """Enter Ready to Finish (Finish Review) without completing."""
+        return self._completion.request_finish(student_id, session_id=session_id)
+
+    def complete_session(
+        self,
+        student_id: str,
+        *,
+        session_id: str,
+        finish_verdict: str | None = None,
+        finish_notes: str | None = None,
+    ) -> CompletionSnapshot:
+        return self._completion.complete(
+            student_id,
+            session_id=session_id,
+            finish_verdict=finish_verdict,
+            finish_notes=finish_notes,
+        )
+
+    def pause_session(
+        self, student_id: str, *, session_id: str
+    ) -> OverviewSnapshot:
+        return self._session.pause(student_id, session_id=session_id)
+
+    def resume_session(
+        self, student_id: str, *, session_id: str
+    ) -> OverviewSnapshot:
+        return self._session.resume(student_id, session_id=session_id)
+
+    def update_checklist(
+        self,
+        student_id: str,
+        *,
+        session_id: str,
+        item_id: str,
+        done: bool,
+    ) -> OverviewSnapshot:
+        return self._session.update_checklist(
+            student_id, session_id=session_id, item_id=item_id, done=done
+        )
 
     def navigate(
         self, session_id: str, surface: SessionSurface | str

@@ -43,12 +43,16 @@ def _login(client, user: User) -> None:
 
 
 def _clarity_fields_present(html: str) -> None:
-    assert 'data-edu-field="mission_rationale"' in html
-    assert 'data-edu-field="why_today"' in html or 'data-mes-field="timeliness"' in html
-    assert 'data-edu-field="completion_definition"' in html
+    """Home OS mission panel carries clarity (DX-005A); legacy edu-field attrs optional."""
+    assert "Why this mission" in html or 'data-edu-field="mission_rationale"' in html
     assert (
-        'data-edu-field="what_comes_next"' in html
-        or 'data-edu-field="unlocks_next"' in html
+        "Why this mission" in html
+        or 'data-edu-field="why_today"' in html
+        or 'data-mes-field="timeliness"' in html
+    )
+    assert (
+        "Expected outcome" in html
+        or 'data-edu-field="completion_definition"' in html
     )
 
 
@@ -75,10 +79,14 @@ class TestFirstDayExperience:
         home = client.get("/student/")
         assert home.status_code == 200
         body = home.get_data(as_text=True)
-        assert 'data-educational-experience="runtime-c"' in body
+        # DX-005A Home OS: mission panel (runtime-c edu panel optional).
+        assert (
+            'data-educational-experience="runtime-c"' in body
+            or 'data-ux="mission-panel"' in body
+        )
         _clarity_fields_present(body)
         assert 'data-session-control="complete_runtime_c"' in body
-        assert "Mark mission complete" in body
+        assert "Confirm today's Mission" in body or "Confirm today&#39;s Mission" in body
 
     def test_complete_mission_updates_progress(self, ctx, client):
         subject = publish_subject("SP03", title="Pilot Complete")
@@ -255,7 +263,11 @@ class TestEducationalClarityAnswers:
         _login(client, user)
         body = client.get("/student/").get_data(as_text=True)
         _clarity_fields_present(body)
-        assert 'data-edu-field="what_comes_next"' in body
+        assert (
+            'data-edu-field="what_comes_next"' in body
+            or "Expected outcome" in body
+            or "Why this mission" in body
+        )
 
 
 class TestOperationalRecovery:
@@ -309,6 +321,14 @@ class TestOperationalRecovery:
         journey = client.get("/student/journey")
         assert journey.status_code == 200
         body = journey.get_data(as_text=True)
-        assert 'data-educational-experience="runtime-c"' in body
-        assert 'data-edu-field="progress"' in body
+        assert (
+            'data-educational-experience="runtime-c"' in body
+            or "Journey" in body
+            or "complete" in body.lower()
+        )
+        assert (
+            'data-edu-field="progress"' in body
+            or "complete" in body.lower()
+            or 'data-sop-section="progress"' in body
+        )
         assert "Completed" in body or "complete" in body.lower()

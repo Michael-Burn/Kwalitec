@@ -333,11 +333,30 @@ class SqlAlchemyGenerationStore(GenerationStorePort):
                 created_at=_parse_dt(snapshot.created_at_iso),
             )
         )
+        # Flush parent rows before dependent educational nodes.
+        # PostgreSQL enforces ei_educational_nodes.snapshot_id_fkey immediately.
+        # Later _ensure_lineage_op queries trigger SQLAlchemy autoflush; without
+        # this flush, pending node INSERTs run before the snapshot row exists.
+        db.session.flush()
+
+        # One SELECT for existing lineage op ids on this chain, then in-memory
+        # membership checks. Avoids one remote round-trip per node on Postgres.
+        known_op_ids = {
+            row[0]
+            for row in db.session.query(EiLineageOperation.operation_id)
+            .filter_by(chain_id=snapshot.chain_id)
+            .all()
+        }
 
         for node in snapshot.nodes:
             self._insert_node_row(snapshot, node, rejected=None)
             for op in node.lineage.operations:
-                self._ensure_lineage_op(snapshot.chain_id, node.node_id, op)
+                self._ensure_lineage_op(
+                    snapshot.chain_id,
+                    node.node_id,
+                    op,
+                    known_op_ids=known_op_ids,
+                )
 
         for rejected in snapshot.rejected_nodes:
             # Rejected nodes already present in nodes as inactive; store extra row flag
@@ -402,13 +421,23 @@ class SqlAlchemyGenerationStore(GenerationStorePort):
         )
 
     def _ensure_lineage_op(
-        self, chain_id: str, node_id: str, operation: LineageOperation
+        self,
+        chain_id: str,
+        node_id: str,
+        operation: LineageOperation,
+        *,
+        known_op_ids: set[str] | None = None,
     ) -> None:
-        existing_op = EiLineageOperation.query.filter_by(
-            operation_id=operation.operation_id
-        ).first()
-        if existing_op:
+        # Prefer caller-provided cache (one preload per append_snapshot).
+        if known_op_ids is not None and operation.operation_id in known_op_ids:
             return
+        if known_op_ids is None:
+            with db.session.no_autoflush:
+                existing_op = EiLineageOperation.query.filter_by(
+                    operation_id=operation.operation_id
+                ).first()
+            if existing_op:
+                return
         db.session.add(
             EiLineageOperation(
                 operation_id=operation.operation_id,
@@ -425,6 +454,8 @@ class SqlAlchemyGenerationStore(GenerationStorePort):
                 created_at=_parse_dt(operation.created_at_iso or datetime.now(UTC)),
             )
         )
+        if known_op_ids is not None:
+            known_op_ids.add(operation.operation_id)
 
     def get_snapshot(self, snapshot_id: str) -> CurriculumGenerationSnapshot | None:
         row = EiGenerationSnapshot.query.filter_by(snapshot_id=snapshot_id).first()

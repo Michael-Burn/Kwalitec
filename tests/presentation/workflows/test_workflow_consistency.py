@@ -110,7 +110,7 @@ def test_studio_primary_buttons_human_language(founder_client):
 def test_student_page_titles(student_client):
     for path, needle in (
         ("/student/", "Home"),
-        ("/student/journey", "Journey"),
+        ("/student/journey", "Syllabus"),
         ("/student/revision", "Revision"),
         ("/student/history", "History"),
         ("/student/profile", "Settings"),

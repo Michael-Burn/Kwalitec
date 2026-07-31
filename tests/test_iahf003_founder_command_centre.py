@@ -54,7 +54,7 @@ class TestIAHF003CommandCentre:
         # Legacy Research home is no longer a competing dashboard.
         legacy = client.get("/research/founder", follow_redirects=False)
         assert legacy.status_code == 302
-        assert "/console/feedback" in legacy.headers["Location"]
+        assert "/console/feedback/checkins" in legacy.headers["Location"]
 
     def test_home_excludes_platform_summary_kpis(self, client, ctx, app) -> None:
         founder = _login_founder(client, app)

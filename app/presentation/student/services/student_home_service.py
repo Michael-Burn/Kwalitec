@@ -1,6 +1,7 @@
-"""Student Home service — SOP-001 command centre projection.
+"""Student Home service — SOP-001 command centre + KWP-013 workspace.
 
-Authority: SOP-001 Student Operating System + DX-005A Mission selection.
+Authority: SOP-001 Student Operating System + DX-005A Mission selection +
+KWP-013 Adaptive Study Workspace.
 Presentation projection only. Does not alter learning, recommendation, or
 session engines.
 """
@@ -9,15 +10,22 @@ from __future__ import annotations
 
 from flask import url_for
 
+from app.presentation.student.adaptive_workspace import compose_adaptive_workspace
 from app.presentation.student.dto.student_home import (
+    HomeBriefingSection,
     HomeDeadline,
     HomeExamination,
+    HomeInsightRow,
     HomeMission,
     HomeQueueRow,
     HomeQuickAction,
     HomeStudyHealth,
     HomeStudySignals,
     StudentHomePage,
+)
+from app.presentation.student.exam_week_briefing import (
+    build_exam_week_briefing,
+    build_home_insights,
 )
 from app.presentation.student.view_models import (
     HomePageViewModel,
@@ -33,8 +41,11 @@ _DEADLINE_MAX = 4
 
 _EMPTY_REASON = "No exam selected yet. Choose an exam to begin studying."
 _EMPTY_ACTION_LABEL = "Choose Exam"
-_DAY_COMPLETE_MESSAGE = "Today's mission is finished. Return tomorrow to continue."
-_QUIET_REASON = "A session will be ready when today's mission is available."
+_DAY_COMPLETE_MESSAGE = (
+    "Today's Session is finished. Return tomorrow to continue."
+)
+_QUIET_REASON = "A session will be ready when today's focus is available."
+_PAGE_QUESTION = "Where you are, what to do today, and where you are heading."
 
 
 class StudentHomeService:
@@ -69,18 +80,22 @@ class StudentHomeService:
                 empty_reason=_EMPTY_REASON,
                 empty_action_label=_EMPTY_ACTION_LABEL,
                 empty_action_href=choose_exam_href,
+                page_question=_PAGE_QUESTION,
             )
 
         home = page.home
         revision = page.revision
+        journey = page.journey
+        history = page.history
+        profile = page.profile
         queue = self._learning_queue(home, revision=revision)
         examination = self._examination(home)
         study_health = self._study_health(home)
         signals = self._study_signals(
             home,
             examination=examination,
-            journey=page.journey,
-            profile=page.profile,
+            journey=journey,
+            profile=profile,
         )
         # Exam countdown lives in the signal strip — avoid a duplicate widget.
         deadlines = self._deadlines(
@@ -91,6 +106,34 @@ class StudentHomeService:
         )
         # History owns session archives — do not mirror Recent Progress on Home.
         recent: tuple[HomeQueueRow, ...] = ()
+        briefing_vm = build_exam_week_briefing(
+            home=home,
+            history=history,
+            journey=journey,
+            revision=revision,
+            profile=profile,
+        )
+        forecast_title, forecast_guidance = self._forecast_insight(
+            home=home,
+        )
+        insights_vm = build_home_insights(
+            home=home,
+            history=history,
+            journey=journey,
+            revision=revision,
+            briefing=briefing_vm,
+            forecast_title=forecast_title,
+            forecast_guidance=forecast_guidance,
+        )
+        briefing = self._briefing_section(briefing_vm)
+        insights = tuple(
+            HomeInsightRow(kind=c.kind, label=c.label, body=c.body)
+            for c in insights_vm
+        )
+        syllabus_position = next(
+            (c.body for c in insights_vm if c.kind == "position"),
+            "",
+        )
 
         if show_revision_acknowledgement:
             mission = self._revision_ack_mission(
@@ -98,7 +141,9 @@ class StudentHomeService:
                 title=revision_ack_title,
                 body=revision_ack_body,
             )
-            return self._assemble(
+            return self._with_workspace(
+                page,
+                self._assemble(
                 mission=mission,
                 queue=queue,
                 recent=recent,
@@ -109,6 +154,10 @@ class StudentHomeService:
                 state="mission",
                 home=home,
                 revision=revision,
+                briefing=briefing,
+                insights=insights,
+                syllabus_position=syllabus_position,
+                ),
             )
 
         if home.day_complete or (
@@ -128,7 +177,9 @@ class StudentHomeService:
                 primary_kind="none",
                 title="Complete for today",
             )
-            return self._assemble(
+            return self._with_workspace(
+                page,
+                self._assemble(
                 mission=mission,
                 queue=queue,
                 recent=recent,
@@ -140,12 +191,18 @@ class StudentHomeService:
                 home=home,
                 revision=revision,
                 day_complete_message=_DAY_COMPLETE_MESSAGE,
+                briefing=briefing,
+                insights=insights,
+                syllabus_position=syllabus_position,
+                ),
             )
 
         mission = self._select_mission(home)
         if mission is not None:
             cleaned_queue = self._queue_without_l0_duplicate(queue, mission)
-            return self._assemble(
+            return self._with_workspace(
+                page,
+                self._assemble(
                 mission=mission,
                 queue=cleaned_queue,
                 recent=recent,
@@ -156,10 +213,16 @@ class StudentHomeService:
                 state="mission",
                 home=home,
                 revision=revision,
+                briefing=briefing,
+                insights=insights,
+                syllabus_position=syllabus_position,
+                ),
             )
 
         if self._has_study_plan_signal(home):
-            return self._assemble(
+            return self._with_workspace(
+                page,
+                self._assemble(
                 mission=None,
                 queue=queue,
                 recent=recent,
@@ -173,9 +236,15 @@ class StudentHomeService:
                 empty_reason=_QUIET_REASON,
                 empty_action_label=_EMPTY_ACTION_LABEL,
                 empty_action_href=choose_exam_href,
+                briefing=briefing,
+                insights=insights,
+                syllabus_position=syllabus_position,
+                ),
             )
 
-        return self._assemble(
+        return self._with_workspace(
+            page,
+            self._assemble(
             mission=None,
             queue=(),
             recent=recent,
@@ -190,6 +259,10 @@ class StudentHomeService:
             empty_action_label=_EMPTY_ACTION_LABEL,
             empty_action_href=choose_exam_href,
             force_choose_exam_action=True,
+            briefing=None,
+            insights=(),
+            syllabus_position="",
+            ),
         )
 
     def _assemble(
@@ -210,6 +283,9 @@ class StudentHomeService:
         day_complete_message: str = "",
         force_choose_exam_action: bool = False,
         signals: HomeStudySignals | None = None,
+        briefing: HomeBriefingSection | None = None,
+        insights: tuple[HomeInsightRow, ...] = (),
+        syllabus_position: str = "",
     ) -> StudentHomePage:
         section_title = self._mission_section_title(mission)
         quick_actions = self._quick_actions(
@@ -237,11 +313,91 @@ class StudentHomeService:
             empty_action_label=empty_action_label,
             empty_action_href=empty_action_href,
             day_complete_message=day_complete_message,
+            page_question=_PAGE_QUESTION,
             mission_section_title=section_title,
             signals=signals,
             tutor_available=tutor_available,
             tutor_href=tutor_href,
+            briefing=briefing if state != "empty" else None,
+            insights=insights if state != "empty" else (),
+            syllabus_position=syllabus_position if state != "empty" else "",
         )
+
+    def _forecast_insight(
+        self,
+        *,
+        home: HomePageViewModel,
+    ) -> tuple[str, str]:
+        """KWP-012 — optional Study Trajectory line for Home Insights."""
+        try:
+            from flask_login import current_user
+
+            from app.application.readiness_forecast import (
+                get_readiness_forecast_engine,
+            )
+            from app.presentation.session.factory import (
+                get_session_experience_composition,
+            )
+
+            composition = get_session_experience_composition()
+            store = getattr(composition, "store", None) if composition else None
+            if store is None:
+                return "", ""
+            student_id = str(getattr(current_user, "id", "") or "")
+            if not student_id:
+                return "", ""
+            days = None
+            if home.countdown and home.countdown.has_countdown:
+                days = home.countdown.days
+            readiness_ratio = None
+            if home.readiness and home.readiness.has_readiness:
+                raw = home.readiness.readiness_percent_label or ""
+                digits = "".join(ch for ch in raw if ch.isdigit() or ch == ".")
+                if digits:
+                    readiness_ratio = float(digits)
+                    if readiness_ratio > 1.0:
+                        readiness_ratio /= 100.0
+            forecast = get_readiness_forecast_engine().forecast_from_store(
+                store,
+                student_id=student_id,
+                days_to_exam=days,
+                current_readiness_ratio=readiness_ratio,
+            )
+            if not forecast.guidance:
+                return "", ""
+            return forecast.title, forecast.guidance
+        except Exception:  # noqa: BLE001
+            return "", ""
+
+    @staticmethod
+    def _briefing_section(briefing_vm) -> HomeBriefingSection | None:
+        if briefing_vm is None or not getattr(briefing_vm, "has_briefing", False):
+            return None
+        return HomeBriefingSection(
+            has_briefing=True,
+            title=briefing_vm.title,
+            strengthened=tuple(briefing_vm.strengthened or ()),
+            needs_reinforcement=tuple(briefing_vm.needs_reinforcement or ()),
+            consistency_label=briefing_vm.consistency_label or "",
+            recommended_focus=briefing_vm.recommended_focus or "",
+            recommended_detail=briefing_vm.recommended_detail or "",
+            readiness_stage=briefing_vm.readiness_stage or "",
+            summary_line=briefing_vm.summary_line or "",
+        )
+
+    @staticmethod
+    def _with_workspace(
+        page: StudentPageViewModel,
+        home: StudentHomePage,
+    ) -> StudentHomePage:
+        """KWP-013 — attach Adaptive Study Workspace projection."""
+        from dataclasses import replace
+
+        workspace = compose_adaptive_workspace(page, home)
+        page_question = (
+            workspace.page_question if workspace.enabled else home.page_question
+        )
+        return replace(home, workspace=workspace, page_question=page_question)
 
     @staticmethod
     def _mission_section_title(mission: HomeMission | None) -> str:
@@ -270,15 +426,23 @@ class StudentHomeService:
         if home.commitment and home.commitment.recommendation_key:
             rec_key = home.commitment.recommendation_key
 
-        # 1. Open session → Continue Session (deep link, no re-commit).
+        # 1. Open session → Continue (deep link, no re-commit).
         if home.session_control == "resume" and session_id:
+            resume_label = (
+                home.session_control_label
+                or home.primary_cta_label
+                or "Continue"
+            ).strip()
+            lowered = resume_label.lower()
+            if "resume" not in lowered and "continue" not in lowered:
+                resume_label = "Continue"
             return HomeMission(
                 subject_name=subject or "Current subject",
                 objective=objective or "Continue your open session",
                 status_label=self._status_line("In progress", duration),
                 why_now=why_now or "Open session — continue where you left off",
                 after_completion=after,
-                primary_label="Continue Session",
+                primary_label=resume_label,
                 primary_kind="link",
                 primary_href=url_for("session.overview", session_id=session_id),
                 duration_label=duration,
@@ -313,8 +477,9 @@ class StudentHomeService:
                 learning_objective=objective or "Wrap up your open session",
             )
 
-        # 2a. Runtime C mission ready → Mark mission complete (PR-001B).
+        # 2a. Runtime C Mark-complete — rollback / pilot only (SR-002).
         # session_control is complete_runtime_c — not a Guided Session start.
+        # Never the default product Primary when SR_SESSION_PRIMARY is ON.
         if (
             home.primary_cta_enabled
             and home.session_control == "complete_runtime_c"
@@ -323,7 +488,7 @@ class StudentHomeService:
             label = (
                 home.session_control_label
                 or home.primary_cta_label
-                or "Mark mission complete"
+                or "Confirm today's Mission"
             ).strip()
             return HomeMission(
                 subject_name=subject or "Current subject",
@@ -340,7 +505,7 @@ class StudentHomeService:
                 mission_id=mission_id,
                 session_id=session_id,
                 recommendation_key=rec_key,
-                title=title or objective or "Today's Mission",
+                title=title or objective or "Today's Session",
                 difficulty_label=difficulty,
                 learning_objective=objective or "Today's study focus",
             )
@@ -367,7 +532,7 @@ class StudentHomeService:
                 mission_id=mission_id,
                 session_id=session_id,
                 recommendation_key=rec_key,
-                title=title or objective or "Today's Mission",
+                title=title or objective or "Today's Session",
                 difficulty_label=difficulty,
                 learning_objective=objective or "Today's study focus",
             )
@@ -401,17 +566,19 @@ class StudentHomeService:
 
         progress_label = ""
         progress_percent: int | None = None
-        if journey is not None and journey.progress_percent is not None:
-            progress_percent = int(journey.progress_percent)
-            progress_label = (
-                journey.progress_label
-                or f"{progress_percent}% complete"
-            ).strip()
-        elif home.educational and getattr(home.educational, "active", False):
+        # V1S-005 DF-002: Runtime C ProgressEngine coverage before Runtime A
+        # journey mastery theatre (educational trust / progress isolation).
+        if home.educational and getattr(home.educational, "active", False):
             progress_percent = int(home.educational.progress_percent or 0)
             progress_label = (
                 home.educational.progress_label
                 or home.educational.coverage_label
+                or f"{progress_percent}% complete"
+            ).strip()
+        elif journey is not None and journey.progress_percent is not None:
+            progress_percent = int(journey.progress_percent)
+            progress_label = (
+                journey.progress_label
                 or f"{progress_percent}% complete"
             ).strip()
         elif home.readiness and home.readiness.has_readiness:
@@ -544,11 +711,10 @@ class StudentHomeService:
         """Single calm line — never a multi-KPI analytics wall."""
         readiness = home.readiness
         if readiness and readiness.has_readiness:
-            status = (
-                readiness.readiness_label
-                or readiness.readiness_percent_label
-                or "On track"
-            ).strip()
+            # Prefer stage language; keep percent as quiet secondary only.
+            status = (readiness.readiness_label or "Building").strip()
+            if "%" in status:
+                status = "Building"
             detail_parts: list[str] = []
             if readiness.trend_label:
                 detail_parts.append(readiness.trend_label)
@@ -560,6 +726,11 @@ class StudentHomeService:
                 tone = "positive"
             elif any(w in lowered for w in ("down", "declin", "weak", "risk")):
                 tone = "caution"
+            stage_lower = status.lower()
+            if "ready for assessment" in stage_lower:
+                tone = "positive"
+            elif "building" in stage_lower:
+                tone = "neutral"
             return HomeStudyHealth(
                 status_label=status,
                 detail=" · ".join(detail_parts),
@@ -568,13 +739,16 @@ class StudentHomeService:
         if home.day_complete:
             return HomeStudyHealth(
                 status_label="Day complete",
-                detail="Rest — return tomorrow for the next mission.",
+                detail="Rest — return tomorrow for the next Session.",
                 tone="positive",
             )
         if self._has_study_plan_signal(home):
             return HomeStudyHealth(
-                status_label="Building evidence",
-                detail="Complete today's mission to strengthen your readiness signal.",
+                status_label="Getting started",
+                detail=(
+                    "Complete today's Session to strengthen your "
+                    "Exam Readiness signal."
+                ),
                 tone="neutral",
             )
         return None
@@ -643,7 +817,7 @@ class StudentHomeService:
                 HomeQuickAction(
                     label=_EMPTY_ACTION_LABEL,
                     href=choose_exam_href,
-                    detail="Select an examination to unlock today's mission",
+                    detail="Select an examination to unlock today's Session",
                 )
             )
             return tuple(actions[:_QUICK_ACTION_MAX])
@@ -697,14 +871,17 @@ class StudentHomeService:
                     HomeQuickAction(
                         label="Ask Tutor",
                         href=url_for("student.tutor"),
-                        detail="Why this mission was chosen",
+                        detail="Why this Session was chosen",
                     )
                 )
-        if state in {"mission", "quiet", "day_complete"} and len(actions) < _QUICK_ACTION_MAX:
-            if not any(a.label == "Knowledge Map" for a in actions):
+        if (
+            state in {"mission", "quiet", "day_complete"}
+            and len(actions) < _QUICK_ACTION_MAX
+        ):
+            if not any(a.label == "Curriculum Map" for a in actions):
                 actions.append(
                     HomeQuickAction(
-                        label="Knowledge Map",
+                        label="Curriculum Map",
                         href=url_for("student.knowledge_graph"),
                         detail="See your syllabus hierarchy",
                     )
@@ -800,14 +977,18 @@ class StudentHomeService:
 
     @staticmethod
     def _why_now(home: HomePageViewModel) -> str:
-        """Exactly one operational why-now line (≤140 chars preferred)."""
+        """Exactly one operational why-now line (≤140 chars preferred).
+
+        MISSION-002: prefer mission rationale (why_recommended) over journey
+        timeliness so "Why this mission" describes the mission topic.
+        """
         candidates: list[str] = []
         if home.session_control == "resume":
             candidates.append("Open session — continue where you left off")
-        if home.explanation and home.explanation.timeliness_line:
-            candidates.append(home.explanation.timeliness_line.strip())
         if home.explanation and home.explanation.why_recommended:
             candidates.append(home.explanation.why_recommended.strip())
+        if home.explanation and home.explanation.timeliness_line:
+            candidates.append(home.explanation.timeliness_line.strip())
         if home.why_it_matters:
             candidates.append(home.why_it_matters.strip())
         if home.recommendation and (
@@ -841,26 +1022,22 @@ class StudentHomeService:
     @staticmethod
     def _start_primary_label(home: HomePageViewModel) -> str:
         raw = (
-            home.session_control_label or home.primary_cta_label or "Start Session"
+            home.session_control_label
+            or home.primary_cta_label
+            or "Start Today's Session"
         ).strip()
         lowered = raw.lower()
-        if "continue" in lowered and "session" not in lowered:
-            return "Continue Session"
-        if lowered in {"start", "resume", "begin"}:
-            return "Start Session"
-        if "resume mission" in lowered:
-            return "Resume Mission"
-        if "start session" in lowered or "resume" in lowered:
-            return (
-                raw
-                if "session" in lowered or "mission" in lowered
-                else ("Start Session")
-            )
+        if "resume" in lowered or "continue" in lowered:
+            return "Continue"
+        if "start study session" in lowered or "start session" in lowered:
+            return "Start Today's Session"
+        if lowered in {"start", "begin"}:
+            return "Start Today's Session"
         if raw in {"Start Today's Session", "Start", "Begin"}:
-            return "Start Session"
+            return "Start Today's Session"
         if lowered == "continue":
-            return "Continue Session"
-        return raw if raw else "Start Session"
+            return "Continue"
+        return raw if raw else "Start Today's Session"
 
     @staticmethod
     def _status_line(status: str, duration: str) -> str:

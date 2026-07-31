@@ -127,11 +127,74 @@ class SessionRuntimeAdapter:
         self._store.save(self.NS_STATUS, self._key(sid, sess), result)
         snapshot = default_runtime_snapshot(sid, session_id=sess)
         snapshot["current_topic"] = (
-            (overview.get("topics") or ("Core methods",))[0]
+            (overview.get("topics") or ("Today's topic",))[0]
             if overview.get("topics")
-            else "Core methods"
+            else "Today's topic"
         )
         self._store.save(self.NS_SNAPSHOT, self._key(sid, sess), snapshot)
+        return result
+
+    def pause_session(
+        self, student_id: str, *, session_id: str
+    ) -> dict[str, Any]:
+        self._diagnostics.record_call(self.ADAPTER_ID)
+        sid = student_id.strip()
+        sess = session_id.strip()
+        if self._engine is not None and hasattr(self._engine, "pause_session_opaque"):
+            paused = self._engine.pause_session_opaque(sid, session_id=sess)
+            if isinstance(paused, dict):
+                self._store.save(self.NS_STATUS, self._key(sid, sess), paused)
+                return dict(paused)
+        result = {
+            "session_id": sess,
+            "student_id": sid,
+            "status": "paused",
+            "authority": "learning_session_runtime",
+        }
+        self._store.save(self.NS_STATUS, self._key(sid, sess), result)
+        return result
+
+    def resume_session(
+        self, student_id: str, *, session_id: str
+    ) -> dict[str, Any]:
+        self._diagnostics.record_call(self.ADAPTER_ID)
+        sid = student_id.strip()
+        sess = session_id.strip()
+        if self._engine is not None and hasattr(self._engine, "resume_session_opaque"):
+            resumed = self._engine.resume_session_opaque(sid, session_id=sess)
+            if isinstance(resumed, dict):
+                self._store.save(self.NS_STATUS, self._key(sid, sess), resumed)
+                return dict(resumed)
+        result = {
+            "session_id": sess,
+            "student_id": sid,
+            "status": "in_progress",
+            "authority": "learning_session_runtime",
+        }
+        self._store.save(self.NS_STATUS, self._key(sid, sess), result)
+        return result
+
+    def request_finish(
+        self, student_id: str, *, session_id: str
+    ) -> dict[str, Any]:
+        self._diagnostics.record_call(self.ADAPTER_ID)
+        sid = student_id.strip()
+        sess = session_id.strip()
+        if self._engine is not None and hasattr(
+            self._engine, "request_finish_opaque"
+        ):
+            ready = self._engine.request_finish_opaque(sid, session_id=sess)
+            if isinstance(ready, dict):
+                self._store.save(self.NS_STATUS, self._key(sid, sess), ready)
+                return dict(ready)
+        result = {
+            "session_id": sess,
+            "student_id": sid,
+            "status": "ready_to_finish",
+            "finish_review_required": True,
+            "authority": "learning_session_runtime",
+        }
+        self._store.save(self.NS_STATUS, self._key(sid, sess), result)
         return result
 
     def get_runtime_snapshot(
@@ -165,11 +228,15 @@ class SessionRuntimeAdapter:
         session_id: str,
         activity_id: str,
         response: str,
+        scored_correct: bool | None = None,
+        structured: bool = False,
+        score_payload: dict[str, Any] | None = None,
     ) -> dict[str, Any]:
         """Hand response to the educational kernel; return opaque acknowledgement.
 
         Evidence ownership remains outside Session Experience. This adapter
-        only forwards / records a structural acknowledgement.
+        only forwards / records a structural acknowledgement. Optional scoring
+        facts come from the activity layer (KWP-004).
         """
         self._diagnostics.record_call(self.ADAPTER_ID)
         sid = student_id.strip()
@@ -177,12 +244,23 @@ class SessionRuntimeAdapter:
         if self._engine is not None and hasattr(
             self._engine, "record_response_opaque"
         ):
-            recorded = self._engine.record_response_opaque(
-                sid,
-                session_id=sess,
-                activity_id=activity_id,
-                response=response,
-            )
+            try:
+                recorded = self._engine.record_response_opaque(
+                    sid,
+                    session_id=sess,
+                    activity_id=activity_id,
+                    response=response,
+                    scored_correct=scored_correct,
+                    structured=structured,
+                    score_payload=score_payload,
+                )
+            except TypeError:
+                recorded = self._engine.record_response_opaque(
+                    sid,
+                    session_id=sess,
+                    activity_id=activity_id,
+                    response=response,
+                )
             if isinstance(recorded, dict):
                 return dict(recorded)
         return {
@@ -191,10 +269,66 @@ class SessionRuntimeAdapter:
             "session_id": sess,
             "activity_id": activity_id,
             "authority": "learning_session_runtime",
+            "scored_correct": scored_correct,
+        }
+
+    def update_checklist(
+        self,
+        student_id: str,
+        *,
+        session_id: str,
+        item_id: str,
+        done: bool,
+    ) -> dict[str, Any]:
+        self._diagnostics.record_call(self.ADAPTER_ID)
+        sid = student_id.strip()
+        sess = session_id.strip()
+        if self._engine is not None and hasattr(
+            self._engine, "update_checklist_opaque"
+        ):
+            updated = self._engine.update_checklist_opaque(
+                sid, session_id=sess, item_id=item_id, done=done
+            )
+            if isinstance(updated, dict):
+                return dict(updated)
+        return {
+            "session_id": sess,
+            "student_id": sid,
+            "item_id": item_id,
+            "done": bool(done),
+            "authority": "learning_session_runtime",
+        }
+
+    def save_surface(
+        self,
+        student_id: str,
+        *,
+        session_id: str,
+        surface: str,
+    ) -> dict[str, Any]:
+        self._diagnostics.record_call(self.ADAPTER_ID)
+        sid = student_id.strip()
+        sess = session_id.strip()
+        if self._engine is not None and hasattr(self._engine, "save_surface_opaque"):
+            saved = self._engine.save_surface_opaque(
+                sid, session_id=sess, surface=surface
+            )
+            if isinstance(saved, dict):
+                return dict(saved)
+        return {
+            "session_id": sess,
+            "student_id": sid,
+            "active_surface": surface,
+            "authority": "learning_session_runtime",
         }
 
     def complete_session(
-        self, student_id: str, *, session_id: str
+        self,
+        student_id: str,
+        *,
+        session_id: str,
+        finish_verdict: str | None = None,
+        finish_notes: str | None = None,
     ) -> dict[str, Any]:
         self._diagnostics.record_call(self.ADAPTER_ID)
         sid = student_id.strip()
@@ -202,7 +336,12 @@ class SessionRuntimeAdapter:
         if self._engine is not None and hasattr(
             self._engine, "complete_session_opaque"
         ):
-            completed = self._engine.complete_session_opaque(sid, session_id=sess)
+            completed = self._engine.complete_session_opaque(
+                sid,
+                session_id=sess,
+                finish_verdict=finish_verdict,
+                finish_notes=finish_notes,
+            )
             if isinstance(completed, dict):
                 self._store.save(self.NS_STATUS, self._key(sid, sess), completed)
                 return dict(completed)
@@ -211,6 +350,12 @@ class SessionRuntimeAdapter:
             "student_id": sid,
             "status": "completed",
             "authority": "learning_session_runtime",
+            "mission_completed": False,
+            "finish_review": (
+                {"verdict": finish_verdict, "notes": finish_notes or ""}
+                if finish_verdict
+                else None
+            ),
         }
         overview = self.get_session_overview(sid, session_id=sess) or {}
         overview = {**overview, "status": "completed"}
@@ -224,6 +369,11 @@ class SessionRuntimeAdapter:
         if isinstance(topics, str):
             topics = (topics,)
         completion["topics_completed"] = tuple(str(t) for t in topics)
+        if finish_verdict:
+            completion["finish_review"] = {
+                "verdict": finish_verdict,
+                "notes": (finish_notes or "").strip(),
+            }
         self._store.save(self.NS_COMPLETION, self._key(sid, sess), completion)
         return result
 
@@ -362,4 +512,4 @@ def _topic_from_overview(overview: dict[str, Any]) -> str:
         value = str(overview.get(key) or "").strip()
         if value:
             return value
-    return "Core methods"
+    return "Today's topic"

@@ -1,0 +1,7 @@
+__init__
+adapters
+application
+domain
+infrastructure
+presentation
+web

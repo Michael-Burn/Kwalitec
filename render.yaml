@@ -28,6 +28,19 @@ services:
       - key: ADMIN_PASSWORD
         sync: false
 
+      # Canonical public origin (custom domain). Set in the Render dashboard to
+      # https://<your-domain> before or during the custom-domain cutover.
+      # Leave SERVER_NAME unset so ProxyFix accepts both the Render hostname
+      # and the custom domain Host header during migration.
+      - key: APP_URL
+        sync: false
+
+      - key: PREFERRED_URL_SCHEME
+        value: https
+
+      - key: TRUSTED_PROXY_HOPS
+        value: "1"
+
       # Educational Intelligence Internal Alpha (developer daily use — not public).
       - key: KWALITEC_EI_INTERNAL_ALPHA
         value: "1"
@@ -46,6 +59,13 @@ services:
       - key: KWALITEC_V2_FOUNDER_INTELLIGENCE
         value: "1"
       - key: KWALITEC_V2_SOLE_RUNTIME
+        value: "1"
+
+      # KWP-002 Commercial Loop Profile — Session Primary + Substance +
+      # Completion Product + Evidence Gate + Twin daily loop + Progress
+      # singularity. Rollback: set KWALITEC_COMMERCIAL_LOOP=0 (or unset) and
+      # leave individual SR_* flags unset/off.
+      - key: KWALITEC_COMMERCIAL_LOOP
         value: "1"
 
 databases:

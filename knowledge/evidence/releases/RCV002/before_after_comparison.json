@@ -1,0 +1,89 @@
+{
+  "generation_chains": {
+    "before": 1,
+    "after": 1
+  },
+  "generation_snapshots": {
+    "before": 0,
+    "after": 12
+  },
+  "educational_nodes": {
+    "before": 0,
+    "after": 3762
+  },
+  "certification_records": {
+    "before": 0,
+    "after": 2
+  },
+  "published_package": {
+    "before": {
+      "id": 1,
+      "version_label": "2026.1",
+      "is_active": true,
+      "published_by": "1",
+      "has_certification": false,
+      "certification": null,
+      "sections": 7,
+      "topics": 117,
+      "objectives": 0,
+      "source": null,
+      "curriculum_authority": null
+    },
+    "after": {
+      "id": 1,
+      "version_label": "2026.1",
+      "is_active": true,
+      "published_by": "rcv002",
+      "has_certification": true,
+      "certification": {
+        "authority": "certified_snapshot",
+        "chain_id": "ei-chain-ws-cs1",
+        "snapshot_id": "snap-b8a3d3ea939763d5",
+        "status": "CERTIFIED_WITH_WARNINGS"
+      },
+      "sections": 5,
+      "topics": 15,
+      "objectives": 73,
+      "source": "certified_snapshot"
+    }
+  },
+  "foundation_structure": {
+    "before": {
+      "id": 1,
+      "version_label": "2026.1",
+      "publication_state": "published",
+      "sections": 7,
+      "topics": 117,
+      "objectives": 0,
+      "source": null,
+      "curriculum_authority": null
+    },
+    "after": {
+      "id": 1,
+      "version_label": "2026.1",
+      "publication_state": "published",
+      "sections": 5,
+      "topics": 15,
+      "objectives": 73,
+      "source": "certified_snapshot"
+    }
+  },
+  "curriculum_counts": {
+    "before": {
+      "sections": 7,
+      "topics": 117,
+      "objectives": 0
+    },
+    "after": {
+      "sections": 5,
+      "topics": 15,
+      "objectives": 73
+    },
+    "local_parity_target": {
+      "sections": 5,
+      "topics": 15,
+      "objectives": 73
+    },
+    "parity_met": true
+  }
+}

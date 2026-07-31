@@ -14,7 +14,7 @@
 <article
   class="ds-page ds-container ds-container--content ds-session-page"
   aria-labelledby="session-page-title"
-  data-ux="study-session"
+  data-ux="session"
   data-session-id="{{ s.session_id }}"
   data-mission-id="{{ s.mission_id }}"
   data-session-surface="{{ s.surface }}"
@@ -78,12 +78,181 @@
     <h2 id="session-content-title" class="visually-hidden">Learning content</h2>
     {% endif %}
 
+    {% if s.surface == 'complete' and s.completion_headline %}
+    <p class="ds-success-line" role="status" data-completion-moment="true" data-sitting-report="true">{{ s.completion_headline }}</p>
+    {% endif %}
+    {% if s.surface == 'complete' and s.what_studied %}
+    <p class="ds-list__meta" data-what-studied="true">{{ s.what_studied }}</p>
+    {% endif %}
+    {% if s.surface == 'complete' and s.learning_objectives %}
+    <ul class="ds-list" aria-label="What you studied">
+      {% for objective in s.learning_objectives[:5] %}
+      <li>{{ objective }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% if s.surface == 'complete' and s.assessment_mode_active %}
+    <section class="ds-session-content__support" aria-labelledby="assessment-mode-title" data-assessment-mode="true">
+      <h3 id="assessment-mode-title" class="ds-list__meta">Assessment Mode</h3>
+      {% if s.assessment_summary %}
+      <p data-assessment-summary="true">{{ s.assessment_summary }}</p>
+      {% endif %}
+      {% if s.performance_summary %}
+      <p class="ds-list__meta" data-performance-summary="true">{{ s.performance_summary }}</p>
+      {% endif %}
+      {% if s.exercises_assigned %}
+      <p class="ds-list__meta">Exercises assigned</p>
+      <ul class="ds-list" aria-label="Exercises assigned">
+        {% for item in s.exercises_assigned[:6] %}
+        <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% if s.exercises_completed %}
+      <p class="ds-list__meta">Exercises completed</p>
+      <ul class="ds-list" aria-label="Exercises completed">
+        {% for item in s.exercises_completed[:6] %}
+        <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </section>
+    {% endif %}
+    {% if s.surface == 'complete' and s.journey_update_label %}
+    <p class="ds-list__meta" data-journey-update="true" data-progress-explanation="true">{{ s.journey_update_label }}</p>
+    {% endif %}
+    {% if s.surface == 'complete' and s.progress_explanation and s.progress_explanation != s.journey_update_label %}
+    <p class="ds-list__meta" data-progress-explanation="true">{{ s.progress_explanation }}</p>
+    {% endif %}
+    {% if s.surface == 'complete' and s.finish_outcome_label %}
+    <p class="ds-list__meta" data-finish-outcome="true">{{ s.finish_outcome_label }}</p>
+    {% endif %}
+    {% if s.surface == 'complete' and s.strengthened %}
+    <p class="ds-list__meta">Strengthened today</p>
+    <ul class="ds-list" aria-label="Strengthened topics">
+      {% for item in s.strengthened[:4] %}
+      <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% if s.surface == 'complete' and s.needs_reinforcement %}
+    <p class="ds-list__meta">Needs reinforcement</p>
+    <ul class="ds-list" aria-label="Needs reinforcement" data-weak-topic-centre="sitting">
+      {% for item in s.needs_reinforcement[:4] %}
+      <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% if s.surface == 'complete' and s.syllabus_refs %}
+    <p class="ds-list__meta">Recommended syllabus references</p>
+    <ul class="ds-list" aria-label="Syllabus references">
+      {% for ref in s.syllabus_refs[:6] %}
+      <li>{{ ref }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% if s.surface == 'complete' and s.learning_insights %}
+    <p class="ds-list__meta">Learning Insights</p>
+    <ul class="ds-list" aria-label="Learning Insights">
+      {% for insight in s.learning_insights[:5] %}
+      <li>{{ insight }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% if s.surface == 'complete' and s.strategy_title %}
+    <section class="ds-session-content__support" aria-labelledby="learning-strategy-title" data-learning-strategy="true">
+      <h3 id="learning-strategy-title" class="ds-list__meta">Recommended next step</h3>
+      <p data-strategy-title="true"><strong>{{ s.strategy_title }}</strong></p>
+      {% if s.strategy_body %}
+      <p data-strategy-body="true">{{ s.strategy_body }}</p>
+      {% endif %}
+      {% if s.strategy_explanation %}
+      <p class="ds-list__meta" data-strategy-why="true">Why · {{ s.strategy_explanation }}</p>
+      {% endif %}
+      {% if s.diagnostic_guidance %}
+      <p class="ds-list__meta" data-diagnostic-guidance="true">Focus · {{ s.diagnostic_guidance }}</p>
+      {% endif %}
+      {% if s.difficulty_guidance %}
+      <p class="ds-list__meta" data-difficulty-guidance="true">Pace · {{ s.difficulty_guidance }}</p>
+      {% endif %}
+      {% if s.effectiveness_feedback %}
+      <p class="ds-list__meta" data-effectiveness-feedback="true">Progress · {{ s.effectiveness_feedback }}</p>
+      {% endif %}
+      {% if s.strategy_spacing_guidance %}
+      <p class="ds-list__meta" data-strategy-spacing="true">{{ s.strategy_spacing_guidance }}</p>
+      {% endif %}
+      {% if s.strategy_confidence_guidance %}
+      <p class="ds-list__meta" data-strategy-confidence="true">{{ s.strategy_confidence_guidance }}</p>
+      {% endif %}
+    </section>
+    {% endif %}
+    {% if s.surface == 'complete' and s.tomorrow_preview %}
+    <p class="ds-list__meta" data-up-next="true" data-tomorrow-preview="true">{{ s.tomorrow_preview }}</p>
+    {% elif s.surface == 'complete' and s.next_recommendation %}
+    <p class="ds-list__meta" data-up-next="true">Up next · {{ s.next_recommendation }}</p>
+    {% endif %}
+    {% if s.surface == 'complete' %}
+    <p class="ds-list__meta">
+      <a href="{{ url_for('student.history') }}">Review past Sessions</a>
+      ·
+      <a href="{{ url_for('student.learning_journey') }}">My Learning Journey</a>
+      ·
+      <a href="{{ url_for('student.journey') }}">Syllabus map</a>
+    </p>
+    {% endif %}
+
     {% if s.feedback_outcome %}
-      {{ ds_feedback_block(s.feedback_outcome, explanation=s.feedback_explanation) }}
+      {{ ds_feedback_block(
+           s.feedback_outcome,
+           explanation=s.feedback_explanation,
+           next_hint=s.feedback_next_action
+         ) }}
+      {% if s.model_answer %}
+      <div class="ds-session-content__support" data-model-answer="true">
+        <p class="ds-list__meta">Model answer</p>
+        <p>{{ s.model_answer }}</p>
+      </div>
+      {% endif %}
+      {% if s.common_mistake %}
+      <div class="ds-session-content__support" data-common-mistake="true">
+        <p class="ds-list__meta">Common mistake</p>
+        <p>{{ s.common_mistake }}</p>
+      </div>
+      {% endif %}
     {% endif %}
 
     {% if s.content_body %}
+    {% if '\n' in s.content_body %}
+    <div class="ds-session-content__body">
+      {% for line in s.content_body.splitlines() %}
+      {% if line %}
+      <p>{{ line }}</p>
+      {% else %}
+      <br>
+      {% endif %}
+      {% endfor %}
+    </div>
+    {% else %}
     <p class="ds-session-content__body">{{ s.content_body }}</p>
+    {% endif %}
+    {% endif %}
+
+    {% if s.surface == 'overview' and s.learning_objectives %}
+    <ul class="ds-list" aria-label="Learning objectives">
+      {% for objective in s.learning_objectives %}
+      <li>{{ objective }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if s.educational_flow_label and s.surface == 'overview' %}
+    <p class="ds-list__meta">{{ s.educational_flow_label }}</p>
+    {% endif %}
+
+    {% if s.stage_label and s.surface == 'activity' %}
+    <p class="ds-list__meta" data-session-stage="{{ s.activity_type }}">
+      {{ s.stage_label }}
+    </p>
     {% endif %}
 
     {% if s.content_support and not (s.surface == 'activity' and s.feedback_outcome) %}
@@ -160,7 +329,45 @@
     </form>
   </div>
 
-  {% elif s.primary_kind == 'complete_form' and form %}
+  {% elif s.primary_kind == 'request_finish_form' %}
+  <div class="ds-primary-strip" role="group" aria-label="Primary actions">
+    <form method="post" action="{{ url_for('session.finish_start', session_id=s.session_id) }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <button class="ds-btn ds-btn--primary" type="submit" data-session-cta="primary">
+        {{ s.primary_label }}
+      </button>
+    </form>
+  </div>
+
+  {% elif s.primary_kind == 'finish_review_form' and form %}
+  <div class="ds-primary-strip ds-session-finish-review" role="group" aria-label="Finish review">
+    <form method="post" action="{{ url_for('session.finish', session_id=s.session_id) }}">
+      {{ form.hidden_tag() }}
+      {{ form.session_id() }}
+      <fieldset class="ds-session-finish-review__choices">
+        <legend class="ds-session-content__title">Did you complete today's planned study?</legend>
+        {% for value, label in form.completion_status.choices %}
+        <label class="ds-session-finish-review__option">
+          <input
+            type="radio"
+            name="{{ form.completion_status.name }}"
+            value="{{ value }}"
+            {% if form.completion_status.data == value %}checked{% endif %}
+            required
+          >
+          {{ label }}
+        </label>
+        {% endfor %}
+      </fieldset>
+      <label class="ds-session-answer__label" for="{{ form.notes.id }}">Optional notes</label>
+      {{ form.notes(class_="ds-textarea", rows="3", autocomplete="off") }}
+      <button class="ds-btn ds-btn--primary" type="submit" data-session-cta="primary">
+        {{ s.primary_label }}
+      </button>
+    </form>
+  </div>
+
+  {% elif s.primary_kind == 'complete_form' and form and s.surface != 'complete' %}
   <div class="ds-primary-strip" role="group" aria-label="Primary actions">
     <form method="post" action="{{ url_for('session.finish', session_id=s.session_id) }}">
       {{ form.hidden_tag() }}
@@ -173,6 +380,44 @@
       >{{ s.primary_label }}</button>
     </form>
   </div>
+
+  {% elif s.primary_kind == 'complete_form' %}
+  <div class="ds-primary-strip" role="group" aria-label="Primary actions">
+    {{ ds_button(s.primary_label, href=url_for('student.home'), variant='primary') }}
+  </div>
+  {% endif %}
+
+  {% if s.show_pause %}
+  <div class="ds-session-pause">
+    <form method="post" action="{{ url_for('session.pause', session_id=s.session_id) }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <input type="hidden" name="session_id" value="{{ s.session_id }}">
+      <button class="ds-btn ds-btn--ghost" type="submit" data-session-cta="pause">
+        Pause Session
+      </button>
+    </form>
+  </div>
+  {% endif %}
+
+  {% if s.checklist %}
+  <section class="ds-session-checklist" aria-labelledby="session-plan-checklist">
+    <h2 id="session-plan-checklist" class="ds-session-content__title">Session plan</h2>
+    <ul class="ds-list">
+      {% for item_id, label, done in s.checklist %}
+      <li class="ds-list__item">
+        <form method="post" action="{{ url_for('session.checklist', session_id=s.session_id) }}" class="ds-session-checklist__item">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <input type="hidden" name="session_id" value="{{ s.session_id }}">
+          <input type="hidden" name="item_id" value="{{ item_id }}">
+          <input type="hidden" name="done" value="{{ '0' if done else '1' }}">
+          <button type="submit" class="ds-btn ds-btn--ghost">
+            {% if done %}✓{% else %}○{% endif %} {{ label }}
+          </button>
+        </form>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
   {% endif %}
 
   {# ——— L2 Supporting disclosures ——— #}
@@ -180,20 +425,16 @@
     {{ ds_disclosure(item.title, body=item.body, open=item.open) }}
   {% endfor %}
 
-  {# ——— L3 Technical metadata ——— #}
-  {% if s.technical_lines %}
-  <details class="ds-disclosure">
-    <summary>Technical details</summary>
-    <div class="ds-disclosure__body">
-      {% for line in s.technical_lines %}
-      <p class="ds-list__meta">{{ line }}</p>
-      {% endfor %}
-    </div>
-  </details>
-  {% endif %}
-
   {# ——— Quiet Exit (secondary) ——— #}
   <div class="ds-session-exit">
+    {% if s.show_pause or s.exit_label == "Pause & Exit" %}
+    <form method="post" action="{{ url_for('session.pause', session_id=s.session_id) }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <input type="hidden" name="session_id" value="{{ s.session_id }}">
+      <button class="ds-btn ds-btn--ghost" type="submit">{{ s.exit_label }}</button>
+    </form>
+    {% else %}
     {{ ds_button(s.exit_label, href=s.exit_href, variant='ghost') }}
+    {% endif %}
   </div>
 </article>

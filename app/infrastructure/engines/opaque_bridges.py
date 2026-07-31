@@ -212,6 +212,9 @@ class SessionRuntimeOpaqueBridge:
         session_id: str,
         activity_id: str,
         response: str,
+        scored_correct: bool | None = None,
+        structured: bool = False,
+        score_payload: dict[str, Any] | None = None,
     ) -> dict[str, Any]:
         return {
             "student_id": student_id.strip(),
@@ -219,6 +222,8 @@ class SessionRuntimeOpaqueBridge:
             "activity_id": activity_id,
             "response_ack": True,
             "authority": "learning_session_runtime",
+            "scored_correct": scored_correct,
+            "structured": structured,
         }
 
     def complete_session_opaque(

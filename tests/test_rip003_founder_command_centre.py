@@ -365,11 +365,11 @@ class TestEducationalIsolation:
 @pytest.mark.usefixtures("ctx")
 class TestCommandCentreHttp:
     def test_founder_dashboard_access(self, founder_client):
-        response = founder_client.get("/console/feedback")
+        response = founder_client.get("/console/feedback/checkins")
         assert response.status_code == 200
         body = response.get_data(as_text=True)
         assert 'data-rip003-command-centre="1"' in body
-        assert "Feedback" in body
+        assert "Feedback" in body or "Product Check-in" in body
         assert "Inbox" in body
         # V1SP-001B: Feedback is triage-only; analysis blocks live elsewhere.
         assert "Internal Alpha Summary" not in body
@@ -377,7 +377,7 @@ class TestCommandCentreHttp:
     def test_legacy_research_founder_redirects(self, founder_client):
         response = founder_client.get("/research/founder", follow_redirects=False)
         assert response.status_code == 302
-        assert "/console/feedback" in response.headers["Location"]
+        assert "/console/feedback/checkins" in response.headers["Location"]
 
     def test_student_forbidden(self, client, app, user):
         app.config["FOUNDER_EMAILS"] = "founder@kwalitec.example"
@@ -393,7 +393,7 @@ class TestCommandCentreHttp:
     def test_workflow_action_via_http(self, founder_client, user, founder):
         submission = _submit_checkin(user.id)
         response = founder_client.post(
-            "/console/feedback",
+            "/console/feedback/checkins",
             data={
                 "action": "accept",
                 "submission_id": str(submission.id),
@@ -436,4 +436,4 @@ class TestCommandCentreHttp:
             follow_redirects=False,
         )
         assert response.status_code == 302
-        assert "/console/feedback" in response.location
+        assert "/console/feedback/checkins" in response.location

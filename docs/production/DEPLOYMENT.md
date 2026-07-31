@@ -49,9 +49,12 @@ Behind Render or another TLS-terminating proxy, set:
 TRUSTED_PROXY_HOPS=1
 PREFERRED_URL_SCHEME=https
 APP_ENV=production
+APP_URL=https://app.example.com   # canonical custom domain (or Render URL pre-cutover)
 ```
 
 `ProductionConfig` enables secure session/remember cookies and HSTS via security headers.
+
+Flask absolute URL generation during requests uses `ProxyFix` (`X-Forwarded-Proto` / `X-Forwarded-Host`). Configure the custom domain in the Render dashboard and set `APP_URL` to that origin so sitemap, robots.txt, and Open Graph tags stay on the preferred host. Full cutover steps: [CUSTOM_DOMAIN_CUTOVER.md](CUSTOM_DOMAIN_CUTOVER.md).
 
 ## Rollback
 

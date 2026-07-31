@@ -40,7 +40,9 @@ def test_home_has_decision_hierarchy(student_client):
     html = student_client.get("/student/").get_data(as_text=True)
     # SOP-001 command centre: mission-first, no legacy dashboard slots.
     assert (
-        "Today&#39;s Mission" in html
+        "Today&#39;s Session" in html
+        or "Today's Session" in html
+        or "Today&#39;s Mission" in html
         or "Continue Session" in html
         or "ds-mission-panel" in html
         or "ds-empty-operational" in html
@@ -50,11 +52,11 @@ def test_home_has_decision_hierarchy(student_client):
     assert 'data-dashboard-panel="quick-actions"' not in html
     assert 'data-dashboard-panel="readiness"' not in html
     assert 'data-dashboard-panel="coach"' not in html
-    assert "What should I do next?" in html
+    assert "What should I do next?" in html or "Where you stand" in html
 
 
 def test_home_has_no_kpi_readiness_on_surface(student_client):
-    """DX-005A: readiness % / countdown cards are not on Student Home."""
+    """DX-005A / KWP-002: no legacy KPI readiness panel; calm card allowed."""
     html = student_client.get("/student/").get_data(as_text=True)
     assert 'data-dashboard-panel="readiness"' not in html
     assert "student-panel-metric" not in html

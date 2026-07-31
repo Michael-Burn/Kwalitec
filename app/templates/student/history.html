@@ -17,18 +17,26 @@
 >
   <header class="ds-page-header">
     <h1 id="student-history-title" class="ds-page-header__title student-page-title">{{ page.shell.page_title }}</h1>
-    <p class="ds-page-header__support">What have I accomplished?</p>
+    <p class="ds-page-header__support">What have I accomplished? Review past Sessions, reflections, and learning trends.</p>
   </header>
 
   <section class="ds-os-archive-bridge" aria-labelledby="history-memory-bridge" data-educational-memory="history-bridge">
     <h2 id="history-memory-bridge" class="ds-visually-hidden">Archive and educational memory</h2>
     <p class="ds-list__meta" data-educational-memory="epistemology-bridge">
-      This archive holds practice evidence — sessions, study time, and readiness trends.
+      This archive holds your practice record — sessions, study time, and readiness trends.
       Educational meaning lives in the
-      <a href="{{ url_for('student.decision_journal') }}">Decision Journal</a>
+      <a href="{{ url_for('student.decision_journal') }}">Decision Journal</a>,
+      <a href="{{ url_for('student.educational_timeline') }}">Educational Timeline</a>,
       and
-      <a href="{{ url_for('student.educational_timeline') }}">Educational Timeline</a>.
+      <a href="{{ url_for('student.learning_journey') }}">My Learning Journey</a>.
     </p>
+    {% if page.history and page.history.learning_journey_teaser %}
+    <p class="ds-list__meta">
+      <a href="{{ page.history.learning_journey_href or url_for('student.learning_journey') }}">
+        {{ page.history.learning_journey_teaser }}
+      </a>
+    </p>
+    {% endif %}
   </section>
 
 {% if page.history %}
@@ -86,11 +94,11 @@
       </div>
     {% else %}
     {{ ds_empty_operational(
-      'Finish a Study Session and it will appear here as practice evidence.',
+      'Finish a Session and it will appear here in your practice record.',
       'Go to Home',
       url_for('student.home'),
       title='No sessions yet',
-      explanation='Finish a Study Session and it will appear here as practice evidence.',
+      explanation='Finish a Session and it will appear here in your practice record.',
       context='History is your accomplishment archive — not a second Home.'
     ) }}
     {% endif %}
@@ -145,11 +153,11 @@
 
 {% else %}
   {{ ds_empty_operational(
-    'Study time, readiness trends, and completed topics will appear here as practice evidence.',
+    'Study time, readiness trends, and completed topics will appear here in your practice record.',
     'Go to Home',
     url_for('student.home'),
     title='Your history starts with your first session',
-    explanation='Study time, readiness trends, and completed topics will appear here as practice evidence.',
+    explanation='Study time, readiness trends, and completed topics will appear here in your practice record.',
     context='History answers one question: what have I accomplished?'
   ) }}
 {% endif %}

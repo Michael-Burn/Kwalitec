@@ -37,9 +37,9 @@ def build_session_steps(
 ) -> tuple[SessionNavStep, ...]:
     """Build minimal linear progress steps for the session chrome.
 
-    CQ-002 / CR1: the happy path finishes from Summary → Home. Keep Complete
-    as a navigable surface, but omit it from the visible progress chrome so
-    students are not shown a phantom fifth step (PX-003 N16).
+    CQ-002 / CR1 / KWP-005: Finish Review lands on Sitting Report (Complete),
+    then Home. Keep Complete navigable but omit it from the visible progress
+    chrome so students are not shown a phantom fifth step (PX-003 N16).
     """
     resolved = SessionSurface(str(active).strip().lower())
     visible = tuple(

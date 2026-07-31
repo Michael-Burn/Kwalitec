@@ -19,6 +19,8 @@ class EducationalEventType(StrEnum):
     STUDENT_ENROLLED = "student_enrolled"
     STUDY_PLAN_INSTANTIATED = "study_plan_instantiated"
     MISSION_GENERATED = "mission_generated"
+    MISSION_ACCEPTED = "mission_accepted"  # SR-002a: session start
+    MISSION_DEFERRED = "mission_deferred"  # SR-002a: ILE-004 deferral
     MISSION_COMPLETED = "mission_completed"
     TOPIC_COMPLETED = "topic_completed"
     JOURNEY_ADVANCED = "journey_advanced"

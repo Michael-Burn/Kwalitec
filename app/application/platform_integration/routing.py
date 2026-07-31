@@ -1,8 +1,11 @@
-"""Runtime routing with auditable enrolment selection (PI-002A).
+"""Runtime routing with auditable enrolment selection (PI-002A / V1S-002).
 
-Runtime A (JSON bundled) remains the default. Runtime C (published
-curriculum) is selected only when feature flags and routing rules allow.
-Every decision is persisted for audit.
+Runtime A (JSON bundled) remains the default for non-dogfood subjects.
+Runtime C (published curriculum) is selected when feature flags and
+routing rules allow. V1S-002 unions dogfood subjects (CS1/CB2/CM1) into
+the Runtime C allowlist whenever enrolment is enabled so each dogfood
+subject has exactly one student curriculum authority when a published
+package is active. Every decision is persisted for audit.
 """
 
 from __future__ import annotations
@@ -25,7 +28,9 @@ from app.application.platform_integration.dto import (
     RoutingDecision,
 )
 from app.application.platform_integration.flags import (
+    DOGFOOD_CURRICULUM_SUBJECTS,
     FounderStudentBridgeFlags,
+    effective_runtime_c_allowlist,
     resolve_founder_student_bridge_flags,
 )
 from app.extensions import db
@@ -62,13 +67,15 @@ class RuntimeRoutingService:
         Rules (in order):
         1. Runtime C enrolment flag must be ON — otherwise always Runtime A.
         2. An active published package must exist for the subject.
-        3. Category is ``Published``, OR subject is on the Runtime C allowlist.
+        3. Category is ``Published``, OR subject is on the effective Runtime C
+           allowlist (explicit allowlist ∪ dogfood subjects when enrolment on).
         4. Otherwise Runtime A (JSON bundled) remains authoritative.
         """
         flags = self._resolve_flags()
         code = (subject_code or "").strip().upper()
         category = (category_code or "").strip()
         package = self._authority.get_active(code) if code else None
+        allowlist = effective_runtime_c_allowlist(flags)
         flags_snapshot = {
             "ENABLE_PUBLISHED_SUBJECT_DISCOVERY": (
                 flags.ENABLE_PUBLISHED_SUBJECT_DISCOVERY
@@ -77,6 +84,7 @@ class RuntimeRoutingService:
             "RUNTIME_C_SUBJECT_ALLOWLIST": sorted(
                 flags.RUNTIME_C_SUBJECT_ALLOWLIST
             ),
+            "EFFECTIVE_RUNTIME_C_ALLOWLIST": sorted(allowlist),
         }
 
         if not flags.ENABLE_RUNTIME_C_ENROLMENT:
@@ -113,14 +121,19 @@ class RuntimeRoutingService:
 
         identity = f"{code}:{package.version_label}"
         from_published_category = category == PUBLISHED_CATEGORY_CODE
-        on_allowlist = code in flags.RUNTIME_C_SUBJECT_ALLOWLIST
+        on_allowlist = code in allowlist
+        dogfood_cutover = (
+            code in DOGFOOD_CURRICULUM_SUBJECTS
+            and code not in flags.RUNTIME_C_SUBJECT_ALLOWLIST
+        )
 
         if from_published_category or on_allowlist:
-            reason = (
-                "published_category_selection"
-                if from_published_category
-                else "subject_allowlist"
-            )
+            if from_published_category:
+                reason = "published_category_selection"
+            elif dogfood_cutover:
+                reason = "dogfood_curriculum_cutover"
+            else:
+                reason = "subject_allowlist"
             return RoutingDecision(
                 subject_code=code,
                 category_code=category,

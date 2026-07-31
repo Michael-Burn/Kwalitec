@@ -18,6 +18,7 @@ import logging
 from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import date
+from typing import TYPE_CHECKING
 
 from app.extensions import db
 from app.models.learning import StudyAttempt
@@ -26,6 +27,11 @@ from app.models.study_plan import StudyPlan
 from app.services.educational_evidence_authority import EducationalEvidenceAuthority
 from app.services.learning_service import LearningService
 from app.services.mission_service import MissionService
+
+if TYPE_CHECKING:
+    from app.services.educational_explainability_service import (
+        StudySessionFeedbackNarrative,
+    )
 
 logger = logging.getLogger(__name__)
 

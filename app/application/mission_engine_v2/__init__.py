@@ -1,5 +1,11 @@
 """Version 2 Mission Engine 2.0 — application-layer orchestration.
 
+**V1S-002 status: ARCHIVE** — unwired from student production spine.
+Zero non-test consumers under ``app/presentation`` or ``app/services``.
+Student mission authority is ``EducationalRuntimeEngineService`` +
+``CertifiedMissionEngine`` + ``StudentRuntimeCoordinator``.
+Do not import this package into student Home / session paths.
+
 Composes Daily Mission commitments from Version 2 educational services.
 Owns mission creation, scheduling, lifecycle, and dashboard-ready DTOs.
 Does NOT own educational reasoning.
@@ -15,6 +21,10 @@ Prefer explicit imports such as
 from __future__ import annotations
 
 from typing import Any
+
+# V1S-002 — package disposition for runtime ownership registry.
+V1S002_DISPOSITION = "ARCHIVE"
+V1S002_STUDENT_SPINE = False
 
 __all__ = [
     "ActiveMissionExists",

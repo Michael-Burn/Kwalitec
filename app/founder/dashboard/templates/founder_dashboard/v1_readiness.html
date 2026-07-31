@@ -1,0 +1,512 @@
+{% extends "founder_dashboard/base.html" %}
+
+{% block console_content %}
+<section class="section-header founder-header">
+    <p class="section-eyebrow">{{ kwalitec_console_label }} / Version 1 Readiness</p>
+    <h1 class="section-title">Version 1 Readiness</h1>
+    <p class="section-description">{{ snapshot.claim }}</p>
+</section>
+
+<section class="mb-4" aria-label="Overall status">
+    <div class="command-card">
+        <div class="command-card-body">
+            <p class="mb-1"><strong>Programme:</strong> {{ snapshot.programme }}</p>
+            <p class="mb-1"><strong>Status:</strong> {{ snapshot.overall_status }}</p>
+            <p class="mb-0">{{ snapshot.recommendation }}</p>
+        </div>
+    </div>
+</section>
+
+<section class="mb-4" aria-label="Readiness dimensions">
+    <h2 class="h6 mb-3">Dimensions</h2>
+    {% for dim in snapshot.dimensions %}
+    <div class="command-card mb-3">
+        <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">{{ dim.name }}</h3>
+            <span class="text-muted">{{ dim.status }} · {{ dim.score }}/100</span>
+        </div>
+        <div class="command-card-body">
+            <p class="mb-2">{{ dim.summary }}</p>
+            {% if dim.blockers %}
+            <ul class="mb-0">
+                {% for blocker in dim.blockers %}
+                <li>{{ blocker }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<section class="mb-4" aria-label="Learning Friction">
+    <h2 class="h6 mb-3">Learning Friction</h2>
+    <div class="command-card mb-3">
+        <div class="command-card-body">
+            <p class="mb-1">
+                <strong>Package readiness (CS1):</strong>
+                {% if snapshot.package_readiness.ready %}
+                READY · {{ snapshot.package_readiness.routing_reason }}
+                {% else %}
+                NOT READY · {{ snapshot.package_readiness.reason }}
+                {% endif %}
+            </p>
+            <p class="mb-1">
+                <strong>Open Friction:</strong>
+                {{ snapshot.learning_friction_open|length }}
+                ·
+                <strong>Resolved Friction:</strong>
+                {{ snapshot.learning_friction_resolved|length }}
+            </p>
+            <p class="mb-0">
+                <strong>Dogfood metrics:</strong>
+                {{ snapshot.dogfood_metrics.sittings }} sittings ·
+                {{ snapshot.dogfood_metrics.total_minutes }} min ·
+                live days {{ snapshot.dogfood_metrics.live_days|default(0) }} ·
+                avg confidence {{ snapshot.dogfood_metrics.avg_confidence }}/5 ·
+                avg confusion {{ snapshot.dogfood_metrics.avg_confusion }}/5 ·
+                workarounds {{ snapshot.dogfood_metrics.total_workarounds }}
+            </p>
+        </div>
+    </div>
+    <div class="command-card mb-3">
+        <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">Confidence Trend</h3>
+        </div>
+        <div class="command-card-body">
+            <ul class="mb-0">
+                {% for line in snapshot.dogfood_confidence_trend %}
+                <li>{{ line }}</li>
+                {% else %}
+                <li>No sittings recorded yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="command-card mb-3">
+        <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">Motivation Trend</h3>
+        </div>
+        <div class="command-card-body">
+            <ul class="mb-0">
+                {% for line in snapshot.dogfood_motivation_trend %}
+                <li>{{ line }}</li>
+                {% else %}
+                <li>No sittings recorded yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="command-card mb-3">
+        <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">Completion Trend</h3>
+        </div>
+        <div class="command-card-body">
+            <ul class="mb-0">
+                {% for line in snapshot.dogfood_completion_trend %}
+                <li>{{ line }}</li>
+                {% else %}
+                <li>No sittings recorded yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="command-card mb-3">
+        <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">Study Consistency</h3>
+        </div>
+        <div class="command-card-body">
+            <ul class="mb-0">
+                {% for line in snapshot.dogfood_study_consistency %}
+                <li>{{ line }}</li>
+                {% else %}
+                <li>No live study days yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="command-card mb-3">
+        <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">Learning Friction Trend</h3>
+        </div>
+        <div class="command-card-body">
+            <ul class="mb-0">
+                {% for line in snapshot.dogfood_friction_trend %}
+                <li>{{ line }}</li>
+                {% else %}
+                <li>No friction trend yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <h3 class="h6 mb-2">Open Friction</h3>
+    {% for issue in snapshot.learning_friction_open %}
+    <div class="command-card mb-3">
+        <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">{{ issue.issue_id }} · {{ issue.title }}</h3>
+            <span class="text-muted">{{ issue.finding_class }} · {{ issue.priority }}</span>
+        </div>
+        <div class="command-card-body">
+            <p class="mb-0">{{ issue.summary }}</p>
+        </div>
+    </div>
+    {% else %}
+    <div class="command-card mb-3">
+        <div class="command-card-body"><p class="mb-0">No open learning friction.</p></div>
+    </div>
+    {% endfor %}
+    <h3 class="h6 mb-2">Resolved Friction</h3>
+    {% for item in snapshot.learning_friction_resolved %}
+    <div class="command-card mb-3">
+        <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">{{ item.issue_id }} · {{ item.title }}</h3>
+        </div>
+        <div class="command-card-body">
+            <p class="mb-1"><strong>Before:</strong> {{ item.before }}</p>
+            <p class="mb-1"><strong>After:</strong> {{ item.after }}</p>
+            <p class="mb-1"><strong>Student benefit:</strong> {{ item.student_benefit }}</p>
+            <p class="mb-0 text-muted"><code>{{ item.evidence }}</code></p>
+        </div>
+    </div>
+    {% else %}
+    <div class="command-card mb-3">
+        <div class="command-card-body"><p class="mb-0">No resolved friction records yet.</p></div>
+    </div>
+    {% endfor %}
+</section>
+
+<section class="mb-4" aria-label="Dogfood Progress">
+    <h2 class="h6 mb-3">Dogfood Progress</h2>
+    <div class="command-card mb-3">
+        <div class="command-card-body">
+            <p class="mb-0">{{ snapshot.dogfood_progress_summary }}</p>
+        </div>
+    </div>
+    {% for entry in snapshot.dogfood_progress %}
+    <div class="command-card mb-3">
+        <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">{{ entry.study_date }} · {{ entry.subject }}</h3>
+            <span class="text-muted">{{ entry.time_spent_minutes }} min · {{ entry.evidence_kind }}</span>
+        </div>
+        <div class="command-card-body">
+            <p class="mb-2"><strong>Mission:</strong> {{ entry.mission_completed }}</p>
+            {% if entry.points_of_confusion %}
+            <p class="mb-1"><strong>Confusion</strong></p>
+            <ul class="mb-2">{% for item in entry.points_of_confusion %}<li>{{ item }}</li>{% endfor %}</ul>
+            {% endif %}
+            {% if entry.navigation_friction %}
+            <p class="mb-1"><strong>Navigation friction</strong></p>
+            <ul class="mb-2">{% for item in entry.navigation_friction %}<li>{{ item }}</li>{% endfor %}</ul>
+            {% endif %}
+            {% if entry.unexpected_behaviour %}
+            <p class="mb-1"><strong>Unexpected behaviour</strong></p>
+            <ul class="mb-2">{% for item in entry.unexpected_behaviour %}<li>{{ item }}</li>{% endfor %}</ul>
+            {% endif %}
+            {% if entry.workaround_reasons %}
+            <p class="mb-1"><strong>Workaround reasons</strong></p>
+            <ul class="mb-2">{% for item in entry.workaround_reasons %}<li>{{ item }}</li>{% endfor %}</ul>
+            {% endif %}
+            {% if entry.four_question_notes %}
+            <p class="mb-1"><strong>Validation</strong></p>
+            <ul class="mb-2">{% for item in entry.four_question_notes %}<li>{{ item }}</li>{% endfor %}</ul>
+            {% endif %}
+            {% if entry.suggestions %}
+            <p class="mb-1"><strong>Suggestions</strong></p>
+            <ul class="mb-0">{% for item in entry.suggestions %}<li>{{ item }}</li>{% endfor %}</ul>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<section class="mb-4" aria-label="Surface audit">
+    <h2 class="h6 mb-3">Validation Audit (surfaces)</h2>
+    {% for entry in snapshot.surface_audit %}
+    <div class="command-card mb-3">
+        <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">{{ entry.surface }}</h3>
+            <span class="text-muted">{{ entry.verdict }}</span>
+        </div>
+        <div class="command-card-body">
+            <p class="mb-1">{{ entry.summary }}</p>
+            <p class="mb-0 text-muted"><code>{{ entry.evidence }}</code></p>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<section class="mb-4" aria-label="Product ratings">
+    <h2 class="h6 mb-3">Product Review</h2>
+    {% for rating in snapshot.product_ratings %}
+    <div class="command-card mb-3">
+        <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">{{ rating.area }}</h3>
+            <span class="text-muted">{{ rating.score }}/5</span>
+        </div>
+        <div class="command-card-body">
+            <p class="mb-0">{{ rating.summary }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<section class="mb-4" aria-label="Validation Issues">
+    <h2 class="h6 mb-3">Validation Issues</h2>
+    <p class="text-muted mb-3">
+        {% for klass, count in snapshot.validation_issue_counts.items()|sort %}
+        <span class="me-3"><code>{{ klass }}</code>: {{ count }}</span>
+        {% endfor %}
+    </p>
+    {% for issue in snapshot.outstanding_issues %}
+    <div class="command-card mb-3">
+        <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">{{ issue.issue_id }} · {{ issue.title }}</h3>
+            <span class="text-muted">{{ issue.finding_class }} · {{ issue.priority }} · {{ issue.status }}</span>
+        </div>
+        <div class="command-card-body">
+            <p class="mb-1"><strong>Surface:</strong> {{ issue.surface }}</p>
+            <p class="mb-1">{{ issue.summary }}</p>
+            <p class="mb-1 text-muted"><code>{{ issue.evidence }}</code></p>
+            <p class="mb-0"><strong>Recommendation:</strong> {{ issue.recommendation }}</p>
+        </div>
+    </div>
+    {% else %}
+    <div class="command-card mb-3">
+        <div class="command-card-body"><p class="mb-0">No outstanding validation issues.</p></div>
+    </div>
+    {% endfor %}
+</section>
+
+<section class="mb-4" aria-label="Educational Improvements">
+    <h2 class="h6 mb-3">Educational Improvements</h2>
+    {% for item in snapshot.educational_improvements %}
+    <div class="command-card mb-3">
+        <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">{{ item.improvement_id }} · {{ item.question }}</h3>
+            <span class="text-muted">{{ item.priority }} · {{ item.status }}</span>
+        </div>
+        <div class="command-card-body">
+            <p class="mb-1"><strong>Gap:</strong> {{ item.gap }}</p>
+            <p class="mb-0"><strong>Recommendation:</strong> {{ item.recommendation }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<section class="mb-4" aria-label="Resolved Issues">
+    <h2 class="h6 mb-3">Resolved Issues</h2>
+    {% for issue in snapshot.resolved_issues %}
+    <div class="command-card mb-3">
+        <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">{{ issue.issue_id }} · {{ issue.title }}</h3>
+            <span class="text-muted">{{ issue.finding_class }} · {{ issue.status }}</span>
+        </div>
+        <div class="command-card-body">
+            <p class="mb-0">{{ issue.summary }}</p>
+        </div>
+    </div>
+    {% else %}
+    <div class="command-card mb-3">
+        <div class="command-card-body"><p class="mb-0">No resolved dogfood issues yet.</p></div>
+    </div>
+    {% endfor %}
+</section>
+
+<section class="mb-4" aria-label="Outstanding Issues">
+    <h2 class="h6 mb-3">Outstanding Issues</h2>
+    <div class="command-card mb-3">
+        <div class="command-card-body">
+            <ul class="mb-0">
+                {% for issue in snapshot.outstanding_issues %}
+                <li><code>{{ issue.issue_id }}</code> [{{ issue.priority }}] {{ issue.title }}</li>
+                {% else %}
+                <li>None</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="mb-4" aria-label="Repository Health">
+    <h2 class="h6 mb-3">Repository Health</h2>
+    <div class="command-card mb-3">
+        <div class="command-card-body">
+            <p class="mb-2">{{ snapshot.repository_health_summary }}</p>
+            <p class="mb-0">
+                {% for status, count in snapshot.lifecycle_counts.items()|sort %}
+                <span class="text-muted me-3"><code>{{ status }}</code>: {{ count }}</span>
+                {% endfor %}
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="mb-4" aria-label="Package Lifecycle">
+    <h2 class="h6 mb-3">Package Lifecycle (application)</h2>
+    <p class="text-muted mb-3">
+        Full registry includes top-level, domain, and src/ trees
+        ({{ snapshot.package_lifecycle|length }} entries).
+        Application packages shown below.
+    </p>
+    {% for entry in snapshot.application_packages %}
+    <div class="command-card mb-3">
+        <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0"><code>{{ entry.path }}</code></h3>
+            <span class="text-muted">{{ entry.lifecycle }} · {{ entry.recommendation }}</span>
+        </div>
+        <div class="command-card-body">
+            <p class="mb-1"><strong>Owner:</strong> {{ entry.owner }}</p>
+            <p class="mb-1"><strong>Responsibility:</strong> {{ entry.responsibility }}</p>
+            <p class="mb-0">{{ entry.notes }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<section class="mb-4" aria-label="Engineering Quality">
+    <h2 class="h6 mb-3">Engineering Quality</h2>
+    {% for metric in snapshot.engineering_quality %}
+    <div class="command-card mb-3">
+        <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">{{ metric.name }}</h3>
+            <span class="text-muted">{{ metric.status }} · {{ metric.score }}/100</span>
+        </div>
+        <div class="command-card-body">
+            <p class="mb-2">{{ metric.summary }}</p>
+            {% if metric.actions %}
+            <ul class="mb-0">
+                {% for action in metric.actions %}
+                <li>{{ action }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<section class="mb-4" aria-label="Code Debt">
+    <h2 class="h6 mb-3">Code Debt</h2>
+    {% for debt in snapshot.code_debt %}
+    <div class="command-card mb-3">
+        <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">{{ debt.item }}</h3>
+            <span class="text-muted">{{ debt.category }} · {{ debt.severity }}</span>
+        </div>
+        <div class="command-card-body">
+            <p class="mb-1"><strong>Owner:</strong> {{ debt.owner }}</p>
+            <p class="mb-0"><strong>Recommendation:</strong> {{ debt.recommendation }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<section class="mb-4" aria-label="Curriculum Authority">
+    <h2 class="h6 mb-3">Curriculum Authority</h2>
+    {% for entry in snapshot.curriculum_authority %}
+    <div class="command-card mb-3">
+        <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">{{ entry.capability }}</h3>
+            <span class="text-muted">{{ entry.status }}</span>
+        </div>
+        <div class="command-card-body">
+            <p class="mb-1"><strong>Owner:</strong> {{ entry.owner }}</p>
+            <p class="mb-1"><code>{{ entry.entry_point }}</code></p>
+            <p class="mb-0">{{ entry.notes }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<section class="mb-4" aria-label="Mission Runtime">
+    <h2 class="h6 mb-3">Mission Runtime</h2>
+    <div class="command-card mb-3">
+        <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">Single mission spine</h3>
+        </div>
+        <div class="command-card-body">
+            <ol class="mb-0">
+                {% for step in snapshot.mission_spine %}
+                <li><code>{{ step }}</code></li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+    {% for entry in snapshot.mission_runtime %}
+    <div class="command-card mb-3">
+        <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">{{ entry.capability }}</h3>
+            <span class="text-muted">{{ entry.status }}</span>
+        </div>
+        <div class="command-card-body">
+            <p class="mb-1"><strong>Owner:</strong> {{ entry.owner }}</p>
+            <p class="mb-1"><code>{{ entry.entry_point }}</code></p>
+            <p class="mb-0">{{ entry.notes }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<section class="mb-4" aria-label="Runtime Ownership">
+    <h2 class="h6 mb-3">Runtime Ownership</h2>
+    {% for entry in snapshot.runtime_ownership %}
+    <div class="command-card mb-3">
+        <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">{{ entry.capability }}</h3>
+            <span class="text-muted">{{ entry.status }}</span>
+        </div>
+        <div class="command-card-body">
+            <p class="mb-1"><strong>Owner:</strong> {{ entry.owner }}</p>
+            <p class="mb-1"><code>{{ entry.entry_point }}</code></p>
+            <p class="mb-0">{{ entry.notes }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<section class="mb-4" aria-label="Technical debt register">
+    <h2 class="h6 mb-3">Technical debt (runtime-owned)</h2>
+    {% for debt in snapshot.technical_debt %}
+    <div class="command-card mb-3">
+        <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">{{ debt.item }}</h3>
+            <span class="text-muted">{{ debt.disposition }} · {{ debt.severity }}</span>
+        </div>
+        <div class="command-card-body">
+            <p class="mb-1"><strong>Owner:</strong> {{ debt.owner }}</p>
+            <p class="mb-0"><strong>Gate:</strong> {{ debt.gate }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<section class="mb-4" aria-label="Remaining blockers">
+    <div class="command-card">
+        <div class="command-card-header">
+            <h2 class="command-card-title h6 mb-0">Remaining blockers</h2>
+        </div>
+        <div class="command-card-body">
+            <ul class="mb-0">
+                {% for blocker in snapshot.remaining_blockers %}
+                <li>{{ blocker }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="mb-4" aria-label="Evidence">
+    <div class="command-card">
+        <div class="command-card-header">
+            <h2 class="command-card-title h6 mb-0">Evidence</h2>
+        </div>
+        <div class="command-card-body">
+            <ul class="mb-0">
+                {% for path in snapshot.evidence_paths %}
+                <li><code>{{ path }}</code></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+{% endblock %}

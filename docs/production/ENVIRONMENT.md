@@ -18,12 +18,23 @@ Copy `.env.example` to `.env` for local development. Production hosts inject sec
 
 | Variable | Purpose |
 |---|---|
+| `APP_URL` | Canonical public origin (`https://app.example.com`) for sitemap, robots.txt, and OG/canonical absolute URLs |
 | `FOUNDER_EMAILS` | Legacy bootstrap allowlist (comma-separated). Prefer durable RBAC roles; allowlist syncs Founder on access when matched |
 | `TRUSTED_PROXY_HOPS=1` | Enable `ProxyFix` behind one reverse proxy |
-| `PREFERRED_URL_SCHEME=https` | URL generation behind TLS termination |
+| `PREFERRED_URL_SCHEME=https` | URL generation behind TLS termination (also inferred from `APP_URL` when unset) |
 | `KWALITEC_GIT_COMMIT` / `RENDER_GIT_COMMIT` | Deploy fingerprint in `/health` |
 | `KWALITEC_BUILD_NUMBER` / `KWALITEC_BUILD_DATE` | Operator-visible build metadata |
 | `KWALITEC_SUPPORT_CONTACT` | Support contact surfaced in UI |
+
+## Custom domain (optional)
+
+| Variable | Purpose |
+|---|---|
+| `APP_URL` | Preferred public HTTPS origin after DNS cutover |
+| `SERVER_NAME` | Optional Flask host for offline `url_for(_external=True)`. **Leave unset** on Render while both `*.onrender.com` and the custom domain serve traffic |
+| `SESSION_COOKIE_DOMAIN` | Optional cookie Domain. **Leave unset** for host-only cookies on a single hostname; set `.example.com` only when sharing across subdomains |
+
+See [CUSTOM_DOMAIN_CUTOVER.md](CUSTOM_DOMAIN_CUTOVER.md).
 
 ## Database pool (PostgreSQL)
 

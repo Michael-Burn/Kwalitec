@@ -3,6 +3,10 @@
 Safe defaults keep Runtime A as the sole live enrolment path. Runtime C
 discovery and enrolment are additive and must be enabled explicitly via
 environment variables — no code change required for rollout.
+
+V1S-002: when Runtime C enrolment is enabled, dogfood subjects
+(CS1 / CB2 / CM1) are always eligible for published-curriculum routing
+so each dogfood subject has one student curriculum authority.
 """
 
 from __future__ import annotations
@@ -11,6 +15,9 @@ import os
 from dataclasses import dataclass
 
 _TRUTHY = frozenset({"1", "true", "yes", "on"})
+
+# Version 1 dogfood cohort — prefer published curriculum when packages exist.
+DOGFOOD_CURRICULUM_SUBJECTS: frozenset[str] = frozenset({"CS1", "CB2", "CM1"})
 
 
 def _env_truthy(name: str, *, environ: dict[str, str] | None = None) -> bool:
@@ -40,8 +47,9 @@ class FounderStudentBridgeFlags:
         ENABLE_RUNTIME_C_ENROLMENT: Allow enrolment against Runtime C for
             subjects that routing selects.
         RUNTIME_C_SUBJECT_ALLOWLIST: Optional subject codes that may route
-            to Runtime C even when selected from the legacy catalogue
-            (empty = only the Published category routes to Runtime C).
+            to Runtime C even when selected from the legacy catalogue.
+            Dogfood subjects are always unioned when enrolment is enabled
+            (see :func:`effective_runtime_c_allowlist`).
     """
 
     ENABLE_PUBLISHED_SUBJECT_DISCOVERY: bool = False
@@ -55,6 +63,25 @@ class FounderStudentBridgeFlags:
             self.ENABLE_PUBLISHED_SUBJECT_DISCOVERY
             or self.ENABLE_RUNTIME_C_ENROLMENT
         )
+
+    @property
+    def effective_allowlist(self) -> frozenset[str]:
+        """Runtime C allowlist including V1S-002 dogfood cutover subjects."""
+        return effective_runtime_c_allowlist(self)
+
+
+def effective_runtime_c_allowlist(
+    flags: FounderStudentBridgeFlags,
+) -> frozenset[str]:
+    """Allowlist used for Runtime C routing decisions.
+
+    When Runtime C enrolment is on, dogfood subjects are unioned so IFoA
+    catalogue selections for CS1/CB2/CM1 route to published packages
+    (V1S-002 curriculum authority cutover).
+    """
+    if not flags.ENABLE_RUNTIME_C_ENROLMENT:
+        return flags.RUNTIME_C_SUBJECT_ALLOWLIST
+    return flags.RUNTIME_C_SUBJECT_ALLOWLIST | DOGFOOD_CURRICULUM_SUBJECTS
 
 
 def resolve_founder_student_bridge_flags(

@@ -78,9 +78,11 @@ def test_format_readiness_percent(value, expected):
     ("delta", "fallback", "expected"),
     [
         (None, "", ""),
-        (0.03, "", "About 3% readiness gain"),
+        (0.03, "", "A meaningful readiness lift"),
         (None, "Custom benefit", "Custom benefit"),
-        (3.0, "", "About 3% readiness gain"),
+        (3.0, "", "A meaningful readiness lift"),
+        (0.01, "", "A small readiness lift"),
+        (0.12, "", "A strong readiness lift"),
     ],
 )
 def test_format_benefit(delta, fallback, expected):
@@ -136,6 +138,7 @@ def test_home_vm_primary_cta():
     assert vm.recommendation.has_recommendation is True
     assert vm.countdown.has_countdown is True
     assert vm.readiness.readiness_percent_label == "62%"
+    assert vm.readiness.readiness_label == "Ready for Revision"
     assert "25" in vm.estimated_study_label
     assert "Revision session" in vm.journey_story
     assert "improving" in vm.readiness.trend_label.lower()

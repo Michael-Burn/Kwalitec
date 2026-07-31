@@ -1,0 +1,198 @@
+{
+  "programme": "RCV-002",
+  "mode": "resume_from_step2",
+  "finished_at": "2026-07-30T12:31:18Z",
+  "duration_s": 1159.24,
+  "comparison": {
+    "generation_chains": {
+      "before": 1,
+      "after": 1
+    },
+    "generation_snapshots": {
+      "before": 0,
+      "after": 12
+    },
+    "educational_nodes": {
+      "before": 0,
+      "after": 3762
+    },
+    "certification_records": {
+      "before": 0,
+      "after": 2
+    },
+    "published_package": {
+      "before": {
+        "id": 1,
+        "version_label": "2026.1",
+        "is_active": true,
+        "published_by": "1",
+        "has_certification": false,
+        "certification": null,
+        "sections": 7,
+        "topics": 117,
+        "objectives": 0,
+        "source": null,
+        "curriculum_authority": null
+      },
+      "after": {
+        "id": 1,
+        "version_label": "2026.1",
+        "is_active": true,
+        "published_by": "rcv002",
+        "has_certification": true,
+        "certification": {
+          "authority": "certified_snapshot",
+          "chain_id": "ei-chain-ws-cs1",
+          "snapshot_id": "snap-b8a3d3ea939763d5",
+          "status": "CERTIFIED_WITH_WARNINGS"
+        },
+        "sections": 5,
+        "topics": 15,
+        "objectives": 73,
+        "source": "certified_snapshot"
+      }
+    },
+    "foundation_structure": {
+      "before": {
+        "id": 1,
+        "version_label": "2026.1",
+        "publication_state": "published",
+        "sections": 7,
+        "topics": 117,
+        "objectives": 0,
+        "source": null,
+        "curriculum_authority": null
+      },
+      "after": {
+        "id": 1,
+        "version_label": "2026.1",
+        "publication_state": "published",
+        "sections": 5,
+        "topics": 15,
+        "objectives": 73,
+        "source": "certified_snapshot"
+      }
+    },
+    "curriculum_counts": {
+      "before": {
+        "sections": 7,
+        "topics": 117,
+        "objectives": 0
+      },
+      "after": {
+        "sections": 5,
+        "topics": 15,
+        "objectives": 73
+      },
+      "local_parity_target": {
+        "sections": 5,
+        "topics": 15,
+        "objectives": 73
+      },
+      "parity_met": true
+    }
+  },
+  "blockers": {
+    "step1_g1_g7": true,
+    "step2_calibration": true,
+    "step3_cert_artefacts": true,
+    "step4_publish": true,
+    "step5_package_nonempty": true,
+    "step5_local_parity_5_15_73": true,
+    "step6_begin_learning": true,
+    "step7_regression": true
+  },
+  "timeline": [
+    {
+      "stage": "resume_precheck",
+      "ok": true,
+      "t_s": 18.22,
+      "timestamp": "2026-07-30T12:12:17Z",
+      "ei_generation_chains": 1,
+      "ei_generations": 7,
+      "ei_generation_snapshots": 7,
+      "ei_educational_nodes": 2204,
+      "ei_certification_records": 1,
+      "ei_calibration_profiles": 1,
+      "runtime_enrolments": 0,
+      "workspace": {
+        "certification_status": "CERTIFIED_WITH_WARNINGS",
+        "certified_snapshot_id": "snap-d81dc82a5b4ddb8a",
+        "active_chain_id": "ei-chain-ws-cs1"
+      }
+    },
+    {
+      "stage": "step2_calibration_recert",
+      "ok": true,
+      "t_s": 1065.98,
+      "timestamp": "2026-07-30T12:29:44Z",
+      "post_cal_certification": "CERTIFIED_WITH_WARNINGS",
+      "generations_rerun": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "duration_s": 1046.42
+    },
+    {
+      "stage": "step3_certification_artefacts",
+      "ok": true,
+      "t_s": 1069.6,
+      "timestamp": "2026-07-30T12:29:48Z",
+      "ei_generation_chains": 1,
+      "ei_generations": 12,
+      "ei_generation_snapshots": 12,
+      "ei_educational_nodes": 3762,
+      "ei_certification_records": 2,
+      "ei_calibration_profiles": 3,
+      "runtime_enrolments": 0,
+      "workspace": {
+        "certification_status": "CERTIFIED_WITH_WARNINGS",
+        "certified_snapshot_id": "snap-b8a3d3ea939763d5",
+        "active_chain_id": "ei-chain-ws-cs1"
+      }
+    },
+    {
+      "stage": "step4_publish",
+      "ok": true,
+      "t_s": 1103.62,
+      "timestamp": "2026-07-30T12:30:22Z",
+      "package_id": 1,
+      "version_label": "2026.1",
+      "duration_s": 34.02
+    },
+    {
+      "stage": "step5_package_verify",
+      "ok": true,
+      "t_s": 1105.34,
+      "timestamp": "2026-07-30T12:30:24Z",
+      "sections": 5,
+      "topics": 15,
+      "objectives": 73,
+      "has_certification": true,
+      "source": "certified_snapshot",
+      "local_parity_5_15_73": true
+    },
+    {
+      "stage": "step6_begin_learning",
+      "ok": true,
+      "t_s": 1120.28,
+      "timestamp": "2026-07-30T12:30:39Z",
+      "derive_ok": true,
+      "enrol_ok": true,
+      "mission_ok": true
+    },
+    {
+      "stage": "step7_regression",
+      "ok": true,
+      "t_s": 1156.04,
+      "timestamp": "2026-07-30T12:31:15Z",
+      "certified_preview_loaded": true,
+      "observatory_ok": true
+    }
+  ],
+  "issues": [],
+  "decision": "RECOVERY COMPLETE"
+}

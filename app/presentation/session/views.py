@@ -118,6 +118,30 @@ def begin_session(*, session_id: str) -> OverviewSnapshot:
     return service().begin_session(student_id(), session_id=session_id)
 
 
+def pause_session(*, session_id: str) -> OverviewSnapshot:
+    assert_session_owned(session_id)
+    return service().pause_session(student_id(), session_id=session_id)
+
+
+def resume_session(*, session_id: str) -> OverviewSnapshot:
+    assert_session_owned(session_id)
+    return service().resume_session(student_id(), session_id=session_id)
+
+
+def update_checklist(
+    *, session_id: str, item_id: str, done: bool
+) -> OverviewSnapshot:
+    assert_session_owned(session_id)
+    return service().update_checklist(
+        student_id(), session_id=session_id, item_id=item_id, done=done
+    )
+
+
+def request_finish(*, session_id: str) -> CompletionSnapshot:
+    assert_session_owned(session_id)
+    return service().request_finish(student_id(), session_id=session_id)
+
+
 def submit_answer(
     *, session_id: str, activity_id: str, response: str
 ) -> ActivitySnapshot:
@@ -150,21 +174,34 @@ def continue_reflection(
     )
 
 
-def complete_and_return(*, session_id: str) -> CompletionSnapshot:
-    """Complete the V2 session and close the Mission commitment lifecycle.
+def complete_and_return(
+    *,
+    session_id: str,
+    finish_verdict: str | None = None,
+    finish_notes: str | None = None,
+) -> CompletionSnapshot:
+    """Complete the V2 session after optional Finish Review.
 
-    RR-001.1 / JR-01: V2 ``session.finish`` must call
-    ``RecommendationCommitmentService.mark_completed`` so Home reflection
-    chrome and the journal completion arc appear on the canonical Alpha path
-    (legacy mission finish already did this).
+    LXP-003 / P2: when SR_SESSION_COMPLETION_PRODUCT is ON, finish_verdict
+    is required. Mission / TOPIC_COMPLETED is NOT triggered (P4).
     """
     assert_session_owned(session_id)
-    snap = service().complete_session(student_id(), session_id=session_id)
+    snap = service().complete_session(
+        student_id(),
+        session_id=session_id,
+        finish_verdict=finish_verdict,
+        finish_notes=finish_notes,
+    )
     _vp001_record_evidence(
         session_id=session_id,
         event="study_session",
-        metadata={"topics": list(getattr(snap, "topics_completed", ()) or ())},
+        metadata={
+            "topics": list(getattr(snap, "topics_completed", ()) or ()),
+            "finish_verdict": finish_verdict or "",
+            "mission_completed": False,
+        },
     )
+    # Commitment link is presentation continuity only — not mission complete.
     _link_commitment_completion(
         int(current_user.id),
         session_id=session_id,
@@ -220,14 +257,33 @@ def _apply_ri001_session_briefing(
 
 
 def _ri001_session_briefing(user_id: int) -> dict | None:
-    """Return Study Session Experience adapter when Preferred Authority wins."""
+    """Return Study Session Experience adapter when Preferred Authority wins.
+
+    V1S-007: for Runtime C enrolments, ensure SCI before RIS resolve so
+    ``no_active_sci`` does not emit a Runtime A fallback transition.
+    """
     try:
+        from app.application.educational_experience import (
+            EducationalExperienceService,
+        )
+        from app.application.educational_runtime_engine import ensure_active_sci
         from app.application.runtime_integration import (
             AuthoritySource,
             build_runtime_integration_service,
             map_session_briefing,
         )
         from app.application.runtime_integration.dto import IntegrationSurface
+
+        enrolment = EducationalExperienceService().find_enrolment_for_experience(
+            int(user_id)
+        )
+        if enrolment is not None:
+            ensure_active_sci(
+                student_id=int(user_id),
+                subject_code=enrolment.subject_code,
+                correlation_id=f"v1s007-session-brief-{user_id}",
+                require=False,
+            )
 
         result = build_runtime_integration_service().resolve_for_surface(
             user_id,

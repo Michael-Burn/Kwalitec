@@ -1,5 +1,10 @@
 """Version 2 Mission Engine 2.0 — application-layer orchestration.
 
+**V1S-002 status: DEPRECATED (shell)** — not wired to student Home.
+Student mission spine: EducationalRuntimeEngine + CertifiedMissionEngine +
+StudentRuntimeCoordinator. ``planning/`` subpackage remains ACTIVE for
+founder Adaptive Mission and EI pipeline; extract before full archive.
+
 Coordinates Curriculum Graph → Learning Journey Engine → Learning Session
 Runtime → Daily Mission → Student Dashboard DTOs.
 
@@ -14,6 +19,11 @@ Prefer explicit imports such as
 from __future__ import annotations
 
 from typing import Any
+
+# V1S-002 — package disposition for runtime ownership registry.
+V1S002_DISPOSITION = "DEPRECATED"
+V1S002_STUDENT_SPINE = False
+V1S002_ACTIVE_SUBPACKAGE = "planning"
 
 __all__ = [
     "ActiveMissionExists",

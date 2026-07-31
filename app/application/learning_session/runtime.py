@@ -17,6 +17,7 @@ from app.application.learning_session.activity_scheduler import ActivitySchedule
 from app.application.learning_session.completion_evaluator import CompletionEvaluator
 from app.application.learning_session.dto.completion_result import CompletionResult
 from app.application.learning_session.dto.evidence_summary import EvidenceSummary
+from app.application.learning_session.dto.finish_review import FinishReview
 from app.application.learning_session.dto.learning_session_plan import (
     LearningSessionPlan,
 )
@@ -24,6 +25,7 @@ from app.application.learning_session.dto.reflection_summary import ReflectionSu
 from app.application.learning_session.dto.runtime_snapshot import RuntimeSnapshot
 from app.application.learning_session.evidence_collector import EvidenceCollector
 from app.application.learning_session.exceptions import (
+    FinishReviewRequired,
     InvalidSessionState,
     SessionAlreadyArchived,
     SessionAlreadyCompleted,
@@ -57,6 +59,7 @@ class SessionHandle:
     session: LearningSession
     phase: RuntimePhase
     plan: LearningSessionPlan | None = None
+    finish_review: FinishReview | None = None
 
 
 class LearningSessionRuntime:
@@ -177,6 +180,7 @@ class LearningSessionRuntime:
             session=result.session,
             phase=result.phase,
             plan=handle.plan,
+            finish_review=handle.finish_review,
         )
 
     def start_session(self, handle: SessionHandle) -> SessionHandle:
@@ -186,6 +190,7 @@ class LearningSessionRuntime:
             session=result.session,
             phase=result.phase,
             plan=handle.plan,
+            finish_review=handle.finish_review,
         )
 
     def pause_session(self, handle: SessionHandle) -> SessionHandle:
@@ -195,15 +200,56 @@ class LearningSessionRuntime:
             session=result.session,
             phase=result.phase,
             plan=handle.plan,
+            finish_review=handle.finish_review,
         )
 
     def resume_session(self, handle: SessionHandle) -> SessionHandle:
-        """Resume a PAUSED session."""
+        """Resume a PAUSED or READY_TO_FINISH session (→ ACTIVE)."""
         result = self._lifecycle.resume(handle.session, phase=handle.phase)
         return SessionHandle(
             session=result.session,
             phase=result.phase,
             plan=handle.plan,
+            finish_review=(
+                None
+                if result.phase == RuntimePhase.ACTIVE
+                else handle.finish_review
+            ),
+        )
+
+    def request_finish(self, handle: SessionHandle) -> SessionHandle:
+        """Enter Ready to Finish (Finish Review) without completing."""
+        result = self._lifecycle.request_finish(handle.session, phase=handle.phase)
+        return SessionHandle(
+            session=result.session,
+            phase=result.phase,
+            plan=handle.plan,
+            finish_review=handle.finish_review,
+        )
+
+    def record_finish_review(
+        self,
+        handle: SessionHandle,
+        *,
+        verdict: str,
+        notes: str | None = None,
+    ) -> SessionHandle:
+        """Attach an explicit Yes / Partially / No finish review.
+
+        Does not complete the session. Call ``complete_session`` after.
+        """
+        if handle.phase in {RuntimePhase.COMPLETED, RuntimePhase.ARCHIVED}:
+            self.rejects_completed_mutation(handle)
+        review = FinishReview.create(
+            verdict,
+            notes=notes,
+            recorded_at=self._clock(),
+        )
+        return SessionHandle(
+            session=handle.session,
+            phase=handle.phase,
+            plan=handle.plan,
+            finish_review=review,
         )
 
     def complete_session(
@@ -212,12 +258,22 @@ class LearningSessionRuntime:
         *,
         actual_duration_minutes: int | None = None,
         attach_pending_reflection: bool = True,
+        require_finish_review: bool = False,
     ) -> SessionHandle:
-        """Finish an ACTIVE or PAUSED session (→ COMPLETED).
+        """Finish an ACTIVE, PAUSED, or READY_TO_FINISH session (→ COMPLETED).
 
-        Optionally attaches a PENDING reflection artefact. Never completes
-        the parent journey.
+        When ``require_finish_review`` is True (P2 product path), an explicit
+        Yes / Partially / No review must already be attached. Never completes
+        the parent journey or mission.
         """
+        if require_finish_review and handle.finish_review is None:
+            raise FinishReviewRequired(
+                "Finish Review (Yes / Partially / No) is required before "
+                "session completion"
+            )
+        if require_finish_review and handle.phase != RuntimePhase.READY_TO_FINISH:
+            # Product path: must enter Ready to Finish before close.
+            handle = self.request_finish(handle)
         result = self._lifecycle.complete(
             handle.session,
             phase=handle.phase,
@@ -230,6 +286,7 @@ class LearningSessionRuntime:
             session=session,
             phase=result.phase,
             plan=handle.plan,
+            finish_review=handle.finish_review,
         )
 
     def archive_session(self, handle: SessionHandle) -> SessionHandle:
@@ -239,11 +296,46 @@ class LearningSessionRuntime:
             session=result.session,
             phase=result.phase,
             plan=handle.plan,
+            finish_review=handle.finish_review,
         )
 
     # ------------------------------------------------------------------
     # Evidence / reflection / completion / next action
     # ------------------------------------------------------------------
+
+    def emit_candidate_observation(
+        self,
+        *,
+        type_id: str,
+        student_id: str,
+        session_id: str,
+        topic_id: str = "",
+        mission_instance_id: str = "",
+        stage: str = "",
+        activity_id: str = "",
+        payload: dict | None = None,
+    ):
+        """Emit a Generated candidate observation (EV-001B).
+
+        Does not Accept evidence — EducationalEvidenceAuthority alone decides.
+        """
+        from app.application.learning_session.evidence_package_builder import (
+            EvidencePackageBuilder,
+        )
+
+        builder = EvidencePackageBuilder(
+            clock=self._clock, id_factory=self._id_factory
+        )
+        return builder.emit(
+            type_id=type_id,
+            student_id=student_id,
+            session_id=session_id,
+            topic_id=topic_id,
+            mission_instance_id=mission_instance_id,
+            stage=stage,
+            activity_id=activity_id,
+            payload=payload,
+        )
 
     def collect_evidence(
         self,
@@ -272,6 +364,7 @@ class LearningSessionRuntime:
             session=session,
             phase=handle.phase,
             plan=handle.plan,
+            finish_review=handle.finish_review,
         )
         return updated, journey_evidence, self._evidence.summarise(session)
 
@@ -309,7 +402,12 @@ class LearningSessionRuntime:
             user_id=user_id,
         )
         return (
-            SessionHandle(session=session, phase=handle.phase, plan=handle.plan),
+            SessionHandle(
+                session=session,
+                phase=handle.phase,
+                plan=handle.plan,
+                finish_review=handle.finish_review,
+            ),
             reflection_summary,
         )
 
@@ -320,15 +418,28 @@ class LearningSessionRuntime:
             session=session,
             phase=handle.phase,
             plan=handle.plan,
+            finish_review=handle.finish_review,
         )
 
-    def evaluate_completion(self, handle: SessionHandle) -> CompletionResult:
+    def evaluate_completion(
+        self,
+        handle: SessionHandle,
+        *,
+        require_finish_review: bool = False,
+    ) -> CompletionResult:
         """Evaluate whether the Learning Session itself is complete."""
-        return self._completion.evaluate(handle.session)
+        return self._completion.evaluate(
+            handle.session,
+            finish_review=handle.finish_review,
+            require_finish_review=require_finish_review,
+        )
 
     def generate_next_action(self, handle: SessionHandle) -> NextAction:
         """Generate a deterministic next-action recommendation."""
-        completion = self._completion.evaluate(handle.session)
+        completion = self._completion.evaluate(
+            handle.session,
+            finish_review=handle.finish_review,
+        )
         return self._scheduler.next_action(
             handle.session,
             phase=handle.phase,
@@ -338,7 +449,10 @@ class LearningSessionRuntime:
 
     def generate_runtime_snapshot(self, handle: SessionHandle) -> RuntimeSnapshot:
         """Generate an immutable educational snapshot for consumers."""
-        completion = self._completion.evaluate(handle.session)
+        completion = self._completion.evaluate(
+            handle.session,
+            finish_review=handle.finish_review,
+        )
         next_action = self._scheduler.next_action(
             handle.session,
             phase=handle.phase,
@@ -367,6 +481,8 @@ class LearningSessionRuntime:
         plan: LearningSessionPlan | None = None,
         prepared: bool = False,
         archived: bool = False,
+        ready_to_finish: bool = False,
+        finish_review: FinishReview | None = None,
     ) -> SessionHandle:
         """Rebuild a SessionHandle from a domain session (no persistence)."""
         if archived and session.state == SessionState.COMPLETED:
@@ -380,11 +496,17 @@ class LearningSessionRuntime:
                 session,
                 prepared=prepared,
                 archived=False,
+                ready_to_finish=ready_to_finish,
             )
         if session.state == SessionState.COMPLETED and archived is False:
             # Completed sessions are never "prepared" PLANNED.
             pass
-        return SessionHandle(session=session, phase=phase, plan=plan)
+        return SessionHandle(
+            session=session,
+            phase=phase,
+            plan=plan,
+            finish_review=finish_review,
+        )
 
     @staticmethod
     def rejects_completed_mutation(handle: SessionHandle) -> None:

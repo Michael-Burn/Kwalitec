@@ -99,10 +99,34 @@ def test_mission_completion_events_do_not_count_as_topic_progress():
             curriculum_identity="LAW1:2027.1",
             topic_id="t1",
         ),
+        EducationalEventRecord(
+            event_id="e2",
+            event_type=EducationalEventType.MISSION_ACCEPTED,
+            user_id=1,
+            curriculum_identity="LAW1:2027.1",
+            topic_id="t1",
+            payload={"session_id": "lsr-1"},
+        ),
+        EducationalEventRecord(
+            event_id="e3",
+            event_type=EducationalEventType.MISSION_DEFERRED,
+            user_id=1,
+            curriculum_identity="LAW1:2027.1",
+            topic_id="t1",
+        ),
     )
     progress = derive_progress(_model(), events)
     assert progress.completed_topic_ids == ()
     assert progress.current_topic_id == "t1"
+
+
+def test_mission_accept_and_defer_transitions():
+    assert_mission_transition(MissionStatus.GENERATED, MissionStatus.ACCEPTED)
+    assert_mission_transition(MissionStatus.GENERATED, MissionStatus.DEFERRED)
+    assert_mission_transition(MissionStatus.ACCEPTED, MissionStatus.COMPLETED)
+    assert_mission_transition(MissionStatus.DEFERRED, MissionStatus.ACCEPTED)
+    with pytest.raises(IllegalRuntimeTransition):
+        assert_mission_transition(MissionStatus.COMPLETED, MissionStatus.ACCEPTED)
 
 
 def test_state_transitions_enforce_legality():

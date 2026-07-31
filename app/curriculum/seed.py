@@ -1,4 +1,9 @@
-"""Seed helper — loads the bundled IFoA CS1 2026 curriculum into a repository."""
+"""Seed helper — loads the bundled IFoA CS1 2026 curriculum into a repository.
+
+**V1S-002:** Prefer ``CurriculumService.import_curricula`` for bootstrap.
+This helper remains a substrate convenience for in-memory engine tests;
+it is not a student curriculum authority.
+"""
 
 from __future__ import annotations
 

@@ -93,7 +93,7 @@ def test_home_command_centre_sections(app, ctx):
     assert home.signals is not None
     assert home.signals.countdown_label or home.deadlines
     assert "What should I do next?" in html
-    assert "Today's Mission" in html or "ds-mission-panel" in html
+    assert "Today's Session" in html or "Today's Mission" in html or "ds-mission-panel" in html
     assert "Study Health" in html
     assert "Exam countdown" in html or "Upcoming" in html
     assert "Today&#39;s Mission" in html or "Continue Session" in html

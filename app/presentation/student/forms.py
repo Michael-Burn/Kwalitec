@@ -33,7 +33,7 @@ class CompleteRuntimeMissionForm(FlaskForm):
     """
 
     mission_id = HiddenField(validators=[Optional()])
-    submit = SubmitField("Mark mission complete")
+    submit = SubmitField("Confirm today's Mission")
 
 
 class BeginRevisionForm(FlaskForm):

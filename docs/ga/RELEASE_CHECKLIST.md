@@ -14,6 +14,8 @@ Every production deployment must verify all sections below. Mark each item only 
 - [ ] `SECRET_KEY` is unique, ≥ 32 characters, not a documented default
 - [ ] `DATABASE_URL` points at PostgreSQL (psycopg v3)
 - [ ] `TRUSTED_PROXY_HOPS` / `PREFERRED_URL_SCHEME=https` set behind TLS terminator
+- [ ] `APP_URL` set to the canonical public HTTPS origin (custom domain or Render URL)
+- [ ] `SERVER_NAME` / `SESSION_COOKIE_DOMAIN` unset unless intentionally required (see [CUSTOM_DOMAIN_CUTOVER.md](../production/CUSTOM_DOMAIN_CUTOVER.md))
 - [ ] Alpha / V2 flags match the intended dual-run or sole-runtime posture
 - [ ] No secrets committed; `.env` absent from the release artefact
 

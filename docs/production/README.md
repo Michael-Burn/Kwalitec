@@ -49,3 +49,4 @@ See [GA certification § Remaining GA blockers](../ga/CERTIFICATION_REPORT.md#re
 | G8 reliability pack | [`G8_RELIABILITY_EVIDENCE.md`](G8_RELIABILITY_EVIDENCE.md) |
 | G10 operational evidence | [`G10_OPERATIONAL_EVIDENCE.md`](G10_OPERATIONAL_EVIDENCE.md) |
 | RC fingerprint | [`RELEASE_CANDIDATE_FINGERPRINT.md`](RELEASE_CANDIDATE_FINGERPRINT.md) |
+| Custom domain cutover | [`CUSTOM_DOMAIN_CUTOVER.md`](CUSTOM_DOMAIN_CUTOVER.md) |

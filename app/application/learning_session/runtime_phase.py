@@ -7,11 +7,17 @@ domain ``SessionState`` without forking educational meaning:
 - READY    → NOT_STARTED (prepared; lawful to start)
 - ACTIVE   → ACTIVE
 - PAUSED   → PAUSED
+- READY_TO_FINISH → ACTIVE or PAUSED (finish review entered; not completed)
 - COMPLETED → COMPLETED
 - ARCHIVED → COMPLETED (runtime archival; no further educational work)
 
 Domain terminals ABANDONED / SKIPPED remain domain-only; the runtime
 surfaces them via session_state without inventing parallel phases.
+
+Product lifecycle (LXP-003 / SR-001A P2)::
+
+    Created → Started → In Progress → Paused → Resumed
+    → Ready to Finish → Completed
 """
 
 from __future__ import annotations
@@ -28,6 +34,7 @@ class RuntimePhase(StrEnum):
     READY = "ready"
     ACTIVE = "active"
     PAUSED = "paused"
+    READY_TO_FINISH = "ready_to_finish"
     COMPLETED = "completed"
     ARCHIVED = "archived"
 
@@ -39,6 +46,7 @@ class RuntimeTransitionEvent(StrEnum):
     START = "start"
     PAUSE = "pause"
     RESUME = "resume"
+    REQUEST_FINISH = "request_finish"
     COMPLETE = "complete"
     ARCHIVE = "archive"
 
@@ -50,9 +58,19 @@ LAWFUL_RUNTIME_TRANSITIONS: dict[
     (RuntimePhase.PLANNED, RuntimeTransitionEvent.START): RuntimePhase.ACTIVE,
     (RuntimePhase.READY, RuntimeTransitionEvent.START): RuntimePhase.ACTIVE,
     (RuntimePhase.ACTIVE, RuntimeTransitionEvent.PAUSE): RuntimePhase.PAUSED,
+    (RuntimePhase.ACTIVE, RuntimeTransitionEvent.REQUEST_FINISH): (
+        RuntimePhase.READY_TO_FINISH
+    ),
     (RuntimePhase.ACTIVE, RuntimeTransitionEvent.COMPLETE): RuntimePhase.COMPLETED,
     (RuntimePhase.PAUSED, RuntimeTransitionEvent.RESUME): RuntimePhase.ACTIVE,
+    (RuntimePhase.PAUSED, RuntimeTransitionEvent.REQUEST_FINISH): (
+        RuntimePhase.READY_TO_FINISH
+    ),
     (RuntimePhase.PAUSED, RuntimeTransitionEvent.COMPLETE): RuntimePhase.COMPLETED,
+    (RuntimePhase.READY_TO_FINISH, RuntimeTransitionEvent.RESUME): RuntimePhase.ACTIVE,
+    (RuntimePhase.READY_TO_FINISH, RuntimeTransitionEvent.COMPLETE): (
+        RuntimePhase.COMPLETED
+    ),
     (RuntimePhase.COMPLETED, RuntimeTransitionEvent.ARCHIVE): RuntimePhase.ARCHIVED,
 }
 
@@ -70,10 +88,13 @@ def phase_from_session_state(
     *,
     prepared: bool = False,
     archived: bool = False,
+    ready_to_finish: bool = False,
 ) -> RuntimePhase:
     """Derive a RuntimePhase from domain SessionState plus runtime flags."""
     if archived and state == SessionState.COMPLETED:
         return RuntimePhase.ARCHIVED
+    if ready_to_finish and state in {SessionState.ACTIVE, SessionState.PAUSED}:
+        return RuntimePhase.READY_TO_FINISH
     if state == SessionState.ACTIVE:
         return RuntimePhase.ACTIVE
     if state == SessionState.PAUSED:
@@ -89,3 +110,16 @@ def phase_from_session_state(
 def is_terminal_runtime_phase(phase: RuntimePhase) -> bool:
     """True when the session may not resume educational work."""
     return phase in {RuntimePhase.COMPLETED, RuntimePhase.ARCHIVED}
+
+
+def product_lifecycle_label(phase: RuntimePhase) -> str:
+    """Student-product lifecycle label for ``phase`` (LXP-003)."""
+    return {
+        RuntimePhase.PLANNED: "Created",
+        RuntimePhase.READY: "Created",
+        RuntimePhase.ACTIVE: "In Progress",
+        RuntimePhase.PAUSED: "Paused",
+        RuntimePhase.READY_TO_FINISH: "Ready to Finish",
+        RuntimePhase.COMPLETED: "Completed",
+        RuntimePhase.ARCHIVED: "Completed",
+    }.get(phase, phase.value)

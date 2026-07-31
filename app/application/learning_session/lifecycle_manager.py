@@ -115,12 +115,32 @@ class LifecycleManager:
         *,
         phase: RuntimePhase,
     ) -> LifecycleResult:
-        """PAUSED → ACTIVE."""
+        """PAUSED → ACTIVE, or READY_TO_FINISH → ACTIVE (cancel finish review)."""
         self._reject_terminal(session, phase)
         nxt = next_runtime_phase(phase, RuntimeTransitionEvent.RESUME)
         if nxt is None:
             raise InvalidSessionState(
                 f"Cannot resume session in phase {phase.value}"
+            )
+        if phase == RuntimePhase.READY_TO_FINISH:
+            # Leaving finish review: restore ACTIVE. Resume domain only if paused.
+            if session.state == SessionState.PAUSED:
+                try:
+                    resumed = session.apply_transition(
+                        SessionTransitionEvent.RESUME_SESSION
+                    )
+                except ValueError as exc:
+                    raise InvalidSessionState(str(exc)) from exc
+            elif session.state == SessionState.ACTIVE:
+                resumed = session
+            else:
+                raise InvalidSessionState(
+                    "Ready-to-finish resume requires ACTIVE or PAUSED domain state"
+                )
+            return LifecycleResult(
+                session=resumed,
+                phase=nxt,
+                event=RuntimeTransitionEvent.RESUME,
             )
         try:
             resumed = session.apply_transition(SessionTransitionEvent.RESUME_SESSION)
@@ -132,6 +152,29 @@ class LifecycleManager:
             event=RuntimeTransitionEvent.RESUME,
         )
 
+    def request_finish(
+        self,
+        session: LearningSession,
+        *,
+        phase: RuntimePhase,
+    ) -> LifecycleResult:
+        """ACTIVE/PAUSED → READY_TO_FINISH (enter Finish Review).
+
+        Domain state stays ACTIVE or PAUSED until an explicit review closes
+        the session. Prevents silent completion.
+        """
+        self._reject_terminal(session, phase)
+        nxt = next_runtime_phase(phase, RuntimeTransitionEvent.REQUEST_FINISH)
+        if nxt is None:
+            raise InvalidSessionState(
+                f"Cannot request finish in phase {phase.value}"
+            )
+        return LifecycleResult(
+            session=session,
+            phase=nxt,
+            event=RuntimeTransitionEvent.REQUEST_FINISH,
+        )
+
     def complete(
         self,
         session: LearningSession,
@@ -139,15 +182,22 @@ class LifecycleManager:
         phase: RuntimePhase,
         actual_duration_minutes: int | None = None,
     ) -> LifecycleResult:
-        """ACTIVE/PAUSED → COMPLETED (domain finish_session)."""
+        """ACTIVE/PAUSED/READY_TO_FINISH → COMPLETED (domain finish_session)."""
         self._reject_terminal(session, phase)
         nxt = next_runtime_phase(phase, RuntimeTransitionEvent.COMPLETE)
         if nxt is None:
             raise InvalidSessionState(
                 f"Cannot complete session in phase {phase.value}"
             )
+        working = session
+        if (
+            phase == RuntimePhase.READY_TO_FINISH
+            and session.state == SessionState.PAUSED
+        ):
+            # Domain finish is lawful from PAUSED; keep as-is.
+            pass
         try:
-            finished = session.apply_transition(SessionTransitionEvent.FINISH_SESSION)
+            finished = working.apply_transition(SessionTransitionEvent.FINISH_SESSION)
         except ValueError as exc:
             raise InvalidSessionState(str(exc)) from exc
         if actual_duration_minutes is not None:
@@ -209,12 +259,14 @@ class LifecycleManager:
         *,
         prepared: bool = False,
         archived: bool = False,
+        ready_to_finish: bool = False,
     ) -> RuntimePhase:
         """Derive runtime phase from domain state and runtime flags."""
         return phase_from_session_state(
             session.state,
             prepared=prepared,
             archived=archived,
+            ready_to_finish=ready_to_finish,
         )
 
     @staticmethod

@@ -144,7 +144,7 @@ def founder_command_centre():
     """Deprecated — redirects into Founder Command Centre Feedback."""
     code = 307 if request.method == "POST" else 302
     return redirect(
-        url_for("founder_dashboard.feedback", **request.args.to_dict()),
+        url_for("founder_dashboard.feedback_checkins", **request.args.to_dict()),
         code=code,
     )
 

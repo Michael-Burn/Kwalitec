@@ -38,11 +38,11 @@
     {% endif %}
   </section>
 
-  {# ——— Overall mastery (understandable in ≤5 seconds) ——— #}
+  {# ——— Syllabus Progress (coverage honesty — not understanding) ——— #}
   <section class="ds-os-progress ds-os-mastery" aria-labelledby="journey-progress-title" data-sop-section="progress">
-    <h2 class="ds-section__title" id="journey-progress-title">Overall mastery</h2>
+    <h2 class="ds-section__title" id="journey-progress-title">Syllabus Progress</h2>
     <p class="ds-os-progress__label">
-      {{ journey.progress_label or ((journey.progress_percent ~ '% through your path') if journey.progress_percent is not none else 'Your path is taking shape') }}
+      {{ journey.progress_label or ((journey.progress_percent ~ '% through your syllabus') if journey.progress_percent is not none else 'Your syllabus path is taking shape') }}
     </p>
     <div
       class="ds-os-progress__track"
@@ -54,13 +54,13 @@
     >
       <div class="ds-os-progress__fill" style="width: {{ journey.progress_percent or 0 }}%"></div>
     </div>
-    <ul class="ds-os-mastery__stats" aria-label="Mastery summary">
+    <ul class="ds-os-mastery__stats" aria-label="Syllabus progress summary">
       <li>
         <span class="ds-list__meta">Topics complete</span>
         <span class="ds-os-signals__value">{{ journey.completed_count or (journey.completed|length if journey.completed else 0) }}</span>
       </li>
       <li>
-        <span class="ds-list__meta">Topics ahead</span>
+        <span class="ds-list__meta">Topics remaining</span>
         <span class="ds-os-signals__value">{{ journey.upcoming_count or (journey.upcoming|length if journey.upcoming else 0) }}</span>
       </li>
       {% if journey.estimated_completion_label %}
@@ -72,64 +72,69 @@
     </ul>
   </section>
 
-  {# ——— Chapter / topic / LO mastery ——— #}
-  <section class="ds-os-mastery-levels" aria-label="Mastery by level">
-    {% if edu and edu.active and edu.section_title %}
-    <article class="ds-panel ds-os-mastery-card" aria-labelledby="chapter-mastery-title">
-      <h2 class="ds-section__title" id="chapter-mastery-title">Chapter mastery</h2>
-      <p class="ds-os-path__title">{{ edu.section_title }}</p>
-      {% if edu.coverage_label or edu.coverage_percent is defined %}
-      <p class="ds-list__meta">{{ edu.coverage_label or ((edu.coverage_percent ~ '% covered') if edu.coverage_percent is not none else '') }}</p>
-      {% endif %}
-    </article>
-    {% endif %}
-
-    {% if journey.current %}
-    <article class="ds-panel ds-os-mastery-card" aria-labelledby="topic-mastery-title">
-      <h2 class="ds-section__title" id="topic-mastery-title">Topic mastery</h2>
-      <p class="ds-os-path__title">{{ journey.current.title }}</p>
-      {% if journey.current.status_label %}
-      {{ ds_badge(journey.current.status_label, tone='primary') }}
-      {% endif %}
-      {% if journey.current.prerequisite_note %}
-      <p class="ds-list__meta">{{ journey.current.prerequisite_note }}</p>
-      {% endif %}
-    </article>
-    {% endif %}
-
-    {% if edu and edu.active and edu.learning_objectives %}
-    <article class="ds-panel ds-os-mastery-card" aria-labelledby="lo-mastery-title">
-      <h2 class="ds-section__title" id="lo-mastery-title">Learning objective mastery</h2>
-      <ul class="ds-list">
-        {% for lo in edu.learning_objectives[:6] %}
-        <li class="ds-list__row"><span>{{ lo }}</span></li>
-        {% endfor %}
-      </ul>
-    </article>
+  {# ——— Learning Insights (Twin-informed without saying Twin) ——— #}
+  <section class="ds-os-insights" aria-labelledby="learning-insights-title" data-sop-section="learning-insights">
+    <h2 class="ds-section__title" id="learning-insights-title">Learning Insights</h2>
+    {% if journey.learning_insights and journey.learning_insights|length > 0 %}
+    <ul class="ds-list">
+      {% for insight in journey.learning_insights[:4] %}
+      <li class="ds-list__row"><span>{{ insight }}</span></li>
+      {% endfor %}
+    </ul>
+    {% elif journey.learning_insights_status == 'building' %}
+    <p class="ds-list__meta">Learning Insights are building from your practice. Keep completing Sessions honestly.</p>
+    {% else %}
+    <p class="ds-list__meta">Insights appear as you complete Sessions on your syllabus.</p>
     {% endif %}
   </section>
 
-  {# ——— Recent improvements / weak areas ——— #}
-  <section class="ds-os-mastery-insight" aria-label="Progress insight">
-    {% if journey.completed and journey.completed|length > 0 %}
-    <article class="ds-panel" aria-labelledby="recent-improvements-title">
-      <h2 class="ds-section__title" id="recent-improvements-title">Recent improvements</h2>
-      <ul class="ds-list">
-        {% for topic in journey.completed[:5] %}
-        <li class="ds-list__row">
-          <span>{{ topic.title }}</span>
-          {% if topic.status_label %}<span class="ds-list__meta">{{ topic.status_label }}</span>{% endif %}
-        </li>
-        {% endfor %}
-      </ul>
+  {# ——— Up Next / Needs Attention / Remaining ——— #}
+  <section class="ds-os-mastery-insight" aria-label="Journey focus">
+    {% set up_next = journey.up_next or (journey.upcoming[0] if journey.upcoming and journey.upcoming|length > 0 else none) %}
+    {% if up_next %}
+    <article class="ds-panel" aria-labelledby="up-next-title">
+      <h2 class="ds-section__title" id="up-next-title">Up Next</h2>
+      <p class="ds-os-path__title">{{ up_next.title }}</p>
+      {% if up_next.prerequisite_note %}
+      <p class="ds-list__meta">{{ up_next.prerequisite_note }}</p>
+      {% endif %}
+      {% if up_next.status_label %}
+      {{ ds_badge(up_next.status_label, tone='primary') }}
+      {% endif %}
     </article>
     {% endif %}
 
-    {% if journey.upcoming and journey.upcoming|length > 0 %}
-    <article class="ds-panel" aria-labelledby="weak-areas-title">
-      <h2 class="ds-section__title" id="weak-areas-title">Next focus areas</h2>
+    {% if journey.needs_attention and journey.needs_attention|length > 0 %}
+    <article class="ds-panel" aria-labelledby="needs-attention-title" data-weak-topic-centre="true">
+      <h2 class="ds-section__title" id="needs-attention-title">Needs Attention</h2>
+      <p class="ds-list__meta">Topics to strengthen — based on recent practice and Revision guidance.</p>
       <ul class="ds-list">
-        {% for topic in journey.upcoming[:5] %}
+        {% for topic in journey.needs_attention[:5] %}
+        <li class="ds-list__row">
+          <span>{{ topic.title }}</span>
+          {% if topic.status_label %}<span class="ds-list__meta">{{ topic.status_label }}</span>{% endif %}
+          {% if topic.prerequisite_note %}<span class="ds-list__meta">{{ topic.prerequisite_note }}</span>{% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+      <p class="ds-list__meta">
+        <a href="{{ url_for('student.revision') }}">Open Revision</a>
+        for guided reinforcement.
+      </p>
+    </article>
+    {% elif journey.learning_insights_status == 'building' %}
+    <article class="ds-panel" aria-labelledby="needs-attention-title" data-weak-topic-centre="true">
+      <h2 class="ds-section__title" id="needs-attention-title">Needs Attention</h2>
+      <p class="ds-list__meta">Topics that need strengthening will appear here after more practice.</p>
+    </article>
+    {% endif %}
+
+    {% set remaining = journey.remaining_topics if journey.remaining_topics is defined and journey.remaining_topics else (journey.upcoming[1:] if journey.upcoming and journey.upcoming|length > 1 else []) %}
+    {% if remaining and remaining|length > 0 %}
+    <article class="ds-panel" aria-labelledby="remaining-topics-title">
+      <h2 class="ds-section__title" id="remaining-topics-title">Remaining Topics</h2>
+      <ul class="ds-list">
+        {% for topic in remaining[:8] %}
         <li class="ds-list__row">
           <span>{{ topic.title }}</span>
           {% if topic.prerequisite_note %}<span class="ds-list__meta">{{ topic.prerequisite_note }}</span>{% endif %}
@@ -140,7 +145,7 @@
     {% endif %}
   </section>
 
-  {# ——— Learning path ——— #}
+  {# ——— Current topic + completed path ——— #}
   <section class="ds-os-path" aria-label="Learning path" data-sop-section="learning-path">
     {% if journey.current %}
     <section class="ds-os-path__current" aria-labelledby="current-topic-title" data-sop-section="current-topic">
@@ -151,17 +156,6 @@
       {% endif %}
       {% if journey.current.status_label %}
       {{ ds_badge(journey.current.status_label, tone='primary') }}
-      {% endif %}
-    </section>
-    {% endif %}
-
-    {% if journey.upcoming and journey.upcoming|length > 0 %}
-    {% set next_topic = journey.upcoming[0] %}
-    <section class="ds-os-path__next" aria-labelledby="upcoming-topic-title" data-sop-section="upcoming-topic">
-      <p class="ds-list__meta">Upcoming topic</p>
-      <h3 id="upcoming-topic-title" class="ds-os-path__subtitle">{{ next_topic.title }}</h3>
-      {% if next_topic.prerequisite_note %}
-      <p class="ds-list__meta">{{ next_topic.prerequisite_note }}</p>
       {% endif %}
     </section>
     {% endif %}
@@ -184,39 +178,20 @@
       </ol>
     </section>
     {% endif %}
-
-    {% if journey.upcoming and journey.upcoming|length > 1 %}
-    <section class="ds-section" aria-labelledby="path-ahead-title" data-sop-section="topics">
-      <h2 id="path-ahead-title" class="ds-section__title">Path ahead</h2>
-      <ol class="ds-os-path__timeline">
-        {% for topic in journey.upcoming[1:] %}
-        <li class="ds-os-path__step">
-          <span class="ds-os-path__marker" aria-hidden="true"></span>
-          <div>
-            <p class="ds-os-path__step-title">{{ topic.title }}</p>
-            {% if topic.prerequisite_note %}
-            <p class="ds-list__meta">{{ topic.prerequisite_note }}</p>
-            {% endif %}
-          </div>
-        </li>
-        {% endfor %}
-      </ol>
-    </section>
-    {% endif %}
   </section>
 
   <div class="ds-primary-strip">
     {{ ds_button(journey.primary_cta_label or 'Return Home', href=url_for('student.home'), variant='ghost') }}
-    {{ ds_button('Knowledge Map', href=url_for('student.knowledge_graph'), variant='ghost') }}
+    {{ ds_button('Curriculum Map', href=url_for('student.knowledge_graph'), variant='ghost') }}
   </div>
 
 {% else %}
   {{ ds_empty_operational(
-    'Once you complete a study session, we’ll map your path — current topic, what’s done, and what’s next.',
+    'Once you complete a Session, we’ll map your path — current topic, what’s done, and what’s next.',
     'Go to Home',
     url_for('student.home'),
-    title='Your journey will take shape after your first session',
-    explanation='Once you complete a study session, we’ll map your path — current topic, what’s done, and what’s next.',
+    title='Your journey will take shape after your first Session',
+    explanation='Once you complete a Session, we’ll map your path — current topic, what’s done, and what’s next.',
     context='Journey answers one question: where am I on the syllabus?'
   ) }}
 {% endif %}

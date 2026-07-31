@@ -83,7 +83,7 @@ def page_from_educational_experience(
     nav = build_navigation(active_surface=surface)
     titles = {
         "home": "Home",
-        "journey": "Journey",
+        "journey": "Syllabus",
         "revision": "Revision",
         "history": "History",
         "profile": "Settings",
@@ -132,33 +132,69 @@ def _home_from_educational(
     snap: EducationalExperienceSnapshot,
     edu: EducationalExperienceViewModel,
 ) -> HomePageViewModel:
+    from app.application.config.v2_flags import resolve_v2_feature_flags
+
     mission = snap.mission
     title = edu.mission_title or edu.today_topic_title or "Today's Mission"
     why = edu.why_this_mission or edu.mission_rationale or edu.why_today
     duration = edu.estimated_duration_label
+    mission_status = (mission.status or "").lower() if mission else ""
     mission_open = bool(
         mission
         and mission.mission_instance_id
-        and (mission.status or "").lower() == "generated"
+        and mission_status in {"generated", "accepted", "deferred"}
     )
-    mission_done_today = bool(mission and (mission.status or "").lower() == "completed")
+    mission_done_today = bool(mission and mission_status == "completed")
     day_complete = bool(snap.syllabus_complete or mission_done_today)
+
+    flags = resolve_v2_feature_flags()
+    open_session_id = ""
+    if (
+        flags.SR_SESSION_PRIMARY
+        and mission_open
+        and mission is not None
+        and mission.mission_instance_id
+    ):
+        open_session_id = _open_lsr_session_id(
+            snap.student_id,
+            mission_instance_id=mission.mission_instance_id,
+        )
+
     if snap.syllabus_complete:
         cta_label = "Syllabus complete"
         cta_enabled = False
         session_control = ""
-    elif mission_open:
-        cta_label = "Mark mission complete"
+        can_start = False
+    elif mission_open and flags.SR_SESSION_PRIMARY:
+        # SR-002 / KWP-002 — Start / Resume Today's Session is the product Primary.
+        if open_session_id:
+            cta_label = "Continue"
+            session_control = "resume"
+        else:
+            cta_label = "Start Today's Session"
+            session_control = "start"
+        cta_enabled = True
+        can_start = True
+    elif mission_open and (
+        (not flags.SR_SESSION_PRIMARY) or flags.SR_PILOT_MARK_COMPLETE
+    ):
+        # Rollback (flag OFF) or emergency pilot Mark-complete (never commercial).
+        # KWP-002: Commercial Loop keeps Session Primary ON — this path is
+        # rollback / accessibility only, not learner-visible product chrome.
+        cta_label = "Confirm today's Mission"
         cta_enabled = True
         session_control = "complete_runtime_c"
+        can_start = False
     elif mission_done_today:
-        cta_label = "Today's mission complete"
+        cta_label = "Today's Session complete"
         cta_enabled = False
         session_control = ""
+        can_start = False
     else:
         cta_label = "Review today's mission"
         cta_enabled = False
         session_control = ""
+        can_start = False
 
     explanation = ExplanationViewModel(
         summary=mission.judgement if mission else "",
@@ -185,8 +221,32 @@ def _home_from_educational(
         status_label = "Syllabus complete"
     elif mission_done_today:
         status_label = "Mission complete for today"
+    elif mission_open and open_session_id:
+        status_label = "Session in progress"
     elif mission_open:
         status_label = "Ready to study"
+
+    start_action = None
+    if can_start and mission is not None:
+        from app.application.student_experience.dto.home_snapshot import (
+            StartSessionActionSnapshot,
+        )
+
+        minutes = None
+        if edu.estimated_duration_label:
+            digits = "".join(
+                ch for ch in edu.estimated_duration_label if ch.isdigit()
+            )
+            minutes = int(digits) if digits else None
+        start_action = StartSessionActionSnapshot(
+            label=cta_label,
+            enabled=True,
+            can_start=True,
+            mission_id=mission.mission_instance_id,
+            session_id=open_session_id or None,
+            estimated_minutes=minutes,
+            topic_title=title,
+        )
 
     return HomePageViewModel(
         greeting=snap.greeting,
@@ -210,10 +270,12 @@ def _home_from_educational(
         explanation=explanation,
         estimated_study_label=duration,
         expected_benefit_label=edu.expected_benefit,
-        can_start_session=False,
+        can_start_session=can_start,
+        start_session=start_action,
         primary_cta_label=cta_label,
         primary_cta_enabled=cta_enabled,
         mission_id=(mission.mission_instance_id if mission else ""),
+        session_id=open_session_id,
         journey_story=_journey_story(edu),
         coach_insight=why or edu.why_today,
         primary_mission_title=title,
@@ -225,10 +287,48 @@ def _home_from_educational(
         completion_status_label=status_label,
         session_control=session_control,
         session_control_label=cta_label,
+        guided_session_active=bool(open_session_id),
         day_complete=day_complete,
         l1_expected_benefit=edu.expected_benefit,
         educational=edu,
     )
+
+
+def _open_lsr_session_id(
+    student_id: str, *, mission_instance_id: str
+) -> str:
+    """Resolve an open LearningSessionRuntime binding for resume CTA."""
+    try:
+        from app.application.student_runtime import StudentRuntimeCoordinator
+        from app.infrastructure.adapters.learning_session.persistence import (
+            LearningSessionPersistenceAdapter,
+        )
+
+        store = None
+        try:
+            from flask import has_app_context
+
+            from app.presentation.session.factory import (
+                get_session_experience_composition,
+            )
+
+            if has_app_context():
+                composition = get_session_experience_composition()
+                if composition is not None:
+                    store = composition.store
+        except Exception:  # noqa: BLE001
+            store = None
+
+        coordinator = StudentRuntimeCoordinator(
+            persistence=LearningSessionPersistenceAdapter(store=store),
+        )
+        binding = coordinator.find_open_session(
+            str(student_id),
+            mission_instance_id=mission_instance_id,
+        )
+        return binding.session_id if binding is not None else ""
+    except Exception:  # noqa: BLE001 — presentation must not fail Home
+        return ""
 
 
 def _journey_from_educational(
@@ -280,9 +380,26 @@ def _journey_from_educational(
         ),
         completed_count=len(completed),
         upcoming_count=len(upcoming),
-        primary_cta_label="Return to today's mission",
+        primary_cta_label="Return Home",
         primary_cta_enabled=True,
         educational=edu,
+        up_next=upcoming[0] if upcoming else None,
+        remaining_topics=upcoming[1:] if len(upcoming) > 1 else (),
+        needs_attention=(),
+        learning_insights=tuple(
+            line
+            for line in (
+                edu.confidence_label,
+                edu.expected_benefit,
+                edu.unlocks_next,
+            )
+            if (line or "").strip()
+        )[:3],
+        learning_insights_status=(
+            "ready"
+            if (edu.confidence_label or edu.expected_benefit or edu.journey_evidence)
+            else "building"
+        ),
     )
 
 

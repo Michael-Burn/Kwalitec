@@ -1,6 +1,6 @@
 """Study Session service — Persistent context / Learning Task / Practice.
 
-Authority: DX-005C Focused Study Session.
+Authority: DX-005C Focused Study Session + LXP-003 session product completion.
 Presentation projection only. Does not alter session, mission, or
 question engines.
 """
@@ -9,6 +9,7 @@ from __future__ import annotations
 
 from flask import url_for
 
+from app.application.config.v2_flags import resolve_v2_feature_flags
 from app.domain.session_experience.session_workspace import SessionSurface
 from app.presentation.session.dto.study_session import (
     LearningTask,
@@ -27,18 +28,113 @@ class StudySessionService:
     def build_page(self, page: SessionPageViewModel) -> StudySessionPage:
         """Assemble persistent context, L0 task, L1 content, L2/L3."""
         surface = SessionSurface(page.shell.active_surface)
+        product = bool(resolve_v2_feature_flags().SR_SESSION_COMPLETION_PRODUCT)
+        substance = bool(resolve_v2_feature_flags().SR_SESSION_SUBSTANCE)
         context = self._context(page, surface)
-        task = self._task(page, surface)
+        task = self._task(page, surface, product=product, substance=substance)
         primary_label, primary_kind, primary_enabled, blocking = self._primary(
-            page, surface
+            page, surface, product=product
         )
-        content = self._content(page, surface)
+        content = self._content(page, surface, product=product, substance=substance)
         disclosures = self._disclosures(page, surface)
-        technical = self._technical(page)
+        # KWP-002: technical IDs stay off learner chrome (founder diagnostics only).
+        technical: tuple[str, ...] = ()
         reading_progress = self._reading_progress_percent(page, surface)
+        checklist = self._checklist(page)
+        lifecycle = ""
+        completion = page.completion
+        meta = getattr(completion, "metadata", None) if completion is not None else None
+        if meta:
+            meta_map = dict(meta)
+            lifecycle = meta_map.get("lifecycle_label", "")
+
+        learning_objectives: tuple[str, ...] = ()
+        if page.overview and page.overview.learning_objectives:
+            learning_objectives = tuple(page.overview.learning_objectives)
+        activity_type = ""
+        stage_label = ""
+        if page.activity:
+            activity_type = page.activity.activity_type or ""
+            stage_label = page.activity.stage_label or ""
+        flow_label = ""
+        if substance:
+            flow_label = "Read → Worked example → Practice → Reflection"
+
+        page_title = self._page_title(page, surface)
+        journey_update = ""
+        finish_outcome = ""
+        insights: tuple[str, ...] = ()
+        next_rec = ""
+        headline = ""
+        what_studied = ""
+        performance_summary = ""
+        progress_explanation = ""
+        tomorrow_preview = ""
+        assessment_mode_active = False
+        assessment_summary = ""
+        exercises_assigned: tuple[str, ...] = ()
+        exercises_completed: tuple[str, ...] = ()
+        strengthened: tuple[str, ...] = ()
+        needs_reinforcement: tuple[str, ...] = ()
+        syllabus_refs: tuple[str, ...] = ()
+        sitting_report_ready = False
+        strategy_title = ""
+        strategy_body = ""
+        strategy_explanation = ""
+        strategy_spacing_guidance = ""
+        strategy_momentum_guidance = ""
+        strategy_confidence_guidance = ""
+        diagnostic_guidance = ""
+        diagnostic_explanation = ""
+        difficulty_title = ""
+        difficulty_guidance = ""
+        difficulty_explanation = ""
+        effectiveness_feedback = ""
+        effectiveness_explanation = ""
+        if completion is not None:
+            journey_update = completion.journey_update_label or ""
+            finish_outcome = completion.finish_outcome_label or ""
+            insights = completion.learning_insights or ()
+            next_rec = completion.next_recommendation or ""
+            headline = completion.headline or ""
+            what_studied = completion.what_studied or ""
+            performance_summary = completion.performance_summary or ""
+            progress_explanation = completion.progress_explanation or ""
+            tomorrow_preview = completion.tomorrow_preview or ""
+            assessment_mode_active = bool(completion.assessment_mode_active)
+            assessment_summary = completion.assessment_summary or ""
+            exercises_assigned = completion.exercises_assigned or ()
+            exercises_completed = completion.exercises_completed or ()
+            strengthened = completion.strengthened or ()
+            needs_reinforcement = completion.needs_reinforcement or ()
+            syllabus_refs = completion.syllabus_refs or ()
+            sitting_report_ready = bool(completion.sitting_report_ready)
+            strategy_title = completion.strategy_title or ""
+            strategy_body = completion.strategy_body or ""
+            strategy_explanation = completion.strategy_explanation or ""
+            strategy_spacing_guidance = (
+                completion.strategy_spacing_guidance or ""
+            )
+            strategy_momentum_guidance = (
+                completion.strategy_momentum_guidance or ""
+            )
+            strategy_confidence_guidance = (
+                completion.strategy_confidence_guidance or ""
+            )
+            diagnostic_guidance = completion.diagnostic_guidance or ""
+            diagnostic_explanation = completion.diagnostic_explanation or ""
+            difficulty_title = completion.difficulty_title or ""
+            difficulty_guidance = completion.difficulty_guidance or ""
+            difficulty_explanation = completion.difficulty_explanation or ""
+            effectiveness_feedback = completion.effectiveness_feedback or ""
+            effectiveness_explanation = (
+                completion.effectiveness_explanation or ""
+            )
+            if completion.learning_objectives and not learning_objectives:
+                learning_objectives = completion.learning_objectives
 
         return StudySessionPage(
-            page_title=_PAGE_TITLE,
+            page_title=page_title,
             surface=surface.value,
             context=context,
             task=task,
@@ -47,7 +143,7 @@ class StudySessionService:
             primary_enabled=primary_enabled,
             blocking_issue=blocking,
             exit_href=url_for("student.home"),
-            exit_label="Exit",
+            exit_label="Exit" if not product else "Pause & Exit",
             content_title=content["title"],
             content_body=content["body"],
             content_support=content["support"],
@@ -55,13 +151,73 @@ class StudySessionService:
             show_answer_input=content["show_answer_input"],
             feedback_outcome=content["feedback_outcome"],
             feedback_explanation=content["feedback_explanation"],
+            model_answer=str(content.get("model_answer") or ""),
+            common_mistake=str(content.get("common_mistake") or ""),
+            feedback_next_action=str(content.get("feedback_next_action") or ""),
             disclosures=disclosures,
             technical_lines=technical,
             session_id=page.shell.session_id,
             activity_id=(page.activity.activity_id if page.activity else ""),
             mission_id=(page.overview.mission_id if page.overview else "") or "",
             reading_progress_percent=reading_progress,
+            show_pause=product
+            and surface
+            in {
+                SessionSurface.OVERVIEW,
+                SessionSurface.ACTIVITY,
+                SessionSurface.REFLECTION,
+            }
+            and surface is not SessionSurface.OVERVIEW,
+            finish_review_required=product and surface is SessionSurface.SUMMARY,
+            lifecycle_label=lifecycle,
+            checklist=checklist,
+            learning_objectives=learning_objectives,
+            activity_type=activity_type,
+            stage_label=stage_label,
+            educational_flow_label=flow_label,
+            journey_update_label=journey_update,
+            finish_outcome_label=finish_outcome,
+            learning_insights=insights,
+            next_recommendation=next_rec,
+            completion_headline=headline,
+            what_studied=what_studied,
+            performance_summary=performance_summary,
+            progress_explanation=progress_explanation,
+            tomorrow_preview=tomorrow_preview,
+            assessment_mode_active=assessment_mode_active,
+            assessment_summary=assessment_summary,
+            exercises_assigned=exercises_assigned,
+            exercises_completed=exercises_completed,
+            strengthened=strengthened,
+            needs_reinforcement=needs_reinforcement,
+            syllabus_refs=syllabus_refs,
+            sitting_report_ready=sitting_report_ready,
+            strategy_title=strategy_title,
+            strategy_body=strategy_body,
+            strategy_explanation=strategy_explanation,
+            strategy_spacing_guidance=strategy_spacing_guidance,
+            strategy_momentum_guidance=strategy_momentum_guidance,
+            strategy_confidence_guidance=strategy_confidence_guidance,
+            diagnostic_guidance=diagnostic_guidance,
+            diagnostic_explanation=diagnostic_explanation,
+            difficulty_title=difficulty_title,
+            difficulty_guidance=difficulty_guidance,
+            difficulty_explanation=difficulty_explanation,
+            effectiveness_feedback=effectiveness_feedback,
+            effectiveness_explanation=effectiveness_explanation,
         )
+
+    @staticmethod
+    def _page_title(page: SessionPageViewModel, surface: SessionSurface) -> str:
+        """Professional topic title for session chrome (KWP-002)."""
+        topic = (page.shell.topic_title or "").strip()
+        if surface is SessionSurface.COMPLETE and page.completion:
+            if page.completion.primary_topic:
+                return f"Today: {page.completion.primary_topic}"
+            return "Sitting Report"
+        if topic:
+            return f"Today: {topic}"
+        return _PAGE_TITLE
 
     @staticmethod
     def _reading_progress_percent(
@@ -179,7 +335,12 @@ class StudySessionService:
         )
 
     def _task(
-        self, page: SessionPageViewModel, surface: SessionSurface
+        self,
+        page: SessionPageViewModel,
+        surface: SessionSurface,
+        *,
+        product: bool = False,
+        substance: bool = False,
     ) -> LearningTask:
         duration = ""
         next_milestone = ""
@@ -188,11 +349,19 @@ class StudySessionService:
         activity = "Practice"
 
         if surface is SessionSurface.OVERVIEW and page.overview:
-            activity = "Begin practice"
+            activity = "Begin session" if substance else "Begin practice"
             expected = page.overview.objective or "Start today's practice"
             duration = page.overview.estimated_duration_label
-            next_milestone = page.overview.activity_count_label or "First activity"
-            instruction = "Start the session to open the first learning activity."
+            next_milestone = (
+                "Reading"
+                if substance
+                else (page.overview.activity_count_label or "First activity")
+            )
+            instruction = (
+                "Review today's learning objectives, then start reading."
+                if substance
+                else "Start the session to open the first learning activity."
+            )
             if page.overview.why_studying:
                 # One concise line only — strip essay padding.
                 why = page.overview.why_studying.strip()
@@ -200,6 +369,7 @@ class StudySessionService:
                     instruction = why
 
         elif surface is SessionSurface.ACTIVITY and page.activity:
+            stage = (page.activity.activity_type or "").strip()
             if page.activity.has_explanation:
                 activity = "Review finding"
                 expected = "Acknowledge the explanation, then continue"
@@ -213,6 +383,25 @@ class StudySessionService:
                     if page.activity.is_final
                     else "Next activity"
                 )
+            elif stage == "read":
+                activity = "Reading"
+                expected = "Study the reading, then note one key idea"
+                instruction = "Read carefully, then capture what stood out."
+                next_milestone = "Worked example"
+            elif stage == "worked_example":
+                activity = "Worked example"
+                expected = "Follow the method, then note the step you will reuse"
+                instruction = (
+                    "Stay with the worked example before moving to practice."
+                )
+                next_milestone = "Practice"
+            elif stage == "practice":
+                activity = "Practice"
+                expected = "Submit your answer for this practice step"
+                instruction = "Use the reading and worked example to answer."
+                next_milestone = (
+                    "Reflection" if page.activity.is_final else "Next practice"
+                )
             else:
                 activity = "Answer question"
                 expected = "Submit your answer for this activity"
@@ -223,26 +412,35 @@ class StudySessionService:
 
         elif surface is SessionSurface.REFLECTION and page.reflection:
             activity = "Session reflection"
-            expected = "Capture what mattered in this practice"
+            expected = "Capture what mattered in this session"
             instruction = (
                 page.reflection.reflection_prompt
                 or "What mattered in this practice?"
             )
-            next_milestone = "Return Home"
+            next_milestone = "Ready to finish" if product else "Return Home"
             if page.reflection.topic_title:
                 expected = f"Reflect on {page.reflection.topic_title}"
 
         elif surface in {SessionSurface.SUMMARY, SessionSurface.COMPLETE}:
-            activity = "Complete session"
-            expected = "Close practice and return to Home"
-            instruction = "Practice for this session is finished."
-            next_milestone = "Home"
-            if page.completion and page.completion.primary_topic:
+            if product and surface is SessionSurface.SUMMARY:
+                activity = "Finish review"
+                expected = "Record Yes, Partially, or No for today's planned study"
                 instruction = (
-                    f"Practice on {page.completion.primary_topic} is finished."
+                    "Completing a session means today's planned learning "
+                    "activity occurred. It does not mean mastery increased."
                 )
-            if page.completion and page.completion.time_studied_label:
-                duration = page.completion.time_studied_label
+                next_milestone = "Home"
+            else:
+                activity = "Complete session"
+                expected = "Close practice and return to Home"
+                instruction = "Practice for this session is finished."
+                next_milestone = "Home"
+                if page.completion and page.completion.primary_topic:
+                    instruction = (
+                        f"Practice on {page.completion.primary_topic} is finished."
+                    )
+                if page.completion and page.completion.time_studied_label:
+                    duration = page.completion.time_studied_label
 
         return LearningTask(
             activity=activity,
@@ -253,7 +451,11 @@ class StudySessionService:
         )
 
     def _primary(
-        self, page: SessionPageViewModel, surface: SessionSurface
+        self,
+        page: SessionPageViewModel,
+        surface: SessionSurface,
+        *,
+        product: bool = False,
     ) -> tuple[str, str, bool, str]:
         if surface is SessionSurface.OVERVIEW and page.overview:
             label = page.overview.begin_label or "Start Session"
@@ -266,10 +468,26 @@ class StudySessionService:
             return "Submit Answer", "answer_form", True, ""
 
         if surface is SessionSurface.REFLECTION and page.reflection:
+            if product:
+                label = "Finish Session"
+                return label, "request_finish_form", True, ""
             label = page.reflection.next_action_label or "Continue to Summary"
             return label, "reflection_form", True, ""
 
-        if surface in {SessionSurface.SUMMARY, SessionSurface.COMPLETE}:
+        if surface is SessionSurface.SUMMARY:
+            if product:
+                return "Finish Session", "finish_review_form", True, ""
+            if page.completion:
+                label = page.completion.return_home_label or "Return Home"
+                return (
+                    label,
+                    "complete_form",
+                    page.completion.return_home_enabled,
+                    "",
+                )
+            return "Return Home", "complete_form", True, ""
+
+        if surface is SessionSurface.COMPLETE:
             if page.completion:
                 label = page.completion.return_home_label or "Return Home"
                 return (
@@ -283,7 +501,12 @@ class StudySessionService:
         return "", "none", False, ""
 
     def _content(
-        self, page: SessionPageViewModel, surface: SessionSurface
+        self,
+        page: SessionPageViewModel,
+        surface: SessionSurface,
+        *,
+        product: bool = False,
+        substance: bool = False,
     ) -> dict[str, object]:
         empty = {
             "title": "",
@@ -293,34 +516,59 @@ class StudySessionService:
             "show_answer_input": False,
             "feedback_outcome": "",
             "feedback_explanation": "",
+            "model_answer": "",
+            "common_mistake": "",
+            "feedback_next_action": "",
         }
 
         if surface is SessionSurface.OVERVIEW and page.overview:
             body_parts = []
             if page.overview.objective:
                 body_parts.append(page.overview.objective)
+            if substance and page.overview.learning_objectives:
+                body_parts.append("Learning objectives for this session:")
+                for item in page.overview.learning_objectives:
+                    body_parts.append(f"• {item}")
             return {
                 **empty,
-                "title": "Current objective",
-                "body": " ".join(body_parts),
-                "support": "",
+                "title": (
+                    "Learning objectives" if substance else "Current objective"
+                ),
+                "body": "\n".join(body_parts) if substance else " ".join(body_parts),
+                "support": (
+                    "You will move through Reading, Worked example, Practice, "
+                    "then Reflection."
+                    if substance
+                    else ""
+                ),
             }
 
         if surface is SessionSurface.ACTIVITY and page.activity:
             act = page.activity
             feedback_outcome = ""
             feedback_explanation = ""
+            model_answer = act.model_answer or ""
+            common_mistake = act.common_mistake or ""
+            feedback_next_action = act.next_action or ""
             if act.has_explanation:
-                feedback_outcome = "Reviewed"
+                feedback_outcome = act.feedback_outcome or "Reviewed"
                 feedback_explanation = act.explanation or ""
+            title = act.question or "Learning activity"
+            if act.stage_label:
+                title = f"{act.stage_label}: {act.question or act.stage_label}"
             return {
-                "title": act.question or "Learning activity",
+                "title": title,
                 "body": act.context or "",
                 "support": act.supporting_material or "",
                 "answer_prompt": act.answer_prompt or "Your answer",
                 "show_answer_input": not act.has_explanation,
                 "feedback_outcome": feedback_outcome,
                 "feedback_explanation": feedback_explanation,
+                "model_answer": model_answer if act.has_explanation else "",
+                "common_mistake": common_mistake if act.has_explanation else "",
+                "feedback_next_action": (
+                    feedback_next_action if act.has_explanation else ""
+                ),
             }
 
         if surface is SessionSurface.REFLECTION and page.reflection:
@@ -335,16 +583,71 @@ class StudySessionService:
                 "support": support,
             }
 
+        if surface is SessionSurface.SUMMARY and product:
+            return {
+                **empty,
+                "title": "Finish review",
+                "body": (
+                    "Did you complete today's planned study? "
+                    "Choose Yes, Partially, or No."
+                ),
+            }
+
         if surface in {SessionSurface.SUMMARY, SessionSurface.COMPLETE}:
             topic = ""
-            if page.completion and page.completion.primary_topic:
-                topic = page.completion.primary_topic
+            headline = ""
+            journey_update = ""
+            if page.completion:
+                topic = page.completion.primary_topic or ""
+                headline = page.completion.headline or ""
+                journey_update = page.completion.journey_update_label or ""
+            if surface is SessionSurface.COMPLETE:
+                title = headline or "Sitting Report"
+                body_parts: list[str] = []
+                if page.completion and page.completion.what_studied:
+                    body_parts.append(page.completion.what_studied)
+                elif journey_update:
+                    body_parts.append(journey_update)
+                elif topic:
+                    body_parts.append(
+                        f"You completed practice on {topic}. Your Journey is updated."
+                    )
+                else:
+                    body_parts.append(
+                        "Honest practice recorded. "
+                        "Your Journey is ready with the next step."
+                    )
+                if page.completion and page.completion.performance_summary:
+                    body_parts.append(page.completion.performance_summary)
+                if page.completion and page.completion.strategy_explanation:
+                    body_parts.append(
+                        f"Why: {page.completion.strategy_explanation}"
+                    )
+                elif page.completion and page.completion.next_recommendation:
+                    body_parts.append(
+                        f"Up next: {page.completion.next_recommendation}"
+                    )
+                elif page.completion and page.completion.tomorrow_preview:
+                    body_parts.append(page.completion.tomorrow_preview)
+                return {
+                    **empty,
+                    "title": title,
+                    "body": "\n".join(body_parts),
+                }
             body = "Session practice complete."
             if topic:
                 body = f"Session practice on {topic} is complete."
             return {**empty, "title": "Session complete", "body": body}
 
         return empty
+
+    def _checklist(
+        self, page: SessionPageViewModel
+    ) -> tuple[tuple[str, str, bool], ...]:
+        """Best-effort checklist from overview/completion metadata (P2)."""
+        # Checklist is injected via overview technical metadata when available.
+        # Presentation stays honest when empty.
+        return ()
 
     def _disclosures(
         self, page: SessionPageViewModel, surface: SessionSurface

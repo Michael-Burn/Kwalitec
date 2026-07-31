@@ -11,6 +11,9 @@ import logging
 from flask import flash, redirect, render_template, url_for
 from flask_login import current_user, login_required
 
+from app.application.educational_runtime_engine import (
+    EducationalPrerequisiteMissing,
+)
 from app.application.student_experience.exceptions import (
     PortUnavailable,
     StudentExperienceError,
@@ -103,7 +106,17 @@ def home():
         EVENT_DASHBOARD_OPENED,
         user_id=current_user.id,
         path="/student/",
-        context={"surface": "home"},
+        context={"surface": "home", "workspace": "adaptive-study"},
+    )
+    from app.services.presentation_telemetry_service import (
+        EVENT_WORKSPACE_OPENED,
+    )
+
+    PresentationTelemetryService.record(
+        EVENT_WORKSPACE_OPENED,
+        user_id=current_user.id,
+        path="/student/",
+        context={"surface": "adaptive-study-workspace"},
     )
     form = StartSessionForm()
     complete_form = CompleteRuntimeMissionForm()
@@ -194,7 +207,8 @@ def tutor_explain_mission():
         tutor_page = StudentTutorPresentationService().build(
             page,
             error_message=(
-                "Tutor guidance will appear once your learning Twin is available."
+                "Tutor guidance will appear once Learning Insights are available "
+                "from your practice."
             ),
         )
         return render_template(
@@ -503,6 +517,91 @@ def educational_timeline():
     )
 
 
+@student_bp.get("/learning-journey")
+@login_required
+def learning_journey():
+    """KWP-011 / KWP-012 — My Learning Journey + Readiness Forecast."""
+    from app.application.educational_memory import get_educational_memory_service
+    from app.application.readiness_forecast import get_readiness_forecast_engine
+    from app.domain.student_experience.experience_workspace import (
+        ExperienceSurface,
+    )
+    from app.presentation.session.factory import get_session_experience_composition
+    from app.presentation.student.view_models import (
+        StudentPageViewModel,
+        learning_journey_vm,
+        shell_vm,
+    )
+    from app.services.presentation_telemetry_service import (
+        EVENT_FORECAST_VIEWED,
+        EVENT_LEARNING_JOURNEY_OPENED,
+        PresentationTelemetryService,
+    )
+
+    composition = get_session_experience_composition()
+    store = getattr(composition, "store", None) if composition else None
+    student_key = str(current_user.id)
+    narrative = get_educational_memory_service().journey_for_student(
+        store=store,
+        student_id=student_key,
+    )
+    days_to_exam = None
+    readiness_ratio = None
+    try:
+        # Prefer countdown / readiness already projected on Home when available.
+        page_probe = load_page(ExperienceSurface.HOME)
+        if page_probe and page_probe.home and page_probe.home.countdown:
+            days_to_exam = page_probe.home.countdown.days
+        if page_probe and page_probe.home and page_probe.home.readiness:
+            raw = page_probe.home.readiness.readiness_percent_label or ""
+            digits = "".join(ch for ch in raw if ch.isdigit() or ch == ".")
+            if digits:
+                readiness_ratio = float(digits)
+                if readiness_ratio > 1.0:
+                    readiness_ratio = readiness_ratio / 100.0
+    except Exception:  # noqa: BLE001
+        days_to_exam = None
+        readiness_ratio = None
+
+    forecast = get_readiness_forecast_engine().forecast_from_store(
+        store,
+        student_id=student_key,
+        days_to_exam=days_to_exam,
+        current_readiness_ratio=readiness_ratio,
+    )
+    journey = learning_journey_vm(narrative, forecast=forecast)
+    # V1S-007 DF-015: shell_vm is keyword-only (active_surface / page_title).
+    page = StudentPageViewModel(
+        shell=shell_vm(
+            active_surface=ExperienceSurface.HISTORY.value,
+            page_title="My Learning Journey",
+            page_description="Your learning story and readiness outlook.",
+        ),
+        history=None,
+    )
+    PresentationTelemetryService.record(
+        EVENT_LEARNING_JOURNEY_OPENED,
+        user_id=current_user.id,
+        path="/student/learning-journey",
+        context={"surface": "learning-journey"},
+    )
+    if getattr(journey, "has_forecast", False) or getattr(
+        journey, "forecast_guidance", ""
+    ):
+        PresentationTelemetryService.record(
+            EVENT_FORECAST_VIEWED,
+            user_id=current_user.id,
+            path="/student/learning-journey",
+            context={"surface": "readiness-forecast"},
+        )
+    return render_template(
+        "student/learning_journey.html",
+        title="My Learning Journey",
+        page=page,
+        journey=journey,
+    )
+
+
 @student_bp.get("/profile")
 @login_required
 def profile():
@@ -520,9 +619,28 @@ def profile():
 def complete_runtime_mission():
     """PR-001B — complete today's Runtime C mission from Home.
 
-    Does not start Guided Session or cut over Runtime A. Writes progress
-    through the educational runtime engine only.
+    SR-002: retained only for rollback (SR_SESSION_PRIMARY OFF) or emergency
+    pilot (SR_PILOT_MARK_COMPLETE ON). Never the default product Primary when
+    session spine is enabled. Does not start Guided Session.
     """
+    from app.application.config.v2_flags import resolve_v2_feature_flags
+
+    flags = resolve_v2_feature_flags()
+    if flags.SR_SESSION_PRIMARY and not flags.SR_PILOT_MARK_COMPLETE:
+        flash(
+            "Today's learning starts with a Session. "
+            "Use Start Today's Session from Home.",
+            "info",
+        )
+        return redirect(url_for("student.home"))
+    if flags.SR_EVIDENCE_GATE:
+        flash(
+            "Completing today's focus requires a Session with accepted practice. "
+            "Start or resume Today's Session from Home.",
+            "info",
+        )
+        return redirect(url_for("student.home"))
+
     form = CompleteRuntimeMissionForm()
     if not form.validate_on_submit():
         flash(
@@ -661,6 +779,12 @@ def start_session():
     session_id = (form.session_id.data or "").strip() or None
     tip = _current_tip_payload()
     try:
+        from app.application.student_runtime.exceptions import (
+            MissionNotAcceptable,
+            SessionSpineUnavailable,
+            StudentRuntimeError,
+        )
+
         # Record commitment before / with start (Pattern A).
         if (form.record_commitment.data or "1") != "0" and tip.get("title"):
             RecommendationCommitmentService.confirm_commitment(
@@ -676,16 +800,29 @@ def start_session():
             tip=tip,
             session_id=handle.session_id or session_id,
         )
+    except EducationalPrerequisiteMissing as exc:
+        logger.warning(
+            "Start session educational readiness: %s missing=%s",
+            exc,
+            getattr(exc, "missing_prerequisite", None),
+        )
+        flash(str(exc) or "Your curriculum is not ready for study yet.", "warning")
+        return redirect(url_for("student.home"))
     except PortUnavailable:
         flash(
             "Today's Session is temporarily unavailable. Please try again shortly.",
             "warning",
         )
         return redirect(url_for("student.home"))
-    except StudentExperienceError as exc:
+    except (
+        StudentExperienceError,
+        MissionNotAcceptable,
+        SessionSpineUnavailable,
+        StudentRuntimeError,
+    ) as exc:
         logger.warning("Start session failed: %s", exc)
         flash(
-            "We couldn't start today's session. Please try again from Home.",
+            "We couldn't start Today's Session. Please try again from Home.",
             "warning",
         )
         return redirect(url_for("student.home"))
@@ -742,7 +879,11 @@ def start_session():
 @student_bp.post("/commitment/defer")
 @login_required
 def defer_commitment():
-    """Honest deferral — catalogue reason; no ranking change."""
+    """Honest deferral — catalogue reason; no ranking change.
+
+    SR-002a: when Session Primary is ON and a Runtime C mission is present,
+    also mark the mission Deferred (ILE-004) without starting a session.
+    """
     form = DeferCommitmentForm()
     if not form.validate_on_submit():
         flash("We couldn't save that just now. Please try again.", "warning")
@@ -754,6 +895,30 @@ def defer_commitment():
         reason_code=form.reason_code.data or "not_today",
         reason_note=form.reason_note.data or "",
     )
+    try:
+        from app.application.config.v2_flags import resolve_v2_feature_flags
+        from app.application.educational_experience import (
+            EducationalExperienceService,
+        )
+        from app.application.student_runtime import StudentRuntimeCoordinator
+
+        flags = resolve_v2_feature_flags()
+        if flags.SR_SESSION_PRIMARY:
+            experience = EducationalExperienceService().load_for_user(
+                int(current_user.id)
+            )
+            if (
+                experience is not None
+                and experience.mission is not None
+                and experience.mission.mission_instance_id
+            ):
+                StudentRuntimeCoordinator(flags=flags).defer_mission(
+                    user_id=int(current_user.id),
+                    mission_instance_id=experience.mission.mission_instance_id,
+                    reason_code=form.reason_code.data or "not_today",
+                )
+    except Exception:  # noqa: BLE001 — deferral preference must not hard-fail
+        logger.exception("runtime_c_mission_defer_failed")
     flash(
         "Your study plan continues — we'll meet you when you're ready.",
         "info",
@@ -803,19 +968,32 @@ def begin_revision():
         handle = start_todays_session(
             mission_id=mission_id, session_id=session_id
         )
-    except PortUnavailable:
-        flash(
-            "Revision is temporarily unavailable. Please try again shortly.",
-            "warning",
+    except Exception as exc:
+        from app.application.educational_runtime_engine import (
+            EducationalPrerequisiteMissing,
         )
-        return redirect(url_for("student.revision"))
-    except StudentExperienceError as exc:
-        logger.warning("Begin revision failed: %s", exc)
-        flash(
-            "We couldn't begin revision. Please try again from this page.",
-            "warning",
-        )
-        return redirect(url_for("student.revision"))
+
+        if isinstance(exc, EducationalPrerequisiteMissing):
+            logger.warning("Begin revision educational readiness: %s", exc)
+            flash(
+                str(exc) or "Your curriculum is not ready for revision yet.",
+                "warning",
+            )
+            return redirect(url_for("student.revision"))
+        if isinstance(exc, PortUnavailable):
+            flash(
+                "Revision is temporarily unavailable. Please try again shortly.",
+                "warning",
+            )
+            return redirect(url_for("student.revision"))
+        if isinstance(exc, StudentExperienceError):
+            logger.warning("Begin revision failed: %s", exc)
+            flash(
+                "We couldn't begin revision. Please try again from this page.",
+                "warning",
+            )
+            return redirect(url_for("student.revision"))
+        raise
 
     composition = get_experience_composition()
     if composition is not None:

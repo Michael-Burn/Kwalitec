@@ -41,3 +41,24 @@ class PlanningError(LearningSessionRuntimeError):  # noqa: N818
 
 class CompletionEvaluationError(LearningSessionRuntimeError):  # noqa: N818
     """Session completion could not be evaluated under current rules."""
+
+
+class FinishReviewRequired(LearningSessionRuntimeError):  # noqa: N818
+    """Explicit Yes / Partially / No finish review is required before close."""
+
+
+class EvidenceGateRejected(LearningSessionRuntimeError):  # noqa: N818
+    """Evidence Before Completion rejected the sitting package (EV-001B)."""
+
+    def __init__(
+        self,
+        message: str,
+        *,
+        reason: str = "",
+        student_explanation: str = "",
+        package_id: str = "",
+    ) -> None:
+        super().__init__(message)
+        self.reason = reason
+        self.student_explanation = student_explanation
+        self.package_id = package_id

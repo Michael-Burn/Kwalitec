@@ -1,16 +1,16 @@
-{# Readiness Card — current readiness, trend, confidence #}
+{# Exam Readiness — stage language first (KWP-006); percent is secondary. #}
 {% macro readiness_card(readiness) %}
 <section class="student-card student-card--readiness" aria-labelledby="readiness-title">
     <p class="student-card-eyebrow">Exam Readiness</p>
     <h2 id="readiness-title" class="student-card-title">
         {% if readiness.has_readiness %}
-            {{ readiness.readiness_percent_label }}
+            {{ readiness.readiness_label or 'Building' }}
         {% else %}
-            Not available yet
+            Building
         {% endif %}
     </h2>
-    {% if readiness.readiness_label %}
-    <p class="student-card-body">{{ readiness.readiness_label }}</p>
+    {% if readiness.has_readiness and readiness.readiness_percent_label and readiness.readiness_percent_label not in readiness.readiness_label %}
+    <p class="student-card-body ds-list__meta">{{ readiness.readiness_percent_label }} syllabus coverage</p>
     {% endif %}
     <dl class="student-meta-row">
         {% if readiness.trend_label %}
@@ -26,5 +26,8 @@
         </div>
         {% endif %}
     </dl>
+    {% if readiness.suggested_next_action %}
+    <p class="student-card-body">{{ readiness.suggested_next_action }}</p>
+    {% endif %}
 </section>
 {% endmacro %}

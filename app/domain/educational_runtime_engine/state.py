@@ -19,6 +19,8 @@ class PlanInstanceStatus(StrEnum):
 
 class MissionStatus(StrEnum):
     GENERATED = "generated"
+    ACCEPTED = "accepted"  # SR-002a: Mission Accepted ≡ Study Session start
+    DEFERRED = "deferred"  # SR-002a: ILE-004 honest deferral
     COMPLETED = "completed"
 
 
@@ -50,7 +52,19 @@ _PLAN_TRANSITIONS: dict[PlanInstanceStatus, frozenset[PlanInstanceStatus]] = {
 }
 
 _MISSION_TRANSITIONS: dict[MissionStatus, frozenset[MissionStatus]] = {
-    MissionStatus.GENERATED: frozenset({MissionStatus.COMPLETED}),
+    MissionStatus.GENERATED: frozenset(
+        {
+            MissionStatus.ACCEPTED,
+            MissionStatus.DEFERRED,
+            MissionStatus.COMPLETED,  # pilot / rollback Mark-complete path
+        }
+    ),
+    MissionStatus.ACCEPTED: frozenset(
+        {MissionStatus.COMPLETED, MissionStatus.DEFERRED}
+    ),
+    MissionStatus.DEFERRED: frozenset(
+        {MissionStatus.ACCEPTED, MissionStatus.COMPLETED}
+    ),
     MissionStatus.COMPLETED: frozenset(),
 }
 

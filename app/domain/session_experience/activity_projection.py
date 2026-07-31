@@ -53,6 +53,13 @@ class ActivityProjection:
     activities_total: int = 1
     next_action_label: str = "Continue"
     topic_title: str = ""
+    activity_type: str = ""
+    stage_label: str = ""
+    feedback_outcome: str = ""
+    model_answer: str = ""
+    common_mistake: str = ""
+    next_action: str = ""
+    scored_correct: bool | None = None
     metadata: tuple[tuple[str, str], ...] = field(default_factory=tuple)
 
     @classmethod
@@ -72,6 +79,13 @@ class ActivityProjection:
         activities_total: int = 1,
         next_action_label: str = "Continue",
         topic_title: str = "",
+        activity_type: str = "",
+        stage_label: str = "",
+        feedback_outcome: str = "",
+        model_answer: str = "",
+        common_mistake: str = "",
+        next_action: str = "",
+        scored_correct: bool | None = None,
         metadata: list[tuple[str, str]] | tuple[tuple[str, str], ...] | None = None,
     ) -> ActivityProjection:
         """Build an activity projection from opaque port facts."""
@@ -84,6 +98,8 @@ class ActivityProjection:
         cleaned_hints = tuple(
             h.strip() for h in (hints or ()) if isinstance(h, str) and h.strip()
         )
+        resolved_type = (activity_type or "").strip()
+        resolved_stage = (stage_label or "").strip()
         return cls(
             activity_id=_require_non_empty(activity_id, "activity_id"),
             session_id=_require_non_empty(session_id, "session_id"),
@@ -98,6 +114,13 @@ class ActivityProjection:
             activities_total=int(activities_total),
             next_action_label=(next_action_label or "Continue").strip() or "Continue",
             topic_title=(topic_title or "").strip(),
+            activity_type=resolved_type,
+            stage_label=resolved_stage,
+            feedback_outcome=(feedback_outcome or "").strip(),
+            model_answer=(model_answer or "").strip(),
+            common_mistake=(common_mistake or "").strip(),
+            next_action=(next_action or "").strip(),
+            scored_correct=scored_correct,
             metadata=tuple(metadata or ()),
         )
 
@@ -108,8 +131,12 @@ class ActivityProjection:
 
     @property
     def has_explanation(self) -> bool:
-        """True when an explanation is present."""
-        return bool(self.explanation)
+        """True when an explanation or scored feedback is present."""
+        return bool(
+            self.explanation
+            or self.feedback_outcome
+            or self.model_answer
+        )
 
     @property
     def is_final_activity(self) -> bool:

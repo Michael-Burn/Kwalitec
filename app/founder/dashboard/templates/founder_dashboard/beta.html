@@ -101,7 +101,7 @@
     {% if page.latest_feedback %}
     <ul class="ds-list">
       {% for item in page.latest_feedback %}
-      <li class="ds-list__row">
+      <li class="ds-list__row{% if request.args.get('feedback_id')|string == item.id|string %} is-highlighted{% endif %}" id="feedback-{{ item.id }}">
         <span>
           <strong>#{{ item.id }} · {{ item.category }}</strong>
           {{ ds_badge(item.severity, tone='neutral') }}
