@@ -78,7 +78,7 @@ See `RC002_RELEASE_NOTES.md` — founder validation instructions; next action is
 https://kwalitec.onrender.com
 
 **Pre-push production tip:** `ee1101d9ef7c61201d7d1f0701223bdfdfb6fd7f`  
-**RC-002 deploy tip (expected):** `77c4aff7c589ead3358b27d56b2ead296008b837`
+**RC-002 deploy tip (expected):** `f2cbdc5db014b33357628ef2bb0460f5ee6770fd`
 
 ---
 
