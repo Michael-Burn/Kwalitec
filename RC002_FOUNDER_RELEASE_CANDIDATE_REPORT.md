@@ -8,9 +8,9 @@
 
 ## 1. Executive Summary
 
-RC-002 freezes engineering and prepares Kwalitec for **founder-only** study on Render. Educational integrity (V1S-008) remains PASS. Local founder smoke of the Runtime C path is green. Production currently serves the prior commit (`ee1101d`); this report is completed after push/deploy/tag.
+RC-002 freezes engineering and prepares Kwalitec for **founder-only** study. Educational integrity (V1S-008) remains PASS. Local founder smoke of the Runtime C path is green (19/19). Release commit and tag are on `origin/main`. Render still serves the prior commit because **auto-deploy appears off** — Manual Deploy is required to cut over.
 
-**Recommendation (pre-deploy):** **GO** to deploy RC-002 for G1 study, with **PENDING EVIDENCE** on G1 consecutive-week validation and honest residual full-suite test debt.
+**Recommendation:** **GO** to Manual Deploy RC-002, then begin G1 study. G1 consecutive-week evidence remains **PENDING**. Full-tree pytest zero is **not** claimed.
 
 ---
 
@@ -27,7 +27,7 @@ See `RC002_CODE_QUALITY_REPORT.md`.
 - Educational integrity suite: **78/78 PASS**
 - Flask production startup: **PASS**
 - Critical ruff errors: **PASS**
-- Full-tree pytest: residual stale failures documented — **not** claimed zero
+- Full-tree pytest: residual stale failures documented
 
 ---
 
@@ -51,25 +51,32 @@ Local CSRF-aware founder smoke: **19/19 PASS** (login, Home, Mission, Episode, T
 
 ## 7. Deployment Verification
 
-See `RC002_DEPLOYMENT_VERIFICATION.md` — post-deploy section filled after Render completes.
+See `RC002_DEPLOYMENT_VERIFICATION.md`.
+
+- Git push + tag: **PASS**
+- Live host health (prior commit): **PASS**
+- RC-002 commit on Render: **PENDING MANUAL DEPLOY**
 
 ---
 
 ## 8. Release Notes Summary
 
-See `RC002_RELEASE_NOTES.md` — founder validation instructions; next action is **study**.
+See `RC002_RELEASE_NOTES.md` — next action after cutover is **study** for G1.
 
 ---
 
 ## 9. Commit Hash
 
-`77c4aff7c589ead3358b27d56b2ead296008b837`
+- Release: `f2cbdc5db014b33357628ef2bb0460f5ee6770fd`
+- Docs annotation: `f69457f80dc3c7987ceb3d0745d7a204c63b62a9`
+
+373 files in release commit (+67641 / −1373).
 
 ---
 
 ## 10. Git Tag
 
-`v1.0.0-rc2` (pushed after successful deploy verification)
+`v1.0.0-rc2` → `f2cbdc5db014b33357628ef2bb0460f5ee6770fd` (pushed)
 
 ---
 
@@ -77,8 +84,8 @@ See `RC002_RELEASE_NOTES.md` — founder validation instructions; next action is
 
 https://kwalitec.onrender.com
 
-**Pre-push production tip:** `ee1101d9ef7c61201d7d1f0701223bdfdfb6fd7f`  
-**RC-002 deploy tip (expected):** `f2cbdc5db014b33357628ef2bb0460f5ee6770fd`
+**Live tip at report time:** `ee1101d9ef7c61201d7d1f0701223bdfdfb6fd7f` (pre-RC)  
+**Deploy target:** `main` @ `f69457f` / tag `v1.0.0-rc2`
 
 ---
 
@@ -86,12 +93,9 @@ https://kwalitec.onrender.com
 
 | Dimension | Call |
 |---|---|
-| Deploy RC-002 to Render for founder use | **GO** |
-| G1 Founder Educational Validation | **PENDING EVIDENCE** (5–7 consecutive exclusive live days) |
-| Declare Version 1 production-ready / Closed Beta | **NO-GO** until G1 PASS + remaining P-002.1 gates |
+| Release engineering (commit + tag + docs) | **GO / COMPLETE** |
+| Render cutover | **PENDING MANUAL DEPLOY** |
+| G1 Founder Educational Validation | **PENDING EVIDENCE** |
+| Version 1 production-ready / Closed Beta | **NO-GO** until G1 PASS + P-002.1 gates |
 
-**Overall RC-002 label:** **GO FOR FOUNDER VALIDATION / PENDING EVIDENCE FOR G1**
-
-### Files changed (release commit)
-
-373 files changed, +67634 / −1373 — Educational Runtime singularity + Adaptive Workspace + commercial loop + V1S/KWP programme reports + RC-002 release documentation + DF-016 title repair-on-read + Alembic head alignment.
+**Overall RC-002 label:** **GO FOR FOUNDER VALIDATION — MANUAL RENDER DEPLOY REQUIRED / G1 PENDING EVIDENCE**
