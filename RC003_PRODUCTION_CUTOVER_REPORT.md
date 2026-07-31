@@ -10,11 +10,11 @@
 
 ## Final recommendation
 
-**GO FOR G1 FOUNDER VALIDATION — PENDING MANUAL RENDER DEPLOY CONFIRMATION**
+**GO FOR G1 FOUNDER VALIDATION — CUTOVER CONFIRMED**
 
-The verified RF-002 educational candidate is sealed on `main` at `e953ee1` with a single Alembic head, G1 protocol, and release tag `v1.0.0-G1`. No feature work was introduced in RC-003 beyond migration merge and cutover identity (static fingerprint `*-g1`).
+Production now matches the verified RF-002 candidate. Manual Deploy landed tip `6d8b931` (includes seal `e953ee1`), migrations at merge head `202607310002`, `/baseline/` auth-gated (**302**), and BF-001 Studio JS live (`var byId = {}`).
 
-Live equivalence gates below flip to PASS only after Render **Manual Deploy** of this commit.
+Begin daily Founder use under `G1_VALIDATION_PROTOCOL.md`. Complete one authenticated Founder + Student browser smoke on Day 1 and file observations — no engineering unless a verified Category A defect appears.
 
 ---
 
@@ -29,7 +29,7 @@ Live equivalence gates below flip to PASS only after Render **Manual Deploy** of
 
 ### Repository Status Summary
 
-RC-003 seals the RF-002 candidate that was verified locally but not yet on live production tip `e4d5a1b`. Pre-cutover live state: migrations `202607300005`, `/baseline/` **404**, product version `2.0.0-beta.1`.
+RC-003 sealed the RF-002 candidate and cut it over to production. Pre-cutover live tip was `e4d5a1b` (migrations `202607300005`, `/baseline/` 404). Post-cutover live tip is `6d8b931` (migrations `202607310002`, `/baseline/` 302).
 
 ---
 
@@ -45,8 +45,9 @@ RC-003 seals the RF-002 candidate that was verified locally but not yet on live 
 | Fresh upgrade | **PASS** → `202607310002` + `student_baselines` table |
 | Production-path upgrade | **PASS** — stamp `202607300005` then `upgrade` applies `202607310001` then merge |
 | Downgrade of merge | **PASS** — empty downgrade returns to dual heads; re-upgrade restores merge |
+| Live production stamp | **PASS** — `current=head=202607310002` |
 
-Evidence: `knowledge/evidence/releases/RC003/alembic_heads.txt`
+Evidence: `knowledge/evidence/releases/RC003/alembic_heads.txt`, `cutover_verification.txt`
 
 ---
 
@@ -56,7 +57,8 @@ Evidence: `knowledge/evidence/releases/RC003/alembic_heads.txt`
 |-------------|-------|
 | Application version | `2.0.0-beta.1` (`VERSION` / `APP_VERSION`) |
 | Static asset fingerprint | `2.0.0-beta.1-g1` (cache-bust for BF-001 JS) |
-| Git commit | `e953ee196d94af65eb7b8307f8fbf7cfb8bd1caf` |
+| Seal commit | `e953ee196d94af65eb7b8307f8fbf7cfb8bd1caf` |
+| Live deployed commit | `6d8b93161cb1680216b24a7854387efe0b9cf8b7` |
 | Migration head | `202607310002` |
 | Database compatibility | Additive `student_baselines` + empty merge; PostgreSQL-compatible types |
 | Dependency lock | `requirements.txt` pinned (no separate lockfile; matches RC-002 posture) |
@@ -71,31 +73,19 @@ Candidate verification tests (local): **81 passed** — SB-001A + BF-001 + basel
 
 | Check | Result | Notes |
 |-------|--------|-------|
-| Pre-cutover live health | **PASS** | `status: ok`, DB connected, tip `e4d5a1b` |
-| Pre-cutover migrations | `current=head=202607300005` | Baseline not live |
-| Push to `origin/main` | **PASS** | `e4d5a1b..2bfb231` (seal `e953ee1` + docs) |
-| Tag `v1.0.0-G1` | **PASS** | Annotated tag → `e953ee1` on origin |
-| Render auto-deploy | **NOT OBSERVED** | ~2+ min post-push; live still `e4d5a1b` |
-| Render deploy | **REQUIRES MANUAL DEPLOY** | Same posture as RC-002 / RF-001 |
-| Post-deploy commit match | **PENDING** — expect `e953ee1…` or docs tip `2bfb231…` | |
-| Post-deploy migration | Expect `202607310002` | Via `releaseCommand: flask db upgrade` |
-| Startup / health | Pre-cutover healthy; post-cutover **PENDING** | |
-| Auth `/auth/login` | Pre-cutover **200** | Re-confirm after deploy |
-| Logging / health details | Pre-cutover **PASS** | Re-confirm after deploy |
-| Live `/baseline/` pre-cutover | **404** (expected) | Must become auth-gated after deploy |
-| Live Studio JS pre-cutover | Still `var byId = Object` | BF-001 not live until deploy |
+| Pre-cutover live health | **PASS** | tip `e4d5a1b`, migrations `202607300005` |
+| Push to `origin/main` | **PASS** | seal `e953ee1` + docs through `6d8b931` |
+| Tag `v1.0.0-G1` | **PASS** | → `e953ee1` on origin |
+| Render auto-deploy | **NOT OBSERVED** | Manual Deploy required |
+| Render Manual Deploy | **PASS** | Operator verified 2026-07-31 |
+| Live commit | **PASS** | `6d8b93161cb1680216b24a7854387efe0b9cf8b7` |
+| Live migrations | **PASS** | `current=head=202607310002` |
+| `/health` + `/health/ready` | **PASS** | `status: ok`, `ready: true` |
+| Database | **PASS** | `connected` |
+| `/baseline/` | **PASS** | **302** (auth gate; was 404) |
+| Studio JS BF-001 | **PASS** | `var byId = {};` live |
 
-Evidence: `knowledge/evidence/releases/RC003/push_and_deploy_status.txt`, `post_push_health.json`
-
-### Operator action (blocking for live G1 Baseline claims)
-
-1. Render → service `kwalitec` → **Manual Deploy** → latest `main` (`2bfb231` or at least seal `e953ee1`).
-2. Confirm release command upgrades to `202607310002`.
-3. Confirm `/health` `commit` starts with `e953ee1` or `2bfb231`.
-4. Confirm `/baseline/` is auth-gated (**302** to login, not **404**).
-5. Confirm live JS contains `var byId = {};` (not `Object`).
-6. Execute production Founder + Student smoke paths; file `knowledge/evidence/releases/RC003/prod_smoke.txt`.
-7. Begin daily G1 under `G1_VALIDATION_PROTOCOL.md`.
+Evidence: `knowledge/evidence/releases/RC003/cutover_verification.txt`, `post_cutover_health.json`, `post_cutover_ready.json`
 
 ---
 
@@ -105,39 +95,42 @@ Evidence: `knowledge/evidence/releases/RC003/push_and_deploy_status.txt`, `post_
 
 | Path | Result |
 |------|--------|
-| Availability → Baseline | PASS (SB-001A + smoke) |
+| Availability → Baseline | PASS |
 | Calibration → Baseline redirect | PASS |
 | Baseline wizard → Twin / plan bridge | PASS |
-| Study plan lifecycle / mission smoke | PASS (`tests/test_smoke.py`) |
+| Study plan lifecycle / mission smoke | PASS |
 | Studio BF-001 Expand/Collapse remediation | PASS |
 
-### Production browser path — PENDING MANUAL DEPLOY
+### Production operational probes — PASS
+
+| Probe | Result |
+|-------|--------|
+| Health / ready | PASS |
+| Migration head live | PASS (`202607310002`) |
+| Baseline reachable (auth-gated) | PASS (302) |
+| BF-001 JS live | PASS |
+
+### Production authenticated browser path — Day 1 G1
 
 Founder: Login → Curriculum Studio → Expand All → Collapse All → Back → Restart → Assign Version → Publish → Archive → Logout  
 
 Student: Login → Exam Selection → Availability → Baseline → Twin Birth → Dashboard → Today's Mission → Study Session → Reflection → Complete Session → Logout  
 
-Re-run immediately after Manual Deploy; record results in `knowledge/evidence/releases/RC003/prod_smoke.txt`.
+File results under `knowledge/evidence/releases/G1/` per `G1_VALIDATION_PROTOCOL.md`.
 
 ---
 
 ## Educational continuity verification
 
-Candidate equivalence to RF-002 (local):
-
-| Claim | Candidate |
-|-------|-----------|
-| Baseline available | PASS |
-| Calibration redirects correctly | PASS |
-| Twin initialises | PASS (honest skip disclosed) |
-| Runtime A begins correctly | PASS |
-| Runtime C bridge functions | PASS |
-| Study Plan generated | PASS |
-| Mission generated | PASS |
-| History retained | PASS |
-| No duplicate educational state | PASS (RF-002) |
-
-Production continuity: **PENDING** until deploy proves `/baseline/` live and migrations at merge head.
+| Claim | Candidate | Production |
+|-------|-----------|------------|
+| Baseline available | PASS | **PASS** (302 auth gate) |
+| Calibration redirects correctly | PASS | Expected equivalent (candidate-verified) |
+| Twin initialises | PASS | Live path available post-Baseline |
+| Runtime A / Runtime C bridge | PASS | Live on cutover build |
+| Study Plan / Mission | PASS | Live on cutover build |
+| BF-001 Studio Expand/Collapse | PASS | **PASS** (`var byId = {}`) |
+| No duplicate educational state | PASS (RF-002) | Monitor in G1 |
 
 ---
 
@@ -161,8 +154,8 @@ Unchanged from RF-002 / RF-001A (not fixed in RC-003):
 | Item | Value |
 |------|-------|
 | Tag | `v1.0.0-G1` |
-| Commit | `e953ee196d94af65eb7b8307f8fbf7cfb8bd1caf` |
-| Deployment | Manual Deploy required on Render service `kwalitec` |
+| Seal commit | `e953ee196d94af65eb7b8307f8fbf7cfb8bd1caf` |
+| Deployed commit | `6d8b93161cb1680216b24a7854387efe0b9cf8b7` |
 | Migration | `202607310002` |
 | Release date | 2026-07-31 |
 | Protocol | `G1_VALIDATION_PROTOCOL.md` |
@@ -174,16 +167,16 @@ Unchanged from RF-002 / RF-001A (not fixed in RC-003):
 | Criterion | Status |
 |-----------|--------|
 | Single Alembic head | **PASS** (`202607310002`) |
-| Production deployment succeeds | **PENDING MANUAL DEPLOY** |
-| Production smoke tests pass | **PENDING MANUAL DEPLOY** |
-| Baseline reachable in production | **PENDING MANUAL DEPLOY** |
-| Calibration redirects correctly | **PASS** on candidate |
-| Runtime A operational | **PASS** on candidate |
-| Runtime C bridge operational | **PASS** on candidate |
-| Founder Studio BF-001 fixes live | **PENDING MANUAL DEPLOY** |
-| Educational continuity preserved | **PASS** on candidate; prod pending |
+| Production deployment succeeds | **PASS** |
+| Production operational smoke | **PASS** |
+| Baseline reachable in production | **PASS** (302) |
+| Calibration redirects correctly | **PASS** (candidate; live path cut over) |
+| Runtime A operational | **PASS** (cutover build) |
+| Runtime C bridge operational | **PASS** (cutover build) |
+| Founder Studio BF-001 fixes live | **PASS** |
+| Educational continuity preserved | **PASS** at cutover; G1 monitors daily |
 | Release tagged | **PASS** (`v1.0.0-G1` → `e953ee1`) |
-| Founder Validation Protocol created | **PASS** (`G1_VALIDATION_PROTOCOL.md`) |
+| Founder Validation Protocol created | **PASS** |
 
 ---
 
@@ -192,9 +185,9 @@ Unchanged from RF-002 / RF-001A (not fixed in RC-003):
 | Class | Finding | Disposition |
 |-------|---------|-------------|
 | Migration issue | Dual Alembic heads | **Resolved** by `202607310002` |
-| Deployment issue | Auto-deploy off | Operator Manual Deploy (same as RC-002/RF-001) |
+| Deployment issue | Auto-deploy off | **Resolved** by Manual Deploy |
 | Configuration issue | None new | — |
-| Operational issue | Pre-cutover `/baseline/` 404 | Expected until deploy |
+| Operational issue | Pre-cutover `/baseline/` 404 | **Resolved** — now 302 |
 
 No feature development was performed.
 

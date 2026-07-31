@@ -1,0 +1,11 @@
+deployed_commit=6d8b93161cb1680216b24a7854387efe0b9cf8b7
+seal_commit=e953ee196d94af65eb7b8307f8fbf7cfb8bd1caf
+tag=v1.0.0-G1
+migration_current=202607310002
+migration_head=202607310002
+baseline_http=302
+bf001_js=varbyId={};
+health=ok
+ready=true
+verified_at_utc=2026-07-31T11:24:50Z
+operator=founder_shell_probe

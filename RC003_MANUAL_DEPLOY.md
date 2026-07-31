@@ -2,31 +2,24 @@
 
 **Host:** https://kwalitec.onrender.com  
 **Seal commit:** `e953ee196d94af65eb7b8307f8fbf7cfb8bd1caf`  
-**Docs tip:** `2bfb231`  
+**Live deployed commit:** `6d8b93161cb1680216b24a7854387efe0b9cf8b7`  
 **Tag:** `v1.0.0-G1`  
-**Expected migration head:** `202607310002`
+**Migration head:** `202607310002`  
+**Status:** **COMPLETE — 2026-07-31**
 
-Render auto-deploy was **not observed** after push (live remained on `e4d5a1b`). Complete Manual Deploy before claiming live G1 Baseline continuity.
+## Probes (PASS)
 
-## Steps
+| Probe | Result |
+|-------|--------|
+| `/health` | `ok` — commit `6d8b931…` |
+| `/health/ready` | `ready: true` |
+| migrations | `current=head=202607310002` |
+| `/baseline/` | **302** |
+| Studio JS | `var byId = {};` |
 
-1. Open Render Dashboard → service **kwalitec** → **Manual Deploy** → deploy latest `main`.
-2. Wait for build (`pip install -r requirements.txt`) + release (`flask db upgrade`) + start (Waitress).
-3. Probe:
+Evidence: `knowledge/evidence/releases/RC003/cutover_verification.txt`
 
-```bash
-curl -fsS https://kwalitec.onrender.com/health
-curl -fsS https://kwalitec.onrender.com/health/ready
-curl -sS -o /dev/null -w '%{http_code}\n' https://kwalitec.onrender.com/baseline/
-curl -sS https://kwalitec.onrender.com/static/js/curriculum_preview_tree.js | sed -n '24,26p'
-```
+## Remaining (G1 Day 1)
 
-Expect:
-
-- `/health` `commit` starts with `e953ee1` or `2bfb231`
-- migrations `current` = `head` = `202607310002`
-- `/baseline/` → **302** (login), not **404**
-- JS line: `var byId = {};`
-
-4. Run Founder + Student browser smoke (see `RC003_PRODUCTION_CUTOVER_REPORT.md`).
-5. Start G1 daily protocol: `G1_VALIDATION_PROTOCOL.md`.
+1. Authenticated Founder + Student browser smoke (see `RC003_PRODUCTION_CUTOVER_REPORT.md`).
+2. Start daily validation: `G1_VALIDATION_PROTOCOL.md`.
