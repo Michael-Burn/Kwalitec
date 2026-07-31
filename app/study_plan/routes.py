@@ -407,7 +407,9 @@ def _handle_step_2():
     wizard_data = session.get("wizard_data", {})
     category_code = wizard_data.get("exam_category")
     form = ExamSittingForm()
-    form.exam_sitting.choices = catalogue.get_sitting_choices(category_code)
+    sitting_choices = catalogue.get_sitting_choices(category_code)
+    form.exam_sitting.choices = sitting_choices
+    show_sitting = not catalogue.is_placeholder_sitting_menu(sitting_choices)
     if "exam_sitting" in wizard_data:
         form.exam_sitting.data = wizard_data["exam_sitting"]
     if "exam_date" in wizard_data:
@@ -418,6 +420,7 @@ def _handle_step_2():
         step=2,
         total_steps=TOTAL_STEPS,
         step_title=STEP_TITLES[2],
+        show_sitting=show_sitting,
     )
 
 
@@ -430,10 +433,16 @@ def _handle_step_2_post():
     wizard_data = session.get("wizard_data", {})
     category_code = wizard_data.get("exam_category")
     form = ExamSittingForm()
-    form.exam_sitting.choices = catalogue.get_sitting_choices(category_code)
+    sitting_choices = catalogue.get_sitting_choices(category_code)
+    form.exam_sitting.choices = sitting_choices
+    show_sitting = not catalogue.is_placeholder_sitting_menu(sitting_choices)
     if form.validate_on_submit():
-        session["wizard_data"]["exam_sitting"] = form.exam_sitting.data
         exam_date = form.exam_date
+        if show_sitting:
+            sitting = form.exam_sitting.data
+        else:
+            sitting = catalogue.sitting_label_from_exam_date(exam_date)
+        session["wizard_data"]["exam_sitting"] = sitting
         if hasattr(exam_date, "isoformat"):
             session["wizard_data"]["exam_date"] = exam_date.isoformat()
         else:
@@ -446,6 +455,7 @@ def _handle_step_2_post():
         step=2,
         total_steps=TOTAL_STEPS,
         step_title=STEP_TITLES[2],
+        show_sitting=show_sitting,
     )
 
 

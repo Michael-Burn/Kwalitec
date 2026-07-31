@@ -1,13 +1,14 @@
 {% extends "study_plan/wizard_base.html" %}
 {% set page_title = 'Choose Exam' %}
 {% set wizard_question = 'When is your exam?' %}
-{% set wizard_helper = 'Choose the day and month, then type the year.' %}
+{% set wizard_helper = 'Enter the date of your exam.' %}
 {% set button_text = 'Continue' %}
 
 {% block form_content %}
 <form id="wizard-form" method="post" novalidate>
     {{ form.hidden_tag() }}
 
+    {% if show_sitting %}
     <div class="wizard-field-group">
         <label class="form-label" for="exam_sitting">{{ form.exam_sitting.label.text }}</label>
         {% if form.exam_sitting.errors %}
@@ -17,9 +18,12 @@
         {% endif %}
         {{ form.exam_sitting(class="form-select") }}
     </div>
+    {% else %}
+    {# Placeholder sittings (e.g. Published "Custom") are derived from the exam date. #}
+    <input type="hidden" name="exam_sitting" value="{{ form.exam_sitting.data or 'Custom' }}">
+    {% endif %}
 
-    <fieldset class="wizard-field-group">
-        <legend class="form-label">{{ form.exam_day.label.text }} / {{ form.exam_month.label.text }} / {{ form.exam_year.label.text }}</legend>
+    <div class="wizard-field-group">
         {% if form.exam_day.errors or form.exam_month.errors or form.exam_year.errors %}
         <div class="alert alert-danger" role="alert">
             {% for error in form.exam_day.errors %}{{ error }}{% endfor %}
@@ -41,7 +45,6 @@
                 {{ form.exam_year(class="form-control", type="number") }}
             </div>
         </div>
-        <small class="wizard-field-hint">Type the full year (for example 2027). Calendar-only entry is no longer required.</small>
-    </fieldset>
+    </div>
 </form>
 {% endblock %}

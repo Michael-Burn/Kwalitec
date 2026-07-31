@@ -58,6 +58,17 @@ def test_exam_sitting_form_rejects_past_date(app):
         assert form.exam_year.errors
 
 
+def test_placeholder_sitting_menu_detection():
+    from app.services.examination_catalogue import (
+        is_placeholder_sitting_menu,
+        sitting_label_from_exam_date,
+    )
+
+    assert is_placeholder_sitting_menu([("Custom", "Custom")]) is True
+    assert is_placeholder_sitting_menu([("April 2027", "April 2027")]) is False
+    assert sitting_label_from_exam_date(date(2027, 4, 13)) == "April 2027"
+
+
 def test_edit_form_populate_from_exam_date(app):
     with app.test_request_context():
         form = EditStudyPlanForm(meta={"csrf": False})

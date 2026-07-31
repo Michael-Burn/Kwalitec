@@ -323,6 +323,19 @@ def get_sitting_choices(category_code: str) -> list[tuple[str, str]]:
     return [(s, s) for s in sittings]
 
 
+def is_placeholder_sitting_menu(choices: list[tuple[str, str]]) -> bool:
+    """True when the sitting control is a meaningless single Custom option."""
+    if not choices:
+        return True
+    values = {(value or "").strip().lower() for value, _label in choices}
+    return values == {"custom"}
+
+
+def sitting_label_from_exam_date(exam_date: dt_date) -> str:
+    """Human sitting label derived from an exam date (e.g. April 2027)."""
+    return exam_date.strftime("%B %Y")
+
+
 def get_target_choices(category_code: str) -> list[tuple[str, str]]:
     """Return (value, label) tuples for target results of a given category."""
     category = get_category(category_code)
