@@ -53,21 +53,32 @@ class EducationalSubstancePlanner:
         task_descriptions: tuple[str, ...] | list[str] | None = None,
         educational_rationale: str = "",
         objective_ids: tuple[str, ...] | list[str] | None = None,
+        session_minutes: int | None = None,
     ) -> EducationalSessionSubstance | None:
         """Resolve package substance for a mission topic.
 
         Returns None when the published package cannot be resolved — callers
         should fall back honestly rather than inventing \"Core methods\".
         """
+        from app.application.curriculum_intelligence.objective_chunk import (
+            select_objectives_for_session,
+        )
+
         snapshot = self._resolve_snapshot(curriculum_identity)
+        preferred = tuple(
+            str(oid).strip() for oid in (objective_ids or ()) if str(oid).strip()
+        )
         if snapshot is None:
+            chunked = select_objectives_for_session(
+                preferred, session_minutes=session_minutes
+            )
             return self._plan_from_mission_facts(
                 curriculum_identity=curriculum_identity,
                 topic_id=topic_id,
                 topic_title=topic_title,
                 task_descriptions=tuple(task_descriptions or ()),
                 educational_rationale=educational_rationale,
-                objective_ids=tuple(objective_ids or ()),
+                objective_ids=chunked or preferred,
             )
 
         topic = self._topic(snapshot, topic_id)
@@ -84,10 +95,31 @@ class EducationalSubstancePlanner:
             number=str((topic or {}).get("number") or ""),
         ) or str((topic or {}).get("number") or (topic or {}).get("code") or "")
 
+        if not preferred and topic is not None:
+            preferred = tuple(
+                str(oid)
+                for oid in (topic.get("learning_objective_ids") or ())
+                if str(oid).strip()
+            )
+        minutes_map: dict[str, int] = {}
+        for obj in snapshot.objectives:
+            oid = str(obj.get("objective_id") or "").strip()
+            if not oid:
+                continue
+            try:
+                minutes_map[oid] = int(obj.get("estimated_minutes") or 0)
+            except (TypeError, ValueError):
+                minutes_map[oid] = 0
+        preferred = select_objectives_for_session(
+            preferred,
+            session_minutes=session_minutes,
+            objective_minutes=minutes_map,
+        )
+
         objectives = self._objectives_for_topic(
             snapshot,
             topic_id=topic_id,
-            preferred_ids=tuple(objective_ids or ()),
+            preferred_ids=preferred,
             topic=topic,
         )
         template = self._mission_template(snapshot, topic_id)
@@ -224,15 +256,20 @@ class EducationalSubstancePlanner:
             str(obj.get("objective_id") or ""): obj for obj in snapshot.objectives
         }
         ordered_ids: list[str] = []
-        if preferred_ids:
-            ordered_ids.extend(oid for oid in preferred_ids if oid in by_id)
-        if not ordered_ids and topic is not None:
+        preferred = tuple(oid for oid in preferred_ids if str(oid).strip())
+        if preferred:
+            # Session-budgeted missions pass an explicit subset. Never expand
+            # to the full topic when those ids are missing from the package.
+            ordered_ids.extend(oid for oid in preferred if oid in by_id)
+            if not ordered_ids:
+                ordered_ids.extend(preferred)
+        elif topic is not None:
             ordered_ids.extend(
                 str(oid)
                 for oid in (topic.get("learning_objective_ids") or ())
                 if str(oid) in by_id
             )
-        if not ordered_ids:
+        if not ordered_ids and not preferred:
             ordered_ids.extend(
                 str(obj.get("objective_id") or "")
                 for obj in snapshot.objectives
@@ -246,6 +283,8 @@ class EducationalSubstancePlanner:
             seen.add(oid)
             raw = by_id.get(oid) or {}
             text = str(raw.get("text") or "").strip()
+            if not text and preferred:
+                text = oid
             if not text:
                 continue
             code = student_syllabus_code(

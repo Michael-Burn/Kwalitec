@@ -128,7 +128,16 @@ class StudentRuntimeCoordinator:
         sid = str(user_id)
         existing = self.find_open_session(sid, mission_instance_id=mid)
         if existing is not None:
-            return existing
+            if self._open_session_is_oversized(
+                student_id=sid, session_id=existing.session_id
+            ):
+                self._supersede_open_session(
+                    student_id=sid,
+                    session_id=existing.session_id,
+                    mission_instance_id=mid,
+                )
+            else:
+                return existing
 
         mission = self._load_mission(user_id=user_id, mission_instance_id=mid)
         title = (topic_title or mission.title or "").strip() or "Today's Study Session"
@@ -240,6 +249,34 @@ class StudentRuntimeCoordinator:
             )
         if record is None:
             raise SessionSpineUnavailable("no open study session to resume")
+
+        if str(record.get("status") or "") in {"superseded", "completed"}:
+            raise SessionSpineUnavailable("study session is no longer open")
+
+        if self._open_session_is_oversized(
+            student_id=sid, session_id=str(record["session_id"])
+        ):
+            self._supersede_open_session(
+                student_id=sid,
+                session_id=str(record["session_id"]),
+                mission_instance_id=str(record.get("mission_instance_id") or ""),
+            )
+            raise SessionSpineUnavailable(
+                "study session exceeded preferred session length; start again"
+            )
+
+        # Mission may have been retired by session-budget rechunk.
+        bound_mid = str(record.get("mission_instance_id") or "").strip()
+        if bound_mid:
+            try:
+                self._load_mission(user_id=user_id, mission_instance_id=bound_mid)
+            except MissionNotAcceptable as exc:
+                self._supersede_open_session(
+                    student_id=sid,
+                    session_id=str(record["session_id"]),
+                    mission_instance_id=bound_mid,
+                )
+                raise SessionSpineUnavailable(str(exc)) from exc
 
         handle = store.load_handle(session_id=str(record["session_id"]))
         if handle is not None:
@@ -404,9 +441,11 @@ class StudentRuntimeCoordinator:
         quality = mission.quality
         rationale = ""
         objective_ids: tuple[str, ...] = ()
+        minutes = None
         if quality is not None:
             rationale = (quality.educational_rationale or "").strip()
             objective_ids = tuple(quality.objective_ids or ())
+            minutes = int(quality.estimated_duration_minutes or 0) or None
         return EducationalSubstancePlanner().plan_for_topic(
             curriculum_identity=mission.curriculum_identity,
             topic_id=mission.topic_id,
@@ -414,7 +453,74 @@ class StudentRuntimeCoordinator:
             task_descriptions=tuple(mission.task_descriptions or ()),
             educational_rationale=rationale,
             objective_ids=objective_ids,
+            session_minutes=minutes,
         )
+
+    def _open_session_is_oversized(
+        self, *, student_id: str, session_id: str
+    ) -> bool:
+        """True when a persisted sitting still packs more LOs than one session."""
+        from app.application.curriculum_intelligence.objective_chunk import (
+            select_objectives_for_session,
+        )
+
+        store = self._require_persistence()
+        seq = store.store.get(
+            "activity.sequence",
+            f"{student_id.strip()}::{session_id.strip()}",
+        )
+        if not isinstance(seq, dict):
+            return False
+        raw = seq.get("learning_objectives") or ()
+        ids = []
+        for item in raw:
+            if isinstance(item, dict):
+                oid = str(item.get("objective_id") or "").strip()
+                if oid:
+                    ids.append(oid)
+            elif isinstance(item, str) and item.strip():
+                ids.append(item.strip())
+        if len(ids) <= 1:
+            return False
+        chunked = select_objectives_for_session(ids, session_minutes=60)
+        return len(chunked) < len(ids)
+
+    def _supersede_open_session(
+        self,
+        *,
+        student_id: str,
+        session_id: str,
+        mission_instance_id: str = "",
+    ) -> None:
+        from app.infrastructure.adapters.learning_session.persistence import (
+            NS_HANDLE,
+            NS_MISSION,
+            NS_OPEN,
+        )
+
+        store = self._require_persistence()
+        sid = student_id.strip()
+        key = session_id.strip()
+        handle = store.load(session_id=key) or {}
+        store.store.save(
+            NS_HANDLE,
+            key,
+            {
+                **handle,
+                "status": "superseded",
+                "phase": "abandoned",
+                "superseded_reason": "session_budget_rechunk",
+            },
+        )
+        open_ptr = store.store.get(NS_OPEN, sid)
+        if open_ptr and str(open_ptr.get("session_id")) == key:
+            store.store.delete(NS_OPEN, sid)
+        mid = (
+            mission_instance_id
+            or str(handle.get("mission_instance_id") or "")
+        ).strip()
+        if mid:
+            store.store.delete(NS_MISSION, f"{sid}::{mid}")
 
     def _provision_substance_sequence(
         self,

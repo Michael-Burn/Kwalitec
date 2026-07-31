@@ -1439,6 +1439,9 @@ class EducationalRuntimeEngineService:
         mission_date: date,
     ) -> bool:
         objective_ids = self._objective_ids_for_mission(mission.mission_instance_id)
+        if not objective_ids:
+            # Legacy missions omitted payload LOs — fall back to topic template.
+            objective_ids = self._topic_objective_ids(artefacts, mission.topic_id)
         if len(objective_ids) <= 1:
             return False
         budget = self._session_budget_minutes(user_id, mission_date)
@@ -1484,8 +1487,6 @@ class EducationalRuntimeEngineService:
     ) -> None:
         """Drop open Study Session bindings for a retired oversized mission."""
         mid = (mission_instance_id or "").strip()
-        if not mid:
-            return
         try:
             from app.infrastructure.adapters.learning_session.persistence import (
                 NS_HANDLE,
@@ -1496,13 +1497,20 @@ class EducationalRuntimeEngineService:
 
             adapter = LearningSessionPersistenceAdapter()
             sid = str(user_id)
-            open_doc = adapter.find_open(
-                student_id=sid, mission_instance_id=mid
-            )
+            open_doc = None
+            if mid:
+                open_doc = adapter.find_open(
+                    student_id=sid, mission_instance_id=mid
+                )
             if open_doc is None:
-                adapter.store.delete(NS_MISSION, f"{sid}::{mid}")
+                # Any open sitting for this student — Home must start fresh.
+                open_doc = adapter.find_open(student_id=sid)
+            if open_doc is None:
+                if mid:
+                    adapter.store.delete(NS_MISSION, f"{sid}::{mid}")
                 return
             session_id = str(open_doc.get("session_id") or "").strip()
+            bound_mid = str(open_doc.get("mission_instance_id") or mid or "").strip()
             if session_id:
                 handle = adapter.load(session_id=session_id) or {}
                 adapter.store.save(
@@ -1518,7 +1526,10 @@ class EducationalRuntimeEngineService:
                 open_ptr = adapter.store.get(NS_OPEN, sid)
                 if open_ptr and str(open_ptr.get("session_id")) == session_id:
                     adapter.store.delete(NS_OPEN, sid)
-            adapter.store.delete(NS_MISSION, f"{sid}::{mid}")
+            if bound_mid:
+                adapter.store.delete(NS_MISSION, f"{sid}::{bound_mid}")
+            if mid and mid != bound_mid:
+                adapter.store.delete(NS_MISSION, f"{sid}::{mid}")
         except Exception:
             # Fail soft — mission rechunk must not abort on session-store issues.
             return

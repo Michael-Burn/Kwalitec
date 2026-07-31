@@ -18,6 +18,9 @@ from app.application.session_experience.ports.mission_port import MissionPort
 from app.application.session_experience.ports.session_runtime_port import (
     SessionRuntimePort,
 )
+from app.domain.educational_runtime_engine.student_facing_identity import (
+    format_learning_objective_label,
+)
 from app.domain.session_experience.learning_session import (
     BeginSessionAction,
     LearningSession,
@@ -335,7 +338,9 @@ def _overview_with_substance(
                 if not text:
                     continue
                 code = str(item.get("code") or "").strip()
-                labels.append(f"{code}: {text}" if code else text)
+                labels.append(
+                    format_learning_objective_label(code=code, text=text)
+                )
         objectives = tuple(labels)
     substance = str(opaque.get("substance") or "").strip()
     meta = list(snap.metadata)
