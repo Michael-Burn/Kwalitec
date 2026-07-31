@@ -411,7 +411,7 @@ def _handle_step_2():
     if "exam_sitting" in wizard_data:
         form.exam_sitting.data = wizard_data["exam_sitting"]
     if "exam_date" in wizard_data:
-        form.exam_date.data = wizard_data["exam_date"]
+        form.populate_from_exam_date(wizard_data["exam_date"])
     return render_template(
         "study_plan/wizard_step_3.html",
         form=form,
@@ -433,7 +433,7 @@ def _handle_step_2_post():
     form.exam_sitting.choices = catalogue.get_sitting_choices(category_code)
     if form.validate_on_submit():
         session["wizard_data"]["exam_sitting"] = form.exam_sitting.data
-        exam_date = form.exam_date.data
+        exam_date = form.exam_date
         if hasattr(exam_date, "isoformat"):
             session["wizard_data"]["exam_date"] = exam_date.isoformat()
         else:
@@ -672,6 +672,7 @@ def edit_plan(study_plan_id: int):
     from app.study_plan.forms import EditStudyPlanForm
 
     form = EditStudyPlanForm(obj=study_plan)
+    form.populate_from_exam_date(study_plan.exam_date)
 
     # Load curriculum topics for the checkbox list if applicable
     curriculum_topics = []
@@ -771,7 +772,7 @@ def edit_plan_post(study_plan_id: int):
             update_kwargs = {
                 "exam_name": form.exam_name.data,
                 "exam_sitting": form.exam_sitting.data,
-                "exam_date": form.exam_date.data,
+                "exam_date": form.exam_date,
                 "weekday_study_minutes": form.weekday_study_minutes.data,
                 "weekend_study_minutes": form.weekend_study_minutes.data,
                 "current_stage": form.current_stage.data,

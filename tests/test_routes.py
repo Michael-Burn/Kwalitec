@@ -355,13 +355,15 @@ class TestStudyPlanManagementRoutes:
         """POST edit updates study plan fields."""
         from datetime import date as dt_date, timedelta
 
-        future = (dt_date.today() + timedelta(days=365)).isoformat()
+        future = dt_date.today() + timedelta(days=365)
         resp = logged_in_client.post(
             f"/study-plan/{study_plan.id}/edit",
             data={
                 "exam_name": "IFoA CM1 Edited",
                 "exam_sitting": "September 2027",
-                "exam_date": future,
+                "exam_day": str(future.day),
+                "exam_month": str(future.month),
+                "exam_year": str(future.year),
                 "weekday_study_minutes": 90,
                 "weekend_study_minutes": 150,
                 "preferred_session_minutes": 45,

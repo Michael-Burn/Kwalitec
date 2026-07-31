@@ -37,11 +37,27 @@
                                 {% endif %}
                             </div>
                             <div class="mb-3">
-                                <label for="{{ form.exam_date.id }}" class="form-label">{{ form.exam_date.label.text }}</label>
-                                {{ form.exam_date(class="form-control", type="date") }}
-                                {% if form.exam_date.errors %}
-                                <div class="text-danger small mt-1">{{ form.exam_date.errors[0] }}</div>
+                                <span class="form-label d-block">Exam Date</span>
+                                <div class="row g-2">
+                                    <div class="col-4 col-md-3">
+                                        <label for="{{ form.exam_day.id }}" class="form-label small text-secondary">{{ form.exam_day.label.text }}</label>
+                                        {{ form.exam_day(class="form-select") }}
+                                    </div>
+                                    <div class="col-5 col-md-5">
+                                        <label for="{{ form.exam_month.id }}" class="form-label small text-secondary">{{ form.exam_month.label.text }}</label>
+                                        {{ form.exam_month(class="form-select") }}
+                                    </div>
+                                    <div class="col-3 col-md-4">
+                                        <label for="{{ form.exam_year.id }}" class="form-label small text-secondary">{{ form.exam_year.label.text }}</label>
+                                        {{ form.exam_year(class="form-control", type="number") }}
+                                    </div>
+                                </div>
+                                {% if form.exam_day.errors or form.exam_month.errors or form.exam_year.errors %}
+                                <div class="text-danger small mt-1">
+                                    {{ (form.exam_day.errors or form.exam_month.errors or form.exam_year.errors)[0] }}
+                                </div>
                                 {% endif %}
+                                <div class="form-text">Type the full year (for example 2027).</div>
                             </div>
                             <div class="mb-3">
                                 <label for="{{ form.target_grade.id }}" class="form-label">{{ form.target_grade.label.text }}</label>

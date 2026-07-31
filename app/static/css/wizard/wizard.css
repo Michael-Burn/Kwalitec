@@ -1,7 +1,26 @@
 /* Quiet commitment-path fields (DX-005B intermediate steps). */
-.wizard-quiet .wizard-field-group {
-  margin-bottom: var(--space-4);
+.wizard-quiet .wizard-date-parts {
+  display: grid;
+  grid-template-columns: minmax(4.5rem, 5.5rem) minmax(9rem, 1fr) minmax(5.5rem, 7rem);
+  gap: var(--space-3);
+  align-items: end;
 }
+
+.wizard-quiet .wizard-date-part .form-label {
+  font-size: var(--font-support);
+  margin-bottom: var(--space-1);
+}
+
+.wizard-quiet .wizard-date-part--year .form-control {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 520px) {
+  .wizard-quiet .wizard-date-parts {
+    grid-template-columns: 1fr;
+  }
+}
+
 
 .wizard-quiet .wizard-field-group:last-child {
   margin-bottom: 0;

@@ -1,7 +1,7 @@
 {% extends "study_plan/wizard_base.html" %}
 {% set page_title = 'Choose Exam' %}
 {% set wizard_question = 'When is your exam?' %}
-{% set wizard_helper = 'Enter your exam date.' %}
+{% set wizard_helper = 'Choose the day and month, then type the year.' %}
 {% set button_text = 'Continue' %}
 
 {% block form_content %}
@@ -18,14 +18,30 @@
         {{ form.exam_sitting(class="form-select") }}
     </div>
 
-    <div class="wizard-field-group">
-        <label class="form-label" for="exam_date">{{ form.exam_date.label.text }}</label>
-        {% if form.exam_date.errors %}
+    <fieldset class="wizard-field-group">
+        <legend class="form-label">{{ form.exam_day.label.text }} / {{ form.exam_month.label.text }} / {{ form.exam_year.label.text }}</legend>
+        {% if form.exam_day.errors or form.exam_month.errors or form.exam_year.errors %}
         <div class="alert alert-danger" role="alert">
-            {% for error in form.exam_date.errors %}{{ error }}{% endfor %}
+            {% for error in form.exam_day.errors %}{{ error }}{% endfor %}
+            {% for error in form.exam_month.errors %}{{ error }}{% endfor %}
+            {% for error in form.exam_year.errors %}{{ error }}{% endfor %}
         </div>
         {% endif %}
-        {{ form.exam_date(class="form-control", type="date") }}
-    </div>
+        <div class="wizard-date-parts">
+            <div class="wizard-date-part">
+                <label class="form-label" for="{{ form.exam_day.id }}">{{ form.exam_day.label.text }}</label>
+                {{ form.exam_day(class="form-select") }}
+            </div>
+            <div class="wizard-date-part">
+                <label class="form-label" for="{{ form.exam_month.id }}">{{ form.exam_month.label.text }}</label>
+                {{ form.exam_month(class="form-select") }}
+            </div>
+            <div class="wizard-date-part wizard-date-part--year">
+                <label class="form-label" for="{{ form.exam_year.id }}">{{ form.exam_year.label.text }}</label>
+                {{ form.exam_year(class="form-control", type="number") }}
+            </div>
+        </div>
+        <small class="wizard-field-hint">Type the full year (for example 2027). Calendar-only entry is no longer required.</small>
+    </fieldset>
 </form>
 {% endblock %}
