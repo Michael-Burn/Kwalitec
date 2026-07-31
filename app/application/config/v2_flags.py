@@ -548,10 +548,18 @@ def resolve_v2_feature_flags(
 
 
 def _commercial_loop_enabled(*, environ: dict[str, str] | None = None) -> bool:
-    """KWP-002 Commercial Loop Profile master switch."""
-    return _env_truthy("KWALITEC_COMMERCIAL_LOOP", environ=environ) or _env_truthy(
-        "SR_COMMERCIAL_LOOP", environ=environ
-    )
+    """KWP-002 Commercial Loop Profile master switch.
+
+    Explicit ``KWALITEC_COMMERCIAL_LOOP`` / ``SR_COMMERCIAL_LOOP`` wins.
+    When unset, sole-runtime production (G1) inherits ON so students get
+    Start Session → practice → reflection instead of Confirm-only rollback.
+    """
+    env = environ if environ is not None else os.environ
+    for key in ("KWALITEC_COMMERCIAL_LOOP", "SR_COMMERCIAL_LOOP"):
+        raw = env.get(key)
+        if raw is not None and str(raw).strip() != "":
+            return str(raw).strip().lower() in _TRUTHY
+    return _env_truthy("KWALITEC_V2_SOLE_RUNTIME", environ=environ)
 
 
 def _sr_bundle_flag(name: str, *, environ: dict[str, str] | None = None) -> bool:

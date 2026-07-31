@@ -57,6 +57,29 @@ class TestCommercialLoopProfile:
         assert flags.SR_PROGRESS_SINGULARITY is False
         assert flags.SR_PILOT_MARK_COMPLETE is False
 
+    def test_sole_runtime_inherits_commercial_loop_when_unset(self):
+        """G1 production: sole runtime enables Start Session spine by default."""
+        flags = resolve_v2_feature_flags(
+            environ={"KWALITEC_V2_SOLE_RUNTIME": "1"}
+        )
+        assert flags.SOLE_RUNTIME is True
+        assert flags.SR_COMMERCIAL_LOOP is True
+        assert flags.SR_SESSION_PRIMARY is True
+        assert flags.SR_SESSION_SUBSTANCE is True
+        assert flags.SR_SESSION_COMPLETION_PRODUCT is True
+        assert flags.SR_PILOT_MARK_COMPLETE is False
+
+    def test_explicit_commercial_loop_off_wins_over_sole_runtime(self):
+        flags = resolve_v2_feature_flags(
+            environ={
+                "KWALITEC_V2_SOLE_RUNTIME": "1",
+                "KWALITEC_COMMERCIAL_LOOP": "0",
+            }
+        )
+        assert flags.SOLE_RUNTIME is True
+        assert flags.SR_COMMERCIAL_LOOP is False
+        assert flags.SR_SESSION_PRIMARY is False
+
     def test_commercial_loop_enables_bundle(self):
         flags = resolve_v2_feature_flags(
             environ={"KWALITEC_COMMERCIAL_LOOP": "1"}
