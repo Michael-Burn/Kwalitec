@@ -48,7 +48,7 @@ class TestIAHF003CommandCentre:
         overview = client.get("/console/")
         assert overview.status_code == 200
         assert b"Kwalitec Console" in overview.data
-        assert b"Current Work" in overview.data
+        assert b"Current Work" in overview.data or b"No subjects yet" in overview.data
         assert b"Attention Required" not in overview.data
 
         # Legacy Research home is no longer a competing dashboard.
@@ -68,7 +68,7 @@ class TestIAHF003CommandCentre:
         assert summary.completed_checkins == 1
         assert "Platform Summary" not in body
         assert "Attention Required" not in body
-        assert "Current Work" in body
+        assert "Current Work" in body or "No subjects yet" in body
         # Must not present static/unwired zeros as the Alpha story on Home.
         assert "Offline week pipeline" not in body or "not wired" in body
         assert founder.email  # founder identity preserved

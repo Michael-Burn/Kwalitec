@@ -397,7 +397,8 @@ def test_quick_actions_include_mandated_set(app, monkeypatch):
         home = _home_page()
         ws = compose_adaptive_workspace(page, home)
         labels = [a.label for a in ws.quick_actions]
-        assert any("Begin" in label or "Start" in label for label in labels)
+        # UX-001: Start/Continue lives on the mission hero, not Quick Actions.
+        assert not any("Begin" in label or "Start" in label for label in labels)
         assert "Review Yesterday" in labels
         assert "Resume Revision" in labels
         assert "View My Learning Journey" in labels
@@ -413,24 +414,32 @@ def test_home_service_attaches_workspace(app):
         assert isinstance(built.workspace, AdaptiveStudyWorkspace)
         assert built.workspace.enabled is True
         assert built.mission_section_title == "Today's Mission"
-        assert "where you are heading" in built.page_question.lower()
+        assert "what should i do now" in built.page_question.lower()
+        assert built.greeting
 
 
 def test_home_template_has_workspace_layout_markers():
     text = HOME_TMPL.read_text(encoding="utf-8")
     for marker in (
         'data-kwp="013"',
-        'data-workspace-section="morning-brief"',
+        'data-workspace-section="greeting"',
         'data-workspace-section="todays-mission"',
-        'data-workspace-section="session-plan"',
-        'data-workspace-section="current-focus"',
         'data-workspace-section="study-signals"',
-        'data-workspace-section="recent-progress"',
-        'data-workspace-section="forecast"',
-        'data-workspace-section="learning-journey"',
+        'data-workspace-section="tomorrow-preview"',
         'data-workspace-section="quick-actions"',
     ):
         assert marker in text
+    # UX-001: educational overload moved off Home.
+    for removed in (
+        'data-workspace-section="morning-brief"',
+        'data-workspace-section="session-plan"',
+        'data-workspace-section="current-focus"',
+        'data-workspace-section="recent-progress"',
+        'data-workspace-section="forecast"',
+        'data-workspace-section="learning-journey"',
+        "015-learning-episode",
+    ):
+        assert removed not in text
 
 
 def test_founder_workspace_metrics_and_template():

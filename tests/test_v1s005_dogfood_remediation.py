@@ -170,10 +170,14 @@ def test_home_template_has_remediation_markers():
     home = (
         REPO_ROOT / "app" / "templates" / "student" / "home.html"
     ).read_text(encoding="utf-8")
-    assert "composition_quiet_reason" in home
-    assert "015-mission-narrative" in home
-    assert "These become your Session stages" in home
-    assert "Preview only — tomorrow" in home
+    session_body = (
+        REPO_ROOT / "app" / "templates" / "session" / "partials" / "session_body.html"
+    ).read_text(encoding="utf-8")
+    # UX-001: episode / quiet / stages live on Session Overview; Home keeps tomorrow.
+    assert "015-tomorrow-preview" in home
+    assert 'data-ux="session-briefing"' in session_body
+    assert "Session stages" in session_body
+    assert "015-learning-episode" not in home
 
 
 def test_syllabus_nav_label():

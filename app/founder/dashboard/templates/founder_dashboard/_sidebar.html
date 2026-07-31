@@ -11,18 +11,31 @@
             Curriculum Authority
         </p>
     </div>
+    {# PX-002: navigation groups reflect operational workflows. #}
     <nav class="console-nav" aria-label="Console primary">
-        <ul class="console-nav-list">
-            {% for item in command_centre_nav %}
-            <li>
-                <a
-                    class="console-nav-link{% if command_centre_section == item.section_id %} is-active{% endif %}"
-                    href="{{ url_for(item.endpoint) }}"
-                    {% if command_centre_section == item.section_id %}aria-current="page"{% endif %}
-                >{{ item.label }}</a>
-            </li>
-            {% endfor %}
-        </ul>
+        {% set nav_groups = [
+            ('Workspace', ['home', 'subjects', 'curriculum_studio']),
+            ('Community', ['students', 'support']),
+            ('Administration', ['settings']),
+        ] %}
+        {% for group_label, section_ids in nav_groups %}
+        <div class="console-nav-group">
+            <p class="console-nav-group__label">{{ group_label }}</p>
+            <ul class="console-nav-list">
+                {% for item in command_centre_nav %}
+                {% if item.section_id in section_ids %}
+                <li>
+                    <a
+                        class="console-nav-link{% if command_centre_section == item.section_id %} is-active{% endif %}"
+                        href="{{ url_for(item.endpoint) }}"
+                        {% if command_centre_section == item.section_id %}aria-current="page"{% endif %}
+                    >{{ item.label }}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
     </nav>
     <div class="console-sidebar-foot">
         <a class="console-nav-link console-nav-link--muted" href="{{ url_for('founder_dashboard.search') }}">Search</a>

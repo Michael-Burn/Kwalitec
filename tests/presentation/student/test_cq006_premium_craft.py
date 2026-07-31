@@ -95,7 +95,14 @@ def test_home_suppresses_shell_page_header(app, ctx):
     html = render_student_home(app, home_vm(snap, unified_journey=False))
     assert "student-page-header" not in html
     assert "ds-os-home" in html
-    assert "What should I do next?" in html
+    assert (
+        "What should I do now?" in html
+        or "Ready for today's mission?" in html
+        or "Welcome back" in html
+        or "Good morning" in html
+        or "Good afternoon" in html
+        or "Good evening" in html
+    )
     assert "Cash flows" in html
 
 

@@ -25,7 +25,7 @@ def test_curriculum_authority_primary_nav():
         "Subjects",
         "Curriculum Studio",
         "Students",
-        "Support",
+        "Feedback",
         "Settings",
     ):
         assert required in labels
@@ -61,8 +61,8 @@ def test_workflow_order_matches_founder_journey():
     expected = (
         "Upload",
         "Upload",
-        "Validate",
-        "Review",
+        "Upload",
+        "Preview",
         "Approve",
         "Publish",
     )
@@ -91,4 +91,4 @@ def test_primary_action_follows_workflow(stage, primary):
 def test_workspace_workflow_renders_all_stages():
     view = workspace_page(make_workspace(current_stage="approval"))
     labels = [label for _, label, _ in view.workflow_stages]
-    assert labels == ["Upload", "Validate", "Review", "Approve", "Publish"]
+    assert labels == ["Upload", "Preview", "Approve", "Publish"]

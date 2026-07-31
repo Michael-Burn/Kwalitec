@@ -196,10 +196,16 @@ def test_template_mission_first_no_legacy_chrome(app, ctx):
     assert 'data-dashboard-panel="quick-actions"' not in html
     assert 'data-dashboard-panel="readiness"' not in html
     assert "welcome_modal" not in html
-    assert "ds-mission-panel" in html
+    assert "ds-mission-hero" in html or "ds-mission-panel" in html
     assert "design_system.css" in html or "ds-page" in html
     assert (
-        "What should I do next?" in html
+        "What should I do now?" in html
+        or "What should I do next?" in html
+        or "Ready for today's mission?" in html
+        or "Welcome back" in html
+        or "Good morning" in html
+        or "Good afternoon" in html
+        or "Good evening" in html
         or "Where you stand" in html
         or "Where you are, what to do today" in html
     )

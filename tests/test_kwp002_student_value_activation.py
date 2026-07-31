@@ -157,19 +157,20 @@ class TestHomeActivation:
     def test_home_uses_todays_session_lexicon(self, student_client):
         html = student_client.get("/student/").get_data(as_text=True)
         assert (
-            "Today's Session" in html
-            or "Today&#39;s Session" in html
-            or "ds-mission-panel" in html
+            "Today's Mission" in html
+            or "Today&#39;s Mission" in html
+            or "ds-mission-hero" in html
             or "ds-empty-operational" in html
         )
         assert "Building evidence" not in html
         assert "Mark mission complete" not in html
 
-    def test_home_why_session_macro_available(self):
+    def test_home_keeps_decision_surface_not_session_detail(self):
         home = (STUDENT_TEMPLATES / "home.html").read_text(encoding="utf-8")
-        assert "Why this Session?" in home or "why-session" in home
-        assert "explanation_card" in home
-        assert "readiness_card" in home
+        assert "ds_mission_hero" in home or "ds-mission-hero" in home
+        assert "explanation_card" not in home
+        assert "readiness_card" not in home
+        assert "Why this Session?" not in home
 
 
 class TestJourneyActivation:

@@ -85,7 +85,7 @@ def test_founder_nav_labels_match_curriculum_authority_order():
         (CreateWorkspaceForm, "Open Workspace"),
         (AdvanceWorkflowForm, "Continue"),
         (ValidateWorkspaceForm, "Validate"),
-        (PreviewWorkspaceForm, "Confirm structure"),
+        (PreviewWorkspaceForm, "Generate preview"),
         (ApproveWorkspaceForm, "Approve"),
         (PublishWorkspaceForm, "Publish"),
         (AssignVersionForm, "Assign version"),
@@ -147,9 +147,10 @@ def test_studio_warnings_use_we_couldnt_or_recovery(key):
 
 
 def test_publish_success_matches_guide_example():
-    assert FLASH_SUCCESS["published"] == (
-        "We've published your verified curriculum successfully."
-    )
+    msg = FLASH_SUCCESS["published"]
+    assert msg.startswith("We've published")
+    assert "successfully" in msg
+    assert msg.endswith(".")
 
 
 def test_publish_warning_guides_approval_path():

@@ -113,7 +113,8 @@ class TestV1sp001eFounderSimplification:
     def test_overview_and_vision_headers_shortened(self):
         overview = (FOUNDER_TEMPLATES / "overview.html").read_text(encoding="utf-8")
         vision = (FOUNDER_TEMPLATES / "vision_journal.html").read_text(encoding="utf-8")
-        assert "Current Work" in overview
+        assert "founder-home-title" in overview
+        assert "ds_current_work" in overview or "Current Work" in overview
         assert "Operational pulse" not in overview
         assert "Platform Summary" not in overview
         assert "Strategic product ideas" in vision

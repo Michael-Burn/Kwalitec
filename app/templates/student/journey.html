@@ -123,8 +123,8 @@
       </p>
     </article>
     {% elif journey.learning_insights_status == 'building' %}
-    <article class="ds-panel" aria-labelledby="needs-attention-title" data-weak-topic-centre="true">
-      <h2 class="ds-section__title" id="needs-attention-title">Needs Attention</h2>
+    <article class="ds-panel" aria-labelledby="needs-attention-building-title" data-weak-topic-centre="true">
+      <h2 class="ds-section__title" id="needs-attention-building-title">Needs Attention</h2>
       <p class="ds-list__meta">Topics that need strengthening will appear here after more practice.</p>
     </article>
     {% endif %}
@@ -187,12 +187,11 @@
 
 {% else %}
   {{ ds_empty_operational(
-    'Once you complete a Session, we’ll map your path — current topic, what’s done, and what’s next.',
+    'Complete a Session and we will map where you are.',
     'Go to Home',
     url_for('student.home'),
-    title='Your journey will take shape after your first Session',
-    explanation='Once you complete a Session, we’ll map your path — current topic, what’s done, and what’s next.',
-    context='Journey answers one question: where am I on the syllabus?'
+    title='Syllabus appears after practice',
+    explanation='Complete a Session and we will map where you are.'
   ) }}
 {% endif %}
 </article>

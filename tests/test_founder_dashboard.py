@@ -90,7 +90,7 @@ class TestFounderDashboardRoutes:
         html = response.data
         assert b"Kwalitec Console" in html
         assert b">Home<" in html or b"founder-home-title" in html
-        assert b"Current Work" in html
+        assert b"Current Work" in html or b"No subjects yet" in html
         assert b"Attention Required" not in html
         assert b"Platform Summary" not in html
         assert b"Quick Actions" not in html

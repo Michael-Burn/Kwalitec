@@ -45,7 +45,8 @@ _DAY_COMPLETE_MESSAGE = (
     "Today's Session is finished. Return tomorrow to continue."
 )
 _QUIET_REASON = "A session will be ready when today's focus is available."
-_PAGE_QUESTION = "Where you are, what to do today, and where you are heading."
+_PAGE_QUESTION = "What should I do now?"
+_DEFAULT_GREETING = "Welcome back."
 
 
 class StudentHomeService:
@@ -81,6 +82,7 @@ class StudentHomeService:
                 empty_action_label=_EMPTY_ACTION_LABEL,
                 empty_action_href=choose_exam_href,
                 page_question=_PAGE_QUESTION,
+                greeting=_DEFAULT_GREETING,
             )
 
         home = page.home
@@ -300,6 +302,7 @@ class StudentHomeService:
         tutor_href = ""
         if tutor_available or state == "mission":
             tutor_href = url_for("student.tutor")
+        greeting = (home.greeting or "").strip() or _DEFAULT_GREETING
         return StudentHomePage(
             mission=mission,
             learning_queue=queue,
@@ -314,6 +317,7 @@ class StudentHomeService:
             empty_action_href=empty_action_href,
             day_complete_message=day_complete_message,
             page_question=_PAGE_QUESTION,
+            greeting=greeting,
             mission_section_title=section_title,
             signals=signals,
             tutor_available=tutor_available,
@@ -397,7 +401,17 @@ class StudentHomeService:
         page_question = (
             workspace.page_question if workspace.enabled else home.page_question
         )
-        return replace(home, workspace=workspace, page_question=page_question)
+        greeting = home.greeting
+        if workspace.enabled and workspace.morning_brief:
+            brief_greeting = (workspace.morning_brief.greeting or "").strip()
+            if brief_greeting:
+                greeting = brief_greeting
+        return replace(
+            home,
+            workspace=workspace,
+            page_question=page_question,
+            greeting=greeting,
+        )
 
     @staticmethod
     def _mission_section_title(mission: HomeMission | None) -> str:
@@ -603,13 +617,8 @@ class StudentHomeService:
                 )
             ).strip()
 
-        estimated = (
-            home.estimated_duration_label or home.estimated_study_label or ""
-        ).strip()
-
-        if not any(
-            (subject, streak, progress_label, countdown, estimated)
-        ):
+        # UX-001: duration lives once on the mission hero — omit from signals.
+        if not any((subject, streak, progress_label, countdown)):
             return None
         return HomeStudySignals(
             subject_label=subject,
@@ -617,7 +626,7 @@ class StudentHomeService:
             progress_label=progress_label,
             progress_percent=progress_percent,
             countdown_label=countdown,
-            estimated_study_label=estimated,
+            estimated_study_label="",
         )
 
     @staticmethod

@@ -117,11 +117,17 @@ def test_flash_warning_copy_guides_recovery():
 def test_stage_labels_avoid_jargon():
     assert STAGE_LABELS[WorkflowStage.CONTENT_SOURCES.value] == "Upload"
     assert STAGE_LABELS[WorkflowStage.PUBLICATION.value] == "Publish"
-    assert STAGE_LABELS[WorkflowStage.PREVIEW.value] == "Review"
+    assert STAGE_LABELS[WorkflowStage.PREVIEW.value] == "Preview"
 
 
 def test_workflow_stages_mark_exactly_one_active():
     view = workspace_page(make_workspace(current_stage="preview"))
     active = [label for _, label, on in view.workflow_stages if on]
-    assert active == ["Review"]
-    assert len(view.workflow_stages) == 5
+    assert active == ["Preview"]
+    assert len(view.workflow_stages) == 4
+    assert [label for _, label, _ in view.workflow_stages] == [
+        "Upload",
+        "Preview",
+        "Approve",
+        "Publish",
+    ]

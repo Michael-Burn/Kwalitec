@@ -1,55 +1,91 @@
 {% extends "founder_dashboard/base.html" %}
 
 {% block console_content %}
-<section class="section-header founder-header">
-    <p class="section-eyebrow">{{ kwalitec_console_label }} / Settings</p>
-    <h1 class="section-title">Settings</h1>
-    <p class="section-description">Operator configuration and nested Console destinations.</p>
-</section>
+<article class="ds-page ds-container ds-container--content founder-settings" aria-labelledby="settings-title">
+  <header class="ds-page-header">
+    <h1 id="settings-title" class="ds-page-header__title">Settings</h1>
+  </header>
 
-<section class="mb-4">
-    <div class="command-card">
-        <div class="command-card-body">
-            <p class="mb-1"><strong>App version:</strong> {{ alpha_status.app_version }}</p>
-            <p class="mb-1"><strong>Internal Alpha version:</strong> {{ alpha_status.internal_alpha_version }}</p>
-            <p class="mb-1"><strong>Build:</strong> {{ alpha_status.build_number }}</p>
-            <p class="mb-3"><strong>Enabled:</strong> {{ "Yes" if alpha_status.internal_alpha_enabled else "No" }}</p>
-            <a class="btn btn-sm btn-outline-secondary" href="{{ product_settings_url }}">
-                Open product Settings
-            </a>
+  <section class="ds-section" aria-labelledby="settings-account-title">
+    <h2 id="settings-account-title" class="ds-section__title">Account</h2>
+    <div class="founder-settings-card">
+      <dl class="founder-settings-meta">
+        <div>
+          <dt>App version</dt>
+          <dd>{{ alpha_status.app_version }}</dd>
         </div>
+        <div>
+          <dt>Internal Alpha</dt>
+          <dd>{{ alpha_status.internal_alpha_version }}</dd>
+        </div>
+        <div>
+          <dt>Build</dt>
+          <dd>{{ alpha_status.build_number }}</dd>
+        </div>
+        <div>
+          <dt>Enabled</dt>
+          <dd>{{ "Yes" if alpha_status.internal_alpha_enabled else "No" }}</dd>
+        </div>
+      </dl>
+      <a class="ds-btn ds-btn--ghost" href="{{ product_settings_url }}">Product Settings</a>
     </div>
-</section>
+  </section>
 
-<section class="mb-4" aria-labelledby="settings-ops-title">
-    <h2 id="settings-ops-title" class="h5">Operations &amp; reports</h2>
-    <ul class="list-unstyled mb-0">
-        <li><a href="{{ url_for('founder_dashboard.operational_health') }}">Operations</a></li>
-        <li><a href="{{ url_for('founder_dashboard.alpha_observability') }}">Platform Intelligence</a></li>
-        <li><a href="{{ url_for('founder_dashboard.research') }}">Research</a></li>
-        <li><a href="{{ url_for('founder_dashboard.attention') }}">Attention</a></li>
-        <li><a href="{{ url_for('founder_dashboard.findings') }}">Findings</a></li>
-        <li><a href="{{ url_for('founder_dashboard.vision_journal') }}">Vision Journal</a></li>
-        <li><a href="{{ url_for('founder_dashboard.search') }}">Search</a></li>
-        <li><a href="{{ url_for('founder_dashboard.releases') }}">Releases</a></li>
-        <li><a href="{{ url_for('founder_dashboard.runtime_health') }}">Runtime Health</a></li>
-        <li><a href="{{ url_for('founder_dashboard.curriculum_health') }}">Curriculum Health</a></li>
-        <li><a href="{{ url_for('founder_dashboard.beta') }}">Private Beta</a></li>
-        <li><a href="{{ url_for('founder_dashboard.evidence_gates') }}">Evidence Gates</a></li>
-        <li><a href="{{ url_for('founder_dashboard.founder_intelligence') }}">Founder Intelligence</a></li>
-        <li><a href="{{ url_for('founder_dashboard.internal_alpha') }}">Internal Alpha</a></li>
-        <li><a href="{{ url_for('founder_dashboard.operations') }}">System Operations</a></li>
-    </ul>
-</section>
+  <section class="ds-section" aria-labelledby="settings-advanced-title">
+    <h2 id="settings-advanced-title" class="ds-section__title">Advanced</h2>
 
-<section class="mb-4" aria-labelledby="settings-studio-filters-title">
-    <h2 id="settings-studio-filters-title" class="h5">Studio filters</h2>
-    <ul class="list-unstyled mb-0">
-        <li><a href="{{ url_for('curriculum_studio.subjects_hub', status='validation') }}">Validation</a></li>
-        <li><a href="{{ url_for('curriculum_studio.subjects_hub', status='approval') }}">Approval</a></li>
-        <li><a href="{{ url_for('curriculum_studio.subjects_hub', status='ready_to_publish') }}">Ready to publish</a></li>
-        <li><a href="{{ url_for('curriculum_studio.subjects_hub', status='published') }}">Published</a></li>
-        <li><a href="{{ url_for('curriculum_studio.subjects_hub', status='archived') }}">Archived</a></li>
+    <div class="founder-settings-groups">
+      <div class="founder-settings-group">
+        <h3 class="founder-settings-group__title">Operations</h3>
+        <ul class="founder-settings-list">
+          <li><a href="{{ url_for('founder_dashboard.operational_health') }}">Operations</a></li>
+          <li><a href="{{ url_for('founder_dashboard.operations') }}">System health</a></li>
+          <li><a href="{{ url_for('founder_dashboard.runtime_health') }}">Service status</a></li>
+          <li><a href="{{ url_for('founder_dashboard.curriculum_health') }}">Curriculum status</a></li>
+          <li><a href="{{ url_for('founder_dashboard.attention') }}">Attention centre</a></li>
+        </ul>
+      </div>
+
+      <div class="founder-settings-group">
+        <h3 class="founder-settings-group__title">Insights</h3>
+        <ul class="founder-settings-list">
+          <li><a href="{{ url_for('founder_dashboard.alpha_observability') }}">Platform insights</a></li>
+          <li><a href="{{ url_for('founder_dashboard.research') }}">Research patterns</a></li>
+          <li><a href="{{ url_for('founder_dashboard.founder_intelligence') }}">Learning signals</a></li>
+          <li><a href="{{ url_for('founder_dashboard.findings') }}">Findings</a></li>
+        </ul>
+      </div>
+
+      <div class="founder-settings-group">
+        <h3 class="founder-settings-group__title">Releases</h3>
+        <ul class="founder-settings-list">
+          <li><a href="{{ url_for('founder_dashboard.releases') }}">Releases</a></li>
+          <li><a href="{{ url_for('founder_dashboard.evidence_gates') }}">Evidence checklist</a></li>
+          <li><a href="{{ url_for('founder_dashboard.v1_readiness') }}">Version 1 readiness</a></li>
+          <li><a href="{{ url_for('founder_dashboard.beta') }}">Private Beta</a></li>
+          <li><a href="{{ url_for('founder_dashboard.internal_alpha') }}">Internal Alpha</a></li>
+        </ul>
+      </div>
+
+      <div class="founder-settings-group">
+        <h3 class="founder-settings-group__title">Notes &amp; search</h3>
+        <ul class="founder-settings-list">
+          <li><a href="{{ url_for('founder_dashboard.vision_journal') }}">Vision notes</a></li>
+          <li><a href="{{ url_for('founder_dashboard.search') }}">Search</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section" aria-labelledby="settings-studio-filters-title">
+    <h2 id="settings-studio-filters-title" class="ds-section__title">Studio shortcuts</h2>
+    <ul class="founder-settings-list founder-settings-list--inline">
+      <li><a href="{{ url_for('curriculum_studio.subjects_hub', status='validation') }}">Validation</a></li>
+      <li><a href="{{ url_for('curriculum_studio.subjects_hub', status='approval') }}">Approval</a></li>
+      <li><a href="{{ url_for('curriculum_studio.subjects_hub', status='ready_to_publish') }}">Ready to publish</a></li>
+      <li><a href="{{ url_for('curriculum_studio.subjects_hub', status='published') }}">Published</a></li>
+      <li><a href="{{ url_for('curriculum_studio.subjects_hub', status='archived') }}">Archived</a></li>
     </ul>
-</section>
+  </section>
+</article>
 {% endblock %}

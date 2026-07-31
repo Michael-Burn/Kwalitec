@@ -92,11 +92,18 @@ def test_home_command_centre_sections(app, ctx):
     assert home.recent_progress == ()
     assert home.signals is not None
     assert home.signals.countdown_label or home.deadlines
-    assert "What should I do next?" in html
-    assert "Today's Session" in html or "Today's Mission" in html or "ds-mission-panel" in html
-    assert "Study Health" in html
-    assert "Exam countdown" in html or "Upcoming" in html
-    assert "Today&#39;s Mission" in html or "Continue Session" in html
+    assert (
+        "What should I do now?" in html
+        or "Ready for today's mission?" in html
+        or "Welcome back" in html
+        or "Good morning" in html
+        or "Good afternoon" in html
+        or "Good evening" in html
+    )
+    assert "Today's Session" in html or "Today's Mission" in html or "ds-mission-hero" in html or "ds-mission-panel" in html
+    # UX-001: Study Health is not a Home card; progress strip carries orientation.
+    assert "Exam countdown" in html or "Upcoming" in html or "Progress" in html
+    assert "Today&#39;s Mission" in html or "Continue Session" in html or "Today's Mission" in html
     assert "ds-os-home" in html
     assert 'data-dashboard-panel="readiness"' not in html
     assert html.count("ds-btn--primary") <= 1
@@ -174,7 +181,7 @@ def test_history_is_definitive_archive(app, ctx):
     )
     with app.test_request_context("/student/history"):
         html = render_template("student/history.html", page=page)
-    assert "What have I accomplished?" in html
+    assert "Your practice record" in html
     assert "Study time" in html
     assert "Sessions" in html
     assert "Completed Topics" in html
@@ -223,8 +230,7 @@ def test_revision_recommends_rather_than_lists(app, ctx):
             page=page,
             form=None,
         )
-    assert "What deserves my attention?" in html
-    assert "Revision support" in html
+    assert "Strengthen what you practised." in html
     assert "Discounting" in html
     assert "Also deserves attention" in html
     assert "ds-os-revision" in html

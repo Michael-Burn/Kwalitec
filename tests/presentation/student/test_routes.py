@@ -94,6 +94,7 @@ def test_start_session_post(student_client, experience_app):
     assert mission.start_calls
     location = response.headers.get("Location", "")
     assert "/session/sess-1" in location
+    assert "/activity" not in location
 
 
 def test_start_session_opaque_engine_missing_experience_id(

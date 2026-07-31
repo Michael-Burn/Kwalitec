@@ -85,11 +85,12 @@ def test_regression_blueprint_rules(session_app):
 
 
 def test_student_start_hands_off_to_session():
-    """Student Experience start_session route redirects into /session/."""
+    """Student Experience start_session route redirects into /session/ overview."""
     import inspect
 
     from app.presentation.student import routes as student_routes
 
     source = inspect.getsource(student_routes.start_session)
-    assert "session.activity" in source
-    assert "begin_v2_session" in source or "begin_session" in source
+    assert "session.overview" in source
+    assert "session.activity" not in source
+    assert "begin_session" not in source

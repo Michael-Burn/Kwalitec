@@ -44,15 +44,24 @@ def test_home_has_decision_hierarchy(student_client):
         or "Today's Session" in html
         or "Today&#39;s Mission" in html
         or "Continue Session" in html
+        or "ds-mission-hero" in html
         or "ds-mission-panel" in html
         or "ds-empty-operational" in html
     )
-    assert 'id="student-home-title"' in html or ">Home<" in html
+    assert 'id="student-home-greeting"' in html or 'id="student-home-title"' in html or ">Home<" in html
     assert "student-hero-greeting" not in html
     assert 'data-dashboard-panel="quick-actions"' not in html
     assert 'data-dashboard-panel="readiness"' not in html
     assert 'data-dashboard-panel="coach"' not in html
-    assert "What should I do next?" in html or "Where you stand" in html
+    assert (
+        "What should I do now?" in html
+        or "What should I do next?" in html
+        or "Ready for today's mission?" in html
+        or "Welcome back" in html
+        or "Good morning" in html
+        or "Good afternoon" in html
+        or "Good evening" in html
+    )
 
 
 def test_home_has_no_kpi_readiness_on_surface(student_client):
@@ -83,9 +92,9 @@ def test_history_focuses_on_progress_not_logs(student_client):
 
 def test_profile_has_settings_cta(student_client):
     html = student_client.get("/student/profile").get_data(as_text=True)
-    assert "settings" in html.lower() or "account" in html.lower()
+    assert "Settings" in html
     assert "settings-hub" in html
-    assert "How Kwalitec works for you" in html
+    assert "How Kwalitec works for you" not in html
     assert "settings-kpi-grid" not in html
 
 

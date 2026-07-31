@@ -297,6 +297,19 @@ button.student-signout {
 @media (max-width: 767.98px) {
   .student-topbar-inner {
     flex-wrap: nowrap;
+    gap: var(--student-space-2);
+  }
+
+  .student-topbar-nav {
+    flex: 1 1 auto;
+    min-width: 0;
+    justify-content: flex-end;
+    gap: var(--student-space-1);
+  }
+
+  /* Keep primary chrome calm — Switch Experience remains in the footer. */
+  .student-topbar [data-testid="switch-experience"] {
+    display: none;
   }
 
   .student-nav-toggle {
@@ -335,6 +348,14 @@ button.student-signout {
   .student-nav-link {
     display: block;
     width: 100%;
+  }
+
+  .student-topbar .appearance-switcher {
+    flex-shrink: 0;
+  }
+
+  .student-signout-form {
+    flex-shrink: 0;
   }
 }
 

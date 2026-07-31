@@ -10,16 +10,20 @@ FLASH_SUCCESS = {
     "resumed": "Welcome back — continuing where you left off.",
     "begun": "Session started. Stay focused — one activity at a time.",
     "paused": "Session paused. You can resume from Home whenever you're ready.",
+    "answer_recorded": "Answer recorded. Review the feedback, then continue.",
     "activities_complete": (
         "Activities complete — a short reflection closes today's practice."
     ),
     "ready_to_finish": (
         "Ready to finish — tell us honestly how today's planned study went."
     ),
+    "reflection_recorded": (
+        "Reflection saved. Confirm how today's planned study went."
+    ),
     "completed": (
         "Session complete. Your Journey and Home are ready with today's next step."
     ),
-    "checklist_updated": "Plan checklist updated.",
+    "checklist_updated": "Updated your session plan.",
 }
 
 FLASH_WARNING = {

@@ -111,8 +111,10 @@ def test_home_mission_intelligence_relocated_off_home(app, ctx):
     assert 'data-mission-intelligence="true"' not in html
     assert "student-mission-intelligence-disclosure" not in html
     assert 'data-home-density="tertiary"' not in html
-    assert "Today&#39;s Mission" in html or "Continue Session" in html
-    assert "Why now" in html
+    assert "Today&#39;s Mission" in html or "Continue Session" in html or "Today's Mission" in html
+    # UX-001: why-now / MES stack relocated to Session Overview briefing.
+    assert "Why now" not in html
+    assert "Why this Session?" not in html
 
 
 def test_home_empty_state_is_honest_with_cta(app, ctx):

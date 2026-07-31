@@ -30,6 +30,7 @@ from app.presentation.curriculum_studio.forms import (
     PublishWorkspaceForm,
     ValidateWorkspaceForm,
 )
+from app.presentation.curriculum_studio.founder_stages import founder_stage_label
 from app.presentation.curriculum_studio.operator_guidance import recover_flash
 from app.presentation.curriculum_studio.view_models import FLASH_SUCCESS, FLASH_WARNING
 from app.presentation.curriculum_studio.views import (
@@ -77,6 +78,7 @@ def index():
         page=page,
         create_workspace_form=CreateWorkspaceForm(),
         hub="studio",
+        founder_stage_label=founder_stage_label,
     )
 
 
@@ -280,13 +282,14 @@ def validate(workspace_id: str):
         return _workspace_redirect(workspace_id)
     try:
         service().validation.validate_curriculum(workspace_id)
-        flash(FLASH_SUCCESS["validation_ok"], "success")
         _auto_advance_when_ready(workspace_id)
         # Prefer landing on Preview after successful validation.
         try:
             snap = service().preview.build_for_review(workspace_id)
             flash(
-                FLASH_SUCCESS["preview_ok"].format(count=snap.node_count),
+                FLASH_SUCCESS["validation_and_preview_ok"].format(
+                    count=snap.node_count
+                ),
                 "success",
             )
             _auto_advance_when_ready(workspace_id)
@@ -296,6 +299,7 @@ def validate(workspace_id: str):
                 workspace_id,
                 preview_exc,
             )
+            flash(FLASH_SUCCESS["validation_ok"], "success")
     except Exception as exc:
         logger.warning("Validation failed: %s", exc)
         flash(recover_flash(exc, "validate"), "warning")

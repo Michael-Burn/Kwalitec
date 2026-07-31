@@ -81,16 +81,13 @@ def recover_flash(exc: BaseException, fallback_key: str) -> str:
         if "requires version" in detail.lower():
             return (
                 "We couldn't complete validation because no version is "
-                "assigned. Validation needs a version to gate publication. "
-                "Assign a version label, upload sources if needed, then "
-                "try again."
+                "assigned. Assign a version label, then try again."
             )
         if "blocked" in detail.lower() or "failed" in detail.lower():
             return (
-                "We couldn't complete validation because blocking findings "
-                "remain. Students must not receive incomplete curriculum. "
-                "Review the Validation findings below, fix CMP/syllabus "
-                "issues, then try again."
+                "We couldn't complete validation because issues remain. "
+                "Review the findings below, fix CMP or syllabus problems, "
+                "then try again."
             )
         return FLASH_WARNING["validate"]
     if isinstance(exc, PreviewError):
@@ -128,9 +125,9 @@ def recover_flash(exc: BaseException, fallback_key: str) -> str:
         if "not ready" in detail or "blocking" in detail:
             if fallback_key == "approve":
                 return (
-                    "We couldn't approve this curriculum because publication "
-                    "readiness gates are incomplete. Complete validation and "
-                    "preview, then try again."
+                    "We couldn't approve this curriculum because required "
+                    "steps are incomplete. Complete validation and preview, "
+                    "then try again."
                 )
             return FLASH_WARNING["publish"]
         if "version" in detail:
@@ -138,8 +135,8 @@ def recover_flash(exc: BaseException, fallback_key: str) -> str:
                 return FLASH_WARNING["approve"]
             return (
                 "We couldn't publish this curriculum because a version label "
-                "is missing. Published packages need an immutable version. "
-                "Assign a version, complete approval, then try again."
+                "is missing. Assign a version, complete approval, then try "
+                "again."
             )
         if fallback_key == "approve":
             return FLASH_WARNING["approve"]
@@ -155,17 +152,15 @@ def recover_flash(exc: BaseException, fallback_key: str) -> str:
         if "already exists" in detail or "duplicate" in detail:
             return (
                 "We couldn't assign this version because the label already "
-                "exists. Conflicting labels break immutable publication "
-                "history. Choose a new version label (for example 2026.2), "
+                "exists. Choose a new version label (for example 2026.2), "
                 "then try again."
             )
         return FLASH_WARNING["version"]
     if isinstance(exc, PortUnavailable):
         return (
             "We couldn't complete this step because a Studio service is "
-            "temporarily unavailable. Publishing requires Curriculum "
-            "Management and Ingestion. Wait a moment, refresh the workspace, "
-            "then try again. If it persists, contact platform support."
+            "temporarily unavailable. Wait a moment, refresh the workspace, "
+            "then try again. If it persists, contact support."
         )
     if isinstance(exc, PolicyViolation):
         return (
@@ -179,13 +174,14 @@ def recover_flash(exc: BaseException, fallback_key: str) -> str:
 
 
 def format_gate_blocked(exc: WorkflowGateBlocked) -> str:
-    """Actionable readiness-gate message with remaining tasks."""
+    """Short flash: what blocked, checklist marks, and next step."""
     target = (exc.target_stage or "next stage").replace("_", " ")
     missing = list(exc.missing_codes)
     satisfied = list(exc.satisfied_codes)
+    count = len(missing) if missing else 1
+    step_word = "step" if count == 1 else "steps"
     lines = [
-        f"Advancement blocked — cannot enter {target} yet.",
-        "Remaining tasks:",
+        f"Advancement blocked — finish {count} {step_word} before {target}.",
     ]
     for code in satisfied:
         label = _FACT_LABELS.get(code, code.replace("_", " "))

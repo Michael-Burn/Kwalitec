@@ -206,6 +206,10 @@ def test_session_completion_omits_readiness_kpi(app, ctx):
 
 
 def test_revision_template_declares_mission_primacy(app, ctx):
+    """PX-001: primacy is product law in constants — UI guides, does not lecture."""
+    from app.presentation.product_language import REVISION_MISSION_PRIMACY_SENTENCE
+
+    assert "not a second Mission" in REVISION_MISSION_PRIMACY_SENTENCE
     snap = RevisionSnapshot(
         student_id="stu-rr13d-rev",
         primary=RevisionOptionSnapshot(
@@ -226,11 +230,10 @@ def test_revision_template_declares_mission_primacy(app, ctx):
     )
     with app.test_request_context("/student/revision"):
         html = render_template("student/revision.html", page=page, form=None)
-    assert "Revision support" in html
-    assert "not a second Mission" in html
+    assert "Strengthen what you practised." in html
+    assert "Cash flow revision" in html
     assert "Today's best revision" not in html
-    assert "supports today's Mission" in html or "supports today&#39;s Mission" in html
-
+    assert "Begin Revision" in html or "ds-os-recommend" in html
 
 def test_revision_empty_teaches_mission_next_step(app, ctx):
     proj = RevisionProjection.create("stu-empty")
@@ -254,7 +257,7 @@ def test_revision_empty_teaches_mission_next_step(app, ctx):
     assert (
         "Return to today's Mission" in html or "Return to today&#39;s Mission" in html
     )
-    assert "No revision support yet" in html
+    assert "Nothing to revise yet" in html
     assert "Quick Check" not in html
     assert "Mission tip" not in html
 
@@ -291,10 +294,10 @@ def test_assessment_complete_avoids_overclaim(app, ctx):
             page=page,
             title="Check complete",
         )
-    assert "supports today's Mission" in html
+    assert "supports today's Session" in html or "supports today&#39;s Session" in html
     assert "without claiming mastery" in html
     assert "helps Kwalitec understand how to support you" not in html
-    assert "gathers evidence that supports today's Mission" in html
+    assert "gathers evidence that supports today's Mission" not in html
 
 
 def test_product_language_rejects_engineering_and_competing_focus():

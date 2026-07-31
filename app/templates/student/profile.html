@@ -6,6 +6,9 @@
 {# UX-003 / UX-006: Settings needs workspace width for the two-column hub. #}
 {% block student_main_modifier %}student-main--workspace{% endblock %}
 
+{# PX-004: single Settings heading — suppress shell page_header duplicate. #}
+{% block page_header %}{% endblock %}
+
 {% block content %}
 {% if page.profile %}
 {% set profile = page.profile %}
@@ -16,11 +19,9 @@
 
     {# UX-006: configuration, not performance — metrics live on History. #}
     <header class="settings-intro">
-        <h2 class="settings-intro-title">How Kwalitec works for you</h2>
+        <h1 class="settings-intro-title">Settings</h1>
         <p class="settings-intro-copy">
-            Adjust learning preferences, notifications, and account details.
-            Progress and performance live on
-            <a class="settings-section-link" href="{{ url_for('student.history') }}">History</a>.
+            Preferences, notifications, and account details.
         </p>
     </header>
 

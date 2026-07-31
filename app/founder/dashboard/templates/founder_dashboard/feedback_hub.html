@@ -1,153 +1,163 @@
 {% extends "founder_dashboard/base.html" %}
 
 {% block console_content %}
-<section class="section-header founder-header">
-    <p class="section-eyebrow">{{ kwalitec_console_label }} / Feedback</p>
-    <h1 class="section-title">Feedback Hub</h1>
-    <p class="section-description">
-        Unified read-only inbox across Private Beta, Alpha, and Product Check-in.
-        Open a row to work in the specialist dashboard — this Hub never edits records.
-    </p>
-</section>
+<article class="ds-page ds-container ds-container--content" aria-labelledby="feedback-title">
+  <header class="ds-page-header">
+    <h1 id="feedback-title" class="ds-page-header__title">Feedback</h1>
+  </header>
 
-<article class="feedback-hub" data-fh001-feedback-hub="1" aria-label="Founder Feedback Hub">
+  <div class="feedback-hub" data-fh001-feedback-hub="1" aria-label="Feedback">
     <div class="feedback-hub-chrome mb-3">
-        <div class="feedback-hub-counts" aria-label="Source counts">
-            {% set all_count = hub.source_counts.get('private_beta', 0) + hub.source_counts.get('alpha', 0) + hub.source_counts.get('research', 0) %}
-            <span class="feedback-hub-count">
-                All <strong>{{ all_count }}</strong>
-                {% if hub.filters.source %}· showing {{ hub.total }}{% endif %}
-            </span>
-            <span class="feedback-origin-badge feedback-origin-badge--blue">PRIVATE BETA {{ hub.source_counts.get('private_beta', 0) }}</span>
-            <span class="feedback-origin-badge feedback-origin-badge--purple">ALPHA {{ hub.source_counts.get('alpha', 0) }}</span>
-            <span class="feedback-origin-badge feedback-origin-badge--green">PRODUCT CHECK-IN {{ hub.source_counts.get('research', 0) }}</span>
-        </div>
-        <div class="feedback-hub-specialists">
-            <a class="btn btn-sm btn-outline-secondary" href="{{ url_for(beta_endpoint) }}">Private Beta</a>
-            <a class="btn btn-sm btn-outline-secondary" href="{{ url_for(alpha_endpoint) }}">Alpha</a>
-            <a class="btn btn-sm btn-outline-secondary" href="{{ url_for(feedback_checkins_endpoint) }}">Product Check-in</a>
-        </div>
+      <div class="feedback-hub-counts" aria-label="Source counts">
+        {% set all_count = hub.source_counts.get('private_beta', 0) + hub.source_counts.get('alpha', 0) + hub.source_counts.get('research', 0) %}
+        <span class="feedback-hub-count">
+          {{ all_count }} total
+          {% if hub.filters.source %}· showing {{ hub.total }}{% endif %}
+        </span>
+        <span class="feedback-origin-badge feedback-origin-badge--blue">Private Beta {{ hub.source_counts.get('private_beta', 0) }}</span>
+        <span class="feedback-origin-badge feedback-origin-badge--purple">Alpha {{ hub.source_counts.get('alpha', 0) }}</span>
+        <span class="feedback-origin-badge feedback-origin-badge--green">Check-in {{ hub.source_counts.get('research', 0) }}</span>
+      </div>
+      <div class="feedback-hub-specialists">
+        <a class="console-btn console-btn--secondary" href="{{ url_for(beta_endpoint) }}">Private Beta</a>
+        <a class="console-btn console-btn--secondary" href="{{ url_for(alpha_endpoint) }}">Alpha</a>
+        <a class="console-btn console-btn--secondary" href="{{ url_for(feedback_checkins_endpoint) }}">Product Check-in</a>
+      </div>
     </div>
 
-    <form method="get" action="{{ url_for(feedback_hub_endpoint) }}" class="feedback-hub-filters mb-3" aria-label="Hub filters">
+    <details class="feedback-filters-disclosure mb-3"{% if hub.filters.source or hub.filters.severity or hub.filters.status or hub.filters.subject or hub.filters.student or hub.filters.keyword or hub.filters.date_from or hub.filters.date_to %} open{% endif %}>
+      <summary class="feedback-filters-disclosure__summary">Filters</summary>
+      <form method="get" action="{{ url_for(feedback_hub_endpoint) }}" class="feedback-hub-filters mt-2" aria-label="Hub filters">
         <div class="row g-2 align-items-end">
-            <div class="col-md-2">
-                <label class="form-label form-label-sm" for="hub-source">Source</label>
-                <select class="form-select form-select-sm" id="hub-source" name="source">
-                    {% for value, label in source_options %}
-                    <option value="{{ value }}" {% if (hub.filters.source or '') == value %}selected{% endif %}>{{ label }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="col-md-2">
-                <label class="form-label form-label-sm" for="hub-severity">Severity</label>
-                <input class="form-control form-control-sm" id="hub-severity" name="severity" value="{{ hub.filters.severity or '' }}" placeholder="e.g. critical">
-            </div>
-            <div class="col-md-2">
-                <label class="form-label form-label-sm" for="hub-status">Status</label>
-                <input class="form-control form-control-sm" id="hub-status" name="status" value="{{ hub.filters.status or '' }}" placeholder="e.g. new">
-            </div>
-            <div class="col-md-2">
-                <label class="form-label form-label-sm" for="hub-subject">Subject</label>
-                <input class="form-control form-control-sm" id="hub-subject" name="subject" value="{{ hub.filters.subject or '' }}" placeholder="subject code">
-            </div>
-            <div class="col-md-2">
-                <label class="form-label form-label-sm" for="hub-student">Student</label>
-                <input class="form-control form-control-sm" id="hub-student" name="student" value="{{ hub.filters.student or '' }}" placeholder="email">
-            </div>
-            <div class="col-md-2">
-                <label class="form-label form-label-sm" for="hub-keyword">Keyword</label>
-                <input class="form-control form-control-sm" id="hub-keyword" name="keyword" value="{{ hub.filters.keyword or '' }}" placeholder="search…">
-            </div>
-            <div class="col-md-2">
-                <label class="form-label form-label-sm" for="hub-date-from">From</label>
-                <input class="form-control form-control-sm" type="date" id="hub-date-from" name="date_from" value="{{ hub.filters.date_from.isoformat() if hub.filters.date_from else '' }}">
-            </div>
-            <div class="col-md-2">
-                <label class="form-label form-label-sm" for="hub-date-to">To</label>
-                <input class="form-control form-control-sm" type="date" id="hub-date-to" name="date_to" value="{{ hub.filters.date_to.isoformat() if hub.filters.date_to else '' }}">
-            </div>
-            <div class="col-md-2">
-                <button type="submit" class="btn btn-sm btn-primary w-100">Filter</button>
-            </div>
-            <div class="col-md-2">
-                <a class="btn btn-sm btn-outline-secondary w-100" href="{{ url_for(feedback_hub_endpoint) }}">Reset</a>
-            </div>
+          <div class="col-md-2">
+            <label class="form-label form-label-sm" for="hub-source">Source</label>
+            <select class="form-select form-select-sm" id="hub-source" name="source">
+              {% for value, label in source_options %}
+              <option value="{{ value }}" {% if (hub.filters.source or '') == value %}selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label class="form-label form-label-sm" for="hub-severity">Severity</label>
+            <input class="form-control form-control-sm" id="hub-severity" name="severity" value="{{ hub.filters.severity or '' }}" placeholder="Severity">
+          </div>
+          <div class="col-md-2">
+            <label class="form-label form-label-sm" for="hub-status">Status</label>
+            <input class="form-control form-control-sm" id="hub-status" name="status" value="{{ hub.filters.status or '' }}" placeholder="Status">
+          </div>
+          <div class="col-md-2">
+            <label class="form-label form-label-sm" for="hub-subject">Subject</label>
+            <input class="form-control form-control-sm" id="hub-subject" name="subject" value="{{ hub.filters.subject or '' }}" placeholder="Subject">
+          </div>
+          <div class="col-md-2">
+            <label class="form-label form-label-sm" for="hub-student">Student</label>
+            <input class="form-control form-control-sm" id="hub-student" name="student" value="{{ hub.filters.student or '' }}" placeholder="Student email">
+          </div>
+          <div class="col-md-2">
+            <label class="form-label form-label-sm" for="hub-keyword">Keyword</label>
+            <input class="form-control form-control-sm" id="hub-keyword" name="keyword" value="{{ hub.filters.keyword or '' }}" placeholder="Search">
+          </div>
+          <div class="col-md-2">
+            <label class="form-label form-label-sm" for="hub-date-from">From</label>
+            <input class="form-control form-control-sm" type="date" id="hub-date-from" name="date_from" value="{{ hub.filters.date_from.isoformat() if hub.filters.date_from else '' }}">
+          </div>
+          <div class="col-md-2">
+            <label class="form-label form-label-sm" for="hub-date-to">To</label>
+            <input class="form-control form-control-sm" type="date" id="hub-date-to" name="date_to" value="{{ hub.filters.date_to.isoformat() if hub.filters.date_to else '' }}">
+          </div>
+          <div class="col-md-2">
+            <button type="submit" class="console-btn console-btn--primary w-100">Apply</button>
+          </div>
+          <div class="col-md-2">
+            <a class="console-btn console-btn--secondary w-100" href="{{ url_for(feedback_hub_endpoint) }}">Reset</a>
+          </div>
         </div>
-    </form>
+      </form>
+    </details>
 
     {% set page_args = request.args.to_dict() %}
     {% set _ = page_args.pop('page', none) %}
 
     <p class="feedback-inbox-count mb-2">
-        {{ hub.total }} submission{{ '' if hub.total == 1 else 's' }}
-        · page {{ hub.page }} of {{ hub.total_pages }}
+      {{ hub.total }} submission{{ '' if hub.total == 1 else 's' }}
+      {% if hub.total_pages > 1 %}· page {{ hub.page }} of {{ hub.total_pages }}{% endif %}
     </p>
 
-    <div class="table-responsive">
-        <table class="table table-sm align-middle feedback-hub-table" data-fh001-hub-table="1">
-            <thead>
-                <tr>
-                    <th scope="col">Source</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Severity</th>
-                    <th scope="col">Student</th>
-                    <th scope="col">Subject</th>
-                    <th scope="col">Created</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Preview</th>
-                    <th scope="col">Open</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% if hub.items %}
-                    {% for item in hub.items %}
-                    <tr data-hub-id="{{ item.id }}" data-hub-source="{{ item.source }}">
-                        <td>
-                            <span class="feedback-origin-badge feedback-origin-badge--{{ item.origin_colour }}">{{ item.source_label }}</span>
-                        </td>
-                        <td class="small">{{ item.category or '—' }}</td>
-                        <td class="small">{{ item.severity or '—' }}</td>
-                        <td class="small">{{ item.student or '—' }}</td>
-                        <td class="small">{{ item.subject or '—' }}</td>
-                        <td class="small">
-                            {% if item.created_at %}
-                            <time datetime="{{ item.created_at.isoformat() }}">{{ item.created_at.strftime('%Y-%m-%d %H:%M') }}</time>
-                            {% else %}
-                            —
-                            {% endif %}
-                        </td>
-                        <td class="small"><span class="feedback-status-badge">{{ item.status or '—' }}</span></td>
-                        <td class="small feedback-hub-preview">{{ item.summary or '—' }}</td>
-                        <td>
-                            <a class="btn btn-sm btn-outline-primary"
-                               href="{{ item.link_to_original }}"
-                               data-fh001-open="1"
-                               data-fh001-source="{{ item.source }}">Open</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
+    <div class="table-responsive founder-table-wrap">
+      <table class="table table-sm align-middle feedback-hub-table founder-table" data-fh001-hub-table="1">
+        <thead>
+          <tr>
+            <th scope="col">Source</th>
+            <th scope="col">Category</th>
+            <th scope="col">Severity</th>
+            <th scope="col">Student</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Created</th>
+            <th scope="col">Status</th>
+            <th scope="col">Preview</th>
+            <th scope="col">Open</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if hub.items %}
+            {% for item in hub.items %}
+            <tr data-hub-id="{{ item.id }}" data-hub-source="{{ item.source }}">
+              <td>
+                <span class="feedback-origin-badge feedback-origin-badge--{{ item.origin_colour }}">{{ item.source_label }}</span>
+              </td>
+              <td class="small">{{ item.category or '—' }}</td>
+              <td class="small">{{ item.severity or '—' }}</td>
+              <td class="small">{{ item.student or '—' }}</td>
+              <td class="small">{{ item.subject or '—' }}</td>
+              <td class="small">
+                {% if item.created_at %}
+                <time datetime="{{ item.created_at.isoformat() }}">{{ item.created_at.strftime('%Y-%m-%d %H:%M') }}</time>
                 {% else %}
-                    <tr>
-                        <td colspan="9" class="text-muted small">No feedback matches these filters.</td>
-                    </tr>
+                —
                 {% endif %}
-            </tbody>
-        </table>
+              </td>
+              <td class="small"><span class="feedback-status-badge">{{ item.status or '—' }}</span></td>
+              <td class="small feedback-hub-preview">{{ item.summary or '—' }}</td>
+              <td>
+                <a class="console-btn console-btn--secondary"
+                   href="{{ item.link_to_original }}"
+                   data-fh001-open="1"
+                   data-fh001-source="{{ item.source }}">Open</a>
+              </td>
+            </tr>
+            {% endfor %}
+          {% else %}
+            <tr>
+              <td colspan="9">
+                <div class="ds-empty-operational" role="status">
+                  {% if hub.filters.source or hub.filters.severity or hub.filters.status or hub.filters.subject or hub.filters.student or hub.filters.keyword or hub.filters.date_from or hub.filters.date_to %}
+                  <h3 class="ds-empty-operational__title">No matches</h3>
+                  <p class="ds-empty-operational__reason">Try clearing filters.</p>
+                  {% else %}
+                  <h3 class="ds-empty-operational__title">No feedback yet</h3>
+                  <p class="ds-empty-operational__reason">New submissions appear here.</p>
+                  {% endif %}
+                </div>
+              </td>
+            </tr>
+          {% endif %}
+        </tbody>
+      </table>
     </div>
 
     {% if hub.total_pages > 1 %}
     <nav class="feedback-pagination" aria-label="Hub pagination">
-        {% if hub.has_prev %}
-        <a class="btn btn-sm btn-outline-secondary"
-           href="{{ url_for(feedback_hub_endpoint, page=hub.page - 1, **page_args) }}">Previous</a>
-        {% endif %}
-        <span class="feedback-pagination-status">Page {{ hub.page }} of {{ hub.total_pages }}</span>
-        {% if hub.has_next %}
-        <a class="btn btn-sm btn-outline-secondary"
-           href="{{ url_for(feedback_hub_endpoint, page=hub.page + 1, **page_args) }}">Next</a>
-        {% endif %}
+      {% if hub.has_prev %}
+      <a class="console-btn console-btn--secondary"
+         href="{{ url_for(feedback_hub_endpoint, page=hub.page - 1, **page_args) }}">Previous</a>
+      {% endif %}
+      <span class="feedback-pagination-status">Page {{ hub.page }} of {{ hub.total_pages }}</span>
+      {% if hub.has_next %}
+      <a class="console-btn console-btn--secondary"
+         href="{{ url_for(feedback_hub_endpoint, page=hub.page + 1, **page_args) }}">Next</a>
+      {% endif %}
     </nav>
     {% endif %}
+  </div>
 </article>
 {% endblock %}

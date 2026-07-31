@@ -58,6 +58,14 @@ _NEXT_STEP_BY_FOUNDER: dict[str, str] = {
     "Publish": "Publish this version so students can enrol.",
 }
 
+_STATUS_USER_LABELS: dict[str, str] = {
+    "draft": "In progress",
+    "active": "In progress",
+    "ready": "Ready to publish",
+    "published": "Published",
+    "archived": "Archived",
+}
+
 
 class FounderWorkspaceService:
     """Build the FV-001A Publication Workspace page model."""
@@ -110,6 +118,25 @@ class FounderWorkspaceService:
             domain is WorkflowStage.VALIDATION or cmp_uploaded
         )
         preview_json = _preview_nodes_json(preview_nodes)
+        next_sentence = _NEXT_STEP_BY_FOUNDER.get(
+            founder_label,
+            "Complete the next publication step.",
+        )
+        if processing and founder_label == "Upload":
+            next_sentence = (
+                "Documents are being checked and structured automatically. "
+                "Continue when processing finishes."
+            )
+        if primary_key == PRIMARY_VERSION:
+            next_sentence = (
+                "Assign a version label before publishing to students."
+            )
+        if primary_key == PRIMARY_PUBLISH and workspace.ready_to_publish:
+            next_sentence = (
+                "Everything looks ready. Publish to make this version "
+                "available to students."
+            )
+        step_progress = f"Step {stage_idx + 1} of {len(FOUNDER_STAGES)}. "
 
         return FounderWorkspacePage(
             workspace=workspace,
@@ -122,10 +149,7 @@ class FounderWorkspaceService:
             stage_index=stage_idx,
             primary_key=primary_key,
             primary_label=primary_label,
-            next_step_sentence=_NEXT_STEP_BY_FOUNDER.get(
-                founder_label,
-                "Complete the next publication stage.",
-            ),
+            next_step_sentence=step_progress + next_sentence,
             blocking_findings=findings,
             blocking_count=len(findings),
             show_upload=founder_label == "Upload",
@@ -224,9 +248,9 @@ class FounderWorkspaceService:
             try:
                 snap = studio.validation.summarise(workspace_id)
                 if snap.passed:
-                    lines.append(f"Last validation passed · {snap.readiness}")
+                    lines.append("Validation complete — no blocking issues found.")
                 else:
-                    lines.append(f"Validation · {snap.readiness}")
+                    lines.append("Validation needs attention before approval.")
             except Exception:
                 pass
         try:
@@ -234,9 +258,12 @@ class FounderWorkspaceService:
             count = int(snap.node_count)
             topic_count = count
             topics = "topic" if count == 1 else "topics"
-            review_summary = f"{count} student-visible {topics}"
+            if count > 0:
+                review_summary = f"{count} student-visible {topics}"
+            else:
+                review_summary = "Preview not built yet"
             if count > 0 and founder_label in {"Preview", "Approve", "Publish"}:
-                lines.append(f"Preview · {snap.readiness} · {count} {topics}")
+                lines.append(f"{count} {topics} ready for review.")
             for node in snap.hierarchy:
                 kind = (node.kind or "topic").strip().lower()
                 if kind in {"section", "chapter", "unit", "module"}:
@@ -249,6 +276,11 @@ class FounderWorkspaceService:
                         parent_id=node.parent_id,
                         order_index=int(node.order_index),
                     )
+                )
+            if section_count > 0 and count > 0:
+                sections = "section" if section_count == 1 else "sections"
+                review_summary = (
+                    f"{section_count} {sections} · {count} student-visible {topics}"
                 )
         except Exception:
             review_summary = "Preview not built yet"
@@ -303,7 +335,9 @@ def _preview_nodes_json(nodes: tuple[PreviewNodeRow, ...]) -> str:
 def _status_label(workspace: WorkspaceSnapshot) -> str:
     if workspace.ready_to_publish:
         return "Ready to publish"
-    status = (workspace.status or "").strip()
+    status = (workspace.status or "").strip().lower()
+    if status in _STATUS_USER_LABELS:
+        return _STATUS_USER_LABELS[status]
     if status:
         return status.replace("_", " ").title()
     return "In progress"

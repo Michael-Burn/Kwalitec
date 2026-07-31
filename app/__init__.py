@@ -791,6 +791,10 @@ def _register_template_context(app: Flask) -> None:
         release_info = ReleaseInfoService.current()
         from flask_login import current_user
 
+        from app.auth.experience import (
+            can_access_both_experiences,
+            experience_selection_url,
+        )
         from app.security.authorization import (
             user_capabilities,
             user_has_capability,
@@ -798,10 +802,6 @@ def _register_template_context(app: Flask) -> None:
             user_has_role,
             user_permissions,
             user_roles,
-        )
-        from app.auth.experience import (
-            can_access_both_experiences,
-            experience_selection_url,
         )
 
         return {

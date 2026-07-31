@@ -125,7 +125,7 @@
 <section class="ds-current-work" aria-labelledby="ds-current-work-title">
   <h2 class="ds-section__title" id="ds-current-work-title">{{ section_title }}</h2>
   <p class="ds-current-work__subject">{{ subject_name }}</p>
-  <p class="ds-current-work__stage">Stage · {{ stage_label }}</p>
+  <p class="ds-current-work__stage">Now · {{ stage_label }}</p>
   {% if supporting_text %}<p class="ds-list__meta">{{ supporting_text }}</p>{% endif %}
   {{ ds_primary_action_strip(primary_label, primary_href=primary_href) }}
 </section>
@@ -156,11 +156,36 @@
 </section>
 {%- endmacro %}
 
-{% macro ds_study_signals(signals) -%}
+{# UX-001 Home hero — decision only; PX-003 adds brief why/next confidence lines. #}
+{% macro ds_mission_hero(subject_name, objective='', section_title="Today's Mission", title='', duration_label='', status_label='', why_now='', after_completion='') -%}
+<section class="ds-mission-hero" aria-labelledby="ds-mission-hero-title" data-ux="mission-hero">
+  <h2 class="ds-section__title" id="ds-mission-hero-title">{{ section_title }}</h2>
+  {% if title %}
+  <p class="ds-mission-hero__title">{{ title }}</p>
+  {% endif %}
+  {% if subject_name %}
+  <p class="ds-mission-hero__subject">{{ subject_name }}</p>
+  {% endif %}
+  {% if duration_label or status_label %}
+  <p class="ds-mission-hero__meta" role="group" aria-label="Mission details">
+    {% if duration_label %}<span class="ds-mission-chip">{{ duration_label }}</span>{% endif %}
+    {% if status_label and (not duration_label or duration_label not in status_label) %}
+    <span class="ds-list__meta">{{ status_label }}</span>
+    {% endif %}
+  </p>
+  {% endif %}
+  {% if objective %}
+  <p class="ds-mission-hero__objective">{{ objective }}</p>
+  {% endif %}
+  {% if after_completion %}<p class="ds-list__meta">After this · {{ after_completion }}</p>{% endif %}
+</section>
+{%- endmacro %}
+
+{% macro ds_study_signals(signals, hide_subject=false) -%}
 {% if signals %}
 <section class="ds-os-signals" aria-label="Study orientation" data-ux="study-signals">
   <ul class="ds-os-signals__grid">
-    {% if signals.subject_label %}
+    {% if signals.subject_label and not hide_subject %}
     <li class="ds-os-signals__item">
       <span class="ds-os-signals__label">Subject</span>
       <span class="ds-os-signals__value">{{ signals.subject_label }}</span>
@@ -345,12 +370,18 @@
 </div>
 {%- endmacro %}
 
-{% macro ds_stage_indicator(stages, current_index=0) -%}
-<nav class="ds-stage-indicator" aria-label="Publication stages">
+{% macro ds_stage_indicator(stages, current_index=0, progress_label='') -%}
+{# PX-003: Step X of Y + done/current/future strip — presentation only. #}
+{% set total = stages|length %}
+{% set step_no = current_index + 1 if current_index >= 0 else 1 %}
+<nav class="ds-stage-indicator" aria-label="{{ progress_label or ('Step ' ~ step_no ~ ' of ' ~ total) }}">
+  {% if total > 0 %}
+  <p class="ds-list__meta ds-stage-indicator__progress">{{ progress_label or ('Step ' ~ step_no ~ ' of ' ~ total) }}</p>
+  {% endif %}
   {% for stage in stages %}
   <span class="ds-stage-indicator__item{% if loop.index0 < current_index %} ds-stage-indicator__item--done{% elif loop.index0 == current_index %} ds-stage-indicator__item--current{% endif %}"{% if loop.index0 == current_index %} aria-current="step"{% endif %}>
     <span class="ds-stage-indicator__dot" aria-hidden="true">{% if loop.index0 < current_index %}●{% elif loop.index0 == current_index %}●{% else %}○{% endif %}</span>
-    <span class="ds-stage-indicator__label">{% if loop.index0 < current_index %}{{ stage }}{% elif loop.index0 == current_index %}{{ stage }}{% else %}{{ stage }}{% endif %}</span>
+    <span class="ds-stage-indicator__label">{{ stage }}</span>
   </span>
   {% if not loop.last %}<span class="ds-stage-indicator__rule" aria-hidden="true"></span>{% endif %}
   {% endfor %}
@@ -358,17 +389,13 @@
 {%- endmacro %}
 
 {% macro ds_empty_operational(reason, action_label='', action_href='', title='', explanation='', context='') -%}
-{# UX-006: title + explanation + single primary action (+ optional context).
-   `reason` remains the fallback body when title is omitted (legacy call sites). #}
+{# PX-001: heading + one guiding sentence + one action. Context is ignored. #}
 <div class="ds-empty-operational" role="status">
   {% if title %}
   <h3 class="ds-empty-operational__title">{{ title }}</h3>
   {% endif %}
   {% if explanation or reason %}
   <p class="ds-empty-operational__reason{% if title %} ds-empty-operational__explanation{% endif %}">{{ explanation or reason }}</p>
-  {% endif %}
-  {% if context %}
-  <p class="ds-empty-operational__context">{{ context }}</p>
   {% endif %}
   {% if action_label %}
     {{ ds_button(action_label, href=action_href, variant='primary') }}

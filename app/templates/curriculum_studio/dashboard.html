@@ -9,7 +9,9 @@
 <article class="ds-page ds-container ds-container--content" aria-labelledby="studio-title">
   <header class="ds-page-header">
     <h1 id="studio-title" class="ds-page-header__title">Curriculum Studio</h1>
-    <p class="ds-page-header__support">Open a workspace to advance curriculum publication.</p>
+    {% if page.next_step_hint %}
+    <p class="ds-page-header__support">{{ page.next_step_hint }}</p>
+    {% endif %}
   </header>
 
   <section class="ds-section" aria-labelledby="studio-workspaces-title">
@@ -21,7 +23,7 @@
         <a class="ds-list__row" href="{{ url_for('curriculum_studio.workspace', workspace_id=ws.workspace_id) }}">
           <span>{{ ws.subject_title or ws.subject_code }}</span>
           <span class="ds-list__meta">
-            {{ ws.version_label or 'Draft' }} · {{ ws.current_stage.replace('_', ' ')|title }}
+            {{ ws.version_label or 'Draft' }} · {{ founder_stage_label(ws.current_stage) }}
           </span>
         </a>
       </li>
@@ -29,7 +31,8 @@
     </ul>
     {% else %}
     <div class="ds-empty-operational" role="status">
-      <p class="ds-empty-operational__reason">No workspaces yet.</p>
+      <h3 class="ds-empty-operational__title">No workspaces yet</h3>
+      <p class="ds-empty-operational__reason">{{ page.empty_workspaces_message or 'Create a subject to start publication.' }}</p>
       {{ ds_button('Create Subject', href=url_for('curriculum_studio.subjects_hub', create=1), variant='primary') }}
     </div>
     {% endif %}

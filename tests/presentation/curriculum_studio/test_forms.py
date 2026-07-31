@@ -95,7 +95,7 @@ def test_assign_version_accepts_semver(app_ctx):
 
 def test_advance_and_preview_labels(app_ctx):
     assert AdvanceWorkflowForm().submit.label.text == "Continue"
-    assert PreviewWorkspaceForm().submit.label.text == "Confirm structure"
+    assert PreviewWorkspaceForm().submit.label.text == "Generate preview"
 
 
 def test_required_fields_expose_aria(app_ctx):

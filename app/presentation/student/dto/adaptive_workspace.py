@@ -164,7 +164,5 @@ class AdaptiveStudyWorkspace:
     journey_highlights: WorkspaceJourneyHighlights | None = None
     mission_composition: WorkspaceMissionComposition | None = None
     quick_actions: tuple[WorkspaceQuickAction, ...] = ()
-    page_question: str = (
-        "Where you are, what to do today, and where you are heading."
-    )
+    page_question: str = "What should I do now?"
     enabled: bool = False

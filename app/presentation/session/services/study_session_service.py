@@ -133,6 +133,39 @@ class StudySessionService:
             if completion.learning_objectives and not learning_objectives:
                 learning_objectives = completion.learning_objectives
 
+        why_today = ""
+        concept_focus: tuple[str, ...] = ()
+        session_stages: tuple[str, ...] = ()
+        expected_outcome = ""
+        checkpoint_preview = ""
+        reflection_preview = ""
+        if surface is SessionSurface.OVERVIEW:
+            briefing = self._overview_briefing(page, flow_label=flow_label)
+            why_today = briefing["why_today"]
+            concept_focus = briefing["concept_focus"]
+            session_stages = briefing["session_stages"]
+            expected_outcome = briefing["expected_outcome"]
+            checkpoint_preview = briefing["checkpoint_preview"]
+            reflection_preview = briefing["reflection_preview"]
+            if briefing["learning_objectives"] and not learning_objectives:
+                learning_objectives = briefing["learning_objectives"]
+
+        workflow_steps: tuple[str, ...] = ()
+        workflow_step_index = 0
+        page_eyebrow = (page.shell.page_eyebrow or "").strip()
+        estimated_time_label = ""
+        if page.shell.steps:
+            workflow_steps = tuple(step.label for step in page.shell.steps)
+            active = next((s for s in page.shell.steps if s.is_active), None)
+            if active:
+                workflow_step_index = max(0, active.step_number - 1)
+            elif surface is SessionSurface.COMPLETE:
+                workflow_step_index = max(0, len(workflow_steps) - 1)
+        if surface is SessionSurface.OVERVIEW and page.overview:
+            estimated_time_label = (
+                page.overview.estimated_duration_label or ""
+            ).strip()
+
         return StudySessionPage(
             page_title=page_title,
             surface=surface.value,
@@ -175,6 +208,12 @@ class StudySessionService:
             activity_type=activity_type,
             stage_label=stage_label,
             educational_flow_label=flow_label,
+            why_today=why_today,
+            concept_focus=concept_focus,
+            session_stages=session_stages,
+            expected_outcome=expected_outcome,
+            checkpoint_preview=checkpoint_preview,
+            reflection_preview=reflection_preview,
             journey_update_label=journey_update,
             finish_outcome_label=finish_outcome,
             learning_insights=insights,
@@ -205,6 +244,10 @@ class StudySessionService:
             difficulty_explanation=difficulty_explanation,
             effectiveness_feedback=effectiveness_feedback,
             effectiveness_explanation=effectiveness_explanation,
+            workflow_steps=workflow_steps,
+            workflow_step_index=workflow_step_index,
+            page_eyebrow=page_eyebrow,
+            estimated_time_label=estimated_time_label,
         )
 
     @staticmethod
@@ -261,10 +304,9 @@ class StudySessionService:
 
         if page.overview:
             objective = (page.overview.objective or "").strip()
-            if page.overview.estimated_duration_label:
-                elapsed = page.overview.estimated_duration_label
             if page.overview.topics:
                 chapter = page.overview.topics[0]
+            # PX-003: keep Overview duration out of the live Timer slot.
 
         if page.activity:
             activity_label = page.activity.position_label or "Learning activity"
@@ -458,7 +500,9 @@ class StudySessionService:
         product: bool = False,
     ) -> tuple[str, str, bool, str]:
         if surface is SessionSurface.OVERVIEW and page.overview:
-            label = page.overview.begin_label or "Start Session"
+            label = page.overview.begin_label or "Begin Session"
+            if label.strip().lower() in {"start session", "start"}:
+                label = "Begin Session"
             return label, "begin_form", page.overview.begin_enabled, ""
 
         if surface is SessionSurface.ACTIVITY and page.activity:
@@ -522,25 +566,13 @@ class StudySessionService:
         }
 
         if surface is SessionSurface.OVERVIEW and page.overview:
-            body_parts = []
-            if page.overview.objective:
-                body_parts.append(page.overview.objective)
-            if substance and page.overview.learning_objectives:
-                body_parts.append("Learning objectives for this session:")
-                for item in page.overview.learning_objectives:
-                    body_parts.append(f"• {item}")
+            # UX-001: educational detail lives in the briefing block — keep L1 lean.
+            objective = (page.overview.objective or "").strip()
             return {
                 **empty,
-                "title": (
-                    "Learning objectives" if substance else "Current objective"
-                ),
-                "body": "\n".join(body_parts) if substance else " ".join(body_parts),
-                "support": (
-                    "You will move through Reading, Worked example, Practice, "
-                    "then Reflection."
-                    if substance
-                    else ""
-                ),
+                "title": "Today's Session",
+                "body": objective,
+                "support": "",
             }
 
         if surface is SessionSurface.ACTIVITY and page.activity:
@@ -704,6 +736,109 @@ class StudySessionService:
                 )
 
         return tuple(items)
+
+    @staticmethod
+    def _overview_briefing(
+        page: SessionPageViewModel,
+        *,
+        flow_label: str,
+    ) -> dict[str, object]:
+        """UX-001 — project Session Overview briefing (presentation only).
+
+        Prefers overview VM fields; optionally enriches via Educational
+        Authoring for concept focus / stages / checkpoint / reflection.
+        """
+        empty: dict[str, object] = {
+            "why_today": "",
+            "concept_focus": (),
+            "session_stages": (),
+            "expected_outcome": "",
+            "checkpoint_preview": "",
+            "reflection_preview": "",
+            "learning_objectives": (),
+        }
+        overview = page.overview
+        if overview is None:
+            return empty
+
+        why = (overview.why_studying or "").strip()
+        expected = (overview.expected_improvement_label or "").strip()
+        objectives = tuple(overview.learning_objectives or ())
+        stages: tuple[str, ...] = ()
+        if flow_label:
+            stages = tuple(
+                part.strip() for part in flow_label.split("→") if part.strip()
+            )
+
+        concept_focus: tuple[str, ...] = ()
+        checkpoint = ""
+        reflection = ""
+        topic = (page.shell.topic_title or "").strip()
+        if not topic and overview.topics:
+            topic = (overview.topics[0] or "").strip()
+        if topic:
+            try:
+                from app.application.educational_authoring import (
+                    get_educational_authoring_engine,
+                )
+
+                composition = get_educational_authoring_engine().author_from_topic(
+                    topic_title=topic,
+                    objective_text=(
+                        objectives[0]
+                        if objectives
+                        else (overview.objective or overview.learning_goal or "")
+                    ),
+                )
+                if composition is not None:
+                    episodes = getattr(composition, "episodes", ()) or ()
+                    if episodes:
+                        ep = episodes[0]
+                        concepts = tuple(
+                            c for c in (getattr(ep, "concept_focus", ()) or ()) if c
+                        )
+                        if concepts:
+                            concept_focus = concepts
+                        labels = tuple(
+                            a
+                            for a in (getattr(ep, "activity_labels", ()) or ())
+                            if a
+                        )
+                        if labels:
+                            stages = labels
+                        criteria = tuple(
+                            c
+                            for c in (getattr(ep, "success_criteria", ()) or ())
+                            if c
+                        )
+                        if criteria and not expected:
+                            expected = criteria[0]
+                        ep_obj = (getattr(ep, "learning_objective", "") or "").strip()
+                        if ep_obj and not objectives:
+                            objectives = (ep_obj,)
+                    checkpoint = (
+                        getattr(composition, "checkpoint_prompt", "") or ""
+                    ).strip()
+                    reflection = (
+                        getattr(composition, "reflection_prompt", "") or ""
+                    ).strip()
+                    narrative = (
+                        getattr(composition, "mission_narrative", "") or ""
+                    ).strip()
+                    if narrative and not why:
+                        why = narrative
+            except Exception:  # noqa: BLE001 — briefing is best-effort
+                pass
+
+        return {
+            "why_today": why,
+            "concept_focus": concept_focus,
+            "session_stages": stages,
+            "expected_outcome": expected,
+            "checkpoint_preview": checkpoint,
+            "reflection_preview": reflection,
+            "learning_objectives": objectives,
+        }
 
     def _technical(self, page: SessionPageViewModel) -> tuple[str, ...]:
         lines = [f"Session ID · {page.shell.session_id}"]

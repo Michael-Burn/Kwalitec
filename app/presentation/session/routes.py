@@ -283,6 +283,7 @@ def answer(session_id: str):
         logger.warning("Submit answer failed: %s", exc)
         flash(FLASH_WARNING["answer_failed"], "warning")
         return redirect(url_for("session.activity", session_id=session_id))
+    flash(FLASH_SUCCESS["answer_recorded"], "success")
     return redirect(url_for("session.activity", session_id=session_id))
 
 
@@ -370,6 +371,7 @@ def reflection_continue(session_id: str):
         resource_id=session_id,
         path=f"/session/{session_id}/reflection/continue",
     )
+    flash(FLASH_SUCCESS["reflection_recorded"], "success")
     return redirect(url_for("session.summary", session_id=session_id))
 
 

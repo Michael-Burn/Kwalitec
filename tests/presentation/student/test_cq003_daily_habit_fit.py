@@ -122,7 +122,7 @@ def test_home_resume_without_unified_journey(app, ctx):
     assert html.count("Why now") <= 1
 
 
-def test_begin_revision_auto_begins_into_activity(
+def test_begin_revision_lands_on_overview(
     student_client, experience_app, monkeypatch
 ):
     begin = MagicMock()
@@ -153,5 +153,7 @@ def test_begin_revision_auto_begins_into_activity(
         follow_redirects=False,
     )
     assert resp.status_code == 302
-    assert resp.headers["Location"].endswith("/session/sess-rev-1/activity")
-    begin.assert_called_once_with(session_id="sess-rev-1")
+    assert resp.headers["Location"].endswith("/session/sess-rev-1/") or resp.headers[
+        "Location"
+    ].endswith("/session/sess-rev-1/overview")
+    begin.assert_not_called()

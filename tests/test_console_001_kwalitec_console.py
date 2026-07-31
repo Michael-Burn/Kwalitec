@@ -61,7 +61,7 @@ class TestConsoleNavigation:
             "Subjects",
             "Curriculum Studio",
             "Students",
-            "Support",
+            "Feedback",
             "Settings",
         ]
 
@@ -82,7 +82,7 @@ class TestConsoleRouting:
         response = client.get("/console/")
         assert response.status_code == 200
         body = response.get_data(as_text=True)
-        assert "Current Work" in body or "No subjects have been created yet" in body
+        assert "Current Work" in body or "No subjects yet" in body
         assert "Kwalitec Console" in body
         assert "console-brand-text" not in body
         assert "Attention Required" not in body

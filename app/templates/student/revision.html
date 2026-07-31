@@ -1,6 +1,6 @@
 {% extends "student/base.html" %}
 {% set title = page.shell.page_title %}
-{% from "design_system/macros.html" import ds_button, ds_badge, ds_empty_operational %}
+{% from "design_system/macros.html" import ds_button, ds_empty_operational %}
 {% from "student/components/explanation_card.html" import explanation_card %}
 
 {% block extra_head %}
@@ -17,7 +17,7 @@
 >
   <header class="ds-page-header">
     <h1 id="student-revision-title" class="ds-page-header__title student-page-title">{{ page.shell.page_title }}</h1>
-    <p class="ds-page-header__support">What deserves my attention?</p>
+    <p class="ds-page-header__support">Strengthen what you practised.</p>
   </header>
 
 {% if page.revision %}
@@ -26,26 +26,14 @@
 {% if revision.has_revision and revision.primary %}
 {% set primary = revision.primary %}
 
-  {# ——— Primary recommendation (recommend, don't merely list) ——— #}
   <section
     class="ds-os-recommend"
     aria-labelledby="revision-title"
     data-sop-section="primary-recommendation"
   >
-    <p class="ds-list__meta">Revision support</p>
     <h2 id="revision-title" class="ds-os-recommend__title">{{ primary.topic_title }}</h2>
-    <p class="ds-list__meta" data-educational="mission-primacy">
-      Revision supports today's Mission — it is not a second Mission.
-      Use it to strengthen what Mission asked you to practice.
-    </p>
 
     <dl class="ds-os-recommend__meta">
-      {% if primary.priority_label %}
-      <div>
-        <dt>Why it matters</dt>
-        <dd>{{ ds_badge(primary.priority_label, tone='warning') }}</dd>
-      </div>
-      {% endif %}
       {% if primary.time_label %}
       <div>
         <dt>Time</dt>
@@ -54,14 +42,8 @@
       {% endif %}
       {% if primary.expected_benefit %}
       <div>
-        <dt>High-value outcome</dt>
+        <dt>Outcome</dt>
         <dd>{{ primary.expected_benefit }}</dd>
-      </div>
-      {% endif %}
-      {% if primary.explanation and primary.explanation.confidence_label %}
-      <div data-sop-section="confidence">
-        <dt>Confidence</dt>
-        <dd>{{ primary.explanation.confidence_label }}</dd>
       </div>
       {% endif %}
     </dl>
@@ -85,7 +67,12 @@
     {% endif %}
   </section>
 
-  {{ explanation_card(primary.explanation) }}
+  {% if primary.explanation and primary.explanation.has_content %}
+  <details class="ds-disclosure" data-ux="revision-detail">
+    <summary>Why this topic</summary>
+    {{ explanation_card(primary.explanation) }}
+  </details>
+  {% endif %}
 
   {% if revision.alternatives %}
   <section class="ds-section" aria-labelledby="alt-revision-title" data-sop-section="also-deserves-attention">
@@ -129,22 +116,20 @@
 
 {% else %}
   {{ ds_empty_operational(
-    revision.empty_message,
+    'Finish today’s Session first — Revision will suggest follow-up after practice.',
     "Return to today's Mission",
     url_for('student.home'),
-    title='No revision support yet',
-    explanation=revision.empty_message,
-    context="Revision supports today’s Mission — it is never a competing daily focus."
+    title='Nothing to revise yet',
+    explanation='Finish today’s Session first — Revision will suggest follow-up after practice.'
   ) }}
 {% endif %}
 {% else %}
   {{ ds_empty_operational(
-    'After you practice a topic in a Session, Revision can suggest follow-up that supports today’s Mission — never as a competing daily focus.',
+    'Practice a topic in a Session, then return here for follow-up.',
     "Return to today's Mission",
     url_for('student.home'),
     title='Revision opens after practice',
-    explanation='After you practice a topic in a Session, Revision can suggest follow-up that supports today’s Mission — never as a competing daily focus.',
-    context='Empty Revision is expected early — start with Mission on Home.'
+    explanation='Practice a topic in a Session, then return here for follow-up.'
   ) }}
 {% endif %}
 </article>

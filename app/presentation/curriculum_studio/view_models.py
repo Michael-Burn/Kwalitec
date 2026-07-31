@@ -46,7 +46,7 @@ NEXT_ACTION_BY_STAGE: dict[str, str] = {
     ),
     WorkflowStage.APPROVAL.value: (
         "Structure is approved. Continue to Publish when a version "
-        "label is assigned."
+        "label is assigned so students can enrol."
     ),
     WorkflowStage.PUBLICATION.value: (
         "Publish this version so students can enrol. "
@@ -55,8 +55,8 @@ NEXT_ACTION_BY_STAGE: dict[str, str] = {
 }
 
 EMPTY_WORKSPACES_GUIDANCE = (
-    "No workspaces yet. Create a subject, then open a workspace to begin "
-    "the validate → preview → approve → publish journey."
+    "No workspaces yet. Create a subject, then open a workspace. "
+    "Upload → Preview → Approve → Publish."
 )
 
 EMPTY_ACTIVITY_GUIDANCE = (
@@ -76,18 +76,45 @@ EMPTY_CHECKLIST_SUMMARY = (
 )
 
 FLASH_SUCCESS = {
-    "subject_created": "We've created your subject successfully.",
-    "workspace_opened": "We've opened your workspace successfully.",
-    "workflow_advanced": "We've advanced the workflow to the next stage.",
-    "validation_ok": "We've completed validation successfully.",
+    "subject_created": (
+        "We've created your subject successfully. "
+        "Upload the Official CMP and Official Syllabus next."
+    ),
+    "workspace_opened": (
+        "We've opened your workspace successfully. "
+        "Continue from the current publication step."
+    ),
+    "workflow_advanced": (
+        "We've advanced to the next publication step successfully."
+    ),
+    "validation_ok": (
+        "We've completed validation successfully. "
+        "Generate the preview next."
+    ),
     "preview_ok": (
         "We've built the preview successfully — {count} curriculum "
         "topics ready to review."
     ),
-    "approved": "We've approved your curriculum successfully.",
-    "published": "We've published your verified curriculum successfully.",
-    "version_assigned": "We've assigned the version successfully.",
-    "sources_uploaded": "We've uploaded your curriculum documents successfully.",
+    "approved": (
+        "We've approved your curriculum successfully. "
+        "Assign a version label, then Publish."
+    ),
+    "published": (
+        "We've published your verified curriculum successfully. "
+        "Students can enrol from Subjects."
+    ),
+    "version_assigned": (
+        "We've assigned the version successfully. "
+        "Publish when everything looks right."
+    ),
+    "sources_uploaded": (
+        "We've uploaded your curriculum documents successfully. "
+        "Processing starts next."
+    ),
+    "validation_and_preview_ok": (
+        "We've completed validation and built the preview successfully — "
+        "{count} curriculum topics ready to review."
+    ),
 }
 
 FLASH_WARNING = {
@@ -102,33 +129,27 @@ FLASH_WARNING = {
         "then try again."
     ),
     "advance": (
-        "We couldn't advance the workflow. Skipping incomplete stages risks "
-        "publishing unfinished curriculum. Complete the current stage, "
-        "then try again."
+        "We couldn't continue. Finish the current step, then try again."
     ),
     "validate": (
-        "We couldn't complete validation. Blocking findings prevent a safe "
-        "student curriculum. Review the Validation findings, fix CMP or "
+        "We couldn't complete validation. Review the findings, fix CMP or "
         "syllabus issues, then try again."
     ),
     "preview": (
-        "We couldn't build this preview. Preview requires a validated "
-        "curriculum so students see accurate structure. Validate the "
-        "curriculum first, then try again."
+        "We couldn't build this preview. Validate the curriculum first, "
+        "then try again."
     ),
     "approve": (
-        "We couldn't approve this curriculum. Approval without a version "
-        "and preview risks publishing the wrong package. Assign a version "
-        "label, complete preview, then try again."
+        "We couldn't approve this curriculum. Assign a version label, "
+        "complete preview, then try again."
     ),
     "publish": (
-        "We couldn't publish this curriculum. Publication without approval "
-        "and a version would expose incomplete material to students. "
-        "Assign a version label, complete approval, then try again."
+        "We couldn't publish this curriculum. Assign a version label, "
+        "complete approval, then try again."
     ),
     "version": (
-        "We couldn't assign this version. Clear version labels keep "
-        "publication history immutable. Enter a valid version label "
+        "We couldn't assign this version. Clear version labels keep your "
+        "publication history accurate. Enter a valid version label "
         "(for example 1.0.0), then try again."
     ),
     "upload": (

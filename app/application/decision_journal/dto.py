@@ -62,18 +62,15 @@ class DecisionJournalTimelineSnapshot:
     )
     empty_title: str = "Your journal starts with the next guidance"
     empty_description: str = (
-        "When Study Sensei offers Mission guidance or a revision suggestion "
-        "— and you respond — it will appear here as durable educational "
-        "memory. The Educational Timeline will later read these entries as "
-        "your learning story; History keeps practice archives separately."
+        "Respond to Mission guidance and it will appear here as durable "
+        "educational memory. The Educational Timeline reads these entries "
+        "later; History keeps practice archives separately. Open Home to "
+        "continue studying."
     )
     primary_cta_label: str = "Back to Home"
     intro_line: str = (
-        "The Decision Journal is Study Sensei’s durable educational memory. "
-        "It records significant guidance, your choices, and what followed. "
-        "It never rewrites past entries, and it never shames a choice. "
-        "The Educational Timeline interprets this Journal; History keeps "
-        "practice stats as context only."
+        "Study Sensei’s durable educational memory of significant guidance "
+        "and your choices."
     )
 
 

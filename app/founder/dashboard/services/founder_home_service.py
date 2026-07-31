@@ -32,10 +32,11 @@ from app.founder.dashboard.dto.founder_home import (
 from app.presentation.curriculum_studio.factory import get_studio_service
 
 # DX-004A L1 operator status vocabulary (ordered for queue priority).
-STATUS_READY_TO_PUBLISH = "Ready to Publish"
-STATUS_AWAITING_APPROVAL = "Awaiting Approval"
-STATUS_AWAITING_VALIDATION = "Awaiting Validation"
-STATUS_INCOMPLETE = "Incomplete"
+# PX-003: user-oriented progress labels (queue priority keys unchanged).
+STATUS_READY_TO_PUBLISH = "Ready to publish"
+STATUS_AWAITING_APPROVAL = "Ready to approve"
+STATUS_AWAITING_VALIDATION = "Processing"
+STATUS_INCOMPLETE = "Needs upload"
 
 _QUEUE_PRIORITY: dict[str, int] = {
     STATUS_READY_TO_PUBLISH: 0,
@@ -47,13 +48,12 @@ _QUEUE_PRIORITY: dict[str, int] = {
 _QUEUE_VISIBLE_MAX = 7
 _RECENT_MAX = 5
 
-_EMPTY_TITLE = "No subjects have been created yet."
-_EMPTY_REASON = "Create your first subject to begin building your curriculum."
+# PX-002: operational empty states — heading + one action (no platform essay).
+_EMPTY_TITLE = "No subjects yet."
+_EMPTY_REASON = ""
 _EMPTY_ACTION_LABEL = "Create Subject"
-_SETTLED_TITLE = "No curriculum work needs attention"
-_SETTLED_REASON = (
-    "Published subjects are listed below. Create a subject to begin a new curriculum."
-)
+_SETTLED_TITLE = "No work requiring attention."
+_SETTLED_REASON = ""
 
 
 @dataclass(frozen=True)
@@ -158,6 +158,7 @@ class FounderHomeService:
             stage_label=self._stage_display(chosen.workspace),
             primary_label=self._primary_label(chosen.status_label),
             primary_href=chosen.href,
+            supporting_text=self._supporting_text(chosen.status_label),
         )
 
     def _recent_publications(self) -> tuple[HomeQueueRow, ...]:
@@ -232,8 +233,23 @@ class FounderHomeService:
         if status_label == STATUS_AWAITING_APPROVAL:
             return "Approve"
         if status_label == STATUS_AWAITING_VALIDATION:
-            return "Validate"
-        return "Resume Publication"
+            return "Continue"
+        return "Resume"
+
+    @staticmethod
+    def _supporting_text(status_label: str) -> str:
+        return {
+            STATUS_READY_TO_PUBLISH: (
+                "Everything looks ready — publish when confident."
+            ),
+            STATUS_AWAITING_APPROVAL: (
+                "Review the structure, then approve to continue."
+            ),
+            STATUS_AWAITING_VALIDATION: (
+                "Documents are processing — continue when ready."
+            ),
+            STATUS_INCOMPLETE: "Upload the required documents to continue.",
+        }.get(status_label, "Open the workspace to continue publication.")
 
     @staticmethod
     def _subject_display(workspace: WorkspaceSnapshot) -> str:

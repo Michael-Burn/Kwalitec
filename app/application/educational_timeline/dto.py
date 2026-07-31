@@ -46,19 +46,13 @@ class EducationalTimelineSnapshot:
     )
     empty_title: str = "Your timeline begins with journal entries"
     empty_description: str = (
-        "As Study Sensei records significant guidance in your Decision "
-        "Journal, this Timeline interprets those memories as a "
-        "chronological learning story — growth, recovery, and consistency. "
-        "It is not a second memory store and not a scoreboard; History "
-        "keeps practice archives and stats as context."
+        "As guidance lands in your Decision Journal, this Timeline builds "
+        "your chronological learning story — not a second memory store. "
+        "History keeps practice archives separately."
     )
     primary_cta_label: str = "Open Decision Journal"
     intro_line: str = (
-        "The Educational Timeline is your chronological educational record. "
-        "It interprets Decision Journal memories as a learning story — "
-        "it never rewrites the Journal, never invents certainty beyond "
-        "that evidence, and never replaces History’s practice context "
-        "with mentor meaning."
+        "Your chronological educational record drawn from the Decision Journal."
     )
     journal_link_label: str = "View Decision Journal entries"
     section_nav_label: str = "Timeline sections"

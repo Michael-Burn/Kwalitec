@@ -17,21 +17,19 @@
       supporting_text=home.current_work.supporting_text
     ) }}
   {% else %}
-    <section class="ds-section" aria-label="Getting started" data-founder-state="empty">
+    <section class="ds-section" aria-label="Operational status" data-founder-state="empty">
       {{ ds_empty_operational(
         home.empty_reason,
         home.empty_action_label,
         home.empty_action_href,
-        title=home.empty_title or home.empty_reason,
-        explanation=home.empty_reason if home.empty_title else '',
-        context='Subjects you create here become the published curriculum students can choose.'
+        title=home.empty_title
       ) }}
     </section>
   {% endif %}
 
-  {# L1 — Publication Queue (attention-only) #}
+  {# L1 — Waiting queue (attention-only) #}
   {% if home.queue %}
-    {{ ds_publication_queue(home.queue) }}
+    {{ ds_publication_queue(home.queue, title='Waiting') }}
     {% if home.queue_truncated %}
       <p class="ds-list__meta">
         {{ ds_button('View all in Subjects', href=home.subjects_href, variant='ghost') }}
@@ -39,9 +37,9 @@
     {% endif %}
   {% endif %}
 
-  {# L2 — Recent Publications (omit when empty) #}
+  {# L2 — Recently published (omit when empty) #}
   {% if home.recent_publications %}
-    {{ ds_recent_publications(home.recent_publications) }}
+    {{ ds_recent_publications(home.recent_publications, title='Recently published') }}
   {% endif %}
 </article>
 {% endblock %}

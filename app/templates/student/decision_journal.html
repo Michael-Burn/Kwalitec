@@ -11,12 +11,6 @@
     <h2 class="student-empty-title">{{ journal.empty_title }}</h2>
     <p class="student-empty-description">{{ journal.empty_description }}</p>
     <div class="student-primary-action">
-        <a class="btn student-btn-secondary" href="{{ url_for('student.educational_timeline') }}">
-            Educational Timeline
-        </a>
-        <a class="btn student-btn-secondary" href="{{ url_for('student.history') }}">
-            Open History
-        </a>
         <a class="btn student-btn-primary" href="{{ url_for('student.home') }}" data-student-cta="primary">
             {{ journal.primary_cta_label }}
         </a>
@@ -29,8 +23,7 @@
     </h2>
     <p class="student-muted">
         {{ journal.entry_count }}
-        {% if journal.entry_count == 1 %}entry{% else %}entries{% endif %}
-        in your educational memory.
+        {% if journal.entry_count == 1 %}entry{% else %}entries{% endif %}.
     </p>
 
     <ol class="student-timeline decision-journal-timeline" aria-label="Decision Journal timeline">

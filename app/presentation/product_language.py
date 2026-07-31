@@ -171,7 +171,7 @@ FOUNDER_STUDIO_CTAS: tuple[str, ...] = (
     "Open Workspace",
     "Continue",
     "Validate",
-    "Confirm structure",
+    "Generate preview",
     "Approve",
     "Publish",
     "Assign version",
@@ -193,11 +193,12 @@ STUDENT_NAV_LABELS: tuple[str, ...] = (
 )
 
 # DX-004A / DX-002 Console primary navigation (≤6).
+# PX-002: Feedback (not Support) — operational community inbox.
 FOUNDER_PRIMARY_NAV_LABELS: tuple[str, ...] = (
     "Home",
     "Subjects",
     "Curriculum Studio",
     "Students",
-    "Support",
+    "Feedback",
     "Settings",
 )

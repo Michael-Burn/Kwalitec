@@ -1,49 +1,52 @@
 {% extends "founder_dashboard/base.html" %}
 
 {% block console_content %}
-<section class="section-header founder-header">
-    <p class="section-eyebrow">{{ kwalitec_console_label }} / Participants</p>
-    <h1 class="section-title">Participants</h1>
-    <p class="section-description">Students in the Alpha loop — activity and recognition.</p>
-</section>
+<article class="ds-page ds-container ds-container--content" aria-labelledby="students-title">
+  <header class="ds-page-header">
+    <h1 id="students-title" class="ds-page-header__title">Students</h1>
+  </header>
 
-<section class="mb-4">
+  <section class="ds-section" aria-label="Student roster">
     {% if participants %}
-    <div class="table-responsive">
-        <table class="table table-sm align-middle">
-            <thead>
-                <tr>
-                    <th>Student</th>
-                    <th>Check-ins</th>
-                    <th>Last check-in</th>
-                    <th>Badges</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for row in participants %}
-                <tr>
-                    <td>{{ row.email }}</td>
-                    <td>{{ row.checkin_count }}</td>
-                    <td>{{ row.last_checkin_at }}</td>
-                    <td>{% if row.badge_labels %}{{ row.badge_labels | join(", ") }}{% else %}—{% endif %}</td>
-                    <td class="text-end">
-                        <a class="btn btn-sm btn-outline-secondary"
-                           href="{{ url_for('founder_dashboard.feedback', student=row.email) }}">Feedback</a>
-                        <form method="post"
-                              action="{{ url_for('founder_dashboard.award_founders_circle', user_id=row.user_id) }}"
-                              class="d-inline">
-                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                            <button class="btn btn-sm btn-outline-secondary" type="submit">Award Founder's Circle</button>
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <div class="table-responsive founder-table-wrap">
+      <table class="table table-sm align-middle founder-table">
+        <thead>
+          <tr>
+            <th>Student</th>
+            <th>Check-ins</th>
+            <th>Last check-in</th>
+            <th>Badges</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in participants %}
+          <tr>
+            <td>{{ row.email }}</td>
+            <td>{{ row.checkin_count }}</td>
+            <td>{{ row.last_checkin_at }}</td>
+            <td>{% if row.badge_labels %}{{ row.badge_labels | join(", ") }}{% else %}—{% endif %}</td>
+            <td class="text-end founder-table-actions">
+              <a class="console-btn console-btn--secondary"
+                 href="{{ url_for('founder_dashboard.feedback', student=row.email) }}">Feedback</a>
+              <form method="post"
+                    action="{{ url_for('founder_dashboard.award_founders_circle', user_id=row.user_id) }}"
+                    class="d-inline">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button class="console-btn console-btn--secondary" type="submit">Award Founder's Circle</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
     {% else %}
-    <p class="text-muted mb-0">No participants with Product Check-ins yet.</p>
+    <div class="ds-empty-operational" role="status">
+      <h3 class="ds-empty-operational__title">No students yet</h3>
+      <p class="ds-empty-operational__reason">Students appear after their first check-in.</p>
+    </div>
     {% endif %}
-</section>
+  </section>
+</article>
 {% endblock %}

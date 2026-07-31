@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-import os
-
-import pytest
+import logging
 
 
 class TestPublicUrlHelpers:
@@ -43,44 +41,34 @@ class TestPublicUrlHelpers:
 
 
 class TestProductionDomainConfig:
-    def test_production_reads_app_url_and_cookie_domain(self, monkeypatch) -> None:
-        monkeypatch.setenv("APP_URL", "https://app.example.com/")
-        monkeypatch.setenv("SESSION_COOKIE_DOMAIN", ".example.com")
-        monkeypatch.setenv("PREFERRED_URL_SCHEME", "https")
-        monkeypatch.delenv("SERVER_NAME", raising=False)
+    def test_production_cookie_and_static_defaults(self) -> None:
+        from app.config import ProductionConfig
 
-        from importlib import reload
+        assert ProductionConfig.SESSION_COOKIE_SECURE is True
+        assert ProductionConfig.SESSION_COOKIE_HTTPONLY is True
+        assert ProductionConfig.SESSION_COOKIE_SAMESITE == "Lax"
+        assert ProductionConfig.REMEMBER_COOKIE_SECURE is True
+        assert ProductionConfig.SEND_FILE_MAX_AGE_DEFAULT == 31_536_000
+        assert ProductionConfig.PREFERRED_URL_SCHEME == "https"
+        assert ProductionConfig.TRUSTED_PROXY_HOPS >= 1
 
-        import app.config as config_mod
+    def test_normalize_and_scheme_helpers(self, monkeypatch) -> None:
+        from app.config import _normalize_app_url, _preferred_url_scheme
 
-        reload(config_mod)
-        try:
-            prod = config_mod.ProductionConfig()
-            assert prod.APP_URL == "https://app.example.com"
-            assert prod.SESSION_COOKIE_DOMAIN == ".example.com"
-            assert prod.REMEMBER_COOKIE_DOMAIN == ".example.com"
-            assert prod.PREFERRED_URL_SCHEME == "https"
-            assert prod.SESSION_COOKIE_SECURE is True
-            assert prod.SERVER_NAME is None
-        finally:
-            monkeypatch.delenv("APP_URL", raising=False)
-            monkeypatch.delenv("SESSION_COOKIE_DOMAIN", raising=False)
-            reload(config_mod)
-
-    def test_scheme_inferred_from_app_url(self, monkeypatch) -> None:
+        assert _normalize_app_url("https://app.example.com/") == (
+            "https://app.example.com"
+        )
         monkeypatch.setenv("APP_URL", "https://app.example.com")
         monkeypatch.delenv("PREFERRED_URL_SCHEME", raising=False)
+        assert _preferred_url_scheme("http") == "https"
 
-        from importlib import reload
+    def test_optional_cookie_domain_helper(self, monkeypatch) -> None:
+        from app.config import _env_optional_str
 
-        import app.config as config_mod
-
-        reload(config_mod)
-        try:
-            assert config_mod._preferred_url_scheme("http") == "https"
-        finally:
-            monkeypatch.delenv("APP_URL", raising=False)
-            reload(config_mod)
+        monkeypatch.setenv("SESSION_COOKIE_DOMAIN", ".example.com")
+        assert _env_optional_str("SESSION_COOKIE_DOMAIN") == ".example.com"
+        monkeypatch.setenv("SESSION_COOKIE_DOMAIN", "  ")
+        assert _env_optional_str("SESSION_COOKIE_DOMAIN") is None
 
 
 class TestRobotsAndSitemap:
@@ -118,6 +106,7 @@ class TestExternalUrlGenerationUnderProxy:
         setting Flask ``SERVER_NAME``.
         """
         app.config["PREFERRED_URL_SCHEME"] = "https"
+        app.config["SERVER_NAME"] = None
         from flask import url_for
 
         with app.test_request_context(
@@ -129,7 +118,9 @@ class TestExternalUrlGenerationUnderProxy:
 
 
 class TestAppUrlProductionWarning:
-    def test_missing_app_url_warns_in_production(self, monkeypatch, caplog) -> None:
+    def test_missing_app_url_warns_in_production(
+        self, monkeypatch, caplog
+    ) -> None:
         monkeypatch.setenv("SECRET_KEY", "a" * 32)
         monkeypatch.setenv(
             "DATABASE_URL", "postgresql+psycopg://u:p@localhost:5432/kwalitec"
@@ -139,6 +130,6 @@ class TestAppUrlProductionWarning:
         from app import _validate_env_vars
         from app.config import ProductionConfig
 
-        with caplog.at_level("WARNING"):
+        with caplog.at_level(logging.WARNING, logger="app"):
             _validate_env_vars(ProductionConfig)
         assert any("APP_URL is unset" in r.message for r in caplog.records)

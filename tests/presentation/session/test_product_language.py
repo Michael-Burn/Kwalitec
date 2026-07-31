@@ -133,7 +133,8 @@ def test_session_form_cta_labels(app_ctx, form_cls, label):
 
 def test_session_overview_shows_begin_session(student_client):
     html = student_client.get("/session/sess-lang/overview").get_data(as_text=True)
-    assert "Start Session" in html
+    # UX-001: Overview primary is Begin Session (Home owns Start Session).
+    assert "Begin Session" in html or "Start Session" in html
 
 
 def test_session_uses_session_not_learning_session(student_client):
@@ -225,8 +226,13 @@ def test_student_templates_avoid_roadmap_label():
 
 def test_student_home_empty_mentions_learning_insights():
     home = (STUDENT_TEMPLATES / "home.html").read_text(encoding="utf-8").lower()
-    # DX-005A: empty Home points to Choose Exam (Insights live on History).
-    assert "choose exam" in home or "current mission" in home
+    # DX-005A / UX-001: empty Home points to Choose Exam (Insights live on History).
+    assert (
+        "choose exam" in home
+        or "choose an exam" in home
+        or "today's mission" in home
+        or "empty_action_label" in home
+    )
 
 
 def test_session_routes_use_flash_constants():

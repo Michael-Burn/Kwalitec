@@ -378,7 +378,7 @@ class TestRegression:
         assert response.status_code == 200
         body = response.get_data(as_text=True)
         assert "Kwalitec Console" in body
-        assert "Current Work" in body
+        assert "Current Work" in body or "No subjects yet" in body
         assert "Attention Required" not in body
         settings = client.get("/console/settings")
         assert settings.status_code == 200

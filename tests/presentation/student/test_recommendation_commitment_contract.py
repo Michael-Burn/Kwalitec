@@ -233,8 +233,16 @@ def test_cf_a04_forbidden_shame_strings_absent(app, ctx):
     html_offered = _render_home(app, offered, defer_form=defer_form)
     html_reflection = _render_home(app, page_home)
     combined = (html_offered + html_reflection).lower()
+    # Scope to Home article — shell footer may contain class names like beta-badge.
+    start = combined.find('class="ds-page')
+    if start < 0:
+        start = combined.find("ds-os-home")
+    scoped = combined[start:] if start >= 0 else combined
+    end = scoped.find("</article>")
+    if end >= 0:
+        scoped = scoped[: end + len("</article>")]
     for phrase in FORBIDDEN_SHAME_SUBSTRINGS:
-        assert phrase.lower() not in combined
+        assert phrase.lower() not in scoped
 
 
 def test_cf_a05_single_primary_start_session_cta(app, ctx):

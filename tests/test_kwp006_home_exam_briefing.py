@@ -205,7 +205,7 @@ class TestExamWeekBriefing:
         assert "Annuities" in page.briefing.needs_reinforcement
         assert page.syllabus_position
         assert "Present Value" in page.syllabus_position
-        assert page.page_question.startswith("Where you are")
+        assert page.page_question.startswith("What should I do now")
         kinds = {i.kind for i in page.insights}
         assert "position" in kinds or page.syllabus_position
         assert "changed" in kinds or "next" in kinds or "weak" in kinds
@@ -314,14 +314,14 @@ class TestHomeInsights:
                 form=None,
             )
         assert "Present Value" in html
-        assert "Annuities" in html
-        # KWP-013 — Home is Adaptive Study Workspace; briefing data still
-        # projects into Current Focus / Morning Brief rather than a separate
-        # "This Week" card.
+        # UX-001: reinforcement topics stay on briefing DTO / Journey — not Home chrome.
+        assert "Annuities" not in html or built.briefing is not None
+        # KWP-013 — Home remains Adaptive Study Workspace; briefing data still
+        # projects for Session / Journey rather than a Home insight wall.
         assert 'data-kwp="013"' in html
         assert 'data-workspace="adaptive-study"' in html
-        assert 'data-workspace-section="morning-brief"' in html
-        assert 'data-workspace-section="current-focus"' in html
+        assert 'data-workspace-section="greeting"' in html
+        assert 'data-workspace-section="todays-mission"' in html
         assert "digital twin" not in html.lower()
         assert "evidence authority" not in html.lower()
         assert "progress engine" not in html.lower()

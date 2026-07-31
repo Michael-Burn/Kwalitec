@@ -474,8 +474,8 @@ def decision_journal_reflect(entry_id: str):
             free_text=form.free_text.data or "",
         )
         flash(
-            "Reflection saved. Thank you — this helps educational calibration, "
-            "not engagement scoring.",
+            "Reflection saved. Thank you — this helps us improve how we "
+            "guide your study.",
             "success",
         )
     except EducationalFeedbackLoopError:
@@ -806,7 +806,11 @@ def start_session():
             exc,
             getattr(exc, "missing_prerequisite", None),
         )
-        flash(str(exc) or "Your curriculum is not ready for study yet.", "warning")
+        flash(
+            "Your curriculum is not ready for study yet. Return to Home "
+            "when your subjects are available.",
+            "warning",
+        )
         return redirect(url_for("student.home"))
     except PortUnavailable:
         flash(
@@ -842,37 +846,20 @@ def start_session():
     )
 
     topic = handle.topic_title or "your topic"
-    # CQ-002 / CR1: one Start click enters Activity. Overview remains for
-    # resume/deep-link when the workspace is still on overview.
+    # UX-001: Home decides; Session Overview briefs. Begin Session starts practice.
     target_session_id = handle.session_id or session_id
     if target_session_id:
-        try:
-            from app.presentation.session.views import (
-                begin_session as begin_v2_session,
-            )
-
-            begin_v2_session(session_id=target_session_id)
-            flash(
-                f"Session started: {topic}. Your first activity is ready.",
-                "success",
-            )
-            return redirect(
-                url_for("session.activity", session_id=target_session_id)
-            )
-        except Exception:  # noqa: BLE001 — fail open to Overview
-            logger.warning(
-                "Auto-begin after Home start failed session_id=%s",
-                target_session_id,
-                exc_info=True,
-            )
-            flash(
-                f"Session started: {topic}. Review today's objective to begin.",
-                "success",
-            )
-            return redirect(
-                url_for("session.overview", session_id=target_session_id)
-            )
-    flash(f"Session started: {topic}. Entering your study environment.", "success")
+        flash(
+            f"Session ready — {topic}. Review today's objective, then begin.",
+            "success",
+        )
+        return redirect(
+            url_for("session.overview", session_id=target_session_id)
+        )
+    flash(
+        f"Session started — {topic}. Continue from Home when you're ready.",
+        "success",
+    )
     return redirect(url_for("student.home"))
 
 
@@ -976,7 +963,8 @@ def begin_revision():
         if isinstance(exc, EducationalPrerequisiteMissing):
             logger.warning("Begin revision educational readiness: %s", exc)
             flash(
-                str(exc) or "Your curriculum is not ready for revision yet.",
+                "Your curriculum is not ready for revision yet. Return here "
+                "when your subjects are available.",
                 "warning",
             )
             return redirect(url_for("student.revision"))
@@ -1002,34 +990,15 @@ def begin_revision():
             option_id=(form.option_id.data or "").strip() or None,
         )
     topic = handle.topic_title or "selected topic"
-    # CQ-003 / CR2: match Home start — one click into Activity (habit continuity).
+    # UX-001: land on Overview briefing; Begin Session starts practice.
     target_session_id = handle.session_id or session_id
     if target_session_id:
-        try:
-            from app.presentation.session.views import (
-                begin_session as begin_v2_session,
-            )
-
-            begin_v2_session(session_id=target_session_id)
-            flash(
-                f"Revision started: {topic}. Your first activity is ready.",
-                "success",
-            )
-            return redirect(
-                url_for("session.activity", session_id=target_session_id)
-            )
-        except Exception:  # noqa: BLE001 — fail open to Overview
-            logger.warning(
-                "Auto-begin after revision start failed session_id=%s",
-                target_session_id,
-                exc_info=True,
-            )
-            flash(
-                f"Revision started: {topic}. Review today's objective to begin.",
-                "success",
-            )
-            return redirect(
-                url_for("session.overview", session_id=target_session_id)
-            )
-    flash(f"Revision started: {topic}.", "success")
+        flash(
+            f"Revision ready — {topic}. Review today's objective, then begin.",
+            "success",
+        )
+        return redirect(
+            url_for("session.overview", session_id=target_session_id)
+        )
+    flash(f"Revision started — {topic}. Continue when you're ready.", "success")
     return redirect(url_for("student.home"))

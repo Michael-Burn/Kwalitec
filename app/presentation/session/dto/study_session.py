@@ -84,6 +84,13 @@ class StudySessionPage:
     activity_type: str = ""
     stage_label: str = ""
     educational_flow_label: str = ""
+    # UX-001 Session Overview briefing (relocated from Home)
+    why_today: str = ""
+    concept_focus: tuple[str, ...] = ()
+    session_stages: tuple[str, ...] = ()
+    expected_outcome: str = ""
+    checkpoint_preview: str = ""
+    reflection_preview: str = ""
     # KWP-002 completion moment
     journey_update_label: str = ""
     finish_outcome_label: str = ""
@@ -124,3 +131,8 @@ class StudySessionPage:
     # KWP-010 Intervention Effectiveness (natural feedback; never verdict labels)
     effectiveness_feedback: str = ""
     effectiveness_explanation: str = ""
+    # PX-003 — visible session journey chrome (presentation only)
+    workflow_steps: tuple[str, ...] = ()
+    workflow_step_index: int = 0
+    page_eyebrow: str = ""
+    estimated_time_label: str = ""

@@ -69,7 +69,7 @@ class ValidateWorkspaceForm(FlaskForm):
 
 class PreviewWorkspaceForm(FlaskForm):
     workspace_id = HiddenField(validators=[DataRequired()])
-    submit = SubmitField("Confirm structure")
+    submit = SubmitField("Generate preview")
 
 
 class ApproveWorkspaceForm(FlaskForm):
@@ -102,9 +102,8 @@ class AssignVersionForm(FlaskForm):
         validators=[
             DataRequired(
                 message=(
-                    "Version label is required. Published packages need an "
-                    "immutable label for history and rollback. Enter a label "
-                    "such as 1.0.0, then try again."
+                    "Version label is required. Enter a label such as 1.0.0 "
+                    "so you can track published versions, then try again."
                 )
             ),
             Length(max=64),

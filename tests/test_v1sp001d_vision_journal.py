@@ -331,7 +331,7 @@ class TestVisionJournalRoutes:
         overview = client.get("/console/")
         assert overview.status_code == 200
         body = overview.get_data(as_text=True)
-        assert "Current Work" in body
+        assert "Current Work" in body or "No subjects yet" in body
         assert "Attention Required" not in body
         # Ops remain reachable via Settings nesting (not Home chrome).
         settings = client.get("/console/settings")

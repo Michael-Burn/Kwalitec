@@ -144,7 +144,7 @@ def compose_adaptive_workspace(
         mission_composition=mission_composition,
         quick_actions=actions,
         page_question=(
-            "Where you are, what to do today, and where you are heading."
+            "What should I do now?"
         ),
         enabled=True,
     )
@@ -1163,38 +1163,7 @@ def _quick_actions(
 ) -> tuple[WorkspaceQuickAction, ...]:
     actions: list[WorkspaceQuickAction] = []
 
-    # Begin Session / Continue — mirrors mission primary when available.
-    if (
-        home.mission
-        and home.mission.primary_kind == "link"
-        and home.mission.primary_href
-    ):
-        actions.append(
-            WorkspaceQuickAction(
-                label=home.mission.primary_label or "Continue Session",
-                href=home.mission.primary_href,
-                detail="Pick up where you left off",
-                kind="link",
-            )
-        )
-    elif home.mission and home.mission.primary_kind == "start_form":
-        actions.append(
-            WorkspaceQuickAction(
-                label=home.mission.primary_label or "Begin Session",
-                href="",
-                detail=(home.mission.duration_label or "Start today's focus"),
-                kind="start_form",
-            )
-        )
-    elif home.state not in {"day_complete", "empty"}:
-        actions.append(
-            WorkspaceQuickAction(
-                label="Begin Session",
-                href="",
-                detail="Start when today's focus is ready",
-                kind="start_form",
-            )
-        )
+    # UX-001: mission hero owns Start / Continue — do not duplicate in Quick Actions.
 
     # Extra study with a real destination only (V1S-005 DF-006 honesty).
     if composition and composition.extra_study:

@@ -67,8 +67,7 @@ def test_empty_home(app):
     assert page.current_work is None
     assert page.queue == ()
     assert page.recent_publications == ()
-    assert page.empty_title == "No subjects have been created yet."
-    assert "Create your first subject" in page.empty_reason
+    assert page.empty_title == "No subjects yet."
     assert page.empty_action_label == "Create Subject"
 
 
@@ -130,9 +129,9 @@ def test_published_only_home_does_not_claim_no_subjects(app):
     assert page.current_work is None
     assert page.queue == ()
     assert len(page.recent_publications) == 1
-    assert page.empty_title == "No curriculum work needs attention"
-    assert "No subjects have been created yet" not in page.empty_title
-    assert "Published subjects are listed below" in page.empty_reason
+    assert page.empty_title == "No work requiring attention."
+    assert "No subjects yet" not in page.empty_title
+    assert page.empty_action_label == "Create Subject"
 
 
 def test_published_workspaces_excluded_from_queue(app):
@@ -154,4 +153,4 @@ def test_published_workspaces_excluded_from_queue(app):
         ).build_home()
     assert page.queue == ()
     assert page.current_work is None
-    assert page.empty_title == "No subjects have been created yet."
+    assert page.empty_title == "No subjects yet."

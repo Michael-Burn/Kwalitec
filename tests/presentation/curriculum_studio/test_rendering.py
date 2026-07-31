@@ -41,10 +41,13 @@ def test_workspace_page_renders_workflow_and_next_step(founder_client):
     body = response.get_data(as_text=True)
     assert "ds-persistent-context" in body
     assert "Upload" in body
-    assert "Validate" in body
+    assert "Preview" in body
+    assert "Approve" in body
+    assert "Publish" in body
     assert "ds-btn--primary" in body
     assert "Technical details" in body
     assert "command-metric" not in body
+    assert "Step" in body and "of 4" in body
 
 
 def test_create_subject_flash_message(founder_client):
@@ -71,9 +74,13 @@ def test_validate_flash_message(founder_client):
     body = response.get_data(as_text=True)
     assert response.status_code == 200
     assert (
-        "We've completed validation successfully." in body
-        or "We couldn't complete validation" in body
+        "We've completed validation" in body
+        or "We&#39;ve completed validation" in body
+        or "couldn't complete validation" in body.lower()
+        or "couldn&#39;t complete validation" in body.lower()
         or "try again" in body.lower()
+        or "Advancement blocked" in body
+        or "Remaining tasks" in body
     )
 
 

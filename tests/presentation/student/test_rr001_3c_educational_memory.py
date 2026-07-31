@@ -126,5 +126,4 @@ def test_journal_route_empty_state_educational(student_client):
     assert "durable educational memory" in body.lower()
     assert "Mission tip" not in body
     assert "Quick Check" not in body
-    assert "Educational Timeline" in body
-    assert "Open History" in body
+    assert "Back to Home" in body

@@ -17,32 +17,12 @@
 >
   <header class="ds-page-header">
     <h1 id="student-history-title" class="ds-page-header__title student-page-title">{{ page.shell.page_title }}</h1>
-    <p class="ds-page-header__support">What have I accomplished? Review past Sessions, reflections, and learning trends.</p>
+    <p class="ds-page-header__support">Your practice record — every completed Session is saved here.</p>
   </header>
-
-  <section class="ds-os-archive-bridge" aria-labelledby="history-memory-bridge" data-educational-memory="history-bridge">
-    <h2 id="history-memory-bridge" class="ds-visually-hidden">Archive and educational memory</h2>
-    <p class="ds-list__meta" data-educational-memory="epistemology-bridge">
-      This archive holds your practice record — sessions, study time, and readiness trends.
-      Educational meaning lives in the
-      <a href="{{ url_for('student.decision_journal') }}">Decision Journal</a>,
-      <a href="{{ url_for('student.educational_timeline') }}">Educational Timeline</a>,
-      and
-      <a href="{{ url_for('student.learning_journey') }}">My Learning Journey</a>.
-    </p>
-    {% if page.history and page.history.learning_journey_teaser %}
-    <p class="ds-list__meta">
-      <a href="{{ page.history.learning_journey_href or url_for('student.learning_journey') }}">
-        {{ page.history.learning_journey_teaser }}
-      </a>
-    </p>
-    {% endif %}
-  </section>
 
 {% if page.history %}
 {% set history = page.history %}
 
-  {# ——— Study Time (owned here — not duplicated on Home) ——— #}
   <section class="ds-os-archive-stats" aria-label="Study time" data-sop-section="study-time">
     <div class="ds-panel ds-os-stat">
       <p class="ds-list__meta">Study time</p>
@@ -51,7 +31,6 @@
     </div>
   </section>
 
-  {# ——— Readiness Trends ——— #}
   <section class="ds-section" aria-labelledby="readiness-trend-title" data-sop-section="readiness-trends">
     <h2 id="readiness-trend-title" class="ds-section__title">Readiness Trends</h2>
     <p class="ds-os-stat__value ds-os-stat__value--sm">{{ history.readiness_trend_label or 'Trends appear as you practice' }}</p>
@@ -83,7 +62,6 @@
   </section>
   {% endif %}
 
-  {# ——— Sessions ——— #}
   <section class="ds-section" aria-labelledby="recent-sessions-title" data-sop-section="sessions">
     <h2 id="recent-sessions-title" class="ds-section__title">Sessions</h2>
     {% if history.sessions %}
@@ -94,17 +72,14 @@
       </div>
     {% else %}
     {{ ds_empty_operational(
-      'Finish a Session and it will appear here in your practice record.',
+      'Finish a Session and it will appear here.',
       'Go to Home',
       url_for('student.home'),
-      title='No sessions yet',
-      explanation='Finish a Session and it will appear here in your practice record.',
-      context='History is your accomplishment archive — not a second Home.'
+      title='No sessions yet'
     ) }}
     {% endif %}
   </section>
 
-  {# ——— Completed Topics ——— #}
   {% if history.mastered_topics %}
   <section class="ds-section" aria-labelledby="completed-topics-history" data-sop-section="completed-topics">
     <h2 id="completed-topics-history" class="ds-section__title">Completed Topics</h2>
@@ -116,7 +91,6 @@
   </section>
   {% endif %}
 
-  {# ——— Milestones / Achievements ——— #}
   {% if history.achievements %}
   <section class="ds-section" aria-labelledby="milestones-title" data-sop-section="milestones">
     <h2 id="milestones-title" class="ds-section__title">Milestones</h2>
@@ -147,18 +121,29 @@
   </section>
   {% endif %}
 
+  {% if history.learning_journey_teaser %}
+  <p class="ds-list__meta">
+    <a href="{{ history.learning_journey_href or url_for('student.learning_journey') }}">
+      {{ history.learning_journey_teaser }}
+    </a>
+  </p>
+  {% endif %}
+
+  <p class="ds-list__meta">
+    <a href="{{ url_for('student.decision_journal') }}">Decision Journal</a>
+  </p>
+
   <div class="ds-primary-strip">
     {{ ds_button(history.primary_cta_label or 'Return Home', href=url_for('student.home'), variant='ghost') }}
   </div>
 
 {% else %}
   {{ ds_empty_operational(
-    'Study time, readiness trends, and completed topics will appear here in your practice record.',
+    'Complete your first Session to start your practice record.',
     'Go to Home',
     url_for('student.home'),
-    title='Your history starts with your first session',
-    explanation='Study time, readiness trends, and completed topics will appear here in your practice record.',
-    context='History answers one question: what have I accomplished?'
+    title='No practice yet',
+    explanation='Complete your first Session to start your practice record.'
   ) }}
 {% endif %}
 </article>

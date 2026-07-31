@@ -143,7 +143,8 @@ class StudentHomePage:
     empty_action_href: str
     day_complete_message: str = ""
     page_title: str = "Home"
-    page_question: str = "Where you stand — and what to do today."
+    page_question: str = "What should I do now?"
+    greeting: str = "Welcome back."
     mission_section_title: str = "Today's Mission"
     signals: HomeStudySignals | None = None
     tutor_available: bool = False

@@ -18,10 +18,7 @@
     <h1 id="learning-journey-title" class="ds-page-header__title student-page-title">
       {{ journey.headline or "My Learning Journey" }}
     </h1>
-    <p class="ds-page-header__support">
-      What kind of learner have I become? Your educational story across sittings —
-      not a dashboard of scores.
-    </p>
+    <p class="ds-page-header__support">How your learning has developed.</p>
   </header>
 
   {% if journey.has_memory %}
@@ -45,8 +42,7 @@
       Readiness Forecast
     </h2>
     <p class="ds-list__meta">
-      Where your current learning journey is likely to take you — a directional
-      estimate, not a guarantee.
+      Where practice is taking you.
     </p>
     {% if journey.forecast_title %}
     <p class="ds-list__meta"><strong>{{ journey.forecast_title }}</strong></p>
@@ -174,12 +170,11 @@
 
   {% else %}
   {{ ds_empty_operational(
-    journey.empty_message or 'Complete a few study sittings and your educational story will appear here.',
+    'Complete a few Sessions and your story will appear here.',
     'Go to Home',
     url_for('student.home'),
-    title='Your learning journey starts with honest practice',
-    explanation=journey.empty_message or 'Complete a few study sittings and your educational story will appear here.',
-    context='My Learning Journey answers one question: what kind of learner have I become?'
+    title='Your story starts with practice',
+    explanation='Complete a few Sessions and your story will appear here.'
   ) }}
   {% endif %}
 </article>

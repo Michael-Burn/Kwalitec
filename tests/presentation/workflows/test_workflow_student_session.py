@@ -87,10 +87,15 @@ def test_full_session_happy_path(student_client, app):
     assert summary.status_code == 200
     finish = student_client.post(
         "/session/sess-full/complete",
-        data={"session_id": "sess-full", "submit": "Return Home"},
+        data={
+            "session_id": "sess-full",
+            "completion_status": "yes",
+            "submit": "Finish Session",
+        },
         follow_redirects=False,
     )
-    assert "/student" in finish.headers.get("Location", "")
+    loc = finish.headers.get("Location", "")
+    assert "/complete" in loc or "/student" in loc
 
 
 @pytest.mark.parametrize("surface", list(STUDENT_SESSION_FLOW))

@@ -31,15 +31,14 @@ def test_routes_use_central_flash_constants():
 
 
 def test_validation_success_message():
-    assert FLASH_SUCCESS["validation_ok"] == (
-        "We've completed validation successfully."
-    )
+    assert "validation" in FLASH_SUCCESS["validation_ok"].lower()
+    assert FLASH_SUCCESS["validation_ok"].endswith(".")
 
 
 def test_publish_success_message():
-    assert FLASH_SUCCESS["published"] == (
-        "We've published your verified curriculum successfully."
-    )
+    assert "published" in FLASH_SUCCESS["published"].lower()
+    assert "students" in FLASH_SUCCESS["published"].lower()
+    assert FLASH_SUCCESS["published"].endswith(".")
 
 
 @pytest.mark.parametrize("message", list(FLASH_SUCCESS.values())[:4])

@@ -1,404 +1,408 @@
 {% extends "founder_dashboard/base.html" %}
 
 {% block console_content %}
-<section class="section-header founder-header">
-    <p class="section-eyebrow">{{ kwalitec_console_label }} / Feedback / Product Check-in</p>
-    <h1 class="section-title">Product Check-in</h1>
-    <p class="section-description">Specialist inbox — triage Product Check-in submissions. The unified Feedback Hub aggregates all student feedback sources.</p>
-</section>
+<article class="ds-page ds-container ds-container--content" aria-labelledby="checkin-title">
+  <header class="ds-page-header">
+    <p class="ds-list__meta">Feedback</p>
+    <h1 id="checkin-title" class="ds-page-header__title">Product Check-in</h1>
+  </header>
 
-<div data-rip003-command-centre="1">
+  <div data-rip003-command-centre="1">
 {% set filter_args = request.args.to_dict() %}
 {% set _ = filter_args.pop('submission', none) %}
 {% set page_args = filter_args.copy() %}
 {% set _ = page_args.pop('page', none) %}
 
-{# ── RIP-004 insight panels (required on Feedback for HTTP coverage) ── #}
-<section class="mb-4" aria-label="Insight engine" data-rip004-insight-engine="1">
+{# RIP-004 insight panels — progressive disclosure (PX-002). #}
+<details class="feedback-filters-disclosure mb-4" data-rip004-insight-engine="1">
+  <summary class="feedback-filters-disclosure__summary">Patterns</summary>
+  <section class="mt-3" aria-label="Feedback patterns">
     <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
-        <h2 class="h5 mb-0">Insight engine</h2>
-        <form method="get" action="{{ url_for(feedback_endpoint) }}" class="d-flex flex-wrap gap-2 align-items-center">
-            {% for key, val in filter_args.items() %}
-            <input type="hidden" name="{{ key }}" value="{{ val }}">
-            {% endfor %}
-            {% if context.selected_submission %}
-            <input type="hidden" name="submission" value="{{ context.selected_submission.submission.id }}">
-            {% endif %}
-            <select name="time_window" class="form-select form-select-sm" style="width:auto" onchange="this.form.submit()">
-                {% for key, label in time_window_labels.items() %}
-                <option value="{{ key }}" {% if time_window == key %}selected{% endif %}>{{ label }}</option>
-                {% endfor %}
-            </select>
-            {% if time_window == 'custom' %}
-            <input type="date" name="custom_date_from" class="form-control form-control-sm" value="{{ custom_date_from }}" style="width:auto">
-            <input type="date" name="custom_date_to" class="form-control form-control-sm" value="{{ custom_date_to }}" style="width:auto">
-            <button type="submit" class="btn btn-sm btn-outline-secondary">Apply</button>
-            {% endif %}
-        </form>
-    </div>
-    <p class="small text-muted mb-3">
+      <p class="small text-muted mb-0">
         Window: {{ context.insight_engine.time_window_label }} ·
-        {{ context.insight_engine.insights | length }} insight(s) generated.
-        Insights describe patterns — they never prescribe decisions.
-    </p>
+        {{ context.insight_engine.insights | length }} pattern{{ '' if context.insight_engine.insights | length == 1 else 's' }}.
+        Patterns describe trends — they never prescribe decisions.
+      </p>
+      <form method="get" action="{{ url_for(feedback_endpoint) }}" class="d-flex flex-wrap gap-2 align-items-center">
+        {% for key, val in filter_args.items() %}
+        <input type="hidden" name="{{ key }}" value="{{ val }}">
+        {% endfor %}
+        {% if context.selected_submission %}
+        <input type="hidden" name="submission" value="{{ context.selected_submission.submission.id }}">
+        {% endif %}
+        <select name="time_window" class="form-select form-select-sm" style="width:auto" onchange="this.form.submit()">
+          {% for key, label in time_window_labels.items() %}
+          <option value="{{ key }}" {% if time_window == key %}selected{% endif %}>{{ label }}</option>
+          {% endfor %}
+        </select>
+        {% if time_window == 'custom' %}
+        <input type="date" name="custom_date_from" class="form-control form-control-sm" value="{{ custom_date_from }}" style="width:auto">
+        <input type="date" name="custom_date_to" class="form-control form-control-sm" value="{{ custom_date_to }}" style="width:auto">
+        <button type="submit" class="btn btn-sm btn-outline-secondary">Apply</button>
+        {% endif %}
+      </form>
+    </div>
 
     <div class="row g-3 mb-3">
-        <div class="col-md-6">
-            <div class="command-card h-100">
-                <div class="command-card-header">
-                    <h3 class="command-card-title h6 mb-0">Top Trends</h3>
-                </div>
-                <div class="command-card-body">
-                    {% if context.insight_engine.top_trends %}
-                        {% for insight in context.insight_engine.top_trends %}
-                        <div class="mb-2 pb-2 {% if not loop.last %}border-bottom{% endif %}">
-                            <strong>{{ insight.title }}</strong>
-                            <span class="badge text-bg-secondary ms-1">{{ insight.confidence }}</span>
-                            <p class="small mb-0 mt-1">{{ insight.summary }}</p>
-                            {% if insight.comparison %}
-                            <p class="small text-muted mb-0">
-                                {{ insight.comparison.label }}:
-                                {{ insight.comparison.current_value }}
-                                vs {{ insight.comparison.previous_value }}
-                                ({{ insight.comparison.delta | default('—') }})
-                            </p>
-                            {% endif %}
-                        </div>
-                        {% endfor %}
-                    {% else %}
-                    <p class="text-muted small mb-0">No trend insights for this window.</p>
-                    {% endif %}
-                </div>
-            </div>
+      <div class="col-md-6">
+        <div class="command-card h-100">
+          <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">Top Trends</h3>
+          </div>
+          <div class="command-card-body">
+            {% if context.insight_engine.top_trends %}
+              {% for insight in context.insight_engine.top_trends %}
+              <div class="mb-2 pb-2 {% if not loop.last %}border-bottom{% endif %}">
+                <strong>{{ insight.title }}</strong>
+                <span class="badge text-bg-secondary ms-1">{{ insight.confidence }}</span>
+                <p class="small mb-0 mt-1">{{ insight.summary }}</p>
+                {% if insight.comparison %}
+                <p class="small text-muted mb-0">
+                  {{ insight.comparison.label }}:
+                  {{ insight.comparison.current_value }}
+                  vs {{ insight.comparison.previous_value }}
+                  ({{ insight.comparison.delta | default('—') }})
+                </p>
+                {% endif %}
+              </div>
+              {% endfor %}
+            {% else %}
+            <p class="text-muted small mb-0">No trend insights for this window.</p>
+            {% endif %}
+          </div>
         </div>
-        <div class="col-md-6">
-            <div class="command-card h-100">
-                <div class="command-card-header">
-                    <h3 class="command-card-title h6 mb-0">Emerging Concerns</h3>
-                </div>
-                <div class="command-card-body">
-                    {% if context.insight_engine.emerging_concerns %}
-                        {% for insight in context.insight_engine.emerging_concerns %}
-                        <div class="mb-2 pb-2 {% if not loop.last %}border-bottom{% endif %}">
-                            <strong>{{ insight.title }}</strong>
-                            <span class="badge text-bg-warning ms-1">{{ insight.suggested_review_priority }}</span>
-                            <p class="small mb-0 mt-1">{{ insight.summary }}</p>
-                            <p class="small text-muted mb-0">{{ insight.supporting_observation_count }} observation(s) · {{ insight.affected_feature or '—' }}</p>
-                        </div>
-                        {% endfor %}
-                    {% else %}
-                    <p class="text-muted small mb-0">No emerging concerns detected.</p>
-                    {% endif %}
-                </div>
-            </div>
+      </div>
+      <div class="col-md-6">
+        <div class="command-card h-100">
+          <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">Emerging Concerns</h3>
+          </div>
+          <div class="command-card-body">
+            {% if context.insight_engine.emerging_concerns %}
+              {% for insight in context.insight_engine.emerging_concerns %}
+              <div class="mb-2 pb-2 {% if not loop.last %}border-bottom{% endif %}">
+                <strong>{{ insight.title }}</strong>
+                <span class="badge text-bg-warning ms-1">{{ insight.suggested_review_priority }}</span>
+                <p class="small mb-0 mt-1">{{ insight.summary }}</p>
+                <p class="small text-muted mb-0">{{ insight.supporting_observation_count }} observation(s) · {{ insight.affected_feature or '—' }}</p>
+              </div>
+              {% endfor %}
+            {% else %}
+            <p class="text-muted small mb-0">No emerging concerns detected.</p>
+            {% endif %}
+          </div>
         </div>
-        <div class="col-md-6">
-            <div class="command-card h-100">
-                <div class="command-card-header">
-                    <h3 class="command-card-title h6 mb-0">Most Improved Areas</h3>
-                </div>
-                <div class="command-card-body">
-                    {% if context.insight_engine.most_improved_areas %}
-                        {% for insight in context.insight_engine.most_improved_areas %}
-                        <div class="mb-2">
-                            <strong>{{ insight.title }}</strong>
-                            <p class="small mb-0">{{ insight.summary }}</p>
-                        </div>
-                        {% endfor %}
-                    {% else %}
-                    <p class="text-muted small mb-0">No improvement signals in this window.</p>
-                    {% endif %}
-                </div>
-            </div>
+      </div>
+      <div class="col-md-6">
+        <div class="command-card h-100">
+          <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">Most Improved Areas</h3>
+          </div>
+          <div class="command-card-body">
+            {% if context.insight_engine.most_improved_areas %}
+              {% for insight in context.insight_engine.most_improved_areas %}
+              <div class="mb-2">
+                <strong>{{ insight.title }}</strong>
+                <p class="small mb-0">{{ insight.summary }}</p>
+              </div>
+              {% endfor %}
+            {% else %}
+            <p class="text-muted small mb-0">No improvement signals in this window.</p>
+            {% endif %}
+          </div>
         </div>
-        <div class="col-md-6">
-            <div class="command-card h-100">
-                <div class="command-card-header">
-                    <h3 class="command-card-title h6 mb-0">Stable Areas</h3>
-                </div>
-                <div class="command-card-body">
-                    {% if context.insight_engine.stable_areas %}
-                        {% for insight in context.insight_engine.stable_areas %}
-                        <div class="mb-2">
-                            <strong>{{ insight.title }}</strong>
-                            <p class="small mb-0">{{ insight.summary }}</p>
-                        </div>
-                        {% endfor %}
-                    {% else %}
-                    <p class="text-muted small mb-0">No stable-area patterns identified.</p>
-                    {% endif %}
-                </div>
-            </div>
+      </div>
+      <div class="col-md-6">
+        <div class="command-card h-100">
+          <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">Stable Areas</h3>
+          </div>
+          <div class="command-card-body">
+            {% if context.insight_engine.stable_areas %}
+              {% for insight in context.insight_engine.stable_areas %}
+              <div class="mb-2">
+                <strong>{{ insight.title }}</strong>
+                <p class="small mb-0">{{ insight.summary }}</p>
+              </div>
+              {% endfor %}
+            {% else %}
+            <p class="text-muted small mb-0">No stable-area patterns identified.</p>
+            {% endif %}
+          </div>
         </div>
-        <div class="col-md-6">
-            <div class="command-card h-100">
-                <div class="command-card-header">
-                    <h3 class="command-card-title h6 mb-0">Participation</h3>
-                </div>
-                <div class="command-card-body">
-                    {% for insight in context.insight_engine.participation %}
-                    <div class="mb-2 pb-2 {% if not loop.last %}border-bottom{% endif %}">
-                        <strong>{{ insight.title }}</strong>
-                        <span class="badge text-bg-secondary ms-1">{{ insight.confidence }}</span>
-                        <p class="small mb-0 mt-1">{{ insight.summary }}</p>
-                    </div>
-                    {% else %}
-                    <p class="text-muted small mb-0">No participation data.</p>
-                    {% endfor %}
-                </div>
+      </div>
+      <div class="col-md-6">
+        <div class="command-card h-100">
+          <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">Participation</h3>
+          </div>
+          <div class="command-card-body">
+            {% for insight in context.insight_engine.participation %}
+            <div class="mb-2 pb-2 {% if not loop.last %}border-bottom{% endif %}">
+              <strong>{{ insight.title }}</strong>
+              <span class="badge text-bg-secondary ms-1">{{ insight.confidence }}</span>
+              <p class="small mb-0 mt-1">{{ insight.summary }}</p>
             </div>
+            {% else %}
+            <p class="text-muted small mb-0">No participation data.</p>
+            {% endfor %}
+          </div>
         </div>
-        <div class="col-md-6">
-            <div class="command-card h-100">
-                <div class="command-card-header">
-                    <h3 class="command-card-title h6 mb-0">Release Comparison</h3>
-                </div>
-                <div class="command-card-body">
-                    {% if context.insight_engine.release_comparison %}
-                        {% for insight in context.insight_engine.release_comparison %}
-                        <div class="mb-2 pb-2 {% if not loop.last %}border-bottom{% endif %}">
-                            <strong>{{ insight.title }}</strong>
-                            <span class="badge text-bg-secondary ms-1">{{ insight.confidence }}</span>
-                            <p class="small mb-0 mt-1">{{ insight.summary }}</p>
-                            {% if insight.related_finding_ids %}
-                            <p class="small text-muted mb-0">{{ insight.related_finding_ids | length }} related finding(s)</p>
-                            {% endif %}
-                        </div>
-                        {% endfor %}
-                    {% else %}
-                    <p class="text-muted small mb-0">No release comparison data.</p>
-                    {% endif %}
-                </div>
-            </div>
+      </div>
+      <div class="col-md-6">
+        <div class="command-card h-100">
+          <div class="command-card-header">
+            <h3 class="command-card-title h6 mb-0">Release Comparison</h3>
+          </div>
+          <div class="command-card-body">
+            {% if context.insight_engine.release_comparison %}
+              {% for insight in context.insight_engine.release_comparison %}
+              <div class="mb-2 pb-2 {% if not loop.last %}border-bottom{% endif %}">
+                <strong>{{ insight.title }}</strong>
+                <span class="badge text-bg-secondary ms-1">{{ insight.confidence }}</span>
+                <p class="small mb-0 mt-1">{{ insight.summary }}</p>
+                {% if insight.related_finding_ids %}
+                <p class="small text-muted mb-0">{{ insight.related_finding_ids | length }} related finding(s)</p>
+                {% endif %}
+              </div>
+              {% endfor %}
+            {% else %}
+            <p class="text-muted small mb-0">No release comparison data.</p>
+            {% endif %}
+          </div>
         </div>
+      </div>
     </div>
 
-    {# Legacy summary row #}
     <div class="command-card">
-        <div class="command-card-body">
-            <p class="mb-1"><strong>Most common feature:</strong> {{ context.insights.most_common_feature or '—' }}</p>
-            <p class="mb-1"><strong>Most common friction:</strong> {{ context.insights.most_common_friction or '—' }}</p>
-            <p class="mb-1"><strong>Most common suggestion category:</strong> {{ context.insights.most_common_suggestion_category or '—' }}</p>
-            <p class="mb-1"><strong>7-day participation:</strong>
-                {% for day, count in context.insights.participation_trend %}
-                    {{ day }} ({{ count }}){% if not loop.last %}, {% endif %}
-                {% endfor %}
-            </p>
-            <p class="mb-0"><strong>Recently awarded badges:</strong>
-                {% if context.insights.recently_awarded_badges %}
-                    {% for badge in context.insights.recently_awarded_badges %}
-                        {{ badge_labels.get(badge.badge_slug, badge.badge_slug) }}{% if not loop.last %}, {% endif %}
-                    {% endfor %}
-                {% else %}None this week{% endif %}
-            </p>
-        </div>
+      <div class="command-card-body">
+        <p class="mb-1"><strong>Most common feature:</strong> {{ context.insights.most_common_feature or '—' }}</p>
+        <p class="mb-1"><strong>Most common friction:</strong> {{ context.insights.most_common_friction or '—' }}</p>
+        <p class="mb-1"><strong>Most common suggestion category:</strong> {{ context.insights.most_common_suggestion_category or '—' }}</p>
+        <p class="mb-1"><strong>7-day participation:</strong>
+          {% for day, count in context.insights.participation_trend %}
+            {{ day }} ({{ count }}){% if not loop.last %}, {% endif %}
+          {% endfor %}
+        </p>
+        <p class="mb-0"><strong>Recently awarded badges:</strong>
+          {% if context.insights.recently_awarded_badges %}
+            {% for badge in context.insights.recently_awarded_badges %}
+              {{ badge_labels.get(badge.badge_slug, badge.badge_slug) }}{% if not loop.last %}, {% endif %}
+            {% endfor %}
+          {% else %}None this week{% endif %}
+        </p>
+      </div>
     </div>
-</section>
+  </section>
+</details>
 
 <div class="row g-4">
-    {# ── Research Inbox ─────────────────────────────────────────────── #}
-    <div class="col-lg-7">
-        <section class="feedback-inbox" aria-label="Research Inbox">
-            <div class="d-flex flex-wrap justify-content-between align-items-baseline gap-2 mb-3">
-                <h2 class="h5 mb-0">Inbox</h2>
-                <p class="feedback-inbox-count mb-0">
-                    {% if context.inbox_total %}
-                    Showing
-                    {{ ((context.inbox_page - 1) * context.inbox_per_page) + 1 }}–{{ ((context.inbox_page - 1) * context.inbox_per_page) + context.inbox|length }}
-                    of {{ context.inbox_total }}
-                    {% else %}
-                    0 submissions
-                    {% endif %}
-                </p>
+  <div class="col-lg-7">
+    <section class="feedback-inbox" aria-label="Check-in inbox">
+      <div class="d-flex flex-wrap justify-content-between align-items-baseline gap-2 mb-3">
+        <h2 class="ds-section__title mb-0">Inbox</h2>
+        <p class="feedback-inbox-count mb-0">
+          {% if context.inbox_total %}
+          Showing
+          {{ ((context.inbox_page - 1) * context.inbox_per_page) + 1 }}–{{ ((context.inbox_page - 1) * context.inbox_per_page) + context.inbox|length }}
+          of {{ context.inbox_total }}
+          {% else %}
+          0 submissions
+          {% endif %}
+        </p>
+      </div>
+
+      <form method="get" action="{{ url_for(feedback_endpoint) }}" class="feedback-filters mb-3">
+        <div class="row g-2">
+          <div class="col-md-4">
+            {{ filter_form.keyword(class="form-control form-control-sm", placeholder="Search keyword") }}
+          </div>
+          <div class="col-md-3">
+            {{ filter_form.student(class="form-control form-control-sm", placeholder="Student email") }}
+          </div>
+          <div class="col-md-3">
+            {{ filter_form.status(class="form-select form-select-sm") }}
+          </div>
+          <div class="col-md-2">
+            <button type="submit" class="btn btn-sm btn-outline-secondary w-100">Filter</button>
+          </div>
+        </div>
+        <details class="feedback-filters-disclosure mt-2"{% if request.args.get('version') or request.args.get('feature') or request.args.get('classification') or request.args.get('submission_source') or request.args.get('badge') or request.args.get('severity') %} open{% endif %}>
+          <summary class="feedback-filters-disclosure__summary">More filters</summary>
+          <div class="row g-2 mt-1">
+            <div class="col-md-2">
+              {{ filter_form.version(class="form-control form-control-sm", placeholder="Version") }}
             </div>
-
-            <form method="get" action="{{ url_for(feedback_endpoint) }}" class="feedback-filters mb-3">
-                <div class="row g-2">
-                    <div class="col-md-4">
-                        {{ filter_form.keyword(class="form-control form-control-sm", placeholder="Search keyword") }}
-                    </div>
-                    <div class="col-md-3">
-                        {{ filter_form.student(class="form-control form-control-sm", placeholder="Student email") }}
-                    </div>
-                    <div class="col-md-3">
-                        {{ filter_form.status(class="form-select form-select-sm") }}
-                    </div>
-                    <div class="col-md-2">
-                        <button type="submit" class="btn btn-sm btn-outline-secondary w-100">Filter</button>
-                    </div>
-                    <div class="col-md-2">
-                        {{ filter_form.version(class="form-control form-control-sm", placeholder="Version") }}
-                    </div>
-                    <div class="col-md-2">
-                        {{ filter_form.feature(class="form-select form-select-sm") }}
-                    </div>
-                    <div class="col-md-2">
-                        {{ filter_form.classification(class="form-select form-select-sm") }}
-                    </div>
-                    <div class="col-md-2">
-                        {{ filter_form.submission_source(class="form-select form-select-sm") }}
-                    </div>
-                    <div class="col-md-2">
-                        {{ filter_form.badge(class="form-select form-select-sm") }}
-                    </div>
-                    <div class="col-md-2">
-                        {{ filter_form.severity(class="form-select form-select-sm") }}
-                    </div>
-                </div>
-            </form>
-
-            {% if context.inbox %}
-            <div class="feedback-inbox-list" role="list">
-                {% for item in context.inbox %}
-                <a href="{{ url_for(feedback_endpoint, submission=item.id, page=context.inbox_page, **page_args) }}"
-                   class="feedback-inbox-item{% if context.selected_submission and context.selected_submission.submission.id == item.id %} is-selected{% endif %}"
-                   role="listitem">
-                    <div class="feedback-inbox-item-header">
-                        <span class="feedback-inbox-item-title">#{{ item.id }} · {{ item.user.email if item.user else 'Student' }}</span>
-                        <time class="feedback-inbox-item-time" datetime="{{ item.submitted_at.isoformat() }}">{{ item.submitted_at.strftime('%Y-%m-%d %H:%M') }}</time>
-                    </div>
-                    <p class="feedback-inbox-item-summary">
-                        {{ item.experience_rating }} · {{ item.feature_helped_most }}
-                        {% if item.friction_area != 'Nothing' %} · Friction: {{ item.friction_area }}{% endif %}
-                    </p>
-                    <span class="feedback-status-badge">{{ workflow_labels.get(item.workflow_status, item.workflow_status) }}</span>
-                </a>
-                {% endfor %}
+            <div class="col-md-2">
+              {{ filter_form.feature(class="form-select form-select-sm") }}
             </div>
-
-            {% if context.inbox_total_pages > 1 %}
-            <nav class="feedback-pagination" aria-label="Inbox pagination">
-                {% if context.inbox_has_prev %}
-                <a class="btn btn-sm btn-outline-secondary"
-                   href="{{ url_for(feedback_endpoint, page=context.inbox_page - 1, **page_args) }}">Previous</a>
-                {% else %}
-                <span class="btn btn-sm btn-outline-secondary disabled" aria-disabled="true">Previous</span>
-                {% endif %}
-                <span class="feedback-pagination-status">Page {{ context.inbox_page }} of {{ context.inbox_total_pages }}</span>
-                {% if context.inbox_has_next %}
-                <a class="btn btn-sm btn-outline-secondary"
-                   href="{{ url_for(feedback_endpoint, page=context.inbox_page + 1, **page_args) }}">Next</a>
-                {% else %}
-                <span class="btn btn-sm btn-outline-secondary disabled" aria-disabled="true">Next</span>
-                {% endif %}
-            </nav>
-            {% endif %}
-            {% else %}
-            <p class="text-muted">No feedback submissions match the current filters.</p>
-            {% endif %}
-        </section>
-    </div>
-
-    {# ── Feedback Detail ────────────────────────────────────────────── #}
-    <div class="col-lg-5">
-        <section aria-label="Feedback Detail">
-            <h2 class="h5 mb-3">Detail</h2>
-            {% if context.selected_submission %}
-            {% set detail = context.selected_submission %}
-            {% set sub = detail.submission %}
-            <div class="command-card feedback-detail-card">
-                <div class="command-card-body">
-                    <p class="mb-1"><strong>Student:</strong> {{ detail.student.email }}</p>
-                    <p class="mb-1"><strong>Submitted:</strong> {{ sub.submitted_at.strftime('%Y-%m-%d %H:%M') }}</p>
-                    <p class="mb-1"><strong>Version:</strong> {{ sub.product_version }}</p>
-                    <p class="mb-1"><strong>Mission:</strong> {{ sub.mission_id or '—' }}</p>
-                    <p class="mb-1"><strong>Study Plan:</strong> {{ sub.study_plan_id or '—' }}</p>
-                    <p class="mb-1"><strong>Source:</strong> {{ sub.submission_source }}</p>
-                    <p class="mb-1"><strong>Experience:</strong> {{ sub.experience_rating }}</p>
-                    <p class="mb-1"><strong>Feature helped:</strong> {{ sub.feature_helped_most }}</p>
-                    <p class="mb-1"><strong>Friction:</strong> {{ sub.friction_area }}</p>
-                    <p class="mb-1"><strong>Confidence:</strong> {{ sub.confidence_rating }}</p>
-                    <p class="mb-1"><strong>Return intent:</strong> {{ sub.return_intent }}</p>
-                    {% if sub.free_text %}
-                    <p class="mb-1"><strong>Free text:</strong> {{ sub.free_text }}</p>
-                    <p class="mb-1"><strong>Classification:</strong> {{ sub.classification or '—' }}</p>
-                    {% endif %}
-                    <p class="mb-1"><strong>Status:</strong> {{ workflow_labels.get(sub.workflow_status, sub.workflow_status) }}</p>
-
-                    <hr>
-                    <p class="mb-1"><strong>Contributor journey:</strong>
-                        {{ detail.contributor_journey.contribution_count }} check-ins
-                        {% if detail.contributor_journey.current_badge %}
-                            · {{ detail.contributor_journey.current_badge.label }}
-                        {% endif %}
-                    </p>
-
-                    {% if detail.previous_submissions %}
-                    <p class="mb-1"><strong>Previous feedback:</strong> {{ detail.previous_submissions | length }} earlier submission(s)</p>
-                    {% endif %}
-
-                    {% if detail.review %}
-                    <p class="mb-1 small text-muted">
-                        Review marks:
-                        {% if detail.review.is_helpful %}Helpful{% endif %}
-                        {% if detail.review.is_insightful %}{% if detail.review.is_helpful %} · {% endif %}Insightful{% endif %}
-                        {% if detail.review.is_implemented %}{% if detail.review.is_helpful or detail.review.is_insightful %} · {% endif %}Implemented{% endif %}
-                    </p>
-                    {% endif %}
-
-                    {% if detail.status_history %}
-                    <div class="mb-3">
-                        <strong>Review history</strong>
-                        <ul class="small mb-0">
-                            {% for t in detail.status_history %}
-                            <li>{{ t.transitioned_at.strftime('%Y-%m-%d %H:%M') }}:
-                                {{ workflow_labels.get(t.from_status, t.from_status or '—') }}
-                                → {{ workflow_labels.get(t.to_status, t.to_status) }}
-                                {% if t.rationale %}({{ t.rationale }}){% endif %}
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    {% endif %}
-
-                    {% if detail.founder_notes %}
-                    <div class="mb-3">
-                        <strong>Founder notes</strong>
-                        <ul class="small mb-0">
-                            {% for note in detail.founder_notes %}
-                            <li>{{ note.created_at.strftime('%Y-%m-%d %H:%M') }}: {{ note.note_text }}</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    {% endif %}
-
-                    <form method="post" action="{{ url_for(feedback_endpoint, submission=sub.id, page=context.inbox_page, **page_args) }}" class="d-flex flex-wrap gap-2 mb-3">
-                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                        <input type="hidden" name="submission_id" value="{{ sub.id }}">
-                        <button type="submit" name="action" value="under_review" class="btn btn-sm btn-outline-secondary">Under Review</button>
-                        <button type="submit" name="action" value="helpful" class="btn btn-sm btn-outline-primary">Helpful</button>
-                        <button type="submit" name="action" value="insightful" class="btn btn-sm btn-outline-primary">Insightful</button>
-                        <button type="submit" name="action" value="accept" class="btn btn-sm btn-outline-success">Accept</button>
-                        <button type="submit" name="action" value="reject" class="btn btn-sm btn-outline-danger">Reject</button>
-                        <button type="submit" name="action" value="clarify" class="btn btn-sm btn-outline-warning">Request Clarification</button>
-                        <button type="submit" name="action" value="plan" class="btn btn-sm btn-outline-info">Plan</button>
-                        <button type="submit" name="action" value="implement" class="btn btn-sm btn-primary">Implement</button>
-                        <button type="submit" name="action" value="release" class="btn btn-sm btn-outline-success">Release</button>
-                        <button type="submit" name="action" value="verify" class="btn btn-sm btn-outline-success">Verify</button>
-                    </form>
-
-                    <form method="post" action="{{ url_for(feedback_endpoint, submission=sub.id, page=context.inbox_page, **page_args) }}" class="mb-3">
-                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                        <input type="hidden" name="submission_id" value="{{ sub.id }}">
-                        <input type="hidden" name="action" value="note">
-                        {{ note_form.note_text(class="form-control form-control-sm mb-2", placeholder="Add internal note…") }}
-                        <button type="submit" class="btn btn-sm btn-secondary">Add Note</button>
-                    </form>
-
-                    <p class="small text-muted mb-0">
-                        Create roadmap findings under
-                        <a href="{{ url_for('founder_dashboard.findings') }}">Findings</a>.
-                        Review patterns under
-                        <a href="{{ url_for('founder_dashboard.research') }}">Research</a>.
-                    </p>
-                </div>
+            <div class="col-md-2">
+              {{ filter_form.classification(class="form-select form-select-sm") }}
             </div>
-            {% else %}
-            <p class="text-muted">Select a submission from the inbox to review details and take action.</p>
+            <div class="col-md-2">
+              {{ filter_form.submission_source(class="form-select form-select-sm") }}
+            </div>
+            <div class="col-md-2">
+              {{ filter_form.badge(class="form-select form-select-sm") }}
+            </div>
+            <div class="col-md-2">
+              {{ filter_form.severity(class="form-select form-select-sm") }}
+            </div>
+          </div>
+        </details>
+      </form>
+
+      {% if context.inbox %}
+      <div class="feedback-inbox-list" role="list">
+        {% for item in context.inbox %}
+        <a href="{{ url_for(feedback_endpoint, submission=item.id, page=context.inbox_page, **page_args) }}"
+           class="feedback-inbox-item{% if context.selected_submission and context.selected_submission.submission.id == item.id %} is-selected{% endif %}"
+           role="listitem">
+          <div class="feedback-inbox-item-header">
+            <span class="feedback-inbox-item-title">#{{ item.id }} · {{ item.user.email if item.user else 'Student' }}</span>
+            <time class="feedback-inbox-item-time" datetime="{{ item.submitted_at.isoformat() }}">{{ item.submitted_at.strftime('%Y-%m-%d %H:%M') }}</time>
+          </div>
+          <p class="feedback-inbox-item-summary">
+            {{ item.experience_rating }} · {{ item.feature_helped_most }}
+            {% if item.friction_area != 'Nothing' %} · Friction: {{ item.friction_area }}{% endif %}
+          </p>
+          <span class="feedback-status-badge">{{ workflow_labels.get(item.workflow_status, item.workflow_status) }}</span>
+        </a>
+        {% endfor %}
+      </div>
+
+      {% if context.inbox_total_pages > 1 %}
+      <nav class="feedback-pagination" aria-label="Inbox pagination">
+        {% if context.inbox_has_prev %}
+        <a class="btn btn-sm btn-outline-secondary"
+           href="{{ url_for(feedback_endpoint, page=context.inbox_page - 1, **page_args) }}">Previous</a>
+        {% else %}
+        <span class="btn btn-sm btn-outline-secondary disabled" aria-disabled="true">Previous</span>
+        {% endif %}
+        <span class="feedback-pagination-status">Page {{ context.inbox_page }} of {{ context.inbox_total_pages }}</span>
+        {% if context.inbox_has_next %}
+        <a class="btn btn-sm btn-outline-secondary"
+           href="{{ url_for(feedback_endpoint, page=context.inbox_page + 1, **page_args) }}">Next</a>
+        {% else %}
+        <span class="btn btn-sm btn-outline-secondary disabled" aria-disabled="true">Next</span>
+        {% endif %}
+      </nav>
+      {% endif %}
+      {% else %}
+      <div class="ds-empty-operational" role="status">
+        <h3 class="ds-empty-operational__title">No submissions</h3>
+        <p class="ds-empty-operational__reason">Adjust filters or wait for new check-ins.</p>
+      </div>
+      {% endif %}
+    </section>
+  </div>
+
+  <div class="col-lg-5">
+    <section aria-label="Feedback Detail">
+      <h2 class="ds-section__title mb-3">Detail</h2>
+      {% if context.selected_submission %}
+      {% set detail = context.selected_submission %}
+      {% set sub = detail.submission %}
+      <div class="command-card feedback-detail-card">
+        <div class="command-card-body">
+          <p class="mb-1"><strong>Student:</strong> {{ detail.student.email }}</p>
+          <p class="mb-1"><strong>Submitted:</strong> {{ sub.submitted_at.strftime('%Y-%m-%d %H:%M') }}</p>
+          <p class="mb-1"><strong>Version:</strong> {{ sub.product_version }}</p>
+          <p class="mb-1"><strong>Mission:</strong> {{ sub.mission_id or '—' }}</p>
+          <p class="mb-1"><strong>Study Plan:</strong> {{ sub.study_plan_id or '—' }}</p>
+          <p class="mb-1"><strong>Source:</strong> {{ sub.submission_source }}</p>
+          <p class="mb-1"><strong>Experience:</strong> {{ sub.experience_rating }}</p>
+          <p class="mb-1"><strong>Feature helped:</strong> {{ sub.feature_helped_most }}</p>
+          <p class="mb-1"><strong>Friction:</strong> {{ sub.friction_area }}</p>
+          <p class="mb-1"><strong>Confidence:</strong> {{ sub.confidence_rating }}</p>
+          <p class="mb-1"><strong>Return intent:</strong> {{ sub.return_intent }}</p>
+          {% if sub.free_text %}
+          <p class="mb-1"><strong>Free text:</strong> {{ sub.free_text }}</p>
+          <p class="mb-1"><strong>Classification:</strong> {{ sub.classification or '—' }}</p>
+          {% endif %}
+          <p class="mb-1"><strong>Status:</strong> {{ workflow_labels.get(sub.workflow_status, sub.workflow_status) }}</p>
+
+          <hr>
+          <p class="mb-1"><strong>Contributor journey:</strong>
+            {{ detail.contributor_journey.contribution_count }} check-ins
+            {% if detail.contributor_journey.current_badge %}
+              · {{ detail.contributor_journey.current_badge.label }}
             {% endif %}
-        </section>
-    </div>
+          </p>
+
+          {% if detail.previous_submissions %}
+          <p class="mb-1"><strong>Previous feedback:</strong> {{ detail.previous_submissions | length }} earlier submission(s)</p>
+          {% endif %}
+
+          {% if detail.review %}
+          <p class="mb-1 small text-muted">
+            Review marks:
+            {% if detail.review.is_helpful %}Helpful{% endif %}
+            {% if detail.review.is_insightful %}{% if detail.review.is_helpful %} · {% endif %}Insightful{% endif %}
+            {% if detail.review.is_implemented %}{% if detail.review.is_helpful or detail.review.is_insightful %} · {% endif %}Implemented{% endif %}
+          </p>
+          {% endif %}
+
+          {% if detail.status_history %}
+          <div class="mb-3">
+            <strong>Review history</strong>
+            <ul class="small mb-0">
+              {% for t in detail.status_history %}
+              <li>{{ t.transitioned_at.strftime('%Y-%m-%d %H:%M') }}:
+                {{ workflow_labels.get(t.from_status, t.from_status or '—') }}
+                → {{ workflow_labels.get(t.to_status, t.to_status) }}
+                {% if t.rationale %}({{ t.rationale }}){% endif %}
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+
+          {% if detail.founder_notes %}
+          <div class="mb-3">
+            <strong>Founder notes</strong>
+            <ul class="small mb-0">
+              {% for note in detail.founder_notes %}
+              <li>{{ note.created_at.strftime('%Y-%m-%d %H:%M') }}: {{ note.note_text }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+
+          <form method="post" action="{{ url_for(feedback_endpoint, submission=sub.id, page=context.inbox_page, **page_args) }}" class="d-flex flex-wrap gap-2 mb-3">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="submission_id" value="{{ sub.id }}">
+            <button type="submit" name="action" value="under_review" class="btn btn-sm btn-outline-secondary">Under Review</button>
+            <button type="submit" name="action" value="helpful" class="btn btn-sm btn-outline-primary">Helpful</button>
+            <button type="submit" name="action" value="insightful" class="btn btn-sm btn-outline-primary">Insightful</button>
+            <button type="submit" name="action" value="accept" class="btn btn-sm btn-outline-success">Accept</button>
+            <button type="submit" name="action" value="reject" class="btn btn-sm btn-outline-danger">Reject</button>
+            <button type="submit" name="action" value="clarify" class="btn btn-sm btn-outline-warning">Request Clarification</button>
+            <button type="submit" name="action" value="plan" class="btn btn-sm btn-outline-info">Plan</button>
+            <button type="submit" name="action" value="implement" class="btn btn-sm btn-primary">Implement</button>
+            <button type="submit" name="action" value="release" class="btn btn-sm btn-outline-success">Release</button>
+            <button type="submit" name="action" value="verify" class="btn btn-sm btn-outline-success">Verify</button>
+          </form>
+
+          <form method="post" action="{{ url_for(feedback_endpoint, submission=sub.id, page=context.inbox_page, **page_args) }}" class="mb-3">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="submission_id" value="{{ sub.id }}">
+            <input type="hidden" name="action" value="note">
+            {{ note_form.note_text(class="form-control form-control-sm mb-2", placeholder="Add internal note…") }}
+            <button type="submit" class="btn btn-sm btn-secondary">Add Note</button>
+          </form>
+        </div>
+      </div>
+      {% else %}
+      <div class="ds-empty-operational" role="status">
+        <h3 class="ds-empty-operational__title">Select a submission</h3>
+        <p class="ds-empty-operational__reason">Choose an item from the inbox to review.</p>
+      </div>
+      {% endif %}
+    </section>
+  </div>
 </div>
 
 </div>
+</article>
 {% endblock %}

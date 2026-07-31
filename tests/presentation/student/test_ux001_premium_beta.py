@@ -73,10 +73,14 @@ def test_home_mission_includes_duration_and_title(app, ctx):
     assert page.mission is not None
     assert page.mission.duration_label
     assert page.mission.title
-    assert page.page_question == "What should I do next?"
+    assert page.page_question == "What should I do now?"
     assert page.signals is not None
     assert page.signals.subject_label == "CS1"
-    assert page.signals.estimated_study_label
+    # UX-001: duration lives on the mission hero, not the progress strip.
+    assert not page.signals.estimated_study_label
+    assert page.mission is not None
+    assert page.mission.duration_label
+    assert page.greeting
 
 
 def test_design_system_includes_ux001_surfaces():
