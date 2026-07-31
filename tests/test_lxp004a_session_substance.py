@@ -429,3 +429,38 @@ class TestPublishedSubstanceAcceptance:
             assert "Core methods" not in activity["question"]
         finally:
             monkeypatch.undo()
+
+
+# ---------------------------------------------------------------------------
+# Composition — opaque Phase-I must not win over Session Primary
+# ---------------------------------------------------------------------------
+
+
+class TestCompositionPrefersLearningSessionRuntime:
+    def test_session_primary_beats_opaque_core_methods_bridge(self, ctx):
+        """Durable-store Phase-I inject must not replace CMP sessions."""
+        from app.infrastructure.adapters.learning_session.runtime_engine import (
+            LearningSessionRuntimeEngine as LSREngine,
+        )
+        from app.infrastructure.engines.opaque_bridges import (
+            SessionRuntimeOpaqueBridge,
+        )
+        from app.infrastructure.session.composition import (
+            build_production_session_experience,
+        )
+
+        flags = resolve_v2_feature_flags(
+            environ={
+                "KWALITEC_V2_DURABLE_STORE": "1",
+                "INJECT_PHASE_I_ENGINES": "1",
+                "SR_SESSION_PRIMARY": "1",
+                "SR_SESSION_SUBSTANCE": "1",
+            }
+        )
+        assert flags.INJECT_PHASE_I_ENGINES is True
+        composition, _service = build_production_session_experience(
+            flags=flags, seed_demo_learners=False
+        )
+        engine = composition.runtime._engine
+        assert isinstance(engine, LSREngine)
+        assert not isinstance(engine, SessionRuntimeOpaqueBridge)

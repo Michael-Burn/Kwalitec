@@ -199,9 +199,9 @@ def build_production_session_experience(
         flags=active, experience_store=shared
     )
     engines = build_opaque_engines(flags=active)
-    runtime_engine = engines.get("runtime_engine")
-    activity_engine = engines.get("activity_engine")
-    if active.SR_SESSION_PRIMARY and runtime_engine is None:
+    # SR-002 / LXP-004A: Session Primary owns the runtime engine. Opaque Phase-I
+    # bridges hardcode "Core methods" and must not overwrite CMP-backed sessions.
+    if active.SR_SESSION_PRIMARY:
         from app.infrastructure.adapters.learning_session.persistence import (
             LearningSessionPersistenceAdapter,
         )
@@ -212,6 +212,9 @@ def build_production_session_experience(
         runtime_engine = LearningSessionRuntimeEngine(
             persistence=LearningSessionPersistenceAdapter(store=session_store)
         )
+    else:
+        runtime_engine = engines.get("runtime_engine")
+    activity_engine = engines.get("activity_engine")
     if active.SR_SESSION_SUBSTANCE:
         from app.infrastructure.adapters.learning_session import (
             package_activity_engine as pkg_engine,
