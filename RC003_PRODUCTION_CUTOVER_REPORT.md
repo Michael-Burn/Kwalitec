@@ -73,22 +73,29 @@ Candidate verification tests (local): **81 passed** — SB-001A + BF-001 + basel
 |-------|--------|-------|
 | Pre-cutover live health | **PASS** | `status: ok`, DB connected, tip `e4d5a1b` |
 | Pre-cutover migrations | `current=head=202607300005` | Baseline not live |
-| Push to `origin/main` | See push evidence below | |
-| Tag `v1.0.0-G1` | Points at `e953ee1` | |
-| Render deploy | **REQUIRES MANUAL DEPLOY** | Auto-deploy historically off (`FOUNDER_DEPLOYMENT_GUIDE.md`) |
-| Post-deploy commit match | **PENDING** — expect `e953ee1…` | |
+| Push to `origin/main` | **PASS** | `e4d5a1b..2bfb231` (seal `e953ee1` + docs) |
+| Tag `v1.0.0-G1` | **PASS** | Annotated tag → `e953ee1` on origin |
+| Render auto-deploy | **NOT OBSERVED** | ~2+ min post-push; live still `e4d5a1b` |
+| Render deploy | **REQUIRES MANUAL DEPLOY** | Same posture as RC-002 / RF-001 |
+| Post-deploy commit match | **PENDING** — expect `e953ee1…` or docs tip `2bfb231…` | |
 | Post-deploy migration | Expect `202607310002` | Via `releaseCommand: flask db upgrade` |
-| Startup / health | **PENDING** after Manual Deploy | |
+| Startup / health | Pre-cutover healthy; post-cutover **PENDING** | |
 | Auth `/auth/login` | Pre-cutover **200** | Re-confirm after deploy |
 | Logging / health details | Pre-cutover **PASS** | Re-confirm after deploy |
+| Live `/baseline/` pre-cutover | **404** (expected) | Must become auth-gated after deploy |
+| Live Studio JS pre-cutover | Still `var byId = Object` | BF-001 not live until deploy |
+
+Evidence: `knowledge/evidence/releases/RC003/push_and_deploy_status.txt`, `post_push_health.json`
 
 ### Operator action (blocking for live G1 Baseline claims)
 
-1. Render → service `kwalitec` → **Manual Deploy** → latest `main` (RC-003 commit).
+1. Render → service `kwalitec` → **Manual Deploy** → latest `main` (`2bfb231` or at least seal `e953ee1`).
 2. Confirm release command upgrades to `202607310002`.
-3. Confirm `/health` `commit` matches release commit.
-4. Confirm `/baseline/` is auth-gated (not 404).
-5. Confirm live JS contains `var byId = {};`.
+3. Confirm `/health` `commit` starts with `e953ee1` or `2bfb231`.
+4. Confirm `/baseline/` is auth-gated (**302** to login, not **404**).
+5. Confirm live JS contains `var byId = {};` (not `Object`).
+6. Execute production Founder + Student smoke paths; file `knowledge/evidence/releases/RC003/prod_smoke.txt`.
+7. Begin daily G1 under `G1_VALIDATION_PROTOCOL.md`.
 
 ---
 

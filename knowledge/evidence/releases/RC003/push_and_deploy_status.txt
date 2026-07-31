@@ -1,0 +1,6 @@
+pushed_main_tip=2bfb231
+release_commit=e953ee1
+tag=v1.0.0-G1
+live_commit_at_push_probe=e4d5a1b6271630f5bcd6047239d087fa075176da
+render_status=PENDING_MANUAL_DEPLOY
+timestamp_utc=2026-07-31T10:56:32Z
