@@ -219,3 +219,36 @@ function makeFocusTrap(container, isActive) {
         }
     });
 })();
+
+// Flash banner dismiss — Bootstrap Alert needs .alert; also fail-soft without it.
+(function () {
+    function dismissFlash(flash) {
+        if (!flash) {
+            return;
+        }
+        flash.classList.remove('show');
+        flash.setAttribute('hidden', 'hidden');
+        window.setTimeout(function () {
+            if (flash.parentNode) {
+                flash.parentNode.removeChild(flash);
+            }
+            var stack = document.querySelector('[data-flash-stack]');
+            if (stack && !stack.querySelector('[data-flash]')) {
+                stack.remove();
+            }
+        }, 150);
+    }
+
+    document.addEventListener('click', function (event) {
+        var button = event.target.closest('[data-flash-dismiss], .ds-flash .btn-close');
+        if (!button) {
+            return;
+        }
+        var flash = button.closest('[data-flash], .ds-flash');
+        if (!flash) {
+            return;
+        }
+        event.preventDefault();
+        dismissFlash(flash);
+    });
+})();

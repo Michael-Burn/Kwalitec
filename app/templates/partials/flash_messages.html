@@ -1,18 +1,18 @@
 {# RR-001.2 / XR-17 / PX-004 — shared token flashes for Student + Founder. #}
 {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
-        <div class="flash-stack ds-flash-stack student-flash-stack mb-4" role="region" aria-label="Notifications">
+        <div class="flash-stack ds-flash-stack student-flash-stack mb-4" role="region" aria-label="Notifications" data-flash-stack>
             {% for category, message in messages %}
                 {% if category == 'success' %}
-                <div class="ds-flash ds-flash--success student-success alert-dismissible fade show" role="status" data-student-state="success">
+                <div class="ds-flash ds-flash--success student-success alert alert-success alert-dismissible fade show" role="status" data-student-state="success" data-flash>
                     {{ message }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" data-flash-dismiss aria-label="Close"></button>
                 </div>
                 {% else %}
                 {% set tone = category if category in ['warning', 'danger', 'info'] else 'message' %}
-                <div class="ds-flash ds-flash--{{ tone }} alert alert-{{ category }} alert-dismissible fade show student-flash student-flash--{{ tone }}" role="alert" data-student-state="{{ tone }}">
+                <div class="ds-flash ds-flash--{{ tone }} alert alert-{{ category if category in ['warning', 'danger', 'info'] else 'secondary' }} alert-dismissible fade show student-flash student-flash--{{ tone }}" role="alert" data-student-state="{{ tone }}" data-flash>
                     {{ message }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" data-flash-dismiss aria-label="Close"></button>
                 </div>
                 {% endif %}
             {% endfor %}
