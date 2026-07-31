@@ -709,6 +709,10 @@ def _section_titles_by_topic(artefacts: Any) -> dict[str, str]:
 
 
 def _objective_label(objective_id: str, lookup: dict[str, dict]) -> str:
+    from app.domain.educational_runtime_engine.student_facing_identity import (
+        format_learning_objective_label,
+    )
+
     obj = lookup.get(objective_id) or {}
     text = str(obj.get("text") or obj.get("title") or "").strip()
     code = student_syllabus_code(
@@ -716,16 +720,9 @@ def _objective_label(objective_id: str, lookup: dict[str, dict]) -> str:
         title=text,
         number=str(obj.get("number") or "").strip(),
     )
-    if code and text:
-        if code in text:
-            return text
-        return f"{code} — {text}"
-    if text:
-        return text
-    if code:
-        return code
+    label = format_learning_objective_label(code=code, text=text)
     # Never emit internal node identifiers to students.
-    return ""
+    return label
 
 
 def _minutes_label(minutes: int) -> str:

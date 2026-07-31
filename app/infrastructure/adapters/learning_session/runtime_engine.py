@@ -43,6 +43,9 @@ from app.application.progress_engine import ProgressEngine, TwinEstimateInput
 from app.application.student_twin.session_evidence_consumer import (
     SessionTwinEvidenceConsumer,
 )
+from app.domain.educational_runtime_engine.student_facing_identity import (
+    format_learning_objective_label,
+)
 from app.infrastructure.adapters.learning_session.persistence import (
     DEFAULT_CHECKLIST,
     LearningSessionPersistenceAdapter,
@@ -1081,7 +1084,9 @@ class LearningSessionRuntimeEngine:
             if not text:
                 continue
             code = str(item.get("code") or "").strip()
-            labels.append(f"{code}: {text}" if code else text)
+            labels.append(
+                format_learning_objective_label(code=code, text=text)
+            )
         return tuple(labels)
 
     def _emit_candidate(

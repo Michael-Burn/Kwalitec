@@ -29,6 +29,7 @@ from app.application.learning_session.scoreable_practice import (
 )
 from app.application.learning_session.scoreable_seed import items_for_topic
 from app.domain.educational_runtime_engine.student_facing_identity import (
+    format_learning_objective_label,
     student_syllabus_code,
 )
 
@@ -289,7 +290,9 @@ class EducationalSubstancePlanner:
         if objectives:
             reading_lines.append("Learning objectives for this session:")
             for obj in objectives:
-                label = f"{obj.code}: {obj.text}" if obj.code else obj.text
+                label = format_learning_objective_label(
+                    code=obj.code, text=obj.text
+                )
                 reading_lines.append(f"• {label}")
         elif task_descriptions:
             reading_lines.append("Today's study focus:")

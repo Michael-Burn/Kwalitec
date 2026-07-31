@@ -471,10 +471,23 @@ class EducationalRuntimeEngineService:
             mission_date=day,
         ).first()
         if existing is not None:
-            return self._mission_snapshot(
+            if not self._mission_exceeds_session_budget(
                 existing,
+                user_id=user_id,
                 artefacts=artefacts,
-                completed_topic_ids=progress.completed_topic_ids,
+                mission_date=day,
+            ):
+                return self._mission_snapshot(
+                    existing,
+                    artefacts=artefacts,
+                    completed_topic_ids=progress.completed_topic_ids,
+                )
+            # Pre-chunk missions packed an entire chapter into one sitting —
+            # retire and regenerate to fit the student's session length.
+            self._retire_oversized_daily_mission(
+                existing,
+                enrolment=enrolment,
+                plan=plan,
             )
 
         package = self._authority.get_active(enrolment.subject_code)
@@ -484,6 +497,8 @@ class EducationalRuntimeEngineService:
             completed_topic_ids=progress.completed_topic_ids,
             artefacts=artefacts,
             preferred_topic_id=progress.current_topic_id,
+            user_id=user_id,
+            curriculum_identity=enrolment.curriculum_identity,
         )
         # MISSION-002: mission topic must match progress current topic.
         topic_id = progress.current_topic_id
@@ -520,6 +535,29 @@ class EducationalRuntimeEngineService:
             if certified_spec is not None
             and certified_spec.topic_id == template.topic_id
             else template.objective_ids
+        )
+        mastered = set(
+            self._mastered_objective_ids_from_events(
+                user_id=user_id,
+                curriculum_identity=enrolment.curriculum_identity,
+            )
+        )
+        objective_ids = [oid for oid in objective_ids if oid not in mastered]
+        if not objective_ids:
+            # Certified/template lists may still be empty after partial coverage;
+            # fall back to remaining topic LOs so the sitting is not blank.
+            objective_ids = [
+                oid
+                for oid in self._topic_objective_ids(artefacts, template.topic_id)
+                if oid not in mastered
+            ] or list(template.objective_ids[:1])
+        session_budget = self._session_budget_minutes(user_id, day)
+        objective_ids = list(
+            self._chunk_objectives_for_session(
+                objective_ids,
+                artefacts=artefacts,
+                session_minutes=session_budget,
+            )
         )
         topic_meta = next(
             (t for t in artefacts.topics if t.get("topic_id") == template.topic_id),
@@ -560,7 +598,10 @@ class EducationalRuntimeEngineService:
             "mission_date": day.isoformat(),
             "title": mission_title,
             "objective_ids": objective_ids,
-            "estimated_duration_minutes": template.estimated_duration_minutes,
+            "estimated_duration_minutes": session_budget
+            or template.estimated_duration_minutes,
+            "session_budget_minutes": session_budget,
+            "objective_chunk": True,
         }
         if certified_spec is not None:
             payload["certified_mission_id"] = certified_spec.mission_id
@@ -902,6 +943,9 @@ class EducationalRuntimeEngineService:
                 "mission_date": mission.mission_date.isoformat(),
                 "evidence_package_id": evidence_package_id,
                 "advance_progress": bool(advance_progress),
+                "objective_ids": list(
+                    self._objective_ids_for_mission(mission.mission_instance_id)
+                ),
                 "progress_authority": (
                     "progress_engine"
                     if self._progress_engine.singularity_enabled()
@@ -910,7 +954,15 @@ class EducationalRuntimeEngineService:
             },
             occurred_at=now,
         )
+        topic_fully_covered = False
         if advance_progress:
+            topic_fully_covered = self._topic_objectives_fully_covered(
+                enrolment=enrolment,
+                artefacts=artefacts,
+                topic_id=mission.topic_id,
+                including_mission_id=mission.mission_instance_id,
+            )
+        if advance_progress and topic_fully_covered:
             self._append_event(
                 event_type=EducationalEventType.TOPIC_COMPLETED,
                 user_id=user_id,
@@ -932,7 +984,7 @@ class EducationalRuntimeEngineService:
             )
         db.session.flush()
 
-        if advance_progress:
+        if advance_progress and topic_fully_covered:
             progress = self._derive_progress_for(enrolment, artefacts)
             previous_topic = mission.topic_id
             plan.current_topic_id = progress.current_topic_id
@@ -973,6 +1025,9 @@ class EducationalRuntimeEngineService:
                 except ValueError:
                     pass
                 enrolment.status = EnrolmentStatus.COMPLETED.value
+        elif advance_progress:
+            # Partial topic coverage — stay on this topic for the next sitting.
+            plan.current_topic_id = mission.topic_id
 
         db.session.commit()
         return self.get_journey(user_id=user_id, subject_code=enrolment.subject_code)
@@ -1203,6 +1258,271 @@ class EducationalRuntimeEngineService:
 
     # ── Internals ─────────────────────────────────────────────────────────
 
+    def _session_budget_minutes(self, user_id: int, mission_date: date) -> int:
+        """Student preferred sitting length; default 60 for Runtime C."""
+        try:
+            from app.application.student_experience.session_duration import (
+                resolve_planned_session_minutes,
+            )
+            from app.services.study_plan_service import StudyPlanService
+
+            plan = StudyPlanService.get_user_active_plan(user_id)
+            minutes = resolve_planned_session_minutes(
+                plan, mission_date=mission_date
+            )
+            if minutes is not None and minutes > 0:
+                return int(minutes)
+        except Exception:
+            pass
+        return 60
+
+    def _objective_minutes_map(
+        self, artefacts: EducationalArtefactSnapshot
+    ) -> dict[str, int]:
+        out: dict[str, int] = {}
+        for obj in artefacts.objectives or ():
+            oid = str(obj.get("objective_id") or "").strip()
+            if not oid:
+                continue
+            try:
+                out[oid] = int(obj.get("estimated_minutes") or 0)
+            except (TypeError, ValueError):
+                out[oid] = 0
+        return out
+
+    def _chunk_objectives_for_session(
+        self,
+        objective_ids: list[str] | tuple[str, ...],
+        *,
+        artefacts: EducationalArtefactSnapshot,
+        session_minutes: int,
+    ) -> tuple[str, ...]:
+        from app.application.curriculum_intelligence.objective_chunk import (
+            select_objectives_for_session,
+        )
+
+        return select_objectives_for_session(
+            objective_ids,
+            session_minutes=session_minutes,
+            objective_minutes=self._objective_minutes_map(artefacts),
+        )
+
+    def _mission_generated_payload(
+        self, mission_instance_id: str
+    ) -> dict[str, Any]:
+        row = (
+            RuntimeEducationalEvent.query.filter_by(
+                mission_instance_id=mission_instance_id,
+                event_type=EducationalEventType.MISSION_GENERATED.value,
+            )
+            .order_by(RuntimeEducationalEvent.id.desc())
+            .first()
+        )
+        if row is None:
+            return {}
+        try:
+            payload = json.loads(row.payload_json or "{}")
+        except json.JSONDecodeError:
+            return {}
+        return payload if isinstance(payload, dict) else {}
+
+    def _objective_ids_for_mission(
+        self, mission_instance_id: str
+    ) -> tuple[str, ...]:
+        payload = self._mission_generated_payload(mission_instance_id)
+        raw = payload.get("objective_ids") or ()
+        return tuple(str(oid).strip() for oid in raw if str(oid).strip())
+
+    def _mastered_objective_ids_from_events(
+        self, *, user_id: int, curriculum_identity: str
+    ) -> tuple[str, ...]:
+        if not curriculum_identity:
+            return ()
+        rows = (
+            RuntimeEducationalEvent.query.filter_by(
+                user_id=user_id,
+                curriculum_identity=curriculum_identity,
+            )
+            .order_by(RuntimeEducationalEvent.id.asc())
+            .all()
+        )
+        completed_missions: set[str] = set()
+        generated: dict[str, tuple[str, ...]] = {}
+        from_completion: list[str] = []
+        for row in rows:
+            mid = str(row.mission_instance_id or "").strip()
+            if (
+                row.event_type == EducationalEventType.MISSION_GENERATED.value
+                and mid
+            ):
+                try:
+                    payload = json.loads(row.payload_json or "{}")
+                except json.JSONDecodeError:
+                    payload = {}
+                if isinstance(payload, dict):
+                    generated[mid] = tuple(
+                        str(oid).strip()
+                        for oid in (payload.get("objective_ids") or ())
+                        if str(oid).strip()
+                    )
+            elif row.event_type == EducationalEventType.MISSION_COMPLETED.value:
+                if mid:
+                    completed_missions.add(mid)
+                try:
+                    payload = json.loads(row.payload_json or "{}")
+                except json.JSONDecodeError:
+                    payload = {}
+                if isinstance(payload, dict):
+                    from_completion.extend(
+                        str(oid).strip()
+                        for oid in (payload.get("objective_ids") or ())
+                        if str(oid).strip()
+                    )
+        mastered: list[str] = list(from_completion)
+        for mid in completed_missions:
+            mastered.extend(generated.get(mid) or ())
+        return tuple(dict.fromkeys(mastered))
+
+    def _topic_objective_ids(
+        self, artefacts: EducationalArtefactSnapshot, topic_id: str
+    ) -> tuple[str, ...]:
+        template = self._mission_template_for_topic(artefacts, topic_id)
+        if template is not None and template.objective_ids:
+            return tuple(template.objective_ids)
+        topic = next(
+            (
+                t
+                for t in artefacts.topics
+                if str(t.get("topic_id") or "") == topic_id
+            ),
+            {},
+        )
+        return tuple(
+            str(o)
+            for o in (
+                topic.get("learning_objective_ids")
+                or topic.get("objective_ids")
+                or ()
+            )
+        )
+
+    def _topic_objectives_fully_covered(
+        self,
+        *,
+        enrolment: RuntimeEnrolment,
+        artefacts: EducationalArtefactSnapshot,
+        topic_id: str,
+        including_mission_id: str,
+    ) -> bool:
+        required = set(self._topic_objective_ids(artefacts, topic_id))
+        if not required:
+            # No LO list — keep legacy whole-topic completion.
+            return True
+        mastered = set(
+            self._mastered_objective_ids_from_events(
+                user_id=enrolment.user_id,
+                curriculum_identity=enrolment.curriculum_identity,
+            )
+        )
+        mastered.update(self._objective_ids_for_mission(including_mission_id))
+        progress = self._derive_progress_for(enrolment, artefacts)
+        if topic_id in progress.completed_topic_ids:
+            return True
+        return required.issubset(mastered)
+
+    def _mission_exceeds_session_budget(
+        self,
+        mission: RuntimeMissionInstance,
+        *,
+        user_id: int,
+        artefacts: EducationalArtefactSnapshot,
+        mission_date: date,
+    ) -> bool:
+        objective_ids = self._objective_ids_for_mission(mission.mission_instance_id)
+        if len(objective_ids) <= 1:
+            return False
+        budget = self._session_budget_minutes(user_id, mission_date)
+        chunked = self._chunk_objectives_for_session(
+            objective_ids,
+            artefacts=artefacts,
+            session_minutes=budget,
+        )
+        return len(chunked) < len(objective_ids)
+
+    def _retire_oversized_daily_mission(
+        self,
+        mission: RuntimeMissionInstance,
+        *,
+        enrolment: RuntimeEnrolment,
+        plan: RuntimeStudyPlanInstance,
+    ) -> None:
+        """Remove today's oversized mission so a budgeted one can be generated."""
+        prior_mission_id = mission.mission_instance_id
+        self._append_event(
+            event_type=EducationalEventType.MISSION_DEFERRED,
+            user_id=enrolment.user_id,
+            curriculum_identity=enrolment.curriculum_identity,
+            enrolment_id=enrolment.enrolment_id,
+            plan_instance_id=plan.plan_instance_id,
+            topic_id=mission.topic_id,
+            mission_instance_id=prior_mission_id,
+            payload={
+                "source": "session_budget_rechunk",
+                "reason": "mission_objectives_exceed_preferred_session_minutes",
+                "prior_status": mission.status,
+            },
+        )
+        db.session.delete(mission)
+        db.session.flush()
+        self._supersede_open_session_for_mission(
+            user_id=enrolment.user_id,
+            mission_instance_id=prior_mission_id,
+        )
+
+    def _supersede_open_session_for_mission(
+        self, *, user_id: int, mission_instance_id: str
+    ) -> None:
+        """Drop open Study Session bindings for a retired oversized mission."""
+        mid = (mission_instance_id or "").strip()
+        if not mid:
+            return
+        try:
+            from app.infrastructure.adapters.learning_session.persistence import (
+                NS_HANDLE,
+                NS_MISSION,
+                NS_OPEN,
+                LearningSessionPersistenceAdapter,
+            )
+
+            adapter = LearningSessionPersistenceAdapter()
+            sid = str(user_id)
+            open_doc = adapter.find_open(
+                student_id=sid, mission_instance_id=mid
+            )
+            if open_doc is None:
+                adapter.store.delete(NS_MISSION, f"{sid}::{mid}")
+                return
+            session_id = str(open_doc.get("session_id") or "").strip()
+            if session_id:
+                handle = adapter.load(session_id=session_id) or {}
+                adapter.store.save(
+                    NS_HANDLE,
+                    session_id,
+                    {
+                        **handle,
+                        "status": "superseded",
+                        "phase": "abandoned",
+                        "superseded_reason": "session_budget_rechunk",
+                    },
+                )
+                open_ptr = adapter.store.get(NS_OPEN, sid)
+                if open_ptr and str(open_ptr.get("session_id")) == session_id:
+                    adapter.store.delete(NS_OPEN, sid)
+            adapter.store.delete(NS_MISSION, f"{sid}::{mid}")
+        except Exception:
+            # Fail soft — mission rechunk must not abort on session-store issues.
+            return
+
     def _load_artefacts(self, subject_code: str) -> EducationalArtefactSnapshot:
         snapshot = self._artefacts.derive_active(subject_code)
         if snapshot is None:
@@ -1218,6 +1538,8 @@ class EducationalRuntimeEngineService:
         completed_topic_ids: tuple[str, ...] | list[str],
         artefacts: EducationalArtefactSnapshot,
         preferred_topic_id: str | None = None,
+        user_id: int | None = None,
+        curriculum_identity: str | None = None,
     ):
         """EI-002B: select Daily Mission from certified LOs when package is certified.
 
@@ -1237,13 +1559,27 @@ class EducationalRuntimeEngineService:
         } and status not in {"certified", "certified_with_warnings"}:
             if not authority.startswith("legacy"):
                 return None
-        # Mastered objectives inferred from completed topics' objective lists.
+        # Mastered objectives: completed topics + LOs covered by completed missions.
         mastered: list[str] = []
         completed = set(completed_topic_ids)
         for topic in artefacts.topics:
             tid = str(topic.get("topic_id") or "")
             if tid in completed:
-                mastered.extend(str(o) for o in (topic.get("objective_ids") or ()))
+                mastered.extend(
+                    str(o)
+                    for o in (
+                        topic.get("learning_objective_ids")
+                        or topic.get("objective_ids")
+                        or ()
+                    )
+                )
+        if user_id and curriculum_identity:
+            mastered.extend(
+                self._mastered_objective_ids_from_events(
+                    user_id=int(user_id),
+                    curriculum_identity=str(curriculum_identity),
+                )
+            )
         calibration = None
         structure = package.get("structure") if isinstance(package, dict) else {}
         struct_cal = (
@@ -1476,10 +1812,27 @@ class EducationalRuntimeEngineService:
                 None,
             )
             if template is not None:
+                generated = self._mission_generated_payload(
+                    row.mission_instance_id
+                )
+                chunk_ids = tuple(
+                    str(oid).strip()
+                    for oid in (generated.get("objective_ids") or ())
+                    if str(oid).strip()
+                )
+                budget_raw = generated.get("session_budget_minutes")
+                if budget_raw is None:
+                    budget_raw = generated.get("estimated_duration_minutes")
+                try:
+                    budget = int(budget_raw) if budget_raw is not None else None
+                except (TypeError, ValueError):
+                    budget = None
                 quality = self._quality.build_mission_quality_envelope(
                     template=template,
                     artefacts=artefacts,
                     completed_topic_ids=completed_topic_ids or (),
+                    objective_ids=chunk_ids or None,
+                    estimated_duration_minutes=budget,
                 )
         human_code = student_syllabus_code(
             code=row.topic_code or "",

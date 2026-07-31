@@ -32,6 +32,9 @@ from app.application.student_runtime.exceptions import (
     MissionNotAcceptable,
     SessionSpineUnavailable,
 )
+from app.domain.educational_runtime_engine.student_facing_identity import (
+    format_learning_objective_label,
+)
 from app.domain.learning_journey.entities.learning_journey import LearningJourney
 from app.domain.learning_journey.entities.learning_objective import (
     LearningObjective,
@@ -352,7 +355,7 @@ class StudentRuntimeCoordinator:
         substance_status = "incomplete"
         if substance is not None:
             learning_objectives = [
-                (f"{obj.code}: {obj.text}" if obj.code else obj.text)
+                format_learning_objective_label(code=obj.code, text=obj.text)
                 for obj in substance.learning_objectives
             ]
             activity_count = max(1, substance.activity_count)

@@ -132,6 +132,25 @@ def display_topic_title(*, title: str = "", code: str = "") -> str:
     return text
 
 
+def format_learning_objective_label(*, code: str = "", text: str = "") -> str:
+    """Student LO label without duplicated syllabus codes.
+
+    Published packages often store ``text`` already prefixed (``4.2.1 Binomial…``).
+    Call sites must not prepend ``code:`` again.
+    """
+    body = sanitize_student_text(text)
+    human = student_syllabus_code(code=code, title=body)
+    if not body:
+        return human
+    if not human:
+        return body
+    if body.startswith(f"{human} ") or body.startswith(f"{human}:"):
+        # Prefer "4.2.1 Title" over "4.2.1: 4.2.1 Title".
+        rest = body[len(human) :].lstrip(" :—-")
+        return f"{human} {rest}".strip() if rest else human
+    return f"{human} {body}".strip()
+
+
 def student_mission_title(*, code: str = "", title: str = "") -> str:
     """Build ``Study {code} — {title}`` using only human syllabus references."""
     repaired = repair_truncated_topic_title(code=code, title=title)

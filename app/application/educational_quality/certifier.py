@@ -739,16 +739,33 @@ class EducationalQualityCertifier:
         template: MissionTemplateSnapshot,
         artefacts: EducationalArtefactSnapshot,
         completed_topic_ids: tuple[str, ...] | set[str],
+        objective_ids: tuple[str, ...] | list[str] | None = None,
+        estimated_duration_minutes: int | None = None,
     ) -> MissionQualityEnvelope:
         topic = next(
             (t for t in artefacts.topics if t["topic_id"] == template.topic_id),
             {},
         )
+        selected_ids = tuple(
+            str(oid).strip()
+            for oid in (
+                objective_ids
+                if objective_ids is not None
+                else template.objective_ids
+            )
+            if str(oid).strip()
+        )
+        if not selected_ids:
+            selected_ids = tuple(template.objective_ids)
+        selected_set = set(selected_ids)
         objectives = [
             o
             for o in artefacts.objectives
-            if o["objective_id"] in set(template.objective_ids)
+            if o["objective_id"] in selected_set
         ]
+        # Preserve sitting order when a session-sized subset is supplied.
+        by_id = {o["objective_id"]: o for o in objectives}
+        objectives = [by_id[oid] for oid in selected_ids if oid in by_id]
         topic_title = str(topic.get("title") or template.topic_code)
         human_topic_code = student_syllabus_code(
             code=str(template.topic_code or topic.get("code") or ""),
@@ -769,11 +786,16 @@ class EducationalQualityCertifier:
             getattr(template, "prerequisite_ids", ())
             or tuple(topic.get("prerequisite_ids") or ())
         )
-        duration = int(
-            getattr(template, "estimated_duration_minutes", 0)
-            or topic.get("estimated_minutes")
-            or 0
-        )
+        if estimated_duration_minutes is not None and int(
+            estimated_duration_minutes
+        ) > 0:
+            duration = int(estimated_duration_minutes)
+        else:
+            duration = int(
+                getattr(template, "estimated_duration_minutes", 0)
+                or topic.get("estimated_minutes")
+                or 0
+            )
         completion = str(
             getattr(template, "completion_definition", "")
             or build_mission_completion_definition(topic_code=human_topic_code)
@@ -794,7 +816,7 @@ class EducationalQualityCertifier:
             topic_id=template.topic_id,
             topic_code=human_topic_code,
             topic_title=topic_title,
-            objective_ids=tuple(template.objective_ids),
+            objective_ids=selected_ids,
             objective_codes=objective_codes,
             estimated_duration_minutes=duration,
             educational_rationale=rationale,
@@ -803,7 +825,7 @@ class EducationalQualityCertifier:
         return MissionQualityEnvelope(
             topic_id=template.topic_id,
             topic_code=human_topic_code,
-            objective_ids=tuple(template.objective_ids),
+            objective_ids=selected_ids,
             estimated_duration_minutes=duration,
             completion_definition=completion,
             educational_rationale=rationale,
