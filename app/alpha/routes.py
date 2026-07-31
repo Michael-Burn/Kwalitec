@@ -25,6 +25,7 @@ from app.alpha.forms import (
 from app.presentation.consolidation import (
     canonical_home_url,
     redirect_to_canonical_home,
+    redirect_to_student_home,
 )
 from app.services.alpha_feedback_service import (
     KIND_EXPLANATION_CLEAR,
@@ -64,7 +65,7 @@ def onboarding_complete():
     """Mark product onboarding complete."""
     AlphaOnboardingService.complete(current_user.id)
     flash("You're set — open today's mission when you're ready.", "success")
-    return redirect_to_canonical_home()
+    return redirect_to_student_home()
 
 
 @alpha_bp.post("/onboarding/skip")
@@ -72,7 +73,7 @@ def onboarding_complete():
 def onboarding_skip():
     """Skip onboarding; still reachable from Help."""
     AlphaOnboardingService.skip(current_user.id)
-    return redirect_to_canonical_home()
+    return redirect_to_student_home()
 
 
 @alpha_bp.get("/help")

@@ -14,11 +14,15 @@ Legacy workspace chrome and runtime shell switching are retired.
 ``SOLE_RUNTIME`` still governs home redirects only. Controllers and
 engines unchanged.
 
-Role-aware landing (UX-001): Founder and Administrator Console operators
-land on the Kwalitec Console (``founder_dashboard.index``) via RBAC
-(``is_founder_user``), not the student product. Student-only identities
-keep the Education OS / legacy home. Dual-role Founder/Admin + Student
-accounts still land on Console; Student OS is entered from Console.
+Role-aware landing (UX-001 / FV-001B): Founder and Administrator Console
+operators resolve ``canonical_home`` to the Kwalitec Console for bare
+``/`` and login fallbacks. Dual-access users choose via Experience
+Selection after login.
+
+Student-journey completions (Baseline finalize, onboarding done, activate
+plan, Start Session failure recovery) must use
+``redirect_to_student_home`` — never yank a learner mid-flow into Console
+because their account also has Founder access.
 """
 
 from __future__ import annotations
@@ -67,6 +71,21 @@ def canonical_home_url(**values) -> str:
 def redirect_to_canonical_home(**values):
     """Redirect to the authoritative home for the current user and flag posture."""
     return redirect(canonical_home_url(**values))
+
+
+def student_home_url(**values) -> str:
+    """Always Student Experience Home — ignore Founder Console RBAC."""
+    return url_for(CANONICAL_HOME_ENDPOINT, **values)
+
+
+def redirect_to_student_home(**values):
+    """Stay in Student Experience after a student-product action.
+
+    Use after Baseline finalize, student onboarding, plan activation, and
+    similar flows. Do not use ``redirect_to_canonical_home`` there — that
+    sends dual-access Founders to Console.
+    """
+    return redirect(student_home_url(**values))
 
 
 def _current_user_is_founder() -> bool:

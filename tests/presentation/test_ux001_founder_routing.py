@@ -165,3 +165,110 @@ def test_experience_selection_forbidden_for_student_only(app, client, ctx):
     response = client.get("/auth/experience", follow_redirects=False)
     assert response.status_code in {302, 303}
     assert "/auth/experience" not in response.headers.get("Location", "")
+
+
+def test_student_journey_home_ignores_founder_console_rbac(app, client, ctx):
+    """Dual-access Completing student setup must not resolve Console as Home."""
+    from app.presentation.consolidation import (
+        canonical_home_url,
+        student_home_url,
+    )
+
+    user = _make_user("ux001-student-journey@kwalitec.example")
+    IdentityService.grant_role(user, Role.FOUNDER)
+    IdentityService.grant_role(user, Role.STUDENT)
+    client.post(
+        "/auth/login",
+        data={"email": user.email, "password": "password123"},
+        follow_redirects=True,
+    )
+    with client:
+        client.get("/student/")
+        assert "/student" in student_home_url()
+        assert "/console" in canonical_home_url()
+
+
+def test_baseline_finalize_keeps_founder_in_student_experience(
+    app, client, ctx, monkeypatch
+):
+    """Begin learning must open Student Home, not Founder Console."""
+    from datetime import date, timedelta
+    from types import SimpleNamespace
+
+    from app.application.student_baseline import (
+        BaselineSubjectScope,
+        StudentBaselineService,
+    )
+    from app.application.student_baseline.enums import (
+        ConfidenceBand,
+        ExamHistory,
+        LearningObjective,
+        PositionMode,
+        PreviousExperience,
+    )
+
+    user = _make_user("ux001-baseline-finalize@kwalitec.example")
+    IdentityService.grant_role(user, Role.FOUNDER)
+    client.post(
+        "/auth/login",
+        data={"email": user.email, "password": "password123"},
+        follow_redirects=True,
+    )
+
+    with client.session_transaction() as sess:
+        sess["wizard_data"] = {
+            "exam_category": "IFoA",
+            "exam_paper": "CS1",
+            "exam_sitting": "April 2027",
+            "exam_date": (date.today() + timedelta(days=200)).isoformat(),
+            "weekday_study_minutes": 60,
+            "weekend_study_minutes": 90,
+            "preferred_session_minutes": 60,
+            "study_preference": "Mixed",
+            "target_grade": "Pass",
+            "curriculum_version": "2026",
+        }
+
+    scope = BaselineSubjectScope(
+        subject_key="IFoA:CS1",
+        category_code="IFoA",
+        subject_code="CS1",
+        curriculum_version="2026",
+        exam_name="IFoA CS1",
+        exam_sitting="April 2027",
+        exam_date=date.today() + timedelta(days=200),
+        weekday_study_minutes=60,
+        weekend_study_minutes=90,
+        preferred_session_minutes=60,
+        study_preference="Mixed",
+        target_grade="Pass",
+    )
+    draft = StudentBaselineService.ensure_draft(user.id, scope)
+    StudentBaselineService.save_answer(
+        draft.id,
+        user.id,
+        experience=PreviousExperience.BRAND_NEW.value,
+        position_mode=PositionMode.START_BEGINNING.value,
+        exam_history=ExamHistory.FIRST_SITTING.value,
+        learning_objective=LearningObjective.RECOMMEND.value,
+        confidence=ConfidenceBand.MODERATE.value,
+    )
+
+    monkeypatch.setattr(
+        "app.student_baseline.routes.BaselineFinalizeCoordinator.finalize",
+        lambda self, **kwargs: SimpleNamespace(
+            message=(
+                "Enrolled in published curriculum CS1:2026.1 (Runtime C)."
+            ),
+        ),
+    )
+
+    resp = client.post(
+        "/baseline/step/6",
+        data={},
+        follow_redirects=False,
+    )
+    assert resp.status_code in {302, 303}
+    location = resp.headers.get("Location", "")
+    assert "/student" in location
+    assert "/console" not in location

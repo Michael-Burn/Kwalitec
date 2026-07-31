@@ -204,6 +204,174 @@ class EducationalRuntimeEngineService:
         db.session.commit()
         return self.get_journey(user_id=user_id, subject_code=code)
 
+    def seed_declared_position(
+        self,
+        *,
+        user_id: int,
+        subject_code: str,
+        curriculum_topic_code: str | None,
+        completed_curriculum_topics: list[str] | tuple[str, ...] | None = None,
+        realign_today_mission: bool = True,
+    ) -> ProgressSnapshot | None:
+        """Apply Baseline continue-from position onto Runtime C progress.
+
+        Emits ``TOPIC_COMPLETED`` events (source=baseline_self_declared) for
+        prior leaf topics, advances ``current_topic_id``, and optionally
+        replaces today's mission when it still points at a pre-baseline topic.
+
+        Idempotent: already-completed topics are skipped.
+        """
+        from app.application.educational_runtime_engine.baseline_position import (
+            resolve_baseline_position_seed,
+        )
+
+        code = (subject_code or "").strip().upper()
+        if not code or not (curriculum_topic_code or "").strip():
+            return None
+
+        enrolment = self._require_active_enrolment(user_id, code)
+        artefacts = self._load_artefacts(enrolment.subject_code)
+        seed = resolve_baseline_position_seed(
+            artefacts,
+            curriculum_topic_code=curriculum_topic_code,
+            completed_curriculum_topics=completed_curriculum_topics,
+        )
+        if not seed.completed_topic_ids and seed.current_topic_id is None:
+            return None
+
+        plan = self._require_active_plan(enrolment)
+        progress_before = self._derive_progress_for(enrolment, artefacts)
+        already = set(progress_before.completed_topic_ids)
+        to_complete = [
+            tid for tid in seed.completed_topic_ids if tid not in already
+        ]
+
+        # Also treat "current" as not completed; if caller already completed
+        # past it via Confirm-mission, keep those events (honest history) and
+        # advance from derive_progress after seeding priors.
+        if not to_complete and seed.current_topic_id:
+            # Priors already present — still realign mission / pointer if needed.
+            if (
+                progress_before.current_topic_id == seed.current_topic_id
+                and not realign_today_mission
+            ):
+                return self._progress_snapshot(progress_before)
+
+        now = _utc_now()
+        for topic_id in to_complete:
+            self._append_event(
+                event_type=EducationalEventType.TOPIC_COMPLETED,
+                user_id=user_id,
+                curriculum_identity=enrolment.curriculum_identity,
+                enrolment_id=enrolment.enrolment_id,
+                plan_instance_id=plan.plan_instance_id,
+                topic_id=topic_id,
+                payload={
+                    "source": seed.source,
+                    "baseline_continue_code": seed.continue_code,
+                    "warrant": "thin_self_declared",
+                },
+                occurred_at=now,
+            )
+
+        db.session.flush()
+        progress = self._derive_progress_for(enrolment, artefacts)
+
+        # Prefer Baseline resume topic when it is still incomplete.
+        target_current = seed.current_topic_id
+        if (
+            target_current
+            and target_current in progress.incomplete_topic_ids
+        ):
+            plan.current_topic_id = target_current
+        else:
+            plan.current_topic_id = progress.current_topic_id
+
+        if to_complete or plan.current_topic_id != progress_before.current_topic_id:
+            self._append_event(
+                event_type=EducationalEventType.JOURNEY_ADVANCED,
+                user_id=user_id,
+                curriculum_identity=enrolment.curriculum_identity,
+                enrolment_id=enrolment.enrolment_id,
+                plan_instance_id=plan.plan_instance_id,
+                topic_id=plan.current_topic_id,
+                payload={
+                    "source": seed.source,
+                    "from_topic_id": progress_before.current_topic_id,
+                    "to_topic_id": plan.current_topic_id,
+                    "baseline_continue_code": seed.continue_code,
+                    "seeded_topic_count": len(to_complete),
+                    "coverage_ratio": progress.coverage_ratio,
+                },
+                occurred_at=now,
+            )
+
+        if realign_today_mission and plan.current_topic_id:
+            self._realign_todays_mission_after_baseline_seed(
+                enrolment=enrolment,
+                plan=plan,
+                artefacts=artefacts,
+                expected_topic_id=plan.current_topic_id,
+            )
+
+        db.session.commit()
+        return self.get_progress(user_id=user_id, subject_code=code)
+
+    def reconcile_baseline_position_from_declarations(
+        self,
+        *,
+        user_id: int,
+        subject_code: str,
+        curriculum_topic_code: str | None,
+        completed_curriculum_topics: list[str] | tuple[str, ...] | None = None,
+    ) -> ProgressSnapshot | None:
+        """Self-heal Runtime C position from a completed Baseline row."""
+        return self.seed_declared_position(
+            user_id=user_id,
+            subject_code=subject_code,
+            curriculum_topic_code=curriculum_topic_code,
+            completed_curriculum_topics=completed_curriculum_topics,
+            realign_today_mission=True,
+        )
+
+    def _realign_todays_mission_after_baseline_seed(
+        self,
+        *,
+        enrolment: RuntimeEnrolment,
+        plan: RuntimeStudyPlanInstance,
+        artefacts: EducationalArtefactSnapshot,
+        expected_topic_id: str,
+    ) -> None:
+        day = date.today()
+        mission = RuntimeMissionInstance.query.filter_by(
+            plan_instance_id=plan.plan_instance_id,
+            mission_date=day,
+        ).first()
+        if mission is None:
+            return
+        if mission.topic_id == expected_topic_id:
+            return
+        # Wrong chapter for declared position — remove so generate_daily_mission
+        # can recreate against the seeded current topic (including when the
+        # student already "Confirmed" 1.1 without a real session).
+        self._append_event(
+            event_type=EducationalEventType.MISSION_DEFERRED,
+            user_id=enrolment.user_id,
+            curriculum_identity=enrolment.curriculum_identity,
+            enrolment_id=enrolment.enrolment_id,
+            plan_instance_id=plan.plan_instance_id,
+            topic_id=mission.topic_id,
+            mission_instance_id=mission.mission_instance_id,
+            payload={
+                "source": "baseline_position_realign",
+                "reason": "mission_topic_precedes_declared_baseline_position",
+                "expected_topic_id": expected_topic_id,
+                "prior_status": mission.status,
+            },
+        )
+        db.session.delete(mission)
+        db.session.flush()
+
     # ── Study plan ────────────────────────────────────────────────────────
 
     def instantiate_study_plan(

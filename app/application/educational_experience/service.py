@@ -160,6 +160,10 @@ class EducationalExperienceService:
         if enrolment is None:
             return None
 
+        # Self-heal: apply completed Baseline continue-from onto Runtime C
+        # when enrolment was created before position seeding existed.
+        self._reconcile_baseline_position(user_id, enrolment)
+
         day = mission_date or date.today()
         artefacts = self._artefacts.derive_active(enrolment.subject_code)
         if artefacts is None:
@@ -215,6 +219,73 @@ class EducationalExperienceService:
             pacing=pacing,
             artefacts=artefacts,
         )
+
+    def _reconcile_baseline_position(
+        self,
+        user_id: int,
+        enrolment: RuntimeEnrolment,
+    ) -> None:
+        """Apply Baseline continue-from onto Runtime C when seed was skipped."""
+        try:
+            from app.application.student_baseline import StudentBaselineService
+            from app.application.student_baseline.enums import PositionMode
+            from app.application.student_baseline.mapper import build_plan_fields
+            from app.application.student_baseline.topics import ordered_topic_codes
+
+            subject_key = StudentBaselineService.subject_key(
+                "Published", enrolment.subject_code
+            )
+            row = StudentBaselineService.get_complete(user_id, subject_key)
+            if row is None:
+                for category in ("PUBLISHED", "IFoA"):
+                    alt = StudentBaselineService.subject_key(
+                        category, enrolment.subject_code
+                    )
+                    row = StudentBaselineService.get_complete(user_id, alt)
+                    if row is not None:
+                        break
+            if row is None:
+                # Match any complete Baseline for this subject code.
+                from app.application.student_baseline.enums import BaselineStatus
+                from app.models.student_baseline import StudentBaseline
+
+                row = (
+                    StudentBaseline.query.filter_by(
+                        user_id=user_id,
+                        subject_code=enrolment.subject_code,
+                        status=BaselineStatus.COMPLETE.value,
+                    )
+                    .order_by(StudentBaseline.id.desc())
+                    .first()
+                )
+            if row is None:
+                return
+            decls = StudentBaselineService.declarations_from_row(row)
+            if decls is None:
+                return
+            if decls.position_mode is not PositionMode.CONTINUE_TOPIC:
+                return
+            if not (decls.curriculum_topic_code or "").strip():
+                return
+
+            codes = ordered_topic_codes(
+                category_code=row.category_code or "Published",
+                subject_code=row.subject_code or enrolment.subject_code,
+                curriculum_version=row.curriculum_version or "published",
+            )
+            fields = build_plan_fields(decls, ordered_topic_codes=codes)
+            self._runtime.reconcile_baseline_position_from_declarations(
+                user_id=user_id,
+                subject_code=enrolment.subject_code,
+                curriculum_topic_code=fields.curriculum_topic_code,
+                completed_curriculum_topics=fields.completed_curriculum_topics,
+            )
+        except Exception:
+            logger.exception(
+                "baseline_position_reconcile_failed user=%s subject=%s",
+                user_id,
+                enrolment.subject_code,
+            )
 
     def _resolve_enrolment(
         self,

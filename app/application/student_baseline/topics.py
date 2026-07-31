@@ -2,6 +2,9 @@
 
 Supports JSON-bundled curricula (CurriculumEngine) and founder-published
 subjects (Educational Engine Foundation artefacts).
+
+For published packages, Baseline continue-from lists **syllabus sections**
+(e.g. CS1 ``Data Analysis``), not leaf learning objectives (1.1, 1.2, …).
 """
 
 from __future__ import annotations
@@ -17,6 +20,8 @@ _HIERARCHICAL_SYLLABUS_CODE = re.compile(r"^\d+\.\d+(?:\.\d+)*$")
 _TITLE_LEADING_SYLLABUS = re.compile(
     r"^(\d+\.\d+(?:\.\d+)*)\s+(.+)$",
 )
+_SECTION_LEADING_NUMBER = re.compile(r"^(\d+)\s+(.+)$")
+_SMALL_WORDS = frozenset({"and", "or", "of", "the", "a", "an", "in", "on", "to", "for"})
 
 
 def list_topic_choices(
@@ -27,9 +32,9 @@ def list_topic_choices(
 ) -> list[tuple[str, str]]:
     """Return ``(code, label)`` pairs for the Baseline topic picker.
 
-    Codes are human syllabus codes where available (e.g. ``1.1``), matching
-    Study Plan / completed-topic semantics. Empty when no syllabus can be
-    resolved — callers must not offer continue-from-topic without choices.
+    Published subjects use section codes (``1``, ``2``, …). JSON-bundled
+    curricula use topic codes. Empty when no syllabus can be resolved —
+    callers must not offer continue-from-topic without choices.
     """
     version = (curriculum_version or "").strip()
     category = (category_code or "").strip()
@@ -52,7 +57,7 @@ def ordered_topic_codes(
     subject_code: str,
     curriculum_version: str | None,
 ) -> list[str]:
-    """Ordered topic codes for completed-prefix inference on continue."""
+    """Ordered topic/section codes for completed-prefix inference on continue."""
     return [
         code
         for code, _label in list_topic_choices(
@@ -106,6 +111,60 @@ def format_baseline_topic_choice(
     return human_code, f"{human_code} — {display}"
 
 
+def format_baseline_section_choice(
+    *,
+    number: str = "",
+    title: str = "",
+    code: str = "",
+) -> tuple[str, str] | None:
+    """Build a section-level picker row for published syllabi.
+
+    CS1 example: title ``1 Data analysis`` → ``("1", "Data Analysis")``.
+    """
+    raw = (title or "").strip()
+    num = (number or "").strip()
+    if not num and code and str(code).strip().isdigit():
+        num = str(code).strip()
+
+    match = _SECTION_LEADING_NUMBER.match(raw)
+    if match:
+        if not num:
+            num = match.group(1)
+        raw = match.group(2).strip()
+    elif num and raw.startswith(num):
+        raw = raw[len(num) :].lstrip(" .:—-")
+
+    raw = raw.strip()
+    if not num or not raw:
+        return None
+    if not re.match(r"^\d+$", num):
+        return None
+    if _looks_like_non_syllabus_noise(raw):
+        return None
+    letters = sum(1 for ch in raw if ch.isalpha())
+    if letters < 4:
+        return None
+
+    return num, _title_case_section(raw)
+
+
+def _title_case_section(text: str) -> str:
+    words = re.split(r"(\s+)", text.strip())
+    out: list[str] = []
+    word_index = 0
+    for part in words:
+        if not part or part.isspace():
+            out.append(part)
+            continue
+        lower = part.lower()
+        if word_index > 0 and lower in _SMALL_WORDS:
+            out.append(lower)
+        else:
+            out.append(part[:1].upper() + part[1:].lower() if part else part)
+        word_index += 1
+    return "".join(out)
+
+
 def _looks_like_non_syllabus_noise(text: str) -> bool:
     lowered = text.lower()
     noise_markers = (
@@ -141,11 +200,42 @@ def _published_topic_choices(subject_code: str) -> list[tuple[str, str]]:
         )
         return []
 
-    if snapshot is None or not snapshot.topics:
+    if snapshot is None:
         return []
 
-    choices: list[tuple[str, str]] = []
-    seen: set[str] = set()
+    # Prefer official syllabus sections (chapters), not leaf objectives.
+    sections = getattr(snapshot, "sections", None) or ()
+    if sections:
+        choices: list[tuple[str, str]] = []
+        seen: set[str] = set()
+        for section in sorted(
+            sections,
+            key=lambda s: (
+                int(s.get("display_order") or 0),
+                str(s.get("number") or s.get("code") or ""),
+            ),
+        ):
+            formatted = format_baseline_section_choice(
+                number=str(section.get("number") or "").strip(),
+                title=str(section.get("title") or "").strip(),
+                code=str(section.get("code") or "").strip(),
+            )
+            if formatted is None:
+                continue
+            value, label = formatted
+            if value in seen:
+                continue
+            seen.add(value)
+            choices.append((value, label))
+        if choices:
+            return choices
+
+    # Fallback: leaf topics only when the package has no usable sections.
+    if not snapshot.topics:
+        return []
+
+    choices = []
+    seen = set()
     for topic in sorted(
         snapshot.topics,
         key=lambda t: (

@@ -32,6 +32,23 @@ from app.application.platform_integration.routing import RuntimeRoutingService
 from app.services.study_plan_service import StudyPlanService
 
 
+def _baseline_position_from_kwargs(
+    runtime_a_kwargs: dict[str, Any] | None,
+) -> dict[str, Any] | None:
+    """Extract Baseline continue-from fields carried in Runtime A kwargs."""
+    if not runtime_a_kwargs:
+        return None
+    code = runtime_a_kwargs.get("curriculum_topic_code")
+    if not (code or "").strip():
+        return None
+    return {
+        "curriculum_topic_code": str(code).strip(),
+        "completed_curriculum_topics": list(
+            runtime_a_kwargs.get("completed_curriculum_topics") or ()
+        ),
+    }
+
+
 class FounderStudentEnrolmentBridge:
     """Orchestrate enrolment with audited runtime selection.
 
@@ -118,6 +135,9 @@ class FounderStudentEnrolmentBridge:
                 user_id=user_id,
                 decision=decision,
                 exam_date=exam_date,
+                baseline_position=_baseline_position_from_kwargs(
+                    runtime_a_kwargs
+                ),
             )
 
         return self._enrol_runtime_a(
@@ -132,6 +152,7 @@ class FounderStudentEnrolmentBridge:
         user_id: int,
         decision,
         exam_date: date | None,
+        baseline_position: dict[str, Any] | None = None,
     ) -> EnrolmentBridgeResult:
         try:
             journey = self._runtime_c.enrol_student(
@@ -163,6 +184,32 @@ class FounderStudentEnrolmentBridge:
             correlation_id=f"v1s007-bridge-c-{journey.enrolment.enrolment_id}",
             require=False,
         )
+
+        # SB-001A → Runtime C: seed journey from declared Baseline position.
+        if baseline_position and baseline_position.get("curriculum_topic_code"):
+            try:
+                self._runtime_c.seed_declared_position(
+                    user_id=user_id,
+                    subject_code=decision.subject_code,
+                    curriculum_topic_code=baseline_position.get(
+                        "curriculum_topic_code"
+                    ),
+                    completed_curriculum_topics=baseline_position.get(
+                        "completed_curriculum_topics"
+                    )
+                    or (),
+                    realign_today_mission=True,
+                )
+            except Exception:
+                # Enrolment already succeeded — position seed must not roll it back.
+                import logging
+
+                logging.getLogger(__name__).exception(
+                    "baseline_position_seed_failed user=%s subject=%s",
+                    user_id,
+                    decision.subject_code,
+                )
+
         return EnrolmentBridgeResult(
             runtime_authority=RuntimeAuthority.PUBLISHED_CURRICULUM,
             routing=decision,

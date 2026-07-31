@@ -29,7 +29,7 @@ from app.application.platform_integration.routing import RuntimeRoutingService
 from app.application.platform_integration.subject_catalogue import (
     SubjectCatalogueService,
 )
-from app.presentation.consolidation import redirect_to_canonical_home
+from app.presentation.consolidation import redirect_to_student_home
 from app.presentation.student.services.choose_exam_service import ChooseExamService
 from app.services import examination_catalogue as catalogue
 from app.services.curriculum_engine_service import CurriculumEngineService
@@ -930,4 +930,4 @@ def set_active_plan(study_plan_id: int):
         flash(str(e), "danger")
         return redirect(url_for("study_plan.list_plans"))
 
-    return redirect_to_canonical_home()
+    return redirect_to_student_home()

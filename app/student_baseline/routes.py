@@ -33,7 +33,10 @@ from app.application.student_baseline.enums import (
     PositionMode,
     PreviousExperience,
 )
-from app.presentation.consolidation import redirect_to_canonical_home
+from app.presentation.consolidation import (
+    redirect_to_canonical_home,
+    redirect_to_student_home,
+)
 from app.services import examination_catalogue as catalogue
 from app.services.curriculum_engine_service import CurriculumEngineService
 from app.services.subject_support_service import SubjectSupportService
@@ -174,7 +177,7 @@ def _helper_for(step: int) -> str:
         1: ("A quick check so we meet you where you are — "
             "not at chapter one by default."),
         2: "Choose a starting point on the official syllabus. No percentages needed.",
-        3: "First sitting or a previous attempt. Marks are optional.",
+        3: "",
         4: "This guides how we open your plan — you can change direction later.",
         5: "Self-assessment only. We do not diagnose from this answer.",
         6: "Confirm once. Then we initialise your study profile and open Home.",
@@ -469,7 +472,8 @@ def step_post(step: int):
     session.pop("wizard_data", None)
     WelcomeService.mark_eligible(current_user.id)
     flash(result.message, "success")
-    return redirect_to_canonical_home()
+    # Stay in Student Experience — dual-access Founders must not land on Console.
+    return redirect_to_student_home()
 
 
 @student_baseline_bp.post("/restart")
