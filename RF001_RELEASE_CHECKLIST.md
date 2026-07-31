@@ -13,7 +13,7 @@
 | 1 | Repository health | **PASS** — no PX TODOs, no debug leftovers, no temp artefacts committed; validation commit cleans working tree |
 | 2 | Dependency verification | **PASS** — `requirements.txt` + Waitress; no npm build; `pip check` clean in `.venv` |
 | 3 | Production configuration | **PASS** — verification only (see deployment report) |
-| 4 | Render deployment | **CUTOVER** — push RF-001 commit to `main`; Manual Deploy required if auto-deploy off |
+| 4 | Render deployment | **PUSH+TAG DONE** — Manual Deploy required (auto-deploy not observed; live still `d94d514…`) |
 | 5 | Founder smoke walkthrough | **PASS** (17/17 path checks + workflow suite) |
 | 5 | Student smoke walkthrough | **PASS** (17/17 path checks + workflow suite) |
 | 6 | Performance sanity | **PASS** — no broken assets / login & static 200; no release blockers |

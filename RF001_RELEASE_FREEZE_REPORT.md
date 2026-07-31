@@ -32,8 +32,8 @@ RF-001 prepares a stable, reproducible Founder Validation Build. It is not a dev
 | Production config audit | **PASS** (verification only) |
 | Live host health (pre-cutover) | **PASS** at `d94d514…` |
 | Alembic head | `202607300005` |
-| RF-001 cutover | Push + **Manual Deploy** on Render |
-| Post-deploy commit match | Operator confirms `/health.commit` |
+| RF-001 cutover | Push + tag **DONE**; **Manual Deploy** still required on Render |
+| Post-deploy commit match | Operator confirms `/health.commit` starts with `8915930` / `4befe80` |
 
 See `RF001_DEPLOYMENT_REPORT.md`.
 
@@ -75,7 +75,7 @@ Documented in `FOUNDER_VALIDATION_BUILD.md` (full-tree residual debt, deferred h
 | Criterion | Met |
 |-----------|-----|
 | Repository clean (validation commit) | Yes |
-| Production deployment path verified | Yes (Manual Deploy required) |
+| Production deployment path verified | Yes — push/tag done; **Manual Deploy** required for live cutover |
 | Founder walkthrough complete | Yes |
 | Student walkthrough complete | Yes |
 | Automated release gates / smoke pass | Yes |
@@ -85,7 +85,9 @@ Documented in `FOUNDER_VALIDATION_BUILD.md` (full-tree residual debt, deferred h
 
 ### Decision: **PASS — GO FOR FOUNDER VALIDATION (G1)**
 
-Overall label: **FOUNDER VALIDATION BUILD SEALED / RELEASE FROZEN**
+**Render live cutover:** **PENDING MANUAL DEPLOY** (same posture as RC-002).
+
+Overall label: **FOUNDER VALIDATION BUILD SEALED / RELEASE FROZEN / MANUAL RENDER DEPLOY REQUIRED**
 
 ---
 

@@ -60,10 +60,10 @@ Captured 2026-07-31 before RF-001 push:
 
 ## RF-001 deploy sequence
 
-1. Commit UX-001 + PX-001…PX-004 presentation baseline + RF-001 docs + static fingerprint `rf001`.
-2. Push to `origin/main`.
-3. Manual Deploy on Render service `kwalitec`.
-4. Confirm `/health.commit` = RF-001 hash; static `?v=2.0.0-beta.1-rf001`.
+1. Commit UX-001 + PX-001…PX-004 presentation baseline + RF-001 docs + static fingerprint `rf001`. **DONE** (`8915930…`)
+2. Push to `origin/main`. **DONE** (`d94d514..4befe80`); tag `v1.0.0-fv1` → `8915930…`
+3. Manual Deploy on Render service `kwalitec`. **REQUIRED** — auto-deploy not observed (~2 min after push; live still `d94d514…`)
+4. Confirm `/health.commit` starts with `8915930` or `4befe80`; static `?v=2.0.0-beta.1-rf001`.
 5. Re-probe login + health after cutover.
 
 ---
@@ -73,10 +73,13 @@ Captured 2026-07-31 before RF-001 push:
 | Field | Value |
 |-------|--------|
 | Build identifier | `FV-001` / `2.0.0-beta.1-rf001` |
-| Pre-deploy live commit | `d94d514…` |
+| Pre-deploy live commit | `d94d5140878cea4c1cf5216443a0f3f3b08ddbaa` |
 | RF-001 release commit | `8915930c913d5cd08f19c1ab69fc8a8f6bf37696` |
+| Docs annotation commit | `4befe800bd9e25d8fa3dc024376fb5661a015cd4` |
+| Git tag | `v1.0.0-fv1` → `8915930…` (pushed) |
 | Database revision | `202607300005` |
 | Runtime | Waitress on Render free plan |
+| Live cutover | **PENDING MANUAL DEPLOY** |
 
 ---
 

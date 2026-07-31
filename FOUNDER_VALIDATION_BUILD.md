@@ -18,6 +18,8 @@ Programme companion: `RF001_VALIDATION_BUILD.md`.
 | Role | Hash |
 |------|------|
 | RF-001 validation build | `8915930c913d5cd08f19c1ab69fc8a8f6bf37696` |
+| Docs annotation | `4befe800bd9e25d8fa3dc024376fb5661a015cd4` |
+| Git tag | `v1.0.0-fv1` → `8915930…` |
 | Prior RC-002 tip (pre-cutover live) | `d94d5140878cea4c1cf5216443a0f3f3b08ddbaa` |
 | RC-002 educational freeze core | `f2cbdc5db014b33357628ef2bb0460f5ee6770fd` (`v1.0.0-rc2`) |
 
