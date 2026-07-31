@@ -51,7 +51,6 @@ from app.application.twin_repository.types import (
     TwinScope,
 )
 from app.models.student_baseline import StudentBaseline
-from app.services.curriculum_engine_service import CurriculumEngineService
 from app.services.study_plan_service import StudyPlanService
 
 
@@ -495,20 +494,10 @@ class BaselineFinalizeCoordinator:
         subject_code: str,
         curriculum_version: str | None,
     ) -> list[str]:
-        if not curriculum_version or curriculum_version == "published":
-            return []
-        if not category_code or not subject_code:
-            return []
-        try:
-            engine = CurriculumEngineService()
-            if not engine.curriculum_exists(
-                category_code, subject_code, curriculum_version
-            ):
-                return []
-            curriculum = engine.load_auto(
-                category_code, subject_code, curriculum_version
-            )
-            topics = CurriculumEngineService.get_topics_flat(curriculum)
-            return [t.code for t in topics]
-        except Exception:
-            return []
+        from app.application.student_baseline.topics import ordered_topic_codes
+
+        return ordered_topic_codes(
+            category_code=category_code,
+            subject_code=subject_code,
+            curriculum_version=curriculum_version,
+        )

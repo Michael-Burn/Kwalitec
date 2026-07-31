@@ -17,12 +17,37 @@
             {% endfor %}
         </div>
     </div>
-    {% if form.curriculum_topic_code.choices|length > 1 %}
-    <div class="wizard-field-group">
+    {% set topic_choice_count = form.curriculum_topic_code.choices|length %}
+    {% if topic_choice_count > 1 %}
+    <div class="wizard-field-group" id="baseline-topic-picker" data-baseline-topic-picker>
         <label class="form-label" for="curriculum_topic_code">{{ form.curriculum_topic_code.label.text }}</label>
         {{ form.curriculum_topic_code(class="form-control") }}
-        <small class="wizard-field-hint">Shown when you choose to continue from a topic.</small>
+        <small class="wizard-field-hint">Required when you continue from a completed chapter/topic.</small>
     </div>
+    {% else %}
+    <p class="wizard-field-hint" id="baseline-topic-unavailable" hidden>
+        Topic list is unavailable for this subject — use “Start from the beginning”,
+        or go back if you expected a chapter picker.
+    </p>
     {% endif %}
 </form>
+<script>
+(function () {
+  var form = document.getElementById("wizard-form");
+  if (!form) return;
+  var picker = document.getElementById("baseline-topic-picker");
+  var unavailable = document.getElementById("baseline-topic-unavailable");
+  var continueValue = "continue_topic";
+  function sync() {
+    var selected = form.querySelector('input[name="position_mode"]:checked');
+    var isContinue = selected && selected.value === continueValue;
+    if (picker) picker.hidden = !isContinue;
+    if (unavailable) unavailable.hidden = !isContinue;
+  }
+  form.querySelectorAll('input[name="position_mode"]').forEach(function (input) {
+    input.addEventListener("change", sync);
+  });
+  sync();
+})();
+</script>
 {% endblock %}

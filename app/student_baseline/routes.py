@@ -136,25 +136,13 @@ def _build_scope(wizard: dict) -> BaselineSubjectScope:
 
 
 def _topic_choices(scope: BaselineSubjectScope) -> list[tuple[str, str]]:
-    if not scope.curriculum_version or scope.curriculum_version == "published":
-        return []
-    engine = CurriculumEngineService()
-    if not engine.curriculum_exists(
-        scope.category_code, scope.subject_code, scope.curriculum_version
-    ):
-        return []
-    try:
-        curriculum = engine.load_auto(
-            scope.category_code, scope.subject_code, scope.curriculum_version
-        )
-        topics = CurriculumEngineService.get_topics_flat(curriculum)
-        return [(t.code, f"{t.code} — {t.title}") for t in topics]
-    except Exception:
-        logger.exception(
-            "Failed to load topics for baseline subject=%s",
-            scope.subject_key,
-        )
-        return []
+    from app.application.student_baseline.topics import list_topic_choices
+
+    return list_topic_choices(
+        category_code=scope.category_code,
+        subject_code=scope.subject_code,
+        curriculum_version=scope.curriculum_version,
+    )
 
 
 def _ensure_draft(scope: BaselineSubjectScope):
@@ -384,6 +372,17 @@ def step_post(step: int):
         if form.validate_on_submit():
             mode = form.position_mode.data
             topic = form.curriculum_topic_code.data or None
+            topic_options = [
+                value for value, _label in form.curriculum_topic_code.choices if value
+            ]
+            if mode == PositionMode.CONTINUE_TOPIC.value and not topic_options:
+                flash(
+                    "A syllabus topic list is not available for this subject yet. "
+                    "Choose “Start from the beginning”, or go back and pick another "
+                    "exam if you expected a chapter list.",
+                    "warning",
+                )
+                return _render_step(2, form, scope=scope, baseline=baseline)
             if mode == PositionMode.CONTINUE_TOPIC.value and not topic:
                 flash("Please choose a topic to continue from.", "warning")
                 return _render_step(2, form, scope=scope, baseline=baseline)
