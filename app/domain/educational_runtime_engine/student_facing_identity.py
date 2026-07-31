@@ -53,6 +53,10 @@ def student_syllabus_code(
     When a provided code truncates a fuller syllabus number in the title
     (e.g. code ``1`` vs title ``1.1 Describe…``), prefer the title number so
     student chrome never shows ``Study 1 — .1 …`` (V1S-008 / DF-016).
+
+    When the package code is only a bare sequence index (``2``, ``15``) but the
+    title carries a dotted syllabus number (``1.2``, ``4.1``), prefer the title
+    number so Baseline / mission chrome stay syllabus-faithful.
     """
     code_text = ""
     for candidate in (code, number):
@@ -68,9 +72,20 @@ def student_syllabus_code(
             # Truncated chapter code vs full section number (1 vs 1.1).
             if title_code[len(code_text)] == ".":
                 return title_code
-    if code_text:
+        # Bare display-order index vs dotted syllabus code in the title.
+        if (
+            code_text.isdigit()
+            and "." in title_code
+            and title_code != code_text
+        ):
+            return title_code
+    if code_text and not (
+        code_text.isdigit() and title_code and "." in title_code
+    ):
         return code_text
-    return title_code
+    if code_text and not title_code:
+        return code_text
+    return title_code or code_text
 
 
 def repair_mangled_study_title(text: str | None) -> str:
