@@ -165,6 +165,15 @@ def _title_case_section(text: str) -> str:
     return "".join(out)
 
 
+def is_non_syllabus_title(text: str) -> bool:
+    """True when a title looks like publisher metadata, not a syllabus topic.
+
+    Used by Baseline and student Curriculum Map surfaces to quarantine
+    postal addresses and similar non-learning rows (EV-001 TB-003).
+    """
+    return _looks_like_non_syllabus_noise(text)
+
+
 def _looks_like_non_syllabus_noise(text: str) -> bool:
     lowered = text.lower()
     noise_markers = (

@@ -393,21 +393,29 @@ class ReadinessService:
         """Calculate overall exam readiness.
 
         The readiness score is a weighted composite of:
-        - Curriculum Coverage (50%): percentage of leaf topics started
+        - Syllabus coverage / Study Progress (50%): percentage of plan-scoped
+          leaf topics with ``TopicProgress.completed`` (same authority as
+          Dashboard / ``calculate_readiness``)
         - Average Estimated Knowledge (30%): mean evidence-backed estimate
-          across started topics
-        - Review Discipline (20%): based on review completion rate
+          across topics with authorised practice results
+        - Review Discipline (20%): based on mission completion rate
 
         Args:
             user_id: The ID of the user.
 
         Returns:
             dict with keys: score, coverage_pct, avg_mastery, review_discipline,
-                           total_topics, topics_started, topics_mastered.
+                           total_topics, topics_started, topics_completed,
+                           topics_mastered.
+            ``topics_started`` mirrors ``topics_completed`` for API stability
+            (Study Progress completed count — not revision_count).
         """
-        leaf_topics = ReadinessService._get_leaf_topics()
-        total_topics = len(leaf_topics)
-        leaf_ids = [t.id for t in leaf_topics]
+        metrics = ReadinessService._study_progress_metrics(user_id)
+        total_topics = metrics["total_topics"]
+        topics_completed = metrics["topics_completed"]
+        topics_mastered = metrics["topics_mastered"]
+        coverage_pct = metrics["coverage_percentage"]
+        avg_mastery_score = metrics["avg_estimated_knowledge"]
 
         if total_topics == 0:
             return {
@@ -417,32 +425,14 @@ class ReadinessService:
                 "review_discipline": 0.0,
                 "total_topics": 0,
                 "topics_started": 0,
+                "topics_completed": 0,
                 "topics_mastered": 0,
             }
 
-        progress_rows = TopicProgress.query.filter(
-            TopicProgress.user_id == user_id,
-            TopicProgress.topic_id.in_(leaf_ids),
-        ).all()
-
-        topics_started = 0
-        topics_mastered = 0
-        mastery_sum = 0.0
-        for row in progress_rows:
-            if row.revision_count > 0:
-                topics_started += 1
-                mastery_sum += row.mastery_score
-            if row.current_stage == TopicProgress.STAGE_MASTERED:
-                topics_mastered += 1
-
-        avg_mastery_score = (
-            mastery_sum / topics_started if topics_started > 0 else 0.0
-        )
         review_completion = ReadinessService.get_review_completion_rate(user_id)
-        coverage_pct = (topics_started / total_topics) * 100
         review_discipline = review_completion["completion_rate"]
 
-        # Weighted composite: Coverage 50%, Mastery 30%, Review Discipline 20%
+        # Weighted composite: Coverage 50%, Estimated Knowledge 30%, Review 20%
         score = (
             (coverage_pct * 0.50)
             + (avg_mastery_score * 0.30)
@@ -455,7 +445,8 @@ class ReadinessService:
             "avg_mastery": round(avg_mastery_score, 1),
             "review_discipline": round(review_discipline, 1),
             "total_topics": total_topics,
-            "topics_started": topics_started,
+            "topics_started": topics_completed,
+            "topics_completed": topics_completed,
             "topics_mastered": topics_mastered,
         }
 
@@ -463,50 +454,30 @@ class ReadinessService:
 
     @staticmethod
     def get_curriculum_coverage(user_id: int) -> dict:
-        """Calculate curriculum coverage across all leaf topics.
+        """Calculate syllabus coverage from Study Progress (completed topics).
 
-        A leaf topic is one without subtopics (the most granular learning unit).
+        Uses the same plan-scoped leaf denominator and ``completed`` authority
+        as Dashboard readiness / Analytics / composite readiness coverage.
 
         Args:
             user_id: The ID of the user.
 
         Returns:
-            dict with keys: total_leaf_topics, topics_started, topics_not_started,
-                           topics_mastered, coverage_percentage.
+            dict with keys: total_leaf_topics, topics_started, topics_completed,
+                           topics_not_started, topics_mastered,
+                           coverage_percentage.
         """
-        leaf_topics = ReadinessService._get_leaf_topics()
-        total = len(leaf_topics)
-
-        if total == 0:
-            return {
-                "total_leaf_topics": 0,
-                "topics_started": 0,
-                "topics_not_started": 0,
-                "topics_mastered": 0,
-                "coverage_percentage": 0.0,
-            }
-
-        # Get all topic progress for this user
-        progress_map: dict[int, TopicProgress] = {}
-        user_progress = TopicProgress.query.filter_by(user_id=user_id).all()
-        for p in user_progress:
-            progress_map[p.topic_id] = p
-
-        started = 0
-        mastered = 0
-        for topic in leaf_topics:
-            prog = progress_map.get(topic.id)
-            if prog and prog.revision_count > 0:
-                started += 1
-            if prog and prog.current_stage == TopicProgress.STAGE_MASTERED:
-                mastered += 1
-
-        not_started = total - started
-        coverage_pct = (started / total) * 100 if total > 0 else 0.0
+        metrics = ReadinessService._study_progress_metrics(user_id)
+        total = metrics["total_topics"]
+        completed = metrics["topics_completed"]
+        mastered = metrics["topics_mastered"]
+        not_started = max(total - completed, 0)
+        coverage_pct = metrics["coverage_percentage"]
 
         return {
             "total_leaf_topics": total,
-            "topics_started": started,
+            "topics_started": completed,
+            "topics_completed": completed,
             "topics_not_started": not_started,
             "topics_mastered": mastered,
             "coverage_percentage": round(coverage_pct, 1),
@@ -834,6 +805,86 @@ class ReadinessService:
     # ── Private helpers ───────────────────────────────────────────────
 
     @staticmethod
+    def _study_progress_metrics(user_id: int) -> dict[str, float | int]:
+        """Authoritative Study Progress + Estimated Knowledge inputs.
+
+        Coverage uses ``TopicProgress.completed`` on plan-scoped leaf topics
+        (falls back to all active leaf topics when no active plan curriculum).
+        Estimated Knowledge averages only evidence-backed rows
+        (``has_estimated_knowledge``).
+        """
+        leaf_topics = ReadinessService._leaf_topics_for_user(user_id)
+        total_topics = len(leaf_topics)
+        if total_topics == 0:
+            return {
+                "total_topics": 0,
+                "topics_completed": 0,
+                "topics_mastered": 0,
+                "coverage_percentage": 0.0,
+                "avg_estimated_knowledge": 0.0,
+            }
+
+        leaf_ids = [t.id for t in leaf_topics]
+        progress_rows = TopicProgress.query.filter(
+            TopicProgress.user_id == user_id,
+            TopicProgress.topic_id.in_(leaf_ids),
+        ).all()
+        progress_map = {row.topic_id: row for row in progress_rows}
+
+        topics_completed = 0
+        topics_mastered = 0
+        knowledge_scores: list[float] = []
+        for topic in leaf_topics:
+            prog = progress_map.get(topic.id)
+            if prog is None:
+                continue
+            if prog.completed:
+                topics_completed += 1
+            if prog.current_stage == TopicProgress.STAGE_MASTERED:
+                topics_mastered += 1
+            if prog.has_estimated_knowledge:
+                knowledge_scores.append(float(prog.mastery_score))
+
+        coverage_pct = (topics_completed / total_topics) * 100.0
+        avg_ek = (
+            sum(knowledge_scores) / len(knowledge_scores) if knowledge_scores else 0.0
+        )
+        return {
+            "total_topics": total_topics,
+            "topics_completed": topics_completed,
+            "topics_mastered": topics_mastered,
+            "coverage_percentage": coverage_pct,
+            "avg_estimated_knowledge": avg_ek,
+        }
+
+    @staticmethod
+    def _leaf_topics_for_user(user_id: int) -> list[Topic]:
+        """Leaf topics for the student's active plan curriculum when available.
+
+        Falls back to all active leaf topics so Analytics/readiness still
+        resolve when no plan is bound (tests / edge onboarding states).
+        """
+        try:
+            from app.services.curriculum_service import CurriculumService
+            from app.services.study_plan_service import StudyPlanService
+
+            plan = StudyPlanService.get_user_active_plan(user_id)
+            if plan is not None and plan.curriculum_id:
+                curriculum = CurriculumService.get_curriculum_by_id(plan.curriculum_id)
+                if curriculum is not None:
+                    ordered = CurriculumService.get_ordered_topics(curriculum)
+                    leaves = [t for t in ordered if t.active and t.is_leaf_topic()]
+                    if leaves:
+                        return leaves
+        except Exception:  # noqa: BLE001 — fail open to global leaf set
+            logger.debug(
+                "Plan-scoped leaf topics unavailable for user %s; using global set",
+                user_id,
+                exc_info=True,
+            )
+        return ReadinessService._get_leaf_topics()
+
+    @staticmethod
     def _get_leaf_topics() -> list[Topic]:
         """Get all leaf topics (topics with no active subtopics).
 
@@ -841,50 +892,38 @@ class ReadinessService:
             list[Topic]: All leaf topics across active curricula.
         """
         all_topics = Topic.query.filter_by(active=True).all()
-        leaf_ids = set()
         parent_ids = set()
 
         for topic in all_topics:
             if topic.parent_topic_id is not None:
                 parent_ids.add(topic.parent_topic_id)
 
-        leaf_ids = {t.id for t in all_topics if t.id not in parent_ids}
-
-        return [t for t in all_topics if t.id in leaf_ids]
+        return [t for t in all_topics if t.id not in parent_ids]
 
     @staticmethod
     def _count_leaf_topics(user_id: int) -> int:
-        """Count total leaf topics available.
-
-        Args:
-            user_id: The ID of the user (not currently used for filtering).
-
-        Returns:
-            int: Total number of leaf topics.
-        """
-        return len(ReadinessService._get_leaf_topics())
-
-    @staticmethod
-    def _count_started_topics(user_id: int) -> int:
-        """Count leaf topics with at least one review.
+        """Count total leaf topics available for the user.
 
         Args:
             user_id: The ID of the user.
 
         Returns:
-            int: Number of started leaf topics.
+            int: Total number of leaf topics in the readiness denominator.
         """
-        leaf_topics = ReadinessService._get_leaf_topics()
-        leaf_ids = [t.id for t in leaf_topics]
+        return len(ReadinessService._leaf_topics_for_user(user_id))
 
-        if not leaf_ids:
-            return 0
+    @staticmethod
+    def _count_started_topics(user_id: int) -> int:
+        """Count leaf topics with Study Progress completed.
 
-        return TopicProgress.query.filter(
-            TopicProgress.user_id == user_id,
-            TopicProgress.topic_id.in_(leaf_ids),
-            TopicProgress.revision_count > 0,
-        ).count()
+        Args:
+            user_id: The ID of the user.
+
+        Returns:
+            int: Number of completed leaf topics (Study Progress).
+        """
+        metrics = ReadinessService._study_progress_metrics(user_id)
+        return int(metrics["topics_completed"])
 
     @staticmethod
     def _count_mastered_topics(user_id: int) -> int:
@@ -896,17 +935,8 @@ class ReadinessService:
         Returns:
             int: Number of mastered leaf topics.
         """
-        leaf_topics = ReadinessService._get_leaf_topics()
-        leaf_ids = [t.id for t in leaf_topics]
-
-        if not leaf_ids:
-            return 0
-
-        return TopicProgress.query.filter(
-            TopicProgress.user_id == user_id,
-            TopicProgress.topic_id.in_(leaf_ids),
-            TopicProgress.current_stage == TopicProgress.STAGE_MASTERED,
-        ).count()
+        metrics = ReadinessService._study_progress_metrics(user_id)
+        return int(metrics["topics_mastered"])
 
     # ── Curriculum-based Readiness ─────────────────────────────────────
 
@@ -950,28 +980,14 @@ class ReadinessService:
 
     @staticmethod
     def _average_mastery(user_id: int) -> float:
-        """Calculate average Estimated Knowledge across started leaf topics.
+        """Calculate average Estimated Knowledge across evidence-backed topics.
 
         Args:
             user_id: The ID of the user.
 
         Returns:
             float: Average Estimated Knowledge scalar (0-100) from
-            ``TopicProgress.mastery_score``.
+            ``TopicProgress.mastery_score`` where authorised practice exists.
         """
-        leaf_topics = ReadinessService._get_leaf_topics()
-        leaf_ids = [t.id for t in leaf_topics]
-
-        if not leaf_ids:
-            return 0.0
-
-        started = TopicProgress.query.filter(
-            TopicProgress.user_id == user_id,
-            TopicProgress.topic_id.in_(leaf_ids),
-            TopicProgress.revision_count > 0,
-        ).all()
-
-        if not started:
-            return 0.0
-
-        return sum(t.mastery_score for t in started) / len(started)
+        metrics = ReadinessService._study_progress_metrics(user_id)
+        return float(metrics["avg_estimated_knowledge"])

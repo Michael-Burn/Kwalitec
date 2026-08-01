@@ -51,8 +51,16 @@ class ProductCommunicationService:
         "We need more recorded practice before this estimate becomes available."
     )
     READINESS_UNAVAILABLE_BASIS = (
-        "Estimated readiness uses syllabus coverage, Estimated Knowledge from "
-        "recorded practice, and recent review habits."
+        "Estimated readiness uses Study Progress (completed syllabus topics), "
+        "Estimated Knowledge from recorded practice, and recent review habits."
+    )
+    STUDY_PROGRESS_COVERAGE_BASIS = (
+        "Syllabus coverage is Study Progress — completed topics on your active "
+        "plan — not Estimated Knowledge."
+    )
+    TOPIC_STATUS_PRACTISED_BASIS = (
+        "You have recorded practice on this topic, so Estimated Knowledge can "
+        "appear before Study Progress marks the topic completed."
     )
     ESTIMATED_READINESS_SELF_REPORT = (
         "Estimated readiness depends on practice results you recorded — "

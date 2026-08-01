@@ -86,11 +86,20 @@
             <h2 class="h5 mb-0">Curriculum Roadmap</h2>
             <small class="text-muted">{{ sorted_topics|length }} topics</small>
         </div>
-        {# PX-002A T2-6: one note for the whole roadmap instead of repeating
-           the same placeholder on every topic card. #}
+        {# PX-002A / RC2 Sprint B: surface imported learning outcomes when present. #}
         <p class="roadmap-outcomes-note text-muted small mb-3">
             <span class="roadmap-outcomes-label">Learning Outcomes</span>
-            <span class="roadmap-outcomes-placeholder">Not available yet</span> for topics below.
+            appear under each topic when the syllabus lists them.
+            {% set ns_lo = namespace(any_lo=false) %}
+            {% for topic in sorted_topics %}
+                {% for lo in topic.learning_objectives %}
+                    {% if lo.active %}{% set ns_lo.any_lo = true %}{% endif %}
+                {% endfor %}
+            {% endfor %}
+            {% if not ns_lo.any_lo %}
+            <span class="roadmap-outcomes-placeholder">Not available yet</span>
+            for this curriculum.
+            {% endif %}
         </p>
 
         {% if curriculum_sections %}
@@ -129,6 +138,14 @@
                         {% set card_state = 'next' %}
                         {% set badge_text = 'Next' %}
                         {% set badge_class = 'roadmap-badge--next' %}
+                    {% elif tp and tp.has_estimated_knowledge %}
+                        {% set card_state = 'practised' %}
+                        {% set badge_text = 'Practised' %}
+                        {% set badge_class = 'roadmap-badge--learning' %}
+                    {% elif tp and tp.current_stage and tp.current_stage != 'Not Started' %}
+                        {% set card_state = 'learning' %}
+                        {% set badge_text = tp.current_stage %}
+                        {% set badge_class = 'roadmap-badge--learning' %}
                     {% else %}
                         {% set card_state = 'not-started' %}
                         {% set badge_text = 'Not Started' %}
@@ -152,10 +169,21 @@
                                 <div class="roadmap-metric">
                                     <span class="roadmap-metric-label">Estimated Knowledge</span>
                                     <span class="roadmap-metric-value">{{ '%d'|format(tp.mastery_score) }}%</span>
-                                    <span class="roadmap-metric-basis small text-muted">Based on your recorded practice outcomes.</span>
+                                    <span class="roadmap-metric-basis small text-muted">Based on your recorded practice outcomes.{% if badge_text == 'Practised' %} Estimated Knowledge can appear before Study Progress marks the topic completed.{% endif %}</span>
                                 </div>
                                 {% endif %}
                             </div>
+                            {% set active_los = topic.learning_objectives|selectattr('active')|sort(attribute='order')|list %}
+                            {% if active_los %}
+                            <div class="roadmap-outcomes mt-2">
+                                <p class="roadmap-outcomes-label small text-muted mb-1">Learning outcomes</p>
+                                <ul class="roadmap-outcomes-list small mb-0">
+                                    {% for lo in active_los %}
+                                    <li>{{ lo.description }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
                     {% endfor %}
@@ -183,6 +211,14 @@
                 {% set card_state = 'next' %}
                 {% set badge_text = 'Next' %}
                 {% set badge_class = 'roadmap-badge--next' %}
+            {% elif tp and tp.has_estimated_knowledge %}
+                {% set card_state = 'practised' %}
+                {% set badge_text = 'Practised' %}
+                {% set badge_class = 'roadmap-badge--learning' %}
+            {% elif tp and tp.current_stage and tp.current_stage != 'Not Started' %}
+                {% set card_state = 'learning' %}
+                {% set badge_text = tp.current_stage %}
+                {% set badge_class = 'roadmap-badge--learning' %}
             {% else %}
                 {% set card_state = 'not-started' %}
                 {% set badge_text = 'Not Started' %}
@@ -210,10 +246,21 @@
                         <div class="roadmap-metric">
                             <span class="roadmap-metric-label">Estimated Knowledge</span>
                             <span class="roadmap-metric-value">{{ '%d'|format(tp.mastery_score) }}%</span>
-                            <span class="roadmap-metric-basis small text-muted">Based on your recorded practice outcomes.</span>
+                            <span class="roadmap-metric-basis small text-muted">Based on your recorded practice outcomes.{% if badge_text == 'Practised' %} Estimated Knowledge can appear before Study Progress marks the topic completed.{% endif %}</span>
                         </div>
                         {% endif %}
                     </div>
+                    {% set active_los = topic.learning_objectives|selectattr('active')|sort(attribute='order')|list %}
+                    {% if active_los %}
+                    <div class="roadmap-outcomes mt-2">
+                        <p class="roadmap-outcomes-label small text-muted mb-1">Learning outcomes</p>
+                        <ul class="roadmap-outcomes-list small mb-0">
+                            {% for lo in active_los %}
+                            <li>{{ lo.description }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}

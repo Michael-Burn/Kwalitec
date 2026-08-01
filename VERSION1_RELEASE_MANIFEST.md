@@ -83,7 +83,7 @@ Canonical register: `KNOWN_ISSUES_RC2.md`.
 |-------|-----------------|
 | KI-C1 Repository hygiene | **CLOSED** |
 | KI-C2 Release fingerprint (local tip + tag) | **CLOSED** for local/authoritative tip; LIVE match **Pending** deploy |
-| KI-C3 EV-001 educational trust | **OPEN** (out of Sprint A scope) |
+| KI-C3 EV-001 educational trust | **PARTIAL** — Sprint B local consistency remediations; LIVE re-check Pending |
 | KI-C4 RR-001 smoke incomplete | **OPEN** (requires deploy) |
 
 ---

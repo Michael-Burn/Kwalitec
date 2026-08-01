@@ -7,9 +7,23 @@ No new educational reasoning authority — navigation and structure only.
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 
 from flask import url_for
+
+
+_SYLLABUS_SORT = re.compile(r"^(\d+(?:\.\d+)*)")
+
+
+def _syllabus_display_sort_key(title: str) -> tuple:
+    """Order titles by leading syllabus code when present (EV-001 TB-011)."""
+    text = (title or "").strip()
+    match = _SYLLABUS_SORT.match(text)
+    if match:
+        parts = tuple(int(part) for part in match.group(1).split("."))
+        return (0, parts, text.lower())
+    return (1, (), text.lower())
 
 
 @dataclass(frozen=True)
@@ -119,30 +133,65 @@ class StudentKnowledgeGraphPresentationService:
             parent = (node.parent_node_id or "").strip()
             by_parent.setdefault(parent, []).append(node)
 
-        def _map_status(node_id: str, kind: str) -> tuple[str, str]:
+        def _kind_value(node) -> str:
+            return str(node.kind.value if hasattr(node.kind, "value") else node.kind)
+
+        def _map_status(
+            node_id: str,
+            kind: str,
+            *,
+            parent_id: str = "",
+            children_statuses: tuple[str, ...] = (),
+        ) -> tuple[str, str]:
             if node_id == current:
                 return "Current", "current"
             if node_id in weak:
                 return "Weak prerequisite", "weak_prerequisite"
             if node_id in completed:
                 return "Completed", "completed"
+            # Learning objectives inherit Study Progress from their parent topic
+            # so Completed topics never show all children as "Not started".
             if kind in {"learning_objective", "objective"}:
+                if parent_id and parent_id in completed:
+                    return "Included in completed topic", "completed"
+                if parent_id and parent_id == current:
+                    return "In progress with topic", "current"
                 return "Not started", "future"
+            # Section / chapter roll-up from children (EV-001 TB-006).
+            if children_statuses:
+                if children_statuses and all(s == "completed" for s in children_statuses):
+                    return "Completed", "completed"
+                if any(s in {"completed", "current"} for s in children_statuses):
+                    return "In progress", "current"
             return "Future", "future"
 
-        def _build(node, depth: int = 0) -> KnowledgeGraphNodeView:
+        def _build(node, depth: int = 0) -> KnowledgeGraphNodeView | None:
+            from app.application.student_baseline.topics import is_non_syllabus_title
+
+            title = (node.title or "").strip()
+            if title and is_non_syllabus_title(title):
+                return None
             kids_raw = by_parent.get(node.node_id, [])
-            children = ()
+            children: tuple[KnowledgeGraphNodeView, ...] = ()
             if depth < 2:
-                children = tuple(_build(c, depth + 1) for c in kids_raw[:40])
-            kind_raw = (
-                node.kind.value if hasattr(node.kind, "value") else node.kind
+                built_kids = [
+                    child
+                    for child in (_build(c, depth + 1) for c in kids_raw[:40])
+                    if child is not None
+                ]
+                built_kids.sort(key=lambda c: _syllabus_display_sort_key(c.title or ""))
+                children = tuple(built_kids)
+            kind_raw = _kind_value(node)
+            progress, status = _map_status(
+                node.node_id,
+                kind_raw,
+                parent_id=(node.parent_node_id or "").strip(),
+                children_statuses=tuple(c.map_status for c in children),
             )
-            progress, status = _map_status(node.node_id, str(kind_raw))
             return KnowledgeGraphNodeView(
                 node_id=node.node_id,
                 title=node.title,
-                kind=str(node.kind.value if hasattr(node.kind, "value") else node.kind),
+                kind=kind_raw,
                 parent_id=(node.parent_node_id or ""),
                 difficulty=(node.difficulty or "").strip(),
                 estimated_minutes=int(node.estimated_minutes or 0),
@@ -161,7 +210,9 @@ class StudentKnowledgeGraphPresentationService:
                 for n in graph.nodes
                 if not n.parent_node_id or n.parent_node_id not in nodes_by_id
             ]
-        roots = tuple(_build(n) for n in roots_raw[:30])
+        roots = tuple(
+            root for root in (_build(n) for n in roots_raw[:30]) if root is not None
+        )
 
         selected = None
         if current and current in nodes_by_id:
@@ -189,6 +240,7 @@ class StudentKnowledgeGraphPresentationService:
                 KnowledgeArchitectureEngine,
                 LearnerGraphContext,
             )
+            from app.application.student_baseline.topics import is_non_syllabus_title
 
             engine = KnowledgeArchitectureEngine.from_learner_package(package)
             ctx = LearnerGraphContext(
@@ -202,8 +254,14 @@ class StudentKnowledgeGraphPresentationService:
             )
             why = cmap.why_current_matters or ""
             if cmap.pathway is not None:
-                pathway_titles = cmap.pathway.topic_titles
+                pathway_titles = tuple(
+                    title
+                    for title in cmap.pathway.topic_titles
+                    if not is_non_syllabus_title(title)
+                )
             for node in cmap.nodes[:24]:
+                if is_non_syllabus_title(node.title or ""):
+                    continue
                 map_highlights.append(
                     CurriculumMapHighlight(
                         topic_id=node.topic_id,

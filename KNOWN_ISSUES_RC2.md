@@ -29,15 +29,15 @@
 | **Owner** | Release Engineering |
 | **Required before GO?** | **Yes** — **local fingerprint CLOSED**; **LIVE match OPEN** (Priority 3) |
 
-### KI-C3 — EV-001 educational trust FAIL on current LIVE tip
+### KI-C3 — EV-001 educational trust FAIL on current LIVE tip — **PARTIAL (Sprint B)**
 
 | Field | Value |
 |-------|-------|
-| **Description** | Live student audit on `613722c` found placeholder pedagogy (“Today’s topic”), empty reading stages, curriculum address artefact, continuity/progress mismatches, boilerplate explainability. |
-| **Impact** | Educational quality insufficient for primary-study trust; RR-001 S1-EDU remains. |
-| **Evidence** | `EV001_FINAL_RECOMMENDATION.md`; `EV001_TRUST_BREAK_REGISTER.md` (TB-001+) |
+| **Description** | Live student audit on `613722c` found placeholder pedagogy, empty reading, address artefact, continuity/progress mismatches. **Sprint B** remediates local consistency: unified Study Progress coverage, Practised badge for EK-before-completion, LO surfacing, address quarantine on Curriculum Map, readiness explainability. LIVE re-validation still required after deploy. |
+| **Impact** | Local educational metric trust restored for coverage/EK/status; LIVE primary-study trust still blocked until tip is deployed and re-audited. |
+| **Evidence** | `EV001_REMEDIATION_REPORT.md`; `EDUCATIONAL_CONSISTENCY_REPORT.md`; `READINESS_VALIDATION_REPORT.md`; `RC2_SPRINT_B_COMPLETION_REPORT.md` |
 | **Owner** | Educational Operations / Founder Gate Owner |
-| **Required before GO?** | **Yes** (for PB-001 as authoritative educational system). Mitigation path: ship certified inventory + overlays that address placeholder substance — then re-validate. |
+| **Required before GO?** | **Yes** — **local consistency CLOSED**; **LIVE EV re-check OPEN** (Sprint C) |
 
 ### KI-C4 — RR-001 smoke incomplete for GO criteria
 
@@ -202,4 +202,4 @@
 | Medium | 5 | 2 (M3, M4) |
 | Low | 4 | 0 |
 
-**Bottom line (post Sprint A):** KI-C1 closed; local C2 fingerprint closed (`v2.0.0-beta.1-rc2`). GO remains blocked by LIVE deploy match (KI-C2 remainder), KI-C3 educational trust, KI-C4 smoke, plus High release/activation items depending on PB-001 scope.
+**Bottom line (post Sprint B):** KI-C1 closed; local C2 fingerprint closed (`v2.0.0-beta.1-rc2`). KI-C3 **local consistency remediations landed** (coverage/EK/status/LOs/readiness explainability); LIVE EV re-check + deploy remain. GO still blocked by LIVE deploy match (KI-C2 remainder), KI-C3 LIVE re-validation, KI-C4 smoke, plus High release/activation items depending on PB-001 scope.

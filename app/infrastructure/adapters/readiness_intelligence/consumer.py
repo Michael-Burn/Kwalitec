@@ -232,14 +232,11 @@ class CanonicalReadinessConsumer:
         if topics_started is None:
             topics_started = _as_int(progress.get("completed_count"))
             if topics_started is None:
+                # Study Progress authority: completed topics only (not revision_count).
                 started_rows = [
                     row
                     for row in (progress.get("topics") or ())
-                    if isinstance(row, Mapping)
-                    and (
-                        bool(row.get("completed"))
-                        or int(row.get("revision_count") or 0) > 0
-                    )
+                    if isinstance(row, Mapping) and bool(row.get("completed"))
                 ]
                 topics_started = len(started_rows) if started_rows else None
 

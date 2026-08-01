@@ -391,7 +391,7 @@ def _ensure_explicit_drivers(
             label="Curriculum coverage",
             value=coverage,
             weight_note="50% of estimated readiness",
-            rationale_prefix="Syllabus leaves started",
+            rationale_prefix="Study Progress — completed syllabus topics",
         )
     )
     drivers.append(
@@ -400,7 +400,7 @@ def _ensure_explicit_drivers(
             label="Knowledge strength",
             value=mastery,
             weight_note="30% of estimated readiness",
-            rationale_prefix="Average Estimated Knowledge on started topics",
+            rationale_prefix="Average Estimated Knowledge from recorded practice",
         )
     )
     drivers.append(
@@ -690,7 +690,10 @@ def _why_this_estimate(
     try:
         parts = []
         if coverage is not None:
-            parts.append(f"syllabus coverage (~{int(round(float(coverage)))}%)")
+            parts.append(
+                "Study Progress / syllabus coverage "
+                f"(~{int(round(float(coverage)))}% completed)"
+            )
         if mastery is not None:
             parts.append(
                 f"average Estimated Knowledge (~{int(round(float(mastery)))}%)"

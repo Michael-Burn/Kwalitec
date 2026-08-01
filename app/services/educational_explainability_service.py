@@ -399,16 +399,23 @@ class EducationalExplainabilityService:
                 is_estimate=True,
             )
 
-        topics_started = int(readiness.get("topics_started") or 0)
+        topics_completed = int(
+            readiness.get("topics_completed")
+            if readiness.get("topics_completed") is not None
+            else readiness.get("topics_started")
+            or 0
+        )
         score = float(readiness.get("score") or 0.0)
+        avg_mastery = float(readiness.get("avg_mastery") or 0.0)
 
-        if topics_started <= 0 and score <= 0:
+        if topics_completed <= 0 and avg_mastery <= 0 and score <= 0:
             return ReadinessNarrative(
                 label=ProductCommunicationService.ESTIMATED_READINESS_LABEL,
                 percentage=None,
                 explanation=ProductCommunicationService.READINESS_UNAVAILABLE,
                 evidence_basis=(
-                    "No topics started yet — coverage and practice history are empty. "
+                    "No completed Study Progress or practice-backed Estimated "
+                    "Knowledge yet — coverage and practice history are empty. "
                     + ProductCommunicationService.READINESS_UNAVAILABLE_BASIS
                 ),
                 can_estimate=False,
@@ -416,7 +423,6 @@ class EducationalExplainabilityService:
             )
 
         coverage = float(readiness.get("coverage_pct") or 0.0)
-        avg_mastery = float(readiness.get("avg_mastery") or 0.0)
         review = float(readiness.get("review_discipline") or 0.0)
 
         return ReadinessNarrative(
@@ -428,8 +434,9 @@ class EducationalExplainabilityService:
                 "that the syllabus is fully understood."
             ),
             evidence_basis=(
-                f"Based on syllabus coverage (~{int(round(coverage))}%), "
-                f"average Estimated Knowledge across started topics "
+                f"Based on Study Progress / syllabus coverage "
+                f"(~{int(round(coverage))}% completed topics), "
+                f"average Estimated Knowledge from recorded practice "
                 f"(~{int(round(avg_mastery))}%), and recent review habits "
                 f"(~{int(round(review))}%). "
                 f"{ProductCommunicationService.ESTIMATED_READINESS_SELF_REPORT}"

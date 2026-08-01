@@ -6,6 +6,27 @@ The format follows the principles of Keep a Changelog and Semantic Versioning.
 
 ---
 
+# [2.0.0-beta.1-rc2] - 2026-08-01 — VERSION1-RC2 Sprint B (Educational Trust)
+
+## Summary
+
+Sprint B restores educational metric trust for KI-C3: unified Study Progress coverage across Dashboard / Analytics / Readiness; honest Practised topic badges when Estimated Knowledge precedes completion; Study Plan learning-objective surfacing; Curriculum Map LO inheritance and non-syllabus title quarantine; readiness explainability aligned to evidence. No deploy.
+
+## Included
+
+- `ReadinessService` coverage from `TopicProgress.completed` (plan-scoped)
+- Study Plan roadmap Practised badge + LO lists
+- Curriculum Map status roll-up / address filter
+- Reports: `EV001_REMEDIATION_REPORT.md`, `EDUCATIONAL_CONSISTENCY_REPORT.md`, `READINESS_VALIDATION_REPORT.md`
+
+## Explicit non-goals
+
+- No LIVE deploy / push
+- No Educational Framework unfreeze
+- No new product features beyond consistency corrections
+
+---
+
 # [2.0.0-beta.1-rc2] - 2026-08-01 — VERSION1-RC2 Release Candidate (hygiene tip)
 
 ## Fingerprint

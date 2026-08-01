@@ -34,12 +34,13 @@
         <div class="stat-card">
             <div class="stat-value text-success">{{ curriculum_coverage.coverage_percentage|int }}%</div>
             <div class="stat-label">Syllabus coverage</div>
+            <div class="stat-basis small text-muted">Study Progress — completed topics on your plan</div>
         </div>
     </div>
     <div class="col-6 col-md-3">
         <div class="stat-card">
-            <div class="stat-value text-info">{{ readiness.topics_started }}</div>
-            <div class="stat-label">Topics Started</div>
+            <div class="stat-value text-info">{{ readiness.topics_completed if readiness.topics_completed is defined else readiness.topics_started }}</div>
+            <div class="stat-label">Topics completed</div>
         </div>
     </div>
     <div class="col-6 col-md-3">

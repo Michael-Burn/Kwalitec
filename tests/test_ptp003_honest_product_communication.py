@@ -169,12 +169,15 @@ class TestStudentFacingCommunicationSurfaces:
         text = path.read_text(encoding="utf-8")
         assert "Estimated Knowledge" in text
         assert ProductCommunicationService.ESTIMATED_KNOWLEDGE_BASIS in text
-        assert ProductCommunicationService.LEARNING_OUTCOMES_UNAVAILABLE in text
+        assert "Learning Outcomes" in text
+        assert "roadmap-outcomes-list" in text
 
     def test_analytics_accuracy_and_coverage_honesty(self):
         path = TEMPLATE_ROOT / "analytics" / "index.html"
         text = path.read_text(encoding="utf-8")
         assert "Syllabus coverage" in text
+        assert "Study Progress" in text
+        assert "Topics completed" in text
         assert ProductCommunicationService.ACCURACY_BASIS in text
         assert ProductCommunicationService.ACCURACY_EMPTY in text
         assert ProductCommunicationService.ESTIMATED_READINESS_SELF_REPORT in text
@@ -204,9 +207,10 @@ class TestStudentFacingCommunicationSurfaces:
     def test_no_unexplained_blank_learning_outcomes(self):
         path = TEMPLATE_ROOT / "study_plan" / "view.html"
         text = path.read_text(encoding="utf-8")
-        assert "roadmap-outcomes-placeholder" in text
+        assert "roadmap-outcomes" in text
         assert ">—</span>" not in text
         assert ProductCommunicationService.LEARNING_OUTCOMES_UNAVAILABLE in text
+        assert "appear under each topic when the syllabus lists them" in text
 
     def test_unsupported_papers_still_owned_by_ptp001(self):
         info = SubjectSupportService.resolve("IFoA", "CM2")
