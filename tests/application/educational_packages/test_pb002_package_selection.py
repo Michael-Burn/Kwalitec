@@ -235,3 +235,59 @@ def test_orphan_4_2_superseded_not_selected() -> None:
     cd = [p for p in approved if (p.campaign_day or "").startswith("CD-")]
     assert len(cd) == 27
     assert all(p.package_id != "CS1-EA005-PKG-4.2-GLM-STRUCTURE" for p in approved)
+
+
+def test_epsilon_chain_reaches_ce_r1() -> None:
+    """RO-003 — Continuity Front into 2.2 → CE-D1…CE-R1 joint inventory."""
+    completed: set[str] = set()
+    last = ""
+    expected = [
+        ("CS1-EP001-PKG-2.2-MARGINAL-CONDITIONAL", "CE-D1"),
+        ("CS1-EP001-PKG-2.2-INDEPENDENCE", "CE-D2"),
+        ("CS1-EP001-PKG-2.2-COV-CORR-EXPECTATION", "CE-D3"),
+        ("CS1-EP001-PKG-2.2-LINEAR-COMBINATIONS", "CE-D4"),
+        ("CS1-EP001-PKG-REV-JOINT-DISTRIBUTIONS", "CE-R1"),
+    ]
+    topic = "2.2"
+    for package_id, day in expected:
+        pack = resolve_active_educational_package(
+            subject_id="CS1",
+            syllabus_topic_code=topic,
+            completed_package_ids=completed,
+            last_completed_package_id=last,
+        )
+        assert pack is not None, f"missing successor before {day}"
+        assert pack.package_id == package_id, (
+            f"expected {package_id} got {pack.package_id}"
+        )
+        assert pack.campaign_day == day
+        completed.add(pack.package_id)
+        last = pack.package_id
+        topic = pack.topic_code or topic
+
+
+def test_gamma_revision_hands_off_to_epsilon() -> None:
+    """RO-003 — CG-R1 tomorrow_preview 2.2 resolves to CE-D1 (not Gamma re-entry)."""
+    from app.application.educational_packages.loader import EducationalPackageLoader
+
+    gamma_ids = {
+        "CS1-EP001-PKG-2.1-PROB-QUANTILES",
+        "CS1-EP001-PKG-2.1-POISSON-PROCESS",
+        "CS1-EP001-PKG-2.1-INVERSE-TRANSFORM",
+        "CS1-EP001-PKG-2.1-SOFTWARE-GENERATION",
+        "CS1-EP001-PKG-REV-DISTRIBUTIONS-GENERATION",
+    }
+    pack = resolve_active_educational_package(
+        subject_id="CS1",
+        syllabus_topic_code="2.2",
+        completed_package_ids=gamma_ids,
+        last_completed_package_id="CS1-EP001-PKG-REV-DISTRIBUTIONS-GENERATION",
+    )
+    assert pack is not None
+    assert pack.campaign_day == "CE-D1"
+    assert pack.package_id == "CS1-EP001-PKG-2.2-MARGINAL-CONDITIONAL"
+
+    approved = EducationalPackageLoader().all_approved()
+    ce = [p for p in approved if (p.campaign_day or "").startswith("CE-")]
+    assert len(ce) == 5
+    assert len(approved) == 45

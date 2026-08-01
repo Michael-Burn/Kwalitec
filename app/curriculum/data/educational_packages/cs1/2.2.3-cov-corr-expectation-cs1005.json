@@ -1,0 +1,189 @@
+{
+  "package_version": "cs1005-campaign-epsilon-1.0.0",
+  "publication_version": "cs1005-live-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "CS1-EP001-CAMPAIGN-EPSILON",
+  "volume_id": "CS1-005",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1005_EDUCATIONAL_VOLUME.md",
+    "CS1005_CERTIFICATION_REPORT.md",
+    "EP003_WAVE3_PLAN.md"
+  ],
+  "author_id": "cs1005-educational-author",
+  "authored_at": "2026-08-01",
+  "topic_code": "2.2",
+  "topic_title": "Determine the characteristics of jointly distributed random variables",
+  "topic_id": "CS1-B-T02",
+  "package_id": "CS1-EP001-PKG-2.2-COV-CORR-EXPECTATION",
+  "campaign_day": "CE-D3",
+  "topic_focus_lo": "2.2.3",
+  "topic_aliases": [
+    "CS1-B-T02",
+    "2.2",
+    "2.2.3"
+  ],
+  "topic_title_keywords": [
+    "covariance",
+    "correlation",
+    "expectation",
+    "joint",
+    "function"
+  ],
+  "golden_id": "GOLDEN-CS1005-CS1-2.2-COV-CORR-EXPECTATION",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1005-cs1-2.2-cov-corr-expectation",
+    "display_title": "Use covariance, correlation, and E[g(X,Y)]",
+    "mission_purpose": "Today's Mission exists to place covariance and correlation as dependence measures and to evaluate (or set up) the expected value of a function of two jointly distributed variables — without leaping to linear-combination variance formulas as primary.",
+    "tutor_intent": "Today I will force the candidate through Cov → Corr → E[g(X,Y)] setup — refuse treating independence day as having finished dependence measures.",
+    "educational_intent": "Produce method warrant for Cov/Corr and expectation of a function of two RVs.",
+    "learning_objective": "Define and use covariance and correlation; evaluate (or set up) the expected value of a function of two jointly distributed random variables.",
+    "concept_focus": "Cov → Corr → E[g(X,Y)] via joint → refuse independence-as-done theatre.",
+    "prior_bridge": "Yesterday you stated independence conditions (2.2.2). Today measures dependence and expectations of functions of the pair.",
+    "why_now": "2.2.3 is the dependence-measure hinge before linear-combination mean/variance (2.2.4).",
+    "expected_benefit": "Study Progress for Cov/Corr/E[g] — not full 2.2.4 linear-combination mastery.",
+    "explainability": "Campaign Epsilon Day 3 focuses LO 2.2.3.",
+    "success_criteria": [
+      "Closed-book, state what covariance measures and how correlation relates.",
+      "Outline how to form E[g(X,Y)] from a joint.",
+      "Refuse: 'independence day finished all dependence work'."
+    ],
+    "task_descriptions": [
+      "Sketch Cov / Corr / E[g] chain before CMP.",
+      "Guided Reading through CMP 2.2.3.",
+      "Knowledge Checks: Cov/Corr + E[g] + refuse premature closure."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 55,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1005-cs1-2.2-cov-corr-expectation",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 2.2.3 — not the next LO as primary.",
+    "session_tutor_purpose": "Set focus on 2.2.3, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
+    "duration_budget_minutes": {
+      "min": 55,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Use covariance, correlation, and E[g(X,Y)]. You practised selective CMP reading on Syllabus 2.2.3. This is Study Progress for today's block — not Topic Complete for later 2.2 LOs or Chapter 2.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 2.2.3 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 2.2.3 — use covariance, correlation, and e[g(x,y)]. Stop before out-of-scope later LOs.",
+    "focus_questions": [
+      "What is the core move of Syllabus 2.2.3?",
+      "What warrant separates today's skill from yesterday's?",
+      "What claim must you refuse today?",
+      "What will you practise in Knowledge Checks after the CMP?"
+    ],
+    "misconception_watch": [
+      "Watch for treating Corr = 0 as independence (yesterday's refuse still holds).",
+      "Watch for jumping to Var(aX+bY) formulas as today's primary LO.",
+      "Watch for claiming Chapter 2 complete."
+    ],
+    "open_point": "CMP · Syllabus 2.2.3 covariance, correlation, and E[g(X,Y)]",
+    "stop_condition": "Through CMP 2.2.3 (stop before linear-combination mean/variance primary 2.2.4)",
+    "out_of_scope_today": [
+      "Linear combinations mean/variance as primary (2.2.4)",
+      "Conditional expectation (2.3)",
+      "MGFs (2.4)",
+      "Regression chapters"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.2.3 covariance, correlation, and E[g(X,Y)]. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.2.3 (stop before linear-combination mean/variance primary 2.2.4). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 2.2.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause — write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1005-2.2.3-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1005-2.2.3-ar-01",
+      "title": "Active Recall: 2.2.3",
+      "prompt": "Closed-book. (1) In words, what does Cov(X,Y) measure? (2) How is correlation related to covariance? (3) How do you set up E[g(X,Y)] from a joint?",
+      "response_type": "short_structured",
+      "body": "Retrieve 2.2.3 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "covariance",
+        "correlation",
+        "expectation",
+        "joint",
+        "standardised",
+        "linear",
+        "g(x,y)"
+      ],
+      "explanation": "Active recall for 2.2.3.",
+      "model_answer": "Cov measures joint linear co-movement (E[(X−μx)(Y−μy)] or equivalent). Correlation standardises covariance by the product of SDs. E[g(X,Y)] is the double sum/integral of g(x,y) times the joint.",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1005-2.2.3-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1005-2.2.3-cp-01",
+      "title": "Checkpoint: 2.2.3",
+      "prompt": "Closed-book. A student says 'we already did independence, so Cov/Corr are optional.' Refuse and restate what today's LO adds.",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 2.2.3.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "covariance",
+        "correlation",
+        "expectation",
+        "not optional",
+        "dependence"
+      ],
+      "explanation": "Checkpoint for 2.2.3.",
+      "model_answer": "Refuse: independence is a special case; Cov/Corr and E[g] are the working dependence and function-expectation tools for general joints — today's LO.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest Cov/Corr/E[g] wobble — linear combinations come tomorrow.",
+    "prompt": "Which part of today's 2.2.3 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 2.2.3 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "2.2",
+    "next_topic_title": "Mean and variance of linear combinations (2.2.4)",
+    "continuity_line": "Today you practised Cov/Corr and E[g(X,Y)]; tomorrow continues at mean and variance of linear combinations of random variables.",
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 2.2.4 — titles only tonight",
+    "student_facing": "Tomorrow: mean and variance of linear combinations (2.2.4). Optional light prep: skim 2.2.4 headings — titles only tonight."
+  },
+  "published_at": "2026-08-01"
+}

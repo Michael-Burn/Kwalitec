@@ -1,0 +1,191 @@
+{
+  "package_version": "cs1005-campaign-epsilon-1.0.0",
+  "publication_version": "cs1005-catalogue-1.0.0",
+  "status": "campaign_member_certified",
+  "campaign_id": "CS1-EP001-CAMPAIGN-EPSILON",
+  "volume_id": "CS1-005",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1005_EDUCATIONAL_VOLUME.md",
+    "CS1005_CERTIFICATION_REPORT.md",
+    "EP003_WAVE3_PLAN.md"
+  ],
+  "author_id": "cs1005-educational-author",
+  "authored_at": "2026-08-01",
+  "topic_code": "2.2",
+  "topic_title": "Determine the characteristics of jointly distributed random variables",
+  "topic_id": "CS1-B-T02",
+  "package_id": "CS1-EP001-PKG-2.2-LINEAR-COMBINATIONS",
+  "campaign_day": "CE-D4",
+  "topic_focus_lo": "2.2.4",
+  "topic_aliases": [
+    "CS1-B-T02",
+    "2.2",
+    "2.2.4"
+  ],
+  "topic_title_keywords": [
+    "linear",
+    "combination",
+    "mean",
+    "variance",
+    "covariance"
+  ],
+  "golden_id": "GOLDEN-CS1005-CS1-2.2-LINEAR-COMBINATIONS",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1005-cs1-2.2-linear-combinations",
+    "display_title": "Obtain mean and variance of linear combinations",
+    "mission_purpose": "Today's Mission exists to obtain the mean and variance of linear combinations of random variables \u2014 including the covariance term when variables are dependent \u2014 without claiming Chapter 2 or 2.3 complete.",
+    "tutor_intent": "Today I will force the candidate through E[aX+bY] and Var(aX+bY) with an explicit dependence note \u2014 refuse ignoring Cov and refuse Chapter-2-complete claims.",
+    "educational_intent": "Produce executable mean/variance warrants for linear combinations of RVs.",
+    "learning_objective": "Obtain the mean and variance of linear combinations of random variables.",
+    "concept_focus": "E[aX+bY] \u2192 Var with 2ab Cov when dependent \u2192 refuse independence-always / Ch2-done.",
+    "prior_bridge": "Yesterday you placed Cov/Corr and E[g(X,Y)] (2.2.3). Today applies linear combination mean and variance.",
+    "why_now": "2.2.4 completes topic 2.2 Learning; Revision follows before any 2.3 commission.",
+    "expected_benefit": "Study Progress for linear-combination mean/variance \u2014 not 2.3; not Chapter 2 trophy.",
+    "explainability": "Campaign Epsilon Day 4 focuses LO 2.2.4 \u2014 terminal Learning day of CS1-005.",
+    "success_criteria": [
+      "Closed-book, state E[aX+bY] in terms of E[X], E[Y].",
+      "State Var(aX+bY) including the covariance term when needed.",
+      "Refuse Chapter 2 complete / ignoring Cov when dependent."
+    ],
+    "task_descriptions": [
+      "Sketch mean and variance formulas before CMP.",
+      "Guided Reading through CMP 2.2.4.",
+      "Knowledge Checks: formulas + refuse Ch2-complete / Cov-ignore."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 55,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1005-cs1-2.2-linear-combinations",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 2.2.4 \u2014 not the next LO as primary.",
+    "session_tutor_purpose": "Set focus on 2.2.4, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
+    "duration_budget_minutes": {
+      "min": 55,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Obtain mean and variance of linear combinations. You practised selective CMP reading on Syllabus 2.2.4. This is Study Progress for today's block \u2014 not Topic Complete for later 2.2 LOs or Chapter 2.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 2.2.4 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 2.2.4 \u2014 obtain mean and variance of linear combinations. Stop before out-of-scope later LOs.",
+    "focus_questions": [
+      "What is the core move of Syllabus 2.2.4?",
+      "What warrant separates today's skill from yesterday's?",
+      "What claim must you refuse today?",
+      "What will you practise in Knowledge Checks after the CMP?"
+    ],
+    "misconception_watch": [
+      "Watch for dropping the 2ab Cov term when X and Y are dependent.",
+      "Watch for claiming Chapter 2 / 2.3 finished.",
+      "Watch for treating Revision as optional."
+    ],
+    "open_point": "CMP \u00b7 Syllabus 2.2.4 mean and variance of linear combinations",
+    "stop_condition": "Through CMP 2.2.4 (stop before conditional expectation 2.3)",
+    "out_of_scope_today": [
+      "Conditional expectation (2.3)",
+      "Generating functions (2.4)",
+      "CLT / sampling",
+      "Chapter 2 complete claim",
+      "First-pass spine PASS"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.2.4 mean and variance of linear combinations. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.2.4 (stop before conditional expectation 2.3). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 2.2.4 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1005-2.2.4-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1005-2.2.4-ar-01",
+      "title": "Active Recall: 2.2.4",
+      "prompt": "Closed-book. For aX + bY: (1) write E[aX+bY]; (2) write Var(aX+bY) when X and Y may be dependent (include Cov).",
+      "response_type": "short_structured",
+      "body": "Retrieve 2.2.4 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "expectation",
+        "variance",
+        "covariance",
+        "linear",
+        "a",
+        "b",
+        "2ab",
+        "dependent"
+      ],
+      "explanation": "Active recall for 2.2.4.",
+      "model_answer": "E[aX+bY] = a E[X] + b E[Y]. Var(aX+bY) = a\u00b2 Var(X) + b\u00b2 Var(Y) + 2ab Cov(X,Y) (Cov term vanishes if independent).",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1005-2.2.4-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1005-2.2.4-cp-01",
+      "title": "Checkpoint: 2.2.4",
+      "prompt": "Closed-book. (1) Refuse 'I can always drop Cov'. (2) Refuse 'Chapter 2 is complete because I finished 2.2.4'. State the honest stop.",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 2.2.4.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "covariance",
+        "chapter",
+        "complete",
+        "2.3",
+        "revision",
+        "stop"
+      ],
+      "explanation": "Checkpoint for 2.2.4.",
+      "model_answer": "(1) Refuse: Cov stays when variables are dependent. (2) Refuse: 2.2.4 closes topic 2.2 Learning, not Chapter 2; next is Revision then honest 2.3 successor \u2014 not spine/until-exam claims.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest linear-combination wobble \u2014 Revision protects the 2.2 chain tomorrow.",
+    "prompt": "Which part of today's 2.2.4 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 2.2.4 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "CE-R1",
+    "next_topic_title": "Campaign Epsilon Revision \u2014 retrieve 2.2.1\u20132.2.4",
+    "continuity_line": "Today you finished linear-combination mean/variance; tomorrow is Revision mode \u2014 retrieve the 2.2 chain closed-book before any 2.3 first-pass work.",
+    "light_prep_cue": "Optional: list the four 2.2 LO hinges from memory \u2014 titles only tonight",
+    "student_facing": "Tomorrow: Campaign Epsilon Revision (retrieve 2.2.1\u20132.2.4). Optional light prep: list the four hinges from memory \u2014 titles only tonight."
+  }
+}

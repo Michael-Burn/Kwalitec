@@ -1,0 +1,189 @@
+{
+  "package_version": "cs1005-campaign-epsilon-1.0.0",
+  "publication_version": "cs1005-catalogue-1.0.0",
+  "status": "campaign_member_certified",
+  "campaign_id": "CS1-EP001-CAMPAIGN-EPSILON",
+  "volume_id": "CS1-005",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1005_EDUCATIONAL_VOLUME.md",
+    "CS1005_CERTIFICATION_REPORT.md",
+    "EP003_WAVE3_PLAN.md"
+  ],
+  "author_id": "cs1005-educational-author",
+  "authored_at": "2026-08-01",
+  "topic_code": "2.2",
+  "topic_title": "Determine the characteristics of jointly distributed random variables",
+  "topic_id": "CS1-B-T02",
+  "package_id": "CS1-EP001-PKG-2.2-INDEPENDENCE",
+  "campaign_day": "CE-D2",
+  "topic_focus_lo": "2.2.2",
+  "topic_aliases": [
+    "CS1-B-T02",
+    "2.2",
+    "2.2.2"
+  ],
+  "topic_title_keywords": [
+    "independence",
+    "independent",
+    "joint",
+    "factor",
+    "marginal"
+  ],
+  "golden_id": "GOLDEN-CS1005-CS1-2.2-INDEPENDENCE",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1005-cs1-2.2-independence",
+    "display_title": "State conditions under which random variables are independent",
+    "mission_purpose": "Today's Mission exists to make independence a testable condition on jointly distributed variables \u2014 so you can recognise when the joint factors and refuse treating 'uncorrelated' or 'looks separate' as independence without a warrant.",
+    "tutor_intent": "Today I will force the candidate to state an independence condition (joint = product of marginals, or equivalent) and refuse correlation-as-independence theatre.",
+    "educational_intent": "Produce discrimination between joint structure and lawful independence conditions.",
+    "learning_objective": "State and apply the conditions under which random variables are independent.",
+    "concept_focus": "Independence condition \u2192 check on joint/marginals \u2192 refuse uncorrelated-as-independent.",
+    "prior_bridge": "Yesterday you obtained marginals and conditionals from a joint (2.2.1). Today tests when variables are independent.",
+    "why_now": "2.2.2 is contiguous after marginals/conditionals; dependence measures (2.2.3) need this hinge.",
+    "expected_benefit": "Study Progress for independence conditions \u2014 not covariance mastery.",
+    "explainability": "Campaign Epsilon Day 2 continues Continuity Front at LO 2.2.2.",
+    "success_criteria": [
+      "Closed-book, state one independence condition in joint/marginal language.",
+      "Apply it to accept or reject independence on a simple sketch.",
+      "Refuse: 'uncorrelated means independent' without further warrant."
+    ],
+    "task_descriptions": [
+      "Sketch the independence factorisation before CMP.",
+      "Guided Reading through CMP 2.2.2.",
+      "Knowledge Checks: condition + refuse correlation collapse."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 55,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1005-cs1-2.2-independence",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 2.2.2 \u2014 not the next LO as primary.",
+    "session_tutor_purpose": "Set focus on 2.2.2, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
+    "duration_budget_minutes": {
+      "min": 55,
+      "max": 75
+    },
+    "wrap_up": "Session complete for State conditions under which random variables are independent. You practised selective CMP reading on Syllabus 2.2.2. This is Study Progress for today's block \u2014 not Topic Complete for later 2.2 LOs or Chapter 2.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 2.2.2 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 2.2.2 \u2014 state conditions under which random variables are independent. Stop before out-of-scope later LOs.",
+    "focus_questions": [
+      "What is the core move of Syllabus 2.2.2?",
+      "What warrant separates today's skill from yesterday's?",
+      "What claim must you refuse today?",
+      "What will you practise in Knowledge Checks after the CMP?"
+    ],
+    "misconception_watch": [
+      "Watch for collapsing independence into 'uncorrelated'.",
+      "Watch for starting full covariance algebra (2.2.3) today.",
+      "Watch for claiming dependence measures finished."
+    ],
+    "open_point": "CMP \u00b7 Syllabus 2.2.2 independence conditions",
+    "stop_condition": "Through CMP 2.2.2 (stop before covariance/correlation primary 2.2.3)",
+    "out_of_scope_today": [
+      "Covariance / correlation as primary (2.2.3)",
+      "Linear combinations mean/variance as primary (2.2.4)",
+      "Conditional expectation (2.3)",
+      "CLT"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.2.2 independence conditions. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.2.2 (stop before covariance/correlation primary 2.2.3). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 2.2.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1005-2.2.2-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1005-2.2.2-ar-01",
+      "title": "Active Recall: 2.2.2",
+      "prompt": "Closed-book. State one clear condition under which X and Y are independent, using joint and marginal language (or an equivalent CMP form).",
+      "response_type": "short_structured",
+      "body": "Retrieve 2.2.2 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "independent",
+        "joint",
+        "marginal",
+        "product",
+        "factor",
+        "p(x,y)",
+        "f(x,y)",
+        "equals"
+      ],
+      "explanation": "Active recall for 2.2.2.",
+      "model_answer": "X and Y are independent if the joint equals the product of the marginals (for all x,y in the support) \u2014 or an equivalent CMP statement (e.g. conditional equals marginal).",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1005-2.2.2-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1005-2.2.2-cp-01",
+      "title": "Checkpoint: 2.2.2",
+      "prompt": "Closed-book. A student says 'correlation is zero, so they are independent.' Refuse and state what additional warrant independence requires.",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 2.2.2.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "uncorrelated",
+        "independent",
+        "not same",
+        "joint",
+        "factor"
+      ],
+      "explanation": "Checkpoint for 2.2.2.",
+      "model_answer": "Refuse: zero correlation is not independence. Independence requires the joint factorisation (or equivalent) \u2014 uncorrelated is weaker and can fail for non-linear dependence.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest independence-condition wobble \u2014 covariance comes tomorrow.",
+    "prompt": "Which part of today's 2.2.2 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 2.2.2 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "2.2",
+    "next_topic_title": "Covariance, correlation, and E[g(X,Y)] (2.2.3)",
+    "continuity_line": "Today you practised independence conditions; tomorrow continues at covariance, correlation, and expected values of functions of two variables.",
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 2.2.3 \u2014 titles only tonight",
+    "student_facing": "Tomorrow: covariance, correlation, and E[g(X,Y)] (2.2.3). Optional light prep: skim 2.2.3 headings \u2014 titles only tonight."
+  }
+}
