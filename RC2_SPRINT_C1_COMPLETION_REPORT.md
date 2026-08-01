@@ -2,7 +2,7 @@
 
 **Programme:** VERSION1-RC2 — Sprint C1 — Educational Publication Activation  
 **Date:** 2026-08-01  
-**Commit:** _(filled after commit)_  
+**Commit:** `afa0010d27dbb43d3491cc7f305e8cb1334f9d18`  
 
 ---
 
