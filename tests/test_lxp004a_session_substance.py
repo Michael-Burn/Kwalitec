@@ -208,6 +208,12 @@ class TestPackageActivityEngine:
                 response=f"notes for {stage}",
             )
             assert submitted.get("twin_updated") is not True
+            # RC2 Sprint C: explanation must survive reload so UI shows Continue.
+            assert submitted.get("explanation") or submitted.get("feedback_outcome")
+            reloaded = adapter.get_current_activity("stu-1", session_id="lsr-sub-1")
+            assert reloaded is not None
+            assert reloaded.get("activity_id") == current["activity_id"]
+            assert reloaded.get("explanation") or reloaded.get("feedback_outcome")
             current = adapter.advance_activity("stu-1", session_id="lsr-sub-1")
 
         assert seen_stages[0] == EducationalStage.READ.value

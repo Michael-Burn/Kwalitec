@@ -101,6 +101,14 @@ class SessionActivityAdapter:
                 enriched = self._enrich_activity(
                     projected, topic=topic, why_studying=why
                 )
+                # Preserve post-answer explanation until the learner advances.
+                # Package engines project the raw sequence item (no explanation);
+                # without this merge, Submit Answer appears to succeed but the
+                # activity surface never switches to Continue.
+                enriched = self._merge_explained_state(
+                    enriched,
+                    self._store.get(self.NS_CURRENT, self._key(sid, sess)),
+                )
                 self._store.save(self.NS_CURRENT, self._key(sid, sess), enriched)
                 return deepcopy(enriched)
         seq = self._ensure_sequence(sid, sess)
@@ -151,9 +159,17 @@ class SessionActivityAdapter:
                     response=response,
                 )
             if isinstance(submitted, dict):
-                return self._enrich_activity(
+                enriched = self._enrich_activity(
                     dict(submitted), topic=topic, why_studying=why
                 )
+                prior = self._store.get(self.NS_CURRENT, self._key(sid, sess)) or {}
+                if prior.get("activity_id") == enriched.get("activity_id"):
+                    merged = {**prior, **enriched}
+                else:
+                    merged = enriched
+                merged = self._merge_explained_state(merged, enriched)
+                self._store.save(self.NS_CURRENT, self._key(sid, sess), merged)
+                return deepcopy(merged)
         seq = self._ensure_sequence(sid, sess)
         index = int(seq.get("index") or 1)
         total = int(seq.get("total") or self._activity_count)
@@ -267,6 +283,43 @@ class SessionActivityAdapter:
             if value:
                 return value
         return ""
+
+    @staticmethod
+    def _merge_explained_state(
+        projected: dict[str, Any],
+        existing: dict[str, Any] | None,
+    ) -> dict[str, Any]:
+        """Keep post-answer feedback on the same activity_id across reloads."""
+        if not isinstance(existing, dict):
+            return projected
+        if existing.get("activity_id") != projected.get("activity_id"):
+            return projected
+        explained = bool(
+            existing.get("explanation")
+            or existing.get("feedback_outcome")
+            or existing.get("model_answer")
+            or str(existing.get("phase") or "").strip().lower() == "explained"
+        )
+        if not explained:
+            return projected
+        merged = dict(projected)
+        for key in (
+            "explanation",
+            "phase",
+            "feedback_outcome",
+            "feedback_explanation",
+            "model_answer",
+            "common_mistake",
+            "next_action",
+            "next_action_label",
+            "scored_correct",
+            "emit_structured",
+            "score_payload",
+        ):
+            value = existing.get(key)
+            if value not in (None, "", (), [], {}):
+                merged[key] = value
+        return merged
 
     def _enrich_activity(
         self,
