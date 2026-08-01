@@ -228,15 +228,17 @@ class StudentRuntimeCoordinator:
                 session_id=session_id,
                 substance=substance,
             )
-            # RO1-R1 — ensure sitting chrome can recover package id even when
-            # MissionInstanceSnapshot omitted educational_package_id.
-            pack_id = (mission.educational_package_id or "").strip()
-            if not pack_id:
-                from app.infrastructure.adapters.learning_session import (
-                    package_activity_engine as pkg_engine,
-                )
+            # RO1-R1 — bind Finish chrome to the package that actually
+            # provisioned this sitting's substance (not a stale mission
+            # payload id from a prior shared-topic day).
+            from app.infrastructure.adapters.learning_session import (
+                package_activity_engine as pkg_engine,
+            )
 
-                pack_id = pkg_engine._package_id_from_substance(substance)
+            pack_id = (
+                pkg_engine._package_id_from_substance(substance)
+                or (mission.educational_package_id or "").strip()
+            )
             if pack_id:
                 store.save_binding(
                     student_id=sid,
