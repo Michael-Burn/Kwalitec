@@ -1,0 +1,189 @@
+{
+  "package_version": "cs1004-campaign-gamma-1.0.0",
+  "publication_version": "cs1004-catalogue-1.0.0",
+  "status": "campaign_member_certified",
+  "campaign_id": "CS1-EP001-CAMPAIGN-GAMMA",
+  "volume_id": "CS1-004",
+  "subject_id": "CS1",
+  "topic_code": "2.1",
+  "topic_title": "Understand the characteristics of basic univariate distributions and how to generate samples from them",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1004_EDUCATIONAL_VOLUME.md",
+    "CS1004_CERTIFICATION_REPORT.md",
+    "EP001_WAVE1_PLAN.md"
+  ],
+  "author_id": "cs1004-educational-author",
+  "authored_at": "2026-08-01",
+  "package_id": "CS1-EP001-PKG-2.1-SOFTWARE-GENERATION",
+  "campaign_day": "CG-D4",
+  "topic_focus_lo": "2.1.6",
+  "topic_aliases": [
+    "CS1-B-T01",
+    "2.1",
+    "2.1.6"
+  ],
+  "topic_title_keywords": [
+    "software",
+    "generate",
+    "simulate",
+    "sample",
+    "random"
+  ],
+  "golden_id": "GOLDEN-CS1004-CS1-2.1-SOFTWARE-GENERATION",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1004-cs1-2.1-software-generation",
+    "display_title": "Generate RVs with statistical software",
+    "mission_purpose": "Today's Mission exists to generate discrete and continuous random variables using statistical software — so software sampling is deliberate and checkable against the families and methods you already hold, without opening joint distributions.",
+    "tutor_intent": "Today I will force the candidate to generate draws in software for basic discrete and continuous families and to sanity-check output — refusing both GUI theatre and silent claim that Chapter 2 is finished.",
+    "educational_intent": "Produce a cognitive move from 'I know inverse transform' to 'I can obtain software-generated samples and check them honestly.'",
+    "learning_objective": "Generate discrete and continuous random variables using statistical software.",
+    "concept_focus": "Software sampler for named family → generate → sanity check; refuse chapter-complete theatre.",
+    "prior_bridge": "Yesterday's inverse transform is the method spine; today is Syllabus 2.1.6 software generation for the same univariate families.",
+    "why_now": "2.1.6 completes the univariate generation pair after inverse transform; Revision follows before 2.2.",
+    "expected_benefit": "Study Progress completing 2.1 Learning LOs — not Topic Complete for 2.2.",
+    "explainability": "Assigned as Campaign Gamma Day 4 because it is the final Learning LO in 2.1 before Revision.",
+    "success_criteria": [
+      "Generate samples for at least one discrete and one continuous family in software.",
+      "Perform one sanity check (support, mean rough check, or histogram story).",
+      "Refuse claiming joint distributions / Chapter 2 complete."
+    ],
+    "task_descriptions": [
+      "Plan which discrete and continuous family you will generate before opening the CMP/software notes.",
+      "Complete Guided Reading through CMP treatment of Syllabus 2.1.6 and practise generation.",
+      "Closed-book Knowledge Checks: software generation intent and refuse overclaim."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 55,
+      "max": 80
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1004-cs1-2.1-software-generation",
+    "session_educational_purpose": "Execute today's Mission: software generation for univariate RVs — not joint distributions (2.2).",
+    "session_tutor_purpose": "Set focus on generate–check–refuse-overclaim, exit to CMP/software practice for 2.1.6.",
+    "duration_budget_minutes": {
+      "min": 55,
+      "max": 80
+    },
+    "wrap_up": "Session complete for Generate RVs with statistical software. Learning days for 2.1.3–2.1.6 are done after today; tomorrow is Revision — not a silent jump into 2.2.",
+    "confidence_prompt": "How confident are you that you could generate and sanity-check one discrete and one continuous sample tomorrow? Rate 1–5 with warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP (and appropriate statistical software) to generate discrete and continuous RVs under Syllabus 2.1.6. Stop before joint distributions.",
+    "focus_questions": [
+      "Which software calls generate your chosen discrete and continuous families?",
+      "What one sanity check will you run on the sample?",
+      "How does this sit beside inverse transform without replacing it?",
+      "What must you refuse claiming about Chapter 2?"
+    ],
+    "misconception_watch": [
+      "Watch for opening 2.2 joint distributions.",
+      "Watch for generating without any sanity check.",
+      "Watch for claiming exam readiness from finishing 2.1 Learning days."
+    ],
+    "open_point": "CMP · Syllabus 2.1.6 generation using statistical software",
+    "stop_condition": "Through CMP/software practice for Syllabus 2.1.6 (stop before joint distributions 2.2)",
+    "out_of_scope_today": [
+      "Joint distributions (2.2)",
+      "Full CS1B project delivery",
+      "Mid-spine regression / GLM",
+      "Claiming first-pass spine complete"
+    ],
+    "annotation_task": "Before practice: name one discrete and one continuous target family and one sanity check",
+    "attempt_before_reveal": "Generate first; then compare to the worked check",
+    "exit_line": "Open your CMP at Syllabus 2.1.6 — software generation. Use statistical software as the CMP directs. Stop before 2.2. Return for Worked-example re-entry, then Knowledge Checks.",
+    "return_cue": "Finished Guided Reading/practice when 2.1.6 block is complete and focus questions are answerable. Close CMP; return for re-entry then Knowledge Checks.",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause — write your sanity check before looking at solutions.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt generation for the second family before uncovering.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. CMP closed for checks. Next: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1004-2.1f-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1004-2.1f-ar-01",
+      "title": "Active Recall: software generation plan",
+      "prompt": "Closed-book. Name one discrete and one continuous family. For each, state what you would ask statistical software to generate and one sanity check you would run.",
+      "response_type": "short_structured",
+      "body": "Two families; generate; check.",
+      "hints": [
+        "e.g. binomial / Poisson; Normal / exponential.",
+        "Checks: support, mean, rough shape."
+      ],
+      "accepted_keywords": [
+        "generate",
+        "sample",
+        "binomial",
+        "poisson",
+        "normal",
+        "exponential",
+        "check",
+        "mean",
+        "support"
+      ],
+      "explanation": "Software LO is deliberate generate + check, not menu tourism.",
+      "model_answer": "Example: Discrete — generate Poisson(λ) counts; check non-negative integers and sample mean near λ. Continuous — generate Exp(λ); check positive support and mean near 1/λ.",
+      "common_mistake": "Naming software without a check.",
+      "success_criteria": [
+        "Discrete and continuous targets.",
+        "One sanity check each or shared clear checks."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1004-2.1f-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1004-2.1f-cp-01",
+      "title": "Checkpoint: refuse Chapter 2 complete",
+      "prompt": "Closed-book. A peer says finishing software generation means Chapter 2 / joint distributions are done. Refuse in two sentences; name what remains (at least 2.2).",
+      "response_type": "short_structured",
+      "body": "Refuse overclaim; name 2.2+ remainder.",
+      "hints": [
+        "2.1 Learning may be complete after today + Revision.",
+        "2.2 joint distributions still Missing."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "2.2",
+        "joint",
+        "not",
+        "complete",
+        "chapter"
+      ],
+      "explanation": "Honest stop: 2.1 completion ≠ Chapter 2 completion.",
+      "model_answer": "Refuse: software generation finishes the 2.1 generation LO, not Chapter 2. Joint distributions (2.2) and later Section 2 topics remain unpublished / not claimed by this Volume.",
+      "common_mistake": "Agreeing Chapter 2 is finished.",
+      "success_criteria": [
+        "Clear refusal.",
+        "Names 2.2 or later remainder."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest software-generation wobble before Revision.",
+    "prompt": "Which part is stickiest — choosing samplers, sanity checks, or refusing Chapter-2-complete theatre? What cue is unclear? What will Revision need to retrieve?",
+    "prompts": [
+      "Which part is stickiest — samplers, sanity checks, or refusing overclaim?",
+      "What cue is unclear?",
+      "What will Revision need to retrieve from 2.1.3–2.1.6?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "CG-R1",
+    "next_topic_title": "Campaign Gamma revision — distributions through generation",
+    "continuity_line": "Today you closed software generation; tomorrow is Revision across 2.1.1–2.1.6 (and Beta hinges as needed) — not a first-pass jump into 2.2.",
+    "light_prep_cue": "Optional: list sticky titles from 2.1.3–2.1.6 Reflections — titles only tonight",
+    "student_facing": "Tomorrow: Campaign Gamma Revision day — retrieve evaluation, Poisson process, inverse transform, and software generation. Optional light prep: sticky titles only tonight."
+  }
+}

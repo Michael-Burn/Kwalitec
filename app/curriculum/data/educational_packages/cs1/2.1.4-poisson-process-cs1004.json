@@ -1,0 +1,190 @@
+{
+  "package_version": "cs1004-campaign-gamma-1.0.0",
+  "publication_version": "cs1004-live-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "CS1-EP001-CAMPAIGN-GAMMA",
+  "volume_id": "CS1-004",
+  "subject_id": "CS1",
+  "topic_code": "2.1",
+  "topic_title": "Understand the characteristics of basic univariate distributions and how to generate samples from them",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1004_EDUCATIONAL_VOLUME.md",
+    "CS1004_CERTIFICATION_REPORT.md",
+    "EP001_WAVE1_PLAN.md"
+  ],
+  "author_id": "cs1004-educational-author",
+  "authored_at": "2026-08-01",
+  "package_id": "CS1-EP001-PKG-2.1-POISSON-PROCESS",
+  "campaign_day": "CG-D2",
+  "topic_focus_lo": "2.1.4",
+  "topic_aliases": [
+    "CS1-B-T01",
+    "2.1",
+    "2.1.4"
+  ],
+  "topic_title_keywords": [
+    "poisson",
+    "process",
+    "arrival",
+    "rate",
+    "exponential"
+  ],
+  "golden_id": "GOLDEN-CS1004-CS1-2.1-POISSON-PROCESS",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1004-cs1-2.1-poisson-process",
+    "display_title": "Connect the Poisson process to the Poisson distribution",
+    "mission_purpose": "Today's Mission exists to place the Poisson process beside the Poisson distribution you already recognise — so counting arrivals in continuous time connects honestly to the discrete Poisson count model, without swallowing inverse-transform generation.",
+    "tutor_intent": "Today I will force the candidate to state the Poisson process story and its link to Poisson counts (and related waiting-time cues as the CMP presents) — and to refuse treating 'Poisson' as one undifferentiated label.",
+    "educational_intent": "Produce a cognitive move from 'Poisson is a discrete family' to 'I can connect process arrivals to Poisson counts with one warrant.'",
+    "learning_objective": "Describe the Poisson process and the connection between the Poisson process and the Poisson distribution.",
+    "concept_focus": "Process arrivals → count in an interval → Poisson distribution link; refuse label-collapse.",
+    "prior_bridge": "Yesterday you evaluated probabilities and quantiles (2.1.3). Today stays on 2.1 at LO 2.1.4 — process connection — using discrete Poisson familiarity from Beta.",
+    "why_now": "2.1.4 is the contiguous next LO after evaluation; it bridges counting models to continuous-time arrival stories before generation methods.",
+    "expected_benefit": "Study Progress for process↔distribution connection — not Topic Complete for 2.1.5–2.1.6.",
+    "explainability": "Assigned as Campaign Gamma Day 2 because syllabus order places process connection after evaluation and before generation.",
+    "success_criteria": [
+      "Closed-book, describe what a Poisson process models in one short story.",
+      "State the connection between process counts in an interval and the Poisson distribution.",
+      "Refuse collapsing 'Poisson' into a single undifferentiated label."
+    ],
+    "task_descriptions": [
+      "Sketch arrivals-in-time → count-in-interval before opening the CMP.",
+      "Complete Guided Reading through CMP treatment of Syllabus 2.1.4.",
+      "Closed-book Knowledge Checks: connect and refuse label-collapse."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 55,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1004-cs1-2.1-poisson-process",
+    "session_educational_purpose": "Execute today's Mission: Poisson process ↔ Poisson distribution — not inverse-transform or software generation.",
+    "session_tutor_purpose": "Set focus on process story and count link, exit to CMP 2.1.4, retrieve connect–warrant–refuse-label-collapse.",
+    "duration_budget_minutes": {
+      "min": 55,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Connect the Poisson process to the Poisson distribution. This is Study Progress for 2.1.4 — not Topic Complete for inverse transform (2.1.5) or software generation (2.1.6).",
+    "confidence_prompt": "How confident are you that you could explain the process↔Poisson-count link closed-book tomorrow? Rate 1–5 and give one warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract the Poisson process definition and its connection to the Poisson distribution. Stop before inverse-transform and software generation LOs.",
+    "focus_questions": [
+      "What does a Poisson process model?",
+      "How do counts in a fixed interval connect to the Poisson distribution?",
+      "What related waiting-time cue does the CMP emphasise (if any) without expanding scope?",
+      "How do you refuse treating 'Poisson' as one blurry label?"
+    ],
+    "misconception_watch": [
+      "Watch for confusing the process with the discrete distribution alone.",
+      "Watch for beginning inverse-transform generation (2.1.5) today.",
+      "Watch for claiming all of 2.1 complete after this day."
+    ],
+    "open_point": "CMP · Syllabus 2.1.4 Poisson process",
+    "stop_condition": "Through the CMP treatment of the Poisson process and its Poisson-distribution connection for Syllabus 2.1.4 (stop before generation 2.1.5)",
+    "out_of_scope_today": [
+      "Inverse transform generation (2.1.5)",
+      "Software generation as primary LO (2.1.6)",
+      "Deep 2.1.3 re-drills beyond brief hinge",
+      "Joint distributions (2.2)",
+      "CS1B coding marathon"
+    ],
+    "annotation_task": "Before deep reading: write arrivals → count-in-interval → Poisson in three arrows",
+    "attempt_before_reveal": "At the first connection example, cover the answer and state the link first",
+    "exit_line": "Open your CMP at Syllabus 2.1.4 — Poisson process. Kwalitec is the guide; the CMP is the authoritative material. Hunt with the focus questions; complete the annotation task. Ignore generation methods and joint distributions today. Stop when the 2.1.4 block is complete. Then close the CMP and return here for Worked-example re-entry, then Knowledge Checks.",
+    "return_cue": "Finished Guided Reading when the CMP 2.1.4 block is complete and focus questions are answerable from notes. Close the CMP and return. Next: Worked-example re-entry, then Knowledge Checks.",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause — write: Count in interval ~ … because …",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next connection prompt before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Next: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1004-2.1d-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1004-2.1d-ar-01",
+      "title": "Active Recall: process story",
+      "prompt": "Closed-book. In two to four sentences: what does a Poisson process model, and how does the number of events in a fixed time interval connect to the Poisson distribution?",
+      "response_type": "short_structured",
+      "body": "Process arrivals; count ~ Poisson.",
+      "hints": [
+        "Arrivals in continuous time.",
+        "Count in interval has Poisson distribution under process assumptions."
+      ],
+      "accepted_keywords": [
+        "poisson",
+        "process",
+        "count",
+        "interval",
+        "rate",
+        "arrival",
+        "events"
+      ],
+      "explanation": "The LO is the process↔distribution connection, not rote formula dump.",
+      "model_answer": "A Poisson process models random arrivals/events in continuous time at a constant average rate (under standard assumptions). The number of events in a fixed interval then follows a Poisson distribution with mean rate × length.",
+      "common_mistake": "Only restating the Poisson PMF without the process story.",
+      "success_criteria": [
+        "Process story present.",
+        "Count↔Poisson link stated."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1004-2.1d-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1004-2.1d-cp-01",
+      "title": "Checkpoint: refuse label-collapse",
+      "prompt": "Closed-book. A student says: 'Poisson just means the discrete distribution — process talk is optional decoration.' Refuse that claim in two sentences with one process↔count warrant.",
+      "response_type": "short_structured",
+      "body": "Refuse collapse; state connection.",
+      "hints": [
+        "Process is the continuous-time arrival model.",
+        "Distribution is the count law in an interval."
+      ],
+      "accepted_keywords": [
+        "process",
+        "count",
+        "interval",
+        "refuse",
+        "distribution",
+        "not",
+        "optional"
+      ],
+      "explanation": "Syllabus 2.1.4 requires the connection, not optional decoration.",
+      "model_answer": "Refuse: the Poisson process is the continuous-time arrival model; the Poisson distribution is the law for the count in an interval under that process. Collapsing them loses the LO's required connection.",
+      "common_mistake": "Agreeing that process language is optional.",
+      "success_criteria": [
+        "Refusal clear.",
+        "Connection warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest process-connection wobble.",
+    "prompt": "Which part is stickiest — process story, count link, or refusing label-collapse — and why? What one CMP cue remains unclear? What one move would you rework in five minutes?",
+    "prompts": [
+      "Which part is stickiest — process story, count link, or refusing label-collapse?",
+      "What one CMP cue remains unclear?",
+      "What one move would you rework in five minutes?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "2.1",
+    "next_topic_title": "Inverse transform generation (2.1.5)",
+    "continuity_line": "Today you connected Poisson process to Poisson counts; tomorrow moves to generating basic discrete and continuous RVs by the inverse transform method.",
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 2.1.5 — titles only tonight",
+    "student_facing": "Tomorrow: inverse transform generation of basic discrete and continuous random variables (2.1.5). Optional light prep: skim 2.1.5 headings — titles only tonight."
+  },
+  "published_at": "2026-08-01"
+}

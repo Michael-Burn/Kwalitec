@@ -89,6 +89,8 @@ class CertifiedEducationalPackage:
     reflection_prompt: str
     reflection_prompts: tuple[str, ...]
     tomorrow: TomorrowPreviewPack
+    campaign_id: str = ""
+    campaign_day: str = ""
     estimated_minutes_min: int = 50
     estimated_minutes_max: int = 70
     source_path: str = ""

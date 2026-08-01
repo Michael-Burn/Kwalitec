@@ -43,9 +43,42 @@ def find_educational_package(
     )
 
 
+def find_package_by_id(package_id: str) -> CertifiedEducationalPackage | None:
+    """Resolve a publication-approved package by exact package_id."""
+    pid = (package_id or "").strip()
+    if not pid:
+        return None
+    for pack in EducationalPackageLoader().all_approved():
+        if pack.package_id == pid:
+            return pack
+    return None
+
+
+def packages_for_subject(
+    subject_id: str,
+) -> tuple[CertifiedEducationalPackage, ...]:
+    """All publication-approved packages for a subject (stable load order)."""
+    sid = (subject_id or "").strip().upper()
+    if not sid:
+        return ()
+    return tuple(
+        p
+        for p in EducationalPackageLoader().all_approved()
+        if p.subject_id.upper() == sid
+    )
+
+
 def reset_educational_package_cache() -> None:
     """Clear cached package inventory (tests)."""
     EducationalPackageLoader._load_all.cache_clear()
+    try:
+        from app.application.educational_packages.guard import (
+            reset_certified_guidance_cache,
+        )
+
+        reset_certified_guidance_cache()
+    except ImportError:
+        pass
 
 
 class EducationalPackageLoader:
@@ -271,6 +304,8 @@ def _parse_package(
             light_prep_cue=str(tomorrow_raw.get("light_prep_cue") or "").strip(),
             student_facing=str(tomorrow_raw.get("student_facing") or "").strip(),
         ),
+        campaign_id=str(raw.get("campaign_id") or "").strip(),
+        campaign_day=str(raw.get("campaign_day") or "").strip(),
         estimated_minutes_min=int(
             time_raw.get("min") or session_time.get("min") or 50
         ),

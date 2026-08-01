@@ -38,6 +38,33 @@ def test_safe_educational_copy(text):
     assert is_reflection_safe(text)
 
 
+@pytest.mark.parametrize(
+    "text",
+    [
+        "You worked through reading on Complete exploratory data analysis",
+        "Growing comfort with Explain the aims of data analysis",
+        "Growing comfort with Explain how a GLM joins an exponential-family",
+        "Retrieve the purpose-to-EDA exploratory judgement chain",
+    ],
+)
+def test_reflection_safe_despite_xp_substring(text):
+    """PB-002 F6: substance copy must not trip on 'xp' inside educational words."""
+    assert is_reflection_safe(text)
+    make_reflection(key_insight=text, concept_confidence=text)
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "Your xp is climbing",
+        "Great score today",
+        "Badge unlocked for tonight",
+    ],
+)
+def test_reflection_rejects_standalone_gamification_tokens(text):
+    assert not is_reflection_safe(text)
+
+
 def test_activity_accepts_safe_question():
     activity = make_activity(question="Explain the equity method briefly.")
     assert "equity" in activity.question.lower()

@@ -1,0 +1,193 @@
+{
+  "package_version": "cs1004-campaign-gamma-1.0.0",
+  "publication_version": "cs1004-catalogue-1.0.0",
+  "status": "campaign_member_certified",
+  "campaign_id": "CS1-EP001-CAMPAIGN-GAMMA",
+  "volume_id": "CS1-004",
+  "subject_id": "CS1",
+  "topic_code": "CG-R1",
+  "topic_title": "Campaign Gamma revision — distributions through generation",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1004_EDUCATIONAL_VOLUME.md",
+    "CS1004_CERTIFICATION_REPORT.md",
+    "EP001_WAVE1_PLAN.md"
+  ],
+  "author_id": "cs1004-educational-author",
+  "authored_at": "2026-08-01",
+  "package_id": "CS1-EP001-PKG-REV-DISTRIBUTIONS-GENERATION",
+  "campaign_day": "CG-R1",
+  "return_targets": [
+    "2.1.1",
+    "2.1.2",
+    "2.1.3",
+    "2.1.4",
+    "2.1.5",
+    "2.1.6"
+  ],
+  "topic_aliases": [
+    "CG-R1",
+    "campaign-gamma-revision"
+  ],
+  "topic_title_keywords": [
+    "revision",
+    "quantile",
+    "poisson",
+    "inverse",
+    "generation"
+  ],
+  "golden_id": "GOLDEN-CS1004-CS1-CG-R1-DISTRIBUTIONS-GENERATION",
+  "mode": "revision",
+  "mission": {
+    "mission_id": "msn-cs1004-cs1-cg-r1-distributions-generation",
+    "display_title": "Retrieve univariate evaluation and generation",
+    "mission_purpose": "Today's Mission exists to protect memory of Campaign Gamma and the Beta distributional entry — retrieving family placement, probability/quantile evaluation, Poisson process connection, inverse transform, and software generation — so 2.1 does not evaporate before joint distributions.",
+    "tutor_intent": "Today I will run closed-book retrieval across Gamma's Learning hinges plus Beta placement return — not a passive CMP re-read and not a first-pass 2.2 lesson.",
+    "educational_intent": "Produce retrieval strength on the Campaign Educational Objective: evaluate → process link → generate (method + software), with continuity to Beta family placement.",
+    "learning_objective": "Retrieve and connect (1) a probability or quantile evaluation, (2) Poisson process↔distribution link, (3) inverse transform steps, (4) software generation with a sanity check, and (5) one Beta family-placement hinge.",
+    "concept_focus": "Campaign chain retrieval: place → evaluate → process → inverse → software.",
+    "prior_bridge": "Yesterday you finished software generation (2.1.6). Today is Revision mode: return to 2.1.1–2.1.6 skills under closed-book retrieval — no new first-pass LO.",
+    "why_now": "Pilot Arc law requires Revision after the Learning span; spacing protects Continuity Front closure before successor 2.2 work.",
+    "expected_benefit": "Evidence that 2.1 chain retrieves — revision Study Progress, not a claim that Chapter 2 or exam journey is complete.",
+    "explainability": "Assigned as Campaign Gamma Revision because Architecture requires memory return inside the Pilot Arc before the next Volume.",
+    "success_criteria": [
+      "Closed-book, evaluate or state evaluation type for one family prompt.",
+      "Restate Poisson process↔count link.",
+      "Outline inverse transform with Uniform source.",
+      "Name software generation + one sanity check.",
+      "Retrieve one discrete or continuous placement hinge from Beta."
+    ],
+    "task_descriptions": [
+      "Without opening the CMP, sketch Gamma's chain: evaluate → process → inverse → software; note Beta placement hinge.",
+      "Complete Revision Knowledge Checks under closed-book rules.",
+      "Author a revision Reflection naming the weakest link."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 40,
+      "max": 55
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1004-cs1-cg-r1-distributions-generation",
+    "session_educational_purpose": "Retrieve and connect Campaign Gamma skills (and Beta placement hinge) — not to teach 2.2.",
+    "session_tutor_purpose": "Keep CMP closed for checks; harvest weakest link — Gate RV substance.",
+    "duration_budget_minutes": {
+      "min": 40,
+      "max": 55
+    },
+    "wrap_up": "Revision Session complete. You stress-tested 2.1.1–2.1.6 return targets. This is revision Study Progress — not Topic Complete for 2.2, and not mid-spine absorption of 4.2.",
+    "confidence_prompt": "How confident are you that evaluate → process → generate will still retrieve in three days? Rate 1–5 and name the weakest link."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this revision stage: strengthen retrieval of the Campaign Gamma chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus.",
+    "focus_questions": [
+      "Can you evaluate a probability or quantile for a named family?",
+      "Can you connect Poisson process to Poisson counts?",
+      "Can you outline inverse transform with Uniform?",
+      "Can you generate in software and name a sanity check?",
+      "Can you still place a discrete or continuous family (Beta hinge)?"
+    ],
+    "misconception_watch": [
+      "Watch for turning revision into a passive re-read.",
+      "Watch for claiming Chapter 2 / 2.2 complete.",
+      "Watch for dropping Beta placement because 'that was last Volume.'"
+    ],
+    "open_point": "No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block.",
+    "stop_condition": "After revision checks and Reflection — do not begin Syllabus 2.2 in this sitting",
+    "out_of_scope_today": [
+      "First-pass joint distributions (2.2)",
+      "4.2 GLM absorption",
+      "New inference chapters",
+      "Exam-readiness claims"
+    ],
+    "annotation_task": "Before checks: sketch evaluate → process → inverse → software (+ placement hinge) from memory",
+    "attempt_before_reveal": "Attempt each check before any targeted CMP reopen",
+    "exit_line": "Begin closed-book retrieval. Reopen CMP only at a failed locus. Do not start 2.2 today. After checks, complete Reflection.",
+    "return_cue": "Revision reading stage is complete when checks are attempted and any failed locus has a targeted reopen plan. Proceed to Knowledge Checks / Reflection as prompted.",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause — mark the weakest link before checks.",
+        "student_action": "Annotate"
+      }
+    ],
+    "reentry_line": "Stay closed-book unless a check failed. Continue retrieval."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1004-cgr1-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1004-cgr1-ar-01",
+      "title": "Active Recall: Gamma chain",
+      "prompt": "Closed-book. In order, name the four Gamma Learning moves (2.1.3–2.1.6) in one short phrase each. Then add one Beta placement hinge (discrete or continuous).",
+      "response_type": "short_structured",
+      "body": "Chain + Beta hinge.",
+      "hints": [
+        "evaluate; process; inverse transform; software generation",
+        "Beta: discrete match or continuous place/refuse Normal"
+      ],
+      "accepted_keywords": [
+        "quantile",
+        "probability",
+        "poisson",
+        "process",
+        "inverse",
+        "software",
+        "discrete",
+        "continuous",
+        "normal"
+      ],
+      "explanation": "Revision retrieves the arc, not isolated trivia.",
+      "model_answer": "2.1.3 evaluate probabilities/quantiles; 2.1.4 Poisson process↔Poisson; 2.1.5 inverse transform; 2.1.6 software generation. Beta hinge example: place lognormal for positive skew and refuse Normal-by-default.",
+      "common_mistake": "Skipping process or generation links.",
+      "success_criteria": [
+        "Four Gamma moves named.",
+        "One Beta hinge."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1004-cgr1-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1004-cgr1-cp-01",
+      "title": "Checkpoint: weakest link + honest next",
+      "prompt": "Closed-book. (1) Which link is weakest today and what one rework will you schedule? (2) Confirm that 2.2 was out of scope and name the honest next geography after this Volume.",
+      "response_type": "short_structured",
+      "body": "Weakest link + honest handoff to 2.2.",
+      "hints": [
+        "Name a concrete rework.",
+        "Next: joint distributions 2.2 (successor Volume), not claimed complete today."
+      ],
+      "accepted_keywords": [
+        "weak",
+        "rework",
+        "2.2",
+        "joint",
+        "out of scope",
+        "next"
+      ],
+      "explanation": "RV harvests memory debt and honest Continuity Front movement.",
+      "model_answer": "(1) e.g. Inverse transform discrete case — schedule a five-minute threshold drill. (2) 2.2 was out of scope; honest next geography is jointly distributed random variables (2.2) in a successor Volume.",
+      "common_mistake": "Claiming Chapter 2 finished.",
+      "success_criteria": [
+        "Weakest link + rework.",
+        "Honest 2.2 handoff named."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Revision Reflection names the weakest Campaign link for spaced return.",
+    "prompt": "Which link retrieved least cleanly — evaluation, process, inverse transform, software generation, or Beta placement — and what one concrete rework will you schedule? Confirm 2.2 was out of scope.",
+    "prompts": [
+      "Which link retrieved least cleanly?",
+      "What one concrete rework will you schedule?",
+      "Confirm: 2.2 and mid-spine absorption were out of scope today."
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "2.2",
+    "next_topic_title": "Jointly distributed random variables — successor Volume",
+    "continuity_line": "Campaign Gamma / Volume CS1-004 completes after this Revision. The honest handoff is to a successor Volume opening joint distributions (2.2) — not silently complete. Mid-spine 4.2 absorption remains CS1-003 / Wave 2 work.",
+    "light_prep_cue": "Optional skim: CMP headings for Syllabus 2.2 — titles only, no deep study tonight",
+    "student_facing": "Campaign Gamma / CS1-004 complete after today. Next journey continues at jointly distributed random variables (2.2) in a successor Volume. Optional light prep: skim 2.2 headings — titles only tonight."
+  }
+}

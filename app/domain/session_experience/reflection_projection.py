@@ -5,6 +5,7 @@ No scoring language. Guidance only. Educational insights arrive from ports.
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
 
 # Scoring / gamification language is forbidden on reflection surfaces.
@@ -20,6 +21,12 @@ FORBIDDEN_REFLECTION_TERMS: tuple[str, ...] = (
     "adaptive decision",
     "learning orchestrator",
     "mastery score",
+)
+
+# Short tokens that false-positive inside ordinary educational words
+# (e.g. "xp" in "exploratory" / "Explain").
+_BOUNDARY_FORBIDDEN_TERMS: frozenset[str] = frozenset(
+    {"xp", "score", "grade", "points", "badge", "streak"}
 )
 
 
@@ -95,9 +102,20 @@ class ReflectionProjection:
 
 
 def is_reflection_safe(text: str) -> bool:
-    """True when ``text`` avoids scoring / internal engine language."""
+    """True when ``text`` avoids scoring / internal engine language.
+
+    Short gamification tokens are matched on word boundaries so substance-backed
+    copy such as \"exploratory data analysis\" or \"Explain the aims…\" is not
+    rejected (PB-001 F6 / PB-002).
+    """
     lowered = (text or "").lower()
-    return not any(term in lowered for term in FORBIDDEN_REFLECTION_TERMS)
+    for term in FORBIDDEN_REFLECTION_TERMS:
+        if term in _BOUNDARY_FORBIDDEN_TERMS:
+            if re.search(rf"\b{re.escape(term)}\b", lowered):
+                return False
+        elif term in lowered:
+            return False
+    return True
 
 
 def _require_non_empty(value: str, field_name: str) -> str:

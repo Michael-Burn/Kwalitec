@@ -1,0 +1,37 @@
+{
+  "campaign_id": "CS1-EP001-CAMPAIGN-GAMMA",
+  "campaign_version": "cs1004-1.0.0",
+  "display_title": "Campaign Gamma — From Probability Evaluation to Generation",
+  "subject_id": "CS1",
+  "package_version_pin": "IFoA CS1 2026",
+  "scope_class": "Pilot Arc",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "status": "released",
+  "volume_id": "CS1-004",
+  "prior_volume_id": "CS1-002",
+  "day_count": {
+    "learning": 4,
+    "revision": 1,
+    "total": 5
+  },
+  "syllabus_span": [
+    "2.1.3",
+    "2.1.4",
+    "2.1.5",
+    "2.1.6"
+  ],
+  "out_of_scope": [
+    "2.2+",
+    "CS1B coding marathons",
+    "regression/Bayesian chapters",
+    "4.2 absorption",
+    "first-pass spine"
+  ],
+  "inventory": [
+    "CS1-EP001-PKG-2.1-PROB-QUANTILES",
+    "CS1-EP001-PKG-2.1-POISSON-PROCESS",
+    "CS1-EP001-PKG-2.1-INVERSE-TRANSFORM",
+    "CS1-EP001-PKG-2.1-SOFTWARE-GENERATION",
+    "CS1-EP001-PKG-REV-DISTRIBUTIONS-GENERATION"
+  ]
+}

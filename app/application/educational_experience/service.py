@@ -15,6 +15,7 @@ from app.application.educational_engine_foundation.service import (
     EducationalEngineFoundationService,
 )
 from app.application.educational_experience.dto import (
+    CoverageGapSnapshot,
     CurriculumPositionSnapshot,
     EducationalExperienceSnapshot,
     JourneyEducationSnapshot,
@@ -32,6 +33,7 @@ from app.application.educational_runtime_engine.dto import (
     RuntimeJourneySnapshot,
 )
 from app.application.educational_runtime_engine.exceptions import (
+    CertifiedGuidanceUnavailable,
     IllegalRuntimeState,
     MissionInstanceNotFound,
     SyllabusAlreadyComplete,
@@ -174,6 +176,7 @@ class EducationalExperienceService:
             return None
 
         mission: MissionInstanceSnapshot | None = None
+        coverage_gap: CoverageGapSnapshot | None = None
         enrolment_active = (
             enrolment.status == EnrolmentStatus.ACTIVE.value
         )
@@ -186,6 +189,16 @@ class EducationalExperienceService:
                 )
             except SyllabusAlreadyComplete:
                 mission = None
+            except CertifiedGuidanceUnavailable as exc:
+                logger.info(
+                    "educational_experience_mission_withheld: %s",
+                    exc,
+                )
+                mission = None
+                coverage_gap = CoverageGapSnapshot(
+                    topic_code=exc.topic_code,
+                    message=str(exc),
+                )
             except IllegalRuntimeState as exc:
                 logger.info(
                     "educational_experience_mission_deferred: %s",
@@ -218,6 +231,7 @@ class EducationalExperienceService:
             explanation=explanation,
             pacing=pacing,
             artefacts=artefacts,
+            coverage_gap=coverage_gap,
         )
 
     def _reconcile_baseline_position(
@@ -326,6 +340,7 @@ class EducationalExperienceService:
         explanation: JourneyExplanationSnapshot,
         pacing: StudyPlanPacingSnapshot,
         artefacts: Any,
+        coverage_gap: CoverageGapSnapshot | None = None,
     ) -> EducationalExperienceSnapshot:
         progress = journey.progress
         topic_lookup = {
@@ -422,6 +437,7 @@ class EducationalExperienceService:
             journey=journey_edu,
             pacing=pacing_edu,
             syllabus_complete=bool(progress.syllabus_complete),
+            coverage_gap=coverage_gap,
         )
 
     def _mission_education(

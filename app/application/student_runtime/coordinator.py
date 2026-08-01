@@ -154,7 +154,18 @@ class StudentRuntimeCoordinator:
             substance = self._plan_substance(mission, topic_title=title)
             if substance is None:
                 raise SessionSpineUnavailable(
-                    "published curriculum substance is unavailable for this mission"
+                    "certified CMP guidance is unavailable for this mission"
+                )
+            subject = (mission.curriculum_identity or "").split(":")[0].strip()
+            from app.application.educational_packages.guard import (
+                certified_guidance_enforced,
+            )
+
+            if certified_guidance_enforced(subject) and (
+                substance.source or ""
+            ).strip() != "educational_package":
+                raise SessionSpineUnavailable(
+                    "certified CMP guidance is required; fallback substance refused"
                 )
             topic_l = (substance.topic_title or "").strip().lower()
             if topic_l == "core methods":
@@ -474,6 +485,25 @@ class StudentRuntimeCoordinator:
             rationale = (quality.educational_rationale or "").strip()
             objective_ids = tuple(quality.objective_ids or ())
             minutes = int(quality.estimated_duration_minutes or 0) or None
+        completed_ids: frozenset[str] | None = None
+        last_completed = ""
+        try:
+            from app.application.educational_runtime_engine.service import (
+                EducationalRuntimeEngineService,
+            )
+
+            runtime = EducationalRuntimeEngineService()
+            completed_ids = runtime._completed_educational_package_ids(
+                user_id=mission.user_id,
+                curriculum_identity=mission.curriculum_identity,
+            )
+            last_completed = runtime._last_completed_educational_package_id(
+                user_id=mission.user_id,
+                curriculum_identity=mission.curriculum_identity,
+            )
+        except Exception:  # noqa: BLE001 — substance planning must stay resilient
+            completed_ids = None
+            last_completed = ""
         return EducationalSubstancePlanner().plan_for_topic(
             curriculum_identity=mission.curriculum_identity,
             topic_id=mission.topic_id,
@@ -482,6 +512,9 @@ class StudentRuntimeCoordinator:
             educational_rationale=rationale,
             objective_ids=objective_ids,
             session_minutes=minutes,
+            educational_package_id=mission.educational_package_id or "",
+            completed_package_ids=completed_ids,
+            last_completed_package_id=last_completed,
         )
 
     def _open_session_is_placeholder(

@@ -86,6 +86,14 @@ class PacingEducationSnapshot:
 
 
 @dataclass(frozen=True)
+class CoverageGapSnapshot:
+    """Honest withhold when certified guidance is unavailable (PB-002 F7)."""
+
+    topic_code: str
+    message: str
+
+
+@dataclass(frozen=True)
 class EducationalExperienceSnapshot:
     """Full Runtime C educational projection for one enrolled student."""
 
@@ -102,3 +110,4 @@ class EducationalExperienceSnapshot:
     journey: JourneyEducationSnapshot
     pacing: PacingEducationSnapshot
     syllabus_complete: bool = False
+    coverage_gap: CoverageGapSnapshot | None = None

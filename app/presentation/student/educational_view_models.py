@@ -165,6 +165,12 @@ def _home_from_educational(
         cta_enabled = False
         session_control = ""
         can_start = False
+    elif snap.coverage_gap is not None:
+        cta_label = "Guidance not yet published"
+        cta_enabled = False
+        session_control = ""
+        can_start = False
+        why = snap.coverage_gap.message or why
     elif mission_open and flags.SR_SESSION_PRIMARY:
         # SR-002 / KWP-002 — Start / Resume Today's Session is the product Primary.
         if open_session_id:
@@ -204,13 +210,16 @@ def _home_from_educational(
         confidence_label=edu.confidence_label,
         suggested_next_action=edu.suggested_next_action or edu.unlocks_next,
         review_point=edu.review_point,
-        is_complete=bool(why and edu.supporting_evidence),
-        has_content=bool(why or edu.expected_benefit or edu.suggested_next_action),
+        is_complete=bool(why and (edu.supporting_evidence or snap.coverage_gap)),
+        has_content=bool(
+            why or edu.expected_benefit or edu.suggested_next_action
+        ),
         has_disclosure=bool(
             edu.supporting_evidence or edu.review_point or edu.confidence_label
         ),
         timeliness_line=edu.why_today,
         completion_loop_line=edu.review_point,
+        honest_refusal=bool(snap.coverage_gap is not None),
     )
     countdown_days = None
     if snap.pacing.exam_date is not None:
@@ -219,6 +228,8 @@ def _home_from_educational(
     status_label = ""
     if snap.syllabus_complete:
         status_label = "Syllabus complete"
+    elif snap.coverage_gap is not None:
+        status_label = "Waiting for certified guidance"
     elif mission_done_today:
         status_label = "Mission complete for today"
     elif mission_open and open_session_id:

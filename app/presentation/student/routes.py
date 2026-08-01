@@ -850,10 +850,19 @@ def start_session():
         StudentRuntimeError,
     ) as exc:
         logger.warning("Start session failed: %s", exc)
-        flash(
-            "We couldn't start Today's Session. Please try again from Home.",
-            "warning",
-        )
+        msg = str(exc).lower()
+        if "certified cmp" in msg or "guidance" in msg:
+            flash(
+                "This topic does not yet have certified CMP guidance. "
+                "No session was started. Continue with your CMP for "
+                "unpublished material — your progress is saved.",
+                "warning",
+            )
+        else:
+            flash(
+                "We couldn't start Today's Session. Please try again from Home.",
+                "warning",
+            )
         return redirect(url_for("student.home"))
 
     from app.services.presentation_telemetry_service import (

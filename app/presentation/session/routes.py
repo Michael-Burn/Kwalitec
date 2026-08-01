@@ -13,6 +13,7 @@ from flask_login import login_required
 
 from app.application.session_experience.exceptions import (
     PortUnavailable,
+    ReflectionError,
     SessionExperienceError,
     SessionNotFound,
     SessionOwnershipError,
@@ -325,6 +326,14 @@ def reflection(session_id: str):
         return _guard_ownership(exc)
     except (SessionNotFound, WorkspaceNotFound) as exc:
         return _missing_session_redirect(session_id, exc)
+    except ReflectionError as exc:
+        logger.warning("Reflection load failed: %s", exc)
+        flash(FLASH_WARNING["reflection_unavailable"], "warning")
+        return redirect(url_for("session.activity", session_id=session_id))
+    except SessionExperienceError as exc:
+        logger.warning("Reflection page failed: %s", exc)
+        flash(FLASH_WARNING["reflection_unavailable"], "warning")
+        return redirect(url_for("session.activity", session_id=session_id))
     form = ContinueReflectionForm()
     form.session_id.data = session_id
     study = _study_session.build_page(page)

@@ -45,6 +45,7 @@ from app.application.educational_runtime_engine.dto import (
     StudyPlanInstanceSnapshot,
 )
 from app.application.educational_runtime_engine.exceptions import (
+    CertifiedGuidanceUnavailable,
     EnrolmentAlreadyExists,
     EnrolmentNotFound,
     IllegalRuntimeState,
@@ -571,17 +572,54 @@ class EducationalRuntimeEngineService:
             title=topic_title,
             number=str(topic_meta.get("number") or ""),
         )
+        # PB-002 F7/F8: resolve publication_approved package or withhold honestly.
+        from app.application.educational_packages.guard import (
+            certified_guidance_enforced,
+            withhold_message,
+        )
+        from app.application.educational_packages.selection import (
+            resolve_active_educational_package,
+        )
+
+        completed_packs = self._completed_educational_package_ids(
+            user_id=user_id,
+            curriculum_identity=enrolment.curriculum_identity,
+        )
+        last_pack_id = self._last_completed_educational_package_id(
+            user_id=user_id,
+            curriculum_identity=enrolment.curriculum_identity,
+        )
+        pack = None
+        if certified_guidance_enforced(enrolment.subject_code):
+            pack = resolve_active_educational_package(
+                subject_id=enrolment.subject_code,
+                syllabus_topic_code=human_code or template.topic_code,
+                completed_package_ids=completed_packs,
+                last_completed_package_id=last_pack_id,
+            )
+            if pack is None:
+                raise CertifiedGuidanceUnavailable(
+                    withhold_message(topic_code=human_code or template.topic_code),
+                    topic_code=human_code or template.topic_code,
+                    subject_code=enrolment.subject_code,
+                )
         # EA-006: when foundation overlaid a certified package display title,
         # prefer it over syllabus-paste "Study {code} — …" chrome.
-        if template.title and not str(template.title).lower().startswith("study "):
+        if pack is not None and pack.display_title:
+            mission_title = str(pack.display_title).strip()
+        elif template.title and not str(template.title).lower().startswith("study "):
             mission_title = str(template.title).strip()
         else:
             mission_title = student_mission_title(
                 code=human_code or template.topic_code,
                 title=topic_title,
             )
+        if pack is not None and pack.task_descriptions:
+            task_source = pack.task_descriptions
+        else:
+            task_source = template.task_descriptions
         human_tasks = tuple(
-            sanitize_student_text(task) for task in template.task_descriptions
+            sanitize_student_text(task) for task in task_source
         )
         mission = RuntimeMissionInstance(
             mission_instance_id=_new_id("msn"),
@@ -608,6 +646,10 @@ class EducationalRuntimeEngineService:
             "session_budget_minutes": session_budget,
             "objective_chunk": True,
         }
+        if pack is not None:
+            payload["educational_package_id"] = pack.package_id
+            payload["educational_package_mode"] = pack.mode
+            payload["educational_campaign_day"] = pack.campaign_day
         if certified_spec is not None:
             payload["certified_mission_id"] = certified_spec.mission_id
             payload["selection_reasons"] = [
@@ -935,6 +977,9 @@ class EducationalRuntimeEngineService:
         mission.status = MissionStatus.COMPLETED.value
         mission.completed_at = now
 
+        pack_id = self._educational_package_id_for_mission(
+            mission.mission_instance_id
+        )
         self._append_event(
             event_type=EducationalEventType.MISSION_COMPLETED,
             user_id=user_id,
@@ -948,6 +993,7 @@ class EducationalRuntimeEngineService:
                 "mission_date": mission.mission_date.isoformat(),
                 "evidence_package_id": evidence_package_id,
                 "advance_progress": bool(advance_progress),
+                "educational_package_id": pack_id,
                 "objective_ids": list(
                     self._objective_ids_for_mission(mission.mission_instance_id)
                 ),
@@ -967,6 +1013,26 @@ class EducationalRuntimeEngineService:
                 topic_id=mission.topic_id,
                 including_mission_id=mission.mission_instance_id,
             )
+        # PB-002 F8: stay on syllabus leaf while package chain owes same-leaf
+        # or revision day; force advance after revision terminal.
+        if advance_progress and pack_id:
+            from app.application.educational_packages.loader import find_package_by_id
+            from app.application.educational_packages.selection import (
+                should_suppress_topic_completed,
+            )
+
+            pack = find_package_by_id(pack_id)
+            if pack is not None:
+                completed_after = self._completed_educational_package_ids(
+                    user_id=user_id,
+                    curriculum_identity=enrolment.curriculum_identity,
+                ) | {pack_id}
+                if should_suppress_topic_completed(
+                    pack, completed_package_ids=completed_after - {pack_id}
+                ):
+                    topic_fully_covered = False
+                elif (pack.mode or "").strip().lower() == "revision":
+                    topic_fully_covered = True
         if advance_progress and topic_fully_covered:
             self._append_event(
                 event_type=EducationalEventType.TOPIC_COMPLETED,
@@ -1330,6 +1396,69 @@ class EducationalRuntimeEngineService:
         except json.JSONDecodeError:
             return {}
         return payload if isinstance(payload, dict) else {}
+
+    def _educational_package_id_for_mission(
+        self, mission_instance_id: str
+    ) -> str:
+        return str(
+            self._mission_generated_payload(mission_instance_id).get(
+                "educational_package_id"
+            )
+            or ""
+        ).strip()
+
+    def _completed_educational_package_ids(
+        self, *, user_id: int, curriculum_identity: str
+    ) -> frozenset[str]:
+        if not curriculum_identity:
+            return frozenset()
+        rows = (
+            RuntimeEducationalEvent.query.filter_by(
+                user_id=user_id,
+                curriculum_identity=curriculum_identity,
+                event_type=EducationalEventType.MISSION_COMPLETED.value,
+            )
+            .order_by(RuntimeEducationalEvent.id.asc())
+            .all()
+        )
+        ids: list[str] = []
+        for row in rows:
+            try:
+                payload = json.loads(row.payload_json or "{}")
+            except json.JSONDecodeError:
+                payload = {}
+            if not isinstance(payload, dict):
+                continue
+            pid = str(payload.get("educational_package_id") or "").strip()
+            if pid:
+                ids.append(pid)
+        return frozenset(ids)
+
+    def _last_completed_educational_package_id(
+        self, *, user_id: int, curriculum_identity: str
+    ) -> str:
+        if not curriculum_identity:
+            return ""
+        rows = (
+            RuntimeEducationalEvent.query.filter_by(
+                user_id=user_id,
+                curriculum_identity=curriculum_identity,
+                event_type=EducationalEventType.MISSION_COMPLETED.value,
+            )
+            .order_by(RuntimeEducationalEvent.id.desc())
+            .all()
+        )
+        for row in rows:
+            try:
+                payload = json.loads(row.payload_json or "{}")
+            except json.JSONDecodeError:
+                continue
+            if not isinstance(payload, dict):
+                continue
+            pid = str(payload.get("educational_package_id") or "").strip()
+            if pid:
+                return pid
+        return ""
 
     def _objective_ids_for_mission(
         self, mission_instance_id: str
@@ -1869,6 +1998,10 @@ class EducationalRuntimeEngineService:
                 code=human_code,
                 title=topic_title or sanitize_student_text(row.title) or "",
             )
+        generated_payload = self._mission_generated_payload(row.mission_instance_id)
+        educational_package_id = str(
+            generated_payload.get("educational_package_id") or ""
+        ).strip()
         return MissionInstanceSnapshot(
             mission_instance_id=row.mission_instance_id,
             plan_instance_id=row.plan_instance_id,
@@ -1884,6 +2017,7 @@ class EducationalRuntimeEngineService:
             created_at=row.created_at,
             completed_at=row.completed_at,
             quality=quality,
+            educational_package_id=educational_package_id,
         )
 
     def _previous_completed_topic(

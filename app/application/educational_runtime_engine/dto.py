@@ -54,6 +54,8 @@ class MissionInstanceSnapshot:
     completed_at: datetime | None = None
     # EQ-001 quality envelope (derived at read time; not a UI contract change)
     quality: MissionQualityEnvelope | None = None
+    # PB-002: publication_approved package selected for this sitting
+    educational_package_id: str = ""
 
 
 @dataclass(frozen=True)

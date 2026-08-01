@@ -54,14 +54,22 @@ class EducationalSubstancePlanner:
         educational_rationale: str = "",
         objective_ids: tuple[str, ...] | list[str] | None = None,
         session_minutes: int | None = None,
+        educational_package_id: str = "",
+        completed_package_ids: frozenset[str] | set[str] | None = None,
+        last_completed_package_id: str = "",
     ) -> EducationalSessionSubstance | None:
         """Resolve package substance for a mission topic.
 
         Returns None when the published package cannot be resolved — callers
         should fall back honestly rather than inventing \"Core methods\".
+        For subjects with live publication_approved inventory (PB-002 F7),
+        never fall through to the LO-shell path.
         """
         from app.application.curriculum_intelligence.objective_chunk import (
             select_objectives_for_session,
+        )
+        from app.application.educational_packages.guard import (
+            certified_guidance_enforced,
         )
 
         # EA-006: certified educational package replaces templated substance.
@@ -70,9 +78,16 @@ class EducationalSubstancePlanner:
             topic_id=topic_id,
             topic_title=topic_title,
             objective_ids=objective_ids,
+            educational_package_id=educational_package_id,
+            completed_package_ids=completed_package_ids,
+            last_completed_package_id=last_completed_package_id,
         )
         if pack_substance is not None:
             return pack_substance
+
+        subject_id = (curriculum_identity or "").split(":")[0].strip()
+        if certified_guidance_enforced(subject_id):
+            return None
 
         snapshot = self._resolve_snapshot(curriculum_identity)
         preferred = tuple(
@@ -166,11 +181,18 @@ class EducationalSubstancePlanner:
         topic_id: str,
         topic_title: str,
         objective_ids: tuple[str, ...] | list[str] | None,
+        educational_package_id: str = "",
+        completed_package_ids: frozenset[str] | set[str] | None = None,
+        last_completed_package_id: str = "",
     ) -> EducationalSessionSubstance | None:
         """Prefer a publication-approved educational package when one matches."""
         try:
             from app.application.educational_packages.loader import (
                 find_educational_package,
+                find_package_by_id,
+            )
+            from app.application.educational_packages.selection import (
+                resolve_active_educational_package,
             )
             from app.application.educational_packages.substance import (
                 substance_from_package,
@@ -178,18 +200,38 @@ class EducationalSubstancePlanner:
         except ImportError:
             return None
 
-        # Resolve syllabus code from title when topic_id is a published node-*.
-        code_hint = ""
-        title = (topic_title or "").strip()
-        if title:
-            head = title.split()[0]
-            if head and head[0].isdigit():
-                code_hint = head
-        pack = find_educational_package(
-            topic_id=topic_id,
-            topic_code=code_hint,
-            topic_title=title,
-        )
+        subject_id = (curriculum_identity or "").split(":")[0].strip()
+        pack = None
+        pid = (educational_package_id or "").strip()
+        if pid:
+            pack = find_package_by_id(pid)
+        if pack is None:
+            # Resolve syllabus code from title when topic_id is a published node-*.
+            code_hint = ""
+            title = (topic_title or "").strip()
+            if title:
+                head = title.split()[0]
+                if head and head[0].isdigit():
+                    code_hint = head
+            pack = resolve_active_educational_package(
+                subject_id=subject_id,
+                syllabus_topic_code=code_hint,
+                completed_package_ids=completed_package_ids,
+                last_completed_package_id=last_completed_package_id,
+            )
+        if pack is None:
+            code_hint = ""
+            title = (topic_title or "").strip()
+            if title:
+                head = title.split()[0]
+                if head and head[0].isdigit():
+                    code_hint = head
+            pack = find_educational_package(
+                topic_id=topic_id,
+                topic_code=code_hint,
+                topic_title=title,
+                subject_id=subject_id,
+            )
         if pack is None:
             return None
         return substance_from_package(

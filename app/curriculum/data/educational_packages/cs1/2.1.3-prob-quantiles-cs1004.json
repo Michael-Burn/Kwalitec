@@ -1,0 +1,195 @@
+{
+  "package_version": "cs1004-campaign-gamma-1.0.0",
+  "publication_version": "cs1004-live-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "CS1-EP001-CAMPAIGN-GAMMA",
+  "volume_id": "CS1-004",
+  "subject_id": "CS1",
+  "topic_code": "2.1",
+  "topic_title": "Understand the characteristics of basic univariate distributions and how to generate samples from them",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1004_EDUCATIONAL_VOLUME.md",
+    "CS1004_CERTIFICATION_REPORT.md",
+    "EP001_WAVE1_PLAN.md"
+  ],
+  "author_id": "cs1004-educational-author",
+  "authored_at": "2026-08-01",
+  "package_id": "CS1-EP001-PKG-2.1-PROB-QUANTILES",
+  "campaign_day": "CG-D1",
+  "topic_focus_lo": "2.1.3",
+  "topic_aliases": [
+    "CS1-B-T01",
+    "2.1",
+    "2.1.3"
+  ],
+  "topic_title_keywords": [
+    "probability",
+    "quantile",
+    "distribution",
+    "cdf",
+    "percentile"
+  ],
+  "golden_id": "GOLDEN-CS1004-CS1-2.1-PROB-QUANTILES",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1004-cs1-2.1-prob-quantiles",
+    "display_title": "Evaluate probabilities and quantiles for placed families",
+    "mission_purpose": "Today's Mission exists to turn Beta's family placement into probability and quantile evaluation — so you can compute or obtain P and quantile answers for the univariate families you already recognise, without pretending Poisson-process or generation LOs are finished.",
+    "tutor_intent": "Today I will force the candidate to evaluate probabilities and quantiles for named univariate families using calculation or software as appropriate — and to refuse treating family recognition alone as evaluation skill.",
+    "educational_intent": "Produce a cognitive move from 'I can place the family' to 'I can evaluate a probability or quantile for that family with an honest method warrant.'",
+    "learning_objective": "Evaluate probabilities and quantiles associated with the basic univariate distributions already placed (by calculation or using statistical software as appropriate).",
+    "concept_focus": "Named family → probability or quantile question → method (tables/software/calculation) → refuse recognition-as-evaluation theatre.",
+    "prior_bridge": "Campaign Beta ended after continuous family placement (2.1.2) and Revision. Today continues topic 2.1 at LO 2.1.3 — evaluation — not a new chapter leap.",
+    "why_now": "2.1.3 is the named Continuity Front after CS1-002. Closing it prevents the day-9 cliff while keeping Poisson process and generation as later days.",
+    "expected_benefit": "Study Progress for probability/quantile evaluation — not Topic Complete for 2.1.4–2.1.6.",
+    "explainability": "Assigned as Campaign Gamma Day 1 because CE-001 / EP-001 Continuity Front names 2.1.3 as the handoff from Beta.",
+    "success_criteria": [
+      "Closed-book, state what a probability evaluation vs a quantile evaluation asks for a named continuous or discrete family.",
+      "Complete two evaluation tasks (calculation or software) with method warrant.",
+      "Refuse one 'I named the family so I am done' claim."
+    ],
+    "task_descriptions": [
+      "Sketch: for one discrete and one continuous family, write one probability prompt and one quantile prompt before opening the CMP.",
+      "Complete Guided Reading through CMP treatment of Syllabus 2.1.3.",
+      "Closed-book Knowledge Checks: evaluate and refuse recognition theatre."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 55,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1004-cs1-2.1-prob-quantiles",
+    "session_educational_purpose": "Execute today's Mission: probability and quantile evaluation for placed families — not Poisson process or generation methods.",
+    "session_tutor_purpose": "Set focus on evaluation prompts, exit to CMP 2.1.3, retrieve evaluate–warrant–refuse-recognition-theatre.",
+    "duration_budget_minutes": {
+      "min": 55,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Evaluate probabilities and quantiles. You practised selective CMP reading on Syllabus 2.1.3. This is Study Progress for today's block — not Topic Complete for Poisson process (2.1.4) or generation (2.1.5–2.1.6).",
+    "confidence_prompt": "How confident are you that you could evaluate one probability and one quantile for a named family closed-book tomorrow? Rate 1–5 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract how to evaluate probabilities and quantiles for the univariate families already on your map — calculation or software as appropriate. Stop before Poisson process and generation methods.",
+    "focus_questions": [
+      "What does a probability evaluation ask versus a quantile evaluation?",
+      "When does the CMP point you to software versus hand calculation?",
+      "How do you refuse treating family placement alone as evaluation skill?",
+      "You will later evaluate two prompts and refuse recognition theatre."
+    ],
+    "misconception_watch": [
+      "Watch for equating 'I know it is Normal' with having evaluated P or a quantile.",
+      "Watch for starting Poisson-process material (2.1.4) inside this sitting.",
+      "Watch for generation / inverse-transform drills (2.1.5) today."
+    ],
+    "open_point": "CMP · Syllabus 2.1.3 probabilities and quantiles",
+    "stop_condition": "Through the CMP treatment of probability and quantile evaluation for Syllabus 2.1.3 (stop before Poisson process 2.1.4)",
+    "out_of_scope_today": [
+      "Poisson process (2.1.4)",
+      "Inverse transform generation (2.1.5)",
+      "Software generation LO as primary (2.1.6)",
+      "Joint distributions (2.2)",
+      "CS1B coding marathon"
+    ],
+    "annotation_task": "Before deep reading: write one P-prompt and one quantile-prompt for a family you already placed",
+    "attempt_before_reveal": "At the first worked evaluation, cover the answer and choose method first",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at Syllabus 2.1.3 — probabilities and quantiles. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore Poisson process, generation methods, and joint distributions today. Stop when the 2.1.3 block is complete. Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 2.1.3 block is complete and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause — write one line: A quantile asks for…",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next evaluation prompt before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry (confirm your prompts and pause-point notes), then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1004-2.1c-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1004-2.1c-ar-01",
+      "title": "Active Recall: probability vs quantile",
+      "prompt": "Closed-book. For a named continuous family (e.g. Normal or exponential): (1) state one probability evaluation question in words; (2) state one quantile evaluation question in words; (3) name one acceptable method class (calculation / tables / software).",
+      "response_type": "short_structured",
+      "body": "Distinguish P-questions from quantile questions; name a method class.",
+      "hints": [
+        "Probability: find P(X ≤ a) or similar.",
+        "Quantile: find x such that P(X ≤ x) = p.",
+        "Method: hand/tables/software as appropriate."
+      ],
+      "accepted_keywords": [
+        "probability",
+        "quantile",
+        "percentile",
+        "software",
+        "calculation",
+        "table",
+        "p(",
+        "cdf"
+      ],
+      "explanation": "Evaluation skill starts by discriminating the question type and method class.",
+      "model_answer": "Example: Probability — find P(X ≤ 2) for X ~ Exp(λ). Quantile — find x such that P(X ≤ x) = 0.95. Method — software CDF/quantile functions or calculation/tables as the CMP allows.",
+      "common_mistake": "Restating the family name without posing an evaluation question.",
+      "success_criteria": [
+        "Distinct probability and quantile prompts stated.",
+        "One method class named."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1004-2.1c-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1004-2.1c-cp-01",
+      "title": "Checkpoint: evaluate and refuse recognition theatre",
+      "prompt": "Closed-book. A portfolio loss is modelled as approximately Normal. You need the 95th percentile loss. (1) What evaluation type is this? (2) What do you compute or call? (3) Refuse in one sentence: 'I know it is Normal, so I am finished without evaluating.'",
+      "response_type": "short_structured",
+      "body": "Identify quantile task; name Normal quantile/software step; refuse recognition-as-done.",
+      "hints": [
+        "95th percentile = quantile evaluation.",
+        "Need mean/sd (or standardised) then quantile function / tables.",
+        "Refuse: naming the family is not the numerical answer."
+      ],
+      "accepted_keywords": [
+        "quantile",
+        "percentile",
+        "95",
+        "normal",
+        "refuse",
+        "software",
+        "z",
+        "evaluation"
+      ],
+      "explanation": "Quantile evaluation for Normal is not completed by family placement alone.",
+      "model_answer": "(1) Quantile / percentile evaluation. (2) Use the Normal quantile (tables or software) at 0.95 with the fitted mean and sd. (3) Refuse: knowing the family names the model; it does not produce the percentile without evaluation.",
+      "common_mistake": "Stopping at 'use Normal' without stating the quantile step.",
+      "success_criteria": [
+        "Identifies quantile task.",
+        "Names evaluation step.",
+        "Refuses recognition theatre."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest evaluation wobble — distinct from family placement stems.",
+    "prompt": "Which part is stickiest — posing P vs quantile questions, choosing method, or refusing recognition theatre — and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one evaluation move would you rework?",
+    "prompts": [
+      "Which part is stickiest — P vs quantile posing, method choice, or refusing recognition theatre — and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one evaluation move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "2.1",
+    "next_topic_title": "Poisson process and the Poisson distribution (2.1.4)",
+    "continuity_line": "Today you evaluated probabilities and quantiles for placed families; tomorrow continues 2.1 at the Poisson process and its link to the Poisson distribution — not generation methods yet.",
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.1.4 — titles only tonight",
+    "student_facing": "Tomorrow: Poisson process and its connection to the Poisson distribution (2.1.4). Optional light prep: skim 2.1.4 headings — titles only tonight."
+  },
+  "published_at": "2026-08-01"
+}

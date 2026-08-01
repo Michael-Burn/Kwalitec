@@ -55,3 +55,18 @@ class EducationalPrerequisiteMissing(EducationalRuntimeError):  # noqa: N818
         super().__init__(message)
         self.missing_prerequisite = missing_prerequisite
         self.subject_code = subject_code
+
+
+class CertifiedGuidanceUnavailable(EducationalRuntimeError):  # noqa: N818
+    """No publication_approved package for an inventory subject (PB-002 F7)."""
+
+    def __init__(
+        self,
+        message: str,
+        *,
+        topic_code: str = "",
+        subject_code: str = "",
+    ) -> None:
+        super().__init__(message)
+        self.topic_code = topic_code
+        self.subject_code = subject_code
