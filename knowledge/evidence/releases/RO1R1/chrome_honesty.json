@@ -1,0 +1,41 @@
+{
+  "verdict": "PASS",
+  "criterion": "Finish tomorrow chrome matches the educational package actually delivered in the sitting",
+  "live_commit": "569ce207969e7416c61a270a5d2a341e4544e7c5",
+  "student": "ro1r1c.verify.1785590969@example.com",
+  "rows": [
+    {
+      "file_day": 5,
+      "delivered_package": "CA-R1",
+      "package_id": "CS1-EP001-PKG-REV-PURPOSE-EDA",
+      "chrome_matches_delivered_package": true,
+      "chrome_sample": "Campaign Alpha complete after today. Next journey opens basic univariate distributions (2.1) \u2014 the modelling language for variables you lear",
+      "stale_2_1_2_first_match": false
+    },
+    {
+      "file_day": 6,
+      "delivered_package": "CB-D2",
+      "package_id": "CS1-CS1002-PKG-2.1-DISCRETE",
+      "chrome_matches_delivered_package": true,
+      "chrome_sample": "Tomorrow: basic continuous univariate distributions (2.1.2). Same Chapter 2 entry arc \u2014 now continuous families. Optional light prep: skim 2",
+      "stale_2_1_2_first_match": false
+    },
+    {
+      "file_day": 7,
+      "delivered_package": "CB-D3",
+      "package_id": "CS1-CS1002-PKG-2.1-CONTINUOUS",
+      "chrome_matches_delivered_package": true,
+      "chrome_sample": "Tomorrow: Campaign Beta Revision day. We return to PCA \u2192 discrete families \u2192 continuous placement, plus one Alpha association hinge. Optiona",
+      "stale_2_1_2_first_match": false
+    },
+    {
+      "file_day": 8,
+      "delivered_package": "CB-R1",
+      "package_id": "CS1-CS1002-PKG-REV-PCA-DISTRIBUTIONS",
+      "chrome_matches_delivered_package": true,
+      "chrome_sample": "Campaign Beta / CS1-002 complete after today. Next journey continues univariate distributions at probability and quantile evaluation (2.1.3)",
+      "stale_2_1_2_first_match": false
+    }
+  ],
+  "note": "Harness campaign_day labels lagged selection/backdate; chrome honesty assessed against delivered package identity from reading mission markers."
+}

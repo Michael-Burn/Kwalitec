@@ -1,0 +1,108 @@
+{
+  "day_index": 7,
+  "expected_day": "CB-R1",
+  "expected_package_id": "CS1-CS1002-PKG-REV-PCA-DISTRIBUTIONS",
+  "finished": true,
+  "reading": {
+    "audit": {
+      "title": "Reading: Purpose of this reading: use the CMP to extract support and typical modelling role for each continuous family in Syllabus 2.1.2 \u2014 so continuous choice is support-led. Extract that catalogue f",
+      "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Place continuous families beside discrete ones Purpose of this reading: use the CMP to extract support and typical modelling role for each continuous family in Syllabus 2.1.2 \u2014 so continuous choice is support-led. Extract that catalogue frame from the CMP, then stop before probability/quantile evaluation beyond today&#39;s block. Open: CMP \u00b7 Syllabus 2.1.2 continuous univ",
+      "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at Syllabus 2.1.2 \u2014 continuous distributions. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore discrete re-cataloguing, deep probability/quantile evaluation bey",
+      "is_fallback_shell": false,
+      "is_guided_reading": false,
+      "mentions_cmp": true,
+      "cmp_refs_present": true,
+      "q_checks": {
+        "Q1_cmp_open": true,
+        "Q2_purpose": true,
+        "Q3_attention": true,
+        "Q4_ignore": true,
+        "Q5_stop": true,
+        "Q6_next": true
+      },
+      "ec001_markers": {
+        "Purpose of this reading": true,
+        "Open your CMP": true,
+        "Focus questions": true,
+        "Misconception watch": true,
+        "Out of scope today": true,
+        "Return cue": true,
+        "Worked-example": true,
+        "Knowledge Checks": true
+      },
+      "certified_snippet_hits": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false
+      },
+      "verdict": "PASS",
+      "word_count_body": 377
+    },
+    "checklist": {
+      "CMP_reference_present": true,
+      "Educational_purpose_clear": true,
+      "Reading_focus_clear": true,
+      "Ignore_guidance_present": true,
+      "Stop_condition_explicit": true,
+      "Immediate_next_activity_named": true,
+      "Not_fallback_shell": true,
+      "Matches_certified_snippets": false
+    },
+    "fidelity": {
+      "lead_line": false,
+      "exit_line": false,
+      "return_cue": false,
+      "open_point": false,
+      "stop_condition": false,
+      "focus_q_0": false,
+      "focus_q_1": false,
+      "fidelity_pass": false
+    },
+    "package_id": "CS1-CS1002-PKG-REV-PCA-DISTRIBUTIONS",
+    "campaign_day": "CB-R1",
+    "html": "/tmp/ro1r1/evidence/day7_CB-R1_reading.html"
+  },
+  "checklist": {
+    "CMP_reference_present": true,
+    "Educational_purpose_clear": true,
+    "Reading_focus_clear": true,
+    "Ignore_guidance_present": true,
+    "Stop_condition_explicit": true,
+    "Immediate_next_activity_named": true,
+    "Not_fallback_shell": true,
+    "Matches_certified_snippets": false
+  },
+  "tomorrow_preview": {
+    "next_topic_code": true,
+    "continuity_fragment": false,
+    "student_facing_fragment": false,
+    "chrome_text_sample": "Tomorrow: Campaign Beta Revision day. We return to PCA \u2192 discrete families \u2192 continuous placement, plus one Alpha association hinge. Optional light prep: skim your own Reflection residuals \u2014 sticky titles only tonight.",
+    "package_continuity_line": "Campaign Beta / Volume CS1-002 completes after this Revision. The honest handoff is to a successor Volume continuing 2.1",
+    "package_student_facing": "Campaign Beta / CS1-002 complete after today. Next journey continues univariate distributions at probability and quantil",
+    "chrome_matches_package_continuity": false
+  },
+  "verdict": "PASS",
+  "home": {
+    "title_guess": "Choose summaries and plots for a stated aim",
+    "day_complete": false,
+    "has_start": true,
+    "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Choose summaries and plots for a stated aim CS1 (CS1) 1 h Study 1.2 \u2014 Complete exploratory data analysis After this \u00b7 One defended summary-and-plot pair for a named aim \u2014 Study Progress for today&#39;s Session, not completion "
+  },
+  "session_id": "lsr-05eee476d217",
+  "educational_fidelity": {
+    "lead_line": false,
+    "exit_line": false,
+    "return_cue": false,
+    "open_point": false,
+    "stop_condition": false,
+    "focus_q_0": false,
+    "focus_q_1": false,
+    "fidelity_pass": false
+  },
+  "reflection_ok": true,
+  "tomorrow_chrome_matches_approved": false,
+  "package_path_ok": true,
+  "chrome_residual": false,
+  "gamma_focus": false
+}

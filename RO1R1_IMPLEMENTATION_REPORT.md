@@ -95,7 +95,7 @@ Legacy sittings without persisted `educational_package_id` and without recoverab
 ## Known Limitations
 
 - Journey “Up Next” remains syllabus-path projection (not Gate-TP chrome).  
-- LIVE closure requires deploy of this tip and RO-001A-style re-walk (see `RO1R1_LIVE_VERIFICATION.md`).  
+- LIVE chrome honesty verified against delivered package identity (`RO1R1_LIVE_VERIFICATION.md`); harness campaign_day labels may lag ops backdating.  
 
 ## Student Impact Assessment
 
