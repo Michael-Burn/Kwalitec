@@ -1,0 +1,1102 @@
+{
+  "programme": "RO-001",
+  "host": "https://kwalitec.onrender.com",
+  "expected_commit": "f1ff5dc5dd5aca9987c48a6731f3888fdf2295a1",
+  "live_health": {
+    "build_date": "2026-08-01",
+    "build_number": "local",
+    "commit": "f1ff5dc5dd5aca9987c48a6731f3888fdf2295a1",
+    "components": {
+      "database": {
+        "latency_ms": 2.8,
+        "name": "database",
+        "status": "ok"
+      },
+      "instance_storage": {
+        "meta": {
+          "path": "/opt/render/project/src/instance"
+        },
+        "name": "instance_storage",
+        "status": "ok"
+      },
+      "migrations": {
+        "meta": {
+          "current": "202607310002",
+          "head": "202607310002"
+        },
+        "name": "migrations",
+        "status": "ok"
+      },
+      "queue": {
+        "detail": "manual automation runner (no external broker)",
+        "meta": {
+          "broker": "none",
+          "runner": "app.automation"
+        },
+        "name": "queue",
+        "status": "ok"
+      }
+    },
+    "database": "connected",
+    "environment": "production",
+    "status": "ok",
+    "timestamp": "2026-08-01T12:07:45.848909+00:00",
+    "version": "2.0.0-beta.1"
+  },
+  "email": "ro001.wave1b.1785585816@example.com",
+  "days": [
+    {
+      "day_index": 1,
+      "expected_day": "CA-D1",
+      "expected_package_id": "CS1-EP001-PKG-1.1-PURPOSE-FUNCTION",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP (not this screen) to build a professional purpose map \u2014 aims, stages, sources, and reproducibility \u2014 so later EDA days answer a named aim. Extract that fr",
+          "body_sample": " Topic: Describe the purpose and function of data analysis (1.1) Mission: Name why actuarial data analysis exists Purpose of this reading: use the CMP (not this screen) to build a professional purpose map \u2014 aims, stages, sources, and reproducibility \u2014 so later EDA days answer a named aim. Extract that frame from the CMP, then stop after the purpose-and-function block is complete in your edition. Open: CMP \u00b7 Syllabus 1.1 purpose and function of data analysis (1.1.1\u20131.1.4 centre) Stop: Through the",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at Syllabus 1.1 \u2014 purpose and function of data analysis (1.1.1\u20131.1.4 centre). Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation sketch. Ignore detailed EDA recipes, correlati",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 411
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "html": "/tmp/ro001/evidence/day1_CA-D1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": true,
+        "student_facing_fragment": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name why actuarial data analysis exists",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name why actuarial data analysis exists CS1 (CS1) 1 h Study 1.1 \u2014 Describe the purpose and function of data analysis After this \u00b7 A four-part purpose map you can defend closed-book \u2014 Study Progress for today&#39;s Session, not"
+      },
+      "session_id": "lsr-1cf9d7f5da00",
+      "reflection_ok": true,
+      "gamma_focus": false,
+      "body_delivery_verdict": "PASS",
+      "ui_tomorrow_verdict": "PASS"
+    },
+    {
+      "day_index": 2,
+      "expected_day": "CA-D2",
+      "expected_package_id": "CS1-EP001-PKG-1.2-EDA-SUMMARIES",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to learn how to choose summary statistics and exploratory visualisations for a stated aim and variable type \u2014 so exploratory work stays aim-led. Extract t",
+          "body_sample": " Topic: Complete exploratory data analysis (1.2) Mission: Choose summaries and plots for a stated aim Purpose of this reading: use the CMP to learn how to choose summary statistics and exploratory visualisations for a stated aim and variable type \u2014 so exploratory work stays aim-led. Extract that method from the CMP, then stop after the 1.2.1 summaries-and-visualisations block. Open: CMP \u00b7 Syllabus 1.2.1 summary statistics and exploratory visualisations Stop: Through the CMP block that equips you",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at Syllabus 1.2.1 \u2014 summary statistics and exploratory visualisations. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore correlation measures, PCA, coding marath",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 403
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "html": "/tmp/ro001/evidence/day2_CA-D2_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name why actuarial data analysis exists",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name why actuarial data analysis exists CS1 (CS1) 1 h Study 1.1 \u2014 Describe the purpose and function of data analysis After this \u00b7 A four-part purpose map you can defend closed-book \u2014 Study Progress for today&#39;s Session, not"
+      },
+      "session_id": "lsr-9aec1f82e04e",
+      "reflection_ok": true,
+      "gamma_focus": false,
+      "body_delivery_verdict": "PASS",
+      "ui_tomorrow_verdict": "FAIL"
+    },
+    {
+      "day_index": 3,
+      "expected_day": "CA-D3",
+      "expected_package_id": "CS1-EP001-PKG-1.2-EDA-ASSOCIATION",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to distinguish Pearson&#39;s, Spearman&#39;s, and Kendall&#39;s measures and the association claims each supports \u2014 so you choose a measure with intent. E",
+          "body_sample": " Topic: Complete exploratory data analysis (1.2) Mission: Interpret association without overclaiming Purpose of this reading: use the CMP to distinguish Pearson&#39;s, Spearman&#39;s, and Kendall&#39;s measures and the association claims each supports \u2014 so you choose a measure with intent. Extract those distinctions from the CMP, then stop at the end of the 1.2.2 correlation block. Open: CMP \u00b7 Syllabus 1.2.2 correlation measures for bivariate data Stop: Through the CMP treatment of Pearson&#39;s",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at Syllabus 1.2.2 \u2014 correlation measures. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore PCA, new summary-statistic deep-dives, coding marathons, and Chapter ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 373
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "html": "/tmp/ro001/evidence/day3_CA-D3_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name why actuarial data analysis exists",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name why actuarial data analysis exists CS1 (CS1) 1 h Study 1.1 \u2014 Describe the purpose and function of data analysis After this \u00b7 A four-part purpose map you can defend closed-book \u2014 Study Progress for today&#39;s Session, not"
+      },
+      "session_id": "lsr-bde2a0aeffd0",
+      "reflection_ok": true,
+      "gamma_focus": false,
+      "body_delivery_verdict": "PASS",
+      "ui_tomorrow_verdict": "FAIL"
+    },
+    {
+      "day_index": 4,
+      "expected_day": "CA-R1",
+      "expected_package_id": "CS1-EP001-PKG-REV-PURPOSE-EDA",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Alpha chain (purpose map \u2192 summaries/visualisations \u2192 correlation measures) without opening a new CMP chapter first. Attem",
+          "body_sample": " Topic: Campaign Alpha revision \u2014 purpose to exploratory judgement (CA-R1) Mission: Retrieve the purpose-to-EDA chain Purpose of this revision stage: strengthen retrieval of the Campaign Alpha chain (purpose map \u2192 summaries/visualisations \u2192 correlation measures) without opening a new CMP chapter first. Attempt closed-book retrieval; only then, if a check fails, reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval: Day 1 purpose bloc",
+          "support_sample": "Keep the CMP closed to begin. Kwalitec directs revision; the CMP is reopened only as a targeted instrument after a failed retrieval \u2014 not as a fresh chapter read and not as a substitute for the checks. Sketch the Campaign chain from memory, then begin the revision Knowledge Checks. If a check fails, reopen only Day 1 purpose / Day 2 1.2.1 / Day 3 1.2.2 locus for that item, then close again. Do not",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": false,
+            "Open your CMP": false,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": false,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 362
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "html": "/tmp/ro001/evidence/day4_CA-R1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name why actuarial data analysis exists",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name why actuarial data analysis exists CS1 (CS1) 1 h Study 1.1 \u2014 Describe the purpose and function of data analysis After this \u00b7 A four-part purpose map you can defend closed-book \u2014 Study Progress for today&#39;s Session, not"
+      },
+      "session_id": "lsr-feeac27bad5a",
+      "reflection_ok": true,
+      "gamma_focus": false,
+      "body_delivery_verdict": "PASS",
+      "ui_tomorrow_verdict": "FAIL"
+    },
+    {
+      "day_index": 5,
+      "expected_day": "CB-D2",
+      "expected_package_id": "CS1-CS1002-PKG-2.1-DISCRETE",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract the defining situation and one characteristic for each discrete family in Syllabus 2.1.1 \u2014 so distribution choice is situation-led. Extract tha",
+          "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Name the discrete distribution family by situation Purpose of this reading: use the CMP to extract the defining situation and one characteristic for each discrete family in Syllabus 2.1.1 \u2014 so distribution choice is situation-led. Extract that catalogue frame from the CMP, then stop before continuous distributions. Open: CMP \u00b7 Syllabus 2.1.1 discrete univariate distributi",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at Syllabus 2.1.1 \u2014 discrete univariate distributions. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore continuous families, probability/quantile evaluation dee",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 386
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "html": "/tmp/ro001/evidence/day5_CB-D2_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Choose summaries and plots for a stated aim",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Choose summaries and plots for a stated aim CS1 (CS1) 1 h Study 1.2 \u2014 Complete exploratory data analysis After this \u00b7 One defended summary-and-plot pair for a named aim \u2014 Study Progress for today&#39;s Session, not completion "
+      },
+      "session_id": "lsr-b59d27d3dc78",
+      "reflection_ok": true,
+      "gamma_focus": false,
+      "body_delivery_verdict": "PASS",
+      "ui_tomorrow_verdict": "FAIL"
+    },
+    {
+      "day_index": 6,
+      "expected_day": "CB-D3",
+      "expected_package_id": "CS1-CS1002-PKG-2.1-CONTINUOUS",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract support and typical modelling role for each continuous family in Syllabus 2.1.2 \u2014 so continuous choice is support-led. Extract that catalogue f",
+          "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Place continuous families beside discrete ones Purpose of this reading: use the CMP to extract support and typical modelling role for each continuous family in Syllabus 2.1.2 \u2014 so continuous choice is support-led. Extract that catalogue frame from the CMP, then stop before probability/quantile evaluation beyond today&#39;s block. Open: CMP \u00b7 Syllabus 2.1.2 continuous univ",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at Syllabus 2.1.2 \u2014 continuous distributions. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore discrete re-cataloguing, deep probability/quantile evaluation bey",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 377
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "html": "/tmp/ro001/evidence/day6_CB-D3_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Choose summaries and plots for a stated aim",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Choose summaries and plots for a stated aim CS1 (CS1) 1 h Study 1.2 \u2014 Complete exploratory data analysis After this \u00b7 One defended summary-and-plot pair for a named aim \u2014 Study Progress for today&#39;s Session, not completion "
+      },
+      "session_id": "lsr-a14a2fc18335",
+      "reflection_ok": true,
+      "gamma_focus": false,
+      "body_delivery_verdict": "PASS",
+      "ui_tomorrow_verdict": "FAIL"
+    },
+    {
+      "day_index": 7,
+      "expected_day": "CB-R1",
+      "expected_package_id": "CS1-CS1002-PKG-REV-PCA-DISTRIBUTIONS",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Beta chain (PCA \u2192 discrete families \u2192 continuous families) without opening a new CMP chapter first. Attempt closed-book re",
+          "body_sample": " Topic: Campaign Beta revision \u2014 PCA to distributional entry (CB-R1) Mission: Retrieve PCA and distributional entry Purpose of this revision stage: strengthen retrieval of the Campaign Beta chain (PCA \u2192 discrete families \u2192 continuous families) without opening a new CMP chapter first. Attempt closed-book retrieval; only then, if a check fails, reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval: Day 1 PCA block, Day 2 2.1.1 block, D",
+          "support_sample": "Keep the CMP closed to begin. Kwalitec directs revision; the CMP is reopened only as a targeted instrument after a failed retrieval \u2014 not as a fresh chapter read and not as a substitute for the checks. Sketch the Campaign chain from memory, then begin the revision Knowledge Checks. If a check fails, reopen only Day 1 PCA / Day 2 2.1.1 / Day 3 2.1.2 locus for that item, then close again. Do not beg",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": false,
+            "Open your CMP": false,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": false,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 385
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "html": "/tmp/ro001/evidence/day7_CB-R1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Choose summaries and plots for a stated aim",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Choose summaries and plots for a stated aim CS1 (CS1) 1 h Study 1.2 \u2014 Complete exploratory data analysis After this \u00b7 One defended summary-and-plot pair for a named aim \u2014 Study Progress for today&#39;s Session, not completion "
+      },
+      "session_id": "lsr-8c201c451015",
+      "reflection_ok": true,
+      "gamma_focus": false,
+      "body_delivery_verdict": "PASS",
+      "ui_tomorrow_verdict": "FAIL"
+    },
+    {
+      "day_index": 8,
+      "expected_day": "CG-D1",
+      "expected_package_id": "CS1-EP001-PKG-2.1-PROB-QUANTILES",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract how to evaluate probabilities and quantiles for the univariate families already on your map \u2014 calculation or software as appropriate. Stop befo",
+          "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Evaluate probabilities and quantiles for placed families Purpose of this reading: use the CMP to extract how to evaluate probabilities and quantiles for the univariate families already on your map \u2014 calculation or software as appropriate. Stop before Poisson process and generation methods. Open: CMP \u00b7 Syllabus 2.1.3 probabilities and quantiles Stop: Through the CMP treatm",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at Syllabus 2.1.3 \u2014 probabilities and quantiles. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore Poisson process, generation methods, and joint distributions t",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 362
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "html": "/tmp/ro001/evidence/day8_CG-D1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.1 \u2014 Understand the characteristics of basic univariate distributions and how to generate samples After this \u00b7 A situation\u2192family map for the syllabus dis"
+      },
+      "session_id": "lsr-46429a2f80c6",
+      "reflection_ok": true,
+      "gamma_focus": true,
+      "body_delivery_verdict": "PASS",
+      "ui_tomorrow_verdict": "PASS"
+    },
+    {
+      "day_index": 9,
+      "expected_day": "CG-D2",
+      "expected_package_id": "CS1-EP001-PKG-2.1-POISSON-PROCESS",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract the Poisson process definition and its connection to the Poisson distribution. Stop before inverse-transform and software generation LOs.",
+          "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Connect the Poisson process to the Poisson distribution Purpose of this reading: use the CMP to extract the Poisson process definition and its connection to the Poisson distribution. Stop before inverse-transform and software generation LOs. Open: CMP \u00b7 Syllabus 2.1.4 Poisson process Stop: Through the CMP treatment of the Poisson process and its Poisson-distribution conne",
+          "support_sample": "Open your CMP at Syllabus 2.1.4 \u2014 Poisson process. Kwalitec is the guide; the CMP is the authoritative material. Hunt with the focus questions; complete the annotation task. Ignore generation methods and joint distributions today. Stop when the 2.1.4 block is complete. Then close the CMP and return here for Worked-example re-entry, then Knowledge Checks. What did you extract from the CMP setup? Su",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 303
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "html": "/tmp/ro001/evidence/day9_CG-D2_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.1 \u2014 Understand the characteristics of basic univariate distributions and how to generate samples After this \u00b7 A situation\u2192family map for the syllabus dis"
+      },
+      "session_id": "lsr-8afb8634497f",
+      "reflection_ok": true,
+      "gamma_focus": true,
+      "body_delivery_verdict": "PASS",
+      "ui_tomorrow_verdict": "PASS"
+    },
+    {
+      "day_index": 10,
+      "expected_day": "CG-D3",
+      "expected_package_id": "CS1-EP001-PKG-2.1-INVERSE-TRANSFORM",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: extract the inverse transform method for basic discrete and continuous RVs from the CMP. Stop before treating software generation (2.1.6) as today&#39;s primary LO.",
+          "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Generate RVs with the inverse transform method Purpose of this reading: extract the inverse transform method for basic discrete and continuous RVs from the CMP. Stop before treating software generation (2.1.6) as today&#39;s primary LO. Open: CMP \u00b7 Syllabus 2.1.5 inverse transform method Stop: Through CMP treatment of inverse transform for Syllabus 2.1.5 (stop before soft",
+          "support_sample": "Open your CMP at Syllabus 2.1.5 \u2014 inverse transform generation. Kwalitec guides; CMP is authoritative. Hunt with focus questions. Stop when the 2.1.5 block is complete. Return for Worked-example re-entry, then Knowledge Checks. What did you extract from the CMP setup? Submit Answer ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 255
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "html": "/tmp/ro001/evidence/day10_CG-D3_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.1 \u2014 Understand the characteristics of basic univariate distributions and how to generate samples After this \u00b7 A situation\u2192family map for the syllabus dis"
+      },
+      "session_id": "lsr-7fbe67bbe880",
+      "reflection_ok": true,
+      "gamma_focus": true,
+      "body_delivery_verdict": "PASS",
+      "ui_tomorrow_verdict": "PASS"
+    },
+    {
+      "day_index": 11,
+      "expected_day": "CG-D4",
+      "expected_package_id": "CS1-EP001-PKG-2.1-SOFTWARE-GENERATION",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP (and appropriate statistical software) to generate discrete and continuous RVs under Syllabus 2.1.6. Stop before joint distributions.",
+          "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Generate RVs with statistical software Purpose of this reading: use the CMP (and appropriate statistical software) to generate discrete and continuous RVs under Syllabus 2.1.6. Stop before joint distributions. Open: CMP \u00b7 Syllabus 2.1.6 generation using statistical software Stop: Through CMP/software practice for Syllabus 2.1.6 (stop before joint distributions 2.2) Focus ",
+          "support_sample": "Open your CMP at Syllabus 2.1.6 \u2014 software generation. Use statistical software as the CMP directs. Stop before 2.2. Return for Worked-example re-entry, then Knowledge Checks. What did you extract from the CMP setup? Submit Answer ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 237
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "html": "/tmp/ro001/evidence/day11_CG-D4_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false
+      },
+      "verdict": "FAIL",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.1 \u2014 Understand the characteristics of basic univariate distributions and how to generate samples After this \u00b7 A situation\u2192family map for the syllabus dis"
+      },
+      "session_id": "lsr-b90f5dcc20bb",
+      "reflection_ok": true,
+      "gamma_focus": true,
+      "body_delivery_verdict": "PASS",
+      "ui_tomorrow_verdict": "FAIL"
+    },
+    {
+      "day_index": 12,
+      "expected_day": "CG-R1",
+      "expected_package_id": "CS1-EP001-PKG-REV-DISTRIBUTIONS-GENERATION",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Gamma chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locu",
+          "body_sample": " Topic: Campaign Gamma revision \u2014 distributions through generation (CG-R1) Mission: Retrieve univariate evaluation and generation Purpose of this revision stage: strengthen retrieval of the Campaign Gamma chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block. Stop: After revision checks and Reflection \u2014 do not begin Syllabus",
+          "support_sample": "Begin closed-book retrieval. Reopen CMP only at a failed locus. Do not start 2.2 today. After checks, complete Reflection. What did you extract from the CMP setup? Submit Answer ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": false,
+            "Open your CMP": false,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": false,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 257
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "html": "/tmp/ro001/evidence/day12_CG-R1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false
+      },
+      "verdict": "FAIL",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.1 \u2014 Understand the characteristics of basic univariate distributions and how to generate samples After this \u00b7 A situation\u2192family map for the syllabus dis"
+      },
+      "session_id": "lsr-9eabf1703b75",
+      "reflection_ok": true,
+      "gamma_focus": true,
+      "body_delivery_verdict": "PASS",
+      "ui_tomorrow_verdict": "FAIL"
+    }
+  ],
+  "backdates": [
+    {
+      "after_day": "CA-D1",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CA-D2",
+      "id": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CA-D3",
+      "id": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CA-R1",
+      "id": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CB-D2",
+      "id": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CB-D3",
+      "id": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CB-R1",
+      "id": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CG-D1",
+      "id": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CG-D2",
+      "id": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CG-D3",
+      "id": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CG-D4",
+      "id": "local-db-backdate",
+      "status": "succeeded"
+    }
+  ],
+  "verdict": "PASS_WITH_RESIDUAL",
+  "reason": "Finish/Home tomorrow_preview UI stuck on Beta 2.1.2 text during Gamma days; package chain and certified Reading still correct",
+  "summary": {
+    "pre_gamma_finished": true,
+    "gamma_body_pass": true,
+    "gamma_ui_tomorrow_pass": false,
+    "chain_days_completed": 12,
+    "expected_chain_len": 12,
+    "cg_r1": "FAIL"
+  },
+  "official_gates": {
+    "deployment_fingerprint": "PASS",
+    "inventory_14_gamma_5_cbr1_to_cgd1": "PASS",
+    "baseline_complete": "PASS",
+    "natural_gamma_transition": "PASS",
+    "gamma_mission_selection": "PASS",
+    "gamma_certified_guided_reading": "PASS",
+    "gamma_cmp_partnership": "PASS",
+    "gamma_activities_reflection": "PASS",
+    "revision_chain_cg_r1": "PASS",
+    "no_fallback_on_gamma_path": "PASS",
+    "finish_home_tomorrow_preview_matches_package": "FAIL",
+    "educational_regression_vs_beta": "NONE_NEW \u2014 tomorrow UI residual pre-exists on shared topic_code 2.1 multi-day (observed on CB-D3)"
+  }
+}

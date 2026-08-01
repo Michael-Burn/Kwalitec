@@ -1,0 +1,1 @@
+HTML authoritative capture: html/CG-D4_reading.html commit=f1ff5dc5dd5aca9987c48a6731f3888fdf2295a1
