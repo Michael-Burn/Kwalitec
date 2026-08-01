@@ -1,0 +1,219 @@
+{
+  "package_id": "CS1-CS1002-PKG-REV-PCA-DISTRIBUTIONS",
+  "package_version": "cs1002-campaign-beta-1.0.0",
+  "publication_version": "cs1002-catalogue-1.0.0",
+  "status": "campaign_member_certified",
+  "campaign_id": "CS1-CS1002-CAMPAIGN-BETA",
+  "campaign_day": "CB-R1",
+  "volume_id": "CS1-002",
+  "subject_id": "CS1",
+  "topic_code": "CB-R1",
+  "topic_title": "Campaign Beta revision — PCA to distributional entry",
+  "return_targets": ["1.2.2", "1.2.3", "2.1.1", "2.1.2"],
+  "topic_aliases": ["CB-R1", "campaign-beta-revision"],
+  "topic_title_keywords": ["revision", "pca", "discrete", "continuous", "distribution"],
+  "golden_id": "GOLDEN-CS1002-CS1-CB-R1-PCA-DISTRIBUTIONS",
+  "mode": "revision",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1002_EDUCATIONAL_VOLUME.md",
+    "CS1002_CERTIFICATION_REPORT.md"
+  ],
+  "author_id": "cs1002-educational-author",
+  "published_at": null,
+  "mission": {
+    "mission_id": "msn-cs1002-cs1-cb-r1-pca-distributions",
+    "display_title": "Retrieve PCA and distributional entry",
+    "mission_purpose": "Today's Mission exists to protect memory of Campaign Beta — retrieving PCA purpose and limits, discrete situation→family matching, continuous placement with Normal refusal — and one Alpha association hinge — so the opening-spine continuation does not evaporate before deeper 2.1 work.",
+    "tutor_intent": "Today I will run closed-book retrieval across Beta's three Learning hinges plus one Alpha association return, not a re-read of CMP chapters — so revision is assessable return, not empty 'review yesterday' theatre.",
+    "educational_intent": "Produce retrieval strength on the Campaign Educational Objective: PCA closure → discrete entry → continuous entry, with continuity to Alpha's association honesty.",
+    "learning_objective": "Retrieve and connect (1) PCA purpose with one non-claim, (2) a discrete situation→family match, (3) a continuous placement with Normal refusal, and (4) one Alpha association measure choice with one non-claim.",
+    "concept_focus": "Campaign chain retrieval: PCA limits → discrete families → continuous families; Alpha hinge: association honesty.",
+    "prior_bridge": "Yesterday you finished continuous family placement under 2.1.2. Today is Revision mode: return to Days 1–3 skills plus one Alpha 1.2.2 hinge under closed-book retrieval — no new first-pass LO.",
+    "why_now": "Pilot Arc law requires a Board-visible Revision placement; spacing after three Learning days protects PCA-to-distributions memory and maintains continuity with CS1-001 before successor 2.1.3+ work.",
+    "expected_benefit": "Evidence that Beta's chain and the Alpha association hinge still retrieve — revision Study Progress, not a claim that all of 2.1 is complete.",
+    "explainability": "Assigned as Campaign Beta Revision because Architecture §9.2 requires memory return inside the Pilot Arc; return targets include prior Volume hinge 1.2.2 for series continuity.",
+    "success_criteria": [
+      "Closed-book, restate PCA purpose and one refused overclaim.",
+      "Match one discrete counting situation to a 2.1.1 family with warrant.",
+      "Place one continuous modelling situation and refuse Normal-by-default.",
+      "Choose among Pearson/Spearman/Kendall for a stated situation and refuse one overclaim (Alpha hinge)."
+    ],
+    "task_descriptions": [
+      "Without opening the CMP, sketch Beta's chain on one page: PCA → discrete → continuous; note Alpha association hinge.",
+      "Complete the Revision Knowledge Checks under closed-book rules.",
+      "Author a revision Reflection that names the weakest link for spaced return later."
+    ],
+    "estimated_study_time_minutes": {"min": 40, "max": 55}
+  },
+  "session": {
+    "session_id": "ssn-cs1002-cs1-cb-r1-pca-distributions",
+    "session_educational_purpose": "This Revision Session exists to retrieve and connect Campaign Beta skills (and one Alpha hinge) under closed-book conditions — not to teach 2.1.3 probability evaluation or open joint distributions.",
+    "session_tutor_purpose": "In this sitting I will keep the CMP closed for checks, run retrieval across PCA / discrete / continuous / Alpha association, and harvest the weakest link — Gate RV substance, not chrome.",
+    "duration_budget_minutes": {"min": 40, "max": 55},
+    "wrap_up": "Revision Session complete for Retrieve PCA and distributional entry. You stress-tested Campaign Beta return targets (1.2.3 PCA, 2.1.1 discrete, 2.1.2 continuous) plus Alpha hinge 1.2.2. This is revision Study Progress — not Topic Complete for 2.1.3–2.1.6, and not mid-spine absorption of 4.2.",
+    "confidence_prompt": "How confident are you that the PCA → discrete → continuous chain (plus association honesty) will still retrieve in three days? Rate 1–5 and name the weakest link as your warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Revision day: do not open a new CMP chapter first. Attempt closed-book retrieval; only then, if a check fails, reopen the specific Day 1–3 or Alpha association locus you named — not a full re-read.",
+    "focus_questions": [
+      "Can you restate PCA purpose and refuse one overclaim?",
+      "Can you match a discrete counting situation to a 2.1.1 family?",
+      "Can you place a continuous family and refuse Normal-by-default?",
+      "Can you still choose a correlation measure and refuse an overclaim (Alpha)?"
+    ],
+    "misconception_watch": [
+      "Watch for turning revision into a passive re-read of Chapters 1–2.",
+      "Watch for claiming all of 2.1 complete including 2.1.3–2.1.6.",
+      "Watch for dropping the Alpha association hinge because 'that was last Volume.'"
+    ],
+    "open_point": "No new CMP open required to begin. Targeted re-open only after failed retrieval: Day 1 PCA block, Day 2 2.1.1 block, Day 3 2.1.2 block, or Alpha 1.2.2 association block as needed.",
+    "stop_condition": "After the revision checks and Reflection — do not begin Syllabus 2.1.3 or 2.2 in this sitting",
+    "out_of_scope_today": [
+      "First-pass probability/quantile evaluation (2.1.3)",
+      "Poisson process / generation methods (2.1.4–2.1.6)",
+      "Joint distributions (2.2)",
+      "4.2 GLM absorption",
+      "New modelling chapters"
+    ],
+    "annotation_task": "Before checks: sketch PCA → discrete → continuous (+ association hinge) from memory",
+    "attempt_before_reveal": "All revision checks are attempt-first; CMP re-open only after a failed item",
+    "exit_line": "Keep the CMP closed. Sketch the Campaign chain from memory, then begin the revision checks. Re-open only the locus of a failed item.",
+    "return_cue": "Stay in Kwalitec for revision checks; return to CMP only if a specific check fails.",
+    "pause_points": [],
+    "reentry_line": "If you reopened the CMP for one failed item, close it again. We continue retrieval — we do not restart Chapters 1–2."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1002-cb-r1-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1002-cb-r1-ar-01",
+      "title": "Revision Recall: PCA limits",
+      "prompt": "Closed-book. Restate the purpose of PCA in one sentence and state one claim PCA does not support.",
+      "response_type": "short_structured",
+      "body": "Return target: Day 1 (1.2.3).",
+      "hints": [
+        "Purpose: reduce dimensionality / summarise correlated structure.",
+        "Refuse: automatic causation / invented named business factor."
+      ],
+      "accepted_keywords": [
+        "dimension",
+        "reduce",
+        "component",
+        "correl",
+        "cause",
+        "causal",
+        "not",
+        "refuse"
+      ],
+      "explanation": "Revision succeeds only if PCA purpose and honesty still retrieve.",
+      "model_answer": "PCA reduces dimensionality by summarising shared variation in correlated variables into fewer components; it does not by itself prove a causal business driver.",
+      "common_mistake": "Formula dump without purpose, or causal overclaim.",
+      "success_criteria": [
+        "Purpose sentence.",
+        "One non-claim."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1002-cb-r1-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1002-cb-r1-cp-01",
+      "title": "Revision Checkpoint: discrete match",
+      "prompt": "Closed-book. You count the number of defective items in a fixed number of independent inspections with constant defect probability. Which discrete family fits, and why? Name one family that would be a mis-match.",
+      "response_type": "short_structured",
+      "body": "Return target: Day 2 (2.1.1).",
+      "hints": [
+        "Fixed independent trials → binomial.",
+        "Mis-match example: hypergeometric (without replacement) or geometric (trials to first)."
+      ],
+      "accepted_keywords": [
+        "binomial",
+        "fixed",
+        "independent",
+        "hypergeometric",
+        "geometric",
+        "poisson"
+      ],
+      "explanation": "Revision must reconnect situation to discrete family.",
+      "model_answer": "Binomial — fixed number of independent trials with constant success probability. Mis-match: hypergeometric if sampling were without replacement from a finite lot.",
+      "common_mistake": "Poisson-by-habit for fixed-trial binary outcomes.",
+      "success_criteria": [
+        "Binomial with warrant.",
+        "One named mis-match."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1002-cb-r1-cp-02",
+      "kind": "checkpoint",
+      "item_id": "cs1002-cb-r1-cp-02",
+      "title": "Revision Checkpoint: continuous placement",
+      "prompt": "Closed-book. Waiting time until the next claim event under a constant hazard story. Which continuous family fits first, and why? Refuse Normal-by-default in one sentence.",
+      "response_type": "short_structured",
+      "body": "Return target: Day 3 (2.1.2).",
+      "hints": [
+        "Exponential for waiting/memoryless continuous time.",
+        "Refuse Normal on support/shape for waiting times."
+      ],
+      "accepted_keywords": [
+        "exponential",
+        "waiting",
+        "memoryless",
+        "normal",
+        "refuse",
+        "not",
+        "positive"
+      ],
+      "explanation": "Revision must keep continuous placement honest.",
+      "model_answer": "Exponential — continuous waiting time with memoryless/constant hazard story. Refuse Normal-by-default because waiting times are positive and the Normal support/shape story mismatches.",
+      "common_mistake": "Normal default; gamma without warrant when exponential is the direct story.",
+      "success_criteria": [
+        "Exponential with waiting warrant.",
+        "Normal default refused."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1002-cb-r1-cp-03",
+      "kind": "checkpoint",
+      "item_id": "cs1002-cb-r1-cp-03",
+      "title": "Revision Checkpoint: Alpha association hinge",
+      "prompt": "Closed-book (prior Volume hinge). Skewed variables, outliers, monotone but nonlinear scatter. Choose Pearson, Spearman, or Kendall and justify. State one claim the coefficient does not support.",
+      "response_type": "short_structured",
+      "body": "Return target: CS1-001 / Alpha Day 3 (1.2.2) — series continuity.",
+      "hints": [
+        "Prefer rank-based; refuse causation."
+      ],
+      "accepted_keywords": [
+        "spearman",
+        "kendall",
+        "rank",
+        "monotonic",
+        "causation",
+        "cause",
+        "not"
+      ],
+      "explanation": "Series continuity requires Alpha association honesty to remain retrievable.",
+      "model_answer": "Spearman or Kendall for monotone nonlinear association with outliers; coefficient does not prove causation.",
+      "common_mistake": "Pearson by habit; causal claim; skipping because 'old Volume.'",
+      "success_criteria": [
+        "Rank-based choice with reason.",
+        "One non-claim stated."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Revision Reflection names the weakest Campaign / series link for future spaced return — not a chapter summary.",
+    "prompt": "Which link retrieved least cleanly today — PCA limits, discrete matching, continuous placement, or Alpha association honesty — and what one concrete rework will you schedule? Do not claim 2.1.3–2.1.6 complete.",
+    "prompts": [
+      "Which link retrieved least cleanly — PCA limits, discrete matching, continuous placement, or Alpha association honesty?",
+      "What one concrete rework will you schedule for that link?",
+      "Confirm: 2.1.3–2.1.6 and joint distributions were out of scope today."
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "2.1",
+    "next_topic_title": "Evaluation of probabilities and quantiles (2.1.3) — successor Volume",
+    "continuity_line": "Campaign Beta / Volume CS1-002 completes after this Revision. The honest handoff is to a successor Volume continuing 2.1 at probability and quantile evaluation (2.1.3) and later generation LOs — not silently complete. Mid-spine 4.2 absorption remains CS1-003 work.",
+    "light_prep_cue": "Optional skim: CMP headings for Syllabus 2.1.3 probability and quantile evaluation — titles only, no deep study tonight",
+    "student_facing": "Campaign Beta / CS1-002 complete after today. Next journey continues univariate distributions at probability and quantile evaluation (2.1.3). Optional light prep: skim 2.1.3 headings — titles only tonight."
+  }
+}

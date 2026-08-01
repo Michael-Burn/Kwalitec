@@ -1,0 +1,19 @@
+{
+  "campaign_id": "CS1-EP001-CAMPAIGN-ALPHA",
+  "campaign_version": "ep001-1.0.0",
+  "display_title": "Campaign Alpha — From Purpose to Exploratory Judgement",
+  "subject_id": "CS1",
+  "package_version_pin": "IFoA CS1 2026",
+  "scope_class": "Pilot Arc",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "status": "gate_cg_pass",
+  "day_count": {"learning": 3, "revision": 1, "total": 4},
+  "syllabus_span": ["1.1", "1.2.1", "1.2.2"],
+  "out_of_scope": ["1.2.3", "2.1+", "CS1B coding marathons", "regression/Bayesian chapters"],
+  "inventory": [
+    "CS1-EP001-PKG-1.1-PURPOSE-FUNCTION",
+    "CS1-EP001-PKG-1.2-EDA-SUMMARIES",
+    "CS1-EP001-PKG-1.2-EDA-ASSOCIATION",
+    "CS1-EP001-PKG-REV-PURPOSE-EDA"
+  ]
+}

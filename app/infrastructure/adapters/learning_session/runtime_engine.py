@@ -834,6 +834,18 @@ class LearningSessionRuntimeEngine:
         topic = str(record.get("topic_title") or "Today's topic")
         substance_on = bool(resolve_v2_feature_flags().SR_SESSION_SUBSTANCE)
         if substance_on:
+            # EA-006: prefer certified package reflection when topic matches.
+            pack_prompt = ""
+            try:
+                from app.application.educational_packages.loader import (
+                    find_educational_package,
+                )
+
+                pack = find_educational_package(topic_title=topic)
+                if pack is not None:
+                    pack_prompt = pack.reflection_prompt or pack.reflection_framing
+            except Exception:  # noqa: BLE001 — reflection must stay resilient
+                pack_prompt = ""
             objectives = self._learning_objectives_from_sequence(
                 student_id=student_id, session_id=session_id
             )
@@ -849,7 +861,7 @@ class LearningSessionRuntimeEngine:
             improvement = (
                 f"Revisit the learning objective that still feels unclear in {topic}."
             )
-            prompt = (
+            prompt = pack_prompt or (
                 f"After reading, examples, and practice on {topic}, "
                 "what still feels unclear — and what will you try next?"
             )
@@ -862,7 +874,7 @@ class LearningSessionRuntimeEngine:
                 "learning_objectives": objectives,
                 "skip_available": True,
                 "authority": "learning_session_runtime",
-                "substance": "package",
+                "substance": "educational_package" if pack_prompt else "package",
                 "twin_updated": False,
             }
         return {

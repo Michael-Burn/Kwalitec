@@ -1,0 +1,21 @@
+{
+  "campaign_id": "CS1-CS1002-CAMPAIGN-BETA",
+  "campaign_version": "cs1002-1.0.0",
+  "display_title": "Campaign Beta — From PCA Closure to Distributional Entry",
+  "subject_id": "CS1",
+  "package_version_pin": "IFoA CS1 2026",
+  "scope_class": "Pilot Arc",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "status": "gate_cg_pass",
+  "volume_id": "CS1-002",
+  "prior_volume_id": "CS1-001",
+  "day_count": {"learning": 3, "revision": 1, "total": 4},
+  "syllabus_span": ["1.2.3", "2.1.1", "2.1.2"],
+  "out_of_scope": ["2.1.3+", "2.2+", "CS1B coding marathons", "regression/Bayesian chapters", "4.2 absorption"],
+  "inventory": [
+    "CS1-CS1002-PKG-1.2-PCA",
+    "CS1-CS1002-PKG-2.1-DISCRETE",
+    "CS1-CS1002-PKG-2.1-CONTINUOUS",
+    "CS1-CS1002-PKG-REV-PCA-DISTRIBUTIONS"
+  ]
+}

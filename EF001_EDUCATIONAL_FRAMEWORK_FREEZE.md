@@ -91,7 +91,8 @@ Framework invention is not on this stack.
 2. Failures first attributed to content, staffing, activation, reachability, or execution discipline.  
 3. Framework amendment requires §2 evidence package + Founder Educational Gate Owner capacity decision.  
 4. EW-001 remains a productivity shell under Excellence / Operations — software implementation may proceed; Gate/EJ/Trust exits stay hard.  
-5. Living ops board remains `PR001_EDUCATIONAL_OPERATIONS_REGISTER.md` (Volumes, blockers, roster) — not a design studio.
+5. Living ops board remains `PR001_EDUCATIONAL_OPERATIONS_REGISTER.md` (Volumes, blockers, roster) — not a design studio.  
+6. Every educational observation must be reviewed with `EF001_OPERATIONAL_REVIEW_TEMPLATE.md` **before** any solution is proposed (classification, severity, evidence, smallest effective intervention, EF-001 check).
 
 ---
 
@@ -100,6 +101,7 @@ Framework invention is not on this stack.
 | Instrument | Relationship |
 |------------|--------------|
 | `PR001_EDUCATIONAL_OPERATIONS_REGISTER.md` §2 | Excellence + Operations freeze retained; expanded by this declaration to Trust, Justification, Editorial Workspace |
+| `EF001_OPERATIONAL_REVIEW_TEMPLATE.md` | Mandatory observation → classification → intervention gate before proposing solutions |
 | EA / EO / TV / EJ / EW implementation reports | PASS artefacts become **stewarded law**, not open design briefs |
 | Educational Constitution | Remains superior for truth, mastery, evidence, and mode authority (`knowledge/educational/KWALITEC_EDUCATIONAL_CONSTITUTION.md`) |
 | Product governance | `knowledge/GOVERNANCE.md` — EF-001 constrains Educational Framework programme creation under product decision hierarchy |

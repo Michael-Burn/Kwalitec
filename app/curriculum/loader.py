@@ -27,7 +27,14 @@ from app.curriculum.schemas import detect_format, validate_instance
 
 # Directory layout convention:
 #   data/{organisation_lower}/{paper_lower}/{version}.json
+# Non-syllabus inventory co-located under data/ must not be discovered as exams.
 _DATA_ROOT = Path(__file__).parent / "data"
+_NON_SYLLABUS_DATA_DIRS = frozenset(
+    {
+        "educational_packages",
+        "educational_campaigns",
+    }
+)
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -313,6 +320,8 @@ def discover_curricula() -> list[tuple[str, str, list[str]]]:
 
     for org_dir in sorted(_DATA_ROOT.iterdir()):
         if not org_dir.is_dir():
+            continue
+        if org_dir.name.lower() in _NON_SYLLABUS_DATA_DIRS:
             continue
         organisation = org_dir.name.upper()
         for paper_dir in sorted(org_dir.iterdir()):

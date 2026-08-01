@@ -1,0 +1,174 @@
+{
+  "package_id": "CS1-EP001-PKG-1.2-EDA-SUMMARIES",
+  "package_version": "ep001-campaign-alpha-1.0.0",
+  "publication_version": "ep001-catalogue-1.0.0",
+  "status": "campaign_member_certified",
+  "campaign_id": "CS1-EP001-CAMPAIGN-ALPHA",
+  "campaign_day": "CA-D2",
+  "subject_id": "CS1",
+  "topic_code": "1.2",
+  "topic_title": "Complete exploratory data analysis",
+  "topic_focus_lo": "1.2.1",
+  "topic_aliases": ["CS1-A-T02", "1.2", "1.2.1"],
+  "topic_title_keywords": ["exploratory", "summary statistics", "visualisation", "visualization", "eda"],
+  "golden_id": "GOLDEN-EP001-CS1-1.2-EDA-SUMMARIES",
+  "mode": "learning",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "EP001_CAMPAIGN_AUTHORING.md",
+    "EP001_CAMPAIGN_CERTIFICATION.md"
+  ],
+  "author_id": "ep001-educational-author",
+  "published_at": null,
+  "mission": {
+    "mission_id": "msn-ep001-cs1-1.2-eda-summaries",
+    "display_title": "Choose summaries and plots for a stated aim",
+    "mission_purpose": "Today's Mission exists to turn yesterday's purpose map into exploratory craft — choosing summary statistics and visualisations that serve a named aim inside the exploratory stage.",
+    "tutor_intent": "Today I will refuse chart-surfing: the candidate must name the aim first, then justify one summary and one visualisation for that aim, before reading deep — so EDA becomes judgement, not decoration.",
+    "educational_intent": "Produce a cognitive move from 'EDA means looking at data' to 'I select summaries and visualisations that match variable type and analysis aim, and I can defend that choice closed-book.'",
+    "learning_objective": "Select and justify appropriate summary statistics and exploratory visualisations for a stated analysis aim and variable type.",
+    "concept_focus": "Variable type → suitable summary → suitable visualisation → aim alignment.",
+    "prior_bridge": "Yesterday you built the purpose map for data analysis (1.1) — aims, stages, sources, reproducibility. Today you work inside the exploratory stage: summaries and visualisations chosen for a stated aim.",
+    "why_now": "1.2.1 is the next lawful LO after purpose; examiners ask which summary or plot is appropriate; without aim-linked tool choice, correlation work tomorrow has nothing trustworthy to associate.",
+    "expected_benefit": "One defended summary-and-plot pair for a named aim — Study Progress for today's Session, not completion of all of 1.2.",
+    "explainability": "Assigned as Campaign Alpha Day 2 because Day 1 established aim and stage; the skill gap now is exploratory tool judgement under LO 1.2.1.",
+    "success_criteria": [
+      "Closed-book, for a named variable type and aim, state one suitable summary statistic and why it fits.",
+      "Name one suitable exploratory visualisation for the same case and what pattern it is meant to reveal.",
+      "State one misuse (wrong summary or plot for the aim/type) you will refuse."
+    ],
+    "task_descriptions": [
+      "Write Aim / Variable type / Summary / Plot as four linked boxes before opening the CMP.",
+      "Complete Guided Reading through CMP treatment of summary statistics and exploratory visualisations (1.2.1 centre).",
+      "Closed-book: defend one summary-and-plot pair and name one misuse."
+    ],
+    "estimated_study_time_minutes": {"min": 50, "max": 70}
+  },
+  "session": {
+    "session_id": "ssn-ep001-cs1-1.2-eda-summaries",
+    "session_educational_purpose": "This Session exists to execute today's Mission: build and stress-test closed-book judgement on summaries and visualisations under a stated aim — not to catalogue every plot type in the CMP.",
+    "session_tutor_purpose": "In this hour I will set focus questions that force aim-first tool choice, exit for CMP work on 1.2.1, then retrieve a defended summary-and-plot pair — so exploratory craft is tested, not page count.",
+    "duration_budget_minutes": {"min": 50, "max": 70},
+    "wrap_up": "Session complete for Choose summaries and plots for a stated aim. You practised selective CMP reading on Syllabus 1.2.1 and stress-tested aim-linked summary and visualisation choice. This is Study Progress for today's block — not Topic Complete for all of 1.2, and not yet association measures (tomorrow).",
+    "confidence_prompt": "How confident are you that you could defend one summary-and-plot pair for a stated aim closed-book tomorrow morning? Rate 1–5 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Extract how to choose summary statistics and exploratory visualisations for a stated aim and variable type — then stop after that tool-judgement block for 1.2.1.",
+    "focus_questions": [
+      "Which summaries does the CMP pair with which variable types, and what aim does each summary serve?",
+      "Which exploratory visualisations are recommended, and what pattern is each meant to reveal?",
+      "Where does the CMP warn about a misleading summary or plot choice?",
+      "You will later defend, closed-book, one summary-and-plot pair for a stated aim and name one misuse."
+    ],
+    "misconception_watch": [
+      "Watch for choosing plots because they look impressive rather than because they match the aim.",
+      "Watch for using the mean as a default summary when the distribution shape argues otherwise.",
+      "Watch for treating visualisation as optional decoration after 'the real maths.'"
+    ],
+    "open_point": "CMP · Syllabus 1.2.1 summary statistics and exploratory visualisations",
+    "stop_condition": "Through the CMP block that equips you to choose summaries and exploratory visualisations for Syllabus 1.2.1 (stop before correlation measures 1.2.2 and PCA 1.2.3)",
+    "out_of_scope_today": [
+      "Pearson's, Spearman's, and Kendall's correlation (1.2.2)",
+      "Principal component analysis (1.2.3)",
+      "Full modelling / inference chapters",
+      "CS1B coding marathon"
+    ],
+    "annotation_task": "Before deep reading: sketch Aim / Variable type / Summary / Plot as four linked boxes",
+    "attempt_before_reveal": "At the first worked choice of summary or plot, cover the solution and write your choice first",
+    "exit_line": "Open your CMP at Syllabus 1.2.1 — summaries and exploratory visualisations. Work with the focus questions above. I will stay quiet while you study. Come back here when you finish the 1.2.1 tool-judgement block — stop before correlation.",
+    "return_cue": "Come back to Kwalitec when you have finished the 1.2.1 summaries-and-visualisations block.",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause — for one numeric variable, write which summary you would lead with and why.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next summary/plot choice before uncovering the CMP solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed for the next few minutes. We will check what the reading fixed in memory."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-ep001-1.2a-ar-01",
+      "kind": "active_recall",
+      "item_id": "ep001-1.2a-ar-01",
+      "title": "Active Recall: aim-linked summary",
+      "prompt": "Closed-book. Suppose your aim is descriptive and your variable is a right-skewed claim size. Which summary statistic would you lead with, and why is it preferable to a naive mean-only report?",
+      "response_type": "short_structured",
+      "body": "Justify from distribution shape and aim — not from software defaults.",
+      "hints": [
+        "Skewed positive data often needs median/IQR or careful mean-with-shape warning.",
+        "Say what the mean alone hides."
+      ],
+      "accepted_keywords": [
+        "median",
+        "iqr",
+        "quartile",
+        "skew",
+        "mean",
+        "outlier",
+        "shape",
+        "robust"
+      ],
+      "explanation": "Descriptive EDA on skewed claim sizes should not hide behind a lone mean; shape-aware summaries protect the aim.",
+      "model_answer": "Lead with median (and IQR or percentiles); the mean is pulled by the long right tail and can mislead a descriptive brief about typical claim size.",
+      "common_mistake": "Defaulting to the mean because 'that is what we always compute.'",
+      "success_criteria": [
+        "A shape-aware summary named.",
+        "Clear reason tied to skew / atypical mean.",
+        "Aim remains descriptive."
+      ]
+    },
+    {
+      "episode_id": "lep-ep001-1.2a-cp-01",
+      "kind": "checkpoint",
+      "item_id": "ep001-1.2a-cp-01",
+      "title": "Checkpoint: visualisation and misuse",
+      "prompt": "Closed-book. For the same skewed claim-size case: (1) Name one exploratory visualisation you would use and what pattern it should reveal. (2) Name one visualisation or summary misuse you would refuse for this aim.",
+      "response_type": "short_structured",
+      "body": "Pair a plot with a pattern, then refuse a misuse.",
+      "hints": [
+        "Histogram, density, or boxplot are common exploratory choices for numeric skew.",
+        "Misuses: pie charts for continuous magnitude; mean-only dashboard; truncated axes that hide the tail."
+      ],
+      "accepted_keywords": [
+        "histogram",
+        "boxplot",
+        "box plot",
+        "density",
+        "tail",
+        "skew",
+        "pie",
+        "refuse",
+        "mislead"
+      ],
+      "explanation": "Exploratory visualisations exist to reveal shape and extremes; refusing decorative or misleading displays is part of professional EDA.",
+      "model_answer": "Use a histogram or boxplot to reveal right skew and extreme claims. Refuse a pie chart (or a mean-only table) that hides the tail.",
+      "common_mistake": "Naming a plot without saying what pattern it reveals.",
+      "success_criteria": [
+        "Suitable plot named with pattern purpose.",
+        "One concrete misuse refused."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Do not summarise all of EDA. Harvest what still wobbles in tool judgement.",
+    "prompt": "Which link is stickiest right now — aim → variable type, variable type → summary, or summary → visualisation — and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow before correlation, what one tool-judgement move would you rework?",
+    "prompts": [
+      "Which link is stickiest right now — aim → variable type, variable type → summary, or summary → visualisation — and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow before correlation, what one tool-judgement move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "1.2",
+    "next_topic_title": "Complete exploratory data analysis",
+    "continuity_line": "Today you chose summaries and plots for a stated aim; tomorrow those exploratory descriptions become association — interpreting Pearson, Spearman, and Kendall with discipline.",
+    "light_prep_cue": "Optional skim: CMP headings for Syllabus 1.2.2 correlation measures — titles only, no deep study tonight",
+    "student_facing": "Tomorrow: association measures for bivariate data (still 1.2). Today's summaries and plots prepare the variables; tomorrow you interpret correlation with the same aim discipline. Optional light prep: skim CMP headings for 1.2.2 — titles only tonight."
+  }
+}

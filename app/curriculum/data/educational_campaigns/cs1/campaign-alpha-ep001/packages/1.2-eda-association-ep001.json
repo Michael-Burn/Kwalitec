@@ -1,0 +1,174 @@
+{
+  "package_id": "CS1-EP001-PKG-1.2-EDA-ASSOCIATION",
+  "package_version": "ep001-campaign-alpha-1.0.0",
+  "publication_version": "ep001-catalogue-1.0.0",
+  "status": "campaign_member_certified",
+  "campaign_id": "CS1-EP001-CAMPAIGN-ALPHA",
+  "campaign_day": "CA-D3",
+  "subject_id": "CS1",
+  "topic_code": "1.2",
+  "topic_title": "Complete exploratory data analysis",
+  "topic_focus_lo": "1.2.2",
+  "topic_aliases": ["CS1-A-T02", "1.2", "1.2.2"],
+  "topic_title_keywords": ["correlation", "pearson", "spearman", "kendall", "bivariate", "eda"],
+  "golden_id": "GOLDEN-EP001-CS1-1.2-EDA-ASSOCIATION",
+  "mode": "learning",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "EP001_CAMPAIGN_AUTHORING.md",
+    "EP001_CAMPAIGN_CERTIFICATION.md"
+  ],
+  "author_id": "ep001-educational-author",
+  "published_at": null,
+  "mission": {
+    "mission_id": "msn-ep001-cs1-1.2-eda-association",
+    "display_title": "Interpret association without overclaiming",
+    "mission_purpose": "Today's Mission exists to extend yesterday's exploratory craft into bivariate association — so you can select and interpret Pearson, Spearman, and Kendall measures without confusing correlation with causation or with identical information.",
+    "tutor_intent": "Today I will force the candidate to say what each correlation measure is sensitive to, and to refuse a causal claim from a coefficient alone — so association stays exploratory inference, not storytelling.",
+    "educational_intent": "Produce a cognitive move from 'correlation is one number' to 'I can choose among Pearson, Spearman, and Kendall for the data situation and state what the coefficient does and does not justify.'",
+    "learning_objective": "Interpret Pearson's, Spearman's, and Kendall's correlation measures for bivariate data and state the inferential limits of each choice.",
+    "concept_focus": "Measure choice → what association means → what it does not mean (causation / linearity assumptions).",
+    "prior_bridge": "Yesterday you defended summaries and visualisations for a stated aim under 1.2.1. Today those explored variables become a bivariate pair: you interpret association measures with the same aim discipline.",
+    "why_now": "1.2.2 is the next LO after tool judgement; examiners require correct measure choice and honest interpretation; PCA (1.2.3) is deferred so association is learned cleanly before dimensionality reduction.",
+    "expected_benefit": "One justified measure choice and one honest limit statement — Study Progress for today's Session, not Topic Complete for all of 1.2 including PCA.",
+    "explainability": "Assigned as Campaign Alpha Day 3 because Day 2 established exploratory description; the skill gap now is disciplined association under LO 1.2.2.",
+    "success_criteria": [
+      "Closed-book, distinguish Pearson, Spearman, and Kendall in one sentence each (what each primarily captures).",
+      "For a stated data situation, choose one measure and justify why it fits.",
+      "State one claim the coefficient does not support (e.g. causation or perfect predictive control)."
+    ],
+    "task_descriptions": [
+      "Sketch Pearson / Spearman / Kendall as three boxes with one sensitivity note each before opening the CMP.",
+      "Complete Guided Reading through CMP treatment of the three correlation measures (1.2.2 centre).",
+      "Closed-book: distinguish, choose, and refuse an overclaim."
+    ],
+    "estimated_study_time_minutes": {"min": 50, "max": 70}
+  },
+  "session": {
+    "session_id": "ssn-ep001-cs1-1.2-eda-association",
+    "session_educational_purpose": "This Session exists to execute today's Mission: build and stress-test closed-book interpretation of Pearson, Spearman, and Kendall — not to begin PCA or full inferential modelling.",
+    "session_tutor_purpose": "In this hour I will set focus questions on measure differences and limits, exit for CMP work on 1.2.2, then retrieve distinguish–choose–refuse-overclaim — so association is tested as judgement.",
+    "duration_budget_minutes": {"min": 50, "max": 70},
+    "wrap_up": "Session complete for Interpret association without overclaiming. You practised selective CMP reading on Syllabus 1.2.2 and stress-tested measure choice with honest limits. This is Study Progress for today's block — not Topic Complete for PCA (1.2.3), which is out of scope for Campaign Alpha Learning days.",
+    "confidence_prompt": "How confident are you that you could choose among Pearson, Spearman, and Kendall and refuse a causal overclaim closed-book tomorrow morning? Rate 1–5 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Extract how Pearson's, Spearman's, and Kendall's measures differ and what association claims they support — then stop at the end of the 1.2.2 correlation block.",
+    "focus_questions": [
+      "How does the CMP define each of Pearson, Spearman, and Kendall in plain language?",
+      "When would you prefer a rank-based measure over Pearson?",
+      "Where does the CMP (or sound practice) warn that association is not causation?",
+      "You will later distinguish the three measures, choose one for a situation, and refuse one overclaim."
+    ],
+    "misconception_watch": [
+      "Watch for treating all three coefficients as interchangeable labels.",
+      "Watch for reading r = 0.6 as '60% causal effect.'",
+      "Watch for skipping scatter inspection before trusting a single number."
+    ],
+    "open_point": "CMP · Syllabus 1.2.2 correlation measures for bivariate data",
+    "stop_condition": "Through the CMP treatment of Pearson's, Spearman's, and Kendall's measures for Syllabus 1.2.2 (stop before principal component analysis 1.2.3)",
+    "out_of_scope_today": [
+      "Principal component analysis (1.2.3)",
+      "Full hypothesis testing of correlation (deeper inference chapters)",
+      "Regression modelling (4.1)",
+      "CS1B coding marathon"
+    ],
+    "annotation_task": "Before deep reading: sketch Pearson / Spearman / Kendall with one sensitivity note each",
+    "attempt_before_reveal": "At the first worked measure choice, cover the solution and pick your measure first",
+    "exit_line": "Open your CMP at Syllabus 1.2.2 — correlation measures. Work with the focus questions above. I will stay quiet while you study. Come back here when you finish the three-measure block — stop before PCA.",
+    "return_cue": "Come back to Kwalitec when you have finished the 1.2.2 correlation block.",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause — write one sentence: Pearson is sensitive to…",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next measure-choice example before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed for the next few minutes. We will check what the reading fixed in memory."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-ep001-1.2b-ar-01",
+      "kind": "active_recall",
+      "item_id": "ep001-1.2b-ar-01",
+      "title": "Active Recall: three measures",
+      "prompt": "Closed-book. In one sentence each, what does Pearson's, Spearman's, and Kendall's correlation primarily capture? Mention at least one way a rank-based measure differs from Pearson.",
+      "response_type": "short_structured",
+      "body": "Distinguish linear vs monotonic / concordance ideas without dumping formulae.",
+      "hints": [
+        "Pearson: linear association of raw values (sensitive to outliers / non-linearity).",
+        "Spearman: monotonic association via ranks.",
+        "Kendall: concordance of pairwise orderings."
+      ],
+      "accepted_keywords": [
+        "pearson",
+        "linear",
+        "spearman",
+        "rank",
+        "monotonic",
+        "kendall",
+        "concord",
+        "outlier"
+      ],
+      "explanation": "The three measures answer related but different association questions; treating them as synonyms fails examiner discrimination items.",
+      "model_answer": "Pearson measures linear association of raw values. Spearman measures monotonic association via ranks. Kendall measures pairwise concordance of orderings. Rank measures are more robust to certain nonlinear monotone relationships and some outlier patterns than Pearson.",
+      "common_mistake": "Saying only 'they all measure correlation' without discrimination.",
+      "success_criteria": [
+        "All three named with distinct capture statements.",
+        "At least one rank-vs-Pearson difference stated."
+      ]
+    },
+    {
+      "episode_id": "lep-ep001-1.2b-cp-01",
+      "kind": "checkpoint",
+      "item_id": "ep001-1.2b-cp-01",
+      "title": "Checkpoint: choose and refuse overclaim",
+      "prompt": "Closed-book. Data: two skewed positive variables with visible outliers and a roughly increasing but nonlinear scatter. (1) Which correlation measure would you prefer and why? (2) State one claim a large coefficient still does not justify.",
+      "response_type": "short_structured",
+      "body": "Choose for the situation; refuse causation or over-precise prediction claims.",
+      "hints": [
+        "Rank-based measures often fit monotone nonlinear association better than Pearson.",
+        "Refuse: causation; 'we can control Y by changing X'; guaranteed prediction accuracy."
+      ],
+      "accepted_keywords": [
+        "spearman",
+        "kendall",
+        "rank",
+        "monotonic",
+        "outlier",
+        "causation",
+        "cause",
+        "not",
+        "refuse"
+      ],
+      "explanation": "Measure choice follows shape and robustness; interpretation discipline refuses causal theatre from exploratory association.",
+      "model_answer": "Prefer Spearman (or Kendall) because the relationship looks monotone but nonlinear with outliers that can distort Pearson. A large coefficient still does not prove that changing X causes Y to change.",
+      "common_mistake": "Choosing Pearson by habit, or claiming causation from r.",
+      "success_criteria": [
+        "Rank-based preference with situation reason.",
+        "One clear non-claim (causation or similar)."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Do not summarise all of 1.2. Harvest what still wobbles in association judgement.",
+    "prompt": "Which part is stickiest right now — distinguishing the three measures, choosing for a data situation, or refusing overclaims — and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes on the revision day, what one association move would you rework?",
+    "prompts": [
+      "Which part is stickiest right now — distinguishing the three measures, choosing for a data situation, or refusing overclaims — and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes on the revision day, what one association move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "CA-R1",
+    "next_topic_title": "Campaign Alpha revision — purpose to exploratory judgement",
+    "continuity_line": "Today you interpreted association without overclaiming; tomorrow is a Revision day that returns to the Campaign chain — purpose map, aim-linked EDA tools, and one association interpretation — not a new first-pass topic.",
+    "light_prep_cue": "Optional: glance at your Reflection residuals from Days 1–3 — titles of sticky points only, no new CMP chapter tonight",
+    "student_facing": "Tomorrow: Campaign Alpha Revision day. We return to purpose → exploratory tool choice → association limits. Optional light prep: skim your own Reflection residuals from Days 1–3 — sticky titles only tonight."
+  }
+}

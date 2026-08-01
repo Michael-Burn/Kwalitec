@@ -406,23 +406,35 @@ class StudentRuntimeCoordinator:
         learning_objectives: list[str] = []
         activity_count = 3
         substance_status = "incomplete"
+        why = (
+            f"Today's Mission focuses on {topic_title}."
+            if topic_title
+            else "Today's Mission is ready."
+        )
+        objective = f"Strengthen {topic_title}" if topic_title else "Today's study"
         if substance is not None:
             learning_objectives = [
                 format_learning_objective_label(code=obj.code, text=obj.text)
                 for obj in substance.learning_objectives
             ]
             activity_count = max(1, substance.activity_count)
-            substance_status = "package"
+            substance_status = getattr(substance, "source", None) or "package"
+            if substance_status == "educational_package":
+                substance_status = "educational_package"
+            else:
+                substance_status = "package"
+            rationale = (getattr(substance, "educational_rationale", "") or "").strip()
+            if rationale:
+                why = rationale
+            if substance.learning_objectives:
+                objective = format_learning_objective_label(
+                    code=substance.learning_objectives[0].code,
+                    text=substance.learning_objectives[0].text,
+                )
         document = {
-            "objective": (
-                f"Strengthen {topic_title}" if topic_title else "Today's study"
-            ),
+            "objective": objective,
             "learning_goal": topic_title or "Complete today's Study Session",
-            "why_studying": (
-                f"Today's Mission focuses on {topic_title}."
-                if topic_title
-                else "Today's Mission is ready."
-            ),
+            "why_studying": why,
             "estimated_minutes": estimated_minutes or 30,
             "activity_count": activity_count,
             "topics": (topic_title or "Today's topic",),

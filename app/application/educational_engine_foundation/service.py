@@ -47,6 +47,11 @@ class EducationalEngineFoundationService:
 
     def derive_from_package(self, package: dict) -> EducationalArtefactSnapshot:
         bundle = self._deriver.derive(package)
+        subject = bundle.subject_code
+        mission_templates = tuple(
+            self._overlay_mission_template(template, subject_code=subject)
+            for template in bundle.mission_templates
+        )
         return EducationalArtefactSnapshot(
             curriculum_identity=bundle.curriculum_identity,
             subject_code=bundle.subject_code,
@@ -120,22 +125,7 @@ class EducationalEngineFoundationService:
                     for topic in bundle.study_plan_template
                 ),
             ),
-            mission_templates=tuple(
-                MissionTemplateSnapshot(
-                    template_id=template.template_id,
-                    topic_id=template.topic_id,
-                    topic_code=template.topic_code,
-                    mission_kind=template.mission_kind,
-                    title=template.title,
-                    task_descriptions=template.task_descriptions,
-                    objective_ids=template.objective_ids,
-                    estimated_duration_minutes=template.estimated_duration_minutes,
-                    completion_definition=template.completion_definition,
-                    educational_rationale=template.educational_rationale,
-                    prerequisite_ids=template.prerequisite_ids,
-                )
-                for template in bundle.mission_templates
-            ),
+            mission_templates=mission_templates,
             journey=JourneySnapshot(
                 curriculum_identity=bundle.curriculum_identity,
                 sections=tuple(
@@ -171,4 +161,43 @@ class EducationalEngineFoundationService:
                 ),
             ),
             metadata=bundle.metadata,
+        )
+
+    @staticmethod
+    def _overlay_mission_template(
+        template, *, subject_code: str
+    ) -> MissionTemplateSnapshot:
+        """Apply certified package fields without changing selection."""
+        from app.application.educational_packages.loader import (
+            find_educational_package,
+        )
+
+        pack = find_educational_package(
+            topic_id=template.topic_id,
+            topic_code=template.topic_code,
+            topic_title=template.title,
+            subject_id=subject_code,
+        )
+        title = template.title
+        tasks = template.task_descriptions
+        rationale = template.educational_rationale
+        duration = template.estimated_duration_minutes
+        if pack is not None:
+            title = pack.display_title or title
+            if pack.task_descriptions:
+                tasks = pack.task_descriptions
+            rationale = pack.educational_rationale or rationale
+            duration = pack.estimated_duration_minutes or duration
+        return MissionTemplateSnapshot(
+            template_id=template.template_id,
+            topic_id=template.topic_id,
+            topic_code=template.topic_code,
+            mission_kind=template.mission_kind,
+            title=title,
+            task_descriptions=tasks,
+            objective_ids=template.objective_ids,
+            estimated_duration_minutes=duration,
+            completion_definition=template.completion_definition,
+            educational_rationale=rationale,
+            prerequisite_ids=template.prerequisite_ids,
         )

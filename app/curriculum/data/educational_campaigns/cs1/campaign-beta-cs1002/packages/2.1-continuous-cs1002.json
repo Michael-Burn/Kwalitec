@@ -1,0 +1,176 @@
+{
+  "package_id": "CS1-CS1002-PKG-2.1-CONTINUOUS",
+  "package_version": "cs1002-campaign-beta-1.0.0",
+  "publication_version": "cs1002-catalogue-1.0.0",
+  "status": "campaign_member_certified",
+  "campaign_id": "CS1-CS1002-CAMPAIGN-BETA",
+  "campaign_day": "CB-D3",
+  "volume_id": "CS1-002",
+  "subject_id": "CS1",
+  "topic_code": "2.1",
+  "topic_title": "Understand the characteristics of basic univariate distributions and how to generate samples from them",
+  "topic_focus_lo": "2.1.2",
+  "topic_aliases": ["CS1-B-T01", "2.1", "2.1.2"],
+  "topic_title_keywords": ["continuous", "normal", "lognormal", "exponential", "gamma", "distribution"],
+  "golden_id": "GOLDEN-CS1002-CS1-2.1-CONTINUOUS",
+  "mode": "learning",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1002_EDUCATIONAL_VOLUME.md",
+    "CS1002_CERTIFICATION_REPORT.md"
+  ],
+  "author_id": "cs1002-educational-author",
+  "published_at": null,
+  "mission": {
+    "mission_id": "msn-cs1002-cs1-2.1-continuous",
+    "display_title": "Place continuous families beside discrete ones",
+    "mission_purpose": "Today's Mission exists to extend yesterday's discrete recognition into continuous univariate families — so you can characterise Normal, lognormal, exponential, gamma, chi-square, t, F, beta, and continuous uniform by support and typical use, without pretending probability evaluation is finished.",
+    "tutor_intent": "Today I will force the candidate to discriminate continuous families by support and modelling role, and to refuse treating 'everything is Normal' as a default without warrant — so continuous entry matches the same Sensei standard as discrete entry.",
+    "educational_intent": "Produce a cognitive move from 'continuous = Normal only' to 'I can place the syllabus continuous families by support and typical actuarial/statistical role, with one honest non-default.'",
+    "learning_objective": "Describe the characteristics of Normal, lognormal, exponential, gamma, chi-square, t, F, beta, and uniform continuous distributions on an interval, and match key members to recognisable modelling situations.",
+    "concept_focus": "Support / shape story → continuous family → refuse Normal-by-default theatre.",
+    "prior_bridge": "Yesterday you matched discrete counting situations to 2.1.1 families. Today the same 2.1 topic continues at 2.1.2: continuous univariate characteristics sit beside the discrete map — not a new chapter leap.",
+    "why_now": "2.1.2 is the contiguous next LO after discrete entry; splitting discrete and continuous across two Learning days prevents overloaded formula lists and preserves Pilot Arc pacing before Revision.",
+    "expected_benefit": "A continuous-family placement map with one refused Normal default — Study Progress for today's Session, not Topic Complete for 2.1.3–2.1.6.",
+    "explainability": "Assigned as Campaign Beta Day 3 because contiguous 2.1.1→2.1.2 completes lawful distributional entry without swallowing probability evaluation and generation LOs.",
+    "success_criteria": [
+      "Closed-book, name the syllabus continuous families in LO 2.1.2.",
+      "For three modelling situations, choose a fitting continuous family with one characteristic warrant (support or shape role).",
+      "Refuse one Normal-by-default misuse."
+    ],
+    "task_descriptions": [
+      "Sketch continuous families grouped by support/role before opening the CMP.",
+      "Complete Guided Reading through CMP treatment of Syllabus 2.1.2 continuous distributions.",
+      "Closed-book: place families and refuse one Normal default."
+    ],
+    "estimated_study_time_minutes": {"min": 55, "max": 75}
+  },
+  "session": {
+    "session_id": "ssn-cs1002-cs1-2.1-continuous",
+    "session_educational_purpose": "This Session exists to execute today's Mission: build and stress-test continuous family placement — not to complete 2.1.3 probability/quantile drills or random-variable generation.",
+    "session_tutor_purpose": "In this hour I will set focus questions on continuous family characteristics, exit for CMP work on 2.1.2, then retrieve place–warrant–refuse-Normal-default — so continuous entry stays judgement.",
+    "duration_budget_minutes": {"min": 55, "max": 75},
+    "wrap_up": "Session complete for Place continuous families beside discrete ones. You practised selective CMP reading on Syllabus 2.1.2 and stress-tested continuous family placement. This is Study Progress for today's block — not Topic Complete for probability evaluation (2.1.3), Poisson process (2.1.4), or generation methods (2.1.5–2.1.6). Tomorrow is Revision mode.",
+    "confidence_prompt": "How confident are you that you could place three continuous families and refuse a Normal default closed-book tomorrow morning? Rate 1–5 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Extract support and typical modelling role for each continuous family in 2.1.2 — then stop before probability/quantile evaluation 2.1.3.",
+    "focus_questions": [
+      "What support does each continuous family typically live on?",
+      "When is lognormal or gamma a better claim-size story than Normal?",
+      "What roles do t, F, and chi-square often play relative to Normal sampling theory?",
+      "You will later place families and refuse one Normal-by-default misuse."
+    ],
+    "misconception_watch": [
+      "Watch for Normal-by-default on strictly positive skewed quantities.",
+      "Watch for confusing the roster with full quantile calculation skill.",
+      "Watch for beginning 2.1.3 drills inside this sitting."
+    ],
+    "open_point": "CMP · Syllabus 2.1.2 continuous univariate distributions",
+    "stop_condition": "Through the CMP treatment of Normal, lognormal, exponential, gamma, chi-square, t, F, beta, and continuous uniform for Syllabus 2.1.2 (stop before probability and quantile evaluation 2.1.3)",
+    "out_of_scope_today": [
+      "Probability and quantile evaluation drills (2.1.3)",
+      "Poisson process (2.1.4)",
+      "Inverse transform / software generation (2.1.5–2.1.6)",
+      "Joint distributions (2.2)",
+      "CS1B coding marathon"
+    ],
+    "annotation_task": "Before deep reading: group continuous families by support / role cues",
+    "attempt_before_reveal": "At the first worked placement example, cover the answer and choose the family first",
+    "exit_line": "Open your CMP at Syllabus 2.1.2 — continuous distributions. Work with the focus questions above. I will stay quiet while you study. Come back when you finish the continuous family block — stop before 2.1.3.",
+    "return_cue": "Come back to Kwalitec when you have finished the 2.1.2 continuous block.",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause — write one line: I refuse Normal-by-default when…",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next placement prompt before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed for the next few minutes. We will check what the reading fixed in memory."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1002-2.1b-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1002-2.1b-ar-01",
+      "title": "Active Recall: continuous family roster",
+      "prompt": "Closed-book. Name the continuous distribution families in Syllabus 2.1.2. For Normal, lognormal, exponential, and gamma, give one short modelling or support cue each.",
+      "response_type": "short_structured",
+      "body": "Roster emphasis with four core placement cues; remaining families at least named.",
+      "hints": [
+        "Normal; lognormal; exponential; gamma; chi-square; t; F; beta; continuous uniform.",
+        "Cues: symmetric continuous; positive skewed product/claims; waiting/memoryless; flexible positive shape family."
+      ],
+      "accepted_keywords": [
+        "normal",
+        "lognormal",
+        "exponential",
+        "gamma",
+        "chi-square",
+        "chi",
+        "t",
+        "f",
+        "beta",
+        "uniform"
+      ],
+      "explanation": "Continuous entry requires roster and core placement cues before calculation days.",
+      "model_answer": "Normal, lognormal, exponential, gamma, chi-square, t, F, beta, continuous uniform. Example cues: Normal — symmetric continuous approximation; lognormal — positive skewed magnitudes; exponential — waiting/memoryless; gamma — flexible positive continuous shapes.",
+      "common_mistake": "Naming only Normal, or dumping formulae without placement cues.",
+      "success_criteria": [
+        "Syllabus continuous families named.",
+        "Support/role cues for Normal, lognormal, exponential, gamma."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1002-2.1b-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1002-2.1b-cp-01",
+      "title": "Checkpoint: place and refuse Normal default",
+      "prompt": "Closed-book. Individual claim sizes are strictly positive and right-skewed. (1) Which continuous family (or short-listed pair) would you place first, and why? (2) Refuse Normal-by-default for this quantity in one sentence.",
+      "response_type": "short_structured",
+      "body": "Prefer positive skewed families (lognormal/gamma); refuse Normal on support/shape grounds.",
+      "hints": [
+        "Lognormal or gamma commonly fit positive skewed magnitudes.",
+        "Refuse Normal: support on all reals / light left tail vs strictly positive skew."
+      ],
+      "accepted_keywords": [
+        "lognormal",
+        "gamma",
+        "positive",
+        "skew",
+        "normal",
+        "refuse",
+        "not",
+        "support"
+      ],
+      "explanation": "Continuous judgement refuses Normal theatre for positive skewed claim sizes.",
+      "model_answer": "Start with lognormal or gamma because claim sizes are strictly positive and right-skewed. Refuse Normal-by-default because a symmetric all-real support model mismatches the support and skew of the quantity.",
+      "common_mistake": "Default Normal 'because CLT' without addressing support/skew of the individual size.",
+      "success_criteria": [
+        "Positive skewed family preferred with warrant.",
+        "Normal default refused with support/shape reason."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest continuous placement wobble — distinct from yesterday's discrete roster stem.",
+    "prompt": "Which part is stickiest right now — recalling continuous roster, placing positive-skew families, or refusing Normal-by-default — and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes on the revision day, what one continuous-family move would you rework?",
+    "prompts": [
+      "Which part is stickiest right now — continuous roster, positive-skew placement, or refusing Normal-by-default — and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes on the revision day, what one continuous-family move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "CB-R1",
+    "next_topic_title": "Campaign Beta revision — PCA to distributional entry",
+    "continuity_line": "Today you placed continuous families beside discrete ones; tomorrow is a Revision day that returns to PCA limits, discrete matching, continuous placement — and one Alpha association hinge — not a new first-pass LO such as 2.1.3.",
+    "light_prep_cue": "Optional: glance at your Reflection residuals from Days 1–3 — titles of sticky points only, no new CMP chapter tonight",
+    "student_facing": "Tomorrow: Campaign Beta Revision day. We return to PCA → discrete families → continuous placement, plus one Alpha association hinge. Optional light prep: skim your own Reflection residuals — sticky titles only tonight."
+  }
+}

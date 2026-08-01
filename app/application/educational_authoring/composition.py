@@ -29,6 +29,19 @@ def compose_mission(context: AuthoringContext) -> MissionComposition:
     if not topic and not (context.topic_id or "").strip():
         return MissionComposition(has_composition=False)
 
+    # EA-006: prefer a publication-approved educational package when present.
+    try:
+        from app.application.educational_packages.composition_overlay import (
+            compose_from_package,
+            resolve_package_for_context,
+        )
+
+        pack = resolve_package_for_context(context)
+        if pack is not None:
+            return compose_from_package(pack, context)
+    except Exception:  # noqa: BLE001 — composition must never crash Home
+        pass
+
     primary = build_learning_episode(context, sequence=1)
     episodes = (primary,)
 

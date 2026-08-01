@@ -29,6 +29,20 @@ Do **not** create, propose, or start new Educational Framework design programmes
 4. Evidence-driven content / execution improvements  
 5. Author tooling that reduces cognitive load **without** lowering frozen quality exits  
 
+## Operational review (mandatory)
+
+Before proposing any solution to an educational observation, complete `EF001_OPERATIONAL_REVIEW_TEMPLATE.md`:
+
+1. Observation (factual)  
+2. Classification — exactly one of EC / AW / RB / PI / EF  
+3. Severity — S1 / S2 / S3  
+4. Evidence  
+5. Smallest Effective Intervention  
+6. EF-001 Check — can this be resolved without modifying the frozen Educational Framework?
+
+If YES → proceed under existing Educational Law.  
+If NO → document insufficiency and prepare evidence for an EF-001 unfreeze review (§2 conditions). Classification **EF** is exceptional.
+
 ## Goal
 
 Consistently produce educational guidance that helps students use the CMP well and maximises probability of passing professional examinations — not invent a better framework.

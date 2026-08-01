@@ -64,6 +64,16 @@ class EducationalSubstancePlanner:
             select_objectives_for_session,
         )
 
+        # EA-006: certified educational package replaces templated substance.
+        pack_substance = self._plan_from_educational_package(
+            curriculum_identity=curriculum_identity,
+            topic_id=topic_id,
+            topic_title=topic_title,
+            objective_ids=objective_ids,
+        )
+        if pack_substance is not None:
+            return pack_substance
+
         snapshot = self._resolve_snapshot(curriculum_identity)
         preferred = tuple(
             str(oid).strip() for oid in (objective_ids or ()) if str(oid).strip()
@@ -147,6 +157,46 @@ class EducationalSubstancePlanner:
             educational_rationale=rationale,
             task_descriptions=tasks,
             source="package",
+        )
+
+    def _plan_from_educational_package(
+        self,
+        *,
+        curriculum_identity: str,
+        topic_id: str,
+        topic_title: str,
+        objective_ids: tuple[str, ...] | list[str] | None,
+    ) -> EducationalSessionSubstance | None:
+        """Prefer a publication-approved educational package when one matches."""
+        try:
+            from app.application.educational_packages.loader import (
+                find_educational_package,
+            )
+            from app.application.educational_packages.substance import (
+                substance_from_package,
+            )
+        except ImportError:
+            return None
+
+        # Resolve syllabus code from title when topic_id is a published node-*.
+        code_hint = ""
+        title = (topic_title or "").strip()
+        if title:
+            head = title.split()[0]
+            if head and head[0].isdigit():
+                code_hint = head
+        pack = find_educational_package(
+            topic_id=topic_id,
+            topic_code=code_hint,
+            topic_title=title,
+        )
+        if pack is None:
+            return None
+        return substance_from_package(
+            pack,
+            curriculum_identity=curriculum_identity,
+            topic_id=topic_id,
+            objective_ids=objective_ids,
         )
 
     def _plan_from_mission_facts(

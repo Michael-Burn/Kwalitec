@@ -6,6 +6,41 @@ The format follows the principles of Keep a Changelog and Semantic Versioning.
 
 ---
 
+# [2.0.0-beta.1-rc2] - 2026-08-01 — VERSION1-RC2 Release Candidate (hygiene tip)
+
+## Fingerprint
+
+| Field | Value |
+|---|---|
+| Product version | `2.0.0-beta.1` (unchanged triad) |
+| Release tag | `v2.0.0-beta.1-rc2` |
+| Programme | VERSION1-RC2 — Sprint A Repository Hygiene & Release Fingerprint |
+| Manifest | `VERSION1_RELEASE_MANIFEST.md` |
+| Do not confuse with | Historical tag `v1.0.0-rc2` / `VERSION1-RC2` (older tips) |
+
+## Summary
+
+Release-candidate hygiene tip: commits the Educational Framework freeze lineage, certified educational package loader + Campaign Alpha/Beta inventory, EA-006 overlay wiring already present on disk, and the EA→EF / PR / EV / FV / RR-001 evidence corpus. Temporary EV-001 evidence dumps are excluded. Application version string remains `2.0.0-beta.1`. Deployment of this tip is **not** part of Sprint A.
+
+## Included
+
+- EF-001 operational stewardship deltas + operational review template
+- `app/application/educational_packages/` loader/models/overlay
+- Campaign Alpha (EP-001) and Campaign Beta (CS1-002) curriculum inventory JSON
+- EA-006 4.2 grandfather package JSON
+- Overlay prefer-path wiring in authoring/runtime/session/home presentation (inventory activation — not net-new product features)
+- Syllabus discovery exclusion for `educational_packages` / `educational_campaigns` under `app/curriculum/data/` (prevents inventory JSON from registering as exams)
+- Programme evidence markdown and RR-001 / RC2 gate artefacts
+- `.gitignore` rules for `.ev001_evidence*` dumps
+
+## Explicit non-goals
+
+- No LIVE deploy / fingerprint match on Render
+- No EV-001 educational trust remediation
+- No UI redesign, schema change, or new Educational Framework law
+
+---
+
 # [2.0.0-beta.1] - 2026-07-30 — Private Beta Release Candidate
 
 ## Fingerprint

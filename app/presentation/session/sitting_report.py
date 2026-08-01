@@ -776,6 +776,23 @@ def _tomorrow_preview(
     strategy: LearningStrategyAdvice | None = None,
     strategy_title: str = "",
 ) -> str:
+    # EA-006: certified package tomorrow line when topic matches.
+    try:
+        from app.application.educational_packages.loader import find_educational_package
+
+        pack = find_educational_package(topic_title=topic)
+        if pack is not None and pack.tomorrow.student_facing:
+            return pack.tomorrow.student_facing
+        if pack is not None and pack.tomorrow.continuity_line:
+            label = pack.tomorrow.next_topic_title or next_recommendation
+            if label:
+                return (
+                    f"Tomorrow: {pack.tomorrow.next_topic_code} — {label}. "
+                    f"{pack.tomorrow.continuity_line}"
+                ).strip()
+            return pack.tomorrow.continuity_line
+    except Exception:  # noqa: BLE001 — sitting report must stay resilient
+        pass
     if strategy is not None and strategy.recommendation_title:
         if next_recommendation and strategy.action.value == "advance_topic":
             return (

@@ -866,6 +866,14 @@ class TestDiscoverCurricula:
             for v in versions:
                 assert isinstance(v, str)
 
+    def test_skips_educational_inventory_dirs(self):
+        """Package/campaign JSON under data/ must not register as syllabi."""
+        from app.curriculum.loader import discover_curricula
+
+        orgs = {org for org, _, _ in discover_curricula()}
+        assert "EDUCATIONAL_PACKAGES" not in orgs
+        assert "EDUCATIONAL_CAMPAIGNS" not in orgs
+
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Validator

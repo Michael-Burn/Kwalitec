@@ -27,6 +27,12 @@ htmlcov/
 imports.log
 *.log
 
+# Temporary educational validation evidence dumps (EV-001) — never commit
+.ev001_evidence/
+.ev001_evidence.html
+.ev*_evidence/
+.ev*_evidence.html
+
 # Stage 1 private ops (PII — never commit)
 ops/*.local.md
 ops/*.local.txt

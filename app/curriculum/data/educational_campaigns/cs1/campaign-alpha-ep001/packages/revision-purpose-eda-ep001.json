@@ -1,0 +1,185 @@
+{
+  "package_id": "CS1-EP001-PKG-REV-PURPOSE-EDA",
+  "package_version": "ep001-campaign-alpha-1.0.0",
+  "publication_version": "ep001-catalogue-1.0.0",
+  "status": "campaign_member_certified",
+  "campaign_id": "CS1-EP001-CAMPAIGN-ALPHA",
+  "campaign_day": "CA-R1",
+  "subject_id": "CS1",
+  "topic_code": "CA-R1",
+  "topic_title": "Campaign Alpha revision — purpose to exploratory judgement",
+  "return_targets": ["1.1", "1.2.1", "1.2.2"],
+  "topic_aliases": ["CA-R1", "campaign-alpha-revision"],
+  "topic_title_keywords": ["revision", "purpose", "exploratory", "correlation"],
+  "golden_id": "GOLDEN-EP001-CS1-CA-R1-PURPOSE-EDA",
+  "mode": "revision",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "EP001_CAMPAIGN_AUTHORING.md",
+    "EP001_CAMPAIGN_CERTIFICATION.md"
+  ],
+  "author_id": "ep001-educational-author",
+  "published_at": null,
+  "mission": {
+    "mission_id": "msn-ep001-cs1-ca-r1-purpose-eda",
+    "display_title": "Retrieve the purpose-to-EDA chain",
+    "mission_purpose": "Today's Mission exists to protect memory of Campaign Alpha — retrieving the purpose map, an aim-linked EDA tool choice, and one disciplined association interpretation — so first-pass gains do not evaporate before Chapter 2.",
+    "tutor_intent": "Today I will run closed-book retrieval across the three Learning days' hinges, not a re-read of CMP chapters — so revision is assessable return, not empty 'review yesterday' theatre.",
+    "educational_intent": "Produce retrieval strength on the Campaign Educational Objective: purposeful analysis → exploratory judgement → honest association limits.",
+    "learning_objective": "Retrieve and connect (1) analysis aims and reproducibility, (2) an aim-linked summary-and-plot choice, and (3) a justified correlation-measure choice with one non-claim.",
+    "concept_focus": "Campaign chain retrieval: purpose → EDA tools → association limits.",
+    "prior_bridge": "Yesterday you finished association measures under 1.2.2 without overclaiming. Today is Revision mode: return to Days 1–3 skills under closed-book retrieval — no new first-pass LO.",
+    "why_now": "Pilot Arc law requires a Board-visible Revision placement inside the Campaign; spacing after three Learning days protects the opening chain before the distributional spine begins.",
+    "expected_benefit": "Evidence that the Campaign chain still retrieves — Study Progress on revision, not a claim that Chapter 1 is mastered or that PCA is done.",
+    "explainability": "Assigned as Campaign Alpha Revision because Architecture §9.2 requires memory return inside the Pilot Arc; return targets are 1.1, 1.2.1, and 1.2.2 skills taught earlier in this Campaign.",
+    "success_criteria": [
+      "Closed-book, restate the three analysis aims and one reproducibility element.",
+      "Defend one summary-and-plot pair for a stated aim and variable type.",
+      "Choose among Pearson/Spearman/Kendall for a stated situation and refuse one overclaim."
+    ],
+    "task_descriptions": [
+      "Without opening the CMP, sketch the Campaign chain on one page: purpose → tools → association.",
+      "Complete the Revision Knowledge Checks under closed-book rules.",
+      "Author a revision Reflection that names the weakest link in the chain for spaced return later."
+    ],
+    "estimated_study_time_minutes": {"min": 40, "max": 55}
+  },
+  "session": {
+    "session_id": "ssn-ep001-cs1-ca-r1-purpose-eda",
+    "session_educational_purpose": "This Revision Session exists to retrieve and connect Campaign Alpha skills under closed-book conditions — not to teach PCA or open Chapter 2.",
+    "session_tutor_purpose": "In this sitting I will keep the CMP closed for checks, run three retrieval items across the Campaign hinges, and harvest the weakest link — Gate RV substance, not chrome.",
+    "duration_budget_minutes": {"min": 40, "max": 55},
+    "wrap_up": "Revision Session complete for Retrieve the purpose-to-EDA chain. You stress-tested Campaign Alpha return targets (1.1 purpose map, 1.2.1 tool judgement, 1.2.2 association limits). This is revision Study Progress — not Topic Complete for PCA (1.2.3), and not the start of distributions (2.1).",
+    "confidence_prompt": "How confident are you that the purpose → EDA → association chain will still retrieve in three days? Rate 1–5 and name the weakest link as your warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Revision day: do not open a new CMP chapter first. Attempt closed-book retrieval; only then, if a check fails, reopen the specific Day 1–3 locus you named — not a full re-read.",
+    "focus_questions": [
+      "Can you restate aims → stages → sources → reproducibility without notes?",
+      "Can you defend one summary-and-plot pair for a stated aim?",
+      "Can you choose a correlation measure and refuse an overclaim?"
+    ],
+    "misconception_watch": [
+      "Watch for turning revision into a passive re-read of Chapter 1.",
+      "Watch for skipping association limits because 'we already did correlation yesterday.'",
+      "Watch for claiming Chapter 1 complete including PCA."
+    ],
+    "open_point": "No new CMP open required to begin. Targeted re-open only after failed retrieval: Day 1 purpose block, Day 2 1.2.1 block, or Day 3 1.2.2 block as needed.",
+    "stop_condition": "After the three revision checks and Reflection — do not begin Syllabus 1.2.3 or 2.1 in this sitting",
+    "out_of_scope_today": [
+      "First-pass PCA (1.2.3)",
+      "Univariate distributions catalogue (2.1)",
+      "New modelling chapters",
+      "CS1B coding marathon"
+    ],
+    "annotation_task": "Before checks: sketch purpose → tools → association on one page from memory",
+    "attempt_before_reveal": "All revision checks are attempt-first; CMP re-open only after a failed item",
+    "exit_line": "Keep the CMP closed. Sketch the Campaign chain from memory, then begin the revision checks. Re-open only the locus of a failed item.",
+    "return_cue": "Stay in Kwalitec for revision checks; return to CMP only if a specific check fails.",
+    "pause_points": [],
+    "reentry_line": "If you reopened the CMP for one failed item, close it again. We continue retrieval — we do not restart Chapter 1."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-ep001-ca-r1-ar-01",
+      "kind": "active_recall",
+      "item_id": "ep001-ca-r1-ar-01",
+      "title": "Revision Recall: purpose map",
+      "prompt": "Closed-book. Restate the three primary aims of data analysis with one short example each, and name one reproducibility element.",
+      "response_type": "short_structured",
+      "body": "Return target: Day 1 (1.1).",
+      "hints": [
+        "Descriptive / inferential / predictive.",
+        "Reproducibility: versioned data, scripted path, documentation, seed…"
+      ],
+      "accepted_keywords": [
+        "descriptive",
+        "inferential",
+        "predictive",
+        "reproduc",
+        "version",
+        "document",
+        "code"
+      ],
+      "explanation": "Revision succeeds only if Day 1 purpose language still retrieves.",
+      "model_answer": "Descriptive / inferential / predictive with distinct examples; plus e.g. versioned dataset and scripted analysis path.",
+      "common_mistake": "Listing EDA tools instead of aims.",
+      "success_criteria": [
+        "Three aims with examples.",
+        "One reproducibility element."
+      ]
+    },
+    {
+      "episode_id": "lep-ep001-ca-r1-cp-01",
+      "kind": "checkpoint",
+      "item_id": "ep001-ca-r1-cp-01",
+      "title": "Revision Checkpoint: EDA tool judgement",
+      "prompt": "Closed-book. Aim = descriptive; variable = right-skewed claim size. Defend one summary and one visualisation; name one misuse you refuse.",
+      "response_type": "short_structured",
+      "body": "Return target: Day 2 (1.2.1).",
+      "hints": [
+        "Median/IQR or shape-aware reporting; histogram/boxplot; refuse pie or mean-only theatre."
+      ],
+      "accepted_keywords": [
+        "median",
+        "iqr",
+        "histogram",
+        "boxplot",
+        "skew",
+        "refuse",
+        "mean"
+      ],
+      "explanation": "Revision must reconnect aim to tool choice.",
+      "model_answer": "Median (IQR) + histogram/boxplot for skew; refuse mean-only or pie-chart summary of continuous magnitude.",
+      "common_mistake": "Default mean with no shape warrant.",
+      "success_criteria": [
+        "Summary and plot defended.",
+        "One misuse refused."
+      ]
+    },
+    {
+      "episode_id": "lep-ep001-ca-r1-cp-02",
+      "kind": "checkpoint",
+      "item_id": "ep001-ca-r1-cp-02",
+      "title": "Revision Checkpoint: association limits",
+      "prompt": "Closed-book. Skewed variables, outliers, monotone but nonlinear scatter. Choose Pearson, Spearman, or Kendall and justify. State one claim the coefficient does not support.",
+      "response_type": "short_structured",
+      "body": "Return target: Day 3 (1.2.2).",
+      "hints": [
+        "Prefer rank-based; refuse causation."
+      ],
+      "accepted_keywords": [
+        "spearman",
+        "kendall",
+        "rank",
+        "monotonic",
+        "causation",
+        "cause",
+        "not"
+      ],
+      "explanation": "Revision must keep association honest.",
+      "model_answer": "Spearman or Kendall for monotone nonlinear association with outliers; coefficient does not prove causation.",
+      "common_mistake": "Pearson by habit; causal claim.",
+      "success_criteria": [
+        "Rank-based choice with reason.",
+        "One non-claim stated."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Revision Reflection names the weakest Campaign link for future spaced return — not a chapter summary.",
+    "prompt": "Which Campaign link retrieved least cleanly today — purpose map, EDA tool judgement, or association limits — and what one concrete rework will you schedule? Do not claim PCA or Chapter 2 complete.",
+    "prompts": [
+      "Which Campaign link retrieved least cleanly — purpose map, EDA tool judgement, or association limits?",
+      "What one concrete rework will you schedule for that link?",
+      "Confirm: PCA (1.2.3) and distributions (2.1) were out of scope today."
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "2.1",
+    "next_topic_title": "Understand the characteristics of basic univariate distributions and how to generate samples from them",
+    "continuity_line": "Campaign Alpha completes after this Revision. The honest handoff is to a successor Campaign opening univariate distributions (2.1): exploratory judgement meets the distributional vocabulary that models the variables you explored. PCA (1.2.3) remains a deferred LO to place in a successor Learning day — not silently complete.",
+    "light_prep_cue": "Optional skim: CMP headings for Syllabus 2.1 discrete and continuous distribution families — titles only, no deep study tonight",
+    "student_facing": "Campaign Alpha complete after today. Next journey opens basic univariate distributions (2.1) — the modelling language for variables you learned to explore. PCA (1.2.3) is deferred to a later Learning placement. Optional light prep: skim 2.1 headings — titles only tonight."
+  }
+}

@@ -571,10 +571,15 @@ class EducationalRuntimeEngineService:
             title=topic_title,
             number=str(topic_meta.get("number") or ""),
         )
-        mission_title = student_mission_title(
-            code=human_code or template.topic_code,
-            title=topic_title,
-        )
+        # EA-006: when foundation overlaid a certified package display title,
+        # prefer it over syllabus-paste "Study {code} — …" chrome.
+        if template.title and not str(template.title).lower().startswith("study "):
+            mission_title = str(template.title).strip()
+        else:
+            mission_title = student_mission_title(
+                code=human_code or template.topic_code,
+                title=topic_title,
+            )
         human_tasks = tuple(
             sanitize_student_text(task) for task in template.task_descriptions
         )

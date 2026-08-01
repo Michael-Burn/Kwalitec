@@ -631,6 +631,27 @@ class StudentHomeService:
 
     @staticmethod
     def _mission_title(home: HomePageViewModel, *, objective: str) -> str:
+        # EA-006: certified package display title replaces syllabus-paste chrome.
+        try:
+            from app.application.educational_packages.composition_overlay import (
+                display_title_for_topic,
+            )
+
+            edu = home.educational
+            pack_title = display_title_for_topic(
+                topic_id=getattr(edu, "today_topic_id", "") if edu else "",
+                topic_code=getattr(edu, "today_topic_code", "") if edu else "",
+                topic_title=(
+                    (getattr(edu, "today_topic_title", "") if edu else "")
+                    or (home.primary_mission_title or "")
+                    or objective
+                ),
+                subject_id=getattr(edu, "subject_code", "") if edu else "",
+            )
+            if pack_title:
+                return pack_title
+        except Exception:  # noqa: BLE001 — presentation must stay resilient
+            pass
         edu = home.educational
         if edu and getattr(edu, "active", False):
             title = (edu.mission_title or edu.today_topic_title or "").strip()
@@ -990,7 +1011,27 @@ class StudentHomeService:
 
         MISSION-002: prefer mission rationale (why_recommended) over journey
         timeliness so "Why this mission" describes the mission topic.
+        EA-006: prefer certified educational package why_now when present.
         """
+        try:
+            from app.application.educational_packages.composition_overlay import (
+                why_now_for_topic,
+            )
+
+            edu = home.educational
+            pack_why = why_now_for_topic(
+                topic_id=getattr(edu, "today_topic_id", "") if edu else "",
+                topic_code=getattr(edu, "today_topic_code", "") if edu else "",
+                topic_title=(
+                    (getattr(edu, "today_topic_title", "") if edu else "")
+                    or (home.primary_mission_title or "")
+                ),
+                subject_id=getattr(edu, "subject_code", "") if edu else "",
+            )
+            if pack_why:
+                return pack_why[:140]
+        except Exception:  # noqa: BLE001 — presentation must stay resilient
+            pass
         candidates: list[str] = []
         if home.session_control == "resume":
             candidates.append("Open session — continue where you left off")
@@ -1015,6 +1056,24 @@ class StudentHomeService:
 
     @staticmethod
     def _after_completion(home: HomePageViewModel) -> str:
+        try:
+            from app.application.educational_packages.loader import (
+                find_educational_package,
+            )
+
+            edu = home.educational
+            pack = find_educational_package(
+                topic_code=getattr(edu, "today_topic_code", "") if edu else "",
+                topic_title=(
+                    (getattr(edu, "today_topic_title", "") if edu else "")
+                    or (home.primary_mission_title or "")
+                ),
+                subject_id=getattr(edu, "subject_code", "") if edu else "",
+            )
+            if pack is not None and pack.expected_benefit:
+                return pack.expected_benefit.strip()[:140]
+        except Exception:  # noqa: BLE001 — presentation must stay resilient
+            pass
         mi = home.mission_intelligence
         if mi is not None:
             after = getattr(mi, "what_happens_after_completion", "") or ""
