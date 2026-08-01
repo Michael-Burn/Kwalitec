@@ -84,6 +84,15 @@ def test_compose_mission_uses_package_id_not_shared_code() -> None:
     assert "2.1.2" not in continuity
 
 
+def test_shared_topic_code_without_journey_does_not_first_match() -> None:
+    """Bare subject+code must not return Beta discrete for chrome."""
+    pack = resolve_package_for_tomorrow_chrome(
+        subject_id="CS1",
+        syllabus_topic_code="2.1",
+    )
+    assert pack is None
+
+
 def test_sitting_report_tomorrow_uses_educational_package_id() -> None:
     pack = find_package_by_id("CS1-EP001-PKG-2.1-SOFTWARE-GENERATION")
     assert pack is not None
@@ -94,6 +103,7 @@ def test_sitting_report_tomorrow_uses_educational_package_id() -> None:
             "topic_title": _TOPIC_21,
             "educational_package_id": pack.package_id,
             "subject_id": "CS1",
+            "topic_code": "2.1",
             "learning_objectives": (pack.learning_objective,),
             "progress_advanced": False,
             "mission_completed": True,
@@ -102,3 +112,23 @@ def test_sitting_report_tomorrow_uses_educational_package_id() -> None:
     )
     assert report.tomorrow_preview == expected
     assert "2.1.2" not in report.tomorrow_preview
+
+
+def test_sitting_report_shared_code_without_package_id_avoids_stale() -> None:
+    """Without package id, do not emit Beta Day-2 chrome for topic 2.1."""
+    report = build_sitting_report(
+        topic_title=_TOPIC_21,
+        opaque_summary={
+            "topic_title": _TOPIC_21,
+            "subject_id": "CS1",
+            "topic_code": "2.1",
+            "progress_advanced": False,
+            "mission_completed": True,
+        },
+        metadata={},
+        next_recommendation="next topic",
+    )
+    assert "2.1.2" not in (report.tomorrow_preview or "")
+    assert "basic continuous univariate" not in (
+        report.tomorrow_preview or ""
+    ).lower()

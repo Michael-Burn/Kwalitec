@@ -74,11 +74,9 @@ def resolve_package_for_tomorrow_chrome(
 
     subject = (subject_id or "").strip()
     code = (syllabus_topic_code or "").strip()
-    if subject and (
-        completed_package_ids is not None
-        or last_id
-        or code
-    ):
+    # Campaign selection only when journey state exists — never cold-start
+    # entry_package_for_topic on shared codes (that reintroduces first-match).
+    if subject and (completed_package_ids is not None or last_id):
         pack = resolve_active_educational_package(
             subject_id=subject,
             syllabus_topic_code=code,
