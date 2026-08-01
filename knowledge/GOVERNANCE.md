@@ -48,6 +48,8 @@ Authority flows **downward**. Lower documents must not contradict higher ones. W
 
 **Educational authority split:** EGI Educational Constitution / Governance Review own *lawful educational meaning and integrity*. EVF owns *whether educational quality is sufficient to release to students*. EVF consumes Blind Review; it does not replace it.
 
+**Educational Framework Freeze (EF-001):** The Educational Framework corpus — Educational Excellence (EA-001…EA-008), Educational Operations (EO-001), Educational Trust (TV-001), Educational Justification (EJ-001), and Editorial Workspace (EW-001) — is **FROZEN** as Version 1 Educational Law under operational stewardship (`EF001_EDUCATIONAL_FRAMEWORK_FREEZE.md`). No further Educational Framework design programmes unless a genuine Founder Validation / Private Beta failure cannot be explained by existing law and evidence shows framework deficiency (not content or execution). Post-freeze engineering prioritises Volume production, Founder study, Private Beta, evidence-driven improvement, and author tooling that does not lower frozen quality exits.
+
 ### Path note (resolved)
 
 The post-consolidation directive referenced `knowledge/PRODUCT_BLUEPRINT.md`. The authoritative Blueprint remains at **repository root** `PRODUCT_BLUEPRINT.md` to avoid duplication. Do not create a second Blueprint under `knowledge/`.
