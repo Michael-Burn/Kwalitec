@@ -3,7 +3,7 @@
 **Programme:** VERSION1-RC2 — Release Stabilization Sprint  
 **Document type:** Release Manifest (candidate — **not yet GO**)  
 **Date:** 2026-08-01  
-**Status:** **DRAFT / BLOCKED** — fields marked TBD until clean tip + deploy
+**Status:** **RC TIP FINGERPRINTED** — Sprint A (hygiene + local fingerprint) complete; LIVE deploy Pending
 
 ---
 
@@ -14,9 +14,9 @@
 | **Product** | Kwalitec |
 | **Application Version** | `2.0.0-beta.1` (from `VERSION`, `pyproject.toml`, `app.version.APP_VERSION`) |
 | **Release Candidate** | **VERSION1-RC2** (stabilization sprint name) |
-| **Manifest status** | Candidate blocked by RR-001 **NO-GO** |
+| **Manifest status** | Local RC tip cut; RR-001 still **NO-GO** until deploy + smoke + educational trust |
 | **Prior related tag** | `v2.0.0-beta.1` (Private Beta RC lineage) |
-| **Do not confuse with** | Historical tag `v1.0.0-rc2` @ `f2cbdc5` (older Internal Alpha RC2) |
+| **Do not confuse with** | Historical tag `v1.0.0-rc2` @ `f2cbdc5` / lightweight `VERSION1-RC2` (older tips) |
 
 ---
 
@@ -25,11 +25,13 @@
 | Field | Value |
 |-------|-------|
 | **Branch** | `main` |
-| **Local HEAD (now)** | `f066bcf989d51e658b92d22d172d955d1e1d3ece` — EF-001 freeze |
-| **origin/main (now)** | `613722cffa16e6badbdb3a1161e4feaa35fd02db` |
-| **Intended RC Git Commit** | **TBD** — must be clean tip after `REPOSITORY_AUDIT.md` keep-set commit |
-| **Git Tag** | **TBD** — choose distinct name (recommend e.g. `v2.0.0-beta.1-rc2` or `v2.0.0-rc2` — **not** reuse `v1.0.0-rc2`) |
-| **Working tree** | Dirty (see `REPOSITORY_AUDIT.md`) |
+| **Intended RC Git Commit** | `75c29d2b0017d7df44a0767ae0e428605151cd90` |
+| **Git Tag** | `v2.0.0-beta.1-rc2` (annotated) |
+| **Tag timestamp (UTC)** | `2026-08-01T08:25:15Z` |
+| **Commit timestamp** | `2026-08-01 10:25:10 +0200` |
+| **Working tree at tag** | Clean |
+| **origin/main (at Sprint A close)** | `613722cffa16e6badbdb3a1161e4feaa35fd02db` — tip not yet pushed/deployed |
+| **Build fingerprint** | `2.0.0-beta.1` + `v2.0.0-beta.1-rc2` + `75c29d2b0017d7df44a0767ae0e428605151cd90` + alembic `202607310002` |
 
 ---
 
@@ -40,7 +42,7 @@
 | **Alembic script head** | `202607310002` |
 | **LIVE database revision (RR-001)** | `202607310002` (`current=head`) |
 | **Database Version (logical)** | PostgreSQL via Render `kwalitec-db` |
-| **Migrations in this dirty tree** | None new |
+| **Migrations in RC tip** | None new (chain unchanged) |
 
 ---
 
@@ -54,22 +56,22 @@
 | **Release command** | `flask db upgrade` |
 | **Start command** | `waitress-serve --port=$PORT wsgi:app` |
 | **Currently deployed commit** | `613722cffa16e6badbdb3a1161e4feaa35fd02db` |
-| **Deploy of intended RC tip** | **Not performed** |
-| **Build Date (LIVE sample)** | `2026-08-01` (`/health.build_date`) |
-| **Build Number (LIVE sample)** | `local` (improve via env) |
+| **Deploy of intended RC tip** | **Pending** (Sprint A explicitly excludes deployment) |
+| **Build Date (LIVE sample)** | Pending re-probe after deploy |
+| **Build Number (LIVE sample)** | Pending |
 
 ---
 
 ## Educational inventory (intended vs LIVE)
 
-| Item | Intended (local disk / ops) | On LIVE `613722c` |
-|------|-----------------------------|-------------------|
-| EF version | EF-001 FROZEN (local HEAD/docs) | Freeze commit not deployed |
+| Item | Intended (tagged tip `75c29d2`) | On LIVE `613722c` |
+|------|----------------------------------|-------------------|
+| EF version | EF-001 FROZEN (in tip) | Freeze commit not deployed |
 | Volume CS1-001 | `publication_ready` | Not student-released |
 | Volume CS1-002 | `publication_ready` | Not student-released |
-| Campaign Alpha | on disk, **untracked** | Absent from Git → absent from LIVE |
-| Campaign Beta | on disk, **untracked** | Absent |
-| EA-006 4.2 package | on disk, **untracked** | Module/JSON not in Git; LIVE still serves 4.2 sitting under prior pathway |
+| Campaign Alpha | **in Git** under `educational_campaigns/` | Absent until deploy |
+| Campaign Beta | **in Git** | Absent until deploy |
+| EA-006 4.2 package | **in Git** + loader module | Absent until deploy |
 
 ---
 
@@ -77,7 +79,12 @@
 
 Canonical register: `KNOWN_ISSUES_RC2.md`.
 
-**GO-blocking (Critical):** KI-C1, KI-C2, KI-C3, KI-C4.
+| Issue | Sprint A status |
+|-------|-----------------|
+| KI-C1 Repository hygiene | **CLOSED** |
+| KI-C2 Release fingerprint (local tip + tag) | **CLOSED** for local/authoritative tip; LIVE match **Pending** deploy |
+| KI-C3 EV-001 educational trust | **OPEN** (out of Sprint A scope) |
+| KI-C4 RR-001 smoke incomplete | **OPEN** (requires deploy) |
 
 ---
 
@@ -95,47 +102,43 @@ Canonical register: `KNOWN_ISSUES_RC2.md`.
 
 | Role | Name / capacity | Status |
 |------|-----------------|--------|
-| Release Engineering | (operator) | Audit complete; **no GO recommend** |
+| Release Engineering | Sprint A hygiene + fingerprint | **Complete** for C1/C2 local tip |
 | Founder / Educational Gate Owner | Required for educational GO | **Pending** |
 | Publication Approver | Required for Volume `approved`→`released` | **Pending** (volumes still `publication_ready`) |
-| RR-001 gate | — | **NO-GO** (`RR001_RELEASE_DECISION.md`) |
+| RR-001 gate | — | **NO-GO** (`RR001_RELEASE_DECISION.md`) until deploy + smoke + trust |
 
 ---
 
-## Release notes (draft pointer)
+## Release notes
 
 | Item | Path / note |
 |------|-------------|
 | Current shipped baseline notes | `CHANGELOG.md` § `[2.0.0-beta.1]` |
-| Historical v1 RC2 notes | `docs/release/RELEASE_NOTES_v1.0.0-RC2.md` (different era — do not treat as this tip) |
-| This RC notes | **TBD** — add CHANGELOG section when tip SHA exists covering: EF-001 freeze, educational package loader + Campaign Alpha/Beta inventory commit, RR-001 gate artefacts, residual known issues |
+| This RC notes | `CHANGELOG.md` § `[2.0.0-beta.1-rc2]` |
+| Historical v1 RC2 notes | `docs/release/RELEASE_NOTES_v1.0.0-RC2.md` (different era) |
 
-### Intended user-visible themes (only if keep-set ships)
+### Explicit non-goals of this RC tip (Sprint A)
 
-- Certified educational package pathway for authored topics (addresses placeholder substance where packages match).  
-- Educational Framework Version 1 freeze under operational stewardship (governance).  
-- Campaign Alpha / Beta catalogue inventory present in deployable tree (activation/`released` status still gated by ops).
-
-### Explicit non-goals of this RC
-
+- No LIVE deploy  
 - No UI redesign  
 - No Runtime/Twin/recommendation redesign  
+- No EV-001 remediation  
 - No new Educational Framework law beyond EF-001 stewardship  
 
 ---
 
-## Fingerprint block (fill on GO)
+## Fingerprint block
 
 ```
-Application Version: 2.0.0-beta.1   (or bumped)
+Application Version: 2.0.0-beta.1
 Release Candidate:   VERSION1-RC2
-Git Commit:          ________________
-Git Tag:             ________________
-Migration Head:      202607310002     (confirm)
+Git Commit:          75c29d2b0017d7df44a0767ae0e428605151cd90
+Git Tag:             v2.0.0-beta.1-rc2
+Migration Head:      202607310002
 Deployment URL:      https://kwalitec.onrender.com
-/health.commit:      ________________
-Build Date:          ________________
-Decision:            GO / NO-GO
+/health.commit:      Pending (deploy not performed)
+Build Date:          Pending
+Decision:            NO-GO (C1/C2 local tip closed; C3/C4 + deploy remain)
 ```
 
-**Current decision:** **NO-GO** — see `RC2_RELEASE_ACTION_PLAN.md`.
+**Current decision:** **NO-GO** for unconditional release — see `RC2_RELEASE_ACTION_PLAN.md` Priorities 3–5.

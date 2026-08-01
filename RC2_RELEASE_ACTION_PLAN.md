@@ -48,14 +48,14 @@ All must be true:
 
 | # | Action | Evidence / how | Clears | Done? |
 |---|--------|----------------|--------|-------|
-| P1.1 | Exclude `.ev001_evidence/` and `.ev001_evidence.html` from commit set (archive/delete manually later) | `REPOSITORY_AUDIT.md` §4 | KI-M3 | ☐ |
-| P1.2 | Exclude all `__pycache__` / `*.pyc` | gitignore already covers pattern | KI-M3 | ☐ |
-| P1.3 | Stage **keep** set: educational_packages module + campaigns + package JSON + 8 app overlays + tests | `REPOSITORY_AUDIT.md` §7 | KI-C1 | ☐ |
-| P1.4 | Stage EF-001 unstaged deltas + `EF001_OPERATIONAL_REVIEW_TEMPLATE.md` | Dirty EF files | KI-H3 | ☐ |
-| P1.5 | Stage programme evidence markdown (EA/EO/TV/EJ/EW/EP/PR/EV/FV/RR001/…) or park under agreed docs path — **do not leave dirty** | Audit §3 | KI-C1 | ☐ |
-| P1.6 | Create release commit(s) on `main` (Conventional Commits; no secrets) | User-authorized commit | KI-C1 | ☐ |
-| P1.7 | Confirm `git status` clean | `git status -sb` | KI-C1 | ☐ |
-| P1.8 | Push `main` to `origin/main` | `git push` | KI-H3, KI-C2 | ☐ |
+| P1.1 | Exclude `.ev001_evidence/` and `.ev001_evidence.html` from commit set (archive/delete manually later) | `REPOSITORY_AUDIT.md` §4 | KI-M3 | ☑ |
+| P1.2 | Exclude all `__pycache__` / `*.pyc` | gitignore already covers pattern | KI-M3 | ☑ |
+| P1.3 | Stage **keep** set: educational_packages module + campaigns + package JSON + 8 app overlays + tests | `REPOSITORY_AUDIT.md` §7 | KI-C1 | ☑ |
+| P1.4 | Stage EF-001 unstaged deltas + `EF001_OPERATIONAL_REVIEW_TEMPLATE.md` | Dirty EF files | KI-H3 | ☑ |
+| P1.5 | Stage programme evidence markdown (EA/EO/TV/EJ/EW/EP/PR/EV/FV/RR001/…) or park under agreed docs path — **do not leave dirty** | Audit §3 | KI-C1 | ☑ |
+| P1.6 | Create release commit(s) on `main` (Conventional Commits; no secrets) | User-authorized commit | KI-C1 | ☑ |
+| P1.7 | Confirm `git status` clean | `git status -sb` | KI-C1 | ☑ |
+| P1.8 | Push `main` to `origin/main` | `git push` | KI-H3, KI-C2 | ☐ (out of Sprint A; no deploy) |
 
 ---
 
@@ -63,14 +63,14 @@ All must be true:
 
 | # | Action | Evidence / how | Clears | Done? |
 |---|--------|----------------|--------|-------|
-| P2.1 | `flask db heads` → still single expected head | CLI | Integrity | ☐ |
-| P2.2 | Upgrade local SQLite (or use Postgres) to head before local smoke/tests | `flask db upgrade` | KI-M2 | ☐ |
-| P2.3 | Run `ruff check app/ src/ tests/` on tip | Release Protocol | Protocol | ☐ |
-| P2.4 | Run pytest (full or documented RC subset + architecture suite) | Release Protocol / CI | Protocol | ☐ |
-| P2.5 | Confirm VERSION triad; bump only if tag policy requires | `VERSION`, pyproject, `app/version.py` | Manifest | ☐ |
-| P2.6 | Update `CHANGELOG.md` for this RC | Release Protocol | A8 | ☐ |
-| P2.7 | Create annotated git tag; push tag | `git tag -a …` | Manifest | ☐ |
-| P2.8 | Fill `VERSION1_RELEASE_MANIFEST.md` fingerprint block with tip SHA/tag | Manifest | — | ☐ |
+| P2.1 | `flask db heads` → still single expected head | CLI | Integrity | ☑ |
+| P2.2 | Upgrade local SQLite (or use Postgres) to head before local smoke/tests | `flask db upgrade` | KI-M2 | ☐ (operator workstation; not blocking tip cut) |
+| P2.3 | Run `ruff check app/ src/ tests/` on tip | Release Protocol | Protocol | ☑ (touched paths; full tree has pre-existing debt) |
+| P2.4 | Run pytest (full or documented RC subset + architecture suite) | Release Protocol / CI | Protocol | ☑ (RC subset + architecture green) |
+| P2.5 | Confirm VERSION triad; bump only if tag policy requires | `VERSION`, pyproject, `app/version.py` | Manifest | ☑ (unchanged `2.0.0-beta.1`) |
+| P2.6 | Update `CHANGELOG.md` for this RC | Release Protocol | A8 | ☑ |
+| P2.7 | Create annotated git tag; push tag | `git tag -a …` | Manifest | ☑ tag local; ☐ push |
+| P2.8 | Fill `VERSION1_RELEASE_MANIFEST.md` fingerprint block with tip SHA/tag | Manifest | — | ☑ |
 
 ---
 

@@ -92,9 +92,7 @@ Executed the audit keep / remove / ignore plan. Temporary EV-001 evidence dumps 
 
 ## Remaining untracked files
 
-**Target after RC commit:** none (working tree clean).
-
-Pre-commit residual risk: only paths intentionally left unstaged would remain; none planned outside this keep-set.
+**None** after tagged tip `75c29d2` / `v2.0.0-beta.1-rc2` (working tree clean). Follow-up docs commits may land after the tag without changing the tagged inventory tip.
 
 ---
 

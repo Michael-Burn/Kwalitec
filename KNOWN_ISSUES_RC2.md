@@ -9,25 +9,25 @@
 
 ## Critical
 
-### KI-C1 — No clean intended release tip (dirty tree + uncommitted inventory)
+### KI-C1 — No clean intended release tip (dirty tree + uncommitted inventory) — **CLOSED**
 
 | Field | Value |
 |-------|-------|
-| **Description** | Working tree has 10 modified + 117 untracked entries; Campaign Alpha/Beta JSON and `educational_packages` module are not in Git. |
-| **Impact** | Cannot reproduce educational inventory on Render from a commit; RR-001 FAIL; PB-001 blocked. |
-| **Evidence** | `RR001_RELEASE_READINESS_REPORT.md`; `git status`; `REPOSITORY_AUDIT.md` |
+| **Description** | ~~Working tree dirty; inventory uncommitted.~~ Resolved: keep-set committed; EV-001 dumps removed/ignored; working tree clean on tagged tip. |
+| **Impact** | Cleared for local reproducibility. |
+| **Evidence** | `REPOSITORY_HYGIENE_REPORT.md`; `RC2_POST_HYGIENE_REPORT.md`; tag `v2.0.0-beta.1-rc2` @ `75c29d2` |
 | **Owner** | Release Engineering / Founder |
-| **Required before GO?** | **Yes** |
+| **Required before GO?** | **Yes** — **CLOSED** (Sprint A) |
 
-### KI-C2 — LIVE commit ≠ intended local release
+### KI-C2 — LIVE commit ≠ intended local release — **PARTIAL**
 
 | Field | Value |
 |-------|-------|
-| **Description** | LIVE and `origin/main` are `613722c`; local HEAD is unpushed `f066bcf`; inventory not deployed. |
-| **Impact** | PB-001 would study a non-canonical / outdated educational system relative to local intended corpus. |
-| **Evidence** | `RR001_DEPLOYMENT_VERIFICATION.md`; `/health.commit` |
+| **Description** | Authoritative local tip now `75c29d2` / `v2.0.0-beta.1-rc2`. LIVE and `origin/main` remain `613722c` until push + deploy. |
+| **Impact** | Local fingerprint exists; PB-001 must still wait for LIVE match. |
+| **Evidence** | `VERSION1_RELEASE_MANIFEST.md`; `/health.commit` still `613722c` (pre-deploy) |
 | **Owner** | Release Engineering |
-| **Required before GO?** | **Yes** |
+| **Required before GO?** | **Yes** — **local fingerprint CLOSED**; **LIVE match OPEN** (Priority 3) |
 
 ### KI-C3 — EV-001 educational trust FAIL on current LIVE tip
 
@@ -117,25 +117,25 @@
 | **Owner** | Release Engineering (workstation) |
 | **Required before GO?** | **No** for LIVE GO; **Yes** before trusting local RC pytest against migrated schema |
 
-### KI-M3 — Temporary EV-001 evidence dumps pollute tree
+### KI-M3 — Temporary EV-001 evidence dumps pollute tree — **CLOSED**
 
 | Field | Value |
 |-------|-------|
-| **Description** | `.ev001_evidence/` (~128 files) + `.ev001_evidence.html` untracked. |
-| **Impact** | Blocks clean tree; risk of accidental commit of bulky dumps. |
-| **Evidence** | `REPOSITORY_AUDIT.md` |
+| **Description** | ~~Untracked dumps.~~ Deleted and gitignored (`.ev001_evidence*`). |
+| **Impact** | Cleared. |
+| **Evidence** | `REPOSITORY_HYGIENE_REPORT.md`; `.gitignore` |
 | **Owner** | Release Engineering |
-| **Required before GO?** | **Yes** (exclude/clean from release set; deletion optional after archive) |
+| **Required before GO?** | **Yes** — **CLOSED** |
 
-### KI-M4 — Version / tag naming collision risk
+### KI-M4 — Version / tag naming collision risk — **CLOSED**
 
 | Field | Value |
 |-------|-------|
-| **Description** | Sprint branded VERSION1-RC2 while app version is `2.0.0-beta.1` and tag `v1.0.0-rc2` already exists historically (`f2cbdc5`). |
-| **Impact** | Operator confusion; wrong tag deploy risk. |
-| **Evidence** | `git tag -l`; `VERSION`; `docs/release/RELEASE_NOTES_v1.0.0-RC2.md` |
+| **Description** | Distinct tag `v2.0.0-beta.1-rc2` chosen; app version remains `2.0.0-beta.1`. Historical `v1.0.0-rc2` / `VERSION1-RC2` not reused. |
+| **Impact** | Cleared for this tip. |
+| **Evidence** | `git show-ref --tags`; `VERSION1_RELEASE_MANIFEST.md` |
 | **Owner** | Release Engineering |
-| **Required before GO?** | **Yes** to choose a **distinct** new tag name before cut |
+| **Required before GO?** | **Yes** — **CLOSED** |
 
 ### KI-M5 — Architecture Guardian score 40/100
 
@@ -202,4 +202,4 @@
 | Medium | 5 | 2 (M3, M4) |
 | Low | 4 | 0 |
 
-**Bottom line:** GO remains blocked primarily by Critical hygiene/fingerprint/educational-trust items (KI-C1…C4) plus High release/activation items depending on PB-001 scope.
+**Bottom line (post Sprint A):** KI-C1 closed; local C2 fingerprint closed (`v2.0.0-beta.1-rc2`). GO remains blocked by LIVE deploy match (KI-C2 remainder), KI-C3 educational trust, KI-C4 smoke, plus High release/activation items depending on PB-001 scope.
