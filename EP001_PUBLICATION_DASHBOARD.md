@@ -4,7 +4,7 @@
 **Subject:** IFoA CS1 · 2026  
 **Measurement date:** 2026-08-01  
 **Authority:** EF-001 · CE-001 coverage law · EP-001 Governance · PB-002 · HOLD-001 lifted  
-**Companions:** `EP001_WAVE1_PUBLICATION_PACK.md` · `EP001_REVIEWER_CHECKLISTS.md` · `EP001_HUMAN_REVIEW_SUMMARY.md` · `EP001_PUBLICATION_DECISION_LOG.md` · `EP001_COVERAGE_MAP.md` · `RO001_DEPLOYMENT_REPORT.md` · `RO001_LIVE_VERIFICATION_REPORT.md` · `RO001_RELEASE_DECISION.md`
+**Companions:** `EP001_WAVE1_PUBLICATION_PACK.md` · `EP001_REVIEWER_CHECKLISTS.md` · `EP001_HUMAN_REVIEW_SUMMARY.md` · `EP001_PUBLICATION_DECISION_LOG.md` · `EP001_COVERAGE_MAP.md` · `RO001_DEPLOYMENT_REPORT.md` · `RO001_LIVE_VERIFICATION_REPORT.md` · `RO001_RELEASE_DECISION.md` · `RO001A_LIVE_EDUCATIONAL_VERIFICATION.md` · `RO001A_EDUCATIONAL_FIDELITY_REPORT.md` · `RO001A_RELEASE_CONFIRMATION.md`
 
 ---
 
@@ -47,7 +47,7 @@ Do **not** claim Finish/Home tomorrow_preview chrome honesty until RO1-R1 is clo
 
 **Catalogue root:** `app/curriculum/data/educational_campaigns/cs1/campaign-gamma-cs1004/`  
 **LIVE loader today:** Gamma packages **present** as `publication_approved` under `educational_packages/cs1/` (RO-001 tip `f1ff5dc5…`).  
-**Residual:** RO1-R1 — Finish/Home tomorrow UI stale on shared `topic_code` multi-day (see `RO001_LIVE_VERIFICATION_REPORT.md`).
+**Residual:** RO1-R1 — Finish/Home tomorrow UI stale on shared `topic_code` multi-day (see `RO001_LIVE_VERIFICATION_REPORT.md`; **reconfirmed** `RO001A_EDUCATIONAL_FIDELITY_REPORT.md`).
 
 ---
 
@@ -112,6 +112,7 @@ Chrome honesty:                         Finish/Home tomorrow residual RO1-R1 ope
 | Auditor | `CS1004_CERTIFICATION_REPORT.md` | **PASS** | No |
 | Publication Approver | `CS1004_PUBLICATION_READINESS.md` | **APPROVE** | Approver credit |
 | LIVE Verifier (ops) | `RO001_LIVE_VERIFICATION_REPORT.md` | **PASS WITH RESIDUAL** | Package-path LIVE credit |
+| LIVE Educational Verifier (RO-001A) | `RO001A_LIVE_EDUCATIONAL_VERIFICATION.md` | **PASS WITH RESIDUAL** | HR-001 fidelity confirmed; RO1-R1 open |
 
 ---
 
@@ -123,7 +124,8 @@ Chrome honesty:                         Finish/Home tomorrow residual RO1-R1 ope
 | CS1-002 Beta | `publication_ready` | **Not Published** (UNSIGNED) | 4 packages live | Same honesty gap |
 | EA-006 4.2 orphan | No Gate CG | **Not coverage** | 1 package live | **No** catalogue credit |
 | CS1-004 Gamma | **APPROVED** (HR-001) | **Approver credit** | **5 packages live** | **Yes (package path)** · RO1-R1 residual |
-| CS1-003 | Backlog | — | — | Wave 2 **not started** |
+| CS1-003 Delta | **APPROVED** (HR-002) | **Approver credit** (Volume ≥ approved) | **27 packages live** (orphan superseded) | **Yes (package path)** · RO2-R1 revision Q6 residual |
+| CS1-005 Epsilon | **APPROVED** (HR-003) | **Approver credit** (Volume ≥ approved) | **5 packages live** | **Yes (package path)** · RO3-R1 revision Q6 residual |
 
 ---
 
@@ -131,27 +133,67 @@ Chrome honesty:                         Finish/Home tomorrow residual RO1-R1 ope
 
 | Criterion | Status |
 |-----------|--------|
-| Human seals complete | **Met** — HR-001 |
-| Publication decision | **APPROVED** |
-| Educational packages unmodified in review | **Met** |
-| Joint LIVE deploy | **Met** — RO-001 |
-| LIVE Verified (package path) | **Met** |
-| Finish/Home tomorrow chrome | **Residual RO1-R1** |
-| Wave 2 not started | **Met** |
+| Wave 1 human seals complete | **Met** — HR-001 |
+| Wave 1 publication decision | **APPROVED** |
+| Wave 1 LIVE Verified | **Met** (RO1-R1 closed) |
+| Wave 2 human seals complete | **Met** — HR-002 |
+| Wave 2 publication decision | **APPROVED** |
+| Wave 2 educational packages unmodified in review | **Met** |
+| Wave 2 joint LIVE deploy | **Executed (RO-002)** tip `b99b0a8f…` |
+| Wave 2 LIVE Verified | **Met** (package path; residual RO2-R1) |
+| Wave 3 human seals complete | **Met** — HR-003 |
+| Wave 3 publication decision | **APPROVED** |
+| Wave 3 educational packages unmodified in review | **Met** |
+| Wave 3 joint LIVE deploy | **Executed (RO-003)** tip `efe18ad7…` |
+| Wave 3 LIVE Verified | **Met** (package path; residual RO3-R1) |
+| Wave 4 | **Not started** |
 
-**Programme state:** **LIVE Verified (package path)** · residual RO1-R1 · **not Wave 2**.
+**Programme state:** Wave 1 LIVE Verified · RO1-R1 closed · **Wave 2 LIVE-complete (RO-002 / PB-004)** · **Wave 3 LIVE-complete (RO-003 / PB-005)** · Wave 4 unblocked · not started.
 
 ---
 
 ## 8. Next actions
 
-1. Founder acknowledge residual RO1-R1 (Finish/Home tomorrow UI).  
-2. Optional SEI: bind Finish/Home tomorrow to sitting package `tomorrow_preview` (out of educational content scope).  
-3. **Stop** — do not begin Wave 2 until residual disposition is recorded.
+1. Wave 4 may begin under a separate authorised programme (Wave 3 LIVE exit met).  
+2. Keep Wave 0 Alpha/Beta Approver honesty gap open (not waived).  
+3. Track CE-R1 chrome / Q6 residual as PI (does not block Wave 4 start).
 
 ---
 
-Signed: Publication Dashboard · EP-001 · HR-001 · RO-001 · 2026-08-01  
-**Publication decision:** APPROVED  
-**Credit claim (student LIVE package path):** Authorised for 2.1.3–2.1.6 + CG-R1  
-**Wave 2:** Not started
+## 9. Wave 2 (CS1-003) — pipeline summary
+
+| Block | Days | Authored | Desk Certified | Tutor | Founder | Auditor | Approver | LIVE |
+|-------|------|:--------:|:--------------:|:-----:|:-------:|:-------:|:--------:|:----:|
+| 4.1 + CD-R1 | CD-D1…CD-D5, CD-R1 | ● | ● | ● | ● | ● | ● | ● |
+| 4.2 + CD-R2 | CD-D6…CD-D15, CD-R2 | ● | ● | ● | ● | ● | ● | ● |
+| 5.1 + CD-R3 | CD-D16…CD-D24, CD-R3 | ● | ● | ● | ● | ● | ● | ● |
+
+**Catalogue:** `app/curriculum/data/educational_campaigns/cs1/campaign-delta-cs1003/`  
+**LIVE loader:** 27 Delta packages `publication_approved` · tip `b99b0a8f…`  
+**Companions:** `EP001_WAVE2_PLAN.md` · `CS1003_*` · `HR002_*` · `RO002_*` · `PB004_*`
+
+---
+
+## 10. Wave 3 (CS1-005) — package pipeline
+
+| Package | Day | LO | Authored | Desk Certified | Tutor | Founder | Auditor | Publication Approver | Approved | LIVE Verified |
+|---------|-----|----|:--------:|:--------------:|:-----:|:-------:|:-------:|:--------------------:|:--------:|:-------------:|
+| `CS1-EP001-PKG-2.2-MARGINAL-CONDITIONAL` | CE-D1 | 2.2.1 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-2.2-INDEPENDENCE` | CE-D2 | 2.2.2 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-2.2-COV-CORR-EXPECTATION` | CE-D3 | 2.2.3 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-2.2-LINEAR-COMBINATIONS` | CE-D4 | 2.2.4 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-REV-JOINT-DISTRIBUTIONS` | CE-R1 | Rev | ● | ● | ● | ● | ● | ● | ● | ● |
+
+**Key:** ● = complete · ○ = not reached  
+
+**Catalogue root:** `app/curriculum/data/educational_campaigns/cs1/campaign-epsilon-cs1005/`  
+**LIVE loader:** 5 Epsilon packages `publication_approved` · tip `efe18ad7…`  
+**Companions:** `EP003_WAVE3_PLAN.md` · `EP003_COVERAGE_UPDATE.md` · `CS1005_*` · `HR003_*` · `RO003_*` · `PB005_*`
+
+---
+
+Signed: Publication Dashboard · EP-001 · HR-001 · HR-002 · HR-003 · RO-001 · RO-002 · RO-003 · 2026-08-01  
+**Publication decision (CS1-004):** APPROVED · LIVE Verified  
+**Publication decision (CS1-003):** APPROVED · LIVE-complete (package path)  
+**Publication decision (CS1-005):** **APPROVED** · LIVE-complete (package path)  
+**Wave 4:** Unblocked · not started

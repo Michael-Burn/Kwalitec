@@ -1,0 +1,292 @@
+{
+  "slug": "repeat",
+  "label": "Repeat sitting",
+  "email": "pb005.repeat.1785610507@example.com",
+  "verdict": "PASS",
+  "summary": {
+    "certified_days_scored": 5,
+    "certified_all_pass": true,
+    "avg_score_over_9": 9.0,
+    "trajectory": [
+      {
+        "day": "CE-D1",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        }
+      },
+      {
+        "day": "CE-D2",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        }
+      },
+      {
+        "day": "CE-D3",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        }
+      },
+      {
+        "day": "CE-D4",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        }
+      },
+      {
+        "day": "CE-R1",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        }
+      }
+    ]
+  },
+  "certified_days": [
+    {
+      "day": "CE-D1",
+      "verdict": "PASS",
+      "pb005_score": {
+        "day": "CE-D1",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      },
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "day": "CE-D2",
+      "verdict": "PASS",
+      "pb005_score": {
+        "day": "CE-D2",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      },
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "day": "CE-D3",
+      "verdict": "PASS",
+      "pb005_score": {
+        "day": "CE-D3",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      },
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "day": "CE-D4",
+      "verdict": "PASS",
+      "pb005_score": {
+        "day": "CE-D4",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      },
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "day": "CE-R1",
+      "verdict": "PASS",
+      "pb005_score": {
+        "day": "CE-R1",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      },
+      "finished": true,
+      "fallback": false
+    }
+  ],
+  "confidence_trajectory": [
+    {
+      "day": "CE-D1",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      }
+    },
+    {
+      "day": "CE-D2",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      }
+    },
+    {
+      "day": "CE-D3",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      }
+    },
+    {
+      "day": "CE-D4",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      }
+    },
+    {
+      "day": "CE-R1",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      }
+    }
+  ]
+}

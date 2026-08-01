@@ -1,0 +1,112 @@
+{
+  "day_index": 1,
+  "expected_day": "CE-D1",
+  "expected_package_id": "CS1-EP001-PKG-2.2-MARGINAL-CONDITIONAL",
+  "finished": true,
+  "reading": {
+    "audit": {
+      "title": "Reading: Read the material for Today&#39;s topic. Note one idea you want to remember.",
+      "body_sample": " Topic: Today&#39;s topic Learning objectives for this session: \u2022 Today&#39;s topic ",
+      "support_sample": "Focus on how the learning objectives connect to Today&#39;s topic. What stood out from the reading? Submit Answer ",
+      "is_fallback_shell": true,
+      "is_guided_reading": false,
+      "mentions_cmp": false,
+      "cmp_refs_present": false,
+      "q_checks": {
+        "Q1_cmp_open": false,
+        "Q2_purpose": false,
+        "Q3_attention": false,
+        "Q4_ignore": false,
+        "Q5_stop": false,
+        "Q6_next": false
+      },
+      "ec001_markers": {
+        "Purpose of this reading": false,
+        "Open your CMP": false,
+        "Focus questions": false,
+        "Misconception watch": false,
+        "Out of scope today": false,
+        "Return cue": false,
+        "Worked-example": false,
+        "Knowledge Checks": false
+      },
+      "certified_snippet_hits": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false
+      },
+      "verdict": "FAIL",
+      "word_count_body": 11
+    },
+    "checklist": {
+      "CMP_reference_present": false,
+      "Educational_purpose_clear": false,
+      "Reading_focus_clear": false,
+      "Ignore_guidance_present": false,
+      "Stop_condition_explicit": false,
+      "Immediate_next_activity_named": false,
+      "Not_fallback_shell": false,
+      "Matches_certified_snippets": false
+    },
+    "fidelity": {
+      "lead_line": false,
+      "exit_line": false,
+      "return_cue": false,
+      "open_point": false,
+      "stop_condition": false,
+      "focus_q_0": false,
+      "focus_q_1": false,
+      "catalogue_body_match": true,
+      "catalogue_divergences": [],
+      "fidelity_pass": false
+    },
+    "package_id": "CS1-EP001-PKG-2.2-MARGINAL-CONDITIONAL",
+    "campaign_day": "CE-D1",
+    "html": "/tmp/ro003/evidence/day1_CE-D1_reading.html"
+  },
+  "checklist": {
+    "CMP_reference_present": false,
+    "Educational_purpose_clear": false,
+    "Reading_focus_clear": false,
+    "Ignore_guidance_present": false,
+    "Stop_condition_explicit": false,
+    "Immediate_next_activity_named": false,
+    "Not_fallback_shell": false,
+    "Matches_certified_snippets": false
+  },
+  "tomorrow_preview": {
+    "next_topic_code": false,
+    "continuity_fragment": false,
+    "student_facing_fragment": false,
+    "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+    "package_continuity_line": "Today you formed marginal and conditional distributions from a joint; tomorrow continues 2.2 at independence conditions ",
+    "package_student_facing": "Tomorrow: independence conditions for jointly distributed RVs (2.2.2). Optional light prep: skim 2.2.2 headings \u2014 titles",
+    "chrome_matches_package_continuity": false
+  },
+  "verdict": "FAIL",
+  "home": {
+    "title_guess": "Name why actuarial data analysis exists",
+    "day_complete": false,
+    "has_start": true,
+    "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Name why actuarial data analysis exists CS1 (CS1) 1 h Study 1.1 \u2014 Describe the purpose and function of data analysis After this \u00b7 A four-part purpose map you can defend closed-book \u2014 Study Progress for today&#39;s Session, not m"
+  },
+  "session_id": "lsr-0a751ce6793e",
+  "educational_fidelity": {
+    "lead_line": false,
+    "exit_line": false,
+    "return_cue": false,
+    "open_point": false,
+    "stop_condition": false,
+    "focus_q_0": false,
+    "focus_q_1": false,
+    "catalogue_body_match": true,
+    "catalogue_divergences": [],
+    "fidelity_pass": false
+  },
+  "reflection_ok": true,
+  "tomorrow_chrome_matches_approved": false,
+  "package_path_ok": false,
+  "chrome_residual": true,
+  "epsilon_focus": true
+}

@@ -1,0 +1,17 @@
+{
+  "job_id": "job-d9n3iltaeets73b5aakg",
+  "status": "succeeded",
+  "local_disk_assert": "ASSERT_OK",
+  "expected": {
+    "approved_count": 45,
+    "epsilon_count": 5,
+    "gamma_count": 5,
+    "delta_count": 27,
+    "entry_22": "CE-D1",
+    "after_cgr1": "CE-D1",
+    "entry_41_regression": "CD-D1"
+  },
+  "note": "Render one-off succeeded; local tip loader ASSERT_OK mirrors LIVE tip efe18ad.",
+  "deploy_id": "dep-d9n3ggfqj5pc73e5bm0g",
+  "commit": "efe18ad7b6384f48e06190fd576c5240b704dfec"
+}
