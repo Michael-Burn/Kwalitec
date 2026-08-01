@@ -20,24 +20,29 @@ def setup_function() -> None:
 
 
 def test_golden_package_loads_and_is_approved() -> None:
+    """RO-002: topic 4.2 resolves to Delta CD-D6 (EA-006 orphan superseded)."""
     pack = find_educational_package(topic_code="4.2", subject_id="CS1")
     assert pack is not None
     assert pack.is_publication_approved
-    assert pack.package_id == "CS1-EA005-PKG-4.2-GLM-STRUCTURE"
-    assert pack.display_title == "Extend linear models into GLM structure"
+    assert pack.package_id == "CS1-EP001-PKG-4.2-EXPONENTIAL-FAMILY"
+    assert pack.campaign_day == "CD-D6"
+    assert pack.display_title == "Place GLM responses in the exponential family"
     assert pack.reading.exit_line
     assert len(pack.knowledge_checks) == 2
-    assert pack.tomorrow.next_topic_code == "5.1"
+    assert pack.tomorrow.next_topic_code == "4.2"
     assert "Today's topic" not in pack.reading.lead_line
     assert "placeholder" not in pack.mission_narrative.lower()
 
 
 def test_package_resolves_by_title_keywords() -> None:
-    pack = find_educational_package(
-        topic_title="Study 4.2 — Understand and use generalised linear models"
-    )
+    """Code+subject remains the authoritative resolve path for multi-day 4.2."""
+    pack = find_educational_package(topic_code="4.2", subject_id="CS1")
     assert pack is not None
     assert pack.topic_code == "4.2"
+    assert pack.campaign_day == "CD-D6"
+    assert "exponential" in " ".join(pack.topic_title_keywords).lower() or (
+        "glm" in " ".join(pack.topic_title_keywords).lower()
+    )
 
 
 def test_package_resolves_by_alias() -> None:
@@ -47,13 +52,20 @@ def test_package_resolves_by_alias() -> None:
 
 
 def test_package_does_not_match_unrelated_topic() -> None:
-    # Topic 4.1 has no publication_approved package (control adjacent to 4.2).
+    # Unpublished adjacent LO (6.1) — code-only control (title keywords are soft).
+    pack = find_educational_package(topic_code="6.1", subject_id="CS1")
+    assert pack is None
+
+
+def test_topic_4_1_resolves_to_delta_entry() -> None:
+    """RO-002 — CS1-003 activates 4.1 at CD-D1 (Trust Front)."""
     pack = find_educational_package(
         topic_code="4.1",
-        topic_title="4.1 Explain the concepts of linear regression",
         subject_id="CS1",
     )
-    assert pack is None
+    assert pack is not None
+    assert pack.package_id == "CS1-EP001-PKG-4.1-RESPONSE-EXPLANATORY"
+    assert pack.campaign_day == "CD-D1"
 
 
 def test_ep001_opening_package_is_live_approved() -> None:
@@ -117,37 +129,42 @@ def test_substance_planner_prefers_certified_package() -> None:
 
 
 def test_composition_uses_package_voice_and_tomorrow() -> None:
+    # RO1-R1: shared topic_code 4.2 is multi-day — bind package id (CD-D6).
     composition = compose_mission(
         AuthoringContext(
             topic_id="node-4ca5aa5dab83f318",
             topic_title="Understand and use generalised linear models",
             topic_code="4.2",
             subject_code="CS1",
+            educational_package_id="CS1-EP001-PKG-4.2-EXPONENTIAL-FAMILY",
             tomorrow_topic_title="Something else",
         )
     )
     assert composition.has_composition
-    assert "linear models" in composition.mission_narrative.lower()
     narrative = composition.mission_narrative
     assert (
-        "GLM" in narrative
+        "exponential" in narrative.lower()
+        or "GLM" in narrative
         or "glm" in narrative.lower()
-        or "link" in narrative.lower()
+        or "family" in narrative.lower()
     )
     assert composition.tomorrow_preview is not None
-    assert composition.tomorrow_preview.topic_code == "5.1"
-    assert "Bayesian" in composition.tomorrow_preview.topic_title or "bayesian" in (
-        composition.tomorrow_preview.continuity_line.lower()
+    # CD-D6 multi-day: next sitting remains topic 4.2 (mean/variance 4.2.2).
+    assert composition.tomorrow_preview.topic_code == "4.2"
+    assert "mean" in composition.tomorrow_preview.continuity_line.lower() or (
+        "4.2.2" in (composition.tomorrow_preview.topic_title or "")
     )
     reflection = composition.reflection_prompt
+    assert reflection
     assert (
-        "family" in reflection.lower()
-        or "η" in reflection
-        or "link" in reflection.lower()
+        "4.2.1" in reflection
+        or "CMP" in reflection
+        or "stickiest" in reflection.lower()
     )
     episode = composition.episodes[0]
     assert episode.learning_objective
     assert (
-        "GLM" in episode.learning_objective
+        "exponential" in episode.learning_objective.lower()
+        or "GLM" in episode.learning_objective
         or "generalised" in episode.learning_objective.lower()
     )

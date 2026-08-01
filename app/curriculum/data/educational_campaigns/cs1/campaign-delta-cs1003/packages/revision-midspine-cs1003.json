@@ -1,0 +1,207 @@
+{
+  "package_version": "cs1003-campaign-delta-1.0.0",
+  "publication_version": "cs1003-catalogue-1.0.0",
+  "status": "campaign_member_certified",
+  "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
+  "volume_id": "CS1-003",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1003_EDUCATIONAL_VOLUME.md",
+    "CS1003_CERTIFICATION_REPORT.md",
+    "EP001_WAVE2_PLAN.md"
+  ],
+  "author_id": "cs1003-educational-author",
+  "authored_at": "2026-08-01",
+  "package_id": "CS1-EP001-PKG-REV-MIDSPINE",
+  "campaign_day": "CD-R3",
+  "topic_code": "CD-R3",
+  "topic_title": "Retrieve mid-spine 4.1\u21924.2\u21925.1",
+  "return_targets": [
+    "4.1.1",
+    "4.1.2",
+    "4.1.3",
+    "4.1.4",
+    "4.1.5",
+    "4.2.1",
+    "4.2.2",
+    "4.2.3",
+    "4.2.4",
+    "4.2.5",
+    "4.2.6",
+    "4.2.7",
+    "4.2.8",
+    "4.2.9",
+    "4.2.10",
+    "5.1.1",
+    "5.1.2",
+    "5.1.3",
+    "5.1.4",
+    "5.1.5",
+    "5.1.6",
+    "5.1.7",
+    "5.1.8",
+    "5.1.9"
+  ],
+  "topic_aliases": [
+    "CD-R3",
+    "campaign-delta-revision"
+  ],
+  "topic_title_keywords": [
+    "revision",
+    "mid-spine",
+    "bayesian",
+    "glm",
+    "credibility"
+  ],
+  "golden_id": "GOLDEN-CS1003-CS1-CD-R3",
+  "mode": "revision",
+  "mission": {
+    "mission_id": "msn-cs1003-cs1-cd-r3",
+    "display_title": "Retrieve mid-spine 4.1\u21924.2\u21925.1",
+    "mission_purpose": "Today's Mission exists to protect memory of the full CS1-003 Trust Front \u2014 classical LM, GLM (including absorbed structure), and Bayesian foundations through credibility contrast \u2014 with an honest stop after.",
+    "tutor_intent": "Today I will run closed-book retrieval across 4.1\u20135.1 return targets \u2014 not spine declaration; not until-exam trust.",
+    "educational_intent": "Produce terminal Pilot Arc retrieval; honest stop.",
+    "learning_objective": "Retrieve and connect mid-spine hinges across 4.1, 4.2, and 5.1; refuse spine and until-exam claims.",
+    "concept_focus": "LM \u2192 GLM \u2192 Bayes/credibility contrast retrieval + honest stop.",
+    "prior_bridge": "Yesterday you finished Bayes vs EB contrast (5.1.9). Today is terminal Revision.",
+    "why_now": "Pilot Arc requires terminal Revision; Wave 2 stops before Wave 3.",
+    "expected_benefit": "Revision Study Progress for Trust Front \u2014 not spine; not until-exam; not Wave 3.",
+    "explainability": "Assigned as Campaign Delta CD-R3 terminal Revision.",
+    "success_criteria": [
+      "Retrieve one 4.1, one 4.2 structure, one 4.2 diagnostic/fit, one 5.1 Bayes, one credibility hinge.",
+      "Name weakest link + rework.",
+      "Refuse spine PASS and until-exam trust."
+    ],
+    "task_descriptions": [
+      "Sketch 4.1\u21924.2\u21925.1 chain from memory.",
+      "Complete Revision Knowledge Checks.",
+      "Author Reflection; confirm honest stop."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 40,
+      "max": 55
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1003-cs1-cd-r3",
+    "session_educational_purpose": "Retrieve and connect Campaign return targets \u2014 not a new first-pass LO.",
+    "session_tutor_purpose": "Keep CMP closed for checks; harvest weakest link \u2014 Gate RV substance.",
+    "duration_budget_minutes": {
+      "min": 40,
+      "max": 55
+    },
+    "wrap_up": "Revision Session complete (CD-R3). Revision Study Progress \u2014 not spine PASS; not until-exam trust.",
+    "confidence_prompt": "How confident are you that today's return targets will still retrieve in three days? Rate 1\u20135 and name the weakest link."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this revision stage: strengthen retrieval without opening a new first-pass chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus.",
+    "focus_questions": [
+      "Can you retrieve each return target in one short phrase?",
+      "Which link is weakest today?",
+      "What one rework will you schedule?",
+      "What claim must you refuse (spine / Isolated Golden Day / until-exam)?"
+    ],
+    "misconception_watch": [
+      "Watch for turning revision into a passive re-read.",
+      "Watch for claiming first-pass spine PASS.",
+      "Watch for Isolated Golden Day / until-exam trust claims."
+    ],
+    "open_point": "No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block.",
+    "stop_condition": "After revision checks and Reflection \u2014 do not begin out-of-scope first-pass LOs",
+    "out_of_scope_today": [
+      "First-pass spine PASS",
+      "Until-exam trust",
+      "Wave 3 authoring as this sitting",
+      "Isolated Golden Day"
+    ],
+    "annotation_task": "Before checks: sketch return-target chain from memory",
+    "attempt_before_reveal": "Attempt each check before any targeted CMP reopen",
+    "exit_line": "Begin closed-book retrieval. Reopen CMP only at a failed locus. After checks, complete Reflection.",
+    "return_cue": "Revision reading stage is complete when checks are attempted and any failed locus has a targeted reopen plan.",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause \u2014 mark the weakest link before checks.",
+        "student_action": "Annotate"
+      }
+    ],
+    "reentry_line": "Stay closed-book unless a check failed. Continue retrieval."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1003-cd-r3-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1003-cd-r3-ar-01",
+      "title": "Active Recall: CD-R3",
+      "prompt": "Closed-book. Retrieve five hinges: (1) 4.1; (2) GLM structure; (3) GLM diagnostic/fit; (4) Bayes theorem/posterior; (5) credibility Bayes-vs-EB contrast.",
+      "response_type": "short_structured",
+      "body": "Revision chain recall.",
+      "hints": [
+        "Name each hinge briefly.",
+        "Stay retrieval-first."
+      ],
+      "accepted_keywords": [
+        "least squares",
+        "link",
+        "deviance",
+        "bayes",
+        "credibility",
+        "empirical",
+        "residual"
+      ],
+      "explanation": "Revision retrieves the arc.",
+      "model_answer": "Example: OLS; Family\u2192\u03b7\u2192link; residual/test; Bayes update; Bayes vs EB assumptions.",
+      "common_mistake": "Passive summary without retrieval.",
+      "success_criteria": [
+        "Return targets named.",
+        "Weakest link candid."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1003-cd-r3-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1003-cd-r3-cp-01",
+      "title": "Checkpoint: CD-R3",
+      "prompt": "(1) Weakest link + rework. (2) Confirm spine PASS and until-exam trust are refused. (3) Confirm Wave 3 is not started from this Revision alone.",
+      "response_type": "short_structured",
+      "body": "Weakest link + honest next.",
+      "hints": [
+        "Name a concrete rework.",
+        "Refuse forbidden claims."
+      ],
+      "accepted_keywords": [
+        "weak",
+        "rework",
+        "refuse",
+        "spine",
+        "until-exam",
+        "wave 3",
+        "stop"
+      ],
+      "explanation": "RV harvests memory debt and honest next.",
+      "model_answer": "(1) Named rework. (2) Spine/until-exam refused. (3) Wave 3 not started \u2014 honest stop after Approver/LIVE path.",
+      "common_mistake": "Spine / until-exam claim.",
+      "success_criteria": [
+        "Rework named.",
+        "Forbidden claim refused."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Revision Reflection names the weakest Campaign link for spaced return.",
+    "prompt": "Which return target retrieved least cleanly and what one concrete rework will you schedule? Confirm forbidden claims stayed out of scope.",
+    "prompts": [
+      "Which return target retrieved least cleanly?",
+      "What one concrete rework will you schedule?",
+      "Confirm: spine PASS / Isolated Golden Day / until-exam trust were out of scope."
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "STOP",
+    "next_topic_title": "Honest stop \u2014 Wave 2 complete after Approver/LIVE path; Wave 3 separate",
+    "continuity_line": "Campaign Delta / Volume CS1-003 completes after this Revision. Honest stop: Trust Front Pilot Arc \u2014 not first-pass spine; not until-exam trust. Wave 3 (CS1-005 / Ch2) is a separate commission.",
+    "light_prep_cue": "No new first-pass LO tonight \u2014 rest or schedule weakest-link rework only",
+    "student_facing": "Campaign Delta / CS1-003 complete after today (pending human Approver + LIVE). Honest next: stop \u2014 Wave 3 is separate. Optional: schedule your weakest mid-spine rework only."
+  }
+}

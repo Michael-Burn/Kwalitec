@@ -14,7 +14,7 @@ from app.application.educational_packages.loader import (
 )
 from app.application.educational_packages.models import CertifiedEducationalPackage
 
-# Campaign day order for Alpha → Beta → Gamma continuity (EP-001 / CS1-004).
+# Campaign day order for Alpha → Beta → Gamma → Delta continuity (EP-001).
 _CAMPAIGN_DAY_ORDER: dict[str, int] = {
     "CA-D1": 1,
     "CA-D2": 2,
@@ -29,6 +29,34 @@ _CAMPAIGN_DAY_ORDER: dict[str, int] = {
     "CG-D3": 11,
     "CG-D4": 12,
     "CG-R1": 13,
+    # Campaign Delta / CS1-003 (RO-002) — Trust Front mid-spine 4.1→4.2→5.1
+    "CD-D1": 14,
+    "CD-D2": 15,
+    "CD-D3": 16,
+    "CD-D4": 17,
+    "CD-D5": 18,
+    "CD-R1": 19,
+    "CD-D6": 20,
+    "CD-D7": 21,
+    "CD-D8": 22,
+    "CD-D9": 23,
+    "CD-D10": 24,
+    "CD-D11": 25,
+    "CD-D12": 26,
+    "CD-D13": 27,
+    "CD-D14": 28,
+    "CD-D15": 29,
+    "CD-R2": 30,
+    "CD-D16": 31,
+    "CD-D17": 32,
+    "CD-D18": 33,
+    "CD-D19": 34,
+    "CD-D20": 35,
+    "CD-D21": 36,
+    "CD-D22": 37,
+    "CD-D23": 38,
+    "CD-D24": 39,
+    "CD-R3": 40,
 }
 
 

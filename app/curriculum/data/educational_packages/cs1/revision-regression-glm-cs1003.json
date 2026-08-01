@@ -1,0 +1,201 @@
+{
+  "package_version": "cs1003-campaign-delta-1.0.0",
+  "publication_version": "cs1003-live-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
+  "volume_id": "CS1-003",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1003_EDUCATIONAL_VOLUME.md",
+    "CS1003_CERTIFICATION_REPORT.md",
+    "EP001_WAVE2_PLAN.md"
+  ],
+  "author_id": "cs1003-educational-author",
+  "authored_at": "2026-08-01",
+  "package_id": "CS1-EP001-PKG-REV-REGRESSION-GLM",
+  "campaign_day": "CD-R2",
+  "topic_code": "CD-R2",
+  "topic_title": "Retrieve regression through GLM (4.1–4.2)",
+  "return_targets": [
+    "4.1.1",
+    "4.1.2",
+    "4.1.3",
+    "4.1.4",
+    "4.1.5",
+    "4.2.1",
+    "4.2.2",
+    "4.2.3",
+    "4.2.4",
+    "4.2.5",
+    "4.2.6",
+    "4.2.7",
+    "4.2.8",
+    "4.2.9",
+    "4.2.10"
+  ],
+  "topic_aliases": [
+    "CD-R2",
+    "campaign-delta-revision"
+  ],
+  "topic_title_keywords": [
+    "revision",
+    "glm",
+    "regression",
+    "link",
+    "deviance"
+  ],
+  "golden_id": "GOLDEN-CS1003-CS1-CD-R2",
+  "mode": "revision",
+  "mission": {
+    "mission_id": "msn-cs1003-cs1-cd-r2",
+    "display_title": "Retrieve regression through GLM (4.1–4.2)",
+    "mission_purpose": "Today's Mission exists to protect memory of classical LM and the full GLM Learning span — including absorbed structure — before Bayesian foundations.",
+    "tutor_intent": "Today I will run closed-book retrieval across 4.1 and 4.2 hinges — not Bayes; not spine.",
+    "educational_intent": "Produce retrieval strength across Trust Front regression→GLM before 5.1.",
+    "learning_objective": "Retrieve and connect 4.1 classical LM skills with GLM structure through fit/interpret (4.2.1–4.2.10).",
+    "concept_focus": "LM → Family/η/link → deviance/choice/residuals/tests → fit/interpret.",
+    "prior_bridge": "Yesterday you finished GLM fit/interpret (4.2.10). Today is Revision mode.",
+    "why_now": "Memory Front before Bayesian entry; protect absorb of EA-006 structure.",
+    "expected_benefit": "Revision Study Progress — not Bayes; not spine; not Isolated Golden Day.",
+    "explainability": "Assigned as Campaign Delta CD-R2.",
+    "success_criteria": [
+      "Retrieve one 4.1 hinge.",
+      "Retrieve Family → η → link.",
+      "Retrieve one deviance/choice or residual/test hinge.",
+      "Retrieve fit/interpret outline.",
+      "Refuse Isolated Golden Day / spine claims."
+    ],
+    "task_descriptions": [
+      "Sketch mid-spine regression→GLM chain from memory.",
+      "Complete Revision Knowledge Checks.",
+      "Author Reflection naming weakest link."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 40,
+      "max": 55
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1003-cs1-cd-r2",
+    "session_educational_purpose": "Retrieve and connect Campaign return targets — not a new first-pass LO.",
+    "session_tutor_purpose": "Keep CMP closed for checks; harvest weakest link — Gate RV substance.",
+    "duration_budget_minutes": {
+      "min": 40,
+      "max": 55
+    },
+    "wrap_up": "Revision Session complete (CD-R2). Revision Study Progress — not spine PASS; not until-exam trust.",
+    "confidence_prompt": "How confident are you that today's return targets will still retrieve in three days? Rate 1–5 and name the weakest link."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this revision stage: strengthen retrieval without opening a new first-pass chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus.",
+    "focus_questions": [
+      "Can you retrieve each return target in one short phrase?",
+      "Which link is weakest today?",
+      "What one rework will you schedule?",
+      "What claim must you refuse (spine / Isolated Golden Day / until-exam)?"
+    ],
+    "misconception_watch": [
+      "Watch for turning revision into a passive re-read.",
+      "Watch for claiming first-pass spine PASS.",
+      "Watch for Isolated Golden Day / until-exam trust claims."
+    ],
+    "open_point": "No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block.",
+    "stop_condition": "After revision checks and Reflection — do not begin out-of-scope first-pass LOs",
+    "out_of_scope_today": [
+      "First-pass Bayesian Learning as Revision",
+      "Spine PASS",
+      "Isolated Golden Day",
+      "Until-exam trust"
+    ],
+    "annotation_task": "Before checks: sketch return-target chain from memory",
+    "attempt_before_reveal": "Attempt each check before any targeted CMP reopen",
+    "exit_line": "Begin closed-book retrieval. Reopen CMP only at a failed locus. After checks, complete Reflection.",
+    "return_cue": "Revision reading stage is complete when checks are attempted and any failed locus has a targeted reopen plan.",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause — mark the weakest link before checks.",
+        "student_action": "Annotate"
+      }
+    ],
+    "reentry_line": "Stay closed-book unless a check failed. Continue retrieval."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1003-cd-r2-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1003-cd-r2-ar-01",
+      "title": "Active Recall: CD-R2",
+      "prompt": "Closed-book. Retrieve: (1) one 4.1 hinge; (2) Family→η→link; (3) one post-structure 4.2 hinge (deviance/choice/residual/test/fit).",
+      "response_type": "short_structured",
+      "body": "Revision chain recall.",
+      "hints": [
+        "Name each hinge briefly.",
+        "Stay retrieval-first."
+      ],
+      "accepted_keywords": [
+        "response",
+        "link",
+        "eta",
+        "deviance",
+        "residual",
+        "glm",
+        "least squares"
+      ],
+      "explanation": "Revision retrieves the arc.",
+      "model_answer": "Example: OLS criterion; Family→η→link; analysis of deviance or residual check or fit/interpret.",
+      "common_mistake": "Passive summary without retrieval.",
+      "success_criteria": [
+        "Return targets named.",
+        "Weakest link candid."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1003-cd-r2-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1003-cd-r2-cp-01",
+      "title": "Checkpoint: CD-R2",
+      "prompt": "(1) Weakest link + rework. (2) Refuse Isolated Golden Day and spine PASS. (3) Name tomorrow's LO.",
+      "response_type": "short_structured",
+      "body": "Weakest link + honest next.",
+      "hints": [
+        "Name a concrete rework.",
+        "Refuse forbidden claims."
+      ],
+      "accepted_keywords": [
+        "weak",
+        "rework",
+        "refuse",
+        "spine",
+        "golden",
+        "5.1.1",
+        "bayes"
+      ],
+      "explanation": "RV harvests memory debt and honest next.",
+      "model_answer": "(1) e.g. canonical link warrant — rework. (2) Refuse Isolated Golden Day / spine. (3) Tomorrow 5.1.1.",
+      "common_mistake": "Spine / until-exam claim.",
+      "success_criteria": [
+        "Rework named.",
+        "Forbidden claim refused."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Revision Reflection names the weakest Campaign link for spaced return.",
+    "prompt": "Which return target retrieved least cleanly and what one concrete rework will you schedule? Confirm forbidden claims stayed out of scope.",
+    "prompts": [
+      "Which return target retrieved least cleanly?",
+      "What one concrete rework will you schedule?",
+      "Confirm: spine PASS / Isolated Golden Day / until-exam trust were out of scope."
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "5.1",
+    "next_topic_title": "Bayes' theorem and simple conditional probabilities (5.1.1)",
+    "continuity_line": "Today you retrieved LM→GLM; tomorrow opens Bayesian foundations at Bayes' theorem (5.1.1).",
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.1 — titles only tonight",
+    "student_facing": "Tomorrow: Bayes' theorem (5.1.1). Optional light prep: skim 5.1.1 headings — titles only tonight."
+  },
+  "published_at": "2026-08-01"
+}

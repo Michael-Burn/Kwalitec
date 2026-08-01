@@ -1,0 +1,189 @@
+{
+  "package_version": "cs1003-campaign-delta-1.0.0",
+  "publication_version": "cs1003-live-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
+  "volume_id": "CS1-003",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1003_EDUCATIONAL_VOLUME.md",
+    "CS1003_CERTIFICATION_REPORT.md",
+    "EP001_WAVE2_PLAN.md"
+  ],
+  "author_id": "cs1003-educational-author",
+  "authored_at": "2026-08-01",
+  "package_id": "CS1-EP001-PKG-REV-LINEAR-MODELS",
+  "campaign_day": "CD-R1",
+  "topic_code": "CD-R1",
+  "topic_title": "Retrieve classical linear models (4.1)",
+  "return_targets": [
+    "4.1.1",
+    "4.1.2",
+    "4.1.3",
+    "4.1.4",
+    "4.1.5"
+  ],
+  "topic_aliases": [
+    "CD-R1",
+    "campaign-delta-revision"
+  ],
+  "topic_title_keywords": [
+    "revision",
+    "linear",
+    "regression",
+    "least squares",
+    "selection"
+  ],
+  "golden_id": "GOLDEN-CS1003-CS1-CD-R1",
+  "mode": "revision",
+  "mission": {
+    "mission_id": "msn-cs1003-cs1-cd-r1",
+    "display_title": "Retrieve classical linear models (4.1)",
+    "mission_purpose": "Today's Mission exists to protect memory of Campaign Delta's 4.1 Learning span — roles, forms, OLS, software chain, selection — before GLM opens.",
+    "tutor_intent": "Today I will run closed-book retrieval across 4.1.1–4.1.5 — not a passive CMP re-read and not GLM.",
+    "educational_intent": "Produce retrieval strength on classical LM before 4.2 absorb.",
+    "learning_objective": "Retrieve and connect response/explanatory roles, simple/multiple forms, OLS, software fit/inference/residuals, and variable selection.",
+    "concept_focus": "4.1 chain retrieval: roles → forms → OLS → software → selection.",
+    "prior_bridge": "Yesterday you finished variable selection (4.1.5). Today is Revision mode.",
+    "why_now": "Pilot Arc law requires Revision after the 4.1 Learning span before GLM.",
+    "expected_benefit": "Revision Study Progress — not GLM; not spine.",
+    "explainability": "Assigned as Campaign Delta CD-R1.",
+    "success_criteria": [
+      "Closed-book, name response vs explanatory.",
+      "Write simple vs multiple forms.",
+      "State OLS criterion.",
+      "Outline software fit→residual check.",
+      "Name one selection measure warrant."
+    ],
+    "task_descriptions": [
+      "Sketch 4.1 chain from memory.",
+      "Complete Revision Knowledge Checks closed-book.",
+      "Author revision Reflection naming weakest link."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 40,
+      "max": 55
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1003-cs1-cd-r1",
+    "session_educational_purpose": "Retrieve and connect Campaign return targets — not a new first-pass LO.",
+    "session_tutor_purpose": "Keep CMP closed for checks; harvest weakest link — Gate RV substance.",
+    "duration_budget_minutes": {
+      "min": 40,
+      "max": 55
+    },
+    "wrap_up": "Revision Session complete (CD-R1). Revision Study Progress — not spine PASS; not until-exam trust.",
+    "confidence_prompt": "How confident are you that today's return targets will still retrieve in three days? Rate 1–5 and name the weakest link."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this revision stage: strengthen retrieval without opening a new first-pass chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus.",
+    "focus_questions": [
+      "Can you retrieve each return target in one short phrase?",
+      "Which link is weakest today?",
+      "What one rework will you schedule?",
+      "What claim must you refuse (spine / Isolated Golden Day / until-exam)?"
+    ],
+    "misconception_watch": [
+      "Watch for turning revision into a passive re-read.",
+      "Watch for claiming first-pass spine PASS.",
+      "Watch for Isolated Golden Day / until-exam trust claims."
+    ],
+    "open_point": "No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block.",
+    "stop_condition": "After revision checks and Reflection — do not begin out-of-scope first-pass LOs",
+    "out_of_scope_today": [
+      "First-pass GLM Learning as Revision",
+      "Bayesian 5.1",
+      "Spine PASS",
+      "Isolated Golden Day"
+    ],
+    "annotation_task": "Before checks: sketch return-target chain from memory",
+    "attempt_before_reveal": "Attempt each check before any targeted CMP reopen",
+    "exit_line": "Begin closed-book retrieval. Reopen CMP only at a failed locus. After checks, complete Reflection.",
+    "return_cue": "Revision reading stage is complete when checks are attempted and any failed locus has a targeted reopen plan.",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause — mark the weakest link before checks.",
+        "student_action": "Annotate"
+      }
+    ],
+    "reentry_line": "Stay closed-book unless a check failed. Continue retrieval."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1003-cd-r1-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1003-cd-r1-ar-01",
+      "title": "Active Recall: CD-R1",
+      "prompt": "Closed-book. In order, name the five 4.1 Learning moves (4.1.1–4.1.5) in one short phrase each.",
+      "response_type": "short_structured",
+      "body": "Revision chain recall.",
+      "hints": [
+        "Name each hinge briefly.",
+        "Stay retrieval-first."
+      ],
+      "accepted_keywords": [
+        "response",
+        "simple",
+        "multiple",
+        "least squares",
+        "software",
+        "selection",
+        "residual"
+      ],
+      "explanation": "Revision retrieves the arc.",
+      "model_answer": "Roles; simple/multiple forms; OLS slope/intercept; software fit/inference/prediction/residuals; fit-measure selection.",
+      "common_mistake": "Passive summary without retrieval.",
+      "success_criteria": [
+        "Return targets named.",
+        "Weakest link candid."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1003-cd-r1-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1003-cd-r1-cp-01",
+      "title": "Checkpoint: CD-R1",
+      "prompt": "Closed-book. (1) Weakest 4.1 link + one rework. (2) Confirm GLM was out of scope today and name tomorrow's LO.",
+      "response_type": "short_structured",
+      "body": "Weakest link + honest next.",
+      "hints": [
+        "Name a concrete rework.",
+        "Refuse forbidden claims."
+      ],
+      "accepted_keywords": [
+        "weak",
+        "rework",
+        "4.2.1",
+        "glm",
+        "out of scope"
+      ],
+      "explanation": "RV harvests memory debt and honest next.",
+      "model_answer": "(1) e.g. residual checks — five-minute rework. (2) GLM out of scope; tomorrow 4.2.1 exponential family.",
+      "common_mistake": "Spine / until-exam claim.",
+      "success_criteria": [
+        "Rework named.",
+        "Forbidden claim refused."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Revision Reflection names the weakest Campaign link for spaced return.",
+    "prompt": "Which return target retrieved least cleanly and what one concrete rework will you schedule? Confirm forbidden claims stayed out of scope.",
+    "prompts": [
+      "Which return target retrieved least cleanly?",
+      "What one concrete rework will you schedule?",
+      "Confirm: spine PASS / Isolated Golden Day / until-exam trust were out of scope."
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "4.2",
+    "next_topic_title": "Exponential family responses for GLMs (4.2.1)",
+    "continuity_line": "Today you retrieved classical LM; tomorrow opens GLM at exponential-family responses (4.2.1) — absorbing EA-006 structure into Campaign membership.",
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.1 — titles only tonight",
+    "student_facing": "Tomorrow: GLM exponential-family responses (4.2.1). Optional light prep: skim 4.2.1 headings — titles only tonight."
+  },
+  "published_at": "2026-08-01"
+}

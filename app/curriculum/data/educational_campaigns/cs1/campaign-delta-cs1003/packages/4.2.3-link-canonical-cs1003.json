@@ -1,0 +1,191 @@
+{
+  "package_version": "cs1003-campaign-delta-1.0.0",
+  "publication_version": "cs1003-catalogue-1.0.0",
+  "status": "campaign_member_certified",
+  "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
+  "volume_id": "CS1-003",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1003_EDUCATIONAL_VOLUME.md",
+    "CS1003_CERTIFICATION_REPORT.md",
+    "EP001_WAVE2_PLAN.md",
+    "EA008_CAMPAIGN_PUBLICATION_POLICY.md",
+    "app/curriculum/data/educational_packages/cs1/4.2-glm-structure-ea006.json"
+  ],
+  "author_id": "cs1003-educational-author",
+  "authored_at": "2026-08-01",
+  "package_id": "CS1-EP001-PKG-4.2-LINK-CANONICAL",
+  "campaign_day": "CD-D8",
+  "topic_focus_lo": "4.2.3",
+  "topic_code": "4.2",
+  "topic_title": "Understand and use generalised linear models",
+  "topic_aliases": [
+    "CS1-D-T02",
+    "4.2",
+    "4.2.3"
+  ],
+  "topic_title_keywords": [
+    "link",
+    "canonical",
+    "logit",
+    "log",
+    "eta",
+    "glm"
+  ],
+  "golden_id": "GOLDEN-CS1003-CS1-4.2-423",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1003-cs1-4.2-link-canonical",
+    "display_title": "Choose link and canonical link with warrant",
+    "mission_purpose": "Today's Mission exists to explain the link and canonical link for exponential-family responses \u2014 completing EA-006 structure absorb into Campaign membership \u2014 so Family \u2192 \u03b7 \u2192 link is Campaign-certified, not Isolated Golden Day.",
+    "tutor_intent": "Today I will force link vs \u03b7 discrimination and one canonical pairing with mean-range warrant \u2014 refuse software-default links.",
+    "educational_intent": "Complete GLM structure chain under Gate CG membership (absorb day 3/3).",
+    "learning_objective": "Explain the link function and the canonical link function for the distributions in 4.2.1.",
+    "concept_focus": "g(\u03bc)=\u03b7 \u2192 canonical pairing \u2192 refuse default-without-warrant.",
+    "prior_bridge": "Yesterday mean/variance (4.2.2). Today closes structure: link/canonical \u2014 absorbs EA-006 excellence into Delta.",
+    "why_now": "4.2.3 completes structure; FP-01 forbids claiming 4.2 alone as journey maturity.",
+    "expected_benefit": "Study Progress for link literacy \u2014 not full deviance/model choice yet.",
+    "explainability": "Campaign Delta Day 8 / absorb block day 3 \u2014 grandfather structure lands in Campaign.",
+    "success_criteria": [
+      "Closed-book, distinguish link from linear predictor.",
+      "Name one non-Normal family with canonical (or justified) link and mean-range warrant.",
+      "Refuse software-default-as-justification."
+    ],
+    "task_descriptions": [
+      "Sketch Family / \u03b7 / Link before CMP (EA-006 pedagogy retained).",
+      "Guided Reading through first structural worked example with non-identity link.",
+      "Knowledge Checks: chain + canonical warrant."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 50,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1003-cs1-4.2-link-canonical",
+    "session_educational_purpose": "Execute today's Mission for LO 4.2.3 \u2014 not neighbouring LOs listed out of scope.",
+    "session_tutor_purpose": "Set focus on 4.2.3; exit to CMP; retrieve closed-book checks.",
+    "duration_budget_minutes": {
+      "min": 50,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Choose link and canonical link with warrant. Study Progress for LO 4.2.3 \u2014 not Topic Complete for later LOs in this Volume.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.3 move closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.3 skill. Stop at the stop condition; do not swallow the next LO.",
+    "focus_questions": [
+      "What is the core move of Syllabus 4.2.3?",
+      "Where does the CMP give a worked cue you must attempt before reveal?",
+      "What misconception must you refuse today?",
+      "What will you retrieve closed-book in Knowledge Checks?"
+    ],
+    "misconception_watch": [
+      "Watch for swallowing the next LO beyond 4.2.3.",
+      "Watch for software/menu tourism without method warrant.",
+      "Watch for Isolated Golden Day / spine claims."
+    ],
+    "open_point": "CMP \u00b7 Syllabus 4.2.3 link and canonical link (structure centre with 4.2.1\u20134.2.2)",
+    "stop_condition": "Through first structural worked example with non-identity link / CMP 4.2.3 block",
+    "out_of_scope_today": [
+      "Full deviance diagnostics as primary",
+      "Exhaustive factor design as primary",
+      "Bayes",
+      "Isolated Golden Day claims"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.3 link and canonical link (structure centre with 4.2.1\u20134.2.2). Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through first structural worked example with non-identity link / CMP 4.2.3 block. Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.2.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1003-4.2.3-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1003-4.2.3-ar-01",
+      "title": "Active Recall: 4.2.3",
+      "prompt": "Closed-book. Explain how a GLM joins exponential-family response, linear predictor \u03b7, and link g(\u03bc)=\u03b7. Distinguish \u03b7 from the link.",
+      "response_type": "short_structured",
+      "body": "Retrieve 4.2.3 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "exponential family",
+        "linear predictor",
+        "link",
+        "eta",
+        "\u03b7",
+        "mu"
+      ],
+      "explanation": "Active recall for 4.2.3.",
+      "model_answer": "Response in exponential family; \u03b7 = X\u03b2; g(\u03bc)=\u03b7 links mean to predictor. Link \u2260 \u03b7.",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1003-4.2.3-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1003-4.2.3-cp-01",
+      "title": "Checkpoint: 4.2.3",
+      "prompt": "Name one non-Normal family and its canonical link. Justify from mean range \u2014 not software default.",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 4.2.3.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "poisson",
+        "binomial",
+        "log",
+        "logit",
+        "canonical",
+        "mean",
+        "positive"
+      ],
+      "explanation": "Checkpoint for 4.2.3.",
+      "model_answer": "Poisson\u2013log (canonical): mean positive; log maps (0,\u221e) to \u211d for \u03b7. Or binomial\u2013logit similarly.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest link/\u03b7 wobble \u2014 structure absorb complete; factors next.",
+    "prompt": "Which part of today's 4.2.3 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 4.2.3 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "4.2",
+    "next_topic_title": "Variables, factors and interaction terms (4.2.4)",
+    "continuity_line": "Today you closed GLM structure (family \u2192 \u03b7 \u2192 link); tomorrow continues at factors and interactions inside the linear predictor.",
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.4 \u2014 titles only tonight",
+    "student_facing": "Tomorrow: variables, factors and interactions (4.2.4). Optional light prep: skim 4.2.4 headings \u2014 titles only tonight."
+  },
+  "absorption_note": "EA-006 structure absorb day 3/3 \u2014 grandfather excellence now Campaign member"
+}

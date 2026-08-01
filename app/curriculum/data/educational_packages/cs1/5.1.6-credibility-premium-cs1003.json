@@ -1,0 +1,186 @@
+{
+  "package_version": "cs1003-campaign-delta-1.0.0",
+  "publication_version": "cs1003-live-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
+  "volume_id": "CS1-003",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1003_EDUCATIONAL_VOLUME.md",
+    "CS1003_CERTIFICATION_REPORT.md",
+    "EP001_WAVE2_PLAN.md"
+  ],
+  "author_id": "cs1003-educational-author",
+  "authored_at": "2026-08-01",
+  "package_id": "CS1-EP001-PKG-5.1-CREDIBILITY-PREMIUM",
+  "campaign_day": "CD-D21",
+  "topic_focus_lo": "5.1.6",
+  "topic_code": "5.1",
+  "topic_title": "Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators",
+  "topic_aliases": [
+    "CS1-E-T01",
+    "5.1",
+    "5.1.6"
+  ],
+  "topic_title_keywords": [
+    "credibility",
+    "premium",
+    "factor",
+    "z",
+    "bayesian"
+  ],
+  "golden_id": "GOLDEN-CS1003-CS1-5.1-516",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1003-cs1-5.1-credibility-premium",
+    "display_title": "Use the credibility premium formula and factor",
+    "mission_purpose": "Today's Mission exists to explain the credibility premium formula and the role of the credibility factor — bridging Bayesian language into actuarial credibility.",
+    "tutor_intent": "Today I will force Z·observation + (1−Z)·prior-mean structure and refuse Z=1 always.",
+    "educational_intent": "Produce credibility-premium literacy.",
+    "learning_objective": "Explain the credibility premium formula and the role played by the credibility factor.",
+    "concept_focus": "Premium = Z·X̄ + (1−Z)·μ → role of Z → refuse Z=1 myth.",
+    "prior_bridge": "Yesterday credible intervals (5.1.5). Today credibility premium objects.",
+    "why_now": "5.1.6 opens credibility theory before Bayesian vs EB approaches.",
+    "expected_benefit": "Study Progress for premium formula — not full Bayesian credibility derivation as primary.",
+    "explainability": "Campaign Delta Day 21 focuses LO 5.1.6.",
+    "success_criteria": [
+      "Closed-book, write the credibility premium formula with Z.",
+      "State what larger Z means.",
+      "Refuse always setting Z=1."
+    ],
+    "task_descriptions": [
+      "Sketch Z blend before CMP.",
+      "Guided Reading through CMP 5.1.6.",
+      "Knowledge Checks: formula + refuse Z=1."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 50,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1003-cs1-5.1-credibility-premium",
+    "session_educational_purpose": "Execute today's Mission for LO 5.1.6 — not neighbouring LOs listed out of scope.",
+    "session_tutor_purpose": "Set focus on 5.1.6; exit to CMP; retrieve closed-book checks.",
+    "duration_budget_minutes": {
+      "min": 50,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Use the credibility premium formula and factor. Study Progress for LO 5.1.6 — not Topic Complete for later LOs in this Volume.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.6 move closed-book tomorrow? Rate 1–5 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.6 skill. Stop at the stop condition; do not swallow the next LO.",
+    "focus_questions": [
+      "What is the core move of Syllabus 5.1.6?",
+      "Where does the CMP give a worked cue you must attempt before reveal?",
+      "What misconception must you refuse today?",
+      "What will you retrieve closed-book in Knowledge Checks?"
+    ],
+    "misconception_watch": [
+      "Watch for swallowing the next LO beyond 5.1.6.",
+      "Watch for software/menu tourism without method warrant.",
+      "Watch for Isolated Golden Day / spine claims."
+    ],
+    "open_point": "CMP · Syllabus 5.1.6 credibility premium formula and factor",
+    "stop_condition": "Through CMP 5.1.6 (stop before Bayesian credibility approach primary 5.1.7)",
+    "out_of_scope_today": [
+      "Bayesian credibility primary (5.1.7)",
+      "Empirical Bayes primary",
+      "Spine"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.6 credibility premium formula and factor. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.6 (stop before Bayesian credibility approach primary 5.1.7). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 5.1.6 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause — write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1003-5.1.6-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1003-5.1.6-ar-01",
+      "title": "Active Recall: 5.1.6",
+      "prompt": "Closed-book. Write the credibility premium as a blend of observed mean and prior/manual mean using credibility factor Z. What does Z near 1 mean?",
+      "response_type": "short_structured",
+      "body": "Retrieve 5.1.6 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "z",
+        "credibility",
+        "premium",
+        "blend",
+        "observed",
+        "prior",
+        "mean"
+      ],
+      "explanation": "Active recall for 5.1.6.",
+      "model_answer": "P = Z·X̄ + (1−Z)·μ. Z near 1 → heavy weight on data; near 0 → heavy weight on prior/manual mean.",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1003-5.1.6-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1003-5.1.6-cp-01",
+      "title": "Checkpoint: 5.1.6",
+      "prompt": "Refuse: 'always use full credibility (Z=1).' When might Z be smaller?",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 5.1.6.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "z",
+        "limited data",
+        "prior",
+        "not always 1"
+      ],
+      "explanation": "Checkpoint for 5.1.6.",
+      "model_answer": "Refuse Z=1 always. With limited/noisy data, Z shrinks toward the prior/manual mean.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest credibility-factor wobble — Bayesian credibility approach tomorrow.",
+    "prompt": "Which part of today's 5.1.6 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 5.1.6 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "5.1",
+    "next_topic_title": "Bayesian approach to credibility (5.1.7)",
+    "continuity_line": "Today you practised the credibility premium formula; tomorrow continues at the Bayesian approach to credibility premiums.",
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.7 — titles only tonight",
+    "student_facing": "Tomorrow: Bayesian approach to credibility theory (5.1.7). Optional light prep: skim 5.1.7 headings — titles only tonight."
+  },
+  "published_at": "2026-08-01"
+}

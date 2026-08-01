@@ -1,0 +1,184 @@
+{
+  "package_version": "cs1003-campaign-delta-1.0.0",
+  "publication_version": "cs1003-catalogue-1.0.0",
+  "status": "campaign_member_certified",
+  "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
+  "volume_id": "CS1-003",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1003_EDUCATIONAL_VOLUME.md",
+    "CS1003_CERTIFICATION_REPORT.md",
+    "EP001_WAVE2_PLAN.md"
+  ],
+  "author_id": "cs1003-educational-author",
+  "authored_at": "2026-08-01",
+  "package_id": "CS1-EP001-PKG-5.1-BAYES-THEOREM",
+  "campaign_day": "CD-D16",
+  "topic_focus_lo": "5.1.1",
+  "topic_code": "5.1",
+  "topic_title": "Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators",
+  "topic_aliases": [
+    "CS1-E-T01",
+    "5.1",
+    "5.1.1"
+  ],
+  "topic_title_keywords": [
+    "bayes",
+    "theorem",
+    "conditional",
+    "probability",
+    "posterior"
+  ],
+  "golden_id": "GOLDEN-CS1003-CS1-5.1-511",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1003-cs1-5.1-bayes-theorem",
+    "display_title": "Apply Bayes' theorem to simple conditional probabilities",
+    "mission_purpose": "Today's Mission exists to use Bayes' theorem for simple conditional probabilities \u2014 opening Bayesian foundations after GLM Revision \u2014 without claiming conjugate/posterior mastery yet.",
+    "tutor_intent": "Today I will force Bayes update arithmetic on a simple table and refuse confusing P(A|B) with P(B|A).",
+    "educational_intent": "Produce Bayes' theorem competence as 5.1 entry.",
+    "learning_objective": "Use Bayes' theorem to calculate simple conditional probabilities.",
+    "concept_focus": "Prior odds/likelihood \u2192 posterior \u2192 refuse inverse-probability confusion.",
+    "prior_bridge": "CD-R2 retrieved 4.1\u20134.2. Today opens Section 5 at 5.1.1.",
+    "why_now": "5.1.1 is the lawful Bayesian entry after mid-spine regression/GLM.",
+    "expected_benefit": "Study Progress for Bayes theorem \u2014 not conjugate priors as primary.",
+    "explainability": "Campaign Delta Day 16 opens 5.1 Learning.",
+    "success_criteria": [
+      "Closed-book, state Bayes' theorem in words or symbols.",
+      "Compute one simple posterior probability from given pieces.",
+      "Refuse confusing P(A|B) with P(B|A)."
+    ],
+    "task_descriptions": [
+      "Sketch prior \u2192 likelihood \u2192 posterior before CMP.",
+      "Guided Reading through CMP 5.1.1.",
+      "Knowledge Checks: theorem + refuse inverse confusion."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 50,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1003-cs1-5.1-bayes-theorem",
+    "session_educational_purpose": "Execute today's Mission for LO 5.1.1 \u2014 not neighbouring LOs listed out of scope.",
+    "session_tutor_purpose": "Set focus on 5.1.1; exit to CMP; retrieve closed-book checks.",
+    "duration_budget_minutes": {
+      "min": 50,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Apply Bayes' theorem to simple conditional probabilities. Study Progress for LO 5.1.1 \u2014 not Topic Complete for later LOs in this Volume.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.1 move closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.1 skill. Stop at the stop condition; do not swallow the next LO.",
+    "focus_questions": [
+      "What is the core move of Syllabus 5.1.1?",
+      "Where does the CMP give a worked cue you must attempt before reveal?",
+      "What misconception must you refuse today?",
+      "What will you retrieve closed-book in Knowledge Checks?"
+    ],
+    "misconception_watch": [
+      "Watch for swallowing the next LO beyond 5.1.1.",
+      "Watch for software/menu tourism without method warrant.",
+      "Watch for Isolated Golden Day / spine claims."
+    ],
+    "open_point": "CMP \u00b7 Syllabus 5.1.1 Bayes' theorem and simple conditional probabilities",
+    "stop_condition": "Through CMP 5.1.1 (stop before prior/posterior primary 5.1.2)",
+    "out_of_scope_today": [
+      "Conjugate priors primary (5.1.2)",
+      "Credibility theory",
+      "Spine claims"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.1 Bayes' theorem and simple conditional probabilities. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.1 (stop before prior/posterior primary 5.1.2). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 5.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1003-5.1.1-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1003-5.1.1-ar-01",
+      "title": "Active Recall: 5.1.1",
+      "prompt": "Closed-book. State Bayes' theorem connecting prior, likelihood, and posterior for an event/parameter in words.",
+      "response_type": "short_structured",
+      "body": "Retrieve 5.1.1 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "prior",
+        "likelihood",
+        "posterior",
+        "bayes",
+        "conditional",
+        "proportional"
+      ],
+      "explanation": "Active recall for 5.1.1.",
+      "model_answer": "Posterior \u221d prior \u00d7 likelihood (normalised). Bayes updates beliefs given data.",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1003-5.1.1-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1003-5.1.1-cp-01",
+      "title": "Checkpoint: 5.1.1",
+      "prompt": "Refuse: treating P(disease|positive) as equal to P(positive|disease) without calculation. What does Bayes require?",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 5.1.1.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "base rate",
+        "prior",
+        "not equal",
+        "inverse"
+      ],
+      "explanation": "Checkpoint for 5.1.1.",
+      "model_answer": "Refuse inverse confusion. Bayes combines prior (base rate) with likelihood of the data; the two conditionals are not equal.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest Bayes-arithmetic wobble \u2014 prior/posterior language tomorrow.",
+    "prompt": "Which part of today's 5.1.1 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 5.1.1 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "5.1",
+    "next_topic_title": "Prior, posterior and conjugate prior (5.1.2)",
+    "continuity_line": "Today you practised Bayes' theorem; tomorrow continues at prior, posterior and conjugate prior language.",
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.2 \u2014 titles only tonight",
+    "student_facing": "Tomorrow: prior, posterior and conjugate prior (5.1.2). Optional light prep: skim 5.1.2 headings \u2014 titles only tonight."
+  }
+}

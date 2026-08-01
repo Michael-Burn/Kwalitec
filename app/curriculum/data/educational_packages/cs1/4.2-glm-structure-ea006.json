@@ -2,7 +2,7 @@
   "package_id": "CS1-EA005-PKG-4.2-GLM-STRUCTURE",
   "package_version": "ea005-pilot-1.0.0",
   "publication_version": "ea006-live-1.0.0",
-  "status": "publication_approved",
+  "status": "superseded_by_campaign_delta",
   "subject_id": "CS1",
   "topic_code": "4.2",
   "topic_title": "Understand and use generalised linear models",
@@ -183,5 +183,8 @@
     "continuity_line": "Today you practised thinking in distributions and likelihood-shaped structure; tomorrow that thinking opens Bayesian priors and posteriors.",
     "light_prep_cue": "Optional skim: CMP heading for Bayes' theorem / prior–posterior (Syllabus 5.1.1–5.1.2) — titles only, no deep study tonight",
     "student_facing": "Tomorrow: Bayesian foundations (5.1). Today's GLM work trained distribution-and-likelihood thinking; tomorrow that carries into priors and posteriors. Optional light prep: skim the CMP headings for Bayes' theorem and prior–posterior — titles only tonight."
-  }
+  },
+  "superseded_by": "CS1-EP001-CAMPAIGN-DELTA",
+  "superseded_at": "2026-08-01",
+  "supersession_note": "RO-002 / HR-002 — absorbed into CD-D6…CD-D8; not publication_approved"
 }

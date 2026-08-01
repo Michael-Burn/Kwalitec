@@ -1,0 +1,183 @@
+{
+  "package_version": "cs1003-campaign-delta-1.0.0",
+  "publication_version": "cs1003-catalogue-1.0.0",
+  "status": "campaign_member_certified",
+  "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
+  "volume_id": "CS1-003",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1003_EDUCATIONAL_VOLUME.md",
+    "CS1003_CERTIFICATION_REPORT.md",
+    "EP001_WAVE2_PLAN.md"
+  ],
+  "author_id": "cs1003-educational-author",
+  "authored_at": "2026-08-01",
+  "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
+  "campaign_day": "CD-D20",
+  "topic_focus_lo": "5.1.5",
+  "topic_code": "5.1",
+  "topic_title": "Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators",
+  "topic_aliases": [
+    "CS1-E-T01",
+    "5.1",
+    "5.1.5"
+  ],
+  "topic_title_keywords": [
+    "credible interval",
+    "posterior",
+    "bayesian",
+    "probability"
+  ],
+  "golden_id": "GOLDEN-CS1003-CS1-5.1-515",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1003-cs1-5.1-credible-intervals",
+    "display_title": "Construct credible intervals in simple cases",
+    "mission_purpose": "Today's Mission exists to form credible intervals in simple cases \u2014 so posterior probability statements about parameters are honest and distinct from frequentist confidence slogans.",
+    "tutor_intent": "Today I will force a credible-interval probability reading and refuse confidence-interval slogan copy.",
+    "educational_intent": "Produce credible-interval literacy.",
+    "learning_objective": "Construct and interpret credible intervals in simple cases.",
+    "concept_focus": "Posterior probability interval \u2192 interpret \u2192 refuse CI-slogan copy.",
+    "prior_bridge": "Yesterday loss-based estimators (5.1.4). Today interval summaries.",
+    "why_now": "5.1.5 completes core Bayesian estimation objects before credibility theory.",
+    "expected_benefit": "Study Progress for credible intervals \u2014 not credibility premium yet.",
+    "explainability": "Campaign Delta Day 20 focuses LO 5.1.5.",
+    "success_criteria": [
+      "Closed-book, state what a credible interval claims in probability language.",
+      "Outline constructing one in a simple posterior case.",
+      "Refuse treating it as a frequentist confidence slogan without distinction."
+    ],
+    "task_descriptions": [
+      "Sketch probability-on-parameter reading before CMP.",
+      "Guided Reading through CMP 5.1.5.",
+      "Knowledge Checks: reading + refuse CI-slogan copy."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 50,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1003-cs1-5.1-credible-intervals",
+    "session_educational_purpose": "Execute today's Mission for LO 5.1.5 \u2014 not neighbouring LOs listed out of scope.",
+    "session_tutor_purpose": "Set focus on 5.1.5; exit to CMP; retrieve closed-book checks.",
+    "duration_budget_minutes": {
+      "min": 50,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Construct credible intervals in simple cases. Study Progress for LO 5.1.5 \u2014 not Topic Complete for later LOs in this Volume.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.5 move closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.5 skill. Stop at the stop condition; do not swallow the next LO.",
+    "focus_questions": [
+      "What is the core move of Syllabus 5.1.5?",
+      "Where does the CMP give a worked cue you must attempt before reveal?",
+      "What misconception must you refuse today?",
+      "What will you retrieve closed-book in Knowledge Checks?"
+    ],
+    "misconception_watch": [
+      "Watch for swallowing the next LO beyond 5.1.5.",
+      "Watch for software/menu tourism without method warrant.",
+      "Watch for Isolated Golden Day / spine claims."
+    ],
+    "open_point": "CMP \u00b7 Syllabus 5.1.5 credible intervals",
+    "stop_condition": "Through CMP 5.1.5 (stop before credibility premium primary 5.1.6)",
+    "out_of_scope_today": [
+      "Credibility premium primary (5.1.6)",
+      "Empirical Bayes",
+      "Spine claims"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.5 credible intervals. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.5 (stop before credibility premium primary 5.1.6). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 5.1.5 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1003-5.1.5-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1003-5.1.5-ar-01",
+      "title": "Active Recall: 5.1.5",
+      "prompt": "Closed-book. In one sentence, what probability claim does a 95% credible interval make about the parameter (Bayesian reading)?",
+      "response_type": "short_structured",
+      "body": "Retrieve 5.1.5 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "posterior",
+        "probability",
+        "parameter",
+        "interval",
+        "credible",
+        "95"
+      ],
+      "explanation": "Active recall for 5.1.5.",
+      "model_answer": "Under the posterior, the parameter lies in the interval with probability 95% (for a 95% credible interval).",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1003-5.1.5-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1003-5.1.5-cp-01",
+      "title": "Checkpoint: 5.1.5",
+      "prompt": "Refuse copying a frequentist confidence slogan onto a credible interval without noting the difference. What differs?",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 5.1.5.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "posterior",
+        "parameter",
+        "not frequentist",
+        "probability"
+      ],
+      "explanation": "Checkpoint for 5.1.5.",
+      "model_answer": "Refuse slogan copy. Credible intervals are posterior probability statements about the parameter; confidence intervals have a different frequentist coverage reading.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest interval wobble \u2014 credibility premium next.",
+    "prompt": "Which part of today's 5.1.5 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 5.1.5 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "5.1",
+    "next_topic_title": "Credibility premium formula and credibility factor (5.1.6)",
+    "continuity_line": "Today you practised credible intervals; tomorrow continues at the credibility premium formula and the credibility factor.",
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.6 \u2014 titles only tonight",
+    "student_facing": "Tomorrow: credibility premium formula and credibility factor (5.1.6). Optional light prep: skim 5.1.6 headings \u2014 titles only tonight."
+  }
+}

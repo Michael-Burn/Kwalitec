@@ -1,0 +1,183 @@
+{
+  "package_version": "cs1003-campaign-delta-1.0.0",
+  "publication_version": "cs1003-catalogue-1.0.0",
+  "status": "campaign_member_certified",
+  "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
+  "volume_id": "CS1-003",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1003_EDUCATIONAL_VOLUME.md",
+    "CS1003_CERTIFICATION_REPORT.md",
+    "EP001_WAVE2_PLAN.md"
+  ],
+  "author_id": "cs1003-educational-author",
+  "authored_at": "2026-08-01",
+  "package_id": "CS1-EP001-PKG-4.2-MODEL-CHOICE",
+  "campaign_day": "CD-D12",
+  "topic_focus_lo": "4.2.7",
+  "topic_code": "4.2",
+  "topic_title": "Understand and use generalised linear models",
+  "topic_aliases": [
+    "CS1-D-T02",
+    "4.2",
+    "4.2.7"
+  ],
+  "topic_title_keywords": [
+    "analysis of deviance",
+    "model choice",
+    "significance",
+    "glm"
+  ],
+  "golden_id": "GOLDEN-CS1003-CS1-4.2-427",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1003-cs1-4.2-model-choice",
+    "display_title": "Choose a GLM using analysis of deviance",
+    "mission_purpose": "Today's Mission exists to choose a suitable GLM using analysis of deviance and examination of parameter significance \u2014 so model choice is evidence-led.",
+    "tutor_intent": "Today I will force nested comparison via deviance change + significance reading \u2014 refuse largest-model theatre.",
+    "educational_intent": "Produce analysis-of-deviance model choice skill.",
+    "learning_objective": "Choose a suitable model using an analysis of deviance and examination of the significance of the parameters.",
+    "concept_focus": "Nested compare \u2192 \u0394 deviance \u2192 parameter significance \u2192 refuse kitchen-sink GLM.",
+    "prior_bridge": "Yesterday deviance/estimation (4.2.6). Today chooses among models.",
+    "why_now": "4.2.7 is the choice hinge before residual types (4.2.8).",
+    "expected_benefit": "Study Progress for model choice \u2014 not residual taxonomy as primary.",
+    "explainability": "Campaign Delta Day 12 focuses LO 4.2.7.",
+    "success_criteria": [
+      "Closed-book, outline analysis of deviance for nested models.",
+      "State how parameter significance informs retention.",
+      "Refuse largest-model-as-best without evidence."
+    ],
+    "task_descriptions": [
+      "Sketch nested A \u2282 B compare before CMP.",
+      "Guided Reading through CMP 4.2.7.",
+      "Knowledge Checks: \u0394 deviance + refuse kitchen-sink."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 50,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1003-cs1-4.2-model-choice",
+    "session_educational_purpose": "Execute today's Mission for LO 4.2.7 \u2014 not neighbouring LOs listed out of scope.",
+    "session_tutor_purpose": "Set focus on 4.2.7; exit to CMP; retrieve closed-book checks.",
+    "duration_budget_minutes": {
+      "min": 50,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Choose a GLM using analysis of deviance. Study Progress for LO 4.2.7 \u2014 not Topic Complete for later LOs in this Volume.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.7 move closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.7 skill. Stop at the stop condition; do not swallow the next LO.",
+    "focus_questions": [
+      "What is the core move of Syllabus 4.2.7?",
+      "Where does the CMP give a worked cue you must attempt before reveal?",
+      "What misconception must you refuse today?",
+      "What will you retrieve closed-book in Knowledge Checks?"
+    ],
+    "misconception_watch": [
+      "Watch for swallowing the next LO beyond 4.2.7.",
+      "Watch for software/menu tourism without method warrant.",
+      "Watch for Isolated Golden Day / spine claims."
+    ],
+    "open_point": "CMP \u00b7 Syllabus 4.2.7 analysis of deviance and parameter significance",
+    "stop_condition": "Through CMP 4.2.7 (stop before residuals primary 4.2.8)",
+    "out_of_scope_today": [
+      "Residuals primary (4.2.8)",
+      "Goodness tests primary (4.2.9)",
+      "Bayes"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.7 analysis of deviance and parameter significance. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.7 (stop before residuals primary 4.2.8). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.2.7 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1003-4.2.7-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1003-4.2.7-ar-01",
+      "title": "Active Recall: 4.2.7",
+      "prompt": "Closed-book. For nested models A \u2282 B: what do you compare with analysis of deviance, and what does a large improvement suggest?",
+      "response_type": "short_structured",
+      "body": "Retrieve 4.2.7 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "nested",
+        "deviance",
+        "difference",
+        "improve",
+        "significance",
+        "parameter"
+      ],
+      "explanation": "Active recall for 4.2.7.",
+      "model_answer": "Compare deviance of A vs B (\u0394 deviance / related test). Large improvement supports the richer model if parameters are significant and warranted.",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1003-4.2.7-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1003-4.2.7-cp-01",
+      "title": "Checkpoint: 4.2.7",
+      "prompt": "Refuse: 'always fit the biggest GLM.' Give an analysis-of-deviance warrant for a smaller model.",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 4.2.7.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "smaller",
+        "deviance",
+        "not significant",
+        "parsimony"
+      ],
+      "explanation": "Checkpoint for 4.2.7.",
+      "model_answer": "Refuse kitchen-sink. If \u0394 deviance and parameter significance do not support extra terms, prefer the smaller suitable model.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest model-choice wobble \u2014 residuals tomorrow.",
+    "prompt": "Which part of today's 4.2.7 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 4.2.7 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "4.2",
+    "next_topic_title": "Pearson and deviance residuals (4.2.8)",
+    "continuity_line": "Today you practised model choice via deviance; tomorrow continues at Pearson and deviance residuals and their use.",
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.8 \u2014 titles only tonight",
+    "student_facing": "Tomorrow: Pearson and deviance residuals (4.2.8). Optional light prep: skim 4.2.8 headings \u2014 titles only tonight."
+  }
+}

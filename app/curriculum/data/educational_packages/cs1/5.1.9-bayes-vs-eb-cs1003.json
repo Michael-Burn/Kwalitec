@@ -1,0 +1,186 @@
+{
+  "package_version": "cs1003-campaign-delta-1.0.0",
+  "publication_version": "cs1003-live-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
+  "volume_id": "CS1-003",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1003_EDUCATIONAL_VOLUME.md",
+    "CS1003_CERTIFICATION_REPORT.md",
+    "EP001_WAVE2_PLAN.md"
+  ],
+  "author_id": "cs1003-educational-author",
+  "authored_at": "2026-08-01",
+  "package_id": "CS1-EP001-PKG-5.1-BAYES-VS-EB",
+  "campaign_day": "CD-D24",
+  "topic_focus_lo": "5.1.9",
+  "topic_code": "5.1",
+  "topic_title": "Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators",
+  "topic_aliases": [
+    "CS1-E-T01",
+    "5.1",
+    "5.1.9"
+  ],
+  "topic_title_keywords": [
+    "bayes",
+    "empirical bayes",
+    "assumption",
+    "difference",
+    "credibility"
+  ],
+  "golden_id": "GOLDEN-CS1003-CS1-5.1-519",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1003-cs1-5.1-bayes-vs-eb",
+    "display_title": "Contrast Bayesian and Empirical Bayes assumptions",
+    "mission_purpose": "Today's Mission exists to understand differences between Bayesian and Empirical Bayes approaches and the assumptions underlying each — closing 5.1 Learning before terminal Revision — without claiming first-pass spine or until-exam trust.",
+    "tutor_intent": "Today I will force a two-column contrast of assumptions and refuse spine/exam claims.",
+    "educational_intent": "Produce honest contrast competence; close Trust Front Learning.",
+    "learning_objective": "Explain differences between Bayesian and Empirical Bayes approaches and the assumptions underlying each.",
+    "concept_focus": "Contrast assumptions → name differences → refuse spine/exam claims.",
+    "prior_bridge": "Yesterday EB credibility (5.1.8). Today contrasts and closes 5.1 Learning.",
+    "why_now": "5.1.9 completes Bayesian Learning span before CD-R3.",
+    "expected_benefit": "Study Progress for contrast — not spine PASS; not until-exam trust.",
+    "explainability": "Campaign Delta Day 24 closes 5.1 Learning.",
+    "success_criteria": [
+      "Closed-book, state two differences between Bayes and EB approaches.",
+      "Name one assumption underlying each.",
+      "Refuse claiming first-pass spine or until-exam trust from this Volume."
+    ],
+    "task_descriptions": [
+      "Sketch two-column contrast before CMP.",
+      "Guided Reading through CMP 5.1.9.",
+      "Knowledge Checks: contrast + refuse spine/exam claims."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 50,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1003-cs1-5.1-bayes-vs-eb",
+    "session_educational_purpose": "Execute today's Mission for LO 5.1.9 — not neighbouring LOs listed out of scope.",
+    "session_tutor_purpose": "Set focus on 5.1.9; exit to CMP; retrieve closed-book checks.",
+    "duration_budget_minutes": {
+      "min": 50,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Contrast Bayesian and Empirical Bayes assumptions. Study Progress for LO 5.1.9 — not Topic Complete for later LOs in this Volume.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.9 move closed-book tomorrow? Rate 1–5 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.9 skill. Stop at the stop condition; do not swallow the next LO.",
+    "focus_questions": [
+      "What is the core move of Syllabus 5.1.9?",
+      "Where does the CMP give a worked cue you must attempt before reveal?",
+      "What misconception must you refuse today?",
+      "What will you retrieve closed-book in Knowledge Checks?"
+    ],
+    "misconception_watch": [
+      "Watch for swallowing the next LO beyond 5.1.9.",
+      "Watch for software/menu tourism without method warrant.",
+      "Watch for Isolated Golden Day / spine claims."
+    ],
+    "open_point": "CMP · Syllabus 5.1.9 Bayes vs Empirical Bayes differences",
+    "stop_condition": "Through CMP 5.1.9 (stop before terminal Revision as Learning; no spine claim)",
+    "out_of_scope_today": [
+      "First-pass spine PASS",
+      "Until-exam trust",
+      "Opening Continuity Front claims",
+      "New chapter beyond 5.1"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.9 Bayes vs Empirical Bayes differences. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.9 (stop before terminal Revision as Learning; no spine claim). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 5.1.9 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause — write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1003-5.1.9-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1003-5.1.9-ar-01",
+      "title": "Active Recall: 5.1.9",
+      "prompt": "Closed-book. Give two differences between Bayesian and Empirical Bayes credibility approaches. Name one assumption for each.",
+      "response_type": "short_structured",
+      "body": "Retrieve 5.1.9 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "prior",
+        "estimate",
+        "assumption",
+        "bayesian",
+        "empirical",
+        "difference"
+      ],
+      "explanation": "Active recall for 5.1.9.",
+      "model_answer": "Bayes: prior specified as belief. EB: estimates prior pieces from data. Assumptions: Bayes needs a credible prior; EB needs enough collateral structure to estimate hyperparameters.",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1003-5.1.9-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1003-5.1.9-cp-01",
+      "title": "Checkpoint: 5.1.9",
+      "prompt": "Refuse: 'CS1-003 means first-pass spine / until-exam trust.' What is the honest claim?",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 5.1.9.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "pilot arc",
+        "not spine",
+        "not until-exam",
+        "trust front"
+      ],
+      "explanation": "Checkpoint for 5.1.9.",
+      "model_answer": "Refuse. CS1-003 is a Pilot Arc Trust Front absorption — not spine PASS and not until-exam trust.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest contrast wobble — CD-R3 tomorrow protects mid-spine memory.",
+    "prompt": "Which part of today's 5.1.9 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 5.1.9 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "CD-R3",
+    "next_topic_title": "Revision — retrieve mid-spine 4.1→4.2→5.1",
+    "continuity_line": "Today you closed Bayes vs EB contrast; tomorrow is terminal Revision returning to 4.1–5.1 under closed-book retrieval — honest stop after, not spine declaration.",
+    "light_prep_cue": "Optional: note weakest mid-spine link (4.1 / 4.2 / 5.1) — titles only",
+    "student_facing": "Tomorrow: Campaign Delta Revision CD-R3 — retrieve mid-spine 4.1→4.2→5.1. Optional: note your weakest mid-spine link tonight."
+  },
+  "published_at": "2026-08-01"
+}

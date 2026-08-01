@@ -1,0 +1,186 @@
+{
+  "package_version": "cs1003-campaign-delta-1.0.0",
+  "publication_version": "cs1003-catalogue-1.0.0",
+  "status": "campaign_member_certified",
+  "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
+  "volume_id": "CS1-003",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1003_EDUCATIONAL_VOLUME.md",
+    "CS1003_CERTIFICATION_REPORT.md",
+    "EP001_WAVE2_PLAN.md"
+  ],
+  "author_id": "cs1003-educational-author",
+  "authored_at": "2026-08-01",
+  "package_id": "CS1-EP001-PKG-4.2-FIT-INTERPRET",
+  "campaign_day": "CD-D15",
+  "topic_focus_lo": "4.2.10",
+  "topic_code": "4.2",
+  "topic_title": "Understand and use generalised linear models",
+  "topic_aliases": [
+    "CS1-D-T02",
+    "4.2",
+    "4.2.10"
+  ],
+  "topic_title_keywords": [
+    "fit",
+    "interpret",
+    "output",
+    "glm",
+    "software"
+  ],
+  "golden_id": "GOLDEN-CS1003-CS1-4.2-4210",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1003-cs1-4.2-fit-interpret",
+    "display_title": "Fit a GLM and interpret the output",
+    "mission_purpose": "Today's Mission exists to fit a generalised linear model to a data set and interpret the output \u2014 closing 4.2 Learning before mid-spine Revision \u2014 without opening Bayesian material.",
+    "tutor_intent": "Today I will force an end-to-end interpret chain (family, link, coefficients, fit/diagnostics cues) \u2014 refuse button-fit without interpretation.",
+    "educational_intent": "Integrate 4.2 skills into software fit + interpret.",
+    "learning_objective": "Fit a generalised linear model to a data set and interpret the output.",
+    "concept_focus": "Choose family/link \u2192 fit \u2192 interpret coefficients/fit cues \u2192 refuse button-only.",
+    "prior_bridge": "Yesterday formal tests (4.2.9). Today integrates fit/interpret.",
+    "why_now": "4.2.10 closes GLM Learning before CD-R2; still not Bayes.",
+    "expected_benefit": "Study Progress for GLM fit/interpret \u2014 not Bayesian foundations; not spine PASS.",
+    "explainability": "Campaign Delta Day 15 closes 4.2 Learning span.",
+    "success_criteria": [
+      "Closed-book, outline family/link choice \u2192 fit \u2192 interpret key output.",
+      "Interpret one coefficient or fit cue in context.",
+      "Refuse button-fit without interpretation; refuse claiming spine complete."
+    ],
+    "task_descriptions": [
+      "Sketch interpret checklist before CMP.",
+      "Guided Reading through CMP 4.2.10.",
+      "Knowledge Checks: interpret chain + refuse button-only / spine claim."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 50,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1003-cs1-4.2-fit-interpret",
+    "session_educational_purpose": "Execute today's Mission for LO 4.2.10 \u2014 not neighbouring LOs listed out of scope.",
+    "session_tutor_purpose": "Set focus on 4.2.10; exit to CMP; retrieve closed-book checks.",
+    "duration_budget_minutes": {
+      "min": 50,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Fit a GLM and interpret the output. Study Progress for LO 4.2.10 \u2014 not Topic Complete for later LOs in this Volume.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.10 move closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.10 skill. Stop at the stop condition; do not swallow the next LO.",
+    "focus_questions": [
+      "What is the core move of Syllabus 4.2.10?",
+      "Where does the CMP give a worked cue you must attempt before reveal?",
+      "What misconception must you refuse today?",
+      "What will you retrieve closed-book in Knowledge Checks?"
+    ],
+    "misconception_watch": [
+      "Watch for swallowing the next LO beyond 4.2.10.",
+      "Watch for software/menu tourism without method warrant.",
+      "Watch for Isolated Golden Day / spine claims."
+    ],
+    "open_point": "CMP \u00b7 Syllabus 4.2.10 fit GLM and interpret output",
+    "stop_condition": "Through CMP 4.2.10 (stop before Bayesian 5.1; stop before Revision as Learning)",
+    "out_of_scope_today": [
+      "Bayesian foundations (5.1)",
+      "First-pass spine claims",
+      "Isolated Golden Day claims",
+      "CS1B marathon"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.10 fit GLM and interpret output. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.10 (stop before Bayesian 5.1; stop before Revision as Learning). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.2.10 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1003-4.2.10-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1003-4.2.10-ar-01",
+      "title": "Active Recall: 4.2.10",
+      "prompt": "Closed-book. Outline steps: choose family and link \u2192 fit in software \u2192 list three output elements you must interpret.",
+      "response_type": "short_structured",
+      "body": "Retrieve 4.2.10 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "family",
+        "link",
+        "coefficient",
+        "deviance",
+        "residual",
+        "fit",
+        "interpret"
+      ],
+      "explanation": "Active recall for 4.2.10.",
+      "model_answer": "Choose family/link; fit; interpret coefficients (direction/scale via link), fit/deviance cues, and residual/test signals as relevant.",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1003-4.2.10-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1003-4.2.10-cp-01",
+      "title": "Checkpoint: 4.2.10",
+      "prompt": "Refuse: 'I clicked Fit so 4.2 is done / spine is ready.' What remains honest?",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 4.2.10.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "interpret",
+        "not spine",
+        "revision",
+        "bayes later"
+      ],
+      "explanation": "Checkpoint for 4.2.10.",
+      "model_answer": "Refuse. Fit without interpret is incomplete; Pilot Arc still needs Revision and later 5.1 \u2014 not first-pass spine.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest fit/interpret wobble \u2014 CD-R2 tomorrow protects 4.1\u20134.2 memory.",
+    "prompt": "Which part of today's 4.2.10 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 4.2.10 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "CD-R2",
+    "next_topic_title": "Revision \u2014 retrieve regression through GLM (4.1\u20134.2)",
+    "continuity_line": "Today you closed GLM fit/interpret; tomorrow is Revision returning to 4.1\u20134.2 under closed-book retrieval \u2014 Bayesian 5.1 comes after.",
+    "light_prep_cue": "Optional: note weakest 4.2 link from memory \u2014 titles only",
+    "student_facing": "Tomorrow: Campaign Delta Revision CD-R2 \u2014 retrieve classical LM through GLM (4.1\u20134.2). Optional: note your weakest 4.2 link tonight."
+  }
+}

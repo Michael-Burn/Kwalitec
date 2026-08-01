@@ -154,3 +154,84 @@ def test_gamma_chain_reaches_cg_r1() -> None:
         assert pack.campaign_day == day
         completed.add(pack.package_id)
         last = pack.package_id
+
+
+def test_delta_chain_reaches_cd_r3() -> None:
+    """RO-002 — Trust Front entry at 4.1 → CD-D1…CD-R3 joint inventory."""
+    completed: set[str] = set()
+    last = ""
+
+    expected = [
+        ("CS1-EP001-PKG-4.1-RESPONSE-EXPLANATORY", "CD-D1"),
+        ("CS1-EP001-PKG-4.1-SIMPLE-MULTIPLE", "CD-D2"),
+        ("CS1-EP001-PKG-4.1-LEAST-SQUARES", "CD-D3"),
+        ("CS1-EP001-PKG-4.1-SOFTWARE-INFERENCE", "CD-D4"),
+        ("CS1-EP001-PKG-4.1-VARIABLE-SELECTION", "CD-D5"),
+        ("CS1-EP001-PKG-REV-LINEAR-MODELS", "CD-R1"),
+        ("CS1-EP001-PKG-4.2-EXPONENTIAL-FAMILY", "CD-D6"),
+        ("CS1-EP001-PKG-4.2-MEAN-VARIANCE", "CD-D7"),
+        ("CS1-EP001-PKG-4.2-LINK-CANONICAL", "CD-D8"),
+        ("CS1-EP001-PKG-4.2-FACTORS-INTERACTIONS", "CD-D9"),
+        ("CS1-EP001-PKG-4.2-LINEAR-PREDICTOR", "CD-D10"),
+        ("CS1-EP001-PKG-4.2-DEVIANCE-ESTIMATION", "CD-D11"),
+        ("CS1-EP001-PKG-4.2-MODEL-CHOICE", "CD-D12"),
+        ("CS1-EP001-PKG-4.2-RESIDUALS", "CD-D13"),
+        ("CS1-EP001-PKG-4.2-GOODNESS-TESTS", "CD-D14"),
+        ("CS1-EP001-PKG-4.2-FIT-INTERPRET", "CD-D15"),
+        ("CS1-EP001-PKG-REV-REGRESSION-GLM", "CD-R2"),
+        ("CS1-EP001-PKG-5.1-BAYES-THEOREM", "CD-D16"),
+        ("CS1-EP001-PKG-5.1-PRIOR-POSTERIOR", "CD-D17"),
+        ("CS1-EP001-PKG-5.1-POSTERIOR-SIMPLE", "CD-D18"),
+        ("CS1-EP001-PKG-5.1-LOSS-ESTIMATORS", "CD-D19"),
+        ("CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS", "CD-D20"),
+        ("CS1-EP001-PKG-5.1-CREDIBILITY-PREMIUM", "CD-D21"),
+        ("CS1-EP001-PKG-5.1-BAYESIAN-CREDIBILITY", "CD-D22"),
+        ("CS1-EP001-PKG-5.1-EMPIRICAL-BAYES", "CD-D23"),
+        ("CS1-EP001-PKG-5.1-BAYES-VS-EB", "CD-D24"),
+        ("CS1-EP001-PKG-REV-MIDSPINE", "CD-R3"),
+    ]
+    # Cold entry at mid-spine Trust Front (not Continuity Front from Gamma).
+    topic = "4.1"
+    for package_id, day in expected:
+        pack = resolve_active_educational_package(
+            subject_id="CS1",
+            syllabus_topic_code=topic,
+            completed_package_ids=completed,
+            last_completed_package_id=last,
+        )
+        assert pack is not None, f"missing successor before {day}"
+        assert pack.package_id == package_id, (
+            f"expected {package_id} got {pack.package_id}"
+        )
+        assert pack.campaign_day == day
+        assert pack.package_id != "CS1-EA005-PKG-4.2-GLM-STRUCTURE"
+        completed.add(pack.package_id)
+        last = pack.package_id
+        # After first day, chain follows tomorrow_preview; keep topic for cold fallback.
+        topic = pack.topic_code or topic
+
+
+def test_orphan_4_2_superseded_not_selected() -> None:
+    """RO-002 — EA-006 orphan must not win topic 4.2 after Delta activation."""
+    from app.application.educational_packages.loader import (
+        EducationalPackageLoader,
+        find_package_by_id,
+    )
+
+    orphan = find_package_by_id("CS1-EA005-PKG-4.2-GLM-STRUCTURE")
+    assert orphan is None
+
+    entry = resolve_active_educational_package(
+        subject_id="CS1",
+        syllabus_topic_code="4.2",
+        completed_package_ids=frozenset(),
+        last_completed_package_id="",
+    )
+    assert entry is not None
+    assert entry.campaign_day == "CD-D6"
+    assert entry.package_id == "CS1-EP001-PKG-4.2-EXPONENTIAL-FAMILY"
+
+    approved = EducationalPackageLoader().all_approved()
+    cd = [p for p in approved if (p.campaign_day or "").startswith("CD-")]
+    assert len(cd) == 27
+    assert all(p.package_id != "CS1-EA005-PKG-4.2-GLM-STRUCTURE" for p in approved)

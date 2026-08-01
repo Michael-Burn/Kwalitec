@@ -1,0 +1,189 @@
+{
+  "package_version": "cs1003-campaign-delta-1.0.0",
+  "publication_version": "cs1003-live-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
+  "volume_id": "CS1-003",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1003_EDUCATIONAL_VOLUME.md",
+    "CS1003_CERTIFICATION_REPORT.md",
+    "EP001_WAVE2_PLAN.md"
+  ],
+  "author_id": "cs1003-educational-author",
+  "authored_at": "2026-08-01",
+  "package_id": "CS1-EP001-PKG-4.1-VARIABLE-SELECTION",
+  "campaign_day": "CD-D5",
+  "topic_focus_lo": "4.1.5",
+  "topic_code": "4.1",
+  "topic_title": "Understand and use linear regression models",
+  "topic_aliases": [
+    "CS1-D-T01",
+    "4.1",
+    "4.1.5"
+  ],
+  "topic_title_keywords": [
+    "selection",
+    "model fit",
+    "variable",
+    "aic",
+    "explanatory"
+  ],
+  "golden_id": "GOLDEN-CS1003-CS1-4.1-415",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1003-cs1-4.1-variable-selection",
+    "display_title": "Select explanatory variables using model-fit measures",
+    "mission_purpose": "Today's Mission exists to use measures of model fit to select an appropriate set of explanatory variables — completing classical LM Learning before Revision — without opening GLM.",
+    "tutor_intent": "Today I will force the candidate to use a fit measure to justify adding/dropping an X and refuse kitchen-sink models.",
+    "educational_intent": "Produce selection discipline via fit measures, not habit.",
+    "learning_objective": "Use measures of model fit to select an appropriate set of explanatory variables.",
+    "concept_focus": "Fit measure → compare models → select set → refuse kitchen-sink.",
+    "prior_bridge": "Yesterday you completed software fit/inference/residuals (4.1.4). Today selects the X set.",
+    "why_now": "4.1.5 closes classical LM Learning before CD-R1 and GLM entry.",
+    "expected_benefit": "Study Progress for selection — not GLM structure; not Topic Complete for 4.2.",
+    "explainability": "Campaign Delta Day 5 closes 4.1 Learning span.",
+    "success_criteria": [
+      "Closed-book, name one model-fit measure used for selection.",
+      "Justify adding or dropping one X with that measure.",
+      "Refuse kitchen-sink 'include everything'."
+    ],
+    "task_descriptions": [
+      "Sketch compare-two-models before CMP.",
+      "Guided Reading through CMP 4.1.5.",
+      "Knowledge Checks: measure + justify + refuse kitchen-sink."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 50,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1003-cs1-4.1-variable-selection",
+    "session_educational_purpose": "Execute today's Mission for LO 4.1.5 — not neighbouring LOs listed out of scope.",
+    "session_tutor_purpose": "Set focus on 4.1.5; exit to CMP; retrieve closed-book checks.",
+    "duration_budget_minutes": {
+      "min": 50,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Select explanatory variables using model-fit measures. Study Progress for LO 4.1.5 — not Topic Complete for later LOs in this Volume.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.1.5 move closed-book tomorrow? Rate 1–5 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.1.5 skill. Stop at the stop condition; do not swallow the next LO.",
+    "focus_questions": [
+      "What is the core move of Syllabus 4.1.5?",
+      "Where does the CMP give a worked cue you must attempt before reveal?",
+      "What misconception must you refuse today?",
+      "What will you retrieve closed-book in Knowledge Checks?"
+    ],
+    "misconception_watch": [
+      "Watch for swallowing the next LO beyond 4.1.5.",
+      "Watch for software/menu tourism without method warrant.",
+      "Watch for Isolated Golden Day / spine claims."
+    ],
+    "open_point": "CMP · Syllabus 4.1.5 model-fit measures and variable selection",
+    "stop_condition": "Through CMP 4.1.5 (stop before GLM 4.2; stop before Revision content as Learning)",
+    "out_of_scope_today": [
+      "GLM structure (4.2)",
+      "Bayesian (5.1)",
+      "First-pass spine claims",
+      "Kitchen-sink without measure"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.1.5 model-fit measures and variable selection. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.1.5 (stop before GLM 4.2; stop before Revision content as Learning). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.1.5 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause — write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1003-4.1.5-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1003-4.1.5-ar-01",
+      "title": "Active Recall: 4.1.5",
+      "prompt": "Closed-book. Name one model-fit measure for comparing nested or candidate linear models. State how it informs keeping vs dropping an X.",
+      "response_type": "short_structured",
+      "body": "Retrieve 4.1.5 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "fit",
+        "measure",
+        "aic",
+        "r-squared",
+        "adjusted",
+        "compare",
+        "select",
+        "drop"
+      ],
+      "explanation": "Active recall for 4.1.5.",
+      "model_answer": "Example: adjusted R² / AIC / similar CMP measure — prefer the model whose fit measure improves without unjustified complexity; drop X when measure and theory do not support it.",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1003-4.1.5-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1003-4.1.5-cp-01",
+      "title": "Checkpoint: 4.1.5",
+      "prompt": "Closed-book. Refuse kitchen-sink regression. Give one selection warrant using a fit measure.",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 4.1.5.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "kitchen",
+        "select",
+        "measure",
+        "warrant",
+        "not all"
+      ],
+      "explanation": "Checkpoint for 4.1.5.",
+      "model_answer": "Refuse: including every column is not selection. Use a fit measure (and theory) to justify the explanatory set.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest selection wobble — Revision tomorrow protects 4.1 memory.",
+    "prompt": "Which part of today's 4.1.5 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 4.1.5 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "CD-R1",
+    "next_topic_title": "Revision — retrieve classical linear models (4.1)",
+    "continuity_line": "Today you practised variable selection with fit measures; tomorrow is Revision mode returning to 4.1.1–4.1.5 under closed-book retrieval — not GLM yet.",
+    "light_prep_cue": "Optional: list your weakest 4.1 link from memory — titles only",
+    "student_facing": "Tomorrow: Campaign Delta Revision CD-R1 — retrieve classical linear models (4.1). Optional: note your weakest 4.1 link tonight."
+  },
+  "published_at": "2026-08-01"
+}
