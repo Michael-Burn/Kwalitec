@@ -6,7 +6,8 @@
 **Coverage definition:** `CE001_CATALOGUE_COVERAGE.md` (consumed; not amended)  
 **Governance:** `EP001_GOVERNANCE.md`  
 **Authority:** EF-001 · PB-002 PASS · CE-001 Measurement COMPLETE  
-**Wave 3 companion:** `EP003_COVERAGE_UPDATE.md` · `EP003_WAVE3_PLAN.md`
+**Wave 3 companion:** `EP003_COVERAGE_UPDATE.md` · `EP003_WAVE3_PLAN.md`  
+**Wave 4 companion:** `EP004_COVERAGE_UPDATE.md` · `EP004_WAVE4_PLAN.md`
 
 ---
 
@@ -16,8 +17,8 @@ EP-001 reports two facts that must not be conflated:
 
 | View | Meaning | Current headline |
 |------|---------|------------------|
-| **A — Approver credit (CE-001 Published)** | Volume ≥ `approved` by human Publication Approver | **32 / 72 (44.4%)** — CS1-004 (4) + CS1-003 (24) + CS1-005 (4) Learning LOs |
-| **B — Live loader inventory** | Packages under `educational_packages/cs1/` with `status: publication_approved` | **45 packages** (8 Alpha/Beta + **5 Gamma** + **27 Delta** + **5 Epsilon**; EA-006 orphan superseded) |
+| **A — Approver credit (CE-001 Published)** | Volume ≥ `approved` by human Publication Approver | **34 / 72 (47.2%)** — CS1-004 (4) + CS1-003 (24) + CS1-005 (4) + CS1-006 (2) Learning LOs |
+| **B — Live loader inventory** | Packages under `educational_packages/cs1/` with `status: publication_approved` | **48 packages** (8 Alpha/Beta + **5 Gamma** + **27 Delta** + **5 Epsilon** + **3 Zeta**; EA-006 orphan superseded) |
 
 **Publication honesty gap:** CS1-001 and CS1-002 Volume dossiers remain `publication_ready` (Approver unsigned), while eight Alpha/Beta packages still load as `publication_approved`. CS1-004 Gamma, CS1-003 Delta, and CS1-005 Epsilon hold Approver credit **and** LIVE package-path verification.
 
@@ -33,14 +34,14 @@ Orphan `4.2` is **superseded** by Campaign Delta (RO-002); Missing* for 4.2 clea
 |--------|------:|-------|
 | Official topics | **14** | Sections 1–5 |
 | Official LOs | **72** | Primary grain |
-| **Published (Approver credit)** | **32 / 72 (44.4%)** | CS1-004 · 2.1.3–2.1.6 + CS1-005 · 2.2.1–2.2.4 + CS1-003 · 4.1.1–5.1.9 |
+| **Published (Approver credit)** | **34 / 72 (47.2%)** | CS1-004 · 2.1.3–2.1.6 + CS1-005 · 2.2.1–2.2.4 + CS1-006 · 2.3.1–2.3.2 + CS1-003 · 4.1.1–5.1.9 |
 | Awaiting Approval (Gate CG PASS · Volume `publication_ready`) | **9 / 72 (12.5%)** | CS1-001 + CS1-002 Learning LOs (Approver unsigned) |
-| Under Review / Under Authoring | **0 / 72** | Wave 3 LIVE-complete |
+| Under Review / Under Authoring | **0 / 72** | Wave 4 LIVE-complete |
 | Live loader packages (`publication_approved`) | **45** | Alpha 4 + Beta 4 + Gamma 5 + Delta 27 + Epsilon 5 (orphan superseded) |
-| Missing | **31 / 72** | Remaining spine (next open after 2.2: **2.3**; sections 3 / 5.2+ etc.) |
+| Missing | **29 / 72** | Remaining spine (next open: **2.4**; sections 3 / 5.2+ etc.) |
 | Continuity Front (Approver / LIVE) | **Closed at 2.2.4** (package path) | RO-001 · RO-003 |
 | Trust Remediation Front | **4.1 → 4.2 → 5.1** | Wave 2 **LIVE Verified** (RO-002) — Missing* cleared for 4.2 |
-| Pipeline (Under Authoring) | **0 Learning LOs** | Wave 4 not started |
+| Pipeline (Under Authoring) | **0 Learning LOs** | Wave 4 LIVE-complete |
 
 ---
 
@@ -54,6 +55,7 @@ Orphan `4.2` is **superseded** by Campaign Delta (RO-002); Missing* for 4.2 clea
 | **CS1-004** | `CS1-EP001-CAMPAIGN-GAMMA` | PASS (HR-001) | `released` | **Published** (2.1.3–2.1.6) | **5 packages live** | 2.1.3–2.1.6 (+ Rev) — **Wave 1 LIVE** |
 | **CS1-003** | `CS1-EP001-CAMPAIGN-DELTA` | PASS (HR-002) | `released` (RO-002) | **Published** (Approver+LIVE) | **27 packages live** | 4.1.1–5.1.9 (+ 3 Rev) — **Wave 2 LIVE** |
 | **CS1-005** | `CS1-EP001-CAMPAIGN-EPSILON` | PASS (HR-003) | `released` (RO-003) | **Published** (Approver+LIVE) | **5 packages live** | 2.2.1–2.2.4 (+ Rev) — **Wave 3 LIVE** |
+| **CS1-006** | `CS1-EP001-CAMPAIGN-ZETA` | PASS | `released` | **Published** | **3** | 2.3.1–2.3.2 (+ Rev) — **Wave 4 LIVE (RO-004)** |
 
 ---
 
@@ -65,7 +67,7 @@ Orphan `4.2` is **superseded** by Campaign Delta (RO-002); Missing* for 4.2 clea
 | 1.2 | Exploratory data analysis | 3 | Awaiting Approval | Alpha + Beta PCA live |
 | 2.1 | Univariate distributions / generation | 6 | Partial (**2.1.3–2.1.6 Published**; 2.1.1–2.1.2 AA) | Beta + **Gamma LIVE** |
 | 2.2 | Jointly distributed RVs | 4 | **Published** (CS1-005 / RO-003) | LIVE CE-D1…CE-D4 |
-| 2.3 | Expectations / conditional expectations | 2 | Missing | — |
+| 2.3 | Expectations / conditional expectations | 2 | **Published** (CS1-006 / RO-004) | LIVE CZ-D1…CZ-D2 |
 | 2.4 | Generating functions | 2 | Missing | — |
 | 2.5 | Central limit theorem | 2 | Missing | — |
 | 2.6 | Random sampling / sampling distributions | 6 | Missing | — |
@@ -102,7 +104,8 @@ Statuses: **Published** (Approver) · **Awaiting Approval** · **Under Authoring
 | 2.2.2 | Independence conditions | **Published** (CS1-005 · RO-003) | Yes (CE-D2) |
 | 2.2.3 | Covariance, correlation, E[g(X,Y)] | **Published** (CS1-005 · RO-003) | Yes (CE-D3) |
 | 2.2.4 | Mean/variance of linear combinations | **Published** (CS1-005 · RO-003) | Yes (CE-D4) |
-| 2.3.1–2.3.2 | Conditional expectation | Missing | No |
+| 2.3.1 | Conditional expectation given another RV | **Published** (CS1-006 · RO-004) | Yes (CZ-D1) |
+| 2.3.2 | Mean/variance via conditioning | **Published** (CS1-006 · RO-004) | Yes (CZ-D2) |
 | 2.4.1–2.4.2 | MGF / CGF | Missing | No |
 | 2.5.1–2.5.2 | CLT | Missing | No |
 | 2.6.1–2.6.6 | Sampling distributions | Missing | No |
@@ -119,11 +122,11 @@ Statuses: **Published** (Approver) · **Awaiting Approval** · **Under Authoring
 
 ```text
 APPROVER CREDIT (Published Continuity Front):
-  2.1.3──2.1.4──2.1.5──2.1.6──[CG-R1]──2.2.1──2.2.2──2.2.3──2.2.4──[CE-R1]
+  2.1.3──2.1.4──2.1.5──2.1.6──[CG-R1]──2.2.1──2.2.2──2.2.3──2.2.4──[CE-R1]──2.3.1──2.3.2──[CZ-R1]
   [======== CS1-004 LIVE ========][======== CS1-005 LIVE (RO-003) ========]
                                                                          │
-                                                                         ▼ next open
-                                                                      2.3 …
+                                                                         ▼ next open (LIVE)
+                                                                      2.4 … (next open after Wave 4 LIVE)
 
 PIPELINE (Awaiting Approval) + LIVE LOADER (Alpha/Beta):
   1.1.1──…──1.2.2──1.2.3──2.1.1──2.1.2──…
@@ -149,11 +152,11 @@ TRUST FRONT (Wave 2 LIVE Verified — RO-002):
 | Section | LOs | Published | Awaiting Approval | Under Authoring | Missing | Live orphan note |
 |--------:|----:|----------:|------------------:|----------------:|--------:|------------------|
 | 1 | 7 | 0 | 7 | 0 | 0 | Alpha/Beta live |
-| 2 | 22 | **8** | 2 | 0 | 12 | Gamma LIVE 2.1.3–2.1.6; Epsilon LIVE 2.2.1–2.2.4 |
+| 2 | 22 | **10** | 2 | **0** | 10 | Gamma LIVE 2.1.3–2.1.6; Epsilon LIVE 2.2.1–2.2.4; Zeta LIVE 2.3.1–2.3.2 |
 | 3 | 19 | 0 | 0 | 0 | 19 | — |
 | 4 | 15 | **15** | 0 | 0 | 0 | orphan superseded (RO-002) |
 | 5 | 9 | **9** | 0 | 0 | 0 | Delta LIVE |
-| **Total** | **72** | **32** | **9** | **0** | **31** | — |
+| **Total** | **72** | **32** | **9** | **2** | **29** | — |
 
 ---
 
@@ -162,15 +165,15 @@ TRUST FRONT (Wave 2 LIVE Verified — RO-002):
 1. Re-measure when Volume Approver signs (Awaiting Approval / Under Authoring → Published).  
 2. Re-measure when Wave packages certify / approve / go LIVE.  
 3. Never move Missing* to Published without Campaign Gate CG + Approver.  
-4. Continuity Front closed through 2.2.4 LIVE (RO-003); next open geography **2.3**.  
+4. Continuity Front closed through 2.3.2 LIVE (RO-004); next open geography **2.4**.  
 5. Keep LO universe pinned to CS1 2026 JSON.
 
 ---
 
 ## 9. Closing
 
-Wave 1 + Wave 2 + Wave 3 LIVE Approver credit stands at **32 / 72**. Campaign Epsilon / CS1-005 is LIVE-complete (RO-003 / PB-005) for 2.2.1–2.2.4 + CE-R1. Wave 4 unblocked · not started.
+Wave 1 + Wave 2 + Wave 3 + Wave 4 LIVE Approver credit stands at **34 / 72**. Campaign Zeta / CS1-006 is LIVE-complete (RO-004 / PB-006) for 2.3.1–2.3.2 + CZ-R1. Next Continuity Front open geography: **2.4**. Wave 5 not started.
 
-**Companions:** `EP001_GOVERNANCE.md` · `EP001_PRODUCTION_ROADMAP.md` · `EP001_WAVE1_PLAN.md` · `EP001_WAVE2_PLAN.md` · `EP003_WAVE3_PLAN.md` · `EP003_COVERAGE_UPDATE.md` · `RO003_*` · `PB005_*` · `CE001_CATALOGUE_COVERAGE.md`
+**Companions:** `EP001_GOVERNANCE.md` · `EP001_PRODUCTION_ROADMAP.md` · `EP001_WAVE1_PLAN.md` · `EP001_WAVE2_PLAN.md` · `EP003_WAVE3_PLAN.md` · `EP003_COVERAGE_UPDATE.md` · `EP004_WAVE4_PLAN.md` · `EP004_COVERAGE_UPDATE.md` · `RO003_*` · `PB005_*` · `CE001_CATALOGUE_COVERAGE.md`
 
 Signed notionally: Editorial Director · EP-001 · Coverage Map · 2026-08-01

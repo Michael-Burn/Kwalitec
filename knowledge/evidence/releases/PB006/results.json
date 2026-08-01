@@ -1,0 +1,142 @@
+{
+  "programme": "PB-006 Progressive Educational Confidence (Zeta)",
+  "host": "https://kwalitec.onrender.com",
+  "expected_commit": "58096787f7ea17704dcb60e2475e9a431f2c95e8",
+  "fingerprint_ok": true,
+  "live_certified_inventory": [
+    "CZ-D1",
+    "CZ-D2",
+    "CZ-R1"
+  ],
+  "personas": [
+    {
+      "slug": "first_time",
+      "label": "First-time candidate",
+      "verdict": "PASS",
+      "summary": {
+        "certified_days_scored": 3,
+        "certified_all_pass": true,
+        "avg_score_over_9": 9.0,
+        "trajectory": [
+          {
+            "day": "CZ-D1",
+            "confidence_level": "HIGH",
+            "score_over_9": 9,
+            "dimensions": {
+              "mission_clarity": "PASS",
+              "cmp_partnership": "PASS",
+              "educational_confidence": "PASS",
+              "session_completion": "PASS",
+              "reflection_quality": "PASS",
+              "transition_quality": "PASS",
+              "tomorrow_confidence": "PASS",
+              "trust_retention": "PASS",
+              "educational_consistency": "PASS"
+            }
+          },
+          {
+            "day": "CZ-D2",
+            "confidence_level": "HIGH",
+            "score_over_9": 9,
+            "dimensions": {
+              "mission_clarity": "PASS",
+              "cmp_partnership": "PASS",
+              "educational_confidence": "PASS",
+              "session_completion": "PASS",
+              "reflection_quality": "PASS",
+              "transition_quality": "PASS",
+              "tomorrow_confidence": "PASS",
+              "trust_retention": "PASS",
+              "educational_consistency": "PASS"
+            }
+          },
+          {
+            "day": "CZ-R1",
+            "confidence_level": "HIGH",
+            "score_over_9": 9,
+            "dimensions": {
+              "mission_clarity": "PASS",
+              "cmp_partnership": "PASS",
+              "educational_confidence": "PASS",
+              "session_completion": "PASS",
+              "reflection_quality": "PASS",
+              "transition_quality": "PASS",
+              "tomorrow_confidence": "PASS",
+              "trust_retention": "PASS",
+              "educational_consistency": "PASS"
+            }
+          }
+        ],
+        "rescore_note": "Offline rescore from LIVE HTML with mission-priority Zeta day detection (fixes tomorrow-preview false CZ-D2 label)"
+      }
+    },
+    {
+      "slug": "repeat",
+      "label": "Repeat sitting",
+      "verdict": "PASS",
+      "summary": {
+        "certified_days_scored": 3,
+        "certified_all_pass": true,
+        "avg_score_over_9": 9.0,
+        "trajectory": [
+          {
+            "day": "CZ-D1",
+            "confidence_level": "HIGH",
+            "score_over_9": 9,
+            "dimensions": {
+              "mission_clarity": "PASS",
+              "cmp_partnership": "PASS",
+              "educational_confidence": "PASS",
+              "session_completion": "PASS",
+              "reflection_quality": "PASS",
+              "transition_quality": "PASS",
+              "tomorrow_confidence": "PASS",
+              "trust_retention": "PASS",
+              "educational_consistency": "PASS"
+            }
+          },
+          {
+            "day": "CZ-D2",
+            "confidence_level": "HIGH",
+            "score_over_9": 9,
+            "dimensions": {
+              "mission_clarity": "PASS",
+              "cmp_partnership": "PASS",
+              "educational_confidence": "PASS",
+              "session_completion": "PASS",
+              "reflection_quality": "PASS",
+              "transition_quality": "PASS",
+              "tomorrow_confidence": "PASS",
+              "trust_retention": "PASS",
+              "educational_consistency": "PASS"
+            }
+          },
+          {
+            "day": "CZ-R1",
+            "confidence_level": "HIGH",
+            "score_over_9": 9,
+            "dimensions": {
+              "mission_clarity": "PASS",
+              "cmp_partnership": "PASS",
+              "educational_confidence": "PASS",
+              "session_completion": "PASS",
+              "reflection_quality": "PASS",
+              "transition_quality": "PASS",
+              "tomorrow_confidence": "PASS",
+              "trust_retention": "PASS",
+              "educational_consistency": "PASS"
+            }
+          }
+        ],
+        "rescore_note": "Offline rescore from LIVE HTML with mission-priority Zeta day detection (fixes tomorrow-preview false CZ-D2 label)"
+      }
+    }
+  ],
+  "cohort": {
+    "personas": 2,
+    "pass": 2,
+    "fail": 0
+  },
+  "verdict": "PASS",
+  "method_note": "Black-box LIVE Continuity Front chains; progressive claim scores only true Zeta substance days detected from reading HTML (mission-priority)."
+}

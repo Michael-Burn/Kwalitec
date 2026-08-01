@@ -1,0 +1,197 @@
+{
+  "slug": "first_time",
+  "label": "First-time candidate",
+  "verdict": "PASS",
+  "summary": {
+    "certified_days_scored": 3,
+    "certified_all_pass": true,
+    "avg_score_over_9": 9.0,
+    "trajectory": [
+      {
+        "day": "CZ-D1",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        }
+      },
+      {
+        "day": "CZ-D2",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        }
+      },
+      {
+        "day": "CZ-R1",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        }
+      }
+    ],
+    "rescore_note": "Offline rescore from LIVE HTML with mission-priority Zeta day detection (fixes tomorrow-preview false CZ-D2 label)"
+  },
+  "certified_days": [
+    {
+      "day": "CZ-D1",
+      "verdict": "PASS",
+      "pb006_score": {
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "all_pass": true,
+        "confidence_level": "HIGH",
+        "fallback": false,
+        "lead_ok": true,
+        "exit_ok": true,
+        "return_ok": true,
+        "mentions_cmp": true
+      },
+      "finished": true,
+      "fallback": false,
+      "source_html": "/tmp/ro004/html_pb006/first_time/day14_reading.html"
+    },
+    {
+      "day": "CZ-D2",
+      "verdict": "PASS",
+      "pb006_score": {
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "all_pass": true,
+        "confidence_level": "HIGH",
+        "fallback": false,
+        "lead_ok": true,
+        "exit_ok": true,
+        "return_ok": true,
+        "mentions_cmp": true
+      },
+      "finished": true,
+      "fallback": false,
+      "source_html": "/tmp/ro004/html_pb006/first_time/day15_reading.html"
+    },
+    {
+      "day": "CZ-R1",
+      "verdict": "PASS",
+      "pb006_score": {
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "all_pass": true,
+        "confidence_level": "HIGH",
+        "fallback": false,
+        "lead_ok": true,
+        "exit_ok": true,
+        "return_ok": true,
+        "mentions_cmp": true
+      },
+      "finished": true,
+      "fallback": false,
+      "source_html": "/tmp/ro004/html_pb006/first_time/day16_reading.html"
+    }
+  ],
+  "confidence_trajectory": [
+    {
+      "day": "CZ-D1",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      }
+    },
+    {
+      "day": "CZ-D2",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      }
+    },
+    {
+      "day": "CZ-R1",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      }
+    }
+  ]
+}

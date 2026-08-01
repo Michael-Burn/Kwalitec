@@ -1,0 +1,20 @@
+{
+  "job_id": "job-d9n4j4m1egvs73fcp41g",
+  "status": "succeeded",
+  "local_disk_assert": "ASSERT_OK",
+  "expected": {
+    "approved_count": 48,
+    "zeta_count": 3,
+    "epsilon_count": 5,
+    "gamma_count": 5,
+    "delta_count": 27,
+    "entry_23": "CZ-D1",
+    "after_cer1": "CZ-D1",
+    "entry_22": "CE-D1",
+    "entry_41_regression": "CD-D1"
+  },
+  "note": "Render one-off + tip-matched local loader ASSERT_OK mirrors LIVE tip 5809678.",
+  "deploy_id": "dep-d9n4glvlk1mc73dnji4g",
+  "commit": "58096787f7ea17704dcb60e2475e9a431f2c95e8",
+  "local_stdout": "COUNT 48\nZETA 3\nEPSILON 5\nGAMMA 5\nDELTA 27\nCZ-D1 CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION\nCZ-D2 CS1-EP001-PKG-2.3-MEAN-VARIANCE-CONDITIONING\nCZ-R1 CS1-EP001-PKG-REV-CONDITIONAL-EXPECTATIONS\nENTRY_23 ('CZ-D1', 'CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION')\nAFTER_CER1 ('CZ-D1', 'CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION')\nENTRY_22 ('CE-D1', 'CS1-EP001-PKG-2.2-MARGINAL-CONDITIONAL')\nENTRY_41 ('CD-D1', 'CS1-EP001-PKG-4.1-RESPONSE-EXPLANATORY')\nASSERT_OK\n"
+}

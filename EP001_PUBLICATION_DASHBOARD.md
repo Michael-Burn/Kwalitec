@@ -146,17 +146,23 @@ Chrome honesty:                         Finish/Home tomorrow residual RO1-R1 ope
 | Wave 3 educational packages unmodified in review | **Met** |
 | Wave 3 joint LIVE deploy | **Executed (RO-003)** tip `efe18ad7…` |
 | Wave 3 LIVE Verified | **Met** (package path; residual RO3-R1) |
-| Wave 4 | **Not started** |
+| Wave 4 human seals complete | **Met** — HR-004 |
+| Wave 4 publication decision | **APPROVED** |
+| Wave 4 educational packages unmodified in review | **Met** |
+| Wave 4 joint LIVE deploy | **Executed (RO-004)** tip `58096787…` |
+| Wave 4 LIVE Verified | **Met** (package path; residual RO4-R1) |
+| Wave 5 | **Not started** (unblocked) |
 
-**Programme state:** Wave 1 LIVE Verified · RO1-R1 closed · **Wave 2 LIVE-complete (RO-002 / PB-004)** · **Wave 3 LIVE-complete (RO-003 / PB-005)** · Wave 4 unblocked · not started.
+**Programme state:** Wave 1 LIVE Verified · RO1-R1 closed · **Wave 2 LIVE-complete (RO-002 / PB-004)** · **Wave 3 LIVE-complete (RO-003 / PB-005)** · **Wave 4 LIVE-complete (RO-004 / PB-006)** (CS1-006 / Zeta · 2.3) · Wave 5 unblocked · not started.
 
 ---
 
 ## 8. Next actions
 
-1. Wave 4 may begin under a separate authorised programme (Wave 3 LIVE exit met).  
-2. Keep Wave 0 Alpha/Beta Approver honesty gap open (not waived).  
-3. Track CE-R1 chrome / Q6 residual as PI (does not block Wave 4 start).
+1. Keep Wave 0 Alpha/Beta Approver honesty gap open (not waived).  
+2. Track RO4-R1 Home title collision + CZ-R1 chrome / Q6 residual as PI (does not block Wave 5 start).  
+3. **Do not begin Wave 5** until a separate authorised programme starts (LIVE exit met; start not automatic).  
+4. Next Continuity Front geography after Wave 4 LIVE: **2.4**.
 
 ---
 
@@ -192,8 +198,26 @@ Chrome honesty:                         Finish/Home tomorrow residual RO1-R1 ope
 
 ---
 
-Signed: Publication Dashboard · EP-001 · HR-001 · HR-002 · HR-003 · RO-001 · RO-002 · RO-003 · 2026-08-01  
+Signed: Publication Dashboard · EP-001 · HR-001 · HR-002 · HR-003 · HR-004 · RO-001 · RO-002 · RO-003 · RO-004 · 2026-08-01  
 **Publication decision (CS1-004):** APPROVED · LIVE Verified  
 **Publication decision (CS1-003):** APPROVED · LIVE-complete (package path)  
 **Publication decision (CS1-005):** **APPROVED** · LIVE-complete (package path)  
-**Wave 4:** Unblocked · not started
+**Publication decision (CS1-006):** **APPROVED** · LIVE-complete (package path)  
+**Wave 5:** Not started (unblocked)
+
+---
+
+## 11. Wave 4 (CS1-006) — package pipeline
+
+| Package | Day | LO | Authored | Desk Certified | Tutor | Founder | Auditor | Publication Approver | Approved | LIVE Verified |
+|---------|-----|----|:--------:|:--------------:|:-----:|:-------:|:-------:|:--------------------:|:--------:|:-------------:|
+| `CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION` | CZ-D1 | 2.3.1 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-2.3-MEAN-VARIANCE-CONDITIONING` | CZ-D2 | 2.3.2 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-REV-CONDITIONAL-EXPECTATIONS` | CZ-R1 | Rev | ● | ● | ● | ● | ● | ● | ● | ● |
+
+**Key:** ● = complete · ○ = not reached  
+
+**Catalogue root:** `app/curriculum/data/educational_campaigns/cs1/campaign-zeta-cs1006/`  
+**LIVE loader:** 3 Zeta packages `publication_approved` · tip `58096787…`  
+**Companions:** `EP004_WAVE4_PLAN.md` · `EP004_COVERAGE_UPDATE.md` · `HR004_*` · `RO004_*` · `PB006_*`  
+**Residual:** RO4-R1 Home title collision during late Epsilon; RO4-R2/R3 CZ-R1 Q6/chrome.
