@@ -2,7 +2,7 @@
 
 **Programme:** VERSION1-RC2 — Sprint B — Educational Trust Restoration  
 **Date:** 2026-08-01  
-**Commit:** *(filled after mandated commit)*  
+**Commit:** `f4666e8b855d1c04c2006a6bab75c53cb9ff6e9a`  
 
 ---
 
