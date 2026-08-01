@@ -19,35 +19,35 @@
 | **Owner** | Release Engineering / Founder |
 | **Required before GO?** | **Yes** — **CLOSED** (Sprint A) |
 
-### KI-C2 — LIVE commit ≠ intended local release — **PARTIAL**
+### KI-C2 — LIVE commit ≠ intended local release — **CLOSED**
 
 | Field | Value |
 |-------|-------|
-| **Description** | Authoritative local tip now `75c29d2` / `v2.0.0-beta.1-rc2`. LIVE and `origin/main` remain `613722c` until push + deploy. |
-| **Impact** | Local fingerprint exists; PB-001 must still wait for LIVE match. |
-| **Evidence** | `VERSION1_RELEASE_MANIFEST.md`; `/health.commit` still `613722c` (pre-deploy) |
+| **Description** | Authoritative tip `0d3fc72137ba0ea51d1baa522c52aa526cf04438` / tag `v2.0.0-beta.1-rc2` is on `origin/main` and LIVE `/health.commit`. |
+| **Impact** | Cleared for RC fingerprint GO. |
+| **Evidence** | `VERSION1_RELEASE_MANIFEST.md`; `RC2_FINAL_RELEASE_REPORT.md`; deploy `dep-d9mr7o6417fc73c1o9h0` |
 | **Owner** | Release Engineering |
-| **Required before GO?** | **Yes** — **local fingerprint CLOSED**; **LIVE match OPEN** (Priority 3) |
+| **Required before GO?** | **Yes** — **CLOSED** (Sprint C) |
 
-### KI-C3 — EV-001 educational trust FAIL on current LIVE tip — **PARTIAL (Sprint B)**
+### KI-C3 — EV-001 educational trust FAIL on current LIVE tip — **CLOSED** (consistency)
 
 | Field | Value |
 |-------|-------|
-| **Description** | Live student audit on `613722c` found placeholder pedagogy, empty reading, address artefact, continuity/progress mismatches. **Sprint B** remediates local consistency: unified Study Progress coverage, Practised badge for EK-before-completion, LO surfacing, address quarantine on Curriculum Map, readiness explainability. LIVE re-validation still required after deploy. |
-| **Impact** | Local educational metric trust restored for coverage/EK/status; LIVE primary-study trust still blocked until tip is deployed and re-audited. |
-| **Evidence** | `EV001_REMEDIATION_REPORT.md`; `EDUCATIONAL_CONSISTENCY_REPORT.md`; `READINESS_VALIDATION_REPORT.md`; `RC2_SPRINT_B_COMPLETION_REPORT.md` |
+| **Description** | Sprint B consistency remediations deployed; Sprint C fresh-account LIVE re-check shows Progress/Coverage/EK agreement at honest 0%, no postal-address topic, no high-EK-without-practice theatre. Residual: Runtime C `/study-plan/` wizard redirect limits LO panel exercise; session chrome may show “Today's topic”. |
+| **Impact** | Critical consistency blockers cleared for RC GO. |
+| **Evidence** | `EV001_REMEDIATION_REPORT.md`; `RC2_FINAL_RELEASE_REPORT.md` Educational Trust |
 | **Owner** | Educational Operations / Founder Gate Owner |
-| **Required before GO?** | **Yes** — **local consistency CLOSED**; **LIVE EV re-check OPEN** (Sprint C) |
+| **Required before GO?** | **Yes** — **CLOSED** for consistency (Sprint C) |
 
-### KI-C4 — RR-001 smoke incomplete for GO criteria
+### KI-C4 — RR-001 smoke incomplete for GO criteria — **CLOSED**
 
 | Field | Value |
 |-------|-------|
-| **Description** | Founder/student nav smoke partial PASS; cold session start partial; session completion not executed on LIVE. |
-| **Impact** | Cannot claim end-to-end study readiness. |
-| **Evidence** | `RR001_LIVE_SMOKE_REPORT.md` |
+| **Description** | Independent fresh-account smoke completed including session overview → start → answer → Continue → reflection → Finish Review → complete. Sprint C fixed answer→Continue persistence (`0d3fc72`). |
+| **Impact** | Cleared for RC session GO. |
+| **Evidence** | `RC2_FINAL_RELEASE_REPORT.md` Smoke; tip `0d3fc72` |
 | **Owner** | Release Engineering |
-| **Required before GO?** | **Yes** |
+| **Required before GO?** | **Yes** — **CLOSED** (Sprint C) |
 
 ---
 
@@ -73,15 +73,15 @@
 | **Owner** | Operations |
 | **Required before GO?** | **No** (manual deploy acceptable if executed and verified) |
 
-### KI-H3 — Unpushed EF-001 freeze commit
+### KI-H3 — Unpushed EF-001 freeze commit — **CLOSED**
 
 | Field | Value |
 |-------|-------|
-| **Description** | `f066bcf` freezes Educational Framework locally but is not on `origin/main` / LIVE. |
-| **Impact** | LIVE EF fingerprint diverges from declared Version 1 Educational Law. |
-| **Evidence** | `git log origin/main..HEAD`; `EF001_EDUCATIONAL_FRAMEWORK_FREEZE.md` |
+| **Description** | EF-001 freeze and subsequent RC tip are on `origin/main` / LIVE (`0d3fc72` lineage). |
+| **Impact** | Cleared. |
+| **Evidence** | `RC2_FINAL_RELEASE_REPORT.md`; LIVE `/health.commit` |
 | **Owner** | Release Engineering |
-| **Required before GO?** | **Yes** |
+| **Required before GO?** | **Yes** — **CLOSED** (Sprint C) |
 
 ### KI-H4 — Joint activation / multi-day `topic_code` loader limits
 
