@@ -130,6 +130,8 @@ class StudentRuntimeCoordinator:
         if existing is not None:
             if self._open_session_is_oversized(
                 student_id=sid, session_id=existing.session_id
+            ) or self._open_session_is_placeholder(
+                student_id=sid, session_id=existing.session_id
             ):
                 self._supersede_open_session(
                     student_id=sid,
@@ -145,14 +147,23 @@ class StudentRuntimeCoordinator:
         if minutes is None and mission.quality is not None:
             minutes = int(mission.quality.estimated_duration_minutes or 0) or None
 
-        session_id = f"lsr-{self._id_factory()}"
-        journey = self._journey_for_mission(sid, mission, session_id=session_id)
         objectives = None
         substance_flag = self._substance_enabled()
         substance = None
         if substance_flag:
             substance = self._plan_substance(mission, topic_title=title)
-            if substance is not None and substance.learning_objectives:
+            if substance is None:
+                raise SessionSpineUnavailable(
+                    "published curriculum substance is unavailable for this mission"
+                )
+            topic_l = (substance.topic_title or "").strip().lower()
+            if topic_l == "core methods":
+                raise SessionSpineUnavailable(
+                    "session substance resolved to placeholder Core methods"
+                )
+            if substance.topic_title:
+                title = substance.topic_title.strip() or title
+            if substance.learning_objectives:
                 objectives = tuple(
                     LearningObjective.create(
                         obj.objective_id[:64],
@@ -164,6 +175,8 @@ class StudentRuntimeCoordinator:
                     )
                     for index, obj in enumerate(substance.learning_objectives)
                 )
+        session_id = f"lsr-{self._id_factory()}"
+        journey = self._journey_for_mission(sid, mission, session_id=session_id)
         handle = self._lsr.create_session(
             journey,
             topic_id=mission.topic_id,
@@ -255,6 +268,8 @@ class StudentRuntimeCoordinator:
 
         if self._open_session_is_oversized(
             student_id=sid, session_id=str(record["session_id"])
+        ) or self._open_session_is_placeholder(
+            student_id=sid, session_id=str(record["session_id"])
         ):
             self._supersede_open_session(
                 student_id=sid,
@@ -262,7 +277,8 @@ class StudentRuntimeCoordinator:
                 mission_instance_id=str(record.get("mission_instance_id") or ""),
             )
             raise SessionSpineUnavailable(
-                "study session exceeded preferred session length; start again"
+                "study session was a placeholder or exceeded session length; "
+                "start again from Home"
             )
 
         # Mission may have been retired by session-budget rechunk.
@@ -455,6 +471,31 @@ class StudentRuntimeCoordinator:
             objective_ids=objective_ids,
             session_minutes=minutes,
         )
+
+    def _open_session_is_placeholder(
+        self, *, student_id: str, session_id: str
+    ) -> bool:
+        """True when a sitting still carries the Phase-I Core methods stub."""
+        store = self._require_persistence()
+        record = store.load(session_id=session_id.strip()) or {}
+        topic = str(record.get("topic_title") or "").strip().lower()
+        if "core methods" in topic:
+            return True
+        seq = store.store.get(
+            "activity.sequence",
+            f"{student_id.strip()}::{session_id.strip()}",
+        )
+        if not isinstance(seq, dict):
+            overview = store.store.get(
+                "runtime.overview",
+                f"{student_id.strip()}::{session_id.strip()}",
+            )
+            blob = str(overview or "")
+            return "core methods" in blob.lower()
+        blob = str(seq.get("topic_title") or "") + str(
+            seq.get("activities") or ()
+        )
+        return "core methods" in blob.lower()
 
     def _open_session_is_oversized(
         self, *, student_id: str, session_id: str

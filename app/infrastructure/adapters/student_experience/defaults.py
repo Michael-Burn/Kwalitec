@@ -160,7 +160,7 @@ def seeded_demo_twin(student_id: str) -> dict[str, Any]:
                     },
                     {
                         "session_id": "s2",
-                        "topic_title": "Core methods",
+                        "topic_title": "Today's topic",
                         "completed_at": "2026-07-15",
                         "study_minutes": 35,
                     },
@@ -170,7 +170,7 @@ def seeded_demo_twin(student_id: str) -> dict[str, Any]:
                     {"recorded_at": "2026-06-01", "exam_readiness": 0.35},
                     {"recorded_at": "2026-07-01", "exam_readiness": 0.58},
                 ),
-                "mastered_topics": ("Foundations", "Core methods"),
+                "mastered_topics": ("Foundations", "Today's topic"),
                 "revision_history": ("Ethics review", "Methods refresh"),
                 "recent_achievements": (
                     {
@@ -191,7 +191,7 @@ def seeded_demo_twin(student_id: str) -> dict[str, Any]:
 def seeded_demo_adaptive(student_id: str) -> dict[str, Any]:
     """Provisioned Adaptive projection (engine output shape)."""
     explanation = {
-        "topic_title": "Core methods",
+        "topic_title": "Today's topic",
         "reason_codes": ("high_roi", "exam_proximity"),
         "evidence_points": (
             "Recent practice showed soft recall on this topic",
@@ -204,7 +204,7 @@ def seeded_demo_adaptive(student_id: str) -> dict[str, Any]:
     recommendation = {
         "decision_id": "d1",
         "title": "Strengthen core methods",
-        "topic_title": "Core methods",
+        "topic_title": "Today's topic",
         "summary": "Focused practice where readiness gains are strongest today.",
         "estimated_minutes": 30,
         "expected_readiness_improvement": 0.03,
@@ -215,13 +215,13 @@ def seeded_demo_adaptive(student_id: str) -> dict[str, Any]:
     revisions = (
         {
             "option_id": "r1",
-            "topic_title": "Core methods",
+            "topic_title": "Today's topic",
             "priority_label": "High priority",
             "estimated_minutes": 25,
             "expected_benefit": "Protect weak recall before the exam",
             "mission_id": "m1",
             "explanation": {
-                "topic_title": "Core methods",
+                "topic_title": "Today's topic",
                 "reason_codes": ("low_retention",),
                 "evidence_points": ("Recall soft on this topic",),
                 "expected_benefit": "Protect weak recall",
@@ -254,7 +254,7 @@ def seeded_demo_journey(student_id: str) -> dict[str, Any]:
             "estimated_completion_label": "About 10 weeks",
             "examination_label": "Professional Examination",
             "current_topic_id": "t2",
-            "current_topic_title": "Core methods",
+            "current_topic_title": "Today's topic",
         },
         "topics": (
             {
@@ -265,7 +265,7 @@ def seeded_demo_journey(student_id: str) -> dict[str, Any]:
             },
             {
                 "topic_id": "t2",
-                "title": "Core methods",
+                "title": "Today's topic",
                 "status": "current",
                 "status_label": "Current",
                 "prerequisite_note": "Build on Foundations",
@@ -275,7 +275,7 @@ def seeded_demo_journey(student_id: str) -> dict[str, Any]:
                 "title": "Advanced applications",
                 "status": "upcoming",
                 "status_label": "Upcoming",
-                "prerequisite_note": "Finish Core methods first",
+                "prerequisite_note": "Finish Today's topic first",
             },
         ),
         "authority": "learning_journey",
@@ -287,7 +287,7 @@ def seeded_demo_mission(student_id: str) -> dict[str, Any]:
     session = {
         "mission_id": "m1",
         "session_id": "sess-1",
-        "topic_title": "Core methods",
+        "topic_title": "Today's topic",
         "estimated_minutes": 30,
         "status": "ready",
     }

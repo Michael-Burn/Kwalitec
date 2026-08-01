@@ -260,6 +260,8 @@ class TestFlagMatrix:
 class TestRuntimeSubstanceProjection:
     def test_overview_and_reflection_when_substance_on(self, monkeypatch):
         monkeypatch.setenv("SR_SESSION_SUBSTANCE", "1")
+        monkeypatch.setenv("SR_EVIDENCE_GATE", "0")
+        monkeypatch.setenv("KWALITEC_COMMERCIAL_LOOP", "0")
         store = SessionDocumentStore()
         persistence = LearningSessionPersistenceAdapter(store=store)
         from app.application.learning_session.runtime import LearningSessionRuntime

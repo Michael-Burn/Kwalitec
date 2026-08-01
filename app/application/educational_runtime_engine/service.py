@@ -1494,8 +1494,16 @@ class EducationalRuntimeEngineService:
                 NS_OPEN,
                 LearningSessionPersistenceAdapter,
             )
+            from app.infrastructure.session.composition import (
+                build_production_session_experience,
+            )
 
-            adapter = LearningSessionPersistenceAdapter()
+            # Must use the production durable store — a bare adapter is
+            # process-local memory and silently no-ops against real sittings.
+            composition, _service = build_production_session_experience(
+                seed_demo_learners=False
+            )
+            adapter = LearningSessionPersistenceAdapter(store=composition.store)
             sid = str(user_id)
             open_doc = None
             if mid:
@@ -1503,14 +1511,15 @@ class EducationalRuntimeEngineService:
                     student_id=sid, mission_instance_id=mid
                 )
             if open_doc is None:
-                # Any open sitting for this student — Home must start fresh.
                 open_doc = adapter.find_open(student_id=sid)
             if open_doc is None:
                 if mid:
                     adapter.store.delete(NS_MISSION, f"{sid}::{mid}")
                 return
             session_id = str(open_doc.get("session_id") or "").strip()
-            bound_mid = str(open_doc.get("mission_instance_id") or mid or "").strip()
+            bound_mid = str(
+                open_doc.get("mission_instance_id") or mid or ""
+            ).strip()
             if session_id:
                 handle = adapter.load(session_id=session_id) or {}
                 adapter.store.save(
@@ -1531,7 +1540,6 @@ class EducationalRuntimeEngineService:
             if mid and mid != bound_mid:
                 adapter.store.delete(NS_MISSION, f"{sid}::{mid}")
         except Exception:
-            # Fail soft — mission rechunk must not abort on session-store issues.
             return
 
     def _load_artefacts(self, subject_code: str) -> EducationalArtefactSnapshot:

@@ -87,6 +87,10 @@ class LearningSessionPersistenceAdapter:
             "curriculum_identity": curriculum_identity
             or existing.get("curriculum_identity")
             or "",
+            "objective_ids": list(
+                getattr(handle.plan, "objective_ids", ()) or ()
+            )
+            or list(existing.get("objective_ids") or []),
             "phase": handle.phase.value,
             "session_state": handle.session.state.value,
             "status": "open"

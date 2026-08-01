@@ -25,7 +25,7 @@ def default_session_overview(
         "why_studying": "This Session is today's recommended next step.",
         "estimated_minutes": 30,
         "activity_count": 3,
-        "topics": ("Core methods",),
+        "topics": ("Today's topic",),
         "expected_readiness_improvement": 0.03,
         "status": "overview",
         "authority": "learning_session_runtime",
@@ -43,7 +43,7 @@ def default_runtime_snapshot(
         "activities_remaining": 3,
         "activities_total": 3,
         "estimated_remaining_minutes": 30,
-        "current_topic": "Core methods",
+        "current_topic": "Today's topic",
         "overall_progress": 0.0,
         "authority": "learning_session_runtime",
     }
@@ -53,7 +53,7 @@ def default_reflection(
     student_id: str,
     *,
     session_id: str,
-    topic_title: str = "Core methods",
+    topic_title: str = "Today's topic",
 ) -> dict[str, Any]:
     """Opaque reflection guidance facts."""
     topic = (topic_title or "today's topic").strip() or "today's topic"
@@ -77,10 +77,10 @@ def default_completion_summary(
     student_id: str,
     *,
     session_id: str,
-    topic_title: str = "Core methods",
+    topic_title: str = "Today's topic",
 ) -> dict[str, Any]:
     """Opaque session completion / summary facts."""
-    topic = (topic_title or "Core methods").strip() or "Core methods"
+    topic = (topic_title or "Today's topic").strip() or "Today's topic"
     return {
         "student_id": student_id,
         "session_id": session_id,
@@ -102,7 +102,7 @@ def default_activity(
     session_id: str,
     index: int = 1,
     total: int = 3,
-    topic_title: str = "Core methods",
+    topic_title: str = "Today's topic",
     why_studying: str = "",
 ) -> dict[str, Any]:
     """Opaque current activity facts.
@@ -152,11 +152,11 @@ def default_activity_progress(
     session_id: str,
     completed: int = 0,
     total: int = 3,
-    topic_title: str = "Core methods",
+    topic_title: str = "Today's topic",
 ) -> dict[str, Any]:
     """Opaque activity sequence progress facts."""
     remaining = max(0, total - completed)
-    topic = (topic_title or "Core methods").strip() or "Core methods"
+    topic = (topic_title or "Today's topic").strip() or "Today's topic"
     return {
         "student_id": student_id,
         "session_id": session_id,
@@ -178,11 +178,11 @@ def default_mission_session(
         "student_id": student_id,
         "mission_id": mission_id,
         "session_id": session_id,
-        "topic_title": "Core methods",
+        "topic_title": "Today's topic",
         "estimated_minutes": 30,
         "status": "ready",
         "objective": "Strengthen today's focus topic",
-        "topics": ("Core methods",),
+        "topics": ("Today's topic",),
         "authority": "mission_engine",
         "next_action_authority": False,
     }

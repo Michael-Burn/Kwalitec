@@ -272,14 +272,26 @@ class PackageActivityEngine:
 
         handle = self._persistence.load_handle(session_id=session_id)
         objective_ids: tuple[str, ...] = ()
-        if handle is not None and handle.plan is not None:
+        raw_ids = record.get("objective_ids") or ()
+        if raw_ids:
+            objective_ids = tuple(
+                str(oid).strip() for oid in raw_ids if str(oid).strip()
+            )
+        elif handle is not None and handle.plan is not None:
             objective_ids = tuple(handle.plan.objective_ids)
+
+        minutes = None
+        try:
+            minutes = int(record.get("estimated_minutes") or 0) or None
+        except (TypeError, ValueError):
+            minutes = None
 
         substance = self._planner.plan_for_topic(
             curriculum_identity=curriculum_identity,
             topic_id=topic_id,
             topic_title=title,
             objective_ids=objective_ids,
+            session_minutes=minutes,
         )
         if substance is None:
             return None
