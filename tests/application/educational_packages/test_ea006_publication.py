@@ -79,6 +79,17 @@ def test_topic_2_2_resolves_to_epsilon_entry() -> None:
     assert pack.campaign_day == "CE-D1"
 
 
+def test_topic_2_3_resolves_to_zeta_entry() -> None:
+    """RO-004 — CS1-006 activates 2.3 at CZ-D1 (Continuity Front)."""
+    pack = find_educational_package(
+        topic_code="2.3",
+        subject_id="CS1",
+    )
+    assert pack is not None
+    assert pack.package_id == "CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION"
+    assert pack.campaign_day == "CZ-D1"
+
+
 def test_ep001_opening_package_is_live_approved() -> None:
     pack = find_educational_package(
         topic_code="1.1",

@@ -290,4 +290,59 @@ def test_gamma_revision_hands_off_to_epsilon() -> None:
     approved = EducationalPackageLoader().all_approved()
     ce = [p for p in approved if (p.campaign_day or "").startswith("CE-")]
     assert len(ce) == 5
-    assert len(approved) == 45
+    assert len(approved) == 48
+
+
+def test_zeta_chain_reaches_cz_r1() -> None:
+    """RO-004 — Continuity Front into 2.3 → CZ-D1…CZ-R1 joint inventory."""
+    completed: set[str] = set()
+    last = ""
+    expected = [
+        ("CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION", "CZ-D1"),
+        ("CS1-EP001-PKG-2.3-MEAN-VARIANCE-CONDITIONING", "CZ-D2"),
+        ("CS1-EP001-PKG-REV-CONDITIONAL-EXPECTATIONS", "CZ-R1"),
+    ]
+    topic = "2.3"
+    for package_id, day in expected:
+        pack = resolve_active_educational_package(
+            subject_id="CS1",
+            syllabus_topic_code=topic,
+            completed_package_ids=completed,
+            last_completed_package_id=last,
+        )
+        assert pack is not None, f"missing successor before {day}"
+        assert pack.package_id == package_id, (
+            f"expected {package_id} got {pack.package_id}"
+        )
+        assert pack.campaign_day == day
+        completed.add(pack.package_id)
+        last = pack.package_id
+        topic = pack.topic_code or topic
+
+
+def test_epsilon_revision_hands_off_to_zeta() -> None:
+    """RO-004 — CE-R1 tomorrow_preview 2.3 resolves to CZ-D1 (not Epsilon re-entry)."""
+    from app.application.educational_packages.loader import EducationalPackageLoader
+
+    epsilon_ids = {
+        "CS1-EP001-PKG-2.2-MARGINAL-CONDITIONAL",
+        "CS1-EP001-PKG-2.2-INDEPENDENCE",
+        "CS1-EP001-PKG-2.2-COV-CORR-EXPECTATION",
+        "CS1-EP001-PKG-2.2-LINEAR-COMBINATIONS",
+        "CS1-EP001-PKG-REV-JOINT-DISTRIBUTIONS",
+    }
+    pack = resolve_active_educational_package(
+        subject_id="CS1",
+        syllabus_topic_code="2.3",
+        completed_package_ids=epsilon_ids,
+        last_completed_package_id="CS1-EP001-PKG-REV-JOINT-DISTRIBUTIONS",
+    )
+    assert pack is not None
+    assert pack.campaign_day == "CZ-D1"
+    assert pack.package_id == "CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION"
+
+    approved = EducationalPackageLoader().all_approved()
+    cz = [p for p in approved if (p.campaign_day or "").startswith("CZ-")]
+    assert len(cz) == 3
+    assert len(approved) == 48
+
