@@ -1,0 +1,193 @@
+{
+  "package_version": "cs1007-campaign-eta-1.0.0",
+  "publication_version": "cs1007-catalogue-1.0.0",
+  "status": "campaign_member_certified",
+  "campaign_id": "CS1-EP001-CAMPAIGN-ETA",
+  "volume_id": "CS1-007",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1007_EDUCATIONAL_VOLUME.md",
+    "CS1007_CERTIFICATION_REPORT.md",
+    "EP005_WAVE5_PLAN.md"
+  ],
+  "author_id": "cs1007-educational-author",
+  "authored_at": "2026-08-01",
+  "topic_code": "2.4",
+  "topic_title": "Evaluate and apply generating functions",
+  "topic_id": "CS1-B-T04",
+  "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+  "campaign_day": "CH-D1",
+  "topic_focus_lo": "2.4.1",
+  "topic_aliases": [
+    "CS1-B-T04",
+    "2.4",
+    "2.4.1"
+  ],
+  "topic_title_keywords": [
+    "moment",
+    "cumulant",
+    "generating",
+    "function",
+    "MGF",
+    "CGF"
+  ],
+  "golden_id": "GOLDEN-CS1007-CS1-2.4-MGF-CGF",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1007-cs1-2.4-mgf-cgf",
+    "display_title": "Form the moment and cumulant generating functions of an RV",
+    "mission_purpose": "Today's Mission exists to obtain the moment and cumulant generating functions of a random variable \u2014 so M_X(t) and K_X(t) (or CMP equivalents) are usable objects \u2014 without pretending moment-via-GF calculation is finished.",
+    "tutor_intent": "Today I will force the candidate to define or interpret the MGF and CGF \u2014 and refuse treating 'I can compute ordinary moments by hand' as having generating functions.",
+    "educational_intent": "Produce a cognitive move from the distribution of an RV to lawful MGF and CGF objects under CMP definitions.",
+    "learning_objective": "Obtain and interpret the moment and cumulant generating functions of a random variable.",
+    "concept_focus": "Distribution \u2192 MGF M_X(t)=E[e^{tX}] \u2192 CGF (log M or CMP form) \u2192 refuse ordinary-moments-as-GF.",
+    "prior_bridge": "Campaign Zeta closed expectations and conditional expectations (2.3) with Revision. Today opens topic 2.4 at LO 2.4.1 \u2014 the named Continuity Front after CS1-006.",
+    "why_now": "2.4.1 is the lawful Continuity Front after Zeta. Closing it prevents a cliff at generating functions while keeping moment-via-GF as day two.",
+    "expected_benefit": "Study Progress for MGF/CGF \u2014 not Topic Complete for 2.4.2.",
+    "explainability": "Assigned as Campaign Eta Day 1 because CE-001 / EP-001 Continuity Front names 2.4 as the handoff from Zeta.",
+    "success_criteria": [
+      "Closed-book, outline what the MGF is (CMP form).",
+      "State how the CGF relates to the MGF (or CMP cumulant definition).",
+      "Refuse one 'ordinary moments finished generating functions' claim."
+    ],
+    "task_descriptions": [
+      "Sketch MGF and CGF definitions before CMP.",
+      "Complete Guided Reading through CMP treatment of Syllabus 2.4.1.",
+      "Closed-book Knowledge Checks: MGF/CGF + refuse ordinary-moments collapse."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 55,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1007-cs1-2.4-mgf-cgf",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 2.4.1 \u2014 not the next LO as primary.",
+    "session_tutor_purpose": "Set focus on 2.4.1, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
+    "duration_budget_minutes": {
+      "min": 55,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Form the moment and cumulant generating functions of an RV. You practised selective CMP reading on Syllabus 2.4.1. This is Study Progress for today's block \u2014 not Topic Complete for later 2.4 LOs, Chapter 2, or the central limit theorem.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 2.4.1 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 2.4.1 \u2014 form the moment and cumulant generating functions of an rv. Stop before out-of-scope later LOs.",
+    "focus_questions": [
+      "What is the core move of Syllabus 2.4.1?",
+      "What warrant separates today's skill from yesterday's?",
+      "What claim must you refuse today?",
+      "What will you practise in Knowledge Checks after the CMP?"
+    ],
+    "misconception_watch": [
+      "Watch for equating 'I know E[X] and Var(X)' with having an MGF/CGF.",
+      "Watch for starting moment-via-differentiation drills (2.4.2) inside this sitting.",
+      "Watch for CLT work (2.5) today."
+    ],
+    "open_point": "CMP \u00b7 Syllabus 2.4.1 moment and cumulant generating functions",
+    "stop_condition": "Through the CMP treatment of Syllabus 2.4.1 (stop before moment calculation via GF 2.4.2)",
+    "out_of_scope_today": [
+      "Moment calculation via series/differentiation as primary (2.4.2)",
+      "Central limit theorem (2.5)",
+      "Sampling distributions (2.6)",
+      "Inference Chapter 3",
+      "CS1B coding marathon"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.4.1 moment and cumulant generating functions. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.4.1 (stop before moment calculation via GF 2.4.2). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 2.4.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1007-2.4.1-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1007-2.4.1-ar-01",
+      "title": "Active Recall: 2.4.1",
+      "prompt": "Closed-book. (1) Write or state the MGF of a random variable X. (2) What is the CGF in relation to the MGF (or CMP form)? (3) Name one reason these objects are not the same as listing a few raw moments.",
+      "response_type": "short_structured",
+      "body": "Retrieve 2.4.1 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "MGF",
+        "CGF",
+        "moment",
+        "cumulant",
+        "generating",
+        "E[e",
+        "log",
+        "function",
+        "t"
+      ],
+      "explanation": "Active recall for 2.4.1.",
+      "model_answer": "MGF is M_X(t)=E[e^{tX}] (or CMP equivalent). CGF is typically K_X(t)=log M_X(t) (or CMP cumulant form). Knowing a few moments is not the same as possessing the generating-function object that encodes the moment sequence.",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1007-2.4.1-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1007-2.4.1-cp-01",
+      "title": "Checkpoint: 2.4.1",
+      "prompt": "Closed-book. A colleague says 'we already know how to get means and variances, so generating functions are just the same skill.' Refuse in one sentence and restate what today's LO adds.",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 2.4.1.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "MGF",
+        "CGF",
+        "generating",
+        "not same",
+        "function",
+        "moments"
+      ],
+      "explanation": "Checkpoint for 2.4.1.",
+      "model_answer": "Refuse: raw moments are not the MGF/CGF. Today's skill is forming and interpreting the generating-function objects (MGF and CGF) for a random variable.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest wobble on MGF vs CGF vs raw moments \u2014 moment-via-GF calculation comes tomorrow.",
+    "prompt": "Which part of today's 2.4.1 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 2.4.1 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "2.4",
+    "next_topic_title": "Moment calculation via generating functions (2.4.2)",
+    "continuity_line": "Today you formed moment and cumulant generating functions; tomorrow continues 2.4 at moment calculation via series expansion or differentiation of a GF.",
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.4.2 \u2014 titles only tonight",
+    "student_facing": "Tomorrow: moment calculation via generating functions (2.4.2). Optional light prep: skim 2.4.2 headings \u2014 titles only tonight."
+  }
+}

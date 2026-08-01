@@ -90,6 +90,17 @@ def test_topic_2_3_resolves_to_zeta_entry() -> None:
     assert pack.campaign_day == "CZ-D1"
 
 
+def test_topic_2_4_resolves_to_eta_entry() -> None:
+    """RO-005 — CS1-007 activates 2.4 at CH-D1 (Continuity Front)."""
+    pack = find_educational_package(
+        topic_code="2.4",
+        subject_id="CS1",
+    )
+    assert pack is not None
+    assert pack.package_id == "CS1-EP001-PKG-2.4-MGF-CGF"
+    assert pack.campaign_day == "CH-D1"
+
+
 def test_ep001_opening_package_is_live_approved() -> None:
     pack = find_educational_package(
         topic_code="1.1",

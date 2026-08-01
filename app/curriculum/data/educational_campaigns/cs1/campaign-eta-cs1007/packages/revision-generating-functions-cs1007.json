@@ -1,0 +1,191 @@
+{
+  "package_version": "cs1007-campaign-eta-1.0.0",
+  "publication_version": "cs1007-catalogue-1.0.0",
+  "status": "campaign_member_certified",
+  "campaign_id": "CS1-EP001-CAMPAIGN-ETA",
+  "volume_id": "CS1-007",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1007_EDUCATIONAL_VOLUME.md",
+    "CS1007_CERTIFICATION_REPORT.md",
+    "EP005_WAVE5_PLAN.md"
+  ],
+  "author_id": "cs1007-educational-author",
+  "authored_at": "2026-08-01",
+  "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+  "campaign_day": "CH-R1",
+  "topic_code": "CH-R1",
+  "topic_title": "Campaign Eta revision \u2014 generating functions",
+  "return_targets": [
+    "2.4.1",
+    "2.4.2"
+  ],
+  "topic_aliases": [
+    "CH-R1",
+    "campaign-eta-revision"
+  ],
+  "topic_title_keywords": [
+    "revision",
+    "generating",
+    "moment",
+    "cumulant",
+    "MGF",
+    "CGF",
+    "series",
+    "differentiation"
+  ],
+  "golden_id": "GOLDEN-CS1007-CS1-CH-R1-GENERATING-FUNCTIONS",
+  "mode": "revision",
+  "mission": {
+    "mission_id": "msn-cs1007-cs1-ch-r1-generating-functions",
+    "display_title": "Retrieve generating-function hinges (2.4)",
+    "mission_purpose": "Today's Mission exists to protect memory of Campaign Eta \u2014 retrieving moment and cumulant generating functions, and moment calculation via series or differentiation \u2014 so 2.4 does not evaporate before the central limit theorem (2.5).",
+    "tutor_intent": "Today I will run closed-book retrieval across Eta's Learning hinges \u2014 not a passive CMP re-read and not a first-pass 2.5 lesson.",
+    "educational_intent": "Produce retrieval strength on the Campaign Educational Objective: MGF/CGF definition \u2192 moments via expansion or differentiation.",
+    "learning_objective": "Retrieve and connect (1) moment and cumulant generating functions of a random variable, and (2) moment calculation via series expansion or differentiation of a generating function.",
+    "concept_focus": "Campaign chain retrieval: MGF/CGF \u2192 moments via series or differentiation.",
+    "prior_bridge": "Yesterday you finished moment calculation via generating functions (2.4.2). Today is Revision mode: return to 2.4.1\u20132.4.2 under closed-book retrieval \u2014 no new first-pass LO.",
+    "why_now": "Pilot Arc law requires Revision after the Learning span; spacing protects Continuity Front closure before successor 2.5 work.",
+    "expected_benefit": "Evidence that the 2.4 chain retrieves \u2014 revision Study Progress, not a claim that Chapter 2 or the exam journey is complete.",
+    "explainability": "Assigned as Campaign Eta Revision because Architecture requires memory return inside the Pilot Arc before the next Volume.",
+    "success_criteria": [
+      "Closed-book, outline what an MGF (and CGF) is for a random variable.",
+      "State how moments arise via series expansion or differentiation of a GF.",
+      "Refuse Chapter 2 complete / spine / until-exam / CLT-as-done claims."
+    ],
+    "task_descriptions": [
+      "Without opening the CMP, sketch Eta's chain: MGF/CGF \u2192 moments via GF.",
+      "Complete Revision Knowledge Checks under closed-book rules.",
+      "Author a revision Reflection naming the weakest link."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 40,
+      "max": 55
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1007-cs1-ch-r1-generating-functions",
+    "session_educational_purpose": "Retrieve and connect Campaign Eta skills \u2014 not to teach 2.5.",
+    "session_tutor_purpose": "Keep CMP closed for checks; harvest weakest link \u2014 Gate RV substance.",
+    "duration_budget_minutes": {
+      "min": 40,
+      "max": 55
+    },
+    "wrap_up": "Revision Session complete. You stress-tested 2.4.1\u20132.4.2 return targets. This is revision Study Progress \u2014 not Topic Complete for 2.5, and not first-pass spine PASS.",
+    "confidence_prompt": "How confident are you that MGF/CGF \u2192 moments via GF will still retrieve in three days? Rate 1\u20135 and name the weakest link."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this revision stage: strengthen retrieval of the Campaign Eta chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus.",
+    "focus_questions": [
+      "Can you define or interpret the MGF and CGF of a random variable?",
+      "Can you obtain moments via series expansion or differentiation of a GF?",
+      "What claim must you refuse (Chapter 2 complete / spine / until-exam / 2.5 done)?"
+    ],
+    "misconception_watch": [
+      "Watch for turning revision into a passive re-read.",
+      "Watch for claiming Chapter 2 / 2.5 complete.",
+      "Watch for dropping Zeta conditional-expectation memory as irrelevant."
+    ],
+    "open_point": "No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block.",
+    "stop_condition": "After revision checks and Reflection \u2014 do not begin Syllabus 2.5 in this sitting",
+    "out_of_scope_today": [
+      "First-pass central limit theorem (2.5)",
+      "Sampling distributions (2.6)",
+      "Inference Chapter 3",
+      "First-pass spine PASS",
+      "Until-exam educational trust"
+    ],
+    "annotation_task": "Before checks: sketch return-target chain from memory",
+    "attempt_before_reveal": "Attempt each check before any targeted CMP reopen",
+    "exit_line": "Begin closed-book retrieval. Reopen CMP only at a failed locus. After checks, complete Reflection.",
+    "return_cue": "Revision reading stage is complete when checks are attempted and any failed locus has a targeted reopen plan.",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause \u2014 mark the weakest link before checks.",
+        "student_action": "Annotate"
+      }
+    ],
+    "reentry_line": "Stay closed-book unless a check failed. Continue retrieval."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1007-ch-r1-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1007-ch-r1-ar-01",
+      "title": "Active Recall: CH-R1",
+      "prompt": "Closed-book. Retrieve in order, one short phrase each: (1) moment and cumulant generating functions of a random variable; (2) moment calculation via series expansion or differentiation of a generating function.",
+      "response_type": "short_structured",
+      "body": "Revision chain recall for 2.4.",
+      "hints": [
+        "Name each hinge briefly.",
+        "Stay retrieval-first."
+      ],
+      "accepted_keywords": [
+        "MGF",
+        "CGF",
+        "moment",
+        "cumulant",
+        "generating",
+        "series",
+        "differentiation",
+        "expand",
+        "derivative"
+      ],
+      "explanation": "Revision retrieves the 2.4 arc.",
+      "model_answer": "Example: (1) MGF M_X(t)=E[e^{tX}] (or CMP form); CGF is log M (or CMP cumulant form). (2) Moments from Taylor coefficients / derivatives of the MGF (or related GF operations in the CMP).",
+      "common_mistake": "Passive summary without retrieval.",
+      "success_criteria": [
+        "Two hinges named.",
+        "Weakest link candid."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1007-ch-r1-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1007-ch-r1-cp-01",
+      "title": "Checkpoint: CH-R1",
+      "prompt": "Closed-book. (1) Weakest 2.4 link + one concrete rework. (2) Refuse Chapter 2 complete and first-pass spine PASS. (3) Name the honest next geography (2.5) or confirm declared stop.",
+      "response_type": "short_structured",
+      "body": "Weakest link + honest next.",
+      "hints": [
+        "Name a concrete rework.",
+        "Refuse forbidden claims."
+      ],
+      "accepted_keywords": [
+        "weak",
+        "rework",
+        "refuse",
+        "spine",
+        "chapter",
+        "2.5",
+        "stop",
+        "until-exam"
+      ],
+      "explanation": "RV harvests memory debt and honest next.",
+      "model_answer": "(1) e.g. CGF vs MGF \u2014 five-minute rework. (2) Refuse Chapter 2 complete / spine / until-exam. (3) Honest next is 2.5 (successor Volume) or declared stop \u2014 not claimed finished here.",
+      "common_mistake": "Spine / Chapter 2 / until-exam claim.",
+      "success_criteria": [
+        "Rework named.",
+        "Forbidden claim refused."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Revision Reflection names the weakest Campaign link for spaced return.",
+    "prompt": "Which return target retrieved least cleanly and what one concrete rework will you schedule? Confirm Chapter 2 complete / spine / until-exam stayed out of scope.",
+    "prompts": [
+      "Which return target retrieved least cleanly?",
+      "What one concrete rework will you schedule?",
+      "Confirm: Chapter 2 complete / spine PASS / until-exam trust were out of scope."
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "2.5",
+    "next_topic_title": "Honest next \u2014 central limit theorem (2.5) under a successor Volume (or declared stop)",
+    "continuity_line": "Campaign Eta / Volume CS1-007 completes after this Revision. Honest stop: 2.4 Pilot Arc closed \u2014 not Chapter 2 complete; not first-pass spine; not until-exam trust. Successor geography is 2.5 under a later commission.",
+    "light_prep_cue": "No new first-pass LO tonight \u2014 rest or schedule weakest-link rework only",
+    "student_facing": "Campaign Eta / CS1-007 complete after today (pending human Approver + LIVE). Honest next: stop or await 2.5 successor Volume. Optional: schedule your weakest 2.4 rework only."
+  }
+}

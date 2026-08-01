@@ -1,0 +1,34 @@
+{
+  "campaign_id": "CS1-EP001-CAMPAIGN-ETA",
+  "campaign_version": "cs1007-1.0.0",
+  "display_title": "Campaign Eta \u2014 Generating functions (2.4)",
+  "subject_id": "CS1",
+  "package_version_pin": "IFoA CS1 2026",
+  "scope_class": "Pilot Arc",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "status": "released",
+  "volume_id": "CS1-007",
+  "prior_volume_id": "CS1-006",
+  "day_count": {
+    "learning": 2,
+    "revision": 1,
+    "total": 3
+  },
+  "syllabus_span": [
+    "2.4.1",
+    "2.4.2"
+  ],
+  "out_of_scope": [
+    "2.5+",
+    "Chapter 2 complete",
+    "first-pass spine",
+    "until-examination educational trust",
+    "Wave 6 / Chapter 3 inference authoring",
+    "coverage mirage from drafts"
+  ],
+  "inventory": [
+    "CS1-EP001-PKG-2.4-MGF-CGF",
+    "CS1-EP001-PKG-2.4-MOMENT-VIA-GF",
+    "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS"
+  ]
+}
