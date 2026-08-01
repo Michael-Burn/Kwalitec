@@ -47,12 +47,36 @@ def test_package_resolves_by_alias() -> None:
 
 
 def test_package_does_not_match_unrelated_topic() -> None:
+    # Topic 4.1 has no publication_approved package (control adjacent to 4.2).
     pack = find_educational_package(
-        topic_code="1.1",
-        topic_title="Describe the principles of actuarial modelling",
+        topic_code="4.1",
+        topic_title="4.1 Explain the concepts of linear regression",
         subject_id="CS1",
     )
     assert pack is None
+
+
+def test_ep001_opening_package_is_live_approved() -> None:
+    pack = find_educational_package(
+        topic_code="1.1",
+        topic_title="1.1 Describe the purpose and function of data analysis",
+        subject_id="CS1",
+    )
+    assert pack is not None
+    assert pack.is_publication_approved
+    assert pack.package_id == "CS1-EP001-PKG-1.1-PURPOSE-FUNCTION"
+    assert "Purpose of this reading" in pack.reading.lead_line
+    assert "CMP" in pack.reading.exit_line
+
+
+def test_shared_topic_code_prefers_campaign_day_order() -> None:
+    """Shared topic_code 1.2 / 2.1: first-match follows live filename day order."""
+    pack_12 = find_educational_package(topic_code="1.2", subject_id="CS1")
+    assert pack_12 is not None
+    assert pack_12.package_id == "CS1-EP001-PKG-1.2-EDA-SUMMARIES"
+    pack_21 = find_educational_package(topic_code="2.1", subject_id="CS1")
+    assert pack_21 is not None
+    assert pack_21.package_id == "CS1-CS1002-PKG-2.1-DISCRETE"
 
 
 def test_substance_from_package_is_complete_arc() -> None:

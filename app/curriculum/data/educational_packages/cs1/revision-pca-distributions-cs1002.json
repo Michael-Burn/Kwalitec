@@ -1,8 +1,8 @@
 {
   "package_id": "CS1-CS1002-PKG-REV-PCA-DISTRIBUTIONS",
   "package_version": "cs1002-campaign-beta-1.0.0",
-  "publication_version": "cs1002-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1002-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-CS1002-CAMPAIGN-BETA",
   "campaign_day": "CB-R1",
   "volume_id": "CS1-002",
@@ -35,7 +35,7 @@
     "EC001_CMP_PARTNERSHIP_AUDIT.md"
   ],
   "author_id": "cs1002-educational-author",
-  "published_at": null,
+  "published_at": "2026-08-01",
   "mission": {
     "mission_id": "msn-cs1002-cs1-cb-r1-pca-distributions",
     "display_title": "Retrieve PCA and distributional entry",

@@ -21,7 +21,8 @@
   "certification_refs": [
     "EA005_CERTIFICATION_REPORT.md",
     "EA005_GOLDEN_PACKAGE_ASSESSMENT.md",
-    "EA005_MULTI_REVIEW_REPORT.md"
+    "EA005_MULTI_REVIEW_REPORT.md",
+    "EC001_CMP_PARTNERSHIP_AUDIT.md"
   ],
   "author_id": "ea005-educational-author",
   "published_at": "2026-08-01",
@@ -62,7 +63,7 @@
     "confidence_prompt": "How confident are you that you could explain the GLM chain closed-book tomorrow morning? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Extract how a GLM joins an exponential-family response, a linear predictor, and a link — then stop after the first structural worked example.",
+    "lead_line": "Purpose of this reading: use the CMP to extract how a GLM joins an exponential-family response, a linear predictor, and a link — so link choice is structural, not software habit. Extract that chain from the CMP, then stop after the first structural worked example.",
     "focus_questions": [
       "Where is the linear predictor η defined for a GLM? Write it in your own words.",
       "Which distributions in today's reading sit in the exponential family, and what mean/variance language does the CMP use?",
@@ -85,8 +86,8 @@
     ],
     "annotation_task": "Before deep reading: sketch Family / η / Link as three boxes in notes",
     "attempt_before_reveal": "At the first worked example, cover the solution and attempt the middle step",
-    "exit_line": "Open your CMP at the GLM setup for Syllabus 4.2. Work with the three focus questions above. I will stay quiet while you study. Come back here when you reach the end of the first structural worked example.",
-    "return_cue": "Come back to Kwalitec when you have finished the first structural worked example.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at Syllabus 4.2 GLM setup (4.2.1–4.2.3 centre). Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; sketch Family / η / Link before deep reading; attempt the middle step of the first worked example before revealing the solution. Ignore full deviance diagnostics, exhaustive factor design, multi-model theatre, coding marathons, and Bayesian material (5.1) today. Stop at the end of the first structural worked example with a non-identity link. Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when you have completed the first structural worked example and can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -99,7 +100,7 @@
         "student_action": "Attempt"
       }
     ],
-    "reentry_line": "Welcome back. Keep your CMP closed for the next few minutes. We will check what the reading fixed in memory."
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry (confirm your Family / η / Link sketch and pause-point notes), then Knowledge Checks."
   },
   "knowledge_checks": [
     {

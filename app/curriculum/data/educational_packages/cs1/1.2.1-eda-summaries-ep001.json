@@ -1,8 +1,8 @@
 {
   "package_id": "CS1-EP001-PKG-1.2-EDA-SUMMARIES",
   "package_version": "ep001-campaign-alpha-1.0.0",
-  "publication_version": "ep001-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "ep001-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-ALPHA",
   "campaign_day": "CA-D2",
   "subject_id": "CS1",
@@ -30,7 +30,7 @@
     "EC001_CMP_PARTNERSHIP_AUDIT.md"
   ],
   "author_id": "ep001-educational-author",
-  "published_at": null,
+  "published_at": "2026-08-01",
   "mission": {
     "mission_id": "msn-ep001-cs1-1.2-eda-summaries",
     "display_title": "Choose summaries and plots for a stated aim",
