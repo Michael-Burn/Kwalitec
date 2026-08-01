@@ -11,18 +11,60 @@ from app.application.educational_authoring.dto import (
     TomorrowPreview,
 )
 from app.application.educational_authoring.duration import split_activity_minutes
-from app.application.educational_packages.loader import find_educational_package
+from app.application.educational_packages.loader import (
+    EducationalPackageLoader,
+    find_educational_package,
+)
 from app.application.educational_packages.models import CertifiedEducationalPackage
+from app.application.educational_packages.selection import packages_for_subject
+from app.application.educational_packages.tomorrow_chrome import (
+    resolve_package_for_tomorrow_chrome,
+)
 
 
 def resolve_package_for_context(
     context: AuthoringContext,
 ) -> CertifiedEducationalPackage | None:
-    """Find a publication-approved package for an authoring context."""
-    return find_educational_package(
-        topic_id=context.topic_id,
-        topic_code=context.topic_code,
+    """Find a publication-approved package for an authoring context.
+
+    RO1-R1: prefer educational_package_id and campaign chain selection over
+    shared topic_code first-match so Tomorrow Preview chrome matches the
+    approved package for the sitting. Never overlay via title keywords alone.
+    """
+    pack = resolve_package_for_tomorrow_chrome(
+        educational_package_id=context.educational_package_id,
+        subject_id=context.subject_code,
+        syllabus_topic_code=context.topic_code,
         topic_title=context.topic_title,
+        completed_package_ids=context.completed_package_ids,
+        last_completed_package_id=context.last_completed_package_id,
+        prefer_completed_package=context.prefer_completed_package,
+    )
+    if pack is not None:
+        return pack
+    # Exact identity / unique code only — no title-keyword overlay for
+    # synthetic authoring topics (KWP-015) or ambiguous shared codes.
+    code = (context.topic_code or "").strip()
+    tid = (context.topic_id or "").strip()
+    if not code and not tid:
+        return None
+    if code:
+        subject = (context.subject_code or "").strip()
+        if subject:
+            matches = [p for p in packages_for_subject(subject) if p.topic_code == code]
+        else:
+            matches = [
+                p
+                for p in EducationalPackageLoader().all_approved()
+                if p.topic_code == code
+            ]
+        if len(matches) == 1:
+            return matches[0]
+        return None
+    return find_educational_package(
+        topic_id=tid,
+        topic_code="",
+        topic_title="",
         subject_id=context.subject_code,
     )
 

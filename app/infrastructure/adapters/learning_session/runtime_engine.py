@@ -145,6 +145,9 @@ class LearningSessionRuntimeEngine:
             estimated_minutes=record.get("estimated_minutes"),
             curriculum_identity=str(record.get("curriculum_identity") or ""),
             active_surface=active_surface,
+            educational_package_id=str(
+                record.get("educational_package_id") or ""
+            ),
         )
 
     def get_session_overview_opaque(
@@ -974,6 +977,15 @@ class LearningSessionRuntimeEngine:
             "syllabus_refs": tuple(syllabus_refs),
             "evidence_disposition": disposition,
             "package_learning_objectives": package_objectives,
+            "educational_package_id": str(
+                record.get("educational_package_id") or ""
+            ).strip()
+            or _educational_package_id_from_sequence(
+                seq if isinstance(seq, dict) else None
+            ),
+            "subject_id": str(
+                (record.get("curriculum_identity") or "").split(":")[0]
+            ).strip(),
             "intelligence_snapshot": package.get("intelligence_snapshot"),
             "prior_intervention": (
                 (package.get("intelligence_snapshot") or {}).get(
@@ -1363,3 +1375,28 @@ class LearningSessionRuntimeEngine:
                 "current_topic_id": topic_id,
                 "reason": "study_progress_projection_failed_open",
             }
+
+
+def _educational_package_id_from_sequence(seq: dict[str, Any] | None) -> str:
+    """Recover sitting package id from activity sequence (RO1-R1)."""
+    if not isinstance(seq, dict):
+        return ""
+    direct = str(seq.get("educational_package_id") or "").strip()
+    if direct:
+        return direct
+    for raw in seq.get("activities") or ():
+        if not isinstance(raw, dict):
+            continue
+        pid = str(raw.get("package_id") or "").strip()
+        if pid:
+            return pid
+    for obj in seq.get("learning_objectives") or ():
+        if isinstance(obj, dict):
+            oid = str(obj.get("objective_id") or "").strip()
+        else:
+            oid = str(obj or "").strip()
+        if ":lo" in oid:
+            return oid.split(":lo", 1)[0].strip()
+        if ":sc-" in oid:
+            return oid.split(":sc-", 1)[0].strip()
+    return ""

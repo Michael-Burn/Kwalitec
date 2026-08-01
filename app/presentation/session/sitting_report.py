@@ -211,6 +211,8 @@ def build_sitting_report(
             topic=topic,
             strategy=None,
             strategy_title=strategy_title,
+            opaque=opaque,
+            metadata=meta,
         )
         what_studied = _what_studied(topic, objectives, opaque)
         headline = f"Sitting Report · {topic}"
@@ -287,6 +289,8 @@ def build_sitting_report(
         progress_advanced=progress_advanced,
         topic=topic,
         strategy=strategy,
+        opaque=opaque,
+        metadata=meta,
     )
     what_studied = _what_studied(topic, objectives, opaque)
     headline = f"Sitting Report · {topic}"
@@ -775,22 +779,46 @@ def _tomorrow_preview(
     topic: str,
     strategy: LearningStrategyAdvice | None = None,
     strategy_title: str = "",
+    educational_package_id: str = "",
+    opaque: dict[str, Any] | None = None,
+    metadata: dict[str, Any] | None = None,
 ) -> str:
-    # EA-006: certified package tomorrow line when topic matches.
+    # RO1-R1 / EA-006: bind Finish chrome to the sitting's approved package
+    # tomorrow_preview — never shared topic_code first-match alone.
     try:
-        from app.application.educational_packages.loader import find_educational_package
+        from app.application.educational_packages.tomorrow_chrome import (
+            format_tomorrow_preview_text,
+            resolve_package_for_tomorrow_chrome,
+        )
 
-        pack = find_educational_package(topic_title=topic)
-        if pack is not None and pack.tomorrow.student_facing:
-            return pack.tomorrow.student_facing
-        if pack is not None and pack.tomorrow.continuity_line:
-            label = pack.tomorrow.next_topic_title or next_recommendation
-            if label:
-                return (
-                    f"Tomorrow: {pack.tomorrow.next_topic_code} — {label}. "
-                    f"{pack.tomorrow.continuity_line}"
-                ).strip()
-            return pack.tomorrow.continuity_line
+        pack_id = (educational_package_id or "").strip()
+        opaque_map = opaque or {}
+        meta_map = metadata or {}
+        if not pack_id:
+            pack_id = str(
+                opaque_map.get("educational_package_id")
+                or meta_map.get("educational_package_id")
+                or ""
+            ).strip()
+        pack = resolve_package_for_tomorrow_chrome(
+            educational_package_id=pack_id,
+            subject_id=str(
+                opaque_map.get("subject_id")
+                or opaque_map.get("subject_code")
+                or meta_map.get("subject_id")
+                or ""
+            ),
+            syllabus_topic_code=str(
+                opaque_map.get("topic_code") or meta_map.get("topic_code") or ""
+            ),
+            topic_title=topic,
+        )
+        if pack is not None:
+            text = format_tomorrow_preview_text(
+                pack, next_recommendation=next_recommendation
+            )
+            if text:
+                return text
     except Exception:  # noqa: BLE001 — sitting report must stay resilient
         pass
     if strategy is not None and strategy.recommendation_title:

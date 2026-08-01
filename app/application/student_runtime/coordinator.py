@@ -220,6 +220,7 @@ class StudentRuntimeCoordinator:
             topic_id=mission.topic_id,
             estimated_minutes=minutes,
             curriculum_identity=mission.curriculum_identity,
+            educational_package_id=mission.educational_package_id or "",
         )
         if substance is not None:
             self._provision_substance_sequence(

@@ -319,6 +319,7 @@ class PackageActivityEngine:
             "topic_title": substance.topic_title,
             "topic_id": substance.topic_id,
             "curriculum_identity": substance.curriculum_identity,
+            "educational_package_id": _package_id_from_substance(substance),
             "learning_objectives": [
                 {
                     "objective_id": obj.objective_id,
@@ -413,6 +414,7 @@ def _spec_to_sequence_item(
     spec: EducationalActivitySpec, *, index: int, total: int
 ) -> dict[str, Any]:
     scoreable = spec.scoreable
+    meta = dict(spec.metadata or ())
     item: dict[str, Any] = {
         "activity_id": spec.activity_id,
         "stage": spec.stage.value,
@@ -428,13 +430,16 @@ def _spec_to_sequence_item(
         "requires_response": spec.requires_response,
         "objective_ids": list(spec.objective_ids),
         "syllabus_refs": list(spec.syllabus_refs),
-        "next_action_label": dict(spec.metadata).get(
+        "next_action_label": meta.get(
             "next_action_label",
             "Continue to Reflection" if index >= total else "Continue",
         ),
         "activity_index": index,
         "activities_total": total,
     }
+    package_id = str(meta.get("package_id") or "").strip()
+    if package_id:
+        item["package_id"] = package_id
     if scoreable is not None:
         # Server-side scoring retains the full key; learner opaque omits it.
         item["scoreable"] = scoreable.to_opaque()
@@ -444,6 +449,22 @@ def _spec_to_sequence_item(
         ]
         item["item_id"] = scoreable.item_id
     return item
+
+
+def _package_id_from_substance(substance: EducationalSessionSubstance) -> str:
+    """Recover approved educational_package_id from substance metadata / LO ids."""
+    for act in substance.activities or ():
+        meta = dict(getattr(act, "metadata", ()) or ())
+        pid = str(meta.get("package_id") or "").strip()
+        if pid:
+            return pid
+    for obj in substance.learning_objectives or ():
+        oid = str(getattr(obj, "objective_id", "") or "").strip()
+        if ":lo" in oid:
+            return oid.split(":lo", 1)[0].strip()
+        if ":sc-" in oid:
+            return oid.split(":sc-", 1)[0].strip()
+    return ""
 
 
 def _explanation_for_stage(

@@ -80,6 +80,10 @@ class EducationalAuthoringEngine:
         revision_available: bool = False,
         mission_instance_id: str = "",
         subject_code: str = "",
+        educational_package_id: str = "",
+        completed_package_ids: frozenset[str] | None = None,
+        last_completed_package_id: str = "",
+        prefer_completed_package: bool = False,
     ) -> MissionComposition:
         """Convenience entry for Adaptive Workspace / Home composition."""
         context = AuthoringContext(
@@ -103,6 +107,10 @@ class EducationalAuthoringEngine:
             revision_available=revision_available,
             mission_instance_id=mission_instance_id,
             subject_code=subject_code,
+            educational_package_id=educational_package_id,
+            completed_package_ids=completed_package_ids,
+            last_completed_package_id=last_completed_package_id,
+            prefer_completed_package=prefer_completed_package,
         )
         return self.author_mission(context)
 
@@ -236,6 +244,10 @@ class EducationalAuthoringEngine:
             revision_available=context.revision_available,
             mission_instance_id=context.mission_instance_id,
             subject_code=context.subject_code,
+            educational_package_id=context.educational_package_id,
+            completed_package_ids=context.completed_package_ids,
+            last_completed_package_id=context.last_completed_package_id,
+            prefer_completed_package=context.prefer_completed_package,
         )
 
 
@@ -294,4 +306,7 @@ def authoring_context_from_mapping(data: dict[str, Any] | None) -> AuthoringCont
         revision_available=bool(raw.get("revision_available") or False),
         mission_instance_id=str(raw.get("mission_instance_id") or ""),
         subject_code=str(raw.get("subject_code") or ""),
+        educational_package_id=str(raw.get("educational_package_id") or ""),
+        last_completed_package_id=str(raw.get("last_completed_package_id") or ""),
+        prefer_completed_package=bool(raw.get("prefer_completed_package") or False),
     )

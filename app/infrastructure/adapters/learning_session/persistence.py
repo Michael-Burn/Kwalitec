@@ -61,6 +61,7 @@ class LearningSessionPersistenceAdapter:
         curriculum_identity: str = "",
         active_surface: str | None = None,
         checklist: list[dict[str, Any]] | tuple[dict[str, Any], ...] | None = None,
+        educational_package_id: str = "",
     ) -> dict[str, Any]:
         sid = student_id.strip()
         session_id = handle.session.session_id
@@ -87,6 +88,10 @@ class LearningSessionPersistenceAdapter:
             "curriculum_identity": curriculum_identity
             or existing.get("curriculum_identity")
             or "",
+            "educational_package_id": (
+                (educational_package_id or "").strip()
+                or str(existing.get("educational_package_id") or "")
+            ),
             "objective_ids": list(
                 getattr(handle.plan, "objective_ids", ()) or ()
             )

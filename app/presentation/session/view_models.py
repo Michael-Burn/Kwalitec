@@ -463,6 +463,8 @@ def _sitting_opaque_from_metadata_pairs(
         "progress_advanced": meta.get("progress_advanced") == "true",
         "mission_completed": meta.get("mission_completed") == "true",
         "evidence_disposition": meta.get("evidence_disposition") or "",
+        "educational_package_id": meta.get("educational_package_id") or "",
+        "subject_id": meta.get("subject_id") or "",
         "finish_review": {
             "verdict": meta.get("finish_review") or "",
             "label": meta.get("finish_review_label") or "",

@@ -68,6 +68,11 @@ class AuthoringContext:
     revision_available: bool = False
     mission_instance_id: str = ""
     subject_code: str = ""
+    # RO1-R1 — bind composition / Tomorrow Preview to approved package identity
+    educational_package_id: str = ""
+    completed_package_ids: frozenset[str] | None = None
+    last_completed_package_id: str = ""
+    prefer_completed_package: bool = False
 
 
 @dataclass(frozen=True)

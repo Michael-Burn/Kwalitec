@@ -468,6 +468,12 @@ def _mission_composition(
             store=store, student_id=student_id
         )
 
+        pack_ctx = _package_journey_context(
+            student_id=student_id,
+            subject_code=subject_code,
+            home_vm=home_vm,
+        )
+
         composition = engine.author_from_topic(
             topic_id=topic_id,
             topic_title=topic,
@@ -485,9 +491,15 @@ def _mission_composition(
                 revision and revision.has_revision and revision.primary
             ),
             mission_instance_id=(
-                (home.mission.mission_id if home.mission else "") or ""
+                (home.mission.mission_id if home.mission else "")
+                or (home_vm.mission_id if hasattr(home_vm, "mission_id") else "")
+                or ""
             ),
             subject_code=subject_code,
+            educational_package_id=pack_ctx["educational_package_id"],
+            completed_package_ids=pack_ctx["completed_package_ids"],
+            last_completed_package_id=pack_ctx["last_completed_package_id"],
+            prefer_completed_package=pack_ctx["prefer_completed_package"],
         )
         if not composition.has_composition:
             return _quiet_mission_composition(
@@ -503,6 +515,70 @@ def _mission_composition(
             "Your mission focus is still available above — "
             "begin the Session when ready, or return after a short break."
         )
+
+
+def _package_journey_context(
+    *,
+    student_id: str,
+    subject_code: str,
+    home_vm: HomePageViewModel,
+) -> dict[str, Any]:
+    """Resolve approved-package journey state for Home Tomorrow Preview (RO1-R1)."""
+    empty: dict[str, Any] = {
+        "educational_package_id": "",
+        "completed_package_ids": None,
+        "last_completed_package_id": "",
+        "prefer_completed_package": bool(getattr(home_vm, "day_complete", False)),
+    }
+    if not subject_code:
+        return empty
+    try:
+        from app.application.educational_runtime_engine.service import (
+            EducationalRuntimeEngineService,
+        )
+        from app.models.educational_runtime_engine import RuntimeEnrolment
+
+        user_id = int(str(student_id).strip())
+        runtime = EducationalRuntimeEngineService()
+        enrolment = (
+            RuntimeEnrolment.query.filter_by(
+                user_id=user_id, subject_code=subject_code.upper()
+            ).first()
+            or RuntimeEnrolment.query.filter_by(
+                user_id=user_id, subject_code=subject_code
+            ).first()
+        )
+        if enrolment is None:
+            enrolment = RuntimeEnrolment.query.filter_by(user_id=user_id).first()
+        curriculum_identity = (
+            str(getattr(enrolment, "curriculum_identity", "") or "")
+            if enrolment is not None
+            else ""
+        )
+        completed = runtime._completed_educational_package_ids(
+            user_id=user_id,
+            curriculum_identity=curriculum_identity,
+        )
+        last_completed = runtime._last_completed_educational_package_id(
+            user_id=user_id,
+            curriculum_identity=curriculum_identity,
+        )
+        pack_id = ""
+        mid = (getattr(home_vm, "mission_id", "") or "").strip()
+        if mid and not getattr(home_vm, "day_complete", False):
+            pack_id = runtime._educational_package_id_for_mission(mid)
+        prefer_completed = bool(getattr(home_vm, "day_complete", False))
+        if prefer_completed and last_completed:
+            pack_id = last_completed
+        return {
+            "educational_package_id": pack_id,
+            "completed_package_ids": completed,
+            "last_completed_package_id": last_completed,
+            "prefer_completed_package": prefer_completed,
+        }
+    except Exception:  # noqa: BLE001 — Home chrome must stay resilient
+        logger.debug("package_journey_context_unavailable", exc_info=True)
+        return empty
 
 
 def _quiet_mission_composition(reason: str) -> WorkspaceMissionComposition:
