@@ -1,0 +1,139 @@
+  [PASS] probe/fingerprint: {"step": "fingerprint", "ok": true, "commit": "c409ad29871d7845f8d9d832776168142d40fad7", "version": "2.0.0-beta.1", "status": 200, "final": "https://kwalitec.onrender.com/health"}
+  [PASS] mu/login: {"step": "login", "ok": true, "final": "https://kwalitec.onrender.com/alpha/onboarding", "title": "Welcome to Kwalitec \u00b7 Kwalitec", "email": "ro010.mu.primary.1785686143@example.com"}
+  [PASS] mu/baseline_0: {"step": "baseline_0", "ok": true, "path": "/baseline/step/1", "posted": {"experience": "started"}}
+  [PASS] mu/baseline_1: {"step": "baseline_1", "ok": true, "path": "/baseline/step/2", "posted": {"position_mode": "continue_topic", "curriculum_topic_code": "3"}}
+  [PASS] mu/baseline_2: {"step": "baseline_2", "ok": true, "path": "/baseline/step/3", "posted": {"exam_history": "first_sitting"}}
+  [PASS] mu/baseline_3: {"step": "baseline_3", "ok": true, "path": "/baseline/step/4", "posted": {"learning_objective": "continue"}}
+  [PASS] mu/baseline_4: {"step": "baseline_4", "ok": true, "path": "/baseline/step/5", "posted": {"confidence": "very_low"}}
+  [PASS] mu/baseline_5: {"step": "baseline_5", "ok": true, "path": "/baseline/step/6", "posted": {}}
+  [PASS] mu/onboarding_0: {"step": "onboarding_0", "ok": true, "final": "https://kwalitec.onrender.com/student/", "title": "Home \u00b7 Kwalitec"}
+
+### Study day 1: expect CK-D1
+== CK-D1 PASS finished=True fallback=False reading=PASS
+  [PASS] mu/login: {"step": "login", "ok": true, "final": "https://kwalitec.onrender.com/student/", "title": "Home \u00b7 Kwalitec", "email": "ro010.mu.primary.1785686143@example.com"}
+
+### Study day 2: expect CK-D2
+== CK-D2 PASS finished=True fallback=False reading=PASS
+  [PASS] mu/login: {"step": "login", "ok": true, "final": "https://kwalitec.onrender.com/student/", "title": "Home \u00b7 Kwalitec", "email": "ro010.mu.primary.1785686143@example.com"}
+
+### Study day 3: expect CK-D3
+== CK-D3 PASS finished=True fallback=False reading=PASS
+  [PASS] mu/login: {"step": "login", "ok": true, "final": "https://kwalitec.onrender.com/student/", "title": "Home \u00b7 Kwalitec", "email": "ro010.mu.primary.1785686143@example.com"}
+
+### Study day 4: expect CK-D4
+== CK-D4 PASS finished=True fallback=False reading=PASS
+  [PASS] mu/login: {"step": "login", "ok": true, "final": "https://kwalitec.onrender.com/student/", "title": "Home \u00b7 Kwalitec", "email": "ro010.mu.primary.1785686143@example.com"}
+
+### Study day 5: expect CK-D5
+== CK-D5 PASS finished=True fallback=False reading=PASS
+  [PASS] mu/login: {"step": "login", "ok": true, "final": "https://kwalitec.onrender.com/student/", "title": "Home \u00b7 Kwalitec", "email": "ro010.mu.primary.1785686143@example.com"}
+
+### Study day 6: expect CK-D6
+== CK-D6 PASS finished=True fallback=False reading=PASS
+  [PASS] mu/login: {"step": "login", "ok": true, "final": "https://kwalitec.onrender.com/student/", "title": "Home \u00b7 Kwalitec", "email": "ro010.mu.primary.1785686143@example.com"}
+
+### Study day 7: expect CK-R1
+== CK-R1 FAIL finished=True fallback=False reading=PASS
+  [PASS] mu/login: {"step": "login", "ok": true, "final": "https://kwalitec.onrender.com/student/", "title": "Home \u00b7 Kwalitec", "email": "ro010.mu.primary.1785686143@example.com"}
+
+### Study day 8: expect CL-D1
+== CL-D1 FAIL finished=True fallback=False reading=FAIL
+  [PASS] mu/login: {"step": "login", "ok": true, "final": "https://kwalitec.onrender.com/student/", "title": "Home \u00b7 Kwalitec", "email": "ro010.mu.primary.1785686143@example.com"}
+
+### Study day 9: expect CL-D2
+== CL-D2 PASS finished=True fallback=False reading=PASS
+  [PASS] mu/login: {"step": "login", "ok": true, "final": "https://kwalitec.onrender.com/student/", "title": "Home \u00b7 Kwalitec", "email": "ro010.mu.primary.1785686143@example.com"}
+
+### Study day 10: expect CL-D3
+== CL-D3 PASS finished=True fallback=False reading=PASS
+  [PASS] mu/login: {"step": "login", "ok": true, "final": "https://kwalitec.onrender.com/student/", "title": "Home \u00b7 Kwalitec", "email": "ro010.mu.primary.1785686143@example.com"}
+
+### Study day 11: expect CL-D4
+== CL-D4 PASS finished=True fallback=False reading=PASS
+  [PASS] mu/login: {"step": "login", "ok": true, "final": "https://kwalitec.onrender.com/student/", "title": "Home \u00b7 Kwalitec", "email": "ro010.mu.primary.1785686143@example.com"}
+
+### Study day 12: expect CL-D5
+== CL-D5 PASS finished=True fallback=False reading=PASS
+  [PASS] mu/login: {"step": "login", "ok": true, "final": "https://kwalitec.onrender.com/student/", "title": "Home \u00b7 Kwalitec", "email": "ro010.mu.primary.1785686143@example.com"}
+
+### Study day 13: expect CL-D6
+== CL-D6 PASS finished=True fallback=False reading=PASS
+  [PASS] mu/login: {"step": "login", "ok": true, "final": "https://kwalitec.onrender.com/student/", "title": "Home \u00b7 Kwalitec", "email": "ro010.mu.primary.1785686143@example.com"}
+
+### Study day 14: expect CL-D7
+== CL-D7 PASS finished=True fallback=False reading=PASS
+  [PASS] mu/login: {"step": "login", "ok": true, "final": "https://kwalitec.onrender.com/student/", "title": "Home \u00b7 Kwalitec", "email": "ro010.mu.primary.1785686143@example.com"}
+
+### Study day 15: expect CL-D8
+== CL-D8 PASS finished=True fallback=False reading=PASS
+  [PASS] mu/login: {"step": "login", "ok": true, "final": "https://kwalitec.onrender.com/student/", "title": "Home \u00b7 Kwalitec", "email": "ro010.mu.primary.1785686143@example.com"}
+
+### Study day 16: expect CL-R1
+== CL-R1 FAIL finished=True fallback=False reading=PASS
+  [PASS] mu/login: {"step": "login", "ok": true, "final": "https://kwalitec.onrender.com/student/", "title": "Home \u00b7 Kwalitec", "email": "ro010.mu.primary.1785686143@example.com"}
+
+### Study day 17: expect CM-D1
+== CM-D1 FAIL finished=True fallback=False reading=FAIL
+  [PASS] mu/login: {"step": "login", "ok": true, "final": "https://kwalitec.onrender.com/student/", "title": "Home \u00b7 Kwalitec", "email": "ro010.mu.primary.1785686143@example.com"}
+
+### Study day 18: expect CM-D2
+== CM-D2 PASS finished=True fallback=False reading=PASS
+  [PASS] mu/login: {"step": "login", "ok": true, "final": "https://kwalitec.onrender.com/student/", "title": "Home \u00b7 Kwalitec", "email": "ro010.mu.primary.1785686143@example.com"}
+
+### Study day 19: expect CM-D3
+== CM-D3 PASS finished=True fallback=False reading=PASS
+  [PASS] mu/login: {"step": "login", "ok": true, "final": "https://kwalitec.onrender.com/student/", "title": "Home \u00b7 Kwalitec", "email": "ro010.mu.primary.1785686143@example.com"}
+
+### Study day 20: expect CM-D4
+== CM-D4 PASS finished=True fallback=False reading=PASS
+  [PASS] mu/login: {"step": "login", "ok": true, "final": "https://kwalitec.onrender.com/student/", "title": "Home \u00b7 Kwalitec", "email": "ro010.mu.primary.1785686143@example.com"}
+
+### Study day 21: expect CM-D5
+== CM-D5 PASS finished=True fallback=False reading=PASS
+  [PASS] mu/login: {"step": "login", "ok": true, "final": "https://kwalitec.onrender.com/student/", "title": "Home \u00b7 Kwalitec", "email": "ro010.mu.primary.1785686143@example.com"}
+
+### Study day 22: expect CM-R1
+== CM-R1 FAIL finished=True fallback=False reading=PASS
+{
+  "verdict": "FAIL",
+  "summary": {
+    "chain_days_completed": 22,
+    "expected_chain_len": 22,
+    "kappa_pass_count": 7,
+    "lambda_pass_count": 8,
+    "mu_pass_count": 5,
+    "mu_fail_count": 1,
+    "learning_days_pass": 4,
+    "revision_days_pass": 1,
+    "revision_q6_residuals": [],
+    "chrome_residuals": [
+      "CK-D2",
+      "CK-D3",
+      "CK-D4",
+      "CK-D5",
+      "CK-D6",
+      "CK-R1",
+      "CL-D2",
+      "CL-D3",
+      "CL-D4",
+      "CL-D5",
+      "CL-D6",
+      "CL-D7",
+      "CL-D8",
+      "CL-R1",
+      "CM-D2",
+      "CM-D3",
+      "CM-D4",
+      "CM-D5",
+      "CM-R1"
+    ],
+    "continuity_front_entry": "continue_topic section 3 \u2192 CK\u2026CL-R1 \u2192 CM-D1\u2026CM-R1 (Topic 3.3 Continuity Front)",
+    "natural_kappa_chain": true,
+    "natural_lambda_chain": false,
+    "natural_mu_chain": false,
+    "natural_clr1_to_cmd1": true,
+    "inventory_cl_r1_to_cm_d1": true,
+    "prior_campaign_inventory_non_regression": true
+  },
+  "reason": null
+}

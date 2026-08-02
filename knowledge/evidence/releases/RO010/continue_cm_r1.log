@@ -1,0 +1,16 @@
+backdating…
+backdate succeeded local-db-backdate
+  [PASS] mu_cont/login: {"step": "login", "ok": true, "final": "https://kwalitec.onrender.com/student/", "title": "Home \u00b7 Kwalitec", "email": "ro010.mu.primary.1785686143@example.com"}
+### Continuation: expect CM-R1
+== CM-R1 FAIL finished=True fallback=False reading=FAIL
+{
+  "verdict": "PASS",
+  "finished": true,
+  "fallback": false,
+  "reading": "FAIL",
+  "package_path_ok": true,
+  "revision_q6_residual": true,
+  "lo": null,
+  "lead": null,
+  "revish": true
+}
