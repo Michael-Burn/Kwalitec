@@ -163,25 +163,37 @@ Chrome honesty:                         Finish/Home tomorrow residual RO1-R1 ope
 | Wave 6 educational packages unmodified in review | **Met** |
 | Wave 6 joint LIVE deploy | **Executed (RO-006)** tip `a931f236…` |
 | Wave 6 LIVE Verified | **Met** (package path; residual RO6-R1) |
-| Wave 7 | **Unblocked — not started** |
+| Wave 7 catalogue authored | **Met** — `campaign-iota-cs1009/` (7 packages) |
+| Wave 7 human seals complete | **Met** — HR-007 |
+| Wave 7 publication decision | **APPROVED** |
+| Wave 7 educational packages unmodified in review | **Met** |
+| Wave 7 joint LIVE deploy | **Executed (RO-007)** tip `1c747f3…` |
+| Wave 7 LIVE Verified | **Met** (package path; residual RO7-R1) |
+| Wave 8 catalogue authored | **Met** — `campaign-kappa-cs1010/` (7 packages) |
+| Wave 8 human seals complete | **Met** — HR-008 |
+| Wave 8 publication decision | **APPROVED** |
+| Wave 8 educational packages unmodified in review | **Met** |
+| Wave 8 joint LIVE deploy | **Executed (RO-008)** tip `28a06b1…` |
+| Wave 8 LIVE Verified | **Met** (package path; residual RO8-R1) |
+| Wave 9 | **Not started** |
 
-**Programme state:** Wave 1 LIVE Verified · RO1-R1 closed · **Wave 2 LIVE-complete (RO-002 / PB-004)** · **Wave 3 LIVE-complete (RO-003 / PB-005)** · **Wave 4 LIVE-complete (RO-004 / PB-006)** · **Wave 5 LIVE-complete (RO-005 / PB-007)** (CS1-007 / Eta · 2.4) · **Wave 6 LIVE-complete (RO-006 / PB-008)** (CS1-008 / Theta · 2.5) · Wave 7 not started.
+**Programme state:** Wave 1 LIVE Verified · RO1-R1 closed · **Wave 2 LIVE-complete (RO-002 / PB-004)** · **Wave 3 LIVE-complete (RO-003 / PB-005)** · **Wave 4 LIVE-complete (RO-004 / PB-006)** · **Wave 5 LIVE-complete (RO-005 / PB-007)** (CS1-007 / Eta · 2.4) · **Wave 6 LIVE-complete (RO-006 / PB-008)** (CS1-008 / Theta · 2.5) · **Wave 7 LIVE-complete (RO-007 / PB-009)** (CS1-009 / Iota · 2.6) · **Wave 8 LIVE-complete (RO-008)** (CS1-010 / Kappa · 3.1) · **PB-010 authorised · not executed** · Wave 9 not started.
 
 ### Continuity Front Register (dashboard)
 
 | Front | Location | Status |
 |-------|----------|--------|
-| Student LIVE Continuity Front | Closed through **2.5.2** / CT-R1 | RO-006 |
-| Catalogue Continuity Front | Next open **2.6** (provisional) | Not commissioned |
-| Next after Wave 6 LIVE | **2.6** (provisional) | Not commissioned |
+| Student LIVE Continuity Front | Closed through **3.1.6** / CK-R1 | RO-008 |
+| Catalogue Continuity Front | **3.1 LIVE** (CS1-010 / Kappa) | RO-008 |
+| Next after Wave 8 LIVE | **3.2** (provisional) | Not commissioned |
 
 ### Student Reliance Coverage Register (dashboard)
 
 | Metric | Value |
 |--------|-------|
-| Certified Educational Coverage (%) | **52.8%** (38 / 72) |
-| Continuity Front | LIVE through **2.5.2** |
-| Student Reliance Coverage | Contiguous CF through **2.5.2** (14 LOs LIVE); Trust Front 24 LOs independent; Alpha/Beta honesty gap |
+| Certified Educational Coverage (%) | **69.4%** (50 / 72) — **advanced (RO-008)** |
+| Continuity Front | LIVE through **3.1.6**; next cliff **3.2** (Wave 9 gated on PB-010) |
+| Student Reliance Coverage | Contiguous CF through **3.1.6** (26 LOs LIVE); Trust Front 24 LOs independent; Alpha/Beta honesty gap — **unchanged** |
 | Until-examination status | **NOT CLAIMED** |
 
 ---
@@ -189,9 +201,10 @@ Chrome honesty:                         Finish/Home tomorrow residual RO1-R1 ope
 ## 8. Next actions
 
 1. Keep Wave 0 Alpha/Beta Approver honesty gap open (not waived).  
-2. Track RO6-R1 label desync + CT-R1 chrome / Q6 residual as PI (and prior RO5 residuals).  
-3. Wave 6 LIVE-complete — Coverage **38 / 72 (52.8%)**.  
-4. Wave 7 unblocked for separate commission only — **do not begin Wave 7** in this programme. Next LIVE Continuity Front geography: **2.6**.
+2. Track RO6-R1 / RO7-R1 label desync + chrome / Q6 residuals as PI (and prior RO5 residuals).  
+3. Wave 6–7 LIVE-complete — held.  
+4. Wave 8 **LIVE-complete (RO-008)** — Coverage **50 / 72 (69.4%)** · Reliance through **3.1.6**. PB-010 authorised · not executed. Wave 9 gated on PB-010.  
+5. Do **not** begin Wave 9 until RO-008 and PB-010 complete successfully.
 ---
 
 ## 9. Wave 2 (CS1-003) — pipeline summary
@@ -226,14 +239,16 @@ Chrome honesty:                         Finish/Home tomorrow residual RO1-R1 ope
 
 ---
 
-Signed: Publication Dashboard · EP-001 · HR-001 · HR-002 · HR-003 · HR-004 · HR-005 · HR-006 · RO-001 · RO-002 · RO-003 · RO-004 · RO-005 · EP-006 · 2026-08-02  
+Signed: Publication Dashboard · EP-001 · HR-001 · HR-002 · HR-003 · HR-004 · HR-005 · HR-006 · HR-007 · HR-008 · RO-001 · RO-002 · RO-003 · RO-004 · RO-005 · RO-006 · RO-007 · EP-006 · EP-007 · EP-008 · 2026-08-02  
 **Publication decision (CS1-004):** APPROVED · LIVE Verified  
 **Publication decision (CS1-003):** APPROVED · LIVE-complete (package path)  
 **Publication decision (CS1-005):** **APPROVED** · LIVE-complete (package path)  
 **Publication decision (CS1-006):** **APPROVED** · LIVE-complete (package path)  
 **Publication decision (CS1-007):** **APPROVED** · LIVE-complete (package path)  
 **Publication decision (CS1-008):** **APPROVED** · **LIVE-complete (RO-006 / PB-008)**  
-**Wave 7:** Not started
+**Publication decision (CS1-009):** **APPROVED** · **LIVE-complete (RO-007 / PB-009)**  
+**Publication decision (CS1-010):** **APPROVED** — joint LIVE authorised (RO-008 / PB-010 outstanding)  
+**Wave 9:** Not started
 ---
 
 ## 11. Wave 4 (CS1-006) — package pipeline
@@ -283,4 +298,46 @@ Signed: Publication Dashboard · EP-001 · HR-001 · HR-002 · HR-003 · HR-004 
 **Catalogue root:** `app/curriculum/data/educational_campaigns/cs1/campaign-theta-cs1008/`  
 **LIVE loader:** **3** Theta packages `publication_approved` · tip `a931f236…` (RO-006)  
 **Companions:** `EP006_WAVE6_PLAN.md` · `EP006_COVERAGE_UPDATE.md` · `HR006_*` · `RO006_*` · `PB008_*`  
-**Stop:** Wave 6 **LIVE-complete** — Wave 7 unblocked · not started.
+**Stop:** Wave 6 **LIVE-complete** — Wave 7 LIVE-complete.
+
+---
+
+## 14. Wave 7 (CS1-009) — package pipeline
+
+| Package | Day | LO | Authored | Desk Certified | Tutor | Founder | Auditor | Publication Approver | Approved | LIVE Verified |
+|---------|-----|----|:--------:|:--------------:|:-----:|:-------:|:-------:|:--------------------:|:--------:|:-------------:|
+| `CS1-EP001-PKG-2.6-RANDOM-SAMPLES` | CI-D1 | 2.6.1 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-2.6-SAMPLING-DISTRIBUTION-STATISTIC` | CI-D2 | 2.6.2 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-2.6-MEAN-VAR-SAMPLE` | CI-D3 | 2.6.3 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-2.6-NORMAL-SAMPLE-MEAN-VAR` | CI-D4 | 2.6.4 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-2.6-T-STATISTIC` | CI-D5 | 2.6.5 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-2.6-F-DISTRIBUTION` | CI-D6 | 2.6.6 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-REV-SAMPLING-DISTRIBUTIONS` | CI-R1 | Rev | ● | ● | ● | ● | ● | ● | ● | ● |
+
+**Key:** ● = complete · ○ = not reached  
+
+**Catalogue root:** `app/curriculum/data/educational_campaigns/cs1/campaign-iota-cs1009/`  
+**LIVE loader:** **7** Iota packages `publication_approved` · tip `1c747f3…` (RO-007)  
+**Companions:** `EP007_WAVE7_PLAN.md` · `EP007_COVERAGE_UPDATE.md` · `CS1009_*` · `HR007_*` · `RO007_*` · `PB009_*`  
+**Stop:** Wave 8 **LIVE-complete (RO-008)** — Coverage **50 / 72** · Reliance through **3.1.6** · PB-010 authorised · Wave 9 not started.
+
+---
+
+## 15. Wave 8 (CS1-010) — package pipeline
+
+| Package | Day | LO | Authored | Desk Certified | Tutor | Founder | Auditor | Publication Approver | Approved | LIVE Verified |
+|---------|-----|----|:--------:|:--------------:|:-----:|:-------:|:-------:|:--------------------:|:--------:|:-------------:|
+| `CS1-EP001-PKG-3.1-METHOD-OF-MOMENTS` | CK-D1 | 3.1.1 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-3.1-MAXIMUM-LIKELIHOOD` | CK-D2 | 3.1.2 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-3.1-EFFICIENCY-BIAS-CONSISTENCY-MSE` | CK-D3 | 3.1.3 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-3.1-COMPARISON-MSE` | CK-D4 | 3.1.4 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-3.1-ASYMPTOTIC-MLE` | CK-D5 | 3.1.5 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-3.1-BOOTSTRAP-ESTIMATOR` | CK-D6 | 3.1.6 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-REV-ESTIMATORS` | CK-R1 | Rev | ● | ● | ● | ● | ● | ● | ● | ● |
+
+**Key:** ● = complete · ○ = not reached  
+
+**Catalogue root:** `app/curriculum/data/educational_campaigns/cs1/campaign-kappa-cs1010/`  
+**LIVE loader:** Kappa packages **absent** (correct — LIVE belongs to RO-008)  
+**Companions:** `EP008_WAVE8_PLAN.md` · `EP008_COVERAGE_UPDATE.md` · `CS1010_*` · `HR008_*` · `EP008_WAVE8_EXECUTION_REPORT.md`  
+**Stop:** Wave 8 **LIVE Verified** · Coverage **50 / 72** · Reliance through **3.1.6** · PB-010 authorised · Wave 9 forbidden until PB-010 PASS.

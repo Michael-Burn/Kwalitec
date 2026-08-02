@@ -1,0 +1,139 @@
+{
+  "programme": "RO-008",
+  "host": "https://kwalitec.onrender.com",
+  "expected_commit": "28a06b176cd1ca1249cc74de0726e5d8c46f5982",
+  "email": "ro008.kappa.primary.1785666746@example.com",
+  "method": "continue_topic section 3; syllabus-code rescoring after label desync (RO8-R1)",
+  "sittings_rescored": [
+    {
+      "file": "day2_CK-D2_reading.html",
+      "detected_day": "CK-D1",
+      "package_id": "CS1-EP001-PKG-3.1-METHOD-OF-MOMENTS",
+      "finished": true,
+      "not_fallback": true,
+      "cmp": true,
+      "reflection_ok": true,
+      "chrome_match": false,
+      "chrome_residual": true,
+      "revision_q6_residual": false,
+      "verdict": "PASS",
+      "guided_reading": "PASS"
+    },
+    {
+      "file": "day3_CK-D3_reading.html",
+      "detected_day": "CK-D2",
+      "package_id": "CS1-EP001-PKG-3.1-MAXIMUM-LIKELIHOOD",
+      "finished": true,
+      "not_fallback": true,
+      "cmp": true,
+      "reflection_ok": true,
+      "chrome_match": false,
+      "chrome_residual": true,
+      "revision_q6_residual": false,
+      "verdict": "PASS",
+      "guided_reading": "PASS"
+    },
+    {
+      "file": "day4_CK-D4_reading.html",
+      "detected_day": "CK-D3",
+      "package_id": "CS1-EP001-PKG-3.1-EFFICIENCY-BIAS-CONSISTENCY-MSE",
+      "finished": true,
+      "not_fallback": true,
+      "cmp": true,
+      "reflection_ok": true,
+      "chrome_match": false,
+      "chrome_residual": true,
+      "revision_q6_residual": false,
+      "verdict": "PASS",
+      "guided_reading": "PASS"
+    },
+    {
+      "file": "day5_CK-D5_reading.html",
+      "detected_day": "CK-D4",
+      "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
+      "finished": true,
+      "not_fallback": true,
+      "cmp": true,
+      "reflection_ok": true,
+      "chrome_match": false,
+      "chrome_residual": true,
+      "revision_q6_residual": false,
+      "verdict": "PASS",
+      "guided_reading": "PASS"
+    },
+    {
+      "file": "day6_CK-D6_reading.html",
+      "detected_day": "CK-D5",
+      "package_id": "CS1-EP001-PKG-3.1-ASYMPTOTIC-MLE",
+      "finished": true,
+      "not_fallback": true,
+      "cmp": true,
+      "reflection_ok": true,
+      "chrome_match": false,
+      "chrome_residual": true,
+      "revision_q6_residual": false,
+      "verdict": "PASS",
+      "guided_reading": "PASS"
+    },
+    {
+      "file": "day7_CK-R1_reading.html",
+      "detected_day": "CK-D6",
+      "package_id": "CS1-EP001-PKG-3.1-BOOTSTRAP-ESTIMATOR",
+      "finished": true,
+      "not_fallback": true,
+      "cmp": true,
+      "reflection_ok": true,
+      "chrome_match": false,
+      "chrome_residual": true,
+      "revision_q6_residual": false,
+      "verdict": "PASS",
+      "guided_reading": "PASS"
+    },
+    {
+      "file": "day8_CK-R1_reading.html",
+      "detected_day": "CK-R1",
+      "package_id": "CS1-EP001-PKG-REV-ESTIMATORS",
+      "finished": true,
+      "not_fallback": true,
+      "cmp": true,
+      "reflection_ok": true,
+      "chrome_match": false,
+      "chrome_residual": true,
+      "revision_q6_residual": true,
+      "verdict": "PASS",
+      "guided_reading": "PASS"
+    }
+  ],
+  "verdict": "PASS WITH RESIDUAL",
+  "summary": {
+    "kappa_days_observed": [
+      "CK-D1",
+      "CK-D2",
+      "CK-D3",
+      "CK-D4",
+      "CK-D5",
+      "CK-D6",
+      "CK-R1"
+    ],
+    "kappa_pass_count": 7,
+    "natural_kappa_chain": true,
+    "chrome_residuals": [
+      "CK-D1",
+      "CK-D2",
+      "CK-D3",
+      "CK-D4",
+      "CK-D5",
+      "CK-D6",
+      "CK-R1"
+    ],
+    "revision_q6_residuals": [
+      "CK-R1"
+    ],
+    "inventory_ci_r1_to_ck_d1": true,
+    "prior_campaign_inventory_non_regression": true,
+    "continuity_front_entry": "continue_topic section 3 \u2192 CK-D1\u2026CK-R1 (Topic 3.1)",
+    "label_desync_residual": true,
+    "day1_transit_note": "First ops sitting showed CI-D5 substance before true CK-D1 (label/entry desync); package path rescored from syllabus markers"
+  },
+  "residual": "RO8-R1 label desync; tomorrow chrome residual on some Kappa days; CK-R1 revision presentation residual possible"
+}
