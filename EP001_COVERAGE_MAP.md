@@ -12,7 +12,8 @@
 **Wave 6 companion:** `EP006_COVERAGE_UPDATE.md` · `EP006_WAVE6_PLAN.md`  
 **Wave 7 companion:** `EP007_COVERAGE_UPDATE.md` · `EP007_WAVE7_PLAN.md`  
 **Wave 8 companion:** `EP008_COVERAGE_UPDATE.md` · `EP008_WAVE8_PLAN.md`  
-**Wave 9 companion:** `EP009_COVERAGE_UPDATE.md` · `EP009_WAVE9_PLAN.md`
+**Wave 9 companion:** `EP009_COVERAGE_UPDATE.md` · `EP009_WAVE9_PLAN.md`  
+**Wave 10 companion:** `EP010_COVERAGE_UPDATE.md` · `EP010_WAVE10_PLAN.md`
 
 ---
 
@@ -22,8 +23,8 @@ EP-001 reports two facts that must not be conflated:
 
 | View | Meaning | Current headline |
 |------|---------|------------------|
-| **A — Approver credit (CE-001 Published)** | Volume ≥ `approved` by human Publication Approver | **58 / 72 (80.6%)** — CS1-004 (4) + CS1-003 (24) + CS1-005 (4) + CS1-006 (2) + CS1-007 (2) + CS1-008 (2) + CS1-009 (6) + CS1-010 (6) + CS1-011 (8) Learning LOs |
-| **B — Live loader inventory** | Packages under `educational_packages/cs1/` with `status: publication_approved` | **77 packages** (8 Alpha/Beta + **5 Gamma** + **27 Delta** + **5 Epsilon** + **3 Zeta** + **3 Eta** + **3 Theta** + **7 Iota** + **7 Kappa** + **9 Lambda**; EA-006 orphan superseded) |
+| **A — Approver credit (CE-001 Published)** | Volume ≥ `approved` by human Publication Approver | **63 / 72 (87.5%)** — CS1-004 (4) + CS1-003 (24) + CS1-005 (4) + CS1-006 (2) + CS1-007 (2) + CS1-008 (2) + CS1-009 (6) + CS1-010 (6) + CS1-011 (8) + CS1-012 (5) Learning LOs |
+| **B — Live loader inventory** | Packages under `educational_packages/cs1/` with `status: publication_approved` | **83 packages** (8 Alpha/Beta + **5 Gamma** + **27 Delta** + **5 Epsilon** + **3 Zeta** + **3 Eta** + **3 Theta** + **7 Iota** + **7 Kappa** + **9 Lambda** + **6 Mu**; EA-006 orphan superseded) |
 
 **Publication honesty gap:** CS1-001 and CS1-002 Volume dossiers remain `publication_ready` (Approver unsigned), while eight Alpha/Beta packages still load as `publication_approved`. CS1-004 Gamma, CS1-003 Delta, CS1-005 Epsilon, CS1-006 Zeta, and CS1-007 Eta hold Approver credit **and** LIVE package-path verification. CS1-008 Theta holds Approver credit **and** LIVE package-path verification (RO-006 / PB-008).
 
@@ -33,7 +34,8 @@ Orphan `4.2` is **superseded** by Campaign Delta (RO-002); Missing* for 4.2 clea
 **Wave 6:** CS1-008 Theta **LIVE-complete** (RO-006 / PB-008) for 2.5.1–2.5.2 + Rev.  
 **Wave 7:** CS1-009 Iota **LIVE-complete** (RO-007 / PB-009) for 2.6.1–2.6.6 + Rev.  
 **Wave 8:** CS1-010 Kappa **LIVE Verified (RO-008)** for 3.1.1–3.1.6 + Rev — PB-010 **PASS**.  
-**Wave 9:** CS1-011 Lambda **LIVE Verified** (RO-009) for 3.2.1–3.2.8 + Rev · Published coverage **58 / 72 (80.6%)** · PB-011 authorised · not executed.
+**Wave 9:** CS1-011 Lambda **LIVE Verified** (RO-009) for 3.2.1–3.2.8 + Rev · PB-011 **PASS**.  
+**Wave 10:** CS1-012 Mu **LIVE Verified** (RO-010) for 3.3.1–3.3.5 + Rev · Published coverage **63 / 72 (87.5%)** · Student Reliance through Topic **3.3** · PB-012 authorised · not executed.
 
 ---
 
@@ -43,15 +45,15 @@ Orphan `4.2` is **superseded** by Campaign Delta (RO-002); Missing* for 4.2 clea
 |--------|------:|-------|
 | Official topics | **14** | Sections 1–5 |
 | Official LOs | **72** | Primary grain |
-| **Published (Approver credit)** | **58 / 72 (80.6%)** | CS1-004 · 2.1.3–2.1.6 + CS1-005 · 2.2.1–2.2.4 + CS1-006 · 2.3.1–2.3.2 + CS1-007 · 2.4.1–2.4.2 + CS1-008 · 2.5.1–2.5.2 + CS1-009 · 2.6.1–2.6.6 + CS1-010 · 3.1.1–3.1.6 + CS1-011 · 3.2.1–3.2.8 + CS1-003 · 4.1.1–5.1.9 — **Wave 9 LIVE** |
+| **Published (Approver credit)** | **63 / 72 (87.5%)** | CS1-004 · 2.1.3–2.1.6 + CS1-005 · 2.2.1–2.2.4 + CS1-006 · 2.3.1–2.3.2 + CS1-007 · 2.4.1–2.4.2 + CS1-008 · 2.5.1–2.5.2 + CS1-009 · 2.6.1–2.6.6 + CS1-010 · 3.1.1–3.1.6 + CS1-011 · 3.2.1–3.2.8 + CS1-012 · 3.3.1–3.3.5 + CS1-003 · 4.1.1–5.1.9 — **Wave 10 LIVE** |
 | Awaiting Approval (Gate CG PASS · Volume `publication_ready`) | **9 / 72 (12.5%)** | CS1-001 + CS1-002 Learning LOs (Approver unsigned) |
-| Under Review / Under Authoring | **0 / 72** | Wave 9 Lambda moved to Published + LIVE |
-| Live loader packages (`publication_approved`) | **69** | Alpha 4 + Beta 4 + Gamma 5 + Delta 27 + Epsilon 5 + Zeta 3 + Eta 3 + Theta 3 + Iota 7 + Kappa 7 (orphan superseded; Lambda **absent**) |
-| Missing | **5 / 72** | Remaining spine after pipeline (3.3) |
-| Continuity Front (Approver / LIVE) | **Closed through 3.1.6** / CK-R1 | RO-001 · RO-003 · RO-004 · RO-005 · RO-006 · RO-007 · RO-008 |
-| Continuity Front (catalogue / pipeline) | **3.2 LIVE Verified** (CS1-011) | RO-009 · Wave 9 |
+| Under Review / Under Authoring | **0 / 72** | Wave 10 Mu LIVE; Wave 11 not started |
+| Live loader packages (`publication_approved`) | **83** | Alpha 4 + Beta 4 + Gamma 5 + Delta 27 + Epsilon 5 + Zeta 3 + Eta 3 + Theta 3 + Iota 7 + Kappa 7 + Lambda 9 + Mu 6 (orphan superseded) |
+| Missing | **0 / 72** | First-pass spine Missing LOs absorbed through Wave 10 LIVE (3.3) |
+| Continuity Front (Approver / LIVE) | **Closed through 3.3.5** / CM-R1 | RO-001 · RO-003 · RO-004 · RO-005 · RO-006 · RO-007 · RO-008 · RO-009 · RO-010 |
+| Continuity Front (catalogue / pipeline) | **3.3 LIVE Verified** (CS1-012) | RO-010 · Wave 10 |
 | Trust Remediation Front | **4.1 → 4.2 → 5.1** | Wave 2 **LIVE Verified** (RO-002) — Missing* cleared for 4.2 |
-| Pipeline (Under Authoring) | **0 Learning LOs** | Wave 9 complete; next CF at 3.3 not commissioned |
+| Pipeline (Under Authoring) | **0 Learning LOs** | Wave 10 complete; Wave 11 not started |
 
 ---
 
@@ -71,6 +73,7 @@ Orphan `4.2` is **superseded** by Campaign Delta (RO-002); Missing* for 4.2 clea
 | **CS1-009** | `CS1-EP001-CAMPAIGN-IOTA` | PASS (HR-007) | `released` (RO-007) | **Published** | **7 packages live** | 2.6.1–2.6.6 (+ Rev) — **Wave 7 LIVE** |
 | **CS1-010** | `CS1-EP001-CAMPAIGN-KAPPA` | PASS (HR-008) | `released` (RO-008) | **Published** | **7 packages live** | 3.1.1–3.1.6 (+ Rev) — **Wave 8 LIVE** |
 | **CS1-011** | `CS1-EP001-CAMPAIGN-LAMBDA` | PASS (HR-009) | `released` (RO-009) | **Published** | **9 packages live** | 3.2.1–3.2.8 (+ Rev) — **Wave 9 LIVE** |
+| **CS1-012** | `CS1-EP001-CAMPAIGN-MU` | PASS (HR-010) | `released` (RO-010) | **Published** | **6 packages live** | 3.3.1–3.3.5 (+ Rev) — **Wave 10 LIVE** |
 
 ---
 
@@ -88,7 +91,7 @@ Orphan `4.2` is **superseded** by Campaign Delta (RO-002); Missing* for 4.2 clea
 | 2.6 | Random sampling / sampling distributions | 6 | **Published** (CS1-009 / RO-007) | LIVE CI-D1…CI-D6 |
 | 3.1 | Estimators and properties | 6 | **Published** (CS1-010 · RO-008) | LIVE Verified |
 | 3.2 | Confidence and prediction intervals | 8 | **Published** (CS1-011 · RO-009) | Yes (CL-D1…CL-D8 + CL-R1) |
-| 3.3 | Hypothesis testing and goodness of fit | 5 | Missing | — |
+| 3.3 | Hypothesis testing and goodness of fit | 5 | **Published** (CS1-012 · RO-010) | Yes (CM-D1…CM-D5 + CM-R1) |
 | 4.1 | Linear regression models | 5 | **Published** (CS1-003 / RO-002) | LIVE CD-D1…CD-D5 |
 | 4.2 | Generalised linear models | 10 | **Published** (CS1-003 / RO-002) | LIVE CD-D6…CD-D15; orphan superseded |
 | 5.1 | Bayesian statistics | 9 | **Published** (CS1-003 / RO-002) | LIVE CD-D16…CD-D24 |
@@ -145,7 +148,7 @@ Statuses: **Published** (Approver) · **Awaiting Approval** · **Under Authoring
 | 3.2.6 | Two-sample CIs | **Published** (CS1-011 · RO-009) | Yes (CL-D6) |
 | 3.2.7 | Paired mean-difference CI | **Published** (CS1-011 · RO-009) | Yes (CL-D7) |
 | 3.2.8 | Bootstrap confidence intervals | **Published** (CS1-011 · RO-009) | Yes (CL-D8) |
-| 3.3.1–3.3.5 | Hypothesis testing | Missing | No |
+| 3.3.1–3.3.5 | Hypothesis testing | **Published** (CS1-012 · RO-010) | Yes (CM-D1…CM-D5) |
 | 4.1.1–4.1.5 | Linear regression | **Published** (CS1-003) | Yes (RO-002 package path) |
 | 4.2.1–4.2.10 | GLM | **Published** (CS1-003); Missing* cleared | Yes — orphan superseded |
 | 5.1.1–5.1.9 | Bayesian | **Published** (CS1-003) | Yes (RO-002 package path) |
@@ -179,6 +182,10 @@ LIVE Continuity Front through 3.2 (RO-009):
                                                                       3.2.1──3.2.2──3.2.3──3.2.4──3.2.5──3.2.6──3.2.7──3.2.8──[CL-R1]
                                                                       [============ CS1-011 Lambda LIVE (RO-009) ============]
 
+LIVE Continuity Front through 3.3 (RO-010):
+                                                                      3.3.1──3.3.2──3.3.3──3.3.4──3.3.5──[CM-R1]
+                                                                      [============ CS1-012 Mu LIVE (RO-010) ============]
+
 PIPELINE (Awaiting Approval) + LIVE LOADER (Alpha/Beta):
   1.1.1──…──1.2.2──1.2.3──2.1.1──2.1.2──…
   [==== CS1-001 ====][==== CS1-002 ====]
@@ -192,19 +199,19 @@ TRUST FRONT (Wave 2 LIVE Verified — RO-002):
 
 | Front | Location | Status | Source |
 |-------|----------|--------|--------|
-| **Opening Continuity Front (student LIVE)** | Closed through **3.1.6** / CK-R1 | LIVE Verified | RO-008 |
-| **Opening Continuity Front (LIVE)** | **3.2 LIVE Verified** (CS1-011 / Lambda) | RO-009 | EP-009 / RO-009 |
-| **Next LIVE open after Wave 9 PB-011 exit** | **3.3** (provisional) | Not commissioned | Continuity Front law |
+| **Opening Continuity Front (student LIVE)** | Closed through **3.3.5** / CM-R1 | LIVE Verified | RO-010 |
+| **Opening Continuity Front (catalogue)** | **3.3 LIVE Verified** (CS1-012 / Mu) | LIVE | RO-010 |
+| **Next after Approver + LIVE (provisional)** | Remainder / spine re-audit / Wave 0 honesty | Not commissioned | Continuity Front law |
 | **Trust Remediation Front** | **4.1 → 4.2 → 5.1** | LIVE Verified | RO-002 / PB-004 |
-| **Publication Front (Wave 0)** | CS1-001 / CS1-002 Approver | Open (honesty gap) | Not waived by Wave 9 |
+| **Publication Front (Wave 0)** | CS1-001 / CS1-002 Approver | Open (honesty gap) | Not waived by Wave 10 |
 
 ### Student Reliance Coverage Register (operational metric)
 
 | Metric | Value | Notes |
 |--------|-------|-------|
-| **Certified Educational Coverage (%)** | **80.6%** (58 / 72) | Approver-credited Published Learning LOs — **Wave 9 LIVE Verified** |
-| **Continuity Front** | LIVE closed through **3.2.8** | Student-visible cliff at 3.3 until Wave 10 Approver + LIVE |
-| **Student Reliance Coverage** | Contiguous first-pass CF reliance through Topic **3.2** / **3.2.8** = **34** Learning LOs LIVE (Gamma→Lambda); Trust Front independent **24** LOs (Delta); Alpha/Beta live without Approver credit (honesty gap) | **Advanced (RO-009)** — EA-008 |
+| **Certified Educational Coverage (%)** | **87.5%** (63 / 72) | Approver-credited Published Learning LOs — Wave 10 LIVE |
+| **Continuity Front** | LIVE closed through **3.3.5** / CM-R1 | Student Continuity Front through Topic 3.3 |
+| **Student Reliance Coverage** | Contiguous first-pass CF reliance through Topic **3.3** / **3.3.5** = **39** Learning LOs LIVE (Gamma→Mu); Trust Front independent **24** LOs (Delta); Alpha/Beta live without Approver credit (honesty gap) | EA-008 |
 | **Until-examination status** | **NOT CLAIMED** | Open — spine / remainder unfinished |
 
 **Definition:** Student Reliance Coverage reports how far a diligent student may place justified primary-study reliance on LIVE-certified, Approver-credited Continuity Front guidance without meeting Missing content — distinct from raw Approver % (includes non-contiguous Trust Front) and from until-exam trust.
@@ -221,7 +228,8 @@ TRUST FRONT (Wave 2 LIVE Verified — RO-002):
 | CH-R1 → CT-D1 | Selection + LIVE verify PASS (RO-006) | RO6-R1 label desync; CT-R1 chrome / Q6 RO6-R2/R3 |
 | CT-R1 → CI-D1 | Selection + LIVE verify PASS (RO-007) | RO7-R1 residual class (PI) |
 | CI-R1 → CK-D1 | Selection + LIVE verify PASS (RO-008) | RO8-R1 residual class (PI) |
-| CK-R1 → CL-D1 | Catalogue handoff authored (EP-009) | LIVE selection deferred until Approver + deploy |
+| CK-R1 → CL-D1 | Selection + LIVE verify PASS (RO-009) | RO9-R1…R3 residual class (PI) |
+| CL-R1 → CM-D1 | Catalogue handoff authored (EP-010) | LIVE selection deferred until Approver + deploy |
 
 ---
 
@@ -231,10 +239,10 @@ TRUST FRONT (Wave 2 LIVE Verified — RO-002):
 |--------:|----:|----------:|------------------:|----------------:|--------:|------------------|
 | 1 | 7 | 0 | 7 | 0 | 0 | Alpha/Beta live |
 | 2 | 22 | **20** | 2 | 0 | 0 | Gamma–Iota LIVE |
-| 3 | 19 | **14** | 0 | **0** | **5** | Kappa+Lambda LIVE 3.1–3.2 |
+| 3 | 19 | **19** | 0 | **0** | **0** | Kappa+Lambda+Mu LIVE 3.1–3.3 |
 | 4 | 15 | **15** | 0 | 0 | 0 | orphan superseded (RO-002) |
 | 5 | 9 | **9** | 0 | 0 | 0 | Delta LIVE |
-| **Total** | **72** | **50** | **9** | **8** | **5** | — |
+| **Total** | **72** | **63** | **9** | **0** | **0** | — |
 
 ---
 
@@ -243,17 +251,17 @@ TRUST FRONT (Wave 2 LIVE Verified — RO-002):
 1. Re-measure when Volume Approver signs (Awaiting Approval / Under Authoring → Published).  
 2. Re-measure when Wave packages certify / approve / go LIVE.  
 3. Never move Missing* to Published without Campaign Gate CG + Approver.  
-4. Continuity Front LIVE closed through 3.2.8 (RO-009); Wave 10 gated on PB-011.  
+4. Continuity Front LIVE closed through 3.3.5 (RO-010); Wave 11 not started.  
 5. Keep LO universe pinned to CS1 2026 JSON.  
 6. Refresh Student Reliance Coverage Register whenever Continuity Front or Approver credit moves.  
-7. Do not advance Certified Educational Coverage or Student Reliance past Topic 3.2 / 3.2.8 until Wave 10 Approver + LIVE.
+7. Certified Educational Coverage and Student Reliance advanced through Topic 3.3 / 3.3.5 after Wave 10 LIVE.
 
 ---
 
 ## 9. Closing
 
-Wave 1–9 LIVE Approver credit stands at **58 / 72 (80.6%)**. Campaign Lambda / CS1-011 is **LIVE Verified** (RO-009) for 3.2.1–3.2.8 + CL-R1. Student Continuity Front / Student Reliance Coverage through Topic **3.2** / **3.2.8** LIVE. PB-011 authorised · not executed. Wave 10 not started. No forged seals. Until-exam trust not claimed.
+Wave 1–10 LIVE Approver credit stands at **63 / 72 (87.5%)**. Campaign Mu / CS1-012 is **LIVE Verified** for 3.3.1–3.3.5 + CM-R1. Student Continuity Front / Student Reliance Coverage through Topic **3.3** / **3.3.5** LIVE. PB-012 authorised · not executed. Wave 11 not started. No forged seals. Until-exam trust not claimed.
 
-**Companions:** `EP001_GOVERNANCE.md` · `EP001_PRODUCTION_ROADMAP.md` · `EP001_WAVE1_PLAN.md` · `EP001_WAVE2_PLAN.md` · `EP003_WAVE3_PLAN.md` · `EP003_COVERAGE_UPDATE.md` · `EP004_WAVE4_PLAN.md` · `EP004_COVERAGE_UPDATE.md` · `EP005_WAVE5_PLAN.md` · `EP005_COVERAGE_UPDATE.md` · `EP006_WAVE6_PLAN.md` · `EP006_COVERAGE_UPDATE.md` · `EP007_WAVE7_PLAN.md` · `EP007_COVERAGE_UPDATE.md` · `EP008_WAVE8_PLAN.md` · `EP008_COVERAGE_UPDATE.md` · `EP009_WAVE9_PLAN.md` · `EP009_COVERAGE_UPDATE.md` · `RO008_*` · `PB010_*` · `CE001_CATALOGUE_COVERAGE.md`
+**Companions:** `EP001_GOVERNANCE.md` · `EP001_PRODUCTION_ROADMAP.md` · `EP001_WAVE1_PLAN.md` · `EP001_WAVE2_PLAN.md` · `EP003_WAVE3_PLAN.md` · `EP003_COVERAGE_UPDATE.md` · `EP004_WAVE4_PLAN.md` · `EP004_COVERAGE_UPDATE.md` · `EP005_WAVE5_PLAN.md` · `EP005_COVERAGE_UPDATE.md` · `EP006_WAVE6_PLAN.md` · `EP006_COVERAGE_UPDATE.md` · `EP007_WAVE7_PLAN.md` · `EP007_COVERAGE_UPDATE.md` · `EP008_WAVE8_PLAN.md` · `EP008_COVERAGE_UPDATE.md` · `EP009_WAVE9_PLAN.md` · `EP009_COVERAGE_UPDATE.md` · `EP010_WAVE10_PLAN.md` · `EP010_COVERAGE_UPDATE.md` · `RO009_*` · `PB011_*` · `CE001_CATALOGUE_COVERAGE.md`
 
 Signed notionally: Editorial Director · EP-001 · Coverage Map · 2026-08-02
