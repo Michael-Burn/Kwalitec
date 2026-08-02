@@ -1,0 +1,197 @@
+{
+  "package_version": "cs1008-campaign-theta-1.0.0",
+  "publication_version": "cs1008-live-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "CS1-EP001-CAMPAIGN-THETA",
+  "volume_id": "CS1-008",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1008_EDUCATIONAL_VOLUME.md",
+    "CS1008_CERTIFICATION_REPORT.md",
+    "EP006_WAVE6_PLAN.md"
+  ],
+  "author_id": "cs1008-educational-author",
+  "authored_at": "2026-08-02",
+  "topic_code": "2.5",
+  "topic_title": "State and apply the central limit theorem",
+  "topic_id": "CS1-B-T05",
+  "package_id": "CS1-EP001-PKG-2.5-CLT",
+  "campaign_day": "CT-D1",
+  "topic_focus_lo": "2.5.1",
+  "topic_aliases": [
+    "CS1-B-T05",
+    "2.5",
+    "2.5.1"
+  ],
+  "topic_title_keywords": [
+    "central",
+    "limit",
+    "theorem",
+    "CLT",
+    "iid",
+    "Normal",
+    "mean"
+  ],
+  "golden_id": "GOLDEN-CS1008-CS1-2.5-CLT",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1008-cs1-2.5-clt",
+    "display_title": "State and apply the CLT for an iid sequence",
+    "mission_purpose": "Today's Mission exists to state and apply the central limit theorem for a sequence of independent, identically distributed random variables — so the standardised-mean → Normal conclusion is usable — without pretending simulated sample comparison (2.5.2) is finished.",
+    "tutor_intent": "Today I will force the candidate to state CLT conditions and conclusion for iid sequences — and refuse treating 'the Normal is everywhere' as having the theorem.",
+    "educational_intent": "Produce a cognitive move from iid sum/mean behaviour to the lawful CLT statement under CMP conditions.",
+    "learning_objective": "State and apply the central limit theorem for a sequence of independent, identically distributed random variables.",
+    "concept_focus": "iid sequence → mean/variance conditions (CMP) → standardised sample mean → Normal limit → refuse Normal-everywhere theatre.",
+    "prior_bridge": "Campaign Eta closed generating functions (2.4) with Revision. Today opens topic 2.5 at LO 2.5.1 — the named Continuity Front after CS1-007.",
+    "why_now": "2.5.1 is the lawful Continuity Front after Eta. Closing it prevents a cliff at the CLT while keeping simulated-sample comparison as day two.",
+    "expected_benefit": "Study Progress for CLT (iid) — not Topic Complete for 2.5.2.",
+    "explainability": "Assigned as Campaign Theta Day 1 because CE-001 / EP-001 Continuity Front names 2.5 as the handoff from Eta.",
+    "success_criteria": [
+      "Closed-book, state the CLT conclusion for iid sample means (CMP form).",
+      "Name the key conditions the CMP requires (independence, identical distribution, moment conditions as stated).",
+      "Refuse one 'everything is Normal so CLT is done' claim."
+    ],
+    "task_descriptions": [
+      "Sketch iid → standardised mean → Normal before CMP.",
+      "Complete Guided Reading through CMP treatment of Syllabus 2.5.1.",
+      "Closed-book Knowledge Checks: CLT statement + refuse Normal-everywhere collapse."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 55,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1008-cs1-2.5-clt",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 2.5.1 — not the next LO as primary.",
+    "session_tutor_purpose": "Set focus on 2.5.1, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
+    "duration_budget_minutes": {
+      "min": 55,
+      "max": 75
+    },
+    "wrap_up": "Session complete for State and apply the CLT for an iid sequence. You practised selective CMP reading on Syllabus 2.5.1. This is Study Progress for today's block — not Topic Complete for later 2.5 LOs, Chapter 2, sampling distributions, or until-exam trust.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 2.5.1 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 2.5.1 — state and apply the clt for an iid sequence. Stop before out-of-scope later LOs.",
+    "focus_questions": [
+      "What is the core move of Syllabus 2.5.1?",
+      "What warrant separates today's skill from yesterday's?",
+      "What claim must you refuse today?",
+      "What will you practise in Knowledge Checks after the CMP?"
+    ],
+    "misconception_watch": [
+      "Watch for equating 'I know the Normal density' with having the CLT.",
+      "Watch for starting simulation-vs-Normal drills (2.5.2) inside this sitting.",
+      "Watch for sampling-distribution / 2.6 work today."
+    ],
+    "open_point": "CMP · Syllabus 2.5.1 central limit theorem (iid)",
+    "stop_condition": "Through the CMP treatment of Syllabus 2.5.1 (stop before simulated-sample comparison 2.5.2)",
+    "out_of_scope_today": [
+      "Simulated sample comparison with Normal as primary (2.5.2)",
+      "Sampling distributions (2.6)",
+      "Inference Chapter 3",
+      "Chapter 2 complete claim",
+      "Until-exam educational trust"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.5.1 central limit theorem (iid). Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.5.1 (stop before simulated-sample comparison 2.5.2). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 2.5.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause — write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1008-2.5.1-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1008-2.5.1-ar-01",
+      "title": "Active Recall: 2.5.1",
+      "prompt": "Closed-book. (1) State the CLT for an iid sequence in one or two sentences (conditions + conclusion). (2) What random quantity is becoming approximately Normal? (3) Name one reason 'the Normal is common' is not the same as stating the CLT.",
+      "response_type": "short_structured",
+      "body": "Retrieve 2.5.1 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "CLT",
+        "central",
+        "limit",
+        "iid",
+        "independent",
+        "identical",
+        "mean",
+        "Normal",
+        "standardis",
+        "n"
+      ],
+      "explanation": "Active recall for 2.5.1.",
+      "model_answer": "Under CMP conditions (iid; finite mean/variance as stated), the standardised sample mean (or sum) converges in distribution to Normal as n increases. Knowing the Normal shape is not the same as stating this limit theorem for iid sequences.",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1008-2.5.1-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1008-2.5.1-cp-01",
+      "title": "Checkpoint: 2.5.1",
+      "prompt": "Closed-book. A colleague says 'we already use the Normal all the time, so the CLT is just common sense.' Refuse in one sentence and restate what today's LO adds.",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 2.5.1.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "CLT",
+        "iid",
+        "Normal",
+        "theorem",
+        "not same",
+        "mean",
+        "limit"
+      ],
+      "explanation": "Checkpoint for 2.5.1.",
+      "model_answer": "Refuse: casual Normal use is not the CLT. Today's skill is stating and applying the theorem for iid sequences under CMP conditions (standardised means → Normal).",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest wobble on conditions vs conclusion — simulated-sample comparison comes tomorrow.",
+    "prompt": "Which part of today's 2.5.1 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 2.5.1 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "2.5",
+    "next_topic_title": "Simulated samples vs Normal (2.5.2)",
+    "continuity_line": "Today you stated and applied the CLT for iid sequences; tomorrow continues 2.5 at comparison of simulated samples with the Normal distribution.",
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.5.2 — titles only tonight",
+    "student_facing": "Tomorrow: comparison of simulated samples with the Normal (2.5.2). Optional light prep: skim 2.5.2 headings — titles only tonight."
+  },
+  "published_at": "2026-08-02"
+}
