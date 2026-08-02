@@ -1,0 +1,3599 @@
+{
+  "programme": "RO-011",
+  "host": "https://kwalitec.onrender.com",
+  "expected_commit": "a0d8df665fa826343579529956728ae493cf5f97",
+  "live_health": {
+    "build_date": "2026-08-02",
+    "build_number": "local",
+    "commit": "a0d8df665fa826343579529956728ae493cf5f97",
+    "components": {
+      "database": {
+        "latency_ms": 2.3,
+        "name": "database",
+        "status": "ok"
+      },
+      "instance_storage": {
+        "meta": {
+          "path": "/opt/render/project/src/instance"
+        },
+        "name": "instance_storage",
+        "status": "ok"
+      },
+      "migrations": {
+        "meta": {
+          "current": "202607310002",
+          "head": "202607310002"
+        },
+        "name": "migrations",
+        "status": "ok"
+      },
+      "queue": {
+        "detail": "manual automation runner (no external broker)",
+        "meta": {
+          "broker": "none",
+          "runner": "app.automation"
+        },
+        "name": "queue",
+        "status": "ok"
+      }
+    },
+    "database": "connected",
+    "environment": "production",
+    "status": "ok",
+    "timestamp": "2026-08-02T20:08:17.975098+00:00",
+    "version": "2.0.0-beta.1"
+  },
+  "email": "ro011.nu.primary.1785701229@example.com",
+  "days": [
+    {
+      "day_index": 1,
+      "expected_day": "CK-D1",
+      "expected_package_id": "CS1-EP001-PKG-3.1-METHOD-OF-MOMENTS",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 2.6.5 \u2014 describe the distribution of the t-statistic for normal samples. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Describe random sampling and the sampling distributions of statistics commonly used in statistical inference (2.6) Mission: Describe the distribution of the t-statistic for Normal samples Purpose of this reading: use the CMP to extract Syllabus 2.6.5 \u2014 describe the distribution of the t-statistic for normal samples. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 2.6.5 t-statistic for Normal samples Stop: Through CMP 2.6.5 (stop before F distribution 2.6.6) Focus questions: \u2022 Wh",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.6.5 t-statistic for Normal samples. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.6.5 (stop before F distribution",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 322
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-3.1-METHOD-OF-MOMENTS",
+        "campaign_day": "CK-D1",
+        "html": "/tmp/ro011/evidence/day1_CK-D1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you constructed estimators by method of moments; tomorrow continues 3.1 at maximum likelihood.",
+        "package_student_facing": "Tomorrow: maximum likelihood (3.1.2). Optional light prep: skim 3.1.2 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Construct estimators by the method of moments",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Construct estimators by the method of moments CS1 (CS1) 1 h Study 3.1 \u2014 Construct estimators and discuss their properties After this \u00b7 Study Progress for method of moments \u2014 not Topic Complete for 3.1.2. Start Today&#39;s Sessio"
+      },
+      "session_id": "lsr-2b6d2fe448b8",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": true,
+      "lambda_focus": false,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 2,
+      "expected_day": "CK-D2",
+      "expected_package_id": "CS1-EP001-PKG-3.1-MAXIMUM-LIKELIHOOD",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 3.1.1 \u2014 construct estimators by the method of moments. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Construct estimators and discuss their properties (3.1) Mission: Construct estimators by the method of moments Purpose of this reading: use the CMP to extract Syllabus 3.1.1 \u2014 construct estimators by the method of moments. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.1.1 method of moments Stop: Through the CMP treatment of Syllabus 3.1.1 (stop before maximum likelihood 3.1.2) Focus questions: \u2022 What is the core move of Syllabus 3.1.1? \u2022 What warrant separates today&#39;s sk",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.1.1 method of moments. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.1.1 (stop before m",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 322
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": true,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-3.1-MAXIMUM-LIKELIHOOD",
+        "campaign_day": "CK-D2",
+        "html": "/tmp/ro011/evidence/day2_CK-D2_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you constructed MLEs; tomorrow continues 3.1 at efficiency, bias, consistency and mean square error.",
+        "package_student_facing": "Tomorrow: efficiency / bias / consistency / MSE (3.1.3). Optional light prep: skim 3.1.3 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Construct estimators by the method of moments",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Construct estimators by the method of moments CS1 (CS1) 1 h Study 3.1 \u2014 Construct estimators and discuss their properties After this \u00b7 Study Progress for method of moments \u2014 not Topic Complete for 3.1.2. Start Today&#39;s Sessio"
+      },
+      "session_id": "lsr-211bc858b0b9",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": true,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": true,
+      "lambda_focus": false,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 3,
+      "expected_day": "CK-D3",
+      "expected_package_id": "CS1-EP001-PKG-3.1-EFFICIENCY-BIAS-CONSISTENCY-MSE",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 3.1.2 \u2014 construct estimators by maximum likelihood. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Construct estimators and discuss their properties (3.1) Mission: Construct estimators by maximum likelihood Purpose of this reading: use the CMP to extract Syllabus 3.1.2 \u2014 construct estimators by maximum likelihood. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.1.2 maximum likelihood Stop: Through the CMP treatment of Syllabus 3.1.2 (stop before efficiency / bias / MSE 3.1.3) Focus questions: \u2022 What is the core move of Syllabus 3.1.2? \u2022 What warrant separates today&#39;s sk",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.1.2 maximum likelihood. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.1.2 (stop before ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 324
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": true,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-3.1-EFFICIENCY-BIAS-CONSISTENCY-MSE",
+        "campaign_day": "CK-D3",
+        "html": "/tmp/ro011/evidence/day3_CK-D3_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you discussed estimator properties; tomorrow continues 3.1 at comparing estimators using MSE and bias.",
+        "package_student_facing": "Tomorrow: comparison of estimators (3.1.4). Optional light prep: skim 3.1.4 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Construct estimators by the method of moments",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Construct estimators by the method of moments CS1 (CS1) 1 h Study 3.1 \u2014 Construct estimators and discuss their properties After this \u00b7 Study Progress for method of moments \u2014 not Topic Complete for 3.1.2. Start Today&#39;s Sessio"
+      },
+      "session_id": "lsr-12e88c37ede9",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": true,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": true,
+      "lambda_focus": false,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 4,
+      "expected_day": "CK-D4",
+      "expected_package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 3.1.3 \u2014 discuss efficiency, bias, consistency and mse of an estimator. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Construct estimators and discuss their properties (3.1) Mission: Discuss efficiency, bias, consistency and MSE of an estimator Purpose of this reading: use the CMP to extract Syllabus 3.1.3 \u2014 discuss efficiency, bias, consistency and mse of an estimator. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.1.3 efficiency, bias, consistency and MSE Stop: Through the CMP treatment of Syllabus 3.1.3 (stop before estimator comparison 3.1.4) Focus questions: \u2022 What is the core move of S",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.1.3 efficiency, bias, consistency and MSE. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 327
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": true,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
+        "campaign_day": "CK-D4",
+        "html": "/tmp/ro011/evidence/day4_CK-D4_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you compared estimators via MSE and bias; tomorrow continues 3.1 at the asymptotic distribution of MLEs.",
+        "package_student_facing": "Tomorrow: asymptotic distribution of MLEs (3.1.5). Optional light prep: skim 3.1.5 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Construct estimators by the method of moments",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Construct estimators by the method of moments CS1 (CS1) 1 h Study 3.1 \u2014 Construct estimators and discuss their properties After this \u00b7 Study Progress for method of moments \u2014 not Topic Complete for 3.1.2. Start Today&#39;s Sessio"
+      },
+      "session_id": "lsr-b95d2e3e273c",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": true,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": true,
+      "lambda_focus": false,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 5,
+      "expected_day": "CK-D5",
+      "expected_package_id": "CS1-EP001-PKG-3.1-ASYMPTOTIC-MLE",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 3.1.4 \u2014 compare estimators using mse and bias. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Construct estimators and discuss their properties (3.1) Mission: Compare estimators using MSE and bias Purpose of this reading: use the CMP to extract Syllabus 3.1.4 \u2014 compare estimators using mse and bias. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.1.4 comparison of estimators using MSE and bias Stop: Through the CMP treatment of Syllabus 3.1.4 (stop before asymptotic MLE 3.1.5) Focus questions: \u2022 What is the core move of Syllabus 3.1.4? \u2022 What warrant separates today&#3",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.1.4 comparison of estimators using MSE and bias. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syl",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 328
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": true,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-3.1-ASYMPTOTIC-MLE",
+        "campaign_day": "CK-D5",
+        "html": "/tmp/ro011/evidence/day5_CK-D5_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you discussed asymptotic MLE behaviour; tomorrow continues 3.1 at bootstrap methods for estimator properties.",
+        "package_student_facing": "Tomorrow: bootstrap for estimator properties (3.1.6). Optional light prep: skim 3.1.6 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Construct estimators by the method of moments",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Construct estimators by the method of moments CS1 (CS1) 1 h Study 3.1 \u2014 Construct estimators and discuss their properties After this \u00b7 Study Progress for method of moments \u2014 not Topic Complete for 3.1.2. Start Today&#39;s Sessio"
+      },
+      "session_id": "lsr-2efa46f609a6",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": true,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": true,
+      "lambda_focus": false,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 6,
+      "expected_day": "CK-D6",
+      "expected_package_id": "CS1-EP001-PKG-3.1-BOOTSTRAP-ESTIMATOR",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 3.1.5 \u2014 discuss the asymptotic distribution of mles. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Construct estimators and discuss their properties (3.1) Mission: Discuss the asymptotic distribution of MLEs Purpose of this reading: use the CMP to extract Syllabus 3.1.5 \u2014 discuss the asymptotic distribution of mles. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.1.5 asymptotic distribution of MLEs Stop: Through the CMP treatment of Syllabus 3.1.5 (stop before bootstrap 3.1.6) Focus questions: \u2022 What is the core move of Syllabus 3.1.5? \u2022 What warrant separates today&#39;s s",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.1.5 asymptotic distribution of MLEs. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.1.5 ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 312
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": true,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-3.1-BOOTSTRAP-ESTIMATOR",
+        "campaign_day": "CK-D6",
+        "html": "/tmp/ro011/evidence/day6_CK-D6_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you used bootstrap for estimator properties; tomorrow is Revision \u2014 retrieve 3.1.1\u20133.1.6 closed-book (not first-pa",
+        "package_student_facing": "Tomorrow: Revision (CK-R1) \u2014 retrieve estimator hinges. Optional: list 3.1.1\u20133.1.6 titles from memory tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Construct estimators by the method of moments",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Construct estimators by the method of moments CS1 (CS1) 1 h Study 3.1 \u2014 Construct estimators and discuss their properties After this \u00b7 Study Progress for method of moments \u2014 not Topic Complete for 3.1.2. Start Today&#39;s Sessio"
+      },
+      "session_id": "lsr-fdce1aa90506",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": true,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": true,
+      "lambda_focus": false,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 7,
+      "expected_day": "CK-R1",
+      "expected_package_id": "CS1-EP001-PKG-REV-ESTIMATORS",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 3.1.6 \u2014 use bootstrap to estimate properties of an estimator. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Construct estimators and discuss their properties (3.1) Mission: Use bootstrap to estimate properties of an estimator Purpose of this reading: use the CMP to extract Syllabus 3.1.6 \u2014 use bootstrap to estimate properties of an estimator. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.1.6 bootstrap for estimator properties Stop: Through the CMP treatment of Syllabus 3.1.6 (stop before confidence / prediction intervals 3.2) Focus questions: \u2022 What is the core move of Syllabus 3.",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.1.6 bootstrap for estimator properties. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.1",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": false,
+            "exit_line": false,
+            "return_cue": false,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 322
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": false,
+          "return_cue": false,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-REV-ESTIMATORS",
+        "campaign_day": "CK-R1",
+        "html": "/tmp/ro011/evidence/day7_CK-R1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Campaign Kappa / Volume CS1-010 completes after this Revision. Honest stop: 3.1 Pilot Arc closed \u2014 not Chapter 3 complet",
+        "package_student_facing": "Campaign Kappa / CS1-010 complete after today (pending human Approver + LIVE). Honest next: stop or await 3.2 successor ",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Construct estimators by the method of moments",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Construct estimators by the method of moments CS1 (CS1) 1 h Study 3.1 \u2014 Construct estimators and discuss their properties After this \u00b7 Study Progress for method of moments \u2014 not Topic Complete for 3.1.2. Start Today&#39;s Sessio"
+      },
+      "session_id": "lsr-2cffc15dd234",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": true,
+      "lambda_focus": false,
+      "epsilon_focus": false,
+      "revision_q6_residual": false
+    },
+    {
+      "day_index": 8,
+      "expected_day": "CL-D1",
+      "expected_package_id": "CS1-EP001-PKG-3.2-CONFIDENCE-INTERVAL-PARAMETER",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Kappa chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locu",
+          "body_sample": " Topic: Campaign Kappa revision \u2014 estimators and their properties (CK-R1) Mission: Retrieve estimator hinges (3.1) Purpose of this revision stage: strengthen retrieval of the Campaign Kappa chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block. Stop: After revision checks and Reflection \u2014 do not begin Syllabus 3.2 in this si",
+          "support_sample": "Begin closed-book retrieval. Reopen CMP only at a failed locus. After checks, complete Reflection. What did you extract from the CMP setup? Submit Answer ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": false
+          },
+          "ec001_markers": {
+            "Purpose of this reading": false,
+            "Open your CMP": false,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": false,
+            "Knowledge Checks": false
+          },
+          "certified_snippet_hits": {
+            "lead_line": false,
+            "exit_line": false,
+            "return_cue": false,
+            "open_point": false
+          },
+          "verdict": "FAIL",
+          "word_count_body": 234
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": false,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": false,
+          "return_cue": false,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-3.2-CONFIDENCE-INTERVAL-PARAMETER",
+        "campaign_day": "CL-D1",
+        "html": "/tmp/ro011/evidence/day8_CL-D1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": false,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you constructed a parameter confidence interval from a random sample; tomorrow continues 3.2 at prediction interva",
+        "package_student_facing": "Tomorrow: prediction interval (3.2.2). Optional light prep: skim 3.2.2 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "FAIL",
+      "home": {
+        "title_guess": "Construct estimators by the method of moments",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Construct estimators by the method of moments CS1 (CS1) 1 h Study 3.1 \u2014 Construct estimators and discuss their properties After this \u00b7 Study Progress for method of moments \u2014 not Topic Complete for 3.1.2. Start Today&#39;s Sessio"
+      },
+      "session_id": "lsr-3ab0bce264fd",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": false,
+      "chrome_residual": false,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": false,
+      "lambda_focus": true,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 9,
+      "expected_day": "CL-D2",
+      "expected_package_id": "CS1-EP001-PKG-3.2-PREDICTION-INTERVAL",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 3.2.1 \u2014 construct a confidence interval for an unknown parameter from a random sample. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Calculate confidence intervals and prediction intervals (3.2) Mission: Construct a confidence interval for an unknown parameter from a random sample Purpose of this reading: use the CMP to extract Syllabus 3.2.1 \u2014 construct a confidence interval for an unknown parameter from a random sample. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.2.1 confidence interval for a parameter Stop: Through the CMP treatment of Syllabus 3.2.1 (stop before prediction interval 3.2.2) Focus ques",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.2.1 confidence interval for a parameter. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 337
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": true,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-3.2-PREDICTION-INTERVAL",
+        "campaign_day": "CL-D2",
+        "html": "/tmp/ro011/evidence/day9_CL-D2_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you constructed a prediction interval; tomorrow continues 3.2 at confidence intervals that use a given sampling di",
+        "package_student_facing": "Tomorrow: CI given a sampling distribution (3.2.3). Optional light prep: skim 3.2.3 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Construct a confidence interval for an unknown parameter from a random sample",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Construct a confidence interval for an unknown parameter from a random sample CS1 (CS1) 1 h Study 3.2 \u2014 Calculate confidence intervals and prediction intervals After this \u00b7 Study Progress for parameter CI \u2014 not Topic Complete fo"
+      },
+      "session_id": "lsr-1e95bc73dfc9",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": true,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": false,
+      "lambda_focus": true,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 10,
+      "expected_day": "CL-D3",
+      "expected_package_id": "CS1-EP001-PKG-3.2-CI-GIVEN-SAMPLING-DISTRIBUTION",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 3.2.2 \u2014 construct a prediction interval for a future observation. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Calculate confidence intervals and prediction intervals (3.2) Mission: Construct a prediction interval for a future observation Purpose of this reading: use the CMP to extract Syllabus 3.2.2 \u2014 construct a prediction interval for a future observation. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.2.2 prediction interval Stop: Through the CMP treatment of Syllabus 3.2.2 (stop before given-sampling-distribution CI 3.2.3) Focus questions: \u2022 What is the core move of Syllabus 3.2.",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.2.2 prediction interval. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.2.2 (stop before",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 320
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": true,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-3.2-CI-GIVEN-SAMPLING-DISTRIBUTION",
+        "campaign_day": "CL-D3",
+        "html": "/tmp/ro011/evidence/day10_CL-D3_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you formed a CI from a given sampling distribution; tomorrow continues 3.2 at Normal mean and variance intervals.",
+        "package_student_facing": "Tomorrow: Normal mean and variance CIs (3.2.4). Optional light prep: skim 3.2.4 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Construct a confidence interval for an unknown parameter from a random sample",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Construct a confidence interval for an unknown parameter from a random sample CS1 (CS1) 1 h Study 3.2 \u2014 Calculate confidence intervals and prediction intervals After this \u00b7 Study Progress for parameter CI \u2014 not Topic Complete fo"
+      },
+      "session_id": "lsr-7812fad8f77c",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": true,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": false,
+      "lambda_focus": true,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 11,
+      "expected_day": "CL-D4",
+      "expected_package_id": "CS1-EP001-PKG-3.2-CI-NORMAL-MEAN-VARIANCE",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 3.2.3 \u2014 construct a confidence interval using a given sampling distribution. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Calculate confidence intervals and prediction intervals (3.2) Mission: Construct a confidence interval using a given sampling distribution Purpose of this reading: use the CMP to extract Syllabus 3.2.3 \u2014 construct a confidence interval using a given sampling distribution. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.2.3 CI using a given sampling distribution Stop: Through the CMP treatment of Syllabus 3.2.3 (stop before Normal mean/variance CIs 3.2.4) Focus questions: \u2022 Wha",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.2.3 CI using a given sampling distribution. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 338
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": true,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-3.2-CI-NORMAL-MEAN-VARIANCE",
+        "campaign_day": "CL-D4",
+        "html": "/tmp/ro011/evidence/day11_CL-D4_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you formed Normal mean and variance CIs; tomorrow continues 3.2 at binomial and Poisson intervals (including Norma",
+        "package_student_facing": "Tomorrow: binomial/Poisson CIs (3.2.5). Optional light prep: skim 3.2.5 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Construct a confidence interval for an unknown parameter from a random sample",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Construct a confidence interval for an unknown parameter from a random sample CS1 (CS1) 1 h Study 3.2 \u2014 Calculate confidence intervals and prediction intervals After this \u00b7 Study Progress for parameter CI \u2014 not Topic Complete fo"
+      },
+      "session_id": "lsr-5fcf0b8259bb",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": true,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": false,
+      "lambda_focus": true,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 12,
+      "expected_day": "CL-D5",
+      "expected_package_id": "CS1-EP001-PKG-3.2-CI-BINOMIAL-POISSON",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 3.2.4 \u2014 construct confidence intervals for the mean and variance of a normal distribution. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Calculate confidence intervals and prediction intervals (3.2) Mission: Construct confidence intervals for the mean and variance of a Normal distribution Purpose of this reading: use the CMP to extract Syllabus 3.2.4 \u2014 construct confidence intervals for the mean and variance of a normal distribution. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.2.4 Normal mean and variance confidence intervals Stop: Through the CMP treatment of Syllabus 3.2.4 (stop before binomial/Poisson CI",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.2.4 Normal mean and variance confidence intervals. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of S",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 335
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": true,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-3.2-CI-BINOMIAL-POISSON",
+        "campaign_day": "CL-D5",
+        "html": "/tmp/ro011/evidence/day12_CL-D5_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you formed binomial and Poisson CIs; tomorrow continues 3.2 at two-sample situations.",
+        "package_student_facing": "Tomorrow: two-sample CIs (3.2.6). Optional light prep: skim 3.2.6 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Construct a confidence interval for an unknown parameter from a random sample",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Construct a confidence interval for an unknown parameter from a random sample CS1 (CS1) 1 h Study 3.2 \u2014 Calculate confidence intervals and prediction intervals After this \u00b7 Study Progress for parameter CI \u2014 not Topic Complete fo"
+      },
+      "session_id": "lsr-2463c8f9ab01",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": true,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": false,
+      "lambda_focus": true,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 13,
+      "expected_day": "CL-D6",
+      "expected_package_id": "CS1-EP001-PKG-3.2-CI-TWO-SAMPLE",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 3.2.5 \u2014 construct confidence intervals for a binomial probability and a poisson mean. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Calculate confidence intervals and prediction intervals (3.2) Mission: Construct confidence intervals for a binomial probability and a Poisson mean Purpose of this reading: use the CMP to extract Syllabus 3.2.5 \u2014 construct confidence intervals for a binomial probability and a poisson mean. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.2.5 binomial and Poisson confidence intervals Stop: Through the CMP treatment of Syllabus 3.2.5 (stop before two-sample CIs 3.2.6) Focus quest",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.2.5 binomial and Poisson confidence intervals. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Sylla",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 336
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": true,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-3.2-CI-TWO-SAMPLE",
+        "campaign_day": "CL-D6",
+        "html": "/tmp/ro011/evidence/day13_CL-D6_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you formed two-sample CIs; tomorrow continues 3.2 at paired-data mean-difference intervals.",
+        "package_student_facing": "Tomorrow: paired mean-difference CI (3.2.7). Optional light prep: skim 3.2.7 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Construct a confidence interval for an unknown parameter from a random sample",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Construct a confidence interval for an unknown parameter from a random sample CS1 (CS1) 1 h Study 3.2 \u2014 Calculate confidence intervals and prediction intervals After this \u00b7 Study Progress for parameter CI \u2014 not Topic Complete fo"
+      },
+      "session_id": "lsr-dc7286213aa5",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": true,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": false,
+      "lambda_focus": true,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 14,
+      "expected_day": "CL-D7",
+      "expected_package_id": "CS1-EP001-PKG-3.2-CI-PAIRED-MEANS",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 3.2.6 \u2014 construct confidence intervals for two-sample situations. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Calculate confidence intervals and prediction intervals (3.2) Mission: Construct confidence intervals for two-sample situations Purpose of this reading: use the CMP to extract Syllabus 3.2.6 \u2014 construct confidence intervals for two-sample situations. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.2.6 two-sample confidence intervals Stop: Through the CMP treatment of Syllabus 3.2.6 (stop before paired-means CI 3.2.7) Focus questions: \u2022 What is the core move of Syllabus 3.2.6? ",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.2.6 two-sample confidence intervals. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.2.6 ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 314
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": true,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-3.2-CI-PAIRED-MEANS",
+        "campaign_day": "CL-D7",
+        "html": "/tmp/ro011/evidence/day14_CL-D7_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you formed a paired mean-difference CI; tomorrow continues 3.2 at bootstrap confidence intervals.",
+        "package_student_facing": "Tomorrow: bootstrap CIs (3.2.8). Optional light prep: skim 3.2.8 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Construct a confidence interval for an unknown parameter from a random sample",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Construct a confidence interval for an unknown parameter from a random sample CS1 (CS1) 1 h Study 3.2 \u2014 Calculate confidence intervals and prediction intervals After this \u00b7 Study Progress for parameter CI \u2014 not Topic Complete fo"
+      },
+      "session_id": "lsr-e33d9de23f4f",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": true,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": false,
+      "lambda_focus": true,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 15,
+      "expected_day": "CL-D8",
+      "expected_package_id": "CS1-EP001-PKG-3.2-BOOTSTRAP-CONFIDENCE-INTERVAL",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 3.2.7 \u2014 construct a confidence interval for a difference between two means from paired data. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Calculate confidence intervals and prediction intervals (3.2) Mission: Construct a confidence interval for a difference between two means from paired data Purpose of this reading: use the CMP to extract Syllabus 3.2.7 \u2014 construct a confidence interval for a difference between two means from paired data. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.2.7 paired mean-difference confidence interval Stop: Through the CMP treatment of Syllabus 3.2.7 (stop before bootstrap CI 3.2.8",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.2.7 paired mean-difference confidence interval. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syll",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 329
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": true,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-3.2-BOOTSTRAP-CONFIDENCE-INTERVAL",
+        "campaign_day": "CL-D8",
+        "html": "/tmp/ro011/evidence/day15_CL-D8_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you obtained bootstrap confidence intervals; tomorrow is Revision \u2014 retrieve the 3.2 chain closed-book (not first-",
+        "package_student_facing": "Tomorrow: CL-R1 Revision (retrieve 3.2.1\u20133.2.8). Optional light prep: list the eight LO codes from memory \u2014 titles only ",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Construct a confidence interval for an unknown parameter from a random sample",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Construct a confidence interval for an unknown parameter from a random sample CS1 (CS1) 1 h Study 3.2 \u2014 Calculate confidence intervals and prediction intervals After this \u00b7 Study Progress for parameter CI \u2014 not Topic Complete fo"
+      },
+      "session_id": "lsr-827dd800a694",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": true,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": false,
+      "lambda_focus": true,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 16,
+      "expected_day": "CL-R1",
+      "expected_package_id": "CS1-EP001-PKG-REV-CONFIDENCE-INTERVALS",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 3.2.8 \u2014 obtain confidence intervals by the bootstrap method. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Calculate confidence intervals and prediction intervals (3.2) Mission: Obtain confidence intervals by the bootstrap method Purpose of this reading: use the CMP to extract Syllabus 3.2.8 \u2014 obtain confidence intervals by the bootstrap method. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.2.8 bootstrap confidence intervals Stop: Through the CMP treatment of Syllabus 3.2.8 (stop before hypothesis testing 3.3) Focus questions: \u2022 What is the core move of Syllabus 3.2.8? \u2022 What war",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.2.8 bootstrap confidence intervals. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.2.8 (",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": false,
+            "exit_line": false,
+            "return_cue": false,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 326
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": false,
+          "return_cue": false,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-REV-CONFIDENCE-INTERVALS",
+        "campaign_day": "CL-R1",
+        "html": "/tmp/ro011/evidence/day16_CL-R1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Campaign Lambda / Volume CS1-011 completes after this Revision. Honest stop: 3.2 Pilot Arc closed \u2014 not Chapter 3 comple",
+        "package_student_facing": "Campaign Lambda / CS1-011 complete after today (pending human Approver + LIVE). Honest next: stop or await 3.3 successor",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Construct a confidence interval for an unknown parameter from a random sample",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Construct a confidence interval for an unknown parameter from a random sample CS1 (CS1) 1 h Study 3.2 \u2014 Calculate confidence intervals and prediction intervals After this \u00b7 Study Progress for parameter CI \u2014 not Topic Complete fo"
+      },
+      "session_id": "lsr-04f3f0fc4d50",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": false,
+      "lambda_focus": true,
+      "epsilon_focus": false,
+      "revision_q6_residual": false
+    },
+    {
+      "day_index": 17,
+      "expected_day": "CM-D1",
+      "expected_package_id": "CS1-EP001-PKG-3.3-HYPOTHESIS-CONCEPTS",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Lambda chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed loc",
+          "body_sample": " Topic: Campaign Lambda revision \u2014 confidence and prediction intervals (CL-R1) Mission: Retrieve interval hinges (3.2) Purpose of this revision stage: strengthen retrieval of the Campaign Lambda chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block. Stop: After revision checks and Reflection \u2014 do not begin Syllabus 3.3 in th",
+          "support_sample": "Begin closed-book retrieval. Reopen CMP only at a failed locus. After checks, complete Reflection. What did you extract from the CMP setup? Submit Answer ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": false
+          },
+          "ec001_markers": {
+            "Purpose of this reading": false,
+            "Open your CMP": false,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": false,
+            "Knowledge Checks": false
+          },
+          "certified_snippet_hits": {
+            "lead_line": false,
+            "exit_line": false,
+            "return_cue": false,
+            "open_point": false
+          },
+          "verdict": "FAIL",
+          "word_count_body": 231
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": false,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": false,
+          "return_cue": false,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-3.3-HYPOTHESIS-CONCEPTS",
+        "campaign_day": "CM-D1",
+        "html": "/tmp/ro011/evidence/day17_CM-D1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": false,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you established hypothesis-testing concepts; tomorrow continues 3.3 at basic applied tests.",
+        "package_student_facing": "Tomorrow: basic tests (3.3.2). Optional light prep: skim 3.3.2 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "FAIL",
+      "home": {
+        "title_guess": "Construct a confidence interval for an unknown parameter from a random sample",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Construct a confidence interval for an unknown parameter from a random sample CS1 (CS1) 1 h Study 3.2 \u2014 Calculate confidence intervals and prediction intervals After this \u00b7 Study Progress for parameter CI \u2014 not Topic Complete fo"
+      },
+      "session_id": "lsr-d8a0261cb141",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": false,
+      "chrome_residual": false,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": false,
+      "lambda_focus": false,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 18,
+      "expected_day": "CM-D2",
+      "expected_package_id": "CS1-EP001-PKG-3.3-BASIC-TESTS",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 3.3.1 \u2014 understand hypothesis-testing concepts (null/alternative, errors, p-value, power). Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Apply the concepts of hypothesis testing and goodness of fit (3.3) Mission: Understand hypothesis-testing concepts (null/alternative, errors, p-value, power) Purpose of this reading: use the CMP to extract Syllabus 3.3.1 \u2014 understand hypothesis-testing concepts (null/alternative, errors, p-value, power). Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.3.1 hypothesis-testing concepts Stop: Through the CMP treatment of Syllabus 3.3.1 (stop before basic applied tests 3.3.2) Focus",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.3.1 hypothesis-testing concepts. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.3.1 (sto",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 335
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": true,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-3.3-BASIC-TESTS",
+        "campaign_day": "CM-D2",
+        "html": "/tmp/ro011/evidence/day18_CM-D2_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you applied basic one-/two-sample and paired tests; tomorrow continues 3.3 at permutation tests.",
+        "package_student_facing": "Tomorrow: permutation tests (3.3.3). Optional light prep: skim 3.3.3 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Understand hypothesis-testing concepts (null/alternative, errors, p-value, power)",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Understand hypothesis-testing concepts (null/alternative, errors, p-value, power) CS1 (CS1) 1 h Study 3.3 \u2014 Apply the concepts of hypothesis testing and goodness of fit After this \u00b7 Study Progress for HT concepts \u2014 not Topic Com"
+      },
+      "session_id": "lsr-b59198ad710e",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": true,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": false,
+      "lambda_focus": false,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 19,
+      "expected_day": "CM-D3",
+      "expected_package_id": "CS1-EP001-PKG-3.3-PERMUTATION-TESTS",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 3.3.2 \u2014 apply basic one-sample, two-sample, and paired hypothesis tests. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Apply the concepts of hypothesis testing and goodness of fit (3.3) Mission: Apply basic one-sample, two-sample, and paired hypothesis tests Purpose of this reading: use the CMP to extract Syllabus 3.3.2 \u2014 apply basic one-sample, two-sample, and paired hypothesis tests. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.3.2 basic hypothesis tests Stop: Through the CMP treatment of Syllabus 3.3.2 (stop before permutation tests 3.3.3) Focus questions: \u2022 What is the core move of Syll",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.3.2 basic hypothesis tests. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.3.2 (stop bef",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 327
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": true,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-3.3-PERMUTATION-TESTS",
+        "campaign_day": "CM-D3",
+        "html": "/tmp/ro011/evidence/day19_CM-D3_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you applied permutation non-parametric tests; tomorrow continues 3.3 at chi-square goodness of fit.",
+        "package_student_facing": "Tomorrow: chi-square GOF (3.3.4). Optional light prep: skim 3.3.4 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Understand hypothesis-testing concepts (null/alternative, errors, p-value, power)",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Understand hypothesis-testing concepts (null/alternative, errors, p-value, power) CS1 (CS1) 1 h Study 3.3 \u2014 Apply the concepts of hypothesis testing and goodness of fit After this \u00b7 Study Progress for HT concepts \u2014 not Topic Com"
+      },
+      "session_id": "lsr-efe1fdf92e6b",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": true,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": false,
+      "lambda_focus": false,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 20,
+      "expected_day": "CM-D4",
+      "expected_package_id": "CS1-EP001-PKG-3.3-CHI-SQUARE-GOF",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 3.3.3 \u2014 apply the permutation approach to non-parametric hypothesis tests. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Apply the concepts of hypothesis testing and goodness of fit (3.3) Mission: Apply the permutation approach to non-parametric hypothesis tests Purpose of this reading: use the CMP to extract Syllabus 3.3.3 \u2014 apply the permutation approach to non-parametric hypothesis tests. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.3.3 permutation hypothesis tests Stop: Through the CMP treatment of Syllabus 3.3.3 (stop before chi-square GOF 3.3.4) Focus questions: \u2022 What is the core move ",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.3.3 permutation hypothesis tests. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.3.3 (st",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 325
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": true,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-3.3-CHI-SQUARE-GOF",
+        "campaign_day": "CM-D4",
+        "html": "/tmp/ro011/evidence/day20_CM-D4_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you performed chi-square goodness of fit; tomorrow continues 3.3 at contingency independence.",
+        "package_student_facing": "Tomorrow: contingency independence (3.3.5). Optional light prep: skim 3.3.5 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Understand hypothesis-testing concepts (null/alternative, errors, p-value, power)",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Understand hypothesis-testing concepts (null/alternative, errors, p-value, power) CS1 (CS1) 1 h Study 3.3 \u2014 Apply the concepts of hypothesis testing and goodness of fit After this \u00b7 Study Progress for HT concepts \u2014 not Topic Com"
+      },
+      "session_id": "lsr-1bf9c6bf8565",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": true,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": false,
+      "lambda_focus": false,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 21,
+      "expected_day": "CM-D5",
+      "expected_package_id": "CS1-EP001-PKG-3.3-CONTINGENCY-INDEPENDENCE",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 3.3.4 \u2014 perform a chi-square goodness-of-fit test (including unknown parameters). Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Apply the concepts of hypothesis testing and goodness of fit (3.3) Mission: Perform a chi-square goodness-of-fit test (including unknown parameters) Purpose of this reading: use the CMP to extract Syllabus 3.3.4 \u2014 perform a chi-square goodness-of-fit test (including unknown parameters). Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.3.4 chi-square goodness of fit Stop: Through the CMP treatment of Syllabus 3.3.4 (stop before contingency independence 3.3.5) Focus questions: \u2022 ",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.3.4 chi-square goodness of fit. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.3.4 (stop",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 320
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": true,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-3.3-CONTINGENCY-INDEPENDENCE",
+        "campaign_day": "CM-D5",
+        "html": "/tmp/ro011/evidence/day21_CM-D5_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you used contingency independence tests; tomorrow is Revision \u2014 retrieve the 3.3 chain closed-book (not Chapter 3 ",
+        "package_student_facing": "Tomorrow: CM-R1 Revision (retrieve 3.3.1\u20133.3.5). Optional light prep: list the five LO codes from memory \u2014 titles only t",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Understand hypothesis-testing concepts (null/alternative, errors, p-value, power)",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Understand hypothesis-testing concepts (null/alternative, errors, p-value, power) CS1 (CS1) 1 h Study 3.3 \u2014 Apply the concepts of hypothesis testing and goodness of fit After this \u00b7 Study Progress for HT concepts \u2014 not Topic Com"
+      },
+      "session_id": "lsr-4f9adcb74925",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": true,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": false,
+      "lambda_focus": false,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 22,
+      "expected_day": "CM-R1",
+      "expected_package_id": "CS1-EP001-PKG-REV-HYPOTHESIS-TESTING",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 3.3.5 \u2014 use contingency tables and chi-square tests of independence. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Apply the concepts of hypothesis testing and goodness of fit (3.3) Mission: Use contingency tables and chi-square tests of independence Purpose of this reading: use the CMP to extract Syllabus 3.3.5 \u2014 use contingency tables and chi-square tests of independence. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.3.5 contingency tables and independence Stop: Through the CMP treatment of Syllabus 3.3.5 (stop before Chapter 3 trophy / remainder / spine claims) Focus questions: \u2022 What",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.3.5 contingency tables and independence. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": false,
+            "exit_line": false,
+            "return_cue": false,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 344
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": false,
+          "return_cue": false,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-REV-HYPOTHESIS-TESTING",
+        "campaign_day": "CM-R1",
+        "html": "/tmp/ro011/evidence/day22_CM-R1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Campaign Mu / Volume CS1-012 completes after this Revision. Continuity Front join: Topic 4.1 under Campaign Nu (CS1-013)",
+        "package_student_facing": "Campaign Mu / CS1-012 complete after today. Honest next: Continuity Front join at Topic 4.1 (Campaign Nu / CS1-013 CN-D1",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Understand hypothesis-testing concepts (null/alternative, errors, p-value, power)",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Understand hypothesis-testing concepts (null/alternative, errors, p-value, power) CS1 (CS1) 1 h Study 3.3 \u2014 Apply the concepts of hypothesis testing and goodness of fit After this \u00b7 Study Progress for HT concepts \u2014 not Topic Com"
+      },
+      "session_id": "lsr-a081c31c080f",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": false,
+      "lambda_focus": false,
+      "epsilon_focus": false,
+      "revision_q6_residual": false
+    },
+    {
+      "day_index": 23,
+      "expected_day": "CN-D1",
+      "expected_package_id": "CS1-EP001-PKG-CN-4.1-RESPONSE-EXPLANATORY",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Mu chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus.",
+          "body_sample": " Topic: Campaign Mu revision \u2014 hypothesis testing and goodness of fit (CM-R1) Mission: Retrieve hypothesis-testing hinges (3.3) Purpose of this revision stage: strengthen retrieval of the Campaign Mu chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block. Stop: After revision checks and Reflection \u2014 do not claim Chapter 3 com",
+          "support_sample": "Begin closed-book retrieval. Reopen CMP only at a failed locus. After checks, complete Reflection. What did you extract from the CMP setup? Submit Answer ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": false,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": false
+          },
+          "ec001_markers": {
+            "Purpose of this reading": false,
+            "Open your CMP": false,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": false,
+            "Knowledge Checks": false
+          },
+          "certified_snippet_hits": {
+            "lead_line": false,
+            "exit_line": false,
+            "return_cue": false,
+            "open_point": false
+          },
+          "verdict": "FAIL",
+          "word_count_body": 236
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": false,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": false,
+          "return_cue": false,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-CN-4.1-RESPONSE-EXPLANATORY",
+        "campaign_day": "CN-D1",
+        "html": "/tmp/ro011/evidence/day23_CN-D1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": false,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you established response and explanatory roles; tomorrow continues 4.1 at simple vs multiple linear models.",
+        "package_student_facing": "Tomorrow: simple and multiple linear regression models (4.1.2). Optional light prep: skim 4.1.2 headings \u2014 titles only t",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "FAIL",
+      "home": {
+        "title_guess": "Understand hypothesis-testing concepts (null/alternative, errors, p-value, power)",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Understand hypothesis-testing concepts (null/alternative, errors, p-value, power) CS1 (CS1) 1 h Study 3.3 \u2014 Apply the concepts of hypothesis testing and goodness of fit After this \u00b7 Study Progress for HT concepts \u2014 not Topic Com"
+      },
+      "session_id": "lsr-1f6fd4508ecc",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": false,
+      "chrome_residual": false,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": false,
+      "lambda_focus": false,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 24,
+      "expected_day": "CN-D2",
+      "expected_package_id": "CS1-EP001-PKG-CN-4.1-SIMPLE-MULTIPLE",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.1.1 \u2014 name response and explanatory variables with modelling intent. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Understand and use linear regression models (4.1) Mission: Name response and explanatory variables with modelling intent Purpose of this reading: use the CMP to extract Syllabus 4.1.1 \u2014 name response and explanatory variables with modelling intent. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 4.1.1 response and explanatory variables Stop: Through the CMP treatment of Syllabus 4.1.1 (stop before simple/multiple model forms 4.1.2) Focus questions: \u2022 What is the core move of Syl",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.1.1 response and explanatory variables. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.1",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 349
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": true,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-CN-4.1-SIMPLE-MULTIPLE",
+        "campaign_day": "CN-D2",
+        "html": "/tmp/ro011/evidence/day24_CN-D2_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you established simple vs multiple linear models; tomorrow continues 4.1 at least squares estimation.",
+        "package_student_facing": "Tomorrow: least squares slope and intercept (4.1.3). Optional light prep: skim 4.1.3 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name response and explanatory variables with intent",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Name response and explanatory variables with intent CS1 (CS1) 1 h Study 4.1 \u2014 Understand and use linear regression models After this \u00b7 Study Progress for variable roles \u2014 not Topic Complete for 4.1.2\u20134.1.5. Start Today&#39;s Ses"
+      },
+      "session_id": "lsr-4226a6e34616",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": true,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": false,
+      "lambda_focus": false,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 25,
+      "expected_day": "CN-D3",
+      "expected_package_id": "CS1-EP001-PKG-CN-4.1-LEAST-SQUARES",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.1.2 \u2014 distinguish simple and multiple linear regression models. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Understand and use linear regression models (4.1) Mission: Distinguish simple and multiple linear regression models Purpose of this reading: use the CMP to extract Syllabus 4.1.2 \u2014 distinguish simple and multiple linear regression models. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 4.1.2 simple and multiple linear regression models Stop: Through the CMP treatment of Syllabus 4.1.2 (stop before least squares estimation 4.1.3) Focus questions: \u2022 What is the core move of Syllab",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.1.2 simple and multiple linear regression models. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Sy",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 332
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": true,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-CN-4.1-LEAST-SQUARES",
+        "campaign_day": "CN-D3",
+        "html": "/tmp/ro011/evidence/day25_CN-D3_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you established least squares for the simple linear model; tomorrow continues 4.1 at software fit and interpretati",
+        "package_student_facing": "Tomorrow: software fit, inference, prediction, residuals (4.1.4). Optional light prep: skim 4.1.4 headings \u2014 titles only",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name response and explanatory variables with intent",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Name response and explanatory variables with intent CS1 (CS1) 1 h Study 4.1 \u2014 Understand and use linear regression models After this \u00b7 Study Progress for variable roles \u2014 not Topic Complete for 4.1.2\u20134.1.5. Start Today&#39;s Ses"
+      },
+      "session_id": "lsr-f0faacef33c4",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": true,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": false,
+      "lambda_focus": false,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 26,
+      "expected_day": "CN-D4",
+      "expected_package_id": "CS1-EP001-PKG-CN-4.1-SOFTWARE-FIT",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.1.3 \u2014 obtain least squares estimates of slope and intercept. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Understand and use linear regression models (4.1) Mission: Obtain least squares estimates of slope and intercept Purpose of this reading: use the CMP to extract Syllabus 4.1.3 \u2014 obtain least squares estimates of slope and intercept. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 4.1.3 least squares estimates (simple linear regression) Stop: Through the CMP treatment of Syllabus 4.1.3 (stop before software fit / inference 4.1.4) Focus questions: \u2022 What is the core move of Syllab",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.1.3 least squares estimates (simple linear regression). Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 340
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": true,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-CN-4.1-SOFTWARE-FIT",
+        "campaign_day": "CN-D4",
+        "html": "/tmp/ro011/evidence/day26_CN-D4_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you practised software fit and interpretation; tomorrow continues 4.1 at variable selection using measures of mode",
+        "package_student_facing": "Tomorrow: variable selection via fit measures (4.1.5). Optional light prep: skim 4.1.5 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name response and explanatory variables with intent",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Name response and explanatory variables with intent CS1 (CS1) 1 h Study 4.1 \u2014 Understand and use linear regression models After this \u00b7 Study Progress for variable roles \u2014 not Topic Complete for 4.1.2\u20134.1.5. Start Today&#39;s Ses"
+      },
+      "session_id": "lsr-cba84ee875b7",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": true,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": false,
+      "lambda_focus": false,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 27,
+      "expected_day": "CN-D5",
+      "expected_package_id": "CS1-EP001-PKG-CN-4.1-VARIABLE-SELECTION",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.1.4 \u2014 fit a linear regression in software and interpret the output. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Understand and use linear regression models (4.1) Mission: Fit a linear regression in software and interpret the output Purpose of this reading: use the CMP to extract Syllabus 4.1.4 \u2014 fit a linear regression in software and interpret the output. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 4.1.4 software fit and interpretation of linear regression Stop: Through the CMP treatment of Syllabus 4.1.4 (stop before variable selection 4.1.5) Focus questions: \u2022 What is the core move",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.1.4 software fit and interpretation of linear regression. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatme",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 335
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": true,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-CN-4.1-VARIABLE-SELECTION",
+        "campaign_day": "CN-D5",
+        "html": "/tmp/ro011/evidence/day27_CN-D5_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you closed Topic 4.1 Learning at variable selection; tomorrow is Campaign Nu Revision returning to 4.1.1\u20134.1.5.",
+        "package_student_facing": "Tomorrow: CN-R1 Revision of 4.1. Optional: note your weakest 4.1 link \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name response and explanatory variables with intent",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Name response and explanatory variables with intent CS1 (CS1) 1 h Study 4.1 \u2014 Understand and use linear regression models After this \u00b7 Study Progress for variable roles \u2014 not Topic Complete for 4.1.2\u20134.1.5. Start Today&#39;s Ses"
+      },
+      "session_id": "lsr-bb1226456989",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": true,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": false,
+      "lambda_focus": false,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 28,
+      "expected_day": "CN-R1",
+      "expected_package_id": "CS1-EP001-PKG-REV-LINEAR-REGRESSION-NU",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.1.5 \u2014 select explanatory variables using measures of model fit. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Understand and use linear regression models (4.1) Mission: Select explanatory variables using measures of model fit Purpose of this reading: use the CMP to extract Syllabus 4.1.5 \u2014 select explanatory variables using measures of model fit. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 4.1.5 measures of model fit for variable selection Stop: Through the CMP treatment of Syllabus 4.1.5 (stop before GLM 4.2 / Bayesian 5.1 / spine trophy claims) Focus questions: \u2022 What is the core ",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.1.5 measures of model fit for variable selection. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Sy",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": false,
+            "exit_line": false,
+            "return_cue": false,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 353
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": false,
+          "return_cue": false,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-REV-LINEAR-REGRESSION-NU",
+        "campaign_day": "CN-R1",
+        "html": "/tmp/ro011/evidence/day28_CN-R1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Campaign Nu / Volume CS1-013 completes after this Revision. Honest stop: 4.1 Continuity Front join Pilot Arc closed \u2014 no",
+        "package_student_facing": "Campaign Nu / CS1-013 complete after today (pending human Approver + LIVE). Honest next: stop or await Wave 0 honesty / ",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name response and explanatory variables with intent",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Name response and explanatory variables with intent CS1 (CS1) 1 h Study 4.1 \u2014 Understand and use linear regression models After this \u00b7 Study Progress for variable roles \u2014 not Topic Complete for 4.1.2\u20134.1.5. Start Today&#39;s Ses"
+      },
+      "session_id": "lsr-d4e9154ec1d7",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "kappa_focus": false,
+      "lambda_focus": false,
+      "epsilon_focus": false,
+      "revision_q6_residual": false
+    }
+  ],
+  "verdict": "PASS WITH RESIDUAL",
+  "backdates": [
+    {
+      "after_day": "CK-D1",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CK-D2",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CK-D3",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CK-D4",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CK-D5",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CK-D6",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CK-R1",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CL-D1",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CL-D2",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CL-D3",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CL-D4",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CL-D5",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CL-D6",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CL-D7",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CL-D8",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CL-R1",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CM-D1",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CM-D2",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CM-D3",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CM-D4",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CM-D5",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CM-R1",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CN-D1",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CN-D2",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CN-D3",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CN-D4",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CN-D5",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    }
+  ],
+  "summary": {
+    "chain_days_completed": 28,
+    "expected_chain_len": 28,
+    "kappa_pass_count": 7,
+    "lambda_pass_count": 8,
+    "mu_pass_count": 5,
+    "nu_pass_count": 5,
+    "nu_fail_count": 1,
+    "learning_days_pass": 4,
+    "revision_days_pass": 1,
+    "revision_q6_residuals": [],
+    "chrome_residuals": [
+      "CK-D2",
+      "CK-D3",
+      "CK-D4",
+      "CK-D5",
+      "CK-D6",
+      "CK-R1",
+      "CL-D2",
+      "CL-D3",
+      "CL-D4",
+      "CL-D5",
+      "CL-D6",
+      "CL-D7",
+      "CL-D8",
+      "CL-R1",
+      "CM-D2",
+      "CM-D3",
+      "CM-D4",
+      "CM-D5",
+      "CM-R1",
+      "CN-D2",
+      "CN-D3",
+      "CN-D4",
+      "CN-D5",
+      "CN-R1"
+    ],
+    "continuity_front_entry": "continue_topic section 3 \u2192 CK\u2026CL\u2026CM-R1 \u2192 CN-D1\u2026CN-R1 (Topic 4.1 Continuity Front join)",
+    "natural_kappa_chain": true,
+    "natural_lambda_chain": false,
+    "natural_mu_chain": false,
+    "natural_nu_chain": false,
+    "natural_cmr1_to_cnd1": true,
+    "inventory_cm_r1_to_cn_d1": true,
+    "nu_substance_markers": [
+      false,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "prior_campaign_inventory_non_regression": true,
+    "trust_front_4_1_cold_entry_remains_cd_d1": true,
+    "nu_pass_count_rescored": 6,
+    "natural_nu_chain_rescored": true,
+    "ops_label_desync": true,
+    "true_cm_r1_ops_day": 23,
+    "true_cn_d1_ops_day": 24,
+    "true_cn_r1_ops_day": 29,
+    "student_email": "ro011.nu.primary.1785701229@example.com"
+  },
+  "rescored_nu_package_path": [
+    {
+      "true_day": "CN-D1",
+      "ops_day": 24,
+      "lo": "4.1.1",
+      "finished": true,
+      "fallback": false,
+      "cmp": true,
+      "package_path_ok": true,
+      "verdict": "PASS",
+      "html": "/tmp/ro011/evidence/day24_CN-D2_reading.html"
+    },
+    {
+      "true_day": "CN-D2",
+      "ops_day": 25,
+      "lo": "4.1.2",
+      "finished": true,
+      "fallback": false,
+      "cmp": true,
+      "package_path_ok": true,
+      "verdict": "PASS",
+      "html": "/tmp/ro011/evidence/day25_CN-D3_reading.html"
+    },
+    {
+      "true_day": "CN-D3",
+      "ops_day": 26,
+      "lo": "4.1.3",
+      "finished": true,
+      "fallback": false,
+      "cmp": true,
+      "package_path_ok": true,
+      "verdict": "PASS",
+      "html": "/tmp/ro011/evidence/day26_CN-D4_reading.html"
+    },
+    {
+      "true_day": "CN-D4",
+      "ops_day": 27,
+      "lo": "4.1.4",
+      "finished": true,
+      "fallback": false,
+      "cmp": true,
+      "package_path_ok": true,
+      "verdict": "PASS",
+      "html": "/tmp/ro011/evidence/day27_CN-D5_reading.html"
+    },
+    {
+      "true_day": "CN-D5",
+      "ops_day": 28,
+      "lo": "4.1.5",
+      "finished": true,
+      "fallback": false,
+      "cmp": true,
+      "package_path_ok": true,
+      "verdict": "PASS",
+      "html": "/tmp/ro011/evidence/day28_CN-R1_reading.html"
+    },
+    {
+      "true_day": "CN-R1",
+      "ops_day": 29,
+      "lo": null,
+      "finished": true,
+      "fallback": false,
+      "cmp": true,
+      "package_path_ok": true,
+      "verdict": "PASS",
+      "html": "/tmp/ro011/evidence/day29_CN-R1_reading.html",
+      "revision_q6_residual": true
+    }
+  ],
+  "residual": "RO11-R1 ops label desync; RO11-R2 CN-R1 revision Q6; RO11-R3 tomorrow chrome residuals"
+}
