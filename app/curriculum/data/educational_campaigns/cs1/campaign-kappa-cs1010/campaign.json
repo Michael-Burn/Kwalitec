@@ -1,0 +1,42 @@
+{
+  "campaign_id": "CS1-EP001-CAMPAIGN-KAPPA",
+  "campaign_version": "cs1010-1.0.0",
+  "display_title": "Campaign Kappa — Estimators and their properties (3.1)",
+  "subject_id": "CS1",
+  "package_version_pin": "IFoA CS1 2026",
+  "scope_class": "Pilot Arc",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "status": "released",
+  "volume_id": "CS1-010",
+  "prior_volume_id": "CS1-009",
+  "day_count": {
+    "learning": 6,
+    "revision": 1,
+    "total": 7
+  },
+  "syllabus_span": [
+    "3.1.1",
+    "3.1.2",
+    "3.1.3",
+    "3.1.4",
+    "3.1.5",
+    "3.1.6"
+  ],
+  "out_of_scope": [
+    "3.2+",
+    "Chapter 3 complete",
+    "first-pass spine",
+    "until-examination educational trust",
+    "Wave 9 / remainder / spine re-audit authoring",
+    "coverage mirage from drafts"
+  ],
+  "inventory": [
+    "CS1-EP001-PKG-3.1-METHOD-OF-MOMENTS",
+    "CS1-EP001-PKG-3.1-MAXIMUM-LIKELIHOOD",
+    "CS1-EP001-PKG-3.1-EFFICIENCY-BIAS-CONSISTENCY-MSE",
+    "CS1-EP001-PKG-3.1-COMPARISON-MSE",
+    "CS1-EP001-PKG-3.1-ASYMPTOTIC-MLE",
+    "CS1-EP001-PKG-3.1-BOOTSTRAP-ESTIMATOR",
+    "CS1-EP001-PKG-REV-ESTIMATORS"
+  ]
+}

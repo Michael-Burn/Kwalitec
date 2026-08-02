@@ -1,0 +1,192 @@
+{
+  "package_version": "cs1010-campaign-kappa-1.0.0",
+  "publication_version": "cs1010-live-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "CS1-EP001-CAMPAIGN-KAPPA",
+  "volume_id": "CS1-010",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1010_EDUCATIONAL_VOLUME.md",
+    "CS1010_CERTIFICATION_REPORT.md",
+    "EP008_WAVE8_PLAN.md"
+  ],
+  "author_id": "cs1010-educational-author",
+  "authored_at": "2026-08-02",
+  "topic_code": "3.1",
+  "topic_title": "Construct estimators and discuss their properties",
+  "topic_id": "CS1-C-T01",
+  "package_id": "CS1-EP001-PKG-3.1-BOOTSTRAP-ESTIMATOR",
+  "campaign_day": "CK-D6",
+  "topic_focus_lo": "3.1.6",
+  "topic_aliases": [
+    "CS1-C-T01",
+    "3.1",
+    "3.1.6"
+  ],
+  "topic_title_keywords": [
+    "bootstrap",
+    "resample",
+    "estimator",
+    "properties",
+    "sampling"
+  ],
+  "golden_id": "GOLDEN-CS1010-CS1-3.1-BOOTSTRAP-ESTIMATOR",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1010-cs1-3.1-bootstrap-estimator",
+    "display_title": "Use bootstrap to estimate properties of an estimator",
+    "mission_purpose": "Today's Mission exists to use the bootstrap method for estimating properties of an estimator — so resampling is usable — without pretending intervals (3.2) or Chapter 3 complete are finished.",
+    "tutor_intent": "Today I will force the candidate to describe bootstrap resampling for estimator properties — and refuse treating asymptotic MLE laws as finishing bootstrap, and refuse Chapter 3 trophy claims.",
+    "educational_intent": "Produce a cognitive move from an estimator to bootstrap estimation of its properties under CMP language.",
+    "learning_objective": "Bootstrap method for estimating properties of an estimator.",
+    "concept_focus": "Resample → estimate estimator properties → refuse 3.2 / Chapter-3-complete.",
+    "prior_bridge": "Yesterday you discussed asymptotic MLE behaviour (3.1.5). Today continues topic 3.1 at LO 3.1.6 — bootstrap — completing the Learning span.",
+    "why_now": "3.1.6 completes topic 3.1 Learning. Closing it prevents a cliff before Revision while keeping intervals (3.2) as a later Volume.",
+    "expected_benefit": "Study Progress for bootstrap properties — not Topic Complete for 3.2 or Chapter 3.",
+    "explainability": "Assigned as Campaign Kappa Day 6 because Continuity Front membership closes 3.1 Learning at bootstrap before Revision.",
+    "success_criteria": [
+      "Closed-book, describe the bootstrap move for estimating estimator properties.",
+      "Name what is being estimated (e.g. SE / bias / sampling behaviour as CMP).",
+      "Refuse Chapter 3 complete and 3.2-as-done claims."
+    ],
+    "task_descriptions": [
+      "Sketch resample → property estimate before CMP.",
+      "Complete Guided Reading through CMP treatment of Syllabus 3.1.6.",
+      "Closed-book Knowledge Checks: bootstrap + refuse Ch3 / 3.2 swallow."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 55,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1010-cs1-3.1-bootstrap-estimator",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 3.1.6 — not the next LO as primary.",
+    "session_tutor_purpose": "Set focus on 3.1.6, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
+    "duration_budget_minutes": {
+      "min": 55,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Use bootstrap to estimate properties of an estimator. You practised selective CMP reading on Syllabus 3.1.6. This is Study Progress for today's block — not Topic Complete for later 3.1 LOs, Chapter 3 trophy, intervals (3.2), hypothesis testing (3.3), or until-exam trust.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 3.1.6 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.1.6 — use bootstrap to estimate properties of an estimator. Stop before out-of-scope later LOs.",
+    "focus_questions": [
+      "What is the core move of Syllabus 3.1.6?",
+      "What warrant separates today's skill from yesterday's?",
+      "What claim must you refuse today?",
+      "What will you practise in Knowledge Checks after the CMP?"
+    ],
+    "misconception_watch": [
+      "Watch for treating asymptotic MLE as finishing bootstrap.",
+      "Watch for claiming Chapter 3 / 3.2 finished.",
+      "Watch for treating Revision as optional."
+    ],
+    "open_point": "CMP · Syllabus 3.1.6 bootstrap for estimator properties",
+    "stop_condition": "Through the CMP treatment of Syllabus 3.1.6 (stop before confidence / prediction intervals 3.2)",
+    "out_of_scope_today": [
+      "Confidence and prediction intervals as primary (3.2)",
+      "Hypothesis testing primary (3.3)",
+      "Chapter 3 complete claim",
+      "First-pass spine PASS",
+      "Until-exam educational trust"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.1.6 bootstrap for estimator properties. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.1.6 (stop before confidence / prediction intervals 3.2). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 3.1.6 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause — write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1010-3.1.6-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1010-3.1.6-ar-01",
+      "title": "Active Recall: 3.1.6",
+      "prompt": "Closed-book. (1) What is the bootstrap move for estimating properties of an estimator? (2) What property might you estimate (CMP examples)? (3) What must you refuse about Chapter 3 / 3.2 today?",
+      "response_type": "short_structured",
+      "body": "Retrieve 3.1.6 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "bootstrap",
+        "resample",
+        "estimator",
+        "standard",
+        "error",
+        "bias",
+        "property"
+      ],
+      "explanation": "Active recall for 3.1.6.",
+      "model_answer": "Bootstrap resamples from the observed sample (CMP procedure) to approximate sampling behaviour of an estimator — e.g. SE or bias. Completing 3.1.6 closes topic 3.1 Learning, not Chapter 3 or intervals.",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1010-3.1.6-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1010-3.1.6-cp-01",
+      "title": "Checkpoint: 3.1.6",
+      "prompt": "Closed-book. (1) Refuse 'yesterday's asymptotics finished today's LO'. (2) Refuse 'Chapter 3 is complete because I finished 3.1.6'. State the honest stop.",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 3.1.6.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "bootstrap",
+        "asymptotic",
+        "chapter",
+        "complete",
+        "3.2",
+        "revision",
+        "stop"
+      ],
+      "explanation": "Checkpoint for 3.1.6.",
+      "model_answer": "(1) Refuse: asymptotics ≠ bootstrap. (2) Refuse: 3.1.6 closes topic 3.1 Learning, not Chapter 3; next is Revision then honest 3.2 successor — not spine/until-exam claims.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest bootstrap procedure wobble — Revision protects the 3.1 chain tomorrow.",
+    "prompt": "Which part of today's 3.1.6 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 3.1.6 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "CK-R1",
+    "next_topic_title": "Campaign Kappa revision — retrieve 3.1 hinges",
+    "continuity_line": "Today you used bootstrap for estimator properties; tomorrow is Revision — retrieve 3.1.1–3.1.6 closed-book (not first-pass 3.2).",
+    "light_prep_cue": "Optional: list the six 3.1 LO titles from memory — no new reading tonight",
+    "student_facing": "Tomorrow: Revision (CK-R1) — retrieve estimator hinges. Optional: list 3.1.1–3.1.6 titles from memory tonight."
+  },
+  "published_at": "2026-08-02"
+}

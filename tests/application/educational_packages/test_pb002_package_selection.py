@@ -290,7 +290,7 @@ def test_gamma_revision_hands_off_to_epsilon() -> None:
     approved = EducationalPackageLoader().all_approved()
     ce = [p for p in approved if (p.campaign_day or "").startswith("CE-")]
     assert len(ce) == 5
-    assert len(approved) == 61
+    assert len(approved) == 68
 
 
 def test_zeta_chain_reaches_cz_r1() -> None:
@@ -344,7 +344,7 @@ def test_epsilon_revision_hands_off_to_zeta() -> None:
     approved = EducationalPackageLoader().all_approved()
     cz = [p for p in approved if (p.campaign_day or "").startswith("CZ-")]
     assert len(cz) == 3
-    assert len(approved) == 61
+    assert len(approved) == 68
 
 
 def test_eta_chain_reaches_ch_r1() -> None:
@@ -396,7 +396,7 @@ def test_zeta_revision_hands_off_to_eta() -> None:
     approved = EducationalPackageLoader().all_approved()
     ch = [p for p in approved if (p.campaign_day or "").startswith("CH-")]
     assert len(ch) == 3
-    assert len(approved) == 61
+    assert len(approved) == 68
 
 
 def test_theta_chain_reaches_ct_r1() -> None:
@@ -448,7 +448,7 @@ def test_eta_revision_hands_off_to_theta() -> None:
     approved = EducationalPackageLoader().all_approved()
     ct = [p for p in approved if (p.campaign_day or "").startswith("CT-")]
     assert len(ct) == 3
-    assert len(approved) == 61
+    assert len(approved) == 68
 
 
 
@@ -506,4 +506,65 @@ def test_theta_revision_hands_off_to_iota() -> None:
     approved = EducationalPackageLoader().all_approved()
     ci = [p for p in approved if (p.campaign_day or "").startswith("CI-")]
     assert len(ci) == 7
-    assert len(approved) == 61
+    assert len(approved) == 68
+
+
+def test_kappa_chain_reaches_ck_r1() -> None:
+    """RO-008 — Continuity Front into 3.1 → CK-D1…CK-R1 joint inventory."""
+    completed: set[str] = set()
+    last = ""
+    expected = [
+        ("CS1-EP001-PKG-3.1-METHOD-OF-MOMENTS", "CK-D1"),
+        ("CS1-EP001-PKG-3.1-MAXIMUM-LIKELIHOOD", "CK-D2"),
+        ("CS1-EP001-PKG-3.1-EFFICIENCY-BIAS-CONSISTENCY-MSE", "CK-D3"),
+        ("CS1-EP001-PKG-3.1-COMPARISON-MSE", "CK-D4"),
+        ("CS1-EP001-PKG-3.1-ASYMPTOTIC-MLE", "CK-D5"),
+        ("CS1-EP001-PKG-3.1-BOOTSTRAP-ESTIMATOR", "CK-D6"),
+        ("CS1-EP001-PKG-REV-ESTIMATORS", "CK-R1"),
+    ]
+    topic = "3.1"
+    for package_id, day in expected:
+        pack = resolve_active_educational_package(
+            subject_id="CS1",
+            syllabus_topic_code=topic,
+            completed_package_ids=completed,
+            last_completed_package_id=last,
+        )
+        assert pack is not None, f"missing successor before {day}"
+        assert pack.package_id == package_id, (
+            f"expected {package_id} got {pack.package_id}"
+        )
+        assert pack.campaign_day == day
+        completed.add(pack.package_id)
+        last = pack.package_id
+        topic = pack.topic_code or topic
+
+
+def test_iota_revision_hands_off_to_kappa() -> None:
+    """RO-008 — CI-R1 tomorrow_preview 3.1 resolves to CK-D1 (not Iota re-entry)."""
+    from app.application.educational_packages.loader import EducationalPackageLoader
+
+    iota_ids = {
+        "CS1-EP001-PKG-2.6-RANDOM-SAMPLES",
+        "CS1-EP001-PKG-2.6-SAMPLING-DISTRIBUTION-STATISTIC",
+        "CS1-EP001-PKG-2.6-MEAN-VAR-SAMPLE",
+        "CS1-EP001-PKG-2.6-NORMAL-SAMPLE-MEAN-VAR",
+        "CS1-EP001-PKG-2.6-T-STATISTIC",
+        "CS1-EP001-PKG-2.6-F-DISTRIBUTION",
+        "CS1-EP001-PKG-REV-SAMPLING-DISTRIBUTIONS",
+    }
+    pack = resolve_active_educational_package(
+        subject_id="CS1",
+        syllabus_topic_code="3.1",
+        completed_package_ids=iota_ids,
+        last_completed_package_id="CS1-EP001-PKG-REV-SAMPLING-DISTRIBUTIONS",
+    )
+    assert pack is not None
+    assert pack.campaign_day == "CK-D1"
+    assert pack.package_id == "CS1-EP001-PKG-3.1-METHOD-OF-MOMENTS"
+
+    approved = EducationalPackageLoader().all_approved()
+    ck = [p for p in approved if (p.campaign_day or "").startswith("CK-")]
+    assert len(ck) == 7
+    assert len(approved) == 68
+
