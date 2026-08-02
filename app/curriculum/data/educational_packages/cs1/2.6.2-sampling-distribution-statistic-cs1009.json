@@ -1,0 +1,190 @@
+{
+  "package_version": "cs1009-campaign-iota-1.0.0",
+  "publication_version": "cs1009-live-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "CS1-EP001-CAMPAIGN-IOTA",
+  "volume_id": "CS1-009",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1009_EDUCATIONAL_VOLUME.md",
+    "CS1009_CERTIFICATION_REPORT.md",
+    "EP007_WAVE7_PLAN.md"
+  ],
+  "author_id": "cs1009-educational-author",
+  "authored_at": "2026-08-02",
+  "topic_code": "2.6",
+  "topic_title": "Describe random sampling and the sampling distributions of statistics commonly used in statistical inference",
+  "topic_id": "CS1-B-T06",
+  "package_id": "CS1-EP001-PKG-2.6-SAMPLING-DISTRIBUTION-STATISTIC",
+  "campaign_day": "CI-D2",
+  "topic_focus_lo": "2.6.2",
+  "topic_aliases": [
+    "CS1-B-T06",
+    "2.6",
+    "2.6.2"
+  ],
+  "topic_title_keywords": [
+    "sampling",
+    "distribution",
+    "statistic",
+    "sample",
+    "repeated"
+  ],
+  "golden_id": "GOLDEN-CS1009-CS1-2.6-SAMPLING-DISTRIBUTION-STATISTIC",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1009-cs1-2.6-sampling-distribution-statistic",
+    "display_title": "Describe the sampling distribution of a statistic",
+    "mission_purpose": "Today's Mission exists to describe the sampling distribution of a statistic — so the repeated-sample behaviour of a statistic is usable — without claiming mean/variance formulas (2.6.3) finished.",
+    "tutor_intent": "Today I will force the candidate through sampling-distribution language for a statistic — refuse treating yesterday's random-sample definition as finishing 2.6.2.",
+    "educational_intent": "Produce executable warrants for the sampling distribution of a statistic over repeated random samples.",
+    "learning_objective": "Describe the sampling distribution of a statistic.",
+    "concept_focus": "Statistic as function of sample → distribution over repeated samples → refuse single-sample-as-distribution.",
+    "prior_bridge": "Yesterday you described random samples from a population (2.6.1). Today names the sampling distribution of a statistic.",
+    "why_now": "2.6.2 is contiguous Continuity Front Learning after random samples; mean/variance results wait for day three.",
+    "expected_benefit": "Study Progress for sampling distribution of a statistic — not 2.6.3.",
+    "explainability": "Campaign Iota Day 2 focuses LO 2.6.2.",
+    "success_criteria": [
+      "Closed-book, define the sampling distribution of a statistic.",
+      "Distinguish a statistic's realised value from its sampling distribution.",
+      "Refuse treating one sample's statistic as the sampling distribution."
+    ],
+    "task_descriptions": [
+      "Sketch statistic → repeated samples → distribution before CMP.",
+      "Guided Reading through CMP 2.6.2.",
+      "Knowledge Checks: sampling distribution + refuse single-sample collapse."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 55,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1009-cs1-2.6-sampling-distribution-statistic",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 2.6.2 — not the next LO as primary.",
+    "session_tutor_purpose": "Set focus on 2.6.2, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
+    "duration_budget_minutes": {
+      "min": 55,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Describe the sampling distribution of a statistic. You practised selective CMP reading on Syllabus 2.6.2. This is Study Progress for today's block — not Topic Complete for later 2.6 LOs, Chapter 2 trophy, Chapter 3 inference, or until-exam trust.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 2.6.2 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 2.6.2 — describe the sampling distribution of a statistic. Stop before out-of-scope later LOs.",
+    "focus_questions": [
+      "What is the core move of Syllabus 2.6.2?",
+      "What warrant separates today's skill from yesterday's?",
+      "What claim must you refuse today?",
+      "What will you practise in Knowledge Checks after the CMP?"
+    ],
+    "misconception_watch": [
+      "Watch for confusing a statistic with a parameter.",
+      "Watch for treating one realised statistic as its sampling distribution.",
+      "Watch for jumping to Var(X̄)=σ²/n as today's only content without the concept."
+    ],
+    "open_point": "CMP · Syllabus 2.6.2 sampling distribution of a statistic",
+    "stop_condition": "Through CMP 2.6.2 (stop before mean/variance formulas 2.6.3)",
+    "out_of_scope_today": [
+      "Mean/variance of sample mean primary (2.6.3)",
+      "Normal sampling laws / t / F primary",
+      "Inference Chapter 3",
+      "Chapter 2 complete claim",
+      "Until-exam educational trust"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.6.2 sampling distribution of a statistic. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.6.2 (stop before mean/variance formulas 2.6.3). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 2.6.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause — write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1009-2.6.2-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1009-2.6.2-ar-01",
+      "title": "Active Recall: 2.6.2",
+      "prompt": "Closed-book. (1) What is a statistic in this LO? (2) What is its sampling distribution? (3) How does that differ from one realised value from one sample?",
+      "response_type": "short_structured",
+      "body": "Retrieve 2.6.2 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "statistic",
+        "sampling",
+        "distribution",
+        "sample",
+        "repeated",
+        "function",
+        "parameter"
+      ],
+      "explanation": "Active recall for 2.6.2.",
+      "model_answer": "A statistic is a function of the sample. Its sampling distribution is the distribution of that statistic over repeated random samples. One realised value is a single draw from that distribution, not the distribution itself.",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1009-2.6.2-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1009-2.6.2-cp-01",
+      "title": "Checkpoint: 2.6.2",
+      "prompt": "Closed-book. A colleague says 'my sample mean is 12, so the sampling distribution is 12.' Refuse and restate today's LO.",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 2.6.2.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "sampling",
+        "distribution",
+        "statistic",
+        "realised",
+        "repeated"
+      ],
+      "explanation": "Checkpoint for 2.6.2.",
+      "model_answer": "Refuse: a realised statistic is not its sampling distribution. Today's skill is describing the distribution of the statistic over repeated samples.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest statistic-vs-distribution wobble — mean/variance formulas tomorrow.",
+    "prompt": "Which part of today's 2.6.2 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 2.6.2 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "2.6",
+    "next_topic_title": "Mean and variance of sample mean / mean of sample variance (2.6.3)",
+    "continuity_line": "Today you described the sampling distribution of a statistic; tomorrow continues 2.6 at mean/variance results for sample mean and mean of sample variance.",
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.6.3 — titles only tonight",
+    "student_facing": "Tomorrow: mean/variance of sample mean and mean of sample variance (2.6.3). Optional light prep: skim 2.6.3 headings — titles only tonight."
+  },
+  "published_at": "2026-08-02"
+}

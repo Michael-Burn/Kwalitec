@@ -112,6 +112,18 @@ def test_topic_2_5_resolves_to_theta_entry() -> None:
     assert pack.campaign_day == "CT-D1"
 
 
+
+
+def test_topic_2_6_resolves_to_iota_entry() -> None:
+    """RO-007 — CS1-009 activates 2.6 at CI-D1 (Continuity Front)."""
+    pack = find_educational_package(
+        topic_code="2.6",
+        subject_id="CS1",
+    )
+    assert pack is not None
+    assert pack.package_id == "CS1-EP001-PKG-2.6-RANDOM-SAMPLES"
+    assert pack.campaign_day == "CI-D1"
+
 def test_ep001_opening_package_is_live_approved() -> None:
     pack = find_educational_package(
         topic_code="1.1",

@@ -1,0 +1,191 @@
+{
+  "package_version": "cs1009-campaign-iota-1.0.0",
+  "publication_version": "cs1009-catalogue-1.0.0",
+  "status": "campaign_member_certified",
+  "campaign_id": "CS1-EP001-CAMPAIGN-IOTA",
+  "volume_id": "CS1-009",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1009_EDUCATIONAL_VOLUME.md",
+    "CS1009_CERTIFICATION_REPORT.md",
+    "EP007_WAVE7_PLAN.md"
+  ],
+  "author_id": "cs1009-educational-author",
+  "authored_at": "2026-08-02",
+  "topic_code": "2.6",
+  "topic_title": "Describe random sampling and the sampling distributions of statistics commonly used in statistical inference",
+  "topic_id": "CS1-B-T06",
+  "package_id": "CS1-EP001-PKG-2.6-RANDOM-SAMPLES",
+  "campaign_day": "CI-D1",
+  "topic_focus_lo": "2.6.1",
+  "topic_aliases": [
+    "CS1-B-T06",
+    "2.6",
+    "2.6.1"
+  ],
+  "topic_title_keywords": [
+    "random",
+    "sample",
+    "population",
+    "iid",
+    "sampling"
+  ],
+  "golden_id": "GOLDEN-CS1009-CS1-2.6-RANDOM-SAMPLES",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1009-cs1-2.6-random-samples",
+    "display_title": "Describe random samples from a population",
+    "mission_purpose": "Today's Mission exists to describe random samples from a population \u2014 so the sampling model is usable \u2014 without pretending the sampling distribution of a statistic (2.6.2) is finished.",
+    "tutor_intent": "Today I will force the candidate to state what a random sample means under CMP language \u2014 and refuse treating 'I drew some numbers' as having the LO.",
+    "educational_intent": "Produce a cognitive move from population concept to a random sample as iid (or CMP-equivalent) draws.",
+    "learning_objective": "Describe random samples from a population.",
+    "concept_focus": "Population \u2192 random sample (iid / CMP conditions) \u2192 refuse convenience-sample as-done.",
+    "prior_bridge": "Campaign Theta closed the central limit theorem (2.5) with Revision. Today opens topic 2.6 at LO 2.6.1 \u2014 the named Continuity Front after CS1-008.",
+    "why_now": "2.6.1 is the lawful Continuity Front after Theta. Closing it prevents a cliff at random sampling while keeping sampling-distribution of a statistic as day two.",
+    "expected_benefit": "Study Progress for random samples \u2014 not Topic Complete for 2.6.2.",
+    "explainability": "Assigned as Campaign Iota Day 1 because CE-001 / EP-001 Continuity Front names 2.6 as the handoff from Theta.",
+    "success_criteria": [
+      "Closed-book, define a random sample from a population in CMP-usable form.",
+      "Name the independence / identical-distribution (or CMP-equivalent) warrant.",
+      "Refuse one 'any collection of observed values is a random sample' claim."
+    ],
+    "task_descriptions": [
+      "Sketch population \u2192 random sample before CMP.",
+      "Complete Guided Reading through CMP treatment of Syllabus 2.6.1.",
+      "Closed-book Knowledge Checks: random-sample definition + refuse convenience collapse."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 55,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1009-cs1-2.6-random-samples",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 2.6.1 \u2014 not the next LO as primary.",
+    "session_tutor_purpose": "Set focus on 2.6.1, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
+    "duration_budget_minutes": {
+      "min": 55,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Describe random samples from a population. You practised selective CMP reading on Syllabus 2.6.1. This is Study Progress for today's block \u2014 not Topic Complete for later 2.6 LOs, Chapter 2 trophy, Chapter 3 inference, or until-exam trust.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 2.6.1 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 2.6.1 \u2014 describe random samples from a population. Stop before out-of-scope later LOs.",
+    "focus_questions": [
+      "What is the core move of Syllabus 2.6.1?",
+      "What warrant separates today's skill from yesterday's?",
+      "What claim must you refuse today?",
+      "What will you practise in Knowledge Checks after the CMP?"
+    ],
+    "misconception_watch": [
+      "Watch for equating any dataset with a random sample.",
+      "Watch for starting sampling-distribution drills (2.6.2) inside this sitting.",
+      "Watch for estimator / CI work (3.x) today."
+    ],
+    "open_point": "CMP \u00b7 Syllabus 2.6.1 random samples from a population",
+    "stop_condition": "Through the CMP treatment of Syllabus 2.6.1 (stop before sampling distribution of a statistic 2.6.2)",
+    "out_of_scope_today": [
+      "Sampling distribution of a statistic as primary (2.6.2)",
+      "Mean/variance of sample mean primary (2.6.3)",
+      "t / F / Normal sampling laws primary",
+      "Inference Chapter 3",
+      "Chapter 2 complete claim",
+      "Until-exam educational trust"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.6.1 random samples from a population. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.6.1 (stop before sampling distribution of a statistic 2.6.2). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 2.6.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1009-2.6.1-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1009-2.6.1-ar-01",
+      "title": "Active Recall: 2.6.1",
+      "prompt": "Closed-book. (1) What is a random sample from a population (CMP form)? (2) What independence / identical-distribution warrant matters? (3) Name one reason a convenience collection is not automatically a random sample.",
+      "response_type": "short_structured",
+      "body": "Retrieve 2.6.1 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "random",
+        "sample",
+        "population",
+        "iid",
+        "independent",
+        "identical",
+        "distribution"
+      ],
+      "explanation": "Active recall for 2.6.1.",
+      "model_answer": "A random sample is a set of observations drawn from a population under CMP sampling conditions (typically modelled as iid). Convenience collections need not satisfy those conditions.",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1009-2.6.1-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1009-2.6.1-cp-01",
+      "title": "Checkpoint: 2.6.1",
+      "prompt": "Closed-book. A colleague says 'I have twenty observations, so I have a random sample.' Refuse in one sentence and restate what today's LO requires.",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 2.6.1.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "random",
+        "sample",
+        "population",
+        "iid",
+        "not same",
+        "conditions"
+      ],
+      "explanation": "Checkpoint for 2.6.1.",
+      "model_answer": "Refuse: having observations is not the same as a random sample under CMP conditions. Today's skill is describing a random sample from a population with the lawful sampling warrant.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest wobble on population vs sample language \u2014 sampling distribution of a statistic comes tomorrow.",
+    "prompt": "Which part of today's 2.6.1 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 2.6.1 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "2.6",
+    "next_topic_title": "Sampling distribution of a statistic (2.6.2)",
+    "continuity_line": "Today you described random samples from a population; tomorrow continues 2.6 at the sampling distribution of a statistic.",
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.6.2 \u2014 titles only tonight",
+    "student_facing": "Tomorrow: sampling distribution of a statistic (2.6.2). Optional light prep: skim 2.6.2 headings \u2014 titles only tonight."
+  }
+}
