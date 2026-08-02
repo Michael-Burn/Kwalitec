@@ -1,0 +1,480 @@
+{
+  "programme": "RO-009",
+  "host": "https://kwalitec.onrender.com",
+  "expected_commit": "518467508e27b609c60e4eb5fe0410ea5c868314",
+  "email": "ro009.lambda.primary.1785674433@example.com",
+  "verdict": "PASS WITH RESIDUAL",
+  "method": "Baseline continue_topic section 3 \u2192 Continuity Front through CK into CL; syllabus-code rescoring; CL-R1 continuation sitting",
+  "lambda_coverage": {
+    "CL-D1": {
+      "day_index": 9,
+      "finished": true,
+      "fallback": false,
+      "package_path_verdict": "PASS"
+    },
+    "CL-D2": {
+      "day_index": 10,
+      "finished": true,
+      "fallback": false,
+      "package_path_verdict": "PASS"
+    },
+    "CL-D3": {
+      "day_index": 11,
+      "finished": true,
+      "fallback": false,
+      "package_path_verdict": "PASS"
+    },
+    "CL-D4": {
+      "day_index": 12,
+      "finished": true,
+      "fallback": false,
+      "package_path_verdict": "PASS"
+    },
+    "CL-D5": {
+      "day_index": 13,
+      "finished": true,
+      "fallback": false,
+      "package_path_verdict": "PASS"
+    },
+    "CL-D6": {
+      "day_index": 14,
+      "finished": true,
+      "fallback": false,
+      "package_path_verdict": "PASS"
+    },
+    "CL-D7": {
+      "day_index": 15,
+      "finished": true,
+      "fallback": false,
+      "package_path_verdict": "PASS"
+    },
+    "CL-D8": {
+      "day_index": 16,
+      "finished": true,
+      "fallback": false,
+      "package_path_verdict": "PASS"
+    },
+    "CL-R1": {
+      "day_index": 17,
+      "finished": true,
+      "fallback": false,
+      "package_path_verdict": "PASS"
+    }
+  },
+  "missing_lambda": [],
+  "residuals": {
+    "RO9-R1": "Continuity Front ops label desync (expected labels ahead/behind true package; day1 Iota transit before CK)",
+    "RO9-R2": "Revision-day checklist Q6 Learning-oriented audit on CL-R1",
+    "RO9-R3": "Tomorrow chrome residual on some Lambda days"
+  },
+  "summary": {
+    "lambda_days_pass": 9,
+    "lambda_required": 9,
+    "natural_lambda_chain": true,
+    "zero_fallback_on_lambda_path": true,
+    "ck_r1_to_cl_d1_observed": true,
+    "continuity_front_entry": "continue_topic section 3 \u2192 CK\u2026 \u2192 CL-D1\u2026CL-R1"
+  },
+  "rescored_days": [
+    {
+      "day_index": 1,
+      "expected_day": "CK-D1",
+      "detected_campaign_day": "CI-D5",
+      "topic": "Describe random sampling and the sampling distributions of statistics commonly used in statistical inference (2.6) Mission: Describe the distribution of the t-statistic for Normal samples Purpose of this reading: use the CMP to extract Syllabus 2.6.5 \u2014 describe the distribution of the t-statistic for normal samples. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 2.6.5 t-statistic for Normal samples Stop: Through CMP 2.6.5 (stop before F distribution 2.6.6) Focus questions: \u2022 Wh Reading: Purpose of this reading: use the CMP to extract Syllabus 2.6.5 \u2014 describe the distribution of the t-statistic for normal samples. Stop before out-of-scope later LOs.",
+      "mission": "Describe the distribution of the t-statistic for Normal samples Purpose of this reading: use the CMP to extract Syllabus",
+      "syllabus_hits": [
+        "2.6.5",
+        "2.6.5",
+        "2.6.5"
+      ],
+      "finished": true,
+      "fallback": false,
+      "reading_verdict": "PASS",
+      "original_verdict": "PASS",
+      "chrome_residual": false,
+      "revision_q6_residual": false,
+      "checklist": {
+        "CMP_reference_present": true,
+        "Not_fallback_shell": true,
+        "Immediate_next_activity_named": true
+      },
+      "package_path_verdict": "PASS"
+    },
+    {
+      "day_index": 2,
+      "expected_day": "CK-D2",
+      "detected_campaign_day": "CK-D1",
+      "topic": "Construct estimators and discuss their properties (3.1) Mission: Construct estimators by the method of moments Purpose of this reading: use the CMP to extract Syllabus 3.1.1 \u2014 construct estimators by the method of moments. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.1.1 method of moments Stop: Through the CMP treatment of Syllabus 3.1.1 (stop before maximum likelihood 3.1.2) Focus questions: \u2022 What is the core move of Syllabus 3.1.1? \u2022 What warrant separates today&#39;s sk Reading: Purpose of this reading: use the CMP to extract Syllabus 3.1.1 \u2014 construct estimators by the method of moments. Stop before out-of-scope later LOs.",
+      "mission": "Construct estimators by the method of moments Purpose of this reading: use the CMP to extract Syllabus 3.1.1 \u2014 construct",
+      "syllabus_hits": [
+        "3.1.1",
+        "3.1.1",
+        "3.1.1"
+      ],
+      "finished": true,
+      "fallback": false,
+      "reading_verdict": "PASS",
+      "original_verdict": "PASS",
+      "chrome_residual": true,
+      "revision_q6_residual": false,
+      "checklist": {
+        "CMP_reference_present": true,
+        "Not_fallback_shell": true,
+        "Immediate_next_activity_named": true
+      },
+      "package_path_verdict": "PASS"
+    },
+    {
+      "day_index": 3,
+      "expected_day": "CK-D3",
+      "detected_campaign_day": "CK-D2",
+      "topic": "Construct estimators and discuss their properties (3.1) Mission: Construct estimators by maximum likelihood Purpose of this reading: use the CMP to extract Syllabus 3.1.2 \u2014 construct estimators by maximum likelihood. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.1.2 maximum likelihood Stop: Through the CMP treatment of Syllabus 3.1.2 (stop before efficiency / bias / MSE 3.1.3) Focus questions: \u2022 What is the core move of Syllabus 3.1.2? \u2022 What warrant separates today&#39;s sk Reading: Purpose of this reading: use the CMP to extract Syllabus 3.1.2 \u2014 construct estimators by maximum likelihood. Stop before out-of-scope later LOs.",
+      "mission": "Construct estimators by maximum likelihood Purpose of this reading: use the CMP to extract Syllabus 3.1.2 \u2014 construct es",
+      "syllabus_hits": [
+        "3.1.2",
+        "3.1.2",
+        "3.1.2"
+      ],
+      "finished": true,
+      "fallback": false,
+      "reading_verdict": "PASS",
+      "original_verdict": "PASS",
+      "chrome_residual": true,
+      "revision_q6_residual": false,
+      "checklist": {
+        "CMP_reference_present": true,
+        "Not_fallback_shell": true,
+        "Immediate_next_activity_named": true
+      },
+      "package_path_verdict": "PASS"
+    },
+    {
+      "day_index": 4,
+      "expected_day": "CK-D4",
+      "detected_campaign_day": "CK-D3",
+      "topic": "Construct estimators and discuss their properties (3.1) Mission: Discuss efficiency, bias, consistency and MSE of an estimator Purpose of this reading: use the CMP to extract Syllabus 3.1.3 \u2014 discuss efficiency, bias, consistency and mse of an estimator. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.1.3 efficiency, bias, consistency and MSE Stop: Through the CMP treatment of Syllabus 3.1.3 (stop before estimator comparison 3.1.4) Focus questions: \u2022 What is the core move of S Reading: Purpose of this reading: use the CMP to extract Syllabus 3.1.3 \u2014 discuss efficiency, bias, consistency and mse of an estimator. Stop before out-of-scope later LOs.",
+      "mission": "Discuss efficiency, bias, consistency and MSE of an estimator Purpose of this reading: use the CMP to extract Syllabus 3",
+      "syllabus_hits": [
+        "3.1.3",
+        "3.1.3",
+        "3.1.3"
+      ],
+      "finished": true,
+      "fallback": false,
+      "reading_verdict": "PASS",
+      "original_verdict": "PASS",
+      "chrome_residual": true,
+      "revision_q6_residual": false,
+      "checklist": {
+        "CMP_reference_present": true,
+        "Not_fallback_shell": true,
+        "Immediate_next_activity_named": true
+      },
+      "package_path_verdict": "PASS"
+    },
+    {
+      "day_index": 5,
+      "expected_day": "CK-D5",
+      "detected_campaign_day": "CK-D4",
+      "topic": "Construct estimators and discuss their properties (3.1) Mission: Compare estimators using MSE and bias Purpose of this reading: use the CMP to extract Syllabus 3.1.4 \u2014 compare estimators using mse and bias. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.1.4 comparison of estimators using MSE and bias Stop: Through the CMP treatment of Syllabus 3.1.4 (stop before asymptotic MLE 3.1.5) Focus questions: \u2022 What is the core move of Syllabus 3.1.4? \u2022 What warrant separates today&#3 Reading: Purpose of this reading: use the CMP to extract Syllabus 3.1.4 \u2014 compare estimators using mse and bias. Stop before out-of-scope later LOs.",
+      "mission": "Compare estimators using MSE and bias Purpose of this reading: use the CMP to extract Syllabus 3.1.4 \u2014 compare estimator",
+      "syllabus_hits": [
+        "3.1.4",
+        "3.1.4",
+        "3.1.4"
+      ],
+      "finished": true,
+      "fallback": false,
+      "reading_verdict": "PASS",
+      "original_verdict": "PASS",
+      "chrome_residual": true,
+      "revision_q6_residual": false,
+      "checklist": {
+        "CMP_reference_present": true,
+        "Not_fallback_shell": true,
+        "Immediate_next_activity_named": true
+      },
+      "package_path_verdict": "PASS"
+    },
+    {
+      "day_index": 6,
+      "expected_day": "CK-D6",
+      "detected_campaign_day": "CK-D5",
+      "topic": "Construct estimators and discuss their properties (3.1) Mission: Discuss the asymptotic distribution of MLEs Purpose of this reading: use the CMP to extract Syllabus 3.1.5 \u2014 discuss the asymptotic distribution of mles. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.1.5 asymptotic distribution of MLEs Stop: Through the CMP treatment of Syllabus 3.1.5 (stop before bootstrap 3.1.6) Focus questions: \u2022 What is the core move of Syllabus 3.1.5? \u2022 What warrant separates today&#39;s s Reading: Purpose of this reading: use the CMP to extract Syllabus 3.1.5 \u2014 discuss the asymptotic distribution of mles. Stop before out-of-scope later LOs.",
+      "mission": "Discuss the asymptotic distribution of MLEs Purpose of this reading: use the CMP to extract Syllabus 3.1.5 \u2014 discuss the",
+      "syllabus_hits": [
+        "3.1.5",
+        "3.1.5",
+        "3.1.5"
+      ],
+      "finished": true,
+      "fallback": false,
+      "reading_verdict": "PASS",
+      "original_verdict": "PASS",
+      "chrome_residual": true,
+      "revision_q6_residual": false,
+      "checklist": {
+        "CMP_reference_present": true,
+        "Not_fallback_shell": true,
+        "Immediate_next_activity_named": true
+      },
+      "package_path_verdict": "PASS"
+    },
+    {
+      "day_index": 7,
+      "expected_day": "CK-R1",
+      "detected_campaign_day": "CK-D6",
+      "topic": "Construct estimators and discuss their properties (3.1) Mission: Use bootstrap to estimate properties of an estimator Purpose of this reading: use the CMP to extract Syllabus 3.1.6 \u2014 use bootstrap to estimate properties of an estimator. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.1.6 bootstrap for estimator properties Stop: Through the CMP treatment of Syllabus 3.1.6 (stop before confidence / prediction intervals 3.2) Focus questions: \u2022 What is the core move of Syllabus 3. Reading: Purpose of this reading: use the CMP to extract Syllabus 3.1.6 \u2014 use bootstrap to estimate properties of an estimator. Stop before out-of-scope later LOs.",
+      "mission": "Use bootstrap to estimate properties of an estimator Purpose of this reading: use the CMP to extract Syllabus 3.1.6 \u2014 us",
+      "syllabus_hits": [
+        "3.1.6",
+        "3.1.6",
+        "3.1.6"
+      ],
+      "finished": true,
+      "fallback": false,
+      "reading_verdict": "PASS",
+      "original_verdict": "PASS",
+      "chrome_residual": true,
+      "revision_q6_residual": false,
+      "checklist": {
+        "CMP_reference_present": true,
+        "Not_fallback_shell": true,
+        "Immediate_next_activity_named": true
+      },
+      "package_path_verdict": "PASS"
+    },
+    {
+      "day_index": 8,
+      "expected_day": "CL-D1",
+      "detected_campaign_day": "CK-R1",
+      "topic": "Campaign Kappa revision \u2014 estimators and their properties (CK-R1) Mission: Retrieve estimator hinges (3.1) Purpose of this revision stage: strengthen retrieval of the Campaign Kappa chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block. Stop: After revision checks and Reflection \u2014 do not begin Syllabus 3.2 in this si Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Kappa chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locu",
+      "mission": "Retrieve estimator hinges (3.1) Purpose of this revision stage: strengthen retrieval of the Campaign Kappa chain without",
+      "syllabus_hits": [],
+      "finished": true,
+      "fallback": false,
+      "reading_verdict": "FAIL",
+      "original_verdict": "FAIL",
+      "chrome_residual": false,
+      "revision_q6_residual": true,
+      "checklist": {
+        "CMP_reference_present": true,
+        "Not_fallback_shell": true,
+        "Immediate_next_activity_named": false
+      },
+      "package_path_verdict": "PASS"
+    },
+    {
+      "day_index": 9,
+      "expected_day": "CL-D2",
+      "detected_campaign_day": "CL-D1",
+      "topic": "Calculate confidence intervals and prediction intervals (3.2) Mission: Construct a confidence interval for an unknown parameter from a random sample Purpose of this reading: use the CMP to extract Syllabus 3.2.1 \u2014 construct a confidence interval for an unknown parameter from a random sample. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.2.1 confidence interval for a parameter Stop: Through the CMP treatment of Syllabus 3.2.1 (stop before prediction interval 3.2.2) Focus ques Reading: Purpose of this reading: use the CMP to extract Syllabus 3.2.1 \u2014 construct a confidence interval for an unknown parameter from a random sample. Stop before out-of-scope later LOs.",
+      "mission": "Construct a confidence interval for an unknown parameter from a random sample Purpose of this reading: use the CMP to ex",
+      "syllabus_hits": [
+        "3.2.1",
+        "3.2.1",
+        "3.2.1"
+      ],
+      "finished": true,
+      "fallback": false,
+      "reading_verdict": "PASS",
+      "original_verdict": "PASS",
+      "chrome_residual": true,
+      "revision_q6_residual": false,
+      "checklist": {
+        "CMP_reference_present": true,
+        "Not_fallback_shell": true,
+        "Immediate_next_activity_named": true
+      },
+      "package_path_verdict": "PASS"
+    },
+    {
+      "day_index": 10,
+      "expected_day": "CL-D3",
+      "detected_campaign_day": "CL-D2",
+      "topic": "Calculate confidence intervals and prediction intervals (3.2) Mission: Construct a prediction interval for a future observation Purpose of this reading: use the CMP to extract Syllabus 3.2.2 \u2014 construct a prediction interval for a future observation. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.2.2 prediction interval Stop: Through the CMP treatment of Syllabus 3.2.2 (stop before given-sampling-distribution CI 3.2.3) Focus questions: \u2022 What is the core move of Syllabus 3.2. Reading: Purpose of this reading: use the CMP to extract Syllabus 3.2.2 \u2014 construct a prediction interval for a future observation. Stop before out-of-scope later LOs.",
+      "mission": "Construct a prediction interval for a future observation Purpose of this reading: use the CMP to extract Syllabus 3.2.2 ",
+      "syllabus_hits": [
+        "3.2.2",
+        "3.2.2",
+        "3.2.2"
+      ],
+      "finished": true,
+      "fallback": false,
+      "reading_verdict": "PASS",
+      "original_verdict": "PASS",
+      "chrome_residual": true,
+      "revision_q6_residual": false,
+      "checklist": {
+        "CMP_reference_present": true,
+        "Not_fallback_shell": true,
+        "Immediate_next_activity_named": true
+      },
+      "package_path_verdict": "PASS"
+    },
+    {
+      "day_index": 11,
+      "expected_day": "CL-D4",
+      "detected_campaign_day": "CL-D3",
+      "topic": "Calculate confidence intervals and prediction intervals (3.2) Mission: Construct a confidence interval using a given sampling distribution Purpose of this reading: use the CMP to extract Syllabus 3.2.3 \u2014 construct a confidence interval using a given sampling distribution. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.2.3 CI using a given sampling distribution Stop: Through the CMP treatment of Syllabus 3.2.3 (stop before Normal mean/variance CIs 3.2.4) Focus questions: \u2022 Wha Reading: Purpose of this reading: use the CMP to extract Syllabus 3.2.3 \u2014 construct a confidence interval using a given sampling distribution. Stop before out-of-scope later LOs.",
+      "mission": "Construct a confidence interval using a given sampling distribution Purpose of this reading: use the CMP to extract Syll",
+      "syllabus_hits": [
+        "3.2.3",
+        "3.2.3",
+        "3.2.3"
+      ],
+      "finished": true,
+      "fallback": false,
+      "reading_verdict": "PASS",
+      "original_verdict": "PASS",
+      "chrome_residual": true,
+      "revision_q6_residual": false,
+      "checklist": {
+        "CMP_reference_present": true,
+        "Not_fallback_shell": true,
+        "Immediate_next_activity_named": true
+      },
+      "package_path_verdict": "PASS"
+    },
+    {
+      "day_index": 12,
+      "expected_day": "CL-D5",
+      "detected_campaign_day": "CL-D4",
+      "topic": "Calculate confidence intervals and prediction intervals (3.2) Mission: Construct confidence intervals for the mean and variance of a Normal distribution Purpose of this reading: use the CMP to extract Syllabus 3.2.4 \u2014 construct confidence intervals for the mean and variance of a normal distribution. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.2.4 Normal mean and variance confidence intervals Stop: Through the CMP treatment of Syllabus 3.2.4 (stop before binomial/Poisson CI Reading: Purpose of this reading: use the CMP to extract Syllabus 3.2.4 \u2014 construct confidence intervals for the mean and variance of a normal distribution. Stop before out-of-scope later LOs.",
+      "mission": "Construct confidence intervals for the mean and variance of a Normal distribution Purpose of this reading: use the CMP t",
+      "syllabus_hits": [
+        "3.2.4",
+        "3.2.4",
+        "3.2.4"
+      ],
+      "finished": true,
+      "fallback": false,
+      "reading_verdict": "PASS",
+      "original_verdict": "PASS",
+      "chrome_residual": true,
+      "revision_q6_residual": false,
+      "checklist": {
+        "CMP_reference_present": true,
+        "Not_fallback_shell": true,
+        "Immediate_next_activity_named": true
+      },
+      "package_path_verdict": "PASS"
+    },
+    {
+      "day_index": 13,
+      "expected_day": "CL-D6",
+      "detected_campaign_day": "CL-D5",
+      "topic": "Calculate confidence intervals and prediction intervals (3.2) Mission: Construct confidence intervals for a binomial probability and a Poisson mean Purpose of this reading: use the CMP to extract Syllabus 3.2.5 \u2014 construct confidence intervals for a binomial probability and a poisson mean. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.2.5 binomial and Poisson confidence intervals Stop: Through the CMP treatment of Syllabus 3.2.5 (stop before two-sample CIs 3.2.6) Focus quest Reading: Purpose of this reading: use the CMP to extract Syllabus 3.2.5 \u2014 construct confidence intervals for a binomial probability and a poisson mean. Stop before out-of-scope later LOs.",
+      "mission": "Construct confidence intervals for a binomial probability and a Poisson mean Purpose of this reading: use the CMP to ext",
+      "syllabus_hits": [
+        "3.2.5",
+        "3.2.5",
+        "3.2.5"
+      ],
+      "finished": true,
+      "fallback": false,
+      "reading_verdict": "PASS",
+      "original_verdict": "PASS",
+      "chrome_residual": true,
+      "revision_q6_residual": false,
+      "checklist": {
+        "CMP_reference_present": true,
+        "Not_fallback_shell": true,
+        "Immediate_next_activity_named": true
+      },
+      "package_path_verdict": "PASS"
+    },
+    {
+      "day_index": 14,
+      "expected_day": "CL-D7",
+      "detected_campaign_day": "CL-D6",
+      "topic": "Calculate confidence intervals and prediction intervals (3.2) Mission: Construct confidence intervals for two-sample situations Purpose of this reading: use the CMP to extract Syllabus 3.2.6 \u2014 construct confidence intervals for two-sample situations. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.2.6 two-sample confidence intervals Stop: Through the CMP treatment of Syllabus 3.2.6 (stop before paired-means CI 3.2.7) Focus questions: \u2022 What is the core move of Syllabus 3.2.6?  Reading: Purpose of this reading: use the CMP to extract Syllabus 3.2.6 \u2014 construct confidence intervals for two-sample situations. Stop before out-of-scope later LOs.",
+      "mission": "Construct confidence intervals for two-sample situations Purpose of this reading: use the CMP to extract Syllabus 3.2.6 ",
+      "syllabus_hits": [
+        "3.2.6",
+        "3.2.6",
+        "3.2.6"
+      ],
+      "finished": true,
+      "fallback": false,
+      "reading_verdict": "PASS",
+      "original_verdict": "PASS",
+      "chrome_residual": true,
+      "revision_q6_residual": false,
+      "checklist": {
+        "CMP_reference_present": true,
+        "Not_fallback_shell": true,
+        "Immediate_next_activity_named": true
+      },
+      "package_path_verdict": "PASS"
+    },
+    {
+      "day_index": 15,
+      "expected_day": "CL-D8",
+      "detected_campaign_day": "CL-D7",
+      "topic": "Calculate confidence intervals and prediction intervals (3.2) Mission: Construct a confidence interval for a difference between two means from paired data Purpose of this reading: use the CMP to extract Syllabus 3.2.7 \u2014 construct a confidence interval for a difference between two means from paired data. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.2.7 paired mean-difference confidence interval Stop: Through the CMP treatment of Syllabus 3.2.7 (stop before bootstrap CI 3.2.8 Reading: Purpose of this reading: use the CMP to extract Syllabus 3.2.7 \u2014 construct a confidence interval for a difference between two means from paired data. Stop before out-of-scope later LOs.",
+      "mission": "Construct a confidence interval for a difference between two means from paired data Purpose of this reading: use the CMP",
+      "syllabus_hits": [
+        "3.2.7",
+        "3.2.7",
+        "3.2.7"
+      ],
+      "finished": true,
+      "fallback": false,
+      "reading_verdict": "PASS",
+      "original_verdict": "PASS",
+      "chrome_residual": true,
+      "revision_q6_residual": false,
+      "checklist": {
+        "CMP_reference_present": true,
+        "Not_fallback_shell": true,
+        "Immediate_next_activity_named": true
+      },
+      "package_path_verdict": "PASS"
+    },
+    {
+      "day_index": 16,
+      "expected_day": "CL-R1",
+      "detected_campaign_day": "CL-D8",
+      "topic": "Calculate confidence intervals and prediction intervals (3.2) Mission: Obtain confidence intervals by the bootstrap method Purpose of this reading: use the CMP to extract Syllabus 3.2.8 \u2014 obtain confidence intervals by the bootstrap method. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.2.8 bootstrap confidence intervals Stop: Through the CMP treatment of Syllabus 3.2.8 (stop before hypothesis testing 3.3) Focus questions: \u2022 What is the core move of Syllabus 3.2.8? \u2022 What war Reading: Purpose of this reading: use the CMP to extract Syllabus 3.2.8 \u2014 obtain confidence intervals by the bootstrap method. Stop before out-of-scope later LOs.",
+      "mission": "Obtain confidence intervals by the bootstrap method Purpose of this reading: use the CMP to extract Syllabus 3.2.8 \u2014 obt",
+      "syllabus_hits": [
+        "3.2.8",
+        "3.2.8",
+        "3.2.8"
+      ],
+      "finished": true,
+      "fallback": false,
+      "reading_verdict": "PASS",
+      "original_verdict": "PASS",
+      "chrome_residual": true,
+      "revision_q6_residual": false,
+      "checklist": {
+        "CMP_reference_present": true,
+        "Not_fallback_shell": true,
+        "Immediate_next_activity_named": true
+      },
+      "package_path_verdict": "PASS"
+    },
+    {
+      "day_index": 17,
+      "expected_day": "CL-R1",
+      "detected_campaign_day": "CL-R1",
+      "topic": "Campaign Lambda revision \u2014 confidence and prediction intervals (CL-R1) Mission: Retrieve interval hinges (3.2) Purpose of this revision stage: strengthen retrieval of the Campaign Lambda chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block. Stop: After revision checks and Reflection \u2014 do not begin Syllabus 3.3 in th Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Lambda chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed loc",
+      "mission": "Retrieve interval hinges (3.2) Purpose of this revision stage: strengthen retrieval of the Campaign Lambda chain without",
+      "syllabus_hits": [],
+      "finished": true,
+      "fallback": false,
+      "reading_verdict": "FAIL",
+      "original_verdict": "PASS",
+      "chrome_residual": true,
+      "revision_q6_residual": true,
+      "checklist": {
+        "CMP_reference_present": true,
+        "Not_fallback_shell": true,
+        "Immediate_next_activity_named": false
+      },
+      "package_path_verdict": "PASS"
+    }
+  ]
+}

@@ -175,25 +175,31 @@ Chrome honesty:                         Finish/Home tomorrow residual RO1-R1 ope
 | Wave 8 educational packages unmodified in review | **Met** |
 | Wave 8 joint LIVE deploy | **Executed (RO-008)** tip `28a06b1…` |
 | Wave 8 LIVE Verified | **Met** (package path; residual RO8-R1) |
-| Wave 9 | **Not started** |
+| Wave 9 catalogue authored | **Met** — `campaign-lambda-cs1011/` (9 packages) |
+| Wave 9 human seals complete | **Met** — HR-009 |
+| Wave 9 publication decision | **APPROVED** |
+| Wave 9 educational packages unmodified in review | **Met** |
+| Wave 9 joint LIVE deploy | **Met** — RO-009 tip `5184675…` |
+| Wave 9 LIVE Verified | **Met** — package path PASS WITH RESIDUAL (RO9-R1…R3) |
+| Wave 9 | **LIVE-complete (RO-009)** · PB-011 authorised · not executed |
 
-**Programme state:** Wave 1 LIVE Verified · RO1-R1 closed · **Wave 2 LIVE-complete (RO-002 / PB-004)** · **Wave 3 LIVE-complete (RO-003 / PB-005)** · **Wave 4 LIVE-complete (RO-004 / PB-006)** · **Wave 5 LIVE-complete (RO-005 / PB-007)** (CS1-007 / Eta · 2.4) · **Wave 6 LIVE-complete (RO-006 / PB-008)** (CS1-008 / Theta · 2.5) · **Wave 7 LIVE-complete (RO-007 / PB-009)** (CS1-009 / Iota · 2.6) · **Wave 8 LIVE-complete (RO-008)** (CS1-010 / Kappa · 3.1) · **PB-010 authorised · not executed** · Wave 9 not started.
+**Programme state:** Wave 1 LIVE Verified · RO1-R1 closed · **Wave 2 LIVE-complete (RO-002 / PB-004)** · **Wave 3 LIVE-complete (RO-003 / PB-005)** · **Wave 4 LIVE-complete (RO-004 / PB-006)** · **Wave 5 LIVE-complete (RO-005 / PB-007)** (CS1-007 / Eta · 2.4) · **Wave 6 LIVE-complete (RO-006 / PB-008)** (CS1-008 / Theta · 2.5) · **Wave 7 LIVE-complete (RO-007 / PB-009)** (CS1-009 / Iota · 2.6) · **Wave 8 LIVE-complete (RO-008 / PB-010)** (CS1-010 / Kappa · 3.1) · **Wave 9 LIVE-complete (RO-009)** (CS1-011 / Lambda · 3.2) · PB-011 authorised · not executed · Wave 10 not started.
 
 ### Continuity Front Register (dashboard)
 
 | Front | Location | Status |
 |-------|----------|--------|
-| Student LIVE Continuity Front | Closed through **3.1.6** / CK-R1 | RO-008 |
-| Catalogue Continuity Front | **3.1 LIVE** (CS1-010 / Kappa) | RO-008 |
-| Next after Wave 8 LIVE | **3.2** (provisional) | Not commissioned |
+| Student LIVE Continuity Front | Closed through **3.2.8** / CL-R1 | RO-009 |
+| Catalogue Continuity Front | **3.2 LIVE Verified** (CS1-011 / Lambda) | RO-009 |
+| Next after Wave 9 PB-011 | **3.3** (provisional) | Not commissioned |
 
 ### Student Reliance Coverage Register (dashboard)
 
 | Metric | Value |
 |--------|-------|
-| Certified Educational Coverage (%) | **69.4%** (50 / 72) — **advanced (RO-008)** |
-| Continuity Front | LIVE through **3.1.6**; next cliff **3.2** (Wave 9 gated on PB-010) |
-| Student Reliance Coverage | Contiguous CF through **3.1.6** (26 LOs LIVE); Trust Front 24 LOs independent; Alpha/Beta honesty gap — **unchanged** |
+| Certified Educational Coverage (%) | **80.6%** (58 / 72) — **Wave 9 LIVE Verified** |
+| Continuity Front | LIVE through **3.2.8** |
+| Student Reliance Coverage | Contiguous CF through Topic **3.2** / **3.2.8** (34 LOs LIVE); Trust Front 24 LOs independent; Alpha/Beta honesty gap — **unchanged** |
 | Until-examination status | **NOT CLAIMED** |
 
 ---
@@ -201,11 +207,13 @@ Chrome honesty:                         Finish/Home tomorrow residual RO1-R1 ope
 ## 8. Next actions
 
 1. Keep Wave 0 Alpha/Beta Approver honesty gap open (not waived).  
-2. Track RO6-R1 / RO7-R1 label desync + chrome / Q6 residuals as PI (and prior RO5 residuals).  
-3. Wave 6–7 LIVE-complete — held.  
-4. Wave 8 **LIVE-complete (RO-008)** — Coverage **50 / 72 (69.4%)** · Reliance through **3.1.6**. PB-010 authorised · not executed. Wave 9 gated on PB-010.  
-5. Do **not** begin Wave 9 until RO-008 and PB-010 complete successfully.
----
+2. Track RO6-R1 / RO7-R1 / RO8-R1 / RO9-R1 label desync + chrome / Q6 residuals as PI (and prior RO5 residuals).  
+3. Wave 6–9 LIVE-complete — held.  
+4. Wave 9 **LIVE-complete (RO-009)** — Coverage **58 / 72 (80.6%)** · Reliance through Topic **3.2**.  
+5. Successor programme only: **PB-011** — Progressive Educational Confidence Certification — **authorised · not executed**.  
+6. Do **not** begin Wave 10 until PB-011 PASS.  
+7. Do **not** execute PB-011 in this RO-009 cycle (STOP).  
+8. Do **not** claim until-exam educational trust from Wave 9 alone.
 
 ## 9. Wave 2 (CS1-003) — pipeline summary
 
@@ -239,7 +247,7 @@ Chrome honesty:                         Finish/Home tomorrow residual RO1-R1 ope
 
 ---
 
-Signed: Publication Dashboard · EP-001 · HR-001 · HR-002 · HR-003 · HR-004 · HR-005 · HR-006 · HR-007 · HR-008 · RO-001 · RO-002 · RO-003 · RO-004 · RO-005 · RO-006 · RO-007 · EP-006 · EP-007 · EP-008 · 2026-08-02  
+Signed: Publication Dashboard · EP-001 · HR-001 · HR-002 · HR-003 · HR-004 · HR-005 · HR-006 · HR-007 · HR-008 · HR-009 · RO-001 · RO-002 · RO-003 · RO-004 · RO-005 · RO-006 · RO-007 · EP-006 · EP-007 · EP-008 · EP-009 · 2026-08-02  
 **Publication decision (CS1-004):** APPROVED · LIVE Verified  
 **Publication decision (CS1-003):** APPROVED · LIVE-complete (package path)  
 **Publication decision (CS1-005):** **APPROVED** · LIVE-complete (package path)  
@@ -247,8 +255,11 @@ Signed: Publication Dashboard · EP-001 · HR-001 · HR-002 · HR-003 · HR-004 
 **Publication decision (CS1-007):** **APPROVED** · LIVE-complete (package path)  
 **Publication decision (CS1-008):** **APPROVED** · **LIVE-complete (RO-006 / PB-008)**  
 **Publication decision (CS1-009):** **APPROVED** · **LIVE-complete (RO-007 / PB-009)**  
-**Publication decision (CS1-010):** **APPROVED** — joint LIVE authorised (RO-008 / PB-010 outstanding)  
-**Wave 9:** Not started
+**Publication decision (CS1-010):** **APPROVED** · **LIVE-complete (RO-008 / PB-010)**  
+**Publication decision (CS1-011):** **APPROVED** · **LIVE-complete (RO-009)** · Coverage **58 / 72 (80.6%)** · Reliance through Topic **3.2** · PB-011 authorised · not executed  
+**RO-009:** LIVE-complete WITH RESIDUAL  
+**PB-011:** Authorised · not executed  
+**Wave 10:** Not started
 ---
 
 ## 11. Wave 4 (CS1-006) — package pipeline
@@ -319,7 +330,7 @@ Signed: Publication Dashboard · EP-001 · HR-001 · HR-002 · HR-003 · HR-004 
 **Catalogue root:** `app/curriculum/data/educational_campaigns/cs1/campaign-iota-cs1009/`  
 **LIVE loader:** **7** Iota packages `publication_approved` · tip `1c747f3…` (RO-007)  
 **Companions:** `EP007_WAVE7_PLAN.md` · `EP007_COVERAGE_UPDATE.md` · `CS1009_*` · `HR007_*` · `RO007_*` · `PB009_*`  
-**Stop:** Wave 8 **LIVE-complete (RO-008)** — Coverage **50 / 72** · Reliance through **3.1.6** · PB-010 authorised · Wave 9 not started.
+**Stop:** Wave 8 **LIVE-complete (RO-008 / PB-010)** — Coverage **50 / 72** · Reliance through **3.1.6** · PB-010 PASS · Wave 9 not started.
 
 ---
 
@@ -338,6 +349,31 @@ Signed: Publication Dashboard · EP-001 · HR-001 · HR-002 · HR-003 · HR-004 
 **Key:** ● = complete · ○ = not reached  
 
 **Catalogue root:** `app/curriculum/data/educational_campaigns/cs1/campaign-kappa-cs1010/`  
-**LIVE loader:** Kappa packages **absent** (correct — LIVE belongs to RO-008)  
-**Companions:** `EP008_WAVE8_PLAN.md` · `EP008_COVERAGE_UPDATE.md` · `CS1010_*` · `HR008_*` · `EP008_WAVE8_EXECUTION_REPORT.md`  
-**Stop:** Wave 8 **LIVE Verified** · Coverage **50 / 72** · Reliance through **3.1.6** · PB-010 authorised · Wave 9 forbidden until PB-010 PASS.
+**LIVE loader:** **7** Kappa packages `publication_approved` · tip `28a06b1…` (RO-008)  
+**Companions:** `EP008_WAVE8_PLAN.md` · `EP008_COVERAGE_UPDATE.md` · `CS1010_*` · `HR008_*` · `EP008_WAVE8_EXECUTION_REPORT.md` · `RO008_*` · `PB010_*`  
+**Stop:** Wave 8 **LIVE Verified** · Coverage **50 / 72** · Reliance through **3.1.6** · PB-010 **PASS** · Wave 9 **LIVE-complete (RO-009)** · Coverage **58 / 72**.
+
+---
+
+## 16. Wave 9 (CS1-011) — package pipeline
+
+| Package | Day | LO | Authored | Desk Certified | Tutor | Founder | Auditor | Publication Approver | Approved | LIVE Verified |
+|---------|-----|----|:--------:|:--------------:|:-----:|:-------:|:-------:|:--------------------:|:--------:|:-------------:|
+| `CS1-EP001-PKG-3.2-CONFIDENCE-INTERVAL-PARAMETER` | CL-D1 | 3.2.1 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-3.2-PREDICTION-INTERVAL` | CL-D2 | 3.2.2 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-3.2-CI-GIVEN-SAMPLING-DISTRIBUTION` | CL-D3 | 3.2.3 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-3.2-CI-NORMAL-MEAN-VARIANCE` | CL-D4 | 3.2.4 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-3.2-CI-BINOMIAL-POISSON` | CL-D5 | 3.2.5 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-3.2-CI-TWO-SAMPLE` | CL-D6 | 3.2.6 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-3.2-CI-PAIRED-MEANS` | CL-D7 | 3.2.7 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-3.2-BOOTSTRAP-CONFIDENCE-INTERVAL` | CL-D8 | 3.2.8 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-REV-CONFIDENCE-INTERVALS` | CL-R1 | Rev | ● | ● | ● | ● | ● | ● | ● | ● |
+
+**Key:** ● = complete · ○ = not reached  
+
+**Catalogue root:** `app/curriculum/data/educational_campaigns/cs1/campaign-lambda-cs1011/`  
+**LIVE loader:** **9** Lambda packages `publication_approved` · tip `5184675…` (RO-009)  
+**Companions:** `EP009_WAVE9_PLAN.md` · `EP009_COVERAGE_UPDATE.md` · `CS1011_*` · `HR009_*` · `EP009_WAVE9_EXECUTION_REPORT.md` · `RO009_*`  
+**Stop:** Wave 9 **LIVE Verified** · Coverage **58 / 72 (80.6%)** · Reliance through Topic **3.2** · PB-011 **authorised · not executed** · Wave 10 not started.
+
+Signed: Publication Dashboard · EP-001 · HR-001…HR-009 · RO-001…RO-009 · EP-009 · 2026-08-02
