@@ -2,7 +2,7 @@
 
 **Programme:** EP-001 Wave 1 / HR-001 / RO-001 LIVE Release Operations  
 **Subject:** IFoA CS1 · 2026  
-**Measurement date:** 2026-08-01  
+**Measurement date:** 2026-08-02  
 **Authority:** EF-001 · CE-001 coverage law · EP-001 Governance · PB-002 · HOLD-001 lifted  
 **Companions:** `EP001_WAVE1_PUBLICATION_PACK.md` · `EP001_REVIEWER_CHECKLISTS.md` · `EP001_HUMAN_REVIEW_SUMMARY.md` · `EP001_PUBLICATION_DECISION_LOG.md` · `EP001_COVERAGE_MAP.md` · `RO001_DEPLOYMENT_REPORT.md` · `RO001_LIVE_VERIFICATION_REPORT.md` · `RO001_RELEASE_DECISION.md` · `RO001A_LIVE_EDUCATIONAL_VERIFICATION.md` · `RO001A_EDUCATIONAL_FIDELITY_REPORT.md` · `RO001A_RELEASE_CONFIRMATION.md`
 
@@ -157,27 +157,41 @@ Chrome honesty:                         Finish/Home tomorrow residual RO1-R1 ope
 | Wave 5 educational packages unmodified in review | **Met** |
 | Wave 5 joint LIVE deploy | **Executed (RO-005)** tip `40c487e54…` |
 | Wave 5 LIVE Verified | **Met** (package path; residual RO5-R1) |
-| Wave 6 | **Forbidden** until separate Wave 6 start authorisation (Wave 5 LIVE exit met) |
+| Wave 6 catalogue authored | **Met** — `campaign-theta-cs1008/` (3 packages) |
+| Wave 6 human seals complete | **Met** — HR-006 |
+| Wave 6 publication decision | **APPROVED** |
+| Wave 6 educational packages unmodified in review | **Met** |
+| Wave 6 joint LIVE deploy | **Executed (RO-006)** tip `a931f236…` |
+| Wave 6 LIVE Verified | **Met** (package path; residual RO6-R1) |
+| Wave 7 | **Unblocked — not started** |
 
-**Programme state:** Wave 1 LIVE Verified · RO1-R1 closed · **Wave 2 LIVE-complete (RO-002 / PB-004)** · **Wave 3 LIVE-complete (RO-003 / PB-005)** · **Wave 4 LIVE-complete (RO-004 / PB-006)** · **Wave 5 LIVE-complete (RO-005 / PB-007)** (CS1-007 / Eta · 2.4) · Wave 6 not started.
+**Programme state:** Wave 1 LIVE Verified · RO1-R1 closed · **Wave 2 LIVE-complete (RO-002 / PB-004)** · **Wave 3 LIVE-complete (RO-003 / PB-005)** · **Wave 4 LIVE-complete (RO-004 / PB-006)** · **Wave 5 LIVE-complete (RO-005 / PB-007)** (CS1-007 / Eta · 2.4) · **Wave 6 LIVE-complete (RO-006 / PB-008)** (CS1-008 / Theta · 2.5) · Wave 7 not started.
 
 ### Continuity Front Register (dashboard)
 
 | Front | Location | Status |
 |-------|----------|--------|
-| Student LIVE Continuity Front | Closed through **2.4.2** / CH-R1 | RO-005 |
-| Catalogue Continuity Front | **2.5** next (not commissioned) | Wave 6 gated |
-| Next after Wave 5 LIVE | **2.5** | Not commissioned |
+| Student LIVE Continuity Front | Closed through **2.5.2** / CT-R1 | RO-006 |
+| Catalogue Continuity Front | Next open **2.6** (provisional) | Not commissioned |
+| Next after Wave 6 LIVE | **2.6** (provisional) | Not commissioned |
+
+### Student Reliance Coverage Register (dashboard)
+
+| Metric | Value |
+|--------|-------|
+| Certified Educational Coverage (%) | **52.8%** (38 / 72) |
+| Continuity Front | LIVE through **2.5.2** |
+| Student Reliance Coverage | Contiguous CF through **2.5.2** (14 LOs LIVE); Trust Front 24 LOs independent; Alpha/Beta honesty gap |
+| Until-examination status | **NOT CLAIMED** |
 
 ---
 
 ## 8. Next actions
 
 1. Keep Wave 0 Alpha/Beta Approver honesty gap open (not waived).  
-2. Track RO5-R1 Home / label desync + CH-R1 chrome / Q6 residual as PI (does not block Wave 6 start authorisation).  
-3. Wave 5 LIVE-complete — Coverage **36 / 72 (50.0%)**.  
-4. **Do not begin Wave 6** until a separate authorised programme starts. Next LIVE Continuity Front geography: **2.5**.
-
+2. Track RO6-R1 label desync + CT-R1 chrome / Q6 residual as PI (and prior RO5 residuals).  
+3. Wave 6 LIVE-complete — Coverage **38 / 72 (52.8%)**.  
+4. Wave 7 unblocked for separate commission only — **do not begin Wave 7** in this programme. Next LIVE Continuity Front geography: **2.6**.
 ---
 
 ## 9. Wave 2 (CS1-003) — pipeline summary
@@ -212,14 +226,14 @@ Chrome honesty:                         Finish/Home tomorrow residual RO1-R1 ope
 
 ---
 
-Signed: Publication Dashboard · EP-001 · HR-001 · HR-002 · HR-003 · HR-004 · HR-005 · RO-001 · RO-002 · RO-003 · RO-004 · RO-005 · 2026-08-02  
+Signed: Publication Dashboard · EP-001 · HR-001 · HR-002 · HR-003 · HR-004 · HR-005 · HR-006 · RO-001 · RO-002 · RO-003 · RO-004 · RO-005 · EP-006 · 2026-08-02  
 **Publication decision (CS1-004):** APPROVED · LIVE Verified  
 **Publication decision (CS1-003):** APPROVED · LIVE-complete (package path)  
 **Publication decision (CS1-005):** **APPROVED** · LIVE-complete (package path)  
 **Publication decision (CS1-006):** **APPROVED** · LIVE-complete (package path)  
 **Publication decision (CS1-007):** **APPROVED** · LIVE-complete (package path)  
-**Wave 6:** Not started
-
+**Publication decision (CS1-008):** **APPROVED** · **LIVE-complete (RO-006 / PB-008)**  
+**Wave 7:** Not started
 ---
 
 ## 11. Wave 4 (CS1-006) — package pipeline
@@ -253,3 +267,20 @@ Signed: Publication Dashboard · EP-001 · HR-001 · HR-002 · HR-003 · HR-004 
 **LIVE loader:** 3 Eta packages `publication_approved` · tip `40c487e54…`  
 **Companions:** `EP005_WAVE5_PLAN.md` · `EP005_COVERAGE_UPDATE.md` · `HR005_*` · `RO005_*` · `PB007_*`  
 **Residual:** RO5-R1 Home / label desync during late Zeta; RO5-R2/R3 CH-R1 Q6/chrome.
+
+---
+
+## 13. Wave 6 (CS1-008) — package pipeline
+
+| Package | Day | LO | Authored | Desk Certified | Tutor | Founder | Auditor | Publication Approver | Approved | LIVE Verified |
+|---------|-----|----|:--------:|:--------------:|:-----:|:-------:|:-------:|:--------------------:|:--------:|:-------------:|
+| `CS1-EP001-PKG-2.5-CLT` | CT-D1 | 2.5.1 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-2.5-SIMULATED-SAMPLE-NORMAL` | CT-D2 | 2.5.2 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-REV-CENTRAL-LIMIT-THEOREM` | CT-R1 | Rev | ● | ● | ● | ● | ● | ● | ● | ● |
+
+**Key:** ● = complete · ○ = not reached  
+
+**Catalogue root:** `app/curriculum/data/educational_campaigns/cs1/campaign-theta-cs1008/`  
+**LIVE loader:** **3** Theta packages `publication_approved` · tip `a931f236…` (RO-006)  
+**Companions:** `EP006_WAVE6_PLAN.md` · `EP006_COVERAGE_UPDATE.md` · `HR006_*` · `RO006_*` · `PB008_*`  
+**Stop:** Wave 6 **LIVE-complete** — Wave 7 unblocked · not started.

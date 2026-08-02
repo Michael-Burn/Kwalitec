@@ -1,0 +1,26 @@
+{
+  "render_job_id": "job-d9ncn8rncjis739tini0",
+  "render_job_status": "succeeded",
+  "local_tip_matched": [
+    "COUNT 54",
+    "THETA 3",
+    "ETA 3",
+    "ZETA 3",
+    "EPSILON 5",
+    "GAMMA 5",
+    "DELTA 27",
+    "CT-D1 CS1-EP001-PKG-2.5-CLT",
+    "CT-D2 CS1-EP001-PKG-2.5-SIMULATED-SAMPLE-NORMAL",
+    "CT-R1 CS1-EP001-PKG-REV-CENTRAL-LIMIT-THEOREM",
+    "ENTRY_25 ('CT-D1', 'CS1-EP001-PKG-2.5-CLT')",
+    "AFTER_CHR1 ('CT-D1', 'CS1-EP001-PKG-2.5-CLT')",
+    "ENTRY_24 ('CH-D1', 'CS1-EP001-PKG-2.4-MGF-CGF')",
+    "AFTER_CZR1 ('CH-D1', 'CS1-EP001-PKG-2.4-MGF-CGF')",
+    "ENTRY_23 ('CZ-D1', 'CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION')",
+    "ENTRY_22 ('CE-D1', 'CS1-EP001-PKG-2.2-MARGINAL-CONDITIONAL')",
+    "ENTRY_41 ('CD-D1', 'CS1-EP001-PKG-4.1-RESPONSE-EXPLANATORY')",
+    "ASSERT_OK"
+  ],
+  "expected_commit": "a931f23628ba145b1bebbb190c53f2c555590110",
+  "deploy_id": "dep-d9nclt2jnfac73aqle0g"
+}

@@ -1,0 +1,3005 @@
+{
+  "programme": "RO-006",
+  "host": "https://kwalitec.onrender.com",
+  "expected_commit": "a931f23628ba145b1bebbb190c53f2c555590110",
+  "live_health": {
+    "build_date": "2026-08-02",
+    "build_number": "local",
+    "commit": "a931f23628ba145b1bebbb190c53f2c555590110",
+    "components": {
+      "database": {
+        "latency_ms": 2.7,
+        "name": "database",
+        "status": "ok"
+      },
+      "instance_storage": {
+        "meta": {
+          "path": "/opt/render/project/src/instance"
+        },
+        "name": "instance_storage",
+        "status": "ok"
+      },
+      "migrations": {
+        "meta": {
+          "current": "202607310002",
+          "head": "202607310002"
+        },
+        "name": "migrations",
+        "status": "ok"
+      },
+      "queue": {
+        "detail": "manual automation runner (no external broker)",
+        "meta": {
+          "broker": "none",
+          "runner": "app.automation"
+        },
+        "name": "queue",
+        "status": "ok"
+      }
+    },
+    "database": "connected",
+    "environment": "production",
+    "status": "ok",
+    "timestamp": "2026-08-02T05:07:37.312022+00:00",
+    "version": "2.0.0-beta.1"
+  },
+  "email": "ro006.theta.primary.1785646025@example.com",
+  "primary_walk_days": [
+    {
+      "day_index": 1,
+      "expected_day": "CB-D2",
+      "expected_package_id": "CS1-CS1002-PKG-2.1-DISCRETE",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Read the material for Today&#39;s topic. Note one idea you want to remember.",
+          "body_sample": " Topic: Today&#39;s topic Learning objectives for this session: \u2022 Today&#39;s topic ",
+          "support_sample": "Focus on how the learning objectives connect to Today&#39;s topic. What stood out from the reading? Submit Answer ",
+          "is_fallback_shell": true,
+          "is_guided_reading": false,
+          "mentions_cmp": false,
+          "cmp_refs_present": false,
+          "q_checks": {
+            "Q1_cmp_open": false,
+            "Q2_purpose": false,
+            "Q3_attention": false,
+            "Q4_ignore": false,
+            "Q5_stop": false,
+            "Q6_next": false
+          },
+          "ec001_markers": {
+            "Purpose of this reading": false,
+            "Open your CMP": false,
+            "Focus questions": false,
+            "Misconception watch": false,
+            "Out of scope today": false,
+            "Return cue": false,
+            "Worked-example": false,
+            "Knowledge Checks": false
+          },
+          "certified_snippet_hits": {
+            "lead_line": false,
+            "exit_line": false,
+            "return_cue": false,
+            "open_point": false
+          },
+          "verdict": "FAIL",
+          "word_count_body": 11
+        },
+        "checklist": {
+          "CMP_reference_present": false,
+          "Educational_purpose_clear": false,
+          "Reading_focus_clear": false,
+          "Ignore_guidance_present": false,
+          "Stop_condition_explicit": false,
+          "Immediate_next_activity_named": false,
+          "Not_fallback_shell": false,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": false,
+          "return_cue": false,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-CS1002-PKG-2.1-DISCRETE",
+        "campaign_day": "CB-D2",
+        "html": "/tmp/ro006/evidence/day1_CB-D2_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": false,
+        "Educational_purpose_clear": false,
+        "Reading_focus_clear": false,
+        "Ignore_guidance_present": false,
+        "Stop_condition_explicit": false,
+        "Immediate_next_activity_named": false,
+        "Not_fallback_shell": false,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you opened discrete family recognition under 2.1.1; tomorrow continues the same 2.1 topic at LO 2.1.2 \u2014 characteri",
+        "package_student_facing": "Tomorrow: basic continuous univariate distributions (2.1.2). Same Chapter 2 entry arc \u2014 now continuous families. Optiona",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "FAIL",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.1 \u2014 Understand the characteristics of basic univariate distributions and how to generate samples After this \u00b7 A situation\u2192family map for the syllabus discr"
+      },
+      "session_id": "lsr-130a026ec96b",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": false,
+      "chrome_residual": false,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 2,
+      "expected_day": "CB-D3",
+      "expected_package_id": "CS1-CS1002-PKG-2.1-CONTINUOUS",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract the defining situation and one characteristic for each discrete family in Syllabus 2.1.1 \u2014 so distribution choice is situation-led. Extract tha",
+          "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Name the discrete distribution family by situation Purpose of this reading: use the CMP to extract the defining situation and one characteristic for each discrete family in Syllabus 2.1.1 \u2014 so distribution choice is situation-led. Extract that catalogue frame from the CMP, then stop before continuous distributions. Open: CMP \u00b7 Syllabus 2.1.1 discrete univariate distributi",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at Syllabus 2.1.1 \u2014 discrete univariate distributions. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore continuous families, probability/quantile evaluation dee",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 386
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-CS1002-PKG-2.1-CONTINUOUS",
+        "campaign_day": "CB-D3",
+        "html": "/tmp/ro006/evidence/day2_CB-D3_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you placed continuous families beside discrete ones; tomorrow is a Revision day that returns to PCA limits, discre",
+        "package_student_facing": "Tomorrow: Campaign Beta Revision day. We return to PCA \u2192 discrete families \u2192 continuous placement, plus one Alpha associ",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.1 \u2014 Understand the characteristics of basic univariate distributions and how to generate samples After this \u00b7 A situation\u2192family map for the syllabus discr"
+      },
+      "session_id": "lsr-0ccd62c46742",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 3,
+      "expected_day": "CB-R1",
+      "expected_package_id": "CS1-CS1002-PKG-REV-PCA-DISTRIBUTIONS",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract support and typical modelling role for each continuous family in Syllabus 2.1.2 \u2014 so continuous choice is support-led. Extract that catalogue f",
+          "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Place continuous families beside discrete ones Purpose of this reading: use the CMP to extract support and typical modelling role for each continuous family in Syllabus 2.1.2 \u2014 so continuous choice is support-led. Extract that catalogue frame from the CMP, then stop before probability/quantile evaluation beyond today&#39;s block. Open: CMP \u00b7 Syllabus 2.1.2 continuous univ",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at Syllabus 2.1.2 \u2014 continuous distributions. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore discrete re-cataloguing, deep probability/quantile evaluation bey",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": false,
+            "exit_line": false,
+            "return_cue": false,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 377
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": false,
+          "return_cue": false,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-CS1002-PKG-REV-PCA-DISTRIBUTIONS",
+        "campaign_day": "CB-R1",
+        "html": "/tmp/ro006/evidence/day3_CB-R1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Campaign Beta / Volume CS1-002 completes after this Revision. The honest handoff is to a successor Volume continuing 2.1",
+        "package_student_facing": "Campaign Beta / CS1-002 complete after today. Next journey continues univariate distributions at probability and quantil",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.1 \u2014 Understand the characteristics of basic univariate distributions and how to generate samples After this \u00b7 A situation\u2192family map for the syllabus discr"
+      },
+      "session_id": "lsr-117bdccf61d4",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 4,
+      "expected_day": "CG-D1",
+      "expected_package_id": "CS1-EP001-PKG-2.1-PROB-QUANTILES",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Beta chain (PCA \u2192 discrete families \u2192 continuous families) without opening a new CMP chapter first. Attempt closed-book re",
+          "body_sample": " Topic: Campaign Beta revision \u2014 PCA to distributional entry (CB-R1) Mission: Retrieve PCA and distributional entry Purpose of this revision stage: strengthen retrieval of the Campaign Beta chain (PCA \u2192 discrete families \u2192 continuous families) without opening a new CMP chapter first. Attempt closed-book retrieval; only then, if a check fails, reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval: Day 1 PCA block, Day 2 2.1.1 block, D",
+          "support_sample": "Keep the CMP closed to begin. Kwalitec directs revision; the CMP is reopened only as a targeted instrument after a failed retrieval \u2014 not as a fresh chapter read and not as a substitute for the checks. Sketch the Campaign chain from memory, then begin the revision Knowledge Checks. If a check fails, reopen only Day 1 PCA / Day 2 2.1.1 / Day 3 2.1.2 locus for that item, then close again. Do not beg",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": false,
+            "Open your CMP": false,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": false,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": false,
+            "exit_line": false,
+            "return_cue": false,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 385
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": false,
+          "return_cue": false,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-2.1-PROB-QUANTILES",
+        "campaign_day": "CG-D1",
+        "html": "/tmp/ro006/evidence/day4_CG-D1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you evaluated probabilities and quantiles for placed families; tomorrow continues 2.1 at the Poisson process and i",
+        "package_student_facing": "Tomorrow: Poisson process and its connection to the Poisson distribution (2.1.4). Optional light prep: skim 2.1.4 headin",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "FAIL",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.1 \u2014 Understand the characteristics of basic univariate distributions and how to generate samples After this \u00b7 A situation\u2192family map for the syllabus discr"
+      },
+      "session_id": "lsr-432281741696",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": false,
+      "chrome_residual": false,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 5,
+      "expected_day": "CG-D2",
+      "expected_package_id": "CS1-EP001-PKG-2.1-POISSON-PROCESS",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract how to evaluate probabilities and quantiles for the univariate families already on your map \u2014 calculation or software as appropriate. Stop befo",
+          "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Evaluate probabilities and quantiles for placed families Purpose of this reading: use the CMP to extract how to evaluate probabilities and quantiles for the univariate families already on your map \u2014 calculation or software as appropriate. Stop before Poisson process and generation methods. Open: CMP \u00b7 Syllabus 2.1.3 probabilities and quantiles Stop: Through the CMP treatm",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at Syllabus 2.1.3 \u2014 probabilities and quantiles. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore Poisson process, generation methods, and joint distributions t",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": false,
+            "return_cue": false,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 362
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": false,
+          "return_cue": false,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-2.1-POISSON-PROCESS",
+        "campaign_day": "CG-D2",
+        "html": "/tmp/ro006/evidence/day5_CG-D2_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you connected Poisson process to Poisson counts; tomorrow moves to generating basic discrete and continuous RVs by",
+        "package_student_facing": "Tomorrow: inverse transform generation of basic discrete and continuous random variables (2.1.5). Optional light prep: s",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "FAIL",
+      "home": {
+        "title_guess": "Form marginal and conditional distributions from a joint",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Form marginal and conditional distributions from a joint CS1 (CS1) 1 h Study 2.2 \u2014 Determine the characteristics of jointly distributed random variables After this \u00b7 Study Progress for marginal/conditional \u2014 not Topic Complete f"
+      },
+      "session_id": "lsr-6f224531bb8c",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": false,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 6,
+      "expected_day": "CG-D3",
+      "expected_package_id": "CS1-EP001-PKG-2.1-INVERSE-TRANSFORM",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract the Poisson process definition and its connection to the Poisson distribution. Stop before inverse-transform and software generation LOs.",
+          "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Connect the Poisson process to the Poisson distribution Purpose of this reading: use the CMP to extract the Poisson process definition and its connection to the Poisson distribution. Stop before inverse-transform and software generation LOs. Open: CMP \u00b7 Syllabus 2.1.4 Poisson process Stop: Through the CMP treatment of the Poisson process and its Poisson-distribution conne",
+          "support_sample": "Open your CMP at Syllabus 2.1.4 \u2014 Poisson process. Kwalitec is the guide; the CMP is the authoritative material. Hunt with the focus questions; complete the annotation task. Ignore generation methods and joint distributions today. Stop when the 2.1.4 block is complete. Then close the CMP and return here for Worked-example re-entry, then Knowledge Checks. What did you extract from the CMP setup? Su",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": false,
+            "exit_line": false,
+            "return_cue": false,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 303
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": false,
+          "return_cue": false,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-2.1-INVERSE-TRANSFORM",
+        "campaign_day": "CG-D3",
+        "html": "/tmp/ro006/evidence/day6_CG-D3_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you practised inverse transform; tomorrow applies generation using statistical software for discrete and continuou",
+        "package_student_facing": "Tomorrow: generate discrete and continuous random variables using statistical software (2.1.6). Optional light prep: ski",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "FAIL",
+      "home": {
+        "title_guess": "Form marginal and conditional distributions from a joint",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Form marginal and conditional distributions from a joint CS1 (CS1) 1 h Study 2.2 \u2014 Determine the characteristics of jointly distributed random variables After this \u00b7 Study Progress for marginal/conditional \u2014 not Topic Complete f"
+      },
+      "session_id": "lsr-70b4545445d4",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": false,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 7,
+      "expected_day": "CG-D4",
+      "expected_package_id": "CS1-EP001-PKG-2.1-SOFTWARE-GENERATION",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: extract the inverse transform method for basic discrete and continuous RVs from the CMP. Stop before treating software generation (2.1.6) as today&#39;s primary LO.",
+          "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Generate RVs with the inverse transform method Purpose of this reading: extract the inverse transform method for basic discrete and continuous RVs from the CMP. Stop before treating software generation (2.1.6) as today&#39;s primary LO. Open: CMP \u00b7 Syllabus 2.1.5 inverse transform method Stop: Through CMP treatment of inverse transform for Syllabus 2.1.5 (stop before soft",
+          "support_sample": "Open your CMP at Syllabus 2.1.5 \u2014 inverse transform generation. Kwalitec guides; CMP is authoritative. Hunt with focus questions. Stop when the 2.1.5 block is complete. Return for Worked-example re-entry, then Knowledge Checks. What did you extract from the CMP setup? Submit Answer ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": false,
+            "exit_line": false,
+            "return_cue": false,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 255
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": false,
+          "return_cue": false,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-2.1-SOFTWARE-GENERATION",
+        "campaign_day": "CG-D4",
+        "html": "/tmp/ro006/evidence/day7_CG-D4_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you closed software generation; tomorrow is Revision across 2.1.1\u20132.1.6 (and Beta hinges as needed) \u2014 not a first-",
+        "package_student_facing": "Tomorrow: Campaign Gamma Revision day \u2014 retrieve evaluation, Poisson process, inverse transform, and software generation",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "FAIL",
+      "home": {
+        "title_guess": "Form marginal and conditional distributions from a joint",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Form marginal and conditional distributions from a joint CS1 (CS1) 1 h Study 2.2 \u2014 Determine the characteristics of jointly distributed random variables After this \u00b7 Study Progress for marginal/conditional \u2014 not Topic Complete f"
+      },
+      "session_id": "lsr-de3671a02783",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": false,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 8,
+      "expected_day": "CG-R1",
+      "expected_package_id": "CS1-EP001-PKG-REV-DISTRIBUTIONS-GENERATION",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP (and appropriate statistical software) to generate discrete and continuous RVs under Syllabus 2.1.6. Stop before joint distributions.",
+          "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Generate RVs with statistical software Purpose of this reading: use the CMP (and appropriate statistical software) to generate discrete and continuous RVs under Syllabus 2.1.6. Stop before joint distributions. Open: CMP \u00b7 Syllabus 2.1.6 generation using statistical software Stop: Through CMP/software practice for Syllabus 2.1.6 (stop before joint distributions 2.2) Focus ",
+          "support_sample": "Open your CMP at Syllabus 2.1.6 \u2014 software generation. Use statistical software as the CMP directs. Stop before 2.2. Return for Worked-example re-entry, then Knowledge Checks. What did you extract from the CMP setup? Submit Answer ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": false,
+            "exit_line": false,
+            "return_cue": false,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 237
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": false,
+          "return_cue": false,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-REV-DISTRIBUTIONS-GENERATION",
+        "campaign_day": "CG-R1",
+        "html": "/tmp/ro006/evidence/day8_CG-R1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Campaign Gamma / Volume CS1-004 completes after this Revision. The honest handoff is to a successor Volume opening joint",
+        "package_student_facing": "Campaign Gamma / CS1-004 complete after today. Next journey continues at jointly distributed random variables (2.2) in a",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Form marginal and conditional distributions from a joint",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Form marginal and conditional distributions from a joint CS1 (CS1) 1 h Study 2.2 \u2014 Determine the characteristics of jointly distributed random variables After this \u00b7 Study Progress for marginal/conditional \u2014 not Topic Complete f"
+      },
+      "session_id": "lsr-fd278b26e62a",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 9,
+      "expected_day": "CE-D1",
+      "expected_package_id": "CS1-EP001-PKG-2.2-MARGINAL-CONDITIONAL",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Gamma chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locu",
+          "body_sample": " Topic: Campaign Gamma revision \u2014 distributions through generation (CG-R1) Mission: Retrieve univariate evaluation and generation Purpose of this revision stage: strengthen retrieval of the Campaign Gamma chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block. Stop: After revision checks and Reflection \u2014 do not begin Syllabus",
+          "support_sample": "Begin closed-book retrieval. Reopen CMP only at a failed locus. Do not start 2.2 today. After checks, complete Reflection. What did you extract from the CMP setup? Submit Answer ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": false,
+            "Open your CMP": false,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": false,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": false,
+            "exit_line": false,
+            "return_cue": false,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 257
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": false,
+          "return_cue": false,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-2.2-MARGINAL-CONDITIONAL",
+        "campaign_day": "CE-D1",
+        "html": "/tmp/ro006/evidence/day9_CE-D1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you formed marginal and conditional distributions from a joint; tomorrow continues 2.2 at independence conditions ",
+        "package_student_facing": "Tomorrow: independence conditions for jointly distributed RVs (2.2.2). Optional light prep: skim 2.2.2 headings \u2014 titles",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "FAIL",
+      "home": {
+        "title_guess": "Form marginal and conditional distributions from a joint",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Form marginal and conditional distributions from a joint CS1 (CS1) 1 h Study 2.2 \u2014 Determine the characteristics of jointly distributed random variables After this \u00b7 Study Progress for marginal/conditional \u2014 not Topic Complete f"
+      },
+      "session_id": "lsr-d90846e6f08e",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": false,
+      "chrome_residual": false,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "epsilon_focus": true
+    },
+    {
+      "day_index": 10,
+      "expected_day": "CE-D2",
+      "expected_package_id": "CS1-EP001-PKG-2.2-INDEPENDENCE",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 2.2.1 \u2014 form marginal and conditional distributions from a joint. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Determine the characteristics of jointly distributed random variables (2.2) Mission: Form marginal and conditional distributions from a joint Purpose of this reading: use the CMP to extract Syllabus 2.2.1 \u2014 form marginal and conditional distributions from a joint. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 2.2.1 marginal and conditional distributions Stop: Through the CMP treatment of Syllabus 2.2.1 (stop before independence 2.2.2) Focus questions: \u2022 What is the core move o",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.2.1 marginal and conditional distributions. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 327
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-2.2-INDEPENDENCE",
+        "campaign_day": "CE-D2",
+        "html": "/tmp/ro006/evidence/day10_CE-D2_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you practised independence conditions; tomorrow continues at covariance, correlation, and expected values of funct",
+        "package_student_facing": "Tomorrow: covariance, correlation, and E[g(X,Y)] (2.2.3). Optional light prep: skim 2.2.3 headings \u2014 titles only tonight",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Form the conditional expectation of one RV given another",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Form the conditional expectation of one RV given another CS1 (CS1) 1 h Study 2.3 \u2014 Evaluate expectations and conditional expectations After this \u00b7 Study Progress for conditional expectation \u2014 not Topic Complete for 2.3.2. Start "
+      },
+      "session_id": "lsr-c7a3d22fa4b4",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "epsilon_focus": true
+    },
+    {
+      "day_index": 11,
+      "expected_day": "CE-D3",
+      "expected_package_id": "CS1-EP001-PKG-2.2-COV-CORR-EXPECTATION",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 2.2.2 \u2014 state conditions under which random variables are independent. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Determine the characteristics of jointly distributed random variables (2.2) Mission: State conditions under which random variables are independent Purpose of this reading: use the CMP to extract Syllabus 2.2.2 \u2014 state conditions under which random variables are independent. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 2.2.2 independence conditions Stop: Through CMP 2.2.2 (stop before covariance/correlation primary 2.2.3) Focus questions: \u2022 What is the core move of Syllabus 2.",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.2.2 independence conditions. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.2.2 (stop before covariance/correlatio",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 300
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-2.2-COV-CORR-EXPECTATION",
+        "campaign_day": "CE-D3",
+        "html": "/tmp/ro006/evidence/day11_CE-D3_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you practised Cov/Corr and E[g(X,Y)]; tomorrow continues at mean and variance of linear combinations of random var",
+        "package_student_facing": "Tomorrow: mean and variance of linear combinations (2.2.4). Optional light prep: skim 2.2.4 headings \u2014 titles only tonig",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Form the conditional expectation of one RV given another",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Form the conditional expectation of one RV given another CS1 (CS1) 1 h Study 2.3 \u2014 Evaluate expectations and conditional expectations After this \u00b7 Study Progress for conditional expectation \u2014 not Topic Complete for 2.3.2. Start "
+      },
+      "session_id": "lsr-f701af0bbf47",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "epsilon_focus": true
+    },
+    {
+      "day_index": 12,
+      "expected_day": "CE-D4",
+      "expected_package_id": "CS1-EP001-PKG-2.2-LINEAR-COMBINATIONS",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 2.2.3 \u2014 use covariance, correlation, and e[g(x,y)]. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Determine the characteristics of jointly distributed random variables (2.2) Mission: Use covariance, correlation, and E[g(X,Y)] Purpose of this reading: use the CMP to extract Syllabus 2.2.3 \u2014 use covariance, correlation, and e[g(x,y)]. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 2.2.3 covariance, correlation, and E[g(X,Y)] Stop: Through CMP 2.2.3 (stop before linear-combination mean/variance primary 2.2.4) Focus questions: \u2022 What is the core move of Syllabus 2.2.3? \u2022 What w",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.2.3 covariance, correlation, and E[g(X,Y)]. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.2.3 (stop before linear",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 305
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-2.2-LINEAR-COMBINATIONS",
+        "campaign_day": "CE-D4",
+        "html": "/tmp/ro006/evidence/day12_CE-D4_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you finished linear-combination mean/variance; tomorrow is Revision mode \u2014 retrieve the 2.2 chain closed-book befo",
+        "package_student_facing": "Tomorrow: Campaign Epsilon Revision (retrieve 2.2.1\u20132.2.4). Optional light prep: list the four hinges from memory \u2014 titl",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Form the conditional expectation of one RV given another",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Form the conditional expectation of one RV given another CS1 (CS1) 1 h Study 2.3 \u2014 Evaluate expectations and conditional expectations After this \u00b7 Study Progress for conditional expectation \u2014 not Topic Complete for 2.3.2. Start "
+      },
+      "session_id": "lsr-2fee89d47fff",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "epsilon_focus": true
+    },
+    {
+      "day_index": 13,
+      "expected_day": "CE-R1",
+      "expected_package_id": "CS1-EP001-PKG-REV-JOINT-DISTRIBUTIONS",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 2.2.4 \u2014 obtain mean and variance of linear combinations. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Determine the characteristics of jointly distributed random variables (2.2) Mission: Obtain mean and variance of linear combinations Purpose of this reading: use the CMP to extract Syllabus 2.2.4 \u2014 obtain mean and variance of linear combinations. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 2.2.4 mean and variance of linear combinations Stop: Through CMP 2.2.4 (stop before conditional expectation 2.3) Focus questions: \u2022 What is the core move of Syllabus 2.2.4? \u2022 What warrant ",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.2.4 mean and variance of linear combinations. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.2.4 (stop before cond",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": false,
+            "exit_line": false,
+            "return_cue": false,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 314
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": false,
+          "return_cue": false,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-REV-JOINT-DISTRIBUTIONS",
+        "campaign_day": "CE-R1",
+        "html": "/tmp/ro006/evidence/day13_CE-R1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Campaign Epsilon / Volume CS1-005 completes after this Revision. Honest stop: 2.2 Pilot Arc closed \u2014 not Chapter 2 compl",
+        "package_student_facing": "Campaign Epsilon / CS1-005 complete after today (pending human Approver + LIVE). Honest next: stop or await 2.3 successo",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Form the conditional expectation of one RV given another",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Form the conditional expectation of one RV given another CS1 (CS1) 1 h Study 2.3 \u2014 Evaluate expectations and conditional expectations After this \u00b7 Study Progress for conditional expectation \u2014 not Topic Complete for 2.3.2. Start "
+      },
+      "session_id": "lsr-a00798f6fd98",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "epsilon_focus": true,
+      "revision_q6_residual": false
+    },
+    {
+      "day_index": 14,
+      "expected_day": "CZ-D1",
+      "expected_package_id": "CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Epsilon chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed lo",
+          "body_sample": " Topic: Campaign Epsilon revision \u2014 jointly distributed random variables (CE-R1) Mission: Retrieve joint-distribution hinges (2.2) Purpose of this revision stage: strengthen retrieval of the Campaign Epsilon chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block. Stop: After revision checks and Reflection \u2014 do not begin Sylla",
+          "support_sample": "Begin closed-book retrieval. Reopen CMP only at a failed locus. After checks, complete Reflection. What did you extract from the CMP setup? Submit Answer ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": false
+          },
+          "ec001_markers": {
+            "Purpose of this reading": false,
+            "Open your CMP": false,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": false,
+            "Knowledge Checks": false
+          },
+          "certified_snippet_hits": {
+            "lead_line": false,
+            "exit_line": false,
+            "return_cue": false,
+            "open_point": false
+          },
+          "verdict": "FAIL",
+          "word_count_body": 239
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": false,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": false,
+          "return_cue": false,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION",
+        "campaign_day": "CZ-D1",
+        "html": "/tmp/ro006/evidence/day14_CZ-D1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": false,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you formed conditional expectation of one RV given another; tomorrow continues 2.3 at mean and variance as expecta",
+        "package_student_facing": "Tomorrow: mean and variance via conditioning (2.3.2). Optional light prep: skim 2.3.2 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "FAIL",
+      "home": {
+        "title_guess": "Form the conditional expectation of one RV given another",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Form the conditional expectation of one RV given another CS1 (CS1) 1 h Study 2.3 \u2014 Evaluate expectations and conditional expectations After this \u00b7 Study Progress for conditional expectation \u2014 not Topic Complete for 2.3.2. Start "
+      },
+      "session_id": "lsr-c9f12a745538",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": false,
+      "chrome_residual": false,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": true,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 15,
+      "expected_day": "CZ-D2",
+      "expected_package_id": "CS1-EP001-PKG-2.3-MEAN-VARIANCE-CONDITIONING",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 2.3.1 \u2014 form the conditional expectation of one rv given another. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Evaluate expectations and conditional expectations (2.3) Mission: Form the conditional expectation of one RV given another Purpose of this reading: use the CMP to extract Syllabus 2.3.1 \u2014 form the conditional expectation of one rv given another. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 2.3.1 conditional expectation Stop: Through the CMP treatment of Syllabus 2.3.1 (stop before mean/variance via conditioning 2.3.2) Focus questions: \u2022 What is the core move of Syllabus 2.3.1",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.3.1 conditional expectation. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.3.1 (stop be",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 316
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-2.3-MEAN-VARIANCE-CONDITIONING",
+        "campaign_day": "CZ-D2",
+        "html": "/tmp/ro006/evidence/day15_CZ-D2_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you finished mean and variance via conditioning; tomorrow is Revision mode \u2014 retrieve the 2.3 chain closed-book be",
+        "package_student_facing": "Tomorrow: Campaign Zeta Revision (retrieve 2.3.1\u20132.3.2). Optional light prep: list the two hinges from memory \u2014 titles o",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Form the moment and cumulant generating functions of an RV",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Form the moment and cumulant generating functions of an RV CS1 (CS1) 1 h Study 2.4 \u2014 Evaluate and apply generating functions After this \u00b7 Study Progress for MGF/CGF \u2014 not Topic Complete for 2.4.2. Start Today&#39;s Session Progr"
+      },
+      "session_id": "lsr-a9ad1d9671ec",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": true,
+      "epsilon_focus": false
+    },
+    {
+      "day_index": 16,
+      "expected_day": "CZ-R1",
+      "expected_package_id": "CS1-EP001-PKG-REV-CONDITIONAL-EXPECTATIONS",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 2.3.2 \u2014 obtain mean and variance via conditioning. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Evaluate expectations and conditional expectations (2.3) Mission: Obtain mean and variance via conditioning Purpose of this reading: use the CMP to extract Syllabus 2.3.2 \u2014 obtain mean and variance via conditioning. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 2.3.2 mean and variance via conditioning Stop: Through CMP 2.3.2 (stop before generating functions 2.4) Focus questions: \u2022 What is the core move of Syllabus 2.3.2? \u2022 What warrant separates today&#39;s skill from yesterd",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.3.2 mean and variance via conditioning. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.3.2 (stop before generating",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": false,
+            "exit_line": false,
+            "return_cue": false,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 310
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": false,
+          "return_cue": false,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-REV-CONDITIONAL-EXPECTATIONS",
+        "campaign_day": "CZ-R1",
+        "html": "/tmp/ro006/evidence/day16_CZ-R1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Campaign Zeta / Volume CS1-006 completes after this Revision. Honest stop: 2.3 Pilot Arc closed \u2014 not Chapter 2 complete",
+        "package_student_facing": "Campaign Zeta / CS1-006 complete after today (pending human Approver + LIVE). Honest next: stop or await 2.4 successor V",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Form the moment and cumulant generating functions of an RV",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Form the moment and cumulant generating functions of an RV CS1 (CS1) 1 h Study 2.4 \u2014 Evaluate and apply generating functions After this \u00b7 Study Progress for MGF/CGF \u2014 not Topic Complete for 2.4.2. Start Today&#39;s Session Progr"
+      },
+      "session_id": "lsr-94967bee2191",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": true,
+      "epsilon_focus": false,
+      "revision_q6_residual": false
+    },
+    {
+      "day_index": 17,
+      "expected_day": "CH-D1",
+      "expected_package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Zeta chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus",
+          "body_sample": " Topic: Campaign Zeta revision \u2014 expectations and conditional expectations (CZ-R1) Mission: Retrieve conditional-expectation hinges (2.3) Purpose of this revision stage: strengthen retrieval of the Campaign Zeta chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block. Stop: After revision checks and Reflection \u2014 do not begin S",
+          "support_sample": "Begin closed-book retrieval. Reopen CMP only at a failed locus. After checks, complete Reflection. What did you extract from the CMP setup? Submit Answer ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": false
+          },
+          "ec001_markers": {
+            "Purpose of this reading": false,
+            "Open your CMP": false,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": false,
+            "Knowledge Checks": false
+          },
+          "certified_snippet_hits": {
+            "lead_line": false,
+            "exit_line": false,
+            "return_cue": false,
+            "open_point": false
+          },
+          "verdict": "FAIL",
+          "word_count_body": 222
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": false,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": false,
+          "return_cue": false,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+        "campaign_day": "CH-D1",
+        "html": "/tmp/ro006/evidence/day17_CH-D1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": false,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you formed moment and cumulant generating functions; tomorrow continues 2.4 at moment calculation via series expan",
+        "package_student_facing": "Tomorrow: moment calculation via generating functions (2.4.2). Optional light prep: skim 2.4.2 headings \u2014 titles only to",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "FAIL",
+      "home": {
+        "title_guess": "Form the moment and cumulant generating functions of an RV",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Form the moment and cumulant generating functions of an RV CS1 (CS1) 1 h Study 2.4 \u2014 Evaluate and apply generating functions After this \u00b7 Study Progress for MGF/CGF \u2014 not Topic Complete for 2.4.2. Start Today&#39;s Session Progr"
+      },
+      "session_id": "lsr-5a3e263ac2f1",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": false,
+      "chrome_residual": false,
+      "theta_focus": false,
+      "eta_focus": true,
+      "zeta_focus": false,
+      "epsilon_focus": false
+    }
+  ],
+  "continuation_days": [
+    {
+      "day_index": 18,
+      "expected_day": "CT-D1",
+      "expected_package_id": "CS1-EP001-PKG-2.5-CLT",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 2.4.1 \u2014 form the moment and cumulant generating functions of an rv. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Evaluate and apply generating functions (2.4) Mission: Form the moment and cumulant generating functions of an RV Purpose of this reading: use the CMP to extract Syllabus 2.4.1 \u2014 form the moment and cumulant generating functions of an rv. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 2.4.1 moment and cumulant generating functions Stop: Through the CMP treatment of Syllabus 2.4.1 (stop before moment calculation via GF 2.4.2) Focus questions: \u2022 What is the core move of Syllabus ",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.4.1 moment and cumulant generating functions. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllab",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 331
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": true,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-2.5-CLT",
+        "campaign_day": "CT-D1",
+        "html": "/tmp/ro006/evidence/day18_CT-D1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you stated and applied the CLT for iid sequences; tomorrow continues 2.5 at comparison of simulated samples with t",
+        "package_student_facing": "Tomorrow: comparison of simulated samples with the Normal (2.5.2). Optional light prep: skim 2.5.2 headings \u2014 titles onl",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "State and apply the CLT for an iid sequence",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission State and apply the CLT for an iid sequence CS1 (CS1) 1 h Study 2.5 \u2014 State and apply the central limit theorem After this \u00b7 Study Progress for CLT (iid) \u2014 not Topic Complete for 2.5.2. Start Today&#39;s Session Progress Progres"
+      },
+      "session_id": "lsr-526746f78c9d",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": true,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": true,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "epsilon_focus": false,
+      "detected_campaign_day": null,
+      "transit_only": true
+    },
+    {
+      "day_index": 19,
+      "expected_day": "CT-D2",
+      "expected_package_id": "CS1-EP001-PKG-2.5-SIMULATED-SAMPLE-NORMAL",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 2.4.2 \u2014 obtain moments via series expansion or differentiation of a gf. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Evaluate and apply generating functions (2.4) Mission: Obtain moments via series expansion or differentiation of a GF Purpose of this reading: use the CMP to extract Syllabus 2.4.2 \u2014 obtain moments via series expansion or differentiation of a gf. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 2.4.2 moment calculation via generating functions Stop: Through CMP 2.4.2 (stop before central limit theorem 2.5) Focus questions: \u2022 What is the core move of Syllabus 2.4.2? \u2022 What warrant",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.4.2 moment calculation via generating functions. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.4.2 (stop before c",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 314
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-2.5-SIMULATED-SAMPLE-NORMAL",
+        "campaign_day": "CT-D2",
+        "html": "/tmp/ro006/evidence/day19_CT-D2_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you finished simulated-sample comparison with the Normal; tomorrow is Revision mode \u2014 retrieve the 2.5 chain close",
+        "package_student_facing": "Tomorrow: Campaign Theta Revision (retrieve 2.5.1\u20132.5.2). Optional light prep: list the two hinges from memory \u2014 titles ",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "State and apply the CLT for an iid sequence",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission State and apply the CLT for an iid sequence CS1 (CS1) 1 h Study 2.5 \u2014 State and apply the central limit theorem After this \u00b7 Study Progress for CLT (iid) \u2014 not Topic Complete for 2.5.2. Start Today&#39;s Session Progress Progres"
+      },
+      "session_id": "lsr-77c6fc2d3b71",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": true,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "epsilon_focus": false,
+      "detected_campaign_day": null,
+      "transit_only": true
+    },
+    {
+      "day_index": 20,
+      "expected_day": "CT-R1",
+      "expected_package_id": "CS1-EP001-PKG-REV-CENTRAL-LIMIT-THEOREM",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Eta chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus.",
+          "body_sample": " Topic: Campaign Eta revision \u2014 generating functions (CH-R1) Mission: Retrieve generating-function hinges (2.4) Purpose of this revision stage: strengthen retrieval of the Campaign Eta chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block. Stop: After revision checks and Reflection \u2014 do not begin Syllabus 2.5 in this sitting",
+          "support_sample": "Begin closed-book retrieval. Reopen CMP only at a failed locus. After checks, complete Reflection. What did you extract from the CMP setup? Submit Answer ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": false
+          },
+          "ec001_markers": {
+            "Purpose of this reading": false,
+            "Open your CMP": false,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": false,
+            "Knowledge Checks": false
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "FAIL",
+          "word_count_body": 229
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": false,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-REV-CENTRAL-LIMIT-THEOREM",
+        "campaign_day": "CT-R1",
+        "html": "/tmp/ro006/evidence/day20_CT-R1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": false,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Campaign Theta / Volume CS1-008 completes after this Revision. Honest stop: 2.5 Pilot Arc closed \u2014 not Chapter 2 complet",
+        "package_student_facing": "Campaign Theta / CS1-008 complete after today (pending human Approver + LIVE). Honest next: stop or await 2.6 successor ",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "FAIL",
+      "home": {
+        "title_guess": "State and apply the CLT for an iid sequence",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission State and apply the CLT for an iid sequence CS1 (CS1) 1 h Study 2.5 \u2014 State and apply the central limit theorem After this \u00b7 Study Progress for CLT (iid) \u2014 not Topic Complete for 2.5.2. Start Today&#39;s Session Progress Progres"
+      },
+      "session_id": "lsr-db7c62b18cb1",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": false,
+      "chrome_residual": true,
+      "theta_focus": true,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "epsilon_focus": false,
+      "detected_campaign_day": null,
+      "transit_only": true
+    },
+    {
+      "day_index": 21,
+      "expected_day": "CT-D1",
+      "expected_package_id": "CS1-EP001-PKG-2.5-CLT",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 2.5.1 \u2014 state and apply the clt for an iid sequence. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: State and apply the central limit theorem (2.5) Mission: State and apply the CLT for an iid sequence Purpose of this reading: use the CMP to extract Syllabus 2.5.1 \u2014 state and apply the clt for an iid sequence. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 2.5.1 central limit theorem (iid) Stop: Through the CMP treatment of Syllabus 2.5.1 (stop before simulated-sample comparison 2.5.2) Focus questions: \u2022 What is the core move of Syllabus 2.5.1? \u2022 What warrant separates today&#",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.5.1 central limit theorem (iid). Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.5.1 (sto",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 327
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-2.5-CLT",
+        "campaign_day": "CT-D1",
+        "html": "/tmp/ro006/evidence/day21_CT-D1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you stated and applied the CLT for iid sequences; tomorrow continues 2.5 at comparison of simulated samples with t",
+        "package_student_facing": "Tomorrow: comparison of simulated samples with the Normal (2.5.2). Optional light prep: skim 2.5.2 headings \u2014 titles onl",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.6 \u2014 Describe random sampling and the sampling distributions of statistics commonly used in After this \u00b7 A situation\u2192family map for the syllabus discrete se"
+      },
+      "session_id": "lsr-38131e086f45",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": false,
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "theta_focus": true,
+      "eta_focus": true,
+      "zeta_focus": false,
+      "epsilon_focus": false,
+      "detected_campaign_day": "CT-D1"
+    },
+    {
+      "day_index": 22,
+      "expected_day": "CT-D2",
+      "expected_package_id": "CS1-EP001-PKG-2.5-SIMULATED-SAMPLE-NORMAL",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 2.5.2 \u2014 compare simulated samples with the normal distribution. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: State and apply the central limit theorem (2.5) Mission: Compare simulated samples with the Normal distribution Purpose of this reading: use the CMP to extract Syllabus 2.5.2 \u2014 compare simulated samples with the normal distribution. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 2.5.2 simulated samples compared with the Normal Stop: Through CMP 2.5.2 (stop before sampling distributions 2.6) Focus questions: \u2022 What is the core move of Syllabus 2.5.2? \u2022 What warrant separates tod",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.5.2 simulated samples compared with the Normal. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.5.2 (stop before sa",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 310
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-2.5-SIMULATED-SAMPLE-NORMAL",
+        "campaign_day": "CT-D2",
+        "html": "/tmp/ro006/evidence/day22_CT-D2_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you finished simulated-sample comparison with the Normal; tomorrow is Revision mode \u2014 retrieve the 2.5 chain close",
+        "package_student_facing": "Tomorrow: Campaign Theta Revision (retrieve 2.5.1\u20132.5.2). Optional light prep: list the two hinges from memory \u2014 titles ",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.6 \u2014 Describe random sampling and the sampling distributions of statistics commonly used in After this \u00b7 A situation\u2192family map for the syllabus discrete se"
+      },
+      "session_id": "lsr-5d355a3a414b",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": false,
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "theta_focus": true,
+      "eta_focus": true,
+      "zeta_focus": false,
+      "epsilon_focus": false,
+      "detected_campaign_day": "CT-D2"
+    },
+    {
+      "day_index": 23,
+      "expected_day": "CT-R1",
+      "expected_package_id": "CS1-EP001-PKG-REV-CENTRAL-LIMIT-THEOREM",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Theta chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locu",
+          "body_sample": " Topic: Campaign Theta revision \u2014 central limit theorem (CT-R1) Mission: Retrieve central-limit hinges (2.5) Purpose of this revision stage: strengthen retrieval of the Campaign Theta chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block. Stop: After revision checks and Reflection \u2014 do not begin Syllabus 2.6 in this sitting ",
+          "support_sample": "Begin closed-book retrieval. Reopen CMP only at a failed locus. After checks, complete Reflection. What did you extract from the CMP setup? Submit Answer ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": false
+          },
+          "ec001_markers": {
+            "Purpose of this reading": false,
+            "Open your CMP": false,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": false,
+            "Knowledge Checks": false
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "FAIL",
+          "word_count_body": 221
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": false,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-REV-CENTRAL-LIMIT-THEOREM",
+        "campaign_day": "CT-R1",
+        "html": "/tmp/ro006/evidence/day23_CT-R1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": false,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Campaign Theta / Volume CS1-008 completes after this Revision. Honest stop: 2.5 Pilot Arc closed \u2014 not Chapter 2 complet",
+        "package_student_facing": "Campaign Theta / CS1-008 complete after today (pending human Approver + LIVE). Honest next: stop or await 2.6 successor ",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.6 \u2014 Describe random sampling and the sampling distributions of statistics commonly used in After this \u00b7 A situation\u2192family map for the syllabus discrete se"
+      },
+      "session_id": "lsr-59c1c105ed1c",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": true,
+      "eta_focus": true,
+      "zeta_focus": false,
+      "epsilon_focus": false,
+      "detected_campaign_day": "CT-R1",
+      "revision_q6_residual": true
+    }
+  ],
+  "theta_certified_days": [
+    {
+      "day_index": 21,
+      "expected_day": "CT-D1",
+      "expected_package_id": "CS1-EP001-PKG-2.5-CLT",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 2.5.1 \u2014 state and apply the clt for an iid sequence. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: State and apply the central limit theorem (2.5) Mission: State and apply the CLT for an iid sequence Purpose of this reading: use the CMP to extract Syllabus 2.5.1 \u2014 state and apply the clt for an iid sequence. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 2.5.1 central limit theorem (iid) Stop: Through the CMP treatment of Syllabus 2.5.1 (stop before simulated-sample comparison 2.5.2) Focus questions: \u2022 What is the core move of Syllabus 2.5.1? \u2022 What warrant separates today&#",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.5.1 central limit theorem (iid). Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.5.1 (sto",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 327
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-2.5-CLT",
+        "campaign_day": "CT-D1",
+        "html": "/tmp/ro006/evidence/day21_CT-D1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you stated and applied the CLT for iid sequences; tomorrow continues 2.5 at comparison of simulated samples with t",
+        "package_student_facing": "Tomorrow: comparison of simulated samples with the Normal (2.5.2). Optional light prep: skim 2.5.2 headings \u2014 titles onl",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.6 \u2014 Describe random sampling and the sampling distributions of statistics commonly used in After this \u00b7 A situation\u2192family map for the syllabus discrete se"
+      },
+      "session_id": "lsr-38131e086f45",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": false,
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "theta_focus": true,
+      "eta_focus": true,
+      "zeta_focus": false,
+      "epsilon_focus": false,
+      "detected_campaign_day": "CT-D1"
+    },
+    {
+      "day_index": 22,
+      "expected_day": "CT-D2",
+      "expected_package_id": "CS1-EP001-PKG-2.5-SIMULATED-SAMPLE-NORMAL",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 2.5.2 \u2014 compare simulated samples with the normal distribution. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: State and apply the central limit theorem (2.5) Mission: Compare simulated samples with the Normal distribution Purpose of this reading: use the CMP to extract Syllabus 2.5.2 \u2014 compare simulated samples with the normal distribution. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 2.5.2 simulated samples compared with the Normal Stop: Through CMP 2.5.2 (stop before sampling distributions 2.6) Focus questions: \u2022 What is the core move of Syllabus 2.5.2? \u2022 What warrant separates tod",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.5.2 simulated samples compared with the Normal. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.5.2 (stop before sa",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 310
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": false,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-2.5-SIMULATED-SAMPLE-NORMAL",
+        "campaign_day": "CT-D2",
+        "html": "/tmp/ro006/evidence/day22_CT-D2_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you finished simulated-sample comparison with the Normal; tomorrow is Revision mode \u2014 retrieve the 2.5 chain close",
+        "package_student_facing": "Tomorrow: Campaign Theta Revision (retrieve 2.5.1\u20132.5.2). Optional light prep: list the two hinges from memory \u2014 titles ",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.6 \u2014 Describe random sampling and the sampling distributions of statistics commonly used in After this \u00b7 A situation\u2192family map for the syllabus discrete se"
+      },
+      "session_id": "lsr-5d355a3a414b",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": false,
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "theta_focus": true,
+      "eta_focus": true,
+      "zeta_focus": false,
+      "epsilon_focus": false,
+      "detected_campaign_day": "CT-D2"
+    },
+    {
+      "day_index": 23,
+      "expected_day": "CT-R1",
+      "expected_package_id": "CS1-EP001-PKG-REV-CENTRAL-LIMIT-THEOREM",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Theta chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locu",
+          "body_sample": " Topic: Campaign Theta revision \u2014 central limit theorem (CT-R1) Mission: Retrieve central-limit hinges (2.5) Purpose of this revision stage: strengthen retrieval of the Campaign Theta chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block. Stop: After revision checks and Reflection \u2014 do not begin Syllabus 2.6 in this sitting ",
+          "support_sample": "Begin closed-book retrieval. Reopen CMP only at a failed locus. After checks, complete Reflection. What did you extract from the CMP setup? Submit Answer ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": false
+          },
+          "ec001_markers": {
+            "Purpose of this reading": false,
+            "Open your CMP": false,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": false,
+            "Knowledge Checks": false
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "FAIL",
+          "word_count_body": 221
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": false,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-REV-CENTRAL-LIMIT-THEOREM",
+        "campaign_day": "CT-R1",
+        "html": "/tmp/ro006/evidence/day23_CT-R1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": false,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Campaign Theta / Volume CS1-008 completes after this Revision. Honest stop: 2.5 Pilot Arc closed \u2014 not Chapter 2 complet",
+        "package_student_facing": "Campaign Theta / CS1-008 complete after today (pending human Approver + LIVE). Honest next: stop or await 2.6 successor ",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.6 \u2014 Describe random sampling and the sampling distributions of statistics commonly used in After this \u00b7 A situation\u2192family map for the syllabus discrete se"
+      },
+      "session_id": "lsr-59c1c105ed1c",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": true,
+      "eta_focus": true,
+      "zeta_focus": false,
+      "epsilon_focus": false,
+      "detected_campaign_day": "CT-R1",
+      "revision_q6_residual": true
+    }
+  ],
+  "verdict": "PASS WITH RESIDUAL",
+  "summary": {
+    "theta_pass_count": 3,
+    "theta_days_observed": [
+      "CT-D1",
+      "CT-D2",
+      "CT-R1"
+    ],
+    "learning_days_pass": 2,
+    "revision_days_pass": 1,
+    "natural_theta_chain": true,
+    "natural_chr1_to_ctd1": true,
+    "continuity_front_entry": "continue_topic section 2 \u2192 CB\u2026CG\u2026CE\u2026CH-R1 \u2192 CT-D1\u2026CT-R1",
+    "revision_q6_residuals": [
+      "CT-R1"
+    ],
+    "chrome_residuals": [
+      "CT-R1"
+    ],
+    "note": "After Continuity Front label desync (expected labels ahead of true package), continued same Internal Alpha student for true Theta sittings \u2014 RO-004 pattern"
+  },
+  "residual": "revision Q6 and/or tomorrow chrome residual (package path PASS); label desync during transit tracked as ops residual"
+}
