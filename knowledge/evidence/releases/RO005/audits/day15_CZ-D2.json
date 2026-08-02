@@ -1,0 +1,110 @@
+{
+  "day_index": 15,
+  "expected_day": "CZ-D2",
+  "expected_package_id": "CS1-EP001-PKG-2.3-MEAN-VARIANCE-CONDITIONING",
+  "finished": true,
+  "reading": {
+    "audit": {
+      "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 2.3.2 \u2014 obtain mean and variance via conditioning. Stop before out-of-scope later LOs.",
+      "body_sample": " Topic: Evaluate expectations and conditional expectations (2.3) Mission: Obtain mean and variance via conditioning Purpose of this reading: use the CMP to extract Syllabus 2.3.2 \u2014 obtain mean and variance via conditioning. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 2.3.2 mean and variance via conditioning Stop: Through CMP 2.3.2 (stop before generating functions 2.4) Focus questions: \u2022 What is the core move of Syllabus 2.3.2? \u2022 What warrant separates today&#39;s skill from yesterd",
+      "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.3.2 mean and variance via conditioning. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.3.2 (stop before generating",
+      "is_fallback_shell": false,
+      "is_guided_reading": false,
+      "mentions_cmp": true,
+      "cmp_refs_present": true,
+      "q_checks": {
+        "Q1_cmp_open": true,
+        "Q2_purpose": true,
+        "Q3_attention": true,
+        "Q4_ignore": true,
+        "Q5_stop": true,
+        "Q6_next": true
+      },
+      "ec001_markers": {
+        "Purpose of this reading": true,
+        "Open your CMP": true,
+        "Focus questions": true,
+        "Misconception watch": true,
+        "Out of scope today": true,
+        "Return cue": true,
+        "Worked-example": true,
+        "Knowledge Checks": true
+      },
+      "certified_snippet_hits": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true
+      },
+      "verdict": "PASS",
+      "word_count_body": 310
+    },
+    "checklist": {
+      "CMP_reference_present": true,
+      "Educational_purpose_clear": true,
+      "Reading_focus_clear": true,
+      "Ignore_guidance_present": true,
+      "Stop_condition_explicit": true,
+      "Immediate_next_activity_named": true,
+      "Not_fallback_shell": true,
+      "Matches_certified_snippets": true
+    },
+    "fidelity": {
+      "lead_line": true,
+      "exit_line": true,
+      "return_cue": true,
+      "open_point": true,
+      "stop_condition": true,
+      "focus_q_0": true,
+      "focus_q_1": false,
+      "fidelity_pass": false
+    },
+    "package_id": "CS1-EP001-PKG-2.3-MEAN-VARIANCE-CONDITIONING",
+    "campaign_day": "CZ-D2",
+    "html": "/tmp/ro005/evidence/day15_CZ-D2_reading.html"
+  },
+  "checklist": {
+    "CMP_reference_present": true,
+    "Educational_purpose_clear": true,
+    "Reading_focus_clear": true,
+    "Ignore_guidance_present": true,
+    "Stop_condition_explicit": true,
+    "Immediate_next_activity_named": true,
+    "Not_fallback_shell": true,
+    "Matches_certified_snippets": true
+  },
+  "tomorrow_preview": {
+    "next_topic_code": false,
+    "continuity_fragment": true,
+    "student_facing_fragment": false,
+    "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+    "package_continuity_line": "Today you finished mean and variance via conditioning; tomorrow is Revision mode \u2014 retrieve the 2.3 chain closed-book be",
+    "package_student_facing": "Tomorrow: Campaign Zeta Revision (retrieve 2.3.1\u20132.3.2). Optional light prep: list the two hinges from memory \u2014 titles o",
+    "chrome_matches_package_continuity": false
+  },
+  "verdict": "PASS",
+  "home": {
+    "title_guess": "Form the moment and cumulant generating functions of an RV",
+    "day_complete": false,
+    "has_start": true,
+    "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Form the moment and cumulant generating functions of an RV CS1 (CS1) 1 h Study 2.4 \u2014 Evaluate and apply generating functions After this \u00b7 Study Progress for MGF/CGF \u2014 not Topic Complete for 2.4.2. Start Today&#39;s Session Progr"
+  },
+  "session_id": "lsr-ae8eb774fc70",
+  "educational_fidelity": {
+    "lead_line": true,
+    "exit_line": true,
+    "return_cue": true,
+    "open_point": true,
+    "stop_condition": true,
+    "focus_q_0": true,
+    "focus_q_1": false,
+    "fidelity_pass": false
+  },
+  "reflection_ok": true,
+  "tomorrow_chrome_matches_approved": true,
+  "package_path_ok": true,
+  "chrome_residual": false,
+  "eta_focus": false,
+  "zeta_focus": true,
+  "epsilon_focus": false
+}

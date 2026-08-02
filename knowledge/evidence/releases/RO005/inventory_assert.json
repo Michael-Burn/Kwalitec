@@ -1,0 +1,22 @@
+{
+  "render_job_id": "job-d9n5rru417fc73cnsoug",
+  "render_job_status": "succeeded",
+  "local_tip_matched": [
+    "COUNT 51",
+    "ETA 3",
+    "ZETA 3",
+    "EPSILON 5",
+    "GAMMA 5",
+    "DELTA 27",
+    "CH-D1 CS1-EP001-PKG-2.4-MGF-CGF",
+    "CH-D2 CS1-EP001-PKG-2.4-MOMENT-VIA-GF",
+    "CH-R1 CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+    "ENTRY_24 ('CH-D1', 'CS1-EP001-PKG-2.4-MGF-CGF')",
+    "AFTER_CZR1 ('CH-D1', 'CS1-EP001-PKG-2.4-MGF-CGF')",
+    "ENTRY_23 ('CZ-D1', 'CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION')",
+    "ENTRY_22 ('CE-D1', 'CS1-EP001-PKG-2.2-MARGINAL-CONDITIONAL')",
+    "ENTRY_41 ('CD-D1', 'CS1-EP001-PKG-4.1-RESPONSE-EXPLANATORY')",
+    "ASSERT_OK"
+  ],
+  "expected_commit": "40c487e54c73d98a95e8ebfe4b4fbee5c2c52c8d"
+}

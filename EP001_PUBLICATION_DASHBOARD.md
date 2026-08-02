@@ -151,18 +151,32 @@ Chrome honesty:                         Finish/Home tomorrow residual RO1-R1 ope
 | Wave 4 educational packages unmodified in review | **Met** |
 | Wave 4 joint LIVE deploy | **Executed (RO-004)** tip `58096787…` |
 | Wave 4 LIVE Verified | **Met** (package path; residual RO4-R1) |
-| Wave 5 | **Not started** (unblocked) |
+| Wave 5 catalogue authored | **Met** — `campaign-eta-cs1007/` (3 packages) |
+| Wave 5 human seals complete | **Met** — HR-005 |
+| Wave 5 publication decision | **APPROVED** |
+| Wave 5 educational packages unmodified in review | **Met** |
+| Wave 5 joint LIVE deploy | **Executed (RO-005)** tip `40c487e54…` |
+| Wave 5 LIVE Verified | **Met** (package path; residual RO5-R1) |
+| Wave 6 | **Forbidden** until separate Wave 6 start authorisation (Wave 5 LIVE exit met) |
 
-**Programme state:** Wave 1 LIVE Verified · RO1-R1 closed · **Wave 2 LIVE-complete (RO-002 / PB-004)** · **Wave 3 LIVE-complete (RO-003 / PB-005)** · **Wave 4 LIVE-complete (RO-004 / PB-006)** (CS1-006 / Zeta · 2.3) · Wave 5 unblocked · not started.
+**Programme state:** Wave 1 LIVE Verified · RO1-R1 closed · **Wave 2 LIVE-complete (RO-002 / PB-004)** · **Wave 3 LIVE-complete (RO-003 / PB-005)** · **Wave 4 LIVE-complete (RO-004 / PB-006)** · **Wave 5 LIVE-complete (RO-005 / PB-007)** (CS1-007 / Eta · 2.4) · Wave 6 not started.
+
+### Continuity Front Register (dashboard)
+
+| Front | Location | Status |
+|-------|----------|--------|
+| Student LIVE Continuity Front | Closed through **2.4.2** / CH-R1 | RO-005 |
+| Catalogue Continuity Front | **2.5** next (not commissioned) | Wave 6 gated |
+| Next after Wave 5 LIVE | **2.5** | Not commissioned |
 
 ---
 
 ## 8. Next actions
 
 1. Keep Wave 0 Alpha/Beta Approver honesty gap open (not waived).  
-2. Track RO4-R1 Home title collision + CZ-R1 chrome / Q6 residual as PI (does not block Wave 5 start).  
-3. **Do not begin Wave 5** until a separate authorised programme starts (LIVE exit met; start not automatic).  
-4. Next Continuity Front geography after Wave 4 LIVE: **2.4**.
+2. Track RO5-R1 Home / label desync + CH-R1 chrome / Q6 residual as PI (does not block Wave 6 start authorisation).  
+3. Wave 5 LIVE-complete — Coverage **36 / 72 (50.0%)**.  
+4. **Do not begin Wave 6** until a separate authorised programme starts. Next LIVE Continuity Front geography: **2.5**.
 
 ---
 
@@ -198,12 +212,13 @@ Chrome honesty:                         Finish/Home tomorrow residual RO1-R1 ope
 
 ---
 
-Signed: Publication Dashboard · EP-001 · HR-001 · HR-002 · HR-003 · HR-004 · RO-001 · RO-002 · RO-003 · RO-004 · 2026-08-01  
+Signed: Publication Dashboard · EP-001 · HR-001 · HR-002 · HR-003 · HR-004 · HR-005 · RO-001 · RO-002 · RO-003 · RO-004 · RO-005 · 2026-08-02  
 **Publication decision (CS1-004):** APPROVED · LIVE Verified  
 **Publication decision (CS1-003):** APPROVED · LIVE-complete (package path)  
 **Publication decision (CS1-005):** **APPROVED** · LIVE-complete (package path)  
 **Publication decision (CS1-006):** **APPROVED** · LIVE-complete (package path)  
-**Wave 5:** Not started (unblocked)
+**Publication decision (CS1-007):** **APPROVED** · LIVE-complete (package path)  
+**Wave 6:** Not started
 
 ---
 
@@ -221,3 +236,20 @@ Signed: Publication Dashboard · EP-001 · HR-001 · HR-002 · HR-003 · HR-004 
 **LIVE loader:** 3 Zeta packages `publication_approved` · tip `58096787…`  
 **Companions:** `EP004_WAVE4_PLAN.md` · `EP004_COVERAGE_UPDATE.md` · `HR004_*` · `RO004_*` · `PB006_*`  
 **Residual:** RO4-R1 Home title collision during late Epsilon; RO4-R2/R3 CZ-R1 Q6/chrome.
+
+---
+
+## 12. Wave 5 (CS1-007) — package pipeline
+
+| Package | Day | LO | Authored | Desk Certified | Tutor | Founder | Auditor | Publication Approver | Approved | LIVE Verified |
+|---------|-----|----|:--------:|:--------------:|:-----:|:-------:|:-------:|:--------------------:|:--------:|:-------------:|
+| `CS1-EP001-PKG-2.4-MGF-CGF` | CH-D1 | 2.4.1 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-2.4-MOMENT-VIA-GF` | CH-D2 | 2.4.2 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-REV-GENERATING-FUNCTIONS` | CH-R1 | Rev | ● | ● | ● | ● | ● | ● | ● | ● |
+
+**Key:** ● = complete · ○ = not reached  
+
+**Catalogue root:** `app/curriculum/data/educational_campaigns/cs1/campaign-eta-cs1007/`  
+**LIVE loader:** 3 Eta packages `publication_approved` · tip `40c487e54…`  
+**Companions:** `EP005_WAVE5_PLAN.md` · `EP005_COVERAGE_UPDATE.md` · `HR005_*` · `RO005_*` · `PB007_*`  
+**Residual:** RO5-R1 Home / label desync during late Zeta; RO5-R2/R3 CH-R1 Q6/chrome.

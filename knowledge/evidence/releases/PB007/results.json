@@ -1,0 +1,180 @@
+{
+  "programme": "PB-007 Progressive Educational Confidence (Eta)",
+  "host": "https://kwalitec.onrender.com",
+  "expected_commit": "40c487e54c73d98a95e8ebfe4b4fbee5c2c52c8d",
+  "live_health": {
+    "build_date": "2026-08-01",
+    "build_number": "local",
+    "commit": "40c487e54c73d98a95e8ebfe4b4fbee5c2c52c8d",
+    "components": {
+      "database": {
+        "latency_ms": 13.0,
+        "name": "database",
+        "status": "ok"
+      },
+      "instance_storage": {
+        "meta": {
+          "path": "/opt/render/project/src/instance"
+        },
+        "name": "instance_storage",
+        "status": "ok"
+      },
+      "migrations": {
+        "meta": {
+          "current": "202607310002",
+          "head": "202607310002"
+        },
+        "name": "migrations",
+        "status": "ok"
+      },
+      "queue": {
+        "detail": "manual automation runner (no external broker)",
+        "meta": {
+          "broker": "none",
+          "runner": "app.automation"
+        },
+        "name": "queue",
+        "status": "ok"
+      }
+    },
+    "database": "connected",
+    "environment": "production",
+    "status": "ok",
+    "timestamp": "2026-08-02T01:25:49.140216+00:00",
+    "version": "2.0.0-beta.1"
+  },
+  "fingerprint_ok": true,
+  "live_certified_inventory": [
+    "CH-D1",
+    "CH-D2",
+    "CH-R1"
+  ],
+  "personas": [
+    {
+      "slug": "first_time",
+      "label": "First-time candidate",
+      "verdict": "PASS",
+      "summary": {
+        "certified_days_scored": 3,
+        "certified_all_pass": true,
+        "avg_score_over_9": 9.0,
+        "trajectory": [
+          {
+            "day": "CH-D1",
+            "confidence_level": "HIGH",
+            "score_over_9": 9,
+            "dimensions": {
+              "mission_clarity": "PASS",
+              "cmp_partnership": "PASS",
+              "educational_confidence": "PASS",
+              "session_completion": "PASS",
+              "reflection_quality": "PASS",
+              "transition_quality": "PASS",
+              "tomorrow_confidence": "PASS",
+              "trust_retention": "PASS",
+              "educational_consistency": "PASS"
+            }
+          },
+          {
+            "day": "CH-D2",
+            "confidence_level": "HIGH",
+            "score_over_9": 9,
+            "dimensions": {
+              "mission_clarity": "PASS",
+              "cmp_partnership": "PASS",
+              "educational_confidence": "PASS",
+              "session_completion": "PASS",
+              "reflection_quality": "PASS",
+              "transition_quality": "PASS",
+              "tomorrow_confidence": "PASS",
+              "trust_retention": "PASS",
+              "educational_consistency": "PASS"
+            }
+          },
+          {
+            "day": "CH-R1",
+            "confidence_level": "HIGH",
+            "score_over_9": 9,
+            "dimensions": {
+              "mission_clarity": "PASS",
+              "cmp_partnership": "PASS",
+              "educational_confidence": "PASS",
+              "session_completion": "PASS",
+              "reflection_quality": "PASS",
+              "transition_quality": "PASS",
+              "tomorrow_confidence": "PASS",
+              "trust_retention": "PASS",
+              "educational_consistency": "PASS"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "slug": "repeat",
+      "label": "Repeat sitting",
+      "verdict": "PASS",
+      "summary": {
+        "certified_days_scored": 3,
+        "certified_all_pass": true,
+        "avg_score_over_9": 9.0,
+        "trajectory": [
+          {
+            "day": "CH-D1",
+            "confidence_level": "HIGH",
+            "score_over_9": 9,
+            "dimensions": {
+              "mission_clarity": "PASS",
+              "cmp_partnership": "PASS",
+              "educational_confidence": "PASS",
+              "session_completion": "PASS",
+              "reflection_quality": "PASS",
+              "transition_quality": "PASS",
+              "tomorrow_confidence": "PASS",
+              "trust_retention": "PASS",
+              "educational_consistency": "PASS"
+            }
+          },
+          {
+            "day": "CH-D2",
+            "confidence_level": "HIGH",
+            "score_over_9": 9,
+            "dimensions": {
+              "mission_clarity": "PASS",
+              "cmp_partnership": "PASS",
+              "educational_confidence": "PASS",
+              "session_completion": "PASS",
+              "reflection_quality": "PASS",
+              "transition_quality": "PASS",
+              "tomorrow_confidence": "PASS",
+              "trust_retention": "PASS",
+              "educational_consistency": "PASS"
+            }
+          },
+          {
+            "day": "CH-R1",
+            "confidence_level": "HIGH",
+            "score_over_9": 9,
+            "dimensions": {
+              "mission_clarity": "PASS",
+              "cmp_partnership": "PASS",
+              "educational_confidence": "PASS",
+              "session_completion": "PASS",
+              "reflection_quality": "PASS",
+              "transition_quality": "PASS",
+              "tomorrow_confidence": "PASS",
+              "trust_retention": "PASS",
+              "educational_consistency": "PASS"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "cohort": {
+    "personas": 2,
+    "pass": 2,
+    "fail": 0
+  },
+  "verdict": "PASS"
+}

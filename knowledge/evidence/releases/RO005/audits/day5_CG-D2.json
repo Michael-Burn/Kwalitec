@@ -1,0 +1,110 @@
+{
+  "day_index": 5,
+  "expected_day": "CG-D2",
+  "expected_package_id": "CS1-EP001-PKG-2.1-POISSON-PROCESS",
+  "finished": true,
+  "reading": {
+    "audit": {
+      "title": "Reading: Purpose of this reading: use the CMP to extract the Poisson process definition and its connection to the Poisson distribution. Stop before inverse-transform and software generation LOs.",
+      "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Connect the Poisson process to the Poisson distribution Purpose of this reading: use the CMP to extract the Poisson process definition and its connection to the Poisson distribution. Stop before inverse-transform and software generation LOs. Open: CMP \u00b7 Syllabus 2.1.4 Poisson process Stop: Through the CMP treatment of the Poisson process and its Poisson-distribution conne",
+      "support_sample": "Open your CMP at Syllabus 2.1.4 \u2014 Poisson process. Kwalitec is the guide; the CMP is the authoritative material. Hunt with the focus questions; complete the annotation task. Ignore generation methods and joint distributions today. Stop when the 2.1.4 block is complete. Then close the CMP and return here for Worked-example re-entry, then Knowledge Checks. What did you extract from the CMP setup? Su",
+      "is_fallback_shell": false,
+      "is_guided_reading": false,
+      "mentions_cmp": true,
+      "cmp_refs_present": true,
+      "q_checks": {
+        "Q1_cmp_open": true,
+        "Q2_purpose": true,
+        "Q3_attention": true,
+        "Q4_ignore": true,
+        "Q5_stop": true,
+        "Q6_next": true
+      },
+      "ec001_markers": {
+        "Purpose of this reading": true,
+        "Open your CMP": true,
+        "Focus questions": true,
+        "Misconception watch": true,
+        "Out of scope today": true,
+        "Return cue": true,
+        "Worked-example": true,
+        "Knowledge Checks": true
+      },
+      "certified_snippet_hits": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true
+      },
+      "verdict": "PASS",
+      "word_count_body": 303
+    },
+    "checklist": {
+      "CMP_reference_present": true,
+      "Educational_purpose_clear": true,
+      "Reading_focus_clear": true,
+      "Ignore_guidance_present": true,
+      "Stop_condition_explicit": true,
+      "Immediate_next_activity_named": true,
+      "Not_fallback_shell": true,
+      "Matches_certified_snippets": true
+    },
+    "fidelity": {
+      "lead_line": true,
+      "exit_line": true,
+      "return_cue": true,
+      "open_point": true,
+      "stop_condition": true,
+      "focus_q_0": true,
+      "focus_q_1": true,
+      "fidelity_pass": true
+    },
+    "package_id": "CS1-EP001-PKG-2.1-POISSON-PROCESS",
+    "campaign_day": "CG-D2",
+    "html": "/tmp/ro005/evidence/day5_CG-D2_reading.html"
+  },
+  "checklist": {
+    "CMP_reference_present": true,
+    "Educational_purpose_clear": true,
+    "Reading_focus_clear": true,
+    "Ignore_guidance_present": true,
+    "Stop_condition_explicit": true,
+    "Immediate_next_activity_named": true,
+    "Not_fallback_shell": true,
+    "Matches_certified_snippets": true
+  },
+  "tomorrow_preview": {
+    "next_topic_code": true,
+    "continuity_fragment": true,
+    "student_facing_fragment": false,
+    "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+    "package_continuity_line": "Today you connected Poisson process to Poisson counts; tomorrow moves to generating basic discrete and continuous RVs by",
+    "package_student_facing": "Tomorrow: inverse transform generation of basic discrete and continuous random variables (2.1.5). Optional light prep: s",
+    "chrome_matches_package_continuity": false
+  },
+  "verdict": "PASS",
+  "home": {
+    "title_guess": "Form marginal and conditional distributions from a joint",
+    "day_complete": false,
+    "has_start": true,
+    "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Form marginal and conditional distributions from a joint CS1 (CS1) 1 h Study 2.2 \u2014 Determine the characteristics of jointly distributed random variables After this \u00b7 Study Progress for marginal/conditional \u2014 not Topic Complete f"
+  },
+  "session_id": "lsr-910870514b59",
+  "educational_fidelity": {
+    "lead_line": true,
+    "exit_line": true,
+    "return_cue": true,
+    "open_point": true,
+    "stop_condition": true,
+    "focus_q_0": true,
+    "focus_q_1": true,
+    "fidelity_pass": true
+  },
+  "reflection_ok": true,
+  "tomorrow_chrome_matches_approved": true,
+  "package_path_ok": true,
+  "chrome_residual": false,
+  "eta_focus": false,
+  "zeta_focus": false,
+  "epsilon_focus": false
+}

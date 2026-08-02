@@ -1,0 +1,110 @@
+{
+  "day_index": 1,
+  "expected_day": "CB-D2",
+  "expected_package_id": "CS1-CS1002-PKG-2.1-DISCRETE",
+  "finished": true,
+  "reading": {
+    "audit": {
+      "title": "Reading: Purpose of this reading: use the CMP to extract the defining situation and one characteristic for each discrete family in Syllabus 2.1.1 \u2014 so distribution choice is situation-led. Extract tha",
+      "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Name the discrete distribution family by situation Purpose of this reading: use the CMP to extract the defining situation and one characteristic for each discrete family in Syllabus 2.1.1 \u2014 so distribution choice is situation-led. Extract that catalogue frame from the CMP, then stop before continuous distributions. Open: CMP \u00b7 Syllabus 2.1.1 discrete univariate distributi",
+      "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at Syllabus 2.1.1 \u2014 discrete univariate distributions. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore continuous families, probability/quantile evaluation dee",
+      "is_fallback_shell": false,
+      "is_guided_reading": false,
+      "mentions_cmp": true,
+      "cmp_refs_present": true,
+      "q_checks": {
+        "Q1_cmp_open": true,
+        "Q2_purpose": true,
+        "Q3_attention": true,
+        "Q4_ignore": true,
+        "Q5_stop": true,
+        "Q6_next": true
+      },
+      "ec001_markers": {
+        "Purpose of this reading": true,
+        "Open your CMP": true,
+        "Focus questions": true,
+        "Misconception watch": true,
+        "Out of scope today": true,
+        "Return cue": true,
+        "Worked-example": true,
+        "Knowledge Checks": true
+      },
+      "certified_snippet_hits": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true
+      },
+      "verdict": "PASS",
+      "word_count_body": 386
+    },
+    "checklist": {
+      "CMP_reference_present": true,
+      "Educational_purpose_clear": true,
+      "Reading_focus_clear": true,
+      "Ignore_guidance_present": true,
+      "Stop_condition_explicit": true,
+      "Immediate_next_activity_named": true,
+      "Not_fallback_shell": true,
+      "Matches_certified_snippets": true
+    },
+    "fidelity": {
+      "lead_line": true,
+      "exit_line": true,
+      "return_cue": true,
+      "open_point": true,
+      "stop_condition": true,
+      "focus_q_0": true,
+      "focus_q_1": true,
+      "fidelity_pass": true
+    },
+    "package_id": "CS1-CS1002-PKG-2.1-DISCRETE",
+    "campaign_day": "CB-D2",
+    "html": "/tmp/ro005/evidence/day1_CB-D2_reading.html"
+  },
+  "checklist": {
+    "CMP_reference_present": true,
+    "Educational_purpose_clear": true,
+    "Reading_focus_clear": true,
+    "Ignore_guidance_present": true,
+    "Stop_condition_explicit": true,
+    "Immediate_next_activity_named": true,
+    "Not_fallback_shell": true,
+    "Matches_certified_snippets": true
+  },
+  "tomorrow_preview": {
+    "next_topic_code": true,
+    "continuity_fragment": true,
+    "student_facing_fragment": false,
+    "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+    "package_continuity_line": "Today you opened discrete family recognition under 2.1.1; tomorrow continues the same 2.1 topic at LO 2.1.2 \u2014 characteri",
+    "package_student_facing": "Tomorrow: basic continuous univariate distributions (2.1.2). Same Chapter 2 entry arc \u2014 now continuous families. Optiona",
+    "chrome_matches_package_continuity": false
+  },
+  "verdict": "PASS",
+  "home": {
+    "title_guess": "Name the discrete distribution family by situation",
+    "day_complete": false,
+    "has_start": true,
+    "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.1 \u2014 Understand the characteristics of basic univariate distributions and how to generate samples After this \u00b7 A situation\u2192family map for the syllabus discr"
+  },
+  "session_id": "lsr-19b11575aa27",
+  "educational_fidelity": {
+    "lead_line": true,
+    "exit_line": true,
+    "return_cue": true,
+    "open_point": true,
+    "stop_condition": true,
+    "focus_q_0": true,
+    "focus_q_1": true,
+    "fidelity_pass": true
+  },
+  "reflection_ok": true,
+  "tomorrow_chrome_matches_approved": true,
+  "package_path_ok": true,
+  "chrome_residual": false,
+  "eta_focus": false,
+  "zeta_focus": false,
+  "epsilon_focus": false
+}

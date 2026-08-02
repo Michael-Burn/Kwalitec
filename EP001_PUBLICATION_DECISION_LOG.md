@@ -1,11 +1,11 @@
 # EP-001 — Publication Decision Log
 
-**Programme:** EP-001 · HR-001 / HR-002 / HR-003 / HR-004 Human Educational Review Cycles  
+**Programme:** EP-001 · HR-001 / HR-002 / HR-003 / HR-004 / HR-005 Human Educational Review Cycles  
 **Instrument:** Permanent historical publication register  
 **Authority:** EF-001 · EP-001 Governance · CE-001 coverage law · PB-002 · Continuity Front Law · HOLD-001 lifted  
 **Opened:** 2026-08-01  
-**Last updated:** 2026-08-01 (RO-004 Wave 4 LIVE-complete)  
-**Rule:** Append or amend rows only from recorded human decisions under authorised review cycles. Do not forge seals outside HR-001 / HR-002 / HR-003 / HR-004 / named human authority.
+**Last updated:** 2026-08-02 (RO-005 Wave 5 LIVE-complete)  
+**Rule:** Append or amend rows only from recorded human decisions under authorised review cycles. Do not forge seals outside HR-001 / HR-002 / HR-003 / HR-004 / HR-005 / named human authority.
 
 ---
 
@@ -150,13 +150,46 @@
 2. Preserve CZ-D1…CZ-R1 continuity chain (selection from CE-R1 → CZ-D1). — **Done** (RO4-R1 Home residual tracked)  
 3. LIVE + CMP + continuity verification before student educational trust / LIVE Verified claim. — **Done (package path)**  
 4. Wave 0 Alpha/Beta Approver honesty gap **not waived** by this APPROVE.  
-5. Wave 5 **not started** until LIVE verification of Wave 4 completes. — **Wave 4 LIVE-complete; Wave 5 unblocked · not started**  
+5. Wave 5 **not started** until LIVE verification of Wave 4 completes. — **Wave 4 LIVE-complete; Wave 5 started (catalogue Under Authoring · human review gate)**  
 6. No until-exam educational trust claim from this Volume alone. — **Held**  
 7. Trust Front (CS1-003) credit not conflated with Continuity Front 2.3 credit. — **Held**
 
 ---
 
-## 2. Context rows — Wave 0 honesty (unchanged by HR-001 Gamma APPROVE / HR-002 Delta APPROVE / HR-003 Epsilon APPROVE / HR-004 Zeta APPROVE)
+## 1D. Active row — Wave 5 (CS1-007 / Campaign Eta)
+
+| Field | Record |
+|-------|--------|
+| **Volume** | `CS1-007` · Generating functions — From MGF/CGF through moment calculation via generating functions · `1.0.0` |
+| **Campaign** | `CS1-EP001-CAMPAIGN-ETA` · `cs1007-1.0.0` |
+| **Review status** | **Complete (HR-005)** — Tutor PASS · Founder PASS · Auditor PASS · Publication Approver APPROVE |
+| **Reviewer decisions** | Tutor: **PASS** · Founder: **PASS** · Auditor: **PASS** · Publication Approver: **APPROVE** |
+| **Approval dates** | Tutor: 2026-08-01 · 22:50 · Founder: 2026-08-01 · 23:05 · Auditor: 2026-08-01 · 23:20 · Publication Approver: 2026-08-01 · 23:35 |
+| **Publication decision** | **APPROVED** — Volume authorised for joint LIVE activation |
+| **Deployment commit** | `40c487e54c73d98a95e8ebfe4b4fbee5c2c52c8d` (RO-005) |
+| **LIVE verification reference** | `RO005_LIVE_VERIFICATION_REPORT.md` · `knowledge/evidence/releases/RO005/` · **PASS WITH RESIDUAL** (package path) |
+| **PB verification reference** | `PB007_PROGRESSIVE_CONFIDENCE_REPORT.md` · `knowledge/evidence/releases/PB007/` · **PASS** |
+
+**Inventory (joint):** CH-D1…CH-D2 Learning + CH-R1 Revision — **3** packages; FP-01 forbids Isolated Golden Day / single-day activation.
+
+**Catalogue root:** `app/curriculum/data/educational_campaigns/cs1/campaign-eta-cs1007/`  
+**LIVE loader:** 3 Eta packages `publication_approved` · tip `40c487e54…`
+
+**Evidence dossier:** `EP005_WAVE5_PLAN.md` · `EP005_COVERAGE_UPDATE.md` · `HR005_*` · `RO005_*` · `PB007_*`
+
+**Activation conditions (binding, not content amendments):**
+
+1. Joint copy of all 3 packages only. — **Met (RO-005)**  
+2. Preserve CH-D1…CH-R1 continuity chain (selection from CZ-R1 → CH-D1). — **Met**  
+3. LIVE + CMP + continuity verification before student educational trust / LIVE Verified claim. — **Done (package path)**  
+4. Wave 0 Alpha/Beta Approver honesty gap **not waived** by this APPROVE. — **Held**  
+5. Wave 6 **not started** until LIVE verification of Wave 5 completes. — **Wave 5 LIVE-complete; Wave 6 not started**  
+6. No until-exam educational trust claim from this Volume alone. — **Held**  
+7. Trust Front (CS1-003) credit not conflated with Continuity Front 2.4 credit. — **Held**
+
+---
+
+## 2. Context rows — Wave 0 honesty (unchanged by HR-001 Gamma APPROVE / HR-002 Delta APPROVE / HR-003 Epsilon APPROVE / HR-004 Zeta APPROVE / HR-005 Eta APPROVE)
 
 | Volume | Campaign | Review status | Reviewer decisions (summary) | Approval dates | Publication decision | Deployment commit | LIVE verification | PB verification |
 |--------|----------|---------------|------------------------------|----------------|----------------------|-------------------|-------------------|-----------------|
@@ -234,9 +267,27 @@ These rows remain until human Approver seals close the honesty gap. HR-001 Gamma
 ---
 | 2026-08-01 · RO-004 deploy | Joint LIVE activation CS1-006 tip `58096787…` | Release Ops | **PASS** — deploy `dep-d9n4glvlk1mc73dnji4g` · inventory assert `job-d9n4j4m1egvs73fcp41g` |
 | 2026-08-01 · RO-004 verify | LIVE educational verification (Continuity Front → CZ-D1…CZ-R1) | Release Ops | **PASS WITH RESIDUAL** — package path; RO4-R1 / RO4-R2 / RO4-R3 |
-| 2026-08-01 · PB-006 | Progressive educational confidence (Zeta LIVE-certified only) | Private Beta | **PASS** — CZ-D1…CZ-R1 trust affirmed; until-exam **not** claimed; Wave 5 not started |
-| 2026-08-01 · RO-004 decision | Wave 4 LIVE-complete release decision | Release Ops | **LIVE-COMPLETE — ACCEPTED WITH RESIDUAL** · Wave 5 unblocked · not started |
+| 2026-08-01 · PB-006 | Progressive educational confidence (Zeta LIVE-certified only) | Private Beta | **PASS** — CZ-D1…CZ-R1 trust affirmed; until-exam **not** claimed; Wave 5 unblocked |
+| 2026-08-01 · RO-004 decision | Wave 4 LIVE-complete release decision | Release Ops | **LIVE-COMPLETE — ACCEPTED WITH RESIDUAL** · Wave 5 unblocked |
 
+---
+
+## 3D. Decision chronology (CS1-007)
+
+| Timestamp | Event | Actor | Outcome |
+|-----------|-------|-------|---------|
+| 2026-08-01 | Wave 5 catalogue authored (Campaign Eta / 2.4) | Editorial / Author desk | Catalogue Under Authoring · human review gate |
+| 2026-08-01 · 22:50 | HR-005 Tutor Review (independent) | HR-005 · Tutor seat | **PASS** — no amendments |
+| 2026-08-01 · 23:05 | HR-005 Founder Review (independent) | HR-005 · Founder seat | **PASS** — Stage 0 commission YES |
+| 2026-08-01 · 23:20 | HR-005 Auditor Review (independent) | HR-005 · Auditor seat | **PASS** — Gate CG PASS; EJ accept; FP denied |
+| 2026-08-01 · 23:35 | HR-005 Publication Approver | HR-005 · Publication Approver seat | **APPROVE** — joint LIVE activation authorised |
+| 2026-08-01 · 23:35 | Publication decision recorded | Publication Decision Log | **APPROVED** — stop; LIVE deploy/verify next ops programme; Wave 6 gated |
+| 2026-08-01 · RO-005 deploy | Joint LIVE activation CS1-007 tip `40c487e54…` | Release Ops | **PASS** — deploy `dep-d9n5qnflk1mc73dpl100` · inventory assert `job-d9n5rru417fc73cnsoug` |
+| 2026-08-01–02 · RO-005 verify | LIVE educational verification (Continuity Front → CH-D1…CH-R1) | Release Ops | **PASS WITH RESIDUAL** — package path; RO5-R1 / RO5-R2 / RO5-R3 |
+| 2026-08-02 · PB-007 | Progressive educational confidence (Eta LIVE-certified only) | Private Beta | **PASS** — CH-D1…CH-R1 trust affirmed; until-exam **not** claimed; Wave 6 unblocked |
+| 2026-08-02 · RO-005 decision | Wave 5 LIVE-complete release decision | Release Ops | **LIVE-COMPLETE — ACCEPTED WITH RESIDUAL** · Coverage **36 / 72** · Wave 6 unblocked · not started |
+
+---
 
 ## 4. Deployment readiness (CS1-004)
 
@@ -355,7 +406,25 @@ These rows remain until human Approver seals close the honesty gap. HR-001 Gamma
 | 4 | LIVE delivery + CMP partnership + continuity verification | **Done (package path)** |
 | 5 | Record LIVE verification path on this log | **Done** |
 | 6 | Update `EP001_COVERAGE_MAP.md` / `EP004_COVERAGE_UPDATE.md` + publication dashboard LIVE columns | **Done** |
-| 7 | Begin Wave 5 | **Unblocked · not started** |
+| 7 | Begin Wave 5 | **Started** — catalogue + HR-005 APPROVE · LIVE outstanding |
+
+---
+
+## 4D. Deployment readiness (CS1-007)
+
+| Gate | Status |
+|------|--------|
+| Tutor PASS | **Recorded** (2026-08-01 · 22:50) |
+| Founder PASS | **Recorded** (2026-08-01 · 23:05) |
+| Auditor Gate CG PASS | **Recorded** (2026-08-01 · 23:20) |
+| Publication Approver APPROVE | **Recorded** (2026-08-01 · 23:35) |
+| Joint LIVE deploy authorised | **Yes** |
+| Deployment package prepared for release | **Executed (RO-005)** |
+| LIVE Verified | **Yes** (package path; RO5-R1/R2/R3) |
+| CE-001 Approver credit for 2.4.1–2.4.2 | **Recorded** — Volume APPROVED + LIVE package path verified → **36 / 72 (50.0%)** |
+| Student educational trust claim | **Package-path authorised** — do not claim Finish/Home tomorrow chrome honesty until RO5-R3 closed |
+
+**Deployment readiness verdict:** **LIVE (joint inventory)** — publication **APPROVED**; deploy commit recorded; LIVE verification **PASS WITH RESIDUAL**; PB-007 **PASS**.
 
 ---
 
@@ -364,7 +433,7 @@ These rows remain until human Approver seals close the honesty gap. HR-001 Gamma
 When a human reviewer returns Approve / Reject / Pass with conditions:
 
 1. Update the relevant Volume active row and chronology.  
-2. Mirror decisions in the human review summary (`EP001_HUMAN_REVIEW_SUMMARY.md` / `HR002_HUMAN_REVIEW_SUMMARY.md` / `HR003_HUMAN_REVIEW_SUMMARY.md` / `HR004_HUMAN_REVIEW_SUMMARY.md`).  
+2. Mirror decisions in the human review summary (`EP001_HUMAN_REVIEW_SUMMARY.md` / `HR002_HUMAN_REVIEW_SUMMARY.md` / `HR003_HUMAN_REVIEW_SUMMARY.md` / `HR004_HUMAN_REVIEW_SUMMARY.md` / `HR005_HUMAN_REVIEW_SUMMARY.md`).  
 3. Enter requested changes with EF-001 classification before any package edit.  
 4. Do **not** modify educational packages or deploy until remediation is approved and Approver re-seals as required.  
 5. After lawful release, record **Deployment commit**, **LIVE verification reference**, and **PB verification reference** here.
@@ -372,7 +441,8 @@ When a human reviewer returns Approve / Reject / Pass with conditions:
 **HR-001 application:** Zero human-requested amendments. Remediation list empty. Educational packages not modified. Publication **APPROVED** (CS1-004).  
 **HR-002 application:** Zero human-requested amendments. Remediation list empty. Educational packages not modified in review. Publication **APPROVED** (CS1-003). LIVE executed (RO-002).  
 **HR-003 application:** Zero human-requested amendments. Remediation list empty. Educational packages not modified in review. Publication **APPROVED** (CS1-005). LIVE executed (RO-003).  
-**HR-004 application:** Zero human-requested amendments. Remediation list empty. Educational packages not modified in review. Publication **APPROVED** (CS1-006). LIVE not executed. Wave 5 not started.
+**HR-004 application:** Zero human-requested amendments. Remediation list empty. Educational packages not modified in review. Publication **APPROVED** (CS1-006). LIVE executed (RO-004).  
+**HR-005 application:** Zero human-requested amendments. Remediation list empty. Educational packages not modified in review. Publication **APPROVED** (CS1-007). LIVE executed (RO-005). Wave 6 not started.
 
 ---
 
@@ -424,16 +494,32 @@ Publication decision: APPROVED
 Date: 2026-08-01 · 22:05
 Approver seat: HR-004 · Publication Approver
 Amendments required before deploy: NONE
-LIVE deploy executed: NO
-LIVE verification: OUTSTANDING
-Wave 5: NOT STARTED
+LIVE deploy executed: YES (RO-004) · commit 58096787f7ea17704dcb60e2475e9a431f2c95e8
+LIVE verification: PASS WITH RESIDUAL (RO4-R1 / RO4-R2 / RO4-R3)
+PB progressive confidence: PASS (PB-006)
+Wave 5: HR-005 APPROVE · LIVE outstanding
+```
+
+```text
+Volume: CS1-007 · 1.0.0 · CS1-EP001-CAMPAIGN-ETA · cs1007-1.0.0
+Cycle: HR-005 — Wave 5 Human Educational Review Cycle
+Publication decision: APPROVED
+Date: 2026-08-01 · 23:35
+Approver seat: HR-005 · Publication Approver
+Amendments required before deploy: NONE
+LIVE deploy executed: YES (RO-005) · commit 40c487e54c73d98a95e8ebfe4b4fbee5c2c52c8d
+LIVE verification: PASS WITH RESIDUAL (RO5-R1 / RO5-R2 / RO5-R3)
+PB progressive confidence: PASS (PB-007)
+Wave 6: NOT STARTED (unblocked)
+Coverage: 36 / 72 (50.0%)
 ```
 
 ---
 
-Signed: Publication Decision Log · EP-001 · HR-001 · HR-002 · HR-003 · HR-004 · RO-001 · RO-002 · RO-003 · 2026-08-01  
+Signed: Publication Decision Log · EP-001 · HR-001 · HR-002 · HR-003 · HR-004 · HR-005 · RO-001 · RO-002 · RO-003 · RO-004 · RO-005 · 2026-08-02  
 **Publication decision (CS1-004):** **APPROVED** · LIVE Verified  
 **Publication decision (CS1-003):** **APPROVED** · LIVE-complete (package path)  
 **Publication decision (CS1-005):** **APPROVED** · LIVE-complete (package path)  
 **Publication decision (CS1-006):** **APPROVED** · LIVE-complete (package path)  
-**Wave 5:** Not started
+**Publication decision (CS1-007):** **APPROVED** · LIVE-complete (package path)  
+**Wave 6:** Not started

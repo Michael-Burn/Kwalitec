@@ -1,0 +1,110 @@
+{
+  "day_index": 7,
+  "expected_day": "CG-D4",
+  "expected_package_id": "CS1-EP001-PKG-2.1-SOFTWARE-GENERATION",
+  "finished": true,
+  "reading": {
+    "audit": {
+      "title": "Reading: Purpose of this reading: use the CMP (and appropriate statistical software) to generate discrete and continuous RVs under Syllabus 2.1.6. Stop before joint distributions.",
+      "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Generate RVs with statistical software Purpose of this reading: use the CMP (and appropriate statistical software) to generate discrete and continuous RVs under Syllabus 2.1.6. Stop before joint distributions. Open: CMP \u00b7 Syllabus 2.1.6 generation using statistical software Stop: Through CMP/software practice for Syllabus 2.1.6 (stop before joint distributions 2.2) Focus ",
+      "support_sample": "Open your CMP at Syllabus 2.1.6 \u2014 software generation. Use statistical software as the CMP directs. Stop before 2.2. Return for Worked-example re-entry, then Knowledge Checks. What did you extract from the CMP setup? Submit Answer ",
+      "is_fallback_shell": false,
+      "is_guided_reading": false,
+      "mentions_cmp": true,
+      "cmp_refs_present": true,
+      "q_checks": {
+        "Q1_cmp_open": true,
+        "Q2_purpose": true,
+        "Q3_attention": true,
+        "Q4_ignore": true,
+        "Q5_stop": true,
+        "Q6_next": true
+      },
+      "ec001_markers": {
+        "Purpose of this reading": true,
+        "Open your CMP": true,
+        "Focus questions": true,
+        "Misconception watch": true,
+        "Out of scope today": true,
+        "Return cue": true,
+        "Worked-example": true,
+        "Knowledge Checks": true
+      },
+      "certified_snippet_hits": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true
+      },
+      "verdict": "PASS",
+      "word_count_body": 237
+    },
+    "checklist": {
+      "CMP_reference_present": true,
+      "Educational_purpose_clear": true,
+      "Reading_focus_clear": true,
+      "Ignore_guidance_present": true,
+      "Stop_condition_explicit": true,
+      "Immediate_next_activity_named": true,
+      "Not_fallback_shell": true,
+      "Matches_certified_snippets": true
+    },
+    "fidelity": {
+      "lead_line": true,
+      "exit_line": true,
+      "return_cue": true,
+      "open_point": true,
+      "stop_condition": true,
+      "focus_q_0": true,
+      "focus_q_1": true,
+      "fidelity_pass": true
+    },
+    "package_id": "CS1-EP001-PKG-2.1-SOFTWARE-GENERATION",
+    "campaign_day": "CG-D4",
+    "html": "/tmp/ro005/evidence/day7_CG-D4_reading.html"
+  },
+  "checklist": {
+    "CMP_reference_present": true,
+    "Educational_purpose_clear": true,
+    "Reading_focus_clear": true,
+    "Ignore_guidance_present": true,
+    "Stop_condition_explicit": true,
+    "Immediate_next_activity_named": true,
+    "Not_fallback_shell": true,
+    "Matches_certified_snippets": true
+  },
+  "tomorrow_preview": {
+    "next_topic_code": false,
+    "continuity_fragment": true,
+    "student_facing_fragment": false,
+    "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+    "package_continuity_line": "Today you closed software generation; tomorrow is Revision across 2.1.1\u20132.1.6 (and Beta hinges as needed) \u2014 not a first-",
+    "package_student_facing": "Tomorrow: Campaign Gamma Revision day \u2014 retrieve evaluation, Poisson process, inverse transform, and software generation",
+    "chrome_matches_package_continuity": false
+  },
+  "verdict": "PASS",
+  "home": {
+    "title_guess": "Form marginal and conditional distributions from a joint",
+    "day_complete": false,
+    "has_start": true,
+    "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Form marginal and conditional distributions from a joint CS1 (CS1) 1 h Study 2.2 \u2014 Determine the characteristics of jointly distributed random variables After this \u00b7 Study Progress for marginal/conditional \u2014 not Topic Complete f"
+  },
+  "session_id": "lsr-39dd5f458c1a",
+  "educational_fidelity": {
+    "lead_line": true,
+    "exit_line": true,
+    "return_cue": true,
+    "open_point": true,
+    "stop_condition": true,
+    "focus_q_0": true,
+    "focus_q_1": true,
+    "fidelity_pass": true
+  },
+  "reflection_ok": true,
+  "tomorrow_chrome_matches_approved": true,
+  "package_path_ok": true,
+  "chrome_residual": false,
+  "eta_focus": false,
+  "zeta_focus": false,
+  "epsilon_focus": false
+}
