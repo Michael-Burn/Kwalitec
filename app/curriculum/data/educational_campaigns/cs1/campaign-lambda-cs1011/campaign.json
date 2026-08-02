@@ -1,0 +1,46 @@
+{
+  "campaign_id": "CS1-EP001-CAMPAIGN-LAMBDA",
+  "campaign_version": "cs1011-1.0.0",
+  "display_title": "Campaign Lambda — Confidence and prediction intervals (3.2)",
+  "subject_id": "CS1",
+  "package_version_pin": "IFoA CS1 2026",
+  "scope_class": "Pilot Arc",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "status": "released",
+  "volume_id": "CS1-011",
+  "prior_volume_id": "CS1-010",
+  "day_count": {
+    "learning": 8,
+    "revision": 1,
+    "total": 9
+  },
+  "syllabus_span": [
+    "3.2.1",
+    "3.2.2",
+    "3.2.3",
+    "3.2.4",
+    "3.2.5",
+    "3.2.6",
+    "3.2.7",
+    "3.2.8"
+  ],
+  "out_of_scope": [
+    "3.3+",
+    "Chapter 3 complete",
+    "first-pass spine",
+    "until-examination educational trust",
+    "Wave 10 / remainder / spine re-audit authoring",
+    "coverage mirage from drafts"
+  ],
+  "inventory": [
+    "CS1-EP001-PKG-3.2-CONFIDENCE-INTERVAL-PARAMETER",
+    "CS1-EP001-PKG-3.2-PREDICTION-INTERVAL",
+    "CS1-EP001-PKG-3.2-CI-GIVEN-SAMPLING-DISTRIBUTION",
+    "CS1-EP001-PKG-3.2-CI-NORMAL-MEAN-VARIANCE",
+    "CS1-EP001-PKG-3.2-CI-BINOMIAL-POISSON",
+    "CS1-EP001-PKG-3.2-CI-TWO-SAMPLE",
+    "CS1-EP001-PKG-3.2-CI-PAIRED-MEANS",
+    "CS1-EP001-PKG-3.2-BOOTSTRAP-CONFIDENCE-INTERVAL",
+    "CS1-EP001-PKG-REV-CONFIDENCE-INTERVALS"
+  ]
+}

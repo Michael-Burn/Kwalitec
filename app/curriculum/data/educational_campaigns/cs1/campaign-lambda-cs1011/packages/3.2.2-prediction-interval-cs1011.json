@@ -1,0 +1,190 @@
+{
+  "package_version": "cs1011-campaign-lambda-1.0.0",
+  "publication_version": "cs1011-catalogue-1.0.0",
+  "status": "campaign_member_certified",
+  "campaign_id": "CS1-EP001-CAMPAIGN-LAMBDA",
+  "volume_id": "CS1-011",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1011_EDUCATIONAL_VOLUME.md",
+    "CS1011_CERTIFICATION_REPORT.md",
+    "EP009_WAVE9_PLAN.md"
+  ],
+  "author_id": "cs1011-educational-author",
+  "authored_at": "2026-08-02",
+  "topic_code": "3.2",
+  "topic_title": "Calculate confidence intervals and prediction intervals",
+  "topic_id": "CS1-C-T02",
+  "package_id": "CS1-EP001-PKG-3.2-PREDICTION-INTERVAL",
+  "campaign_day": "CL-D2",
+  "topic_focus_lo": "3.2.2",
+  "topic_aliases": [
+    "CS1-C-T02",
+    "3.2",
+    "3.2.2"
+  ],
+  "topic_title_keywords": [
+    "prediction",
+    "interval",
+    "future",
+    "observation",
+    "model",
+    "sample"
+  ],
+  "golden_id": "GOLDEN-CS1011-CS1-3.2-PREDICTION-INTERVAL",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1011-cs1-3.2-prediction-interval",
+    "display_title": "Construct a prediction interval for a future observation",
+    "mission_purpose": "Today's Mission exists to construct a prediction interval for a future observation based on a model fitted to a random sample \u2014 so prediction is distinct from parameter CI \u2014 without pretending given-sampling-distribution CIs (3.2.3) are finished.",
+    "tutor_intent": "Today I will force the candidate to target a future observation with a prediction interval and refuse collapsing it into yesterday's parameter CI.",
+    "educational_intent": "Produce a cognitive move from a fitted model on a random sample to a prediction interval for a future observation.",
+    "learning_objective": "Prediction interval for a future observation based on a model fitted to a random sample.",
+    "concept_focus": "Fitted model \u2192 future observation \u2192 prediction interval \u2192 refuse given-distribution CI-as-done.",
+    "prior_bridge": "Yesterday you constructed a parameter confidence interval (3.2.1). Today continues topic 3.2 at LO 3.2.2 \u2014 prediction intervals.",
+    "why_now": "3.2.2 is contiguous after parameter CI. Closing it prevents a cliff at prediction while keeping given-sampling-distribution CI as day three.",
+    "expected_benefit": "Study Progress for prediction interval \u2014 not Topic Complete for 3.2.3.",
+    "explainability": "Assigned as Campaign Lambda Day 2 because Continuity Front membership places prediction immediately after parameter CI.",
+    "success_criteria": [
+      "Closed-book, state what a prediction interval targets.",
+      "Name how a fitted model from a random sample enters.",
+      "Refuse one 'parameter CI finished prediction' claim."
+    ],
+    "task_descriptions": [
+      "Sketch fitted model \u2192 future observation interval before CMP.",
+      "Complete Guided Reading through CMP treatment of Syllabus 3.2.2.",
+      "Closed-book Knowledge Checks: prediction interval + refuse CI collapse."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 55,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1011-cs1-3.2-prediction-interval",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 3.2.2 \u2014 not the next LO as primary.",
+    "session_tutor_purpose": "Set focus on 3.2.2, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
+    "duration_budget_minutes": {
+      "min": 55,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Construct a prediction interval for a future observation. You practised selective CMP reading on Syllabus 3.2.2. This is Study Progress for today's block \u2014 not Topic Complete for later 3.2 LOs, Chapter 3 trophy, hypothesis testing (3.3), or until-exam trust.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 3.2.2 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.2.2 \u2014 construct a prediction interval for a future observation. Stop before out-of-scope later LOs.",
+    "focus_questions": [
+      "What is the core move of Syllabus 3.2.2?",
+      "What warrant separates today's skill from yesterday's?",
+      "What claim must you refuse today?",
+      "What will you practise in Knowledge Checks after the CMP?"
+    ],
+    "misconception_watch": [
+      "Watch for treating parameter CI and prediction interval as interchangeable.",
+      "Watch for starting given-distribution CI drills (3.2.3) today.",
+      "Watch for hypothesis testing (3.3) today."
+    ],
+    "open_point": "CMP \u00b7 Syllabus 3.2.2 prediction interval",
+    "stop_condition": "Through the CMP treatment of Syllabus 3.2.2 (stop before given-sampling-distribution CI 3.2.3)",
+    "out_of_scope_today": [
+      "Given-sampling-distribution CI as primary (3.2.3)",
+      "Normal mean/variance CIs primary (3.2.4)",
+      "Bootstrap CI primary (3.2.8)",
+      "Hypothesis testing (3.3)",
+      "Chapter 3 complete claim",
+      "Until-exam educational trust"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.2.2 prediction interval. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.2.2 (stop before given-sampling-distribution CI 3.2.3). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 3.2.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1011-3.2.2-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1011-3.2.2-ar-01",
+      "title": "Active Recall: 3.2.2",
+      "prompt": "Closed-book. (1) What does a prediction interval claim about a future observation? (2) What role does a model fitted to a random sample play? (3) Name one difference from a parameter confidence interval.",
+      "response_type": "short_structured",
+      "body": "Retrieve 3.2.2 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "prediction",
+        "future",
+        "observation",
+        "model",
+        "sample",
+        "parameter"
+      ],
+      "explanation": "Active recall for 3.2.2.",
+      "model_answer": "A prediction interval targets a future observation (not the parameter itself), using a model fitted to a random sample. A parameter CI targets the unknown parameter \u2014 different object.",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1011-3.2.2-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1011-3.2.2-cp-01",
+      "title": "Checkpoint: 3.2.2",
+      "prompt": "Closed-book. A colleague says 'My parameter CI finished prediction intervals.' Refuse in one sentence and restate today's LO.",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 3.2.2.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "prediction",
+        "parameter",
+        "future",
+        "observation",
+        "today"
+      ],
+      "explanation": "Checkpoint for 3.2.2.",
+      "model_answer": "Refuse: parameter CI is not prediction. Today requires a prediction interval for a future observation from a fitted model.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest prediction-vs-CI wobble \u2014 keep given-distribution CI out of tonight's claim.",
+    "prompt": "Which part of today's 3.2.2 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 3.2.2 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "3.2",
+    "next_topic_title": "CI using a given sampling distribution (3.2.3)",
+    "continuity_line": "Today you constructed a prediction interval; tomorrow continues 3.2 at confidence intervals that use a given sampling distribution.",
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.2.3 \u2014 titles only tonight",
+    "student_facing": "Tomorrow: CI given a sampling distribution (3.2.3). Optional light prep: skim 3.2.3 headings \u2014 titles only tonight."
+  }
+}

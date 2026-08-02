@@ -14,7 +14,7 @@ from app.application.educational_packages.loader import (
 )
 from app.application.educational_packages.models import CertifiedEducationalPackage
 
-# Campaign day order for Alpha → … → Theta → Iota → Kappa continuity (EP-001).
+# Campaign day order for Alpha → … → Kappa → Lambda continuity (EP-001).
 _CAMPAIGN_DAY_ORDER: dict[str, int] = {
     "CA-D1": 1,
     "CA-D2": 2,
@@ -91,6 +91,16 @@ _CAMPAIGN_DAY_ORDER: dict[str, int] = {
     "CK-D5": 66,
     "CK-D6": 67,
     "CK-R1": 68,
+    # Campaign Lambda / CS1-011 (RO-009) — Continuity Front into 3.2
+    "CL-D1": 69,
+    "CL-D2": 70,
+    "CL-D3": 71,
+    "CL-D4": 72,
+    "CL-D5": 73,
+    "CL-D6": 74,
+    "CL-D7": 75,
+    "CL-D8": 76,
+    "CL-R1": 77,
 }
 
 
