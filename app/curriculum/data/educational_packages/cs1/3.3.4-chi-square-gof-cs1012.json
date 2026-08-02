@@ -1,0 +1,189 @@
+{
+  "package_version": "cs1012-campaign-mu-1.0.0",
+  "publication_version": "cs1012-live-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "CS1-EP001-CAMPAIGN-MU",
+  "volume_id": "CS1-012",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1012_EDUCATIONAL_VOLUME.md",
+    "CS1012_CERTIFICATION_REPORT.md",
+    "EP010_WAVE10_PLAN.md"
+  ],
+  "author_id": "cs1012-educational-author",
+  "authored_at": "2026-08-02",
+  "topic_code": "3.3",
+  "topic_title": "Apply the concepts of hypothesis testing and goodness of fit",
+  "topic_id": "CS1-C-T03",
+  "package_id": "CS1-EP001-PKG-3.3-CHI-SQUARE-GOF",
+  "campaign_day": "CM-D4",
+  "topic_focus_lo": "3.3.4",
+  "topic_aliases": [
+    "CS1-C-T03",
+    "3.3",
+    "3.3.4"
+  ],
+  "topic_title_keywords": [
+    "chi-square",
+    "goodness of fit",
+    "distribution",
+    "unknown parameters",
+    "degrees of freedom"
+  ],
+  "golden_id": "GOLDEN-CS1012-CS1-3.3-CHI-SQUARE-GOF",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1012-cs1-3.3-chi-square-gof",
+    "display_title": "Perform a chi-square goodness-of-fit test (including unknown parameters)",
+    "mission_purpose": "Today's Mission exists to perform a chi-square test that a random sample is from a particular distribution, including cases where parameters are unknown — without pretending contingency independence (3.3.5) is finished.",
+    "tutor_intent": "Today I will force the candidate to construct expected frequencies and adjust degrees of freedom when parameters are estimated, and refuse treating independence tests as today's LO.",
+    "educational_intent": "Produce a cognitive move from permutation HT to chi-square goodness-of-fit assessment under CMP procedures.",
+    "learning_objective": "Chi-square test to test the hypothesis that a random sample is from a particular distribution, including cases where parameters are unknown.",
+    "concept_focus": "Hypothesised distribution → expected frequencies → chi-square GOF → DF adjust if parameters estimated → refuse independence-as-done.",
+    "prior_bridge": "Yesterday you applied permutation tests (3.3.3). Today continues topic 3.3 at LO 3.3.4 — chi-square GOF.",
+    "why_now": "3.3.4 is the contiguous next LO after permutation. Closing it adds distributional GOF before contingency independence.",
+    "expected_benefit": "Study Progress for chi-square GOF — not Topic Complete for 3.3.5.",
+    "explainability": "Assigned as Campaign Mu Day 4 because Continuity Front law keeps LO-per-day contiguity inside topic 3.3.",
+    "success_criteria": [
+      "Closed-book, state the GOF hypothesis and how expected counts arise.",
+      "Name what changes when parameters are unknown / estimated.",
+      "Refuse one 'contingency independence finished today's LO' claim."
+    ],
+    "task_descriptions": [
+      "Sketch observed vs expected → chi-square GOF before CMP.",
+      "Complete Guided Reading through CMP treatment of Syllabus 3.3.4.",
+      "Closed-book Knowledge Checks: GOF + refuse independence swallow."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 55,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1012-cs1-3.3-chi-square-gof",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 3.3.4 — not the next LO as primary.",
+    "session_tutor_purpose": "Set focus on 3.3.4, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
+    "duration_budget_minutes": {
+      "min": 55,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Perform a chi-square goodness-of-fit test (including unknown parameters). You practised selective CMP reading on Syllabus 3.3.4. This is Study Progress for today's block — not Topic Complete for later 3.3 LOs, Chapter 3 trophy, first-pass spine PASS, or until-exam trust.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 3.3.4 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.3.4 — perform a chi-square goodness-of-fit test (including unknown parameters). Stop before out-of-scope later LOs.",
+    "focus_questions": [
+      "What is the core move of Syllabus 3.3.4?",
+      "What warrant separates today's skill from yesterday's?",
+      "What claim must you refuse today?",
+      "What will you practise in Knowledge Checks after the CMP?"
+    ],
+    "misconception_watch": [
+      "Watch for equating GOF with a two-way independence test.",
+      "Watch for forgetting DF adjustment when parameters are estimated.",
+      "Watch for starting contingency drills (3.3.5) inside this sitting."
+    ],
+    "open_point": "CMP · Syllabus 3.3.4 chi-square goodness of fit",
+    "stop_condition": "Through the CMP treatment of Syllabus 3.3.4 (stop before contingency independence 3.3.5)",
+    "out_of_scope_today": [
+      "Contingency independence as primary (3.3.5)",
+      "Chapter 3 complete claim",
+      "First-pass spine PASS",
+      "Until-exam educational trust"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.3.4 chi-square goodness of fit. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.3.4 (stop before contingency independence 3.3.5). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 3.3.4 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause — write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1012-3.3.4-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1012-3.3.4-ar-01",
+      "title": "Active Recall: 3.3.4",
+      "prompt": "Closed-book. (1) What hypothesis does a chi-square GOF test? (2) How do expected frequencies arise? (3) What changes when parameters are unknown? (4) Name one reason contingency independence is not today's LO.",
+      "response_type": "short_structured",
+      "body": "Retrieve 3.3.4 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "chi-square",
+        "goodness",
+        "fit",
+        "expected",
+        "parameters",
+        "degrees",
+        "contingency"
+      ],
+      "explanation": "Active recall for 3.3.4.",
+      "model_answer": "GOF tests whether a sample is consistent with a stated distribution. Expected counts come from the hypothesised probabilities (and sample size). Unknown parameters are estimated and DF adjusted under CMP rules. Independence is tomorrow's LO.",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1012-3.3.4-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1012-3.3.4-cp-01",
+      "title": "Checkpoint: 3.3.4",
+      "prompt": "Closed-book. A colleague says 'I tested independence in a two-way table, so I finished today's LO.' Refuse in one sentence and restate what today's LO requires.",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 3.3.4.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "GOF",
+        "distribution",
+        "independence",
+        "today",
+        "not same"
+      ],
+      "explanation": "Checkpoint for 3.3.4.",
+      "model_answer": "Refuse: independence is tomorrow's LO. Today requires chi-square GOF that a sample is from a particular distribution, including unknown parameters.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest GOF / DF wobble — keep contingency out of tonight's claim.",
+    "prompt": "Which part of today's 3.3.4 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 3.3.4 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "3.3",
+    "next_topic_title": "Contingency tables and chi-square independence (3.3.5)",
+    "continuity_line": "Today you performed chi-square goodness of fit; tomorrow continues 3.3 at contingency independence.",
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.3.5 — titles only tonight",
+    "student_facing": "Tomorrow: contingency independence (3.3.5). Optional light prep: skim 3.3.5 headings — titles only tonight."
+  },
+  "published_at": "2026-08-02"
+}

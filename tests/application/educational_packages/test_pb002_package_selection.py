@@ -290,7 +290,7 @@ def test_gamma_revision_hands_off_to_epsilon() -> None:
     approved = EducationalPackageLoader().all_approved()
     ce = [p for p in approved if (p.campaign_day or "").startswith("CE-")]
     assert len(ce) == 5
-    assert len(approved) == 77
+    assert len(approved) == 83
 
 
 def test_zeta_chain_reaches_cz_r1() -> None:
@@ -344,7 +344,7 @@ def test_epsilon_revision_hands_off_to_zeta() -> None:
     approved = EducationalPackageLoader().all_approved()
     cz = [p for p in approved if (p.campaign_day or "").startswith("CZ-")]
     assert len(cz) == 3
-    assert len(approved) == 77
+    assert len(approved) == 83
 
 
 def test_eta_chain_reaches_ch_r1() -> None:
@@ -396,7 +396,7 @@ def test_zeta_revision_hands_off_to_eta() -> None:
     approved = EducationalPackageLoader().all_approved()
     ch = [p for p in approved if (p.campaign_day or "").startswith("CH-")]
     assert len(ch) == 3
-    assert len(approved) == 77
+    assert len(approved) == 83
 
 
 def test_theta_chain_reaches_ct_r1() -> None:
@@ -448,7 +448,7 @@ def test_eta_revision_hands_off_to_theta() -> None:
     approved = EducationalPackageLoader().all_approved()
     ct = [p for p in approved if (p.campaign_day or "").startswith("CT-")]
     assert len(ct) == 3
-    assert len(approved) == 77
+    assert len(approved) == 83
 
 
 
@@ -506,7 +506,7 @@ def test_theta_revision_hands_off_to_iota() -> None:
     approved = EducationalPackageLoader().all_approved()
     ci = [p for p in approved if (p.campaign_day or "").startswith("CI-")]
     assert len(ci) == 7
-    assert len(approved) == 77
+    assert len(approved) == 83
 
 
 def test_kappa_chain_reaches_ck_r1() -> None:
@@ -566,7 +566,7 @@ def test_iota_revision_hands_off_to_kappa() -> None:
     approved = EducationalPackageLoader().all_approved()
     ck = [p for p in approved if (p.campaign_day or "").startswith("CK-")]
     assert len(ck) == 7
-    assert len(approved) == 77
+    assert len(approved) == 83
 
 
 def test_lambda_chain_reaches_cl_r1() -> None:
@@ -628,5 +628,66 @@ def test_kappa_revision_hands_off_to_lambda() -> None:
     approved = EducationalPackageLoader().all_approved()
     cl = [p for p in approved if (p.campaign_day or "").startswith("CL-")]
     assert len(cl) == 9
-    assert len(approved) == 77
+    assert len(approved) == 83
+
+
+def test_mu_chain_reaches_cm_r1() -> None:
+    """RO-010 — Continuity Front into 3.3 → CM-D1…CM-R1 joint inventory."""
+    completed: set[str] = set()
+    last = ""
+    expected = [
+        ("CS1-EP001-PKG-3.3-HYPOTHESIS-CONCEPTS", "CM-D1"),
+        ("CS1-EP001-PKG-3.3-BASIC-TESTS", "CM-D2"),
+        ("CS1-EP001-PKG-3.3-PERMUTATION-TESTS", "CM-D3"),
+        ("CS1-EP001-PKG-3.3-CHI-SQUARE-GOF", "CM-D4"),
+        ("CS1-EP001-PKG-3.3-CONTINGENCY-INDEPENDENCE", "CM-D5"),
+        ("CS1-EP001-PKG-REV-HYPOTHESIS-TESTING", "CM-R1"),
+    ]
+    topic = "3.3"
+    for package_id, day in expected:
+        pack = resolve_active_educational_package(
+            subject_id="CS1",
+            syllabus_topic_code=topic,
+            completed_package_ids=completed,
+            last_completed_package_id=last,
+        )
+        assert pack is not None, f"missing successor before {day}"
+        assert pack.package_id == package_id, (
+            f"expected {package_id} got {pack.package_id}"
+        )
+        assert pack.campaign_day == day
+        completed.add(pack.package_id)
+        last = pack.package_id
+        topic = pack.topic_code or topic
+
+
+def test_lambda_revision_hands_off_to_mu() -> None:
+    """RO-010 — CL-R1 tomorrow_preview 3.3 resolves to CM-D1 (not Lambda re-entry)."""
+    from app.application.educational_packages.loader import EducationalPackageLoader
+
+    lambda_ids = {
+        "CS1-EP001-PKG-3.2-CONFIDENCE-INTERVAL-PARAMETER",
+        "CS1-EP001-PKG-3.2-PREDICTION-INTERVAL",
+        "CS1-EP001-PKG-3.2-CI-GIVEN-SAMPLING-DISTRIBUTION",
+        "CS1-EP001-PKG-3.2-CI-NORMAL-MEAN-VARIANCE",
+        "CS1-EP001-PKG-3.2-CI-BINOMIAL-POISSON",
+        "CS1-EP001-PKG-3.2-CI-TWO-SAMPLE",
+        "CS1-EP001-PKG-3.2-CI-PAIRED-MEANS",
+        "CS1-EP001-PKG-3.2-BOOTSTRAP-CONFIDENCE-INTERVAL",
+        "CS1-EP001-PKG-REV-CONFIDENCE-INTERVALS",
+    }
+    pack = resolve_active_educational_package(
+        subject_id="CS1",
+        syllabus_topic_code="3.3",
+        completed_package_ids=lambda_ids,
+        last_completed_package_id="CS1-EP001-PKG-REV-CONFIDENCE-INTERVALS",
+    )
+    assert pack is not None
+    assert pack.campaign_day == "CM-D1"
+    assert pack.package_id == "CS1-EP001-PKG-3.3-HYPOTHESIS-CONCEPTS"
+
+    approved = EducationalPackageLoader().all_approved()
+    cm = [p for p in approved if (p.campaign_day or "").startswith("CM-")]
+    assert len(cm) == 6
+    assert len(approved) == 83
 

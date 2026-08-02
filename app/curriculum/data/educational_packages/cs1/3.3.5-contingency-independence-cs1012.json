@@ -1,0 +1,190 @@
+{
+  "package_version": "cs1012-campaign-mu-1.0.0",
+  "publication_version": "cs1012-live-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "CS1-EP001-CAMPAIGN-MU",
+  "volume_id": "CS1-012",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1012_EDUCATIONAL_VOLUME.md",
+    "CS1012_CERTIFICATION_REPORT.md",
+    "EP010_WAVE10_PLAN.md"
+  ],
+  "author_id": "cs1012-educational-author",
+  "authored_at": "2026-08-02",
+  "topic_code": "3.3",
+  "topic_title": "Apply the concepts of hypothesis testing and goodness of fit",
+  "topic_id": "CS1-C-T03",
+  "package_id": "CS1-EP001-PKG-3.3-CONTINGENCY-INDEPENDENCE",
+  "campaign_day": "CM-D5",
+  "topic_focus_lo": "3.3.5",
+  "topic_aliases": [
+    "CS1-C-T03",
+    "3.3",
+    "3.3.5"
+  ],
+  "topic_title_keywords": [
+    "contingency",
+    "two-way",
+    "independence",
+    "chi-square",
+    "classification"
+  ],
+  "golden_id": "GOLDEN-CS1012-CS1-3.3-CONTINGENCY-INDEPENDENCE",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1012-cs1-3.3-contingency-independence",
+    "display_title": "Use contingency tables and chi-square tests of independence",
+    "mission_purpose": "Today's Mission exists to use a contingency (two-way) table and a chi-square test of independence for two classification criteria — completing the 3.3 Learning span — without pretending Chapter 3 / spine / until-exam trust are done.",
+    "tutor_intent": "Today I will force the candidate to form a two-way table and test independence, and refuse Chapter 3 complete / spine / until-exam claims.",
+    "educational_intent": "Produce a cognitive move from distributional GOF to contingency-table independence testing under CMP procedures.",
+    "learning_objective": "A contingency (or two-way) table, and use of a chi-square test to test the independence of two classification criteria.",
+    "concept_focus": "Two-way table → independence null → chi-square independence → refuse Chapter-3-complete / spine / until-exam.",
+    "prior_bridge": "Yesterday you performed chi-square GOF (3.3.4). Today completes topic 3.3 Learning at LO 3.3.5 — contingency independence.",
+    "why_now": "3.3.5 completes the Continuity Front Learning span for topic 3.3. Closing it lawfully finishes Mu Learning before Revision — without Chapter 3 trophies.",
+    "expected_benefit": "Study Progress for contingency independence — not Chapter 3 complete / spine / until-exam trust.",
+    "explainability": "Assigned as Campaign Mu Day 5 because Continuity Front law finishes 3.3 Learning LOs before Revision.",
+    "success_criteria": [
+      "Closed-book, state the independence null for two classification criteria.",
+      "Sketch how expected cell counts arise in a two-way table.",
+      "Refuse one 'Chapter 3 / spine / until-exam finished' claim."
+    ],
+    "task_descriptions": [
+      "Sketch two-way table → independence test before CMP.",
+      "Complete Guided Reading through CMP treatment of Syllabus 3.3.5.",
+      "Closed-book Knowledge Checks: independence + refuse Chapter 3 / spine swallow."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 55,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1012-cs1-3.3-contingency-independence",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 3.3.5 — not the next LO as primary.",
+    "session_tutor_purpose": "Set focus on 3.3.5, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
+    "duration_budget_minutes": {
+      "min": 55,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Use contingency tables and chi-square tests of independence. You practised selective CMP reading on Syllabus 3.3.5. This is Study Progress for today's block — not Topic Complete for later 3.3 LOs, Chapter 3 trophy, first-pass spine PASS, or until-exam trust.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 3.3.5 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.3.5 — use contingency tables and chi-square tests of independence. Stop before out-of-scope later LOs.",
+    "focus_questions": [
+      "What is the core move of Syllabus 3.3.5?",
+      "What warrant separates today's skill from yesterday's?",
+      "What claim must you refuse today?",
+      "What will you practise in Knowledge Checks after the CMP?"
+    ],
+    "misconception_watch": [
+      "Watch for equating GOF (3.3.4) with independence in a two-way table.",
+      "Watch for claiming Chapter 3 / spine / until-exam complete after one LO.",
+      "Watch for absorbing Trust Front regression/Bayesian credit as Continuity Front."
+    ],
+    "open_point": "CMP · Syllabus 3.3.5 contingency tables and independence",
+    "stop_condition": "Through the CMP treatment of Syllabus 3.3.5 (stop before Chapter 3 trophy / remainder / spine claims)",
+    "out_of_scope_today": [
+      "Chapter 3 complete claim",
+      "First-pass spine PASS",
+      "Until-exam educational trust",
+      "Trust Front absorb (4.x/5.x already LIVE)",
+      "Remainder / spine re-audit authoring"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.3.5 contingency tables and independence. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.3.5 (stop before Chapter 3 trophy / remainder / spine claims). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 3.3.5 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause — write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1012-3.3.5-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1012-3.3.5-ar-01",
+      "title": "Active Recall: 3.3.5",
+      "prompt": "Closed-book. (1) What does a contingency table classify? (2) What is the independence null? (3) How do expected cell counts arise? (4) Name one reason this does not finish Chapter 3 or the first-pass spine.",
+      "response_type": "short_structured",
+      "body": "Retrieve 3.3.5 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "contingency",
+        "two-way",
+        "independence",
+        "chi-square",
+        "expected",
+        "classification",
+        "chapter"
+      ],
+      "explanation": "Active recall for 3.3.5.",
+      "model_answer": "A two-way table cross-classifies two criteria. Independence says row and column factors do not associate; expected counts use marginal structure under CMP. One LO does not finish Chapter 3 or first-pass spine PASS.",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1012-3.3.5-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1012-3.3.5-cp-01",
+      "title": "Checkpoint: 3.3.5",
+      "prompt": "Closed-book. A colleague says 'Contingency independence finished Chapter 3 and the exam journey.' Refuse in one sentence and name tomorrow's honest next (Revision).",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 3.3.5.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "chapter",
+        "spine",
+        "revision",
+        "independence",
+        "until-exam"
+      ],
+      "explanation": "Checkpoint for 3.3.5.",
+      "model_answer": "Refuse: Chapter 3 / spine / until-exam are not finished. Today is contingency independence; tomorrow is CM-R1 Revision of 3.3 — not a trophy claim.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest independence / expected-count wobble — Revision protects the 3.3 chain tomorrow.",
+    "prompt": "Which part of today's 3.3.5 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 3.3.5 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "CM-R1",
+    "next_topic_title": "Campaign Mu Revision — retrieve 3.3 hinges",
+    "continuity_line": "Today you used contingency independence tests; tomorrow is Revision — retrieve the 3.3 chain closed-book (not Chapter 3 trophy).",
+    "light_prep_cue": "Optional: list the five 3.3 LO codes from memory — titles only tonight",
+    "student_facing": "Tomorrow: CM-R1 Revision (retrieve 3.3.1–3.3.5). Optional light prep: list the five LO codes from memory — titles only tonight."
+  },
+  "published_at": "2026-08-02"
+}
