@@ -1,0 +1,191 @@
+{
+  "package_version": "cs1013-campaign-nu-1.0.0",
+  "publication_version": "cs1013-live-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "CS1-EP001-CAMPAIGN-NU",
+  "volume_id": "CS1-013",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1013_EDUCATIONAL_VOLUME.md",
+    "CS1013_CERTIFICATION_REPORT.md",
+    "EP011_WAVE11_PLAN.md"
+  ],
+  "author_id": "cs1013-educational-author",
+  "authored_at": "2026-08-02",
+  "topic_code": "4.1",
+  "topic_title": "Understand and use linear regression models",
+  "topic_id": "CS1-D-T01",
+  "package_id": "CS1-EP001-PKG-CN-4.1-SOFTWARE-FIT",
+  "campaign_day": "CN-D4",
+  "topic_focus_lo": "4.1.4",
+  "topic_aliases": [
+    "CS1-D-T01",
+    "4.1",
+    "4.1.4"
+  ],
+  "topic_title_keywords": [
+    "software",
+    "inference",
+    "goodness of fit",
+    "prediction",
+    "residuals",
+    "confidence"
+  ],
+  "golden_id": "GOLDEN-CS1013-CS1-4.1-SOFTWARE-FIT",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1013-cs1-4.1-software-fit",
+    "display_title": "Fit a linear regression in software and interpret the output",
+    "mission_purpose": "Today's Mission exists to use appropriate software to fit a linear regression model and interpret the output: inference on the slope, measures of goodness of fit, prediction of mean or individual response with confidence limits, and residual checks of suitability — without pretending variable selection (4.1.5) is finished.",
+    "tutor_intent": "Today I will force the candidate to read software output as evidence — slope inference, GOF, prediction limits, residual checks — and refuse treating variable-selection shopping as today's LO.",
+    "educational_intent": "Produce a cognitive move from hand least squares to software-mediated fit, inference, prediction, and residual diagnostics under CMP.",
+    "learning_objective": "Use of appropriate software to fit a linear regression model to a data set and interpret the output: Perform statistical inference on the slope parameter; Describe the use of measures of goodness of fit of a linear regression model; Use a fitted linear relationship to predict a mean response or an individual response with confidence limits; Use residuals to check the suitability and validity of a linear regression model",
+    "concept_focus": "Fit → slope inference → GOF measures → mean vs individual prediction limits → residual checks → refuse variable-selection swallow.",
+    "prior_bridge": "Yesterday you obtained least squares estimates for the simple linear model (4.1.3). Today practises software fit and interpretation of that fitted relationship.",
+    "why_now": "4.1.4 is contiguous after least squares. Examiners expect software output literacy — not GUI tourism and not jumping to selection theatre.",
+    "expected_benefit": "Study Progress for software fit/interpretation — not Topic Complete for 4.1.5.",
+    "explainability": "Assigned as Campaign Nu Day 4 because Continuity Front law keeps variable selection as the final Learning day.",
+    "success_criteria": [
+      "Closed-book, name the four interpretation moves in 4.1.4 (inference, GOF, prediction limits, residual checks).",
+      "Distinguish mean-response vs individual-response prediction intervals.",
+      "Refuse one 'I picked the best subset today' variable-selection claim."
+    ],
+    "task_descriptions": [
+      "Sketch the four interpretation moves before CMP.",
+      "Complete Guided Reading through CMP treatment of Syllabus 4.1.4.",
+      "Closed-book Knowledge Checks: software interpretation + refuse selection swallow."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 55,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1013-cs1-4.1-software-fit",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 4.1.4 — not the next LO as primary.",
+    "session_tutor_purpose": "Set focus on 4.1.4, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
+    "duration_budget_minutes": {
+      "min": 55,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Fit a linear regression in software and interpret the output. You practised selective CMP reading on Syllabus 4.1.4. This is Study Progress for today's block — not Topic Complete for later 4.1 LOs, Trust Front absorb of 4.2/5.1, first-pass spine PASS, or until-exam trust.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.1.4 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.1.4 — fit a linear regression in software and interpret the output. Stop before out-of-scope later LOs.",
+    "focus_questions": [
+      "What is the core move of Syllabus 4.1.4?",
+      "What warrant separates today's skill from yesterday's?",
+      "What claim must you refuse today?",
+      "What will you practise in Knowledge Checks after the CMP?"
+    ],
+    "misconception_watch": [
+      "Watch for equating confidence limits for a mean response with prediction of an individual.",
+      "Watch for treating residual plots as optional decoration.",
+      "Watch for starting variable-selection shopping (4.1.5) as today's finish."
+    ],
+    "open_point": "CMP · Syllabus 4.1.4 software fit and interpretation of linear regression",
+    "stop_condition": "Through the CMP treatment of Syllabus 4.1.4 (stop before variable selection 4.1.5)",
+    "out_of_scope_today": [
+      "Variable selection as primary (4.1.5)",
+      "GLM / Topic 4.2 as primary",
+      "Bayesian / Topic 5.1 as primary",
+      "Until-exam educational trust"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.1.4 software fit and interpretation of linear regression. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.1.4 (stop before variable selection 4.1.5). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.1.4 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause — write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1013-4.1.4-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1013-4.1.4-ar-01",
+      "title": "Active Recall: 4.1.4",
+      "prompt": "Closed-book. (1) What inference on the slope do you report from software? (2) Name one goodness-of-fit measure use. (3) How do mean-response and individual-response prediction limits differ? (4) What do residuals check? (5) Name one reason variable selection is not today's LO.",
+      "response_type": "short_structured",
+      "body": "Retrieve 4.1.4 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "slope",
+        "inference",
+        "goodness of fit",
+        "prediction",
+        "confidence",
+        "residuals",
+        "mean",
+        "individual"
+      ],
+      "explanation": "Active recall for 4.1.4.",
+      "model_answer": "Slope inference uses the software estimate and its uncertainty under CMP. GOF summarises how well the linear relationship describes the data. Individual prediction limits are wider than mean-response limits. Residuals check suitability/validity. Variable selection is tomorrow's LO.",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1013-4.1.4-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1013-4.1.4-cp-01",
+      "title": "Checkpoint: 4.1.4",
+      "prompt": "Closed-book. A colleague says 'I ran best-subset selection, so I finished today's LO.' Refuse in one sentence and restate what today's LO requires.",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 4.1.4.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "software",
+        "inference",
+        "residuals",
+        "not selection",
+        "today"
+      ],
+      "explanation": "Checkpoint for 4.1.4.",
+      "model_answer": "Refuse: variable selection is tomorrow. Today requires software fit with slope inference, GOF, prediction limits, and residual checks.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest prediction-limit or residual-check wobble — keep selection out of tonight's claim.",
+    "prompt": "Which part of today's 4.1.4 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 4.1.4 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "4.1",
+    "next_topic_title": "Measures of model fit for variable selection (4.1.5)",
+    "continuity_line": "Today you practised software fit and interpretation; tomorrow continues 4.1 at variable selection using measures of model fit.",
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 4.1.5 — titles only tonight",
+    "student_facing": "Tomorrow: variable selection via fit measures (4.1.5). Optional light prep: skim 4.1.5 headings — titles only tonight."
+  },
+  "published_at": "2026-08-02"
+}

@@ -1,0 +1,194 @@
+{
+  "package_version": "cs1013-campaign-nu-1.0.0",
+  "publication_version": "cs1013-live-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "CS1-EP001-CAMPAIGN-NU",
+  "volume_id": "CS1-013",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1013_EDUCATIONAL_VOLUME.md",
+    "CS1013_CERTIFICATION_REPORT.md",
+    "EP011_WAVE11_PLAN.md"
+  ],
+  "author_id": "cs1013-educational-author",
+  "authored_at": "2026-08-02",
+  "package_id": "CS1-EP001-PKG-REV-LINEAR-REGRESSION-NU",
+  "campaign_day": "CN-R1",
+  "topic_code": "CN-R1",
+  "topic_title": "Campaign Nu revision — linear regression models",
+  "return_targets": [
+    "4.1.1",
+    "4.1.2",
+    "4.1.3",
+    "4.1.4",
+    "4.1.5"
+  ],
+  "topic_aliases": [
+    "CN-R1",
+    "campaign-nu-revision"
+  ],
+  "topic_title_keywords": [
+    "revision",
+    "regression",
+    "response",
+    "explanatory",
+    "least squares",
+    "residuals",
+    "variable selection"
+  ],
+  "golden_id": "GOLDEN-CS1013-CS1-CN-R1-LINEAR-REGRESSION",
+  "mode": "revision",
+  "mission": {
+    "mission_id": "msn-cs1013-cs1-cn-r1-linear-regression",
+    "display_title": "Retrieve linear-regression hinges (4.1)",
+    "mission_purpose": "Today's Mission exists to protect memory of Campaign Nu — retrieving response vs explanatory roles, simple vs multiple models, least squares, software fit and inference, and variable-selection fit measures — so 4.1 does not evaporate before an honest stop / Wave 0 honesty / spine re-audit successor.",
+    "tutor_intent": "Today I will run closed-book retrieval across Nu's Learning hinges — not a passive CMP re-read and not a Trust Front 4.2/5.1 absorb or until-exam claim.",
+    "educational_intent": "Produce retrieval strength on the Campaign Educational Objective: response/explanatory → simple/multiple → least squares → software fit/inference → variable selection.",
+    "learning_objective": "Retrieve and connect (1) response and explanatory variables, (2) simple and multiple linear regression models, (3) least squares slope and intercept, (4) software fit with inference, GOF, prediction, and residual checks, and (5) measures of model fit for variable selection.",
+    "concept_focus": "Campaign chain retrieval: response/explanatory → simple/multiple → least squares → software fit/inference → variable selection.",
+    "prior_bridge": "Yesterday you finished variable selection (4.1.5). Today is Revision mode: return to 4.1.1–4.1.5 under closed-book retrieval — no new first-pass LO.",
+    "why_now": "Pilot Arc law requires Revision after the Learning span; spacing protects Continuity Front join closure before an honest stop / Wave 0 / spine successor.",
+    "expected_benefit": "Evidence that the 4.1 chain retrieves — revision Study Progress, not a claim that Trust Front / spine / the exam journey is complete.",
+    "explainability": "Assigned as Campaign Nu Revision because Architecture requires memory return inside the Pilot Arc before the next Volume.",
+    "success_criteria": [
+      "Closed-book, name the five 4.1 Learning hinges in order (short phrases).",
+      "State at least one concrete weakest link with a rework plan.",
+      "Refuse Trust Front 4.2/5.1 absorb / spine / until-exam claims."
+    ],
+    "task_descriptions": [
+      "Without opening the CMP, sketch Nu's chain: response/explanatory → simple/multiple → least squares → software fit → variable selection.",
+      "Complete Revision Knowledge Checks under closed-book rules.",
+      "Author a revision Reflection naming the weakest link."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 45,
+      "max": 65
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1013-cs1-cn-r1-linear-regression",
+    "session_educational_purpose": "Retrieve and connect Campaign Nu skills — not to claim Trust Front absorb.",
+    "session_tutor_purpose": "Keep CMP closed for checks; harvest weakest link — Gate RV substance.",
+    "duration_budget_minutes": {
+      "min": 45,
+      "max": 65
+    },
+    "wrap_up": "Revision Session complete. You stress-tested 4.1.1–4.1.5 return targets. This is revision Study Progress — not Topic Complete for 4.2/5.1, and not first-pass spine PASS.",
+    "confidence_prompt": "How confident are you that linear-regression hinges will still retrieve in three days? Rate 1–5 and name the weakest link."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this revision stage: strengthen retrieval of the Campaign Nu chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus.",
+    "focus_questions": [
+      "Can you name the five 4.1 Learning hinges in order?",
+      "Can you state least-squares vs software-fit inference vs variable selection?",
+      "What claim must you refuse (4.2/5.1 absorb / spine / until-exam)?"
+    ],
+    "misconception_watch": [
+      "Watch for turning revision into a passive re-read.",
+      "Watch for claiming Trust Front 4.2/5.1 / spine / until-exam complete.",
+      "Watch for dropping Mu hypothesis-testing memory as irrelevant."
+    ],
+    "open_point": "No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block.",
+    "stop_condition": "After revision checks and Reflection — do not claim Trust Front absorb, spine PASS, or until-exam trust in this sitting",
+    "out_of_scope_today": [
+      "GLM / Topic 4.2 as primary",
+      "Bayesian / Topic 5.1 as primary",
+      "First-pass spine PASS",
+      "Until-exam educational trust",
+      "Wave 0 Approver honesty clearance",
+      "Certified Educational Coverage increase from catalogue alone"
+    ],
+    "annotation_task": "Before checks: sketch return-target chain from memory",
+    "attempt_before_reveal": "Attempt each check before any targeted CMP reopen",
+    "exit_line": "Begin closed-book retrieval. Reopen CMP only at a failed locus. After checks, complete Reflection.",
+    "return_cue": "Revision reading stage is complete when checks are attempted and any failed locus has a targeted reopen plan.",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause — mark the weakest link before checks.",
+        "student_action": "Annotate"
+      }
+    ],
+    "reentry_line": "Stay closed-book unless a check failed. Continue retrieval."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1013-cn-r1-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1013-cn-r1-ar-01",
+      "title": "Active Recall: CN-R1",
+      "prompt": "Closed-book. Name the five Campaign Nu Learning hinges in order (4.1.1→4.1.5) in short phrases.",
+      "response_type": "short_structured",
+      "body": "Retrieve Nu chain closed-book.",
+      "hints": [
+        "Response/explanatory first.",
+        "End with variable selection."
+      ],
+      "accepted_keywords": [
+        "response",
+        "explanatory",
+        "simple",
+        "multiple",
+        "least squares",
+        "software",
+        "residuals",
+        "variable selection"
+      ],
+      "explanation": "RV retrieves the Campaign chain.",
+      "model_answer": "4.1.1 response/explanatory → 4.1.2 simple/multiple → 4.1.3 least squares → 4.1.4 software fit/inference/prediction/residuals → 4.1.5 variable selection by fit measures.",
+      "common_mistake": "Skipping least squares or collapsing software day into selection.",
+      "success_criteria": [
+        "Five hinges in order.",
+        "Short phrases sufficient."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1013-cn-r1-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1013-cn-r1-cp-01",
+      "title": "Checkpoint: CN-R1",
+      "prompt": "Closed-book. (1) Weakest 4.1 link + one concrete rework. (2) Refuse Trust Front 4.2/5.1 absorb and first-pass spine PASS. (3) Name the honest next (declared stop / Wave 0 honesty / spine re-audit) — not until-exam trust.",
+      "response_type": "short_structured",
+      "body": "Weakest link + honest next.",
+      "hints": [
+        "Name a rework, not a vague review.",
+        "Refuse trophy claims."
+      ],
+      "accepted_keywords": [
+        "weakest",
+        "rework",
+        "refuse",
+        "4.2",
+        "spine",
+        "Wave 0",
+        "remainder",
+        "until-exam"
+      ],
+      "explanation": "RV harvests memory debt and honest next.",
+      "model_answer": "(1) e.g. residual diagnostics — five-minute rework. (2) Refuse 4.2/5.1 absorb / spine / until-exam. (3) Honest next is declared stop or Wave 0 honesty / spine re-audit successor Volume — not claimed finished here.",
+      "common_mistake": "Spine / Trust Front absorb / until-exam claim.",
+      "success_criteria": [
+        "Rework named.",
+        "Forbidden claim refused."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Revision Reflection names the weakest Campaign link for spaced return.",
+    "prompt": "Which return target retrieved least cleanly and what one concrete rework will you schedule? Confirm Trust Front 4.2/5.1 absorb / spine / until-exam stayed out of scope.",
+    "prompts": [
+      "Which return target retrieved least cleanly?",
+      "What one concrete rework will you schedule?",
+      "Confirm: 4.2/5.1 absorb / spine PASS / until-exam trust were out of scope."
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "stop",
+    "next_topic_title": "Honest next — declared stop / Wave 0 honesty / spine re-audit successor — not Trust Front 4.2 absorb",
+    "continuity_line": "Campaign Nu / Volume CS1-013 completes after this Revision. Honest stop: 4.1 Continuity Front join Pilot Arc closed — not Trust Front 4.2/5.1 absorb; not first-pass spine; not until-exam trust. Successor geography is Wave 0 honesty / spine re-audit under a later commission (or declared stop). CS1-003 Delta remains independent Trust Front LIVE inventory.",
+    "light_prep_cue": "No new first-pass LO tonight — rest or schedule weakest-link rework only",
+    "student_facing": "Campaign Nu / CS1-013 complete after today (pending human Approver + LIVE). Honest next: stop or await Wave 0 honesty / spine re-audit successor Volume. Optional: schedule your weakest 4.1 rework only."
+  },
+  "published_at": "2026-08-02"
+}

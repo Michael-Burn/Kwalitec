@@ -1,0 +1,191 @@
+{
+  "package_version": "cs1013-campaign-nu-1.0.0",
+  "publication_version": "cs1013-live-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "CS1-EP001-CAMPAIGN-NU",
+  "volume_id": "CS1-013",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1013_EDUCATIONAL_VOLUME.md",
+    "CS1013_CERTIFICATION_REPORT.md",
+    "EP011_WAVE11_PLAN.md"
+  ],
+  "author_id": "cs1013-educational-author",
+  "authored_at": "2026-08-02",
+  "topic_code": "4.1",
+  "topic_title": "Understand and use linear regression models",
+  "topic_id": "CS1-D-T01",
+  "package_id": "CS1-EP001-PKG-CN-4.1-VARIABLE-SELECTION",
+  "campaign_day": "CN-D5",
+  "topic_focus_lo": "4.1.5",
+  "topic_aliases": [
+    "CS1-D-T01",
+    "4.1",
+    "4.1.5"
+  ],
+  "topic_title_keywords": [
+    "variable selection",
+    "model fit",
+    "explanatory",
+    "measure",
+    "compare"
+  ],
+  "golden_id": "GOLDEN-CS1013-CS1-4.1-VARIABLE-SELECTION",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1013-cs1-4.1-variable-selection",
+    "display_title": "Select explanatory variables using measures of model fit",
+    "mission_purpose": "Today's Mission exists to use measures of model fit to select an appropriate set of explanatory variables — without pretending GLM (4.2) or Bayesian (5.1) are finished, and without claiming first-pass spine PASS.",
+    "tutor_intent": "Today I will force the candidate to compare candidate explanatory sets using fit measures and refuse treating Trust Front 4.2/5.1 absorb as Continuity Front credit.",
+    "educational_intent": "Produce a cognitive move from a single fitted linear model to disciplined variable selection using measures of model fit under CMP.",
+    "learning_objective": "Measures of model fit to select an appropriate set of explanatory variables",
+    "concept_focus": "Candidate sets → fit measures → select appropriate explanatory set → refuse 4.2/5.1 / spine / until-exam.",
+    "prior_bridge": "Yesterday you practised software fit, inference, prediction, and residual checks (4.1.4). Today closes Topic 4.1 Learning at variable selection.",
+    "why_now": "4.1.5 is the final Learning LO of Topic 4.1. Closing it completes the Continuity Front join Pilot Arc Learning span before Revision — still without absorbing Trust Front 4.2/5.1.",
+    "expected_benefit": "Study Progress for variable selection — not Topic Complete for 4.2.",
+    "explainability": "Assigned as Campaign Nu Day 5 because Continuity Front law closes Topic 4.1 only; GLM and Bayesian remain Trust Front / later geography.",
+    "success_criteria": [
+      "Closed-book, name what 'selecting explanatory variables using measures of model fit' means in CMP-usable form.",
+      "State one reason more variables is not automatically better.",
+      "Refuse one 'I finished 4.2/GLM / spine / until-exam' claim."
+    ],
+    "task_descriptions": [
+      "Sketch selection-by-fit-measure logic before CMP.",
+      "Complete Guided Reading through CMP treatment of Syllabus 4.1.5.",
+      "Closed-book Knowledge Checks: selection hinge + refuse 4.2/spine swallow."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 55,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1013-cs1-4.1-variable-selection",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 4.1.5 — not the next LO as primary.",
+    "session_tutor_purpose": "Set focus on 4.1.5, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
+    "duration_budget_minutes": {
+      "min": 55,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Select explanatory variables using measures of model fit. You practised selective CMP reading on Syllabus 4.1.5. This is Study Progress for today's block — not Topic Complete for later 4.1 LOs, Trust Front absorb of 4.2/5.1, first-pass spine PASS, or until-exam trust.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.1.5 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.1.5 — select explanatory variables using measures of model fit. Stop before out-of-scope later LOs.",
+    "focus_questions": [
+      "What is the core move of Syllabus 4.1.5?",
+      "What warrant separates today's skill from yesterday's?",
+      "What claim must you refuse today?",
+      "What will you practise in Knowledge Checks after the CMP?"
+    ],
+    "misconception_watch": [
+      "Watch for equating 'best R²' with automatically correct selection without CMP caveat.",
+      "Watch for claiming GLM/Bayesian finished Continuity Front.",
+      "Watch for claiming spine / until-exam complete after Topic 4.1."
+    ],
+    "open_point": "CMP · Syllabus 4.1.5 measures of model fit for variable selection",
+    "stop_condition": "Through the CMP treatment of Syllabus 4.1.5 (stop before GLM 4.2 / Bayesian 5.1 / spine trophy claims)",
+    "out_of_scope_today": [
+      "GLM / Topic 4.2 as primary",
+      "Bayesian / Topic 5.1 as primary",
+      "First-pass spine PASS",
+      "Until-exam educational trust",
+      "Wave 0 Approver honesty clearance",
+      "Certified Educational Coverage increase from catalogue alone"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.1.5 measures of model fit for variable selection. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.1.5 (stop before GLM 4.2 / Bayesian 5.1 / spine trophy claims). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.1.5 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause — write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1013-4.1.5-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1013-4.1.5-ar-01",
+      "title": "Active Recall: 4.1.5",
+      "prompt": "Closed-book. (1) What decision does 4.1.5 ask you to make? (2) What role do measures of model fit play? (3) Name one reason more explanatory variables is not automatically better. (4) Name one reason this does not finish Topic 4.2 or first-pass spine.",
+      "response_type": "short_structured",
+      "body": "Retrieve 4.1.5 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "selection",
+        "explanatory",
+        "model fit",
+        "measure",
+        "compare",
+        "overfit",
+        "4.2"
+      ],
+      "explanation": "Active recall for 4.1.5.",
+      "model_answer": "4.1.5 selects an appropriate explanatory set using fit measures. More variables can overfit or dilute interpretation. Topic 4.2 GLM and first-pass spine PASS are out of scope.",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1013-4.1.5-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1013-4.1.5-cp-01",
+      "title": "Checkpoint: 4.1.5",
+      "prompt": "Closed-book. A colleague says 'Variable selection finished GLM and the exam journey.' Refuse in one sentence and name tomorrow's honest next (Revision).",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 4.1.5.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "4.2",
+        "spine",
+        "revision",
+        "selection",
+        "until-exam"
+      ],
+      "explanation": "Checkpoint for 4.1.5.",
+      "model_answer": "Refuse: GLM / spine / until-exam are not finished. Today is variable selection for linear models; tomorrow is CN-R1 Revision of 4.1 — not a trophy claim.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest selection / fit-measure wobble — Revision protects the 4.1 chain tomorrow.",
+    "prompt": "Which part of today's 4.1.5 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 4.1.5 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "CN-R1",
+    "next_topic_title": "Campaign Nu Revision — retrieve 4.1 hinges",
+    "continuity_line": "Today you closed Topic 4.1 Learning at variable selection; tomorrow is Campaign Nu Revision returning to 4.1.1–4.1.5.",
+    "light_prep_cue": "No new LO tonight — rest or jot the stickiest 4.1 hinge for Revision",
+    "student_facing": "Tomorrow: CN-R1 Revision of 4.1. Optional: note your weakest 4.1 link — titles only tonight."
+  },
+  "published_at": "2026-08-02"
+}

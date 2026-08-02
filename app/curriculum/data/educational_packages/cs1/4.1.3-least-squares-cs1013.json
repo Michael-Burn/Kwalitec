@@ -1,0 +1,189 @@
+{
+  "package_version": "cs1013-campaign-nu-1.0.0",
+  "publication_version": "cs1013-live-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "CS1-EP001-CAMPAIGN-NU",
+  "volume_id": "CS1-013",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1013_EDUCATIONAL_VOLUME.md",
+    "CS1013_CERTIFICATION_REPORT.md",
+    "EP011_WAVE11_PLAN.md"
+  ],
+  "author_id": "cs1013-educational-author",
+  "authored_at": "2026-08-02",
+  "topic_code": "4.1",
+  "topic_title": "Understand and use linear regression models",
+  "topic_id": "CS1-D-T01",
+  "package_id": "CS1-EP001-PKG-CN-4.1-LEAST-SQUARES",
+  "campaign_day": "CN-D3",
+  "topic_focus_lo": "4.1.3",
+  "topic_aliases": [
+    "CS1-D-T01",
+    "4.1",
+    "4.1.3"
+  ],
+  "topic_title_keywords": [
+    "least squares",
+    "slope",
+    "intercept",
+    "estimate",
+    "simple",
+    "linear"
+  ],
+  "golden_id": "GOLDEN-CS1013-CS1-4.1-LEAST-SQUARES",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1013-cs1-4.1-least-squares",
+    "display_title": "Obtain least squares estimates of slope and intercept",
+    "mission_purpose": "Today's Mission exists to obtain least squares estimates of the slope and intercept parameters in a simple linear regression model — without pretending software fit and inference (4.1.4) are finished.",
+    "tutor_intent": "Today I will force the candidate to connect residuals to the least-squares criterion and refuse treating GUI software output as today's LO.",
+    "educational_intent": "Produce a cognitive move from model forms to the least-squares estimation criterion and slope/intercept estimates for the simple linear model.",
+    "learning_objective": "Least squares estimates of the slope and intercept parameters in a simple linear regression model",
+    "concept_focus": "Residual → sum of squares → least-squares slope & intercept → refuse software-fit swallow.",
+    "prior_bridge": "Yesterday you distinguished simple and multiple linear models (4.1.2). Today estimates the simple linear parameters by least squares.",
+    "why_now": "4.1.3 is contiguous after model forms. Without least squares, software fit is black-box theatre.",
+    "expected_benefit": "Study Progress for least squares — not Topic Complete for 4.1.4.",
+    "explainability": "Assigned as Campaign Nu Day 3 because Continuity Front law keeps software interpretation as tomorrow.",
+    "success_criteria": [
+      "Closed-book, state what least squares minimises.",
+      "Name the two parameters estimated in the simple linear model.",
+      "Refuse one 'I clicked Fit in software, so I finished today's LO' claim."
+    ],
+    "task_descriptions": [
+      "Sketch residual → SS criterion before CMP.",
+      "Complete Guided Reading through CMP treatment of Syllabus 4.1.3.",
+      "Closed-book Knowledge Checks: least squares + refuse software swallow."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 55,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1013-cs1-4.1-least-squares",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 4.1.3 — not the next LO as primary.",
+    "session_tutor_purpose": "Set focus on 4.1.3, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
+    "duration_budget_minutes": {
+      "min": 55,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Obtain least squares estimates of slope and intercept. You practised selective CMP reading on Syllabus 4.1.3. This is Study Progress for today's block — not Topic Complete for later 4.1 LOs, Trust Front absorb of 4.2/5.1, first-pass spine PASS, or until-exam trust.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.1.3 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.1.3 — obtain least squares estimates of slope and intercept. Stop before out-of-scope later LOs.",
+    "focus_questions": [
+      "What is the core move of Syllabus 4.1.3?",
+      "What warrant separates today's skill from yesterday's?",
+      "What claim must you refuse today?",
+      "What will you practise in Knowledge Checks after the CMP?"
+    ],
+    "misconception_watch": [
+      "Watch for equating least squares with maximum likelihood without CMP warrant.",
+      "Watch for jumping into software output interpretation (4.1.4) as today's finish.",
+      "Watch for multiple-regression matrix algebra as the required hinge today."
+    ],
+    "open_point": "CMP · Syllabus 4.1.3 least squares estimates (simple linear regression)",
+    "stop_condition": "Through the CMP treatment of Syllabus 4.1.3 (stop before software fit / inference 4.1.4)",
+    "out_of_scope_today": [
+      "Software fit / inference / prediction / residual diagnostics as primary (4.1.4)",
+      "Variable selection as primary (4.1.5)",
+      "GLM / Topic 4.2 as primary",
+      "Until-exam educational trust"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.1.3 least squares estimates (simple linear regression). Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.1.3 (stop before software fit / inference 4.1.4). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.1.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause — write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1013-4.1.3-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1013-4.1.3-ar-01",
+      "title": "Active Recall: 4.1.3",
+      "prompt": "Closed-book. (1) What quantity does least squares minimise? (2) Which two parameters are estimated in the simple linear model? (3) What is a residual? (4) Name one reason software fit is not today's LO.",
+      "response_type": "short_structured",
+      "body": "Retrieve 4.1.3 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "least squares",
+        "residual",
+        "slope",
+        "intercept",
+        "minimise",
+        "sum of squares"
+      ],
+      "explanation": "Active recall for 4.1.3.",
+      "model_answer": "Least squares minimises the sum of squared residuals. Slope and intercept are estimated. A residual is observed minus fitted. Software fit/inference is tomorrow's LO.",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1013-4.1.3-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1013-4.1.3-cp-01",
+      "title": "Checkpoint: 4.1.3",
+      "prompt": "Closed-book. A colleague says 'I fitted the model in software, so I finished today's LO.' Refuse in one sentence and restate what today's LO requires.",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 4.1.3.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "least squares",
+        "slope",
+        "intercept",
+        "not software",
+        "today"
+      ],
+      "explanation": "Checkpoint for 4.1.3.",
+      "model_answer": "Refuse: software fit is tomorrow. Today requires least squares estimates of slope and intercept in the simple linear model.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest least-squares criterion wobble — keep software day out of tonight's claim.",
+    "prompt": "Which part of today's 4.1.3 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 4.1.3 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "4.1",
+    "next_topic_title": "Software fit, inference, prediction, and residual checks (4.1.4)",
+    "continuity_line": "Today you established least squares for the simple linear model; tomorrow continues 4.1 at software fit and interpretation.",
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 4.1.4 — titles only tonight",
+    "student_facing": "Tomorrow: software fit, inference, prediction, residuals (4.1.4). Optional light prep: skim 4.1.4 headings — titles only tonight."
+  },
+  "published_at": "2026-08-02"
+}

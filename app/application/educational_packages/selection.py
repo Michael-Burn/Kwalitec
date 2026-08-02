@@ -14,7 +14,7 @@ from app.application.educational_packages.loader import (
 )
 from app.application.educational_packages.models import CertifiedEducationalPackage
 
-# Campaign day order for Alpha → … → Lambda → Mu continuity (EP-001).
+# Campaign day order for Alpha → … → Mu → Nu continuity (EP-001).
 _CAMPAIGN_DAY_ORDER: dict[str, int] = {
     "CA-D1": 1,
     "CA-D2": 2,
@@ -108,6 +108,13 @@ _CAMPAIGN_DAY_ORDER: dict[str, int] = {
     "CM-D4": 81,
     "CM-D5": 82,
     "CM-R1": 83,
+    # Campaign Nu / CS1-013 (RO-011) — Continuity Front join into 4.1
+    "CN-D1": 84,
+    "CN-D2": 85,
+    "CN-D3": 86,
+    "CN-D4": 87,
+    "CN-D5": 88,
+    "CN-R1": 89,
 }
 
 
@@ -164,6 +171,18 @@ def resolve_package_successor(
     ]
     if not matches:
         return None
+    # RO-011 Continuity Front join: Nu shares topic_code 4.1 with Trust Front
+    # Delta. When the journey last day is Mu/Nu, prefer the CN chain so
+    # CM-R1 → CN-D1…CN-R1 is not diverted onto CD-D1… mid-chain.
+    last_day = (last.campaign_day or "").strip().upper()
+    if last_day.startswith(("CM-", "CN-")):
+        cn_matches = [
+            p
+            for p in matches
+            if (p.campaign_day or "").strip().upper().startswith("CN-")
+        ]
+        if cn_matches:
+            return min(cn_matches, key=campaign_day_sort_key)
     return min(matches, key=campaign_day_sort_key)
 
 

@@ -1,0 +1,193 @@
+{
+  "package_version": "cs1013-campaign-nu-1.0.0",
+  "publication_version": "cs1013-live-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "CS1-EP001-CAMPAIGN-NU",
+  "volume_id": "CS1-013",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1013_EDUCATIONAL_VOLUME.md",
+    "CS1013_CERTIFICATION_REPORT.md",
+    "EP011_WAVE11_PLAN.md"
+  ],
+  "author_id": "cs1013-educational-author",
+  "authored_at": "2026-08-02",
+  "topic_code": "4.1",
+  "topic_title": "Understand and use linear regression models",
+  "topic_id": "CS1-D-T01",
+  "package_id": "CS1-EP001-PKG-CN-4.1-RESPONSE-EXPLANATORY",
+  "campaign_day": "CN-D1",
+  "topic_focus_lo": "4.1.1",
+  "topic_aliases": [
+    "CS1-D-T01",
+    "4.1",
+    "4.1.1"
+  ],
+  "topic_title_keywords": [
+    "response",
+    "explanatory",
+    "variable",
+    "regression",
+    "outcome",
+    "predictor"
+  ],
+  "golden_id": "GOLDEN-CS1013-CS1-4.1-RESPONSE-EXPLANATORY",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1013-cs1-4.1-response-explanatory",
+    "display_title": "Name response and explanatory variables with modelling intent",
+    "mission_purpose": "Today's Mission exists to make response vs explanatory naming a deliberate modelling move — so you enter linear regression with a clear outcome variable and predictors, without pretending simple/multiple model forms (4.1.2) are finished.",
+    "tutor_intent": "Today I will force the candidate to discriminate response from explanatory variables on an actuarial data sketch and refuse treating 'all columns are predictors' as modelling.",
+    "educational_intent": "Produce a cognitive move from hypothesis-testing closure (3.3) to lawful response/explanatory roles at the Continuity Front join into Section 4.",
+    "learning_objective": "Response and explanatory variables",
+    "concept_focus": "Data sketch → name Y → name X's → refuse column-soup modelling → refuse simple/multiple swallow.",
+    "prior_bridge": "Campaign Mu closed hypothesis testing and goodness of fit (3.3) with Revision. Today opens Continuity Front join at Topic 4.1 LO 4.1.1 — the next official syllabus topic after 3.3. Trust Front CS1-003 already holds LIVE 4.1 inventory independently; Nu is the Continuity Front native Pilot Arc.",
+    "why_now": "4.1.1 is the lawful Continuity Front join after Mu. Closing it prevents a cliff at regression roles while keeping simple/multiple models as day two.",
+    "expected_benefit": "Study Progress for variable roles — not Topic Complete for 4.1.2.",
+    "explainability": "Assigned as Campaign Nu Day 1 because CE-001 / EP-001 Continuity Front names 4.1 as the handoff from Mu after Chapter 3 CF Missing closes.",
+    "success_criteria": [
+      "Closed-book, name one response and at least one explanatory variable for a stated scenario.",
+      "Justify each role in one sentence.",
+      "Refuse one 'every column is a predictor' claim."
+    ],
+    "task_descriptions": [
+      "Sketch response vs explanatory roles before CMP.",
+      "Complete Guided Reading through CMP treatment of Syllabus 4.1.1.",
+      "Closed-book Knowledge Checks: roles + refuse column-soup."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 55,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1013-cs1-4.1-response-explanatory",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 4.1.1 — not the next LO as primary.",
+    "session_tutor_purpose": "Set focus on 4.1.1, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
+    "duration_budget_minutes": {
+      "min": 55,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Name response and explanatory variables with modelling intent. You practised selective CMP reading on Syllabus 4.1.1. This is Study Progress for today's block — not Topic Complete for later 4.1 LOs, Trust Front absorb of 4.2/5.1, first-pass spine PASS, or until-exam trust.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.1.1 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.1.1 — name response and explanatory variables with modelling intent. Stop before out-of-scope later LOs.",
+    "focus_questions": [
+      "What is the core move of Syllabus 4.1.1?",
+      "What warrant separates today's skill from yesterday's?",
+      "What claim must you refuse today?",
+      "What will you practise in Knowledge Checks after the CMP?"
+    ],
+    "misconception_watch": [
+      "Watch for treating every column as a predictor by default.",
+      "Watch for starting simple/multiple algebra (4.1.2) inside this sitting.",
+      "Watch for claiming Trust Front 4.2/5.1 absorb or spine PASS."
+    ],
+    "open_point": "CMP · Syllabus 4.1.1 response and explanatory variables",
+    "stop_condition": "Through the CMP treatment of Syllabus 4.1.1 (stop before simple/multiple model forms 4.1.2)",
+    "out_of_scope_today": [
+      "Simple vs multiple model forms as primary (4.1.2)",
+      "Least squares estimation as primary (4.1.3)",
+      "Software fit / inference as primary (4.1.4)",
+      "Variable selection as primary (4.1.5)",
+      "GLM / Topic 4.2 as primary",
+      "Bayesian / Topic 5.1 as primary",
+      "Until-exam educational trust"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.1.1 response and explanatory variables. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.1.1 (stop before simple/multiple model forms 4.1.2). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause — write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1013-4.1.1-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1013-4.1.1-ar-01",
+      "title": "Active Recall: 4.1.1",
+      "prompt": "Closed-book. (1) What is a response variable? (2) What is an explanatory variable? (3) Give one actuarial-flavoured pair (Y, X). (4) Name one reason simple vs multiple models are not today's LO.",
+      "response_type": "short_structured",
+      "body": "Retrieve 4.1.1 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "response",
+        "explanatory",
+        "outcome",
+        "predictor",
+        "Y",
+        "X",
+        "model"
+      ],
+      "explanation": "Active recall for 4.1.1.",
+      "model_answer": "Response is the outcome modelled; explanatory variables are the predictors. Example: claim severity (Y) vs age and sum insured (X's). Simple/multiple model forms are tomorrow's LO.",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1013-4.1.1-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1013-4.1.1-cp-01",
+      "title": "Checkpoint: 4.1.1",
+      "prompt": "Closed-book. A colleague says 'I listed every column as a predictor, so I finished today's LO.' Refuse in one sentence and restate what today's LO requires.",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 4.1.1.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "response",
+        "explanatory",
+        "not every",
+        "column",
+        "today"
+      ],
+      "explanation": "Checkpoint for 4.1.1.",
+      "model_answer": "Refuse: column-soup is not modelling. Today requires deliberate response vs explanatory naming with justification.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest role-naming wobble — keep simple/multiple forms out of tonight's claim.",
+    "prompt": "Which part of today's 4.1.1 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 4.1.1 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "4.1",
+    "next_topic_title": "Simple and multiple linear regression models (4.1.2)",
+    "continuity_line": "Today you established response and explanatory roles; tomorrow continues 4.1 at simple vs multiple linear models.",
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 4.1.2 — titles only tonight",
+    "student_facing": "Tomorrow: simple and multiple linear regression models (4.1.2). Optional light prep: skim 4.1.2 headings — titles only tonight."
+  },
+  "published_at": "2026-08-02"
+}
