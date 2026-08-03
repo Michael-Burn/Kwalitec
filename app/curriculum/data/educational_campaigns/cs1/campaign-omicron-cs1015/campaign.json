@@ -1,0 +1,49 @@
+{
+  "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
+  "campaign_version": "cs1015-1.0.0",
+  "display_title": "Campaign Omicron — Bayesian statistics (5.1) · Continuity Front join",
+  "subject_id": "CS1",
+  "package_version_pin": "IFoA CS1 2026",
+  "scope_class": "Pilot Arc",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "status": "released",
+  "volume_id": "CS1-015",
+  "prior_volume_id": "CS1-014",
+  "day_count": {
+    "learning": 9,
+    "revision": 1,
+    "total": 10
+  },
+  "syllabus_span": [
+    "5.1.1",
+    "5.1.2",
+    "5.1.3",
+    "5.1.4",
+    "5.1.5",
+    "5.1.6",
+    "5.1.7",
+    "5.1.8",
+    "5.1.9"
+  ],
+  "out_of_scope": [
+    "first-pass spine PASS",
+    "until-examination educational trust",
+    "Trust Front whole-Delta absorb into Continuity Front credit",
+    "Wave 0 Approver honesty clearance",
+    "Wave 14 authoring",
+    "coverage mirage / Student Reliance increase from catalogue alone"
+  ],
+  "inventory": [
+    "CS1-EP001-PKG-CO-5.1-BAYES-THEOREM",
+    "CS1-EP001-PKG-CO-5.1-PRIOR-POSTERIOR",
+    "CS1-EP001-PKG-CO-5.1-POSTERIOR-SIMPLE",
+    "CS1-EP001-PKG-CO-5.1-LOSS-ESTIMATORS",
+    "CS1-EP001-PKG-CO-5.1-CREDIBLE-INTERVALS",
+    "CS1-EP001-PKG-CO-5.1-CREDIBILITY-PREMIUM",
+    "CS1-EP001-PKG-CO-5.1-BAYESIAN-CREDIBILITY",
+    "CS1-EP001-PKG-CO-5.1-EMPIRICAL-BAYES",
+    "CS1-EP001-PKG-CO-5.1-BAYES-VS-EB",
+    "CS1-EP001-PKG-REV-BAYESIAN-OMICRON"
+  ],
+  "trust_front_note": "CS1-003 / Campaign Delta remains independent Trust Front LIVE inventory for 4.1–5.1. Omicron package IDs are CO-prefixed Continuity Front join LIVE inventory (RO-013) — not Trust Front absorb; Published Coverage unchanged (5.1 already counted)."
+}

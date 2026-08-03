@@ -127,6 +127,17 @@ _CAMPAIGN_DAY_ORDER: dict[str, int] = {
     "CX-D9": 98,
     "CX-D10": 99,
     "CX-R1": 100,
+    # Campaign Omicron / CS1-015 (RO-013) — Continuity Front join into 5.1
+    "CO-D1": 101,
+    "CO-D2": 102,
+    "CO-D3": 103,
+    "CO-D4": 104,
+    "CO-D5": 105,
+    "CO-D6": 106,
+    "CO-D7": 107,
+    "CO-D8": 108,
+    "CO-D9": 109,
+    "CO-R1": 110,
 }
 
 
@@ -206,6 +217,17 @@ def resolve_package_successor(
         ]
         if cx_matches:
             return min(cx_matches, key=campaign_day_sort_key)
+    # RO-013 Continuity Front join: Omicron shares topic_code 5.1 with Trust
+    # Front Delta. When the journey last day is Xi/Omicron, prefer the CO
+    # chain so CX-R1 → CO-D1…CO-R1 is not diverted onto CD-D16… mid-chain.
+    if last_day.startswith(("CX-", "CO-")):
+        co_matches = [
+            p
+            for p in matches
+            if (p.campaign_day or "").strip().upper().startswith("CO-")
+        ]
+        if co_matches:
+            return min(co_matches, key=campaign_day_sort_key)
     return min(matches, key=campaign_day_sort_key)
 
 
