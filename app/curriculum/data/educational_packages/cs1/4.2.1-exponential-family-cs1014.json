@@ -1,0 +1,195 @@
+{
+  "package_version": "cs1014-campaign-xi-1.0.0",
+  "publication_version": "cs1014-live-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "CS1-EP001-CAMPAIGN-XI",
+  "volume_id": "CS1-014",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1014_EDUCATIONAL_VOLUME.md",
+    "CS1014_CERTIFICATION_REPORT.md",
+    "EP012_WAVE12_PLAN.md"
+  ],
+  "author_id": "cs1014-educational-author",
+  "authored_at": "2026-08-03",
+  "topic_code": "4.2",
+  "topic_title": "Understand and use generalised linear models",
+  "topic_id": "CS1-D-T02",
+  "package_id": "CS1-EP001-PKG-CX-4.2-EXPONENTIAL-FAMILY",
+  "campaign_day": "CX-D1",
+  "topic_focus_lo": "4.2.1",
+  "topic_aliases": [
+    "CS1-D-T02",
+    "4.2",
+    "4.2.1"
+  ],
+  "topic_title_keywords": [
+    "exponential",
+    "family",
+    "binomial",
+    "Poisson",
+    "gamma",
+    "GLM"
+  ],
+  "golden_id": "GOLDEN-CS1014-CS1-4.2-EXPONENTIAL-FAMILY",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1014-cs1-4.2-exponential-family",
+    "display_title": "Place GLM responses in the exponential family",
+    "mission_purpose": "Today's Mission exists to place binomial, Poisson, exponential, gamma and normal as exponential-family responses — so GLM starts from distributional honesty, without pretending mean/variance/scale (4.2.2) are finished.",
+    "tutor_intent": "Today I will force exponential-family placement for named responses and refuse 'GLM means linear regression in a package'.",
+    "educational_intent": "Produce family placement as the Continuity Front join hinge from Nu linear regression into Topic 4.2 structure.",
+    "learning_objective": "Recognise binomial, Poisson, exponential, gamma and normal distributions as members of an exponential family in the GLM setting.",
+    "concept_focus": "Named response → exponential family membership → refuse package-name GLM → refuse mean/variance swallow.",
+    "prior_bridge": "Campaign Nu closed linear regression (4.1) with Revision. Today opens Continuity Front join at Topic 4.2 LO 4.2.1 — the next official syllabus topic after 4.1. Trust Front CS1-003 already holds LIVE 4.2 inventory independently; Xi is the Continuity Front native Pilot Arc.",
+    "why_now": "4.2.1 is the lawful Continuity Front join after Nu. Closing it prevents a cliff at GLM structure while keeping moments as day two.",
+    "expected_benefit": "Study Progress for family placement — not Topic Complete for 4.2.2.",
+    "explainability": "Assigned as Campaign Xi Day 1 because CE-001 / EP-001 Continuity Front names 4.2 as the handoff from Nu after Topic 4.1 CF join closes.",
+    "success_criteria": [
+      "Closed-book, name five exponential-family GLM responses from 4.2.1.",
+      "Mark which is the Normal special case inside the list.",
+      "Refuse one 'GLM is just linear regression with a package name' claim."
+    ],
+    "task_descriptions": [
+      "Sketch family membership before CMP.",
+      "Complete Guided Reading through CMP treatment of Syllabus 4.2.1.",
+      "Closed-book Knowledge Checks: family list + refuse package-name GLM."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 55,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1014-cs1-4.2-exponential-family",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 4.2.1 — not the next LO as primary.",
+    "session_tutor_purpose": "Set focus on 4.2.1, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
+    "duration_budget_minutes": {
+      "min": 55,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Place GLM responses in the exponential family. You practised selective CMP reading on Syllabus 4.2.1. This is Study Progress for today's block — not Topic Complete for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or until-exam trust.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.1 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.1 — place glm responses in the exponential family. Stop before out-of-scope later LOs.",
+    "focus_questions": [
+      "What is the core move of Syllabus 4.2.1?",
+      "What warrant separates today's skill from yesterday's?",
+      "What claim must you refuse today?",
+      "What will you practise in Knowledge Checks after the CMP?"
+    ],
+    "misconception_watch": [
+      "Watch for equating GLM with 'linear regression in software'.",
+      "Watch for diving into mean/variance formulae (4.2.2) as today's finish.",
+      "Watch for claiming Trust Front 5.1 absorb or spine PASS."
+    ],
+    "open_point": "CMP · Syllabus 4.2.1 exponential family responses for GLMs",
+    "stop_condition": "Through the CMP treatment of Syllabus 4.2.1 (stop before mean/variance/scale 4.2.2)",
+    "out_of_scope_today": [
+      "Mean / variance / variance function / scale as primary (4.2.2)",
+      "Link / canonical link as primary (4.2.3)",
+      "Bayesian / Topic 5.1 as primary",
+      "Until-exam educational trust"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution — stay inside 4.2.1.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.1 exponential family responses for GLMs. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.1 (stop before mean/variance/scale 4.2.2). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.2.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause — write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1014-4.2.1-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1014-4.2.1-ar-01",
+      "title": "Active Recall: 4.2.1",
+      "prompt": "Closed-book. (1) List five distributions named in 4.2.1 as exponential-family GLM responses. (2) Mark which is the Normal special case. (3) Name one reason mean/variance is not today's LO.",
+      "response_type": "short_structured",
+      "body": "Retrieve 4.2.1 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "binomial",
+        "Poisson",
+        "exponential",
+        "gamma",
+        "normal",
+        "family"
+      ],
+      "explanation": "Active recall for 4.2.1.",
+      "model_answer": "Binomial, Poisson, exponential, gamma, normal — Normal is the special case inside the family list, not the definition of GLM. Mean/variance is tomorrow.",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1014-4.2.1-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1014-4.2.1-cp-01",
+      "title": "Checkpoint: 4.2.1",
+      "prompt": "Closed-book. Refuse: 'GLM is just linear regression with a package name.' Restate what must be true of the response family.",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 4.2.1.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "package",
+        "exponential",
+        "family",
+        "not linear",
+        "today"
+      ],
+      "explanation": "Checkpoint for 4.2.1.",
+      "model_answer": "Refuse: package name ≠ GLM. A GLM response sits in an exponential family (with later η and link) — Normal+identity is special, not definitional.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest family-placement wobble — keep mean/variance out of tonight's claim.",
+    "prompt": "Which part of today's 4.2.1 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 4.2.1 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "4.2",
+    "next_topic_title": "Mean, variance, variance function and scale (4.2.2)",
+    "continuity_line": "Today you placed GLM responses in the exponential family; tomorrow continues 4.2 at mean, variance, variance function and scale.",
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 4.2.2 — titles only tonight",
+    "student_facing": "Tomorrow: mean, variance, variance function and scale (4.2.2). Optional light prep: skim 4.2.2 headings — titles only tonight."
+  },
+  "revision_linkage": {
+    "returns_on": "CX-R1",
+    "campaign_revision_package": "CS1-EP001-PKG-REV-GLM-XI",
+    "note": "Syllabus 4.2.1 is a CX-R1 return target after Learning span closes."
+  },
+  "published_at": "2026-08-03"
+}

@@ -1,0 +1,192 @@
+{
+  "package_version": "cs1014-campaign-xi-1.0.0",
+  "publication_version": "cs1014-live-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "CS1-EP001-CAMPAIGN-XI",
+  "volume_id": "CS1-014",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1014_EDUCATIONAL_VOLUME.md",
+    "CS1014_CERTIFICATION_REPORT.md",
+    "EP012_WAVE12_PLAN.md"
+  ],
+  "author_id": "cs1014-educational-author",
+  "authored_at": "2026-08-03",
+  "topic_code": "4.2",
+  "topic_title": "Understand and use generalised linear models",
+  "topic_id": "CS1-D-T02",
+  "package_id": "CS1-EP001-PKG-CX-4.2-DEVIANCE-ESTIMATION",
+  "campaign_day": "CX-D6",
+  "topic_focus_lo": "4.2.6",
+  "topic_aliases": [
+    "CS1-D-T02",
+    "4.2",
+    "4.2.6"
+  ],
+  "topic_title_keywords": [
+    "deviance",
+    "scaled deviance",
+    "estimation",
+    "MLE",
+    "GLM"
+  ],
+  "golden_id": "GOLDEN-CS1014-CS1-4.2-DEVIANCE-ESTIMATION",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1014-cs1-4.2-deviance-estimation",
+    "display_title": "Use deviance and estimate GLM parameters",
+    "mission_purpose": "Today's Mission exists to explain deviance, scaled deviance, and estimation of GLM parameters — without pretending analysis-of-deviance model choice (4.2.7) is finished.",
+    "tutor_intent": "Today I will force deviance vs scaled deviance and estimation hinges and refuse treating model-choice theatre as today's LO.",
+    "educational_intent": "Produce a cognitive move from η forms to lawful deviance and parameter estimation under CMP.",
+    "learning_objective": "Explain deviance, scaled deviance, and estimation of the parameters of a generalised linear model.",
+    "concept_focus": "Likelihood → deviance → scaled deviance → parameter estimates → refuse model-choice swallow.",
+    "prior_bridge": "Yesterday you wrote linear predictor forms (4.2.5). Today continues Topic 4.2 at deviance and estimation.",
+    "why_now": "4.2.6 is contiguous after η. Without deviance/estimation, model choice and diagnostics lack a criterion.",
+    "expected_benefit": "Study Progress for deviance/estimation — not Topic Complete for 4.2.7.",
+    "explainability": "Assigned as Campaign Xi Day 6 because Continuity Front law keeps analysis of deviance model choice as tomorrow.",
+    "success_criteria": [
+      "Closed-book, state what deviance compares.",
+      "Distinguish deviance from scaled deviance in one sentence.",
+      "Refuse one 'I picked the best model by p-hacking, so I finished today's LO' claim."
+    ],
+    "task_descriptions": [
+      "Sketch deviance/estimation before CMP.",
+      "Complete Guided Reading through CMP treatment of Syllabus 4.2.6.",
+      "Closed-book Knowledge Checks: deviance + refuse model-choice swallow."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 55,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1014-cs1-4.2-deviance-estimation",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 4.2.6 — not the next LO as primary.",
+    "session_tutor_purpose": "Set focus on 4.2.6, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
+    "duration_budget_minutes": {
+      "min": 55,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Use deviance and estimate GLM parameters. You practised selective CMP reading on Syllabus 4.2.6. This is Study Progress for today's block — not Topic Complete for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or until-exam trust.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.6 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.6 — use deviance and estimate glm parameters. Stop before out-of-scope later LOs.",
+    "focus_questions": [
+      "What is the core move of Syllabus 4.2.6?",
+      "What warrant separates today's skill from yesterday's?",
+      "What claim must you refuse today?",
+      "What will you practise in Knowledge Checks after the CMP?"
+    ],
+    "misconception_watch": [
+      "Watch for equating deviance with OLS residual sum of squares without warrant.",
+      "Watch for jumping into nested model-choice theatre (4.2.7) as today's finish.",
+      "Watch for Trust Front 5.1 absorb claims."
+    ],
+    "open_point": "CMP · Syllabus 4.2.6 deviance, scaled deviance and estimation",
+    "stop_condition": "Through the CMP treatment of Syllabus 4.2.6 (stop before analysis-of-deviance model choice 4.2.7)",
+    "out_of_scope_today": [
+      "Analysis of deviance model choice as primary (4.2.7)",
+      "Pearson / deviance residuals as primary (4.2.8)",
+      "Bayesian / Topic 5.1 as primary",
+      "Until-exam educational trust"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution — stay inside 4.2.6.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.6 deviance, scaled deviance and estimation. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.6 (stop before analysis-of-deviance model choice 4.2.7). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.2.6 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause — write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1014-4.2.6-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1014-4.2.6-ar-01",
+      "title": "Active Recall: 4.2.6",
+      "prompt": "Closed-book. (1) What is deviance in a GLM? (2) What does scaled deviance involve? (3) What is being estimated? (4) Name one reason model choice is not today's LO.",
+      "response_type": "short_structured",
+      "body": "Retrieve 4.2.6 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "deviance",
+        "scaled",
+        "likelihood",
+        "estimate",
+        "parameters"
+      ],
+      "explanation": "Active recall for 4.2.6.",
+      "model_answer": "Deviance compares fitted vs saturated likelihoods; scaled deviance divides by scale. Parameters of the GLM are estimated. Nested model choice is tomorrow.",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1014-4.2.6-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1014-4.2.6-cp-01",
+      "title": "Checkpoint: 4.2.6",
+      "prompt": "Closed-book. A colleague says 'I deleted insignificant terms until the p-values looked nice, so I finished today's LO.' Refuse and restate what 4.2.6 requires.",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 4.2.6.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "deviance",
+        "estimation",
+        "not choice",
+        "today"
+      ],
+      "explanation": "Checkpoint for 4.2.6.",
+      "model_answer": "Refuse: model choice is tomorrow. Today requires explaining deviance, scaled deviance, and GLM parameter estimation.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest deviance/estimation wobble — keep model-choice theatre out of tonight.",
+    "prompt": "Which part of today's 4.2.6 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 4.2.6 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "4.2",
+    "next_topic_title": "Model choice via analysis of deviance (4.2.7)",
+    "continuity_line": "Today you established deviance and estimation; tomorrow continues 4.2 at analysis-of-deviance model choice.",
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 4.2.7 — titles only tonight",
+    "student_facing": "Tomorrow: model choice via analysis of deviance (4.2.7). Optional light prep: skim 4.2.7 headings — titles only tonight."
+  },
+  "revision_linkage": {
+    "returns_on": "CX-R1",
+    "campaign_revision_package": "CS1-EP001-PKG-REV-GLM-XI",
+    "note": "Syllabus 4.2.6 is a CX-R1 return target after Learning span closes."
+  },
+  "published_at": "2026-08-03"
+}

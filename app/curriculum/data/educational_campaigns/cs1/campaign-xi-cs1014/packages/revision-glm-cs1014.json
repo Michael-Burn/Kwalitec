@@ -1,0 +1,213 @@
+{
+  "package_version": "cs1014-campaign-xi-1.0.0",
+  "publication_version": "cs1014-catalogue-1.0.0",
+  "status": "campaign_member_certified",
+  "campaign_id": "CS1-EP001-CAMPAIGN-XI",
+  "volume_id": "CS1-014",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1014_EDUCATIONAL_VOLUME.md",
+    "CS1014_CERTIFICATION_REPORT.md",
+    "EP012_WAVE12_PLAN.md"
+  ],
+  "author_id": "cs1014-educational-author",
+  "authored_at": "2026-08-03",
+  "package_id": "CS1-EP001-PKG-REV-GLM-XI",
+  "campaign_day": "CX-R1",
+  "topic_code": "CX-R1",
+  "topic_title": "Campaign Xi revision \u2014 generalised linear models",
+  "return_targets": [
+    "4.2.1",
+    "4.2.2",
+    "4.2.3",
+    "4.2.4",
+    "4.2.5",
+    "4.2.6",
+    "4.2.7",
+    "4.2.8",
+    "4.2.9",
+    "4.2.10"
+  ],
+  "topic_aliases": [
+    "CX-R1",
+    "campaign-xi-revision"
+  ],
+  "topic_title_keywords": [
+    "revision",
+    "GLM",
+    "exponential family",
+    "link",
+    "deviance",
+    "residuals",
+    "likelihood-ratio"
+  ],
+  "golden_id": "GOLDEN-CS1014-CS1-CX-R1-GLM",
+  "mode": "revision",
+  "mission": {
+    "mission_id": "msn-cs1014-cs1-cx-r1-glm",
+    "display_title": "Retrieve GLM hinges (4.2)",
+    "mission_purpose": "Today's Mission exists to protect memory of Campaign Xi \u2014 retrieving exponential-family placement through fit/interpret \u2014 so 4.2 does not evaporate before an honest stop / Wave 0 honesty / spine re-audit / Topic 5.1 successor.",
+    "tutor_intent": "Today I will run closed-book retrieval across Xi's Learning hinges \u2014 not a passive CMP re-read and not a Trust Front 5.1 absorb or until-exam claim.",
+    "educational_intent": "Produce retrieval strength on the Campaign Educational Objective: family \u2192 mean/variance \u2192 link \u2192 factors \u2192 linear predictor \u2192 deviance \u2192 model choice \u2192 residuals \u2192 acceptability tests \u2192 fit/interpret.",
+    "learning_objective": "Retrieve and connect (1) exponential-family responses, (2) mean/variance/variance function/scale, (3) link and canonical link, (4) variables/factors/interactions, (5) linear predictor forms, (6) deviance and estimation, (7) analysis-of-deviance model choice, (8) Pearson and deviance residuals, (9) \u03c7\u00b2 and LRT acceptability, and (10) fit and interpret a GLM.",
+    "concept_focus": "Campaign chain retrieval: family \u2192 moments \u2192 link \u2192 factors \u2192 \u03b7 \u2192 deviance \u2192 choice \u2192 residuals \u2192 tests \u2192 fit/interpret.",
+    "prior_bridge": "Yesterday you finished fit and interpret (4.2.10). Today is Revision mode: return to 4.2.1\u20134.2.10 under closed-book retrieval \u2014 no new first-pass LO.",
+    "why_now": "Pilot Arc law requires Revision after the Learning span; spacing protects Continuity Front join closure before an honest stop / Wave 0 / spine / 5.1 successor.",
+    "expected_benefit": "Evidence that the 4.2 chain retrieves \u2014 revision Study Progress, not a claim that Trust Front / spine / the exam journey is complete.",
+    "explainability": "Assigned as Campaign Xi Revision because Architecture requires memory return inside the Pilot Arc before the next Volume.",
+    "success_criteria": [
+      "Closed-book, name the ten 4.2 Learning hinges in order (short phrases).",
+      "State at least one concrete weakest link with a rework plan.",
+      "Refuse Trust Front 5.1 absorb / spine / until-exam claims."
+    ],
+    "task_descriptions": [
+      "Without opening the CMP, sketch Xi's chain from family placement to fit/interpret.",
+      "Complete Revision Knowledge Checks under closed-book rules.",
+      "Author a revision Reflection naming the weakest link."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 50,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1014-cs1-cx-r1-glm",
+    "session_educational_purpose": "Retrieve and connect Campaign Xi skills \u2014 not to claim Trust Front absorb.",
+    "session_tutor_purpose": "Keep CMP closed for checks; harvest weakest link \u2014 Gate RV substance.",
+    "duration_budget_minutes": {
+      "min": 50,
+      "max": 75
+    },
+    "wrap_up": "Revision Session complete. You stress-tested 4.2.1\u20134.2.10 return targets. This is revision Study Progress \u2014 not Topic Complete for 5.1, and not first-pass spine PASS.",
+    "confidence_prompt": "How confident are you that GLM hinges will still retrieve in three days? Rate 1\u20135 and name the weakest link."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this revision stage: strengthen retrieval of the Campaign Xi chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus.",
+    "focus_questions": [
+      "Can you name the ten 4.2 Learning hinges in order?",
+      "Can you state family \u2192 link \u2192 \u03b7 \u2192 deviance \u2192 residuals \u2192 tests \u2192 fit?",
+      "What claim must you refuse (5.1 absorb / spine / until-exam)?"
+    ],
+    "misconception_watch": [
+      "Watch for turning revision into a passive re-read.",
+      "Watch for claiming Trust Front 5.1 / spine / until-exam complete.",
+      "Watch for dropping Nu linear-regression memory as irrelevant."
+    ],
+    "open_point": "No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block.",
+    "stop_condition": "After revision checks and Reflection \u2014 do not claim Trust Front absorb, spine PASS, or until-exam trust in this sitting",
+    "out_of_scope_today": [
+      "Bayesian / Topic 5.1 as primary",
+      "First-pass spine PASS",
+      "Until-exam educational trust",
+      "Wave 0 Approver honesty clearance",
+      "Certified Educational Coverage increase from catalogue alone"
+    ],
+    "annotation_task": "Before checks: sketch return-target chain from memory",
+    "attempt_before_reveal": "Attempt each check before any targeted CMP reopen",
+    "worked_examples_cue": "Revision worked re-entry: attempt the failed hinge closed-book before targeted CMP reopen.",
+    "exit_line": "Begin closed-book retrieval. Reopen CMP only at a failed locus. After checks, complete Reflection.",
+    "return_cue": "Revision reading stage is complete when checks are attempted and any failed locus has a targeted reopen plan.",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause \u2014 mark the weakest link before checks.",
+        "student_action": "Annotate"
+      }
+    ],
+    "reentry_line": "Stay closed-book unless a check failed. Continue retrieval."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1014-cx-r1-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1014-cx-r1-ar-01",
+      "title": "Active Recall: Xi chain",
+      "prompt": "Closed-book. List the ten 4.2 Learning hinges in order as short phrases (family \u2192 \u2026 \u2192 fit/interpret).",
+      "response_type": "short_structured",
+      "body": "Retrieve Campaign Xi Learning span.",
+      "hints": [
+        "Start from exponential family.",
+        "End at fit and interpret."
+      ],
+      "accepted_keywords": [
+        "family",
+        "mean",
+        "link",
+        "factor",
+        "predictor",
+        "deviance",
+        "choice",
+        "residual",
+        "chi-square",
+        "fit"
+      ],
+      "explanation": "Order retrieval for CX-R1.",
+      "model_answer": "Family \u2192 mean/variance/scale \u2192 link/canonical \u2192 factors/interactions \u2192 linear predictor \u2192 deviance/estimation \u2192 model choice \u2192 residuals \u2192 acceptability tests \u2192 fit/interpret.",
+      "common_mistake": "Skipping mid-chain deviance/choice or collapsing into LM.",
+      "success_criteria": [
+        "Ten hinges named in lawful order."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1014-cx-r1-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1014-cx-r1-cp-01",
+      "title": "Checkpoint: refuse 5.1 / spine",
+      "prompt": "Closed-book. A colleague says 'GLM revision finished Bayesian and the exam journey.' Refuse; name weakest link; name honest next.",
+      "response_type": "short_structured",
+      "body": "Refuse forbidden claims; harvest weakest link.",
+      "hints": [
+        "Refuse 5.1 absorb / spine / until-exam.",
+        "Name one rework."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "5.1",
+        "spine",
+        "Wave 0",
+        "weakest",
+        "until-exam"
+      ],
+      "explanation": "RV harvests memory debt and honest next.",
+      "model_answer": "(1) Name weakest hinge + five-minute rework. (2) Refuse 5.1 absorb / spine / until-exam. (3) Honest next is declared stop or Wave 0 honesty / spine re-audit / Topic 5.1 successor Volume \u2014 not claimed finished here.",
+      "common_mistake": "Spine / Trust Front absorb / until-exam claim.",
+      "success_criteria": [
+        "Rework named.",
+        "Forbidden claim refused."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Revision Reflection names the weakest Campaign link for spaced return.",
+    "prompt": "Which return target retrieved least cleanly and what one concrete rework will you schedule? Confirm Trust Front 5.1 absorb / spine / until-exam stayed out of scope.",
+    "prompts": [
+      "Which return target retrieved least cleanly?",
+      "What one concrete rework will you schedule?",
+      "Confirm: 5.1 absorb / spine PASS / until-exam trust were out of scope."
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "stop",
+    "next_topic_title": "Honest next \u2014 declared stop / Wave 0 honesty / spine re-audit / Topic 5.1 successor \u2014 not Trust Front 5.1 absorb",
+    "continuity_line": "Campaign Xi / Volume CS1-014 completes after this Revision. Honest stop: 4.2 Continuity Front join Pilot Arc closed \u2014 not Trust Front 5.1 absorb; not first-pass spine; not until-exam trust. Successor geography is Wave 0 honesty / spine re-audit / Topic 5.1 under a later commission (or declared stop). CS1-003 Delta remains independent Trust Front LIVE inventory.",
+    "light_prep_cue": "No new first-pass LO tonight \u2014 rest or schedule weakest-link rework only",
+    "student_facing": "Campaign Xi / CS1-014 complete after today (pending human Approver + LIVE). Honest next: stop or await Wave 0 honesty / spine re-audit / Topic 5.1 successor Volume. Optional: schedule your weakest 4.2 rework only."
+  },
+  "revision_linkage": {
+    "returns_on": "CX-R1",
+    "return_targets": [
+      "4.2.1",
+      "4.2.2",
+      "4.2.3",
+      "4.2.4",
+      "4.2.5",
+      "4.2.6",
+      "4.2.7",
+      "4.2.8",
+      "4.2.9",
+      "4.2.10"
+    ],
+    "protect_prior_hinge": "Nu 4.1 as needed"
+  }
+}

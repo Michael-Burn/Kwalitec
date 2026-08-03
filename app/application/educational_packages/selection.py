@@ -14,7 +14,7 @@ from app.application.educational_packages.loader import (
 )
 from app.application.educational_packages.models import CertifiedEducationalPackage
 
-# Campaign day order for Alpha → … → Mu → Nu continuity (EP-001).
+# Campaign day order for Alpha → … → Nu → Xi continuity (EP-001).
 _CAMPAIGN_DAY_ORDER: dict[str, int] = {
     "CA-D1": 1,
     "CA-D2": 2,
@@ -115,13 +115,25 @@ _CAMPAIGN_DAY_ORDER: dict[str, int] = {
     "CN-D4": 87,
     "CN-D5": 88,
     "CN-R1": 89,
+    # Campaign Xi / CS1-014 (RO-012) — Continuity Front join into 4.2
+    "CX-D1": 90,
+    "CX-D2": 91,
+    "CX-D3": 92,
+    "CX-D4": 93,
+    "CX-D5": 94,
+    "CX-D6": 95,
+    "CX-D7": 96,
+    "CX-D8": 97,
+    "CX-D9": 98,
+    "CX-D10": 99,
+    "CX-R1": 100,
 }
 
 
 def campaign_day_sort_key(pack: CertifiedEducationalPackage) -> tuple:
     """Stable sort: campaign day sequence, then package id."""
     day = (pack.campaign_day or "").strip().upper()
-    return (_CAMPAIGN_DAY_ORDER.get(day, 99), pack.package_id)
+    return (_CAMPAIGN_DAY_ORDER.get(day, 999), pack.package_id)
 
 
 def resolve_active_educational_package(
@@ -183,6 +195,17 @@ def resolve_package_successor(
         ]
         if cn_matches:
             return min(cn_matches, key=campaign_day_sort_key)
+    # RO-012 Continuity Front join: Xi shares topic_code 4.2 with Trust Front
+    # Delta. When the journey last day is Nu/Xi, prefer the CX chain so
+    # CN-R1 → CX-D1…CX-R1 is not diverted onto CD-D6… mid-chain.
+    if last_day.startswith(("CN-", "CX-")):
+        cx_matches = [
+            p
+            for p in matches
+            if (p.campaign_day or "").strip().upper().startswith("CX-")
+        ]
+        if cx_matches:
+            return min(cx_matches, key=campaign_day_sort_key)
     return min(matches, key=campaign_day_sort_key)
 
 

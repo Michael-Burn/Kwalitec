@@ -1,0 +1,193 @@
+{
+  "package_version": "cs1014-campaign-xi-1.0.0",
+  "publication_version": "cs1014-catalogue-1.0.0",
+  "status": "campaign_member_certified",
+  "campaign_id": "CS1-EP001-CAMPAIGN-XI",
+  "volume_id": "CS1-014",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1014_EDUCATIONAL_VOLUME.md",
+    "CS1014_CERTIFICATION_REPORT.md",
+    "EP012_WAVE12_PLAN.md"
+  ],
+  "author_id": "cs1014-educational-author",
+  "authored_at": "2026-08-03",
+  "topic_code": "4.2",
+  "topic_title": "Understand and use generalised linear models",
+  "topic_id": "CS1-D-T02",
+  "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+  "campaign_day": "CX-D2",
+  "topic_focus_lo": "4.2.2",
+  "topic_aliases": [
+    "CS1-D-T02",
+    "4.2",
+    "4.2.2"
+  ],
+  "topic_title_keywords": [
+    "mean",
+    "variance",
+    "variance function",
+    "scale",
+    "GLM"
+  ],
+  "golden_id": "GOLDEN-CS1014-CS1-4.2-MEAN-VARIANCE",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1014-cs1-4.2-mean-variance",
+    "display_title": "Evaluate mean, variance, variance function and scale",
+    "mission_purpose": "Today's Mission exists to state and evaluate mean, variance, variance function and scale for GLM binomial, Poisson, exponential, gamma and normal \u2014 without pretending link/canonical link (4.2.3) are finished.",
+    "tutor_intent": "Today I will force mean/variance/variance-function/scale statements per family and refuse treating link choice as today's LO.",
+    "educational_intent": "Produce a cognitive move from family membership to lawful moment and scale structure under CMP.",
+    "learning_objective": "State and evaluate mean, variance, variance function and scale parameter for GLM binomial, Poisson, exponential, gamma and normal distributions.",
+    "concept_focus": "Family \u2192 E(Y) \u2192 Var(Y) \u2192 variance function \u2192 scale \u2192 refuse link swallow.",
+    "prior_bridge": "Yesterday you placed responses in the exponential family (4.2.1). Today continues Topic 4.2 at moments and scale \u2014 still Continuity Front join.",
+    "why_now": "4.2.2 is contiguous after family placement. Without moments/scale, link and deviance lack distributional warrant.",
+    "expected_benefit": "Study Progress for moments/scale \u2014 not Topic Complete for 4.2.3.",
+    "explainability": "Assigned as Campaign Xi Day 2 because LO-per-day Continuity Front law keeps link functions as tomorrow.",
+    "success_criteria": [
+      "Closed-book, for one named family state mean and variance (or variance function).",
+      "State what the scale parameter does in that setting.",
+      "Refuse one 'I chose the link, so I finished today's LO' claim."
+    ],
+    "task_descriptions": [
+      "Sketch mean/variance/scale chain before CMP.",
+      "Complete Guided Reading through CMP treatment of Syllabus 4.2.2.",
+      "Closed-book Knowledge Checks: moments + refuse link swallow."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 55,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1014-cs1-4.2-mean-variance",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 4.2.2 \u2014 not the next LO as primary.",
+    "session_tutor_purpose": "Set focus on 4.2.2, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
+    "duration_budget_minutes": {
+      "min": 55,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Evaluate mean, variance, variance function and scale. You practised selective CMP reading on Syllabus 4.2.2. This is Study Progress for today's block \u2014 not Topic Complete for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or until-exam trust.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.2 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.2 \u2014 evaluate mean, variance, variance function and scale. Stop before out-of-scope later LOs.",
+    "focus_questions": [
+      "What is the core move of Syllabus 4.2.2?",
+      "What warrant separates today's skill from yesterday's?",
+      "What claim must you refuse today?",
+      "What will you practise in Knowledge Checks after the CMP?"
+    ],
+    "misconception_watch": [
+      "Watch for collapsing variance function into OLS residual variance myth.",
+      "Watch for jumping to link choice (4.2.3) as today's finish.",
+      "Watch for Trust Front 5.1 absorb claims."
+    ],
+    "open_point": "CMP \u00b7 Syllabus 4.2.2 mean, variance, variance function and scale",
+    "stop_condition": "Through the CMP treatment of Syllabus 4.2.2 (stop before link / canonical link 4.2.3)",
+    "out_of_scope_today": [
+      "Link / canonical link as primary (4.2.3)",
+      "Factors / interactions as primary (4.2.4)",
+      "Bayesian / Topic 5.1 as primary",
+      "Until-exam educational trust"
+    ],
+    "annotation_task": "Before deep reading: sketch today's concept chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution \u2014 stay inside 4.2.2.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.2 mean, variance, variance function and scale. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.2 (stop before link / canonical link 4.2.3). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.2.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1014-4.2.2-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1014-4.2.2-ar-01",
+      "title": "Active Recall: 4.2.2",
+      "prompt": "Closed-book. (1) What four quantities does 4.2.2 ask you to handle? (2) Pick one family and state its mean and variance (or variance function). (3) Name one reason link/canonical is not today's LO.",
+      "response_type": "short_structured",
+      "body": "Retrieve 4.2.2 closed-book.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "mean",
+        "variance",
+        "variance function",
+        "scale",
+        "Poisson",
+        "binomial"
+      ],
+      "explanation": "Active recall for 4.2.2.",
+      "model_answer": "Mean, variance, variance function, and scale. Example: Poisson mean=\u03bb, variance=\u03bb (scale often 1). Link/canonical is tomorrow.",
+      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1014-4.2.2-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1014-4.2.2-cp-01",
+      "title": "Checkpoint: 4.2.2",
+      "prompt": "Closed-book. A colleague says 'I picked logit, so I finished today's LO.' Refuse and restate what 4.2.2 requires.",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 4.2.2.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "mean",
+        "variance",
+        "scale",
+        "not link",
+        "today"
+      ],
+      "explanation": "Checkpoint for 4.2.2.",
+      "model_answer": "Refuse: link is tomorrow. Today requires mean, variance, variance function and scale for the GLM families.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest moments/scale wobble \u2014 keep link choice out of tonight's claim.",
+    "prompt": "Which part of today's 4.2.2 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 4.2.2 is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "4.2",
+    "next_topic_title": "Link function and canonical link (4.2.3)",
+    "continuity_line": "Today you established mean/variance/scale for GLM families; tomorrow continues 4.2 at link and canonical link.",
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 4.2.3 \u2014 titles only tonight",
+    "student_facing": "Tomorrow: link and canonical link (4.2.3). Optional light prep: skim 4.2.3 headings \u2014 titles only tonight."
+  },
+  "revision_linkage": {
+    "returns_on": "CX-R1",
+    "campaign_revision_package": "CS1-EP001-PKG-REV-GLM-XI",
+    "note": "Syllabus 4.2.2 is a CX-R1 return target after Learning span closes."
+  }
+}

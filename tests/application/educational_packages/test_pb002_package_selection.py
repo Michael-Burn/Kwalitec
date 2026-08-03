@@ -290,7 +290,7 @@ def test_gamma_revision_hands_off_to_epsilon() -> None:
     approved = EducationalPackageLoader().all_approved()
     ce = [p for p in approved if (p.campaign_day or "").startswith("CE-")]
     assert len(ce) == 5
-    assert len(approved) == 89
+    assert len(approved) == 100
 
 
 def test_zeta_chain_reaches_cz_r1() -> None:
@@ -344,7 +344,7 @@ def test_epsilon_revision_hands_off_to_zeta() -> None:
     approved = EducationalPackageLoader().all_approved()
     cz = [p for p in approved if (p.campaign_day or "").startswith("CZ-")]
     assert len(cz) == 3
-    assert len(approved) == 89
+    assert len(approved) == 100
 
 
 def test_eta_chain_reaches_ch_r1() -> None:
@@ -396,7 +396,7 @@ def test_zeta_revision_hands_off_to_eta() -> None:
     approved = EducationalPackageLoader().all_approved()
     ch = [p for p in approved if (p.campaign_day or "").startswith("CH-")]
     assert len(ch) == 3
-    assert len(approved) == 89
+    assert len(approved) == 100
 
 
 def test_theta_chain_reaches_ct_r1() -> None:
@@ -448,7 +448,7 @@ def test_eta_revision_hands_off_to_theta() -> None:
     approved = EducationalPackageLoader().all_approved()
     ct = [p for p in approved if (p.campaign_day or "").startswith("CT-")]
     assert len(ct) == 3
-    assert len(approved) == 89
+    assert len(approved) == 100
 
 
 
@@ -506,7 +506,7 @@ def test_theta_revision_hands_off_to_iota() -> None:
     approved = EducationalPackageLoader().all_approved()
     ci = [p for p in approved if (p.campaign_day or "").startswith("CI-")]
     assert len(ci) == 7
-    assert len(approved) == 89
+    assert len(approved) == 100
 
 
 def test_kappa_chain_reaches_ck_r1() -> None:
@@ -566,7 +566,7 @@ def test_iota_revision_hands_off_to_kappa() -> None:
     approved = EducationalPackageLoader().all_approved()
     ck = [p for p in approved if (p.campaign_day or "").startswith("CK-")]
     assert len(ck) == 7
-    assert len(approved) == 89
+    assert len(approved) == 100
 
 
 def test_lambda_chain_reaches_cl_r1() -> None:
@@ -628,7 +628,7 @@ def test_kappa_revision_hands_off_to_lambda() -> None:
     approved = EducationalPackageLoader().all_approved()
     cl = [p for p in approved if (p.campaign_day or "").startswith("CL-")]
     assert len(cl) == 9
-    assert len(approved) == 89
+    assert len(approved) == 100
 
 
 def test_mu_chain_reaches_cm_r1() -> None:
@@ -689,7 +689,7 @@ def test_lambda_revision_hands_off_to_mu() -> None:
     approved = EducationalPackageLoader().all_approved()
     cm = [p for p in approved if (p.campaign_day or "").startswith("CM-")]
     assert len(cm) == 6
-    assert len(approved) == 89
+    assert len(approved) == 100
 
 
 def test_nu_chain_reaches_cn_r1() -> None:
@@ -759,5 +759,90 @@ def test_mu_revision_hands_off_to_nu() -> None:
     approved = EducationalPackageLoader().all_approved()
     cn = [p for p in approved if (p.campaign_day or "").startswith("CN-")]
     assert len(cn) == 6
-    assert len(approved) == 89
+    assert len(approved) == 100
 
+
+
+def test_xi_chain_reaches_cx_r1() -> None:
+    """RO-012 — Continuity Front join into 4.2 → CX-D1…CX-R1 joint inventory."""
+    expected = [
+        ("CS1-EP001-PKG-CX-4.2-EXPONENTIAL-FAMILY", "CX-D1"),
+        ("CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE", "CX-D2"),
+        ("CS1-EP001-PKG-CX-4.2-LINK-CANONICAL", "CX-D3"),
+        ("CS1-EP001-PKG-CX-4.2-FACTORS-INTERACTIONS", "CX-D4"),
+        ("CS1-EP001-PKG-CX-4.2-LINEAR-PREDICTOR", "CX-D5"),
+        ("CS1-EP001-PKG-CX-4.2-DEVIANCE-ESTIMATION", "CX-D6"),
+        ("CS1-EP001-PKG-CX-4.2-MODEL-CHOICE", "CX-D7"),
+        ("CS1-EP001-PKG-CX-4.2-RESIDUALS", "CX-D8"),
+        ("CS1-EP001-PKG-CX-4.2-GOODNESS-TESTS", "CX-D9"),
+        ("CS1-EP001-PKG-CX-4.2-FIT-INTERPRET", "CX-D10"),
+        ("CS1-EP001-PKG-REV-GLM-XI", "CX-R1"),
+    ]
+    topic = "4.2"
+    # Seed journey as after CN-R1 so Xi+Delta coexistence prefers CX chain.
+    last = "CS1-EP001-PKG-REV-LINEAR-REGRESSION-NU"
+    completed: set[str] = {last}
+    for package_id, day in expected:
+        pack = resolve_active_educational_package(
+            subject_id="CS1",
+            syllabus_topic_code=topic,
+            completed_package_ids=completed,
+            last_completed_package_id=last,
+        )
+        assert pack is not None, f"missing successor before {day}"
+        assert pack.package_id == package_id, (
+            f"expected {package_id} got {pack.package_id}"
+        )
+        assert pack.campaign_day == day
+        completed.add(pack.package_id)
+        last = pack.package_id
+        topic = pack.topic_code or topic
+
+
+def test_nu_revision_hands_off_to_xi() -> None:
+    """RO-012 — CN-R1 tomorrow_preview CX-D1 resolves to Xi (not Trust Front CD-D6)."""
+    from app.application.educational_packages.loader import EducationalPackageLoader
+
+    nu_ids = {
+        "CS1-EP001-PKG-CN-4.1-RESPONSE-EXPLANATORY",
+        "CS1-EP001-PKG-CN-4.1-SIMPLE-MULTIPLE",
+        "CS1-EP001-PKG-CN-4.1-LEAST-SQUARES",
+        "CS1-EP001-PKG-CN-4.1-SOFTWARE-FIT",
+        "CS1-EP001-PKG-CN-4.1-VARIABLE-SELECTION",
+        "CS1-EP001-PKG-REV-LINEAR-REGRESSION-NU",
+    }
+    pack = resolve_active_educational_package(
+        subject_id="CS1",
+        syllabus_topic_code="4.2",
+        completed_package_ids=nu_ids,
+        last_completed_package_id="CS1-EP001-PKG-REV-LINEAR-REGRESSION-NU",
+    )
+    assert pack is not None
+    assert pack.campaign_day == "CX-D1"
+    assert pack.package_id == "CS1-EP001-PKG-CX-4.2-EXPONENTIAL-FAMILY"
+
+    # Trust Front cold entry at 4.2 remains Delta CD-D6.
+    cold = resolve_active_educational_package(
+        subject_id="CS1",
+        syllabus_topic_code="4.2",
+        completed_package_ids=frozenset(),
+        last_completed_package_id="",
+    )
+    assert cold is not None
+    assert cold.campaign_day == "CD-D6"
+    assert cold.package_id == "CS1-EP001-PKG-4.2-EXPONENTIAL-FAMILY"
+
+    # Trust Front cold entry at 4.1 remains Delta CD-D1.
+    cold41 = resolve_active_educational_package(
+        subject_id="CS1",
+        syllabus_topic_code="4.1",
+        completed_package_ids=frozenset(),
+        last_completed_package_id="",
+    )
+    assert cold41 is not None
+    assert cold41.campaign_day == "CD-D1"
+
+    approved = EducationalPackageLoader().all_approved()
+    cx = [p for p in approved if (p.campaign_day or "").startswith("CX-")]
+    assert len(cx) == 11
+    assert len(approved) == 100

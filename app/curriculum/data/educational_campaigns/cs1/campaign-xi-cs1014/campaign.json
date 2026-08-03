@@ -1,0 +1,53 @@
+{
+  "campaign_id": "CS1-EP001-CAMPAIGN-XI",
+  "campaign_version": "cs1014-1.0.0",
+  "display_title": "Campaign Xi — Generalised linear models (4.2) · Continuity Front join",
+  "subject_id": "CS1",
+  "package_version_pin": "IFoA CS1 2026",
+  "scope_class": "Pilot Arc",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "status": "released",
+  "volume_id": "CS1-014",
+  "prior_volume_id": "CS1-013",
+  "day_count": {
+    "learning": 10,
+    "revision": 1,
+    "total": 11
+  },
+  "syllabus_span": [
+    "4.2.1",
+    "4.2.2",
+    "4.2.3",
+    "4.2.4",
+    "4.2.5",
+    "4.2.6",
+    "4.2.7",
+    "4.2.8",
+    "4.2.9",
+    "4.2.10"
+  ],
+  "out_of_scope": [
+    "Bayesian / Topic 5.1 absorb",
+    "first-pass spine PASS",
+    "until-examination educational trust",
+    "Trust Front whole-Delta absorb into Continuity Front credit",
+    "Wave 0 Approver honesty clearance",
+    "Wave 13 authoring",
+    "coverage mirage / Student Reliance increase from catalogue alone",
+    "LIVE copies in educational_packages/"
+  ],
+  "inventory": [
+    "CS1-EP001-PKG-CX-4.2-EXPONENTIAL-FAMILY",
+    "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+    "CS1-EP001-PKG-CX-4.2-LINK-CANONICAL",
+    "CS1-EP001-PKG-CX-4.2-FACTORS-INTERACTIONS",
+    "CS1-EP001-PKG-CX-4.2-LINEAR-PREDICTOR",
+    "CS1-EP001-PKG-CX-4.2-DEVIANCE-ESTIMATION",
+    "CS1-EP001-PKG-CX-4.2-MODEL-CHOICE",
+    "CS1-EP001-PKG-CX-4.2-RESIDUALS",
+    "CS1-EP001-PKG-CX-4.2-GOODNESS-TESTS",
+    "CS1-EP001-PKG-CX-4.2-FIT-INTERPRET",
+    "CS1-EP001-PKG-REV-GLM-XI"
+  ],
+  "trust_front_note": "CS1-003 / Campaign Delta remains independent Trust Front LIVE inventory for 4.1–5.1. Xi CX-prefixed packages are Continuity Front join LIVE (RO-012). Published Coverage held at 63/72 (4.2 already counted via CS1-003)."
+}
