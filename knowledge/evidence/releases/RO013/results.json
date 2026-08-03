@@ -1,0 +1,1087 @@
+{
+  "programme": "RO-013",
+  "host": "https://kwalitec.onrender.com",
+  "expected_commit": "8432f6a8ddd06a07c20aab146ecceca7578ec116",
+  "live_health": {
+    "build_date": "2026-08-03",
+    "build_number": "local",
+    "commit": "8432f6a8ddd06a07c20aab146ecceca7578ec116",
+    "components": {
+      "database": {
+        "latency_ms": 2.1,
+        "name": "database",
+        "status": "ok"
+      },
+      "instance_storage": {
+        "meta": {
+          "path": "/opt/render/project/src/instance"
+        },
+        "name": "instance_storage",
+        "status": "ok"
+      },
+      "migrations": {
+        "meta": {
+          "current": "202607310002",
+          "head": "202607310002"
+        },
+        "name": "migrations",
+        "status": "ok"
+      },
+      "queue": {
+        "detail": "manual automation runner (no external broker)",
+        "meta": {
+          "broker": "none",
+          "runner": "app.automation"
+        },
+        "name": "queue",
+        "status": "ok"
+      }
+    },
+    "database": "connected",
+    "environment": "production",
+    "status": "ok",
+    "timestamp": "2026-08-03T14:03:36.058555+00:00",
+    "version": "2.0.0-beta.1"
+  },
+  "email": "pb014.xi.advanced.1785742269@example.com",
+  "days": [
+    {
+      "day_index": 41,
+      "expected_day": "CO-D1",
+      "expected_package_id": "CS1-EP001-PKG-CO-5.1-BAYES-THEOREM",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 2.6.5 \u2014 describe the distribution of the t-statistic for normal samples. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Describe random sampling and the sampling distributions of statistics commonly used in statistical inference (2.6) Mission: Describe the distribution of the t-statistic for Normal samples Purpose of this reading: use the CMP to extract Syllabus 2.6.5 \u2014 describe the distribution of the t-statistic for normal samples. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 2.6.5 t-statistic for Normal samples Stop: Through CMP 2.6.5 (stop before F distribution 2.6.6) Focus questions: \u2022 Wh",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.6.5 t-statistic for Normal samples. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.6.5 (stop before F distribution",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 322
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "html": "/tmp/ro013/evidence/day41_CO-D1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Apply Bayes&#39; theorem to simple conditional probabilities",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Apply Bayes&#39; theorem to simple conditional probabilities CS1 (CS1) 1 h Study 5.1 \u2014 Explain fundamental concepts of Bayesian statistics and use these concepts to calculate After this \u00b7 Study Progress for Bayes theorem \u2014 not"
+      },
+      "session_id": "lsr-f98fa9fe3b1a",
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "ops_expected_day": "CO-D1",
+      "detected_campaign_day": "CO-D1"
+    },
+    {
+      "day_index": 42,
+      "expected_day": "CO-D2",
+      "expected_package_id": "CS1-EP001-PKG-CO-5.1-PRIOR-POSTERIOR",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 5.1.1 \u2014 apply bayes&#39; theorem to simple conditionals. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators (5.1) Mission: Apply Bayes&#39; theorem to simple conditionals Purpose of this reading: use the CMP to extract Syllabus 5.1.1 \u2014 apply bayes&#39; theorem to simple conditionals. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 5.1.1 Bayes&#39; theorem and simple conditional probabilities Stop: Through the CMP treatment of Syllabus 5.1.1 (stop before prior/posterior/conjugate",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.1 Bayes&#39; theorem and simple conditional probabilities. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP trea",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 329
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "html": "/tmp/ro013/evidence/day42_CO-D2_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Apply Bayes&#39; theorem to simple conditional probabilities",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Apply Bayes&#39; theorem to simple conditional probabilities CS1 (CS1) 1 h Study 5.1 \u2014 Explain fundamental concepts of Bayesian statistics and use these concepts to calculate After this \u00b7 Study Progress for Bayes theorem \u2014 not"
+      },
+      "session_id": "lsr-7cdf2866e3eb",
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "ops_expected_day": "CO-D2",
+      "detected_campaign_day": "CO-D1"
+    },
+    {
+      "day_index": 43,
+      "expected_day": "CO-D3",
+      "expected_package_id": "CS1-EP001-PKG-CO-5.1-POSTERIOR-SIMPLE",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 5.1.2 \u2014 explain prior, posterior and conjugate priors. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators (5.1) Mission: Explain prior, posterior and conjugate priors Purpose of this reading: use the CMP to extract Syllabus 5.1.2 \u2014 explain prior, posterior and conjugate priors. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 5.1.2 prior, posterior, conjugate prior Stop: Through the CMP treatment of Syllabus 5.1.2 (stop before simple posterior calculation primary 5.1.3) Focus q",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.2 prior, posterior, conjugate prior. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 315
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "html": "/tmp/ro013/evidence/day43_CO-D3_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Apply Bayes&#39; theorem to simple conditional probabilities",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Apply Bayes&#39; theorem to simple conditional probabilities CS1 (CS1) 1 h Study 5.1 \u2014 Explain fundamental concepts of Bayesian statistics and use these concepts to calculate After this \u00b7 Study Progress for Bayes theorem \u2014 not"
+      },
+      "session_id": "lsr-e9393960c03e",
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "ops_expected_day": "CO-D3",
+      "detected_campaign_day": "CO-D2"
+    },
+    {
+      "day_index": 44,
+      "expected_day": "CO-D4",
+      "expected_package_id": "CS1-EP001-PKG-CO-5.1-LOSS-ESTIMATORS",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 5.1.3 \u2014 obtain posteriors in simple cases. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators (5.1) Mission: Obtain posteriors in simple cases Purpose of this reading: use the CMP to extract Syllabus 5.1.3 \u2014 obtain posteriors in simple cases. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 5.1.3 posterior distribution for a parameter in simple cases Stop: Through the CMP treatment of Syllabus 5.1.3 (stop before loss/estimators primary 5.1.4) Focus questions: \u2022 What",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.3 posterior distribution for a parameter in simple cases. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treat",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 321
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "html": "/tmp/ro013/evidence/day44_CO-D4_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Apply Bayes&#39; theorem to simple conditional probabilities",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Apply Bayes&#39; theorem to simple conditional probabilities CS1 (CS1) 1 h Study 5.1 \u2014 Explain fundamental concepts of Bayesian statistics and use these concepts to calculate After this \u00b7 Study Progress for Bayes theorem \u2014 not"
+      },
+      "session_id": "lsr-0a762d336ea7",
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "ops_expected_day": "CO-D4",
+      "detected_campaign_day": "CO-D3"
+    },
+    {
+      "day_index": 45,
+      "expected_day": "CO-D5",
+      "expected_package_id": "CS1-EP001-PKG-CO-5.1-CREDIBLE-INTERVALS",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 5.1.4 \u2014 derive bayesian estimators from simple loss functions. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators (5.1) Mission: Derive Bayesian estimators from simple loss functions Purpose of this reading: use the CMP to extract Syllabus 5.1.4 \u2014 derive bayesian estimators from simple loss functions. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 5.1.4 loss functions and Bayesian estimators Stop: Through the CMP treatment of Syllabus 5.1.4 (stop before credible intervals primary 5.1",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.4 loss functions and Bayesian estimators. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 316
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "html": "/tmp/ro013/evidence/day45_CO-D5_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Apply Bayes&#39; theorem to simple conditional probabilities",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Apply Bayes&#39; theorem to simple conditional probabilities CS1 (CS1) 1 h Study 5.1 \u2014 Explain fundamental concepts of Bayesian statistics and use these concepts to calculate After this \u00b7 Study Progress for Bayes theorem \u2014 not"
+      },
+      "session_id": "lsr-19c5b2124ee2",
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "ops_expected_day": "CO-D5",
+      "detected_campaign_day": "CO-D4"
+    },
+    {
+      "day_index": 46,
+      "expected_day": "CO-D6",
+      "expected_package_id": "CS1-EP001-PKG-CO-5.1-CREDIBILITY-PREMIUM",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 5.1.5 \u2014 construct credible intervals in simple cases. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators (5.1) Mission: Construct credible intervals in simple cases Purpose of this reading: use the CMP to extract Syllabus 5.1.5 \u2014 construct credible intervals in simple cases. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 5.1.5 credible intervals in simple cases Stop: Through the CMP treatment of Syllabus 5.1.5 (stop before credibility premium primary 5.1.6) Focus questions: ",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.5 credible intervals in simple cases. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 315
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "html": "/tmp/ro013/evidence/day46_CO-D6_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Apply Bayes&#39; theorem to simple conditional probabilities",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Apply Bayes&#39; theorem to simple conditional probabilities CS1 (CS1) 1 h Study 5.1 \u2014 Explain fundamental concepts of Bayesian statistics and use these concepts to calculate After this \u00b7 Study Progress for Bayes theorem \u2014 not"
+      },
+      "session_id": "lsr-c401247697c3",
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "ops_expected_day": "CO-D6",
+      "detected_campaign_day": "CO-D5"
+    },
+    {
+      "day_index": 47,
+      "expected_day": "CO-D7",
+      "expected_package_id": "CS1-EP001-PKG-CO-5.1-BAYESIAN-CREDIBILITY",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 5.1.6 \u2014 use the credibility premium formula and factor. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators (5.1) Mission: Use the credibility premium formula and factor Purpose of this reading: use the CMP to extract Syllabus 5.1.6 \u2014 use the credibility premium formula and factor. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 5.1.6 credibility premium formula and credibility factor Stop: Through the CMP treatment of Syllabus 5.1.6 (stop before Bayesian credibility approach pr",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.6 credibility premium formula and credibility factor. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 321
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "html": "/tmp/ro013/evidence/day47_CO-D7_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Apply Bayes&#39; theorem to simple conditional probabilities",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Apply Bayes&#39; theorem to simple conditional probabilities CS1 (CS1) 1 h Study 5.1 \u2014 Explain fundamental concepts of Bayesian statistics and use these concepts to calculate After this \u00b7 Study Progress for Bayes theorem \u2014 not"
+      },
+      "session_id": "lsr-512c70476871",
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "ops_expected_day": "CO-D7",
+      "detected_campaign_day": "CO-D6"
+    },
+    {
+      "day_index": 48,
+      "expected_day": "CO-D8",
+      "expected_package_id": "CS1-EP001-PKG-CO-5.1-EMPIRICAL-BAYES",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 5.1.7 \u2014 apply bayesian credibility in simple cases. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators (5.1) Mission: Apply Bayesian credibility in simple cases Purpose of this reading: use the CMP to extract Syllabus 5.1.7 \u2014 apply bayesian credibility in simple cases. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 5.1.7 Bayesian approach to credibility theory Stop: Through the CMP treatment of Syllabus 5.1.7 (stop before Empirical Bayes primary 5.1.8) Focus questions: \u2022 W",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.7 Bayesian approach to credibility theory. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabu",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 315
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "html": "/tmp/ro013/evidence/day48_CO-D8_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Apply Bayes&#39; theorem to simple conditional probabilities",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Apply Bayes&#39; theorem to simple conditional probabilities CS1 (CS1) 1 h Study 5.1 \u2014 Explain fundamental concepts of Bayesian statistics and use these concepts to calculate After this \u00b7 Study Progress for Bayes theorem \u2014 not"
+      },
+      "session_id": "lsr-85885a39c8b2",
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "ops_expected_day": "CO-D8",
+      "detected_campaign_day": "CO-D7"
+    },
+    {
+      "day_index": 49,
+      "expected_day": "CO-D9",
+      "expected_package_id": "CS1-EP001-PKG-CO-5.1-BAYES-VS-EB",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 5.1.8 \u2014 apply empirical bayes credibility in simple cases. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators (5.1) Mission: Apply Empirical Bayes credibility in simple cases Purpose of this reading: use the CMP to extract Syllabus 5.1.8 \u2014 apply empirical bayes credibility in simple cases. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 5.1.8 Empirical Bayes approach to credibility Stop: Through the CMP treatment of Syllabus 5.1.8 (stop before contrast primary 5.1.9) Focus questio",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.8 Empirical Bayes approach to credibility. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabu",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 317
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "html": "/tmp/ro013/evidence/day49_CO-D9_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Apply Bayes&#39; theorem to simple conditional probabilities",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Apply Bayes&#39; theorem to simple conditional probabilities CS1 (CS1) 1 h Study 5.1 \u2014 Explain fundamental concepts of Bayesian statistics and use these concepts to calculate After this \u00b7 Study Progress for Bayes theorem \u2014 not"
+      },
+      "session_id": "lsr-cdcd7d4c73af",
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "ops_expected_day": "CO-D9",
+      "detected_campaign_day": "CO-D8"
+    },
+    {
+      "day_index": 50,
+      "expected_day": "CO-R1",
+      "expected_package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 5.1.9 \u2014 contrast bayesian and empirical bayes assumptions. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators (5.1) Mission: Contrast Bayesian and Empirical Bayes assumptions Purpose of this reading: use the CMP to extract Syllabus 5.1.9 \u2014 contrast bayesian and empirical bayes assumptions. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 5.1.9 Bayes vs Empirical Bayes differences and assumptions Stop: Through the CMP treatment of Syllabus 5.1.9 (stop before terminal Revision as Lea",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.9 Bayes vs Empirical Bayes differences and assumptions. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatme",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": false,
+            "exit_line": false,
+            "return_cue": false,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 341
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "html": "/tmp/ro013/evidence/day50_CO-R1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Apply Bayes&#39; theorem to simple conditional probabilities",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Apply Bayes&#39; theorem to simple conditional probabilities CS1 (CS1) 1 h Study 5.1 \u2014 Explain fundamental concepts of Bayesian statistics and use these concepts to calculate After this \u00b7 Study Progress for Bayes theorem \u2014 not"
+      },
+      "session_id": "lsr-967a93d1108f",
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "ops_expected_day": "CO-R1",
+      "detected_campaign_day": "CO-D9"
+    },
+    {
+      "day_index": 51,
+      "expected_day": "CO-R1",
+      "expected_package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Omicron chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed lo",
+          "body_sample": " Topic: Campaign Omicron revision \u2014 Bayesian statistics (CO-R1) Mission: Retrieve Bayesian hinges (5.1) Purpose of this revision stage: strengthen retrieval of the Campaign Omicron chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block. Stop: After revision checks and Reflection \u2014 do not claim spine PASS, until-exam trust, or",
+          "support_sample": "Begin closed-book retrieval. Reopen CMP only at a failed locus. After checks, complete Reflection. What did you extract from the CMP setup? Submit Answer ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": false,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": false
+          },
+          "ec001_markers": {
+            "Purpose of this reading": false,
+            "Open your CMP": false,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": false,
+            "Knowledge Checks": false
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "FAIL",
+          "word_count_body": 245
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": false,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "html": "/tmp/ro013/evidence/day51_CO-R1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": false,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Apply Bayes&#39; theorem to simple conditional probabilities",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Apply Bayes&#39; theorem to simple conditional probabilities CS1 (CS1) 1 h Study 5.1 \u2014 Explain fundamental concepts of Bayesian statistics and use these concepts to calculate After this \u00b7 Study Progress for Bayes theorem \u2014 not"
+      },
+      "session_id": "lsr-6d30f8ff8992",
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "ops_expected_day": "CO-R1",
+      "revision_q6_residual": true,
+      "detected_campaign_day": "CO-R1"
+    }
+  ],
+  "omicron_summary": {
+    "co_days_detected": 10,
+    "co_pass": 11,
+    "learning_pass": 9,
+    "co_r1_pass": true,
+    "cx_r1_to_co_d1": true,
+    "zero_fallback_on_co_path": true,
+    "seen": [
+      "CO-D1",
+      "CO-D2",
+      "CO-D3",
+      "CO-D4",
+      "CO-D5",
+      "CO-D6",
+      "CO-D7",
+      "CO-D8",
+      "CO-D9",
+      "CO-R1"
+    ],
+    "true_syllabus_seen": [
+      "CO-D1",
+      "CO-D2",
+      "CO-D3",
+      "CO-D4",
+      "CO-D5",
+      "CO-D6",
+      "CO-D7",
+      "CO-D8",
+      "CO-D9",
+      "CO-R1"
+    ]
+  },
+  "verdict": "PASS WITH RESIDUAL",
+  "continuation_co_r1": {
+    "day_index": 51,
+    "expected_day": "CO-R1",
+    "expected_package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
+    "finished": true,
+    "reading": {
+      "audit": {
+        "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Omicron chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed lo",
+        "body_sample": " Topic: Campaign Omicron revision \u2014 Bayesian statistics (CO-R1) Mission: Retrieve Bayesian hinges (5.1) Purpose of this revision stage: strengthen retrieval of the Campaign Omicron chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block. Stop: After revision checks and Reflection \u2014 do not claim spine PASS, until-exam trust, or",
+        "support_sample": "Begin closed-book retrieval. Reopen CMP only at a failed locus. After checks, complete Reflection. What did you extract from the CMP setup? Submit Answer ",
+        "is_fallback_shell": false,
+        "is_guided_reading": false,
+        "mentions_cmp": true,
+        "cmp_refs_present": false,
+        "q_checks": {
+          "Q1_cmp_open": true,
+          "Q2_purpose": true,
+          "Q3_attention": true,
+          "Q4_ignore": true,
+          "Q5_stop": true,
+          "Q6_next": false
+        },
+        "ec001_markers": {
+          "Purpose of this reading": false,
+          "Open your CMP": false,
+          "Focus questions": true,
+          "Misconception watch": true,
+          "Out of scope today": true,
+          "Return cue": true,
+          "Worked-example": false,
+          "Knowledge Checks": false
+        },
+        "certified_snippet_hits": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true
+        },
+        "verdict": "FAIL",
+        "word_count_body": 245
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": false,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "html": "/tmp/ro013/evidence/day51_CO-R1_reading.html"
+    },
+    "checklist": {
+      "CMP_reference_present": true,
+      "Educational_purpose_clear": true,
+      "Reading_focus_clear": true,
+      "Ignore_guidance_present": true,
+      "Stop_condition_explicit": true,
+      "Immediate_next_activity_named": false,
+      "Not_fallback_shell": true,
+      "Matches_certified_snippets": true
+    },
+    "tomorrow_preview": {
+      "next_topic_code": true,
+      "continuity_fragment": true,
+      "student_facing_fragment": false
+    },
+    "verdict": "PASS",
+    "home": {
+      "title_guess": "Apply Bayes&#39; theorem to simple conditional probabilities",
+      "day_complete": false,
+      "has_start": true,
+      "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Apply Bayes&#39; theorem to simple conditional probabilities CS1 (CS1) 1 h Study 5.1 \u2014 Explain fundamental concepts of Bayesian statistics and use these concepts to calculate After this \u00b7 Study Progress for Bayes theorem \u2014 not"
+    },
+    "session_id": "lsr-6d30f8ff8992",
+    "reflection_ok": true,
+    "tomorrow_chrome_matches_approved": true,
+    "package_path_ok": true,
+    "chrome_residual": false,
+    "ops_expected_day": "CO-R1",
+    "revision_q6_residual": true,
+    "detected_campaign_day": "CO-R1"
+  },
+  "summary": {
+    "omicron_learning_pass": 9,
+    "omicron_revision_pass": 1,
+    "zero_fallback_on_omicron_path": true,
+    "cx_r1_to_co_d1": true,
+    "continuity_front_entry": "PB014 Xi advanced student \u2192 Continuity Front \u2192 CO-D1\u2026CO-R1 (ops label desync residual)"
+  }
+}
