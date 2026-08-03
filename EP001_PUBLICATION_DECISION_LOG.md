@@ -1,11 +1,11 @@
 # EP-001 — Publication Decision Log
 
-**Programme:** EP-001 · HR-001 / HR-002 / HR-003 / HR-004 / HR-005 / HR-006 / HR-007 / HR-008 / HR-009 / HR-010 / HR-011 Human Educational Review Cycles  
+**Programme:** EP-001 · HR-001 / HR-002 / HR-003 / HR-004 / HR-005 / HR-006 / HR-007 / HR-008 / HR-009 / HR-010 / HR-011 / HR-012 Human Educational Review Cycles  
 **Instrument:** Permanent historical publication register  
 **Authority:** EF-001 · EP-001 Governance · CE-001 coverage law · PB-002 · Continuity Front Law · HOLD-001 lifted  
 **Opened:** 2026-08-01  
-**Last updated:** 2026-08-02 (RO-011 LIVE-complete · CS1-013 / Nu · Coverage **63/72 (87.5%) HELD** · Reliance through Topic **4.1** · PB-013 authorised · not executed · Wave 12 not started)
-**Rule:** Append or amend rows only from recorded human decisions under authorised review cycles. Do not forge seals outside HR-001 / HR-002 / HR-003 / HR-004 / HR-005 / HR-006 / HR-007 / HR-008 / HR-009 / HR-010 / HR-011 / named human authority. Wave 9 is **LIVE Verified** (RO-009). PB-011 **PASS**. Wave 10 is **LIVE-complete (RO-010)** · PB-012 **PASS**. Wave 11 is **LIVE-complete (RO-011)** · PB-013 authorised · not executed.
+**Last updated:** 2026-08-03 (RO-012 LIVE-complete · CS1-014 / Xi · Coverage **63/72 (87.5%) HELD** · Reliance through Topic **4.2** · PB-014 authorised · not executed · Wave 13 not started)
+**Rule:** Append or amend rows only from recorded human decisions under authorised review cycles. Do not forge seals outside HR-001 / HR-002 / HR-003 / HR-004 / HR-005 / HR-006 / HR-007 / HR-008 / HR-009 / HR-010 / HR-011 / HR-012 / named human authority. Wave 9 is **LIVE Verified** (RO-009). PB-011 **PASS**. Wave 10 is **LIVE-complete (RO-010)** · PB-012 **PASS**. Wave 11 is **LIVE-complete (RO-011)** · PB-013 **PASS**. Wave 12 is **LIVE-complete (RO-012)** · PB-014 authorised · not executed.
 
 ---
 
@@ -376,7 +376,7 @@
 | **Publication decision** | **APPROVED** — Volume authorised for joint LIVE activation |
 | **Deployment commit** | `a0d8df665fa826343579529956728ae493cf5f97` (RO-011) |
 | **LIVE verification reference** | `RO011_LIVE_VERIFICATION_REPORT.md` · **PASS WITH RESIDUAL** (package path) |
-| **PB verification reference** | PB-013 authorised · **not executed** |
+| **PB verification reference** | `PB013_RELEASE_DECISION.md` · **PASS** (mean 9.00/9) |
 
 **Inventory (joint):** CN-D1…CN-D5 Learning + CN-R1 Revision — **6** packages LIVE; FP-01 held (joint activation).
 
@@ -399,7 +399,45 @@
 8. Trust Front 4.2 / 5.1 **not** absorbed into Continuity Front credit.  
 9. Certified Educational Coverage remains **63 / 72** (4.1 already Published via CS1-003 — no double-count).  
 10. Student Reliance advanced through Topic **4.1** after LIVE Verified.  
-11. Successor programme only: **PB-013** — Progressive Educational Confidence Certification — **authorised · not executed**.
+11. Successor programme only: **EP-012** — Wave 12 Educational Production Programme — **started** (catalogue Under Authoring · HR-012 not started).
+
+---
+
+## 1K. Active row — Wave 12 (CS1-014 / Campaign Xi)
+
+| Field | Record |
+|-------|--------|
+| **Volume** | `CS1-014` · Generalised linear models — Continuity Front join from linear regression through GLM fit/interpret · `1.0.0` |
+| **Campaign** | `CS1-EP001-CAMPAIGN-XI` · `cs1014-1.0.0` |
+| **Review status** | **Complete (HR-012)** — Tutor PASS · Founder PASS · Auditor PASS · Publication Approver APPROVE |
+| **Reviewer decisions** | Tutor: **PASS** · Founder: **PASS** · Auditor: **PASS** · Publication Approver: **APPROVE** |
+| **Approval dates** | Tutor: 2026-08-03 · 05:00 · Founder: 2026-08-03 · 05:15 · Auditor: 2026-08-03 · 05:30 · Publication Approver: 2026-08-03 · 05:45 |
+| **Publication decision** | **APPROVED** — Volume authorised for joint LIVE activation |
+| **Deployment commit** | `a800c85f602b68d1380ae355c0d2839403018995` (RO-012) |
+| **LIVE verification reference** | `RO012_LIVE_VERIFICATION_REPORT.md` · `knowledge/evidence/releases/RO012/` |
+| **PB verification reference** | PB-014 authorised · not executed |
+
+**Inventory (joint):** CX-D1…CX-D10 Learning + CX-R1 Revision — **11** packages; FP-01 forbids Isolated Golden Day / single-day activation.
+
+**Catalogue root:** `app/curriculum/data/educational_campaigns/cs1/campaign-xi-cs1014/`  
+**Campaign status:** `released`  
+**Package status:** catalogue `campaign_member_certified` · LIVE `publication_approved`  
+**LIVE loader:** Xi packages **present** (11) · inventory **100** approved
+
+**Evidence dossier:** `EP012_WAVE12_PLAN.md` · `EP012_COVERAGE_UPDATE.md` · `CS1014_*` · `HR012_*` · `RO012_DEPLOYMENT_REPORT.md` · `RO012_LIVE_VERIFICATION_REPORT.md` · `RO012_RELEASE_DECISION.md` · `knowledge/evidence/releases/RO012/`
+
+**Activation conditions (binding — executed):**
+
+1. Joint copy of all 11 packages — **Done**.  
+2. Preserve CX-D1…CX-R1 continuity chain (CN-R1 → CX-D1) — **Done**.  
+3. Coordinate CF-join path with existing CS1-003 Delta 4.2 LIVE inventory — **Done** (CX preference; cold entry CD-D6).  
+4. LIVE + CMP + continuity verification — **Done** (package path; residuals RO12-R1…R3).  
+5. Wave 0 Alpha/Beta Approver honesty gap **not waived**.  
+6. Wave 13 **not started**.  
+7. No until-exam educational trust claim.  
+8. Trust Front (CS1-003) credit not conflated with Continuity Front join credit.  
+9. Certified Educational Coverage remains **63 / 72** (4.2 already Published via CS1-003 — no double-count); Student Reliance advanced through Topic **4.2**.  
+10. Successor programme only: **PB-014** — Progressive Educational Confidence Certification — **authorised · not executed**.
 
 ---
 
@@ -593,6 +631,28 @@ These rows remain until human Approver seals close the honesty gap. HR-001 Gamma
 | 2026-08-02 · 20:15 | HR-011 Auditor Review (independent) | HR-011 · Auditor seat | **PASS** — Gate CG PASS; EJ accept; FP denied |
 | 2026-08-02 · 20:30 | HR-011 Publication Approver | HR-011 · Publication Approver seat | **APPROVE** — joint LIVE activation authorised |
 | 2026-08-02 · 20:30 | Publication decision recorded | Publication Decision Log | **APPROVED** — stop; LIVE deploy/verify next ops programme (RO-011); Wave 12 gated; Coverage/Reliance **HELD** |
+| 2026-08-02 · RO-011 | Joint LIVE activate + deploy + verify | Release Ops | Tip `a0d8df6…` live; package-path **LIVE Verified** with residual RO11-R1…R3; Coverage **63 / 72 HELD**; Reliance through Topic **4.1**; PB-013 authorised · not executed; Wave 12 not started |
+| 2026-08-02 · PB-013 | Progressive Confidence (Nu) | Private Beta | **PASS** · 5 personas · mean 9.00/9 · EP-012 unblocked for start only · Wave 12 not started |
+| 2026-08-03 | Wave 12 catalogue authored (Campaign Xi / 4.2 CF-join) + desk packs assembled | Editorial / Author desk | Catalogue Under Authoring · human review gate (HR-012 not started) · Coverage/Reliance **HELD** |
+| 2026-08-03 · 05:00 | HR-012 Tutor Review (independent) | HR-012 · Tutor seat | **PASS** — no amendments |
+| 2026-08-03 · 05:15 | HR-012 Founder Review (independent) | HR-012 · Founder seat | **PASS** — Stage 0 commission YES |
+| 2026-08-03 · 05:30 | HR-012 Auditor Review (independent) | HR-012 · Auditor seat | **PASS** — Gate CG PASS; EJ accept; FP denied |
+| 2026-08-03 · 05:45 | HR-012 Publication Approver | HR-012 · Publication Approver seat | **APPROVE** — joint LIVE activation authorised |
+| 2026-08-03 · 05:45 | Publication decision recorded | Publication Decision Log | **APPROVED** — stop; LIVE deploy/verify next ops programme (RO-012); Wave 13 gated; Coverage/Reliance **HELD** |
+
+---
+
+## 3K. Decision chronology (CS1-014)
+
+| Timestamp | Event | Actor | Outcome |
+|-----------|-------|-------|---------|
+| 2026-08-03 | Wave 12 catalogue authored (Campaign Xi / 4.2 CF-join) + desk packs assembled | Editorial / Author desk | Catalogue Under Authoring · human review gate · Coverage **63 / 72 HELD** · Reliance through Topic **4.1 HELD** |
+| 2026-08-03 · 05:00 | HR-012 Tutor Review (independent) | HR-012 · Tutor seat | **PASS** — no amendments |
+| 2026-08-03 · 05:15 | HR-012 Founder Review (independent) | HR-012 · Founder seat | **PASS** — Stage 0 commission YES |
+| 2026-08-03 · 05:30 | HR-012 Auditor Review (independent) | HR-012 · Auditor seat | **PASS** — Gate CG PASS; EJ accept; FP denied |
+| 2026-08-03 · 05:45 | HR-012 Publication Approver | HR-012 · Publication Approver seat | **APPROVE** — joint LIVE activation authorised |
+| 2026-08-03 · 05:45 | Publication decision recorded | Publication Decision Log | **APPROVED** — stop; LIVE deploy/verify next ops programme (RO-012); Wave 13 gated; Coverage/Reliance **HELD** |
+| 2026-08-03 · RO-012 | Joint LIVE activate + deploy + verify | Release Ops | Tip `a800c85…` live; package-path **LIVE Verified** with residual RO12-R1…R3; Coverage **63 / 72 HELD**; Reliance through Topic **4.2**; PB-014 authorised · not executed; Wave 13 not started |
 
 ---
 
@@ -797,7 +857,9 @@ When a human reviewer returns Approve / Reject / Pass with conditions:
 **RO-010 application:** Joint LIVE activation + verify. Coverage **63 / 72**. Reliance through Topic **3.3**. Wave 10 **LIVE-complete**.  
 **PB-012 application:** Progressive confidence **PASS** (5 personas · mean 9.00/9). Coverage **63 / 72 held**. Reliance through Topic **3.3** held. EP-011 unblocked for start only (historical at PB-012 close). Wave 12 not started.  
 **EP-011 application:** Catalogue authoring only (CS1-013 / Nu · 4.1 CF-join). Coverage **63 / 72 held**. Student Reliance through Topic **3.3** held. Human seals completed under HR-011.  
-**HR-011 application:** Zero human-requested amendments. Remediation list empty. Educational packages not modified. Publication **APPROVED** (CS1-013). LIVE not executed. RO-011 not executed. Wave 12 not started. Coverage **63 / 72 held**. Reliance through Topic **3.3** held. Wave 11 **Awaiting LIVE**.
+**HR-011 application:** Zero human-requested amendments. Remediation list empty. Educational packages not modified. Publication **APPROVED** (CS1-013). LIVE executed under RO-011. Coverage **63 / 72 held**. Reliance through Topic **4.1** after LIVE.  
+**RO-011 application:** Joint LIVE activation + verify. Coverage **63 / 72 HELD**. Reliance through Topic **4.1**. Wave 11 **LIVE-complete**.  
+**PB-013 application:** Progressive confidence **PASS** (5 personas · mean 9.00/9). Coverage **63 / 72 held**. Reliance through Topic **4.1** held. EP-012 unblocked for start only. Wave 12 not started.
 
 ---
 
@@ -810,12 +872,13 @@ When a human reviewer returns Approve / Reject / Pass with conditions:
 | Auditor Gate CG PASS | **Recorded** (2026-08-02 · 20:15) |
 | Publication Approver APPROVE | **Recorded** (2026-08-02 · 20:30) |
 | Joint LIVE deploy authorised | **Yes** |
-| Deployment package prepared for release | **Checklist prepared — not executed** |
-| LIVE Verified | **No** |
+| Deployment package prepared for release | **Executed (RO-011)** |
+| LIVE Verified | **Yes — package path** (`RO011_LIVE_VERIFICATION_REPORT.md`); residual RO11-R1…R3 |
+| Progressive confidence | **PASS (PB-013)** · mean 9.00/9 |
 | CE-001 Approver credit for 4.1.1–4.1.5 | **Already counted via CS1-003** — numerator remains **63 / 72**; no double-count |
-| Student educational trust claim (CF-join) | **Forbidden until LIVE Verified** |
+| Student progressive trust claim (CF-join Nu) | **Authorised (PB-013)** — until-exam **not** claimed |
 
-**Deployment readiness verdict:** **READY TO DEPLOY (joint inventory)** — publication **APPROVED**; deploy commit **none**; LIVE verification **outstanding**; successor **RO-011** only.
+**Deployment readiness verdict:** **LIVE-COMPLETE** — tip `a0d8df665fa826343579529956728ae493cf5f97`; PB-013 **PASS**; successor **EP-012** authorised · not started.
 
 ---
 
@@ -971,18 +1034,39 @@ Publication decision: APPROVED
 Date: 2026-08-02 · 20:30
 Approver seat: HR-011 · Publication Approver
 Amendments required before deploy: NONE
+LIVE deploy executed: YES (RO-011) · tip a0d8df6…
+LIVE verification: PASS WITH RESIDUAL (RO11-R1…R3)
+PB progressive confidence: PASS (PB-013) · mean 9.00/9
+RO-011: LIVE-COMPLETE WITH RESIDUAL
+EP-012: CATALOGUE UNDER AUTHORING
+Wave 12: UNDER AUTHORING (see CS1-014 block)
+Coverage: 63 / 72 (87.5%) — HELD (no double-count of Topic 4.1)
+Student Reliance: Through Topic 4.1 — HELD
+Wave 11: LIVE-COMPLETE (RO-011 / PB-013)
+```
+
+```text
+Volume: CS1-014 · 1.0.0 · CS1-EP001-CAMPAIGN-XI · cs1014-1.0.0
+Cycle: HR-012 — Wave 12 Human Educational Review Cycle
+Publication decision: APPROVED
+Date: 2026-08-03 · 05:45
+Approver seat: HR-012 · Publication Approver
+Amendments required before deploy: NONE
 LIVE deploy executed: NO
 LIVE verification: OUTSTANDING
-RO-011: NOT EXECUTED
-Wave 12: NOT STARTED
-Coverage: 63 / 72 (87.5%) — HELD (no double-count of Topic 4.1)
-Student Reliance: Through Topic 3.3 / 3.3.5 — HELD
-Wave 11: AWAITING LIVE
+PB progressive confidence: —
+EP-012: AUTHORING COMPLETE
+HR-012: COMPLETE (APPROVED)
+RO-012: NOT EXECUTED
+Wave 13: NOT STARTED
+Coverage: 63 / 72 (87.5%) — HELD (no double-count of Topic 4.2)
+Student Reliance: Through Topic 4.1 — HELD
+Wave 12: AWAITING LIVE
 ```
 
 ---
 
-Signed: Publication Decision Log · EP-001 · HR-001 · HR-002 · HR-003 · HR-004 · HR-005 · HR-006 · HR-007 · HR-008 · HR-009 · HR-010 · HR-011 · RO-001 · RO-002 · RO-003 · RO-004 · RO-005 · RO-006 · RO-007 · RO-008 · RO-009 · RO-010 · PB-011 · PB-012 · EP-007 · EP-008 · EP-009 · EP-010 · EP-011 · 2026-08-02  
+Signed: Publication Decision Log · EP-001 · HR-001 · HR-002 · HR-003 · HR-004 · HR-005 · HR-006 · HR-007 · HR-008 · HR-009 · HR-010 · HR-011 · HR-012 · RO-001 · RO-002 · RO-003 · RO-004 · RO-005 · RO-006 · RO-007 · RO-008 · RO-009 · RO-010 · RO-011 · PB-011 · PB-012 · PB-013 · EP-007 · EP-008 · EP-009 · EP-010 · EP-011 · EP-012 · 2026-08-03  
 **Publication decision (CS1-004):** **APPROVED** · LIVE Verified  
 **Publication decision (CS1-003):** **APPROVED** · LIVE-complete (package path)  
 **Publication decision (CS1-005):** **APPROVED** · LIVE-complete (package path)  
@@ -993,7 +1077,8 @@ Signed: Publication Decision Log · EP-001 · HR-001 · HR-002 · HR-003 · HR-0
 **Publication decision (CS1-010):** **APPROVED** · **LIVE-complete (RO-008 / PB-010)**  
 **Publication decision (CS1-011):** **APPROVED** · **LIVE-complete (RO-009 / PB-011)** · Coverage **58 / 72 (80.6%)** · Reliance through Topic **3.2** · PB-011 PASS  
 **Publication decision (CS1-012):** **APPROVED** · **LIVE-complete (RO-010 / PB-012)** · Coverage **63 / 72 (87.5%)** · Reliance through Topic **3.3** · PB-012 PASS  
-**Publication decision (CS1-013):** **APPROVED** (HR-011) · **Awaiting LIVE** · Coverage **63 / 72 HELD** · Reliance through Topic **3.3 HELD** · RO-011 not executed  
+**Publication decision (CS1-013):** **APPROVED** · **LIVE-complete (RO-011 / PB-013)** · Coverage **63 / 72 HELD** · Reliance through Topic **4.1** · PB-013 PASS  
+**Publication decision (CS1-014):** **APPROVED** · **Awaiting LIVE** · Coverage **63 / 72 HELD** · Reliance through Topic **4.1** · RO-012 not executed  
 **RO-009:** LIVE-complete WITH RESIDUAL  
 **PB-011:** PASS  
 **RO-010:** LIVE-complete WITH RESIDUAL  
@@ -1002,4 +1087,9 @@ Signed: Publication Decision Log · EP-001 · HR-001 · HR-002 · HR-003 · HR-0
 **PB-012:** PASS · mean 9.00/9  
 **EP-011:** Authoring complete · HR-011 complete  
 **HR-011:** Complete (APPROVED)  
-**Wave 11:** **APPROVED** · **Awaiting LIVE** · Coverage **63 / 72 HELD** · Reliance through Topic **3.3 HELD** · RO-011 not executed · Wave 12 not started
+**RO-011:** LIVE-complete WITH RESIDUAL  
+**PB-013:** PASS · mean 9.00/9  
+**Wave 11:** **LIVE-complete (RO-011 / PB-013)** · Coverage **63 / 72 HELD** · Reliance through Topic **4.1**  
+**EP-012:** Authoring complete · HR-012 complete  
+**HR-012:** Complete (APPROVED)  
+**Wave 12:** **APPROVED · Awaiting LIVE** · Coverage **63 / 72 HELD** · Reliance through Topic **4.1** · RO-012 not executed · Wave 13 not started

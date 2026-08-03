@@ -1,0 +1,119 @@
+{
+  "day_index": 29,
+  "expected_day": "CX-D1",
+  "expected_package_id": "CS1-EP001-PKG-CX-4.2-EXPONENTIAL-FAMILY",
+  "finished": true,
+  "reading": {
+    "audit": {
+      "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Nu chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus.",
+      "body_sample": " Topic: Campaign Nu revision \u2014 linear regression models (CN-R1) Mission: Retrieve linear-regression hinges (4.1) Purpose of this revision stage: strengthen retrieval of the Campaign Nu chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block. Stop: After revision checks and Reflection \u2014 do not claim Trust Front absorb, spine PA",
+      "support_sample": "Begin closed-book retrieval. Reopen CMP only at a failed locus. After checks, complete Reflection. What did you extract from the CMP setup? Submit Answer ",
+      "is_fallback_shell": false,
+      "is_guided_reading": false,
+      "mentions_cmp": true,
+      "cmp_refs_present": false,
+      "q_checks": {
+        "Q1_cmp_open": true,
+        "Q2_purpose": true,
+        "Q3_attention": true,
+        "Q4_ignore": true,
+        "Q5_stop": true,
+        "Q6_next": false
+      },
+      "ec001_markers": {
+        "Purpose of this reading": false,
+        "Open your CMP": false,
+        "Focus questions": true,
+        "Misconception watch": true,
+        "Out of scope today": true,
+        "Return cue": true,
+        "Worked-example": false,
+        "Knowledge Checks": false
+      },
+      "certified_snippet_hits": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false
+      },
+      "verdict": "FAIL",
+      "word_count_body": 244
+    },
+    "checklist": {
+      "CMP_reference_present": true,
+      "Educational_purpose_clear": true,
+      "Reading_focus_clear": true,
+      "Ignore_guidance_present": true,
+      "Stop_condition_explicit": true,
+      "Immediate_next_activity_named": false,
+      "Not_fallback_shell": true,
+      "Matches_certified_snippets": false
+    },
+    "fidelity": {
+      "lead_line": false,
+      "exit_line": false,
+      "return_cue": false,
+      "open_point": false,
+      "stop_condition": false,
+      "focus_q_0": false,
+      "focus_q_1": false,
+      "catalogue_body_match": true,
+      "catalogue_divergences": [],
+      "fidelity_pass": false
+    },
+    "package_id": "CS1-EP001-PKG-CX-4.2-EXPONENTIAL-FAMILY",
+    "campaign_day": "CX-D1",
+    "html": "/tmp/ro012/evidence/day29_CX-D1_reading.html"
+  },
+  "checklist": {
+    "CMP_reference_present": true,
+    "Educational_purpose_clear": true,
+    "Reading_focus_clear": true,
+    "Ignore_guidance_present": true,
+    "Stop_condition_explicit": true,
+    "Immediate_next_activity_named": false,
+    "Not_fallback_shell": true,
+    "Matches_certified_snippets": false
+  },
+  "tomorrow_preview": {
+    "next_topic_code": true,
+    "continuity_fragment": true,
+    "student_facing_fragment": false,
+    "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+    "package_continuity_line": "Today you placed GLM responses in the exponential family; tomorrow continues 4.2 at mean, variance, variance function an",
+    "package_student_facing": "Tomorrow: mean, variance, variance function and scale (4.2.2). Optional light prep: skim 4.2.2 headings \u2014 titles only to",
+    "chrome_matches_package_continuity": false
+  },
+  "verdict": "PASS",
+  "home": {
+    "title_guess": "Name response and explanatory variables with intent",
+    "day_complete": false,
+    "has_start": true,
+    "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Name response and explanatory variables with intent CS1 (CS1) 1 h Study 4.1 \u2014 Understand and use linear regression models After this \u00b7 Study Progress for variable roles \u2014 not Topic Complete for 4.1.2\u20134.1.5. Start Today&#39;s Ses"
+  },
+  "session_id": "lsr-fc27431cdbeb",
+  "educational_fidelity": {
+    "lead_line": false,
+    "exit_line": false,
+    "return_cue": false,
+    "open_point": false,
+    "stop_condition": false,
+    "focus_q_0": false,
+    "focus_q_1": false,
+    "catalogue_body_match": true,
+    "catalogue_divergences": [],
+    "fidelity_pass": false
+  },
+  "reflection_ok": true,
+  "tomorrow_chrome_matches_approved": true,
+  "package_path_ok": true,
+  "chrome_residual": false,
+  "theta_focus": false,
+  "eta_focus": false,
+  "zeta_focus": false,
+  "kappa_focus": false,
+  "lambda_focus": false,
+  "epsilon_focus": false,
+  "detected_campaign_day": "CN-R1",
+  "revision_q6_residual": true
+}

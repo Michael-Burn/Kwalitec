@@ -1,0 +1,204 @@
+{
+  "programme": "RO-012",
+  "host": "https://kwalitec.onrender.com",
+  "expected_commit": "a800c85f602b68d1380ae355c0d2839403018995",
+  "deploy_id": "dep-d9o0dnu7bikc73cnt8o0",
+  "inventory_job": "job-d9o0fnm7bikc73co0fi0",
+  "live_health": {
+    "build_date": "2026-08-03",
+    "build_number": "local",
+    "commit": "a800c85f602b68d1380ae355c0d2839403018995",
+    "components": {
+      "database": {
+        "latency_ms": 2.7,
+        "name": "database",
+        "status": "ok"
+      },
+      "instance_storage": {
+        "meta": {
+          "path": "/opt/render/project/src/instance"
+        },
+        "name": "instance_storage",
+        "status": "ok"
+      },
+      "migrations": {
+        "meta": {
+          "current": "202607310002",
+          "head": "202607310002"
+        },
+        "name": "migrations",
+        "status": "ok"
+      },
+      "queue": {
+        "detail": "manual automation runner (no external broker)",
+        "meta": {
+          "broker": "none",
+          "runner": "app.automation"
+        },
+        "name": "queue",
+        "status": "ok"
+      }
+    },
+    "database": "connected",
+    "environment": "production",
+    "status": "ok",
+    "timestamp": "2026-08-03T03:13:37.809350+00:00",
+    "version": "2.0.0-beta.1"
+  },
+  "email": "ro012.xi.primary.1785726975@example.com",
+  "xi_days": [
+    {
+      "day": "CX-D1",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "cmp": true,
+      "package_path_ok": true,
+      "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.2.1 \u2014 place glm responses in the exponential family.",
+      "source_audit": "day30_CX-D1_audit.json"
+    },
+    {
+      "day": "CX-D2",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "cmp": true,
+      "package_path_ok": true,
+      "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.2.2 \u2014 evaluate mean, variance, variance function and",
+      "source_audit": "day31_CX-D2_audit.json"
+    },
+    {
+      "day": "CX-D3",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "cmp": true,
+      "package_path_ok": true,
+      "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.2.3 \u2014 choose link and canonical link with warrant. S",
+      "source_audit": "day32_CX-D3_audit.json"
+    },
+    {
+      "day": "CX-D4",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "cmp": true,
+      "package_path_ok": true,
+      "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.2.4 \u2014 use variables, factors and interactions in glm",
+      "source_audit": "day33_CX-D4_audit.json"
+    },
+    {
+      "day": "CX-D5",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "cmp": true,
+      "package_path_ok": true,
+      "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.2.5 \u2014 write the linear predictor for simple glm form",
+      "source_audit": "day34_CX-D5_audit.json"
+    },
+    {
+      "day": "CX-D6",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "cmp": true,
+      "package_path_ok": true,
+      "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.2.6 \u2014 use deviance and estimate glm parameters. Stop",
+      "source_audit": "day35_CX-D6_audit.json"
+    },
+    {
+      "day": "CX-D7",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "cmp": true,
+      "package_path_ok": true,
+      "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.2.7 \u2014 choose a glm using analysis of deviance. Stop ",
+      "source_audit": "day36_CX-D7_audit.json"
+    },
+    {
+      "day": "CX-D8",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "cmp": true,
+      "package_path_ok": true,
+      "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.2.8 \u2014 use pearson and deviance residuals. Stop befor",
+      "source_audit": "day37_CX-D8_audit.json"
+    },
+    {
+      "day": "CX-D9",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "cmp": true,
+      "package_path_ok": true,
+      "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.2.9 \u2014 test acceptability of a fitted glm. Stop befor",
+      "source_audit": "day38_CX-D9_audit.json"
+    },
+    {
+      "day": "CX-D10",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "cmp": true,
+      "package_path_ok": true,
+      "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.2.10 \u2014 fit a glm and interpret the output. Stop befo",
+      "source_audit": "day39_CX-D10_audit.json"
+    },
+    {
+      "day": "CX-R1",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "cmp": true,
+      "package_path_ok": true,
+      "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Xi chain without opening a new CMP chapter",
+      "source_audit": "day40_CX-R1_audit.json"
+    }
+  ],
+  "inventory": {
+    "approved_count": 100,
+    "xi_count": 11,
+    "duplicates": 0,
+    "missing_xi_ids": [],
+    "trust_front_4_2_cold_entry": "CD-D6",
+    "cn_r1_to_cx_d1": "CX-D1",
+    "regressions_unchanged": {
+      "Alpha/Beta": "unchanged",
+      "Gamma": 5,
+      "Delta": 27,
+      "Epsilon": 5,
+      "Zeta": 3,
+      "Eta": 3,
+      "Theta": 3,
+      "Iota": 7,
+      "Kappa": 7,
+      "Lambda": 9,
+      "Mu": 6,
+      "Nu": 6
+    }
+  },
+  "summary": {
+    "xi_learning_pass": 10,
+    "xi_revision_pass": 1,
+    "zero_fallback_on_xi_path": true,
+    "cn_r1_to_cx_d1": true,
+    "continuity_front_entry": "continue_topic section 3 \u2192 \u2026 \u2192 CN-R1 \u2192 CX-D1\u2026CX-R1"
+  },
+  "verdict": "PASS WITH RESIDUAL",
+  "residuals": [
+    "CX-D1",
+    "CX-D2",
+    "CX-D3",
+    "CX-D4",
+    "CX-D5",
+    "CX-D6",
+    "CX-D7",
+    "CX-D8",
+    "CX-D9",
+    "CX-D10",
+    "CX-R1"
+  ]
+}

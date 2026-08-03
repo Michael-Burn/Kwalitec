@@ -2,7 +2,7 @@
 
 **Programme:** EP-001 Wave 1 / HR-001 / RO-001 LIVE Release Operations  
 **Subject:** IFoA CS1 · 2026  
-**Measurement date:** 2026-08-02  
+**Measurement date:** 2026-08-03  
 **Authority:** EF-001 · CE-001 coverage law · EP-001 Governance · PB-002 · HOLD-001 lifted  
 **Companions:** `EP001_WAVE1_PUBLICATION_PACK.md` · `EP001_REVIEWER_CHECKLISTS.md` · `EP001_HUMAN_REVIEW_SUMMARY.md` · `EP001_PUBLICATION_DECISION_LOG.md` · `EP001_COVERAGE_MAP.md` · `RO001_DEPLOYMENT_REPORT.md` · `RO001_LIVE_VERIFICATION_REPORT.md` · `RO001_RELEASE_DECISION.md` · `RO001A_LIVE_EDUCATIONAL_VERIFICATION.md` · `RO001A_EDUCATIONAL_FIDELITY_REPORT.md` · `RO001A_RELEASE_CONFIRMATION.md`
 
@@ -195,25 +195,32 @@ Chrome honesty:                         Finish/Home tomorrow residual RO1-R1 ope
 | Wave 11 educational packages unmodified in review | **Met** |
 | Wave 11 joint LIVE deploy | **Met** — RO-011 tip `a0d8df665fa…` · deploy `dep-d9nq43m1egvs738jn2c0` |
 | Wave 11 LIVE Verified | **Met** — package path PASS WITH RESIDUAL (`RO011_LIVE_VERIFICATION_REPORT.md`) |
-| Wave 11 | **LIVE-complete (RO-011)** · Coverage **63 / 72 HELD** · Reliance through Topic **4.1** · PB-013 authorised · not executed |
+| Wave 11 | **LIVE-complete (RO-011 / PB-013)** · PB-013 **PASS** · Coverage **63 / 72 HELD** · Reliance through Topic **4.1** |
+| Wave 12 catalogue authored | **Met** — `campaign-xi-cs1014/` (11 packages) |
+| Wave 12 human seals complete | **Met** — HR-012 |
+| Wave 12 publication decision | **APPROVED** |
+| Wave 12 educational packages unmodified in review | **Met** |
+| Wave 12 joint LIVE deploy | **Met** — RO-012 tip `a800c85…` · deploy `dep-d9o0dnu7bikc73cnt8o0` |
+| Wave 12 LIVE Verified | **Met** — package path (`RO012_LIVE_VERIFICATION_REPORT.md`) |
+| Wave 12 | **LIVE-complete (RO-012)** · Coverage **63 / 72 HELD** · Reliance through Topic **4.2** · PB-014 authorised · not executed |
 
-**Programme state:** Wave 1 LIVE Verified · RO1-R1 closed · **Wave 2 LIVE-complete (RO-002 / PB-004)** · **Wave 3 LIVE-complete (RO-003 / PB-005)** · **Wave 4 LIVE-complete (RO-004 / PB-006)** · **Wave 5 LIVE-complete (RO-005 / PB-007)** (CS1-007 / Eta · 2.4) · **Wave 6 LIVE-complete (RO-006 / PB-008)** (CS1-008 / Theta · 2.5) · **Wave 7 LIVE-complete (RO-007 / PB-009)** (CS1-009 / Iota · 2.6) · **Wave 8 LIVE-complete (RO-008 / PB-010)** (CS1-010 / Kappa · 3.1) · **Wave 9 LIVE-complete (RO-009 / PB-011)** (CS1-011 / Lambda · 3.2) · PB-011 PASS · **Wave 10 LIVE-complete (RO-010 / PB-012)** (CS1-012 / Mu · 3.3) · PB-012 PASS · **Wave 11 LIVE-complete (RO-011)** (CS1-013 / Nu · 4.1 CF-join) · PB-013 authorised · not executed · Wave 12 not started.
+**Programme state:** Wave 1 LIVE Verified · RO1-R1 closed · **Wave 2 LIVE-complete (RO-002 / PB-004)** · **Wave 3 LIVE-complete (RO-003 / PB-005)** · **Wave 4 LIVE-complete (RO-004 / PB-006)** · **Wave 5 LIVE-complete (RO-005 / PB-007)** (CS1-007 / Eta · 2.4) · **Wave 6 LIVE-complete (RO-006 / PB-008)** (CS1-008 / Theta · 2.5) · **Wave 7 LIVE-complete (RO-007 / PB-009)** (CS1-009 / Iota · 2.6) · **Wave 8 LIVE-complete (RO-008 / PB-010)** (CS1-010 / Kappa · 3.1) · **Wave 9 LIVE-complete (RO-009 / PB-011)** (CS1-011 / Lambda · 3.2) · PB-011 PASS · **Wave 10 LIVE-complete (RO-010 / PB-012)** (CS1-012 / Mu · 3.3) · PB-012 PASS · **Wave 11 LIVE-complete (RO-011 / PB-013)** (CS1-013 / Nu · 4.1 CF-join) · PB-013 PASS · **Wave 12 LIVE-complete (RO-012)** (CS1-014 / Xi · 4.2 CF-join) · PB-014 authorised · not executed · Wave 13 not started.
 
 ### Continuity Front Register (dashboard)
 
 | Front | Location | Status |
 |-------|----------|--------|
 | Student LIVE Continuity Front | Closed through Topic **4.1** / CN-R1 | RO-011 |
-| Catalogue Continuity Front | **3.3 LIVE** · Nu **LIVE** CF-join **4.1** | RO-010 · RO-011 · EP-011 · HR-011 |
-| Next after LIVE | Wave 0 honesty / spine re-audit / Topic 4.2 (provisional) · not commissioned | Continuity Front law |
+| Catalogue Continuity Front | **4.2 LIVE** (Xi CF-join) | RO-012 |
+| Next after LIVE | Wave 0 honesty / spine re-audit / Topic 5.1 (provisional) · not commissioned | Continuity Front law |
 
 ### Student Reliance Coverage Register (dashboard)
 
 | Metric | Value |
 |--------|-------|
 | Certified Educational Coverage (%) | **87.5%** (63 / 72) — **HELD** |
-| Continuity Front | LIVE through Topic **4.1** / CN-R1 |
-| Student Reliance Coverage | Contiguous CF through Topic **4.1** — **ADVANCED**; Trust Front 24 LOs independent; Alpha/Beta honesty gap |
+| Continuity Front | LIVE through Topic **4.2** / CX-R1 |
+| Student Reliance Coverage | Contiguous CF through Topic **4.2** — advanced after RO-012 LIVE Verified; Trust Front 24 LOs independent; Alpha/Beta honesty gap |
 | Until-examination status | **NOT CLAIMED** |
 
 ---
@@ -224,11 +231,15 @@ Chrome honesty:                         Finish/Home tomorrow residual RO1-R1 ope
 2. Track RO6-R1…RO11-R1 label desync + chrome / Q6 residuals as PI (and prior residuals).  
 3. Wave 6–11 LIVE-complete — held.  
 4. Wave 10 **LIVE-complete (RO-010 / PB-012)** — Coverage **63 / 72 (87.5%)** · Reliance through Topic **3.3** · PB-012 **PASS**.  
-5. Wave 11 **LIVE-complete (RO-011)** — Nu CF-join Topic 4.1 · Coverage **63 / 72 HELD** · Reliance through Topic **4.1**.  
-6. Successor programme only: **PB-013** — Progressive Educational Confidence Certification — **authorised · not started**.  
-7. Do **not** begin PB-013 / Wave 12 from this release cycle.  
-8. Do **not** claim until-exam educational trust from Wave 11 LIVE alone.  
-9. Published Coverage held at **63 / 72**; Student Reliance through Topic **4.1**.
+5. Wave 11 **LIVE-complete (RO-011 / PB-013)** — Nu CF-join Topic 4.1 · Coverage **63 / 72 HELD** · Reliance through Topic **4.1** · PB-013 **PASS**.  
+6. Wave 12 **LIVE-complete (RO-012)** — Xi CF-join Topic 4.2 · Coverage **63 / 72 HELD** · Reliance through Topic **4.2**.
+7. Successor programme only: **PB-014** — Progressive Educational Confidence Certification — **authorised · not executed**.
+8. Do **not** begin Wave 13 until separately authorised.
+9. Do **not** claim until-exam educational trust from Wave 12 LIVE alone.
+10. Published Coverage held at **63 / 72**; Student Reliance through Topic **4.2**.
+8. Do **not** begin RO-012 / PB-014 / Wave 13 from this human-review cycle.  
+9. Do **not** claim until-exam educational trust from Wave 12 Approver alone.  
+10. Published Coverage held at **63 / 72**; Student Reliance through Topic **4.1**.
 
 ## 9. Wave 2 (CS1-003) — pipeline summary
 
@@ -273,15 +284,19 @@ Signed: Publication Dashboard · EP-001 · HR-001 · HR-002 · HR-003 · HR-004 
 **Publication decision (CS1-010):** **APPROVED** · **LIVE-complete (RO-008 / PB-010)**  
 **Publication decision (CS1-011):** **APPROVED** · **LIVE-complete (RO-009 / PB-011)** · Coverage **58 / 72 (80.6%)** · Reliance through Topic **3.2** · PB-011 **PASS**  
 **Publication decision (CS1-012):** **APPROVED** · **LIVE-complete (RO-010 / PB-012)** · Coverage **63 / 72 (87.5%)** · Reliance through Topic **3.3** · PB-012 **PASS**  
-**Publication decision (CS1-013):** **APPROVED** · **LIVE-complete (RO-011)** · Coverage **63 / 72 HELD** · Reliance through Topic **4.1** · PB-013 authorised · not executed  
+**Publication decision (CS1-013):** **APPROVED** · **LIVE-complete (RO-011 / PB-013)** · Coverage **63 / 72 HELD** · Reliance through Topic **4.1** · PB-013 **PASS**  
+**Publication decision (CS1-014):** **APPROVED** · **LIVE-complete (RO-012)** · Coverage **63 / 72 HELD** · Reliance through Topic **4.2** · PB-014 authorised · not executed
 **RO-009:** LIVE-complete WITH RESIDUAL  
 **PB-011:** PASS · mean 9.00/9  
 **RO-010:** LIVE-complete WITH RESIDUAL  
 **PB-012:** PASS · mean 9.00/9  
 **RO-011:** LIVE-complete WITH RESIDUAL  
+**PB-013:** PASS · mean 9.00/9  
 **Wave 10:** LIVE-complete (RO-010 / PB-012) · Coverage **63 / 72** · Reliance through Topic **3.3** · PB-012 PASS  
 **HR-011:** Complete (APPROVED)  
-**Wave 11:** **LIVE-complete (RO-011)** · Coverage **63 / 72 HELD** · Reliance through Topic **4.1** · PB-013 authorised · not executed · Wave 12 not started
+**Wave 11:** **LIVE-complete (RO-011 / PB-013)** · Coverage **63 / 72 HELD** · Reliance through Topic **4.1** · PB-013 PASS  
+**HR-012:** Complete (APPROVED)  
+**Wave 12:** **LIVE-complete (RO-012)** · Coverage **63 / 72 HELD** · Reliance through Topic **4.2** · PB-014 authorised · not executed · Wave 13 not started
 ---
 
 ## 11. Wave 4 (CS1-006) — package pipeline
@@ -436,6 +451,33 @@ Signed: Publication Dashboard · EP-001 · HR-001 · HR-002 · HR-003 · HR-004 
 **Catalogue root:** `app/curriculum/data/educational_campaigns/cs1/campaign-nu-cs1013/`  
 **LIVE loader:** **6** Nu packages `publication_approved` · tip `a0d8df6…` (RO-011) · inventory **89** approved.  
 **Companions:** `EP011_WAVE11_PLAN.md` · `EP011_COVERAGE_UPDATE.md` · `CS1013_*` · `HR011_*` · `EP011_WAVE11_EXECUTION_REPORT.md` · `RO011_*`  
-**Stop:** Wave 11 **LIVE-complete (RO-011)** · Coverage **63 / 72 (87.5%) HELD** · Reliance through Topic **4.1** · PB-013 **authorised · not executed** · Wave 12 **not started**.
+**Stop:** Wave 11 **LIVE-complete (RO-011 / PB-013)** · Coverage **63 / 72 (87.5%) HELD** · Reliance through Topic **4.1** · PB-013 **PASS** · EP-012 **Under Authoring**.
 
-Signed: Publication Dashboard · EP-001 · HR-001…HR-011 · RO-001…RO-011 · PB-011 · PB-012 · EP-009 · EP-010 · EP-011 · 2026-08-02
+---
+
+## 19. Wave 12 (CS1-014) — package pipeline
+
+| Package | Day | LO | Authored | Desk Certified | Tutor | Founder | Auditor | Publication Approver | Approved | LIVE Verified |
+|---------|-----|----|:--------:|:--------------:|:-----:|:-------:|:-------:|:--------------------:|:--------:|:-------------:|
+| `CS1-EP001-PKG-CX-4.2-EXPONENTIAL-FAMILY` | CX-D1 | 4.2.1 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE` | CX-D2 | 4.2.2 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-CX-4.2-LINK-CANONICAL` | CX-D3 | 4.2.3 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-CX-4.2-FACTORS-INTERACTIONS` | CX-D4 | 4.2.4 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-CX-4.2-LINEAR-PREDICTOR` | CX-D5 | 4.2.5 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-CX-4.2-DEVIANCE-ESTIMATION` | CX-D6 | 4.2.6 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-CX-4.2-MODEL-CHOICE` | CX-D7 | 4.2.7 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-CX-4.2-RESIDUALS` | CX-D8 | 4.2.8 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-CX-4.2-GOODNESS-TESTS` | CX-D9 | 4.2.9 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-CX-4.2-FIT-INTERPRET` | CX-D10 | 4.2.10 | ● | ● | ● | ● | ● | ● | ● | ● |
+| `CS1-EP001-PKG-REV-GLM-XI` | CX-R1 | Rev | ● | ● | ● | ● | ● | ● | ● | ● |
+
+**Key:** ● = complete · ○ = not reached  
+
+**Catalogue root:** `app/curriculum/data/educational_campaigns/cs1/campaign-xi-cs1014/`  
+**Campaign status:** `released`  
+**Package status:** catalogue `campaign_member_certified` · LIVE copies `publication_approved`  
+**LIVE loader:** Xi packages **present** · inventory **100** approved.  
+**Companions:** `EP012_WAVE12_PLAN.md` · `EP012_COVERAGE_UPDATE.md` · `CS1014_*` · `HR012_*` · `RO012_*`  
+**Stop:** Wave 12 **LIVE-complete (RO-012)** · Coverage **63 / 72 (87.5%) HELD** · Reliance through Topic **4.2** · PB-014 **authorised · not executed** · Wave 13 **not started**.
+
+Signed: Publication Dashboard · EP-001 · HR-001…HR-012 · RO-001…RO-012 · PB-011 · PB-012 · PB-013 · EP-009 · EP-010 · EP-011 · EP-012 · 2026-08-03

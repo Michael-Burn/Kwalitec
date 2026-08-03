@@ -1,0 +1,117 @@
+{
+  "day_index": 33,
+  "expected_day": "CX-D5",
+  "expected_package_id": "CS1-EP001-PKG-CX-4.2-LINEAR-PREDICTOR",
+  "finished": true,
+  "reading": {
+    "audit": {
+      "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.2.4 \u2014 use variables, factors and interactions in glms. Stop before out-of-scope later LOs.",
+      "body_sample": " Topic: Understand and use generalised linear models (4.2) Mission: Use variables, factors and interactions in GLMs Purpose of this reading: use the CMP to extract Syllabus 4.2.4 \u2014 use variables, factors and interactions in glms. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 4.2.4 variables, factors and interactions Stop: Through the CMP treatment of Syllabus 4.2.4 (stop before linear predictor forms 4.2.5) Focus questions: \u2022 What is the core move of Syllabus 4.2.4? \u2022 What warrant sep",
+      "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.4 variables, factors and interactions. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.",
+      "is_fallback_shell": false,
+      "is_guided_reading": false,
+      "mentions_cmp": true,
+      "cmp_refs_present": true,
+      "q_checks": {
+        "Q1_cmp_open": true,
+        "Q2_purpose": true,
+        "Q3_attention": true,
+        "Q4_ignore": true,
+        "Q5_stop": true,
+        "Q6_next": true
+      },
+      "ec001_markers": {
+        "Purpose of this reading": true,
+        "Open your CMP": true,
+        "Focus questions": true,
+        "Misconception watch": true,
+        "Out of scope today": true,
+        "Return cue": true,
+        "Worked-example": true,
+        "Knowledge Checks": true
+      },
+      "certified_snippet_hits": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false
+      },
+      "verdict": "PASS",
+      "word_count_body": 323
+    },
+    "checklist": {
+      "CMP_reference_present": true,
+      "Educational_purpose_clear": true,
+      "Reading_focus_clear": true,
+      "Ignore_guidance_present": true,
+      "Stop_condition_explicit": true,
+      "Immediate_next_activity_named": true,
+      "Not_fallback_shell": true,
+      "Matches_certified_snippets": false
+    },
+    "fidelity": {
+      "lead_line": true,
+      "exit_line": true,
+      "return_cue": true,
+      "open_point": false,
+      "stop_condition": true,
+      "focus_q_0": false,
+      "focus_q_1": false,
+      "catalogue_body_match": true,
+      "catalogue_divergences": [],
+      "fidelity_pass": false
+    },
+    "package_id": "CS1-EP001-PKG-CX-4.2-LINEAR-PREDICTOR",
+    "campaign_day": "CX-D5",
+    "html": "/tmp/ro012/evidence/day33_CX-D5_reading.html"
+  },
+  "checklist": {
+    "CMP_reference_present": true,
+    "Educational_purpose_clear": true,
+    "Reading_focus_clear": true,
+    "Ignore_guidance_present": true,
+    "Stop_condition_explicit": true,
+    "Immediate_next_activity_named": true,
+    "Not_fallback_shell": true,
+    "Matches_certified_snippets": false
+  },
+  "tomorrow_preview": {
+    "next_topic_code": true,
+    "continuity_fragment": false,
+    "student_facing_fragment": false,
+    "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+    "package_continuity_line": "Today you established linear predictor forms; tomorrow continues 4.2 at deviance and estimation.",
+    "package_student_facing": "Tomorrow: deviance and GLM parameter estimation (4.2.6). Optional light prep: skim 4.2.6 headings \u2014 titles only tonight.",
+    "chrome_matches_package_continuity": false
+  },
+  "verdict": "PASS",
+  "home": {
+    "title_guess": "Place GLM responses in the exponential family",
+    "day_complete": false,
+    "has_start": true,
+    "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Place GLM responses in the exponential family CS1 (CS1) 1 h Study 4.2 \u2014 Understand and use generalised linear models After this \u00b7 Study Progress for family placement \u2014 not full link/deviance mastery today. Start Today&#39;s Sess"
+  },
+  "session_id": "lsr-fd561e239bd0",
+  "educational_fidelity": {
+    "lead_line": true,
+    "exit_line": true,
+    "return_cue": true,
+    "open_point": false,
+    "stop_condition": true,
+    "focus_q_0": false,
+    "focus_q_1": false,
+    "catalogue_body_match": true,
+    "catalogue_divergences": [],
+    "fidelity_pass": false
+  },
+  "reflection_ok": true,
+  "tomorrow_chrome_matches_approved": false,
+  "package_path_ok": true,
+  "chrome_residual": true,
+  "theta_focus": false,
+  "eta_focus": false,
+  "zeta_focus": false,
+  "kappa_focus": false,
+  "lambda_focus": false,
+  "epsilon_focus": false
+}

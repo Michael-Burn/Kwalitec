@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "approved_count": 100,
+  "xi_count": 11,
+  "duplicates": 0,
+  "cn_r1_to_cx_d1": "CX-D1",
+  "trust_front_4_2_cold_entry": "CD-D6",
+  "trust_front_4_1_cold_entry": "CD-D1",
+  "regressions_unchanged": {
+    "Gamma": 5,
+    "Delta": 27,
+    "Epsilon": 5,
+    "Zeta": 3,
+    "Eta": 3,
+    "Theta": 3,
+    "Iota": 7,
+    "Kappa": 7,
+    "Lambda": 9,
+    "Mu": 6,
+    "Nu": 6
+  },
+  "local_assert": "INVENTORY_ASSERT_PASS",
+  "render_job": "job-d9o0fnm7bikc73co0fi0",
+  "render_job_status": "succeeded"
+}

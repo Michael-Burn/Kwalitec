@@ -1,0 +1,220 @@
+{
+  "programme": "RO-012 continuation",
+  "email": "ro012.xi.primary.1785726975@example.com",
+  "expected_commit": "a800c85f602b68d1380ae355c0d2839403018995",
+  "continuation_days": [
+    {
+      "idx": 16,
+      "expected": "CL-R1",
+      "detected": "CM-D8",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "idx": 17,
+      "expected": "CM-D1",
+      "detected": "CL-R1",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "idx": 18,
+      "expected": "CM-D2",
+      "detected": "CM-D1",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "idx": 19,
+      "expected": "CM-D3",
+      "detected": "CM-D2",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "idx": 20,
+      "expected": "CM-D4",
+      "detected": "CM-D3",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "idx": 21,
+      "expected": "CM-D5",
+      "detected": "CM-D4",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "idx": 22,
+      "expected": "CM-R1",
+      "detected": "CM-D5",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "idx": 23,
+      "expected": "CN-D1",
+      "detected": "CM-R1",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "idx": 24,
+      "expected": "CN-D2",
+      "detected": "CN-D1",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "idx": 25,
+      "expected": "CN-D3",
+      "detected": "CN-D2",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "idx": 26,
+      "expected": "CN-D4",
+      "detected": "CN-D3",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "idx": 27,
+      "expected": "CN-D5",
+      "detected": "CN-D4",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "idx": 28,
+      "expected": "CN-R1",
+      "detected": "CN-D5",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "idx": 29,
+      "expected": "CX-D1",
+      "detected": "CN-R1",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "idx": 30,
+      "expected": "CX-D2",
+      "detected": "CX-D1",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "idx": 31,
+      "expected": "CX-D3",
+      "detected": "CX-D2",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "idx": 32,
+      "expected": "CX-D4",
+      "detected": "CX-D3",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "idx": 33,
+      "expected": "CX-D5",
+      "detected": "CX-D4",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "idx": 34,
+      "expected": "CX-D6",
+      "detected": "CX-D5",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "idx": 35,
+      "expected": "CX-D7",
+      "detected": "CX-D6",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "idx": 36,
+      "expected": "CX-D8",
+      "detected": "CX-D7",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "idx": 37,
+      "expected": "CX-D9",
+      "detected": "CX-D8",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "idx": 38,
+      "expected": "CX-D10",
+      "detected": "CX-D9",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false
+    },
+    {
+      "idx": 39,
+      "expected": "CX-R1",
+      "detected": "CX-D10",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false
+    }
+  ],
+  "xi_summary": {
+    "xi_days_detected": 10,
+    "xi_pass": 10,
+    "learning_pass": 10,
+    "cx_d1_handoff": true,
+    "cx_r1_pass": false,
+    "seen": [
+      "CX-D1",
+      "CX-D10",
+      "CX-D2",
+      "CX-D3",
+      "CX-D4",
+      "CX-D5",
+      "CX-D6",
+      "CX-D7",
+      "CX-D8",
+      "CX-D9"
+    ]
+  },
+  "verdict": "FAIL",
+  "reason": "xi_pass=10 unique=10 handoff=True cx_r1=False"
+}

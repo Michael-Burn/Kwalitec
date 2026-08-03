@@ -1,0 +1,118 @@
+{
+  "day_index": 19,
+  "expected_day": "CM-D3",
+  "expected_package_id": "CS1-EP001-PKG-3.3-PERMUTATION-TESTS",
+  "finished": true,
+  "reading": {
+    "audit": {
+      "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 3.3.2 \u2014 apply basic one-sample, two-sample, and paired hypothesis tests. Stop before out-of-scope later LOs.",
+      "body_sample": " Topic: Apply the concepts of hypothesis testing and goodness of fit (3.3) Mission: Apply basic one-sample, two-sample, and paired hypothesis tests Purpose of this reading: use the CMP to extract Syllabus 3.3.2 \u2014 apply basic one-sample, two-sample, and paired hypothesis tests. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 3.3.2 basic hypothesis tests Stop: Through the CMP treatment of Syllabus 3.3.2 (stop before permutation tests 3.3.3) Focus questions: \u2022 What is the core move of Syll",
+      "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.3.2 basic hypothesis tests. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.3.2 (stop bef",
+      "is_fallback_shell": false,
+      "is_guided_reading": false,
+      "mentions_cmp": true,
+      "cmp_refs_present": true,
+      "q_checks": {
+        "Q1_cmp_open": true,
+        "Q2_purpose": true,
+        "Q3_attention": true,
+        "Q4_ignore": true,
+        "Q5_stop": true,
+        "Q6_next": true
+      },
+      "ec001_markers": {
+        "Purpose of this reading": true,
+        "Open your CMP": true,
+        "Focus questions": true,
+        "Misconception watch": true,
+        "Out of scope today": true,
+        "Return cue": true,
+        "Worked-example": true,
+        "Knowledge Checks": true
+      },
+      "certified_snippet_hits": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false
+      },
+      "verdict": "PASS",
+      "word_count_body": 327
+    },
+    "checklist": {
+      "CMP_reference_present": true,
+      "Educational_purpose_clear": true,
+      "Reading_focus_clear": true,
+      "Ignore_guidance_present": true,
+      "Stop_condition_explicit": true,
+      "Immediate_next_activity_named": true,
+      "Not_fallback_shell": true,
+      "Matches_certified_snippets": false
+    },
+    "fidelity": {
+      "lead_line": true,
+      "exit_line": true,
+      "return_cue": true,
+      "open_point": false,
+      "stop_condition": true,
+      "focus_q_0": false,
+      "focus_q_1": false,
+      "catalogue_body_match": true,
+      "catalogue_divergences": [],
+      "fidelity_pass": false
+    },
+    "package_id": "CS1-EP001-PKG-3.3-PERMUTATION-TESTS",
+    "campaign_day": "CM-D3",
+    "html": "/tmp/ro012/evidence/day19_CM-D3_reading.html"
+  },
+  "checklist": {
+    "CMP_reference_present": true,
+    "Educational_purpose_clear": true,
+    "Reading_focus_clear": true,
+    "Ignore_guidance_present": true,
+    "Stop_condition_explicit": true,
+    "Immediate_next_activity_named": true,
+    "Not_fallback_shell": true,
+    "Matches_certified_snippets": false
+  },
+  "tomorrow_preview": {
+    "next_topic_code": true,
+    "continuity_fragment": false,
+    "student_facing_fragment": false,
+    "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+    "package_continuity_line": "Today you applied permutation non-parametric tests; tomorrow continues 3.3 at chi-square goodness of fit.",
+    "package_student_facing": "Tomorrow: chi-square GOF (3.3.4). Optional light prep: skim 3.3.4 headings \u2014 titles only tonight.",
+    "chrome_matches_package_continuity": false
+  },
+  "verdict": "PASS",
+  "home": {
+    "title_guess": "Understand hypothesis-testing concepts (null/alternative, errors, p-value, power)",
+    "day_complete": false,
+    "has_start": true,
+    "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Understand hypothesis-testing concepts (null/alternative, errors, p-value, power) CS1 (CS1) 1 h Study 3.3 \u2014 Apply the concepts of hypothesis testing and goodness of fit After this \u00b7 Study Progress for HT concepts \u2014 not Topic Com"
+  },
+  "session_id": "lsr-13a34e382dac",
+  "educational_fidelity": {
+    "lead_line": true,
+    "exit_line": true,
+    "return_cue": true,
+    "open_point": false,
+    "stop_condition": true,
+    "focus_q_0": false,
+    "focus_q_1": false,
+    "catalogue_body_match": true,
+    "catalogue_divergences": [],
+    "fidelity_pass": false
+  },
+  "reflection_ok": true,
+  "tomorrow_chrome_matches_approved": false,
+  "package_path_ok": true,
+  "chrome_residual": true,
+  "theta_focus": false,
+  "eta_focus": false,
+  "zeta_focus": false,
+  "kappa_focus": false,
+  "lambda_focus": false,
+  "epsilon_focus": false,
+  "detected_campaign_day": "CM-D2"
+}
