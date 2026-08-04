@@ -457,15 +457,57 @@ class EducationalRuntimeEngineService:
         enrolment = self._require_enrolment(user_id, subject_code)
         artefacts = self._load_artefacts(enrolment.subject_code)
         progress = self._derive_progress_for(enrolment, artefacts)
-        if progress.syllabus_complete or progress.current_topic_id is None:
+        completed_packs = self._completed_educational_package_ids(
+            user_id=user_id,
+            curriculum_identity=enrolment.curriculum_identity,
+        )
+        last_pack_id = self._last_completed_educational_package_id(
+            user_id=user_id,
+            curriculum_identity=enrolment.curriculum_identity,
+        )
+        from app.application.educational_packages.selection import (
+            pending_memory_front_package,
+        )
+
+        memory_pack = pending_memory_front_package(
+            subject_id=enrolment.subject_code,
+            completed_package_ids=completed_packs,
+            last_completed_package_id=last_pack_id,
+        )
+        # RO-014 Memory Front continuity: tip-complete must not block CP-D1…CP-R1.
+        if (
+            progress.syllabus_complete or progress.current_topic_id is None
+        ) and memory_pack is None:
             raise SyllabusAlreadyComplete(
                 f"syllabus complete for {enrolment.curriculum_identity}"
             )
         if enrolment.status != EnrolmentStatus.ACTIVE.value:
-            raise IllegalRuntimeState(
-                f"enrolment {enrolment.enrolment_id} is {enrolment.status}"
+            # Re-open tip-complete enrolment only when Memory Front remains.
+            if memory_pack is None:
+                raise IllegalRuntimeState(
+                    f"enrolment {enrolment.enrolment_id} is {enrolment.status}"
+                )
+            enrolment.status = EnrolmentStatus.ACTIVE.value
+        if memory_pack is not None:
+            plan = (
+                RuntimeStudyPlanInstance.query.filter_by(
+                    enrolment_id=enrolment.enrolment_id,
+                    status=PlanInstanceStatus.ACTIVE.value,
+                ).first()
+                or RuntimeStudyPlanInstance.query.filter_by(
+                    enrolment_id=enrolment.enrolment_id,
+                )
+                .order_by(RuntimeStudyPlanInstance.id.desc())
+                .first()
             )
-        plan = self._require_active_plan(enrolment)
+            if plan is None:
+                raise StudyPlanInstanceNotFound(
+                    f"no study plan for enrolment {enrolment.enrolment_id}"
+                )
+            if plan.status != PlanInstanceStatus.ACTIVE.value:
+                plan.status = PlanInstanceStatus.ACTIVE.value
+        else:
+            plan = self._require_active_plan(enrolment)
 
         existing = RuntimeMissionInstance.query.filter_by(
             plan_instance_id=plan.plan_instance_id,
@@ -493,19 +535,28 @@ class EducationalRuntimeEngineService:
 
         package = self._authority.get_active(enrolment.subject_code)
         package_dict = package.package if package is not None else {}
+        preferred_topic = progress.current_topic_id
+        if memory_pack is not None and (
+            progress.syllabus_complete or progress.current_topic_id is None
+        ):
+            preferred_topic = self._topic_id_for_package_code(
+                artefacts, memory_pack.topic_code
+            ) or preferred_topic
         certified_spec = self._select_certified_mission(
             package_dict,
             completed_topic_ids=progress.completed_topic_ids,
             artefacts=artefacts,
-            preferred_topic_id=progress.current_topic_id,
+            preferred_topic_id=preferred_topic,
             user_id=user_id,
             curriculum_identity=enrolment.curriculum_identity,
         )
-        # MISSION-002: mission topic must match progress current topic.
-        topic_id = progress.current_topic_id
+        # MISSION-002: mission topic must match progress current topic —
+        # except Memory Front post-tip sittings, which follow CP package topic.
+        topic_id = preferred_topic or progress.current_topic_id
         if (
             certified_spec is not None
             and certified_spec.topic_id == progress.current_topic_id
+            and memory_pack is None
         ):
             topic_id = certified_spec.topic_id
         template = self._mission_template_for_topic(artefacts, topic_id)
@@ -581,16 +632,8 @@ class EducationalRuntimeEngineService:
             resolve_active_educational_package,
         )
 
-        completed_packs = self._completed_educational_package_ids(
-            user_id=user_id,
-            curriculum_identity=enrolment.curriculum_identity,
-        )
-        last_pack_id = self._last_completed_educational_package_id(
-            user_id=user_id,
-            curriculum_identity=enrolment.curriculum_identity,
-        )
-        pack = None
-        if certified_guidance_enforced(enrolment.subject_code):
+        pack = memory_pack
+        if pack is None and certified_guidance_enforced(enrolment.subject_code):
             pack = resolve_active_educational_package(
                 subject_id=enrolment.subject_code,
                 syllabus_topic_code=human_code or template.topic_code,
@@ -1079,6 +1122,24 @@ class EducationalRuntimeEngineService:
             )
 
             if progress.syllabus_complete:
+                # RO-014: hold enrolment/plan open while Memory Front CP chain remains.
+                from app.application.educational_packages.selection import (
+                    pending_memory_front_package,
+                )
+
+                completed_after = self._completed_educational_package_ids(
+                    user_id=user_id,
+                    curriculum_identity=enrolment.curriculum_identity,
+                )
+                last_after = self._last_completed_educational_package_id(
+                    user_id=user_id,
+                    curriculum_identity=enrolment.curriculum_identity,
+                )
+                memory_remaining = pending_memory_front_package(
+                    subject_id=enrolment.subject_code,
+                    completed_package_ids=completed_after,
+                    last_completed_package_id=last_after,
+                )
                 self._append_event(
                     event_type=EducationalEventType.SYLLABUS_COMPLETED,
                     user_id=user_id,
@@ -1086,16 +1147,21 @@ class EducationalRuntimeEngineService:
                     enrolment_id=enrolment.enrolment_id,
                     plan_instance_id=plan.plan_instance_id,
                     payload={
-                        "completed_topic_count": len(progress.completed_topic_ids)
+                        "completed_topic_count": len(progress.completed_topic_ids),
+                        "memory_front_pending": bool(memory_remaining),
                     },
                     occurred_at=now,
                 )
-                try:
-                    assert_plan_transition(plan.status, PlanInstanceStatus.COMPLETED)
-                    plan.status = PlanInstanceStatus.COMPLETED.value
-                except ValueError:
-                    pass
-                enrolment.status = EnrolmentStatus.COMPLETED.value
+                if memory_remaining is None:
+                    try:
+                        assert_plan_transition(plan.status, PlanInstanceStatus.COMPLETED)
+                        plan.status = PlanInstanceStatus.COMPLETED.value
+                    except ValueError:
+                        pass
+                    enrolment.status = EnrolmentStatus.COMPLETED.value
+                else:
+                    enrolment.status = EnrolmentStatus.ACTIVE.value
+                    plan.status = PlanInstanceStatus.ACTIVE.value
         elif advance_progress:
             # Partial topic coverage — stay on this topic for the next sitting.
             plan.current_topic_id = mission.topic_id
@@ -1857,11 +1923,39 @@ class EducationalRuntimeEngineService:
     def _mission_template_for_topic(
         self,
         artefacts: EducationalArtefactSnapshot,
-        topic_id: str,
-    ) -> MissionTemplateSnapshot | None:
+        topic_id: str | None,
+    ):
+        if not topic_id:
+            return None
         for template in artefacts.mission_templates:
             if template.topic_id == topic_id:
                 return template
+        return None
+
+    def _topic_id_for_package_code(
+        self,
+        artefacts: EducationalArtefactSnapshot,
+        topic_code: str,
+    ) -> str | None:
+        """Map a package topic_code (e.g. 2.1 / CP-R1) onto a curriculum topic_id."""
+        code = (topic_code or "").strip()
+        if not code:
+            return None
+        # Revision campaign-day codes: fall back to tip topic 5.1 when present.
+        if code.upper().startswith("CP-") and not code[0].isdigit():
+            code = "5.1"
+        for topic in artefacts.topics or ():
+            t_code = str(topic.get("topic_code") or "").strip()
+            number = str(topic.get("number") or "").strip()
+            if t_code == code or number == code or t_code.startswith(code + "."):
+                tid = str(topic.get("topic_id") or "").strip()
+                if tid:
+                    return tid
+            title = str(topic.get("title") or topic.get("text") or "")
+            if title.startswith(code + " ") or title.startswith(code + "—"):
+                tid = str(topic.get("topic_id") or "").strip()
+                if tid:
+                    return tid
         return None
 
     def _append_event(

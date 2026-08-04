@@ -189,6 +189,30 @@ def resolve_active_educational_package(
     return entry_package_for_topic(approved, syllabus_topic_code)
 
 
+def pending_memory_front_package(
+    *,
+    subject_id: str,
+    completed_package_ids: frozenset[str] | set[str] | None = None,
+    last_completed_package_id: str = "",
+) -> CertifiedEducationalPackage | None:
+    """RO-014 — next Memory Front (CP-) package after Continuity Front tip, if any.
+
+    Used as continuity wiring so tip-complete journeys can still sit Campaign Pi
+    without redesigning Runtime planning math.
+    """
+    pack = resolve_active_educational_package(
+        subject_id=subject_id,
+        syllabus_topic_code="",
+        completed_package_ids=completed_package_ids,
+        last_completed_package_id=last_completed_package_id,
+    )
+    if pack is None:
+        return None
+    if (pack.campaign_day or "").strip().upper().startswith("CP-"):
+        return pack
+    return None
+
+
 def resolve_package_successor(
     last: CertifiedEducationalPackage,
     candidates: list[CertifiedEducationalPackage]

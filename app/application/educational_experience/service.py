@@ -180,7 +180,33 @@ class EducationalExperienceService:
         enrolment_active = (
             enrolment.status == EnrolmentStatus.ACTIVE.value
         )
-        if ensure_mission and enrolment_active:
+        # RO-014: tip-complete enrolments may still owe Memory Front CP sittings.
+        allow_mission = enrolment_active
+        if ensure_mission and not enrolment_active:
+            try:
+                from app.application.educational_packages.selection import (
+                    pending_memory_front_package,
+                )
+
+                completed_packs = self._runtime._completed_educational_package_ids(
+                    user_id=user_id,
+                    curriculum_identity=enrolment.curriculum_identity,
+                )
+                last_pack_id = self._runtime._last_completed_educational_package_id(
+                    user_id=user_id,
+                    curriculum_identity=enrolment.curriculum_identity,
+                )
+                allow_mission = (
+                    pending_memory_front_package(
+                        subject_id=enrolment.subject_code,
+                        completed_package_ids=completed_packs,
+                        last_completed_package_id=last_pack_id,
+                    )
+                    is not None
+                )
+            except Exception:  # noqa: BLE001 — experience projection must stay resilient
+                allow_mission = False
+        if ensure_mission and allow_mission:
             try:
                 mission = self._runtime.generate_daily_mission(
                     user_id=user_id,

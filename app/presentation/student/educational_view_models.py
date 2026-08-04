@@ -145,7 +145,11 @@ def _home_from_educational(
         and mission_status in {"generated", "accepted", "deferred"}
     )
     mission_done_today = bool(mission and mission_status == "completed")
-    day_complete = bool(snap.syllabus_complete or mission_done_today)
+    # RO-014: syllabus tip-complete must not blank Memory Front start when a
+    # generated/open mission is already bound (CP chain continuity).
+    day_complete = bool(
+        (snap.syllabus_complete and not mission_open) or mission_done_today
+    )
 
     flags = resolve_v2_feature_flags()
     open_session_id = ""
@@ -160,7 +164,7 @@ def _home_from_educational(
             mission_instance_id=mission.mission_instance_id,
         )
 
-    if snap.syllabus_complete:
+    if snap.syllabus_complete and not mission_open:
         cta_label = "Syllabus complete"
         cta_enabled = False
         session_control = ""
