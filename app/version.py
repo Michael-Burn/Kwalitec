@@ -6,6 +6,8 @@ import os
 from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
 
+from app.brand_identity import PRODUCT_DESCRIPTOR
+
 # Canonical student-facing product version — keep in sync with VERSION / pyproject.toml.
 _FALLBACK_VERSION = "2.0.0-beta.1"
 _VERSION_FILE = Path(__file__).resolve().parents[1] / "VERSION"
@@ -27,9 +29,9 @@ def _read_app_version() -> str:
 
 APP_VERSION = _read_app_version()
 
-# Unified product identity line (PTP-000 §8.3 / PTP-005 F-4, F-5 / PX-001).
-# Supporting product descriptor — brand name always dominates visually.
-PRODUCT_TAGLINE = "Education Operating System"
+# Unified product identity line (PTP-000 §8.3 / PTP-005 F-4, F-5 / PX-001 / PX-005).
+# Single source: brand_identity.PRODUCT_DESCRIPTOR (PX-B-038).
+PRODUCT_TAGLINE = PRODUCT_DESCRIPTOR
 
 # IAHF-005 — single cache-bust fingerprint for all static asset URLs.
 # Bump when shipping changes under app/static/ (or blueprint static folders)

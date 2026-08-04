@@ -1,0 +1,30 @@
+{
+  "programme": "PX-003",
+  "phase": 1,
+  "workstreams": ["WS-01", "WS-02", "WS-03"],
+  "date": "2026-08-04",
+  "items": {
+    "PX-B-001": "Closed",
+    "PX-B-002": "Closed",
+    "PX-B-003": "Closed",
+    "PX-B-004": "Closed",
+    "PX-B-005": "Closed",
+    "PX-B-007": "Closed",
+    "PX-B-014": "Closed",
+    "PX-B-015": "Closed",
+    "PX-B-016": "Closed",
+    "PX-B-017": "Closed",
+    "PX-B-033": "Closed",
+    "PX-B-034": "Closed",
+    "PX-B-035": "Closed",
+    "PX-B-054": "Closed"
+  },
+  "provisional_decisions": {
+    "D-DURATION": "Plan resolve_planned_session_minutes + format_minutes; mission quality minutes when present",
+    "D-SESSION-PATH": "session/* authoritative under sole runtime",
+    "D-COMPLETE-STEP": "Keep Sitting Report complete surface; omit from step chrome",
+    "D-FINISH-CONFIRM": "Shared confirm modal on Finish"
+  },
+  "educational_content_freeze": "held",
+  "force_r1_status": "natural path fix shipped; LIVE PB re-verify residual noted"
+}

@@ -1,0 +1,253 @@
+{
+  "persona": "average",
+  "email": "pb017.cr.average.1785856747@example.com",
+  "programme": "PB-017",
+  "status": "in_progress",
+  "updated_at": "2026-08-04T16:45:10.723667+00:00",
+  "last_certified_day": "CR-D8",
+  "last_transit_verified": "CR-D8",
+  "certified_days_complete": [
+    "CR-D1",
+    "CR-D2",
+    "CR-D3",
+    "CR-D4",
+    "CR-D5",
+    "CR-D6",
+    "CR-D7",
+    "CR-D8"
+  ],
+  "remaining_cr_days": [
+    "CR-D9",
+    "CR-R1"
+  ],
+  "certified_trajectory": [
+    {
+      "day": "CR-D1",
+      "package_id": "CS1-EP001-PKG-CR-1.1-AIMS-ANALYSIS",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      },
+      "programme_metrics": {
+        "recommendation_consistency": "PASS",
+        "weak_area_identification": "PASS",
+        "mission_sequencing": "PASS",
+        "syllabus_continuity": "PASS",
+        "confidence_calibration": "PASS",
+        "explanation_usefulness": "PASS"
+      },
+      "residuals": [],
+      "chrome_residual": false,
+      "revision_q6_residual": false
+    },
+    {
+      "day": "CR-D2",
+      "package_id": "CS1-EP001-PKG-CR-1.1-STAGES-TOOLS",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      },
+      "programme_metrics": {
+        "recommendation_consistency": "PASS",
+        "weak_area_identification": "PASS",
+        "mission_sequencing": "PASS",
+        "syllabus_continuity": "PASS",
+        "confidence_calibration": "PASS",
+        "explanation_usefulness": "PASS"
+      },
+      "residuals": [],
+      "chrome_residual": false,
+      "revision_q6_residual": false
+    },
+    {
+      "day": "CR-D3",
+      "package_id": "CS1-EP001-PKG-CR-1.1-DATA-SOURCES",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      },
+      "programme_metrics": {
+        "recommendation_consistency": "PASS",
+        "weak_area_identification": "PASS",
+        "mission_sequencing": "PASS",
+        "syllabus_continuity": "PASS",
+        "confidence_calibration": "PASS",
+        "explanation_usefulness": "PASS"
+      },
+      "residuals": [],
+      "chrome_residual": false,
+      "revision_q6_residual": false
+    },
+    {
+      "day": "CR-D4",
+      "package_id": "CS1-EP001-PKG-CR-1.1-REPRODUCIBLE",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      },
+      "programme_metrics": {
+        "recommendation_consistency": "PASS",
+        "weak_area_identification": "PASS",
+        "mission_sequencing": "PASS",
+        "syllabus_continuity": "PASS",
+        "confidence_calibration": "PASS",
+        "explanation_usefulness": "PASS"
+      },
+      "residuals": [],
+      "chrome_residual": false,
+      "revision_q6_residual": false
+    },
+    {
+      "day": "CR-D5",
+      "package_id": "CS1-EP001-PKG-CR-1.2-EDA-SUMMARIES",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      },
+      "programme_metrics": {
+        "recommendation_consistency": "PASS",
+        "weak_area_identification": "PASS",
+        "mission_sequencing": "PASS",
+        "syllabus_continuity": "PASS",
+        "confidence_calibration": "PASS",
+        "explanation_usefulness": "PASS"
+      },
+      "residuals": [],
+      "chrome_residual": false,
+      "revision_q6_residual": false
+    },
+    {
+      "day": "CR-D6",
+      "package_id": "CS1-EP001-PKG-CR-1.2-CORRELATION",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      },
+      "programme_metrics": {
+        "recommendation_consistency": "PASS",
+        "weak_area_identification": "PASS",
+        "mission_sequencing": "PASS",
+        "syllabus_continuity": "PASS",
+        "confidence_calibration": "PASS",
+        "explanation_usefulness": "PASS"
+      },
+      "residuals": [],
+      "chrome_residual": false,
+      "revision_q6_residual": false
+    },
+    {
+      "day": "CR-D7",
+      "package_id": "CS1-EP001-PKG-CR-1.2-PCA",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      },
+      "programme_metrics": {
+        "recommendation_consistency": "PASS",
+        "weak_area_identification": "PASS",
+        "mission_sequencing": "PASS",
+        "syllabus_continuity": "PASS",
+        "confidence_calibration": "PASS",
+        "explanation_usefulness": "PASS"
+      },
+      "residuals": [],
+      "chrome_residual": false,
+      "revision_q6_residual": false
+    },
+    {
+      "day": "CR-D8",
+      "package_id": "CS1-EP001-PKG-CR-2.1-DISCRETE",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      },
+      "programme_metrics": {
+        "recommendation_consistency": "PASS",
+        "weak_area_identification": "PASS",
+        "mission_sequencing": "PASS",
+        "syllabus_continuity": "PASS",
+        "confidence_calibration": "PASS",
+        "explanation_usefulness": "PASS"
+      },
+      "residuals": [],
+      "chrome_residual": false,
+      "revision_q6_residual": false
+    }
+  ],
+  "transit_observations": [],
+  "defect_count": 0,
+  "ops_day_index": 8,
+  "deployment_fingerprint": "272a0950ca1a65df01badf5e180c3c06a41681e7"
+}

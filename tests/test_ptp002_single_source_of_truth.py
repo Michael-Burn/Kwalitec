@@ -132,7 +132,7 @@ class TestAuthoritativeSingleWorkflow:
         logged_in_client.post(f"/missions/{mission.id}/session/start")
         finish_get = logged_in_client.get(f"/missions/{mission.id}/session/finish")
         assert finish_get.status_code == 200
-        assert b"Practice Outcome Capture" in finish_get.data
+        assert b"Practice results" in finish_get.data
 
         finish_post = logged_in_client.post(
             f"/missions/{mission.id}/session/finish",
@@ -161,7 +161,7 @@ class TestAuthoritativeSingleWorkflow:
         feedback = logged_in_client.get(f"/missions/{mission.id}/session/recorded")
         assert feedback.status_code == 200
         body = feedback.data
-        assert b"Study Session Feedback" in body or b"What happened" in body
+        assert b"What happened today" in body or b"What happened" in body
 
 
 @pytest.mark.usefixtures("ctx")

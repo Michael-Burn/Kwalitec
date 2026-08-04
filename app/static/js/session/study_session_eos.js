@@ -10,6 +10,7 @@
 
   var missionId = root.getAttribute("data-mission-id") || root.getAttribute("data-session-id") || "session";
   var timerEl = root.querySelector("[data-session-timer]");
+  var timerLiveEl = root.querySelector("[data-session-timer-live]");
   var focusBtn = root.querySelector("[data-session-focus-toggle]");
 
   function pad(n) {
@@ -24,6 +25,17 @@
       return pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
     }
     return pad(minutes) + ":" + pad(seconds);
+  }
+
+  function formatLiveMinutes(totalSeconds) {
+    var minutes = Math.floor(totalSeconds / 60);
+    if (minutes <= 0) {
+      return "Elapsed 0 minutes";
+    }
+    if (minutes === 1) {
+      return "Elapsed 1 minute";
+    }
+    return "Elapsed " + minutes + " minutes";
   }
 
   function storageKey() {
@@ -58,15 +70,27 @@
 
   if (timerEl) {
     var started = ensureStart();
+    var lastAnnouncedMinute = -1;
     function tick() {
       var elapsed = Math.max(0, Math.floor((Date.now() - started) / 1000));
       timerEl.textContent = formatElapsed(elapsed);
+      // PX-B-024 — announce on minute boundaries only.
+      if (timerLiveEl) {
+        var minute = Math.floor(elapsed / 60);
+        if (minute !== lastAnnouncedMinute) {
+          lastAnnouncedMinute = minute;
+          timerLiveEl.textContent = formatLiveMinutes(elapsed);
+        }
+      }
     }
     tick();
     window.setInterval(tick, 1000);
   }
 
   if (focusBtn) {
+    // PX-B-033: enable only once interactive behaviour is wired.
+    focusBtn.disabled = false;
+    focusBtn.removeAttribute("aria-disabled");
     focusBtn.addEventListener("click", function () {
       var on = document.body.classList.toggle("ds-focus-mode");
       focusBtn.setAttribute("aria-pressed", on ? "true" : "false");

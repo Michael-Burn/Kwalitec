@@ -1,0 +1,1 @@
+{"startCommand": "flask --app wsgi.py create-test-user --name \"RO015 Rho Publication\" --email \"ro015.rho.pub.1785852189@example.com\" --password \"***REDACTED***\""}

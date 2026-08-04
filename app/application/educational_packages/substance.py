@@ -196,6 +196,41 @@ def _activities(
 
 def _reading_body(pack: CertifiedEducationalPackage) -> str:
     reading = pack.reading
+    is_revision = (pack.mode or "").strip().lower() == "revision"
+    if is_revision:
+        # PX-B-004: retrieval-framed checklist — presentation only; package
+        # educational body / LO wording unchanged.
+        lines = [
+            f"Topic: {pack.topic_title} ({pack.topic_code})",
+            f"Mission: {pack.display_title}",
+            "",
+            reading.lead_line,
+            "",
+            "Revision focus — retrieve, do not re-learn:",
+            f"Open: {reading.open_point}",
+            f"Stop: {reading.stop_condition}",
+            "",
+            "Retrieval questions (answer closed-book first):",
+            *(f"• {q}" for q in reading.focus_questions),
+            "",
+            "Misconception watch:",
+            *(f"• {m}" for m in reading.misconception_watch),
+            "",
+            f"Annotation: {reading.annotation_task}",
+            f"Attempt before reveal: {reading.attempt_before_reveal}",
+            "",
+            "Out of scope today:",
+            *(f"• {x}" for x in reading.out_of_scope_today),
+            "",
+            f"Return cue: {reading.return_cue}",
+            "",
+            "Next after Revision: close this retrieval sitting, then continue "
+            "from Home when tomorrow's Mission is ready.",
+            "",
+            reading.exit_line,
+        ]
+        return "\n".join(line for line in lines if line is not None)
+
     lines = [
         f"Topic: {pack.topic_title} ({pack.topic_code})",
         f"Mission: {pack.display_title}",

@@ -66,6 +66,54 @@ def _missing_session_redirect(session_id: str, exc: SessionExperienceError):
     return redirect(url_for("student.home"))
 
 
+def _contention_redirect(session_id: str, exc: BaseException):
+    """PX-B-008 — infra contention is never scored as educational failure."""
+    logger.warning(
+        "Session contention on %s (%s): %s",
+        session_id,
+        type(exc).__name__,
+        exc,
+    )
+    flash(FLASH_WARNING["continue_contention"], "warning")
+    return redirect(url_for("student.home"))
+
+
+def _is_contention_error(exc: BaseException) -> bool:
+    """True for optimistic-lock / transient DB contention classes."""
+    name = type(exc).__name__
+    if name in {"OptimisticLockError", "StaleDataError", "OperationalError"}:
+        return True
+    module = type(exc).__module__ or ""
+    if "sqlalchemy" in module and name in {
+        "OperationalError",
+        "DBAPIError",
+        "TimeoutError",
+    }:
+        return True
+    try:
+        from app.infrastructure.persistence.optimistic_locking import (
+            OptimisticLockError,
+        )
+
+        if isinstance(exc, OptimisticLockError):
+            return True
+    except Exception:
+        pass
+    return False
+
+
+@session_bp.errorhandler(Exception)
+def _session_contention_boundary(exc: Exception):
+    """Catch-all for session blueprint: map contention to calm recovery."""
+    from flask import request
+
+    if not _is_contention_error(exc):
+        # Re-raise so the app 500 handler remains authoritative for real bugs.
+        raise exc
+    session_id = (request.view_args or {}).get("session_id", "")
+    return _contention_redirect(str(session_id or ""), exc)
+
+
 @session_bp.get("/<session_id>/")
 @session_bp.get("/<session_id>/overview")
 @login_required

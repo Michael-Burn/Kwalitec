@@ -621,12 +621,15 @@ def _init_extensions(app: Flask) -> None:
         EiGenerationSnapshot,
         EiLineageOperation,
         EiRegressionReport,
+        EreEducationalDecision,
         LearningObjective,
+        LeeEvidenceEvent,
         LgGraphEdge,
         LgGraphNode,
         LgGraphSnapshot,
         LgGraphUpdateHistory,
         LgLearningGraph,
+        LlpLifecycleOperation,
         Mission,
         MissionTask,
         Mistake,
@@ -638,12 +641,8 @@ def _init_extensions(app: Flask) -> None:
         ResearchContributorBadge,
         ResearchFeedbackReview,
         ResearchFeedbackSubmission,
-        LeeEvidenceEvent,
-        LlpLifecycleOperation,
         SciCurriculumNodeState,
         SciStudentCurriculumInstance,
-        TieNodeBelief,
-        EreEducationalDecision,
         SdtKnowledgeGap,
         SdtLearningStateSnapshot,
         SdtMasteryRecord,
@@ -660,6 +659,7 @@ def _init_extensions(app: Flask) -> None:
         StudyAttempt,
         StudyPlan,
         Subject,
+        TieNodeBelief,
         Topic,
         TopicProgress,
         TutorExplanationRow,
@@ -765,6 +765,7 @@ def _register_template_context(app: Flask) -> None:
 
     @app.context_processor
     def inject_global_template_context():
+        from app.application.student_experience import student_microcopy as px_copy
         from app.brand_identity import (
             APPROVED_LOGO_ALT,
             APPROVED_LOGO_STATIC_PATH,
@@ -780,6 +781,7 @@ def _register_template_context(app: Flask) -> None:
             PRODUCT_VALUE_PROPOSITION,
             REVISION_WORKSPACE_LABEL,
             STUDENT_DASHBOARD_LABEL,
+            STUDENT_RELEASE_LABEL,
         )
         from app.public_url import public_base_url
         from app.services.product_communication_service import (
@@ -815,6 +817,8 @@ def _register_template_context(app: Flask) -> None:
             "internal_alpha_label": INTERNAL_ALPHA_LABEL,
             "founding_cohort_label": FOUNDING_COHORT_LABEL,
             "internal_alpha_build_label": INTERNAL_ALPHA_BUILD_LABEL,
+            "student_release_label": STUDENT_RELEASE_LABEL,
+            "px_microcopy": px_copy,
             "founder_command_centre_label": FOUNDER_COMMAND_CENTRE_LABEL,
             "kwalitec_console_label": KWALITEC_CONSOLE_LABEL,
             "console_home_label": CONSOLE_HOME_LABEL,
@@ -901,7 +905,6 @@ def _register_blueprints(app: Flask) -> None:
     from app.dashboard.routes import dashboard_bp
     from app.founder.dashboard import founder_dashboard_bp
     from app.mission.routes import mission_bp
-    from app.student_baseline import student_baseline_bp
     from app.presentation.adaptive_assessment import adaptive_assessment_bp
     from app.presentation.adaptive_assessment import (
         load_routes as load_adaptive_assessment_routes,
@@ -915,6 +918,7 @@ def _register_blueprints(app: Flask) -> None:
     from app.presentation.student import load_routes, student_bp
     from app.research import research_bp
     from app.settings.routes import settings_bp
+    from app.student_baseline import student_baseline_bp
     from app.study_plan.routes import study_plan_bp
 
     app.register_blueprint(auth_bp)

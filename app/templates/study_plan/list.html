@@ -2,21 +2,21 @@
 {% extends "layouts/base.html" %}
 
 {% block content %}
-<section class="section-header">
+<section class="section-header" data-px006="plan-surface">
     <p class="section-eyebrow">{% if v2_flags and v2_flags.SOLE_RUNTIME %}{{ product_descriptor }}{% else %}{{ learning_workspace_label }}{% endif %}</p>
     <div class="d-flex flex-wrap justify-content-between align-items-start gap-3">
         <div>
-            <h1 class="section-title mb-0">Study Plan</h1>
+            <h1 class="section-title mb-0 student-page-title">Study Plan</h1>
             <p class="section-description mt-2 mb-0">Exam schedule and syllabus roadmap.</p>
         </div>
-        <a href="{{ url_for('study_plan.wizard_step', step=1) }}" class="btn btn-primary">
+        <a href="{{ url_for('study_plan.wizard_step', step=1) }}" class="btn btn-primary" data-student-cta="primary">
             Create Study Plan
         </a>
     </div>
 </section>
 
     {% if plans %}
-    <div class="row g-4">
+    <div class="row g-4" data-px006="plan-list">
         {% for plan in plans %}
         <div class="col-md-6 col-lg-4">
             <div class="card border-0 shadow-sm h-100 {% if plan.active %}border-primary border-2{% endif %}">
@@ -94,10 +94,15 @@
         {% endfor %}
     </div>
     {% else %}
-    <div class="card border-0 shadow-sm">
+    {# PX-B-032 — empty plan list; skeleton macros cover Home→Plan nav transitions via shell. #}
+    {% from "partials/skeleton.html" import skeleton_study_plan %}
+    <div class="visually-hidden" aria-hidden="true" data-px006="skeleton-plan-ref">
+        {{ skeleton_study_plan(label=px_microcopy.SKELETON_PLAN_LABEL if px_microcopy else 'Loading your study plan') }}
+    </div>
+    <div class="card border-0 shadow-sm" data-px006="plan-empty">
         <div class="card-body text-center py-5">
             <div class="mb-3">
-                <svg class="text-secondary" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
+                <svg class="text-secondary" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
                 </svg>
             </div>

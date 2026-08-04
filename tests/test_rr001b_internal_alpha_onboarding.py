@@ -23,7 +23,7 @@ class TestLoginOnboardingNote:
         response = client.get("/auth/login")
         assert response.status_code == 200
         body = response.get_data(as_text=True)
-        assert "New to the Internal Alpha?" in body
+        assert "New to Kwalitec?" in body
         assert "invite-only" in body
         assert "coordinator" in body
 
@@ -32,7 +32,7 @@ class TestLoginOnboardingNote:
         response = client.get("/auth/login")
         assert response.status_code == 200
         body = response.get_data(as_text=True)
-        assert "New to the Internal Alpha?" not in body
+        assert "New to Kwalitec?" not in body
 
 
 class TestPublicRegistrationRemainsClosed:

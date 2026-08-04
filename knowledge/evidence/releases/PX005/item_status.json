@@ -1,0 +1,31 @@
+{
+  "programme": "PX-005",
+  "phase": 3,
+  "workstreams": ["WS-07", "WS-08"],
+  "date": "2026-08-04",
+  "items": {
+    "PX-B-038": "Closed",
+    "PX-B-039": "Closed",
+    "PX-B-040": "Closed",
+    "PX-B-041": "Closed",
+    "PX-B-042": "Closed",
+    "PX-B-043": "Closed",
+    "PX-B-044": "Closed",
+    "PX-B-045": "Closed",
+    "PX-B-006": "Closed",
+    "PX-B-008": "Closed",
+    "PX-B-009": "Closed"
+  },
+  "provisional_decisions": {
+    "D-EOS": "Retire Education Operating System on student paths. PRODUCT_DESCRIPTOR = Exam-ready study guidance (single source via brand_identity; version.PRODUCT_TAGLINE aliases).",
+    "D-IDENTITY": "Student-grade Version 1 identity = Private Beta on login/footer/onboarding. Internal Alpha constants retained for founder/console only; research chrome relocated off primary student paths."
+  },
+  "educational_content_freeze": "held",
+  "residuals": [
+    "PX5-R1 Founder ratification of D-EOS / D-IDENTITY",
+    "PX5-R2 LIVE Continue Session contention re-measure",
+    "PX5-R3 Screenshot PNG gallery",
+    "PX5-R4 Render job SLO dashboard (ops)",
+    "PX5-R5 Editorial seal on identity pack"
+  ]
+}

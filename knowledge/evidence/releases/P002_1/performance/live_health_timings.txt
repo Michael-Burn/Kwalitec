@@ -1,0 +1,8 @@
+P002.1 LIVE health timing sample 2026-08-04T18:57:45Z
+commit_expected=272a0950ca1a65df01badf5e180c3c06a41681e7
+live_1 200 0.466810
+ready_1 200 0.481505
+live_2 200 0.461807
+ready_2 200 0.447453
+live_3 200 1.131451
+ready_3 200 0.460159

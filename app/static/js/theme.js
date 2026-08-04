@@ -56,6 +56,15 @@
         storeAppearance(appearance);
         applyAppearance(appearance);
         syncControls(appearance);
+        try {
+            document.dispatchEvent(
+                new CustomEvent("appearancechange", {
+                    detail: { appearance: appearance },
+                })
+            );
+        } catch (_err) {
+            /* CustomEvent unsupported — ignore */
+        }
     }
 
     function nextAppearance(current) {

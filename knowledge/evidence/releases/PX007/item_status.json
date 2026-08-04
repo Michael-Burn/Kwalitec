@@ -1,0 +1,27 @@
+{
+  "programme": "PX-007",
+  "date": "2026-08-04",
+  "workstreams": ["WS-11", "WS-12"],
+  "backlog": {
+    "PX-B-052": {
+      "status": "Closed",
+      "notes": "Structured founder dogfood completed; chrome-growth log filed; Critical=0 Major=0 after PX7-001/002"
+    },
+    "PX-B-053": {
+      "status": "Closed",
+      "certification": "Conditional PASS",
+      "notes": "Scorecard filed with evidence; Board-owned residuals in PX007_RESIDUAL_REGISTER.md"
+    }
+  },
+  "defects": {
+    "PX7-001": "Closed",
+    "PX7-002": "Closed"
+  },
+  "regression": {
+    "aggregate_passed": 157,
+    "log": "regression/pytest_aggregate.txt"
+  },
+  "educational_content_freeze": "held",
+  "ef001": "unchanged",
+  "version_1_production_ready_claim": false
+}

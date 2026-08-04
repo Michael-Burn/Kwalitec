@@ -1,0 +1,25 @@
+{#
+  Student-grade release identity (PX-005 / PX-B-039 / D-IDENTITY provisional).
+
+  Usage:
+    {% include "partials/student_release_badge.html" %}
+    {% with release_badge_variant='full' %}
+      {% include "partials/student_release_badge.html" %}
+    {% endwith %}
+
+  Variants:
+    compact (default) — "Private Beta"
+    full — "Private Beta · v{app_version}"
+#}
+{% set _variant = release_badge_variant|default('compact') %}
+{% set _label = student_release_label|default('Private Beta') %}
+{% if _variant == 'full' %}
+<span class="student-beta-badge" role="status"
+      title="{{ _label }} · v{{ app_version }}">
+    {{ _label }}
+</span>
+{% else %}
+<span class="student-beta-badge" role="status" title="{{ _label }} · v{{ app_version }}">
+    {{ _label }}
+</span>
+{% endif %}

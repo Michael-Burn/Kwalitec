@@ -294,7 +294,11 @@ def _handle_feedback(
             path=request.path,
             context={"kind": kind},
         )
-        flash("Thank you — your feedback helps Internal Alpha.", "success")
+        from app.application.student_experience.student_microcopy import (
+            FEEDBACK_THANKS_FLASH,
+        )
+
+        flash(FEEDBACK_THANKS_FLASH, "success")
         next_url = request.args.get("next") or canonical_home_url()
         if (
             isinstance(next_url, str)

@@ -1,0 +1,4 @@
+   12016 app/static/css/tokens.css
+   46466 app/static/css/student/student.css
+    5814 app/static/js/student.js
+   64296 total

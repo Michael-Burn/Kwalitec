@@ -231,7 +231,8 @@ class AnalyticsService:
             total_minutes = sum(a.duration_minutes or 0 for a in week_attempts)
             result.append({
                 "week_label": label,
-                "study_hours": round(total_minutes / 60.0, 1),
+                # PX-B-011 — honest hour rounding
+                "study_hours": int(round(total_minutes / 60.0)) if total_minutes else 0,
             })
 
         return result
@@ -401,7 +402,8 @@ class AnalyticsService:
         ).all()
 
         total_minutes = sum(a.duration_minutes or 0 for a in attempts_this_week)
-        study_hours = round(total_minutes / 60.0, 1)
+        # PX-B-011 — honest hour rounding (avoid one-decimal false precision).
+        study_hours = int(round(total_minutes / 60.0)) if total_minutes else 0
 
         # Missions this week
         missions_this_week = Mission.query.filter(

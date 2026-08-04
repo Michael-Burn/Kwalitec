@@ -19,7 +19,7 @@
 
     {# UX-006: configuration, not performance — metrics live on History. #}
     <header class="settings-intro">
-        <h1 class="settings-intro-title">Settings</h1>
+        <h1 class="settings-intro-title student-page-title">Settings</h1>
         <p class="settings-intro-copy">
             Preferences, notifications, and account details.
         </p>
@@ -46,7 +46,7 @@
                         <div class="settings-info-card-icon" aria-hidden="true">{{ icon('exam', size=18) }}</div>
                         <div class="settings-info-card-body">
                             <h3 class="settings-info-card-title">Examination</h3>
-                            <p class="settings-info-card-value">{{ profile.examination_label or 'Not set' }}</p>
+                            <p class="settings-info-card-value">{% if profile.examination_label %}{{ profile.examination_label }}{% else %}<span class="text-muted">Choose an exam in your study plan</span>{% endif %}</p>
                             <p class="settings-info-card-desc">Active exam from your study plan.</p>
                         </div>
                         <a class="settings-info-card-action" href="{{ url_for('study_plan.index') }}">Manage</a>

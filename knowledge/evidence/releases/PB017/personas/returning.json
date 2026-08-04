@@ -1,0 +1,375 @@
+{
+  "slug": "returning",
+  "label": "Returning / repeat candidate",
+  "email": "pb017.cr.returning.1785856749@example.com",
+  "persona_profile": {
+    "exam_history": "previous",
+    "confidence": "3",
+    "answer_style": "strong"
+  },
+  "verdict": "PASS",
+  "entry": "Seeded Publication Front advanced student (CP-R1 package history) \u2192 Publication Front CR-D1\u2026CR-R1",
+  "live_tip": "272a0950ca1a65df01badf5e180c3c06a41681e7",
+  "ops_events": [
+    {
+      "event": "Operational Reliability Event",
+      "class": "force_cr_r1",
+      "job": {
+        "createdAt": "2026-08-04T16:56:14.658358Z",
+        "finishedAt": "2026-08-04T16:56:52Z",
+        "id": "job-d9p1jbijnfac73bv7qmg",
+        "planId": "plan-srv-006",
+        "serviceId": "srv-d97ji5t7vvec73cbs5l0",
+        "startCommand": "python -c \"import base64; exec(base64.b64decode('CmltcG9ydCBqc29uCmZyb20gZGF0ZXRpbWUgaW1wb3J0IGRhdGUsIGRhdGV0aW1lLCB0aW1lZGVsdGEsIHRpbWV6b25lCmZyb20gYXBwIGltcG9ydCBjcmVhdGVfYXBwCmZyb20gYXBwLmV4dGVuc2lvbnMgaW1wb3J0IGRiCmZyb20gYXBwLm1vZGVscyBpbXBvcnQgVXNlcgpmcm9tIGFwcC5tb2RlbHMuZWR1Y2F0aW9uYWxfcnVudGltZV9lbmdpbmUgaW1wb3J0IFJ1bnRpbWVFbnJvbG1lbnQsIFJ1bnRpbWVFZHVjYXRpb25hbEV2ZW50LCBSdW50aW1lTWlzc2lvbkluc3RhbmNlIGFzIE0KZnJvbSBhcHAuZG9tYWluLmVkdWNhdGlvbmFsX3J1bnRpbWVfZW5naW5lLmV2ZW50cyBpbXBvcnQgRWR1Y2F0aW9uYWxFdmVudFR5cGUKZnJvbSBhcHAuYXBwbGljYXRpb24uZWR1Y2F0aW9uYWxfcnVudGltZV9lbmdpbmUuc2VydmljZSBpbXBvcnQgRWR1Y2F0aW9uYWxSdW50aW1lRW5naW5lU2VydmljZQplbWFpbCA9ICdwYjAxNy5jci5yZXR1cm5pbmcuMTc4NTg1Njc0OUBleGFtcGxlLmNvbScubG93ZXIoKQppZHMgPSBqc29uLmxvYWRzKCdbIkNTMS1FUDAwMS1QS0ctMS4xLVBVUlBPU0UtRlVOQ1RJT04iLCAiQ1MxLUVQMDAxLVBLRy0xLjItRURBLVNVTU1BUklFUyIsICJDUzEtRVAwMDEtUEtHLTEuMi1FREEtQVNTT0NJQVRJT04iLCAiQ1MxLUVQMDAxLVBLRy1SRVYtUFVSUE9TRS1FREEiLCAiQ1MxLUNTMTAwMi1QS0ctMS4yLVBDQSIsICJDUzEtQ1MxMDAyLVBLRy0yLjEtRElTQ1JFVEUiLCAiQ1MxLUNTMTAwMi1QS0ctMi4xLUNPTlRJTlVPVVMiLCAiQ1MxLUNTMTAwMi1QS0ctUkVWLVBDQS1ESVNUUklCVVRJT05TIiwgIkNTMS1FUDAwMS1QS0ctMi4xLVBST0ItUVVBTlRJTEVTIiwgIkNTMS1FUDAwMS1QS0ctMi4xLVBPSVNTT04tUFJPQ0VTUyIsICJDUzEtRVAwMDEtUEtHLTIuMS1JTlZFUlNFLVRSQU5TRk9STSIsICJDUzEtRVAwMDEtUEtHLTIuMS1TT0ZUV0FSRS1HRU5FUkFUSU9OIiwgIkNTMS1FUDAwMS1QS0ctUkVWLURJU1RSSUJVVElPTlMtR0VORVJBVElPTiIsICJDUzEtRVAwMDEtUEtHLTQuMS1SRVNQT05TRS1FWFBMQU5BVE9SWSIsICJDUzEtRVAwMDEtUEtHLTQuMS1TSU1QTEUtTVVMVElQTEUiLCAiQ1MxLUVQMDAxLVBLRy00LjEtTEVBU1QtU1FVQVJFUyIsICJDUzEtRVAwMDEtUEtHLTQuMS1TT0ZUV0FSRS1JTkZFUkVOQ0UiLCAiQ1MxLUVQMDAxLVBLRy00LjEtVkFSSUFCTEUtU0VMRUNUSU9OIiwgIkNTMS1FUDAwMS1QS0ctUkVWLUxJTkVBUi1NT0RFTFMiLCAiQ1MxLUVQMDAxLVBLRy00LjItRVhQT05FTlRJQUwtRkFNSUxZIiwgIkNTMS1FUDAwMS1QS0ctNC4yLU1FQU4tVkFSSUFOQ0UiLCAiQ1MxLUVQMDAxLVBLRy00LjItTElOSy1DQU5PTklDQUwiLCAiQ1MxLUVQMDAxLVBLRy00LjItRkFDVE9SUy1JTlRFUkFDVElPTlMiLCAiQ1MxLUVQMDAxLVBLRy00LjItTElORUFSLVBSRURJQ1RPUiIsICJDUzEtRVAwMDEtUEtHLTQuMi1ERVZJQU5DRS1FU1RJTUFUSU9OIiwgIkNTMS1FUDAwMS1QS0ctNC4yLU1PREVMLUNIT0lDRSIsICJDUzEtRVAwMDEtUEtHLTQuMi1SRVNJRFVBTFMiLCAiQ1MxLUVQMDAxLVBLRy00LjItR09PRE5FU1MtVEVTVFMiLCAiQ1MxLUVQMDAxLVBLRy00LjItRklULUlOVEVSUFJFVCIsICJDUzEtRVAwMDEtUEtHLVJFVi1SRUdSRVNTSU9OLUdMTSIsICJDUzEtRVAwMDEtUEtHLTUuMS1CQVlFUy1USEVPUkVNIiwgIkNTMS1FUDAwMS1QS0ctNS4xLVBSSU9SLVBPU1RFUklPUiIsICJDUzEtRVAwMDEtUEtHLTUuMS1QT1NURVJJT1ItU0lNUExFIiwgIkNTMS1FUDAwMS1QS0ctNS4xLUxPU1MtRVNUSU1BVE9SUyIsICJDUzEtRVAwMDEtUEtHLTUuMS1DUkVESUJMRS1JTlRFUlZBTFMiLCAiQ1MxLUVQMDAxLVBLRy01LjEtQ1JFRElCSUxJVFktUFJFTUlVTSIsICJDUzEtRVAwMDEtUEtHLTUuMS1CQVlFU0lBTi1DUkVESUJJTElUWSIsICJDUzEtRVAwMDEtUEtHLTUuMS1FTVBJUklDQUwtQkFZRVMiLCAiQ1MxLUVQMDAxLVBLRy01LjEtQkFZRVMtVlMtRUIiLCAiQ1MxLUVQMDAxLVBLRy1SRVYtTUlEU1BJTkUiLCAiQ1MxLUVQMDAxLVBLRy0yLjItTUFSR0lOQUwtQ09ORElUSU9OQUwiLCAiQ1MxLUVQMDAxLVBLRy0yLjItSU5ERVBFTkRFTkNFIiwgIkNTMS1FUDAwMS1QS0ctMi4yLUNPVi1DT1JSLUVYUEVDVEFUSU9OIiwgIkNTMS1FUDAwMS1QS0ctMi4yLUxJTkVBUi1DT01CSU5BVElPTlMiLCAiQ1MxLUVQMDAxLVBLRy1SRVYtSk9JTlQtRElTVFJJQlVUSU9OUyIsICJDUzEtRVAwMDEtUEtHLTIuMy1DT05ESVRJT05BTC1FWFBFQ1RBVElPTiIsICJDUzEtRVAwMDEtUEtHLTIuMy1NRUFOLVZBUklBTkNFLUNPTkRJVElPTklORyIsICJDUzEtRVAwMDEtUEtHLVJFVi1DT05ESVRJT05BTC1FWFBFQ1RBVElPTlMiLCAiQ1MxLUVQMDAxLVBLRy0yLjQtTUdGLUNHRiIsICJDUzEtRVAwMDEtUEtHLTIuNC1NT01FTlQtVklBLUdGIiwgIkNTMS1FUDAwMS1QS0ctUkVWLUdFTkVSQVRJTkctRlVOQ1RJT05TIiwgIkNTMS1FUDAwMS1QS0ctMi41LUNMVCIsICJDUzEtRVAwMDEtUEtHLTIuNS1TSU1VTEFURUQtU0FNUExFLU5PUk1BTCIsICJDUzEtRVAwMDEtUEtHLVJFVi1DRU5UUkFMLUxJTUlULVRIRU9SRU0iLCAiQ1MxLUVQMDAxLVBLRy0yLjYtUkFORE9NLVNBTVBMRVMiLCAiQ1MxLUVQMDAxLVBLRy0yLjYtU0FNUExJTkctRElTVFJJQlVUSU9OLVNUQVRJU1RJQyIsICJDUzEtRVAwMDEtUEtHLTIuNi1NRUFOLVZBUi1TQU1QTEUiLCAiQ1MxLUVQMDAxLVBLRy0yLjYtTk9STUFMLVNBTVBMRS1NRUFOLVZBUiIsICJDUzEtRVAwMDEtUEtHLTIuNi1ULVNUQVRJU1RJQyIsICJDUzEtRVAwMDEtUEtHLTIuNi1GLURJU1RSSUJVVElPTiIsICJDUzEtRVAwMDEtUEtHLVJFVi1TQU1QTElORy1ESVNUUklCVVRJT05TIiwgIkNTMS1FUDAwMS1QS0ctMy4xLU1FVEhPRC1PRi1NT01FTlRTIiwgIkNTMS1FUDAwMS1QS0ctMy4xLU1BWElNVU0tTElLRUxJSE9PRCIsICJDUzEtRVAwMDEtUEtHLTMuMS1FRkZJQ0lFTkNZLUJJQVMtQ09OU0lTVEVOQ1ktTVNFIiwgIkNTMS1FUDAwMS1QS0ctMy4xLUNPTVBBUklTT04tTVNFIiwgIkNTMS1FUDAwMS1QS0ctMy4xLUFTWU1QVE9USUMtTUxFIiwgIkNTMS1FUDAwMS1QS0ctMy4xLUJPT1RTVFJBUC1FU1RJTUFUT1IiLCAiQ1MxLUVQMDAxLVBLRy1SRVYtRVNUSU1BVE9SUyIsICJDUzEtRVAwMDEtUEtHLTMuMi1DT05GSURFTkNFLUlOVEVSVkFMLVBBUkFNRVRFUiIsICJDUzEtRVAwMDEtUEtHLTMuMi1QUkVESUNUSU9OLUlOVEVSVkFMIiwgIkNTMS1FUDAwMS1QS0ctMy4yLUNJLUdJVkVOLVNBTVBMSU5HLURJU1RSSUJVVElPTiIsICJDUzEtRVAwMDEtUEtHLTMuMi1DSS1OT1JNQUwtTUVBTi1WQVJJQU5DRSIsICJDUzEtRVAwMDEtUEtHLTMuMi1DSS1CSU5PTUlBTC1QT0lTU09OIiwgIkNTMS1FUDAwMS1QS0ctMy4yLUNJLVRXTy1TQU1QTEUiLCAiQ1MxLUVQMDAxLVBLRy0zLjItQ0ktUEFJUkVELU1FQU5TIiwgIkNTMS1FUDAwMS1QS0ctMy4yLUJPT1RTVFJBUC1DT05GSURFTkNFLUlOVEVSVkFMIiwgIkNTMS1FUDAwMS1QS0ctUkVWLUNPTkZJREVOQ0UtSU5URVJWQUxTIiwgIkNTMS1FUDAwMS1QS0ctMy4zLUhZUE9USEVTSVMtQ09OQ0VQVFMiLCAiQ1MxLUVQMDAxLVBLRy0zLjMtQkFTSUMtVEVTVFMiLCAiQ1MxLUVQMDAxLVBLRy0zLjMtUEVSTVVUQVRJT04tVEVTVFMiLCAiQ1MxLUVQMDAxLVBLRy0zLjMtQ0hJLVNRVUFSRS1HT0YiLCAiQ1MxLUVQMDAxLVBLRy0zLjMtQ09OVElOR0VOQ1ktSU5ERVBFTkRFTkNFIiwgIkNTMS1FUDAwMS1QS0ctUkVWLUhZUE9USEVTSVMtVEVTVElORyIsICJDUzEtRVAwMDEtUEtHLUNOLTQuMS1SRVNQT05TRS1FWFBMQU5BVE9SWSIsICJDUzEtRVAwMDEtUEtHLUNOLTQuMS1TSU1QTEUtTVVMVElQTEUiLCAiQ1MxLUVQMDAxLVBLRy1DTi00LjEtTEVBU1QtU1FVQVJFUyIsICJDUzEtRVAwMDEtUEtHLUNOLTQuMS1TT0ZUV0FSRS1GSVQiLCAiQ1MxLUVQMDAxLVBLRy1DTi00LjEtVkFSSUFCTEUtU0VMRUNUSU9OIiwgIkNTMS1FUDAwMS1QS0ctUkVWLUxJTkVBUi1SRUdSRVNTSU9OLU5VIiwgIkNTMS1FUDAwMS1QS0ctQ1gtNC4yLUVYUE9ORU5USUFMLUZBTUlMWSIsICJDUzEtRVAwMDEtUEtHLUNYLTQuMi1NRUFOLVZBUklBTkNFIiwgIkNTMS1FUDAwMS1QS0ctQ1gtNC4yLUxJTkstQ0FOT05JQ0FMIiwgIkNTMS1FUDAwMS1QS0ctQ1gtNC4yLUZBQ1RPUlMtSU5URVJBQ1RJT05TIiwgIkNTMS1FUDAwMS1QS0ctQ1gtNC4yLUxJTkVBUi1QUkVESUNUT1IiLCAiQ1MxLUVQMDAxLVBLRy1DWC00LjItREVWSUFOQ0UtRVNUSU1BVElPTiIsICJDUzEtRVAwMDEtUEtHLUNYLTQuMi1NT0RFTC1DSE9JQ0UiLCAiQ1MxLUVQMDAxLVBLRy1DWC00LjItUkVTSURVQUxTIiwgIkNTMS1FUDAwMS1QS0ctQ1gtNC4yLUdPT0RORVNTLVRFU1RTIiwgIkNTMS1FUDAwMS1QS0ctQ1gtNC4yLUZJVC1JTlRFUlBSRVQiLCAiQ1MxLUVQMDAxLVBLRy1SRVYtR0xNLVhJIiwgIkNTMS1FUDAwMS1QS0ctQ08tNS4xLUJBWUVTLVRIRU9SRU0iLCAiQ1MxLUVQMDAxLVBLRy1DTy01LjEtUFJJT1ItUE9TVEVSSU9SIiwgIkNTMS1FUDAwMS1QS0ctQ08tNS4xLVBPU1RFUklPUi1TSU1QTEUiLCAiQ1MxLUVQMDAxLVBLRy1DTy01LjEtTE9TUy1FU1RJTUFUT1JTIiwgIkNTMS1FUDAwMS1QS0ctQ08tNS4xLUNSRURJQkxFLUlOVEVSVkFMUyIsICJDUzEtRVAwMDEtUEtHLUNPLTUuMS1DUkVESUJJTElUWS1QUkVNSVVNIiwgIkNTMS1FUDAwMS1QS0ctQ08tNS4xLUJBWUVTSUFOLUNSRURJQklMSVRZIiwgIkNTMS1FUDAwMS1QS0ctQ08tNS4xLUVNUElSSUNBTC1CQVlFUyIsICJDUzEtRVAwMDEtUEtHLUNPLTUuMS1CQVlFUy1WUy1FQiIsICJDUzEtRVAwMDEtUEtHLVJFVi1CQVlFU0lBTi1PTUlDUk9OIiwgIkNTMS1FUDAwMS1QS0ctQ1AtMi4xLVBST0ItUVVBTlRJTEVTIiwgIkNTMS1FUDAwMS1QS0ctQ1AtMi4yLU1BUkdJTkFMLUNPTkRJVElPTkFMIiwgIkNTMS1FUDAwMS1QS0ctQ1AtMi41LUNMVCIsICJDUzEtRVAwMDEtUEtHLUNQLTIuNi1SQU5ET00tU0FNUExFUyIsICJDUzEtRVAwMDEtUEtHLUNQLTMuMS1FU1RJTUFUT1JTIiwgIkNTMS1FUDAwMS1QS0ctQ1AtMy4yLUNJLVNBTVBMRSIsICJDUzEtRVAwMDEtUEtHLUNQLTMuMy1IWVBPVEhFU0lTLVRFU1RJTkciLCAiQ1MxLUVQMDAxLVBLRy1DUC00LjEtTElORUFSLVJFR1JFU1NJT04iLCAiQ1MxLUVQMDAxLVBLRy1DUC01LjEtQkFZRVMtVEhFT1JFTSIsICJDUzEtRVAwMDEtUEtHLVJFVi1TUElORS1NRU1PUlktUEkiLCAiQ1MxLUVQMDAxLVBLRy1DUi0xLjEtQUlNUy1BTkFMWVNJUyIsICJDUzEtRVAwMDEtUEtHLUNSLTEuMS1TVEFHRVMtVE9PTFMiLCAiQ1MxLUVQMDAxLVBLRy1DUi0xLjEtREFUQS1TT1VSQ0VTIiwgIkNTMS1FUDAwMS1QS0ctQ1ItMS4xLVJFUFJPRFVDSUJMRSIsICJDUzEtRVAwMDEtUEtHLUNSLTEuMi1FREEtU1VNTUFSSUVTIiwgIkNTMS1FUDAwMS1QS0ctQ1ItMS4yLUNPUlJFTEFUSU9OIiwgIkNTMS1FUDAwMS1QS0ctQ1ItMS4yLVBDQSIsICJDUzEtRVAwMDEtUEtHLUNSLTIuMS1ESVNDUkVURSIsICJDUzEtRVAwMDEtUEtHLUNSLTIuMS1DT05USU5VT1VTIl0nKQphcHAgPSBjcmVhdGVfYXBwKCkKd2l0aCBhcHAuYXBwX2NvbnRleHQoKToKICAgIHUgPSBVc2VyLnF1ZXJ5LmZpbHRlcl9ieShlbWFpbD1lbWFpbCkuZmlyc3QoKQogICAgYXNzZXJ0IHUgaXMgbm90IE5vbmUKICAgIGVuciA9IFJ1bnRpbWVFbnJvbG1lbnQucXVlcnkuZmlsdGVyX2J5KHVzZXJfaWQ9dS5pZCkub3JkZXJfYnkoUnVudGltZUVucm9sbWVudC5pZC5kZXNjKCkpLmZpcnN0KCkKICAgIGFzc2VydCBlbnIgaXMgbm90IE5vbmUKICAgIFJ1bnRpbWVFZHVjYXRpb25hbEV2ZW50LnF1ZXJ5LmZpbHRlcl9ieSgKICAgICAgICB1c2VyX2lkPXUuaWQsCiAgICAgICAgY3VycmljdWx1bV9pZGVudGl0eT1lbnIuY3VycmljdWx1bV9pZGVudGl0eSwKICAgICAgICBldmVudF90eXBlPUVkdWNhdGlvbmFsRXZlbnRUeXBlLk1JU1NJT05fQ09NUExFVEVELnZhbHVlLAogICAgKS5kZWxldGUoc3luY2hyb25pemVfc2Vzc2lvbj1GYWxzZSkKICAgIGJhc2UgPSBkYXRldGltZS5ub3codGltZXpvbmUudXRjKSAtIHRpbWVkZWx0YShkYXlzPWxlbihpZHMpKzIpCiAgICBmb3IgaSwgcGlkIGluIGVudW1lcmF0ZShpZHMpOgogICAgICAgIGRiLnNlc3Npb24uYWRkKFJ1bnRpbWVFZHVjYXRpb25hbEV2ZW50KAogICAgICAgICAgICBldmVudF9pZD1mImV2dF9wYjAxN19yMV97dS5pZH1fe2k6MDRkfSIsCiAgICAgICAgICAgIGV2ZW50X3R5cGU9RWR1Y2F0aW9uYWxFdmVudFR5cGUuTUlTU0lPTl9DT01QTEVURUQudmFsdWUsCiAgICAgICAgICAgIHVzZXJfaWQ9dS5pZCwKICAgICAgICAgICAgZW5yb2xtZW50X2lkPWVuci5lbnJvbG1lbnRfaWQsCiAgICAgICAgICAgIGN1cnJpY3VsdW1faWRlbnRpdHk9ZW5yLmN1cnJpY3VsdW1faWRlbnRpdHksCiAgICAgICAgICAgIHBheWxvYWRfanNvbj1qc29uLmR1bXBzKHsiZWR1Y2F0aW9uYWxfcGFja2FnZV9pZCI6IHBpZCwgInBiMDE3X2ZvcmNlX3IxIjogVHJ1ZX0pLAogICAgICAgICAgICBvY2N1cnJlZF9hdD1iYXNlICsgdGltZWRlbHRhKG1pbnV0ZXM9aSksCiAgICAgICAgKSkKICAgIGZvciBtIGluIE0ucXVlcnkuZmlsdGVyX2J5KHVzZXJfaWQ9dS5pZCkuYWxsKCk6CiAgICAgICAgZGIuc2Vzc2lvbi5kZWxldGUobSkKICAgIGRiLnNlc3Npb24uY29tbWl0KCkKICAgIHN2YyA9IEVkdWNhdGlvbmFsUnVudGltZUVuZ2luZVNlcnZpY2UoKQogICAgbWlzc2lvbiA9IHN2Yy5nZW5lcmF0ZV9kYWlseV9taXNzaW9uKHVzZXJfaWQ9dS5pZCwgc3ViamVjdF9jb2RlPSJDUzEiLCBtaXNzaW9uX2RhdGU9ZGF0ZS50b2RheSgpKQogICAgcHJpbnQoIkZPUkNFX1IxIiwgbWlzc2lvbi5lZHVjYXRpb25hbF9wYWNrYWdlX2lkLCBtaXNzaW9uLnRpdGxlKQogICAgaWYgIlJFVi1QVUJMSUNBVElPTi1GUk9OVC1SSE8iIG5vdCBpbiAobWlzc2lvbi5lZHVjYXRpb25hbF9wYWNrYWdlX2lkIG9yICIiKToKICAgICAgICByYWlzZSBTeXN0ZW1FeGl0KCJOT1RfQ1JfUjEiKQo=').decode())\"",
+        "startedAt": "2026-08-04T16:56:14Z",
+        "status": "succeeded"
+      },
+      "residual": "RO15-R3"
+    }
+  ],
+  "summary": {
+    "certified_days_scored": 10,
+    "certified_all_pass": true,
+    "avg_score_over_9": 9.0,
+    "trajectory": [
+      {
+        "day": "CR-D1",
+        "package_id": "CS1-EP001-PKG-CR-1.1-AIMS-ANALYSIS",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [],
+        "chrome_residual": false,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CR-D2",
+        "package_id": "CS1-EP001-PKG-CR-1.1-STAGES-TOOLS",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [],
+        "chrome_residual": false,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CR-D3",
+        "package_id": "CS1-EP001-PKG-CR-1.1-DATA-SOURCES",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [],
+        "chrome_residual": false,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CR-D4",
+        "package_id": "CS1-EP001-PKG-CR-1.1-REPRODUCIBLE",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [],
+        "chrome_residual": false,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CR-D5",
+        "package_id": "CS1-EP001-PKG-CR-1.2-EDA-SUMMARIES",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [],
+        "chrome_residual": false,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CR-D6",
+        "package_id": "CS1-EP001-PKG-CR-1.2-CORRELATION",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [],
+        "chrome_residual": false,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CR-D7",
+        "package_id": "CS1-EP001-PKG-CR-1.2-PCA",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [],
+        "chrome_residual": false,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CR-D8",
+        "package_id": "CS1-EP001-PKG-CR-2.1-DISCRETE",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [],
+        "chrome_residual": false,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CR-D9",
+        "package_id": "CS1-EP001-PKG-CR-2.1-CONTINUOUS",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [],
+        "chrome_residual": false,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CR-R1",
+        "package_id": "CS1-EP001-PKG-REV-PUBLICATION-FRONT-RHO",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [
+          "RO15-R4"
+        ],
+        "chrome_residual": true,
+        "revision_q6_residual": true
+      }
+    ],
+    "stable_high": true,
+    "programme_metrics": {
+      "recommendation_consistency": {
+        "pass_count": 10,
+        "total": 10,
+        "result": "PASS"
+      },
+      "weak_area_identification": {
+        "pass_count": 10,
+        "total": 10,
+        "result": "PASS"
+      },
+      "mission_sequencing": {
+        "pass_count": 10,
+        "total": 10,
+        "result": "PASS"
+      },
+      "syllabus_continuity": {
+        "pass_count": 10,
+        "total": 10,
+        "result": "PASS"
+      },
+      "confidence_calibration": {
+        "pass_count": 10,
+        "total": 10,
+        "result": "PASS"
+      },
+      "explanation_usefulness": {
+        "pass_count": 10,
+        "total": 10,
+        "result": "PASS"
+      }
+    },
+    "transit_observations": [],
+    "defects": [
+      {
+        "severity": "Minor",
+        "id": "PB17-MINOR-CHROME",
+        "finding": "Tomorrow chrome residual on CR-R1 (RO15-R4 class)",
+        "ef_class": "PI",
+        "residual": "RO15-R4"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB17-MINOR-Q6",
+        "finding": "Revision Q6 Learning-oriented residual on CR-R1 (RO15-R4 class)",
+        "ef_class": "PI",
+        "residual": "RO15-R4"
+      }
+    ],
+    "defect_counts": {
+      "Critical": 0,
+      "Major": 0,
+      "Minor": 2,
+      "Cosmetic": 0
+    }
+  }
+}

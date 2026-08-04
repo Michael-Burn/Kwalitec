@@ -1,7 +1,7 @@
 {% extends "layouts/auth_base.html" %}
 
 {% block content %}
-<main class="error-page" role="main">
+<main class="error-page" role="main" data-px006="error-500">
     <div>
         <p class="error-code text-secondary">500</p>
         <p class="error-title text-muted">Internal Server Error</p>
@@ -9,8 +9,10 @@
             An unexpected error occurred. You can retry this page, or return home and continue.
         </p>
         {% if error_reference_id %}
-        <p class="error-reference small text-muted mb-3">
-            Reference ID <code>{{ error_reference_id }}</code> — include this if you contact support.
+        <p class="error-reference small mb-3" data-px006="error-reference">
+            {{ px_microcopy.ERROR_REFERENCE_LABEL }}
+            <code>{{ error_reference_id }}</code>
+            — {{ px_microcopy.ERROR_REFERENCE_GUIDANCE }}
         </p>
         {% endif %}
         <div class="d-flex flex-wrap gap-2 justify-content-center">

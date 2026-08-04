@@ -1,0 +1,18 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.6, pytest-8.3.4, pluggy-1.6.0
+rootdir: /Users/kwalitec/Developer/kwalitec
+configfile: pyproject.toml
+collected 80 items
+
+tests/application/educational_packages/test_px003_phase1_trust_revision.py . [  1%]
+.........                                                                [ 12%]
+tests/presentation/session/test_px003_session_workflow.py ....           [ 17%]
+tests/application/educational_packages/test_ro1r1_tomorrow_chrome.py ... [ 21%]
+....                                                                     [ 26%]
+tests/application/educational_packages/test_pb002_package_selection.py . [ 27%]
+...............................                                          [ 66%]
+tests/presentation/student/test_cq002_core_study_loop.py ....            [ 71%]
+tests/test_kwp005_sitting_reports.py ........                            [ 81%]
+tests/test_sr002_session_spine.py ...............                        [100%]
+
+============================== 80 passed in 4.55s ==============================

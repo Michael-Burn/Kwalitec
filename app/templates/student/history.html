@@ -15,13 +15,19 @@
   aria-labelledby="student-history-title"
   data-sop="archive"
 >
+{% if page.history %}
+{% set history = page.history %}
   <header class="ds-page-header">
     <h1 id="student-history-title" class="ds-page-header__title student-page-title">{{ page.shell.page_title }}</h1>
     <p class="ds-page-header__support">Your practice record — every completed Session is saved here.</p>
+    {% if history.sessions and history.sessions|length > 0 %}
+    {% set latest = history.sessions[0] %}
+    <p class="ds-list__meta" data-px004="history-continuity" role="status">
+      Last sitting{% if latest.completed_at %}: {{ latest.completed_at }}{% endif %}
+      — {{ latest.topic_title }}{% if latest.duration_label %} ({{ latest.duration_label }}){% endif %}.
+    </p>
+    {% endif %}
   </header>
-
-{% if page.history %}
-{% set history = page.history %}
 
   <section class="ds-os-archive-stats" aria-label="Study time" data-sop-section="study-time">
     <div class="ds-panel ds-os-stat">
@@ -138,6 +144,10 @@
   </div>
 
 {% else %}
+  <header class="ds-page-header">
+    <h1 id="student-history-title" class="ds-page-header__title student-page-title">{{ page.shell.page_title }}</h1>
+    <p class="ds-page-header__support">Your practice record — every completed Session is saved here.</p>
+  </header>
   {{ ds_empty_operational(
     'Complete your first Session to start your practice record.',
     'Go to Home',

@@ -1,0 +1,82 @@
+{
+  "expected_day": "CR-R1",
+  "detected_campaign_day": "CR-R1",
+  "finished": true,
+  "reflection_ok": true,
+  "verdict": "PASS",
+  "score_over_9": 9,
+  "dimensions": {
+    "mission_clarity": "PASS",
+    "cmp_partnership": "PASS",
+    "educational_confidence": "PASS",
+    "session_completion": "PASS",
+    "reflection_quality": "PASS",
+    "transition_quality": "PASS",
+    "tomorrow_confidence": "PASS",
+    "trust_retention": "PASS",
+    "educational_consistency": "PASS"
+  },
+  "programme_metrics": {
+    "recommendation_consistency": "PASS",
+    "weak_area_identification": "PASS",
+    "mission_sequencing": "PASS",
+    "syllabus_continuity": "PASS",
+    "confidence_calibration": "PASS",
+    "explanation_usefulness": "PASS"
+  },
+  "checklist": {
+    "CMP_reference_present": true,
+    "Educational_purpose_clear": true,
+    "Reading_focus_clear": true,
+    "Ignore_guidance_present": true,
+    "Stop_condition_explicit": true,
+    "Immediate_next_activity_named": false,
+    "Not_fallback_shell": true,
+    "Matches_certified_snippets": true
+  },
+  "tomorrow_chrome_matches_approved": false,
+  "chrome_residual": true,
+  "revision_q6_residual": true,
+  "residuals": [
+    "RO15-R4"
+  ],
+  "package_id": "CS1-EP001-PKG-REV-PUBLICATION-FRONT-RHO",
+  "reading": {
+    "audit": {
+      "title": "Reading: Purpose of this reading: Revision is retrieval-first. Open the CMP only at a failed locus on the Publication Front chain \u2014 not as a re-teach of all of Chapter 1\u20132.1.",
+      "body_sample": " Topic: Campaign Rho revision \u2014 Publication Front Wave 0 residual (CR-R1) Mission: Retrieve Publication Front Wave 0 residual chain Purpose of this reading: Revision is retrieval-first. Open the CMP only at a failed locus on the Publication Front chain \u2014 not as a re-teach of all of Chapter 1\u20132.1. Open: CMP \u00b7 only at failed Publication Front locus Stop: After closed-book retrieval of CR chain and targeted CMP reopen at failures \u2014 stop before claiming Approver clearance, until-exam trust, or spine",
+      "support_sample": "Keep CMP closed for first-pass retrieval. Reopen only at failed loci. Kwalitec is the guide; the CMP is authoritative. Stop when retrieval + targeted reopen are done \u2014 refuse Approver clearance, spine PASS, and until-exam claims. What did you extract from the CMP setup? Submit Answer ",
+      "is_fallback_shell": false,
+      "is_guided_reading": false,
+      "mentions_cmp": true,
+      "cmp_refs_present": false,
+      "q_checks": {
+        "Q1_cmp_open": true,
+        "Q2_purpose": true,
+        "Q3_attention": true,
+        "Q4_ignore": true,
+        "Q5_stop": true,
+        "Q6_next": false
+      },
+      "ec001_markers": {
+        "Purpose of this reading": true,
+        "Open your CMP": false,
+        "Focus questions": true,
+        "Misconception watch": true,
+        "Out of scope today": true,
+        "Return cue": true,
+        "Worked-example": false,
+        "Knowledge Checks": false
+      },
+      "certified_snippet_hits": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true
+      },
+      "verdict": "FAIL",
+      "word_count_body": 254
+    },
+    "html": "/tmp/pb017/evidence/average/day10_CR-R1_reading.html"
+  }
+}

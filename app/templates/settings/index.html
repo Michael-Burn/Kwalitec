@@ -9,7 +9,7 @@
 <header class="student-page-header">
     <p class="student-eyebrow">System</p>
     <h1 class="student-page-title">Settings</h1>
-    <p class="student-page-description">Profile, preferences, and Internal Alpha status.</p>
+    <p class="student-page-description">Profile, preferences, and account status.</p>
 </header>
 
 <div class="row g-4">
@@ -81,7 +81,8 @@
                        moved behind a disclosure — students should never feel
                        they are using developer software by default. #}
                     <details class="settings-diagnostics mt-3">
-                        <summary class="text-muted small">Diagnostic information</summary>
+                        <summary class="text-muted small">Build information for support</summary>
+                        <p class="text-muted small mt-2 mb-0">Share these details only if support asks — they are not part of studying.</p>
                         <div class="row g-3 mt-2">
                             <div class="col-sm-6">
                                 <label class="text-muted small d-block">Build date</label>
@@ -239,8 +240,9 @@
         <div class="student-panel student-panel--quiet mb-4">
                 <div class="settings-section" style="margin-bottom: 0;">
                     <h2 class="settings-section-title student-panel-title">Appearance</h2>
-                    <p class="text-muted small">Choose Light, Dark, or System. System follows your device preference. Your choice is saved in this browser.</p>
+                    <p class="text-muted small" data-px006="pref-appearance">{{ px_microcopy.PREFERENCE_APPEARANCE_STICKY }}</p>
                     {{ appearance_switcher(show_select=true) }}
+                    <p class="visually-hidden" id="appearance-saved-live" aria-live="polite" data-px006="pref-saved"></p>
                 </div>
         </div>
         <div class="student-panel student-panel--quiet">
@@ -252,7 +254,9 @@
                             <label for="daily_goal_hours" class="form-label">Daily Study Goal (hours)</label>
                             <input type="number" class="form-control" id="daily_goal_hours" name="daily_goal_hours"
                                    value="{{ session.get('daily_goal_hours', '2') }}" min="0.5" max="12" step="0.5">
-                            <div class="form-text text-muted">Set your target daily study hours. Used for progress tracking and recommendations.</div>
+                            <div class="form-text text-muted" data-px006="pref-study">
+                                {{ px_microcopy.PREFERENCE_STUDY_SESSION_SCOPE }}
+                            </div>
                         </div>
                         <button type="submit" class="btn student-btn-primary">Save Preferences</button>
                     </div>
@@ -358,7 +362,8 @@
                        an internal rollout mechanism, not a student concept, and were
                        previously left outside it on this tab alone. #}
                     <details class="settings-diagnostics mt-3">
-                        <summary class="text-muted small">Diagnostic information</summary>
+                        <summary class="text-muted small">Build information for support</summary>
+                        <p class="text-muted small mt-2 mb-0">Share these details only if support asks — they are not part of studying.</p>
                         <div class="row g-3 mt-2">
                             <div class="col-sm-6">
                                 <label class="text-muted small d-block">Build number</label>
@@ -369,11 +374,11 @@
                                 <span class="fw-medium">{{ alpha_status.app_version }}</span>
                             </div>
                             <div class="col-sm-6">
-                                <label class="text-muted small d-block">Internal build track</label>
+                                <label class="text-muted small d-block">Release channel</label>
                                 <span class="fw-medium">{{ alpha_status.internal_alpha_version }}</span>
                             </div>
                             <div class="col-sm-6">
-                                <label class="text-muted small d-block">Internal build track enabled</label>
+                                <label class="text-muted small d-block">Release channel enabled</label>
                                 <span class="fw-medium">{% if alpha_status.internal_alpha_enabled %}Enabled{% else %}Disabled{% endif %}</span>
                             </div>
                         </div>

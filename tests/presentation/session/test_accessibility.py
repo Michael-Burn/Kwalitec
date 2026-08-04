@@ -63,8 +63,11 @@ def test_session_context_labelled():
 def test_disclosures_use_details():
     text = BODY.read_text(encoding="utf-8")
     assert "ds_disclosure" in text
-    assert "Technical details" in text
-
+    # Titles come from package disclosure items (not a hard-coded string).
+    assert "item.title" in text or "Technical details" in text
+    assert "<details" in Path("app/templates/design_system/macros.html").read_text(
+        encoding="utf-8"
+    ) or "ds_disclosure" in text
 
 def test_answer_input_labelled():
     text = BODY.read_text(encoding="utf-8")

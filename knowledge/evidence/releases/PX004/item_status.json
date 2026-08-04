@@ -1,0 +1,36 @@
+{
+  "programme": "PX-004",
+  "phase": 2,
+  "workstreams": ["WS-04", "WS-05", "WS-06"],
+  "date": "2026-08-04",
+  "items": {
+    "PX-B-010": "Closed",
+    "PX-B-011": "Closed",
+    "PX-B-012": "Closed",
+    "PX-B-013": "Closed",
+    "PX-B-023": "Closed",
+    "PX-B-024": "Closed",
+    "PX-B-025": "Closed",
+    "PX-B-026": "Closed",
+    "PX-B-027": "Closed",
+    "PX-B-028": "Closed",
+    "PX-B-029": "Closed",
+    "PX-B-030": "Closed",
+    "PX-B-036": "Closed",
+    "PX-B-037": "Closed",
+    "PX-B-048": "Closed",
+    "PX-B-050": "Deferred"
+  },
+  "provisional_decisions": {
+    "D-MOBILE-NAV": "Canonical student-shell pattern = compact topbar drawer (Menu toggle → absolute panel). Desktop remains horizontal inline links. No bottom tab bar; dual-nav (PX-X-04) remains parked."
+  },
+  "deferred": {
+    "PX-B-050": "Future capacity — Coach panel absent on canonical Home; requires D-COACH before reintroduction"
+  },
+  "educational_content_freeze": "held",
+  "residuals": [
+    "PX4-R1 Founder phone + tablet PNG gallery (protocol filed; capture pending dogfood)",
+    "PX4-R2 axe/Lighthouse CI job (static a11y contracts expanded; CI axe non-blocking residual)",
+    "PX4-R3 Recorded VoiceOver/NVDA pass artefact"
+  ]
+}

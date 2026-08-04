@@ -6,11 +6,10 @@
    RR-001.3B / EGC-R03 / EGC-R04 — educational orientation + reflection map.
    RR-001.3C / EGC-R06 / EGC-R12 — educational memory coherence. #}
 <header class="student-page-header">
-    <p class="student-eyebrow">{{ internal_alpha_label }}</p>
+    <p class="student-eyebrow">{{ px_microcopy.HELP_CENTRE_EYEBROW }}</p>
     <h1 class="student-page-title">Help &amp; Support</h1>
     <p class="student-page-description">
-        How Kwalitec and Study Sensei work together on your educational journey —
-        and how to reach the Internal Alpha team.
+        {{ px_microcopy.HELP_CENTRE_DESCRIPTION }}
     </p>
 </header>
 
@@ -154,6 +153,10 @@
              "Open Settings → Preferences and choose Light, Dark, or System. Your choice is saved in this browser."),
             ("How do I export or back up my data?",
              "Open Settings → Data. You can download a Weekly Report or a full backup of your learning data at any time."),
+            ("How do I change my exam date or sitting?",
+             "Open Study Plan from the main navigation and update your exam date. Your next Session updates from the revised plan — you do not need to rebuild your journey from scratch."),
+            ("What if I need to pause or defer my studies?",
+             "Take the break you need. When you return, open Home and follow today's authorised Session — Kwalitec does not invent catch-up work or penalise gaps. If your exam sitting changes, update Study Plan so guidance stays honest."),
         ] %}
         {% for question, answer in topics %}
         <div data-help-topic="{{ question|lower }} {{ answer|lower }}">
@@ -171,7 +174,7 @@
     <ul class="list-unstyled d-flex flex-wrap gap-2 mb-0">
         <li>
             <a class="btn student-btn-secondary btn-sm" href="{{ url_for('alpha.feedback_beta') }}">
-                Send beta feedback
+                {{ px_microcopy.HELP_FEEDBACK_CTA }}
             </a>
             <a class="btn student-btn-secondary btn-sm" href="{{ url_for('alpha.feedback_report_problem') }}">
                 Report a problem
@@ -199,7 +202,7 @@
    but no longer the first thing a student sees on Help. #}
 <section class="mb-4">
     <details class="settings-diagnostics student-disclosure">
-        <summary class="student-muted small">Diagnostic information</summary>
+        <summary class="student-muted small">{{ px_microcopy.DIAGNOSTIC_SUMMARY }}</summary>
         <dl class="row small mb-0 mt-2">
             <dt class="col-sm-4">Application version</dt>
             <dd class="col-sm-8">{{ release.app_version }}</dd>

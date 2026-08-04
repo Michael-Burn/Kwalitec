@@ -453,8 +453,13 @@ class StudySessionService:
                 duration = page.progress.remaining_time_label
 
         elif surface is SessionSurface.REFLECTION and page.reflection:
-            activity = "Session reflection"
-            expected = "Capture what mattered in this session"
+            from app.application.student_experience.student_microcopy import (
+                REFLECTION_ACTIVITY_LABEL,
+                REFLECTION_EXPECTED_LABEL,
+            )
+
+            activity = REFLECTION_ACTIVITY_LABEL
+            expected = REFLECTION_EXPECTED_LABEL
             instruction = (
                 page.reflection.reflection_prompt
                 or "What mattered in this practice?"
@@ -604,13 +609,20 @@ class StudySessionService:
             }
 
         if surface is SessionSurface.REFLECTION and page.reflection:
+            from app.application.student_experience.student_microcopy import (
+                REFLECTION_VALUE_FRAMING,
+                REFLECTION_VALUE_TITLE,
+            )
+
             body = page.reflection.reflection_prompt or ""
             support = ""
             if page.reflection.key_insight:
                 support = page.reflection.key_insight
+            else:
+                support = REFLECTION_VALUE_FRAMING
             return {
                 **empty,
-                "title": "Reflection",
+                "title": REFLECTION_VALUE_TITLE,
                 "body": body,
                 "support": support,
             }

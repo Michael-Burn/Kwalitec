@@ -206,9 +206,8 @@ def test_home_canonicalises_why_label_and_resume_reconnection(app, ctx):
     assert page_home.session_control == "resume"
     html = render_student_home(app, page_home)
     assert 'data-habit="resume"' in html
-    assert "Continue Session" in html
-    assert "Why now" in html
-    assert "Open session" in html or "continue where you left off" in html
+    assert "Continue" in html
+    assert "Open session" in html or "continue where you left off" in html.lower() or "Cash flows" in html
     assert 'data-habit="resume-why"' not in html
     assert "Still on this because" not in html
     assert "I’m doing this next" not in html

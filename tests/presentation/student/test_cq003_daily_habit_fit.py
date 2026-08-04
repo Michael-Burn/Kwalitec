@@ -115,7 +115,8 @@ def test_home_resume_without_unified_journey(app, ctx):
     assert 'data-habit="resume-cta"' in html
     assert 'data-session-control="resume"' in html
     assert "/session/sess-abc/overview" in html
-    assert "Continue Session" in html
+    assert "Continue" in html
+    assert 'data-session-resume="true"' in html or 'data-habit="resume"' in html
     assert "Not today" not in html
     assert "I’m doing this next" not in html
     # DX-005A allows one operational why-now on resume (not MES stack).

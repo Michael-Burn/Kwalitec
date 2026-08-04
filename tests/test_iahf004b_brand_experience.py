@@ -76,10 +76,11 @@ class TestShellTemplateWiring:
         assert "appearance_switcher" in text
         assert "student/components/navigation.html" in text
 
-    def test_login_includes_alpha_identity(self) -> None:
+    def test_login_includes_student_release_identity(self) -> None:
         text = (ROOT / "app/templates/auth/login.html").read_text(encoding="utf-8")
         assert "landing-alpha-identity" in text
-        assert "partials/internal_alpha_badge.html" in text
+        assert "partials/student_release_badge.html" in text
+        assert "partials/internal_alpha_badge.html" not in text
 
     def test_legacy_workspace_chrome_retired(self) -> None:
         assert not (ROOT / "app/templates/layouts/legacy_workspace.html").exists()
@@ -106,16 +107,17 @@ class TestShellTemplateWiring:
 
 
 class TestBrandExperienceHttp:
-    def test_login_shows_alpha_identity_and_canonical_logo(self, client) -> None:
+    def test_login_shows_student_identity_and_canonical_logo(self, client) -> None:
+        from app.brand_identity import STUDENT_RELEASE_LABEL
+
         resp = client.get("/auth/login")
         assert resp.status_code == 200
         html = resp.get_data(as_text=True)
-        assert INTERNAL_ALPHA_LABEL in html
-        assert FOUNDING_COHORT_LABEL in html
-        assert INTERNAL_ALPHA_BUILD_LABEL in html
+        assert STUDENT_RELEASE_LABEL in html
+        assert "Internal Alpha · Founding Cohort" not in html
         assert APPROVED_LOGO_STATIC_PATH in html
         assert f"Kwalitec v{APP_VERSION}" in html
-        assert "alpha-identity" in html
+        assert "student-beta-badge" in html
 
     def test_authenticated_shell_shows_alpha_identity(self, logged_in_client) -> None:
         resp = logged_in_client.get("/dashboard/")

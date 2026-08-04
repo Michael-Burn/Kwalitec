@@ -1,4 +1,4 @@
-"""LXP-003 Practice Outcome Capture regression tests.
+"""LXP-003 Practice results regression tests.
 
 Covers valid / invalid submissions, boundary values, StudyAttempt creation,
 Evidence Authority invocation, and no unintended Study Progress / readiness /
@@ -425,7 +425,7 @@ class TestPracticeOutcomeHttpFlow:
         response = logged_in_client.get(f"/missions/{mission.id}/session/finish")
         assert response.status_code == 200
         body = response.get_data(as_text=True)
-        assert "Practice Outcome Capture" in body
+        assert "Practice results" in body
         assert "Questions Attempted" in body
         assert "Questions Correct" in body
         assert "Record Study Session" in body
@@ -543,10 +543,10 @@ class TestPracticeOutcomeHttpFlow:
 
         session_page = logged_in_client.get(f"/missions/{mission.id}/session")
         assert session_page.status_code == 200
-        assert b"Finish Study Session" in session_page.data
+        assert b"Finish Session" in session_page.data
 
         finish_get = logged_in_client.get(f"/missions/{mission.id}/session/finish")
-        assert b"Practice Outcome Capture" in finish_get.data
+        assert b"Practice results" in finish_get.data
 
         finish_post = logged_in_client.post(
             f"/missions/{mission.id}/session/finish",

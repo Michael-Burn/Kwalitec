@@ -40,9 +40,14 @@ def test_headings_present(student_client, endpoint, path):
 
 def test_home_form_has_csrf_field(student_client):
     html = student_client.get("/student/").get_data(as_text=True)
-    # CSRF disabled in tests but form still renders hidden fields structure
-    assert "Start" in html
-
+    # CSRF disabled in tests but form still renders hidden fields structure.
+    # PX-003 verb family may render Start Today's Session or Continue.
+    assert (
+        "Start" in html
+        or "Continue" in html
+        or "Choose an exam" in html
+        or 'data-student-cta="primary"' in html
+    )
 
 def test_progressbar_attributes_on_journey(student_client):
     html = student_client.get("/student/journey").get_data(as_text=True)

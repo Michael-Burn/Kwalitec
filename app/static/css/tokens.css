@@ -171,7 +171,7 @@
   --radius-xl: 1rem;
   --radius-full: 9999px;
 
-  /* Motion (UX-001 / PX-004) */
+  /* Motion (UX-001 / PX-004 / PX-006 house system) */
   --transition-fast: 150ms ease-out;
   --transition-base: 200ms ease-out;
   --transition-slow: 250ms ease-out;
@@ -180,6 +180,10 @@
   --transition-sidebar: 220ms ease-out;
   --transition-tooltip: 120ms ease-out;
   --transition-skeleton: 1.2s ease-out;
+  /* PX-B-018 — three intentional house motions only */
+  --motion-page-enter: kw-page-enter var(--transition-page) ease-out;
+  --motion-success-in: kw-success-in var(--transition-slow) ease-out;
+  --motion-disclosure: opacity var(--transition-fast) ease-out;
 
   --sidebar-width: 260px;
   --topnav-height: 56px;
@@ -334,7 +338,11 @@
   }
 }
 
-/* PX-004 — shared success reward + page enter */
+/* PX-006 / PX-B-018 — house motion system (3 patterns; honour reduced motion).
+   1. page-enter — shell / main content presence
+   2. success-in — completion / celebration moments
+   3. disclosure — nav-pending / progressive opacity feedback
+*/
 @keyframes kw-page-enter {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
@@ -345,23 +353,54 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-.page-enter {
-  animation: kw-page-enter var(--transition-page, 250ms) ease-out;
+.page-enter,
+.kw-motion-page {
+  animation: var(--motion-page-enter, kw-page-enter 250ms ease-out);
 }
 
-.success-reward {
+.success-reward,
+.kw-motion-success {
   color: var(--success);
   background: var(--success-bg);
   border: 1px solid color-mix(in srgb, var(--success) 22%, transparent);
   border-radius: var(--radius-lg);
   padding: var(--space-sm) var(--space-lg);
   margin-bottom: var(--space-xl);
-  animation: kw-success-in var(--transition-slow) ease-out;
+  animation: var(--motion-success-in, kw-success-in 250ms ease-out);
+}
+
+.kw-motion-disclosure {
+  transition: var(--motion-disclosure, opacity 150ms ease-out);
+}
+
+/* PX-B-019 — shared icon-only control language */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--touch-target-min, 2.75rem);
+  min-height: var(--touch-target-min, 2.75rem);
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: inherit;
+  line-height: 1;
+}
+.icon-btn svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  stroke-width: 1.75;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .page-enter,
-  .success-reward {
+  .kw-motion-page,
+  .success-reward,
+  .kw-motion-success {
     animation: none;
+  }
+  .kw-motion-disclosure {
+    transition: none;
   }
 }

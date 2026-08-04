@@ -50,13 +50,14 @@ AA_NORMAL_TEXT = 4.5
 
 
 def test_nav_section_label_meets_aa():
-    """B6 (PX-003): 'Main' / 'System' group labels are meaningful navigation
+    """B6 (PX-003) / PX-B-028: 'Main' / 'System' group labels are meaningful navigation
     text (not decorative), so they must clear 4.5:1 like any other label —
-    previously shipped at rgba(255,255,255,.35) which only reached 3.21:1."""
-    assert ".nav-section-label{color:rgba(255, 255, 255, 0.5);" in APP_CSS, (
+    previously shipped at rgba(255,255,255,.35) which only reached 3.21:1.
+    PX-004 raised opacity to 0.72 for clearer AA margin on real displays."""
+    assert ".nav-section-label{color:rgba(255, 255, 255, 0.72);" in APP_CSS, (
         "nav-section-label alpha regressed below the AA-passing value"
     )
-    fg = _composite(WHITE, 0.5, CHROME)
+    fg = _composite(WHITE, 0.72, CHROME)
     ratio = _contrast(fg, CHROME)
     assert ratio >= AA_NORMAL_TEXT, f"nav-section-label only reaches {ratio:.2f}:1"
 

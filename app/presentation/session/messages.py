@@ -40,6 +40,14 @@ FLASH_WARNING = {
     ),
     "pause_failed": "We couldn't pause this session. Please try again.",
     "resume_failed": "We couldn't resume this session. Please try again.",
+    "continue_contention": (
+        "Your session is still open. Wait a moment, then try Continue again — "
+        "this is a temporary hiccup, not a study failure."
+    ),
+    "continue_retry": (
+        "We couldn't open your session just now. Your progress is safe — "
+        "return to Home and tap Continue when you're ready."
+    ),
     "answer_required": "Please enter an answer before continuing.",
     "activity_unavailable": (
         "This activity is temporarily unavailable. Please try again shortly."

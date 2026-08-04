@@ -1,0 +1,38 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.6, pytest-8.3.4, pluggy-1.6.0
+rootdir: /Users/kwalitec/Developer/kwalitec
+configfile: pyproject.toml
+collected 153 items
+
+tests/presentation/student/test_px004_phase2_home_mobile_a11y.py ....... [  4%]
+...........                                                              [ 11%]
+tests/test_rc001_contrast.py ......                                      [ 15%]
+tests/presentation/student/test_templates.py ........................... [ 33%]
+..........................                                               [ 50%]
+tests/presentation/session/test_px003_session_workflow.py ....           [ 52%]
+tests/presentation/student/test_accessibility.py ....................... [ 67%]
+......                                                                   [ 71%]
+tests/presentation/student/test_responsive.py .............              [ 80%]
+tests/presentation/test_sop001_student_os.py .....                       [ 83%]
+tests/application/educational_packages/test_px003_phase1_trust_revision.py . [ 84%]
+.........                                                                [ 90%]
+tests/presentation/session/test_accessibility.py ...........             [ 97%]
+tests/presentation/session/test_px003_session_workflow.py ....           [ 97%]
+
+=============================== warnings summary ===============================
+tests/presentation/student/test_px004_phase2_home_mobile_a11y.py: 5 warnings
+tests/presentation/student/test_templates.py: 22 warnings
+tests/presentation/student/test_accessibility.py: 13 warnings
+tests/presentation/student/test_responsive.py: 4 warnings
+  /Users/kwalitec/Developer/kwalitec/app/application/student_experience/recommendation_commitment.py:595: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    since = datetime.utcnow() - timedelta(days=max(1, within_days))
+
+tests/presentation/student/test_px004_phase2_home_mobile_a11y.py: 8 warnings
+tests/presentation/student/test_templates.py: 24 warnings
+tests/presentation/student/test_accessibility.py: 16 warnings
+tests/presentation/student/test_responsive.py: 4 warnings
+  /Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/sqlalchemy/sql/schema.py:3623: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+====================== 153 passed, 96 warnings in 21.59s =======================

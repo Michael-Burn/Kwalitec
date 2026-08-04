@@ -1,0 +1,22 @@
+{
+  "programme": "OP-001",
+  "title": "Early Access Operations",
+  "status": "STRUCTURE_ONLY",
+  "opened": "2026-08-04",
+  "founder_approval": "PENDING",
+  "invites_authorised": false,
+  "counts": {
+    "invited": 0,
+    "accepted": 0,
+    "activated": 0,
+    "week_1": 0,
+    "week_2": 0,
+    "week_3": 0,
+    "week_4": 0,
+    "completed": 0,
+    "withdrawn": 0,
+    "interview_scheduled": 0,
+    "interview_complete": 0
+  },
+  "notes": "Empty structure only. Do not invent participants or non-zero counts without real ops."
+}

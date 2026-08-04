@@ -28,6 +28,7 @@ from app.presentation.student.exam_week_briefing import (
     build_home_insights,
 )
 from app.presentation.student.view_models import (
+    HistoryPageViewModel,
     HomePageViewModel,
     JourneyPageViewModel,
     ProfilePageViewModel,
@@ -159,6 +160,7 @@ class StudentHomeService:
                 briefing=briefing,
                 insights=insights,
                 syllabus_position=syllabus_position,
+                history=history,
                 ),
             )
 
@@ -196,6 +198,7 @@ class StudentHomeService:
                 briefing=briefing,
                 insights=insights,
                 syllabus_position=syllabus_position,
+                history=history,
                 ),
             )
 
@@ -218,6 +221,7 @@ class StudentHomeService:
                 briefing=briefing,
                 insights=insights,
                 syllabus_position=syllabus_position,
+                history=history,
                 ),
             )
 
@@ -241,6 +245,7 @@ class StudentHomeService:
                 briefing=briefing,
                 insights=insights,
                 syllabus_position=syllabus_position,
+                history=history,
                 ),
             )
 
@@ -264,6 +269,7 @@ class StudentHomeService:
             briefing=None,
             insights=(),
             syllabus_position="",
+            history=history,
             ),
         )
 
@@ -288,6 +294,7 @@ class StudentHomeService:
         briefing: HomeBriefingSection | None = None,
         insights: tuple[HomeInsightRow, ...] = (),
         syllabus_position: str = "",
+        history: HistoryPageViewModel | None = None,
     ) -> StudentHomePage:
         section_title = self._mission_section_title(mission)
         quick_actions = self._quick_actions(
@@ -303,6 +310,86 @@ class StudentHomeService:
         if tutor_available or state == "mission":
             tutor_href = url_for("student.tutor")
         greeting = (home.greeting or "").strip() or _DEFAULT_GREETING
+        density = self._density_presentation(
+            state=state,
+            mission=mission,
+            history=history,
+            home=home,
+        )
+        # PX-B-044 — calm return-after-gap framing (presentation only).
+        days_gap = self._days_since_last_session(history)
+        gap_copy = None
+        try:
+            from app.application.student_experience.student_microcopy import (
+                return_after_gap_copy,
+            )
+
+            gap_copy = return_after_gap_copy(
+                days_since_last=days_gap,
+                display_name=None,
+                in_progress=bool(
+                    mission is not None and mission.primary_kind == "link"
+                ),
+            )
+            if gap_copy.greeting and (
+                not (home.greeting or "").strip()
+                or greeting == _DEFAULT_GREETING
+            ):
+                greeting = gap_copy.greeting
+            if gap_copy.support_line and not density["continuity_line"]:
+                density = {**density, "continuity_line": gap_copy.support_line}
+        except Exception:
+            pass
+
+        exam_horizon_line = ""
+        try:
+            from app.application.student_experience.student_microcopy import (
+                exam_horizon_copy,
+            )
+
+            days_to_exam = self._days_to_exam_from_home(home)
+            horizon = exam_horizon_copy(days_to_exam)
+            if horizon is not None and horizon.support_line:
+                exam_horizon_line = horizon.support_line
+        except Exception:
+            exam_horizon_line = ""
+
+        preparing = bool(
+            state == "quiet"
+            or (
+                mission is not None
+                and not (mission.title or "").strip()
+                and mission.primary_kind in {"none", "start_form"}
+            )
+        )
+
+        milestone_acknowledgement = ""
+        diligence_line = ""
+        try:
+            from app.application.student_experience.student_microcopy import (
+                continuity_front_milestone_ack,
+                diligence_reinforcement_copy,
+            )
+
+            if state == "day_complete" and mission is not None:
+                ack = continuity_front_milestone_ack(mission.title)
+                if ack:
+                    milestone_acknowledgement = ack
+            dil = diligence_reinforcement_copy(
+                days_since_last=days_gap,
+                streak_days=None,
+            )
+            # Prefer gap continuity over diligence when both would speak.
+            if (
+                dil.support_line
+                and not density["continuity_line"]
+                and not exam_horizon_line
+            ):
+                diligence_line = dil.support_line
+        except Exception:
+            milestone_acknowledgement = ""
+            diligence_line = ""
+
         return StudentHomePage(
             mission=mission,
             learning_queue=queue,
@@ -325,6 +412,15 @@ class StudentHomeService:
             briefing=briefing if state != "empty" else None,
             insights=insights if state != "empty" else (),
             syllabus_position=syllabus_position if state != "empty" else "",
+            density_mode=density["density_mode"],
+            continuity_line=density["continuity_line"],
+            show_progress_strip=density["show_progress_strip"],
+            show_tomorrow_preview=density["show_tomorrow_preview"],
+            show_quick_actions=density["show_quick_actions"],
+            exam_horizon_line=exam_horizon_line,
+            preparing_mission=preparing,
+            milestone_acknowledgement=milestone_acknowledgement,
+            diligence_line=diligence_line,
         )
 
     def _forecast_insight(
@@ -418,11 +514,142 @@ class StudentHomeService:
         if mission is None:
             return "Today's Mission"
         if mission.primary_kind == "link":
-            return "Continue Session"
+            # PX-B-034: section chrome stays "Today's Mission"; CTA uses Continue.
+            return "Today's Mission"
         if mission.primary_kind == "revision_ack":
             return "Today's Mission"
         return "Today's Mission"
 
+    @staticmethod
+    def _density_presentation(
+        *,
+        state: str,
+        mission: HomeMission | None,
+        history: HistoryPageViewModel | None,
+        home: HomePageViewModel,
+    ) -> dict[str, object]:
+        """PX-B-048 / PX-B-010 — contextual chrome density (presentation only).
+
+        Does not re-select missions. Compresses secondary blocks for day-zero
+        and surfaces a continuity line for returning students.
+        """
+        session_count = 0
+        if history is not None:
+            session_count = int(getattr(history, "session_count", 0) or 0)
+            if session_count <= 0 and getattr(history, "sessions", None):
+                session_count = len(history.sessions)
+
+        continuity = ""
+        if state == "empty" or (
+            session_count == 0 and state in {"quiet", "mission", "day_complete"}
+        ):
+            mode = "day_zero"
+            # Empty still needs choose-exam actions; quiet/mission day-zero
+            # keeps the primary CTA and folds secondary chrome.
+            show_progress = False
+            show_tomorrow = False
+            show_actions = state in {"empty", "quiet"}
+        elif mission is not None and mission.primary_kind == "link":
+            mode = "returning"
+            topic = (mission.title or mission.objective or "").strip()
+            continuity = (
+                f"You left off on {topic}."
+                if topic
+                else "Continue where you left off."
+            )
+            show_progress = True
+            show_tomorrow = True
+            show_actions = True
+        elif session_count < 5:
+            mode = "returning"
+            topic = ""
+            if mission is not None:
+                topic = (mission.title or mission.objective or "").strip()
+            if not topic and home.educational and getattr(
+                home.educational, "today_topic_title", ""
+            ):
+                topic = str(home.educational.today_topic_title).strip()
+            continuity = (
+                f"Your next sitting: {topic}."
+                if topic
+                else "Your authorised next sitting is ready below."
+            )
+            show_progress = True
+            show_tomorrow = True
+            show_actions = True
+        else:
+            mode = "established"
+            show_progress = True
+            show_tomorrow = True
+            show_actions = True
+
+        return {
+            "density_mode": mode,
+            "continuity_line": continuity,
+            "show_progress_strip": show_progress,
+            "show_tomorrow_preview": show_tomorrow,
+            "show_quick_actions": show_actions,
+        }
+
+    @staticmethod
+    def _days_since_last_session(
+        history: HistoryPageViewModel | None,
+    ) -> int | None:
+        """Calendar days since the most recent History session (presentation)."""
+        if history is None:
+            return None
+        sessions = getattr(history, "sessions", None) or ()
+        if not sessions:
+            return None
+        from datetime import date, datetime
+
+        latest: date | None = None
+        for row in sessions:
+            raw = (
+                getattr(row, "completed_on", None)
+                or getattr(row, "date", None)
+                or getattr(row, "session_date", None)
+                or getattr(row, "completed_at", None)
+            )
+            if raw is None:
+                continue
+            if isinstance(raw, datetime):
+                d = raw.date()
+            elif isinstance(raw, date):
+                d = raw
+            else:
+                text = str(raw).strip()[:10]
+                try:
+                    d = date.fromisoformat(text)
+                except ValueError:
+                    continue
+            if latest is None or d > latest:
+                latest = d
+        if latest is None:
+            return None
+        return max(0, (date.today() - latest).days)
+
+    @staticmethod
+    def _days_to_exam_from_home(home: HomePageViewModel) -> int | None:
+        """Days until exam from Home VM countdown fields (presentation only)."""
+        countdown = getattr(home, "countdown", None)
+        if countdown is not None:
+            raw = getattr(countdown, "days", None)
+            if raw is not None:
+                try:
+                    return int(raw)
+                except (TypeError, ValueError):
+                    pass
+            label = getattr(countdown, "label", None) or ""
+            text = str(label).strip().lower()
+            if "today" in text:
+                return 0
+            if text.startswith("1 day"):
+                return 1
+            parts = text.split()
+            if parts and parts[0].isdigit():
+                return int(parts[0])
+        return None
     def _select_mission(self, home: HomePageViewModel) -> HomeMission | None:
         """Selection algorithm per DX-005A Architecture §5 (unchanged)."""
         subject = self._subject_name(home)
@@ -463,7 +690,7 @@ class StudentHomeService:
                 mission_id=mission_id,
                 session_id=session_id,
                 recommendation_key=rec_key,
-                title=title or "Continue Session",
+                title=title or "Today's Session",
                 difficulty_label=difficulty,
                 learning_objective=objective or "Continue your open session",
             )
@@ -479,14 +706,14 @@ class StudentHomeService:
                 status_label=self._status_line("In progress", duration),
                 why_now=why_now or "Open session — finish and record progress",
                 after_completion=after,
-                primary_label="Continue Session",
+                primary_label="Continue",
                 primary_kind="link",
                 primary_href=url_for("session.overview", session_id=session_id),
                 duration_label=duration,
                 mission_id=mission_id,
                 session_id=session_id,
                 recommendation_key=rec_key,
-                title=title or "Finish Session",
+                title=title or "Today's Session",
                 difficulty_label=difficulty,
                 learning_objective=objective or "Wrap up your open session",
             )
@@ -573,9 +800,23 @@ class StudentHomeService:
         streak = ""
         if profile and (profile.streak_label or "").strip():
             streak = profile.streak_label.strip()
-            if streak == "0 days":
-                streak = "No streak yet"
-            elif not streak.lower().endswith("streak"):
+            if streak == "0 days" or streak.lower() in {
+                "no streak yet",
+                "0 day streak",
+            }:
+                # PX-B-047 — empty rhythm is calm, not punitive.
+                try:
+                    from app.application.student_experience.student_microcopy import (
+                        DILIGENCE_EMPTY_STREAK,
+                    )
+
+                    streak = DILIGENCE_EMPTY_STREAK
+                except Exception:
+                    streak = "Study rhythm builds as you show up"
+            elif (
+                not streak.lower().endswith("streak")
+                and "rhythm" not in streak.lower()
+            ):
                 streak = f"{streak} streak"
 
         progress_label = ""
@@ -631,25 +872,33 @@ class StudentHomeService:
 
     @staticmethod
     def _mission_title(home: HomePageViewModel, *, objective: str) -> str:
-        # EA-006: certified package display title replaces syllabus-paste chrome.
+        # PX-003 / PX-B-002: package-id / Runtime C title first — never
+        # soft-match topic_title_keywords for student Home chrome.
         try:
-            from app.application.educational_packages.composition_overlay import (
-                display_title_for_topic,
+            from app.application.educational_packages.student_chrome import (
+                display_title_for_package_id,
+                resolve_package_for_student_chrome,
             )
 
             edu = home.educational
-            pack_title = display_title_for_topic(
-                topic_id=getattr(edu, "today_topic_id", "") if edu else "",
-                topic_code=getattr(edu, "today_topic_code", "") if edu else "",
-                topic_title=(
-                    (getattr(edu, "today_topic_title", "") if edu else "")
-                    or (home.primary_mission_title or "")
-                    or objective
-                ),
+            pack_id = ""
+            if edu:
+                pack_id = str(
+                    getattr(edu, "educational_package_id", "") or ""
+                ).strip()
+            if pack_id:
+                pack_title = display_title_for_package_id(pack_id)
+                if pack_title:
+                    return pack_title
+            pack = resolve_package_for_student_chrome(
+                educational_package_id=pack_id,
                 subject_id=getattr(edu, "subject_code", "") if edu else "",
+                syllabus_topic_code=(
+                    getattr(edu, "today_topic_code", "") if edu else ""
+                ),
             )
-            if pack_title:
-                return pack_title
+            if pack is not None and (pack.display_title or "").strip():
+                return pack.display_title.strip()
         except Exception:  # noqa: BLE001 — presentation must stay resilient
             pass
         edu = home.educational
@@ -1057,18 +1306,27 @@ class StudentHomeService:
     @staticmethod
     def _after_completion(home: HomePageViewModel) -> str:
         try:
-            from app.application.educational_packages.loader import (
-                find_educational_package,
+            from app.application.educational_packages.student_chrome import (
+                expected_benefit_for_package_id,
+                resolve_package_for_student_chrome,
             )
 
             edu = home.educational
-            pack = find_educational_package(
-                topic_code=getattr(edu, "today_topic_code", "") if edu else "",
-                topic_title=(
-                    (getattr(edu, "today_topic_title", "") if edu else "")
-                    or (home.primary_mission_title or "")
-                ),
+            pack_id = ""
+            if edu:
+                pack_id = str(
+                    getattr(edu, "educational_package_id", "") or ""
+                ).strip()
+            if pack_id:
+                benefit = expected_benefit_for_package_id(pack_id)
+                if benefit:
+                    return benefit[:140]
+            pack = resolve_package_for_student_chrome(
+                educational_package_id=pack_id,
                 subject_id=getattr(edu, "subject_code", "") if edu else "",
+                syllabus_topic_code=(
+                    getattr(edu, "today_topic_code", "") if edu else ""
+                ),
             )
             if pack is not None and pack.expected_benefit:
                 return pack.expected_benefit.strip()[:140]
@@ -1089,23 +1347,22 @@ class StudentHomeService:
 
     @staticmethod
     def _start_primary_label(home: HomePageViewModel) -> str:
+        from app.application.student_experience.study_verbs import (
+            START_TODAY,
+            canonical_start_label,
+        )
+
         raw = (
             home.session_control_label
             or home.primary_cta_label
-            or "Start Today's Session"
+            or START_TODAY
         ).strip()
-        lowered = raw.lower()
-        if "resume" in lowered or "continue" in lowered:
-            return "Continue"
-        if "start study session" in lowered or "start session" in lowered:
-            return "Start Today's Session"
-        if lowered in {"start", "begin"}:
-            return "Start Today's Session"
-        if raw in {"Start Today's Session", "Start", "Begin"}:
-            return "Start Today's Session"
-        if lowered == "continue":
-            return "Continue"
-        return raw if raw else "Start Today's Session"
+        in_progress = bool(
+            (home.session_id or "").strip()
+            or (home.session_control or "").strip().lower()
+            in {"resume", "continue"}
+        )
+        return canonical_start_label(raw, in_progress=in_progress)
 
     @staticmethod
     def _status_line(status: str, duration: str) -> str:

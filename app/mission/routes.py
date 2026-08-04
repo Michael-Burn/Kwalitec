@@ -711,7 +711,7 @@ def finish_study_session(mission_id: int):
 
     return render_template(
         "mission/session_practice_outcome.html",
-        title="Practice Outcome Capture",
+        title="Practice results",
         mission=mission,
         form=form,
         mission_narrative=mission_narrative,
@@ -746,7 +746,7 @@ def study_session_recorded(mission_id: int):
 
     return render_template(
         "mission/session_recorded.html",
-        title="Study Session Feedback",
+        title="What happened today",
         mission=mission,
         mission_narrative=mission_narrative,
         session_context=session_context,

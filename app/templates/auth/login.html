@@ -11,15 +11,15 @@
                 {% endwith %}
             </a>
 
-            {# Logo lockup already carries the wordmark — do not repeat product_name. #}
-            <div class="landing-brand-stack">
+            {# Logo lockup already carries the wordmark — do not repeat product_name (PX-B-021). #}
+            <div class="landing-brand-stack" data-px006="login-lockup">
                 <p class="landing-descriptor">{{ product_descriptor }}</p>
                 <p class="landing-value">{{ product_value_proposition }}</p>
             </div>
 
             <div class="landing-alpha-identity">
-                {% with alpha_badge_variant='full' %}
-                    {% include "partials/internal_alpha_badge.html" %}
+                {% with release_badge_variant='full' %}
+                    {% include "partials/student_release_badge.html" %}
                 {% endwith %}
             </div>
 
@@ -104,9 +104,19 @@
 
             {% if internal_alpha_enabled %}
             <div class="landing-onboarding-note" role="note">
-                <h2 class="landing-onboarding-title">New to the Internal Alpha?</h2>
+                <h2 class="landing-onboarding-title">{{ px_microcopy.STUDENT_WELCOME_TITLE }}</h2>
                 <p class="landing-onboarding-text mb-0">
                     Access is invite-only — sign in with credentials from your coordinator.
+                    There is no self-service password reset yet. If you are locked out or
+                    have forgotten your password, contact your coordinator; recovery is
+                    handled operationally (typically within one business day).
+                </p>
+            </div>
+            {% else %}
+            <div class="landing-onboarding-note" role="note">
+                <p class="landing-onboarding-text mb-0">
+                    If you cannot sign in, contact your coordinator for account recovery.
+                    Self-service password reset is not available in this Version 1 release.
                 </p>
             </div>
             {% endif %}

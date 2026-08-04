@@ -278,7 +278,38 @@ class StudentRuntimeCoordinator:
         session_id: str | None = None,
         mission_instance_id: str | None = None,
     ) -> SessionBindingResult:
-        """Resume an open LearningSessionRuntime session for Home Primary."""
+        """Resume an open LearningSessionRuntime session for Home Primary.
+
+        PX-B-008: one silent retry on optimistic-lock contention before surfacing
+        SessionSpineUnavailable — infra recovery, not educational failure.
+        """
+        try:
+            return self._resume_session_once(
+                user_id=user_id,
+                session_id=session_id,
+                mission_instance_id=mission_instance_id,
+            )
+        except Exception as exc:
+            from app.infrastructure.persistence.optimistic_locking import (
+                OptimisticLockError,
+            )
+
+            if not isinstance(exc, OptimisticLockError):
+                raise
+            return self._resume_session_once(
+                user_id=user_id,
+                session_id=session_id,
+                mission_instance_id=mission_instance_id,
+            )
+
+    def _resume_session_once(
+        self,
+        *,
+        user_id: int,
+        session_id: str | None = None,
+        mission_instance_id: str | None = None,
+    ) -> SessionBindingResult:
+        """Single resume attempt (extracted for PX-B-008 contention retry)."""
         if not self.session_primary_enabled():
             raise SessionSpineUnavailable("SR_SESSION_PRIMARY is off")
 

@@ -514,7 +514,59 @@ class EducationalRuntimeEngineService:
             mission_date=day,
         ).first()
         if existing is not None:
-            if not self._mission_exceeds_session_budget(
+            # PX-B-005: a completed sitting must not block terminal Revision when
+            # the journey owes a revision successor. Same-day completed learning
+            # missions are retired so CR-R1 / class equivalents can generate
+            # without ops force-R1 (RO15-R3).
+            # PX-B-006: first-sitting race — a GENERATED/ACCEPTED mission bound
+            # to the wrong campaign package (e.g. Iota before Rho engaged) must
+            # not stick via the idempotent return. Timing only; selection unchanged.
+            owed = None
+            if memory_pack is not None:
+                owed = memory_pack
+            else:
+                from app.application.educational_packages.selection import (
+                    resolve_active_educational_package,
+                )
+
+                owed = resolve_active_educational_package(
+                    subject_id=enrolment.subject_code,
+                    syllabus_topic_code=progress.current_topic_id or "",
+                    completed_package_ids=completed_packs,
+                    last_completed_package_id=last_pack_id,
+                )
+            existing_pack = self._educational_package_id_for_mission(
+                existing.mission_instance_id
+            )
+            if existing.status == MissionStatus.COMPLETED.value:
+                if (
+                    owed is not None
+                    and owed.package_id
+                    and owed.package_id != existing_pack
+                    and (owed.mode or "").strip().lower() == "revision"
+                ):
+                    # Same calendar day after learning-chain tip — retire the
+                    # completed sitting so terminal Revision can generate
+                    # without ops force-R1 (PX-B-005 / RO15-R3).
+                    db.session.delete(existing)
+                    db.session.flush()
+                    existing = None
+            elif (
+                existing.status
+                in {
+                    MissionStatus.GENERATED.value,
+                    MissionStatus.ACCEPTED.value,
+                }
+                and owed is not None
+                and owed.package_id
+                and existing_pack
+                and owed.package_id != existing_pack
+            ):
+                # Campaign join race: wrong inventory before chain engaged.
+                db.session.delete(existing)
+                db.session.flush()
+                existing = None
+            if existing is not None and not self._mission_exceeds_session_budget(
                 existing,
                 user_id=user_id,
                 artefacts=artefacts,
@@ -525,13 +577,14 @@ class EducationalRuntimeEngineService:
                     artefacts=artefacts,
                     completed_topic_ids=progress.completed_topic_ids,
                 )
-            # Pre-chunk missions packed an entire chapter into one sitting —
-            # retire and regenerate to fit the student's session length.
-            self._retire_oversized_daily_mission(
-                existing,
-                enrolment=enrolment,
-                plan=plan,
-            )
+            if existing is not None:
+                # Pre-chunk missions packed an entire chapter into one sitting —
+                # retire and regenerate to fit the student's session length.
+                self._retire_oversized_daily_mission(
+                    existing,
+                    enrolment=enrolment,
+                    plan=plan,
+                )
 
         package = self._authority.get_active(enrolment.subject_code)
         package_dict = package.package if package is not None else {}
@@ -1938,12 +1991,19 @@ class EducationalRuntimeEngineService:
         artefacts: EducationalArtefactSnapshot,
         topic_code: str,
     ) -> str | None:
-        """Map a package topic_code (e.g. 2.1 / CP-R1) onto a curriculum topic_id."""
+        """Map package topic_code (e.g. 2.1 / CR-R1) to a curriculum topic_id."""
         code = (topic_code or "").strip()
         if not code:
             return None
-        # Revision campaign-day codes: fall back to tip topic 5.1 when present.
-        if code.upper().startswith("CP-") and not code[0].isdigit():
+        # Campaign revision codes (CA-R1, CP-R1, CR-R1, …) are not syllabus
+        # numbers — bind to tip topic 5.1 when present so tip-complete
+        # terminal Revision can generate without force-R1 (PX-B-005).
+        upper = code.upper()
+        if (
+            not code[0].isdigit()
+            and "-" in upper
+            and ("-R" in upper or upper.endswith("R1"))
+        ):
             code = "5.1"
         for topic in artefacts.topics or ():
             t_code = str(topic.get("topic_code") or "").strip()

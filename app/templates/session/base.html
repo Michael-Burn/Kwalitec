@@ -13,8 +13,12 @@
 <link href="{{ versioned_static('css/design_system.css') }}" rel="stylesheet">
 {% endblock %}
 
-{% block eos_modals %}{% endblock %}
+{% block eos_modals %}
+{# PX-B-016: Finish confirmation uses the shared confirm modal. #}
+{% include "partials/confirm_modal.html" %}
+{% endblock %}
 
 {% block extra_scripts %}
+<script src="{{ versioned_static('js/confirm-modal.js') }}"></script>
 <script src="{{ versioned_static('js/session/study_session_eos.js') }}" defer></script>
 {% endblock %}

@@ -57,9 +57,11 @@
             </div>
         </header>
 
-        <main id="student-main" class="student-main {% block student_main_modifier %}student-main--workspace{% endblock %}" role="main" tabindex="-1">
+        <main id="student-main" class="student-main {% block student_main_modifier %}student-main--workspace{% endblock %} kw-motion-page" role="main" tabindex="-1">
             {% include "partials/flash_messages.html" %}
             {% block page_header %}{% endblock %}
+            {% from "partials/skeleton.html" import skeleton_nav_pending %}
+            {{ skeleton_nav_pending(label='Loading') }}
             {% block content %}{% endblock %}
         </main>
 
@@ -83,11 +85,11 @@
     {% include "partials/confirm_modal.html" %}
     {% endblock %}
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
     {# app.js: welcome-modal focus behaviour; sidebar drawer is a no-op without .sidebar #}
-    <script src="{{ versioned_static('js/app.js') }}"></script>
-    <script src="{{ versioned_static('js/confirm-modal.js') }}"></script>
-    <script src="{{ versioned_static('js/student.js') }}"></script>
+    <script src="{{ versioned_static('js/app.js') }}" defer></script>
+    <script src="{{ versioned_static('js/confirm-modal.js') }}" defer></script>
+    <script src="{{ versioned_static('js/student.js') }}" defer></script>
     {% block extra_scripts %}{% endblock %}
 </body>
 </html>

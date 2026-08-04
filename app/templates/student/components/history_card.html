@@ -26,6 +26,9 @@
     {% if session.progress_line %}
     <p class="ds-list__meta">{{ session.progress_line }}</p>
     {% endif %}
+    {% if session.why_next_line %}
+    <p class="ds-list__meta" data-px004="history-why-next">{{ session.why_next_line }}</p>
+    {% endif %}
     {% if session.sitting_report_href %}
     <p class="ds-list__meta">
       <a href="{{ session.sitting_report_href }}" data-sitting-report-archive="true">

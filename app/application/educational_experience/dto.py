@@ -54,6 +54,7 @@ class MissionEducationSnapshot:
     suggested_next_action: str
     review_point: str
     judgement: str
+    educational_package_id: str = ""
 
 
 @dataclass(frozen=True)

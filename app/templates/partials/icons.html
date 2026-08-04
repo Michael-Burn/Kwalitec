@@ -15,7 +15,7 @@
   Adding a new icon: add one branch below with a stable `name`. Do not
   hand-inline a duplicate <svg> for a name that already exists here.
 #}
-{% macro icon(name, size=20, stroke_width=2, class='') %}
+{% macro icon(name, size=20, stroke_width=1.75, class='') %}
 {%- if name == 'home' -%}
 <svg width="{{ size }}" height="{{ size }}" fill="none" stroke="currentColor" stroke-width="{{ stroke_width }}" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="{{ class }}" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
 {%- elif name == 'journey' -%}

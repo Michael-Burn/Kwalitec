@@ -1,0 +1,12 @@
+{
+  "local_pass": true,
+  "live_job_id": "job-d9ov1bfqj5pc738dt4g0",
+  "live_job_status": "succeeded",
+  "count": 130,
+  "rho": 10,
+  "pi": 10,
+  "after": "CR-D1",
+  "cold_1_1": "CA-D1",
+  "cold_5_1": "CD-D16",
+  "cold_4_2": "CD-D6"
+}

@@ -1,0 +1,43 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.6, pytest-8.3.4, pluggy-1.6.0
+rootdir: /Users/kwalitec/Developer/kwalitec
+configfile: pyproject.toml
+collected 165 items
+
+tests/presentation/student/test_px004_phase2_home_mobile_a11y.py ....... [  4%]
+...........                                                              [ 10%]
+tests/presentation/student/test_px005_phase3_microcopy_reliability.py .. [ 12%]
+.............                                                            [ 20%]
+tests/presentation/student/test_px006_phase4_performance_moments.py .... [ 22%]
+...................                                                      [ 33%]
+tests/presentation/student/test_px007_founder_certification.py ......... [ 39%]
+...                                                                      [ 41%]
+tests/presentation/session/test_px003_session_workflow.py ....           [ 43%]
+tests/presentation/student/test_accessibility.py ....................... [ 57%]
+......                                                                   [ 61%]
+tests/presentation/session/test_accessibility.py ...........             [ 67%]
+tests/test_rc001_contrast.py ......                                      [ 71%]
+tests/ga/test_failure_modes.py ...........                               [ 78%]
+tests/test_dx006b_student_home.py ..........                             [ 84%]
+tests/test_alpha_001_infrastructure.py F......F..................        [100%]
+
+=================================== FAILURES ===================================
+/Users/kwalitec/Developer/kwalitec/tests/test_alpha_001_infrastructure.py:70: assert 'Meet Study Sensei' in '\n<!doctype html>\n<html lang="en">\n<head>\n    <meta charset="utf-8">\n    <meta name="viewport" content="width=dev...g1" defer></script>\n    <script src="/static/js/student.js?v=2.0.0-beta.1-g1" defer></script>\n    \n</body>\n</html>'
+/Users/kwalitec/Developer/kwalitec/tests/test_alpha_001_infrastructure.py:167: AssertionError: assert frozenset({'c...tarted', ...}) == {'coach_opene...started', ...}
+=============================== warnings summary ===============================
+tests/presentation/student/test_px004_phase2_home_mobile_a11y.py: 5 warnings
+tests/presentation/student/test_accessibility.py: 13 warnings
+  /Users/kwalitec/Developer/kwalitec/app/application/student_experience/recommendation_commitment.py:595: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    since = datetime.utcnow() - timedelta(days=max(1, within_days))
+
+tests/presentation/student/test_px004_phase2_home_mobile_a11y.py: 8 warnings
+tests/presentation/student/test_accessibility.py: 16 warnings
+tests/ga/test_failure_modes.py: 309 warnings
+  /Users/kwalitec/Developer/kwalitec/.venv/lib/python3.14/site-packages/sqlalchemy/sql/schema.py:3623: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_alpha_001_infrastructure.py::TestAlphaOnboarding::test_onboarding_page_explains_core_concepts
+FAILED tests/test_alpha_001_infrastructure.py::TestPresentationTelemetry::test_allowed_events_match_alpha_contract
+================= 2 failed, 163 passed, 351 warnings in 11.93s =================

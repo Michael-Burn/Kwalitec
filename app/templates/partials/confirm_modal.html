@@ -1,4 +1,4 @@
-{# PX-002A T2-4: one reusable confirmation modal for destructive actions.
+{# PX-002A T2-4 / PX-B-023: reusable confirmation modal for destructive actions.
    Replaces native browser confirm() dialogs (Study Plan archive/delete,
    Settings restore) with the app's own styled, accessible modal.
 
@@ -11,8 +11,17 @@
      </button>
    The trigger must be inside the <form> it should submit on confirmation.
 #}
-<div class="modal fade" id="confirm-modal" tabindex="-1" aria-labelledby="confirm-modal-title" aria-hidden="true">
-    <div class="modal-dialog">
+<div
+  class="modal fade"
+  id="confirm-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="confirm-modal-title"
+  aria-hidden="true"
+  data-px004="confirm-modal"
+>
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="modal-title h5" id="confirm-modal-title">Confirm</h2>
@@ -26,3 +35,16 @@
         </div>
     </div>
 </div>
+<p
+  id="confirm-modal-fallback"
+  class="visually-hidden"
+  role="status"
+  aria-live="polite"
+  data-px004="confirm-fallback"
+  hidden
+></p>
+<noscript>
+  <p class="small text-muted" data-px004="confirm-noscript">
+    JavaScript is required to confirm destructive actions safely. If a confirm dialog does not appear, cancel and retry with scripts enabled.
+  </p>
+</noscript>

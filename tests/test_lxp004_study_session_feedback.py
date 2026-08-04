@@ -1,4 +1,4 @@
-"""LXP-004 Study Session Feedback & Educational Explainability regression tests.
+"""LXP-004 What happened today & Educational Explainability regression tests.
 
 Covers practice / no-practice / partial / abandoned paths, truthfulness,
 forbidden unsupported claims, and student-safe educational wording.
@@ -322,7 +322,7 @@ class TestStudySessionFeedbackHttpFlow:
         )
         assert response.status_code == 200
         body = response.get_data(as_text=True)
-        assert "Study Session Feedback" in body
+        assert "What happened today" in body
         assert "What happened today?" in body
         assert "What the system observed" in body
         assert "What can Study Sensei honestly conclude?" in body
@@ -353,7 +353,7 @@ class TestStudySessionFeedbackHttpFlow:
         )
         assert response.status_code == 200
         body = response.get_data(as_text=True)
-        assert "Study Session Feedback" in body
+        assert "What happened today" in body
         assert "No practice questions were recorded today." in body
         assert "cannot yet update" in body.lower()
         assert 'data-lxp004-feedback="no_practice"' in body
@@ -389,5 +389,5 @@ class TestStudySessionFeedbackHttpFlow:
         )
         assert response.status_code == 200
         body = response.get_data(as_text=True)
-        assert "Study Session Feedback" in body
+        assert "What happened today" in body
         assert "6 practice questions" in body

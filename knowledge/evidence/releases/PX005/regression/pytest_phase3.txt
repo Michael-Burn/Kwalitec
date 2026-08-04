@@ -1,0 +1,85 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.6, pytest-8.3.4, pluggy-1.6.0
+rootdir: /Users/kwalitec/Developer/kwalitec
+configfile: pyproject.toml
+collected 204 items
+
+tests/presentation/student/test_px005_phase3_microcopy_reliability.py .. [  0%]
+.............                                                            [  7%]
+tests/presentation/student/test_px004_phase2_home_mobile_a11y.py ....... [ 10%]
+...........                                                              [ 16%]
+tests/application/educational_packages/test_px003_phase1_trust_revision.py . [ 16%]
+.........                                                                [ 21%]
+tests/presentation/session/test_px003_session_workflow.py ....           [ 23%]
+tests/test_px001_brand_identity.py .......                               [ 26%]
+tests/test_iahf004b_brand_experience.py .............                    [ 32%]
+tests/test_rr001b_internal_alpha_onboarding.py ......                    [ 35%]
+tests/test_lxp003_practice_outcome_capture.py ..................         [ 44%]
+tests/test_lxp004_study_session_feedback.py ..................           [ 53%]
+tests/test_lxp002_study_session_experience.py .........                  [ 57%]
+tests/test_ptp002_single_source_of_truth.py ...........                  [ 63%]
+tests/presentation/student/test_accessibility.py ....................... [ 74%]
+......                                                                   [ 77%]
+tests/presentation/session/test_accessibility.py ...........             [ 82%]
+tests/test_rc001_contrast.py ......                                      [ 85%]
+tests/test_dx006b_student_home.py ..........                             [ 90%]
+tests/test_rip001_daily_checkin.py ...................                   [100%]
+
+=============================== warnings summary ===============================
+tests/presentation/student/test_px004_phase2_home_mobile_a11y.py: 5 warnings
+tests/test_px001_brand_identity.py: 1 warning
+tests/presentation/student/test_accessibility.py: 13 warnings
+  /Users/kwalitec/Developer/kwalitec/app/application/student_experience/recommendation_commitment.py:595: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    since = datetime.utcnow() - timedelta(days=max(1, within_days))
+
+tests/presentation/student/test_px004_phase2_home_mobile_a11y.py: 8 warnings
+tests/test_px001_brand_identity.py: 2 warnings
+tests/test_lxp003_practice_outcome_capture.py: 179 warnings
+tests/test_lxp004_study_session_feedback.py: 60 warnings
+tests/test_lxp002_study_session_experience.py: 85 warnings
+tests/test_ptp002_single_source_of_truth.py: 105 warnings
+tests/presentation/student/test_accessibility.py: 16 warnings
+tests/test_rip001_daily_checkin.py: 58 warnings
+  /Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/sqlalchemy/sql/schema.py:3623: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+tests/test_lxp003_practice_outcome_capture.py: 22 warnings
+tests/test_lxp004_study_session_feedback.py: 13 warnings
+tests/test_lxp002_study_session_experience.py: 11 warnings
+tests/test_ptp002_single_source_of_truth.py: 21 warnings
+tests/test_rip001_daily_checkin.py: 2 warnings
+  /Users/kwalitec/Developer/kwalitec/app/services/study_session_service.py:188: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    mission = Mission.query.get(mission_id)
+
+tests/test_lxp003_practice_outcome_capture.py: 11 warnings
+tests/test_lxp004_study_session_feedback.py: 4 warnings
+tests/test_lxp002_study_session_experience.py: 4 warnings
+tests/test_ptp002_single_source_of_truth.py: 5 warnings
+  /Users/kwalitec/Developer/kwalitec/app/services/mission_service.py:254: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    mission = Mission.query.get(mission_id)
+
+tests/test_lxp003_practice_outcome_capture.py: 10 warnings
+tests/test_lxp004_study_session_feedback.py: 5 warnings
+tests/test_lxp002_study_session_experience.py: 4 warnings
+tests/test_ptp002_single_source_of_truth.py: 5 warnings
+  /Users/kwalitec/Developer/kwalitec/app/services/learning_service.py:59: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    mission = Mission.query.get(mission_id)
+
+tests/test_lxp003_practice_outcome_capture.py: 8 warnings
+tests/test_lxp004_study_session_feedback.py: 6 warnings
+tests/test_lxp002_study_session_experience.py: 7 warnings
+tests/test_ptp002_single_source_of_truth.py: 11 warnings
+  /Users/kwalitec/Developer/kwalitec/app/services/recommendation_service.py:61: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return datetime.utcnow().replace(microsecond=0).isoformat()
+
+tests/test_lxp003_practice_outcome_capture.py::TestPracticeOutcomeHttpFlow::test_full_lifecycle_finish_to_practice
+tests/test_lxp002_study_session_experience.py::TestStudySessionLifecycle::test_start_session_moves_pending_to_in_progress
+tests/test_lxp002_study_session_experience.py::TestStudySessionLifecycle::test_full_http_lifecycle_yes_completion
+tests/test_ptp002_single_source_of_truth.py::TestAuthoritativeSingleWorkflow::test_full_closure_records_one_attempt
+tests/test_ptp002_single_source_of_truth.py::TestNoBehaviouralRegressions::test_practice_capture_still_works
+tests/test_ptp002_single_source_of_truth.py::TestNoBehaviouralRegressions::test_skip_practice_still_closes_session
+  /Users/kwalitec/Developer/kwalitec/app/services/mission_service.py:220: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    mission = Mission.query.get(mission_id)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+====================== 204 passed, 687 warnings in 19.45s ======================

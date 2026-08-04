@@ -1,6 +1,7 @@
 {% extends "student/base.html" %}
 {% set title = home.page_title if home else 'Home' %}
 {% set ws = home.workspace if home and home.workspace and home.workspace.enabled else none %}
+{% set density = home.density_mode if home and home.density_mode else 'established' %}
 {% from "design_system/macros.html" import
   ds_mission_hero,
   ds_study_signals,
@@ -8,7 +9,7 @@
   ds_button
 %}
 
-{# UX-001: page owns the single H1 — suppress competing shell header. #}
+{# UX-001 / PX-B-010: page owns the single H1 — suppress competing shell header. #}
 {% block page_header %}{% endblock %}
 
 {% block extra_head %}
@@ -23,14 +24,30 @@
   data-ux="premium-home"
   data-kwp="013"
   data-workspace="adaptive-study"
+  data-px004="home-composition"
+  data-density="{{ density }}"
 >
-  {# ——— 1. Greeting ——— #}
+  {# ——— 1. Greeting (one-composition lead) ——— #}
   <header class="ds-os-home__greeting" data-workspace-section="greeting">
-    <h1 id="student-home-greeting" class="ds-os-home__greeting-title">
+    <h1 id="student-home-greeting" class="ds-os-home__greeting-title student-page-title">
       {{ home.greeting or 'Welcome back.' }}
     </h1>
-    {% if home.state == 'mission' and home.mission and home.mission.primary_kind == 'start_form' %}
+    {% if home.continuity_line %}
+    <p class="ds-os-home__greeting-support" data-px004="continuity" role="status">
+      {{ home.continuity_line }}
+    </p>
+    {% elif home.state == 'mission' and home.mission and home.mission.primary_kind == 'start_form' %}
     <p class="ds-os-home__greeting-support">Ready for today's mission?</p>
+    {% endif %}
+    {% if home.exam_horizon_line %}
+    <p class="ds-os-home__greeting-support" data-px005="exam-horizon" role="status">
+      {{ home.exam_horizon_line }}
+    </p>
+    {% endif %}
+    {% if home.diligence_line %}
+    <p class="ds-os-home__greeting-support" data-px006="diligence" role="status">
+      {{ home.diligence_line }}
+    </p>
     {% endif %}
   </header>
 
@@ -50,9 +67,15 @@
 
   {# ——— Quiet: plan exists, session not ready ——— #}
   {% if home.state == 'quiet' %}
-  <section class="ds-section" aria-labelledby="ds-mission-hero-title" data-student-state="quiet" data-workspace-section="todays-mission">
+  <section class="ds-section" aria-labelledby="ds-mission-hero-title" data-student-state="quiet" data-workspace-section="todays-mission" data-px005="preparing" data-px006="skeleton-home">
     <h2 class="ds-section__title" id="ds-mission-hero-title">{{ home.mission_section_title }}</h2>
+    {% if home.preparing_mission %}
+    {% from "partials/skeleton.html" import skeleton_student_home %}
+    {{ skeleton_student_home(label=px_microcopy.PREPARING_MISSION_LABEL) }}
+    <p class="ds-list__meta" role="status">{{ px_microcopy.PREPARING_MISSION_SUPPORT }}</p>
+    {% else %}
     <p class="ds-list__meta" role="status">{{ home.empty_reason }}</p>
+    {% endif %}
     {% if home.empty_action_label %}
       <p class="ds-list__meta">
         {{ ds_button(home.empty_action_label, href=home.empty_action_href, variant='ghost') }}
@@ -72,10 +95,13 @@
     duration_label=m.duration_label,
     status_label=m.status_label
   ) }}
-  <p class="ds-list__meta ds-success-line" role="status" data-day-complete="true">{{ home.day_complete_message }}</p>
+  <p class="ds-list__meta ds-success-line success-reward kw-motion-success" role="status" data-day-complete="true" data-px006="day-complete">{{ home.day_complete_message }}</p>
+  {% if home.milestone_acknowledgement %}
+  <p class="ds-list__meta" role="status" data-px006="cf-milestone">{{ home.milestone_acknowledgement }}</p>
+  {% endif %}
   </div>
 
-  {# ——— 2. Today's Mission + Primary CTA ——— #}
+  {# ——— 2. Today's Mission + Primary CTA (always first composition after greeting) ——— #}
   {% elif home.mission %}
   {% set m = home.mission %}
   <div data-workspace-section="todays-mission" class="ds-os-home__mission">
@@ -165,77 +191,100 @@
   </div>
   {% endif %}
 
-  {# ——— 3. Progress Snapshot ——— #}
+  {# ——— 3–5. Secondary chrome: progressive disclosure (PX-B-010 / PX-B-048) ——— #}
+  {% set open_secondary = density == 'established' %}
+
   {% if home.signals %}
-  <div data-workspace-section="study-signals" class="ds-os-home__progress">
-    <h2 class="ds-section__title">Progress</h2>
-    {{ ds_study_signals(home.signals, hide_subject=(home.mission is not none and home.mission.subject_name)) }}
-  </div>
+  <details
+    class="ds-disclosure ds-os-home__progress"
+    data-workspace-section="study-signals"
+    data-px004="secondary-progress"
+    {% if open_secondary and home.show_progress_strip %}open{% endif %}
+  >
+    <summary class="ds-section__title">Progress</summary>
+    <div class="ds-disclosure__body">
+      {{ ds_study_signals(home.signals, hide_subject=(home.mission is not none and home.mission.subject_name)) }}
+    </div>
+  </details>
   {% endif %}
 
-  {# ——— 4. Tomorrow Preview ——— #}
-  {% if ws and ws.mission_composition and ws.mission_composition.tomorrow_preview and ws.mission_composition.tomorrow_preview.has_preview %}
+  {% if home.show_tomorrow_preview and ws and ws.mission_composition and ws.mission_composition.tomorrow_preview and ws.mission_composition.tomorrow_preview.has_preview %}
   {% set tomorrow = ws.mission_composition.tomorrow_preview %}
-  <section
-    class="ds-os-home__tomorrow"
+  <details
+    class="ds-disclosure ds-os-home__tomorrow"
     aria-labelledby="ws-tomorrow-title"
     data-workspace-section="tomorrow-preview"
     data-kwp="015-tomorrow-preview"
+    data-px004="secondary-tomorrow"
+    {% if open_secondary %}open{% endif %}
   >
-    <h2 class="ds-section__title" id="ws-tomorrow-title">Tomorrow</h2>
-    <p class="ds-os-home__tomorrow-topic">{{ tomorrow.topic_title }}</p>
-    {% if tomorrow.estimated_duration_label %}
-    <p class="ds-list__meta">{{ tomorrow.estimated_duration_label }}</p>
-    {% endif %}
-    {% if tomorrow.continuity_line %}
-    <p class="ds-list__meta">{{ tomorrow.continuity_line }}</p>
-    {% endif %}
-  </section>
+    <summary class="ds-section__title" id="ws-tomorrow-title">Tomorrow</summary>
+    <div class="ds-disclosure__body">
+      <p class="ds-os-home__tomorrow-topic">{{ tomorrow.topic_title }}</p>
+      {% if tomorrow.estimated_duration_label %}
+      <p class="ds-list__meta">{{ tomorrow.estimated_duration_label }}</p>
+      {% endif %}
+      {% if tomorrow.continuity_line %}
+      <p class="ds-list__meta">{{ tomorrow.continuity_line }}</p>
+      {% endif %}
+    </div>
+  </details>
   {% endif %}
 
-  {# ——— 5. Quick Actions (secondary, bottom) ——— #}
-  {% if ws and ws.quick_actions %}
-  <section
-    class="ds-os-actions ds-os-actions--quiet"
+  {% if home.show_quick_actions and ws and ws.quick_actions %}
+  <details
+    class="ds-disclosure ds-os-actions ds-os-actions--quiet"
     aria-labelledby="ws-actions-title"
     data-workspace-section="quick-actions"
+    data-px004="secondary-actions"
+    {% if open_secondary %}open{% endif %}
   >
-    <h2 class="ds-section__title" id="ws-actions-title">Quick Actions</h2>
-    <ul class="ds-list">
-      {% for action in ws.quick_actions %}
-      <li>
-        {% if action.href %}
-        <a
-          class="ds-list__row"
-          href="{{ action.href }}"
-          data-workspace-action="{{ action.label|lower|replace(' ', '-') }}"
-        >
-          <span>{{ action.label }}</span>
-          {% if action.detail %}
-          <span class="ds-list__meta">{{ action.detail }}</span>
+    <summary class="ds-section__title" id="ws-actions-title">Quick Actions</summary>
+    <div class="ds-disclosure__body">
+      <ul class="ds-list">
+        {% for action in ws.quick_actions %}
+        <li>
+          {% if action.href %}
+          <a
+            class="ds-list__row"
+            href="{{ action.href }}"
+            data-workspace-action="{{ action.label|lower|replace(' ', '-') }}"
+          >
+            <span>{{ action.label }}</span>
+            {% if action.detail %}
+            <span class="ds-list__meta">{{ action.detail }}</span>
+            {% endif %}
+          </a>
           {% endif %}
-        </a>
-        {% endif %}
-      </li>
-      {% endfor %}
-    </ul>
-  </section>
-  {% elif home.quick_actions %}
-  <section class="ds-os-actions ds-os-actions--quiet" aria-labelledby="os-actions-title" data-sop-section="quick-actions">
-    <h2 class="ds-section__title" id="os-actions-title">Quick Actions</h2>
-    <ul class="ds-list">
-      {% for action in home.quick_actions %}
-      <li>
-        <a class="ds-list__row" href="{{ action.href }}">
-          <span>{{ action.label }}</span>
-          {% if action.detail %}
-          <span class="ds-list__meta">{{ action.detail }}</span>
-          {% endif %}
-        </a>
-      </li>
-      {% endfor %}
-    </ul>
-  </section>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </details>
+  {% elif home.show_quick_actions and home.quick_actions %}
+  <details
+    class="ds-disclosure ds-os-actions ds-os-actions--quiet"
+    aria-labelledby="os-actions-title"
+    data-sop-section="quick-actions"
+    data-px004="secondary-actions"
+    {% if open_secondary %}open{% endif %}
+  >
+    <summary class="ds-section__title" id="os-actions-title">Quick Actions</summary>
+    <div class="ds-disclosure__body">
+      <ul class="ds-list">
+        {% for action in home.quick_actions %}
+        <li>
+          <a class="ds-list__row" href="{{ action.href }}">
+            <span>{{ action.label }}</span>
+            {% if action.detail %}
+            <span class="ds-list__meta">{{ action.detail }}</span>
+            {% endif %}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </details>
   {% endif %}
 
   {% endif %}{# end non-empty #}

@@ -1,0 +1,33 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.6, pytest-8.3.4, pluggy-1.6.0
+rootdir: /Users/kwalitec/Developer/kwalitec
+configfile: pyproject.toml
+collected 239 items
+
+tests/services/test_planning_quality_ep003_3.py ..............           [  5%]
+tests/services/test_readiness_quality_ep003_2.py .................       [ 12%]
+tests/ga/test_performance_benchmarks.py .............                    [ 18%]
+tests/ga/test_security_review.py ..........                              [ 22%]
+tests/ga/test_documentation.py ...................                       [ 30%]
+tests/ga/test_observability.py .........                                 [ 34%]
+tests/test_curriculum_engine_v2.py ..................................... [ 49%]
+....................................................................     [ 78%]
+tests/test_curriculum_load_auto.py ..................................... [ 93%]
+..                                                                       [ 94%]
+tests/curriculum/test_cs1_canonical_validation.py .............          [100%]
+
+=============================== warnings summary ===============================
+tests/ga/test_performance_benchmarks.py::TestHttpPerformanceBudgets::test_student_dashboard_budget
+tests/ga/test_performance_benchmarks.py::TestSqlQueryBudgets::test_student_dashboard_sql
+tests/ga/test_security_review.py::TestRbacAndPortalSeparation::test_student_portal_vs_console
+  /Users/kwalitec/Developer/kwalitec/app/application/student_experience/recommendation_commitment.py:595: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    since = datetime.utcnow() - timedelta(days=max(1, within_days))
+
+tests/ga/test_performance_benchmarks.py: 4 warnings
+tests/ga/test_security_review.py: 2 warnings
+tests/test_curriculum_load_auto.py: 35 warnings
+  /Users/kwalitec/Developer/kwalitec/.venv/lib/python3.14/site-packages/sqlalchemy/sql/schema.py:3623: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================= 239 passed, 44 warnings in 4.81s =======================

@@ -36,6 +36,10 @@ def educational_vm(
         examination_label=snap.examination_label,
         today_topic_title=pos.topic_title,
         today_topic_code=pos.topic_code,
+        today_topic_id=pos.topic_id,
+        educational_package_id=(
+            mission.educational_package_id if mission else ""
+        ),
         section_title=pos.section_title,
         position_label=pos.position_label,
         coverage_percent=pos.coverage_percent,
@@ -133,6 +137,14 @@ def _home_from_educational(
     edu: EducationalExperienceViewModel,
 ) -> HomePageViewModel:
     from app.application.config.v2_flags import resolve_v2_feature_flags
+    from app.application.student_experience.study_verbs import (
+        CONTINUE,
+        DAY_COMPLETE,
+        GUIDANCE_UNAVAILABLE,
+        REVIEW_MISSION,
+        START_TODAY,
+        SYLLABUS_COMPLETE,
+    )
 
     mission = snap.mission
     title = edu.mission_title or edu.today_topic_title or "Today's Mission"
@@ -165,23 +177,23 @@ def _home_from_educational(
         )
 
     if snap.syllabus_complete and not mission_open:
-        cta_label = "Syllabus complete"
+        cta_label = SYLLABUS_COMPLETE
         cta_enabled = False
         session_control = ""
         can_start = False
     elif snap.coverage_gap is not None:
-        cta_label = "Guidance not yet published"
+        cta_label = GUIDANCE_UNAVAILABLE
         cta_enabled = False
         session_control = ""
         can_start = False
         why = snap.coverage_gap.message or why
     elif mission_open and flags.SR_SESSION_PRIMARY:
-        # SR-002 / KWP-002 — Start / Resume Today's Session is the product Primary.
+        # SR-002 / KWP-002 — Start / Continue Today's Session is the product Primary.
         if open_session_id:
-            cta_label = "Continue"
+            cta_label = CONTINUE
             session_control = "resume"
         else:
-            cta_label = "Start Today's Session"
+            cta_label = START_TODAY
             session_control = "start"
         cta_enabled = True
         can_start = True
@@ -196,12 +208,12 @@ def _home_from_educational(
         session_control = "complete_runtime_c"
         can_start = False
     elif mission_done_today:
-        cta_label = "Today's Session complete"
+        cta_label = DAY_COMPLETE
         cta_enabled = False
         session_control = ""
         can_start = False
     else:
-        cta_label = "Review today's mission"
+        cta_label = REVIEW_MISSION
         cta_enabled = False
         session_control = ""
         can_start = False

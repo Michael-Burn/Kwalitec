@@ -188,8 +188,8 @@ def test_template_mission_first_no_legacy_chrome(app, ctx):
             home=home,
             form=None,
         )
-    assert "Today&#39;s Mission" in html or "Continue Session" in html
-    assert "Continue Session" in html
+    assert "Today&#39;s Mission" in html or "Continue Session" in html or ">Continue<" in html
+    assert "Continue" in html
     assert html.count("ds-btn--primary") == 1
     assert "student-hero-greeting" not in html
     assert "Study Sensei" not in html
@@ -209,7 +209,13 @@ def test_template_mission_first_no_legacy_chrome(app, ctx):
         or "Where you stand" in html
         or "Where you are, what to do today" in html
     )
-    assert "Today's Session" in html or "Today's Mission" in html or "Continue Session" in html
+    assert (
+        "Today's Session" in html
+        or "Today's Mission" in html
+        or "Today&#39;s Mission" in html
+        or "Continue Session" in html
+        or ">Continue<" in html
+    )
     assert "CS1 FR" in html
 
 

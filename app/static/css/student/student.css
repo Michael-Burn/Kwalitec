@@ -130,7 +130,8 @@
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  min-height: 2.75rem;
+  min-height: var(--touch-target-min, 2.75rem);
+  min-width: var(--touch-target-min, 2.75rem);
 }
 
 .student-nav-toggle:focus-visible {
@@ -149,7 +150,9 @@
 }
 
 .student-nav-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: var(--student-space-2) var(--student-space-3);
   border-radius: var(--radius-md);
   text-decoration: none;
@@ -158,6 +161,7 @@
   font-weight: 500;
   transition: background-color var(--transition-fast), color var(--transition-fast);
   white-space: nowrap;
+  min-height: var(--touch-target-min, 2.75rem);
 }
 
 .student-nav-link:hover {
@@ -206,6 +210,9 @@ button.student-signout {
   background: transparent;
   cursor: pointer;
   font: inherit;
+  min-height: var(--touch-target-min, 2.75rem);
+  min-width: var(--touch-target-min, 2.75rem);
+  padding: var(--student-space-2) var(--student-space-3);
 }
 
 /* Appearance controls live in the shared Student shell (RC-2026.07.29-03 / UX-006). */
@@ -749,8 +756,7 @@ button.student-signout {
   border-radius: var(--student-radius);
 }
 
-.student-btn-primary:hover,
-.student-btn-primary:focus {
+.student-btn-primary:hover {
   background: var(--student-primary-hover);
   border-color: var(--student-primary-hover);
   color: var(--on-primary);
@@ -759,6 +765,15 @@ button.student-signout {
 .student-btn-primary:focus-visible {
   outline: none;
   box-shadow: var(--student-focus);
+  background: var(--student-primary-hover);
+  border-color: var(--student-primary-hover);
+  color: var(--on-primary);
+}
+
+.student-btn-primary:focus:not(:focus-visible) {
+  background: var(--student-primary-hover);
+  border-color: var(--student-primary-hover);
+  color: var(--on-primary);
 }
 
 .student-primary-action {
@@ -928,9 +943,19 @@ button.student-signout {
   .student-panel,
   .student-btn-primary,
   .student-main,
-  .student-success {
-    animation: none;
-    transition: none;
+  .student-success,
+  .student-nav-link,
+  .student-nav-toggle,
+  .student-nav-list,
+  .student-topbar,
+  .ds-disclosure,
+  .ds-disclosure summary {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  body[data-nav-pending="true"] .student-main {
+    opacity: 1;
   }
 }
 
@@ -941,6 +966,23 @@ button.student-signout {
 @keyframes student-page-enter {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* PX-B-027 — keep reduced-motion after page-enter so cascade cannot re-enable motion. */
+@media (prefers-reduced-motion: reduce) {
+  .student-main,
+  .student-nav-link,
+  .student-nav-toggle,
+  .student-nav-list,
+  .student-topbar,
+  .student-panel,
+  .student-btn-primary,
+  .student-success,
+  .ds-disclosure,
+  .ds-disclosure summary {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 .student-success {
@@ -1397,8 +1439,8 @@ a.btn-outline:focus {
   font-size: 0.85rem;
   justify-content: center;
   line-height: 1;
-  min-height: 1.5rem;
-  min-width: 1.5rem;
+  min-height: var(--touch-target-min, 2.75rem);
+  min-width: var(--touch-target-min, 2.75rem);
   padding: 0.1rem;
 }
 
@@ -1495,7 +1537,38 @@ a.btn-outline:focus {
 
 body[data-nav-pending="true"] .student-main {
   opacity: 0.72;
-  transition: opacity var(--transition-fast, 150ms) ease-out;
+  transition: var(--motion-disclosure, opacity 150ms ease-out);
+}
+
+body[data-nav-pending="true"] .student-nav-skeleton {
+  display: block;
+  margin: var(--student-space-3, 1rem) 0;
+}
+
+.student-nav-skeleton[hidden] {
+  display: none !important;
+}
+
+body[data-nav-pending="true"] .student-nav-skeleton[hidden] {
+  display: block !important;
+}
+
+.skeleton-mission-hero {
+  padding: var(--space-xl, 1.5rem) 0;
+}
+
+/* PX-B-019 — appearance cycle uses shared icon-btn language */
+.appearance-cycle.icon-btn,
+.appearance-option.icon-btn {
+  min-width: var(--touch-target-min, 2.75rem);
+  min-height: var(--touch-target-min, 2.75rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-nav-pending="true"] .student-main {
+    transition: none;
+    opacity: 0.85;
+  }
 }
 
 @keyframes welcome-fade-in {

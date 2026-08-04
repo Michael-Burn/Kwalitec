@@ -166,14 +166,14 @@ class TestStudySessionLifecycle:
         session_page = logged_in_client.get(f"/missions/{mission.id}/session")
         assert session_page.status_code == 200
         session_body = session_page.get_data(as_text=True)
-        assert "Finish Study Session" in session_body
+        assert "Finish Session" in session_body
         assert "Learning objective" in session_body
         assert "Attempt practice questions" in session_body
 
         finish_get = logged_in_client.get(f"/missions/{mission.id}/session/finish")
         assert finish_get.status_code == 200
         finish_body = finish_get.get_data(as_text=True)
-        assert "Practice Outcome Capture" in finish_body
+        assert "Practice results" in finish_body
         assert "questions_attempted" in finish_body
         assert "Record Study Session" in finish_body
 

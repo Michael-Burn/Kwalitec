@@ -13,9 +13,9 @@
 </section>
 
 {# ── Key Metrics Row ──────────────────────────────────────────────────── #}
-{# PX-002A T2-3: max four tiles per row (product rule UX-001 §22) — six
-   tiles in one row on desktop read as a wall of numbers, not a summary. #}
-<section class="row g-3 mb-3">
+{# PX-B-011: ≤4 KPIs per row. PX-B-012: day-zero / zero-history uses neutral framing. #}
+{% set day_zero = (weekly_report is defined and weekly_report.is_new_account) or (current_streak|int == 0 and (review_backlog.total_backlog|int == 0)) %}
+<section class="row g-3 mb-4" data-px004="analytics-kpis" data-day-zero="{{ 'true' if day_zero else 'false' }}">
     <div class="col-6 col-md-3">
         <div class="stat-card">
             {% if readiness_narrative and readiness_narrative.can_estimate and readiness_narrative.percentage is not none %}
@@ -45,25 +45,27 @@
     </div>
     <div class="col-6 col-md-3">
         <div class="stat-card">
-            <div class="stat-value text-warning">{{ review_backlog.total_backlog }}</div>
-            <div class="stat-label">Review Backlog</div>
+            {% if day_zero %}
+            <div class="stat-value text-muted">{{ current_streak }}</div>
+            <div class="stat-label">Day streak</div>
+            <div class="stat-basis small text-muted">Streaks start after your first sitting</div>
+            {% else %}
+            <div class="stat-value">{{ current_streak }}</div>
+            <div class="stat-label">Day streak</div>
+            {% endif %}
         </div>
     </div>
 </section>
-<section class="row g-3 mb-4">
-    <div class="col-6 col-md-3">
-        <div class="stat-card">
-            <div class="stat-value text-danger">{{ current_streak }}</div>
-            <div class="stat-label">Day Streak</div>
-        </div>
-    </div>
-    <div class="col-6 col-md-3">
-        <div class="stat-card">
-            <div class="stat-value" style="color: var(--color-brand);">{{ review_completion.completion_rate|int }}%</div>
-            <div class="stat-label">Study Sessions Done</div>
-        </div>
-    </div>
-</section>
+{% if not day_zero %}
+<p class="small text-muted mb-4" data-px004="analytics-secondary-metrics">
+  Review backlog: {{ review_backlog.total_backlog }} ·
+  Sessions done: {{ review_completion.completion_rate|int }}%
+</p>
+{% else %}
+<p class="small text-muted mb-4" data-px004="analytics-day-zero" role="status">
+  No practice history yet — these figures will fill in as you complete Sessions. Nothing here is a failure.
+</p>
+{% endif %}
 
 {% if readiness_narrative %}
 <section class="card border-0 mb-4" data-eip003-readiness="1" data-mes-surface="readiness">

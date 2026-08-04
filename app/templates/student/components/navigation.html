@@ -1,17 +1,27 @@
 {% set nav_items = page.shell.navigation if page and page.shell else eos_navigation %}
 {% if nav_items %}
-{# RR-001.2 / XR-05 — compact mobile nav: one topbar row; expand on demand. #}
-<nav class="student-nav" aria-label="Student experience" data-student-nav>
+{# PX-B-036 — Canonical student-shell mobile nav: compact topbar drawer.
+   Desktop: horizontal inline links. Mobile (≤767.98px): Menu toggle opens
+   an absolutely positioned drawer panel. No bottom tab bar; no dual pattern.
+#}
+<nav
+  class="student-nav"
+  aria-label="Student experience"
+  data-student-nav
+  data-mobile-nav="drawer"
+  data-px004="mobile-nav"
+>
     <button
         type="button"
         class="student-nav-toggle"
         aria-expanded="false"
         aria-controls="student-nav-list"
+        aria-haspopup="true"
         data-student-nav-toggle
     >
         Menu
     </button>
-    <ul class="student-nav-list" id="student-nav-list">
+    <ul class="student-nav-list" id="student-nav-list" role="list">
         {% for item in nav_items %}
         <li class="student-nav-item">
             <a

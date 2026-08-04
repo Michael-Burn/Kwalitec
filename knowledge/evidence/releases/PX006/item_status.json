@@ -1,0 +1,30 @@
+{
+  "programme": "PX-006",
+  "phase": 4,
+  "workstreams": ["WS-09", "WS-10"],
+  "date": "2026-08-04",
+  "items": {
+    "PX-B-031": "Closed",
+    "PX-B-032": "Closed",
+    "PX-B-018": "Closed",
+    "PX-B-019": "Closed",
+    "PX-B-020": "Closed",
+    "PX-B-021": "Closed",
+    "PX-B-022": "Closed",
+    "PX-B-046": "Closed",
+    "PX-B-047": "Closed",
+    "PX-B-049": "Closed",
+    "PX-B-051": "Deferred"
+  },
+  "deferred": {
+    "PX-B-051": "Future — icon macro foundation exists (partials/icons.html); full inline-SVG migration capacity-gated per PX002 Future lane."
+  },
+  "educational_content_freeze": "held",
+  "residuals": [
+    "PX6-R1 Screenshot / animation PNG-video gallery pending Founder dogfood",
+    "PX6-R2 LIVE Core Web Vitals / Lighthouse field measure",
+    "PX6-R3 Account-durable daily study goal (User model) — session-scoped honesty shipped",
+    "PX6-R4 Full icon library migration (PX-B-051)",
+    "PX6-R5 Carry: PX5-R1 D-EOS/D-IDENTITY ratification; PX4-R1…R3 mobile/axe/AT"
+  ]
+}

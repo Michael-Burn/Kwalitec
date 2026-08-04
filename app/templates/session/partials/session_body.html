@@ -19,7 +19,13 @@
   data-session-id="{{ s.session_id }}"
   data-mission-id="{{ s.mission_id }}"
   data-session-surface="{{ s.surface }}"
+  data-px006="mission-surface"
 >
+  {# PX-B-032 — mission skeleton available for nav-pending / quiet open. #}
+  {% if s.surface == 'overview' and not s.content_title and not s.page_title %}
+  {% from "partials/skeleton.html" import skeleton_mission_hero %}
+  {{ skeleton_mission_hero(label=px_microcopy.SKELETON_MISSION_LABEL if px_microcopy else "Opening today's session") }}
+  {% endif %}
   <header class="ds-page-header ds-session-page__header">
     {% if s.page_eyebrow %}
     <p class="ds-list__meta">{{ s.page_eyebrow }}</p>
@@ -31,14 +37,23 @@
         class="ds-btn ds-btn--ghost ds-session-focus-toggle"
         data-session-focus-toggle
         aria-pressed="false"
+        disabled
+        aria-disabled="true"
       >Focus mode</button>
-      <p class="ds-session-timer" aria-live="polite">
+      <p class="ds-session-timer">
         {% if s.surface == 'overview' and s.estimated_time_label %}
         <span class="ds-list__meta">Estimated time</span>
         <span>{{ s.estimated_time_label }}</span>
         {% else %}
         <span class="ds-list__meta">Timer</span>
-        <span data-session-timer>{{ s.context.elapsed_label or '00:00' }}</span>
+        <span data-session-timer aria-hidden="true">{{ s.context.elapsed_label or '00:00' }}</span>
+        {# PX-B-024: polite minute-boundary announces — not every-second spam #}
+        <span
+          class="visually-hidden"
+          data-session-timer-live
+          role="status"
+          aria-live="polite"
+        >Elapsed 0 minutes</span>
         {% endif %}
       </p>
     </div>
@@ -169,7 +184,10 @@
     {% endif %}
 
     {% if s.surface == 'complete' and s.completion_headline %}
-    <p class="ds-success-line" role="status" data-completion-moment="true" data-sitting-report="true">{{ s.completion_headline }}</p>
+    <p class="ds-success-line success-reward kw-motion-success" role="status" data-completion-moment="true" data-sitting-report="true" data-px006="celebration">{{ s.completion_headline }}</p>
+    {% if px_microcopy and px_microcopy.SESSION_COMPLETE_SUPPORT %}
+    <p class="ds-list__meta" data-px006="celebration-support">{{ px_microcopy.SESSION_COMPLETE_SUPPORT }}</p>
+    {% endif %}
     {% endif %}
     {% if s.surface == 'complete' and s.what_studied %}
     <p class="ds-list__meta" data-what-studied="true">{{ s.what_studied }}</p>
@@ -191,7 +209,7 @@
     {% endif %}
     {% if s.surface == 'complete' %}
     <p class="ds-list__meta">
-      <a href="{{ url_for('student.history') }}">Your session is saved in History</a>
+      <a href="{{ url_for('student.history') }}">{{ px_microcopy.SESSION_COMPLETE_HISTORY_LINK if px_microcopy else 'Your session is saved in History' }}</a>
     </p>
     {% endif %}
     {% if s.surface == 'complete' and (s.assessment_mode_active or s.journey_update_label or s.strengthened or s.needs_reinforcement or s.strategy_title or s.learning_insights) %}
@@ -429,7 +447,15 @@
   <div class="ds-primary-strip" role="group" aria-label="Primary actions">
     <form method="post" action="{{ url_for('session.finish_start', session_id=s.session_id) }}">
       <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-      <button class="ds-btn ds-btn--primary" type="submit" data-session-cta="primary">
+      <button
+        type="button"
+        class="ds-btn ds-btn--primary"
+        data-session-cta="primary"
+        data-confirm-trigger
+        data-confirm-title="Finish today's study session?"
+        data-confirm-body="You will move to a short finish review, then Home. You can continue later from Home if anything remains."
+        data-confirm-label="Finish session"
+      >
         {{ s.primary_label }}
       </button>
     </form>
@@ -457,7 +483,15 @@
       </fieldset>
       <label class="ds-session-answer__label" for="{{ form.notes.id }}">Optional notes</label>
       {{ form.notes(class_="ds-textarea", rows="3", autocomplete="off") }}
-      <button class="ds-btn ds-btn--primary" type="submit" data-session-cta="primary">
+      <button
+        type="button"
+        class="ds-btn ds-btn--primary"
+        data-session-cta="primary"
+        data-confirm-trigger
+        data-confirm-title="Confirm finish and return Home?"
+        data-confirm-body="Your finish review will be saved. Tomorrow's Mission appears on Home when it is ready."
+        data-confirm-label="Confirm finish"
+      >
         {{ s.primary_label }}
       </button>
     </form>

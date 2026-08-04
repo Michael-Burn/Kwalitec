@@ -2,7 +2,7 @@
 
 {% block content %}
 <section class="section-header">
-    <p class="section-eyebrow">Closed Beta</p>
+    <p class="section-eyebrow">{{ student_release_label|default('Private Beta') }}</p>
     <h1 class="section-title">{{ title }}</h1>
     <p class="section-description">
         Report a bug, suggestion, confusing screen, missing feature,

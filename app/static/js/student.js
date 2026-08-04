@@ -42,13 +42,31 @@
 
   function markOptimisticNav() {
     document.addEventListener("click", function (event) {
-      var link = event.target && event.target.closest
-        ? event.target.closest("a.student-nav-link")
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+        return;
+      }
+      var target = event.target && event.target.closest
+        ? event.target.closest(
+            "a.student-nav-link, a.ds-btn--primary, a[data-student-cta='primary'], a[data-px006='celebration-primary']"
+          )
         : null;
-      if (!link || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+      if (!target) {
+        return;
+      }
+      if (target.getAttribute("href") === "#" || target.getAttribute("href") === "") {
         return;
       }
       document.body.setAttribute("data-nav-pending", "true");
+    });
+  }
+
+  function announceAppearanceSaved() {
+    document.addEventListener("appearancechange", function () {
+      var live = document.getElementById("appearance-saved-live")
+        || document.getElementById("student-live-region");
+      if (live) {
+        live.textContent = "Appearance saved";
+      }
     });
   }
 
@@ -175,6 +193,7 @@
     enhancePrimaryCta();
     announceSurface();
     markOptimisticNav();
+    announceAppearanceSaved();
     wirePresentationTelemetry();
     wireCompactNav();
   });

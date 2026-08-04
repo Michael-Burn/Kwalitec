@@ -6,8 +6,8 @@
 
 {% block content %}
 <section class="section-header">
-    <p class="section-eyebrow">Study Session</p>
-    <h1 class="section-title">Study Session Feedback</h1>
+    <p class="section-eyebrow">{{ px_microcopy.SESSION_FEEDBACK_EYEBROW }}</p>
+    <h1 class="section-title">{{ px_microcopy.SESSION_FEEDBACK_TITLE }}</h1>
     <p class="section-description">{{ session_context.topic_title }}</p>
 </section>
 
@@ -58,30 +58,38 @@
             </div>
         </div>
 
-        <div class="mission-hero-action d-flex flex-column gap-2" data-rip001-invite="1">
-            <p class="small text-muted mb-1 px-1">
-                Quick Internal Alpha feedback (optional):
+        <div class="mission-hero-action d-flex flex-column gap-2" data-rip001-invite="1" data-px006="celebration-legacy">
+            <p class="ds-success-line success-reward kw-motion-success mb-2" role="status" data-completion-moment="true">
+                Sitting recorded — well done for finishing today's work.
             </p>
-            <div class="d-flex flex-wrap gap-2 px-1 mb-2">
-                <a class="btn btn-outline-secondary btn-sm"
-                   href="{{ url_for('alpha.feedback_mission_helpful', mission_id=mission.id) }}">
-                    Was this mission helpful?
-                </a>
-                <a class="btn btn-outline-secondary btn-sm"
-                   href="{{ url_for('alpha.feedback_explanation_clear', mission_id=mission.id) }}">
-                    Was this explanation clear?
-                </a>
-            </div>
-            <p class="small text-muted mb-1 px-1">
-                Optional next step: a short Product Check-in about using Kwalitec today — not about your learning.
-            </p>
-            <a class="btn btn-mark-complete w-100"
-               href="{{ url_for('research.checkin', source='study_session', mission_id=mission.id) }}">
-                Continue
-            </a>
-            <a class="btn btn-outline-secondary w-100" href="{{ url_for('dashboard.index') }}">
+            <a class="btn btn-mark-complete w-100" href="{{ url_for('dashboard.index') }}" data-px006="celebration-primary">
                 Return Home
             </a>
+            <details class="ds-disclosure mt-2">
+                <summary class="small text-muted">Optional product feedback</summary>
+                <div class="d-flex flex-column gap-2 mt-2">
+                    <p class="small text-muted mb-1 px-1">
+                        Optional product feedback (not about your learning):
+                    </p>
+                    <div class="d-flex flex-wrap gap-2 px-1 mb-2">
+                        <a class="btn btn-outline-secondary btn-sm"
+                           href="{{ url_for('alpha.feedback_mission_helpful', mission_id=mission.id) }}">
+                            Was this mission helpful?
+                        </a>
+                        <a class="btn btn-outline-secondary btn-sm"
+                           href="{{ url_for('alpha.feedback_explanation_clear', mission_id=mission.id) }}">
+                            Was this explanation clear?
+                        </a>
+                    </div>
+                    <p class="small text-muted mb-1 px-1">
+                        Optional next step: a short Product Check-in about using Kwalitec today — not about your learning.
+                    </p>
+                    <a class="btn btn-outline-secondary w-100"
+                       href="{{ url_for('research.checkin', source='study_session', mission_id=mission.id) }}">
+                        Product Check-in
+                    </a>
+                </div>
+            </details>
             <a class="text-center small mt-1" href="{{ url_for('mission.missions') }}">
                 Back to Today's Study Session
             </a>

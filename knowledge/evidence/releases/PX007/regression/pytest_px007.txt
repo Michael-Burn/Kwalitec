@@ -1,0 +1,10 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.6, pytest-8.3.4, pluggy-1.6.0
+rootdir: /Users/kwalitec/Developer/kwalitec
+configfile: pyproject.toml
+collected 12 items
+
+tests/presentation/student/test_px007_founder_certification.py ......... [ 75%]
+...                                                                      [100%]
+
+============================== 12 passed in 1.27s ==============================

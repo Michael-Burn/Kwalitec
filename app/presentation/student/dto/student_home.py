@@ -155,3 +155,18 @@ class StudentHomePage:
     syllabus_position: str = ""
     # KWP-013 — Adaptive Study Workspace composition.
     workspace: AdaptiveStudyWorkspace | None = None
+    # PX-004 / PX-B-048 — presentation density by account state (not selection).
+    # day_zero | returning | established
+    density_mode: str = "established"
+    continuity_line: str = ""
+    show_progress_strip: bool = True
+    show_tomorrow_preview: bool = True
+    show_quick_actions: bool = True
+    # PX-005 / PX-B-045 — calm near-exam support line (presentation only).
+    exam_horizon_line: str = ""
+    # PX-005 / PX-B-009 — honest preparing state when mission inventory unsettled.
+    preparing_mission: bool = False
+    # PX-006 / PX-B-046 — light Continuity Front / arc milestone acknowledgement.
+    milestone_acknowledgement: str = ""
+    # PX-006 / PX-B-047 — calm diligence reinforcement (no streak punishment).
+    diligence_line: str = ""

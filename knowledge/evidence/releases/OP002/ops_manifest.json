@@ -1,0 +1,39 @@
+{
+  "programme": "OP-002",
+  "title": "Early Access Pilot Operations",
+  "status": "tabletop_rehearsal_complete_awaiting_founder_approval",
+  "effective": "2026-08-04",
+  "invitations_sent": 0,
+  "external_accounts_provisioned": 0,
+  "accepted_external_n": 0,
+  "activated_n": 0,
+  "interviews_scheduled": 0,
+  "withdrawals": 0,
+  "product_changes": false,
+  "runtime_changes": false,
+  "educational_package_changes": false,
+  "recommendation_engine_changes": false,
+  "student_twin_changes": false,
+  "ksi_updated": false,
+  "version_1_declared": false,
+  "marketing": false,
+  "artefacts": [
+    "OP002_OPERATIONAL_PLAYBOOK.md",
+    "OP002_INCIDENT_RESPONSE_GUIDE.md",
+    "OP002_FOUNDER_DECISION_GUIDE.md",
+    "OP002_PARTICIPANT_JOURNEY.md",
+    "OP002_STUDY_TIMELINE.md",
+    "OP002_EXECUTION_REPORT.md"
+  ],
+  "authority": [
+    "OP001_EARLY_ACCESS_PLAN.md",
+    "OP001_EXECUTION_CHECKLIST.md",
+    "OP001_RECRUITMENT_PROTOCOL.md",
+    "OP001_ONBOARDING_PROTOCOL.md",
+    "OP001_STUDENT_SUPPORT_PROTOCOL.md",
+    "KSI-002",
+    "Educational Content Freeze",
+    "EF-001"
+  ],
+  "stop": "Await Founder approval before recruiting the first participant. Invite send requires separate G-INVITE."
+}

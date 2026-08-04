@@ -7,12 +7,13 @@ recommendations.
 
 from __future__ import annotations
 
-# Ambient Internal Alpha programme identity (authenticated + public chrome).
-# Build label tracks the Private Beta RC.
-# Student EOS uses a separate Private Beta badge.
+# Ambient Internal Alpha programme identity — founder/console chrome only
+# (PX-005 / D-IDENTITY provisional). Student paths use STUDENT_RELEASE_LABEL.
 INTERNAL_ALPHA_LABEL = "Internal Alpha"
 FOUNDING_COHORT_LABEL = "Founding Cohort"
 INTERNAL_ALPHA_BUILD_LABEL = "beta.1"
+# Student-grade Version 1 identity (PX-B-039).
+STUDENT_RELEASE_LABEL = "Private Beta"
 
 # Official product-area names (user-facing).
 # CONSOLE-001 — Founder Command Centre becomes Kwalitec Console.
@@ -23,9 +24,10 @@ LEARNING_WORKSPACE_LABEL = "Learning Workspace"
 REVISION_WORKSPACE_LABEL = "Revision Workspace"
 STUDENT_DASHBOARD_LABEL = "Student Dashboard"
 
-# Brand positioning (PX-001) — supporting descriptor and value line.
+# Brand positioning (PX-001 / PX-005 D-EOS provisional).
+# "Education Operating System" retired on student paths — calm student descriptor.
 PRODUCT_NAME = "Kwalitec"
-PRODUCT_DESCRIPTOR = "Education Operating System"
+PRODUCT_DESCRIPTOR = "Exam-ready study guidance"
 PRODUCT_VALUE_PROPOSITION = "Know exactly what to study next."
 
 # Single source of truth for the displayed Kwalitec logo.

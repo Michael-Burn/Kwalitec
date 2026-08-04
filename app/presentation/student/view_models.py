@@ -162,6 +162,8 @@ class EducationalExperienceViewModel:
     examination_label: str = ""
     today_topic_title: str = ""
     today_topic_code: str = ""
+    today_topic_id: str = ""
+    educational_package_id: str = ""
     section_title: str = ""
     position_label: str = ""
     coverage_percent: int = 0
@@ -248,6 +250,8 @@ class HistorySessionViewModel:
     insight_line: str = ""
     progress_line: str = ""
     sitting_report_href: str = ""
+    # PX-B-013 — secondary craft without dashboard theatre
+    why_next_line: str = ""
 
 
 @dataclass(frozen=True)
@@ -2024,6 +2028,10 @@ def _session_vm(session: CompletedSessionSnapshot) -> HistorySessionViewModel:
             else "Open Journey to see how this Session shaped your path."
         ),
         sitting_report_href=href,
+        why_next_line=(
+            "This sitting is part of your authorised path — "
+            "continue from Home when ready."
+        ),
     )
 
 

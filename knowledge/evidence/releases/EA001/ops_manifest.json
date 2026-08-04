@@ -1,0 +1,44 @@
+{
+  "programme": "EA-001",
+  "title": "Early Access Cohort 1 Recruitment",
+  "wave_id": "EA-COHORT-1",
+  "opened": "2026-08-04",
+  "status": "RECRUITMENT_OPEN",
+  "g_invite_authorised": true,
+  "g_invite_date": "2026-08-04",
+  "invites_sent": false,
+  "target_accepted_min": 5,
+  "target_accepted_max": 10,
+  "invite_buffer_min": 8,
+  "recruitment_window": {
+    "start": "2026-08-04",
+    "end": "2026-08-18"
+  },
+  "support_owner": "Founder",
+  "study_owner": "Founder",
+  "counts": {
+    "selected": 3,
+    "invited": 0,
+    "accepted": 0,
+    "declined": 0,
+    "activated": 0,
+    "pending": 0,
+    "never_activated": 0,
+    "withdrawn": 0,
+    "week_1": 0,
+    "week_2": 0,
+    "week_3": 0,
+    "week_4": 0,
+    "completed": 0,
+    "interview_scheduled": 0,
+    "interview_complete": 0,
+    "consent_c1_c2_complete": 0
+  },
+  "selected_ids": [
+    "BETA-PIL-001",
+    "BETA-PIL-002",
+    "BETA-PIL-003"
+  ],
+  "notes": "G-INVITE authorised. No invite emails recorded as sent. Do not invent non-zero invited/accepted/activated. No KSI. No effectiveness claims.",
+  "stop": "Await Founder review before longitudinal observation. Exit when Accepted >= 5 (or Founder stop) and activation chase current."
+}

@@ -1,0 +1,34 @@
+{
+  "programme": "P-002.1",
+  "date": "2026-08-04",
+  "tip": "272a0950ca1a65df01badf5e180c3c06a41681e7",
+  "recommendation": "NO-GO",
+  "gates": {
+    "G1": "FAIL",
+    "G2": "PASS_WITH_RESIDUAL",
+    "G3": "PASS_WITH_RESIDUAL",
+    "G4": "PASS_WITH_RESIDUAL",
+    "G5": "PASS_WITH_RESIDUAL",
+    "G6": "PASS_WITH_RESIDUAL",
+    "G7": "HOLD",
+    "G8": "PASS_WITH_RESIDUAL",
+    "G9": "PASS_WITH_RESIDUAL",
+    "G10": "PASS_WITH_RESIDUAL",
+    "G11": "PASS_WITH_RESIDUAL",
+    "G12": "PASS_WITH_RESIDUAL"
+  },
+  "findings": {
+    "critical": 0,
+    "major": 0
+  },
+  "regression": {
+    "quality_curriculum_ga_passed": 239,
+    "premium_core_passed": 72,
+    "stale_test_failures": ["P0021-T1", "P0021-T2", "P0021-T3"]
+  },
+  "freeze": {
+    "educational_content": "held",
+    "ef001": "unchanged"
+  },
+  "version_1_production_ready": false
+}

@@ -449,6 +449,17 @@ class EducationalExperienceService:
             if position.subject_title
             else enrolment.subject_code
         )
+        # PX-B-054: prefer active Study Plan exam name over subject-code chrome.
+        try:
+            from app.application.student_experience.examination_identity import (
+                exam_label_from_active_plan,
+            )
+
+            plan_exam = exam_label_from_active_plan(str(user_id))
+            if plan_exam:
+                examination_label = plan_exam
+        except Exception:  # noqa: BLE001 — presentation fallback only
+            pass
         return EducationalExperienceSnapshot(
             student_id=str(user_id),
             enrolment_id=enrolment.enrolment_id,
@@ -509,6 +520,24 @@ class EducationalExperienceService:
                 )
             else:
                 prereq_label = "Prerequisite status needs review"
+
+        # PX-B-035 (D-DURATION provisional): prefer plan session minutes when
+        # mission quality minutes are absent — shared resolver + formatter.
+        if minutes <= 0:
+            try:
+                from app.application.student_experience.session_duration import (
+                    resolve_planned_session_minutes,
+                )
+                from app.services.study_plan_service import StudyPlanService
+
+                plan = StudyPlanService.get_user_active_plan(mission.user_id)
+                planned = resolve_planned_session_minutes(
+                    plan, mission_date=mission.mission_date
+                )
+                if planned is not None and planned > 0:
+                    minutes = int(planned)
+            except Exception:  # noqa: BLE001 — presentation fallback only
+                pass
 
         learning_objectives = tuple(
             label
@@ -584,6 +613,9 @@ class EducationalExperienceService:
             judgement=sanitize_student_text(
                 str(explanation.get("judgement") or "")
             ),
+            educational_package_id=str(
+                getattr(mission, "educational_package_id", "") or ""
+            ).strip(),
         )
 
     def _journey_education(
@@ -768,12 +800,7 @@ def _objective_label(objective_id: str, lookup: dict[str, dict]) -> str:
 
 
 def _minutes_label(minutes: int) -> str:
-    mins = max(0, int(minutes or 0))
-    if mins <= 0:
-        return ""
-    if mins < 60:
-        return f"{mins} min"
-    hours, rem = divmod(mins, 60)
-    if rem == 0:
-        return f"{hours} h" if hours != 1 else "1 h"
-    return f"{hours} h {rem} min"
+    """PX-B-035: share Home/Mission duration wording with presentation formatter."""
+    from app.presentation.formatting import format_minutes
+
+    return format_minutes(max(0, int(minutes or 0)) or None)

@@ -330,7 +330,7 @@ class TestCheckinHttpFlow:
         response = logged_in_client.get(f"/missions/{mission.id}/session/recorded")
         assert response.status_code == 200
         body = response.get_data(as_text=True)
-        assert "Study Session Feedback" in body
+        assert "What happened today" in body
         assert 'data-rip001-invite="1"' in body
         assert "Continue" in body
         assert "/research/checkin" in body
@@ -360,12 +360,16 @@ class TestCheckinHttpFlow:
         assert 'data-rip001-checkin="1"' in body
 
     def test_sidebar_share_feedback_link(self, logged_in_client):
-        response = logged_in_client.get("/dashboard/")
+        # Sole-runtime student nav no longer mirrors legacy sidebar Check-in;
+        # Settings / Profile and Help remain the Product Check-in entry points.
+        response = logged_in_client.get("/student/profile")
         assert response.status_code == 200
         body = response.get_data(as_text=True)
         assert "Product Check-in" in body
         assert "Share Feedback" not in body
-        assert "/research/checkin" in body
+        settings = logged_in_client.get("/settings/share-feedback", follow_redirects=True)
+        assert settings.status_code == 200
+        assert b"/research/checkin" in settings.data or b"Product Check-in" in settings.data
 
     def test_submit_checkin_creates_contribution_and_thank_you(
         self, logged_in_client, user
