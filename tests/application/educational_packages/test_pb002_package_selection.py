@@ -290,7 +290,7 @@ def test_gamma_revision_hands_off_to_epsilon() -> None:
     approved = EducationalPackageLoader().all_approved()
     ce = [p for p in approved if (p.campaign_day or "").startswith("CE-")]
     assert len(ce) == 5
-    assert len(approved) == 110
+    assert len(approved) == 120
 
 
 def test_zeta_chain_reaches_cz_r1() -> None:
@@ -344,7 +344,7 @@ def test_epsilon_revision_hands_off_to_zeta() -> None:
     approved = EducationalPackageLoader().all_approved()
     cz = [p for p in approved if (p.campaign_day or "").startswith("CZ-")]
     assert len(cz) == 3
-    assert len(approved) == 110
+    assert len(approved) == 120
 
 
 def test_eta_chain_reaches_ch_r1() -> None:
@@ -396,7 +396,7 @@ def test_zeta_revision_hands_off_to_eta() -> None:
     approved = EducationalPackageLoader().all_approved()
     ch = [p for p in approved if (p.campaign_day or "").startswith("CH-")]
     assert len(ch) == 3
-    assert len(approved) == 110
+    assert len(approved) == 120
 
 
 def test_theta_chain_reaches_ct_r1() -> None:
@@ -448,7 +448,7 @@ def test_eta_revision_hands_off_to_theta() -> None:
     approved = EducationalPackageLoader().all_approved()
     ct = [p for p in approved if (p.campaign_day or "").startswith("CT-")]
     assert len(ct) == 3
-    assert len(approved) == 110
+    assert len(approved) == 120
 
 
 
@@ -506,7 +506,7 @@ def test_theta_revision_hands_off_to_iota() -> None:
     approved = EducationalPackageLoader().all_approved()
     ci = [p for p in approved if (p.campaign_day or "").startswith("CI-")]
     assert len(ci) == 7
-    assert len(approved) == 110
+    assert len(approved) == 120
 
 
 def test_kappa_chain_reaches_ck_r1() -> None:
@@ -566,7 +566,7 @@ def test_iota_revision_hands_off_to_kappa() -> None:
     approved = EducationalPackageLoader().all_approved()
     ck = [p for p in approved if (p.campaign_day or "").startswith("CK-")]
     assert len(ck) == 7
-    assert len(approved) == 110
+    assert len(approved) == 120
 
 
 def test_lambda_chain_reaches_cl_r1() -> None:
@@ -628,7 +628,7 @@ def test_kappa_revision_hands_off_to_lambda() -> None:
     approved = EducationalPackageLoader().all_approved()
     cl = [p for p in approved if (p.campaign_day or "").startswith("CL-")]
     assert len(cl) == 9
-    assert len(approved) == 110
+    assert len(approved) == 120
 
 
 def test_mu_chain_reaches_cm_r1() -> None:
@@ -689,7 +689,7 @@ def test_lambda_revision_hands_off_to_mu() -> None:
     approved = EducationalPackageLoader().all_approved()
     cm = [p for p in approved if (p.campaign_day or "").startswith("CM-")]
     assert len(cm) == 6
-    assert len(approved) == 110
+    assert len(approved) == 120
 
 
 def test_nu_chain_reaches_cn_r1() -> None:
@@ -759,7 +759,7 @@ def test_mu_revision_hands_off_to_nu() -> None:
     approved = EducationalPackageLoader().all_approved()
     cn = [p for p in approved if (p.campaign_day or "").startswith("CN-")]
     assert len(cn) == 6
-    assert len(approved) == 110
+    assert len(approved) == 120
 
 
 
@@ -845,7 +845,7 @@ def test_nu_revision_hands_off_to_xi() -> None:
     approved = EducationalPackageLoader().all_approved()
     cx = [p for p in approved if (p.campaign_day or "").startswith("CX-")]
     assert len(cx) == 11
-    assert len(approved) == 110
+    assert len(approved) == 120
 
 
 def test_omicron_chain_reaches_co_r1() -> None:
@@ -935,4 +935,102 @@ def test_xi_revision_hands_off_to_omicron() -> None:
     approved = EducationalPackageLoader().all_approved()
     co = [p for p in approved if (p.campaign_day or "").startswith("CO-")]
     assert len(co) == 10
-    assert len(approved) == 110
+    assert len(approved) == 120
+
+
+def test_pi_chain_reaches_cp_r1() -> None:
+    """RO-014 — Memory Front spine re-audit → CP-D1…CP-R1 joint inventory."""
+    expected = [
+        ("CS1-EP001-PKG-CP-2.1-PROB-QUANTILES", "CP-D1"),
+        ("CS1-EP001-PKG-CP-2.2-MARGINAL-CONDITIONAL", "CP-D2"),
+        ("CS1-EP001-PKG-CP-2.5-CLT", "CP-D3"),
+        ("CS1-EP001-PKG-CP-2.6-RANDOM-SAMPLES", "CP-D4"),
+        ("CS1-EP001-PKG-CP-3.1-ESTIMATORS", "CP-D5"),
+        ("CS1-EP001-PKG-CP-3.2-CI-SAMPLE", "CP-D6"),
+        ("CS1-EP001-PKG-CP-3.3-HYPOTHESIS-TESTING", "CP-D7"),
+        ("CS1-EP001-PKG-CP-4.1-LINEAR-REGRESSION", "CP-D8"),
+        ("CS1-EP001-PKG-CP-5.1-BAYES-THEOREM", "CP-D9"),
+        ("CS1-EP001-PKG-REV-SPINE-MEMORY-PI", "CP-R1"),
+    ]
+    topic = "2.1"
+    # Seed journey as after CO-R1 so Pi+Opening/Trust coexistence prefers CP.
+    last = "CS1-EP001-PKG-REV-BAYESIAN-OMICRON"
+    completed: set[str] = {last}
+    for package_id, day in expected:
+        pack = resolve_active_educational_package(
+            subject_id="CS1",
+            syllabus_topic_code=topic,
+            completed_package_ids=completed,
+            last_completed_package_id=last,
+        )
+        assert pack is not None, f"missing successor before {day}"
+        assert pack.package_id == package_id, (
+            f"expected {package_id} got {pack.package_id}"
+        )
+        assert pack.campaign_day == day
+        completed.add(pack.package_id)
+        last = pack.package_id
+        topic = pack.topic_code or topic
+
+
+def test_omicron_revision_hands_off_to_pi() -> None:
+    """RO-014 — CO-R1 tomorrow_preview CP-D1 resolves to Pi (not Opening Front)."""
+    from app.application.educational_packages.loader import EducationalPackageLoader
+
+    omicron_ids = {
+        "CS1-EP001-PKG-CO-5.1-BAYES-THEOREM",
+        "CS1-EP001-PKG-CO-5.1-PRIOR-POSTERIOR",
+        "CS1-EP001-PKG-CO-5.1-POSTERIOR-SIMPLE",
+        "CS1-EP001-PKG-CO-5.1-LOSS-ESTIMATORS",
+        "CS1-EP001-PKG-CO-5.1-CREDIBLE-INTERVALS",
+        "CS1-EP001-PKG-CO-5.1-CREDIBILITY-PREMIUM",
+        "CS1-EP001-PKG-CO-5.1-BAYESIAN-CREDIBILITY",
+        "CS1-EP001-PKG-CO-5.1-EMPIRICAL-BAYES",
+        "CS1-EP001-PKG-CO-5.1-BAYES-VS-EB",
+        "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
+    }
+    pack = resolve_active_educational_package(
+        subject_id="CS1",
+        syllabus_topic_code="2.1",
+        completed_package_ids=omicron_ids,
+        last_completed_package_id="CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
+    )
+    assert pack is not None
+    assert pack.campaign_day == "CP-D1"
+    assert pack.package_id == "CS1-EP001-PKG-CP-2.1-PROB-QUANTILES"
+
+    # Opening Front cold entry at 2.1 remains early inventory (not Pi Memory Front).
+    cold = resolve_active_educational_package(
+        subject_id="CS1",
+        syllabus_topic_code="2.1",
+        completed_package_ids=frozenset(),
+        last_completed_package_id="",
+    )
+    assert cold is not None
+    assert not (cold.campaign_day or "").startswith("CP-")
+    assert cold.package_id != "CS1-EP001-PKG-CP-2.1-PROB-QUANTILES"
+
+    # Trust Front cold entry at 5.1 remains Delta CD-D16.
+    cold51 = resolve_active_educational_package(
+        subject_id="CS1",
+        syllabus_topic_code="5.1",
+        completed_package_ids=frozenset(),
+        last_completed_package_id="",
+    )
+    assert cold51 is not None
+    assert cold51.campaign_day == "CD-D16"
+
+    # Trust Front cold entry at 4.2 remains Delta CD-D6.
+    cold42 = resolve_active_educational_package(
+        subject_id="CS1",
+        syllabus_topic_code="4.2",
+        completed_package_ids=frozenset(),
+        last_completed_package_id="",
+    )
+    assert cold42 is not None
+    assert cold42.campaign_day == "CD-D6"
+
+    approved = EducationalPackageLoader().all_approved()
+    cp = [p for p in approved if (p.campaign_day or "").startswith("CP-")]
+    assert len(cp) == 10
+    assert len(approved) == 120

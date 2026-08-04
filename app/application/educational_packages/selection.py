@@ -138,6 +138,17 @@ _CAMPAIGN_DAY_ORDER: dict[str, int] = {
     "CO-D8": 108,
     "CO-D9": 109,
     "CO-R1": 110,
+    # Campaign Pi / CS1-016 (RO-014) — Memory Front spine re-audit after 5.1 tip
+    "CP-D1": 111,
+    "CP-D2": 112,
+    "CP-D3": 113,
+    "CP-D4": 114,
+    "CP-D5": 115,
+    "CP-D6": 116,
+    "CP-D7": 117,
+    "CP-D8": 118,
+    "CP-D9": 119,
+    "CP-R1": 120,
 }
 
 
@@ -228,6 +239,17 @@ def resolve_package_successor(
         ]
         if co_matches:
             return min(co_matches, key=campaign_day_sort_key)
+    # RO-014 Memory Front: Pi shares topic_codes with Opening/Trust Front
+    # inventory. When the journey last day is Omicron/Pi, prefer the CP chain
+    # so CO-R1 → CP-D1…CP-R1 is not diverted onto Gamma/Epsilon/…/Delta.
+    if last_day.startswith(("CO-", "CP-")):
+        cp_matches = [
+            p
+            for p in matches
+            if (p.campaign_day or "").strip().upper().startswith("CP-")
+        ]
+        if cp_matches:
+            return min(cp_matches, key=campaign_day_sort_key)
     return min(matches, key=campaign_day_sort_key)
 
 

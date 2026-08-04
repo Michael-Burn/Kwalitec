@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
   "volume_id": "CS1-015",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
   "certification_refs": [
     "CS1015_EDUCATIONAL_VOLUME.md",
     "CS1015_CERTIFICATION_REPORT.md",
@@ -16,7 +16,7 @@
   "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
   "campaign_day": "CO-R1",
   "topic_code": "CO-R1",
-  "topic_title": "Campaign Omicron revision — Bayesian statistics",
+  "topic_title": "Campaign Omicron revision \u2014 Bayesian statistics",
   "return_targets": [
     "5.1.1",
     "5.1.2",
@@ -46,14 +46,14 @@
   "mission": {
     "mission_id": "msn-cs1015-cs1-co-r1-bayesian",
     "display_title": "Retrieve Bayesian hinges (5.1)",
-    "mission_purpose": "Today's Mission exists to protect memory of Campaign Omicron — retrieving Bayes' theorem through Bayes vs EB contrast — so 5.1 does not evaporate before an honest stop / Wave 0 honesty / spine re-audit.",
-    "tutor_intent": "Today I will run closed-book retrieval across Omicron's Learning hinges — not a passive CMP re-read and not a spine PASS or until-exam claim.",
-    "educational_intent": "Produce retrieval strength on the Campaign Educational Objective: theorem → prior/posterior/conjugate → simple posterior → loss/estimators → credible intervals → premium/factor → Bayesian credibility → EB → contrast.",
+    "mission_purpose": "Today's Mission exists to protect memory of Campaign Omicron \u2014 retrieving Bayes' theorem through Bayes vs EB contrast \u2014 so 5.1 does not evaporate before an honest stop / Wave 0 honesty / spine re-audit.",
+    "tutor_intent": "Today I will run closed-book retrieval across Omicron's Learning hinges \u2014 not a passive CMP re-read and not a spine PASS or until-exam claim.",
+    "educational_intent": "Produce retrieval strength on the Campaign Educational Objective: theorem \u2192 prior/posterior/conjugate \u2192 simple posterior \u2192 loss/estimators \u2192 credible intervals \u2192 premium/factor \u2192 Bayesian credibility \u2192 EB \u2192 contrast.",
     "learning_objective": "Retrieve and connect (1) Bayes' theorem, (2) prior/posterior/conjugate, (3) simple posterior, (4) loss-based estimators, (5) credible intervals, (6) credibility premium/factor, (7) Bayesian credibility, (8) Empirical Bayes, and (9) Bayes vs EB assumptions.",
-    "concept_focus": "Campaign chain retrieval: theorem → prior language → posterior → loss → credible → premium → Bayesian credibility → EB → contrast.",
-    "prior_bridge": "Yesterday you finished Bayes vs EB contrast (5.1.9). Today is Revision mode: return to 5.1.1–5.1.9 under closed-book retrieval — no new first-pass LO.",
+    "concept_focus": "Campaign chain retrieval: theorem \u2192 prior language \u2192 posterior \u2192 loss \u2192 credible \u2192 premium \u2192 Bayesian credibility \u2192 EB \u2192 contrast.",
+    "prior_bridge": "Yesterday you finished Bayes vs EB contrast (5.1.9). Today is Revision mode: return to 5.1.1\u20135.1.9 under closed-book retrieval \u2014 no new first-pass LO.",
     "why_now": "Pilot Arc law requires Revision after the Learning span; spacing protects Continuity Front join closure before an honest stop / Wave 0 / spine re-audit.",
-    "expected_benefit": "Evidence that the 5.1 chain retrieves — revision Study Progress, not a claim that spine / until-exam / Wave 0 honesty is complete.",
+    "expected_benefit": "Evidence that the 5.1 chain retrieves \u2014 revision Study Progress, not a claim that spine / until-exam / Wave 0 honesty is complete.",
     "explainability": "Assigned as Campaign Omicron Revision because Architecture requires memory return inside the Pilot Arc before the next Volume.",
     "success_criteria": [
       "Closed-book, name the nine 5.1 Learning hinges in order (short phrases).",
@@ -72,20 +72,20 @@
   },
   "session": {
     "session_id": "ssn-cs1015-cs1-co-r1-bayesian",
-    "session_educational_purpose": "Retrieve and connect Campaign Omicron skills — not to claim spine PASS.",
-    "session_tutor_purpose": "Keep CMP closed for checks; harvest weakest link — Gate RV substance.",
+    "session_educational_purpose": "Retrieve and connect Campaign Omicron skills \u2014 not to claim spine PASS.",
+    "session_tutor_purpose": "Keep CMP closed for checks; harvest weakest link \u2014 Gate RV substance.",
     "duration_budget_minutes": {
       "min": 50,
       "max": 75
     },
-    "wrap_up": "Revision Session complete. You stress-tested 5.1.1–5.1.9 return targets. This is revision Study Progress — not Topic Complete beyond 5.1, and not first-pass spine PASS.",
-    "confidence_prompt": "How confident are you that Bayesian hinges will still retrieve in three days? Rate 1–5 and name the weakest link."
+    "wrap_up": "Revision Session complete. You stress-tested 5.1.1\u20135.1.9 return targets. This is revision Study Progress \u2014 not Topic Complete beyond 5.1, and not first-pass spine PASS.",
+    "confidence_prompt": "How confident are you that Bayesian hinges will still retrieve in three days? Rate 1\u20135 and name the weakest link."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this revision stage: strengthen retrieval of the Campaign Omicron chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus.",
     "focus_questions": [
       "Can you name the nine 5.1 Learning hinges in order?",
-      "Can you state theorem → prior → posterior → loss → credible → premium → Bayes → EB → contrast?",
+      "Can you state theorem \u2192 prior \u2192 posterior \u2192 loss \u2192 credible \u2192 premium \u2192 Bayes \u2192 EB \u2192 contrast?",
       "What claim must you refuse (spine / until-exam / Wave 0 clearance)?"
     ],
     "misconception_watch": [
@@ -94,7 +94,7 @@
       "Watch for dropping Xi GLM memory as irrelevant."
     ],
     "open_point": "No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block.",
-    "stop_condition": "After revision checks and Reflection — do not claim spine PASS, until-exam trust, or Wave 0 clearance in this sitting",
+    "stop_condition": "After revision checks and Reflection \u2014 do not claim spine PASS, until-exam trust, or Wave 0 clearance in this sitting",
     "out_of_scope_today": [
       "First-pass spine PASS",
       "Until-exam educational trust",
@@ -110,7 +110,7 @@
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — mark the weakest link before checks.",
+        "cue": "Pause \u2014 mark the weakest link before checks.",
         "student_action": "Annotate"
       }
     ],
@@ -122,7 +122,7 @@
       "kind": "active_recall",
       "item_id": "cs1015-co-r1-ar-01",
       "title": "Active Recall: Omicron chain",
-      "prompt": "Closed-book. List the nine 5.1 Learning hinges in order as short phrases (theorem → … → contrast).",
+      "prompt": "Closed-book. List the nine 5.1 Learning hinges in order as short phrases (theorem \u2192 \u2026 \u2192 contrast).",
       "response_type": "short_structured",
       "body": "Retrieve Campaign Omicron Learning span.",
       "hints": [
@@ -141,7 +141,7 @@
         "contrast"
       ],
       "explanation": "Order retrieval for CO-R1.",
-      "model_answer": "Theorem → prior/posterior/conjugate → simple posterior → loss/estimators → credible intervals → premium/factor → Bayesian credibility → EB → contrast.",
+      "model_answer": "Theorem \u2192 prior/posterior/conjugate \u2192 simple posterior \u2192 loss/estimators \u2192 credible intervals \u2192 premium/factor \u2192 Bayesian credibility \u2192 EB \u2192 contrast.",
       "common_mistake": "Skipping mid-chain credibility or collapsing Bayes with EB.",
       "success_criteria": [
         "Nine hinges named in lawful order."
@@ -167,7 +167,7 @@
         "until-exam"
       ],
       "explanation": "RV harvests memory debt and honest next.",
-      "model_answer": "(1) Name weakest hinge + five-minute rework. (2) Refuse spine PASS / until-exam / Wave 0 clearance. (3) Honest next is declared stop or Wave 0 honesty / spine re-audit — not claimed finished here.",
+      "model_answer": "(1) Name weakest hinge + five-minute rework. (2) Refuse spine PASS / until-exam / Wave 0 clearance. (3) Honest next is declared stop or Wave 0 honesty / spine re-audit \u2014 not claimed finished here.",
       "common_mistake": "Spine / until-exam / Wave 0 claim.",
       "success_criteria": [
         "Rework named.",
@@ -185,11 +185,11 @@
     ]
   },
   "tomorrow_preview": {
-    "next_topic_code": "stop",
-    "next_topic_title": "Honest next — declared stop / Wave 0 honesty / spine re-audit — not first-pass spine PASS",
-    "continuity_line": "Campaign Omicron / Volume CS1-015 completes after this Revision. Honest stop: 5.1 Continuity Front join Pilot Arc closed — not first-pass spine PASS; not until-exam trust; not Wave 0 Approver honesty clearance. Successor geography is Wave 0 honesty / spine re-audit under a later commission (or declared stop). CS1-003 Delta remains independent Trust Front LIVE inventory.",
-    "light_prep_cue": "No new first-pass LO tonight — rest or schedule weakest-link rework only",
-    "student_facing": "Campaign Omicron / CS1-015 complete after today (pending human Approver + LIVE). Honest next: stop or await Wave 0 honesty / spine re-audit. Optional: schedule your weakest 5.1 rework only."
+    "next_topic_code": "CP-D1",
+    "next_topic_title": "Probability quantiles Memory Front hinge (2.1.3) \u2014 Campaign Pi / CS1-016",
+    "continuity_line": "Campaign Omicron / Volume CS1-015 completes after this Revision. Memory Front next: Campaign Pi Day 1 (CP-D1) opens spine re-audit at Syllabus 2.1.3. CS1-003 Delta remains independent Trust Front LIVE inventory; Opening Front cold entries unchanged.",
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.1.3 \u2014 titles only tonight",
+    "student_facing": "Campaign Omicron / CS1-015 complete after today. Tomorrow: Campaign Pi opens Memory Front spine re-audit at Syllabus 2.1.3. Wave 0 Approver honesty gap remains open; not first-pass spine PASS."
   },
   "revision_linkage": {
     "returns_on": "CO-R1",

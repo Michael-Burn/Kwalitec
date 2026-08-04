@@ -1,0 +1,189 @@
+{
+  "package_version": "cs1016-campaign-pi-1.0.0",
+  "publication_version": "cs1016-live-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "CS1-EP001-CAMPAIGN-PI",
+  "volume_id": "CS1-016",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1016_EDUCATIONAL_VOLUME.md",
+    "CS1016_CERTIFICATION_REPORT.md",
+    "EP014_WAVE14_PLAN.md"
+  ],
+  "author_id": "cs1016-educational-author",
+  "authored_at": "2026-08-04",
+  "front_class": "memory_front_spine_reaudit",
+  "package_id": "CS1-EP001-PKG-CP-2.6-RANDOM-SAMPLES",
+  "campaign_day": "CP-D4",
+  "topic_code": "2.6",
+  "topic_title": "Random sampling and sampling distributions",
+  "topic_focus_lo": "2.6.1",
+  "topic_aliases": [
+    "2.6",
+    "2.6.1",
+    "memory-front-pi"
+  ],
+  "topic_title_keywords": [
+    "sample",
+    "population",
+    "sampling",
+    "memory"
+  ],
+  "golden_id": "GOLDEN-CS1016-CS1-2.6-RANDOM-SAMPLES",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1016-cs1-2.6-random-samples",
+    "display_title": "Retrieve random samples foundations (Memory Front)",
+    "mission_purpose": "Today's Mission exists to retrieve Syllabus 2.6.1 random-sample foundations under Memory Front discipline \u2014 without pretending estimators (3.1.1) are finished.",
+    "tutor_intent": "Today I will force random-sample retrieval and refuse 'Memory Front finished estimators / spine PASS'.",
+    "educational_intent": "Produce Memory Front retrieval of random samples as the bridge into inference hinges.",
+    "learning_objective": "Explain random samples from a population and the role of sampling as the bridge into inference.",
+    "concept_focus": "Population \u2192 random sample \u2192 refuse estimators swallow.",
+    "prior_bridge": "Yesterday you retrieved CLT (2.5.1). Today continues Memory Front at sampling foundations.",
+    "why_now": "Sampling vocabulary must retrieve before estimator and CI hinges.",
+    "expected_benefit": "Study Progress for 2.6.1 retrieval \u2014 not Topic Complete for all of 2.6; not spine PASS.",
+    "explainability": "Assigned as Campaign Pi Day 4 because Memory Front places sampling before inference hinges.",
+    "success_criteria": [
+      "Closed-book, define a random sample from a population.",
+      "State why sampling precedes estimators in the hinge chain.",
+      "Refuse one estimators / spine swallow."
+    ],
+    "task_descriptions": [
+      "Sketch sample/population path before CMP.",
+      "Complete Guided Reading through CMP treatment of Syllabus 2.6.1.",
+      "Closed-book Knowledge Checks."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 55,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1016-cs1-2.6-random-samples",
+    "session_educational_purpose": "Execute today's Memory Front Mission for Syllabus 2.6.1 \u2014 retrieval under spine re-audit discipline, not a new first-pass LO discovery claim.",
+    "session_tutor_purpose": "Set focus on 2.6.1 retrieval, exit to CMP, retrieve today's hinge, refuse spine PASS / until-exam / Wave 0 clearance swallow.",
+    "duration_budget_minutes": {
+      "min": 55,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Retrieve random samples foundations (Memory Front). You practised selective CMP reading on Syllabus 2.6.1 under Memory Front discipline. This is Study Progress for today's hinge \u2014 not first-pass spine PASS, until-exam trust, or Wave 0 Approver honesty clearance.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 2.6.1 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to retrieve Syllabus 2.6.1 \u2014 retrieve random samples foundations (memory front) \u2014 under Memory Front / spine re-audit discipline. Stop before out-of-scope later hinges as primary.",
+    "focus_questions": [
+      "What is the core retrieval move of Syllabus 2.6.1?",
+      "What warrant separates today's hinge from the next Memory Front day?",
+      "What claim must you refuse today (spine / until-exam / Wave 0)?",
+      "What will you practise in Knowledge Checks after the CMP?"
+    ],
+    "misconception_watch": [
+      "Watch for equating sample with population.",
+      "Watch for swallowing estimators today.",
+      "Watch for claiming Chapter 2 complete."
+    ],
+    "open_point": "CMP \u00b7 Syllabus 2.6.1 random samples from a population",
+    "stop_condition": "Through the CMP treatment of Syllabus 2.6.1 (stop before estimators primary 3.1.1)",
+    "out_of_scope_today": [
+      "Estimators as primary",
+      "First-pass spine PASS",
+      "Until-exam educational trust",
+      "Wave 0 Approver honesty clearance"
+    ],
+    "annotation_task": "Before deep reading: sketch today's hinge chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution \u2014 stay inside 2.6.1.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.6.1 random samples from a population. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.6.1 (stop before estimators primary 3.1.1). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 2.6.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause \u2014 write today's core retrieval move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1016-2.6.1-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1016-2.6.1-ar-01",
+      "title": "Active Recall: 2.6.1",
+      "prompt": "Closed-book. (1) What is a random sample from a population? (2) Why does sampling precede estimators? (3) Why is 3.1.1 not today's primary?",
+      "response_type": "short_structured",
+      "body": "Retrieve 2.6.1 closed-book under Memory Front discipline.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "sample",
+        "population",
+        "random",
+        "inference"
+      ],
+      "explanation": "Active recall for 2.6.1.",
+      "model_answer": "A random sample is drawn from a population under a sampling model. Estimators open tomorrow.",
+      "common_mistake": "Skipping the LO hinge or claiming spine / until-exam complete.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1016-2.6.1-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1016-2.6.1-cp-01",
+      "title": "Checkpoint: 2.6.1",
+      "prompt": "Closed-book. A colleague says '2.6.1 finished estimators memory.' Refuse and name tomorrow.",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 2.6.1.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "estimator",
+        "3.1.1",
+        "sample"
+      ],
+      "explanation": "Checkpoint for 2.6.1.",
+      "model_answer": "Refuse: sampling foundations \u2260 estimators. Tomorrow is 3.1.1.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest sampling wobble \u2014 estimators continue Memory Front tomorrow.",
+    "prompt": "Which part of today's 2.6.1 retrieval is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 2.6.1 retrieval is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "3.1",
+    "next_topic_title": "Estimators \u2014 method of moments (3.1.1)",
+    "continuity_line": "Today you retrieved 2.6.1; tomorrow continues Memory Front at 3.1.1.",
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.1.1 \u2014 titles only tonight",
+    "student_facing": "Tomorrow: estimators Memory Front hinge (3.1.1). Optional light prep: skim 3.1.1 headings \u2014 titles only tonight."
+  },
+  "revision_linkage": {
+    "returns_on": "CP-R1",
+    "campaign_revision_package": "CS1-EP001-PKG-REV-SPINE-MEMORY-PI",
+    "note": "Syllabus 2.6.1 is a CP-R1 return target after Memory Front Learning span closes."
+  },
+  "published_at": "2026-08-04"
+}
