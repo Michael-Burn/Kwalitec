@@ -466,15 +466,15 @@ class EducationalRuntimeEngineService:
             curriculum_identity=enrolment.curriculum_identity,
         )
         from app.application.educational_packages.selection import (
-            pending_memory_front_package,
+            pending_post_tip_front_package,
         )
 
-        memory_pack = pending_memory_front_package(
+        memory_pack = pending_post_tip_front_package(
             subject_id=enrolment.subject_code,
             completed_package_ids=completed_packs,
             last_completed_package_id=last_pack_id,
         )
-        # RO-014 Memory Front continuity: tip-complete must not block CP-D1…CP-R1.
+        # RO-014/RO-015: tip-complete must not block CP-D1…CP-R1 or CR-D1…CR-R1.
         if (
             progress.syllabus_complete or progress.current_topic_id is None
         ) and memory_pack is None:
@@ -482,7 +482,7 @@ class EducationalRuntimeEngineService:
                 f"syllabus complete for {enrolment.curriculum_identity}"
             )
         if enrolment.status != EnrolmentStatus.ACTIVE.value:
-            # Re-open tip-complete enrolment only when Memory Front remains.
+            # Re-open tip-complete enrolment only when post-tip fronts remain.
             if memory_pack is None:
                 raise IllegalRuntimeState(
                     f"enrolment {enrolment.enrolment_id} is {enrolment.status}"
@@ -551,7 +551,7 @@ class EducationalRuntimeEngineService:
             curriculum_identity=enrolment.curriculum_identity,
         )
         # MISSION-002: mission topic must match progress current topic —
-        # except Memory Front post-tip sittings, which follow CP package topic.
+        # except post-tip Memory/Publication Front sittings (CP/CR package topic).
         topic_id = preferred_topic or progress.current_topic_id
         if (
             certified_spec is not None
@@ -1122,9 +1122,9 @@ class EducationalRuntimeEngineService:
             )
 
             if progress.syllabus_complete:
-                # RO-014: hold enrolment/plan open while Memory Front CP chain remains.
+                # RO-014/RO-015: hold enrolment/plan open while CP/CR fronts remain.
                 from app.application.educational_packages.selection import (
-                    pending_memory_front_package,
+                    pending_post_tip_front_package,
                 )
 
                 completed_after = self._completed_educational_package_ids(
@@ -1135,7 +1135,7 @@ class EducationalRuntimeEngineService:
                     user_id=user_id,
                     curriculum_identity=enrolment.curriculum_identity,
                 )
-                memory_remaining = pending_memory_front_package(
+                memory_remaining = pending_post_tip_front_package(
                     subject_id=enrolment.subject_code,
                     completed_package_ids=completed_after,
                     last_completed_package_id=last_after,
@@ -1149,6 +1149,7 @@ class EducationalRuntimeEngineService:
                     payload={
                         "completed_topic_count": len(progress.completed_topic_ids),
                         "memory_front_pending": bool(memory_remaining),
+                        "post_tip_front_pending": bool(memory_remaining),
                     },
                     occurred_at=now,
                 )

@@ -149,6 +149,17 @@ _CAMPAIGN_DAY_ORDER: dict[str, int] = {
     "CP-D8": 118,
     "CP-D9": 119,
     "CP-R1": 120,
+    # Campaign Rho / CS1-017 (RO-015) — Publication Front Wave 0 residual
+    "CR-D1": 121,
+    "CR-D2": 122,
+    "CR-D3": 123,
+    "CR-D4": 124,
+    "CR-D5": 125,
+    "CR-D6": 126,
+    "CR-D7": 127,
+    "CR-D8": 128,
+    "CR-D9": 129,
+    "CR-R1": 130,
 }
 
 
@@ -213,6 +224,51 @@ def pending_memory_front_package(
     return None
 
 
+def pending_publication_front_package(
+    *,
+    subject_id: str,
+    completed_package_ids: frozenset[str] | set[str] | None = None,
+    last_completed_package_id: str = "",
+) -> CertifiedEducationalPackage | None:
+    """RO-015 — next Publication Front (CR-) package after Memory Front tip, if any.
+
+    Continuity wiring so tip-complete journeys can still sit Campaign Rho without
+    redesigning Runtime planning math.
+    """
+    pack = resolve_active_educational_package(
+        subject_id=subject_id,
+        syllabus_topic_code="",
+        completed_package_ids=completed_package_ids,
+        last_completed_package_id=last_completed_package_id,
+    )
+    if pack is None:
+        return None
+    if (pack.campaign_day or "").strip().upper().startswith("CR-"):
+        return pack
+    return None
+
+
+def pending_post_tip_front_package(
+    *,
+    subject_id: str,
+    completed_package_ids: frozenset[str] | set[str] | None = None,
+    last_completed_package_id: str = "",
+) -> CertifiedEducationalPackage | None:
+    """RO-014/RO-015 — next Memory Front or Publication Front package, if any."""
+    memory = pending_memory_front_package(
+        subject_id=subject_id,
+        completed_package_ids=completed_package_ids,
+        last_completed_package_id=last_completed_package_id,
+    )
+    if memory is not None:
+        return memory
+    return pending_publication_front_package(
+        subject_id=subject_id,
+        completed_package_ids=completed_package_ids,
+        last_completed_package_id=last_completed_package_id,
+    )
+
+
 def resolve_package_successor(
     last: CertifiedEducationalPackage,
     candidates: list[CertifiedEducationalPackage]
@@ -274,6 +330,17 @@ def resolve_package_successor(
         ]
         if cp_matches:
             return min(cp_matches, key=campaign_day_sort_key)
+    # RO-015 Publication Front: Rho shares topic_codes with Opening Front
+    # Alpha/Beta. When the journey last day is Pi/Rho, prefer the CR chain so
+    # CP-R1 → CR-D1…CR-R1 is not diverted onto CA-/CB- honesty-gap inventory.
+    if last_day.startswith(("CP-", "CR-")):
+        cr_matches = [
+            p
+            for p in matches
+            if (p.campaign_day or "").strip().upper().startswith("CR-")
+        ]
+        if cr_matches:
+            return min(cr_matches, key=campaign_day_sort_key)
     return min(matches, key=campaign_day_sort_key)
 
 

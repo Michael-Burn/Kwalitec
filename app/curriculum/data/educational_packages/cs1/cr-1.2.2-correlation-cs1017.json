@@ -1,0 +1,190 @@
+{
+  "package_version": "cs1017-campaign-rho-1.0.0",
+  "publication_version": "cs1017-live-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
+  "volume_id": "CS1-017",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1017_EDUCATIONAL_VOLUME.md",
+    "CS1017_CERTIFICATION_REPORT.md",
+    "EP015_WAVE15_PLAN.md"
+  ],
+  "author_id": "cs1017-educational-author",
+  "authored_at": "2026-08-04",
+  "front_class": "publication_front_wave0_residual",
+  "package_id": "CS1-EP001-PKG-CR-1.2-CORRELATION",
+  "campaign_day": "CR-D6",
+  "topic_code": "1.2",
+  "topic_title": "Complete exploratory data analysis",
+  "topic_focus_lo": "1.2.2",
+  "topic_aliases": [
+    "1.2",
+    "1.2.2",
+    "publication-front-rho"
+  ],
+  "topic_title_keywords": [
+    "Pearson",
+    "Spearman",
+    "Kendall",
+    "correlation",
+    "publication"
+  ],
+  "golden_id": "GOLDEN-CS1017-CS1-1.2-CORRELATION",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1017-cs1-1.2-correlation",
+    "display_title": "Correlation measures (Publication Front)",
+    "mission_purpose": "Today's Mission exists to study Syllabus 1.2.2 correlation measures under Publication Front discipline \u2014 without pretending PCA (1.2.3) is finished.",
+    "tutor_intent": "Today I will force Pearson/Spearman/Kendall warrant and refuse 'Publication Front finished PCA / Approver clearance'.",
+    "educational_intent": "Produce Publication Front study of bivariate correlation measures and inference.",
+    "learning_objective": "Interpret and make statistical inferences using Pearson\u2019s, Spearman\u2019s and Kendall\u2019s measures of correlation for bivariate data",
+    "concept_focus": "Pearson / Spearman / Kendall \u2192 interpretation \u2192 refuse PCA swallow.",
+    "prior_bridge": "Yesterday you studied EDA summaries (1.2.1). Today continues Publication Front.",
+    "why_now": "Association measures sit between summaries and dimensionality reduction.",
+    "expected_benefit": "Study Progress for 1.2.2 \u2014 not Topic 1.2 complete; not Approver clearance.",
+    "explainability": "Assigned as Campaign Rho Day 6 because Publication Front places correlation before PCA.",
+    "success_criteria": [
+      "Closed-book, distinguish Pearson, Spearman, and Kendall at foundation level.",
+      "State one inference caution for bivariate correlation.",
+      "Refuse one PCA / Approver swallow."
+    ],
+    "task_descriptions": [
+      "Sketch correlation measure map before CMP.",
+      "Complete Guided Reading through CMP treatment of Syllabus 1.2.2.",
+      "Closed-book Knowledge Checks."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 55,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1017-cs1-1.2-correlation",
+    "session_educational_purpose": "Execute today's Publication Front Mission for Syllabus 1.2.2 \u2014 LO-per-day Wave 0 residual catalogue under EP Production Era, not Approver clearance.",
+    "session_tutor_purpose": "Set focus on 1.2.2, exit to CMP, practise today's LO, refuse spine PASS / until-exam / Approver clearance swallow.",
+    "duration_budget_minutes": {
+      "min": 55,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Correlation measures (Publication Front). You practised selective CMP reading on Syllabus 1.2.2 under Publication Front discipline. This is Study Progress for today's LO \u2014 not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 1.2.2 closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.2.2 \u2014 correlation measures (publication front) \u2014 under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
+    "focus_questions": [
+      "What is the core move of Syllabus 1.2.2?",
+      "What warrant separates today's LO from the next Publication Front day?",
+      "What claim must you refuse today (spine / until-exam / Approver clearance)?",
+      "What will you practise in Knowledge Checks after the CMP?"
+    ],
+    "misconception_watch": [
+      "Watch for equating correlation with causation.",
+      "Watch for swallowing PCA today.",
+      "Watch for claiming Topic 1.2 complete."
+    ],
+    "open_point": "CMP \u00b7 Syllabus 1.2.2 correlation measures for bivariate data",
+    "stop_condition": "Through the CMP treatment of Syllabus 1.2.2 (stop before PCA primary 1.2.3)",
+    "out_of_scope_today": [
+      "PCA as primary",
+      "First-pass spine PASS",
+      "Until-exam educational trust",
+      "Approver honesty clearance"
+    ],
+    "annotation_task": "Before deep reading: sketch today's LO chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution \u2014 stay inside 1.2.2.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 1.2.2 correlation measures for bivariate data. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.2.2 (stop before PCA primary 1.2.3). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 1.2.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause \u2014 write today's core LO move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1017-1.2.2-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1017-1.2.2-ar-01",
+      "title": "Active Recall: 1.2.2",
+      "prompt": "Closed-book. (1) Distinguish Pearson, Spearman, Kendall. (2) Name one inference caution. (3) Why is 1.2.3 not today's primary?",
+      "response_type": "short_structured",
+      "body": "Retrieve 1.2.2 closed-book under Publication Front discipline.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "Pearson",
+        "Spearman",
+        "Kendall",
+        "correlation"
+      ],
+      "explanation": "Active recall for 1.2.2.",
+      "model_answer": "Pearson is linear association; Spearman/Kendall are rank-based. PCA opens tomorrow.",
+      "common_mistake": "Skipping the LO or claiming Approver clearance / spine / until-exam complete.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1017-1.2.2-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1017-1.2.2-cp-01",
+      "title": "Checkpoint: 1.2.2",
+      "prompt": "Closed-book. A colleague says '1.2.2 finished PCA.' Refuse and name tomorrow.",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 1.2.2.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "PCA",
+        "1.2.3",
+        "correlation"
+      ],
+      "explanation": "Checkpoint for 1.2.2.",
+      "model_answer": "Refuse: correlation \u2260 PCA. Tomorrow is 1.2.3.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest correlation wobble \u2014 PCA continues Publication Front tomorrow.",
+    "prompt": "Which part of today's 1.2.2 work is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 1.2.2 work is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "1.2",
+    "next_topic_title": "Principal component analysis (1.2.3)",
+    "continuity_line": "Today you studied 1.2.2; tomorrow continues Publication Front at 1.2.3.",
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 1.2.3 \u2014 titles only tonight",
+    "student_facing": "Tomorrow: PCA Publication Front day (1.2.3). Optional light prep: skim 1.2.3 headings \u2014 titles only tonight."
+  },
+  "revision_linkage": {
+    "returns_on": "CR-R1",
+    "campaign_revision_package": "CS1-EP001-PKG-REV-PUBLICATION-FRONT-RHO",
+    "note": "Syllabus 1.2.2 is a CR-R1 return target after Publication Front Learning span closes."
+  },
+  "published_at": "2026-08-04"
+}

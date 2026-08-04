@@ -1,0 +1,194 @@
+{
+  "package_version": "cs1017-campaign-rho-1.0.0",
+  "publication_version": "cs1017-live-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
+  "volume_id": "CS1-017",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1017_EDUCATIONAL_VOLUME.md",
+    "CS1017_CERTIFICATION_REPORT.md",
+    "EP015_WAVE15_PLAN.md"
+  ],
+  "author_id": "cs1017-educational-author",
+  "authored_at": "2026-08-04",
+  "front_class": "publication_front_wave0_residual",
+  "package_id": "CS1-EP001-PKG-CR-2.1-CONTINUOUS",
+  "campaign_day": "CR-D9",
+  "topic_code": "2.1",
+  "topic_title": "Understand the characteristics of basic univariate distributions and how to generate samples from them",
+  "topic_focus_lo": "2.1.2",
+  "topic_aliases": [
+    "2.1",
+    "2.1.2",
+    "publication-front-rho"
+  ],
+  "topic_title_keywords": [
+    "continuous",
+    "normal",
+    "gamma",
+    "exponential",
+    "publication"
+  ],
+  "golden_id": "GOLDEN-CS1017-CS1-2.1-CONTINUOUS",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1017-cs1-2.1-continuous",
+    "display_title": "Continuous distributions (Publication Front)",
+    "mission_purpose": "Today's Mission exists to study Syllabus 2.1.2 continuous distributions under Publication Front discipline \u2014 without pretending Approver clearance, first-pass spine PASS, or until-exam trust.",
+    "tutor_intent": "Today I will force continuous family recognition and refuse 'Publication Front cleared Approver honesty / finished spine / unlocked until-exam'.",
+    "educational_intent": "Produce Publication Front study of named continuous distributions as the Learning close before Revision.",
+    "learning_objective": "Normal, lognormal, exponential, gamma, chi-square, t, F, beta and uniform continuous distributions on an interval",
+    "concept_focus": "Continuous family map \u2192 refuse Approver clearance / spine / until-exam / 2.1.3 swallow as Learning close.",
+    "prior_bridge": "Yesterday you studied discrete distributions (2.1.1). Today closes Publication Front Learning.",
+    "why_now": "2.1.2 closes the Awaiting Approval Learning span; Revision protects the chain before Approver residual stop.",
+    "expected_benefit": "Study Progress for 2.1.2 \u2014 not Approver clearance; not spine PASS; not until-exam.",
+    "explainability": "Assigned as Campaign Rho Day 9 because Publication Front closes Learning at the last AA continuous-families LO before CR-R1.",
+    "success_criteria": [
+      "Closed-book, name continuous families in scope.",
+      "State one distinguishing warrant between two named families.",
+      "Refuse one Approver / spine / until-exam clearance claim."
+    ],
+    "task_descriptions": [
+      "Sketch continuous family map before CMP.",
+      "Complete Guided Reading through CMP treatment of Syllabus 2.1.2.",
+      "Closed-book Knowledge Checks: families + refuse Approver swallow."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 55,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1017-cs1-2.1-continuous",
+    "session_educational_purpose": "Execute today's Publication Front Mission for Syllabus 2.1.2 \u2014 LO-per-day Wave 0 residual catalogue under EP Production Era, not Approver clearance.",
+    "session_tutor_purpose": "Set focus on 2.1.2, exit to CMP, practise today's LO, refuse spine PASS / until-exam / Approver clearance swallow.",
+    "duration_budget_minutes": {
+      "min": 55,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Continuous distributions (Publication Front). You practised selective CMP reading on Syllabus 2.1.2 under Publication Front discipline. This is Study Progress for today's LO \u2014 not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 2.1.2 closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 2.1.2 \u2014 continuous distributions (publication front) \u2014 under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
+    "focus_questions": [
+      "What is the core move of Syllabus 2.1.2?",
+      "What warrant separates today's LO from the next Publication Front day?",
+      "What claim must you refuse today (spine / until-exam / Approver clearance)?",
+      "What will you practise in Knowledge Checks after the CMP?"
+    ],
+    "misconception_watch": [
+      "Watch for claiming Approver clearance from Learning close.",
+      "Watch for swallowing 2.1.3 as Rho Learning.",
+      "Watch for skipping Revision."
+    ],
+    "open_point": "CMP \u00b7 Syllabus 2.1.2 continuous distributions",
+    "stop_condition": "Through the CMP treatment of Syllabus 2.1.2 (stop before terminal Revision as Learning; no Approver / spine / until-exam claim)",
+    "out_of_scope_today": [
+      "First-pass spine PASS",
+      "Until-exam educational trust",
+      "Approver honesty clearance",
+      "Probabilities/quantiles (2.1.3) as primary Learning today",
+      "Topic 5.2 invention",
+      "Certified Educational Coverage increase from catalogue alone",
+      "Modifying Alpha/Beta packages"
+    ],
+    "annotation_task": "Before deep reading: sketch today's LO chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution \u2014 stay inside 2.1.2.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.1.2 continuous distributions. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.1.2 (stop before terminal Revision as Learning; no Approver / spine / until-exam claim). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 2.1.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause \u2014 write today's core LO move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1017-2.1.2-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1017-2.1.2-ar-01",
+      "title": "Active Recall: 2.1.2",
+      "prompt": "Closed-book. (1) List continuous families in scope. (2) Give one distinguishing warrant. (3) Name one reason this does not clear Approver honesty or finish first-pass spine.",
+      "response_type": "short_structured",
+      "body": "Retrieve 2.1.2 closed-book under Publication Front discipline.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "normal",
+        "gamma",
+        "exponential",
+        "continuous"
+      ],
+      "explanation": "Active recall for 2.1.2.",
+      "model_answer": "Named continuous families share continuous support with distinct shape/scale stories. Approver seals and spine PASS remain out of scope.",
+      "common_mistake": "Skipping the LO or claiming Approver clearance / spine / until-exam complete.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1017-2.1.2-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1017-2.1.2-cp-01",
+      "title": "Checkpoint: 2.1.2",
+      "prompt": "Closed-book. A colleague says 'Finishing 2.1.2 Rho cleared Approver honesty, finished the first-pass spine, and unlocked until-exam trust.' Refuse and name tomorrow's honest next (Revision).",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 2.1.2.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "Approver",
+        "spine",
+        "until-exam",
+        "revision"
+      ],
+      "explanation": "Checkpoint for 2.1.2.",
+      "model_answer": "Refuse: Learning close \u2260 Approver clearance \u2260 spine PASS \u2260 until-exam. Tomorrow is CR-R1 Revision.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest continuous-family wobble \u2014 Revision protects the Publication Front chain tomorrow.",
+    "prompt": "Which part of today's 2.1.2 work is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 2.1.2 work is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "CR-R1",
+    "next_topic_title": "Campaign Rho Revision \u2014 retrieve Publication Front chain",
+    "continuity_line": "Today you closed Publication Front Learning at continuous distributions; tomorrow is Campaign Rho Revision returning to the CR chain.",
+    "light_prep_cue": "No new LO tonight \u2014 rest or jot the stickiest Publication Front LO for Revision",
+    "student_facing": "Tomorrow: CR-R1 Revision of Publication Front LOs. Optional: note your weakest LO \u2014 titles only tonight."
+  },
+  "revision_linkage": {
+    "returns_on": "CR-R1",
+    "campaign_revision_package": "CS1-EP001-PKG-REV-PUBLICATION-FRONT-RHO",
+    "note": "Syllabus 2.1.2 is a CR-R1 return target after Publication Front Learning span closes."
+  },
+  "published_at": "2026-08-04"
+}

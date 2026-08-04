@@ -180,12 +180,12 @@ class EducationalExperienceService:
         enrolment_active = (
             enrolment.status == EnrolmentStatus.ACTIVE.value
         )
-        # RO-014: tip-complete enrolments may still owe Memory Front CP sittings.
+        # RO-014/RO-015: tip-complete enrolments may still owe CP/CR sittings.
         allow_mission = enrolment_active
         if ensure_mission and not enrolment_active:
             try:
                 from app.application.educational_packages.selection import (
-                    pending_memory_front_package,
+                    pending_post_tip_front_package,
                 )
 
                 completed_packs = self._runtime._completed_educational_package_ids(
@@ -197,7 +197,7 @@ class EducationalExperienceService:
                     curriculum_identity=enrolment.curriculum_identity,
                 )
                 allow_mission = (
-                    pending_memory_front_package(
+                    pending_post_tip_front_package(
                         subject_id=enrolment.subject_code,
                         completed_package_ids=completed_packs,
                         last_completed_package_id=last_pack_id,

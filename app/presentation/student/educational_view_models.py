@@ -145,8 +145,8 @@ def _home_from_educational(
         and mission_status in {"generated", "accepted", "deferred"}
     )
     mission_done_today = bool(mission and mission_status == "completed")
-    # RO-014: syllabus tip-complete must not blank Memory Front start when a
-    # generated/open mission is already bound (CP chain continuity).
+    # RO-014/RO-015: syllabus tip-complete must not blank CP/CR start when a
+    # generated/open mission is already bound (post-tip front continuity).
     day_complete = bool(
         (snap.syllabus_complete and not mission_open) or mission_done_today
     )

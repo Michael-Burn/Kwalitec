@@ -1,0 +1,189 @@
+{
+  "package_version": "cs1017-campaign-rho-1.0.0",
+  "publication_version": "cs1017-live-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
+  "volume_id": "CS1-017",
+  "subject_id": "CS1",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "certification_refs": [
+    "CS1017_EDUCATIONAL_VOLUME.md",
+    "CS1017_CERTIFICATION_REPORT.md",
+    "EP015_WAVE15_PLAN.md"
+  ],
+  "author_id": "cs1017-educational-author",
+  "authored_at": "2026-08-04",
+  "front_class": "publication_front_wave0_residual",
+  "package_id": "CS1-EP001-PKG-CR-1.1-REPRODUCIBLE",
+  "campaign_day": "CR-D4",
+  "topic_code": "1.1",
+  "topic_title": "Purpose and function of data analysis",
+  "topic_focus_lo": "1.1.4",
+  "topic_aliases": [
+    "1.1",
+    "1.1.4",
+    "publication-front-rho"
+  ],
+  "topic_title_keywords": [
+    "reproducible",
+    "research",
+    "elements",
+    "publication"
+  ],
+  "golden_id": "GOLDEN-CS1017-CS1-1.1-REPRODUCIBLE",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-cs1017-cs1-1.1-reproducible",
+    "display_title": "Reproducible research (Publication Front)",
+    "mission_purpose": "Today's Mission exists to study Syllabus 1.1.4 reproducible research under Publication Front discipline \u2014 without pretending EDA summaries (1.2.1) are finished.",
+    "tutor_intent": "Today I will force reproducibility elements warrant and refuse 'Publication Front finished EDA / Approver clearance'.",
+    "educational_intent": "Produce contiguous Publication Front study of reproducibility elements.",
+    "learning_objective": "Meaning and value of reproducible research and the elements required to ensure a data analysis is reproducible",
+    "concept_focus": "Reproducibility meaning \u2192 required elements \u2192 refuse EDA swallow.",
+    "prior_bridge": "Yesterday you studied data sources (1.1.3). Today continues Publication Front.",
+    "why_now": "Reproducibility closes Topic 1.1 before EDA entry.",
+    "expected_benefit": "Study Progress for 1.1.4 \u2014 not Topic 1.2 complete; not Approver clearance.",
+    "explainability": "Assigned as Campaign Rho Day 4 because Publication Front closes Topic 1.1 at reproducibility before EDA.",
+    "success_criteria": [
+      "Closed-book, state meaning/value of reproducible research.",
+      "List required elements at foundation level.",
+      "Refuse one EDA / Approver swallow."
+    ],
+    "task_descriptions": [
+      "Sketch reproducibility checklist before CMP.",
+      "Complete Guided Reading through CMP treatment of Syllabus 1.1.4.",
+      "Closed-book Knowledge Checks."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 55,
+      "max": 75
+    }
+  },
+  "session": {
+    "session_id": "ssn-cs1017-cs1-1.1-reproducible",
+    "session_educational_purpose": "Execute today's Publication Front Mission for Syllabus 1.1.4 \u2014 LO-per-day Wave 0 residual catalogue under EP Production Era, not Approver clearance.",
+    "session_tutor_purpose": "Set focus on 1.1.4, exit to CMP, practise today's LO, refuse spine PASS / until-exam / Approver clearance swallow.",
+    "duration_budget_minutes": {
+      "min": 55,
+      "max": 75
+    },
+    "wrap_up": "Session complete for Reproducible research (Publication Front). You practised selective CMP reading on Syllabus 1.1.4 under Publication Front discipline. This is Study Progress for today's LO \u2014 not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 1.1.4 closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+  },
+  "reading_guidance": {
+    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.1.4 \u2014 reproducible research (publication front) \u2014 under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
+    "focus_questions": [
+      "What is the core move of Syllabus 1.1.4?",
+      "What warrant separates today's LO from the next Publication Front day?",
+      "What claim must you refuse today (spine / until-exam / Approver clearance)?",
+      "What will you practise in Knowledge Checks after the CMP?"
+    ],
+    "misconception_watch": [
+      "Watch for equating reproducibility with 'rerun the notebook once'.",
+      "Watch for swallowing EDA today.",
+      "Watch for claiming Section 1 complete as Approver clearance."
+    ],
+    "open_point": "CMP \u00b7 Syllabus 1.1.4 reproducible research",
+    "stop_condition": "Through the CMP treatment of Syllabus 1.1.4 (stop before EDA primary 1.2.1)",
+    "out_of_scope_today": [
+      "EDA summaries as primary",
+      "First-pass spine PASS",
+      "Until-exam educational trust",
+      "Approver honesty clearance"
+    ],
+    "annotation_task": "Before deep reading: sketch today's LO chain in notes",
+    "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution \u2014 stay inside 1.1.4.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 1.1.4 reproducible research. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.1.4 (stop before EDA primary 1.2.1). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 1.1.4 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Pause \u2014 write today's core LO move in one sentence.",
+        "student_action": "Annotate"
+      },
+      {
+        "id": "PP2",
+        "cue": "Attempt the next worked step before uncovering the solution.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-cs1017-1.1.4-ar-01",
+      "kind": "active_recall",
+      "item_id": "cs1017-1.1.4-ar-01",
+      "title": "Active Recall: 1.1.4",
+      "prompt": "Closed-book. (1) What does reproducible research mean? (2) Name required elements. (3) Why is 1.2.1 not today's primary?",
+      "response_type": "short_structured",
+      "body": "Retrieve 1.1.4 closed-book under Publication Front discipline.",
+      "hints": [
+        "Use CMP language from today's notes.",
+        "Stay inside today's LO."
+      ],
+      "accepted_keywords": [
+        "reproducible",
+        "elements",
+        "analysis",
+        "research"
+      ],
+      "explanation": "Active recall for 1.1.4.",
+      "model_answer": "Reproducible research lets others reconstruct the analysis; elements include data, code, and documentation warrants. EDA opens tomorrow.",
+      "common_mistake": "Skipping the LO or claiming Approver clearance / spine / until-exam complete.",
+      "success_criteria": [
+        "Addresses the prompt structure.",
+        "Stays inside today's LO."
+      ]
+    },
+    {
+      "episode_id": "lep-cs1017-1.1.4-cp-01",
+      "kind": "checkpoint",
+      "item_id": "cs1017-1.1.4-cp-01",
+      "title": "Checkpoint: 1.1.4",
+      "prompt": "Closed-book. A colleague says '1.1.4 finished EDA and cleared Approver honesty.' Refuse and name tomorrow.",
+      "response_type": "short_structured",
+      "body": "Checkpoint refuse/warrant for 1.1.4.",
+      "hints": [
+        "Name the refusal clearly.",
+        "Give a positive warrant."
+      ],
+      "accepted_keywords": [
+        "refuse",
+        "EDA",
+        "1.2.1",
+        "Approver"
+      ],
+      "explanation": "Checkpoint for 1.1.4.",
+      "model_answer": "Refuse: reproducibility \u2260 EDA \u2260 Approver clearance. Tomorrow is 1.2.1.",
+      "common_mistake": "Accepting the forbidden claim.",
+      "success_criteria": [
+        "Refusal present.",
+        "Positive warrant present."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Harvest reproducibility wobble \u2014 EDA continues Publication Front tomorrow.",
+    "prompt": "Which part of today's 1.1.4 work is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
+    "prompts": [
+      "Which part of 1.1.4 work is stickiest and why?",
+      "Quote or paraphrase the single CMP cue still unclear.",
+      "If you had five minutes tomorrow, what one move would you rework?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "1.2",
+    "next_topic_title": "EDA summaries and visuals (1.2.1)",
+    "continuity_line": "Today you studied 1.1.4; tomorrow continues Publication Front at 1.2.1.",
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 1.2.1 \u2014 titles only tonight",
+    "student_facing": "Tomorrow: EDA summaries Publication Front day (1.2.1). Optional light prep: skim 1.2.1 headings \u2014 titles only tonight."
+  },
+  "revision_linkage": {
+    "returns_on": "CR-R1",
+    "campaign_revision_package": "CS1-EP001-PKG-REV-PUBLICATION-FRONT-RHO",
+    "note": "Syllabus 1.1.4 is a CR-R1 return target after Publication Front Learning span closes."
+  },
+  "published_at": "2026-08-04"
+}
