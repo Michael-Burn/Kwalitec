@@ -1,0 +1,10 @@
+{
+  "createdAt": "2026-08-04T20:08:03.790581Z",
+  "finishedAt": "2026-08-04T20:08:48Z",
+  "id": "job-d9p4d8tbedkc73e3fd30",
+  "planId": "plan-srv-006",
+  "serviceId": "srv-d97ji5t7vvec73cbs5l0",
+  "startCommand": "flask --app wsgi.py create-test-user --name \"REL001 Smoke\" --email \"rel001.smoke.1785874082@example.com\" --password \"***REDACTED***\"",
+  "startedAt": "2026-08-04T20:08:03Z",
+  "status": "succeeded"
+}

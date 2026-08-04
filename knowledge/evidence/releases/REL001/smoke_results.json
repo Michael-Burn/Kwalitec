@@ -1,0 +1,119 @@
+{
+  "programme": "REL-001",
+  "started_at": "2026-08-04T20:10:24.795569+00:00",
+  "email": "rel001.smoke.1785874082@example.com",
+  "checks": [
+    {
+      "name": "fingerprint",
+      "ok": true,
+      "commit": "95a82b04ae50d32003add3a2f5e6789005a4c962"
+    },
+    {
+      "name": "health_ready",
+      "ok": true
+    },
+    {
+      "name": "create_test_user",
+      "ok": true,
+      "job_id": "job-d9p4d8tbedkc73e3fd30"
+    },
+    {
+      "name": "login",
+      "ok": true
+    },
+    {
+      "name": "enrol_wizard",
+      "ok": true,
+      "final": "https://kwalitec.onrender.com/student/",
+      "title": "Home \u00b7 Kwalitec"
+    },
+    {
+      "name": "student_home",
+      "ok": true,
+      "final": "https://kwalitec.onrender.com/student/",
+      "title": "Home \u00b7 Kwalitec"
+    },
+    {
+      "name": "mission_flow_entry",
+      "ok": true,
+      "session_id": "lsr-9a93467b3211",
+      "final": "https://kwalitec.onrender.com/student/"
+    },
+    {
+      "name": "session_overview",
+      "ok": true,
+      "status": 200,
+      "title": "Today: Today&#39;s topic \u00b7 Kwalitec"
+    },
+    {
+      "name": "continue_session",
+      "ok": true,
+      "session_id": "lsr-9a93467b3211"
+    },
+    {
+      "name": "session_activity",
+      "ok": true,
+      "status": 200,
+      "title": "Today: Today&#39;s topic \u00b7 Kwalitec"
+    },
+    {
+      "name": "educational_package_loading",
+      "ok": true,
+      "chars": 1519
+    },
+    {
+      "name": "session_reflection",
+      "ok": true,
+      "status": 200,
+      "title": "Today: Today&#39;s topic \u00b7 Kwalitec"
+    },
+    {
+      "name": "session_summary",
+      "ok": true,
+      "status": 200,
+      "title": "Today: Today&#39;s topic \u00b7 Kwalitec"
+    },
+    {
+      "name": "session_completion_surface",
+      "ok": true,
+      "status": 200
+    },
+    {
+      "name": "dashboard_history",
+      "ok": true,
+      "status": 200,
+      "title": "History \u00b7 Kwalitec"
+    },
+    {
+      "name": "dashboard_journey",
+      "ok": true,
+      "status": 200,
+      "title": "Syllabus \u00b7 Kwalitec"
+    },
+    {
+      "name": "dashboard_profile",
+      "ok": true,
+      "status": 200,
+      "title": "Settings \u00b7 Kwalitec"
+    },
+    {
+      "name": "dashboard_settings",
+      "ok": true,
+      "status": 200,
+      "title": "Settings \u00b7 Kwalitec"
+    },
+    {
+      "name": "logout",
+      "ok": true,
+      "final": "https://kwalitec.onrender.com/auth/login"
+    }
+  ],
+  "phase": "full_journey",
+  "finished_at": "2026-08-04T20:11:40.379309+00:00",
+  "summary": {
+    "passed": 19,
+    "failed": 0,
+    "total": 19
+  },
+  "verdict": "PASS"
+}
