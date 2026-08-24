@@ -30,7 +30,7 @@ Governing refs:
 
 from __future__ import annotations
 
-from datetime import UTC, datetime
+from datetime import UTC, date, datetime
 from enum import Enum
 from typing import TYPE_CHECKING
 
@@ -124,11 +124,15 @@ class EducationalEvidenceAuthority:
         return attempt.get_accuracy_percentage() is not None
 
     @staticmethod
-    def collect_authorised_accuracies(
+    def collect_authorised_accuracy_observations(
         attempts: list[StudyAttempt],
-    ) -> list[float]:
-        """Extract accuracies from attempts with authorised question results."""
-        results: list[float] = []
+    ) -> list[tuple[float, date]]:
+        """Extract ``(accuracy, study_date)`` from authorised question results.
+
+        Dates come from ``StudyAttempt.study_date`` so callers can apply
+        recency weighting. Attempts without measurable accuracy are skipped.
+        """
+        results: list[tuple[float, date]] = []
         has_results = (
             EducationalEvidenceAuthority.study_attempt_has_structured_question_results
         )
@@ -137,8 +141,22 @@ class EducationalEvidenceAuthority:
                 continue
             accuracy = attempt.get_accuracy_percentage()
             if accuracy is not None:
-                results.append(accuracy)
+                results.append((accuracy, attempt.study_date))
         return results
+
+    @staticmethod
+    def collect_authorised_accuracies(
+        attempts: list[StudyAttempt],
+    ) -> list[float]:
+        """Extract accuracies from attempts with authorised question results."""
+        return [
+            accuracy
+            for accuracy, _study_date in (
+                EducationalEvidenceAuthority.collect_authorised_accuracy_observations(
+                    attempts
+                )
+            )
+        ]
 
     @staticmethod
     def has_authorised_evidence_for_estimates(
@@ -146,7 +164,9 @@ class EducationalEvidenceAuthority:
     ) -> bool:
         """True when at least one V1.0 authorised evidence observation exists."""
         return bool(
-            EducationalEvidenceAuthority.collect_authorised_accuracies(attempts)
+            EducationalEvidenceAuthority.collect_authorised_accuracy_observations(
+                attempts
+            )
         )
 
     @staticmethod

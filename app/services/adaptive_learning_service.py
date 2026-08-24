@@ -20,6 +20,9 @@ CONFIDENCE_NUMERIC = {
     "Mastered": 100,
 }
 
+# Exponential half-life (days) for recency-weighted accuracy aggregation.
+ACCURACY_RECENCY_HALF_LIFE_DAYS = 21.0
+
 
 class AdaptiveLearningService:
     """Service for adaptive learning calculations.
@@ -51,21 +54,30 @@ class AdaptiveLearningService:
         Results (accuracy). It must not mint estimates from activity,
         confidence, or revision alone.
 
-        The formula is a weighted combination of:
-        - Accuracy (required for a non-zero estimate write path): average
-          percentage correct across authorised attempts
-        - Confidence (30%): legacy parameter retained for compatibility —
-          EIP-001/EIP-002 forbid student confidence from authoring estimates;
-          ``update_mastery_after_attempt`` always passes ``None``.
-        - Consistency bonus: capped revision signal only when accuracy exists
-        - Penalty: deduction for unresolved mistakes when accuracy exists
+        Live formula (when *accuracy* is present)::
+
+            score = accuracy
+                    + min(revision_count, 5) * 2.0   # revision bonus, max +10
+                    - min(unresolved_mistakes, 4) * 5.0  # mistake penalty, max -20
+            score = clamp(score, 0, 100)
+
+        *accuracy* is the caller-supplied base — typically the exponential
+        recency-weighted average from
+        ``recency_weighted_accuracy`` (21-day half-life). A single fresh
+        observation has weight 1 and equals that attempt's accuracy.
+
+        ``confidence_numeric`` is retained for call-signature compatibility
+        only. EIP-001/EIP-002 forbid student confidence from authoring
+        estimates; ``update_mastery_after_attempt`` always passes ``None``,
+        and this method ignores the value when provided.
 
         If accuracy is None, returns 0.0 — callers must treat this as
         **correct silence** (do not write Twin estimates from this alone).
 
         Args:
-            accuracy: Average accuracy percentage (0-100), or None.
-            confidence_numeric: Numeric confidence (0-100), or None.
+            accuracy: Recency-weighted (or single-observation) accuracy
+                percentage (0-100), or None.
+            confidence_numeric: Ignored (legacy signature; live path passes None).
             revision_count: Number of times the topic has been reviewed.
             unresolved_mistakes: Number of unresolved mistakes.
 
@@ -77,19 +89,10 @@ class AdaptiveLearningService:
         if accuracy is None:
             return 0.0
 
-        score = 0.0
-        total_weight = 0.0
+        # confidence_numeric is intentionally unused (EIP-001 / EIP-002).
+        _ = confidence_numeric
 
-        # Accuracy component (weight: 0.40)
-        score += accuracy * 0.40
-        total_weight += 0.40
-
-        # Confidence component (weight: 0.30) — never used on live estimate path.
-        if confidence_numeric is not None:
-            score += confidence_numeric * 0.30
-            total_weight += 0.30
-
-        score = score / total_weight
+        score = accuracy
 
         # Consistency bonus only as soft modifier on authorised evidence.
         consistency_bonus = min(revision_count, 5) * 2.0  # max 10
@@ -101,6 +104,50 @@ class AdaptiveLearningService:
 
         # Clamp to 0-100
         return max(0.0, min(100.0, score))
+
+    @staticmethod
+    def recency_weighted_accuracy(
+        observations: list[tuple[float, date]],
+        *,
+        as_of: date | None = None,
+    ) -> float:
+        """Exponentially recency-weighted mean accuracy (21-day half-life).
+
+        For each authorised observation ``(accuracy_i, study_date_i)``::
+
+            weight_i = 0.5 ** (days_since_attempt_i / 21)
+            result = sum(accuracy_i * weight_i) / sum(weight_i)
+
+        ``days_since_attempt_i`` is ``(as_of - study_date_i).days``, floored
+        at 0. ``as_of`` defaults to ``date.today()`` so a same-day attempt
+        has weight 1.0 (recency weighting is a no-op for a single fresh
+        observation).
+
+        Args:
+            observations: Non-empty list of ``(accuracy_percent, study_date)``.
+            as_of: Reference date for recency (defaults to today).
+
+        Returns:
+            float: Recency-weighted accuracy in 0-100.
+
+        Raises:
+            ValueError: If *observations* is empty.
+        """
+        if not observations:
+            raise ValueError("observations must be non-empty")
+
+        reference = as_of if as_of is not None else date.today()
+        weighted_sum = 0.0
+        weight_sum = 0.0
+        half_life = ACCURACY_RECENCY_HALF_LIFE_DAYS
+
+        for accuracy, attempt_date in observations:
+            days_since = max(0, (reference - attempt_date).days)
+            weight = 0.5 ** (days_since / half_life)
+            weighted_sum += accuracy * weight
+            weight_sum += weight
+
+        return weighted_sum / weight_sum
 
     @staticmethod
     def determine_stage(mastery_score: float) -> str:
@@ -219,12 +266,14 @@ class AdaptiveLearningService:
             topic_id=topic_id,
         ).order_by(StudyAttempt.study_date.asc()).all()
 
-        accuracies = EducationalEvidenceAuthority.collect_authorised_accuracies(
-            attempts
+        observations = (
+            EducationalEvidenceAuthority.collect_authorised_accuracy_observations(
+                attempts
+            )
         )
 
         # EIP-002: no authorised Educational Evidence ⇒ leave Twin estimates alone.
-        if not accuracies:
+        if not observations:
             logger.info(
                 "No authorised Educational Evidence for user=%d topic=%d; "
                 "leaving Estimated Knowledge/Mastery unchanged",
@@ -239,7 +288,12 @@ class AdaptiveLearningService:
             Mistake.resolved == False,
         ).count()
 
-        avg_accuracy = sum(accuracies) / len(accuracies)
+        # Recency-weighted accuracy (21-day half-life) is the formula base and
+        # the Twin average_accuracy display value — same scalar the estimate
+        # uses, so UI/Twin inspection stays consistent with mastery math.
+        avg_accuracy = AdaptiveLearningService.recency_weighted_accuracy(
+            observations
+        )
 
         # Soft confidence average for display only — never formula input,
         # never Educational Evidence of understanding (EIP-002).
@@ -268,7 +322,7 @@ class AdaptiveLearningService:
         if (
             current_stage == TopicProgress.STAGE_MASTERED
             and not EducationalEvidenceAuthority.may_assign_high_mastery_stage(
-                len(accuracies)
+                len(observations)
             )
         ):
             current_stage = TopicProgress.STAGE_PRACTISING
@@ -298,7 +352,7 @@ class AdaptiveLearningService:
             mastery_score,
             current_stage,
             next_review,
-            len(accuracies),
+            len(observations),
         )
 
         return progress

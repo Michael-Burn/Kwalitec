@@ -83,6 +83,74 @@ class TestAdaptiveLearningService:
         )
         assert score == 0.0
 
+    def test_calculate_mastery_score_ignores_confidence(self):
+        """Live formula uses accuracy + revision − mistakes; confidence is unused."""
+        from app.services.adaptive_learning_service import AdaptiveLearningService
+
+        without_conf = AdaptiveLearningService.calculate_mastery_score(
+            accuracy=80.0,
+            confidence_numeric=None,
+            revision_count=2,
+            unresolved_mistakes=1,
+        )
+        with_conf = AdaptiveLearningService.calculate_mastery_score(
+            accuracy=80.0,
+            confidence_numeric=10.0,
+            revision_count=2,
+            unresolved_mistakes=1,
+        )
+        # 80 + min(2,5)*2 − min(1,4)*5 = 80 + 4 − 5 = 79
+        assert without_conf == 79.0
+        assert with_conf == without_conf
+
+    def test_recency_weighted_accuracy_single_observation_unaffected(self):
+        """A single observation has weight 1 regardless of age."""
+        from app.services.adaptive_learning_service import AdaptiveLearningService
+
+        today = date.today()
+        fresh = AdaptiveLearningService.recency_weighted_accuracy(
+            [(30.0, today)],
+            as_of=today,
+        )
+        old = AdaptiveLearningService.recency_weighted_accuracy(
+            [(30.0, today - timedelta(days=60))],
+            as_of=today,
+        )
+        assert fresh == 30.0
+        assert old == 30.0
+
+    def test_recency_weighted_accuracy_favours_recent_strong_attempt(self):
+        """Old poor + recent strong ≫ flat average (demonstrates half-life effect)."""
+        from app.services.adaptive_learning_service import AdaptiveLearningService
+
+        today = date.today()
+        observations = [
+            (20.0, today - timedelta(days=60)),  # 2/10
+            (90.0, today - timedelta(days=1)),  # 9/10
+        ]
+        flat = sum(a for a, _ in observations) / len(observations)
+        weighted = AdaptiveLearningService.recency_weighted_accuracy(
+            observations,
+            as_of=today,
+        )
+        assert flat == 55.0
+        # weight_60 = 0.5 ** (60/21) ≈ 0.13799; weight_1 = 0.5 ** (1/21) ≈ 0.9675
+        # → ≈ 81.26
+        assert weighted == pytest.approx(81.26, abs=0.05)
+        assert weighted > flat + 20.0
+
+    def test_recency_weighted_accuracy_same_day_equals_flat(self):
+        """Equal-age observations collapse to the unweighted mean."""
+        from app.services.adaptive_learning_service import AdaptiveLearningService
+
+        today = date.today()
+        observations = [(40.0, today), (80.0, today)]
+        weighted = AdaptiveLearningService.recency_weighted_accuracy(
+            observations,
+            as_of=today,
+        )
+        assert weighted == 60.0
+
     def test_determine_stage_mastered(self):
         from app.services.adaptive_learning_service import AdaptiveLearningService
 

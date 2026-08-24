@@ -589,3 +589,98 @@ class TestPositiveEvidenceAuthorityBehaviours:
         ).one()
         assert after_two.current_stage == TopicProgress.STAGE_MASTERED
         assert after_two.completed is False
+
+    def test_recency_weighting_raises_mastery_vs_flat_average(self, db, user):
+        """Old weak + recent strong → estimate above the flat mean base.
+
+        Flat average of 20% and 90% is 55. Recency weighting (21-day half-life)
+        with the weak attempt 60 days ago and the strong attempt yesterday
+        yields ~81.3 as the accuracy base; with revision_count=0 and no
+        unresolved mistakes, mastery_score rounds to that base.
+        """
+        curriculum, topics = _make_curriculum(
+            "IFoA CS1", ["Recency Weight Topic"]
+        )
+        plan = _make_active_plan(
+            user.id, exam_name="IFoA CS1", curriculum=curriculum
+        )
+        progress = TopicProgress(
+            user_id=user.id,
+            topic_id=topics[0].id,
+            completed=False,
+            mastery_score=0.0,
+            average_accuracy=None,
+            confidence="Low",
+            current_stage=TopicProgress.STAGE_LEARNING,
+            revision_count=0,
+        )
+        db.session.add(progress)
+        db.session.commit()
+
+        mission = _make_mission(
+            user.id, study_plan_id=plan.id, title=f"Study {topics[0].name}"
+        )
+        today = date.today()
+        LearningService.create_study_attempt(
+            user_id=user.id,
+            mission_id=mission.id,
+            topic_id=topics[0].id,
+            study_date=today - timedelta(days=60),
+            questions_attempted=10,
+            questions_correct=2,
+        )
+        LearningService.create_study_attempt(
+            user_id=user.id,
+            mission_id=mission.id,
+            topic_id=topics[0].id,
+            study_date=today - timedelta(days=1),
+            questions_attempted=10,
+            questions_correct=9,
+        )
+
+        updated = TopicProgress.query.filter_by(
+            user_id=user.id, topic_id=topics[0].id
+        ).one()
+        flat_base = 55.0
+        assert updated.average_accuracy == pytest.approx(81.3, abs=0.1)
+        assert updated.mastery_score == pytest.approx(81.3, abs=0.1)
+        assert updated.mastery_score > flat_base + 20.0
+
+    def test_single_attempt_recency_matches_raw_accuracy(self, db, user):
+        """One authorised observation: recency is a no-op (weight 1)."""
+        curriculum, topics = _make_curriculum(
+            "IFoA CS1", ["Single Obs Recency Topic"]
+        )
+        plan = _make_active_plan(
+            user.id, exam_name="IFoA CS1", curriculum=curriculum
+        )
+        progress = TopicProgress(
+            user_id=user.id,
+            topic_id=topics[0].id,
+            completed=False,
+            mastery_score=0.0,
+            average_accuracy=None,
+            confidence="Low",
+            current_stage=TopicProgress.STAGE_LEARNING,
+            revision_count=0,
+        )
+        db.session.add(progress)
+        db.session.commit()
+
+        mission = _make_mission(
+            user.id, study_plan_id=plan.id, title=f"Study {topics[0].name}"
+        )
+        LearningService.create_study_attempt(
+            user_id=user.id,
+            mission_id=mission.id,
+            topic_id=topics[0].id,
+            study_date=date.today() - timedelta(days=45),
+            questions_attempted=10,
+            questions_correct=3,
+        )
+
+        updated = TopicProgress.query.filter_by(
+            user_id=user.id, topic_id=topics[0].id
+        ).one()
+        assert updated.average_accuracy == 30.0
+        assert updated.mastery_score == 30.0
