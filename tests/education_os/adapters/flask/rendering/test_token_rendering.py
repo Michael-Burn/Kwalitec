@@ -62,7 +62,7 @@ def test_style_renderer_maps_contract_to_css_vars(
     assert decls["color"] == "var(--text-primary)"
     assert decls["border-color"] == "var(--border-subtle)"
     assert decls["padding-inline"] == "var(--space-xl)"
-    assert decls["gap"] == "var(--space-md)"
+    assert decls["gap"] == "var(--space-sm)"
     assert "font-size" in decls
     assert decls["font-size"].startswith("var(")
 

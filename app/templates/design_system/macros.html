@@ -213,6 +213,7 @@
   {% if objective %}
   <p class="ds-mission-hero__objective">{{ objective }}</p>
   {% endif %}
+  {% if why_now %}<p class="ds-list__meta">Why now · {{ why_now }}</p>{% endif %}
   {% if after_completion %}<p class="ds-list__meta">After this · {{ after_completion }}</p>{% endif %}
 </section>
 {%- endmacro %}

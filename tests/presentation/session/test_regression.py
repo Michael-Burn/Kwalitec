@@ -80,4 +80,4 @@ def test_full_http_session_flow(session_client, session_app):
         data={"session_id": "sess-e2e", "submit": "Return Home"},
         follow_redirects=False,
     )
-    assert "/student" in finish.headers.get("Location", "")
+    assert "/session/sess-e2e/complete" in finish.headers.get("Location", "")

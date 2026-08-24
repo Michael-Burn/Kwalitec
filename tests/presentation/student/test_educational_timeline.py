@@ -69,7 +69,12 @@ class TestEducationalTimelineRoute:
         resp = student_client.get("/student/history")
         assert resp.status_code == 200
         body = resp.get_data(as_text=True)
-        assert "/student/educational-timeline" in body
+        # KWP-011: History bridges to My Learning Journey; timeline remains on Journal.
+        assert (
+            "/student/educational-timeline" in body
+            or "/student/learning-journey" in body
+            or "learning_journey" in body
+        )
 
     def test_journal_links_to_timeline(self, student_client, user, db):
         _seed_entries(user)

@@ -389,7 +389,7 @@ class ReadinessService:
     # ── Overall Readiness Score ───────────────────────────────────────
 
     @staticmethod
-    def get_overall_readiness(user_id: int) -> dict:
+    def get_overall_readiness(user_id: int, *, read_only: bool = False) -> dict:
         """Calculate overall exam readiness.
 
         The readiness score is a weighted composite of:
@@ -402,6 +402,9 @@ class ReadinessService:
 
         Args:
             user_id: The ID of the user.
+            read_only: When True (Adaptive/shadow collectors), resolve the
+                active plan without ``ensure_curriculum_binding`` so
+                observation paths never write Runtime A state.
 
         Returns:
             dict with keys: score, coverage_pct, avg_mastery, review_discipline,
@@ -410,7 +413,9 @@ class ReadinessService:
             ``topics_started`` mirrors ``topics_completed`` for API stability
             (Study Progress completed count — not revision_count).
         """
-        metrics = ReadinessService._study_progress_metrics(user_id)
+        metrics = ReadinessService._study_progress_metrics(
+            user_id, read_only=read_only
+        )
         total_topics = metrics["total_topics"]
         topics_completed = metrics["topics_completed"]
         topics_mastered = metrics["topics_mastered"]
@@ -453,7 +458,7 @@ class ReadinessService:
     # ── Curriculum Coverage ───────────────────────────────────────────
 
     @staticmethod
-    def get_curriculum_coverage(user_id: int) -> dict:
+    def get_curriculum_coverage(user_id: int, *, read_only: bool = False) -> dict:
         """Calculate syllabus coverage from Study Progress (completed topics).
 
         Uses the same plan-scoped leaf denominator and ``completed`` authority
@@ -461,13 +466,17 @@ class ReadinessService:
 
         Args:
             user_id: The ID of the user.
+            read_only: When True (Adaptive/shadow collectors), resolve the
+                active plan without curriculum self-heal writes.
 
         Returns:
             dict with keys: total_leaf_topics, topics_started, topics_completed,
                            topics_not_started, topics_mastered,
                            coverage_percentage.
         """
-        metrics = ReadinessService._study_progress_metrics(user_id)
+        metrics = ReadinessService._study_progress_metrics(
+            user_id, read_only=read_only
+        )
         total = metrics["total_topics"]
         completed = metrics["topics_completed"]
         mastered = metrics["topics_mastered"]
@@ -805,7 +814,9 @@ class ReadinessService:
     # ── Private helpers ───────────────────────────────────────────────
 
     @staticmethod
-    def _study_progress_metrics(user_id: int) -> dict[str, float | int]:
+    def _study_progress_metrics(
+        user_id: int, *, read_only: bool = False
+    ) -> dict[str, float | int]:
         """Authoritative Study Progress + Estimated Knowledge inputs.
 
         Coverage uses ``TopicProgress.completed`` on plan-scoped leaf topics
@@ -813,7 +824,11 @@ class ReadinessService:
         Estimated Knowledge averages only evidence-backed rows
         (``has_estimated_knowledge``).
         """
-        leaf_topics = ReadinessService._leaf_topics_for_user(user_id)
+        leaf_topics = (
+            ReadinessService._leaf_topics_for_user(user_id, read_only=True)
+            if read_only
+            else ReadinessService._leaf_topics_for_user(user_id)
+        )
         total_topics = len(leaf_topics)
         if total_topics == 0:
             return {
@@ -858,17 +873,28 @@ class ReadinessService:
         }
 
     @staticmethod
-    def _leaf_topics_for_user(user_id: int) -> list[Topic]:
+    def _leaf_topics_for_user(
+        user_id: int, *, read_only: bool = False
+    ) -> list[Topic]:
         """Leaf topics for the student's active plan curriculum when available.
 
         Falls back to all active leaf topics so Analytics/readiness still
         resolve when no plan is bound (tests / edge onboarding states).
+
+        When ``read_only`` is False (default Runtime A / dashboard path),
+        uses ``get_user_active_plan`` so unbound plans may self-heal.
+        When ``read_only`` is True (Adaptive assemble/shadow), uses
+        ``read_active_study_plan`` so collectors never write TopicProgress
+        or rebind curriculum.
         """
         try:
             from app.services.curriculum_service import CurriculumService
             from app.services.study_plan_service import StudyPlanService
 
-            plan = StudyPlanService.get_user_active_plan(user_id)
+            if read_only:
+                plan = StudyPlanService.read_active_study_plan(user_id)
+            else:
+                plan = StudyPlanService.get_user_active_plan(user_id)
             if plan is not None and plan.curriculum_id:
                 curriculum = CurriculumService.get_curriculum_by_id(plan.curriculum_id)
                 if curriculum is not None:

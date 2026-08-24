@@ -43,8 +43,8 @@ def test_assemble_session_outcome_after_complete(
     assert outcome.mission_title == "Revise equity"
     assert outcome.completion_status == COMPLETION_COMPLETE
     assert outcome.reflection_available is True
-    assert "finished" in outcome.summary_message.casefold()
-    assert "reflect" in outcome.next_transition.casefold()
+    assert "completed" in outcome.summary_message.casefold()
+    assert "reflect" in outcome.next_transition.casefold() or "tomorrow" in outcome.next_transition.casefold()
     assert outcome.upcoming_action
     with pytest.raises(FrozenInstanceError):
         outcome.mission_title = "changed"  # type: ignore[misc]

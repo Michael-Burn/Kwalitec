@@ -44,12 +44,14 @@ def _wizard_step_1(client: FlaskClient) -> FlaskClient:
 
 def _wizard_step_2(client: FlaskClient) -> FlaskClient:
     """Submit wizard step 2: exam date."""
-    future_date = (date.today() + timedelta(days=180)).isoformat()
+    future = date.today() + timedelta(days=180)
     client.post(
         "/study-plan/wizard/2",
         data={
             "exam_sitting": "April 2027",
-            "exam_date": future_date,
+            "exam_day": str(future.day),
+            "exam_month": str(future.month),
+            "exam_year": str(future.year),
         },
         follow_redirects=True,
     )
@@ -194,12 +196,14 @@ class TestSmokeStudyPlanWizard:
         """Exam Date posts and redirects to Study Availability."""
         _login(client)
         _wizard_step_1(client)
-        future_date = (date.today() + timedelta(days=180)).isoformat()
+        future = date.today() + timedelta(days=180)
         resp = client.post(
             "/study-plan/wizard/2",
             data={
                 "exam_sitting": "April 2027",
-                "exam_date": future_date,
+                "exam_day": str(future.day),
+                "exam_month": str(future.month),
+                "exam_year": str(future.year),
             },
             follow_redirects=True,
         )
@@ -333,12 +337,14 @@ class TestSmokeStudyPlanWizard:
         )
         assert resp.status_code == 200
 
-        future_date = (date.today() + timedelta(days=180)).isoformat()
+        future = date.today() + timedelta(days=180)
         resp = client.post(
             "/study-plan/wizard/2",
             data={
                 "exam_sitting": "April 2027",
-                "exam_date": future_date,
+                "exam_day": str(future.day),
+                "exam_month": str(future.month),
+                "exam_year": str(future.year),
             },
             follow_redirects=True,
         )
@@ -754,13 +760,15 @@ class TestSmokeStudyPlanLifecycle:
         assert sp.archived is False
 
         # ── 2. Edit the plan via route ─────────────────────────────────
-        future = (dt_date.today() + timedelta(days=365)).isoformat()
+        future = dt_date.today() + timedelta(days=365)
         resp = client.post(
             f"/study-plan/{sp.id}/edit",
             data={
                 "exam_name": "IFoA CM1 Revised",
                 "exam_sitting": "September 2027",
-                "exam_date": future,
+                "exam_day": str(future.day),
+                "exam_month": str(future.month),
+                "exam_year": str(future.year),
                 "weekday_study_minutes": 45,
                 "weekend_study_minutes": 90,
                 "preferred_session_minutes": 30,
@@ -939,12 +947,14 @@ class TestFullEndToEnd:
         assert resp.status_code == 200
         assert resp.request.path == "/study-plan/wizard/2"
 
-        future_date = (date.today() + timedelta(days=180)).isoformat()
+        future = date.today() + timedelta(days=180)
         resp = client.post(
             "/study-plan/wizard/2",
             data={
                 "exam_sitting": "April 2027",
-                "exam_date": future_date,
+                "exam_day": str(future.day),
+                "exam_month": str(future.month),
+                "exam_year": str(future.year),
             },
             follow_redirects=True,
         )

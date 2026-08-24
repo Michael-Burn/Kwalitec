@@ -83,11 +83,14 @@ class TestBrandTemplateWiring:
         assert "branding/favicon.ico" in text
         assert "branding/favicon.svg" in text
         assert "branding/manifest.webmanifest" in text
-        assert "branding/social-preview.png" in text
+        # Social preview is injected via social_preview_url (APP_URL-aware),
+        # which resolves to branding/social-preview.png at runtime.
+        assert "social_preview_url" in text
         assert 'content="#0D1B2A"' in text
         assert 'content="Kwalitec"' in text
         assert "og:image" in text
         assert "twitter:image" in text
+        assert (BRANDING / "social-preview.png").is_file()
 
     def test_login_uses_canonical_logo_partial(self) -> None:
         text = (ROOT / "app/templates/auth/login.html").read_text(encoding="utf-8")

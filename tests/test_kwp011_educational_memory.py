@@ -359,5 +359,7 @@ class TestProductSurfaces:
 
     def test_history_bridge_to_journey(self):
         text = HISTORY_TMPL.read_text(encoding="utf-8")
+        # History bridges via teaser/href bindings; literal title lives on Journey.
+        assert "learning_journey_teaser" in text
         assert "learning_journey" in text
-        assert "My Learning Journey" in text
+        assert "student.learning_journey" in text

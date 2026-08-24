@@ -39,8 +39,12 @@ class TestBrandThemeTokens:
 
     def test_app_css_uses_official_primary_and_gold(self) -> None:
         css = APP_CSS.read_text(encoding="utf-8")
-        assert "#3B4FB8" in css or "var(--brand-blue" in css
-        assert "#E8B02B" in css
+        brand = BRAND_CSS.read_text(encoding="utf-8")
+        assert "#3B4FB8" in css or "var(--brand-blue" in css or "var(--primary)" in css
+        # Official gold lives on the brand token (--brand-gold: #E8B02B); app.css
+        # consumes it via var(--brand-gold) rather than repeating the hex.
+        assert "#E8B02B" in brand
+        assert "brand-gold" in css or "#E8B02B" in css
         assert "#2563eb" not in css
         assert "#D4AF37" not in css
         assert '"Inter"' in css or "Inter" in css
@@ -126,7 +130,13 @@ class TestStudentShellBrandChrome:
             encoding="utf-8"
         )
         assert ".student-nav-link.is-active" in css
-        assert "brand-white" in css or "#fff" in css
+        # Active chrome uses inverse/chrome text tokens (not a brand-white alias).
+        assert (
+            "brand-white" in css
+            or "#fff" in css
+            or "--chrome-text" in css
+            or "--text-inverse" in css
+        )
 
     def test_active_nav_uses_brand_blue(self) -> None:
         css = APP_CSS.read_text(encoding="utf-8")

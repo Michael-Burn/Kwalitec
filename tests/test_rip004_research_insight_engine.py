@@ -392,7 +392,8 @@ class TestInsightEngineHttp:
         assert "Stable Areas" in body
         assert "Participation" in body
         assert "Release Comparison" in body
-        assert "Insights describe patterns" in body
+        # RIP-004 / PX-002 honesty line (renamed from "Insights describe patterns").
+        assert "Patterns describe trends" in body
 
     def test_time_window_filter(self, founder_client, user):
         _submit_checkin(user.id)

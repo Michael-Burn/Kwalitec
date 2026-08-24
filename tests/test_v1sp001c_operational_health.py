@@ -135,7 +135,8 @@ class TestOperationalHealthPermissions:
 
     def test_nav_includes_operational_health(self, client, ctx, app) -> None:
         _login_founder(client, app)
-        body = client.get("/console/").get_data(as_text=True)
+        # DX-004A: Operations is Settings/secondary, not primary Console chrome.
+        body = client.get("/console/settings").get_data(as_text=True)
         assert "Operations" in body
         assert 'href="/console/operational-health"' in body or \
             "/console/operational-health" in body

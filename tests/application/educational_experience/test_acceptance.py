@@ -117,7 +117,7 @@ def test_home_and_journey_http_render_educational_fields(ctx, client, app):
     body = home.get_data(as_text=True)
     assert "ds-mission-panel" in body or "Today" in body
     assert "Study" in body
-    assert "Why this mission" in body or "why this mission" in body.lower()
+    assert "Why now" in body or "why now" in body.lower()
     assert "node-" not in body.lower()
     assert "Core concepts" in body or "1.1" in body
 

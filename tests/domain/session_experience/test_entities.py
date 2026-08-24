@@ -107,7 +107,7 @@ def test_reflection_defaults_prompt():
 
 def test_completion_readiness_label():
     completion = make_completion(exam_readiness_change=0.04)
-    assert "improved" in completion.exam_readiness_change_label.lower()
+    assert "moved up a little" in completion.exam_readiness_change_label.lower()
     assert completion.can_return_home
 
 

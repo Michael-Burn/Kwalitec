@@ -119,7 +119,7 @@ def test_composition_flag_off_preserves_seed_path(ctx, db):
     composition.seed_learner("42", demo=True)
     progress = composition.journey.get_journey_progress("42")
     assert progress is not None
-    assert progress["current_topic_title"] == "Core methods"
+    assert progress["current_topic_title"] == "Today's topic"
 
 
 def test_composition_flag_on_wires_bridge_without_seeded_journey(ctx, db):

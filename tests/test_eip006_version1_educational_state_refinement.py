@@ -61,11 +61,14 @@ class TestNegativeNoUnsupportedMasteryClaims:
                     f"{path.relative_to(REPO_ROOT)} still claims {phrase!r}"
                 )
 
-    def test_coverage_completion_does_not_mint_estimated_knowledge(self, user) -> None:
+    def test_coverage_completion_does_not_mint_estimated_knowledge(
+        self, user, curriculum
+    ) -> None:
         """Study Progress alone must not gate Estimated Knowledge display."""
+        _, topics = curriculum
         progress = TopicProgress(
             user_id=user.id,
-            topic_id=1,
+            topic_id=topics[0].id,
             completed=True,
             mastery_score=0.0,
             average_accuracy=None,
@@ -104,10 +107,11 @@ class TestNegativeNoUnsupportedMasteryClaims:
 
 @pytest.mark.usefixtures("ctx")
 class TestPositiveVersion1EducationalStates:
-    def test_evidence_gates_estimated_knowledge_alias(self, user) -> None:
+    def test_evidence_gates_estimated_knowledge_alias(self, user, curriculum) -> None:
+        _, topics = curriculum
         progress = TopicProgress(
             user_id=user.id,
-            topic_id=1,
+            topic_id=topics[0].id,
             completed=True,
             mastery_score=72.0,
             average_accuracy=72.0,

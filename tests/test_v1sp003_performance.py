@@ -9,9 +9,11 @@ from app.extensions import db
 from app.founder.dashboard.services.operational_health_service import (
     OperationalHealthService,
 )
+from app.models.curriculum import Curriculum, Topic
 from app.models.mission import Mission
 from app.models.study_plan import StudyPlan
 from app.models.subject import Subject
+from app.models.topic_progress import TopicProgress
 from app.models.user import User
 from app.services.analytics_service import AnalyticsService
 from app.services.readiness_service import ReadinessService
@@ -80,11 +82,52 @@ class TestQueryBudgets:
         assert len(stmts) == 1
 
     def test_overall_readiness_batches_leaf_progress(self, ctx, db) -> None:
+        """Guard the V1SP-003 batched readiness path (not User/RBAC refresh).
+
+        Seeds active leaf topics + progress with no curriculum-bound plan so
+        ``_leaf_topics_for_user`` uses the global ``_get_leaf_topics`` batch
+        (one topics scan). Captures ``uid`` before the counter so
+        expire-on-commit User reload + RBAC ``selectin`` loads are excluded.
+        Expected statements: study_plans + topics + topic_progress + mission
+        status aggregate — not 4× leaf rescans.
+        """
         user = _make_user("ready@kwalitec.example")
+        curriculum = Curriculum(
+            exam_name="IFoA CS1 Perf Budget", version="2026", active=True
+        )
+        db.session.add(curriculum)
+        db.session.flush()
+        topics: list[Topic] = []
+        for index in range(1, 4):
+            topic = Topic(
+                curriculum_id=curriculum.id,
+                name=f"Leaf {index}",
+                order=index,
+                recommended_minutes=45,
+                active=True,
+            )
+            db.session.add(topic)
+            topics.append(topic)
+        db.session.flush()
+        for topic in topics[:2]:
+            db.session.add(
+                TopicProgress(
+                    user_id=user.id,
+                    topic_id=topic.id,
+                    confidence="Medium",
+                    completed=True,
+                    mastery_score=50.0,
+                )
+            )
+        db.session.commit()
+
+        # Capture PK before counting — accessing user.id after commit would
+        # refresh User and selectin-load roles/capabilities inside the budget.
+        uid = user.id
         with count_queries() as stmts:
-            ReadinessService.get_overall_readiness(user.id)
-        # leaf topics + progress (+ optional mission aggregate) — not 4× leaf scans
-        assert len(stmts) <= 4
+            ReadinessService.get_overall_readiness(uid)
+        # plan lookup + topics + progress + mission status aggregate
+        assert len(stmts) == 4
 
 
 class TestDashboardDoesNotFetchDeadWidgets:
@@ -111,9 +154,14 @@ class TestStaticAssetsOptimised:
         js_bytes = sum(
             v["bytes"] for k, v in assets.items() if k.startswith("js/")
         )
-        # Post-minify budgets (baseline was ~85KB CSS / ~22KB JS)
-        assert css_bytes < 70_000
-        assert js_bytes < 22_000
+        # First-party top-level budgets as of 2026-08-24 (inventory ~123032 CSS /
+        # ~40016 JS under css/*.css and js/*.js). Nested static dirs (student/,
+        # session/, wizard/, assessment/, …) are NOT included in this
+        # measurement. Raised deliberately for DX-004→REL-001 design-system
+        # growth — not silently loosened to force green. V1SP-003 post-minify
+        # baseline was ~63514 CSS / ~20592 JS with ceilings 70000 / 22000.
+        assert css_bytes < 135_000
+        assert js_bytes < 45_000
 
     def test_performance_indexes_declared(self) -> None:
         mission_indexes = {

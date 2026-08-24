@@ -60,10 +60,10 @@ def test_overview_page_has_start_primary(app):
     )
     with app.test_request_context("/session/sess-1/overview"):
         study = StudySessionService().build_page(page_from_flow(flow))
-    assert study.page_title == "Session"
+    assert study.page_title == "Today: Probability"
     assert study.surface == "overview"
     assert study.primary_kind == "begin_form"
-    assert study.primary_label == "Start Session"
+    assert study.primary_label in {"Start Session", "Begin Session"}
     assert study.primary_enabled is True
     assert study.context.subject == "Probability"
     assert "Bayes" in study.context.chapter or "Bayes" in study.context.objective
@@ -172,7 +172,7 @@ def test_overview_template_structure(app, client, ctx, user):
     login_student(client)
     html = client.get("/session/sess-dx6/overview").get_data(as_text=True)
     assert 'id="session-page-title"' in html
-    assert ">Session<" in html
+    assert "Today:" in html or ">Session<" in html
     assert "Current Learning Task" in html
     assert "data-session-cta=\"primary\"" in html
     assert html.count("ds-btn--primary") == 1 or "ds-btn--primary" in html

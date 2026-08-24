@@ -332,7 +332,8 @@ class TestCheckinHttpFlow:
         body = response.get_data(as_text=True)
         assert "What happened today" in body
         assert 'data-rip001-invite="1"' in body
-        assert "Continue" in body
+        # PX-006: primary return CTA + optional Product Check-in (not "Continue").
+        assert "Return Home" in body or "Product Check-in" in body
         assert "/research/checkin" in body
 
     def test_checkin_optional_dismiss(self, logged_in_client):

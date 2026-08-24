@@ -143,7 +143,7 @@ def test_resume_then_complete(student_client, app):
         data={"session_id": "sess-rc", "submit": "Return Home"},
         follow_redirects=False,
     )
-    assert "/student" in finish.headers.get("Location", "")
+    assert "/session/sess-rc/complete" in finish.headers.get("Location", "")
 
 
 def test_resume_flash_on_overview_reentry(student_client, app):

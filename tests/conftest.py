@@ -9,8 +9,35 @@ from datetime import date, timedelta
 import pytest
 from sqlalchemy import event
 
-from app import create_app
-from app.extensions import db as _db
+# Neutralize local .env Commercial Loop leakage before ``app.config`` runs
+# ``load_dotenv()`` (override=False — pre-set keys win). Without this,
+# ``SR_COMMERCIAL_LOOP=1`` in a developer's ``.env`` turns on the SR bundle
+# (Finish Review, evidence gate, …) and breaks tests that expect defaults OFF.
+# Individual tests may still opt in via monkeypatch / explicit environ dicts.
+_SR_COMMERCIAL_MASTERS = (
+    "KWALITEC_COMMERCIAL_LOOP",
+    "SR_COMMERCIAL_LOOP",
+)
+_SR_BUNDLE_FLAGS = (
+    "SR_SESSION_PRIMARY",
+    "SR_SESSION_COMPLETION_PRODUCT",
+    "SR_SESSION_SUBSTANCE",
+    "SR_EVIDENCE_GATE",
+    "SR_TWIN_DAILY_LOOP",
+    "SR_PROGRESS_SINGULARITY",
+)
+for _key in _SR_COMMERCIAL_MASTERS:
+    os.environ[_key] = "0"
+for _key in _SR_BUNDLE_FLAGS:
+    os.environ.pop(_key, None)
+
+from app import create_app  # noqa: E402
+from app.extensions import db as _db  # noqa: E402
+
+# Belt-and-braces: drop any bundle children that ``load_dotenv`` may have set
+# from ``.env`` so they inherit the explicit Commercial Loop OFF baseline.
+for _key in _SR_BUNDLE_FLAGS:
+    os.environ.pop(_key, None)
 
 
 def _enable_sqlite_foreign_keys(dbapi_connection, _connection_record) -> None:

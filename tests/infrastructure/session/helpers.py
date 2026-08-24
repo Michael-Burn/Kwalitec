@@ -93,9 +93,24 @@ class RecordingRuntimeEngine:
         }
 
     def complete_session_opaque(
-        self, student_id: str, *, session_id: str
+        self,
+        student_id: str,
+        *,
+        session_id: str,
+        finish_verdict: str | None = None,
+        finish_notes: str | None = None,
     ) -> dict[str, Any]:
-        self.calls.append(("complete", (student_id,), {"session_id": session_id}))
+        self.calls.append(
+            (
+                "complete",
+                (student_id,),
+                {
+                    "session_id": session_id,
+                    "finish_verdict": finish_verdict,
+                    "finish_notes": finish_notes,
+                },
+            )
+        )
         return {"session_id": session_id, "status": "completed", "engine": True}
 
     def get_reflection_opaque(

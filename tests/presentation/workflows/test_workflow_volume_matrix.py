@@ -101,7 +101,8 @@ def test_surface_endpoints_registered(app, surface):
 @pytest.mark.parametrize("surface", list(SessionSurface))
 def test_page_meta_step_counts(surface):
     eyebrow, title, description = page_meta(surface)
-    assert "of 5" in eyebrow
+    # CQ-002: Complete omitted from visible chrome → Steps 1–4 of 4.
+    assert "of 4" in eyebrow
     assert title
     assert description
 

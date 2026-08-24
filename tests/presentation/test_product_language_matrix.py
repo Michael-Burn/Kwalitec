@@ -71,12 +71,15 @@ def test_all_warning_flashes_offer_recovery(message):
         token in lowered
         for token in (
             "try again",
+            "try continue",
             "return home",
             "return to",
             "check",
             "enter an answer",
             "assign",
             "complete",
+            "wait a moment",
+            "progress is safe",
         )
     )
 

@@ -112,8 +112,9 @@ def test_home_mission_intelligence_relocated_off_home(app, ctx):
     assert "student-mission-intelligence-disclosure" not in html
     assert 'data-home-density="tertiary"' not in html
     assert "Today&#39;s Mission" in html or "Continue Session" in html or "Today's Mission" in html
-    # UX-001: why-now / MES stack relocated to Session Overview briefing.
-    assert "Why now" not in html
+    # DX-005A: one why-now line OK on L0; full MES wall (explanation_card) stays off Home.
+    assert "data-mes-field" not in html
+    assert "Why this guidance?" not in html
     assert "Why this Session?" not in html
 
 

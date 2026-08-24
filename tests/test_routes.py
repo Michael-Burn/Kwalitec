@@ -46,11 +46,26 @@ class TestDashboardRoute:
     def test_dashboard_unsupported_exam_no_error(
         self, logged_in_client, study_plan
     ):
-        """Dashboard renders without error for unsupported exam."""
-        from app.extensions import db
+        """Dashboard renders without error for unsupported exam.
 
+        Intent: plan points at a curriculum row that exists (FK) but is not a
+        loadable/supported syllabus (version 9999 / unknown exam name). The
+        fake ``curriculum_id=99999`` previously used here failed under
+        ``PRAGMA foreign_keys=ON``; a real orphan curriculum preserves intent.
+        """
+        from app.extensions import db
+        from app.models.curriculum import Curriculum
+
+        orphan = Curriculum(
+            exam_name="Unsupported Exam XYZ",
+            version="9999",
+            active=True,
+        )
+        db.session.add(orphan)
+        db.session.flush()
         study_plan.curriculum_version = "9999"
-        study_plan.curriculum_id = 99999
+        study_plan.curriculum_id = orphan.id
+        study_plan.exam_name = "Unsupported Exam XYZ"
         db.session.commit()
 
         response = logged_in_client.get("/dashboard/")

@@ -689,6 +689,27 @@ class StudyPlanService:
         return study_plan
 
     @staticmethod
+    def read_active_study_plan(user_id: int) -> StudyPlan | None:
+        """Read-only active StudyPlan lookup (no curriculum self-heal).
+
+        Does **not** call ``ensure_curriculum_binding`` or commit. Use for
+        Adaptive/shadow observation paths that must remain Runtime A
+        write-free. Prefer ``get_user_active_plan`` for normal Runtime A
+        surfaces that may repair unbound plans.
+
+        Args:
+            user_id: The user ID.
+
+        Returns:
+            StudyPlan | None: The active study plan row, or None if none.
+        """
+        return (
+            StudyPlan.query.filter_by(user_id=user_id, active=True)
+            .order_by(StudyPlan.id.asc())
+            .first()
+        )
+
+    @staticmethod
     def get_plan(study_plan_id: int, user_id: int | None = None) -> StudyPlan | None:
         """Load a study plan by id, self-healing curriculum binding.
 

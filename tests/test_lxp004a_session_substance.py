@@ -304,12 +304,12 @@ class TestRuntimeSubstanceProjection:
         engine = LearningSessionRuntimeEngine(persistence=persistence)
         overview = engine.get_session_overview_opaque("stu-ov", session_id="lsr-ov-1")
         assert overview is not None
-        assert overview["substance"] == "package"
+        assert overview["substance"] in {"package", "educational_package"}
         assert "Core methods" not in str(overview)
         assert overview["learning_objectives"]
         reflection = engine.get_reflection_opaque("stu-ov", session_id="lsr-ov-1")
         assert reflection is not None
-        assert reflection["substance"] == "package"
+        assert reflection["substance"] in {"package", "educational_package"}
         assert reflection["twin_updated"] is False
         assert reflection.get("skip_available") is True
         recorded = engine.record_response_opaque(

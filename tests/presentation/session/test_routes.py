@@ -141,7 +141,8 @@ def test_finish_returns_home(session_client, session_app):
         follow_redirects=False,
     )
     assert response.status_code in {302, 303}
-    assert "/student" in response.headers.get("Location", "")
+    # Success path lands on Sitting Report (Complete), then student returns Home.
+    assert "/session/sess-1/complete" in response.headers.get("Location", "")
 
 
 def test_summary_get(session_client, session_app):

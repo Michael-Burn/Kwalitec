@@ -136,7 +136,8 @@ def test_completion_vm_headline_uses_topic():
         )
     )
     assert "Cash flows" in vm.headline
-    assert vm.headline.startswith("You completed today's Session")
+    # KWP-005 Sitting Report is the Complete-surface headline (not Session copy).
+    assert vm.headline.startswith("Sitting Report")
     assert vm.learning_insights
 
 

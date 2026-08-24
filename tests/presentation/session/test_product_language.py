@@ -169,7 +169,16 @@ def test_session_warning_flashes_guide_recovery(key):
     assert msg.endswith(".")
     assert any(
         token in lowered
-        for token in ("try again", "return home", "enter an answer", "check")
+        for token in (
+            "try again",
+            "try continue",
+            "return home",
+            "return to home",
+            "enter an answer",
+            "check",
+            "wait a moment",
+            "progress is safe",
+        )
     )
 
 

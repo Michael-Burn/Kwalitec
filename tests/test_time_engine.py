@@ -93,6 +93,24 @@ class TestCalculateTimeSummary:
     # ── helpers ──────────────────────────────────────────────────────────
 
     @staticmethod
+    def _make_user(*, email: str | None = None):
+        """Create and commit a real User row; return it."""
+        import uuid
+
+        from app.extensions import db
+        from app.models.user import User
+
+        if email is None:
+            email = f"time-engine-{uuid.uuid4().hex[:12]}@kwalitec.example"
+        u = User(email=email, is_active_user=True)
+        u.set_password("password123")
+        u.alpha_onboarding_completed = True
+        u.alpha_onboarding_skipped = False
+        db.session.add(u)
+        db.session.commit()
+        return u
+
+    @staticmethod
     def _make_study_plan(
         app,
         *,
@@ -102,7 +120,7 @@ class TestCalculateTimeSummary:
         curriculum_version=None,
         weekday_study_minutes=120,
         weekend_study_minutes=180,
-        user_id=1,
+        user_id=None,
     ):
         """Create a StudyPlan in the test DB and return it."""
         from app.extensions import db
@@ -110,6 +128,9 @@ class TestCalculateTimeSummary:
 
         if exam_date is None:
             exam_date = date.today() + timedelta(days=100)
+
+        if user_id is None:
+            user_id = TestCalculateTimeSummary._make_user().id
 
         sp = StudyPlan(
             user_id=user_id,
@@ -278,10 +299,11 @@ class TestCalculateTimeSummary:
 
     def test_some_completed_topics(self, app, db, ctx):
         c, topics = self._make_curriculum_with_db_topics(app)
+        user = self._make_user()
         # Mark first topic (11.43h) as completed
-        self._set_topic_completed(app, 1, topics[0].id)
+        self._set_topic_completed(app, user.id, topics[0].id)
         # Mark third topic (10.92h) as completed
-        self._set_topic_completed(app, 1, topics[2].id)
+        self._set_topic_completed(app, user.id, topics[2].id)
 
         sp = self._make_study_plan(
             app,
@@ -291,7 +313,7 @@ class TestCalculateTimeSummary:
             exam_date=date.today() + timedelta(days=100),
             weekday_study_minutes=120,
             weekend_study_minutes=180,
-            user_id=1,
+            user_id=user.id,
         )
         from app.services.time_engine_service import TimeEngineService
 
@@ -305,8 +327,9 @@ class TestCalculateTimeSummary:
 
     def test_all_topics_completed(self, app, db, ctx):
         c, topics = self._make_curriculum_with_db_topics(app)
+        user = self._make_user()
         for t in topics:
-            self._set_topic_completed(app, 1, t.id)
+            self._set_topic_completed(app, user.id, t.id)
 
         sp = self._make_study_plan(
             app,
@@ -316,7 +339,7 @@ class TestCalculateTimeSummary:
             exam_date=date.today() + timedelta(days=100),
             weekday_study_minutes=120,
             weekend_study_minutes=180,
-            user_id=1,
+            user_id=user.id,
         )
         from app.services.time_engine_service import TimeEngineService
 
@@ -337,7 +360,6 @@ class TestCalculateTimeSummary:
             exam_date=date.today() + timedelta(days=7),
             weekday_study_minutes=60,
             weekend_study_minutes=60,
-            user_id=1,
         )
         from app.services.time_engine_service import TimeEngineService
 
@@ -360,7 +382,6 @@ class TestCalculateTimeSummary:
             exam_date=date.today() + timedelta(days=14),
             weekday_study_minutes=120,
             weekend_study_minutes=180,
-            user_id=1,
         )
         from app.services.time_engine_service import TimeEngineService
 
@@ -446,7 +467,8 @@ class TestCalculateTimeSummary:
 
     def test_deterministic_same_input_same_output(self, app, db, ctx):
         c, topics = self._make_curriculum_with_db_topics(app)  # noqa: F841
-        self._set_topic_completed(app, 1, topics[0].id)
+        user = self._make_user()
+        self._set_topic_completed(app, user.id, topics[0].id)
 
         sp = self._make_study_plan(
             app,
@@ -456,7 +478,7 @@ class TestCalculateTimeSummary:
             exam_date=date.today() + timedelta(days=50),
             weekday_study_minutes=90,
             weekend_study_minutes=120,
-            user_id=1,
+            user_id=user.id,
         )
         from app.services.time_engine_service import TimeEngineService
 
@@ -486,8 +508,11 @@ class TestCalculateTimeSummary:
     def test_different_user_sees_only_their_progress(self, app, db, ctx):
         c, topics = self._make_curriculum_with_db_topics(app)
 
+        user1 = self._make_user(email="time-engine-u1@kwalitec.example")
+        user2 = self._make_user(email="time-engine-u2@kwalitec.example")
+
         # User 1 completes topic 0 (11.43h)
-        self._set_topic_completed(app, 1, topics[0].id)
+        self._set_topic_completed(app, user1.id, topics[0].id)
 
         # User 2 has no completions
         sp1 = self._make_study_plan(
@@ -496,7 +521,7 @@ class TestCalculateTimeSummary:
             curriculum_id=c.id,
             curriculum_version="2026",
             exam_date=date.today() + timedelta(days=100),
-            user_id=1,
+            user_id=user1.id,
         )
         sp2 = self._make_study_plan(
             app,
@@ -504,7 +529,7 @@ class TestCalculateTimeSummary:
             curriculum_id=c.id,
             curriculum_version="2026",
             exam_date=date.today() + timedelta(days=100),
-            user_id=2,
+            user_id=user2.id,
         )
         from app.services.time_engine_service import TimeEngineService
 

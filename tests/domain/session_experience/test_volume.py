@@ -35,13 +35,13 @@ def test_session_activity_counts(count):
 @pytest.mark.parametrize(
     ("delta", "expected_fragment"),
     [
-        (0.05, "improved"),
+        (0.05, "moved up a little"),
         (0.0, "steady"),
-        (-0.05, "dipped"),
+        (-0.05, "eased a little"),
         (0.02, "steady"),
         (-0.02, "steady"),
-        (0.021, "improved"),
-        (-0.021, "dipped"),
+        (0.021, "moved up a little"),
+        (-0.021, "eased a little"),
     ],
 )
 def test_completion_delta_labels(delta, expected_fragment):

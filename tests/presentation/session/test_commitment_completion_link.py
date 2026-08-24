@@ -61,7 +61,7 @@ def test_v2_session_finish_marks_commitment_completed(
         )
 
     assert response.status_code in {302, 303}
-    assert "/student" in response.headers.get("Location", "")
+    assert "/session/sess-1/complete" in response.headers.get("Location", "")
     db.session.refresh(row)
     assert row.state == STATE_COMPLETED
     assert row.completed_at is not None
@@ -71,7 +71,7 @@ def test_v2_session_finish_marks_commitment_completed(
 def test_v2_session_finish_fails_open_without_commitment(
     session_client, session_app, user
 ):
-    """Finish still returns Home when no open commitment exists."""
+    """Finish still reaches Complete when no open commitment exists."""
     svc = wire_session_experience(session_app)
     svc.open_session(str(user.id), session_id="sess-1")
     ws = svc.registry.get_workspace_for_session("sess-1")
@@ -84,4 +84,4 @@ def test_v2_session_finish_fails_open_without_commitment(
         follow_redirects=False,
     )
     assert response.status_code in {302, 303}
-    assert "/student" in response.headers.get("Location", "")
+    assert "/session/sess-1/complete" in response.headers.get("Location", "")

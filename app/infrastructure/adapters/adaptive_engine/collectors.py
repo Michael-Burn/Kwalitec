@@ -90,15 +90,18 @@ def read_active_study_plan(
     Does **not** call ``StudyPlanService.get_user_active_plan`` (which may
     self-heal curriculum binding and commit). Assembler collectors must remain
     Runtime A write-free.
-    """
-    plan_cls = study_plan_model
-    if plan_cls is None:
-        from app.models.study_plan import StudyPlan
 
-        plan_cls = StudyPlan
+    When no model is injected, delegates to
+    ``StudyPlanService.read_active_study_plan`` (canonical service-layer
+    read-only lookup).
+    """
+    if study_plan_model is None:
+        from app.services.study_plan_service import StudyPlanService
+
+        return StudyPlanService.read_active_study_plan(user_id)
     return (
-        plan_cls.query.filter_by(user_id=user_id, active=True)
-        .order_by(plan_cls.id.asc())
+        study_plan_model.query.filter_by(user_id=user_id, active=True)
+        .order_by(study_plan_model.id.asc())
         .first()
     )
 
@@ -513,8 +516,10 @@ class ReadinessCollector:
         _ = (as_of, context)
         try:
             service = self._resolve_service()
-            overall = service.get_overall_readiness(user_id)
-            coverage = service.get_curriculum_coverage(user_id)
+            # Adaptive observation must not trigger Runtime A self-heal
+            # (curriculum rebinding / TopicProgress writes).
+            overall = service.get_overall_readiness(user_id, read_only=True)
+            coverage = service.get_curriculum_coverage(user_id, read_only=True)
             backlog = service.get_review_backlog(user_id)
             # EP-001.1: pass-through streak facts for Twin Foundation
             # (Runtime A ReadinessService — Twin does not invent streaks).

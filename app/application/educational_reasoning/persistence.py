@@ -64,6 +64,11 @@ class ReasoningPersistenceService:
             created_at=result.created_at,
         )
         db.session.add(run)
+        # Flush parent before children: DecisionRecord / EducationalRuleExecution /
+        # ReasoningExplanation FK to educational_reasoning_runs.run_id (unique,
+        # non-PK). Without an explicit flush, query-triggered autoflush can INSERT
+        # decision_records before the run row exists under PRAGMA foreign_keys=ON.
+        db.session.flush()
 
         for seq, execution in enumerate(result.executions):
             self._persist_execution(result, execution, sequence=seq)

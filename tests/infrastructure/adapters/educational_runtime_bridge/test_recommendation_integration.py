@@ -79,7 +79,7 @@ def test_composition_flag_off_preserves_seed_path(ctx, db):
     composition.seed_learner("42", demo=True)
     recommendation = composition.adaptive.get_todays_recommendation("42")
     assert recommendation is not None
-    assert recommendation["topic_title"] == "Core methods"
+    assert recommendation["topic_title"] == "Today's topic"
 
 
 def test_composition_flag_on_wires_bridge_without_seeded_adaptive(ctx, db):

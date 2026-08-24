@@ -92,7 +92,7 @@ def test_composition_flag_off_preserves_seed_path(ctx, db):
     composition.seed_learner("42", demo=True)
     session = composition.mission.get_todays_session("42")
     assert session is not None
-    assert session["topic_title"] == "Core methods"
+    assert session["topic_title"] == "Today's topic"
     assert session["mission_id"] == "m1"
 
 

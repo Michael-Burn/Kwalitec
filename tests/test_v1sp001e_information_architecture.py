@@ -67,7 +67,8 @@ class TestV1sp001eProgressiveDisclosure:
         assert "contextual_help.html" in html
         assert "help_tip" in html
         assert "learn_more" in html
-        assert "Why this recommendation" in html
+        # Progressive-disclosure labels on legacy dashboard (IA rename).
+        assert "Why this session" in html or "Why this guidance" in html
         # EI recommendation card keeps its own start CTA (educational integration).
         assert "ei_card.primary_action" in html
         assert 'data-ptp004-cta="primary"' in html

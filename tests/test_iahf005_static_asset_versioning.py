@@ -85,9 +85,11 @@ class TestTemplateVersionedStaticWiring:
             "branding/favicon-32.png",
             "branding/apple-touch-icon.png",
             "branding/manifest.webmanifest",
-            "branding/social-preview.png",
         ):
             assert asset in text
+        # OG/Twitter image uses social_preview_url helper (still the PNG asset).
+        assert "social_preview_url" in text
+        assert (ROOT / "app/static/branding/social-preview.png").is_file()
 
 
 class TestRenderedAssetVersioning:

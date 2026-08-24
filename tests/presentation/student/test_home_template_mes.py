@@ -56,7 +56,9 @@ def test_home_template_shows_mission_why_now_without_mes_stack(app, ctx):
     html = render_student_home(app, page_home)
     assert "Today&#39;s Mission" in html or "Continue Session" in html
     assert "After this" in html or "Cash flow statements" in html
-    assert "soft recall on cash flow" not in html or "Why now" not in html
+    # DX-005A L0: one why-now line with operational rationale (label + content).
+    assert "Why now" in html
+    assert "soft recall on cash flow" in html
     assert "data-mes-field" not in html
     assert "data-mes-disclosure" not in html
     assert "Study Sensei" not in html
