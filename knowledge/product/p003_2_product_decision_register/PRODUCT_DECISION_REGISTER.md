@@ -328,15 +328,15 @@ Indexes: [`ACTIVE_DECISIONS.md`](ACTIVE_DECISIONS.md) · Traceability: [`DECISIO
 |---|---|
 | **Category** | Educational |
 | **Status** | ACTIVE |
-| **Decision Statement** | In Version 1, Today’s Mission follows Current Learning Topic in official syllabus order. Advisory review/weak-topic signals may appear but must not silently replace Learning Mode mission authority. Adaptive Mode interruption is deferred. |
-| **Background** | Educational Constitution Art VI. |
-| **Rationale** | Curriculum primacy over opportunistic adaptation in V1. |
-| **Evidence** | `knowledge/educational/KWALITEC_EDUCATIONAL_CONSTITUTION.md` Art VI §§1–3 |
+| **Decision Statement** | In Version 1, Today’s Mission follows Current Learning Topic in official syllabus order by default. Disclosed Learning Mode consolidation checkpoints may pause forward progress at exam-proximity cadence when weak covered topics exist (Founder-authorized deliberate amendment, 2026-08-24 architecture session — motivated by activating real mastery data to emulate tutor-like consolidation). Advisory review/weak-topic signals may appear but must not silently or off-cadence replace Learning Mode mission authority. Broader Adaptive Mode interruption remains deferred. Distinct from Revision Mode post-syllabus rotation. |
+| **Background** | Educational Constitution Art VI. Amended 2026-08-24 to authorise disclosed Learning Mode consolidation checkpoints; not a silent/undocumented behaviour change. |
+| **Rationale** | Curriculum primacy over opportunistic adaptation in V1, with honest tutor-like consolidation when mastery evidence warrants it at a disclosed cadence. |
+| **Evidence** | `knowledge/educational/KWALITEC_EDUCATIONAL_CONSTITUTION.md` Art VI §§1–3; `knowledge/educational/EDUCATIONAL_LOGIC_REGISTRY.md` EL-002 / EL-003 / EL-009 |
 | **Programmes** | EGI-001 |
 | **Dependencies** | DR-003, DR-012 |
-| **Supersedes** | None |
-| **Risks** | Personalisation or recommendations silently rewriting mission topic |
-| **Future Review Trigger** | Constitutional Adaptive Mode activation for V1 or V2 |
+| **Supersedes** | Prior DR-017 wording that deferred all weak-topic mission interruption without a disclosed-checkpoint exception |
+| **Risks** | Personalisation or recommendations silently rewriting mission topic; conflating Learning Mode checkpoints with Revision Mode |
+| **Future Review Trigger** | Broader constitutional Adaptive Mode activation beyond Learning Mode consolidation checkpoints |
 
 ---
 

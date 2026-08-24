@@ -166,6 +166,17 @@ class EducationalExplainabilityService:
                 syllabus_coverage_pct=syllabus_coverage_pct,
             )
 
+        consolidation = mission_title.strip().lower().startswith("consolidate")
+        if consolidation:
+            return EducationalExplainabilityService._consolidation_mission_narrative(
+                mission_title=mission_title,
+                mission_status=mission_status,
+                exam_name=exam_name,
+                completed_topics=completed_topics,
+                total_topics=total_topics,
+                syllabus_coverage_pct=syllabus_coverage_pct,
+            )
+
         observed: list[str] = [
             f"Today's Study Session topic is {mission_title}.",
         ]
@@ -238,6 +249,89 @@ class EducationalExplainabilityService:
                 "In Learning Mode, today's mission follows your Current Learning Topic "
                 "in this study plan — the next syllabus topic you have not yet "
                 "completed studying."
+            ),
+            educational_position=position,
+            next_action=next_action,
+            observed_facts=tuple(observed),
+            estimates=tuple(estimates),
+        )
+
+    @staticmethod
+    def _consolidation_mission_narrative(
+        *,
+        mission_title: str,
+        mission_status: str | None,
+        exam_name: str | None,
+        completed_topics: int | None,
+        total_topics: int | None,
+        syllabus_coverage_pct: float | None,
+    ) -> MissionNarrative:
+        """Narrate a Learning Mode consolidation checkpoint (not Revision Mode)."""
+        observed: list[str] = [
+            f"Today's consolidation checkpoint is {mission_title}.",
+        ]
+        if exam_name:
+            observed.append(f"Active study plan: {exam_name}.")
+        if (
+            completed_topics is not None
+            and total_topics is not None
+            and total_topics > 0
+        ):
+            observed.append(
+                f"Study Progress: {completed_topics} of {total_topics} "
+                "syllabus topics marked completed studying."
+            )
+
+        estimates: list[str] = []
+        if syllabus_coverage_pct is not None:
+            estimates.append(
+                f"Syllabus coverage (derived from Study Progress): "
+                f"{int(round(syllabus_coverage_pct))}% of official syllabus weighting."
+            )
+            estimates.append(
+                "Estimated Knowledge on this covered topic is still weak — "
+                "this checkpoint rebuilds fluency before more new syllabus work."
+            )
+        else:
+            estimates.append(
+                "Estimated Knowledge cannot yet be summarised here. "
+                "It grows from practice results over time."
+            )
+
+        if mission_status == "Completed":
+            next_action = (
+                "Checkpoint complete. Return to your Current Learning Topic when "
+                "you are ready for the next new syllabus topic."
+            )
+        elif mission_status == "In Progress":
+            next_action = (
+                "Resume this consolidation session, then finish when today's "
+                "reinforcement work is done."
+            )
+        else:
+            next_action = (
+                "Start this consolidation session, then finish when today's "
+                "reinforcement work is done."
+            )
+
+        position = (
+            "You are on a Learning Mode consolidation checkpoint — a disclosed "
+            "pause to reinforce a weak covered topic — not continued forward "
+            "syllabus progress, and not Revision Mode."
+        )
+
+        return MissionNarrative(
+            topic_title=mission_title,
+            educational_purpose=(
+                "Reinforce a weak covered topic at a Learning Mode consolidation "
+                "checkpoint before returning to Current Learning Topic sequencing."
+            ),
+            reason_for_selection=(
+                "In Learning Mode, today's mission is a disclosed consolidation "
+                "checkpoint: after several new syllabus topics, the plan pauses "
+                "forward progress to reinforce the weakest covered topic by "
+                "Estimated Knowledge — not silent interruption, and not "
+                "Revision Mode."
             ),
             educational_position=position,
             next_action=next_action,

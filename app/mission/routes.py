@@ -181,6 +181,11 @@ def _apply_mission_topic_progress(user_id: int, topic) -> None:
     In Revision Mode (syllabus complete), Study Progress coverage is not
     advanced — revision consolidates completed material and must not restart
     Topic 1 or invent new coverage.
+
+    Learning Mode consolidation checkpoints revisit already-covered topics:
+    they increment revision signals only and do not count as new CLT coverage.
+    First-time Study Progress completion increments the consolidation
+    checkpoint watermark on the active plan.
     """
     if topic is None:
         return
@@ -203,6 +208,14 @@ def _apply_mission_topic_progress(user_id: int, topic) -> None:
         user_id=user_id,
         topic_id=topic.id,
     )
+
+    # Already covered (Learning Mode consolidation checkpoint): revisit only.
+    if progress.completed:
+        progress.revision_count = int(progress.revision_count or 0) + 1
+        progress.mark_reviewed()
+        db.session.commit()
+        return
+
     # EIP-001 / EIP-002 / EL-001 / IA-004: Mission Completion may update Study
     # Progress only. Never Estimated Mastery/Knowledge, never Educational
     # Evidence of understanding, never student-felt confidence (Art. V; EL-004).
@@ -224,6 +237,11 @@ def _apply_mission_topic_progress(user_id: int, topic) -> None:
     active_plan = StudyPlanService.get_user_active_plan(user_id)
     if active_plan is not None:
         StudyPlanService.reconcile_current_topic_pointer(active_plan)
+        # Count this CLT completion toward the next consolidation checkpoint.
+        active_plan.new_topics_since_consolidation_checkpoint = (
+            int(active_plan.new_topics_since_consolidation_checkpoint or 0) + 1
+        )
+        db.session.add(active_plan)
 
     db.session.commit()
 

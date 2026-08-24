@@ -401,7 +401,7 @@ Kwalitec recognises educational operating modes. Only authorised modes may deter
 
 #### 1. Learning Mode
 
-**Definition.** The default mode in which the student’s primary daily educational commitment follows the Current Learning Topic in official syllabus order within the active study context.
+**Definition.** The default mode in which the student’s primary daily educational commitment follows the Current Learning Topic in official syllabus order within the active study context, with disclosed periodic consolidation checkpoints as authorised below.
 
 **Authority.** Learning Mode is the Version 1.0 authority for Today’s Mission topic selection.
 
@@ -409,7 +409,7 @@ Kwalitec recognises educational operating modes. Only authorised modes may deter
 
 #### 2. Revision Mode
 
-**Definition.** A mode oriented toward consolidating and revising previously studied material, typically as examinations approach or when the student explicitly enters revision posture.
+**Definition.** A mode oriented toward consolidating and revising previously studied material after syllabus completion (or when the student explicitly enters revision posture). Distinct from Learning Mode consolidation checkpoints.
 
 **Authority.** May guide primary focus only when constitutionally activated and disclosed to the student as revision — not as silent substitution for Learning Mode.
 
@@ -421,22 +421,24 @@ Kwalitec recognises educational operating modes. Only authorised modes may deter
 
 #### 4. Future Adaptive Mode
 
-**Definition.** A later mode in which explained adaptive interruption (review, weak-topic focus, spaced reinforcement) may temporarily redirect primary focus according to evidence-informed need.
+**Definition.** A later mode in which explained adaptive interruption (review, weak-topic focus, spaced reinforcement) may temporarily redirect primary focus according to evidence-informed need beyond the narrow Learning Mode consolidation checkpoint amendment.
 
-**Authority.** Deferred until Educational Intelligence Phase gating and student-visible explanation exist. Adaptive interruption is not Version 1.0 mission authority.
+**Authority.** Broader Adaptive Mode remains deferred until Educational Intelligence Phase gating and student-visible explanation exist for behaviours beyond Learning Mode consolidation checkpoints. Undisclosed adaptive interruption is not Version 1.0 mission authority.
 
 ### Section 2. Mission Follows Learning Mode
 
 While Learning Mode governs:
 
-1. Today’s Mission tracks Current Learning Topic;
-2. Review and weak-topic signals may appear as advisory recommendations;
-3. Advisory surfaces must not present themselves as Today’s Mission when they name a different topic;
-4. Calls to action must not imply acceptance of a contradictory topic as the learning mission.
+1. Today’s Mission tracks Current Learning Topic by default;
+2. **Disclosed consolidation checkpoints (deliberate amendment, Founder-authorized 2026-08-24 architecture session):** after a cadence of new Current Learning Topic completions based on days remaining until exam (>60 days → every 4; 30–60 inclusive → every 3; <30 → every 2), Learning Mode may pause forward syllabus progress to consolidate the weakest covered topic (fresh mastery stage Learning or Not Started). If no weak covered topic exists, the checkpoint is skipped and the watermark resets. Checkpoints must use distinct title/tasks and honest MES disclosure — they must not silently look like continued forward progress. Motivation: activate real mastery data to emulate tutor-like consolidation. This amendment is explicit educational law, not a silent/undocumented behaviour change. It is distinct from Revision Mode post-syllabus rotation;
+3. Review and weak-topic signals may appear as advisory recommendations when not selected as a disclosed checkpoint;
+4. Advisory surfaces must not present themselves as Today’s Mission when they name a different topic off cadence or without disclosure;
+5. Calls to action must not imply acceptance of a contradictory topic as the learning mission;
+6. Undisclosed / off-cadence / random weak-topic preemption remains forbidden.
 
 ### Section 3. Adaptive Interruption Deferred
 
-Adaptive interruption of Learning Mode is deferred. No implementation may silently introduce Adaptive Mode behaviour as if it were already constitutional primary authority.
+Undisclosed Adaptive interruption of Learning Mode remains deferred. No implementation may silently introduce Adaptive Mode behaviour as if it were already constitutional primary authority. The Section 2 consolidation-checkpoint amendment is a disclosed, cadence-gated Learning Mode exception — not a general Adaptive Mode activation.
 
 ### Section 4. Advice Versus Command
 

@@ -748,8 +748,10 @@ class PlanningService:
     ) -> Mission:
         """Generate a mission for a specific date.
 
-        Learning Mode selects the next incomplete topic. Revision Mode generates
-        consolidation missions and never restarts Topic 1.
+        Learning Mode selects the Current Learning Topic, with disclosed
+        consolidation checkpoints at exam-proximity cadence when weak covered
+        topics exist. Revision Mode generates post-syllabus consolidation
+        missions and never restarts Topic 1.
         """
         if lifecycle_stage is None:
             lifecycle_stage = LearningLifecycleService.resolve(
@@ -777,20 +779,36 @@ class PlanningService:
         topic_code = PlanningService._resolve_official_topic_code(
             active_plan, next_topic
         )
-        mission_title = PlanningService._generate_mission_title(
-            day_type=day_type,
-            target_date=target_date,
+        is_consolidation = PlanningService._is_consolidation_topic(
+            user_id=user_id,
             topic=next_topic,
-            topic_code=topic_code,
         )
-        tasks_data = PlanningService._generate_mission_tasks(
-            day_type=day_type,
-            study_minutes=study_minutes,
-            current_stage=active_plan.current_stage,
-            study_preference=active_plan.study_preference,
-            topic=next_topic,
-            topic_code=topic_code,
-        )
+        if is_consolidation:
+            mission_title = PlanningService._generate_consolidation_mission_title(
+                target_date=target_date,
+                topic=next_topic,
+                topic_code=topic_code,
+            )
+            tasks_data = PlanningService._generate_consolidation_mission_tasks(
+                study_minutes=study_minutes,
+                topic=next_topic,
+                topic_code=topic_code,
+            )
+        else:
+            mission_title = PlanningService._generate_mission_title(
+                day_type=day_type,
+                target_date=target_date,
+                topic=next_topic,
+                topic_code=topic_code,
+            )
+            tasks_data = PlanningService._generate_mission_tasks(
+                day_type=day_type,
+                study_minutes=study_minutes,
+                current_stage=active_plan.current_stage,
+                study_preference=active_plan.study_preference,
+                topic=next_topic,
+                topic_code=topic_code,
+            )
         subject_id = PlanningService._get_or_create_default_subject(user_id)
         return MissionService.create_mission(
             user_id=user_id,
@@ -1279,35 +1297,189 @@ class PlanningService:
         return tasks
 
     @staticmethod
+    def _consolidation_cadence(days_remaining: int) -> int:
+        """New CLT topics between Learning Mode consolidation checkpoints.
+
+        Exam proximity bands (Founder-authorized 2026-08-24 amendment):
+        >60 days → every 4; 30–60 inclusive → every 3; <30 → every 2.
+        """
+        if days_remaining > 60:
+            return 4
+        if days_remaining >= 30:
+            return 3
+        return 2
+
+    @staticmethod
+    def _is_consolidation_topic(*, user_id: int, topic: Topic | None) -> bool:
+        """True when the selected topic is a covered (completed) revisit."""
+        if topic is None:
+            return False
+        from app.models.topic_progress import TopicProgress
+
+        progress = TopicProgress.query.filter_by(
+            user_id=user_id,
+            topic_id=topic.id,
+        ).first()
+        return bool(progress and progress.completed)
+
+    @staticmethod
+    def _generate_consolidation_mission_title(
+        *,
+        target_date: date,
+        topic: Topic | None,
+        topic_code: str | None = None,
+    ) -> str:
+        """Distinct title for a Learning Mode consolidation checkpoint."""
+        day_name = target_date.strftime("%A")
+        date_str = target_date.strftime("%b %d")
+        topic_label = (
+            PlanningService._topic_study_label(topic, topic_code=topic_code)
+            if topic
+            else "recent weak topic"
+        )
+        return f"Consolidate {topic_label} — {day_name}, {date_str}"
+
+    @staticmethod
+    def _generate_consolidation_mission_tasks(
+        *,
+        study_minutes: int,
+        topic: Topic | None,
+        topic_code: str | None = None,
+    ) -> list[dict]:
+        """Task pack for a disclosed Learning Mode consolidation checkpoint."""
+        practice_mins = max(15, int(study_minutes * 0.50))
+        review_mins = max(10, int(study_minutes * 0.30))
+        note_mins = max(10, int(study_minutes * 0.20))
+        study_subject = PlanningService._topic_study_label(
+            topic, fallback="this weak topic", topic_code=topic_code
+        )
+        return [
+            {
+                "title": f"Revisit weak points in {study_subject}",
+                "description": (
+                    f"Return to {study_subject}: identify the ideas that still "
+                    f"feel shaky and rework them for about {review_mins} minutes. "
+                    f"This is a Learning Mode consolidation checkpoint, not new "
+                    f"syllabus coverage."
+                ),
+                "order": 0,
+            },
+            {
+                "title": f"Practice {study_subject}",
+                "description": (
+                    f"Work practice questions on {study_subject} for about "
+                    f"{practice_mins} minutes to rebuild fluency on covered "
+                    f"material."
+                ),
+                "order": 1,
+            },
+            {
+                "title": "Note remaining gaps",
+                "description": (
+                    f"Spend about {note_mins} minutes noting what still needs "
+                    f"reinforcement on {study_subject} before returning to your "
+                    f"Current Learning Topic."
+                ),
+                "order": 2,
+            },
+        ]
+
+    @staticmethod
+    def _weak_covered_topics_for_consolidation(
+        user_id: int,
+        curriculum,
+        *,
+        exclude_topic_id: int | None = None,
+    ) -> list[Topic]:
+        """Covered topics whose fresh mastery stage is Learning or Not Started.
+
+        Stage is computed from ``mastery_score`` via ``determine_stage`` — never
+        from the stored ``current_stage`` label (which becomes Completed once
+        Study Progress is marked done).
+        """
+        from app.models.topic_progress import TopicProgress
+        from app.services.adaptive_learning_service import AdaptiveLearningService
+
+        ordered = CurriculumService.get_ordered_topics(curriculum)
+        leaf_topics = [t for t in ordered if t.is_leaf_topic()]
+        weak: list[tuple[float, int, Topic]] = []
+        for topic in leaf_topics:
+            if exclude_topic_id is not None and topic.id == exclude_topic_id:
+                continue
+            progress = TopicProgress.query.filter_by(
+                user_id=user_id,
+                topic_id=topic.id,
+            ).first()
+            if not progress or not progress.completed:
+                continue
+            stage = AdaptiveLearningService.determine_stage(
+                float(progress.mastery_score or 0.0)
+            )
+            if stage in (
+                TopicProgress.STAGE_LEARNING,
+                TopicProgress.STAGE_NOT_STARTED,
+            ):
+                weak.append((float(progress.mastery_score or 0.0), topic.id, topic))
+        weak.sort(key=lambda row: (row[0], row[1]))
+        return [row[2] for row in weak]
+
+    @staticmethod
+    def _select_consolidation_topic(
+        user_id: int,
+        active_plan: StudyPlan,
+        curriculum,
+    ) -> Topic | None:
+        """Lowest-mastery weak covered topic, avoiding immediate repeat."""
+        last_id = active_plan.last_consolidation_topic_id
+        candidates = PlanningService._weak_covered_topics_for_consolidation(
+            user_id,
+            curriculum,
+            exclude_topic_id=last_id,
+        )
+        if candidates:
+            return candidates[0]
+        if last_id is None:
+            return None
+        # Only the previous consolidation topic remains weak — allow repeat.
+        with_repeat = PlanningService._weak_covered_topics_for_consolidation(
+            user_id,
+            curriculum,
+            exclude_topic_id=None,
+        )
+        return with_repeat[0] if with_repeat else None
+
+    @staticmethod
     def _select_topic_for_today(
         user_id: int,
         active_plan: StudyPlan,
         target_date: date,
     ) -> Topic | None:
-        """Select today's mission topic under Learning Mode (IA-004).
+        """Select today's mission topic under Learning Mode.
 
-        Version 1.0 Learning Mode: Today's Mission always follows the
-        Current Learning Topic (first incomplete syllabus leaf in the
-        active plan). Review / weak-topic interruption is deferred to
-        Educational Intelligence Phase 1 and must never silently replace
-        the planned learning sequence.
+        Default: Current Learning Topic (first incomplete syllabus leaf via
+        ``get_next_incomplete_topic``).
 
-        ``target_date`` is retained for API stability; Learning Mode does
-        not use review schedules for mission topic selection.
+        Disclosed exception (Founder-authorized 2026-08-24): when the plan's
+        new-topics-since-checkpoint watermark reaches the exam-proximity
+        cadence and weak covered topics exist, return a consolidation
+        checkpoint topic instead. Undisclosed / off-cadence weak or review
+        preemption remains forbidden. This is distinct from Revision Mode
+        post-syllabus consolidation rotation.
 
-        This method is deterministic — given the same inputs, it always
-        returns the same topic.
+        ``target_date`` drives exam-proximity cadence only — Learning Mode
+        does not use review schedules for topic selection.
+
+        This method is deterministic — given the same plan, progress,
+        watermark, and date, it returns the same topic.
 
         Args:
             user_id: The ID of the user.
             active_plan: The active study plan.
-            target_date: The date to select a topic for (unused in Learning Mode).
+            target_date: The date to select a topic for (cadence reference).
 
         Returns:
             Topic: The selected topic, or None if no curriculum/no topics available.
         """
-        del target_date  # Learning Mode ignores review-date interruption.
-
         # Curriculum binding is a StudyPlanService invariant — callers must load
         # plans via get_user_active_plan / get_plan so repair has already run.
         curriculum_id = active_plan.curriculum_id
@@ -1330,16 +1502,25 @@ class PlanningService:
                 .count()
             )
 
+        watermark = int(
+            active_plan.new_topics_since_consolidation_checkpoint or 0
+        )
+        days_remaining = (active_plan.exam_date - target_date).days
+        cadence = PlanningService._consolidation_cadence(days_remaining)
+
         logger.debug(
             "Learning Mode topic selection user=%s plan=%s curriculum_id=%s "
             "curriculum_version=%s topic_progress_count=%s "
-            "curriculum_topic_code=%s",
+            "curriculum_topic_code=%s watermark=%s cadence=%s days_remaining=%s",
             user_id,
             active_plan.id,
             curriculum_id,
             curriculum_version,
             topic_progress_count,
             active_plan.curriculum_topic_code,
+            watermark,
+            cadence,
+            days_remaining,
         )
 
         if not curriculum:
@@ -1350,6 +1531,31 @@ class PlanningService:
                 curriculum_version,
             )
             return None
+
+        if watermark >= cadence:
+            consolidation_topic = PlanningService._select_consolidation_topic(
+                user_id=user_id,
+                active_plan=active_plan,
+                curriculum=curriculum,
+            )
+            if consolidation_topic is not None:
+                active_plan.new_topics_since_consolidation_checkpoint = 0
+                active_plan.last_consolidation_topic_id = consolidation_topic.id
+                db.session.add(active_plan)
+                logger.debug(
+                    "Learning Mode consolidation checkpoint: selected_topic "
+                    "id=%s name=%r (watermark reset)",
+                    consolidation_topic.id,
+                    consolidation_topic.name,
+                )
+                return consolidation_topic
+            # No weak covered topic — skip this cycle and reset watermark.
+            active_plan.new_topics_since_consolidation_checkpoint = 0
+            db.session.add(active_plan)
+            logger.debug(
+                "Learning Mode consolidation skipped (no weak covered topics); "
+                "watermark reset"
+            )
 
         # Current Learning Topic = first incomplete syllabus leaf.
         next_topic = CurriculumService.get_next_incomplete_topic(

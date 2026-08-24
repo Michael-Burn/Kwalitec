@@ -431,13 +431,25 @@ class RuntimeAPresentationAdapter:
             or mission_surface.get("explanation_summary")
             or _TWIN_MISSION_REASON_FALLBACK
         ).strip()
-        mode_sentence = (
-            "In Revision Mode, today's mission consolidates the completed "
-            "syllabus — not new Current Learning Topic coverage."
-            if is_revision
-            else "In Learning Mode, today's mission follows your Current "
-            "Learning Topic in this study plan."
+        is_consolidation = (not is_revision) and title.lower().startswith(
+            "consolidate"
         )
+        if is_revision:
+            mode_sentence = (
+                "In Revision Mode, today's mission consolidates the completed "
+                "syllabus — not new Current Learning Topic coverage."
+            )
+        elif is_consolidation:
+            mode_sentence = (
+                "In Learning Mode, today's mission is a disclosed consolidation "
+                "checkpoint on a weak covered topic — not continued forward "
+                "syllabus progress, and not Revision Mode."
+            )
+        else:
+            mode_sentence = (
+                "In Learning Mode, today's mission follows your Current "
+                "Learning Topic in this study plan."
+            )
         why_with_mode = f"{why} {mode_sentence}".strip()
         next_action = str(
             mission_surface.get("suggested_next_action")
@@ -449,13 +461,21 @@ class RuntimeAPresentationAdapter:
             for item in (mission_surface.get("supporting_evidence") or [])
             if str(item).strip()
         ]
-        evidence.append(
-            "Study Progress advances one syllabus topic at a time in "
-            "Revision Mode."
-            if is_revision
-            else "Study Progress advances one syllabus topic at a time in "
-            "Learning Mode."
-        )
+        if is_revision:
+            evidence.append(
+                "Study Progress advances one syllabus topic at a time in "
+                "Revision Mode."
+            )
+        elif is_consolidation:
+            evidence.append(
+                "This Learning Mode consolidation checkpoint revisits covered "
+                "material; it does not advance new Current Learning Topic coverage."
+            )
+        else:
+            evidence.append(
+                "Study Progress advances one syllabus topic at a time in "
+                "Learning Mode."
+            )
         confidence = str(mission_surface.get("confidence_level") or "").strip()
         estimates: list[str] = []
         if confidence:
@@ -463,13 +483,21 @@ class RuntimeAPresentationAdapter:
         change = str(mission_surface.get("change_reasoning") or "").strip()
         if change:
             estimates.append(change)
-        estimates.append(
-            "Revision consolidates completed material — it does not invent "
-            "Estimated Knowledge."
-            if is_revision
-            else "Estimated Knowledge is separate from Study Progress and "
-            "grows from practice results over time."
-        )
+        if is_revision:
+            estimates.append(
+                "Revision consolidates completed material — it does not invent "
+                "Estimated Knowledge."
+            )
+        elif is_consolidation:
+            estimates.append(
+                "Consolidation checkpoints reinforce weak Estimated Knowledge "
+                "on covered topics before returning to Current Learning Topic."
+            )
+        else:
+            estimates.append(
+                "Estimated Knowledge is separate from Study Progress and "
+                "grows from practice results over time."
+            )
         plan_drivers = tuple(
             _driver_evidence(mission_surface.get("plan_drivers"))[:3]
         )

@@ -77,6 +77,22 @@ class StudyPlan(db.Model):
         nullable=False,
         comment="One-time syllabus-complete acknowledgement dismissed",
     )
+    new_topics_since_consolidation_checkpoint: int = db.Column(
+        db.Integer,
+        default=0,
+        nullable=False,
+        comment=(
+            "Learning Mode: count of newly completed CLT topics since the last "
+            "consolidation checkpoint (or skip-no-weak reset)"
+        ),
+    )
+    last_consolidation_topic_id: int = db.Column(
+        db.Integer,
+        db.ForeignKey("topics.id"),
+        nullable=True,
+        default=None,
+        comment="Topic id of the most recent Learning Mode consolidation checkpoint",
+    )
     active: bool = db.Column(db.Boolean, default=False, nullable=False)
     archived: bool = db.Column(db.Boolean, default=False, nullable=False, comment="Archived plans are hidden from active scheduling but preserved")
     created_at: datetime = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)

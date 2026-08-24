@@ -215,35 +215,38 @@ Highly visible as today’s learning focus under Learning Mode (mission and rela
 4. Resynchronise when the active study context lawfully changes.
 5. What **cannot** change Current Learning Topic under Learning Mode Version 1.0:
    - Advisory recommendations;
-   - Review-due or weak-topic signals acting silently;
+   - Review-due or weak-topic signals acting silently or off cadence;
    - Educational Intelligence Decision artefacts without mode disclosure and Article VI authority;
    - Randomness or opportunistic optimisation.
+6. **Disclosed consolidation checkpoints (2026-08-24 amendment):** Current Learning Topic remains the definition of sequential progress. Learning Mode mission selection may temporarily return a weak *covered* topic at an exam-proximity cadence (see EL-003 / EL-009 / Article VI §2). That override does **not** redefine Current Learning Topic; it is a disclosed checkpoint, not a silent CLT rewrite.
 
 ### Educational Justification
 
-Students need continuity. If “what I am learning now” jumps without explanation to reviewed or weak topics, the coach feels arbitrary and trust collapses.
+Students need continuity. If “what I am learning now” jumps without explanation to reviewed or weak topics, the coach feels arbitrary and trust collapses. Disclosed periodic consolidation checkpoints (Founder-authorized 2026-08-24) pause forward progress honestly so mastery data can drive tutor-like reinforcement without undisclosed preemption.
 
 ### Constraints
 
-- Learning Mode Mission topic must track Current Learning Topic (EL-003, EL-009).
+- Learning Mode Mission topic defaults to Current Learning Topic (EL-003, EL-009).
 - Advisory systems must not silently replace Current Learning Topic.
-- Adaptive interruption of this selection is deferred (Article VI §3).
+- Undisclosed / off-cadence weak or review preemption remains forbidden.
+- Disclosed consolidation checkpoints are authorised under Article VI §2 as amended 2026-08-24; they remain distinct from Revision Mode.
 
 ### Future Evolution
 
-Revision Mode, Diagnostic Mode, and Adaptive Mode may lawfully redirect primary focus only when activated, disclosed, and constitutionally authorised. Until then, Current Learning Topic remains Learning Mode’s sole mission topic authority input.
+Revision Mode, Diagnostic Mode, and further Adaptive Mode behaviours may lawfully redirect primary focus only when activated, disclosed, and constitutionally authorised. Learning Mode consolidation checkpoints (2026-08-24) are a narrow disclosed exception within Learning Mode — not full Adaptive Mode activation.
 
 ### Current Implementation Status
 
-**Aligned (IA-004 Learning Mode):**
+**Aligned (IA-004 Learning Mode + 2026-08-24 consolidation amendment):**
 
-- Today’s Mission topic selection follows the next incomplete syllabus unit within the active Study Plan;
-- Review and weak-topic preemption are deferred from mission topic authority.
+- Today’s Mission topic selection defaults to the next incomplete syllabus unit within the active Study Plan (Current Learning Topic);
+- Disclosed Learning Mode consolidation checkpoints fire at exam-proximity cadence when weak covered topics exist;
+- Undisclosed / off-cadence review and weak-topic preemption remain forbidden from mission topic authority.
 
 **Documented divergence / residual risk:**
 
-- Advisory dashboard surfaces may still *name* a different topic while the mission follows Current Learning Topic — educationally confusing if not labelled as non-mission advice (see EL-008);
-- Historical pre–IA-004 selection cascaded review → weak → next incomplete; that cascade is **not** authorised Learning Mode behaviour and must not return without Constitution / Registry amendment.
+- Advisory dashboard surfaces may still *name* a different topic while the mission follows Current Learning Topic or a disclosed checkpoint — educationally confusing if not labelled as non-mission advice (see EL-008);
+- Historical pre–IA-004 selection cascaded review → weak → next incomplete; that cascade remains **not** authorised. The 2026-08-24 amendment authorises only cadence-gated, disclosed consolidation — not opportunistic Priority-1/2 style preemption.
 
 ### Related Constitution Articles
 
@@ -269,18 +272,20 @@ Reduce decisions. Increase learning. Missions translate educational state into a
 
 - Under Learning Mode Version 1.0: Current Learning Topic (EL-002) and active Study Plan context (EL-011);
 - Learning Mode as active primary mode (EL-009);
+- Consolidation checkpoint watermark / cadence state on the active Study Plan (2026-08-24 amendment);
 - Student actions to start, complete, abandon, or supersede a mission under explicit product rules.
 
 ### Outputs
 
 - Today’s Mission (or equivalent plain language: today’s focus / today’s session);
+- Distinct consolidation-checkpoint titles/tasks when a disclosed Learning Mode checkpoint fires;
 - Mission lifecycle state (generated, in progress, completed, abandoned, superseded);
 - Opportunity for Mission Completion to update Study Progress (EL-004) and later Educational Evidence (EL-005).
 
 ### Single Source of Truth
 
 The application’s persisted mission for the student and active Study Plan for the study day/session under Learning Mode.  
-Mission topic authority under Version 1.0 is Learning Mode → Current Learning Topic, not advisory recommendations.
+Mission topic authority under Version 1.0 is Learning Mode → Current Learning Topic by default, with disclosed consolidation checkpoints as the sole authorised exception (Article VI §2 as amended 2026-08-24) — not advisory recommendations.
 
 ### State Owner
 
@@ -289,7 +294,7 @@ Educational Intelligence may propose mission artefacts only under constitutional
 
 ### Student Visibility
 
-Primary daily surface. Students experience Today’s Mission as the main study commitment.
+Primary daily surface. Students experience Today’s Mission as the main study commitment. Consolidation checkpoints must be visibly distinct (title, tasks, MES) from ordinary Current Learning Topic missions.
 
 ### Dependencies
 
@@ -305,49 +310,52 @@ Primary daily surface. Students experience Today’s Mission as the main study c
 
 - Convert syllabus continuity into one daily commitment;
 - Reduce topic choice burden;
-- Honour Learning Mode rather than optimisation theatre.
+- Honour Learning Mode rather than optimisation theatre;
+- Periodically reinforce weak covered topics with disclosed checkpoints (2026-08-24).
 
 **Selection (Version 1.0 Learning Mode)**
 
 1. Resolve active Study Plan.
 2. Resolve Current Learning Topic from Study Progress + syllabus order.
-3. Generate or retrieve the plan-bound mission for today focusing on that topic.
-4. Present mission title and tasks from the mission itself (single display authority).
+3. If the consolidation watermark has reached exam-proximity cadence and weak covered topics exist, generate a disclosed consolidation-checkpoint mission on the weakest covered topic (anti-repeat when alternatives exist); otherwise generate or retrieve the plan-bound mission for today focusing on Current Learning Topic.
+4. Present mission title and tasks from the mission itself (single display authority). Consolidation titles must not reuse ordinary “Study …” Learning Mode labels.
 
 **Lifecycle**
 
 1. Generated for a study day or session;
 2. Started by the student;
 3. Completed, abandoned, or superseded under explicit rules;
-4. Completion may update Study Progress for covered units (EL-004);
+4. Completion may update Study Progress for newly covered units (EL-004); consolidation revisits do not invent new coverage;
 5. Completion creates opportunity for reflection / performance observation (EL-005) — it does not imply mastery.
 
 **Relationship to Learning Mode**
 
-While Learning Mode governs: Mission always follows Learning Mode. Review suggestions remain advisory.
+While Learning Mode governs: Mission follows Learning Mode (Current Learning Topic by default; disclosed consolidation checkpoints when cadence and weak covered topics require). Off-cadence review suggestions remain advisory. Distinct from Revision Mode post-syllabus rotation.
 
 ### Educational Justification
 
-Scarce daily study time must be spent on the authorised next learning step. Missions exist so students do not renegotiate the entire syllabus every morning.
+Scarce daily study time must be spent on the authorised next learning step. Missions exist so students do not renegotiate the entire syllabus every morning. The 2026-08-24 Founder-authorized amendment adds disclosed consolidation checkpoints so real mastery signals can drive tutor-like reinforcement without silent hijacking.
 
 ### Constraints
 
 - Must not be a covert mastery exam without disclosure;
-- Must not present advisory weak/review topics as Today’s Mission under Learning Mode;
+- Must not present advisory weak/review topics as Today’s Mission under Learning Mode off cadence or without disclosure;
 - Must remain bound to the active Study Plan so plan switches do not resurrect foreign missions;
-- Calls to action must not imply acceptance of a contradictory topic as the learning mission.
+- Calls to action must not imply acceptance of a contradictory topic as the learning mission;
+- Consolidation checkpoints must disclose that they are checkpoints, not continued forward progress, and must not be conflated with Revision Mode.
 
 ### Future Evolution
 
-Revision Mode / Adaptive Mode may lawfully own mission focus when activated and disclosed. Domain Mission Intelligence may become product authority only when subordinated to Article VI and this Registry.
+Revision Mode / further Adaptive Mode may lawfully own mission focus when activated and disclosed. Domain Mission Intelligence may become product authority only when subordinated to Article VI and this Registry.
 
 ### Current Implementation Status
 
-**Aligned (IA-001 + IA-004):**
+**Aligned (IA-001 + IA-004 + 2026-08-24 consolidation amendment):**
 
 - Product missions are plan-scoped;
-- Learning Mode selects Current Learning Topic for today’s mission;
-- Mission surfaces explain Learning Mode / Study Progress vs Estimated Mastery.
+- Learning Mode selects Current Learning Topic for today’s mission by default;
+- Disclosed consolidation checkpoints fire at exam-proximity cadence when weak covered topics exist;
+- Mission surfaces explain Learning Mode / Study Progress vs Estimated Mastery, including checkpoint disclosure.
 
 **Documented divergence / residual risk:**
 
@@ -870,24 +878,26 @@ Define Version 1.0’s default educational operating mode: the student’s prima
 
 ### Educational Principle
 
-Learning is normally sequential. Learning Mode is the Version 1.0 authority for Today’s Mission topic selection. Adaptive interruption is deferred (Constitution Article VI).
+Learning is normally sequential. Learning Mode is the Version 1.0 authority for Today’s Mission topic selection. Undisclosed Adaptive interruption remains deferred (Constitution Article VI §3). Disclosed Learning Mode consolidation checkpoints are authorised under Article VI §2 as amended 2026-08-24.
 
 ### Inputs
 
 - Active Study Plan and curriculum (EL-011);
 - Study Progress (EL-001);
 - Official syllabus order;
+- Consolidation checkpoint watermark and exam-proximity cadence;
 - Mode activation state (Learning Mode active vs future modes).
 
 ### Outputs
 
-- Mission topic authority → Current Learning Topic (EL-002, EL-003);
-- Student-visible Learning Mode behaviour and why-copy;
-- Explicit non-authority of review/weak signals over mission topic while Learning Mode governs.
+- Mission topic authority → Current Learning Topic by default (EL-002, EL-003);
+- Disclosed consolidation-checkpoint missions when cadence and weak covered topics require;
+- Student-visible Learning Mode behaviour and why-copy (including checkpoint disclosure);
+- Explicit non-authority of off-cadence / undisclosed review/weak signals over mission topic while Learning Mode governs.
 
 ### Single Source of Truth
 
-Decision Hierarchy Article VI: Learning Mode is the Version 1.0 primary mode for mission topic selection. No feature flag may silently rename Adaptive behaviour as Learning Mode (Article IX §3).
+Decision Hierarchy Article VI: Learning Mode is the Version 1.0 primary mode for mission topic selection. No feature flag may silently rename Adaptive behaviour as Learning Mode (Article IX §3). The 2026-08-24 amendment adds disclosed consolidation checkpoints inside Learning Mode — not silent Adaptive Mode.
 
 ### State Owner
 
@@ -895,7 +905,7 @@ Application mode authority (product learning path). Educational Intelligence adv
 
 ### Student Visibility
 
-Students experience Learning Mode as “today’s mission follows your Current Learning Topic” and sequential Continue Learning — not as an engineering mode switch panel (unless future UX explicitly offers disclosed mode choice).
+Students experience Learning Mode as “today’s mission follows your Current Learning Topic” by default, with occasional disclosed “Consolidate …” checkpoints when cadence requires — not as an engineering mode switch panel (unless future UX explicitly offers disclosed mode choice).
 
 ### Dependencies
 
@@ -904,49 +914,50 @@ Students experience Learning Mode as “today’s mission follows your Current L
 - Current Learning Topic (EL-002);
 - Today’s Mission (EL-003);
 - Recommendations remain advisory (EL-008);
-- Future Revision Mode is related but distinct and deferred for primary mission authority.
+- Revision Mode is related but distinct (post-syllabus consolidation rotation — not Learning Mode checkpoints).
 
 ### Decision Process
 
 **Version 1.0 behaviour**
 
 1. Learning Mode is active by default for mission topic selection.
-2. Mission always follows Learning Mode while it is the active primary mode.
-3. Review and weak-topic signals may appear as recommendations only.
-4. Adaptive / Revision interruption must not silently steal mission authority.
+2. Mission follows Learning Mode while it is the active primary mode: Current Learning Topic by default; disclosed consolidation checkpoints at exam-proximity cadence when weak covered topics exist.
+3. Review and weak-topic signals may appear as recommendations only when off cadence or not selected as a checkpoint.
+4. Undisclosed Adaptive / Revision interruption must not silently steal mission authority.
 
 **Relationship to Study Plan**
 
-Learning Mode operates within the active Study Plan’s syllabus scope and schedule context.
+Learning Mode operates within the active Study Plan’s syllabus scope and schedule context. Checkpoint cadence uses days remaining until `exam_date`.
 
 **Relationship to Mission**
 
-Today’s Mission topic = Current Learning Topic under Learning Mode.
+Today’s Mission topic = Current Learning Topic under Learning Mode, except at disclosed consolidation checkpoints.
 
-**Relationship to future Revision Mode**
+**Relationship to Revision Mode**
 
-Revision Mode consolidates previously studied material when activated and disclosed. It is not silent Learning Mode substitution. Until activated under Constitution / Registry amendment, Revision Mode does not own Version 1.0 mission topic selection.
+Revision Mode consolidates previously studied material after syllabus completion (or when activated and disclosed). It is not silent Learning Mode substitution, and it is **not** the same mechanism as Learning Mode consolidation checkpoints (2026-08-24).
 
 ### Educational Justification
 
-Sequential syllabuses underpin professional exam preparation. Version 1.0 must earn trust through continuity before optimisation is allowed to interrupt.
+Sequential syllabuses underpin professional exam preparation. Version 1.0 must earn trust through continuity. The deliberate 2026-08-24 Founder-authorized amendment activates real mastery data for tutor-like consolidation at disclosed cadence — without reopening opportunistic silent preemption.
 
 ### Constraints
 
 - No silent Adaptive Mode as if already primary authority;
 - Advisory divergence must be labelled honestly;
-- Mode changes that alter Article VI require constitutional amendment before implementation meaning shifts.
+- Mode changes that alter Article VI require constitutional amendment before implementation meaning shifts;
+- Consolidation checkpoints must remain disclosed and cadence-gated.
 
 ### Future Evolution
 
-Revision Mode, Diagnostic Mode, Adaptive Mode placeholders (see Future Educational Logic). Phase gating and student-visible explanation are prerequisites for interruption authority.
+Further Adaptive Mode / Diagnostic Mode behaviours (see Future Educational Logic) still require phase gating and student-visible explanation beyond the narrow 2026-08-24 Learning Mode checkpoint amendment.
 
 ### Current Implementation Status
 
-**Aligned (IA-004):**
+**Aligned (IA-004 + 2026-08-24 consolidation amendment):**
 
-- Product mission generation uses Learning Mode (next incomplete unit);
-- Copy explains Learning Mode vs Estimated Mastery.
+- Product mission generation uses Learning Mode (next incomplete unit by default; disclosed consolidation checkpoints on cadence);
+- Copy explains Learning Mode vs Estimated Mastery and discloses checkpoints.
 
 **Residual:**
 

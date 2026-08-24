@@ -155,9 +155,10 @@ class TestCompletionRecordsStudyProgressOnly:
 
 @pytest.mark.usefixtures("ctx")
 class TestLearningModeMissionSelection:
-    """Today's Mission follows Current Learning Topic; review never hijacks."""
+    """CLT default; consolidation only at disclosed cadence with weak covered topics."""
 
     def test_mission_follows_current_learning_topic(self, db, user):
+        """Default below cadence: CLT wins even if a covered topic is weak."""
         curriculum, topics = _make_curriculum(
             "IFoA CS1",
             ["Completed Topic", "Current Learning Topic", "Future Topic"],
@@ -165,13 +166,14 @@ class TestLearningModeMissionSelection:
         plan = _make_active_plan(
             user.id, exam_name="IFoA CS1", curriculum=curriculum
         )
-
+        # exam +180d → cadence 4; watermark 0 → no checkpoint.
+        plan.new_topics_since_consolidation_checkpoint = 0
         db.session.add(
             TopicProgress(
                 user_id=user.id,
                 topic_id=topics[0].id,
                 completed=True,
-                mastery_score=0.0,
+                mastery_score=10.0,  # fresh stage = Not Started (weak)
                 current_stage=TopicProgress.STAGE_COMPLETED,
             )
         )
@@ -193,11 +195,12 @@ class TestLearningModeMissionSelection:
         )
         assert selected is not None
         assert selected.id == topics[1].id
+        assert selected.name == "Current Learning Topic"
 
     def test_review_due_completed_topic_never_replaces_learning_mode(
         self, db, user
     ):
-        """Completed overdue/weak topics must not override Current Learning Topic."""
+        """Off-cadence: overdue/weak covered topics must not override CLT."""
         curriculum, topics = _make_curriculum(
             "IFoA CS1",
             ["Old Completed Weak", "Current Learning Topic"],
@@ -205,8 +208,10 @@ class TestLearningModeMissionSelection:
         plan = _make_active_plan(
             user.id, exam_name="IFoA CS1", curriculum=curriculum
         )
+        plan.new_topics_since_consolidation_checkpoint = 0  # below cadence 4
+        db.session.add(plan)
 
-        # Completed topic that would previously win Priority 1 / Priority 2.
+        # Completed weak topic that would previously win Priority 1 / Priority 2.
         db.session.add(
             TopicProgress(
                 user_id=user.id,
@@ -242,6 +247,7 @@ class TestLearningModeMissionSelection:
     def test_incomplete_weak_topic_does_not_preempt_syllabus_order(
         self, db, user
     ):
+        """Incomplete weak topics never preempt syllabus order (even on cadence)."""
         curriculum, topics = _make_curriculum(
             "IFoA CS1",
             ["First Incomplete", "Later Weak Topic"],
@@ -249,6 +255,11 @@ class TestLearningModeMissionSelection:
         plan = _make_active_plan(
             user.id, exam_name="IFoA CS1", curriculum=curriculum
         )
+        # Watermark at cadence would fire a checkpoint, but incomplete topics
+        # are not "covered" — consolidation must not select them.
+        plan.new_topics_since_consolidation_checkpoint = 4
+        plan.exam_date = date.today() + timedelta(days=180)
+        db.session.add(plan)
 
         db.session.add(
             TopicProgress(
@@ -271,6 +282,52 @@ class TestLearningModeMissionSelection:
         )
         assert selected is not None
         assert selected.id == topics[0].id
+        # Skip-no-weak resets watermark.
+        assert plan.new_topics_since_consolidation_checkpoint == 0
+
+    def test_on_cadence_weak_covered_topic_triggers_consolidation(
+        self, db, user
+    ):
+        """On cadence with a weak covered topic → disclosed consolidation, not CLT."""
+        curriculum, topics = _make_curriculum(
+            "IFoA CS1",
+            ["Weak Covered", "Current Learning Topic", "Future Topic"],
+        )
+        plan = _make_active_plan(
+            user.id, exam_name="IFoA CS1", curriculum=curriculum
+        )
+        plan.exam_date = date.today() + timedelta(days=45)  # cadence 3
+        plan.new_topics_since_consolidation_checkpoint = 3
+        db.session.add(plan)
+        db.session.add(
+            TopicProgress(
+                user_id=user.id,
+                topic_id=topics[0].id,
+                completed=True,
+                mastery_score=20.0,  # Not Started by determine_stage
+                current_stage=TopicProgress.STAGE_COMPLETED,
+            )
+        )
+        db.session.add(
+            TopicProgress(
+                user_id=user.id,
+                topic_id=topics[1].id,
+                completed=False,
+                mastery_score=0.0,
+                current_stage=TopicProgress.STAGE_LEARNING,
+            )
+        )
+        db.session.commit()
+
+        selected = PlanningService._select_topic_for_today(
+            user_id=user.id,
+            active_plan=plan,
+            target_date=date.today(),
+        )
+        assert selected is not None
+        assert selected.id == topics[0].id
+        assert plan.new_topics_since_consolidation_checkpoint == 0
+        assert plan.last_consolidation_topic_id == topics[0].id
 
 
 @pytest.mark.usefixtures("ctx")
