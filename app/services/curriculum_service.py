@@ -161,6 +161,131 @@ class CurriculumService:
         return imported_count
 
     @staticmethod
+    def ensure_curriculum_rows(
+        exam_name: str,
+        version: str,
+    ) -> Curriculum | None:
+        """Ensure DB Curriculum (+ Topics/LOs) exist for ``(exam_name, version)``.
+
+        Thin idempotent wrapper around :meth:`import_curricula`. When the row
+        is already present, returns it without importing. When missing, invokes
+        the existing importer (which skips curricula that already exist) and
+        re-queries. Does **not** invent new import logic.
+
+        Args:
+            exam_name: DB exam name (e.g. ``"IFoA CS1"``).
+            version: Syllabus version (e.g. ``"2026"``).
+
+        Returns:
+            The Curriculum row when present (or newly imported), else ``None``.
+        """
+        name = (exam_name or "").strip()
+        ver = (version or "").strip()
+        if not name or not ver:
+            return None
+
+        existing = Curriculum.query.filter_by(
+            exam_name=name,
+            version=ver,
+        ).first()
+        if existing is not None:
+            return existing
+
+        try:
+            CurriculumService.import_curricula()
+        except Exception:
+            logger.exception(
+                "ensure_curriculum_rows import failed exam=%s version=%s",
+                name,
+                ver,
+            )
+            return None
+
+        return Curriculum.query.filter_by(
+            exam_name=name,
+            version=ver,
+        ).first()
+
+    @staticmethod
+    def resolve_topic_id_for_official_code(
+        curriculum: Curriculum | None,
+        official_code: str,
+    ) -> int | None:
+        """Resolve an official syllabus topic code to a SQL ``Topic.id``.
+
+        Loads the engine curriculum for ``curriculum.exam_name`` /
+        ``curriculum.version``, matches an engine topic by **exact** code
+        (stripped), then finds the SQL Topic by
+        ``(curriculum_id, name=engine_topic.title)`` — the same convention
+        StudyPlanService uses. Lookup-only: does not create Topic rows.
+
+        Honest ``None`` when the code is empty, the curriculum is missing,
+        the engine cannot be loaded, the code is unknown, or no SQL Topic
+        row exists. No fuzzy title matching.
+
+        Args:
+            curriculum: DB Curriculum row (must already exist).
+            official_code: Official syllabus code (e.g. ``"1.1"``).
+
+        Returns:
+            Integer Topic primary key, or ``None`` when unresolvable.
+        """
+        if curriculum is None:
+            return None
+
+        code = (official_code or "").strip()
+        if not code:
+            return None
+
+        from app.services.curriculum_engine_service import CurriculumEngineService
+        from app.services.examination_catalogue import parse_exam_name
+
+        org, paper = parse_exam_name(curriculum.exam_name or "")
+        if not org or not paper:
+            parts = (curriculum.exam_name or "").split(" ", 1)
+            if len(parts) != 2:
+                return None
+            org, paper = parts
+
+        try:
+            engine_curriculum = CurriculumEngineService().load_auto(
+                org.lower(),
+                paper.lower(),
+                curriculum.version,
+            )
+        except Exception:
+            logger.exception(
+                "resolve_topic_id_for_official_code engine load failed "
+                "exam=%s version=%s code=%s",
+                curriculum.exam_name,
+                curriculum.version,
+                code,
+            )
+            return None
+
+        engine_topic = None
+        for topic in CurriculumEngineService.get_topics_flat(engine_curriculum):
+            if (getattr(topic, "code", None) or "").strip() == code:
+                engine_topic = topic
+                break
+
+        if engine_topic is None:
+            return None
+
+        title = (getattr(engine_topic, "title", None) or "").strip()
+        if not title:
+            return None
+
+        db_topic = Topic.query.filter_by(
+            curriculum_id=curriculum.id,
+            name=title,
+        ).first()
+        if db_topic is None:
+            return None
+
+        return int(db_topic.id)
+
+    @staticmethod
     def _load_curriculum_auto(
         repo: Any, organisation: str, paper: str, version: str
     ) -> Any:

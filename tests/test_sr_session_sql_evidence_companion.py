@@ -1,12 +1,15 @@
-"""SQL evidence companion — Phase 1 Accept binding + Phase 2 write-through.
+"""SQL evidence companion — Phase 1 Accept + Phase 2 write-through + Phase 3.
 
 Phase 1: flag-gated Accept-time companion Mission creation.
 Phase 2: Session completion aggregates scored practice → StudyAttempt on
-the companion via ``record_practice_outcome`` (no Phase 3 topic resolver).
+the companion via ``record_practice_outcome``.
+Phase 3: topic_code → SQL Topic.id resolution + single-topic TopicProgress
+so mastery can update for mappable syllabuses (e.g. CS1).
 """
 
 from __future__ import annotations
 
+import logging
 from datetime import date, timedelta
 
 import pytest
@@ -28,6 +31,9 @@ from app.application.student_runtime.evidence_write_through import (
     load_sitting_response_items,
     optional_sql_topic_id,
 )
+from app.application.student_runtime.syllabus_engine_map import (
+    VERSION_MISMATCH_FALLBACK_MARKER,
+)
 from app.extensions import db
 from app.infrastructure.adapters.learning_session.package_activity_engine import (
     PackageActivityEngine,
@@ -39,9 +45,12 @@ from app.infrastructure.adapters.learning_session.runtime_engine import (
     LearningSessionRuntimeEngine,
 )
 from app.infrastructure.session.store import SessionDocumentStore
+from app.models.curriculum import Curriculum, Topic
 from app.models.educational_runtime_engine import RuntimeMissionInstance
 from app.models.learning import StudyAttempt
 from app.models.mission import Mission
+from app.models.study_plan import StudyPlan
+from app.models.topic_progress import TopicProgress
 from app.models.user import User
 from app.services.mission_service import MissionService
 from app.services.planning_service import PlanningService
@@ -392,7 +401,8 @@ class TestEvidenceCompanionWriteThrough:
         attempt = attempts[-1]
         assert attempt.questions_attempted == 3
         assert attempt.questions_correct == 2
-        assert attempt.topic_id is None  # curriculum code not SQL Topic.id yet
+        # Synthetic ECMP subject is unmappable → Phase 3 leaves topic_id None.
+        assert attempt.topic_id is None
         companion = Mission.query.get(companion_id)
         assert companion is not None
         assert companion.status == "Completed"
@@ -541,3 +551,150 @@ class TestEvidenceCompanionWriteThrough:
         assert attempt is not None
         assert attempt.questions_attempted == 2
         assert attempt.questions_correct == 1
+
+
+@pytest.mark.usefixtures("ctx")
+class TestEvidenceCompanionPhase3TopicResolution:
+    def test_cs1_scored_practice_updates_mastery_for_practiced_topic_only(
+        self, monkeypatch, caplog
+    ):
+        """Cold Runtime C student: mapped CS1 → real Topic.id + mastery move.
+
+        Scenario: 3/10 correct (7 wrong) — average_accuracy should become 30.0
+        via the existing update_mastery_after_attempt path.
+        """
+        monkeypatch.setenv("SR_SESSION_SQL_EVIDENCE_COMPANION", "1")
+        monkeypatch.setenv("KWALITEC_COMMERCIAL_LOOP", "0")
+        monkeypatch.setenv("SR_EVIDENCE_GATE", "0")
+        monkeypatch.setenv("SR_TWIN_DAILY_LOOP", "0")
+        monkeypatch.setenv("SR_SESSION_COMPLETION_PRODUCT", "0")
+
+        # Studio version ≠ engine year → version-mismatch fallback must fire.
+        subject = publish_subject(
+            "CS1", title="CS1 Engine Map", version_label="2027.1"
+        )
+        user = make_user("cs1-phase3-mastery@example.com")
+        _enrol_runtime_c(user, subject)
+
+        assert StudyPlan.query.filter_by(user_id=user.id).count() == 0
+        assert TopicProgress.query.filter_by(user_id=user.id).count() == 0
+        assert (
+            Curriculum.query.filter_by(exam_name="IFoA CS1", version="2026").first()
+            is None
+        )
+
+        snap = EducationalExperienceService().load_for_user(user.id)
+        assert snap is not None and snap.mission is not None
+
+        store = SessionDocumentStore()
+        coordinator, persistence = _coordinator(companion=True, store=store)
+        binding = coordinator.accept_and_start_session(
+            user_id=user.id,
+            mission_instance_id=snap.mission.mission_instance_id,
+        )
+        row = RuntimeMissionInstance.query.filter_by(
+            mission_instance_id=snap.mission.mission_instance_id
+        ).one()
+        assert row.sql_mission_id is not None
+        assert (row.topic_code or "").strip() == "1.1"
+        # Accept must not import curriculum (resolution is Session-complete only).
+        assert (
+            Curriculum.query.filter_by(exam_name="IFoA CS1", version="2026").first()
+            is None
+        )
+
+        # 3 correct / 10 attempted → 30% accuracy (7/10 wrong scenario).
+        outcomes = [True, True, True] + [False] * 7
+        _seed_scored_practice(
+            store,
+            student_id=str(user.id),
+            session_id=binding.session_id,
+            outcomes=outcomes,
+        )
+
+        with caplog.at_level(logging.WARNING):
+            result = _complete_sitting(
+                persistence,
+                student_id=str(user.id),
+                session_id=binding.session_id,
+                finish_verdict="partially",
+            )
+
+        assert result is not None
+        assert result["sql_evidence_attempt_id"] is not None
+        assert VERSION_MISMATCH_FALLBACK_MARKER in caplog.text
+
+        curriculum = Curriculum.query.filter_by(
+            exam_name="IFoA CS1", version="2026"
+        ).one()
+        practiced = Topic.query.filter_by(
+            curriculum_id=curriculum.id,
+            name="Describe the purpose and function of data analysis",
+        ).one()
+
+        attempt = StudyAttempt.query.get(result["sql_evidence_attempt_id"])
+        assert attempt is not None
+        assert attempt.questions_attempted == 10
+        assert attempt.questions_correct == 3
+        assert attempt.topic_id == practiced.id
+
+        progress_rows = TopicProgress.query.filter_by(user_id=user.id).all()
+        assert len(progress_rows) == 1
+        progress = progress_rows[0]
+        assert progress.topic_id == practiced.id
+        assert progress.average_accuracy == 30.0
+        assert progress.mastery_score is not None
+        assert float(progress.mastery_score) > 0.0
+
+        # Whole-syllabus TopicProgress init must not have run.
+        syllabus_topic_count = Topic.query.filter_by(
+            curriculum_id=curriculum.id
+        ).count()
+        assert syllabus_topic_count > 1
+        assert StudyPlan.query.filter_by(user_id=user.id).count() == 0
+
+    def test_unmappable_ecmp_still_writes_without_topic_id(self, monkeypatch):
+        """Regression: synthetic subjects stay fail-open (topic_id=None)."""
+        monkeypatch.setenv("SR_SESSION_SQL_EVIDENCE_COMPANION", "1")
+        monkeypatch.setenv("KWALITEC_COMMERCIAL_LOOP", "0")
+        monkeypatch.setenv("SR_EVIDENCE_GATE", "0")
+        monkeypatch.setenv("SR_SESSION_COMPLETION_PRODUCT", "0")
+
+        subject = publish_subject("ECMP10", title="Phase3 Unmapped")
+        user = make_user("ecmp-phase3-unmap@example.com")
+        _enrol_runtime_c(user, subject)
+        snap = EducationalExperienceService().load_for_user(user.id)
+        assert snap is not None and snap.mission is not None
+
+        store = SessionDocumentStore()
+        coordinator, persistence = _coordinator(companion=True, store=store)
+        binding = coordinator.accept_and_start_session(
+            user_id=user.id,
+            mission_instance_id=snap.mission.mission_instance_id,
+        )
+        row = RuntimeMissionInstance.query.filter_by(
+            mission_instance_id=snap.mission.mission_instance_id
+        ).one()
+        companion_id = row.sql_mission_id
+
+        _seed_scored_practice(
+            store,
+            student_id=str(user.id),
+            session_id=binding.session_id,
+            outcomes=[True, False, False],
+        )
+        result = _complete_sitting(
+            persistence,
+            student_id=str(user.id),
+            session_id=binding.session_id,
+            finish_verdict="no",
+        )
+        assert result is not None
+        assert result["sql_evidence_attempt_id"] is not None
+        attempt = StudyAttempt.query.get(result["sql_evidence_attempt_id"])
+        assert attempt is not None
+        assert attempt.topic_id is None
+        assert TopicProgress.query.filter_by(user_id=user.id).count() == 0
+        companion = Mission.query.get(companion_id)
+        assert companion is not None
+        assert companion.status == "Completed"

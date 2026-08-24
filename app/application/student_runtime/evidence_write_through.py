@@ -1,12 +1,19 @@
-"""SQL evidence write-through for Runtime C sittings (Phase 2).
+"""SQL evidence write-through for Runtime C sittings (Phase 2 + Phase 3).
 
 Aggregates scored practice responses from a sitting and records them as a
 Runtime A ``StudyAttempt`` on the Phase 1 companion Mission via the existing
 ``StudySessionService.record_practice_outcome`` path (Evidence Authority +
 ``AdaptiveLearningService.update_mastery_after_attempt``).
 
-Does not resolve topic codes to SQL ``Topic.id`` (Phase 3). Does not replace
-Runtime C evidence-gate / Twin-consume / mission-complete behaviour.
+Phase 3: at first scored-practice completion, resolve
+``RuntimeMissionInstance.topic_code`` → SQL ``Topic.id`` (syllabus map →
+ensure curriculum rows → official-code resolver), create TopicProgress for
+**only** that practiced topic, then pass ``topic_id`` into
+``record_practice_outcome``. Fail-open: on any resolution failure keep Phase 2
+behaviour (``topic_id=None``, write attempt without mastery).
+
+Does not replace Runtime C evidence-gate / Twin-consume / mission-complete
+behaviour.
 """
 
 from __future__ import annotations
@@ -16,14 +23,21 @@ from dataclasses import dataclass
 from typing import Any
 
 from app.application.config.v2_flags import resolve_v2_feature_flags
+from app.application.student_runtime.syllabus_engine_map import (
+    map_runtime_syllabus_to_engine,
+)
 from app.extensions import db
 from app.infrastructure.adapters.learning_session.package_activity_engine import (
     PackageActivityEngine,
 )
 from app.infrastructure.session.store import SessionDocumentStore
-from app.models.educational_runtime_engine import RuntimeMissionInstance
+from app.models.educational_runtime_engine import (
+    RuntimeMissionInstance,
+    RuntimeStudyPlanInstance,
+)
 from app.models.learning import StudyAttempt
 from app.models.mission import Mission
+from app.services.curriculum_service import CurriculumService
 from app.services.educational_evidence_authority import EducationalEvidenceAuthority
 from app.services.study_session_service import StudySessionService
 
@@ -83,12 +97,113 @@ def load_sitting_response_items(
 
 
 def optional_sql_topic_id(raw: Any) -> int | None:
-    """Coerce an already-numeric topic id; otherwise None (Phase 3 resolves codes)."""
+    """Coerce an already-numeric topic id; otherwise None."""
     if raw is None or raw == "":
         return None
     try:
         return int(raw)
     except (TypeError, ValueError):
+        return None
+
+
+def _subject_and_version_from_mission(
+    *,
+    user_id: int,
+    row: RuntimeMissionInstance,
+) -> tuple[str | None, str | None]:
+    """Read Runtime C syllabus identity from the plan instance (or identity)."""
+    plan = RuntimeStudyPlanInstance.query.filter_by(
+        plan_instance_id=row.plan_instance_id,
+        user_id=user_id,
+    ).first()
+    if plan is not None:
+        return (
+            (plan.subject_code or "").strip() or None,
+            (plan.version_label or "").strip() or None,
+        )
+
+    identity = (row.curriculum_identity or "").strip()
+    if ":" in identity:
+        subject, version = identity.split(":", 1)
+        return subject.strip() or None, version.strip() or None
+    return identity or None, None
+
+
+def resolve_sql_topic_id_for_practice(
+    *,
+    user_id: int,
+    row: RuntimeMissionInstance,
+    raw_topic_id: Any = None,
+) -> int | None:
+    """Resolve SQL Topic.id for scored-practice write-through (Phase 3).
+
+    Prefers ``row.topic_code`` (human syllabus code) over opaque Runtime
+    ``topic_id``. Chain: syllabus map → ``ensure_curriculum_rows`` →
+    ``resolve_topic_id_for_official_code`` → ``get_or_create_topic_progress``
+    for **that topic only**.
+
+    On any failure returns ``None`` (caller writes attempt without mastery).
+    Never raises.
+    """
+    try:
+        official_code = (row.topic_code or "").strip()
+        if not official_code:
+            return optional_sql_topic_id(raw_topic_id)
+
+        subject_code, version_label = _subject_and_version_from_mission(
+            user_id=user_id,
+            row=row,
+        )
+        mapped = map_runtime_syllabus_to_engine(subject_code, version_label)
+        if mapped is None:
+            logger.info(
+                "sql_topic_resolve_unmapped subject=%s version_label=%s "
+                "topic_code=%s mid=%s",
+                subject_code,
+                version_label,
+                official_code,
+                row.mission_instance_id,
+            )
+            return optional_sql_topic_id(raw_topic_id)
+
+        curriculum = CurriculumService.ensure_curriculum_rows(
+            mapped.exam_name,
+            mapped.version,
+        )
+        if curriculum is None:
+            logger.info(
+                "sql_topic_resolve_ensure_failed exam=%s version=%s "
+                "topic_code=%s mid=%s",
+                mapped.exam_name,
+                mapped.version,
+                official_code,
+                row.mission_instance_id,
+            )
+            return None
+
+        topic_id = CurriculumService.resolve_topic_id_for_official_code(
+            curriculum,
+            official_code,
+        )
+        if topic_id is None:
+            logger.info(
+                "sql_topic_resolve_code_unresolved exam=%s version=%s "
+                "topic_code=%s mid=%s",
+                mapped.exam_name,
+                mapped.version,
+                official_code,
+                row.mission_instance_id,
+            )
+            return None
+
+        CurriculumService.get_or_create_topic_progress(user_id, topic_id)
+        return topic_id
+    except Exception:
+        logger.exception(
+            "sql_topic_resolve_failed mid=%s user=%s",
+            getattr(row, "mission_instance_id", None),
+            user_id,
+        )
         return None
 
 
@@ -188,7 +303,12 @@ def _write_sql_evidence_from_sitting(
     if counts.questions_attempted <= 0:
         return None
 
-    resolved_topic = optional_sql_topic_id(topic_id)
+    # Phase 3 resolution only when scored practice exists (Session complete).
+    resolved_topic = resolve_sql_topic_id_for_practice(
+        user_id=user_id,
+        row=row,
+        raw_topic_id=topic_id,
+    )
     result = StudySessionService.record_practice_outcome(
         mission_id=int(companion.id),
         user_id=user_id,
