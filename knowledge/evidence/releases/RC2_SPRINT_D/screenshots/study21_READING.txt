@@ -1,0 +1,5 @@
+HTML authoritative: evidence/study21_reading.html
+commit=94e02f57669831ff6af4e6f6bf87a727ca0cfe38
+topic=2.1
+mission=2.1 Understand the characteristics of basic univariate distributions and how to gene
+title=Reading: Purpose of this reading: use the CMP to extract the defining situation and one characteristic for each discrete family in Syllabus 2.1.1 — so distribution choice is situation-led. Extract that catalogue frame from the CMP, then stop before continuous distributions.

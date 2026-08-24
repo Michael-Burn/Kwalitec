@@ -1,0 +1,361 @@
+{
+  "slug": "returning",
+  "label": "Returning / repeat candidate",
+  "email": "pb015.co.returning.1785819767@example.com",
+  "persona_profile": {
+    "exam_history": "previous",
+    "confidence": "3",
+    "answer_style": "strong"
+  },
+  "verdict": "FAIL",
+  "summary": {
+    "certified_days_scored": 0,
+    "certified_all_pass": false,
+    "avg_score_over_9": 0.0,
+    "trajectory": [],
+    "stable_high": true,
+    "programme_metrics": {
+      "recommendation_consistency": {
+        "pass_count": 0,
+        "total": 0,
+        "result": "FAIL"
+      },
+      "weak_area_identification": {
+        "pass_count": 0,
+        "total": 0,
+        "result": "FAIL"
+      },
+      "mission_sequencing": {
+        "pass_count": 0,
+        "total": 0,
+        "result": "FAIL"
+      },
+      "syllabus_continuity": {
+        "pass_count": 0,
+        "total": 0,
+        "result": "FAIL"
+      },
+      "confidence_calibration": {
+        "pass_count": 0,
+        "total": 0,
+        "result": "FAIL"
+      },
+      "explanation_usefulness": {
+        "pass_count": 0,
+        "total": 0,
+        "result": "FAIL"
+      }
+    },
+    "transit_observations": [
+      "CK-D1",
+      "CK-D2",
+      "CK-D3",
+      "CK-D4",
+      "CK-D5",
+      "CK-D6",
+      "CK-R1",
+      "CL-D1",
+      "CL-D2",
+      "CL-D3",
+      "CL-D4",
+      "CL-D5",
+      "CL-D6",
+      "CL-D7",
+      "CL-D8",
+      "CL-R1",
+      "CM-D1",
+      "CM-D2",
+      "CM-D3",
+      "CM-D4",
+      "CM-D5",
+      "CM-R1",
+      "CN-D1",
+      "CN-D2",
+      "CN-D3",
+      "CN-D4",
+      "CN-D5",
+      "CN-R1",
+      "CX-D1",
+      "CX-D2",
+      "CX-D3",
+      "CX-D4",
+      "CX-D5",
+      "CX-D6",
+      "CX-D7",
+      "CX-D8",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "defects": [
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CK-D1 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CK-D2 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CK-D3 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CK-D4 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CK-D5 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CK-D6 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CK-R1 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CL-D1 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CL-D2 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CL-D3 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CL-D4 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CL-D5 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CL-D6 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CL-D7 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CL-D8 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CL-R1 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CM-D1 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CM-D2 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CM-D3 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CM-D4 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CM-D5 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CM-R1 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CN-D1 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CN-D2 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CN-D3 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CN-D4 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CN-D5 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CN-R1 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CX-D1 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CX-D2 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CX-D3 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CX-D4 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CX-D5 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CX-D6 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CX-D7 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB15-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CX-D8 before/during Omicron entry (RO13-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO13-R1"
+      },
+      {
+        "severity": "Critical",
+        "id": "PB15-CRIT-FALLBACK-LOOP",
+        "finding": "Repeated fallback/empty sittings after incomplete certified day",
+        "ef_class": "PI"
+      }
+    ],
+    "defect_counts": {
+      "Critical": 1,
+      "Major": 0,
+      "Minor": 36,
+      "Cosmetic": 0
+    }
+  }
+}

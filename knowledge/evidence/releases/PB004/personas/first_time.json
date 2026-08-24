@@ -1,0 +1,802 @@
+{
+  "slug": "first_time",
+  "label": "First-time candidate",
+  "email": "pb004.first_time.1785603922@example.com",
+  "verdict": "PASS",
+  "summary": {
+    "certified_days_scored": 27,
+    "avg_score_over_9": 9.0,
+    "chrome_residuals": [
+      "CD-D16"
+    ],
+    "trajectory_scores": [
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9
+    ]
+  },
+  "certified_days": [
+    {
+      "day": "CD-D1",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-D1",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-D2",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-D2",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-D3",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-D3",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-D4",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-D4",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-D5",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-D5",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-R1",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-R1",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-D6",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-D6",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-D7",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-D7",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-D8",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-D8",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-D9",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-D9",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-D10",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-D10",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-D11",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-D11",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-D12",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-D12",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-D13",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-D13",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-D14",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-D14",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-D15",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-D15",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-R2",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-R2",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-D16",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-D16",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-D17",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-D17",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-D18",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-D18",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-D19",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-D19",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-D20",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-D20",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-D21",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-D21",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-D22",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-D22",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-D23",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-D23",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-D24",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-D24",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    },
+    {
+      "day": "CD-R3",
+      "verdict": "PASS",
+      "finished": true,
+      "fallback": false,
+      "pb004_score": {
+        "day": "CD-R3",
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "score_over_9": 9,
+        "confidence_level": "HIGH",
+        "all_pass": true
+      }
+    }
+  ],
+  "confidence_trajectory": [
+    {
+      "day": "CD-D1",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-D2",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-D3",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-D4",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-D5",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-R1",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-D6",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-D7",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-D8",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-D9",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-D10",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-D11",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-D12",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-D13",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-D14",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-D15",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-R2",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-D16",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-D17",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-D18",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-D19",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-D20",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-D21",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-D22",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-D23",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-D24",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    },
+    {
+      "day": "CD-R3",
+      "confidence_level": "HIGH",
+      "score_over_9": 9
+    }
+  ]
+}

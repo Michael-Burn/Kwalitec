@@ -1,0 +1,5 @@
+HTML authoritative: evidence/study12_reading.html
+commit=94e02f57669831ff6af4e6f6bf87a727ca0cfe38
+topic=1.2
+mission=1.2 Complete exploratory data analysis
+title=Reading: Purpose of this reading: use the CMP to learn how to choose summary statistics and exploratory visualisations for a stated aim and variable type — so exploratory work stays aim-led. Extract that method from the CMP, then stop after the 1.2.1 summaries-and-visualisations block.

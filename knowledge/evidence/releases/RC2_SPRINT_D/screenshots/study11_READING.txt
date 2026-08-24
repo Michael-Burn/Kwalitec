@@ -1,0 +1,5 @@
+HTML authoritative: evidence/study11_reading.html
+commit=94e02f57669831ff6af4e6f6bf87a727ca0cfe38
+topic=1.1
+mission=1.1 Describe the purpose and function of data analysis
+title=Reading: Read the material for Today&#39;s topic. Note one idea you want to remember.

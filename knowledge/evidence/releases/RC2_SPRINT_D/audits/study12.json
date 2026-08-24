@@ -1,0 +1,63 @@
+{
+  "topic_code": "1.2",
+  "package_note": "seeded 1.2 \u2014 first-match CS1-EP001-PKG-1.2-EDA-SUMMARIES",
+  "expected_package_id": "CS1-EP001-PKG-1.2-EDA-SUMMARIES",
+  "student": "study12",
+  "commit": "94e02f57669831ff6af4e6f6bf87a727ca0cfe38",
+  "reach": {
+    "mission_present": true,
+    "session_started": true,
+    "reading_reached": true,
+    "session_id": "lsr-c66fed3fb12b",
+    "mission_topic": "1.2 Complete exploratory data analysis",
+    "activity_title": "Reading: Purpose of this reading: use the CMP to learn how to choose summary statistics and exploratory visualisations for a stated aim and variable type \u2014 so exploratory work stays aim-led. Extract that method from the CMP, then stop after the 1.2.1 summaries-and-visualisations block.",
+    "html_path": "/tmp/rc2d/html/study12/reading.html"
+  },
+  "audit": {
+    "title": "Reading: Purpose of this reading: use the CMP to learn how to choose summary statistics and exploratory visualisations for a stated aim and variable type \u2014 so exploratory work stays aim-led. Extract t",
+    "body_sample": " Topic: Complete exploratory data analysis (1.2) Mission: Choose summaries and plots for a stated aim Purpose of this reading: use the CMP to learn how to choose summary statistics and exploratory visualisations for a stated aim and variable type \u2014 so exploratory work stays aim-led. Extract that method from the CMP, then stop after the 1.2.1 summaries-and-visualisations block. Open: CMP \u00b7 Syllabus 1.2.1 summary statistics and exploratory visualisations Stop: Through the CMP block that equips you",
+    "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at Syllabus 1.2.1 \u2014 summary statistics and exploratory visualisations. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore correlation measures, PCA, coding marath",
+    "is_fallback_shell": false,
+    "is_guided_reading": false,
+    "mentions_cmp": true,
+    "cmp_refs_present": true,
+    "q_checks": {
+      "Q1_cmp_open": true,
+      "Q2_purpose": true,
+      "Q3_attention": true,
+      "Q4_ignore": true,
+      "Q5_stop": true,
+      "Q6_next": true
+    },
+    "ec001_markers": {
+      "Purpose of this reading": true,
+      "Open your CMP": true,
+      "Focus questions": true,
+      "Misconception watch": true,
+      "Out of scope today": true,
+      "Return cue": true,
+      "Worked-example": true,
+      "Knowledge Checks": true
+    },
+    "certified_snippet_hits": {
+      "lead_line": true,
+      "exit_line": true,
+      "return_cue": true,
+      "open_point": true
+    },
+    "verdict": "PASS",
+    "word_count_body": 403
+  },
+  "checklist": {
+    "CMP_reference_present": true,
+    "Educational_purpose_clear": true,
+    "Reading_focus_clear": true,
+    "Ignore_guidance_present": true,
+    "Stop_condition_explicit": true,
+    "Immediate_next_activity_named": true,
+    "Not_fallback_shell": true,
+    "Matches_certified_lead": true
+  },
+  "verdict": "PASS",
+  "html": "/tmp/rc2d/evidence/study12_reading.html"
+}

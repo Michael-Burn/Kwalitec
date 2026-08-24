@@ -1,0 +1,44 @@
+{
+  "persona": "returning",
+  "email": "pb015.co.returning.1785782195@example.com",
+  "programme": "PB-015",
+  "status": "in_progress",
+  "updated_at": "2026-08-03T18:57:15.019345+00:00",
+  "last_certified_day": null,
+  "last_transit_verified": "CK-D5",
+  "certified_days_complete": [],
+  "remaining_co_days": [
+    "CO-D1",
+    "CO-D2",
+    "CO-D3",
+    "CO-D4",
+    "CO-D5",
+    "CO-D6",
+    "CO-D7",
+    "CO-D8",
+    "CO-D9",
+    "CO-R1"
+  ],
+  "remaining_xi_days": [
+    "CO-D1",
+    "CO-D2",
+    "CO-D3",
+    "CO-D4",
+    "CO-D5",
+    "CO-D6",
+    "CO-D7",
+    "CO-D8",
+    "CO-D9",
+    "CO-R1"
+  ],
+  "certified_trajectory": [],
+  "transit_observations": [
+    "CK-D1",
+    "CK-D2",
+    "CK-D3",
+    "CK-D4",
+    "CK-D5"
+  ],
+  "defect_count": 5,
+  "ops_day_index": 5
+}

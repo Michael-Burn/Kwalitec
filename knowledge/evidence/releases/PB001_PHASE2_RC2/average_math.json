@@ -1,0 +1,670 @@
+{
+  "slug": "average_math",
+  "email": "pb001p2.average_math.1785579648@example.com",
+  "persona": {
+    "slug": "average_math",
+    "answer_mode": "mixed",
+    "confidence": "med",
+    "interrupt": false
+  },
+  "days": [
+    {
+      "started": true,
+      "finished": false,
+      "interrupted": false,
+      "resumed": false,
+      "session_id": "lsr-621a4c3d8422",
+      "cmp": {
+        "mentions_cmp": false,
+        "open_cmp_instruction": false,
+        "page_or_section_refs": [],
+        "mission_topic": "1.1 Describe the purpose and function of data analysis",
+        "placeholders": false,
+        "postal_address": false
+      },
+      "activities": 8,
+      "answers": 4,
+      "advances": 4,
+      "mission_present": true,
+      "chrome_topic": null,
+      "trust_signals": {
+        "home_no_cmp": true,
+        "reflection_500": true
+      },
+      "home_metrics": {
+        "Progress": "0",
+        "aria": [
+          "0"
+        ]
+      },
+      "overview_cmp": {
+        "mentions_cmp": true,
+        "open_cmp_instruction": false,
+        "page_or_section_refs": [],
+        "mission_topic": null,
+        "placeholders": true,
+        "postal_address": false
+      },
+      "surfaces": {
+        "home": {
+          "final": "https://kwalitec.onrender.com/student/",
+          "title": "Home \u00b7 Kwalitec",
+          "metrics": {
+            "Progress": "0",
+            "aria": [
+              "0"
+            ]
+          }
+        },
+        "history": {
+          "final": "https://kwalitec.onrender.com/student/history",
+          "title": "History \u00b7 Kwalitec",
+          "metrics": {}
+        },
+        "journey": {
+          "final": "https://kwalitec.onrender.com/student/learning-journey",
+          "title": "My Learning Journey \u00b7 Kwalitec",
+          "metrics": {}
+        },
+        "revision": {
+          "final": "https://kwalitec.onrender.com/student/revision",
+          "title": "Revision \u00b7 Kwalitec",
+          "metrics": {}
+        },
+        "plan": {
+          "final": "https://kwalitec.onrender.com/study-plan/wizard/1",
+          "title": "Choose Exam \u00b7 Kwalitec",
+          "metrics": {}
+        },
+        "pdf": {
+          "final": "https://kwalitec.onrender.com/settings/export/pdf",
+          "title": "",
+          "metrics": {
+            "Estimated Knowledge": "0",
+            "Readiness": "0",
+            "Coverage": "0"
+          }
+        }
+      },
+      "topic": "1.1",
+      "access": "natural",
+      "reading_audit": {
+        "verdict": "PASS",
+        "is_fallback_shell": false,
+        "mentions_cmp": true,
+        "q_checks": {
+          "Q1_cmp_open": true,
+          "Q2_purpose": true,
+          "Q3_attention": true,
+          "Q4_ignore": true,
+          "Q5_stop": true,
+          "Q6_next": true
+        },
+        "topic_guess": null,
+        "html_path": "/tmp/pb001p2/html/average_math/day1_act_0.html",
+        "certified_snippet_hits": {}
+      }
+    }
+  ],
+  "evals": [
+    {
+      "slug": "average_math",
+      "day": 1,
+      "topic": "1.1",
+      "dimensions": {
+        "educational_clarity": "FAIL",
+        "mission_sequencing": "FAIL",
+        "workload": "PASS",
+        "cmp_partnership": "PASS",
+        "revision_timing": "PASS",
+        "knowledge_progression": "CONCERN",
+        "confidence_calibration": "PASS",
+        "motivation_to_continue": "CONCERN",
+        "educational_trust": "FAIL"
+      },
+      "finished": false,
+      "reading_verdict": "PASS",
+      "fallback": false,
+      "s1": 1,
+      "s2": 0
+    }
+  ],
+  "ok_login": true,
+  "seeds": [],
+  "revision_attempts": [
+    {
+      "ok": false,
+      "topic": "CA-R1",
+      "user_id": 45,
+      "current": null,
+      "coverage": null
+    },
+    {
+      "ok": false,
+      "topic": "CB-R1",
+      "user_id": 45,
+      "current": null,
+      "coverage": null
+    }
+  ],
+  "commit": "94e02f57669831ff6af4e6f6bf87a727ca0cfe38",
+  "findings": [
+    {
+      "id": "PB001-AVE-001",
+      "persona": "average_math",
+      "day": 0,
+      "observation": "After enrolment, /study-plan/ returns Choose Exam wizard instead of active plan LO view.",
+      "classification": "RB",
+      "severity": "S2",
+      "evidence": "final=https://kwalitec.onrender.com/study-plan/wizard/1; title=Choose Exam \u00b7 Kwalitec",
+      "smallest_effective_intervention": "Route enrolled Runtime C students to active plan LO view.",
+      "ef001_sufficient": true,
+      "notes": ""
+    },
+    {
+      "id": "PB001-AVE-002",
+      "persona": "average_math",
+      "day": 1,
+      "observation": "After completing prescribed activities, Reflection returns 500 Internal Server Error \u2014 diligent student cannot close the educational day or record reflection.",
+      "classification": "PI",
+      "severity": "S1",
+      "evidence": "session=lsr-621a4c3d8422; title=Error \u00b7 Kwalitec; text=Error \u00b7 Kwalitec 500 Internal Server Error An unexpected error occurred. You can retry this page, or return home and continue. Reference ID B2CDDE5C5639 \u2014 include this if you contact support. Try again Return Home Report a problem Appearance Light Dark System Internal Alpha \u00b7 Founding Cohort Kwalitec v2.0.0-beta.1 \u00b7 Build beta.1",
+      "smallest_effective_intervention": "Repair session reflection page load (load_page/REFLECTION) on LIVE.",
+      "ef001_sufficient": true,
+      "notes": ""
+    },
+    {
+      "id": "PB001-AVE-003",
+      "persona": "average_math",
+      "day": 2,
+      "observation": "Published revision package day CA-R1 is loader-live but not Baseline-seedable as a curriculum leaf \u2014 diligent student cannot reach it via declared-position / early journey without campaign progression.",
+      "classification": "RB",
+      "severity": "S2",
+      "evidence": "{\"ok\": false, \"topic\": \"CA-R1\", \"user_id\": 45, \"current\": null, \"coverage\": null}",
+      "smallest_effective_intervention": "Expose campaign revision days on an authorised student path, or document they are post-spine only.",
+      "ef001_sufficient": true,
+      "notes": ""
+    },
+    {
+      "id": "PB001-AVE-004",
+      "persona": "average_math",
+      "day": 2,
+      "observation": "Published revision package day CB-R1 is loader-live but not Baseline-seedable as a curriculum leaf \u2014 diligent student cannot reach it via declared-position / early journey without campaign progression.",
+      "classification": "RB",
+      "severity": "S2",
+      "evidence": "{\"ok\": false, \"topic\": \"CB-R1\", \"user_id\": 45, \"current\": null, \"coverage\": null}",
+      "smallest_effective_intervention": "Expose campaign revision days on an authorised student path, or document they are post-spine only.",
+      "ef001_sufficient": true,
+      "notes": ""
+    }
+  ],
+  "steps": [
+    {
+      "step": "fingerprint",
+      "ok": true,
+      "commit": "94e02f57669831ff6af4e6f6bf87a727ca0cfe38"
+    },
+    {
+      "step": "login",
+      "ok": true,
+      "final": "https://kwalitec.onrender.com/study-plan/wizard/1",
+      "title": "Choose Exam \u00b7 Kwalitec",
+      "flashes": [
+        "Welcome back to Kwalitec."
+      ]
+    },
+    {
+      "step": "onboarding",
+      "ok": true,
+      "final": "https://kwalitec.onrender.com/student/",
+      "title": "Home \u00b7 Kwalitec"
+    },
+    {
+      "step": "open_wizard",
+      "ok": true,
+      "final": "https://kwalitec.onrender.com/study-plan/wizard/1",
+      "title": "Choose Exam \u00b7 Kwalitec"
+    },
+    {
+      "step": "wizard_subjects",
+      "ok": true,
+      "subject": "Published:CS1",
+      "radios": [
+        "Published:CS1"
+      ]
+    },
+    {
+      "step": "wizard_1",
+      "ok": true,
+      "final": "https://kwalitec.onrender.com/study-plan/wizard/2",
+      "title": "Choose Exam \u00b7 Kwalitec"
+    },
+    {
+      "step": "wizard_2",
+      "ok": true,
+      "final": "https://kwalitec.onrender.com/study-plan/wizard/3",
+      "title": "Choose Exam \u00b7 Kwalitec",
+      "flashes": [],
+      "posted": {
+        "exam_sitting": "Custom",
+        "exam_day": "17",
+        "exam_month": "2",
+        "exam_year": "2027"
+      }
+    },
+    {
+      "step": "wizard_3",
+      "ok": true,
+      "final": "https://kwalitec.onrender.com/baseline/step/1",
+      "title": "Have you studied this subject before? \u00b7 Kwalitec",
+      "flashes": []
+    },
+    {
+      "step": "baseline_0",
+      "ok": true,
+      "path": "/baseline/step/1",
+      "action": "/baseline/step/1",
+      "final": "https://kwalitec.onrender.com/baseline/step/2",
+      "title": "Where should we begin? \u00b7 Kwalitec",
+      "flashes": [],
+      "fields": [
+        "experience"
+      ]
+    },
+    {
+      "step": "baseline_1",
+      "ok": true,
+      "path": "/baseline/step/2",
+      "action": "/baseline/step/2",
+      "final": "https://kwalitec.onrender.com/baseline/step/3",
+      "title": "Have you sat this exam before? \u00b7 Kwalitec",
+      "flashes": [],
+      "fields": [
+        "curriculum_topic_code",
+        "position_mode"
+      ]
+    },
+    {
+      "step": "baseline_2",
+      "ok": true,
+      "path": "/baseline/step/3",
+      "action": "/baseline/step/3",
+      "final": "https://kwalitec.onrender.com/baseline/step/4",
+      "title": "What would you like Kwalitec to do? \u00b7 Kwalitec",
+      "flashes": [],
+      "fields": [
+        "exam_history"
+      ]
+    },
+    {
+      "step": "baseline_3",
+      "ok": true,
+      "path": "/baseline/step/4",
+      "action": "/baseline/step/4",
+      "final": "https://kwalitec.onrender.com/baseline/step/5",
+      "title": "How confident do you currently feel? \u00b7 Kwalitec",
+      "flashes": [],
+      "fields": [
+        "learning_objective"
+      ]
+    },
+    {
+      "step": "baseline_4",
+      "ok": true,
+      "path": "/baseline/step/5",
+      "action": "/baseline/step/5",
+      "final": "https://kwalitec.onrender.com/baseline/step/6",
+      "title": "Ready to begin \u00b7 Kwalitec",
+      "flashes": [],
+      "fields": [
+        "confidence"
+      ]
+    },
+    {
+      "step": "baseline_5",
+      "ok": true,
+      "path": "/baseline/step/6",
+      "action": "/baseline/step/6",
+      "final": "https://kwalitec.onrender.com/student/",
+      "title": "Home \u00b7 Kwalitec",
+      "flashes": [
+        "Enrolled in published curriculum CS1:2026.1 (Runtime C)."
+      ],
+      "fields": []
+    },
+    {
+      "step": "ready_home",
+      "ok": true,
+      "final": "https://kwalitec.onrender.com/student/",
+      "title": "Home \u00b7 Kwalitec",
+      "metrics": {
+        "Progress": "0",
+        "aria": [
+          "0"
+        ]
+      },
+      "cmp": {
+        "mentions_cmp": false,
+        "open_cmp_instruction": false,
+        "page_or_section_refs": [],
+        "mission_topic": "1.1 Describe the purpose and function of data analysis",
+        "placeholders": false,
+        "postal_address": false
+      }
+    },
+    {
+      "step": "day1_home",
+      "ok": true,
+      "final": "https://kwalitec.onrender.com/student/",
+      "title": "Home \u00b7 Kwalitec",
+      "metrics": {
+        "Progress": "0",
+        "aria": [
+          "0"
+        ]
+      },
+      "cmp": {
+        "mentions_cmp": false,
+        "open_cmp_instruction": false,
+        "page_or_section_refs": [],
+        "mission_topic": "1.1 Describe the purpose and function of data analysis",
+        "placeholders": false,
+        "postal_address": false
+      },
+      "mission": true
+    },
+    {
+      "step": "day1_start",
+      "ok": true,
+      "session_id": "lsr-621a4c3d8422",
+      "final": "https://kwalitec.onrender.com/session/lsr-621a4c3d8422/overview",
+      "title": "Today: Describe the purpose and function of data analysis \u00b7 Kwalitec",
+      "flashes": [
+        "Session ready \u2014 Describe the purpose and function of data analysis. Review today&#39;s objective, then begin."
+      ]
+    },
+    {
+      "step": "day1_begin",
+      "ok": true,
+      "final": "https://kwalitec.onrender.com/session/lsr-621a4c3d8422/activity",
+      "title": "Today: Describe the purpose and function of data analysis \u00b7 Kwalitec"
+    },
+    {
+      "step": "day1_act_0",
+      "ok": true,
+      "path": "/session/lsr-621a4c3d8422/activity",
+      "forms": [
+        "/auth/logout",
+        "/session/lsr-621a4c3d8422/activity/answer",
+        "/session/lsr-621a4c3d8422/pause",
+        "/session/lsr-621a4c3d8422/pause"
+      ],
+      "title": "Today: Describe the purpose and function of data analysis \u00b7 Kwalitec",
+      "cmp": {
+        "mentions_cmp": true,
+        "open_cmp_instruction": true,
+        "page_or_section_refs": [
+          "sections",
+          "sections"
+        ],
+        "mission_topic": null,
+        "placeholders": false,
+        "postal_address": false
+      },
+      "chrome": null
+    },
+    {
+      "step": "day1_answer_0",
+      "ok": true,
+      "flashes": [
+        "Answer recorded. Review the feedback, then continue."
+      ],
+      "has_advance": true
+    },
+    {
+      "step": "day1_after_answer_0",
+      "ok": true,
+      "has_advance": true
+    },
+    {
+      "step": "day1_act_1",
+      "ok": true,
+      "path": "/session/lsr-621a4c3d8422/activity",
+      "forms": [
+        "/auth/logout",
+        "/session/lsr-621a4c3d8422/activity/advance",
+        "/session/lsr-621a4c3d8422/pause",
+        "/session/lsr-621a4c3d8422/pause"
+      ],
+      "title": "Today: Describe the purpose and function of data analysis \u00b7 Kwalitec",
+      "cmp": {
+        "mentions_cmp": true,
+        "open_cmp_instruction": true,
+        "page_or_section_refs": [
+          "sections",
+          "sections"
+        ],
+        "mission_topic": null,
+        "placeholders": false,
+        "postal_address": false
+      },
+      "chrome": null
+    },
+    {
+      "step": "day1_advance_1",
+      "ok": true,
+      "final": "https://kwalitec.onrender.com/session/lsr-621a4c3d8422/activity",
+      "title": "Today: Describe the purpose and function of data analysis \u00b7 Kwalitec"
+    },
+    {
+      "step": "day1_act_2",
+      "ok": true,
+      "path": "/session/lsr-621a4c3d8422/activity",
+      "forms": [
+        "/auth/logout",
+        "/session/lsr-621a4c3d8422/activity/answer",
+        "/session/lsr-621a4c3d8422/pause",
+        "/session/lsr-621a4c3d8422/pause"
+      ],
+      "title": "Today: Describe the purpose and function of data analysis \u00b7 Kwalitec",
+      "cmp": {
+        "mentions_cmp": true,
+        "open_cmp_instruction": false,
+        "page_or_section_refs": [],
+        "mission_topic": null,
+        "placeholders": false,
+        "postal_address": false
+      },
+      "chrome": null
+    },
+    {
+      "step": "day1_answer_2",
+      "ok": true,
+      "flashes": [
+        "Answer recorded. Review the feedback, then continue."
+      ],
+      "has_advance": true
+    },
+    {
+      "step": "day1_after_answer_2",
+      "ok": true,
+      "has_advance": true
+    },
+    {
+      "step": "day1_act_3",
+      "ok": true,
+      "path": "/session/lsr-621a4c3d8422/activity",
+      "forms": [
+        "/auth/logout",
+        "/session/lsr-621a4c3d8422/activity/advance",
+        "/session/lsr-621a4c3d8422/pause",
+        "/session/lsr-621a4c3d8422/pause"
+      ],
+      "title": "Today: Describe the purpose and function of data analysis \u00b7 Kwalitec",
+      "cmp": {
+        "mentions_cmp": true,
+        "open_cmp_instruction": false,
+        "page_or_section_refs": [],
+        "mission_topic": null,
+        "placeholders": false,
+        "postal_address": false
+      },
+      "chrome": null
+    },
+    {
+      "step": "day1_advance_3",
+      "ok": true,
+      "final": "https://kwalitec.onrender.com/session/lsr-621a4c3d8422/activity",
+      "title": "Today: Describe the purpose and function of data analysis \u00b7 Kwalitec"
+    },
+    {
+      "step": "day1_act_4",
+      "ok": true,
+      "path": "/session/lsr-621a4c3d8422/activity",
+      "forms": [
+        "/auth/logout",
+        "/session/lsr-621a4c3d8422/activity/answer",
+        "/session/lsr-621a4c3d8422/pause",
+        "/session/lsr-621a4c3d8422/pause"
+      ],
+      "title": "Today: Describe the purpose and function of data analysis \u00b7 Kwalitec",
+      "cmp": {
+        "mentions_cmp": true,
+        "open_cmp_instruction": false,
+        "page_or_section_refs": [],
+        "mission_topic": null,
+        "placeholders": false,
+        "postal_address": false
+      },
+      "chrome": null
+    },
+    {
+      "step": "day1_answer_4",
+      "ok": true,
+      "flashes": [
+        "Answer recorded. Review the feedback, then continue."
+      ],
+      "has_advance": true
+    },
+    {
+      "step": "day1_after_answer_4",
+      "ok": true,
+      "has_advance": true
+    },
+    {
+      "step": "day1_act_5",
+      "ok": true,
+      "path": "/session/lsr-621a4c3d8422/activity",
+      "forms": [
+        "/auth/logout",
+        "/session/lsr-621a4c3d8422/activity/advance",
+        "/session/lsr-621a4c3d8422/pause",
+        "/session/lsr-621a4c3d8422/pause"
+      ],
+      "title": "Today: Describe the purpose and function of data analysis \u00b7 Kwalitec",
+      "cmp": {
+        "mentions_cmp": true,
+        "open_cmp_instruction": false,
+        "page_or_section_refs": [],
+        "mission_topic": null,
+        "placeholders": false,
+        "postal_address": false
+      },
+      "chrome": null
+    },
+    {
+      "step": "day1_advance_5",
+      "ok": true,
+      "final": "https://kwalitec.onrender.com/session/lsr-621a4c3d8422/activity",
+      "title": "Today: Describe the purpose and function of data analysis \u00b7 Kwalitec"
+    },
+    {
+      "step": "day1_act_6",
+      "ok": true,
+      "path": "/session/lsr-621a4c3d8422/activity",
+      "forms": [
+        "/auth/logout",
+        "/session/lsr-621a4c3d8422/activity/answer",
+        "/session/lsr-621a4c3d8422/pause",
+        "/session/lsr-621a4c3d8422/pause"
+      ],
+      "title": "Today: Describe the purpose and function of data analysis \u00b7 Kwalitec",
+      "cmp": {
+        "mentions_cmp": false,
+        "open_cmp_instruction": false,
+        "page_or_section_refs": [],
+        "mission_topic": null,
+        "placeholders": false,
+        "postal_address": false
+      },
+      "chrome": null
+    },
+    {
+      "step": "day1_answer_6",
+      "ok": true,
+      "flashes": [
+        "Answer recorded. Review the feedback, then continue."
+      ],
+      "has_advance": true
+    },
+    {
+      "step": "day1_after_answer_6",
+      "ok": true,
+      "has_advance": true
+    },
+    {
+      "step": "day1_act_7",
+      "ok": true,
+      "path": "/session/lsr-621a4c3d8422/activity",
+      "forms": [
+        "/auth/logout",
+        "/session/lsr-621a4c3d8422/activity/advance",
+        "/session/lsr-621a4c3d8422/pause",
+        "/session/lsr-621a4c3d8422/pause"
+      ],
+      "title": "Today: Describe the purpose and function of data analysis \u00b7 Kwalitec",
+      "cmp": {
+        "mentions_cmp": false,
+        "open_cmp_instruction": false,
+        "page_or_section_refs": [],
+        "mission_topic": null,
+        "placeholders": false,
+        "postal_address": false
+      },
+      "chrome": null
+    },
+    {
+      "step": "day1_advance_7",
+      "ok": true,
+      "final": "https://kwalitec.onrender.com/session/lsr-621a4c3d8422/reflection",
+      "title": "Error \u00b7 Kwalitec"
+    },
+    {
+      "step": "seed_CA-R1",
+      "ok": false,
+      "seed": {
+        "ok": false,
+        "topic": "CA-R1",
+        "user_id": 45,
+        "current": null,
+        "coverage": null
+      }
+    },
+    {
+      "step": "seed_CB-R1",
+      "ok": false,
+      "seed": {
+        "ok": false,
+        "topic": "CB-R1",
+        "user_id": 45,
+        "current": null,
+        "coverage": null
+      }
+    },
+    {
+      "step": "logout",
+      "ok": true,
+      "final": "https://kwalitec.onrender.com/auth/login"
+    }
+  ]
+}

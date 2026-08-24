@@ -1,0 +1,117 @@
+{
+  "day_index": 17,
+  "expected_day": "CL-R1",
+  "expected_package_id": "CS1-EP001-PKG-REV-CONFIDENCE-INTERVALS",
+  "finished": true,
+  "reading": {
+    "audit": {
+      "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Lambda chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed loc",
+      "body_sample": " Topic: Campaign Lambda revision \u2014 confidence and prediction intervals (CL-R1) Mission: Retrieve interval hinges (3.2) Purpose of this revision stage: strengthen retrieval of the Campaign Lambda chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block. Stop: After revision checks and Reflection \u2014 do not begin Syllabus 3.3 in th",
+      "support_sample": "Begin closed-book retrieval. Reopen CMP only at a failed locus. After checks, complete Reflection. What did you extract from the CMP setup? Submit Answer ",
+      "is_fallback_shell": false,
+      "is_guided_reading": false,
+      "mentions_cmp": true,
+      "cmp_refs_present": true,
+      "q_checks": {
+        "Q1_cmp_open": true,
+        "Q2_purpose": true,
+        "Q3_attention": true,
+        "Q4_ignore": true,
+        "Q5_stop": true,
+        "Q6_next": false
+      },
+      "ec001_markers": {
+        "Purpose of this reading": false,
+        "Open your CMP": false,
+        "Focus questions": true,
+        "Misconception watch": true,
+        "Out of scope today": true,
+        "Return cue": true,
+        "Worked-example": false,
+        "Knowledge Checks": false
+      },
+      "certified_snippet_hits": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true
+      },
+      "verdict": "FAIL",
+      "word_count_body": 231
+    },
+    "checklist": {
+      "CMP_reference_present": true,
+      "Educational_purpose_clear": true,
+      "Reading_focus_clear": true,
+      "Ignore_guidance_present": true,
+      "Stop_condition_explicit": true,
+      "Immediate_next_activity_named": false,
+      "Not_fallback_shell": true,
+      "Matches_certified_snippets": true
+    },
+    "fidelity": {
+      "lead_line": true,
+      "exit_line": true,
+      "return_cue": true,
+      "open_point": true,
+      "stop_condition": true,
+      "focus_q_0": true,
+      "focus_q_1": true,
+      "catalogue_body_match": true,
+      "catalogue_divergences": [],
+      "fidelity_pass": true
+    },
+    "package_id": "CS1-EP001-PKG-REV-CONFIDENCE-INTERVALS",
+    "campaign_day": "CL-R1",
+    "html": "/tmp/pb012/evidence/advanced/day17_CL-R1_reading.html"
+  },
+  "checklist": {
+    "CMP_reference_present": true,
+    "Educational_purpose_clear": true,
+    "Reading_focus_clear": true,
+    "Ignore_guidance_present": true,
+    "Stop_condition_explicit": true,
+    "Immediate_next_activity_named": false,
+    "Not_fallback_shell": true,
+    "Matches_certified_snippets": true
+  },
+  "tomorrow_preview": {
+    "next_topic_code": true,
+    "continuity_fragment": false,
+    "student_facing_fragment": false,
+    "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+    "package_continuity_line": "Campaign Lambda / Volume CS1-011 completes after this Revision. Honest stop: 3.2 Pilot Arc closed \u2014 not Chapter 3 comple",
+    "package_student_facing": "Campaign Lambda / CS1-011 complete after today (pending human Approver + LIVE). Honest next: stop or await 3.3 successor",
+    "chrome_matches_package_continuity": false
+  },
+  "verdict": "FAIL",
+  "home": {
+    "title_guess": "Construct a confidence interval for an unknown parameter from a random sample",
+    "day_complete": false,
+    "has_start": true,
+    "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Construct a confidence interval for an unknown parameter from a random sample CS1 (CS1) 1 h Study 3.2 \u2014 Calculate confidence intervals and prediction intervals After this \u00b7 Study Progress for parameter CI \u2014 not Topic Complete fo"
+  },
+  "session_id": "lsr-7274a3d8facf",
+  "educational_fidelity": {
+    "lead_line": true,
+    "exit_line": true,
+    "return_cue": true,
+    "open_point": true,
+    "stop_condition": true,
+    "focus_q_0": true,
+    "focus_q_1": true,
+    "catalogue_body_match": true,
+    "catalogue_divergences": [],
+    "fidelity_pass": true
+  },
+  "reflection_ok": true,
+  "tomorrow_chrome_matches_approved": false,
+  "package_path_ok": false,
+  "chrome_residual": true,
+  "theta_focus": false,
+  "eta_focus": false,
+  "zeta_focus": false,
+  "kappa_focus": false,
+  "lambda_focus": true,
+  "epsilon_focus": false
+}

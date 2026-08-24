@@ -1,0 +1,5 @@
+HTML authoritative: evidence/study42_reading.html
+commit=94e02f57669831ff6af4e6f6bf87a727ca0cfe38
+topic=4.2
+mission=4.2 Understand and use generalised linear models
+title=Reading: Purpose of this reading: use the CMP to extract how a GLM joins an exponential-family response, a linear predictor, and a link — so link choice is structural, not software habit. Extract that chain from the CMP, then stop after the first structural worked example.

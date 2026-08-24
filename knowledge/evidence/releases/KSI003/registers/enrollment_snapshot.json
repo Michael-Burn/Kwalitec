@@ -1,0 +1,61 @@
+{
+  "programme": "KSI-003",
+  "snapshot_date": "2026-08-04",
+  "source": "knowledge/product/ep004_private_beta/BETA_COHORT.md",
+  "source_updated": "2026-07-26",
+  "privacy": "pseudonymous_ids_only",
+  "populations": {
+    "stage0_internal": [
+      {"id": "BETA-INT-001", "role": "Founder/Product dogfood", "counts_toward_external_N": false},
+      {"id": "BETA-INT-002", "role": "Engineering dogfood", "counts_toward_external_N": false},
+      {"id": "BETA-INT-003", "role": "Educational governance dogfood", "counts_toward_external_N": false}
+    ],
+    "stage1_selected_invite_pending": [
+      {
+        "id": "BETA-PIL-001",
+        "subject": "CM1",
+        "consent": "Pending",
+        "onboarding": "Not started",
+        "invite_status": "pending",
+        "acceptance_timestamp": null,
+        "personal_start": null,
+        "counts_toward_ITT_Accepted": false
+      },
+      {
+        "id": "BETA-PIL-002",
+        "subject": "CB2",
+        "consent": "Pending",
+        "onboarding": "Not started",
+        "invite_status": "pending",
+        "acceptance_timestamp": null,
+        "personal_start": null,
+        "counts_toward_ITT_Accepted": false
+      },
+      {
+        "id": "BETA-PIL-003",
+        "subject": "CS1",
+        "consent": "Pending",
+        "onboarding": "Not started",
+        "invite_status": "pending",
+        "acceptance_timestamp": null,
+        "personal_start": null,
+        "counts_toward_ITT_Accepted": false
+      }
+    ],
+    "stage1_reserved_unselected": ["BETA-PIL-004", "BETA-PIL-005", "BETA-PIL-006", "BETA-PIL-007", "BETA-PIL-008", "BETA-PIL-009", "BETA-PIL-010"]
+  },
+  "counts": {
+    "invite_sent": 0,
+    "invite_accepted": 0,
+    "measurement_consent_captured": 0,
+    "never_activated": 0,
+    "dormant": 0,
+    "dropped": 0,
+    "duplicates_excluded": 0
+  },
+  "notes": [
+    "Participant Protocol: personal start = invite acceptance date, not invite send or selection date.",
+    "Selected-but-pending rows do not enter ITT-Accepted.",
+    "Stage 0 internal rows never enter external denominators for G1.9."
+  ]
+}

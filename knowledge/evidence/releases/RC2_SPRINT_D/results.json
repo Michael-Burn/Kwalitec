@@ -1,0 +1,122 @@
+{
+  "programme": "RC2-Sprint-D",
+  "date": "2026-08-01",
+  "host": "https://kwalitec.onrender.com",
+  "git_commit": "94e02f57669831ff6af4e6f6bf87a727ca0cfe38",
+  "deploy_id": "dep-d9ms5o6417fc73c3v1h0",
+  "fingerprint": "PASS",
+  "migrations": {
+    "current": "202607310002",
+    "head": "202607310002"
+  },
+  "health": {
+    "live": "PASS",
+    "ready": "PASS",
+    "health": "PASS"
+  },
+  "live_approved_packages": 9,
+  "inventory_assert_job": "job-d9ms9qu417fc73c487p0",
+  "inventory_assert": "PASS",
+  "verdict": "PASS",
+  "f1_f2_closable": true,
+  "pb001_rerun_authorised": true,
+  "packages": [
+    {
+      "topic_code": "1.1",
+      "package_id": "CS1-EP001-PKG-1.1-PURPOSE-FUNCTION",
+      "student": "rc2d.study11c.*",
+      "path": "Natural cold-start Enrol CS1 \u2192 Study 1.1 \u2192 Reading",
+      "html": "html/study11_reading.html",
+      "delivery_channel": "publication_approved educational package",
+      "fallback": false,
+      "checklist": {
+        "CMP": true,
+        "purpose": true,
+        "focus": true,
+        "ignore": true,
+        "stop": true,
+        "next": true
+      },
+      "verdict": "PASS",
+      "note": "Authoritative natural path. Earlier study11 capture during batch delay showed empty mission title/fallback; reproduced PASS on fresh study11c without seed."
+    },
+    {
+      "topic_code": "1.2",
+      "package_id": "CS1-EP001-PKG-1.2-EDA-SUMMARIES",
+      "student": "rc2d.study12.*",
+      "path": "Enrol \u2192 seed_declared_position(1.2) \u2192 Reading (KI-H4 first-match)",
+      "html": "html/study12_reading.html",
+      "delivery_channel": "publication_approved educational package",
+      "fallback": false,
+      "checklist": {
+        "CMP": true,
+        "purpose": true,
+        "focus": true,
+        "ignore": true,
+        "stop": true,
+        "next": true
+      },
+      "verdict": "PASS"
+    },
+    {
+      "topic_code": "2.1",
+      "package_id": "CS1-CS1002-PKG-2.1-DISCRETE",
+      "student": "rc2d.study21.*",
+      "path": "Enrol \u2192 seed_declared_position(2.1) \u2192 Reading (KI-H4 first-match)",
+      "html": "html/study21_reading.html",
+      "delivery_channel": "publication_approved educational package",
+      "fallback": false,
+      "checklist": {
+        "CMP": true,
+        "purpose": true,
+        "focus": true,
+        "ignore": true,
+        "stop": true,
+        "next": true
+      },
+      "verdict": "PASS"
+    },
+    {
+      "topic_code": "4.2",
+      "package_id": "CS1-EA005-PKG-4.2-GLM-STRUCTURE",
+      "student": "rc2d.study42.*",
+      "path": "Enrol \u2192 seed_declared_position(4.2) \u2192 Reading",
+      "html": "html/study42_reading.html",
+      "delivery_channel": "publication_approved educational package (EC-001 remediated)",
+      "fallback": false,
+      "checklist": {
+        "CMP": true,
+        "purpose": true,
+        "focus": true,
+        "ignore": true,
+        "stop": true,
+        "next": true
+      },
+      "verdict": "PASS"
+    },
+    {
+      "topic_code": "CA-R1",
+      "package_id": "CS1-EP001-PKG-REV-PURPOSE-EDA",
+      "verification_mode": "LIVE loader inventory assert",
+      "student_path": "N/A \u2014 campaign day code; not Baseline leaf",
+      "verdict": "PASS"
+    },
+    {
+      "topic_code": "CB-R1",
+      "package_id": "CS1-CS1002-PKG-REV-PCA-DISTRIBUTIONS",
+      "verification_mode": "LIVE loader inventory assert",
+      "student_path": "N/A \u2014 campaign day code; not Baseline leaf",
+      "verdict": "PASS"
+    },
+    {
+      "topic_code": "4.1",
+      "control": true,
+      "student": "rc2d.study41.*",
+      "path": "Enrol \u2192 seed_declared_position(4.1) \u2192 Reading",
+      "html": "html/study41_reading_fallback.html",
+      "delivery_channel": "fallback LO shell (correct \u2014 no live package)",
+      "fallback": true,
+      "verdict": "PASS"
+    }
+  ]
+}

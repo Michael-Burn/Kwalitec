@@ -1,0 +1,308 @@
+{
+  "persona": "beginner",
+  "email": "pb015.co.beginner.1785768372@example.com",
+  "programme": "PB-015",
+  "status": "in_progress",
+  "updated_at": "2026-08-03T17:19:36.150944+00:00",
+  "last_certified_day": "CO-D9",
+  "last_transit_verified": "CX-D3",
+  "certified_days_complete": [
+    "CO-D1",
+    "CO-D2",
+    "CO-D3",
+    "CO-D4",
+    "CO-D5",
+    "CO-D6",
+    "CO-D7",
+    "CO-D8",
+    "CO-D9"
+  ],
+  "remaining_co_days": [
+    "CO-R1"
+  ],
+  "remaining_xi_days": [
+    "CO-R1"
+  ],
+  "certified_trajectory": [
+    {
+      "day": "CO-D1",
+      "package_id": "CS1-EP001-PKG-CO-5.1-BAYES-THEOREM",
+      "confidence_level": "HIGH",
+      "score_over_9": 8,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "FAIL",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      },
+      "programme_metrics": {
+        "recommendation_consistency": "PASS",
+        "weak_area_identification": "PASS",
+        "mission_sequencing": "PASS",
+        "syllabus_continuity": "PASS",
+        "confidence_calibration": "PASS",
+        "explanation_usefulness": "PASS"
+      },
+      "residuals": [
+        "RO13-R3"
+      ],
+      "chrome_residual": true,
+      "revision_q6_residual": false
+    },
+    {
+      "day": "CO-D2",
+      "package_id": "CS1-EP001-PKG-CO-5.1-PRIOR-POSTERIOR",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      },
+      "programme_metrics": {
+        "recommendation_consistency": "PASS",
+        "weak_area_identification": "PASS",
+        "mission_sequencing": "PASS",
+        "syllabus_continuity": "PASS",
+        "confidence_calibration": "PASS",
+        "explanation_usefulness": "PASS"
+      },
+      "residuals": [],
+      "chrome_residual": false,
+      "revision_q6_residual": false
+    },
+    {
+      "day": "CO-D3",
+      "package_id": "CS1-EP001-PKG-CO-5.1-POSTERIOR-SIMPLE",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      },
+      "programme_metrics": {
+        "recommendation_consistency": "PASS",
+        "weak_area_identification": "PASS",
+        "mission_sequencing": "PASS",
+        "syllabus_continuity": "PASS",
+        "confidence_calibration": "PASS",
+        "explanation_usefulness": "PASS"
+      },
+      "residuals": [],
+      "chrome_residual": false,
+      "revision_q6_residual": false
+    },
+    {
+      "day": "CO-D4",
+      "package_id": "CS1-EP001-PKG-CO-5.1-LOSS-ESTIMATORS",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      },
+      "programme_metrics": {
+        "recommendation_consistency": "PASS",
+        "weak_area_identification": "PASS",
+        "mission_sequencing": "PASS",
+        "syllabus_continuity": "PASS",
+        "confidence_calibration": "PASS",
+        "explanation_usefulness": "PASS"
+      },
+      "residuals": [],
+      "chrome_residual": false,
+      "revision_q6_residual": false
+    },
+    {
+      "day": "CO-D5",
+      "package_id": "CS1-EP001-PKG-CO-5.1-CREDIBLE-INTERVALS",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      },
+      "programme_metrics": {
+        "recommendation_consistency": "PASS",
+        "weak_area_identification": "PASS",
+        "mission_sequencing": "PASS",
+        "syllabus_continuity": "PASS",
+        "confidence_calibration": "PASS",
+        "explanation_usefulness": "PASS"
+      },
+      "residuals": [],
+      "chrome_residual": false,
+      "revision_q6_residual": false
+    },
+    {
+      "day": "CO-D6",
+      "package_id": "CS1-EP001-PKG-CO-5.1-CREDIBILITY-PREMIUM",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      },
+      "programme_metrics": {
+        "recommendation_consistency": "PASS",
+        "weak_area_identification": "PASS",
+        "mission_sequencing": "PASS",
+        "syllabus_continuity": "PASS",
+        "confidence_calibration": "PASS",
+        "explanation_usefulness": "PASS"
+      },
+      "residuals": [],
+      "chrome_residual": false,
+      "revision_q6_residual": false
+    },
+    {
+      "day": "CO-D7",
+      "package_id": "CS1-EP001-PKG-CO-5.1-BAYESIAN-CREDIBILITY",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      },
+      "programme_metrics": {
+        "recommendation_consistency": "PASS",
+        "weak_area_identification": "PASS",
+        "mission_sequencing": "PASS",
+        "syllabus_continuity": "PASS",
+        "confidence_calibration": "PASS",
+        "explanation_usefulness": "PASS"
+      },
+      "residuals": [],
+      "chrome_residual": false,
+      "revision_q6_residual": false
+    },
+    {
+      "day": "CO-D8",
+      "package_id": "CS1-EP001-PKG-CO-5.1-EMPIRICAL-BAYES",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      },
+      "programme_metrics": {
+        "recommendation_consistency": "PASS",
+        "weak_area_identification": "PASS",
+        "mission_sequencing": "PASS",
+        "syllabus_continuity": "PASS",
+        "confidence_calibration": "PASS",
+        "explanation_usefulness": "PASS"
+      },
+      "residuals": [],
+      "chrome_residual": false,
+      "revision_q6_residual": false
+    },
+    {
+      "day": "CO-D9",
+      "package_id": "CS1-EP001-PKG-CO-5.1-BAYES-VS-EB",
+      "confidence_level": "HIGH",
+      "score_over_9": 8,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "FAIL",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      },
+      "programme_metrics": {
+        "recommendation_consistency": "PASS",
+        "weak_area_identification": "PASS",
+        "mission_sequencing": "PASS",
+        "syllabus_continuity": "PASS",
+        "confidence_calibration": "PASS",
+        "explanation_usefulness": "PASS"
+      },
+      "residuals": [
+        "RO13-R3"
+      ],
+      "chrome_residual": true,
+      "revision_q6_residual": false
+    }
+  ],
+  "transit_observations": [
+    "CN-D1",
+    "CN-D2",
+    "CN-D3",
+    "CN-D4",
+    "CN-D5",
+    "CX-D3",
+    "CX-D1",
+    "CX-D2",
+    "CX-D3",
+    "CX-D4",
+    "CX-D5",
+    "CX-D6",
+    "CX-D7",
+    "CX-D8",
+    "CX-D9",
+    "CX-D10",
+    "CX-D3",
+    "CX-D3",
+    null,
+    null
+  ],
+  "defect_count": 20,
+  "ops_day_index": 30
+}

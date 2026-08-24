@@ -1,0 +1,43 @@
+{
+  "programme": "RO-014",
+  "host": "https://kwalitec.onrender.com",
+  "expected_commit": "4ff8c95d2b853114f0b99ba2d7d23ea847c62819",
+  "deploy_activation": "dep-d9oq45flk1mc739pad60",
+  "deploy_continuity": "dep-d9oqhe0ae00c73b55i7g",
+  "inventory_job": "job-d9oqa91t0dsc73blb8o0",
+  "email": "ro014.pi.memory.1785833401@example.com",
+  "verdict": "PASS WITH RESIDUAL",
+  "pi_summary": {
+    "learning_snippet_pass": 9,
+    "cp_r1_package_path_pass": true,
+    "co_r1_to_cp_d1": true,
+    "zero_fallback_on_pi_path": true,
+    "true_syllabus_seen": [
+      "CP-D1",
+      "CP-D2",
+      "CP-D3",
+      "CP-D4",
+      "CP-D5",
+      "CP-D6",
+      "CP-D7",
+      "CP-D8",
+      "CP-D9",
+      "CP-R1"
+    ],
+    "entry": "Seeded Continuity Front advanced student (CO-R1 package history) \u2192 Memory Front CP-D1\u2026CP-R1"
+  },
+  "residuals": [
+    "RO14-R1 Home/title chrome may soft-match Opening Front titles while package path delivers Pi",
+    "RO14-R2 Ops label desync (expected-day vs detector) during Memory Front walks",
+    "RO14-R3 Revision Q6 / reading rubric soft-pass on CP-R1",
+    "RO14-R4 Tip-complete natural enrolment previously blocked Memory Front \u2014 continuity fix shipped in 4ff8c95; seeded verification used for package path"
+  ],
+  "summary": {
+    "pi_learning_pass": 9,
+    "pi_revision_pass": 1,
+    "zero_fallback_on_pi_path": true,
+    "co_r1_to_cp_d1": true,
+    "coverage_held": "63/72",
+    "reliance_held": "through Topic 5.1"
+  }
+}

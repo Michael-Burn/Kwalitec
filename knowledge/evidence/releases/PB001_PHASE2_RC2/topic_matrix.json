@@ -1,0 +1,289 @@
+[
+  {
+    "slug": "topic12",
+    "topic": "1.2",
+    "email": "pb001p2.topic12.1785579648@example.com",
+    "findings": [
+      {
+        "id": "PB001-TOP-001",
+        "persona": "topic12",
+        "day": 1,
+        "observation": "After completing prescribed activities, Reflection returns 500 Internal Server Error \u2014 diligent student cannot close the educational day or record reflection.",
+        "classification": "PI",
+        "severity": "S1",
+        "evidence": "session=lsr-b6f357e7a977; title=Error \u00b7 Kwalitec; text=Error \u00b7 Kwalitec 500 Internal Server Error An unexpected error occurred. You can retry this page, or return home and continue. Reference ID 8253A0A2B224 \u2014 include this if you contact support. Try again Return Home Report a problem Appearance Light Dark System Internal Alpha \u00b7 Founding Cohort Kwalitec v2.0.0-beta.1 \u00b7 Build beta.1",
+        "smallest_effective_intervention": "Repair session reflection page load (load_page/REFLECTION) on LIVE.",
+        "ef001_sufficient": true,
+        "notes": ""
+      }
+    ],
+    "seed": {
+      "ok": true,
+      "topic": "1.2",
+      "user_id": 54,
+      "current": "node-8f65aa916c46b763",
+      "coverage": 0.06666666666666667
+    },
+    "day": {
+      "started": true,
+      "finished": false,
+      "activities": 8,
+      "trust_signals": {
+        "home_no_cmp": true,
+        "reflection_500": true
+      },
+      "reading_audit": {
+        "verdict": "PASS",
+        "is_fallback_shell": false,
+        "mentions_cmp": true,
+        "q_checks": {
+          "Q1_cmp_open": true,
+          "Q2_purpose": true,
+          "Q3_attention": true,
+          "Q4_ignore": true,
+          "Q5_stop": true,
+          "Q6_next": true
+        },
+        "certified_snippet_hits": {},
+        "html_path": "/tmp/pb001p2/html/topic12/day1_act_0.html"
+      },
+      "overview_cmp": {
+        "mentions_cmp": true,
+        "open_cmp_instruction": false,
+        "page_or_section_refs": [],
+        "mission_topic": null,
+        "placeholders": true,
+        "postal_address": false
+      },
+      "dimensions": {
+        "educational_clarity": "FAIL",
+        "mission_sequencing": "FAIL",
+        "workload": "PASS",
+        "cmp_partnership": "PASS",
+        "revision_timing": "PASS",
+        "knowledge_progression": "CONCERN",
+        "confidence_calibration": "PASS",
+        "motivation_to_continue": "CONCERN",
+        "educational_trust": "FAIL"
+      }
+    }
+  },
+  {
+    "slug": "topic21",
+    "topic": "2.1",
+    "email": "pb001p2.topic21.1785579648@example.com",
+    "findings": [
+      {
+        "id": "PB001-TOP-001",
+        "persona": "topic21",
+        "day": 1,
+        "observation": "Coverage/progress figures disagree across Home, History, and Export for the same student at the same moment.",
+        "classification": "PI",
+        "severity": "S1",
+        "evidence": "values=['13', '0']; home={'Progress': '13', 'aria': ['13']}; history={}; pdf={'Estimated Knowledge': '0', 'Readiness': '0', 'Coverage': '0'}",
+        "smallest_effective_intervention": "Serve a single coverage source of truth on all student surfaces.",
+        "ef001_sufficient": true,
+        "notes": ""
+      }
+    ],
+    "seed": {
+      "ok": true,
+      "topic": "2.1",
+      "user_id": 55,
+      "current": "node-2e99e2654c080d38",
+      "coverage": 0.13333333333333333
+    },
+    "day": {
+      "started": true,
+      "finished": true,
+      "activities": 8,
+      "trust_signals": {
+        "home_no_cmp": true
+      },
+      "reading_audit": {
+        "verdict": "PASS",
+        "is_fallback_shell": false,
+        "mentions_cmp": true,
+        "q_checks": {
+          "Q1_cmp_open": true,
+          "Q2_purpose": true,
+          "Q3_attention": true,
+          "Q4_ignore": true,
+          "Q5_stop": true,
+          "Q6_next": true
+        },
+        "certified_snippet_hits": {},
+        "html_path": "/tmp/pb001p2/html/topic21/day1_act_0.html"
+      },
+      "overview_cmp": {
+        "mentions_cmp": true,
+        "open_cmp_instruction": false,
+        "page_or_section_refs": [],
+        "mission_topic": null,
+        "placeholders": true,
+        "postal_address": false
+      },
+      "dimensions": {
+        "educational_clarity": "FAIL",
+        "mission_sequencing": "PASS",
+        "workload": "PASS",
+        "cmp_partnership": "PASS",
+        "revision_timing": "PASS",
+        "knowledge_progression": "PASS",
+        "confidence_calibration": "PASS",
+        "motivation_to_continue": "PASS",
+        "educational_trust": "FAIL"
+      }
+    }
+  },
+  {
+    "slug": "topic42",
+    "topic": "4.2",
+    "email": "pb001p2.topic42.1785579648@example.com",
+    "findings": [
+      {
+        "id": "PB001-TOP-001",
+        "persona": "topic42",
+        "day": 1,
+        "observation": "After completing prescribed activities, Reflection returns 500 Internal Server Error \u2014 diligent student cannot close the educational day or record reflection.",
+        "classification": "PI",
+        "severity": "S1",
+        "evidence": "session=lsr-a52fd98abd5f; title=Error \u00b7 Kwalitec; text=Error \u00b7 Kwalitec 500 Internal Server Error An unexpected error occurred. You can retry this page, or return home and continue. Reference ID D959118AA2A6 \u2014 include this if you contact support. Try again Return Home Report a problem Appearance Light Dark System Internal Alpha \u00b7 Founding Cohort Kwalitec v2.0.0-beta.1 \u00b7 Build beta.1",
+        "smallest_effective_intervention": "Repair session reflection page load (load_page/REFLECTION) on LIVE.",
+        "ef001_sufficient": true,
+        "notes": ""
+      }
+    ],
+    "seed": {
+      "ok": true,
+      "topic": "4.2",
+      "user_id": 56,
+      "current": "node-1f3e467797c40a23",
+      "coverage": 0.8
+    },
+    "day": {
+      "started": true,
+      "finished": false,
+      "activities": 8,
+      "trust_signals": {
+        "home_no_cmp": true,
+        "reflection_500": true
+      },
+      "reading_audit": {
+        "verdict": "PASS",
+        "is_fallback_shell": false,
+        "mentions_cmp": true,
+        "q_checks": {
+          "Q1_cmp_open": true,
+          "Q2_purpose": true,
+          "Q3_attention": true,
+          "Q4_ignore": true,
+          "Q5_stop": true,
+          "Q6_next": true
+        },
+        "certified_snippet_hits": {},
+        "html_path": "/tmp/pb001p2/html/topic42/day1_act_0.html"
+      },
+      "overview_cmp": {
+        "mentions_cmp": true,
+        "open_cmp_instruction": false,
+        "page_or_section_refs": [],
+        "mission_topic": null,
+        "placeholders": true,
+        "postal_address": false
+      },
+      "dimensions": {
+        "educational_clarity": "FAIL",
+        "mission_sequencing": "FAIL",
+        "workload": "PASS",
+        "cmp_partnership": "PASS",
+        "revision_timing": "PASS",
+        "knowledge_progression": "CONCERN",
+        "confidence_calibration": "PASS",
+        "motivation_to_continue": "CONCERN",
+        "educational_trust": "FAIL"
+      }
+    }
+  },
+  {
+    "slug": "topic41",
+    "topic": "4.1",
+    "email": "pb001p2.topic41.1785579648@example.com",
+    "findings": [
+      {
+        "id": "PB001-TOP-001",
+        "persona": "topic41",
+        "day": 1,
+        "observation": "Session overview/mission briefing does not tell the student how to use the CMP for this mission (no CMP/Core Reading instruction or page/section cue observable).",
+        "classification": "EC",
+        "severity": "S1",
+        "evidence": "session=lsr-d98497f1d610; cues={'mentions_cmp': False, 'open_cmp_instruction': False, 'page_or_section_refs': [], 'mission_topic': None, 'placeholders': True, 'postal_address': False}; title=Today: 4.1 Understand and use linear regression models \u00b7 Kwalitec; text=Today: 4.1 Understand and use linear regression models \u00b7 Kwalitec Skip to content System Sign out Session ready \u2014 4.1 Understand and use linear regression models. Review today&#39;s objective, then begin. Session \u00b7 Step 1 of 4 Today: 4.1 Understand and use linear regression models Focus mode Estimated time About 1 hour Step 1 of 4 \u25cf Session Overview \u25cb Learning Activity \u25cb Reflection \u25cb Session Summa",
+        "smallest_effective_intervention": "Author explicit CMP-use instructions on every mission briefing (what to open, what to read, what to practice).",
+        "ef001_sufficient": true,
+        "notes": ""
+      },
+      {
+        "id": "PB001-TOP-002",
+        "persona": "topic41",
+        "day": 1,
+        "observation": "After completing prescribed activities, Reflection returns 500 Internal Server Error \u2014 diligent student cannot close the educational day or record reflection.",
+        "classification": "PI",
+        "severity": "S1",
+        "evidence": "session=lsr-d98497f1d610; title=Error \u00b7 Kwalitec; text=Error \u00b7 Kwalitec 500 Internal Server Error An unexpected error occurred. You can retry this page, or return home and continue. Reference ID 9543BCF54327 \u2014 include this if you contact support. Try again Return Home Report a problem Appearance Light Dark System Internal Alpha \u00b7 Founding Cohort Kwalitec v2.0.0-beta.1 \u00b7 Build beta.1",
+        "smallest_effective_intervention": "Repair session reflection page load (load_page/REFLECTION) on LIVE.",
+        "ef001_sufficient": true,
+        "notes": ""
+      }
+    ],
+    "seed": {
+      "ok": true,
+      "topic": "4.1",
+      "user_id": 57,
+      "current": "node-d8f51da3dffbcfdf",
+      "coverage": 0.7333333333333333
+    },
+    "day": {
+      "started": true,
+      "finished": false,
+      "activities": 6,
+      "trust_signals": {
+        "home_no_cmp": true,
+        "reflection_500": true
+      },
+      "reading_audit": {
+        "verdict": "FAIL",
+        "is_fallback_shell": true,
+        "mentions_cmp": false,
+        "q_checks": {
+          "Q1_cmp_open": false,
+          "Q2_purpose": false,
+          "Q3_attention": false,
+          "Q4_ignore": false,
+          "Q5_stop": false,
+          "Q6_next": false
+        },
+        "certified_snippet_hits": {},
+        "html_path": "/tmp/pb001p2/html/topic41/day1_act_0.html"
+      },
+      "overview_cmp": {
+        "mentions_cmp": false,
+        "open_cmp_instruction": false,
+        "page_or_section_refs": [],
+        "mission_topic": null,
+        "placeholders": true,
+        "postal_address": false
+      },
+      "dimensions": {
+        "educational_clarity": "FAIL",
+        "mission_sequencing": "FAIL",
+        "workload": "PASS",
+        "cmp_partnership": "FAIL",
+        "revision_timing": "PASS",
+        "knowledge_progression": "CONCERN",
+        "confidence_calibration": "PASS",
+        "motivation_to_continue": "CONCERN",
+        "educational_trust": "FAIL"
+      }
+    }
+  }
+]

@@ -1,0 +1,132 @@
+{
+  "programme": "PB-016",
+  "volume": "CS1-016",
+  "campaign": "Pi",
+  "host": "https://kwalitec.onrender.com",
+  "expected_commit": "4ff8c95d2b853114f0b99ba2d7d23ea847c62819",
+  "live_health": {
+    "build_date": "2026-08-04",
+    "build_number": "local",
+    "commit": "4ff8c95d2b853114f0b99ba2d7d23ea847c62819",
+    "components": {
+      "database": {
+        "latency_ms": 2.5,
+        "name": "database",
+        "status": "ok"
+      },
+      "instance_storage": {
+        "meta": {
+          "path": "/opt/render/project/src/instance"
+        },
+        "name": "instance_storage",
+        "status": "ok"
+      },
+      "migrations": {
+        "meta": {
+          "current": "202607310002",
+          "head": "202607310002"
+        },
+        "name": "migrations",
+        "status": "ok"
+      },
+      "queue": {
+        "detail": "manual automation runner (no external broker)",
+        "meta": {
+          "broker": "none",
+          "runner": "app.automation"
+        },
+        "name": "queue",
+        "status": "ok"
+      }
+    },
+    "database": "connected",
+    "environment": "production",
+    "status": "ok",
+    "timestamp": "2026-08-04T13:23:16.514960+00:00",
+    "version": "2.0.0-beta.1"
+  },
+  "fingerprint_ok": true,
+  "personas": [
+    {
+      "slug": "beginner",
+      "email": "pb016.cp.beginner.1785837986@example.com",
+      "verdict": "PASS",
+      "avg_score_over_9": 8.9,
+      "certified_days": 10
+    },
+    {
+      "slug": "average",
+      "email": "pb016.cp.average.1785839808@example.com",
+      "verdict": "PASS",
+      "avg_score_over_9": 8.9,
+      "certified_days": 10
+    },
+    {
+      "slug": "advanced",
+      "email": "pb016.cp.advanced.1785841553@example.com",
+      "verdict": "PASS",
+      "avg_score_over_9": 8.9,
+      "certified_days": 10
+    },
+    {
+      "slug": "returning",
+      "email": "pb016.cp.returning.1785843445@example.com",
+      "verdict": "PASS",
+      "avg_score_over_9": 8.9,
+      "certified_days": 10
+    },
+    {
+      "slug": "struggling",
+      "email": "pb016.cp.struggling.1785847680@example.com",
+      "verdict": "PASS",
+      "avg_score_over_9": 8.9,
+      "certified_days": 10
+    }
+  ],
+  "mean_score_over_9": 8.9,
+  "certified_day_observations": 50,
+  "programme_metrics": {
+    "recommendation_consistency": {
+      "pass_count": 50,
+      "total": 50,
+      "result": "PASS"
+    },
+    "weak_area_identification": {
+      "pass_count": 50,
+      "total": 50,
+      "result": "PASS"
+    },
+    "mission_sequencing": {
+      "pass_count": 50,
+      "total": 50,
+      "result": "PASS"
+    },
+    "syllabus_continuity": {
+      "pass_count": 50,
+      "total": 50,
+      "result": "PASS"
+    },
+    "confidence_calibration": {
+      "pass_count": 50,
+      "total": 50,
+      "result": "PASS"
+    },
+    "explanation_usefulness": {
+      "pass_count": 50,
+      "total": 50,
+      "result": "PASS"
+    }
+  },
+  "regression_vs_ro014": {
+    "baseline_programme": "RO-014",
+    "baseline_verdict": "PASS WITH RESIDUAL",
+    "package_mismatches": [],
+    "sequence_regressions": [],
+    "order_consistent_with_cp_d1_to_cp_r1": true,
+    "new_critical_or_major": [],
+    "regression_detected": false
+  },
+  "coverage_held": "63/72 (87.5%)",
+  "reliance_held": "through Topic 5.1",
+  "verdict": "PASS"
+}

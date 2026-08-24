@@ -1,0 +1,2321 @@
+{
+  "slug": "full_time_worker",
+  "label": "Full-time worker",
+  "email": "pb003.full_time_worker.1785596611@example.com",
+  "persona": {
+    "slug": "full_time_worker",
+    "label": "Full-time worker",
+    "answer_mode": "mixed",
+    "confidence": "med",
+    "exam_history": "never",
+    "experience": "started",
+    "weekday_minutes": "30",
+    "weekend_minutes": "90",
+    "session_minutes": "45"
+  },
+  "days": [
+    {
+      "day_index": 1,
+      "expected_day": "CA-D1",
+      "expected_package_id": "CS1-EP001-PKG-1.1-PURPOSE-FUNCTION",
+      "live_certified": false,
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP (not this screen) to build a professional purpose map \u2014 aims, stages, sources, and reproducibility \u2014 so later EDA days answer a named aim. Extract that fr",
+          "body_sample": " Topic: Describe the purpose and function of data analysis (1.1) Mission: Name why actuarial data analysis exists Purpose of this reading: use the CMP (not this screen) to build a professional purpose map \u2014 aims, stages, sources, and reproducibility \u2014 so later EDA days answer a named aim. Extract that frame from the CMP, then stop after the purpose-and-function block is complete in your edition. Open: CMP \u00b7 Syllabus 1.1 purpose and function of data analysis (1.1.1\u20131.1.4 centre) Stop: Through the",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at Syllabus 1.1 \u2014 purpose and function of data analysis (1.1.1\u20131.1.4 centre). Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation sketch. Ignore detailed EDA recipes, correlati",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 411
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-1.1-PURPOSE-FUNCTION",
+        "campaign_day": "CA-D1",
+        "score_day": "CA-D1"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "",
+        "package_student_facing": "Tomorrow: exploratory data analysis \u2014 summaries and visualisations (1.2). Today's purpose map tells you which aim you se",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "persona": "full_time_worker",
+      "home": {
+        "title_guess": "Name why actuarial data analysis exists",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name why actuarial data analysis exists CS1 (CS1) 1 h Study 1.1 \u2014 Describe the purpose and function of data analysis After this \u00b7 A four-part purpose map you can defend closed-book \u2014 Study Progress for today&#39;s Session, not"
+      },
+      "session_id": "lsr-eff30a0facf9",
+      "delivered_day": "CA-D1",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "scored_as_live_certified": false
+    },
+    {
+      "day_index": 2,
+      "expected_day": "CA-D2",
+      "expected_package_id": "CS1-EP001-PKG-1.2-EDA-SUMMARIES",
+      "live_certified": false,
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to learn how to choose summary statistics and exploratory visualisations for a stated aim and variable type \u2014 so exploratory work stays aim-led. Extract t",
+          "body_sample": " Topic: Complete exploratory data analysis (1.2) Mission: Choose summaries and plots for a stated aim Purpose of this reading: use the CMP to learn how to choose summary statistics and exploratory visualisations for a stated aim and variable type \u2014 so exploratory work stays aim-led. Extract that method from the CMP, then stop after the 1.2.1 summaries-and-visualisations block. Open: CMP \u00b7 Syllabus 1.2.1 summary statistics and exploratory visualisations Stop: Through the CMP block that equips you",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at Syllabus 1.2.1 \u2014 summary statistics and exploratory visualisations. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore correlation measures, PCA, coding marath",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 403
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-1.2-EDA-SUMMARIES",
+        "campaign_day": "CA-D2",
+        "score_day": "CA-D2"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "",
+        "package_student_facing": "Tomorrow: association measures for bivariate data (still 1.2). Today's summaries and plots prepare the variables; tomorr",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "persona": "full_time_worker",
+      "home": {
+        "title_guess": "Name why actuarial data analysis exists",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name why actuarial data analysis exists CS1 (CS1) 1 h Study 1.1 \u2014 Describe the purpose and function of data analysis After this \u00b7 A four-part purpose map you can defend closed-book \u2014 Study Progress for today&#39;s Session, not"
+      },
+      "session_id": "lsr-1d7e8d2909d0",
+      "delivered_day": "CA-D2",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "scored_as_live_certified": false
+    },
+    {
+      "day_index": 3,
+      "expected_day": "CA-D3",
+      "expected_package_id": "CS1-EP001-PKG-1.2-EDA-ASSOCIATION",
+      "live_certified": false,
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to distinguish Pearson&#39;s, Spearman&#39;s, and Kendall&#39;s measures and the association claims each supports \u2014 so you choose a measure with intent. E",
+          "body_sample": " Topic: Complete exploratory data analysis (1.2) Mission: Interpret association without overclaiming Purpose of this reading: use the CMP to distinguish Pearson&#39;s, Spearman&#39;s, and Kendall&#39;s measures and the association claims each supports \u2014 so you choose a measure with intent. Extract those distinctions from the CMP, then stop at the end of the 1.2.2 correlation block. Open: CMP \u00b7 Syllabus 1.2.2 correlation measures for bivariate data Stop: Through the CMP treatment of Pearson&#39;s",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at Syllabus 1.2.2 \u2014 correlation measures. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore PCA, new summary-statistic deep-dives, coding marathons, and Chapter ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 373
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": false,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-1.2-EDA-ASSOCIATION",
+        "campaign_day": "CA-D3",
+        "score_day": "CA-D3"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "",
+        "package_student_facing": "Tomorrow: Campaign Alpha Revision day. We return to purpose \u2192 exploratory tool choice \u2192 association limits. Optional lig",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "persona": "full_time_worker",
+      "home": {
+        "title_guess": "Name why actuarial data analysis exists",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name why actuarial data analysis exists CS1 (CS1) 1 h Study 1.1 \u2014 Describe the purpose and function of data analysis After this \u00b7 A four-part purpose map you can defend closed-book \u2014 Study Progress for today&#39;s Session, not"
+      },
+      "session_id": "lsr-188dc3d966ae",
+      "delivered_day": "CA-D3",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": false,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "scored_as_live_certified": false
+    },
+    {
+      "day_index": 4,
+      "expected_day": "CA-R1",
+      "expected_package_id": "CS1-EP001-PKG-REV-PURPOSE-EDA",
+      "live_certified": false,
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Alpha chain (purpose map \u2192 summaries/visualisations \u2192 correlation measures) without opening a new CMP chapter first. Attem",
+          "body_sample": " Topic: Campaign Alpha revision \u2014 purpose to exploratory judgement (CA-R1) Mission: Retrieve the purpose-to-EDA chain Purpose of this revision stage: strengthen retrieval of the Campaign Alpha chain (purpose map \u2192 summaries/visualisations \u2192 correlation measures) without opening a new CMP chapter first. Attempt closed-book retrieval; only then, if a check fails, reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval: Day 1 purpose bloc",
+          "support_sample": "Keep the CMP closed to begin. Kwalitec directs revision; the CMP is reopened only as a targeted instrument after a failed retrieval \u2014 not as a fresh chapter read and not as a substitute for the checks. Sketch the Campaign chain from memory, then begin the revision Knowledge Checks. If a check fails, reopen only Day 1 purpose / Day 2 1.2.1 / Day 3 1.2.2 locus for that item, then close again. Do not",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": false,
+            "Open your CMP": false,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": false,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 362
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-REV-PURPOSE-EDA",
+        "campaign_day": "CA-R1",
+        "score_day": "CA-R1"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "",
+        "package_student_facing": "Campaign Alpha complete after today. Next journey opens basic univariate distributions (2.1) \u2014 the modelling language fo",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "persona": "full_time_worker",
+      "home": {
+        "title_guess": "Name why actuarial data analysis exists",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name why actuarial data analysis exists CS1 (CS1) 1 h Study 1.1 \u2014 Describe the purpose and function of data analysis After this \u00b7 A four-part purpose map you can defend closed-book \u2014 Study Progress for today&#39;s Session, not"
+      },
+      "session_id": "lsr-11302494fa52",
+      "delivered_day": "CA-R1",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "scored_as_live_certified": false
+    },
+    {
+      "day_index": 5,
+      "expected_day": "CB-D2",
+      "expected_package_id": "CS1-CS1002-PKG-2.1-DISCRETE",
+      "live_certified": false,
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract the defining situation and one characteristic for each discrete family in Syllabus 2.1.1 \u2014 so distribution choice is situation-led. Extract tha",
+          "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Name the discrete distribution family by situation Purpose of this reading: use the CMP to extract the defining situation and one characteristic for each discrete family in Syllabus 2.1.1 \u2014 so distribution choice is situation-led. Extract that catalogue frame from the CMP, then stop before continuous distributions. Open: CMP \u00b7 Syllabus 2.1.1 discrete univariate distributi",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at Syllabus 2.1.1 \u2014 discrete univariate distributions. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore continuous families, probability/quantile evaluation dee",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 386
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-CS1002-PKG-2.1-DISCRETE",
+        "campaign_day": "CB-D2",
+        "score_day": "CB-D2"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "",
+        "package_student_facing": "Tomorrow: basic continuous univariate distributions (2.1.2). Same Chapter 2 entry arc \u2014 now continuous families. Optiona",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "persona": "full_time_worker",
+      "home": {
+        "title_guess": "Choose summaries and plots for a stated aim",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Choose summaries and plots for a stated aim CS1 (CS1) 1 h Study 1.2 \u2014 Complete exploratory data analysis After this \u00b7 One defended summary-and-plot pair for a named aim \u2014 Study Progress for today&#39;s Session, not completion "
+      },
+      "session_id": "lsr-b97b21103b34",
+      "delivered_day": "CB-D2",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "scored_as_live_certified": false
+    },
+    {
+      "day_index": 6,
+      "expected_day": "CB-D3",
+      "expected_package_id": "CS1-CS1002-PKG-2.1-CONTINUOUS",
+      "live_certified": false,
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract support and typical modelling role for each continuous family in Syllabus 2.1.2 \u2014 so continuous choice is support-led. Extract that catalogue f",
+          "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Place continuous families beside discrete ones Purpose of this reading: use the CMP to extract support and typical modelling role for each continuous family in Syllabus 2.1.2 \u2014 so continuous choice is support-led. Extract that catalogue frame from the CMP, then stop before probability/quantile evaluation beyond today&#39;s block. Open: CMP \u00b7 Syllabus 2.1.2 continuous univ",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at Syllabus 2.1.2 \u2014 continuous distributions. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore discrete re-cataloguing, deep probability/quantile evaluation bey",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 377
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-CS1002-PKG-2.1-CONTINUOUS",
+        "campaign_day": "CB-D3",
+        "score_day": "CB-D3"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "",
+        "package_student_facing": "Tomorrow: Campaign Beta Revision day. We return to PCA \u2192 discrete families \u2192 continuous placement, plus one Alpha associ",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "persona": "full_time_worker",
+      "home": {
+        "title_guess": "Choose summaries and plots for a stated aim",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Choose summaries and plots for a stated aim CS1 (CS1) 1 h Study 1.2 \u2014 Complete exploratory data analysis After this \u00b7 One defended summary-and-plot pair for a named aim \u2014 Study Progress for today&#39;s Session, not completion "
+      },
+      "session_id": "lsr-7e49de77e879",
+      "delivered_day": "CB-D3",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "scored_as_live_certified": false
+    },
+    {
+      "day_index": 7,
+      "expected_day": "CB-R1",
+      "expected_package_id": "CS1-CS1002-PKG-REV-PCA-DISTRIBUTIONS",
+      "live_certified": false,
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Beta chain (PCA \u2192 discrete families \u2192 continuous families) without opening a new CMP chapter first. Attempt closed-book re",
+          "body_sample": " Topic: Campaign Beta revision \u2014 PCA to distributional entry (CB-R1) Mission: Retrieve PCA and distributional entry Purpose of this revision stage: strengthen retrieval of the Campaign Beta chain (PCA \u2192 discrete families \u2192 continuous families) without opening a new CMP chapter first. Attempt closed-book retrieval; only then, if a check fails, reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval: Day 1 PCA block, Day 2 2.1.1 block, D",
+          "support_sample": "Keep the CMP closed to begin. Kwalitec directs revision; the CMP is reopened only as a targeted instrument after a failed retrieval \u2014 not as a fresh chapter read and not as a substitute for the checks. Sketch the Campaign chain from memory, then begin the revision Knowledge Checks. If a check fails, reopen only Day 1 PCA / Day 2 2.1.1 / Day 3 2.1.2 locus for that item, then close again. Do not beg",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": false,
+            "Open your CMP": false,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": false,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 385
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-CS1002-PKG-REV-PCA-DISTRIBUTIONS",
+        "campaign_day": "CB-R1",
+        "score_day": "CB-R1"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "Campaign Beta revision \u2014 PCA to distributional entry \u00b7 Kwalitec Skip to content",
+        "package_student_facing": "Campaign Beta / CS1-002 complete after today. Next journey continues univariate distributions at probability and quantil",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "persona": "full_time_worker",
+      "home": {
+        "title_guess": "Choose summaries and plots for a stated aim",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Choose summaries and plots for a stated aim CS1 (CS1) 1 h Study 1.2 \u2014 Complete exploratory data analysis After this \u00b7 One defended summary-and-plot pair for a named aim \u2014 Study Progress for today&#39;s Session, not completion "
+      },
+      "session_id": "lsr-4eb778b51fdd",
+      "delivered_day": "CB-R1",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "scored_as_live_certified": false
+    },
+    {
+      "day_index": 8,
+      "expected_day": "CG-D1",
+      "expected_package_id": "CS1-EP001-PKG-2.1-PROB-QUANTILES",
+      "live_certified": true,
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract how to evaluate probabilities and quantiles for the univariate families already on your map \u2014 calculation or software as appropriate. Stop befo",
+          "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Evaluate probabilities and quantiles for placed families Purpose of this reading: use the CMP to extract how to evaluate probabilities and quantiles for the univariate families already on your map \u2014 calculation or software as appropriate. Stop before Poisson process and generation methods. Open: CMP \u00b7 Syllabus 2.1.3 probabilities and quantiles Stop: Through the CMP treatm",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at Syllabus 2.1.3 \u2014 probabilities and quantiles. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore Poisson process, generation methods, and joint distributions t",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 362
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-2.1-PROB-QUANTILES",
+        "campaign_day": "CG-D1",
+        "score_day": "CG-D1"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": true,
+        "chrome_text_sample": "Tomorrow: Poisson process and its connection to the Poisson distribution (2.1.4). Optional light prep: skim 2.1.4 headings \u2014 titles only tonight.",
+        "package_student_facing": "Tomorrow: Poisson process and its connection to the Poisson distribution (2.1.4). Optional light prep: skim 2.1.4 headin",
+        "chrome_matches_package_continuity": true
+      },
+      "verdict": "PASS",
+      "persona": "full_time_worker",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.1 \u2014 Understand the characteristics of basic univariate distributions and how to generate samples After this \u00b7 A situation\u2192family map for the syllabus dis"
+      },
+      "session_id": "lsr-abd0cb066d1f",
+      "delivered_day": "CG-D1",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "scored_as_live_certified": true,
+      "pb003_score": {
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "pass_count": 9,
+        "concern_count": 0,
+        "fail_count": 0,
+        "confidence_level": "HIGH",
+        "score_over_9": 9
+      }
+    },
+    {
+      "day_index": 9,
+      "expected_day": "CG-D2",
+      "expected_package_id": "CS1-EP001-PKG-2.1-POISSON-PROCESS",
+      "live_certified": true,
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract the Poisson process definition and its connection to the Poisson distribution. Stop before inverse-transform and software generation LOs.",
+          "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Connect the Poisson process to the Poisson distribution Purpose of this reading: use the CMP to extract the Poisson process definition and its connection to the Poisson distribution. Stop before inverse-transform and software generation LOs. Open: CMP \u00b7 Syllabus 2.1.4 Poisson process Stop: Through the CMP treatment of the Poisson process and its Poisson-distribution conne",
+          "support_sample": "Open your CMP at Syllabus 2.1.4 \u2014 Poisson process. Kwalitec is the guide; the CMP is the authoritative material. Hunt with the focus questions; complete the annotation task. Ignore generation methods and joint distributions today. Stop when the 2.1.4 block is complete. Then close the CMP and return here for Worked-example re-entry, then Knowledge Checks. What did you extract from the CMP setup? Su",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 303
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-2.1-POISSON-PROCESS",
+        "campaign_day": "CG-D2",
+        "score_day": "CG-D2"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": true,
+        "chrome_text_sample": "Tomorrow: inverse transform generation of basic discrete and continuous random variables (2.1.5). Optional light prep: skim 2.1.5 headings \u2014 titles only tonight.",
+        "package_student_facing": "Tomorrow: inverse transform generation of basic discrete and continuous random variables (2.1.5). Optional light prep: s",
+        "chrome_matches_package_continuity": true
+      },
+      "verdict": "PASS",
+      "persona": "full_time_worker",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.1 \u2014 Understand the characteristics of basic univariate distributions and how to generate samples After this \u00b7 A situation\u2192family map for the syllabus dis"
+      },
+      "session_id": "lsr-dbedce4f1c8a",
+      "delivered_day": "CG-D2",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "scored_as_live_certified": true,
+      "pb003_score": {
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "pass_count": 9,
+        "concern_count": 0,
+        "fail_count": 0,
+        "confidence_level": "HIGH",
+        "score_over_9": 9
+      }
+    },
+    {
+      "day_index": 10,
+      "expected_day": "CG-D3",
+      "expected_package_id": "CS1-EP001-PKG-2.1-INVERSE-TRANSFORM",
+      "live_certified": true,
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: extract the inverse transform method for basic discrete and continuous RVs from the CMP. Stop before treating software generation (2.1.6) as today&#39;s primary LO.",
+          "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Generate RVs with the inverse transform method Purpose of this reading: extract the inverse transform method for basic discrete and continuous RVs from the CMP. Stop before treating software generation (2.1.6) as today&#39;s primary LO. Open: CMP \u00b7 Syllabus 2.1.5 inverse transform method Stop: Through CMP treatment of inverse transform for Syllabus 2.1.5 (stop before soft",
+          "support_sample": "Open your CMP at Syllabus 2.1.5 \u2014 inverse transform generation. Kwalitec guides; CMP is authoritative. Hunt with focus questions. Stop when the 2.1.5 block is complete. Return for Worked-example re-entry, then Knowledge Checks. What did you extract from the CMP setup? Submit Answer ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 255
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-2.1-INVERSE-TRANSFORM",
+        "campaign_day": "CG-D3",
+        "score_day": "CG-D3"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": true,
+        "chrome_text_sample": "Tomorrow: generate discrete and continuous random variables using statistical software (2.1.6). Optional light prep: skim 2.1.6 headings \u2014 titles only tonight.",
+        "package_student_facing": "Tomorrow: generate discrete and continuous random variables using statistical software (2.1.6). Optional light prep: ski",
+        "chrome_matches_package_continuity": true
+      },
+      "verdict": "PASS",
+      "persona": "full_time_worker",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.1 \u2014 Understand the characteristics of basic univariate distributions and how to generate samples After this \u00b7 A situation\u2192family map for the syllabus dis"
+      },
+      "session_id": "lsr-51afc5544deb",
+      "delivered_day": "CG-D3",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "scored_as_live_certified": true,
+      "pb003_score": {
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "pass_count": 9,
+        "concern_count": 0,
+        "fail_count": 0,
+        "confidence_level": "HIGH",
+        "score_over_9": 9
+      }
+    },
+    {
+      "day_index": 11,
+      "expected_day": "CG-D4",
+      "expected_package_id": "CS1-EP001-PKG-2.1-SOFTWARE-GENERATION",
+      "live_certified": true,
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP (and appropriate statistical software) to generate discrete and continuous RVs under Syllabus 2.1.6. Stop before joint distributions.",
+          "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Generate RVs with statistical software Purpose of this reading: use the CMP (and appropriate statistical software) to generate discrete and continuous RVs under Syllabus 2.1.6. Stop before joint distributions. Open: CMP \u00b7 Syllabus 2.1.6 generation using statistical software Stop: Through CMP/software practice for Syllabus 2.1.6 (stop before joint distributions 2.2) Focus ",
+          "support_sample": "Open your CMP at Syllabus 2.1.6 \u2014 software generation. Use statistical software as the CMP directs. Stop before 2.2. Return for Worked-example re-entry, then Knowledge Checks. What did you extract from the CMP setup? Submit Answer ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 237
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-2.1-SOFTWARE-GENERATION",
+        "campaign_day": "CG-D4",
+        "score_day": "CG-D4"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": true,
+        "chrome_text_sample": "Tomorrow: Campaign Gamma Revision day \u2014 retrieve evaluation, Poisson process, inverse transform, and software generation. Optional light prep: sticky titles only tonight.",
+        "package_student_facing": "Tomorrow: Campaign Gamma Revision day \u2014 retrieve evaluation, Poisson process, inverse transform, and software generation",
+        "chrome_matches_package_continuity": true
+      },
+      "verdict": "PASS",
+      "persona": "full_time_worker",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.1 \u2014 Understand the characteristics of basic univariate distributions and how to generate samples After this \u00b7 A situation\u2192family map for the syllabus dis"
+      },
+      "session_id": "lsr-3e80e5707f17",
+      "delivered_day": "CG-D4",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "scored_as_live_certified": true,
+      "pb003_score": {
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "pass_count": 9,
+        "concern_count": 0,
+        "fail_count": 0,
+        "confidence_level": "HIGH",
+        "score_over_9": 9
+      }
+    },
+    {
+      "day_index": 12,
+      "expected_day": "CG-R1",
+      "expected_package_id": "CS1-EP001-PKG-REV-DISTRIBUTIONS-GENERATION",
+      "live_certified": true,
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Gamma chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locu",
+          "body_sample": " Topic: Campaign Gamma revision \u2014 distributions through generation (CG-R1) Mission: Retrieve univariate evaluation and generation Purpose of this revision stage: strengthen retrieval of the Campaign Gamma chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block. Stop: After revision checks and Reflection \u2014 do not begin Syllabus",
+          "support_sample": "Begin closed-book retrieval. Reopen CMP only at a failed locus. Do not start 2.2 today. After checks, complete Reflection. What did you extract from the CMP setup? Submit Answer ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": false,
+            "Open your CMP": false,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": false,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 257
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-REV-DISTRIBUTIONS-GENERATION",
+        "campaign_day": "CG-R1",
+        "score_day": "CG-R1"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": true,
+        "chrome_text_sample": "Campaign Gamma / CS1-004 complete after today. Next journey continues at jointly distributed random variables (2.2) in a successor Volume. Optional light prep: skim 2.2 headings \u2014 titles only tonight.",
+        "package_student_facing": "Campaign Gamma / CS1-004 complete after today. Next journey continues at jointly distributed random variables (2.2) in a",
+        "chrome_matches_package_continuity": true
+      },
+      "verdict": "PASS",
+      "persona": "full_time_worker",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.1 \u2014 Understand the characteristics of basic univariate distributions and how to generate samples After this \u00b7 A situation\u2192family map for the syllabus dis"
+      },
+      "session_id": "lsr-9aa4f38b2387",
+      "delivered_day": "CG-R1",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "scored_as_live_certified": true,
+      "pb003_score": {
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "pass_count": 9,
+        "concern_count": 0,
+        "fail_count": 0,
+        "confidence_level": "HIGH",
+        "score_over_9": 9
+      }
+    }
+  ],
+  "certified_days": [
+    {
+      "day_index": 8,
+      "expected_day": "CG-D1",
+      "expected_package_id": "CS1-EP001-PKG-2.1-PROB-QUANTILES",
+      "live_certified": true,
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract how to evaluate probabilities and quantiles for the univariate families already on your map \u2014 calculation or software as appropriate. Stop befo",
+          "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Evaluate probabilities and quantiles for placed families Purpose of this reading: use the CMP to extract how to evaluate probabilities and quantiles for the univariate families already on your map \u2014 calculation or software as appropriate. Stop before Poisson process and generation methods. Open: CMP \u00b7 Syllabus 2.1.3 probabilities and quantiles Stop: Through the CMP treatm",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at Syllabus 2.1.3 \u2014 probabilities and quantiles. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore Poisson process, generation methods, and joint distributions t",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 362
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-2.1-PROB-QUANTILES",
+        "campaign_day": "CG-D1",
+        "score_day": "CG-D1"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": true,
+        "chrome_text_sample": "Tomorrow: Poisson process and its connection to the Poisson distribution (2.1.4). Optional light prep: skim 2.1.4 headings \u2014 titles only tonight.",
+        "package_student_facing": "Tomorrow: Poisson process and its connection to the Poisson distribution (2.1.4). Optional light prep: skim 2.1.4 headin",
+        "chrome_matches_package_continuity": true
+      },
+      "verdict": "PASS",
+      "persona": "full_time_worker",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.1 \u2014 Understand the characteristics of basic univariate distributions and how to generate samples After this \u00b7 A situation\u2192family map for the syllabus dis"
+      },
+      "session_id": "lsr-abd0cb066d1f",
+      "delivered_day": "CG-D1",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "scored_as_live_certified": true,
+      "pb003_score": {
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "pass_count": 9,
+        "concern_count": 0,
+        "fail_count": 0,
+        "confidence_level": "HIGH",
+        "score_over_9": 9
+      }
+    },
+    {
+      "day_index": 9,
+      "expected_day": "CG-D2",
+      "expected_package_id": "CS1-EP001-PKG-2.1-POISSON-PROCESS",
+      "live_certified": true,
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract the Poisson process definition and its connection to the Poisson distribution. Stop before inverse-transform and software generation LOs.",
+          "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Connect the Poisson process to the Poisson distribution Purpose of this reading: use the CMP to extract the Poisson process definition and its connection to the Poisson distribution. Stop before inverse-transform and software generation LOs. Open: CMP \u00b7 Syllabus 2.1.4 Poisson process Stop: Through the CMP treatment of the Poisson process and its Poisson-distribution conne",
+          "support_sample": "Open your CMP at Syllabus 2.1.4 \u2014 Poisson process. Kwalitec is the guide; the CMP is the authoritative material. Hunt with the focus questions; complete the annotation task. Ignore generation methods and joint distributions today. Stop when the 2.1.4 block is complete. Then close the CMP and return here for Worked-example re-entry, then Knowledge Checks. What did you extract from the CMP setup? Su",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 303
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-2.1-POISSON-PROCESS",
+        "campaign_day": "CG-D2",
+        "score_day": "CG-D2"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": true,
+        "chrome_text_sample": "Tomorrow: inverse transform generation of basic discrete and continuous random variables (2.1.5). Optional light prep: skim 2.1.5 headings \u2014 titles only tonight.",
+        "package_student_facing": "Tomorrow: inverse transform generation of basic discrete and continuous random variables (2.1.5). Optional light prep: s",
+        "chrome_matches_package_continuity": true
+      },
+      "verdict": "PASS",
+      "persona": "full_time_worker",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.1 \u2014 Understand the characteristics of basic univariate distributions and how to generate samples After this \u00b7 A situation\u2192family map for the syllabus dis"
+      },
+      "session_id": "lsr-dbedce4f1c8a",
+      "delivered_day": "CG-D2",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "scored_as_live_certified": true,
+      "pb003_score": {
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "pass_count": 9,
+        "concern_count": 0,
+        "fail_count": 0,
+        "confidence_level": "HIGH",
+        "score_over_9": 9
+      }
+    },
+    {
+      "day_index": 10,
+      "expected_day": "CG-D3",
+      "expected_package_id": "CS1-EP001-PKG-2.1-INVERSE-TRANSFORM",
+      "live_certified": true,
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: extract the inverse transform method for basic discrete and continuous RVs from the CMP. Stop before treating software generation (2.1.6) as today&#39;s primary LO.",
+          "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Generate RVs with the inverse transform method Purpose of this reading: extract the inverse transform method for basic discrete and continuous RVs from the CMP. Stop before treating software generation (2.1.6) as today&#39;s primary LO. Open: CMP \u00b7 Syllabus 2.1.5 inverse transform method Stop: Through CMP treatment of inverse transform for Syllabus 2.1.5 (stop before soft",
+          "support_sample": "Open your CMP at Syllabus 2.1.5 \u2014 inverse transform generation. Kwalitec guides; CMP is authoritative. Hunt with focus questions. Stop when the 2.1.5 block is complete. Return for Worked-example re-entry, then Knowledge Checks. What did you extract from the CMP setup? Submit Answer ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 255
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-2.1-INVERSE-TRANSFORM",
+        "campaign_day": "CG-D3",
+        "score_day": "CG-D3"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": true,
+        "chrome_text_sample": "Tomorrow: generate discrete and continuous random variables using statistical software (2.1.6). Optional light prep: skim 2.1.6 headings \u2014 titles only tonight.",
+        "package_student_facing": "Tomorrow: generate discrete and continuous random variables using statistical software (2.1.6). Optional light prep: ski",
+        "chrome_matches_package_continuity": true
+      },
+      "verdict": "PASS",
+      "persona": "full_time_worker",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.1 \u2014 Understand the characteristics of basic univariate distributions and how to generate samples After this \u00b7 A situation\u2192family map for the syllabus dis"
+      },
+      "session_id": "lsr-51afc5544deb",
+      "delivered_day": "CG-D3",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "scored_as_live_certified": true,
+      "pb003_score": {
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "pass_count": 9,
+        "concern_count": 0,
+        "fail_count": 0,
+        "confidence_level": "HIGH",
+        "score_over_9": 9
+      }
+    },
+    {
+      "day_index": 11,
+      "expected_day": "CG-D4",
+      "expected_package_id": "CS1-EP001-PKG-2.1-SOFTWARE-GENERATION",
+      "live_certified": true,
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP (and appropriate statistical software) to generate discrete and continuous RVs under Syllabus 2.1.6. Stop before joint distributions.",
+          "body_sample": " Topic: Understand the characteristics of basic univariate distributions and how to generate samples from them (2.1) Mission: Generate RVs with statistical software Purpose of this reading: use the CMP (and appropriate statistical software) to generate discrete and continuous RVs under Syllabus 2.1.6. Stop before joint distributions. Open: CMP \u00b7 Syllabus 2.1.6 generation using statistical software Stop: Through CMP/software practice for Syllabus 2.1.6 (stop before joint distributions 2.2) Focus ",
+          "support_sample": "Open your CMP at Syllabus 2.1.6 \u2014 software generation. Use statistical software as the CMP directs. Stop before 2.2. Return for Worked-example re-entry, then Knowledge Checks. What did you extract from the CMP setup? Submit Answer ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 237
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-2.1-SOFTWARE-GENERATION",
+        "campaign_day": "CG-D4",
+        "score_day": "CG-D4"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": true,
+        "chrome_text_sample": "Tomorrow: Campaign Gamma Revision day \u2014 retrieve evaluation, Poisson process, inverse transform, and software generation. Optional light prep: sticky titles only tonight.",
+        "package_student_facing": "Tomorrow: Campaign Gamma Revision day \u2014 retrieve evaluation, Poisson process, inverse transform, and software generation",
+        "chrome_matches_package_continuity": true
+      },
+      "verdict": "PASS",
+      "persona": "full_time_worker",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.1 \u2014 Understand the characteristics of basic univariate distributions and how to generate samples After this \u00b7 A situation\u2192family map for the syllabus dis"
+      },
+      "session_id": "lsr-3e80e5707f17",
+      "delivered_day": "CG-D4",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "scored_as_live_certified": true,
+      "pb003_score": {
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "pass_count": 9,
+        "concern_count": 0,
+        "fail_count": 0,
+        "confidence_level": "HIGH",
+        "score_over_9": 9
+      }
+    },
+    {
+      "day_index": 12,
+      "expected_day": "CG-R1",
+      "expected_package_id": "CS1-EP001-PKG-REV-DISTRIBUTIONS-GENERATION",
+      "live_certified": true,
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Gamma chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locu",
+          "body_sample": " Topic: Campaign Gamma revision \u2014 distributions through generation (CG-R1) Mission: Retrieve univariate evaluation and generation Purpose of this revision stage: strengthen retrieval of the Campaign Gamma chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block. Stop: After revision checks and Reflection \u2014 do not begin Syllabus",
+          "support_sample": "Begin closed-book retrieval. Reopen CMP only at a failed locus. Do not start 2.2 today. After checks, complete Reflection. What did you extract from the CMP setup? Submit Answer ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": false,
+            "Open your CMP": false,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": false,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 257
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-REV-DISTRIBUTIONS-GENERATION",
+        "campaign_day": "CG-R1",
+        "score_day": "CG-R1"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": true,
+        "chrome_text_sample": "Campaign Gamma / CS1-004 complete after today. Next journey continues at jointly distributed random variables (2.2) in a successor Volume. Optional light prep: skim 2.2 headings \u2014 titles only tonight.",
+        "package_student_facing": "Campaign Gamma / CS1-004 complete after today. Next journey continues at jointly distributed random variables (2.2) in a",
+        "chrome_matches_package_continuity": true
+      },
+      "verdict": "PASS",
+      "persona": "full_time_worker",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.1 \u2014 Understand the characteristics of basic univariate distributions and how to generate samples After this \u00b7 A situation\u2192family map for the syllabus dis"
+      },
+      "session_id": "lsr-9aa4f38b2387",
+      "delivered_day": "CG-R1",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "scored_as_live_certified": true,
+      "pb003_score": {
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "pass_count": 9,
+        "concern_count": 0,
+        "fail_count": 0,
+        "confidence_level": "HIGH",
+        "score_over_9": 9
+      }
+    }
+  ],
+  "confidence_trajectory": [
+    {
+      "day": "CG-D1",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      },
+      "delta": "baseline"
+    },
+    {
+      "day": "CG-D2",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      },
+      "delta": "stable"
+    },
+    {
+      "day": "CG-D3",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      },
+      "delta": "stable"
+    },
+    {
+      "day": "CG-D4",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      },
+      "delta": "stable"
+    },
+    {
+      "day": "CG-R1",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      },
+      "delta": "stable"
+    }
+  ],
+  "verdict": "PASS",
+  "backdates": [
+    {
+      "after_day": "CA-D1",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CA-D2",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CA-D3",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CA-R1",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CB-D2",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CB-D3",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CB-R1",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CG-D1",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CG-D2",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CG-D3",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CG-D4",
+      "status": "succeeded"
+    }
+  ],
+  "summary": {
+    "chain_days_completed": 12,
+    "certified_days_scored": 5,
+    "certified_all_pass": true,
+    "certified_finish_rate": 1.0,
+    "avg_score_over_9": 9.0,
+    "trajectory": [
+      {
+        "day": "CG-D1",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "delta": "baseline"
+      },
+      {
+        "day": "CG-D2",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "delta": "stable"
+      },
+      {
+        "day": "CG-D3",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "delta": "stable"
+      },
+      {
+        "day": "CG-D4",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "delta": "stable"
+      },
+      {
+        "day": "CG-R1",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "delta": "stable"
+      }
+    ]
+  }
+}

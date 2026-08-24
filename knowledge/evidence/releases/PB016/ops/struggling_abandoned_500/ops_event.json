@@ -1,0 +1,19 @@
+{
+  "event": "Operational Reliability Event",
+  "class": "Continue Session 500 Internal Server Error",
+  "session_id": "lsr-5001eaaa166d",
+  "email": "pb016.cp.struggling.1785845286@example.com",
+  "certified_before_abandon": [
+    "CP-D1",
+    "CP-D2",
+    "CP-D3",
+    "CP-D4",
+    "CP-D5",
+    "CP-D6",
+    "CP-D7",
+    "CP-D8"
+  ],
+  "action": "abandon stuck account; fresh Internal Alpha struggling persona (no product change)",
+  "ef_class": "ops / not educational scoring",
+  "at": "2026-08-04T12:46:48.827823+00:00"
+}

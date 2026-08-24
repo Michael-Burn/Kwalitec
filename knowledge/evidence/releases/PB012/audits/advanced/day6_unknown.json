@@ -1,0 +1,18 @@
+{
+  "day_index": 6,
+  "expected_day": "CK-D1",
+  "expected_package_id": "CS1-EP001-PKG-3.1-METHOD-OF-MOMENTS",
+  "finished": false,
+  "reading": null,
+  "checklist": {},
+  "tomorrow_preview": {},
+  "verdict": "FAIL",
+  "home": {
+    "title_guess": null,
+    "day_complete": false,
+    "has_start": false,
+    "text_sample": "error code: 520 "
+  },
+  "error": "no_startable_mission",
+  "persona": "advanced"
+}

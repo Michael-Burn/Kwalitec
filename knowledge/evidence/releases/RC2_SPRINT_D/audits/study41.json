@@ -1,0 +1,52 @@
+{
+  "topic_code": "4.1",
+  "package_note": "CONTROL seeded 4.1 \u2014 expect fallback LO shell",
+  "student": "study41",
+  "control": true,
+  "commit": "94e02f57669831ff6af4e6f6bf87a727ca0cfe38",
+  "reach": {
+    "mission_present": true,
+    "session_started": true,
+    "reading_reached": true,
+    "session_id": "lsr-470b92a14db6",
+    "mission_topic": "4.1 Understand and use linear regression models",
+    "activity_title": "Reading: Read the material for 4.1 Understand and use linear regression models. Note one idea you want to remember.",
+    "html_path": "/tmp/rc2d/html/study41/reading.html"
+  },
+  "audit": {
+    "title": "Reading: Read the material for 4.1 Understand and use linear regression models. Note one idea you want to remember.",
+    "body_sample": " Topic: 4.1 Understand and use linear regression models (4.1) Learning objectives for this session: \u2022 4.1.1 Response and explanatory variables \u2022 4.1.2 Simple regression model (with a single explanatory variable) and multiple linear \u2022 4.1.3 Least squares estimates of the slope and intercept parameters in a simple linear Today focuses on 4.1 \u2014 4.1 Understand and use linear regression models because it is the next incomplete topic in syllabus order. It advances learning objective(s) 4.1.1, 4.1.2, 4",
+    "support_sample": "Focus on how the learning objectives connect to 4.1 Understand and use linear regression models. What stood out from the reading? Submit Answer ",
+    "is_fallback_shell": true,
+    "is_guided_reading": false,
+    "mentions_cmp": false,
+    "cmp_refs_present": false,
+    "q_checks": {
+      "Q1_cmp_open": false,
+      "Q2_purpose": false,
+      "Q3_attention": false,
+      "Q4_ignore": false,
+      "Q5_stop": false,
+      "Q6_next": false
+    },
+    "ec001_markers": {
+      "Purpose of this reading": false,
+      "Open your CMP": false,
+      "Focus questions": false,
+      "Misconception watch": false,
+      "Out of scope today": false,
+      "Return cue": false,
+      "Worked-example": false,
+      "Knowledge Checks": false
+    },
+    "certified_snippet_hits": {},
+    "verdict": "FAIL",
+    "word_count_body": 88
+  },
+  "checklist": {
+    "Control_fallback_expected": true,
+    "Is_fallback_shell": true
+  },
+  "verdict": "PASS",
+  "html": "/tmp/rc2d/evidence/study41_reading.html"
+}

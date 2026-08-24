@@ -1,0 +1,69 @@
+{
+  "slug": "topic42",
+  "topic": "4.2",
+  "email": "pb001p2.topic42.1785579648@example.com",
+  "findings": [
+    {
+      "id": "PB001-TOP-001",
+      "persona": "topic42",
+      "day": 1,
+      "observation": "After completing prescribed activities, Reflection returns 500 Internal Server Error \u2014 diligent student cannot close the educational day or record reflection.",
+      "classification": "PI",
+      "severity": "S1",
+      "evidence": "session=lsr-a52fd98abd5f; title=Error \u00b7 Kwalitec; text=Error \u00b7 Kwalitec 500 Internal Server Error An unexpected error occurred. You can retry this page, or return home and continue. Reference ID D959118AA2A6 \u2014 include this if you contact support. Try again Return Home Report a problem Appearance Light Dark System Internal Alpha \u00b7 Founding Cohort Kwalitec v2.0.0-beta.1 \u00b7 Build beta.1",
+      "smallest_effective_intervention": "Repair session reflection page load (load_page/REFLECTION) on LIVE.",
+      "ef001_sufficient": true,
+      "notes": ""
+    }
+  ],
+  "seed": {
+    "ok": true,
+    "topic": "4.2",
+    "user_id": 56,
+    "current": "node-1f3e467797c40a23",
+    "coverage": 0.8
+  },
+  "day": {
+    "started": true,
+    "finished": false,
+    "activities": 8,
+    "trust_signals": {
+      "home_no_cmp": true,
+      "reflection_500": true
+    },
+    "reading_audit": {
+      "verdict": "PASS",
+      "is_fallback_shell": false,
+      "mentions_cmp": true,
+      "q_checks": {
+        "Q1_cmp_open": true,
+        "Q2_purpose": true,
+        "Q3_attention": true,
+        "Q4_ignore": true,
+        "Q5_stop": true,
+        "Q6_next": true
+      },
+      "certified_snippet_hits": {},
+      "html_path": "/tmp/pb001p2/html/topic42/day1_act_0.html"
+    },
+    "overview_cmp": {
+      "mentions_cmp": true,
+      "open_cmp_instruction": false,
+      "page_or_section_refs": [],
+      "mission_topic": null,
+      "placeholders": true,
+      "postal_address": false
+    },
+    "dimensions": {
+      "educational_clarity": "FAIL",
+      "mission_sequencing": "FAIL",
+      "workload": "PASS",
+      "cmp_partnership": "PASS",
+      "revision_timing": "PASS",
+      "knowledge_progression": "CONCERN",
+      "confidence_calibration": "PASS",
+      "motivation_to_continue": "CONCERN",
+      "educational_trust": "FAIL"
+    }
+  }
+}

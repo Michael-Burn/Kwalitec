@@ -1,0 +1,9 @@
+{
+  "event": "Operational Reliability Event",
+  "class": "Continue Session recovery loop",
+  "persona": "struggling",
+  "session_id": "lsr-5001eaaa166d",
+  "stuck_at": "CP-D9 unfinished Continue Session",
+  "action": "kill stuck child; resume from checkpoint without replaying certified CP-D1\u2026CP-D8",
+  "at": "2026-08-04T12:43:32.672199+00:00"
+}

@@ -1,0 +1,529 @@
+{
+  "commit": "94e02f57669831ff6af4e6f6bf87a727ca0cfe38",
+  "expected_commit": "94e02f57669831ff6af4e6f6bf87a727ca0cfe38",
+  "fingerprint_ok": true,
+  "published_inventory_topics": [
+    "1.1",
+    "1.2",
+    "2.1",
+    "4.2",
+    "CA-R1",
+    "CB-R1"
+  ],
+  "personas": 10,
+  "findings_total": 36,
+  "s1": 9,
+  "s2": 27,
+  "s1_ids": [
+    "PB001-AVE-002",
+    "PB001-WEA-002",
+    "PB001-INT-002",
+    "PB001-WEE-002",
+    "PB001-LOW-002",
+    "PB001-OVE-002",
+    "PB001-HIG-002",
+    "PB001-PRA-002",
+    "PB001-REV-002"
+  ],
+  "published_cmp_fail_count": 0,
+  "published_trust_fail_count": 9,
+  "control_41_fallback": false,
+  "claim_verdict": "REJECTED",
+  "cohort": [
+    {
+      "slug": "average_math",
+      "ok_login": true,
+      "days": [
+        {
+          "topic": "1.1",
+          "finished": false,
+          "started": true,
+          "access": "natural",
+          "fallback": false,
+          "cmp": true
+        }
+      ],
+      "evals": [
+        {
+          "slug": "average_math",
+          "day": 1,
+          "topic": "1.1",
+          "dimensions": {
+            "educational_clarity": "FAIL",
+            "mission_sequencing": "FAIL",
+            "workload": "PASS",
+            "cmp_partnership": "PASS",
+            "revision_timing": "PASS",
+            "knowledge_progression": "CONCERN",
+            "confidence_calibration": "PASS",
+            "motivation_to_continue": "CONCERN",
+            "educational_trust": "FAIL"
+          },
+          "finished": false,
+          "reading_verdict": "PASS",
+          "fallback": false,
+          "s1": 1,
+          "s2": 0
+        }
+      ],
+      "revision_attempts": [
+        {
+          "ok": false,
+          "topic": "CA-R1",
+          "user_id": 45,
+          "current": null,
+          "coverage": null
+        },
+        {
+          "ok": false,
+          "topic": "CB-R1",
+          "user_id": 45,
+          "current": null,
+          "coverage": null
+        }
+      ],
+      "s1": 1,
+      "s2": 3
+    },
+    {
+      "slug": "weak_math",
+      "ok_login": true,
+      "days": [
+        {
+          "topic": "1.1",
+          "finished": false,
+          "started": true,
+          "access": "natural",
+          "fallback": false,
+          "cmp": true
+        }
+      ],
+      "evals": [
+        {
+          "slug": "weak_math",
+          "day": 1,
+          "topic": "1.1",
+          "dimensions": {
+            "educational_clarity": "FAIL",
+            "mission_sequencing": "FAIL",
+            "workload": "PASS",
+            "cmp_partnership": "PASS",
+            "revision_timing": "PASS",
+            "knowledge_progression": "CONCERN",
+            "confidence_calibration": "PASS",
+            "motivation_to_continue": "CONCERN",
+            "educational_trust": "FAIL"
+          },
+          "finished": false,
+          "reading_verdict": "PASS",
+          "fallback": false,
+          "s1": 1,
+          "s2": 0
+        }
+      ],
+      "revision_attempts": [
+        {
+          "ok": false,
+          "topic": "CA-R1",
+          "user_id": 46,
+          "current": null,
+          "coverage": null
+        },
+        {
+          "ok": false,
+          "topic": "CB-R1",
+          "user_id": 46,
+          "current": null,
+          "coverage": null
+        }
+      ],
+      "s1": 1,
+      "s2": 3
+    },
+    {
+      "slug": "interrupted",
+      "ok_login": true,
+      "days": [
+        {
+          "topic": "1.1",
+          "finished": false,
+          "started": true,
+          "access": "natural",
+          "fallback": false,
+          "cmp": true
+        }
+      ],
+      "evals": [
+        {
+          "slug": "interrupted",
+          "day": 1,
+          "topic": "1.1",
+          "dimensions": {
+            "educational_clarity": "FAIL",
+            "mission_sequencing": "FAIL",
+            "workload": "PASS",
+            "cmp_partnership": "PASS",
+            "revision_timing": "PASS",
+            "knowledge_progression": "CONCERN",
+            "confidence_calibration": "PASS",
+            "motivation_to_continue": "CONCERN",
+            "educational_trust": "FAIL"
+          },
+          "finished": false,
+          "reading_verdict": "PASS",
+          "fallback": false,
+          "s1": 1,
+          "s2": 0
+        }
+      ],
+      "revision_attempts": [
+        {
+          "ok": false,
+          "topic": "CA-R1",
+          "user_id": 47,
+          "current": null,
+          "coverage": null
+        },
+        {
+          "ok": false,
+          "topic": "CB-R1",
+          "user_id": 47,
+          "current": null,
+          "coverage": null
+        }
+      ],
+      "s1": 1,
+      "s2": 3
+    },
+    {
+      "slug": "weekend_learner",
+      "ok_login": true,
+      "days": [
+        {
+          "topic": "1.1",
+          "finished": false,
+          "started": true,
+          "access": "natural",
+          "fallback": false,
+          "cmp": true
+        }
+      ],
+      "evals": [
+        {
+          "slug": "weekend_learner",
+          "day": 1,
+          "topic": "1.1",
+          "dimensions": {
+            "educational_clarity": "FAIL",
+            "mission_sequencing": "FAIL",
+            "workload": "PASS",
+            "cmp_partnership": "PASS",
+            "revision_timing": "PASS",
+            "knowledge_progression": "CONCERN",
+            "confidence_calibration": "PASS",
+            "motivation_to_continue": "CONCERN",
+            "educational_trust": "FAIL"
+          },
+          "finished": false,
+          "reading_verdict": "PASS",
+          "fallback": false,
+          "s1": 1,
+          "s2": 0
+        }
+      ],
+      "revision_attempts": [
+        {
+          "ok": false,
+          "topic": "CA-R1",
+          "user_id": 48,
+          "current": null,
+          "coverage": null
+        },
+        {
+          "ok": false,
+          "topic": "CB-R1",
+          "user_id": 48,
+          "current": null,
+          "coverage": null
+        }
+      ],
+      "s1": 1,
+      "s2": 3
+    },
+    {
+      "slug": "low_confidence",
+      "ok_login": true,
+      "days": [
+        {
+          "topic": "1.1",
+          "finished": false,
+          "started": true,
+          "access": "natural",
+          "fallback": false,
+          "cmp": true
+        }
+      ],
+      "evals": [
+        {
+          "slug": "low_confidence",
+          "day": 1,
+          "topic": "1.1",
+          "dimensions": {
+            "educational_clarity": "FAIL",
+            "mission_sequencing": "FAIL",
+            "workload": "PASS",
+            "cmp_partnership": "PASS",
+            "revision_timing": "PASS",
+            "knowledge_progression": "CONCERN",
+            "confidence_calibration": "PASS",
+            "motivation_to_continue": "CONCERN",
+            "educational_trust": "FAIL"
+          },
+          "finished": false,
+          "reading_verdict": "PASS",
+          "fallback": false,
+          "s1": 1,
+          "s2": 0
+        }
+      ],
+      "revision_attempts": [
+        {
+          "ok": false,
+          "topic": "CA-R1",
+          "user_id": 49,
+          "current": null,
+          "coverage": null
+        },
+        {
+          "ok": false,
+          "topic": "CB-R1",
+          "user_id": 49,
+          "current": null,
+          "coverage": null
+        }
+      ],
+      "s1": 1,
+      "s2": 3
+    },
+    {
+      "slug": "overconfident",
+      "ok_login": true,
+      "days": [
+        {
+          "topic": "1.1",
+          "finished": false,
+          "started": true,
+          "access": "natural",
+          "fallback": false,
+          "cmp": true
+        }
+      ],
+      "evals": [
+        {
+          "slug": "overconfident",
+          "day": 1,
+          "topic": "1.1",
+          "dimensions": {
+            "educational_clarity": "FAIL",
+            "mission_sequencing": "FAIL",
+            "workload": "PASS",
+            "cmp_partnership": "PASS",
+            "revision_timing": "PASS",
+            "knowledge_progression": "CONCERN",
+            "confidence_calibration": "PASS",
+            "motivation_to_continue": "CONCERN",
+            "educational_trust": "FAIL"
+          },
+          "finished": false,
+          "reading_verdict": "PASS",
+          "fallback": false,
+          "s1": 1,
+          "s2": 0
+        }
+      ],
+      "revision_attempts": [
+        {
+          "ok": false,
+          "topic": "CA-R1",
+          "user_id": 50,
+          "current": null,
+          "coverage": null
+        },
+        {
+          "ok": false,
+          "topic": "CB-R1",
+          "user_id": 50,
+          "current": null,
+          "coverage": null
+        }
+      ],
+      "s1": 1,
+      "s2": 3
+    },
+    {
+      "slug": "high_discipline",
+      "ok_login": true,
+      "days": [
+        {
+          "topic": "1.1",
+          "finished": false,
+          "started": true,
+          "access": "natural",
+          "fallback": false,
+          "cmp": true
+        }
+      ],
+      "evals": [
+        {
+          "slug": "high_discipline",
+          "day": 1,
+          "topic": "1.1",
+          "dimensions": {
+            "educational_clarity": "FAIL",
+            "mission_sequencing": "FAIL",
+            "workload": "PASS",
+            "cmp_partnership": "PASS",
+            "revision_timing": "PASS",
+            "knowledge_progression": "CONCERN",
+            "confidence_calibration": "PASS",
+            "motivation_to_continue": "CONCERN",
+            "educational_trust": "FAIL"
+          },
+          "finished": false,
+          "reading_verdict": "PASS",
+          "fallback": false,
+          "s1": 1,
+          "s2": 0
+        }
+      ],
+      "revision_attempts": [
+        {
+          "ok": false,
+          "topic": "CA-R1",
+          "user_id": 51,
+          "current": null,
+          "coverage": null
+        },
+        {
+          "ok": false,
+          "topic": "CB-R1",
+          "user_id": 51,
+          "current": null,
+          "coverage": null
+        }
+      ],
+      "s1": 1,
+      "s2": 3
+    },
+    {
+      "slug": "practice_averse",
+      "ok_login": true,
+      "days": [
+        {
+          "topic": "1.1",
+          "finished": false,
+          "started": true,
+          "access": "natural",
+          "fallback": false,
+          "cmp": true
+        }
+      ],
+      "evals": [
+        {
+          "slug": "practice_averse",
+          "day": 1,
+          "topic": "1.1",
+          "dimensions": {
+            "educational_clarity": "FAIL",
+            "mission_sequencing": "FAIL",
+            "workload": "PASS",
+            "cmp_partnership": "PASS",
+            "revision_timing": "PASS",
+            "knowledge_progression": "CONCERN",
+            "confidence_calibration": "PASS",
+            "motivation_to_continue": "CONCERN",
+            "educational_trust": "FAIL"
+          },
+          "finished": false,
+          "reading_verdict": "PASS",
+          "fallback": false,
+          "s1": 1,
+          "s2": 0
+        }
+      ],
+      "revision_attempts": [
+        {
+          "ok": false,
+          "topic": "CA-R1",
+          "user_id": 52,
+          "current": null,
+          "coverage": null
+        },
+        {
+          "ok": false,
+          "topic": "CB-R1",
+          "user_id": 52,
+          "current": null,
+          "coverage": null
+        }
+      ],
+      "s1": 1,
+      "s2": 3
+    },
+    {
+      "slug": "revision_averse",
+      "ok_login": true,
+      "days": [
+        {
+          "topic": "1.1",
+          "finished": false,
+          "started": true,
+          "access": "natural",
+          "fallback": false,
+          "cmp": true
+        }
+      ],
+      "evals": [
+        {
+          "slug": "revision_averse",
+          "day": 1,
+          "topic": "1.1",
+          "dimensions": {
+            "educational_clarity": "FAIL",
+            "mission_sequencing": "FAIL",
+            "workload": "PASS",
+            "cmp_partnership": "PASS",
+            "revision_timing": "PASS",
+            "knowledge_progression": "CONCERN",
+            "confidence_calibration": "PASS",
+            "motivation_to_continue": "CONCERN",
+            "educational_trust": "FAIL"
+          },
+          "finished": false,
+          "reading_verdict": "PASS",
+          "fallback": false,
+          "s1": 1,
+          "s2": 0
+        }
+      ],
+      "revision_attempts": [
+        {
+          "ok": false,
+          "topic": "CA-R1",
+          "user_id": 53,
+          "current": null,
+          "coverage": null
+        },
+        {
+          "ok": false,
+          "topic": "CB-R1",
+          "user_id": 53,
+          "current": null,
+          "coverage": null
+        }
+      ],
+      "s1": 1,
+      "s2": 3
+    }
+  ]
+}

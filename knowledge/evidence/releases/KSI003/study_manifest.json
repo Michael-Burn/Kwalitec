@@ -1,0 +1,51 @@
+{
+  "programme": "KSI-003",
+  "title": "Stage 1 Educational Effectiveness Study",
+  "status": "STUDY_ATTEMPTED_EVIDENCE_INSUFFICIENT_AWAITING_FOUNDER_REVIEW",
+  "opened_date": "2026-08-04",
+  "assessment_date": "2026-08-04",
+  "protocol_id": "KSI-002",
+  "protocol_version": "1.0",
+  "sap_id": "KSI002_STATISTICAL_ANALYSIS_PLAN",
+  "sap_version": "1.0",
+  "sap_amended": false,
+  "claim_window": "W-PROD",
+  "flag_matrix": {
+    "twin_cutovers": "OFF",
+    "personalisation": "OFF",
+    "feedback_analytics_pilot": "OFF",
+    "measurement_path": "C2_manual_exploratory"
+  },
+  "design_class": {
+    "population": "mixed_external_required",
+    "timing": "prospective",
+    "temporal": "longitudinal_min_4_weeks",
+    "assignment": "observational_cohort"
+  },
+  "enrollment": {
+    "itt_accepted": 0,
+    "activated": 0,
+    "active_evaluable": 0,
+    "interview": 0,
+    "per_protocol": 0,
+    "selected_invite_pending": 3,
+    "stage1_minimum_accepted": 5,
+    "stage1_target": "5-10"
+  },
+  "primary_endpoints": {
+    "E1_M6": "Unavailable",
+    "E2_M4": "Unavailable",
+    "E3_final_test_yes": "Unavailable",
+    "E4_preparedness": "Unavailable",
+    "E5_recommendation_follow_through": "Unavailable",
+    "E6_validated_ksi_rescore": "REFUSED_HOLD_PRIOR_64"
+  },
+  "effectiveness_verdict": "NO-GO_PENDING_EVIDENCE",
+  "g1_9": "FAIL",
+  "validated_ksi": 64,
+  "new_validated_ksi_published": false,
+  "version_1_production_ready": false,
+  "application_code_changed": false,
+  "protocol_modified": false,
+  "ksi004_started": false
+}

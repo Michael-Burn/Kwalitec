@@ -1,0 +1,17 @@
+{
+  "day_index": 419,
+  "expected_day": "CZ-D1",
+  "expected_package_id": "CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION",
+  "finished": false,
+  "reading": null,
+  "checklist": {},
+  "tomorrow_preview": {},
+  "verdict": "FAIL",
+  "home": {
+    "title_guess": null,
+    "day_complete": false,
+    "has_start": false,
+    "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Today&#39;s Mission A session will be ready when today&#39;s focus is available. Choose Exam Progress Subject CS1 (CS1) Progress 67% complete Exam countdown 200 days until exam Tomorrow Sampling distribution of a statistic (2.6.2) 2 h 30 min Today you described random sample"
+  },
+  "error": "no_startable_mission"
+}

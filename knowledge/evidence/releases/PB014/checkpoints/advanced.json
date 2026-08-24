@@ -1,0 +1,128 @@
+{
+  "programme": "PB-014",
+  "persona": "advanced",
+  "email": "pb014.xi.advanced.1785742269@example.com",
+  "password_file": "/tmp/pb014/accounts/shared_pass.txt",
+  "phase": "xi",
+  "last_transit_verified": "CN-R1",
+  "last_certified_day": "CX-R1",
+  "certified_trajectory": [
+    {
+      "day": "CX-D1",
+      "package_id": "CS1-EP001-PKG-CX-4.2-EXPONENTIAL-FAMILY",
+      "confidence_level": "HIGH",
+      "score_over_9": 9,
+      "dimensions": {
+        "mission_clarity": "PASS",
+        "cmp_partnership": "PASS",
+        "educational_confidence": "PASS",
+        "session_completion": "PASS",
+        "reflection_quality": "PASS",
+        "transition_quality": "PASS",
+        "tomorrow_confidence": "PASS",
+        "trust_retention": "PASS",
+        "educational_consistency": "PASS"
+      },
+      "programme_metrics": {
+        "recommendation_consistency": "PASS",
+        "weak_area_identification": "PASS",
+        "mission_sequencing": "PASS",
+        "syllabus_continuity": "PASS",
+        "confidence_calibration": "PASS",
+        "explanation_usefulness": "PASS"
+      },
+      "residuals": [],
+      "chrome_residual": false,
+      "revision_q6_residual": false,
+      "evidence_audit": "/Users/kwalitec/Developer/kwalitec/knowledge/evidence/releases/PB014/audits/advanced/day32_CX-D1.json",
+      "completed_at": "2026-08-03T10:53:18.560365+00:00"
+    },
+    {
+      "day": "CX-D2",
+      "score_over_9": 9,
+      "confidence_level": "HIGH",
+      "completed_at": "2026-08-03T11:14:55.790548+00:00",
+      "from_log_only": true
+    },
+    {
+      "day": "CX-D3",
+      "score_over_9": 9,
+      "confidence_level": "HIGH",
+      "completed_at": "2026-08-03T11:14:55.790551+00:00",
+      "from_log_only": true
+    },
+    {
+      "day": "CX-D4",
+      "score_over_9": 9,
+      "confidence_level": "HIGH",
+      "completed_at": "2026-08-03T11:14:55.790553+00:00",
+      "from_log_only": true
+    },
+    {
+      "day": "CX-D5",
+      "score_over_9": 9,
+      "confidence_level": "HIGH",
+      "completed_at": "2026-08-03T11:14:55.790554+00:00",
+      "from_log_only": true
+    },
+    {
+      "day": "CX-D6",
+      "score_over_9": 9,
+      "confidence_level": "HIGH",
+      "completed_at": "2026-08-03T11:17:35.344177+00:00",
+      "from_log_only": true
+    },
+    {
+      "day": "CX-D7",
+      "score_over_9": 9,
+      "confidence_level": "HIGH",
+      "completed_at": "2026-08-03T11:21:36.517148+00:00",
+      "from_log_only": true
+    },
+    {
+      "day": "CX-D8",
+      "score_over_9": 9,
+      "confidence_level": "HIGH",
+      "completed_at": "2026-08-03T11:25:37.571670+00:00",
+      "from_log_only": true
+    },
+    {
+      "day": "CX-D9",
+      "score_over_9": 9,
+      "confidence_level": "HIGH",
+      "completed_at": "2026-08-03T11:29:38.756182+00:00",
+      "from_log_only": true
+    },
+    {
+      "day": "CX-D10",
+      "score_over_9": 9,
+      "confidence_level": "HIGH",
+      "completed_at": "2026-08-03T11:33:39.955358+00:00",
+      "from_log_only": true
+    },
+    {
+      "day": "CX-R1",
+      "score_over_9": 9,
+      "confidence_level": "HIGH",
+      "completed_at": "2026-08-03T11:37:41.067960+00:00",
+      "from_log_only": true
+    }
+  ],
+  "certified_days_complete": [
+    "CX-D1",
+    "CX-D2",
+    "CX-D3",
+    "CX-D4",
+    "CX-D5",
+    "CX-D6",
+    "CX-D7",
+    "CX-D8",
+    "CX-D9",
+    "CX-D10",
+    "CX-R1"
+  ],
+  "remaining_xi_days": [],
+  "operational_notes": [],
+  "updated_at": "2026-08-03T11:37:41.067971+00:00",
+  "status": "complete"
+}

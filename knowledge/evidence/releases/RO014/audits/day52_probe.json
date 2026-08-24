@@ -1,0 +1,33 @@
+{
+  "day_index": 52,
+  "expected_day": "CP-D1",
+  "expected_package_id": "CS1-EP001-PKG-CP-2.1-PROB-QUANTILES",
+  "finished": true,
+  "checklist": {
+    "CMP_reference_present": true,
+    "Educational_purpose_clear": true,
+    "Reading_focus_clear": true,
+    "Ignore_guidance_present": true,
+    "Stop_condition_explicit": true,
+    "Immediate_next_activity_named": true,
+    "Not_fallback_shell": true,
+    "Matches_certified_snippets": true
+  },
+  "tomorrow_preview": {
+    "next_topic_code": true,
+    "continuity_fragment": true,
+    "student_facing_fragment": false
+  },
+  "verdict": "PASS",
+  "home": {
+    "title_guess": "Name why actuarial data analysis exists",
+    "day_complete": false,
+    "has_start": true,
+    "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Name why actuarial data analysis exists CS1 (CS1) 1 h Study 1.1 \u2014 Describe the purpose and function of data analysis After this \u00b7 A four-part purpose map you can defend closed-book \u2014 Study Progress for today&#39;s Session, not m"
+  },
+  "session_id": "lsr-f44930d84c6d",
+  "reflection_ok": true,
+  "tomorrow_chrome_matches_approved": true,
+  "package_path_ok": true,
+  "chrome_residual": false
+}

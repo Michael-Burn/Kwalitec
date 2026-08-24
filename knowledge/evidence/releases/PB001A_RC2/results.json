@@ -1,0 +1,106 @@
+{
+  "programme": "PB-001A",
+  "date": "2026-08-01",
+  "host": "https://kwalitec.onrender.com",
+  "live_commit": "0d3fc72137ba0ea51d1baa522c52aa526cf04438",
+  "fingerprint": "PASS",
+  "ec001_content_deployed": false,
+  "ec001_content_note": "EC-001 remediated reading_guidance exists only in local working tree (uncommitted). LIVE tip serves pre-EC-001 4.2 package.",
+  "live_published_inventory": [
+    {
+      "package_id": "CS1-EA005-PKG-4.2-GLM-STRUCTURE",
+      "status": "publication_approved",
+      "path": "app/curriculum/data/educational_packages/cs1/4.2-glm-structure-ea006.json"
+    }
+  ],
+  "packages": [
+    {
+      "package_id": "CS1-EA005-PKG-4.2-GLM-STRUCTURE",
+      "live_published": true,
+      "student": "pb001a.study42c.*",
+      "path": "Enrol CS1 \u2192 ops seed_declared_position(4.2) via existing Runtime API \u2192 Start Session \u2192 Reading",
+      "html": "html/study42_reading.html",
+      "delivery_channel": "publication_approved educational package (not fallback)",
+      "matches_live_tip_package": true,
+      "matches_ec001_certified": false,
+      "q_bar_vs_ec001": {
+        "Q1": "PASS",
+        "Q2": "FAIL",
+        "Q3": "PASS",
+        "Q4": "PASS",
+        "Q5": "PASS",
+        "Q6": "FAIL"
+      },
+      "verdict": "FAIL",
+      "verdict_reason": "Tip package delivered to student, but EC-001 certified remediation is not on LIVE; Q2/Q6 fail EC-001 bar."
+    },
+    {
+      "package_id": "CS1-EP001-PKG-1.1-PURPOSE-FUNCTION",
+      "live_published": false,
+      "student": "pb001a.study11.*",
+      "path": "Natural enrolment Study 1.1 \u2192 Reading",
+      "html": "html/study11_reading.html",
+      "delivery_channel": "fallback LO shell",
+      "matches_ec001_certified": false,
+      "q_bar_vs_ec001": {
+        "Q1": "FAIL",
+        "Q2": "FAIL",
+        "Q3": "FAIL",
+        "Q4": "FAIL",
+        "Q5": "FAIL",
+        "Q6": "FAIL"
+      },
+      "verdict": "FAIL",
+      "verdict_reason": "Catalogue package not in live loader; student sees empty/fallback Reading shell."
+    },
+    {
+      "package_id": "CS1-EP001-PKG-1.2-EDA-SUMMARIES",
+      "live_published": false,
+      "verdict": "FAIL",
+      "verdict_reason": "Not in publication_approved loader; not student-delivered."
+    },
+    {
+      "package_id": "CS1-EP001-PKG-1.2-EDA-ASSOCIATION",
+      "live_published": false,
+      "verdict": "FAIL",
+      "verdict_reason": "Not in publication_approved loader; not student-delivered."
+    },
+    {
+      "package_id": "CS1-EP001-PKG-REV-PURPOSE-EDA",
+      "live_published": false,
+      "verdict": "FAIL",
+      "verdict_reason": "Not in publication_approved loader; not student-delivered."
+    },
+    {
+      "package_id": "CS1-CS1002-PKG-1.2-PCA",
+      "live_published": false,
+      "verdict": "FAIL",
+      "verdict_reason": "Not in publication_approved loader; not student-delivered."
+    },
+    {
+      "package_id": "CS1-CS1002-PKG-2.1-DISCRETE",
+      "live_published": false,
+      "verdict": "FAIL",
+      "verdict_reason": "Not in publication_approved loader; not student-delivered."
+    },
+    {
+      "package_id": "CS1-CS1002-PKG-2.1-CONTINUOUS",
+      "live_published": false,
+      "verdict": "FAIL",
+      "verdict_reason": "Not in publication_approved loader; not student-delivered."
+    },
+    {
+      "package_id": "CS1-CS1002-PKG-REV-PCA-DISTRIBUTIONS",
+      "live_published": false,
+      "verdict": "FAIL",
+      "verdict_reason": "Not in publication_approved loader; not student-delivered."
+    }
+  ],
+  "control_observation": {
+    "topic": "4.1",
+    "html": "html/study41_reading_fallback.html",
+    "note": "Adjacent topic without publication_approved package still serves fallback shell \u2014 confirms loader specificity."
+  },
+  "f1_f2_closable": false,
+  "f1_f2_reason": "Study 1.1 still fallback; catalogue EC-001 packages not LIVE-published; EC-001 remediated 4.2 copy not deployed."
+}

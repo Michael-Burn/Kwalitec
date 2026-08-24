@@ -1,0 +1,89 @@
+{
+  "day_index": 13,
+  "expected_day": "CL-D3",
+  "expected_package_id": "CS1-EP001-PKG-3.2-CI-GIVEN-SAMPLING-DISTRIBUTION",
+  "finished": false,
+  "reading": {
+    "audit": {
+      "verdict": "FAIL",
+      "is_fallback_shell": true,
+      "q_checks": {},
+      "error": "no_reading"
+    },
+    "checklist": {
+      "CMP_reference_present": false,
+      "Educational_purpose_clear": false,
+      "Reading_focus_clear": false,
+      "Ignore_guidance_present": false,
+      "Stop_condition_explicit": false,
+      "Immediate_next_activity_named": false,
+      "Not_fallback_shell": false,
+      "Matches_certified_snippets": false
+    },
+    "fidelity": {
+      "lead_line": false,
+      "exit_line": false,
+      "return_cue": false,
+      "open_point": false,
+      "stop_condition": false,
+      "focus_q_0": false,
+      "focus_q_1": false,
+      "catalogue_body_match": true,
+      "catalogue_divergences": [],
+      "fidelity_pass": false
+    },
+    "package_id": "CS1-EP001-PKG-3.2-CI-GIVEN-SAMPLING-DISTRIBUTION",
+    "campaign_day": "CL-D3",
+    "html": null
+  },
+  "checklist": {
+    "CMP_reference_present": false,
+    "Educational_purpose_clear": false,
+    "Reading_focus_clear": false,
+    "Ignore_guidance_present": false,
+    "Stop_condition_explicit": false,
+    "Immediate_next_activity_named": false,
+    "Not_fallback_shell": false,
+    "Matches_certified_snippets": false
+  },
+  "tomorrow_preview": {
+    "next_topic_code": false,
+    "continuity_fragment": false,
+    "student_facing_fragment": false,
+    "chrome_text_sample": "<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System\"",
+    "package_continuity_line": "Today you formed a CI from a given sampling distribution; tomorrow continues 3.2 at Normal mean and variance intervals.",
+    "package_student_facing": "Tomorrow: Normal mean and variance CIs (3.2.4). Optional light prep: skim 3.2.4 headings \u2014 titles only tonight.",
+    "chrome_matches_package_continuity": false
+  },
+  "verdict": "FAIL",
+  "home": {
+    "title_guess": "Construct a confidence interval for an unknown parameter from a random sample",
+    "day_complete": false,
+    "has_start": true,
+    "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Continue Session Construct a confidence interval for an unknown parameter from a random sample CS1 (CS1) 1 h Study 3.2 \u2014 Calculate confidence intervals and prediction intervals After this \u00b7 Study Progress for parameter CI \u2014 not Topic Complete for 3.2.2. Continue Progress P"
+  },
+  "session_id": "lsr-021500ab55e7",
+  "resumed_continue_session": true,
+  "educational_fidelity": {
+    "lead_line": false,
+    "exit_line": false,
+    "return_cue": false,
+    "open_point": false,
+    "stop_condition": false,
+    "focus_q_0": false,
+    "focus_q_1": false,
+    "catalogue_body_match": true,
+    "catalogue_divergences": [],
+    "fidelity_pass": false
+  },
+  "reflection_ok": false,
+  "tomorrow_chrome_matches_approved": false,
+  "package_path_ok": false,
+  "chrome_residual": true,
+  "theta_focus": false,
+  "eta_focus": false,
+  "zeta_focus": false,
+  "kappa_focus": false,
+  "lambda_focus": true,
+  "epsilon_focus": false
+}

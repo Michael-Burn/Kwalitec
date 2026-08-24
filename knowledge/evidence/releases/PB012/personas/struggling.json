@@ -1,0 +1,373 @@
+{
+  "slug": "struggling",
+  "label": "Struggling candidate",
+  "email": "pb012.mu.struggling.1785697095@example.com",
+  "persona_profile": {
+    "exam_history": "never",
+    "confidence": "1",
+    "answer_style": "weak"
+  },
+  "verdict": "PASS",
+  "summary": {
+    "certified_days_scored": 6,
+    "certified_all_pass": true,
+    "avg_score_over_9": 9.0,
+    "trajectory": [
+      {
+        "day": "CM-D1",
+        "package_id": "CS1-EP001-PKG-3.3-HYPOTHESIS-CONCEPTS",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [],
+        "chrome_residual": false,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CM-D2",
+        "package_id": "CS1-EP001-PKG-3.3-BASIC-TESTS",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [],
+        "chrome_residual": false,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CM-D3",
+        "package_id": "CS1-EP001-PKG-3.3-PERMUTATION-TESTS",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [],
+        "chrome_residual": false,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CM-D4",
+        "package_id": "CS1-EP001-PKG-3.3-CHI-SQUARE-GOF",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [],
+        "chrome_residual": false,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CM-D5",
+        "package_id": "CS1-EP001-PKG-3.3-CONTINGENCY-INDEPENDENCE",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [],
+        "chrome_residual": false,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CM-R1",
+        "package_id": "CS1-EP001-PKG-REV-HYPOTHESIS-TESTING",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [
+          "RO10-R2"
+        ],
+        "chrome_residual": true,
+        "revision_q6_residual": true
+      }
+    ],
+    "stable_high": true,
+    "programme_metrics": {
+      "recommendation_consistency": {
+        "pass_count": 6,
+        "total": 6,
+        "result": "PASS"
+      },
+      "weak_area_identification": {
+        "pass_count": 6,
+        "total": 6,
+        "result": "PASS"
+      },
+      "mission_sequencing": {
+        "pass_count": 6,
+        "total": 6,
+        "result": "PASS"
+      },
+      "syllabus_continuity": {
+        "pass_count": 6,
+        "total": 6,
+        "result": "PASS"
+      },
+      "confidence_calibration": {
+        "pass_count": 6,
+        "total": 6,
+        "result": "PASS"
+      },
+      "explanation_usefulness": {
+        "pass_count": 6,
+        "total": 6,
+        "result": "PASS"
+      }
+    },
+    "transit_observations": [
+      "CK-D1",
+      "CK-D2",
+      "CK-D3",
+      "CK-D4",
+      "CK-D5",
+      "CK-D6",
+      "CK-R1",
+      "CL-D1",
+      "CL-D2",
+      "CL-D3",
+      "CL-D4",
+      "CL-D5",
+      "CL-D6",
+      "CL-D7",
+      "CL-D8",
+      "CL-R1"
+    ],
+    "defects": [
+      {
+        "severity": "Minor",
+        "id": "PB12-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CK-D1 before/during Mu entry (RO10-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO10-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB12-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CK-D2 before/during Mu entry (RO10-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO10-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB12-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CK-D3 before/during Mu entry (RO10-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO10-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB12-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CK-D4 before/during Mu entry (RO10-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO10-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB12-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CK-D5 before/during Mu entry (RO10-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO10-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB12-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CK-D6 before/during Mu entry (RO10-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO10-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB12-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CK-R1 before/during Mu entry (RO10-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO10-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB12-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CL-D1 before/during Mu entry (RO10-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO10-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB12-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CL-D2 before/during Mu entry (RO10-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO10-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB12-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CL-D3 before/during Mu entry (RO10-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO10-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB12-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CL-D4 before/during Mu entry (RO10-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO10-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB12-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CL-D5 before/during Mu entry (RO10-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO10-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB12-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CL-D6 before/during Mu entry (RO10-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO10-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB12-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CL-D7 before/during Mu entry (RO10-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO10-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB12-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CL-D8 before/during Mu entry (RO10-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO10-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB12-MINOR-LABEL",
+        "finding": "Ops transit / label desync sitting observed as CL-R1 before/during Mu entry (RO10-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO10-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB12-MINOR-CHROME",
+        "finding": "Tomorrow chrome residual on CM-R1 (RO10-R3 class)",
+        "ef_class": "PI",
+        "residual": "RO10-R3"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB12-MINOR-Q6",
+        "finding": "Revision Q6 Learning-oriented residual on CM-R1 (RO10-R2 class)",
+        "ef_class": "PI",
+        "residual": "RO10-R2"
+      }
+    ],
+    "defect_counts": {
+      "Critical": 0,
+      "Major": 0,
+      "Minor": 18,
+      "Cosmetic": 0
+    }
+  }
+}

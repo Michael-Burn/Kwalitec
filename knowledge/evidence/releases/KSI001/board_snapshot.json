@@ -1,0 +1,36 @@
+{
+  "programme": "KSI-001",
+  "date": "2026-08-04",
+  "type": "validation_planning",
+  "product_changes": false,
+  "validated_ksi": 64,
+  "target_ksi": 80,
+  "gap": 16,
+  "confidence": "Medium",
+  "assessment_chain_date": "2026-07-26",
+  "categories": {
+    "K1": 72,
+    "K2": 68,
+    "K3": 65,
+    "K4": 55,
+    "K5": 63,
+    "K6": 50,
+    "K7": 60,
+    "K8": 72
+  },
+  "gate_g1": "FAIL",
+  "g1_1": "FAIL",
+  "g1_9": "FAIL",
+  "g1_7": "HOLD",
+  "effectiveness_verdict": "NO-GO / PENDING EVIDENCE",
+  "external_n": 0,
+  "version_1_release_recommended": false,
+  "authority_sources": [
+    "VERSION_1_RELEASE_FRAMEWORK.md",
+    "P002_1_RELEASE_READINESS_REPORT.md",
+    "PB017_CONFIDENCE_REPORT.md",
+    "EP-008.1B",
+    "EP-008.3B",
+    "EP-007.3"
+  ]
+}

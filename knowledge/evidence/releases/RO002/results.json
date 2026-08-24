@@ -1,0 +1,3238 @@
+{
+  "programme": "RO-002",
+  "host": "https://kwalitec.onrender.com",
+  "expected_commit": "b99b0a8f445d96ea9d700dc8f6276898460562b6",
+  "live_health": {
+    "build_date": "2026-08-01",
+    "build_number": "local",
+    "commit": "b99b0a8f445d96ea9d700dc8f6276898460562b6",
+    "components": {
+      "database": {
+        "latency_ms": 2.8,
+        "name": "database",
+        "status": "ok"
+      },
+      "instance_storage": {
+        "meta": {
+          "path": "/opt/render/project/src/instance"
+        },
+        "name": "instance_storage",
+        "status": "ok"
+      },
+      "migrations": {
+        "meta": {
+          "current": "202607310002",
+          "head": "202607310002"
+        },
+        "name": "migrations",
+        "status": "ok"
+      },
+      "queue": {
+        "detail": "manual automation runner (no external broker)",
+        "meta": {
+          "broker": "none",
+          "runner": "app.automation"
+        },
+        "name": "queue",
+        "status": "ok"
+      }
+    },
+    "database": "connected",
+    "environment": "production",
+    "status": "ok",
+    "timestamp": "2026-08-01T16:34:16.230633+00:00",
+    "version": "2.0.0-beta.1"
+  },
+  "email": "ro002.delta.1785601999@example.com",
+  "days": [
+    {
+      "day_index": 1,
+      "expected_day": "CD-D1",
+      "expected_package_id": "CS1-EP001-PKG-4.1-RESPONSE-EXPLANATORY",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.1.1 skill. Stop at the stop condition; do not swallow the next LO.",
+          "body_sample": " Topic: Understand and use linear regression models (4.1) Mission: Name response and explanatory variables with intent Purpose of this reading: use the CMP to extract Syllabus 4.1.1 skill. Stop at the stop condition; do not swallow the next LO. Open: CMP \u00b7 Syllabus 4.1.1 response and explanatory variables Stop: Through the CMP treatment of Syllabus 4.1.1 (stop before simple/multiple model forms 4.1.2) Focus questions: \u2022 What is the core move of Syllabus 4.1.1? \u2022 Where does the CMP give a worked ",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.1.1 response and explanatory variables. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.1",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 318
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-4.1-RESPONSE-EXPLANATORY",
+        "campaign_day": "CD-D1",
+        "html": "/tmp/ro002/evidence/day1_CD-D1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you named response and explanatory roles; tomorrow continues 4.1 at simple vs multiple linear model forms \u2014 not le",
+        "package_student_facing": "Tomorrow: simple and multiple linear regression models (4.1.2). Optional light prep: skim 4.1.2 headings \u2014 titles only t",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name response and explanatory variables with intent",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name response and explanatory variables with intent CS1 (CS1) 1 h Study 4.1 \u2014 Understand and use linear regression models After this \u00b7 Study Progress for variable roles \u2014 not Topic Complete for 4.1.2\u20134.1.5. Start Today&#39;s S"
+      },
+      "session_id": "lsr-98411db107ce",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "delta_focus": true
+    },
+    {
+      "day_index": 2,
+      "expected_day": "CD-D2",
+      "expected_package_id": "CS1-EP001-PKG-4.1-SIMPLE-MULTIPLE",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.1.2 skill. Stop at the stop condition; do not swallow the next LO.",
+          "body_sample": " Topic: Understand and use linear regression models (4.1) Mission: Distinguish simple and multiple linear models Purpose of this reading: use the CMP to extract Syllabus 4.1.2 skill. Stop at the stop condition; do not swallow the next LO. Open: CMP \u00b7 Syllabus 4.1.2 simple and multiple linear regression models Stop: Through CMP 4.1.2 (stop before least squares estimation 4.1.3) Focus questions: \u2022 What is the core move of Syllabus 4.1.2? \u2022 Where does the CMP give a worked cue you must attempt befo",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.1.2 simple and multiple linear regression models. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.1.2 (stop before ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 308
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-4.1-SIMPLE-MULTIPLE",
+        "campaign_day": "CD-D2",
+        "html": "/tmp/ro002/evidence/day2_CD-D2_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you stated simple and multiple LM forms; tomorrow continues at least squares estimates for slope and intercept in ",
+        "package_student_facing": "Tomorrow: least squares slope and intercept (4.1.3). Optional light prep: skim 4.1.3 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name response and explanatory variables with intent",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name response and explanatory variables with intent CS1 (CS1) 1 h Study 4.1 \u2014 Understand and use linear regression models After this \u00b7 Study Progress for variable roles \u2014 not Topic Complete for 4.1.2\u20134.1.5. Start Today&#39;s S"
+      },
+      "session_id": "lsr-73a4a697e22e",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "delta_focus": true
+    },
+    {
+      "day_index": 3,
+      "expected_day": "CD-D3",
+      "expected_package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.1.3 skill. Stop at the stop condition; do not swallow the next LO.",
+          "body_sample": " Topic: Understand and use linear regression models (4.1) Mission: Obtain least squares slope and intercept Purpose of this reading: use the CMP to extract Syllabus 4.1.3 skill. Stop at the stop condition; do not swallow the next LO. Open: CMP \u00b7 Syllabus 4.1.3 least squares slope and intercept Stop: Through CMP 4.1.3 (stop before software-fit primary 4.1.4) Focus questions: \u2022 What is the core move of Syllabus 4.1.3? \u2022 Where does the CMP give a worked cue you must attempt before reveal? \u2022 What mi",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.1.3 least squares slope and intercept. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.1.3 (stop before software-fi",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 303
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
+        "campaign_day": "CD-D3",
+        "html": "/tmp/ro002/evidence/day3_CD-D3_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you practised OLS slope/intercept; tomorrow continues at software fit, inference, prediction, and residual checks ",
+        "package_student_facing": "Tomorrow: fit linear regression with software and interpret output (4.1.4). Optional light prep: skim 4.1.4 headings \u2014 t",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name response and explanatory variables with intent",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name response and explanatory variables with intent CS1 (CS1) 1 h Study 4.1 \u2014 Understand and use linear regression models After this \u00b7 Study Progress for variable roles \u2014 not Topic Complete for 4.1.2\u20134.1.5. Start Today&#39;s S"
+      },
+      "session_id": "lsr-a91c837fc5ed",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "delta_focus": true
+    },
+    {
+      "day_index": 4,
+      "expected_day": "CD-D4",
+      "expected_package_id": "CS1-EP001-PKG-4.1-SOFTWARE-INFERENCE",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.1.4 skill. Stop at the stop condition; do not swallow the next LO.",
+          "body_sample": " Topic: Understand and use linear regression models (4.1) Mission: Fit, infer, predict, and check residuals with software Purpose of this reading: use the CMP to extract Syllabus 4.1.4 skill. Stop at the stop condition; do not swallow the next LO. Open: CMP \u00b7 Syllabus 4.1.4 software fit, inference, prediction, residuals Stop: Through CMP 4.1.4 (stop before variable-selection primary 4.1.5) Focus questions: \u2022 What is the core move of Syllabus 4.1.4? \u2022 Where does the CMP give a worked cue you must",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.1.4 software fit, inference, prediction, residuals. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.1.4 (stop befor",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 304
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-4.1-SOFTWARE-INFERENCE",
+        "campaign_day": "CD-D4",
+        "html": "/tmp/ro002/evidence/day4_CD-D4_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you practised software fit/inference/prediction/residuals; tomorrow continues at model-fit measures to select expl",
+        "package_student_facing": "Tomorrow: measures of model fit for variable selection (4.1.5). Optional light prep: skim 4.1.5 headings \u2014 titles only t",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name response and explanatory variables with intent",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name response and explanatory variables with intent CS1 (CS1) 1 h Study 4.1 \u2014 Understand and use linear regression models After this \u00b7 Study Progress for variable roles \u2014 not Topic Complete for 4.1.2\u20134.1.5. Start Today&#39;s S"
+      },
+      "session_id": "lsr-72239c53f3ba",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "delta_focus": true
+    },
+    {
+      "day_index": 5,
+      "expected_day": "CD-D5",
+      "expected_package_id": "CS1-EP001-PKG-4.1-VARIABLE-SELECTION",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.1.5 skill. Stop at the stop condition; do not swallow the next LO.",
+          "body_sample": " Topic: Understand and use linear regression models (4.1) Mission: Select explanatory variables using model-fit measures Purpose of this reading: use the CMP to extract Syllabus 4.1.5 skill. Stop at the stop condition; do not swallow the next LO. Open: CMP \u00b7 Syllabus 4.1.5 model-fit measures and variable selection Stop: Through CMP 4.1.5 (stop before GLM 4.2; stop before Revision content as Learning) Focus questions: \u2022 What is the core move of Syllabus 4.1.5? \u2022 Where does the CMP give a worked c",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.1.5 model-fit measures and variable selection. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.1.5 (stop before GLM",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 312
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-4.1-VARIABLE-SELECTION",
+        "campaign_day": "CD-D5",
+        "html": "/tmp/ro002/evidence/day5_CD-D5_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you practised variable selection with fit measures; tomorrow is Revision mode returning to 4.1.1\u20134.1.5 under close",
+        "package_student_facing": "Tomorrow: Campaign Delta Revision CD-R1 \u2014 retrieve classical linear models (4.1). Optional: note your weakest 4.1 link t",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name response and explanatory variables with intent",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name response and explanatory variables with intent CS1 (CS1) 1 h Study 4.1 \u2014 Understand and use linear regression models After this \u00b7 Study Progress for variable roles \u2014 not Topic Complete for 4.1.2\u20134.1.5. Start Today&#39;s S"
+      },
+      "session_id": "lsr-9ab87dae1ce5",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "delta_focus": true
+    },
+    {
+      "day_index": 6,
+      "expected_day": "CD-R1",
+      "expected_package_id": "CS1-EP001-PKG-REV-LINEAR-MODELS",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this revision stage: strengthen retrieval without opening a new first-pass chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus.",
+          "body_sample": " Topic: Retrieve classical linear models (4.1) (CD-R1) Mission: Retrieve classical linear models (4.1) Purpose of this revision stage: strengthen retrieval without opening a new first-pass chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block. Stop: After revision checks and Reflection \u2014 do not begin out-of-scope first-pass LOs Focus questions: \u2022 Can you r",
+          "support_sample": "Begin closed-book retrieval. Reopen CMP only at a failed locus. After checks, complete Reflection. What did you extract from the CMP setup? Submit Answer ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": false,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": false
+          },
+          "ec001_markers": {
+            "Purpose of this reading": false,
+            "Open your CMP": false,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": false,
+            "Knowledge Checks": false
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "FAIL",
+          "word_count_body": 209
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": false,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-REV-LINEAR-MODELS",
+        "campaign_day": "CD-R1",
+        "html": "/tmp/ro002/evidence/day6_CD-R1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": false,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you retrieved classical LM; tomorrow opens GLM at exponential-family responses (4.2.1) \u2014 absorbing EA-006 structur",
+        "package_student_facing": "Tomorrow: GLM exponential-family responses (4.2.1). Optional light prep: skim 4.2.1 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name response and explanatory variables with intent",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Name response and explanatory variables with intent CS1 (CS1) 1 h Study 4.1 \u2014 Understand and use linear regression models After this \u00b7 Study Progress for variable roles \u2014 not Topic Complete for 4.1.2\u20134.1.5. Start Today&#39;s S"
+      },
+      "session_id": "lsr-e919fad6b579",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "delta_focus": true,
+      "revision_q6_residual": true,
+      "verdict_note": "Revision-day Q6 Immediate_next_activity_named residual (Learning-oriented checklist); package path educational substance PASS"
+    },
+    {
+      "day_index": 7,
+      "expected_day": "CD-D6",
+      "expected_package_id": "CS1-EP001-PKG-4.2-EXPONENTIAL-FAMILY",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.2.1 skill. Stop at the stop condition; do not swallow the next LO.",
+          "body_sample": " Topic: Understand and use generalised linear models (4.2) Mission: Place GLM responses in the exponential family Purpose of this reading: use the CMP to extract Syllabus 4.2.1 skill. Stop at the stop condition; do not swallow the next LO. Open: CMP \u00b7 Syllabus 4.2.1 exponential family responses Stop: Through CMP 4.2.1 (stop before mean/variance primary 4.2.2) Focus questions: \u2022 What is the core move of Syllabus 4.2.1? \u2022 Where does the CMP give a worked cue you must attempt before reveal? \u2022 What ",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.1 exponential family responses. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.1 (stop before mean/variance pr",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 302
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true,
+          "Orphan_4_2_absent": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-4.2-EXPONENTIAL-FAMILY",
+        "campaign_day": "CD-D6",
+        "html": "/tmp/ro002/evidence/day7_CD-D6_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true,
+        "Orphan_4_2_absent": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you placed exponential-family responses; tomorrow continues at mean/variance/scale language for those families.",
+        "package_student_facing": "Tomorrow: mean, variance, variance function and scale for GLM families (4.2.2). Optional light prep: skim 4.2.2 headings",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Place GLM responses in the exponential family",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Place GLM responses in the exponential family CS1 (CS1) 1 h Study 4.2 \u2014 Understand and use generalised linear models After this \u00b7 Study Progress for family placement \u2014 not full link/deviance mastery today. Start Today&#39;s Se"
+      },
+      "session_id": "lsr-ed89a63ca1aa",
+      "orphan_absent": true,
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "delta_focus": true
+    },
+    {
+      "day_index": 8,
+      "expected_day": "CD-D7",
+      "expected_package_id": "CS1-EP001-PKG-4.2-MEAN-VARIANCE",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.2.2 skill. Stop at the stop condition; do not swallow the next LO.",
+          "body_sample": " Topic: Understand and use generalised linear models (4.2) Mission: Evaluate mean, variance, variance function and scale Purpose of this reading: use the CMP to extract Syllabus 4.2.2 skill. Stop at the stop condition; do not swallow the next LO. Open: CMP \u00b7 Syllabus 4.2.2 mean, variance, variance function, scale Stop: Through CMP 4.2.2 (stop before link primary 4.2.3) Focus questions: \u2022 What is the core move of Syllabus 4.2.2? \u2022 Where does the CMP give a worked cue you must attempt before revea",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.2 mean, variance, variance function, scale. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.2 (stop before link",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 300
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-4.2-MEAN-VARIANCE",
+        "campaign_day": "CD-D7",
+        "html": "/tmp/ro002/evidence/day8_CD-D7_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you practised mean/variance/scale; tomorrow continues at link and canonical link \u2014 completing the EA-006 structure",
+        "package_student_facing": "Tomorrow: link function and canonical link (4.2.3). Optional light prep: skim 4.2.3 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Place GLM responses in the exponential family",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Place GLM responses in the exponential family CS1 (CS1) 1 h Study 4.2 \u2014 Understand and use generalised linear models After this \u00b7 Study Progress for family placement \u2014 not full link/deviance mastery today. Start Today&#39;s Se"
+      },
+      "session_id": "lsr-9122332b966b",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "delta_focus": true
+    },
+    {
+      "day_index": 9,
+      "expected_day": "CD-D8",
+      "expected_package_id": "CS1-EP001-PKG-4.2-LINK-CANONICAL",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.2.3 skill. Stop at the stop condition; do not swallow the next LO.",
+          "body_sample": " Topic: Understand and use generalised linear models (4.2) Mission: Choose link and canonical link with warrant Purpose of this reading: use the CMP to extract Syllabus 4.2.3 skill. Stop at the stop condition; do not swallow the next LO. Open: CMP \u00b7 Syllabus 4.2.3 link and canonical link (structure centre with 4.2.1\u20134.2.2) Stop: Through first structural worked example with non-identity link / CMP 4.2.3 block Focus questions: \u2022 What is the core move of Syllabus 4.2.3? \u2022 Where does the CMP give a ",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.3 link and canonical link (structure centre with 4.2.1\u20134.2.2). Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through first st",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 321
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-4.2-LINK-CANONICAL",
+        "campaign_day": "CD-D8",
+        "html": "/tmp/ro002/evidence/day9_CD-D8_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you closed GLM structure (family \u2192 \u03b7 \u2192 link); tomorrow continues at factors and interactions inside the linear pre",
+        "package_student_facing": "Tomorrow: variables, factors and interactions (4.2.4). Optional light prep: skim 4.2.4 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Place GLM responses in the exponential family",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Place GLM responses in the exponential family CS1 (CS1) 1 h Study 4.2 \u2014 Understand and use generalised linear models After this \u00b7 Study Progress for family placement \u2014 not full link/deviance mastery today. Start Today&#39;s Se"
+      },
+      "session_id": "lsr-af49a1c4cbe4",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "delta_focus": true
+    },
+    {
+      "day_index": 10,
+      "expected_day": "CD-D9",
+      "expected_package_id": "CS1-EP001-PKG-4.2-FACTORS-INTERACTIONS",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.2.4 skill. Stop at the stop condition; do not swallow the next LO.",
+          "body_sample": " Topic: Understand and use generalised linear models (4.2) Mission: Use variables, factors and interactions in GLMs Purpose of this reading: use the CMP to extract Syllabus 4.2.4 skill. Stop at the stop condition; do not swallow the next LO. Open: CMP \u00b7 Syllabus 4.2.4 variables, factors, interactions Stop: Through CMP 4.2.4 (stop before linear-predictor form primary 4.2.5) Focus questions: \u2022 What is the core move of Syllabus 4.2.4? \u2022 Where does the CMP give a worked cue you must attempt before r",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.4 variables, factors, interactions. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.4 (stop before linear-predi",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 296
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-4.2-FACTORS-INTERACTIONS",
+        "campaign_day": "CD-D9",
+        "html": "/tmp/ro002/evidence/day10_CD-D9_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you practised factors and interactions; tomorrow continues at the form of the linear predictor including polynomia",
+        "package_student_facing": "Tomorrow: definition and form of the linear predictor (4.2.5). Optional light prep: skim 4.2.5 headings \u2014 titles only to",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Place GLM responses in the exponential family",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Place GLM responses in the exponential family CS1 (CS1) 1 h Study 4.2 \u2014 Understand and use generalised linear models After this \u00b7 Study Progress for family placement \u2014 not full link/deviance mastery today. Start Today&#39;s Se"
+      },
+      "session_id": "lsr-1a54fc385d48",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "delta_focus": true
+    },
+    {
+      "day_index": 11,
+      "expected_day": "CD-D10",
+      "expected_package_id": "CS1-EP001-PKG-4.2-LINEAR-PREDICTOR",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.2.5 skill. Stop at the stop condition; do not swallow the next LO.",
+          "body_sample": " Topic: Understand and use generalised linear models (4.2) Mission: Write the linear predictor for simple GLM forms Purpose of this reading: use the CMP to extract Syllabus 4.2.5 skill. Stop at the stop condition; do not swallow the next LO. Open: CMP \u00b7 Syllabus 4.2.5 linear predictor forms Stop: Through CMP 4.2.5 (stop before deviance primary 4.2.6) Focus questions: \u2022 What is the core move of Syllabus 4.2.5? \u2022 Where does the CMP give a worked cue you must attempt before reveal? \u2022 What misconcep",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.5 linear predictor forms. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.5 (stop before deviance primary 4.2.6",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 296
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-4.2-LINEAR-PREDICTOR",
+        "campaign_day": "CD-D10",
+        "html": "/tmp/ro002/evidence/day11_CD-D10_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you wrote linear predictor forms; tomorrow continues at deviance, scaled deviance and parameter estimation.",
+        "package_student_facing": "Tomorrow: deviance, scaled deviance and GLM parameter estimation (4.2.6). Optional light prep: skim 4.2.6 headings \u2014 tit",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Place GLM responses in the exponential family",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Place GLM responses in the exponential family CS1 (CS1) 1 h Study 4.2 \u2014 Understand and use generalised linear models After this \u00b7 Study Progress for family placement \u2014 not full link/deviance mastery today. Start Today&#39;s Se"
+      },
+      "session_id": "lsr-72ef6e2d1667",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "delta_focus": true
+    },
+    {
+      "day_index": 12,
+      "expected_day": "CD-D11",
+      "expected_package_id": "CS1-EP001-PKG-4.2-DEVIANCE-ESTIMATION",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.2.6 skill. Stop at the stop condition; do not swallow the next LO.",
+          "body_sample": " Topic: Understand and use generalised linear models (4.2) Mission: Use deviance and estimate GLM parameters Purpose of this reading: use the CMP to extract Syllabus 4.2.6 skill. Stop at the stop condition; do not swallow the next LO. Open: CMP \u00b7 Syllabus 4.2.6 deviance, scaled deviance, estimation Stop: Through CMP 4.2.6 (stop before model-choice primary 4.2.7) Focus questions: \u2022 What is the core move of Syllabus 4.2.6? \u2022 Where does the CMP give a worked cue you must attempt before reveal? \u2022 Wh",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.6 deviance, scaled deviance, estimation. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.6 (stop before model-c",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 297
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-4.2-DEVIANCE-ESTIMATION",
+        "campaign_day": "CD-D11",
+        "html": "/tmp/ro002/evidence/day12_CD-D11_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you practised deviance and estimation; tomorrow continues at choosing a suitable model using analysis of deviance ",
+        "package_student_facing": "Tomorrow: model choice using analysis of deviance (4.2.7). Optional light prep: skim 4.2.7 headings \u2014 titles only tonigh",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Place GLM responses in the exponential family",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Place GLM responses in the exponential family CS1 (CS1) 1 h Study 4.2 \u2014 Understand and use generalised linear models After this \u00b7 Study Progress for family placement \u2014 not full link/deviance mastery today. Start Today&#39;s Se"
+      },
+      "session_id": "lsr-d2a91b79aa60",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "delta_focus": true
+    },
+    {
+      "day_index": 13,
+      "expected_day": "CD-D12",
+      "expected_package_id": "CS1-EP001-PKG-4.2-MODEL-CHOICE",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.2.7 skill. Stop at the stop condition; do not swallow the next LO.",
+          "body_sample": " Topic: Understand and use generalised linear models (4.2) Mission: Choose a GLM using analysis of deviance Purpose of this reading: use the CMP to extract Syllabus 4.2.7 skill. Stop at the stop condition; do not swallow the next LO. Open: CMP \u00b7 Syllabus 4.2.7 analysis of deviance and parameter significance Stop: Through CMP 4.2.7 (stop before residuals primary 4.2.8) Focus questions: \u2022 What is the core move of Syllabus 4.2.7? \u2022 Where does the CMP give a worked cue you must attempt before reveal",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.7 analysis of deviance and parameter significance. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.7 (stop befo",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 301
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-4.2-MODEL-CHOICE",
+        "campaign_day": "CD-D12",
+        "html": "/tmp/ro002/evidence/day13_CD-D12_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you practised model choice via deviance; tomorrow continues at Pearson and deviance residuals and their use.",
+        "package_student_facing": "Tomorrow: Pearson and deviance residuals (4.2.8). Optional light prep: skim 4.2.8 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Place GLM responses in the exponential family",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Place GLM responses in the exponential family CS1 (CS1) 1 h Study 4.2 \u2014 Understand and use generalised linear models After this \u00b7 Study Progress for family placement \u2014 not full link/deviance mastery today. Start Today&#39;s Se"
+      },
+      "session_id": "lsr-317f66454c8d",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "delta_focus": true
+    },
+    {
+      "day_index": 14,
+      "expected_day": "CD-D13",
+      "expected_package_id": "CS1-EP001-PKG-4.2-RESIDUALS",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.2.8 skill. Stop at the stop condition; do not swallow the next LO.",
+          "body_sample": " Topic: Understand and use generalised linear models (4.2) Mission: Use Pearson and deviance residuals Purpose of this reading: use the CMP to extract Syllabus 4.2.8 skill. Stop at the stop condition; do not swallow the next LO. Open: CMP \u00b7 Syllabus 4.2.8 Pearson and deviance residuals Stop: Through CMP 4.2.8 (stop before goodness tests primary 4.2.9) Focus questions: \u2022 What is the core move of Syllabus 4.2.8? \u2022 Where does the CMP give a worked cue you must attempt before reveal? \u2022 What misconce",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.8 Pearson and deviance residuals. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.8 (stop before goodness tests",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 298
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-4.2-RESIDUALS",
+        "campaign_day": "CD-D13",
+        "html": "/tmp/ro002/evidence/day14_CD-D13_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you practised residual types; tomorrow continues at statistical tests for acceptability of a fitted GLM.",
+        "package_student_facing": "Tomorrow: Pearson's chi-square and likelihood-ratio tests for fitted GLMs (4.2.9). Optional light prep: skim 4.2.9 headi",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Place GLM responses in the exponential family",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Place GLM responses in the exponential family CS1 (CS1) 1 h Study 4.2 \u2014 Understand and use generalised linear models After this \u00b7 Study Progress for family placement \u2014 not full link/deviance mastery today. Start Today&#39;s Se"
+      },
+      "session_id": "lsr-ffa712f1adfc",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "delta_focus": true
+    },
+    {
+      "day_index": 15,
+      "expected_day": "CD-D14",
+      "expected_package_id": "CS1-EP001-PKG-4.2-GOODNESS-TESTS",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.2.9 skill. Stop at the stop condition; do not swallow the next LO.",
+          "body_sample": " Topic: Understand and use generalised linear models (4.2) Mission: Test acceptability of a fitted GLM Purpose of this reading: use the CMP to extract Syllabus 4.2.9 skill. Stop at the stop condition; do not swallow the next LO. Open: CMP \u00b7 Syllabus 4.2.9 Pearson \u03c7\u00b2 and likelihood-ratio tests Stop: Through CMP 4.2.9 (stop before fit-interpret primary 4.2.10) Focus questions: \u2022 What is the core move of Syllabus 4.2.9? \u2022 Where does the CMP give a worked cue you must attempt before reveal? \u2022 What m",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.9 Pearson \u03c7\u00b2 and likelihood-ratio tests. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.9 (stop before fit-int",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 296
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-4.2-GOODNESS-TESTS",
+        "campaign_day": "CD-D14",
+        "html": "/tmp/ro002/evidence/day15_CD-D14_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you practised acceptability tests; tomorrow continues at fitting a GLM to data and interpreting the output end-to-",
+        "package_student_facing": "Tomorrow: fit a GLM and interpret output (4.2.10). Optional light prep: skim 4.2.10 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Place GLM responses in the exponential family",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Place GLM responses in the exponential family CS1 (CS1) 1 h Study 4.2 \u2014 Understand and use generalised linear models After this \u00b7 Study Progress for family placement \u2014 not full link/deviance mastery today. Start Today&#39;s Se"
+      },
+      "session_id": "lsr-b16b4da207ee",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "delta_focus": true
+    },
+    {
+      "day_index": 16,
+      "expected_day": "CD-D15",
+      "expected_package_id": "CS1-EP001-PKG-4.2-FIT-INTERPRET",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 4.2.10 skill. Stop at the stop condition; do not swallow the next LO.",
+          "body_sample": " Topic: Understand and use generalised linear models (4.2) Mission: Fit a GLM and interpret the output Purpose of this reading: use the CMP to extract Syllabus 4.2.10 skill. Stop at the stop condition; do not swallow the next LO. Open: CMP \u00b7 Syllabus 4.2.10 fit GLM and interpret output Stop: Through CMP 4.2.10 (stop before Bayesian 5.1; stop before Revision as Learning) Focus questions: \u2022 What is the core move of Syllabus 4.2.10? \u2022 Where does the CMP give a worked cue you must attempt before rev",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.10 fit GLM and interpret output. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.10 (stop before Bayesian 5.1; ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 312
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-4.2-FIT-INTERPRET",
+        "campaign_day": "CD-D15",
+        "html": "/tmp/ro002/evidence/day16_CD-D15_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you closed GLM fit/interpret; tomorrow is Revision returning to 4.1\u20134.2 under closed-book retrieval \u2014 Bayesian 5.1",
+        "package_student_facing": "Tomorrow: Campaign Delta Revision CD-R2 \u2014 retrieve classical LM through GLM (4.1\u20134.2). Optional: note your weakest 4.2 l",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Place GLM responses in the exponential family",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Place GLM responses in the exponential family CS1 (CS1) 1 h Study 4.2 \u2014 Understand and use generalised linear models After this \u00b7 Study Progress for family placement \u2014 not full link/deviance mastery today. Start Today&#39;s Se"
+      },
+      "session_id": "lsr-4c79a5e2e031",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "delta_focus": true
+    },
+    {
+      "day_index": 17,
+      "expected_day": "CD-R2",
+      "expected_package_id": "CS1-EP001-PKG-REV-REGRESSION-GLM",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this revision stage: strengthen retrieval without opening a new first-pass chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus.",
+          "body_sample": " Topic: Retrieve regression through GLM (4.1\u20134.2) (CD-R2) Mission: Retrieve regression through GLM (4.1\u20134.2) Purpose of this revision stage: strengthen retrieval without opening a new first-pass chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block. Stop: After revision checks and Reflection \u2014 do not begin out-of-scope first-pass LOs Focus questions: \u2022 Can",
+          "support_sample": "Begin closed-book retrieval. Reopen CMP only at a failed locus. After checks, complete Reflection. What did you extract from the CMP setup? Submit Answer ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": false,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": false
+          },
+          "ec001_markers": {
+            "Purpose of this reading": false,
+            "Open your CMP": false,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": false,
+            "Knowledge Checks": false
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "FAIL",
+          "word_count_body": 209
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": false,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-REV-REGRESSION-GLM",
+        "campaign_day": "CD-R2",
+        "html": "/tmp/ro002/evidence/day17_CD-R2_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": false,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you retrieved LM\u2192GLM; tomorrow opens Bayesian foundations at Bayes' theorem (5.1.1).",
+        "package_student_facing": "Tomorrow: Bayes' theorem (5.1.1). Optional light prep: skim 5.1.1 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Place GLM responses in the exponential family",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Place GLM responses in the exponential family CS1 (CS1) 1 h Study 4.2 \u2014 Understand and use generalised linear models After this \u00b7 Study Progress for family placement \u2014 not full link/deviance mastery today. Start Today&#39;s Se"
+      },
+      "session_id": "lsr-f3e71a0fe85c",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "delta_focus": true,
+      "revision_q6_residual": true,
+      "verdict_note": "Revision-day Q6 Immediate_next_activity_named residual (Learning-oriented checklist); package path educational substance PASS"
+    },
+    {
+      "day_index": 18,
+      "expected_day": "CD-D16",
+      "expected_package_id": "CS1-EP001-PKG-5.1-BAYES-THEOREM",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 5.1.1 skill. Stop at the stop condition; do not swallow the next LO.",
+          "body_sample": " Topic: Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators (5.1) Mission: Apply Bayes&#39; theorem to simple conditional probabilities Purpose of this reading: use the CMP to extract Syllabus 5.1.1 skill. Stop at the stop condition; do not swallow the next LO. Open: CMP \u00b7 Syllabus 5.1.1 Bayes&#39; theorem and simple conditional probabilities Stop: Through CMP 5.1.1 (stop before prior/posterior primary 5.1.2) Focus questions: \u2022 What is the ",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.1 Bayes&#39; theorem and simple conditional probabilities. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.1 (s",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 309
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-5.1-BAYES-THEOREM",
+        "campaign_day": "CD-D16",
+        "html": "/tmp/ro002/evidence/day18_CD-D16_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you practised Bayes' theorem; tomorrow continues at prior, posterior and conjugate prior language.",
+        "package_student_facing": "Tomorrow: prior, posterior and conjugate prior (5.1.2). Optional light prep: skim 5.1.2 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Apply Bayes&#39; theorem to simple conditional probabilities",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Apply Bayes&#39; theorem to simple conditional probabilities CS1 (CS1) 1 h Study 5.1 \u2014 Explain fundamental concepts of Bayesian statistics and use these concepts to calculate After this \u00b7 Study Progress for Bayes theorem \u2014 not"
+      },
+      "session_id": "lsr-984c5d1fd682",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "delta_focus": true
+    },
+    {
+      "day_index": 19,
+      "expected_day": "CD-D17",
+      "expected_package_id": "CS1-EP001-PKG-5.1-PRIOR-POSTERIOR",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 5.1.2 skill. Stop at the stop condition; do not swallow the next LO.",
+          "body_sample": " Topic: Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators (5.1) Mission: Explain prior, posterior and conjugate priors Purpose of this reading: use the CMP to extract Syllabus 5.1.2 skill. Stop at the stop condition; do not swallow the next LO. Open: CMP \u00b7 Syllabus 5.1.2 prior, posterior, conjugate prior Stop: Through CMP 5.1.2 (stop before simple posterior calculation primary 5.1.3) Focus questions: \u2022 What is the core move of Syllabus 5.",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.2 prior, posterior, conjugate prior. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.2 (stop before simple post",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 307
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-5.1-PRIOR-POSTERIOR",
+        "campaign_day": "CD-D17",
+        "html": "/tmp/ro002/evidence/day19_CD-D17_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you named prior/posterior/conjugate; tomorrow continues at computing posteriors in simple cases.",
+        "package_student_facing": "Tomorrow: posterior distribution for a parameter in simple cases (5.1.3). Optional light prep: skim 5.1.3 headings \u2014 tit",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Apply Bayes&#39; theorem to simple conditional probabilities",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Apply Bayes&#39; theorem to simple conditional probabilities CS1 (CS1) 1 h Study 5.1 \u2014 Explain fundamental concepts of Bayesian statistics and use these concepts to calculate After this \u00b7 Study Progress for Bayes theorem \u2014 not"
+      },
+      "session_id": "lsr-308e522b75bb",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "delta_focus": true
+    },
+    {
+      "day_index": 20,
+      "expected_day": "CD-D18",
+      "expected_package_id": "CS1-EP001-PKG-5.1-POSTERIOR-SIMPLE",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 5.1.3 skill. Stop at the stop condition; do not swallow the next LO.",
+          "body_sample": " Topic: Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators (5.1) Mission: Obtain posteriors in simple cases Purpose of this reading: use the CMP to extract Syllabus 5.1.3 skill. Stop at the stop condition; do not swallow the next LO. Open: CMP \u00b7 Syllabus 5.1.3 posterior in simple cases Stop: Through CMP 5.1.3 (stop before loss/estimators primary 5.1.4) Focus questions: \u2022 What is the core move of Syllabus 5.1.3? \u2022 Where does the CMP give a ",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.3 posterior in simple cases. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.3 (stop before loss/estimators pri",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 302
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-5.1-POSTERIOR-SIMPLE",
+        "campaign_day": "CD-D18",
+        "html": "/tmp/ro002/evidence/day20_CD-D18_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you obtained simple posteriors; tomorrow continues at loss functions to derive Bayesian estimators.",
+        "package_student_facing": "Tomorrow: loss functions and Bayesian estimators (5.1.4). Optional light prep: skim 5.1.4 headings \u2014 titles only tonight",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Apply Bayes&#39; theorem to simple conditional probabilities",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Apply Bayes&#39; theorem to simple conditional probabilities CS1 (CS1) 1 h Study 5.1 \u2014 Explain fundamental concepts of Bayesian statistics and use these concepts to calculate After this \u00b7 Study Progress for Bayes theorem \u2014 not"
+      },
+      "session_id": "lsr-d9897e49d862",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "delta_focus": true
+    },
+    {
+      "day_index": 21,
+      "expected_day": "CD-D19",
+      "expected_package_id": "CS1-EP001-PKG-5.1-LOSS-ESTIMATORS",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 5.1.4 skill. Stop at the stop condition; do not swallow the next LO.",
+          "body_sample": " Topic: Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators (5.1) Mission: Derive Bayesian estimators from simple loss functions Purpose of this reading: use the CMP to extract Syllabus 5.1.4 skill. Stop at the stop condition; do not swallow the next LO. Open: CMP \u00b7 Syllabus 5.1.4 loss functions and Bayesian estimators Stop: Through CMP 5.1.4 (stop before credible intervals primary 5.1.5) Focus questions: \u2022 What is the core move of Syllabus",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.4 loss functions and Bayesian estimators. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.4 (stop before credib",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 312
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-5.1-LOSS-ESTIMATORS",
+        "campaign_day": "CD-D19",
+        "html": "/tmp/ro002/evidence/day21_CD-D19_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you derived Bayesian estimators from loss; tomorrow continues at credible intervals in simple cases.",
+        "package_student_facing": "Tomorrow: credible intervals in simple cases (5.1.5). Optional light prep: skim 5.1.5 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Apply Bayes&#39; theorem to simple conditional probabilities",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Apply Bayes&#39; theorem to simple conditional probabilities CS1 (CS1) 1 h Study 5.1 \u2014 Explain fundamental concepts of Bayesian statistics and use these concepts to calculate After this \u00b7 Study Progress for Bayes theorem \u2014 not"
+      },
+      "session_id": "lsr-0ffdad75d5e1",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "delta_focus": true
+    },
+    {
+      "day_index": 22,
+      "expected_day": "CD-D20",
+      "expected_package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 5.1.5 skill. Stop at the stop condition; do not swallow the next LO.",
+          "body_sample": " Topic: Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators (5.1) Mission: Construct credible intervals in simple cases Purpose of this reading: use the CMP to extract Syllabus 5.1.5 skill. Stop at the stop condition; do not swallow the next LO. Open: CMP \u00b7 Syllabus 5.1.5 credible intervals Stop: Through CMP 5.1.5 (stop before credibility premium primary 5.1.6) Focus questions: \u2022 What is the core move of Syllabus 5.1.5? \u2022 Where does the CMP",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.5 credible intervals. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.5 (stop before credibility premium primar",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 302
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
+        "campaign_day": "CD-D20",
+        "html": "/tmp/ro002/evidence/day22_CD-D20_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you practised credible intervals; tomorrow continues at the credibility premium formula and the credibility factor",
+        "package_student_facing": "Tomorrow: credibility premium formula and credibility factor (5.1.6). Optional light prep: skim 5.1.6 headings \u2014 titles ",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Apply Bayes&#39; theorem to simple conditional probabilities",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Apply Bayes&#39; theorem to simple conditional probabilities CS1 (CS1) 1 h Study 5.1 \u2014 Explain fundamental concepts of Bayesian statistics and use these concepts to calculate After this \u00b7 Study Progress for Bayes theorem \u2014 not"
+      },
+      "session_id": "lsr-98965f9acda1",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "delta_focus": true
+    },
+    {
+      "day_index": 23,
+      "expected_day": "CD-D21",
+      "expected_package_id": "CS1-EP001-PKG-5.1-CREDIBILITY-PREMIUM",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 5.1.6 skill. Stop at the stop condition; do not swallow the next LO.",
+          "body_sample": " Topic: Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators (5.1) Mission: Use the credibility premium formula and factor Purpose of this reading: use the CMP to extract Syllabus 5.1.6 skill. Stop at the stop condition; do not swallow the next LO. Open: CMP \u00b7 Syllabus 5.1.6 credibility premium formula and factor Stop: Through CMP 5.1.6 (stop before Bayesian credibility approach primary 5.1.7) Focus questions: \u2022 What is the core move of Syll",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.6 credibility premium formula and factor. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.6 (stop before Bayesi",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 311
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-5.1-CREDIBILITY-PREMIUM",
+        "campaign_day": "CD-D21",
+        "html": "/tmp/ro002/evidence/day23_CD-D21_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you practised the credibility premium formula; tomorrow continues at the Bayesian approach to credibility premiums",
+        "package_student_facing": "Tomorrow: Bayesian approach to credibility theory (5.1.7). Optional light prep: skim 5.1.7 headings \u2014 titles only tonigh",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Apply Bayes&#39; theorem to simple conditional probabilities",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Apply Bayes&#39; theorem to simple conditional probabilities CS1 (CS1) 1 h Study 5.1 \u2014 Explain fundamental concepts of Bayesian statistics and use these concepts to calculate After this \u00b7 Study Progress for Bayes theorem \u2014 not"
+      },
+      "session_id": "lsr-8dddbc22b234",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "delta_focus": true
+    },
+    {
+      "day_index": 24,
+      "expected_day": "CD-D22",
+      "expected_package_id": "CS1-EP001-PKG-5.1-BAYESIAN-CREDIBILITY",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 5.1.7 skill. Stop at the stop condition; do not swallow the next LO.",
+          "body_sample": " Topic: Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators (5.1) Mission: Apply Bayesian credibility in simple cases Purpose of this reading: use the CMP to extract Syllabus 5.1.7 skill. Stop at the stop condition; do not swallow the next LO. Open: CMP \u00b7 Syllabus 5.1.7 Bayesian approach to credibility Stop: Through CMP 5.1.7 (stop before Empirical Bayes primary 5.1.8) Focus questions: \u2022 What is the core move of Syllabus 5.1.7? \u2022 Where does",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.7 Bayesian approach to credibility. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.7 (stop before Empirical Ba",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 307
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-5.1-BAYESIAN-CREDIBILITY",
+        "campaign_day": "CD-D22",
+        "html": "/tmp/ro002/evidence/day24_CD-D22_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you practised Bayesian credibility; tomorrow continues at the Empirical Bayes approach to credibility premiums.",
+        "package_student_facing": "Tomorrow: Empirical Bayes approach to credibility (5.1.8). Optional light prep: skim 5.1.8 headings \u2014 titles only tonigh",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Apply Bayes&#39; theorem to simple conditional probabilities",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Apply Bayes&#39; theorem to simple conditional probabilities CS1 (CS1) 1 h Study 5.1 \u2014 Explain fundamental concepts of Bayesian statistics and use these concepts to calculate After this \u00b7 Study Progress for Bayes theorem \u2014 not"
+      },
+      "session_id": "lsr-647b7b0746bd",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "delta_focus": true
+    },
+    {
+      "day_index": 25,
+      "expected_day": "CD-D23",
+      "expected_package_id": "CS1-EP001-PKG-5.1-EMPIRICAL-BAYES",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 5.1.8 skill. Stop at the stop condition; do not swallow the next LO.",
+          "body_sample": " Topic: Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators (5.1) Mission: Apply Empirical Bayes credibility in simple cases Purpose of this reading: use the CMP to extract Syllabus 5.1.8 skill. Stop at the stop condition; do not swallow the next LO. Open: CMP \u00b7 Syllabus 5.1.8 Empirical Bayes credibility Stop: Through CMP 5.1.8 (stop before contrast primary 5.1.9) Focus questions: \u2022 What is the core move of Syllabus 5.1.8? \u2022 Where does the ",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.8 Empirical Bayes credibility. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.8 (stop before contrast primary ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 301
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-5.1-EMPIRICAL-BAYES",
+        "campaign_day": "CD-D23",
+        "html": "/tmp/ro002/evidence/day25_CD-D23_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you practised Empirical Bayes credibility; tomorrow continues at differences and assumptions between Bayesian and ",
+        "package_student_facing": "Tomorrow: differences between Bayesian and Empirical Bayes approaches (5.1.9). Optional light prep: skim 5.1.9 headings ",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Apply Bayes&#39; theorem to simple conditional probabilities",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Apply Bayes&#39; theorem to simple conditional probabilities CS1 (CS1) 1 h Study 5.1 \u2014 Explain fundamental concepts of Bayesian statistics and use these concepts to calculate After this \u00b7 Study Progress for Bayes theorem \u2014 not"
+      },
+      "session_id": "lsr-45b646fc31f8",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "delta_focus": true
+    },
+    {
+      "day_index": 26,
+      "expected_day": "CD-D24",
+      "expected_package_id": "CS1-EP001-PKG-5.1-BAYES-VS-EB",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 5.1.9 skill. Stop at the stop condition; do not swallow the next LO.",
+          "body_sample": " Topic: Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators (5.1) Mission: Contrast Bayesian and Empirical Bayes assumptions Purpose of this reading: use the CMP to extract Syllabus 5.1.9 skill. Stop at the stop condition; do not swallow the next LO. Open: CMP \u00b7 Syllabus 5.1.9 Bayes vs Empirical Bayes differences Stop: Through CMP 5.1.9 (stop before terminal Revision as Learning; no spine claim) Focus questions: \u2022 What is the core move of S",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.9 Bayes vs Empirical Bayes differences. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.9 (stop before terminal",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "PASS",
+          "word_count_body": 320
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-5.1-BAYES-VS-EB",
+        "campaign_day": "CD-D24",
+        "html": "/tmp/ro002/evidence/day26_CD-D24_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you closed Bayes vs EB contrast; tomorrow is terminal Revision returning to 4.1\u20135.1 under closed-book retrieval \u2014 ",
+        "package_student_facing": "Tomorrow: Campaign Delta Revision CD-R3 \u2014 retrieve mid-spine 4.1\u21924.2\u21925.1. Optional: note your weakest mid-spine link ton",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Apply Bayes&#39; theorem to simple conditional probabilities",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Apply Bayes&#39; theorem to simple conditional probabilities CS1 (CS1) 1 h Study 5.1 \u2014 Explain fundamental concepts of Bayesian statistics and use these concepts to calculate After this \u00b7 Study Progress for Bayes theorem \u2014 not"
+      },
+      "session_id": "lsr-204afd4ebd34",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "delta_focus": true
+    },
+    {
+      "day_index": 27,
+      "expected_day": "CD-R3",
+      "expected_package_id": "CS1-EP001-PKG-REV-MIDSPINE",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this revision stage: strengthen retrieval without opening a new first-pass chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus.",
+          "body_sample": " Topic: Retrieve mid-spine 4.1\u21924.2\u21925.1 (CD-R3) Mission: Retrieve mid-spine 4.1\u21924.2\u21925.1 Purpose of this revision stage: strengthen retrieval without opening a new first-pass chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block. Stop: After revision checks and Reflection \u2014 do not begin out-of-scope first-pass LOs Focus questions: \u2022 Can you retrieve each ret",
+          "support_sample": "Begin closed-book retrieval. Reopen CMP only at a failed locus. After checks, complete Reflection. What did you extract from the CMP setup? Submit Answer ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": false,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": false
+          },
+          "ec001_markers": {
+            "Purpose of this reading": false,
+            "Open your CMP": false,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": false,
+            "Knowledge Checks": false
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": true
+          },
+          "verdict": "FAIL",
+          "word_count_body": 207
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": false,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": true
+        },
+        "fidelity": {
+          "lead_line": true,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": true,
+          "stop_condition": true,
+          "focus_q_0": true,
+          "focus_q_1": true,
+          "catalogue_body_match": true,
+          "catalogue_divergences": [],
+          "fidelity_pass": true
+        },
+        "package_id": "CS1-EP001-PKG-REV-MIDSPINE",
+        "campaign_day": "CD-R3",
+        "html": "/tmp/ro002/evidence/day27_CD-R3_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": false,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": true
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Campaign Delta / Volume CS1-003 completes after this Revision. Honest stop: Trust Front Pilot Arc \u2014 not first-pass spine",
+        "package_student_facing": "Campaign Delta / CS1-003 complete after today (pending human Approver + LIVE). Honest next: stop \u2014 Wave 3 is separate. O",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Apply Bayes&#39; theorem to simple conditional probabilities",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good afternoon. Ready for today's mission? Today&#39;s Mission Apply Bayes&#39; theorem to simple conditional probabilities CS1 (CS1) 1 h Study 5.1 \u2014 Explain fundamental concepts of Bayesian statistics and use these concepts to calculate After this \u00b7 Study Progress for Bayes theorem \u2014 not"
+      },
+      "session_id": "lsr-8493434e3ec7",
+      "educational_fidelity": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true,
+        "stop_condition": true,
+        "focus_q_0": true,
+        "focus_q_1": true,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": true
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "delta_focus": true,
+      "revision_q6_residual": true,
+      "verdict_note": "Revision-day Q6 Immediate_next_activity_named residual (Learning-oriented checklist); package path educational substance PASS"
+    }
+  ],
+  "verdict": "PASS WITH RESIDUAL",
+  "backdates": [
+    {
+      "after_day": "CD-D1",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CD-D2",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CD-D3",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CD-D4",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CD-D5",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CD-R1",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CD-D6",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CD-D7",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CD-D8",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CD-D9",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CD-D10",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CD-D11",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CD-D12",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CD-D13",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CD-D14",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CD-D15",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CD-R2",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CD-D16",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CD-D17",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CD-D18",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CD-D19",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CD-D20",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CD-D21",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CD-D22",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CD-D23",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    },
+    {
+      "after_day": "CD-D24",
+      "job": "local-db-backdate",
+      "status": "succeeded"
+    }
+  ],
+  "summary": {
+    "chain_days_completed": 27,
+    "expected_chain_len": 27,
+    "pass_count": 27,
+    "fail_count": 0,
+    "learning_days_pass": 24,
+    "revision_days_pass": 3,
+    "revision_q6_residuals": [
+      "CD-R1",
+      "CD-R2",
+      "CD-R3"
+    ],
+    "chrome_residuals": [
+      "CD-R1",
+      "CD-R2",
+      "CD-D16"
+    ],
+    "orphan_absent_at_cd_d6": true,
+    "trust_front_entry": "continue_topic section 4 \u2192 CD-D1",
+    "natural_delta_chain": true
+  },
+  "rescored_at": "2026-08-01T17:00:08.023833+00:00",
+  "rescore_rationale": "Revision Q6 Immediate_next_activity_named is a Learning-day CMP partnership checklist item; revision stages use retrieval purpose phrasing. Package-path PASS requires finished + non-fallback + CMP + fidelity core."
+}

@@ -1,0 +1,888 @@
+{
+  "programme": "RO-007",
+  "host": "https://kwalitec.onrender.com",
+  "expected_commit": "1c747f30400b90cedff2315dedd3fac404377e61",
+  "live_health": {
+    "build_date": "2026-08-02",
+    "build_number": "local",
+    "commit": "1c747f30400b90cedff2315dedd3fac404377e61",
+    "components": {
+      "database": {
+        "latency_ms": 2.8,
+        "name": "database",
+        "status": "ok"
+      },
+      "instance_storage": {
+        "meta": {
+          "path": "/opt/render/project/src/instance"
+        },
+        "name": "instance_storage",
+        "status": "ok"
+      },
+      "migrations": {
+        "meta": {
+          "current": "202607310002",
+          "head": "202607310002"
+        },
+        "name": "migrations",
+        "status": "ok"
+      },
+      "queue": {
+        "detail": "manual automation runner (no external broker)",
+        "meta": {
+          "broker": "none",
+          "runner": "app.automation"
+        },
+        "name": "queue",
+        "status": "ok"
+      }
+    },
+    "database": "connected",
+    "environment": "production",
+    "status": "ok",
+    "timestamp": "2026-08-02T07:08:36.745968+00:00",
+    "version": "2.0.0-beta.1"
+  },
+  "email": "ro007.iota.primary.1785654569@example.com",
+  "iota_certified_days": [
+    {
+      "day_index": 412,
+      "expected_day": "CI-D1",
+      "expected_package_id": "CS1-EP001-PKG-2.6-SAMPLING-DISTRIBUTION-STATISTIC",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 2.6.1 \u2014 describe random samples from a population. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Describe random sampling and the sampling distributions of statistics commonly used in statistical inference (2.6) Mission: Describe random samples from a population Purpose of this reading: use the CMP to extract Syllabus 2.6.1 \u2014 describe random samples from a population. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 2.6.1 random samples from a population Stop: Through the CMP treatment of Syllabus 2.6.1 (stop before sampling distribution of a statistic 2.6.2) Focus questions",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.6.1 random samples from a population. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.6.1",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 346
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": true,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION",
+        "campaign_day": "CZ-D1",
+        "html": "/tmp/ro007/evidence/day412_CZ-D1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you formed conditional expectation of one RV given another; tomorrow continues 2.3 at mean and variance as expecta",
+        "package_student_facing": "Tomorrow: mean and variance via conditioning (2.3.2). Optional light prep: skim 2.3.2 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Relate sample-mean and sample-variance moments to the population",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Relate sample-mean and sample-variance moments to the population CS1 (CS1) 1 h Study 3.1 \u2014 Construct estimators and discuss their properties After this \u00b7 Study Progress for sample-mean/variance moments \u2014 not 2.6.4. Start Today&#"
+      },
+      "session_id": "lsr-8679ef7e734a",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": true,
+      "epsilon_focus": false,
+      "detected_campaign_day": "CI-D1"
+    },
+    {
+      "day_index": 413,
+      "expected_day": "CI-D2",
+      "expected_package_id": "CS1-EP001-PKG-2.6-SAMPLING-DISTRIBUTION-STATISTIC",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 2.6.2 \u2014 describe the sampling distribution of a statistic. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Describe random sampling and the sampling distributions of statistics commonly used in statistical inference (2.6) Mission: Describe the sampling distribution of a statistic Purpose of this reading: use the CMP to extract Syllabus 2.6.2 \u2014 describe the sampling distribution of a statistic. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 2.6.2 sampling distribution of a statistic Stop: Through CMP 2.6.2 (stop before mean/variance formulas 2.6.3) Focus questions: \u2022 What is the core",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.6.2 sampling distribution of a statistic. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.6.2 (stop before mean/var",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 329
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION",
+        "campaign_day": "CZ-D1",
+        "html": "/tmp/ro007/evidence/day413_CZ-D1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you formed conditional expectation of one RV given another; tomorrow continues 2.3 at mean and variance as expecta",
+        "package_student_facing": "Tomorrow: mean and variance via conditioning (2.3.2). Optional light prep: skim 2.3.2 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Relate sample-mean and sample-variance moments to the population",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Relate sample-mean and sample-variance moments to the population CS1 (CS1) 1 h Study 3.1 \u2014 Construct estimators and discuss their properties After this \u00b7 Study Progress for sample-mean/variance moments \u2014 not 2.6.4. Start Today&#"
+      },
+      "session_id": "lsr-adf82463f762",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": true,
+      "epsilon_focus": false,
+      "detected_campaign_day": "CI-D2"
+    },
+    {
+      "day_index": 414,
+      "expected_day": "CI-D3",
+      "expected_package_id": "CS1-EP001-PKG-2.6-MEAN-VAR-SAMPLE",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 2.6.3 \u2014 relate sample-mean and sample-variance moments to the population. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Describe random sampling and the sampling distributions of statistics commonly used in statistical inference (2.6) Mission: Relate sample-mean and sample-variance moments to the population Purpose of this reading: use the CMP to extract Syllabus 2.6.3 \u2014 relate sample-mean and sample-variance moments to the population. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 2.6.3 mean/variance of sample mean and mean of sample variance Stop: Through CMP 2.6.3 (stop before Normal sampling",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.6.3 mean/variance of sample mean and mean of sample variance. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.6.3 (",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 333
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION",
+        "campaign_day": "CZ-D1",
+        "html": "/tmp/ro007/evidence/day414_CZ-D1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you formed conditional expectation of one RV given another; tomorrow continues 2.3 at mean and variance as expecta",
+        "package_student_facing": "Tomorrow: mean and variance via conditioning (2.3.2). Optional light prep: skim 2.3.2 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Relate sample-mean and sample-variance moments to the population",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Relate sample-mean and sample-variance moments to the population CS1 (CS1) 1 h Study 3.1 \u2014 Construct estimators and discuss their properties After this \u00b7 Study Progress for sample-mean/variance moments \u2014 not 2.6.4. Start Today&#"
+      },
+      "session_id": "lsr-3d3112a0d372",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": true,
+      "epsilon_focus": false,
+      "detected_campaign_day": "CI-D3"
+    },
+    {
+      "day_index": 415,
+      "expected_day": "CI-D4",
+      "expected_package_id": "CS1-EP001-PKG-2.6-NORMAL-SAMPLE-MEAN-VAR",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 2.6.4 \u2014 state basic normal sampling distributions for mean and variance. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Describe random sampling and the sampling distributions of statistics commonly used in statistical inference (2.6) Mission: State basic Normal sampling distributions for mean and variance Purpose of this reading: use the CMP to extract Syllabus 2.6.4 \u2014 state basic normal sampling distributions for mean and variance. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 2.6.4 Normal sampling distributions for mean and variance Stop: Through CMP 2.6.4 (stop before t-statistic 2.6.5) Foc",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.6.4 Normal sampling distributions for mean and variance. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.6.4 (stop ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 332
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION",
+        "campaign_day": "CZ-D1",
+        "html": "/tmp/ro007/evidence/day415_CZ-D1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you formed conditional expectation of one RV given another; tomorrow continues 2.3 at mean and variance as expecta",
+        "package_student_facing": "Tomorrow: mean and variance via conditioning (2.3.2). Optional light prep: skim 2.3.2 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Relate sample-mean and sample-variance moments to the population",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Relate sample-mean and sample-variance moments to the population CS1 (CS1) 1 h Study 3.1 \u2014 Construct estimators and discuss their properties After this \u00b7 Study Progress for sample-mean/variance moments \u2014 not 2.6.4. Start Today&#"
+      },
+      "session_id": "lsr-06a5fcd647ac",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": true,
+      "epsilon_focus": false,
+      "detected_campaign_day": "CI-D4"
+    },
+    {
+      "day_index": 1,
+      "expected_day": "CI-D5",
+      "expected_package_id": "CS1-CS1002-PKG-2.1-DISCRETE",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 2.6.5 \u2014 describe the distribution of the t-statistic for normal samples. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Describe random sampling and the sampling distributions of statistics commonly used in statistical inference (2.6) Mission: Describe the distribution of the t-statistic for Normal samples Purpose of this reading: use the CMP to extract Syllabus 2.6.5 \u2014 describe the distribution of the t-statistic for normal samples. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 2.6.5 t-statistic for Normal samples Stop: Through CMP 2.6.5 (stop before F distribution 2.6.6) Focus questions: \u2022 Wh",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.6.5 t-statistic for Normal samples. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.6.5 (stop before F distribution",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 322
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-CS1002-PKG-2.1-DISCRETE",
+        "campaign_day": "CB-D2",
+        "html": "/tmp/ro007/evidence/day1_CB-D2_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": true,
+        "continuity_fragment": true,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you opened discrete family recognition under 2.1.1; tomorrow continues the same 2.1 topic at LO 2.1.2 \u2014 characteri",
+        "package_student_facing": "Tomorrow: basic continuous univariate distributions (2.1.2). Same Chapter 2 entry arc \u2014 now continuous families. Optiona",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Name the discrete distribution family by situation",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Name the discrete distribution family by situation CS1 (CS1) 1 h Study 2.1 \u2014 Understand the characteristics of basic univariate distributions and how to generate samples After this \u00b7 A situation\u2192family map for the syllabus discr"
+      },
+      "session_id": "lsr-f188333c2d8f",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": true,
+      "package_path_ok": true,
+      "chrome_residual": false,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": false,
+      "epsilon_focus": false,
+      "detected_campaign_day": "CI-D5"
+    },
+    {
+      "day_index": 417,
+      "expected_day": "CI-D6",
+      "expected_package_id": "CS1-EP001-PKG-2.6-F-DISTRIBUTION",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this reading: use the CMP to extract Syllabus 2.6.6 \u2014 describe the f distribution for a ratio of sample variances. Stop before out-of-scope later LOs.",
+          "body_sample": " Topic: Describe random sampling and the sampling distributions of statistics commonly used in statistical inference (2.6) Mission: Describe the F distribution for a ratio of sample variances Purpose of this reading: use the CMP to extract Syllabus 2.6.6 \u2014 describe the f distribution for a ratio of sample variances. Stop before out-of-scope later LOs. Open: CMP \u00b7 Syllabus 2.6.6 F distribution for a ratio of sample variances Stop: Through CMP 2.6.6 (stop before estimators / inference 3.1) Focus q",
+          "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.6.6 F distribution for a ratio of sample variances. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.6.6 (stop befor",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": true
+          },
+          "ec001_markers": {
+            "Purpose of this reading": true,
+            "Open your CMP": true,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": true,
+            "Knowledge Checks": true
+          },
+          "certified_snippet_hits": {
+            "lead_line": true,
+            "exit_line": true,
+            "return_cue": true,
+            "open_point": false
+          },
+          "verdict": "PASS",
+          "word_count_body": 331
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": true,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": true,
+          "return_cue": true,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION",
+        "campaign_day": "CZ-D1",
+        "html": "/tmp/ro007/evidence/day417_CZ-D1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": true,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you formed conditional expectation of one RV given another; tomorrow continues 2.3 at mean and variance as expecta",
+        "package_student_facing": "Tomorrow: mean and variance via conditioning (2.3.2). Optional light prep: skim 2.3.2 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Relate sample-mean and sample-variance moments to the population",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Relate sample-mean and sample-variance moments to the population CS1 (CS1) 1 h Study 3.1 \u2014 Construct estimators and discuss their properties After this \u00b7 Study Progress for sample-mean/variance moments \u2014 not 2.6.4. Start Today&#"
+      },
+      "session_id": "lsr-7b464f5f56e0",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "catalogue_body_match": true,
+        "catalogue_divergences": [],
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": true,
+      "epsilon_focus": false,
+      "detected_campaign_day": "CI-D6"
+    },
+    {
+      "day_index": 418,
+      "expected_day": "CI-R1",
+      "expected_package_id": "CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION",
+      "finished": true,
+      "reading": {
+        "audit": {
+          "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Iota chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus",
+          "body_sample": " Topic: Campaign Iota revision \u2014 random sampling and sampling distributions (CI-R1) Mission: Retrieve sampling-distribution hinges (2.6) Purpose of this revision stage: strengthen retrieval of the Campaign Iota chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block. Stop: After revision checks and Reflection \u2014 do not begin Sy",
+          "support_sample": "Begin closed-book retrieval. Reopen CMP only at a failed locus. After checks, complete Reflection. What did you extract from the CMP setup? Submit Answer ",
+          "is_fallback_shell": false,
+          "is_guided_reading": false,
+          "mentions_cmp": true,
+          "cmp_refs_present": true,
+          "q_checks": {
+            "Q1_cmp_open": true,
+            "Q2_purpose": true,
+            "Q3_attention": true,
+            "Q4_ignore": true,
+            "Q5_stop": true,
+            "Q6_next": false
+          },
+          "ec001_markers": {
+            "Purpose of this reading": false,
+            "Open your CMP": false,
+            "Focus questions": true,
+            "Misconception watch": true,
+            "Out of scope today": true,
+            "Return cue": true,
+            "Worked-example": false,
+            "Knowledge Checks": false
+          },
+          "certified_snippet_hits": {
+            "lead_line": false,
+            "exit_line": false,
+            "return_cue": false,
+            "open_point": false
+          },
+          "verdict": "FAIL",
+          "word_count_body": 236
+        },
+        "checklist": {
+          "CMP_reference_present": true,
+          "Educational_purpose_clear": true,
+          "Reading_focus_clear": true,
+          "Ignore_guidance_present": true,
+          "Stop_condition_explicit": true,
+          "Immediate_next_activity_named": false,
+          "Not_fallback_shell": true,
+          "Matches_certified_snippets": false
+        },
+        "fidelity": {
+          "lead_line": false,
+          "exit_line": false,
+          "return_cue": false,
+          "open_point": false,
+          "stop_condition": false,
+          "focus_q_0": false,
+          "focus_q_1": false,
+          "fidelity_pass": false
+        },
+        "package_id": "CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION",
+        "campaign_day": "CZ-D1",
+        "html": "/tmp/ro007/evidence/day418_CZ-D1_reading.html"
+      },
+      "checklist": {
+        "CMP_reference_present": true,
+        "Educational_purpose_clear": true,
+        "Reading_focus_clear": true,
+        "Ignore_guidance_present": true,
+        "Stop_condition_explicit": true,
+        "Immediate_next_activity_named": false,
+        "Not_fallback_shell": true,
+        "Matches_certified_snippets": false
+      },
+      "tomorrow_preview": {
+        "next_topic_code": false,
+        "continuity_fragment": false,
+        "student_facing_fragment": false,
+        "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+        "package_continuity_line": "Today you formed conditional expectation of one RV given another; tomorrow continues 2.3 at mean and variance as expecta",
+        "package_student_facing": "Tomorrow: mean and variance via conditioning (2.3.2). Optional light prep: skim 2.3.2 headings \u2014 titles only tonight.",
+        "chrome_matches_package_continuity": false
+      },
+      "verdict": "PASS",
+      "home": {
+        "title_guess": "Relate sample-mean and sample-variance moments to the population",
+        "day_complete": false,
+        "has_start": true,
+        "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Relate sample-mean and sample-variance moments to the population CS1 (CS1) 1 h Study 3.1 \u2014 Construct estimators and discuss their properties After this \u00b7 Study Progress for sample-mean/variance moments \u2014 not 2.6.4. Start Today&#"
+      },
+      "session_id": "lsr-a11d6d428a99",
+      "educational_fidelity": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false,
+        "stop_condition": false,
+        "focus_q_0": false,
+        "focus_q_1": false,
+        "fidelity_pass": false
+      },
+      "reflection_ok": true,
+      "tomorrow_chrome_matches_approved": false,
+      "package_path_ok": true,
+      "chrome_residual": true,
+      "theta_focus": false,
+      "eta_focus": false,
+      "zeta_focus": true,
+      "epsilon_focus": false,
+      "revision_q6_residual": true,
+      "detected_campaign_day": "CI-R1"
+    }
+  ],
+  "verdict": "PASS WITH RESIDUAL",
+  "summary": {
+    "iota_pass_count": 7,
+    "iota_days_observed": [
+      "CI-D1",
+      "CI-D2",
+      "CI-D3",
+      "CI-D4",
+      "CI-D5",
+      "CI-D6",
+      "CI-R1"
+    ],
+    "learning_days_pass": 6,
+    "revision_days_pass": 1,
+    "natural_iota_chain": true,
+    "natural_ctr1_to_cid1": true,
+    "continuity_front_entry": "continue_topic section 2 \u2192 CB\u2026CG\u2026CE\u2026CZ\u2026CH\u2026CT-R1 \u2192 CI-D1\u2026CI-R1",
+    "transit_non_regression": {
+      "CE-R1": true,
+      "CZ-D1": true,
+      "CZ-D2": true,
+      "CZ-R1": true,
+      "CH-D1": true,
+      "CH-D2": true,
+      "CH-R1": true,
+      "CT-D1": true,
+      "CT-D2": true,
+      "CT-R1": true
+    },
+    "revision_q6_residuals": [
+      "CI-R1"
+    ],
+    "chrome_residuals": [
+      "CI-D1",
+      "CI-D2",
+      "CI-D3",
+      "CI-D4",
+      "CI-D6",
+      "CI-R1"
+    ],
+    "detection_note": "CI-D1 initially mis-tagged CI-D2 due to out-of-scope phrase containing sampling-distribution wording; re-scored via syllabus 2.6.N lead-line",
+    "label_desync_residual": "RO7-R1 Continuity Front ops label desync (home title lagged/led true package)"
+  },
+  "residual": "revision Q6 and/or tomorrow chrome residual (package path PASS); CF label desync tracked"
+}

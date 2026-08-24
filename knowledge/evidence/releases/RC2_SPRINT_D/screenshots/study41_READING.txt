@@ -1,0 +1,5 @@
+HTML authoritative: evidence/study41_reading.html
+commit=94e02f57669831ff6af4e6f6bf87a727ca0cfe38
+topic=4.1
+mission=4.1 Understand and use linear regression models
+title=Reading: Read the material for 4.1 Understand and use linear regression models. Note one idea you want to remember.

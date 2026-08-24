@@ -1,0 +1,37 @@
+{
+  "programme": "KSI-002",
+  "title": "Educational Effectiveness Validation Protocol",
+  "status": "PROTOCOL_COMPLETE_AWAITING_FOUNDER_REVIEW",
+  "effective_date": "2026-08-04",
+  "protocol_version": "1.0",
+  "executes_study": false,
+  "recruits_participants": false,
+  "analyses_new_data": false,
+  "application_code_changed": false,
+  "validated_ksi_unchanged": 64,
+  "documents": [
+    "KSI002_VALIDATION_PROTOCOL.md",
+    "KSI002_STUDY_DESIGN.md",
+    "KSI002_STATISTICAL_ANALYSIS_PLAN.md",
+    "KSI002_PARTICIPANT_PROTOCOL.md",
+    "KSI002_EVIDENCE_ACCEPTANCE_CRITERIA.md",
+    "KSI002_RISK_AND_BIAS_REGISTER.md",
+    "KSI002_EXECUTION_REPORT.md"
+  ],
+  "authorities": [
+    "knowledge/product/p001_1_ksi_baseline/PRODUCT_SUCCESS_FRAMEWORK.md",
+    "knowledge/product/p002_1_version_1_release_framework/VERSION_1_RELEASE_FRAMEWORK.md",
+    "knowledge/product/ep003_educational_effectiveness/EDUCATIONAL_METRICS.md",
+    "knowledge/product/ep003_educational_effectiveness/PRIVATE_BETA_PROTOCOL.md",
+    "KSI001_VALIDATED_KSI_ANALYSIS.md"
+  ],
+  "constitutional_rules": [
+    "estimated_ksi_never_becomes_validated_ksi",
+    "premium_pass_never_increases_ksi",
+    "correctness_never_implies_usefulness",
+    "confidence_never_implies_effectiveness",
+    "no_marketing_claims",
+    "no_pass_rate_claims",
+    "no_commercial_claims"
+  ]
+}

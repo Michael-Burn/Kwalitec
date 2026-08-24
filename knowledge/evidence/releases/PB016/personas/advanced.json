@@ -1,0 +1,368 @@
+{
+  "slug": "advanced",
+  "label": "Advanced candidate",
+  "email": "pb016.cp.advanced.1785841553@example.com",
+  "persona_profile": {
+    "exam_history": "never",
+    "confidence": "5",
+    "answer_style": "strong"
+  },
+  "verdict": "PASS",
+  "entry": "Seeded Continuity Front advanced student (CO-R1 package history) \u2192 Memory Front CP-D1\u2026CP-R1",
+  "live_tip": "4ff8c95d2b853114f0b99ba2d7d23ea847c62819",
+  "ops_events": [],
+  "summary": {
+    "certified_days_scored": 10,
+    "certified_all_pass": true,
+    "avg_score_over_9": 8.9,
+    "trajectory": [
+      {
+        "day": "CP-D1",
+        "package_id": "CS1-EP001-PKG-CP-2.1-PROB-QUANTILES",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [],
+        "chrome_residual": false,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CP-D2",
+        "package_id": "CS1-EP001-PKG-CP-2.2-MARGINAL-CONDITIONAL",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [],
+        "chrome_residual": false,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CP-D3",
+        "package_id": "CS1-EP001-PKG-CP-2.5-CLT",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [],
+        "chrome_residual": false,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CP-D4",
+        "package_id": "CS1-EP001-PKG-CP-2.6-RANDOM-SAMPLES",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [],
+        "chrome_residual": false,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CP-D5",
+        "package_id": "CS1-EP001-PKG-CP-3.1-ESTIMATORS",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [],
+        "chrome_residual": false,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CP-D6",
+        "package_id": "CS1-EP001-PKG-CP-3.2-CI-SAMPLE",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [],
+        "chrome_residual": false,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CP-D7",
+        "package_id": "CS1-EP001-PKG-CP-3.3-HYPOTHESIS-TESTING",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [],
+        "chrome_residual": false,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CP-D8",
+        "package_id": "CS1-EP001-PKG-CP-4.1-LINEAR-REGRESSION",
+        "confidence_level": "HIGH",
+        "score_over_9": 8,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "FAIL",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [
+          "RO14-R1"
+        ],
+        "chrome_residual": true,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CP-D9",
+        "package_id": "CS1-EP001-PKG-CP-5.1-BAYES-THEOREM",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [],
+        "chrome_residual": false,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CP-R1",
+        "package_id": "CS1-EP001-PKG-REV-SPINE-MEMORY-PI",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [
+          "RO14-R3"
+        ],
+        "chrome_residual": true,
+        "revision_q6_residual": true
+      }
+    ],
+    "stable_high": true,
+    "programme_metrics": {
+      "recommendation_consistency": {
+        "pass_count": 10,
+        "total": 10,
+        "result": "PASS"
+      },
+      "weak_area_identification": {
+        "pass_count": 10,
+        "total": 10,
+        "result": "PASS"
+      },
+      "mission_sequencing": {
+        "pass_count": 10,
+        "total": 10,
+        "result": "PASS"
+      },
+      "syllabus_continuity": {
+        "pass_count": 10,
+        "total": 10,
+        "result": "PASS"
+      },
+      "confidence_calibration": {
+        "pass_count": 10,
+        "total": 10,
+        "result": "PASS"
+      },
+      "explanation_usefulness": {
+        "pass_count": 10,
+        "total": 10,
+        "result": "PASS"
+      }
+    },
+    "transit_observations": [],
+    "defects": [
+      {
+        "severity": "Minor",
+        "id": "PB16-MINOR-CHROME",
+        "finding": "Tomorrow chrome residual on CP-D8 (RO14-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO14-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB16-MINOR-CHROME",
+        "finding": "Tomorrow chrome residual on CP-R1 (RO14-R1 class)",
+        "ef_class": "PI",
+        "residual": "RO14-R1"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB16-MINOR-Q6",
+        "finding": "Revision Q6 Learning-oriented residual on CP-R1 (RO14-R3 class)",
+        "ef_class": "PI",
+        "residual": "RO14-R3"
+      }
+    ],
+    "defect_counts": {
+      "Critical": 0,
+      "Major": 0,
+      "Minor": 3,
+      "Cosmetic": 0
+    }
+  }
+}

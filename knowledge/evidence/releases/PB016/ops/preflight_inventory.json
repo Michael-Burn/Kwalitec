@@ -1,0 +1,23 @@
+{
+  "deployment_fingerprint": "4ff8c95d2b853114f0b99ba2d7d23ea847c62819",
+  "health": "ok",
+  "readiness": "ready",
+  "database_migration": "202607310002",
+  "publication_approved_cs1": 120,
+  "pi_packages": 10,
+  "pi_days": [
+    "CP-D1",
+    "CP-D2",
+    "CP-D3",
+    "CP-D4",
+    "CP-D5",
+    "CP-D6",
+    "CP-D7",
+    "CP-D8",
+    "CP-D9",
+    "CP-R1"
+  ],
+  "handoff": "CO-R1 \u2192 CP-D1",
+  "inventory_job": "job-d9ord5rncjis73eglqf0",
+  "source": "LIVE re-assert via RO014 inventory payload + /health captures"
+}

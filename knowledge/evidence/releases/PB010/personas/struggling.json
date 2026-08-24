@@ -1,0 +1,317 @@
+{
+  "slug": "struggling",
+  "label": "Struggling candidate",
+  "email": "pb010.kappa.struggling.1785672079@example.com",
+  "persona_profile": {
+    "exam_history": "never",
+    "confidence": "1",
+    "answer_style": "weak"
+  },
+  "verdict": "PASS",
+  "summary": {
+    "certified_days_scored": 7,
+    "certified_all_pass": true,
+    "avg_score_over_9": 8.285714285714286,
+    "trajectory": [
+      {
+        "day": "CK-D1",
+        "package_id": "CS1-EP001-PKG-3.1-METHOD-OF-MOMENTS",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [],
+        "chrome_residual": false,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CK-D2",
+        "package_id": "CS1-EP001-PKG-3.1-MAXIMUM-LIKELIHOOD",
+        "confidence_level": "HIGH",
+        "score_over_9": 8,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "FAIL",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [
+          "RO8-R3"
+        ],
+        "chrome_residual": true,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CK-D3",
+        "package_id": "CS1-EP001-PKG-3.1-EFFICIENCY-BIAS-CONSISTENCY-MSE",
+        "confidence_level": "HIGH",
+        "score_over_9": 8,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "FAIL",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [
+          "RO8-R3"
+        ],
+        "chrome_residual": true,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CK-D4",
+        "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
+        "confidence_level": "HIGH",
+        "score_over_9": 8,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "FAIL",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [
+          "RO8-R3"
+        ],
+        "chrome_residual": true,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CK-D5",
+        "package_id": "CS1-EP001-PKG-3.1-ASYMPTOTIC-MLE",
+        "confidence_level": "HIGH",
+        "score_over_9": 8,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "FAIL",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [
+          "RO8-R3"
+        ],
+        "chrome_residual": true,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CK-D6",
+        "package_id": "CS1-EP001-PKG-3.1-BOOTSTRAP-ESTIMATOR",
+        "confidence_level": "HIGH",
+        "score_over_9": 8,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "FAIL",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [
+          "RO8-R3"
+        ],
+        "chrome_residual": true,
+        "revision_q6_residual": false
+      },
+      {
+        "day": "CK-R1",
+        "package_id": "CS1-EP001-PKG-REV-ESTIMATORS",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        },
+        "programme_metrics": {
+          "recommendation_consistency": "PASS",
+          "weak_area_identification": "PASS",
+          "mission_sequencing": "PASS",
+          "syllabus_continuity": "PASS",
+          "confidence_calibration": "PASS",
+          "explanation_usefulness": "PASS"
+        },
+        "residuals": [
+          "RO8-R2"
+        ],
+        "chrome_residual": true,
+        "revision_q6_residual": true
+      }
+    ],
+    "stable_high": true,
+    "programme_metrics": {
+      "recommendation_consistency": {
+        "pass_count": 7,
+        "total": 7,
+        "result": "PASS"
+      },
+      "weak_area_identification": {
+        "pass_count": 7,
+        "total": 7,
+        "result": "PASS"
+      },
+      "mission_sequencing": {
+        "pass_count": 7,
+        "total": 7,
+        "result": "PASS"
+      },
+      "syllabus_continuity": {
+        "pass_count": 7,
+        "total": 7,
+        "result": "PASS"
+      },
+      "confidence_calibration": {
+        "pass_count": 7,
+        "total": 7,
+        "result": "PASS"
+      },
+      "explanation_usefulness": {
+        "pass_count": 7,
+        "total": 7,
+        "result": "PASS"
+      }
+    },
+    "transit_observations": [],
+    "defects": [
+      {
+        "severity": "Minor",
+        "id": "PB10-MINOR-CHROME",
+        "finding": "Tomorrow chrome residual on CK-D2 (RO8-R3 class)",
+        "ef_class": "PI",
+        "residual": "RO8-R3"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB10-MINOR-CHROME",
+        "finding": "Tomorrow chrome residual on CK-D3 (RO8-R3 class)",
+        "ef_class": "PI",
+        "residual": "RO8-R3"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB10-MINOR-CHROME",
+        "finding": "Tomorrow chrome residual on CK-D4 (RO8-R3 class)",
+        "ef_class": "PI",
+        "residual": "RO8-R3"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB10-MINOR-CHROME",
+        "finding": "Tomorrow chrome residual on CK-D5 (RO8-R3 class)",
+        "ef_class": "PI",
+        "residual": "RO8-R3"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB10-MINOR-CHROME",
+        "finding": "Tomorrow chrome residual on CK-D6 (RO8-R3 class)",
+        "ef_class": "PI",
+        "residual": "RO8-R3"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB10-MINOR-CHROME",
+        "finding": "Tomorrow chrome residual on CK-R1 (RO8-R3 class)",
+        "ef_class": "PI",
+        "residual": "RO8-R3"
+      },
+      {
+        "severity": "Minor",
+        "id": "PB10-MINOR-Q6",
+        "finding": "Revision Q6 Learning-oriented residual on CK-R1 (RO8-R2 class)",
+        "ef_class": "PI",
+        "residual": "RO8-R2"
+      }
+    ],
+    "defect_counts": {
+      "Critical": 0,
+      "Major": 0,
+      "Minor": 7,
+      "Cosmetic": 0
+    }
+  }
+}

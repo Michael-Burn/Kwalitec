@@ -1,0 +1,118 @@
+{
+  "day_index": 22,
+  "expected_day": "CM-R1",
+  "expected_package_id": "CS1-EP001-PKG-REV-HYPOTHESIS-TESTING",
+  "finished": true,
+  "reading": {
+    "audit": {
+      "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Mu chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus.",
+      "body_sample": " Topic: Campaign Mu revision \u2014 hypothesis testing and goodness of fit (CM-R1) Mission: Retrieve hypothesis-testing hinges (3.3) Purpose of this revision stage: strengthen retrieval of the Campaign Mu chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block. Stop: After revision checks and Reflection \u2014 do not claim Chapter 3 com",
+      "support_sample": "Begin closed-book retrieval. Reopen CMP only at a failed locus. After checks, complete Reflection. What did you extract from the CMP setup? Submit Answer ",
+      "is_fallback_shell": false,
+      "is_guided_reading": false,
+      "mentions_cmp": true,
+      "cmp_refs_present": false,
+      "q_checks": {
+        "Q1_cmp_open": true,
+        "Q2_purpose": true,
+        "Q3_attention": true,
+        "Q4_ignore": true,
+        "Q5_stop": true,
+        "Q6_next": false
+      },
+      "ec001_markers": {
+        "Purpose of this reading": false,
+        "Open your CMP": false,
+        "Focus questions": true,
+        "Misconception watch": true,
+        "Out of scope today": true,
+        "Return cue": true,
+        "Worked-example": false,
+        "Knowledge Checks": false
+      },
+      "certified_snippet_hits": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true
+      },
+      "verdict": "FAIL",
+      "word_count_body": 236
+    },
+    "checklist": {
+      "CMP_reference_present": true,
+      "Educational_purpose_clear": true,
+      "Reading_focus_clear": true,
+      "Ignore_guidance_present": true,
+      "Stop_condition_explicit": true,
+      "Immediate_next_activity_named": false,
+      "Not_fallback_shell": true,
+      "Matches_certified_snippets": true
+    },
+    "fidelity": {
+      "lead_line": true,
+      "exit_line": true,
+      "return_cue": true,
+      "open_point": true,
+      "stop_condition": true,
+      "focus_q_0": true,
+      "focus_q_1": true,
+      "catalogue_body_match": true,
+      "catalogue_divergences": [],
+      "fidelity_pass": true
+    },
+    "package_id": "CS1-EP001-PKG-REV-HYPOTHESIS-TESTING",
+    "campaign_day": "CM-R1",
+    "html": "/tmp/pb013/evidence/advanced/day22_CM-R1_reading.html"
+  },
+  "checklist": {
+    "CMP_reference_present": true,
+    "Educational_purpose_clear": true,
+    "Reading_focus_clear": true,
+    "Ignore_guidance_present": true,
+    "Stop_condition_explicit": true,
+    "Immediate_next_activity_named": false,
+    "Not_fallback_shell": true,
+    "Matches_certified_snippets": true
+  },
+  "tomorrow_preview": {
+    "next_topic_code": false,
+    "continuity_fragment": false,
+    "student_facing_fragment": false,
+    "chrome_text_sample": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"Know exactly what to study next. \u00b7 Education Operating System",
+    "package_continuity_line": "Campaign Mu / Volume CS1-012 completes after this Revision. Continuity Front join: Topic 4.1 under Campaign Nu (CS1-013)",
+    "package_student_facing": "Campaign Mu / CS1-012 complete after today. Honest next: Continuity Front join at Topic 4.1 (Campaign Nu / CS1-013 CN-D1",
+    "chrome_matches_package_continuity": false
+  },
+  "verdict": "FAIL",
+  "home": {
+    "title_guess": "Understand hypothesis-testing concepts (null/alternative, errors, p-value, power)",
+    "day_complete": false,
+    "has_start": true,
+    "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good evening. Ready for today's mission? Today&#39;s Mission Understand hypothesis-testing concepts (null/alternative, errors, p-value, power) CS1 (CS1) 1 h Study 3.3 \u2014 Apply the concepts of hypothesis testing and goodness of fit After this \u00b7 Study Progress for HT concepts \u2014 not Topic Com"
+  },
+  "session_id": "lsr-cafaba19a217",
+  "educational_fidelity": {
+    "lead_line": true,
+    "exit_line": true,
+    "return_cue": true,
+    "open_point": true,
+    "stop_condition": true,
+    "focus_q_0": true,
+    "focus_q_1": true,
+    "catalogue_body_match": true,
+    "catalogue_divergences": [],
+    "fidelity_pass": true
+  },
+  "reflection_ok": true,
+  "tomorrow_chrome_matches_approved": false,
+  "package_path_ok": false,
+  "chrome_residual": true,
+  "theta_focus": false,
+  "eta_focus": false,
+  "zeta_focus": false,
+  "kappa_focus": false,
+  "lambda_focus": false,
+  "epsilon_focus": false,
+  "persona": "advanced"
+}

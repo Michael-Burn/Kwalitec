@@ -1,0 +1,97 @@
+{
+  "package_id": "CS1-EA005-PKG-4.2-GLM-STRUCTURE",
+  "live_published": true,
+  "reach": {
+    "mission_present": true,
+    "session_started": true,
+    "reading_reached": true,
+    "session_id": "lsr-3d878199827d",
+    "mission_topic": "4.2 Understand and use generalised linear models",
+    "activity_title": "Reading: Extract how a GLM joins an exponential-family response, a linear predictor, and a link \u2014 then stop after the first structural worked example.",
+    "html_path": "/tmp/pb001a/html/study42c_42/reading.html"
+  },
+  "audit_vs_ec001": {
+    "title": "Reading: Extract how a GLM joins an exponential-family response, a linear predictor, and a link \u2014 then stop after the first structural worked example.",
+    "body_sample": " Topic: Understand and use generalised linear models (4.2) Mission: Extend linear models into GLM structure Extract how a GLM joins an exponential-family response, a linear predictor, and a link \u2014 then stop after the first structural worked example. Open: CMP \u00b7 Syllabus 4.2 GLM setup (4.2.1\u20134.2.3 centre) Stop: Through the first worked GLM setup example that shows a non-identity link (or equivalent first full structural walkthrough in your CMP edition) Focus questions: \u2022 Where is the linear predi",
+    "support_sample": "Open your CMP at the GLM setup for Syllabus 4.2. Work with the three focus questions above. I will stay quiet while you study. Come back here when you reach the end of the first structural worked example. What did you extract from the CMP setup? Submit Answer ",
+    "is_fallback_shell": false,
+    "is_guided_reading": false,
+    "mentions_cmp": true,
+    "cmp_refs_present": true,
+    "q_checks": {
+      "Q1_cmp_open": true,
+      "Q2_purpose": false,
+      "Q3_attention": true,
+      "Q4_ignore": true,
+      "Q5_stop": true,
+      "Q6_next": false
+    },
+    "ec001_markers": {
+      "Purpose of this reading": false,
+      "Open your CMP": true,
+      "Focus questions": true,
+      "Misconception watch": true,
+      "Out of scope today": true,
+      "Return cue": true,
+      "Worked-example": false,
+      "Knowledge Checks": false
+    },
+    "certified_snippet_hits": {
+      "lead_line": false,
+      "exit_line": false,
+      "return_cue": false,
+      "open_point": true
+    },
+    "verdict": "FAIL",
+    "word_count_body": 283
+  },
+  "audit_vs_live_tip": {
+    "title": "Reading: Extract how a GLM joins an exponential-family response, a linear predictor, and a link \u2014 then stop after the first structural worked example.",
+    "body_sample": " Topic: Understand and use generalised linear models (4.2) Mission: Extend linear models into GLM structure Extract how a GLM joins an exponential-family response, a linear predictor, and a link \u2014 then stop after the first structural worked example. Open: CMP \u00b7 Syllabus 4.2 GLM setup (4.2.1\u20134.2.3 centre) Stop: Through the first worked GLM setup example that shows a non-identity link (or equivalent first full structural walkthrough in your CMP edition) Focus questions: \u2022 Where is the linear predi",
+    "support_sample": "Open your CMP at the GLM setup for Syllabus 4.2. Work with the three focus questions above. I will stay quiet while you study. Come back here when you reach the end of the first structural worked example. What did you extract from the CMP setup? Submit Answer ",
+    "is_fallback_shell": false,
+    "is_guided_reading": false,
+    "mentions_cmp": true,
+    "cmp_refs_present": true,
+    "q_checks": {
+      "Q1_cmp_open": true,
+      "Q2_purpose": false,
+      "Q3_attention": true,
+      "Q4_ignore": true,
+      "Q5_stop": true,
+      "Q6_next": false
+    },
+    "ec001_markers": {
+      "Purpose of this reading": false,
+      "Open your CMP": true,
+      "Focus questions": true,
+      "Misconception watch": true,
+      "Out of scope today": true,
+      "Return cue": true,
+      "Worked-example": false,
+      "Knowledge Checks": false
+    },
+    "certified_snippet_hits": {
+      "lead_line": true,
+      "exit_line": true,
+      "return_cue": true,
+      "open_point": true
+    },
+    "verdict": "FAIL",
+    "word_count_body": 283
+  },
+  "delivers_live_tip_package": true,
+  "delivers_ec001_certified": false,
+  "verdict": "FAIL",
+  "verdict_reason": "LIVE student on topic 4.2 receives the tip publication_approved Guided Reading package (CMP open/stop/focus/exit present; not fallback LO shell). However the tip package copy is pre-EC-001: Q2 purpose framing and Q6 next-activity naming fail the EC-001 partnership bar, and EC-001 remediated strings are absent because EC-001 content is uncommitted/not deployed.",
+  "ec001_q_bar": {
+    "Q1": "PASS",
+    "Q2": "FAIL",
+    "Q3": "PASS",
+    "Q4": "PASS",
+    "Q5": "PASS",
+    "Q6": "FAIL",
+    "overall": "FAIL"
+  },
+  "delivery_channel": "educational_package (publication_approved)"
+}

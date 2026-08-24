@@ -1,0 +1,82 @@
+{
+  "expected_day": "CO-R1",
+  "detected_campaign_day": "CO-R1",
+  "finished": true,
+  "reflection_ok": true,
+  "verdict": "PASS",
+  "score_over_9": 9,
+  "dimensions": {
+    "mission_clarity": "PASS",
+    "cmp_partnership": "PASS",
+    "educational_confidence": "PASS",
+    "session_completion": "PASS",
+    "reflection_quality": "PASS",
+    "transition_quality": "PASS",
+    "tomorrow_confidence": "PASS",
+    "trust_retention": "PASS",
+    "educational_consistency": "PASS"
+  },
+  "programme_metrics": {
+    "recommendation_consistency": "PASS",
+    "weak_area_identification": "PASS",
+    "mission_sequencing": "PASS",
+    "syllabus_continuity": "PASS",
+    "confidence_calibration": "PASS",
+    "explanation_usefulness": "PASS"
+  },
+  "checklist": {
+    "CMP_reference_present": true,
+    "Educational_purpose_clear": true,
+    "Reading_focus_clear": true,
+    "Ignore_guidance_present": true,
+    "Stop_condition_explicit": true,
+    "Immediate_next_activity_named": false,
+    "Not_fallback_shell": true,
+    "Matches_certified_snippets": true
+  },
+  "tomorrow_chrome_matches_approved": true,
+  "chrome_residual": false,
+  "revision_q6_residual": true,
+  "residuals": [
+    "RO13-R2"
+  ],
+  "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
+  "reading": {
+    "audit": {
+      "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Omicron chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed lo",
+      "body_sample": " Topic: Campaign Omicron revision \u2014 Bayesian statistics (CO-R1) Mission: Retrieve Bayesian hinges (5.1) Purpose of this revision stage: strengthen retrieval of the Campaign Omicron chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block. Stop: After revision checks and Reflection \u2014 do not claim spine PASS, until-exam trust, or",
+      "support_sample": "Begin closed-book retrieval. Reopen CMP only at a failed locus. After checks, complete Reflection. What did you extract from the CMP setup? Submit Answer ",
+      "is_fallback_shell": false,
+      "is_guided_reading": false,
+      "mentions_cmp": true,
+      "cmp_refs_present": false,
+      "q_checks": {
+        "Q1_cmp_open": true,
+        "Q2_purpose": true,
+        "Q3_attention": true,
+        "Q4_ignore": true,
+        "Q5_stop": true,
+        "Q6_next": false
+      },
+      "ec001_markers": {
+        "Purpose of this reading": false,
+        "Open your CMP": false,
+        "Focus questions": true,
+        "Misconception watch": true,
+        "Out of scope today": true,
+        "Return cue": true,
+        "Worked-example": false,
+        "Knowledge Checks": false
+      },
+      "certified_snippet_hits": {
+        "lead_line": true,
+        "exit_line": true,
+        "return_cue": true,
+        "open_point": true
+      },
+      "verdict": "FAIL",
+      "word_count_body": 245
+    },
+    "html": "/tmp/pb015/evidence/advanced/day49_CO-R1_reading.html"
+  }
+}

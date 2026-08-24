@@ -1,0 +1,540 @@
+{
+  "health": {
+    "build_date": "2026-08-01",
+    "build_number": "local",
+    "commit": "94e02f57669831ff6af4e6f6bf87a727ca0cfe38",
+    "components": {
+      "database": {
+        "latency_ms": 2.4,
+        "name": "database",
+        "status": "ok"
+      },
+      "instance_storage": {
+        "meta": {
+          "path": "/opt/render/project/src/instance"
+        },
+        "name": "instance_storage",
+        "status": "ok"
+      },
+      "migrations": {
+        "meta": {
+          "current": "202607310002",
+          "head": "202607310002"
+        },
+        "name": "migrations",
+        "status": "ok"
+      },
+      "queue": {
+        "detail": "manual automation runner (no external broker)",
+        "meta": {
+          "broker": "none",
+          "runner": "app.automation"
+        },
+        "name": "queue",
+        "status": "ok"
+      }
+    },
+    "database": "connected",
+    "environment": "production",
+    "status": "ok",
+    "timestamp": "2026-08-01T10:57:12.157732+00:00",
+    "version": "2.0.0-beta.1"
+  },
+  "cohort": [
+    {
+      "slug": "average_math",
+      "ok_login": true,
+      "days": [
+        {
+          "topic": "1.1",
+          "finished": false,
+          "started": true,
+          "access": "natural",
+          "fallback": false,
+          "cmp": true
+        }
+      ],
+      "evals": [
+        {
+          "slug": "average_math",
+          "day": 1,
+          "topic": "1.1",
+          "dimensions": {
+            "educational_clarity": "FAIL",
+            "mission_sequencing": "FAIL",
+            "workload": "PASS",
+            "cmp_partnership": "PASS",
+            "revision_timing": "PASS",
+            "knowledge_progression": "CONCERN",
+            "confidence_calibration": "PASS",
+            "motivation_to_continue": "CONCERN",
+            "educational_trust": "FAIL"
+          },
+          "finished": false,
+          "reading_verdict": "PASS",
+          "fallback": false,
+          "s1": 1,
+          "s2": 0
+        }
+      ],
+      "revision_attempts": [
+        {
+          "ok": false,
+          "topic": "CA-R1",
+          "user_id": 45,
+          "current": null,
+          "coverage": null
+        },
+        {
+          "ok": false,
+          "topic": "CB-R1",
+          "user_id": 45,
+          "current": null,
+          "coverage": null
+        }
+      ],
+      "s1": 1,
+      "s2": 3
+    },
+    {
+      "slug": "weak_math",
+      "ok_login": true,
+      "days": [
+        {
+          "topic": "1.1",
+          "finished": false,
+          "started": true,
+          "access": "natural",
+          "fallback": false,
+          "cmp": true
+        }
+      ],
+      "evals": [
+        {
+          "slug": "weak_math",
+          "day": 1,
+          "topic": "1.1",
+          "dimensions": {
+            "educational_clarity": "FAIL",
+            "mission_sequencing": "FAIL",
+            "workload": "PASS",
+            "cmp_partnership": "PASS",
+            "revision_timing": "PASS",
+            "knowledge_progression": "CONCERN",
+            "confidence_calibration": "PASS",
+            "motivation_to_continue": "CONCERN",
+            "educational_trust": "FAIL"
+          },
+          "finished": false,
+          "reading_verdict": "PASS",
+          "fallback": false,
+          "s1": 1,
+          "s2": 0
+        }
+      ],
+      "revision_attempts": [
+        {
+          "ok": false,
+          "topic": "CA-R1",
+          "user_id": 46,
+          "current": null,
+          "coverage": null
+        },
+        {
+          "ok": false,
+          "topic": "CB-R1",
+          "user_id": 46,
+          "current": null,
+          "coverage": null
+        }
+      ],
+      "s1": 1,
+      "s2": 3
+    },
+    {
+      "slug": "interrupted",
+      "ok_login": true,
+      "days": [
+        {
+          "topic": "1.1",
+          "finished": false,
+          "started": true,
+          "access": "natural",
+          "fallback": false,
+          "cmp": true
+        }
+      ],
+      "evals": [
+        {
+          "slug": "interrupted",
+          "day": 1,
+          "topic": "1.1",
+          "dimensions": {
+            "educational_clarity": "FAIL",
+            "mission_sequencing": "FAIL",
+            "workload": "PASS",
+            "cmp_partnership": "PASS",
+            "revision_timing": "PASS",
+            "knowledge_progression": "CONCERN",
+            "confidence_calibration": "PASS",
+            "motivation_to_continue": "CONCERN",
+            "educational_trust": "FAIL"
+          },
+          "finished": false,
+          "reading_verdict": "PASS",
+          "fallback": false,
+          "s1": 1,
+          "s2": 0
+        }
+      ],
+      "revision_attempts": [
+        {
+          "ok": false,
+          "topic": "CA-R1",
+          "user_id": 47,
+          "current": null,
+          "coverage": null
+        },
+        {
+          "ok": false,
+          "topic": "CB-R1",
+          "user_id": 47,
+          "current": null,
+          "coverage": null
+        }
+      ],
+      "s1": 1,
+      "s2": 3
+    },
+    {
+      "slug": "weekend_learner",
+      "ok_login": true,
+      "days": [
+        {
+          "topic": "1.1",
+          "finished": false,
+          "started": true,
+          "access": "natural",
+          "fallback": false,
+          "cmp": true
+        }
+      ],
+      "evals": [
+        {
+          "slug": "weekend_learner",
+          "day": 1,
+          "topic": "1.1",
+          "dimensions": {
+            "educational_clarity": "FAIL",
+            "mission_sequencing": "FAIL",
+            "workload": "PASS",
+            "cmp_partnership": "PASS",
+            "revision_timing": "PASS",
+            "knowledge_progression": "CONCERN",
+            "confidence_calibration": "PASS",
+            "motivation_to_continue": "CONCERN",
+            "educational_trust": "FAIL"
+          },
+          "finished": false,
+          "reading_verdict": "PASS",
+          "fallback": false,
+          "s1": 1,
+          "s2": 0
+        }
+      ],
+      "revision_attempts": [
+        {
+          "ok": false,
+          "topic": "CA-R1",
+          "user_id": 48,
+          "current": null,
+          "coverage": null
+        },
+        {
+          "ok": false,
+          "topic": "CB-R1",
+          "user_id": 48,
+          "current": null,
+          "coverage": null
+        }
+      ],
+      "s1": 1,
+      "s2": 3
+    },
+    {
+      "slug": "low_confidence",
+      "ok_login": true,
+      "days": [
+        {
+          "topic": "1.1",
+          "finished": false,
+          "started": true,
+          "access": "natural",
+          "fallback": false,
+          "cmp": true
+        }
+      ],
+      "evals": [
+        {
+          "slug": "low_confidence",
+          "day": 1,
+          "topic": "1.1",
+          "dimensions": {
+            "educational_clarity": "FAIL",
+            "mission_sequencing": "FAIL",
+            "workload": "PASS",
+            "cmp_partnership": "PASS",
+            "revision_timing": "PASS",
+            "knowledge_progression": "CONCERN",
+            "confidence_calibration": "PASS",
+            "motivation_to_continue": "CONCERN",
+            "educational_trust": "FAIL"
+          },
+          "finished": false,
+          "reading_verdict": "PASS",
+          "fallback": false,
+          "s1": 1,
+          "s2": 0
+        }
+      ],
+      "revision_attempts": [
+        {
+          "ok": false,
+          "topic": "CA-R1",
+          "user_id": 49,
+          "current": null,
+          "coverage": null
+        },
+        {
+          "ok": false,
+          "topic": "CB-R1",
+          "user_id": 49,
+          "current": null,
+          "coverage": null
+        }
+      ],
+      "s1": 1,
+      "s2": 3
+    },
+    {
+      "slug": "overconfident",
+      "ok_login": true,
+      "days": [
+        {
+          "topic": "1.1",
+          "finished": false,
+          "started": true,
+          "access": "natural",
+          "fallback": false,
+          "cmp": true
+        }
+      ],
+      "evals": [
+        {
+          "slug": "overconfident",
+          "day": 1,
+          "topic": "1.1",
+          "dimensions": {
+            "educational_clarity": "FAIL",
+            "mission_sequencing": "FAIL",
+            "workload": "PASS",
+            "cmp_partnership": "PASS",
+            "revision_timing": "PASS",
+            "knowledge_progression": "CONCERN",
+            "confidence_calibration": "PASS",
+            "motivation_to_continue": "CONCERN",
+            "educational_trust": "FAIL"
+          },
+          "finished": false,
+          "reading_verdict": "PASS",
+          "fallback": false,
+          "s1": 1,
+          "s2": 0
+        }
+      ],
+      "revision_attempts": [
+        {
+          "ok": false,
+          "topic": "CA-R1",
+          "user_id": 50,
+          "current": null,
+          "coverage": null
+        },
+        {
+          "ok": false,
+          "topic": "CB-R1",
+          "user_id": 50,
+          "current": null,
+          "coverage": null
+        }
+      ],
+      "s1": 1,
+      "s2": 3
+    },
+    {
+      "slug": "high_discipline",
+      "ok_login": true,
+      "days": [
+        {
+          "topic": "1.1",
+          "finished": false,
+          "started": true,
+          "access": "natural",
+          "fallback": false,
+          "cmp": true
+        }
+      ],
+      "evals": [
+        {
+          "slug": "high_discipline",
+          "day": 1,
+          "topic": "1.1",
+          "dimensions": {
+            "educational_clarity": "FAIL",
+            "mission_sequencing": "FAIL",
+            "workload": "PASS",
+            "cmp_partnership": "PASS",
+            "revision_timing": "PASS",
+            "knowledge_progression": "CONCERN",
+            "confidence_calibration": "PASS",
+            "motivation_to_continue": "CONCERN",
+            "educational_trust": "FAIL"
+          },
+          "finished": false,
+          "reading_verdict": "PASS",
+          "fallback": false,
+          "s1": 1,
+          "s2": 0
+        }
+      ],
+      "revision_attempts": [
+        {
+          "ok": false,
+          "topic": "CA-R1",
+          "user_id": 51,
+          "current": null,
+          "coverage": null
+        },
+        {
+          "ok": false,
+          "topic": "CB-R1",
+          "user_id": 51,
+          "current": null,
+          "coverage": null
+        }
+      ],
+      "s1": 1,
+      "s2": 3
+    },
+    {
+      "slug": "practice_averse",
+      "ok_login": true,
+      "days": [
+        {
+          "topic": "1.1",
+          "finished": false,
+          "started": true,
+          "access": "natural",
+          "fallback": false,
+          "cmp": true
+        }
+      ],
+      "evals": [
+        {
+          "slug": "practice_averse",
+          "day": 1,
+          "topic": "1.1",
+          "dimensions": {
+            "educational_clarity": "FAIL",
+            "mission_sequencing": "FAIL",
+            "workload": "PASS",
+            "cmp_partnership": "PASS",
+            "revision_timing": "PASS",
+            "knowledge_progression": "CONCERN",
+            "confidence_calibration": "PASS",
+            "motivation_to_continue": "CONCERN",
+            "educational_trust": "FAIL"
+          },
+          "finished": false,
+          "reading_verdict": "PASS",
+          "fallback": false,
+          "s1": 1,
+          "s2": 0
+        }
+      ],
+      "revision_attempts": [
+        {
+          "ok": false,
+          "topic": "CA-R1",
+          "user_id": 52,
+          "current": null,
+          "coverage": null
+        },
+        {
+          "ok": false,
+          "topic": "CB-R1",
+          "user_id": 52,
+          "current": null,
+          "coverage": null
+        }
+      ],
+      "s1": 1,
+      "s2": 3
+    },
+    {
+      "slug": "revision_averse",
+      "ok_login": true,
+      "days": [
+        {
+          "topic": "1.1",
+          "finished": false,
+          "started": true,
+          "access": "natural",
+          "fallback": false,
+          "cmp": true
+        }
+      ],
+      "evals": [
+        {
+          "slug": "revision_averse",
+          "day": 1,
+          "topic": "1.1",
+          "dimensions": {
+            "educational_clarity": "FAIL",
+            "mission_sequencing": "FAIL",
+            "workload": "PASS",
+            "cmp_partnership": "PASS",
+            "revision_timing": "PASS",
+            "knowledge_progression": "CONCERN",
+            "confidence_calibration": "PASS",
+            "motivation_to_continue": "CONCERN",
+            "educational_trust": "FAIL"
+          },
+          "finished": false,
+          "reading_verdict": "PASS",
+          "fallback": false,
+          "s1": 1,
+          "s2": 0
+        }
+      ],
+      "revision_attempts": [
+        {
+          "ok": false,
+          "topic": "CA-R1",
+          "user_id": 53,
+          "current": null,
+          "coverage": null
+        },
+        {
+          "ok": false,
+          "topic": "CB-R1",
+          "user_id": 53,
+          "current": null,
+          "coverage": null
+        }
+      ],
+      "s1": 1,
+      "s2": 3
+    }
+  ]
+}

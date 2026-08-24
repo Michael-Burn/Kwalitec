@@ -1,0 +1,60 @@
+{
+  "topic_code": "1.1",
+  "student": "study11b",
+  "note": "seeded 1.1 realign mission",
+  "reach": {
+    "mission_present": true,
+    "session_started": true,
+    "reading_reached": true,
+    "session_id": "lsr-4ce27b196495",
+    "mission_topic": "1.1 Describe the purpose and function of data analysis",
+    "activity_title": "Reading: Purpose of this reading: use the CMP (not this screen) to build a professional purpose map \u2014 aims, stages, sources, and reproducibility \u2014 so later EDA days answer a named aim. Extract that frame from the CMP, then stop after the purpose-and-function block is complete in your edition.",
+    "html_path": "/tmp/rc2d/html/study11b/reading.html"
+  },
+  "audit": {
+    "title": "Reading: Purpose of this reading: use the CMP (not this screen) to build a professional purpose map \u2014 aims, stages, sources, and reproducibility \u2014 so later EDA days answer a named aim. Extract that fr",
+    "body_sample": " Topic: Describe the purpose and function of data analysis (1.1) Mission: Name why actuarial data analysis exists Purpose of this reading: use the CMP (not this screen) to build a professional purpose map \u2014 aims, stages, sources, and reproducibility \u2014 so later EDA days answer a named aim. Extract that frame from the CMP, then stop after the purpose-and-function block is complete in your edition. Open: CMP \u00b7 Syllabus 1.1 purpose and function of data analysis (1.1.1\u20131.1.4 centre) Stop: Through the",
+    "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at Syllabus 1.1 \u2014 purpose and function of data analysis (1.1.1\u20131.1.4 centre). Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation sketch. Ignore detailed EDA recipes, correlati",
+    "is_fallback_shell": false,
+    "is_guided_reading": false,
+    "mentions_cmp": true,
+    "cmp_refs_present": true,
+    "q_checks": {
+      "Q1_cmp_open": true,
+      "Q2_purpose": true,
+      "Q3_attention": true,
+      "Q4_ignore": true,
+      "Q5_stop": true,
+      "Q6_next": true
+    },
+    "ec001_markers": {
+      "Purpose of this reading": true,
+      "Open your CMP": true,
+      "Focus questions": true,
+      "Misconception watch": true,
+      "Out of scope today": true,
+      "Return cue": true,
+      "Worked-example": true,
+      "Knowledge Checks": true
+    },
+    "certified_snippet_hits": {
+      "lead_line": true,
+      "exit_line": true,
+      "return_cue": true,
+      "open_point": true
+    },
+    "verdict": "PASS",
+    "word_count_body": 411
+  },
+  "checklist": {
+    "CMP": true,
+    "purpose": true,
+    "focus": true,
+    "ignore": true,
+    "stop": true,
+    "next": true,
+    "not_fallback": true,
+    "lead_match": true
+  },
+  "verdict": "PASS"
+}

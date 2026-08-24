@@ -1,0 +1,84 @@
+{
+  "day_index": 60,
+  "expected_day": "CP-D9",
+  "expected_package_id": "CS1-EP001-PKG-CP-5.1-BAYES-THEOREM",
+  "finished": true,
+  "reading": {
+    "audit": {
+      "title": "Reading: Purpose of this revision stage: strengthen retrieval of the Campaign Pi Memory Front chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact f",
+      "body_sample": " Topic: Campaign Pi revision \u2014 Memory Front spine hinges (CP-R1) Mission: Retrieve Memory Front spine hinges Purpose of this revision stage: strengthen retrieval of the Campaign Pi Memory Front chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus. Open: No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block. Stop: After revision checks and Reflection \u2014 do not claim spine PASS, until-e",
+      "support_sample": "Keep the CMP closed to begin. Attempt closed-book retrieval of the Campaign Pi hinge chain. Only after a failed check may you reopen the exact failed locus in the CMP. Stop after checks and Reflection \u2014 refuse spine PASS, until-exam trust, and Wave 0 clearance claims. What did you extract from the CMP setup? Submit Answer ",
+      "is_fallback_shell": false,
+      "is_guided_reading": false,
+      "mentions_cmp": true,
+      "cmp_refs_present": false,
+      "q_checks": {
+        "Q1_cmp_open": true,
+        "Q2_purpose": true,
+        "Q3_attention": true,
+        "Q4_ignore": true,
+        "Q5_stop": true,
+        "Q6_next": false
+      },
+      "ec001_markers": {
+        "Purpose of this reading": false,
+        "Open your CMP": false,
+        "Focus questions": true,
+        "Misconception watch": true,
+        "Out of scope today": true,
+        "Return cue": true,
+        "Worked-example": false,
+        "Knowledge Checks": false
+      },
+      "certified_snippet_hits": {
+        "lead_line": false,
+        "exit_line": false,
+        "return_cue": false,
+        "open_point": false
+      },
+      "verdict": "FAIL",
+      "word_count_body": 294
+    },
+    "checklist": {
+      "CMP_reference_present": true,
+      "Educational_purpose_clear": true,
+      "Reading_focus_clear": true,
+      "Ignore_guidance_present": true,
+      "Stop_condition_explicit": true,
+      "Immediate_next_activity_named": false,
+      "Not_fallback_shell": true,
+      "Matches_certified_snippets": false
+    },
+    "html": "/tmp/ro014/evidence/day60_CP-D9_reading.html"
+  },
+  "checklist": {
+    "CMP_reference_present": true,
+    "Educational_purpose_clear": true,
+    "Reading_focus_clear": true,
+    "Ignore_guidance_present": true,
+    "Stop_condition_explicit": true,
+    "Immediate_next_activity_named": false,
+    "Not_fallback_shell": true,
+    "Matches_certified_snippets": false
+  },
+  "tomorrow_preview": {
+    "next_topic_code": false,
+    "continuity_fragment": false,
+    "student_facing_fragment": false
+  },
+  "verdict": "PASS",
+  "home": {
+    "title_guess": "Form the moment and cumulant generating functions of an RV",
+    "day_complete": false,
+    "has_start": true,
+    "text_sample": " Home \u00b7 Kwalitec Skip to content Menu Home Syllabus Revision History Settings Choose Exam Help System Sign out Good morning. Ready for today's mission? Today&#39;s Mission Form the moment and cumulant generating functions of an RV CS1 (CS1) 1 h Study 2.4 \u2014 Evaluate and apply generating functions After this \u00b7 Study Progress for MGF/CGF \u2014 not Topic Complete for 2.4.2. Start Today&#39;s Session Progr"
+  },
+  "session_id": "lsr-c4f5d174f692",
+  "reflection_ok": true,
+  "tomorrow_chrome_matches_approved": false,
+  "package_path_ok": true,
+  "chrome_residual": true,
+  "ops_expected_day": "CP-D9",
+  "revision_q6_residual": true,
+  "detected_campaign_day": "CP-R1"
+}

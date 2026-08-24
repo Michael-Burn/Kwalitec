@@ -1,0 +1,35 @@
+{
+  "programme": "KSI-003",
+  "sap_version": "1.0",
+  "locked_date": "2026-08-04",
+  "lock_rule": "Lock inclusion set before primary endpoint computation (Study Design §9). Locked empty.",
+  "sets": {
+    "ITT-Accepted": {
+      "definition": "All invite-accepted external participants",
+      "N": 0,
+      "ids": []
+    },
+    "Activated": {
+      "definition": "Accepted with ≥1 productive Session completion",
+      "N": 0,
+      "ids": []
+    },
+    "Active-Evaluable": {
+      "definition": "Activated and observed ≥ minimum study length (4 weeks) unless dropout rules exclude",
+      "N": 0,
+      "ids": []
+    },
+    "Interview": {
+      "definition": "Activated with completed structured interview + interview consent",
+      "N": 0,
+      "ids": []
+    },
+    "Per-protocol": {
+      "definition": "Active-Evaluable with measurement consent retained throughout window",
+      "N": 0,
+      "ids": []
+    }
+  },
+  "primary_effectiveness_board": "Active-Evaluable + Interview — both empty; board cannot be computed",
+  "sensitivity_itt": "ITT-Accepted N=0 — drop-off honesty: no accepted cohort to lose"
+}

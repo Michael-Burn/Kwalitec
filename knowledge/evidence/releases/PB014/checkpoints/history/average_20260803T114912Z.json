@@ -1,0 +1,59 @@
+{
+  "programme": "PB-014",
+  "persona": "average",
+  "email": "pb014.xi.average.1785750939@example.com",
+  "password_file": "/tmp/pb014/accounts/shared_pass.txt",
+  "phase": "transit",
+  "last_transit_verified": "CL-D2",
+  "last_certified_day": null,
+  "certified_trajectory": [],
+  "certified_days_complete": [],
+  "remaining_xi_days": [
+    "CX-D1",
+    "CX-D2",
+    "CX-D3",
+    "CX-D4",
+    "CX-D5",
+    "CX-D6",
+    "CX-D7",
+    "CX-D8",
+    "CX-D9",
+    "CX-D10",
+    "CX-R1"
+  ],
+  "operational_notes": [
+    {
+      "at": "2026-08-03T10:58:01.176717+00:00",
+      "event": "paused_to_prioritise_xi_completion",
+      "reason": "Continuation Protocol: finish Xi/Nu personas first; reduce LIVE contention",
+      "last_transit_verified": "CK-D6",
+      "educational_failure": false
+    },
+    {
+      "at": "2026-08-03T11:38:03.736814+00:00",
+      "event": "resume_after_xi_priority_wave",
+      "educational_failure": false,
+      "last_transit_verified": "CK-D6"
+    },
+    {
+      "at": "2026-08-03T11:38:50.369456+00:00",
+      "event": "resume_start",
+      "educational_failure": false,
+      "remaining": [
+        "CX-D1",
+        "CX-D2",
+        "CX-D3",
+        "CX-D4",
+        "CX-D5",
+        "CX-D6",
+        "CX-D7",
+        "CX-D8",
+        "CX-D9",
+        "CX-D10",
+        "CX-R1"
+      ]
+    }
+  ],
+  "updated_at": "2026-08-03T11:46:27.950527+00:00",
+  "status": "resuming"
+}

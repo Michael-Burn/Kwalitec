@@ -1,0 +1,126 @@
+{
+  "slug": "repeat",
+  "label": "Repeat sitting",
+  "email": "pb009.iota.repeat.1785662601@example.com",
+  "verdict": "PASS",
+  "summary": {
+    "certified_days_scored": 7,
+    "certified_all_pass": true,
+    "avg_score_over_9": 8.142857142857142,
+    "trajectory": [
+      {
+        "day": "CI-D1",
+        "confidence_level": "HIGH",
+        "score_over_9": 8,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "FAIL",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        }
+      },
+      {
+        "day": "CI-D2",
+        "confidence_level": "HIGH",
+        "score_over_9": 8,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "FAIL",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        }
+      },
+      {
+        "day": "CI-D3",
+        "confidence_level": "HIGH",
+        "score_over_9": 8,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "FAIL",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        }
+      },
+      {
+        "day": "CI-D4",
+        "confidence_level": "HIGH",
+        "score_over_9": 8,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "FAIL",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        }
+      },
+      {
+        "day": "CI-D5",
+        "confidence_level": "HIGH",
+        "score_over_9": 8,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "FAIL",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        }
+      },
+      {
+        "day": "CI-D6",
+        "confidence_level": "HIGH",
+        "score_over_9": 8,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "FAIL",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        }
+      },
+      {
+        "day": "CI-R1",
+        "confidence_level": "HIGH",
+        "score_over_9": 9,
+        "dimensions": {
+          "mission_clarity": "PASS",
+          "cmp_partnership": "PASS",
+          "educational_confidence": "PASS",
+          "session_completion": "PASS",
+          "reflection_quality": "PASS",
+          "transition_quality": "PASS",
+          "tomorrow_confidence": "PASS",
+          "trust_retention": "PASS",
+          "educational_consistency": "PASS"
+        }
+      }
+    ],
+    "stable_high": true
+  }
+}

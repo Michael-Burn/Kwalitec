@@ -1,0 +1,63 @@
+{
+  "topic_code": "4.2",
+  "package_note": "seeded 4.2 \u2014 CS1-EA005-PKG-4.2-GLM-STRUCTURE EC-001",
+  "expected_package_id": "CS1-EA005-PKG-4.2-GLM-STRUCTURE",
+  "student": "study42",
+  "commit": "94e02f57669831ff6af4e6f6bf87a727ca0cfe38",
+  "reach": {
+    "mission_present": true,
+    "session_started": true,
+    "reading_reached": true,
+    "session_id": "lsr-33b889dc7a3c",
+    "mission_topic": "4.2 Understand and use generalised linear models",
+    "activity_title": "Reading: Purpose of this reading: use the CMP to extract how a GLM joins an exponential-family response, a linear predictor, and a link \u2014 so link choice is structural, not software habit. Extract that chain from the CMP, then stop after the first structural worked example.",
+    "html_path": "/tmp/rc2d/html/study42/reading.html"
+  },
+  "audit": {
+    "title": "Reading: Purpose of this reading: use the CMP to extract how a GLM joins an exponential-family response, a linear predictor, and a link \u2014 so link choice is structural, not software habit. Extract that",
+    "body_sample": " Topic: Understand and use generalised linear models (4.2) Mission: Extend linear models into GLM structure Purpose of this reading: use the CMP to extract how a GLM joins an exponential-family response, a linear predictor, and a link \u2014 so link choice is structural, not software habit. Extract that chain from the CMP, then stop after the first structural worked example. Open: CMP \u00b7 Syllabus 4.2 GLM setup (4.2.1\u20134.2.3 centre) Stop: Through the first worked GLM setup example that shows a non-ident",
+    "support_sample": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at Syllabus 4.2 GLM setup (4.2.1\u20134.2.3 centre). Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; sketch Family / \u03b7 / Link before deep reading; attempt the middle step of the first worked example be",
+    "is_fallback_shell": false,
+    "is_guided_reading": false,
+    "mentions_cmp": true,
+    "cmp_refs_present": true,
+    "q_checks": {
+      "Q1_cmp_open": true,
+      "Q2_purpose": true,
+      "Q3_attention": true,
+      "Q4_ignore": true,
+      "Q5_stop": true,
+      "Q6_next": true
+    },
+    "ec001_markers": {
+      "Purpose of this reading": true,
+      "Open your CMP": true,
+      "Focus questions": true,
+      "Misconception watch": true,
+      "Out of scope today": true,
+      "Return cue": true,
+      "Worked-example": true,
+      "Knowledge Checks": true
+    },
+    "certified_snippet_hits": {
+      "lead_line": true,
+      "exit_line": true,
+      "return_cue": true,
+      "open_point": true
+    },
+    "verdict": "PASS",
+    "word_count_body": 417
+  },
+  "checklist": {
+    "CMP_reference_present": true,
+    "Educational_purpose_clear": true,
+    "Reading_focus_clear": true,
+    "Ignore_guidance_present": true,
+    "Stop_condition_explicit": true,
+    "Immediate_next_activity_named": true,
+    "Not_fallback_shell": true,
+    "Matches_certified_lead": true
+  },
+  "verdict": "PASS",
+  "html": "/tmp/rc2d/evidence/study42_reading.html"
+}

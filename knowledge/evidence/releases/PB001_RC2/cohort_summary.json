@@ -1,0 +1,84 @@
+{
+  "host": "https://kwalitec.onrender.com",
+  "commit": "0d3fc72137ba0ea51d1baa522c52aa526cf04438",
+  "verdict": "CLAIM_REJECTED",
+  "personas": 10,
+  "s1_product": 11,
+  "s2": 31,
+  "claim_breaking": [
+    "F1_no_CMP_direction",
+    "F2_empty_reading_activity"
+  ],
+  "cohort": [
+    {
+      "slug": "avg_discipline",
+      "finished_days": 1,
+      "started_days": 1,
+      "interrupted": false,
+      "resumed": false
+    },
+    {
+      "slug": "high_discipline",
+      "finished_days": 1,
+      "started_days": 1,
+      "interrupted": false,
+      "resumed": false
+    },
+    {
+      "slug": "interrupted",
+      "finished_days": 1,
+      "started_days": 1,
+      "interrupted": true,
+      "resumed": true
+    },
+    {
+      "slug": "low_confidence",
+      "finished_days": 1,
+      "started_days": 1,
+      "interrupted": false,
+      "resumed": false
+    },
+    {
+      "slug": "overconfident",
+      "finished_days": 1,
+      "started_days": 1,
+      "interrupted": false,
+      "resumed": false
+    },
+    {
+      "slug": "practice_averse",
+      "finished_days": 1,
+      "started_days": 1,
+      "interrupted": false,
+      "resumed": false
+    },
+    {
+      "slug": "revision_averse",
+      "finished_days": 1,
+      "started_days": 1,
+      "interrupted": false,
+      "resumed": false
+    },
+    {
+      "slug": "strong_math",
+      "finished_days": 1,
+      "started_days": 1,
+      "interrupted": false,
+      "resumed": false
+    },
+    {
+      "slug": "weak_math",
+      "finished_days": 1,
+      "started_days": 1,
+      "interrupted": false,
+      "resumed": false
+    },
+    {
+      "slug": "working_pro",
+      "finished_days": 0,
+      "started_days": 1,
+      "interrupted": false,
+      "resumed": false
+    }
+  ]
+}

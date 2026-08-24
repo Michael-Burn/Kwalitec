@@ -1,0 +1,14 @@
+{
+  "job_id": "job-d9n1rotaeets73b1td3g",
+  "status": "succeeded",
+  "expected": {
+    "approved_count": 40,
+    "delta_count": 27,
+    "orphan_approved": 0,
+    "entry_41": "CD-D1",
+    "after_cdr1": "CD-D6"
+  },
+  "note": "Render one-off assertions passed (job succeeded; ASSERT_OK required for exit 0).",
+  "deploy_id": "dep-d9n1qi2jnfac73a7d9l0",
+  "commit": "b99b0a8f445d96ea9d700dc8f6276898460562b6"
+}

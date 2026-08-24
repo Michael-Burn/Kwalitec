@@ -1,0 +1,174 @@
+{
+  "programme": "PB-004 Progressive Educational Confidence (Delta)",
+  "host": "https://kwalitec.onrender.com",
+  "expected_commit": "b99b0a8f445d96ea9d700dc8f6276898460562b6",
+  "live_health": {
+    "build_date": "2026-08-01",
+    "build_number": "local",
+    "commit": "b99b0a8f445d96ea9d700dc8f6276898460562b6",
+    "components": {
+      "database": {
+        "latency_ms": 2.7,
+        "name": "database",
+        "status": "ok"
+      },
+      "instance_storage": {
+        "meta": {
+          "path": "/opt/render/project/src/instance"
+        },
+        "name": "instance_storage",
+        "status": "ok"
+      },
+      "migrations": {
+        "meta": {
+          "current": "202607310002",
+          "head": "202607310002"
+        },
+        "name": "migrations",
+        "status": "ok"
+      },
+      "queue": {
+        "detail": "manual automation runner (no external broker)",
+        "meta": {
+          "broker": "none",
+          "runner": "app.automation"
+        },
+        "name": "queue",
+        "status": "ok"
+      }
+    },
+    "database": "connected",
+    "environment": "production",
+    "status": "ok",
+    "timestamp": "2026-08-01T16:24:37.847819+00:00",
+    "version": "2.0.0-beta.1"
+  },
+  "fingerprint_ok": true,
+  "live_certified_inventory": [
+    "CD-D1",
+    "CD-D2",
+    "CD-D3",
+    "CD-D4",
+    "CD-D5",
+    "CD-R1",
+    "CD-D6",
+    "CD-D7",
+    "CD-D8",
+    "CD-D9",
+    "CD-D10",
+    "CD-D11",
+    "CD-D12",
+    "CD-D13",
+    "CD-D14",
+    "CD-D15",
+    "CD-R2",
+    "CD-D16",
+    "CD-D17",
+    "CD-D18",
+    "CD-D19",
+    "CD-D20",
+    "CD-D21",
+    "CD-D22",
+    "CD-D23",
+    "CD-D24",
+    "CD-R3"
+  ],
+  "personas": [
+    {
+      "slug": "first_time",
+      "label": "First-time candidate",
+      "email": "pb004.first_time.1785603922@example.com",
+      "verdict": "PASS",
+      "summary": {
+        "certified_days_scored": 27,
+        "avg_score_over_9": 9.0,
+        "chrome_residuals": [
+          "CD-D16"
+        ],
+        "trajectory_scores": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ]
+      }
+    },
+    {
+      "slug": "repeat",
+      "label": "Repeat sitting",
+      "email": "pb004.repeat.1785605397@example.com",
+      "verdict": "PASS",
+      "summary": {
+        "certified_days_scored": 27,
+        "avg_score_over_9": 9.0,
+        "chrome_residuals": [
+          "CD-D16"
+        ],
+        "trajectory_scores": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ]
+      }
+    }
+  ],
+  "cohort": {
+    "personas": 2,
+    "pass": 2,
+    "fail": 0
+  },
+  "policy": {
+    "chrome_residual_soft_pass": true,
+    "revision_q6_soft_pass": true,
+    "trust_retention_excludes_chrome": true,
+    "cohort_note": "2 complete-chain personas (27 days each) due to Delta arc length; identical HIGH trajectory. RO-002 primary verify is supporting evidence."
+  },
+  "verdict": "PASS"
+}

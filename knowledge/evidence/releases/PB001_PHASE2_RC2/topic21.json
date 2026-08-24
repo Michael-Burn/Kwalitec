@@ -1,0 +1,68 @@
+{
+  "slug": "topic21",
+  "topic": "2.1",
+  "email": "pb001p2.topic21.1785579648@example.com",
+  "findings": [
+    {
+      "id": "PB001-TOP-001",
+      "persona": "topic21",
+      "day": 1,
+      "observation": "Coverage/progress figures disagree across Home, History, and Export for the same student at the same moment.",
+      "classification": "PI",
+      "severity": "S1",
+      "evidence": "values=['13', '0']; home={'Progress': '13', 'aria': ['13']}; history={}; pdf={'Estimated Knowledge': '0', 'Readiness': '0', 'Coverage': '0'}",
+      "smallest_effective_intervention": "Serve a single coverage source of truth on all student surfaces.",
+      "ef001_sufficient": true,
+      "notes": ""
+    }
+  ],
+  "seed": {
+    "ok": true,
+    "topic": "2.1",
+    "user_id": 55,
+    "current": "node-2e99e2654c080d38",
+    "coverage": 0.13333333333333333
+  },
+  "day": {
+    "started": true,
+    "finished": true,
+    "activities": 8,
+    "trust_signals": {
+      "home_no_cmp": true
+    },
+    "reading_audit": {
+      "verdict": "PASS",
+      "is_fallback_shell": false,
+      "mentions_cmp": true,
+      "q_checks": {
+        "Q1_cmp_open": true,
+        "Q2_purpose": true,
+        "Q3_attention": true,
+        "Q4_ignore": true,
+        "Q5_stop": true,
+        "Q6_next": true
+      },
+      "certified_snippet_hits": {},
+      "html_path": "/tmp/pb001p2/html/topic21/day1_act_0.html"
+    },
+    "overview_cmp": {
+      "mentions_cmp": true,
+      "open_cmp_instruction": false,
+      "page_or_section_refs": [],
+      "mission_topic": null,
+      "placeholders": true,
+      "postal_address": false
+    },
+    "dimensions": {
+      "educational_clarity": "FAIL",
+      "mission_sequencing": "PASS",
+      "workload": "PASS",
+      "cmp_partnership": "PASS",
+      "revision_timing": "PASS",
+      "knowledge_progression": "PASS",
+      "confidence_calibration": "PASS",
+      "motivation_to_continue": "PASS",
+      "educational_trust": "FAIL"
+    }
+  }
+}
