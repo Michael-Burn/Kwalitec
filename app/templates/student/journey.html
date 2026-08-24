@@ -38,9 +38,9 @@
     {% endif %}
   </section>
 
-  {# ——— Syllabus Progress (coverage honesty — not understanding) ——— #}
+  {# ——— Syllabus covered (coverage honesty — not understanding) ——— #}
   <section class="ds-os-progress ds-os-mastery" aria-labelledby="journey-progress-title" data-sop-section="progress">
-    <h2 class="ds-section__title" id="journey-progress-title">Syllabus Progress</h2>
+    <h2 class="ds-section__title" id="journey-progress-title">Syllabus covered</h2>
     <p class="ds-os-progress__label">
       {{ journey.progress_label or ((journey.progress_percent ~ '% through your syllabus') if journey.progress_percent is not none else 'Your syllabus path is taking shape') }}
     </p>
@@ -50,11 +50,11 @@
       aria-valuenow="{{ journey.progress_percent or 0 }}"
       aria-valuemin="0"
       aria-valuemax="100"
-      aria-label="{{ journey.progress_label or (journey.progress_percent ~ '% complete') }}"
+      aria-label="{{ journey.progress_label or (journey.progress_percent ~ '% of syllabus covered') }}"
     >
       <div class="ds-os-progress__fill" style="width: {{ journey.progress_percent or 0 }}%"></div>
     </div>
-    <ul class="ds-os-mastery__stats" aria-label="Syllabus progress summary">
+    <ul class="ds-os-mastery__stats" aria-label="Syllabus covered summary">
       <li>
         <span class="ds-list__meta">Topics complete</span>
         <span class="ds-os-signals__value">{{ journey.completed_count or (journey.completed|length if journey.completed else 0) }}</span>

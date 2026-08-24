@@ -67,7 +67,7 @@ def educational_vm(
         unlocks_next=journey.unlocks_next,
         journey_evidence=journey.supporting_evidence,
         progress_percent=pos.coverage_percent,
-        progress_label=f"{pos.coverage_percent}% complete",
+        progress_label=f"{pos.coverage_percent}% of syllabus covered",
         pacing_summary=pacing.pacing_summary,
         feasibility_label=pacing.feasibility_label,
         exam_date_label=pacing.exam_date_label,

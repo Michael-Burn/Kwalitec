@@ -828,22 +828,16 @@ class StudentHomeService:
             progress_label = (
                 home.educational.progress_label
                 or home.educational.coverage_label
-                or f"{progress_percent}% complete"
+                or f"{progress_percent}% of syllabus covered"
             ).strip()
         elif journey is not None and journey.progress_percent is not None:
             progress_percent = int(journey.progress_percent)
             progress_label = (
                 journey.progress_label
-                or f"{progress_percent}% complete"
+                or f"{progress_percent}% of syllabus covered"
             ).strip()
-        elif home.readiness and home.readiness.has_readiness:
-            raw = (
-                home.readiness.readiness_percent_label
-                or home.readiness.readiness_label
-                or ""
-            ).strip()
-            if raw:
-                progress_label = raw
+        # No readiness→coverage fallback: Home labels this field "Syllabus covered".
+        # When genuine coverage is unavailable, leave progress empty (quiet omit).
 
         countdown = ""
         if examination and examination.countdown_label:

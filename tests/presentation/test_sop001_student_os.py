@@ -102,7 +102,7 @@ def test_home_command_centre_sections(app, ctx):
     )
     assert "Today's Session" in html or "Today's Mission" in html or "ds-mission-hero" in html or "ds-mission-panel" in html
     # UX-001: Study Health is not a Home card; progress strip carries orientation.
-    assert "Exam countdown" in html or "Upcoming" in html or "Progress" in html
+    assert "Exam countdown" in html or "Upcoming" in html or "Syllabus covered" in html or "Progress" in html
     assert "Today&#39;s Mission" in html or "Continue Session" in html or "Today's Mission" in html
     assert "ds-os-home" in html
     assert 'data-dashboard-panel="readiness"' not in html

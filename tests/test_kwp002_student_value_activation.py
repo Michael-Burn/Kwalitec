@@ -199,7 +199,7 @@ class TestHomeActivation:
 class TestJourneyActivation:
     def test_journey_shows_syllabus_progress(self, student_client):
         html = student_client.get("/student/journey").get_data(as_text=True)
-        assert "Syllabus Progress" in html or "syllabus" in html.lower()
+        assert "Syllabus covered" in html or "syllabus" in html.lower()
         assert "Overall mastery" not in html
 
     def test_journey_surfaces_insights_and_up_next(self):
