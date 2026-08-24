@@ -7,6 +7,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from app.presentation.student.view_models import ExplanationViewModel
+
 
 @dataclass(frozen=True)
 class SessionPersistentContext:
@@ -91,6 +93,8 @@ class StudySessionPage:
     expected_outcome: str = ""
     checkpoint_preview: str = ""
     reflection_preview: str = ""
+    # Adaptive MES for this session's recommendation (data only; render later).
+    explanation: ExplanationViewModel | None = None
     # KWP-002 completion moment
     journey_update_label: str = ""
     finish_outcome_label: str = ""

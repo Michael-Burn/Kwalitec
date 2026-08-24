@@ -173,6 +173,15 @@
     {% endif %}
   </details>
   {% endif %}
+
+  {# Adaptive MES — sibling disclosure to Session details (Revision pattern). #}
+  {% if s.explanation and s.explanation.has_content %}
+  {% from "student/components/explanation_card.html" import explanation_card %}
+  <details class="ds-disclosure" data-ux="session-explanation">
+    <summary>Why this topic</summary>
+    {{ explanation_card(s.explanation) }}
+  </details>
+  {% endif %}
   {% endif %}
 
   {# ——— L1 Learning Content ——— #}

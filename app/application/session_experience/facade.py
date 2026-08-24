@@ -101,6 +101,7 @@ class SessionExperienceService:
         self._session = SessionService(
             session_runtime=session_runtime,
             mission=mission,
+            adaptive_decision=adaptive_decision,
             registry=self._registry,
         )
         self._activity = ActivityService(

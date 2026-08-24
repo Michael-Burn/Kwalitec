@@ -14,6 +14,9 @@ from app.application.session_experience.exceptions import (
     PortUnavailable,
     SessionNotFound,
 )
+from app.application.session_experience.ports.adaptive_decision_port import (
+    AdaptiveDecisionPort,
+)
 from app.application.session_experience.ports.mission_port import MissionPort
 from app.application.session_experience.ports.session_runtime_port import (
     SessionRuntimePort,
@@ -44,10 +47,12 @@ class SessionService:
         *,
         session_runtime: SessionRuntimePort | None = None,
         mission: MissionPort | None = None,
+        adaptive_decision: AdaptiveDecisionPort | None = None,
         registry: SessionExperienceRegistry | None = None,
     ) -> None:
         self._runtime = session_runtime
         self._mission = mission
+        self._adaptive = adaptive_decision
         self._registry = registry or SessionExperienceRegistry()
 
     @property
@@ -111,7 +116,7 @@ class SessionService:
                     pass
         self._registry.put_workspace(workspace)
         self._registry.put_session(session)
-        return _overview_with_substance(overview_snapshot(session), opaque)
+        return self._overview_projection(overview_snapshot(session), opaque, sid)
 
     def overview(self, student_id: str, *, session_id: str) -> OverviewSnapshot:
         """Return the Session Overview projection."""
@@ -121,8 +126,63 @@ class SessionService:
         opaque = runtime.get_session_overview(sid, session_id=sess) or {}
         cached = self._registry.get_session(sess)
         if cached is not None and cached.student_id == sid:
-            return _overview_with_substance(overview_snapshot(cached), opaque)
+            return self._overview_projection(
+                overview_snapshot(cached), opaque, sid
+            )
         return self.open_session(sid, session_id=sess)
+
+    def _overview_projection(
+        self,
+        snap: OverviewSnapshot,
+        opaque: dict[str, Any],
+        student_id: str,
+    ) -> OverviewSnapshot:
+        """Attach substance + Adaptive explanation (persist when missing)."""
+        enriched = _overview_with_substance(snap, opaque)
+        if enriched.explanation is not None:
+            return enriched
+        expl = self._resolve_explanation(student_id, opaque)
+        if expl is None:
+            return enriched
+        return replace(enriched, explanation=expl)
+
+    def _resolve_explanation(
+        self, student_id: str, opaque: dict[str, Any]
+    ):
+        """Hydrate from overview opaque, else Adaptive (same as composition seed)."""
+        from app.application.session_experience.overview_explanation import (
+            explanation_snapshot_from_overview_opaque,
+            recommendation_explanation_opaque,
+        )
+
+        existing = explanation_snapshot_from_overview_opaque(opaque)
+        if existing is not None:
+            return existing
+        if self._adaptive is None or not self._adaptive.is_available():
+            return None
+        recommendation = self._adaptive.get_todays_recommendation(student_id)
+        expl_doc = recommendation_explanation_opaque(recommendation)
+        if expl_doc is None:
+            return None
+        # Persist for resume / re-open (adapter may expose put_overview).
+        runtime = self._runtime
+        if runtime is not None and hasattr(runtime, "put_overview"):
+            session_id = str(opaque.get("session_id") or "").strip()
+            if session_id:
+                try:
+                    runtime.put_overview(
+                        student_id,
+                        session_id=session_id,
+                        document={
+                            **opaque,
+                            "recommendation_explanation": expl_doc,
+                        },
+                    )
+                except Exception:  # noqa: BLE001 — projection must stay resilient
+                    pass
+        return explanation_snapshot_from_overview_opaque(
+            {"recommendation_explanation": expl_doc}
+        )
 
     def begin(
         self, student_id: str, *, session_id: str
@@ -323,7 +383,11 @@ def _build_learning_session(
 def _overview_with_substance(
     snap: OverviewSnapshot, opaque: dict[str, Any]
 ) -> OverviewSnapshot:
-    """Attach package-derived learning objectives when present on overview opaque."""
+    """Attach package-derived learning objectives + MES when on overview opaque."""
+    from app.application.session_experience.overview_explanation import (
+        explanation_snapshot_from_overview_opaque,
+    )
+
     raw = opaque.get("learning_objectives") or ()
     if isinstance(raw, str) and raw.strip():
         objectives = (raw.strip(),)
@@ -347,12 +411,16 @@ def _overview_with_substance(
     if substance:
         meta = [(k, v) for k, v in meta if k != "substance"]
         meta.append(("substance", substance))
-    if not objectives and not substance:
+    explanation = snap.explanation
+    if explanation is None:
+        explanation = explanation_snapshot_from_overview_opaque(opaque)
+    if not objectives and not substance and explanation is None:
         return snap
     return replace(
         snap,
         learning_objectives=objectives or snap.learning_objectives,
-        metadata=tuple(meta),
+        metadata=tuple(meta) if substance else snap.metadata,
+        explanation=explanation,
     )
 
 

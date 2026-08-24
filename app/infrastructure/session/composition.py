@@ -114,11 +114,20 @@ class SessionExperienceComposition:
                 )
             overview["estimated_minutes"] = today.get("estimated_minutes") or 30
             # CQ-005: echo Home recommendation rationale into Session Overview.
+            recommendation = self.adaptive.get_todays_recommendation(sid)
             overview["why_studying"] = _why_studying_from_recommendation(
-                self.adaptive.get_todays_recommendation(sid),
+                recommendation,
                 topic=topic,
                 fallback=str(overview.get("why_studying") or ""),
             )
+            # Full Adaptive MES (ExplanationSnapshot shape) alongside L1 why string.
+            from app.application.session_experience.overview_explanation import (
+                recommendation_explanation_opaque,
+            )
+
+            expl_doc = recommendation_explanation_opaque(recommendation)
+            if expl_doc is not None:
+                overview["recommendation_explanation"] = expl_doc
             self.runtime.put_overview(sid, session_id=session_id, document=overview)
         else:
             self.mission.get_todays_session(sid)

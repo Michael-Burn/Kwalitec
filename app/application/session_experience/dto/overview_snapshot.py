@@ -4,6 +4,10 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
+from app.application.student_experience.dto.explanation_snapshot import (
+    ExplanationSnapshot,
+)
+
 
 @dataclass(frozen=True)
 class BeginSessionActionSnapshot:
@@ -36,3 +40,5 @@ class OverviewSnapshot:
     begin_action: BeginSessionActionSnapshot | None = None
     can_begin: bool = False
     metadata: tuple[tuple[str, str], ...] = field(default_factory=tuple)
+    # Pass-through Adaptive MES for Overview (alongside why_studying L1 string).
+    explanation: ExplanationSnapshot | None = None

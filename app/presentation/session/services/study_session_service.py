@@ -139,6 +139,7 @@ class StudySessionService:
         expected_outcome = ""
         checkpoint_preview = ""
         reflection_preview = ""
+        explanation = None
         if surface is SessionSurface.OVERVIEW:
             briefing = self._overview_briefing(page, flow_label=flow_label)
             why_today = briefing["why_today"]
@@ -149,6 +150,8 @@ class StudySessionService:
             reflection_preview = briefing["reflection_preview"]
             if briefing["learning_objectives"] and not learning_objectives:
                 learning_objectives = briefing["learning_objectives"]
+            if page.overview is not None:
+                explanation = page.overview.explanation
 
         workflow_steps: tuple[str, ...] = ()
         workflow_step_index = 0
@@ -214,6 +217,7 @@ class StudySessionService:
             expected_outcome=expected_outcome,
             checkpoint_preview=checkpoint_preview,
             reflection_preview=reflection_preview,
+            explanation=explanation,
             journey_update_label=journey_update,
             finish_outcome_label=finish_outcome,
             learning_insights=insights,

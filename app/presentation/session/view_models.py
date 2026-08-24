@@ -28,6 +28,10 @@ from app.presentation.session.navigation import (
     build_session_steps,
     page_meta,
 )
+from app.presentation.student.view_models import (
+    ExplanationViewModel,
+    explanation_vm,
+)
 
 FORBIDDEN_LEARNER_TERMS: tuple[str, ...] = (
     "digital twin",
@@ -81,6 +85,8 @@ class OverviewViewModel:
     begin_enabled: bool = False
     session_id: str = ""
     mission_id: str | None = None
+    # Adaptive MES for Overview (pass-through; render in a later pass).
+    explanation: ExplanationViewModel | None = None
 
 
 @dataclass(frozen=True)
@@ -251,6 +257,7 @@ def overview_vm(snap: OverviewSnapshot) -> OverviewViewModel:
         begin_enabled=bool(snap.can_begin),
         session_id=snap.session_id,
         mission_id=begin.mission_id if begin else None,
+        explanation=explanation_vm(snap.explanation),
     )
 
 
