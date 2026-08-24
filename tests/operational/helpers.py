@@ -98,7 +98,7 @@ REQUIRED_TEMPLATES = (
     "app/templates/errors/500.html",
 )
 
-ALEMBIC_HEAD = "202607310002"
+ALEMBIC_HEAD = "202608240001"
 
 ALPHA_HTTP_ROUTES = (
     "/health",

@@ -126,6 +126,9 @@ class StudentRuntimeCoordinator:
             raise MissionNotAcceptable("mission_instance_id required")
 
         sid = str(user_id)
+        mission = self._load_mission(user_id=user_id, mission_instance_id=mid)
+        self._ensure_sql_evidence_companion(user_id=user_id, mission=mission)
+
         existing = self.find_open_session(sid, mission_instance_id=mid)
         if existing is not None:
             if self._open_session_is_oversized(
@@ -141,7 +144,6 @@ class StudentRuntimeCoordinator:
             else:
                 return existing
 
-        mission = self._load_mission(user_id=user_id, mission_instance_id=mid)
         title = (topic_title or mission.title or "").strip() or "Today's Study Session"
         minutes = estimated_minutes
         if minutes is None and mission.quality is not None:
@@ -525,6 +527,38 @@ class StudentRuntimeCoordinator:
     def _substance_enabled(self) -> bool:
         flags = self._flags or resolve_v2_feature_flags()
         return bool(getattr(flags, "SR_SESSION_SUBSTANCE", False))
+
+    def _sql_evidence_companion_enabled(self) -> bool:
+        flags = self._flags or resolve_v2_feature_flags()
+        return bool(getattr(flags, "SR_SESSION_SQL_EVIDENCE_COMPANION", False))
+
+    def _ensure_sql_evidence_companion(
+        self,
+        *,
+        user_id: int,
+        mission: MissionInstanceSnapshot,
+    ) -> None:
+        """Phase 1: bind a SQL Mission substrate when the companion flag is ON.
+
+        Fail-open: companion errors must not block Accept / Session start.
+        """
+        if not self._sql_evidence_companion_enabled():
+            return
+        try:
+            from app.application.student_runtime.evidence_companion import (
+                ensure_sql_evidence_companion,
+            )
+
+            ensure_sql_evidence_companion(
+                user_id=user_id,
+                runtime_mission=mission,
+            )
+        except Exception:  # noqa: BLE001 — Accept must remain available
+            logger.exception(
+                "evidence_companion_ensure_failed mid=%s user=%s",
+                mission.mission_instance_id,
+                user_id,
+            )
 
     def _plan_substance(self, mission: MissionInstanceSnapshot, *, topic_title: str):
         from app.application.learning_session.substance_planner import (

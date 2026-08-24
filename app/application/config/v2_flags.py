@@ -243,6 +243,10 @@ class Version2FeatureFlags:
     # SR-001A P6 / SR-003: Progress singularity — one Progress Engine.
     # Default OFF unless Commercial Loop is ON.
     SR_PROGRESS_SINGULARITY: bool = False
+    # Phase 1 runtime-identity unification: Accept-time SQL evidence-companion
+    # Mission for Runtime C sittings (StudyAttempt substrate only).
+    # Default OFF; never inherited from Commercial Loop. Explicit env only.
+    SR_SESSION_SQL_EVIDENCE_COMPANION: bool = False
 
 
 _FALSY = frozenset({"0", "false", "no", "off"})
@@ -543,6 +547,9 @@ def resolve_v2_feature_flags(
         ),
         SR_PROGRESS_SINGULARITY=_sr_bundle_flag(
             "SR_PROGRESS_SINGULARITY", environ=environ
+        ),
+        SR_SESSION_SQL_EVIDENCE_COMPANION=_env_truthy(
+            "SR_SESSION_SQL_EVIDENCE_COMPANION", environ=environ
         ),
     )
 

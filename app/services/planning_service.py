@@ -665,6 +665,14 @@ class PlanningService:
         if orphan is None:
             return None
 
+        from app.application.student_runtime.evidence_companion import (
+            is_sql_evidence_companion_mission,
+        )
+
+        if is_sql_evidence_companion_mission(orphan.id):
+            # Evidence companions stay unbound and must not become plan missions.
+            return None
+
         if orphan.status == "Completed" and all(t.completed for t in orphan.tasks):
             logger.debug(
                 "Ignoring completed unbound mission %s for user %s; "
@@ -1370,38 +1378,8 @@ class PlanningService:
 
     @staticmethod
     def _get_or_create_default_subject(user_id: int) -> int:
-        """Get or create a default subject for mission generation.
-        
-        Creates or returns a "Study Plan" subject to serve as the default
-        organizational category for auto-generated missions.
-        
-        Args:
-            user_id: The ID of the user.
-        
-        Returns:
-            int: The subject ID.
-        """
-        from app.models.subject import Subject
-
-        default_subject = Subject.query.filter_by(
-            user_id=user_id,
-            name="Study Plan",
-            active=True,
-        ).first()
-
-        if default_subject:
-            return default_subject.id
-
-        default_subject = Subject(
-            user_id=user_id,
-            name="Study Plan",
-            colour="#007bff",
-            active=True,
-        )
-        db.session.add(default_subject)
-        db.session.commit()
-        logger.info("Created default subject 'Study Plan' for user %s", user_id)
-        return default_subject.id
+        """Delegate to MissionService — keep PlanningService free of Subject ORM."""
+        return MissionService.get_or_create_default_subject(user_id)
 
     # ── Curriculum-backed study plan helpers ──────────────────────────────
 

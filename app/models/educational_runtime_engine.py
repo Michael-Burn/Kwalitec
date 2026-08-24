@@ -151,6 +151,15 @@ class RuntimeMissionInstance(db.Model):
     status: str = db.Column(db.String(32), nullable=False, default="generated")
     created_at: datetime = db.Column(db.DateTime, nullable=False, default=_utc_now)
     completed_at: datetime | None = db.Column(db.DateTime, nullable=True)
+    # Phase 1 evidence-companion: SQL Mission substrate for StudyAttempt FK.
+    # Never used for topic selection or Home "today's mission" surfacing.
+    sql_mission_id: int | None = db.Column(
+        db.Integer,
+        db.ForeignKey("missions.id"),
+        nullable=True,
+        unique=True,
+        index=True,
+    )
 
     def __repr__(self) -> str:
         return (

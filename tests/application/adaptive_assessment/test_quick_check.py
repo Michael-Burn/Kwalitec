@@ -386,7 +386,7 @@ def test_regression_alembic_head_unchanged():
     config = Config("migrations/alembic.ini")
     config.set_main_option("script_location", "migrations")
     script = ScriptDirectory.from_config(config)
-    assert script.get_current_head() == "202607310002"
+    assert script.get_current_head() == "202608240001"
 
 
 def test_regression_session_type_still_registered():

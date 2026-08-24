@@ -18,6 +18,33 @@ class MissionService:
     """Service for creating and managing missions and their tasks."""
 
     @staticmethod
+    def get_or_create_default_subject(user_id: int) -> int:
+        """Get or create the default organizational subject for missions.
+
+        Creates or returns an active ``Study Plan`` subject. Used by Stage A
+        planning and by Runtime C evidence-companion Missions — not a topic-
+        selection API.
+        """
+        default_subject = Subject.query.filter_by(
+            user_id=user_id,
+            name="Study Plan",
+            active=True,
+        ).first()
+        if default_subject:
+            return default_subject.id
+
+        default_subject = Subject(
+            user_id=user_id,
+            name="Study Plan",
+            colour="#007bff",
+            active=True,
+        )
+        db.session.add(default_subject)
+        db.session.commit()
+        logger.info("Created default subject 'Study Plan' for user %s", user_id)
+        return default_subject.id
+
+    @staticmethod
     def create_mission(
         user_id: int,
         subject_id: int,
@@ -118,6 +145,23 @@ class MissionService:
             query = query.filter(Mission.study_plan_id.is_(None))
 
         mission = query.order_by(Mission.id.desc()).first()
+        if mission is not None:
+            from app.application.student_runtime.evidence_companion import (
+                is_sql_evidence_companion_mission,
+            )
+
+            # Skip evidence-companion rows — never Home / "today's mission".
+            if is_sql_evidence_companion_mission(mission.id):
+                # Prefer the next non-companion row for this day/plan scope.
+                candidates = query.order_by(Mission.id.desc()).all()
+                mission = next(
+                    (
+                        m
+                        for m in candidates
+                        if not is_sql_evidence_companion_mission(m.id)
+                    ),
+                    None,
+                )
         if mission is not None:
             MissionService.repair_inconsistent_completion(mission)
         return mission
