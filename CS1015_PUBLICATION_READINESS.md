@@ -1,0 +1,100 @@
+# CS1-015 — Publication Readiness (Publication Pack)
+
+**Volume:** `CS1-015` · `1.0.0`  
+**Campaign:** `CS1-EP001-CAMPAIGN-OMICRON` · `cs1015-1.0.0`  
+**Scope class:** Pilot Arc (Continuity Front join into 5.1)  
+**Gate CG:** Desk provisional · human Auditor **UNSIGNED**  
+**Publication pattern:** AP-01 Certified Pilot Arc  
+**Volume status:** Human Approver **UNSIGNED** — catalogue non-LIVE  
+**Date:** 2026-08-03  
+**Programme:** EP-001 Wave 13 (EP-013)  
+
+---
+
+## 1. Publication unit
+
+Joint inventory of **ten** days (nine Learning + Revision). **Do not** activate a single Omicron day alone (FP-01).
+
+| Package ID | Day | Mode | Live today? |
+|------------|-----|------|-------------|
+| `CS1-EP001-PKG-CO-5.1-BAYES-THEOREM` | CO-D1 | Learning | **No** |
+| `CS1-EP001-PKG-CO-5.1-PRIOR-POSTERIOR` | CO-D2 | Learning | **No** |
+| `CS1-EP001-PKG-CO-5.1-POSTERIOR-SIMPLE` | CO-D3 | Learning | **No** |
+| `CS1-EP001-PKG-CO-5.1-LOSS-ESTIMATORS` | CO-D4 | Learning | **No** |
+| `CS1-EP001-PKG-CO-5.1-CREDIBLE-INTERVALS` | CO-D5 | Learning | **No** |
+| `CS1-EP001-PKG-CO-5.1-CREDIBILITY-PREMIUM` | CO-D6 | Learning | **No** |
+| `CS1-EP001-PKG-CO-5.1-BAYESIAN-CREDIBILITY` | CO-D7 | Learning | **No** |
+| `CS1-EP001-PKG-CO-5.1-EMPIRICAL-BAYES` | CO-D8 | Learning | **No** |
+| `CS1-EP001-PKG-CO-5.1-BAYES-VS-EB` | CO-D9 | Learning | **No** |
+| `CS1-EP001-PKG-REV-BAYESIAN-OMICRON` | CO-R1 | Revision | **No** |
+
+Catalogue: `app/curriculum/data/educational_campaigns/cs1/campaign-omicron-cs1015/`  
+Live loader: Omicron packages **absent** (correct for this cycle).  
+Trust Front note: CS1-003 Delta 5.1 packages remain LIVE independently.
+
+---
+
+## 2. Preconditions to Publication Approval
+
+| # | Precondition | Status |
+|---|--------------|--------|
+| 1 | Gate CG PASS (human Auditor) | **UNSIGNED** |
+| 2 | EA-002-class substance every bundle | Desk intent — human confirm |
+| 3 | CI + bridges recorded | Desk intent — human confirm |
+| 4 | Tutor Review PASS | **UNSIGNED** — `CS1015_TUTOR_REVIEW.md` |
+| 5 | Founder Review PASS | **UNSIGNED** — `CS1015_FOUNDER_REVIEW.md` |
+| 6 | Inventory 100% certified members | Desk 10/10 — human confirm |
+| 7 | Isolated Golden Day denied | **DENIED** (desk) |
+| 8 | Technical publish ≠ Volume APPROVED stated | Met |
+| 9 | Continuity with CS1-014 evidenced | Desk met |
+| 10 | Activation not performed by Authoring | **Met** — LIVE not executed |
+| 11 | Certified Coverage honesty (63/72 held) | **Met** |
+| 12 | Student Reliance honesty (through Topic 4.2) | **Met** |
+
+**Volume Publication Approval:** **UNSIGNED**  
+**Activation:** Blocked until Approver seal — not executed in EP-013.
+
+---
+
+## 3. Activation engineering note (post-Approver — prepared, not executed)
+
+1. Human Publication Approver signs CS1-015 `1.0.0`.  
+2. Prefer CS1-001 / CS1-002 Approver honesty already sealed (Wave 0) — **still outstanding**; Omicron APPROVE does not waive.  
+3. Copy joint inventory to `educational_packages/cs1/` with `status: publication_approved`.  
+4. Ensure PB-002 selection: CX-R1 → CO-D1…CO-R1 via `campaign_day` / `tomorrow_preview`.  
+5. Coordinate CF-join path with existing Delta 5.1 LIVE inventory (no Isolated Golden Day; no double-serve theatre).  
+6. Never activate a single Omicron day alone.  
+7. Update `EP001_COVERAGE_MAP.md` / `EP013_COVERAGE_UPDATE.md` — Approver numerator remains **63 / 72** (no double-count of 5.1).  
+8. Student Reliance may advance through Topic 5.1 only after LIVE Verified + register update.  
+9. Run LIVE + CMP + continuity verification before student trust claim.  
+10. Progressive confidence verify (PB-class) on Wave 13 geography only.  
+11. **Do not begin Wave 14** until LIVE verification of Wave 13 completes + approval.  
+12. **Do not begin HR-013** from this readiness pack — HR-013 is the successor review cycle after authoring stop.
+
+---
+
+## 4. Claims after Approval
+
+| Allowed | Forbidden |
+|---------|-----------|
+| Certified Pilot Arc for 5.1.1–5.1.9 + revision (CF-join) | First-pass spine PASS |
+| Continuity Front join advanced through Bayesian (after LIVE Verified) | Until-exam educational trust |
+| Honest deferral of Wave 0 / spine re-audit | Coverage mirage from catalogue alone |
+| Honest stop after CO-R1 | Student Reliance past 4.2 from Approver alone |
+| | Trust Front whole-Delta absorb from catalogue |
+| | Published Coverage increase (5.1 already counted) |
+| | Wave 14 started from Approver alone |
+
+---
+
+## 5. Publication Approver worksheet
+
+```text
+Approver name: __________________
+Date: __________________
+Decision: UNSIGNED — awaiting human
+Amendments required before deploy: —
+Signature: UNSIGNED
+```
+
+Signed notionally: Editorial Author desk · CS1-015 Publication Readiness · 2026-08-03
