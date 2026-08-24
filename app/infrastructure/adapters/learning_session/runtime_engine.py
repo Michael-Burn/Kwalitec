@@ -99,6 +99,40 @@ class LearningSessionRuntimeEngine:
     def _evidence_gate_enabled(self) -> bool:
         return bool(resolve_v2_feature_flags().SR_EVIDENCE_GATE)
 
+    def _maybe_write_sql_evidence_companion(
+        self,
+        *,
+        student_id: str,
+        session_id: str,
+        record: dict[str, Any],
+    ) -> Any | None:
+        """Phase 2: aggregate scored practice → companion Mission StudyAttempt."""
+        try:
+            user_id = int(str(student_id).strip())
+        except (TypeError, ValueError):
+            return None
+        duration = None
+        try:
+            raw_minutes = record.get("estimated_minutes")
+            if raw_minutes is not None and str(raw_minutes).strip() != "":
+                duration = int(raw_minutes)
+                if duration <= 0:
+                    duration = None
+        except (TypeError, ValueError):
+            duration = None
+        from app.application.student_runtime.evidence_write_through import (
+            maybe_write_sql_evidence_from_sitting,
+        )
+
+        return maybe_write_sql_evidence_from_sitting(
+            user_id=user_id,
+            session_id=session_id,
+            mission_instance_id=str(record.get("mission_instance_id") or ""),
+            store=self._persistence.store,
+            topic_id=record.get("topic_id"),
+            duration_minutes=duration,
+        )
+
     def _persist_educational_memory(
         self,
         *,
@@ -806,6 +840,14 @@ class LearningSessionRuntimeEngine:
                 "intelligence_snapshot": memory_snapshot,
             }
 
+        # Phase 2 — additive Runtime A StudyAttempt write-through via companion
+        # Mission. Does not alter Runtime C gate / Twin / mission-complete flags.
+        sql_attempt = self._maybe_write_sql_evidence_companion(
+            student_id=student_id,
+            session_id=session_id,
+            record=record,
+        )
+
         return {
             "session_id": session_id,
             "student_id": student_id,
@@ -826,6 +868,9 @@ class LearningSessionRuntimeEngine:
             "evidence_package": package_opaque,
             "intelligence_snapshot": memory_snapshot,
             "evidence_gate": gate_on,
+            "sql_evidence_attempt_id": (
+                int(sql_attempt.id) if sql_attempt is not None else None
+            ),
         }
 
     def get_reflection_opaque(

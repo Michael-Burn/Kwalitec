@@ -1,7 +1,8 @@
-"""Phase 1 — SQL evidence-companion Mission at Accept (runtime identity).
+"""SQL evidence companion — Phase 1 Accept binding + Phase 2 write-through.
 
-Flag-gated Accept-time companion creation; no practice aggregation (Phase 2)
-and no topic resolver (Phase 3).
+Phase 1: flag-gated Accept-time companion Mission creation.
+Phase 2: Session completion aggregates scored practice → StudyAttempt on
+the companion via ``record_practice_outcome`` (no Phase 3 topic resolver).
 """
 
 from __future__ import annotations
@@ -12,6 +13,7 @@ import pytest
 
 from app.application.config.v2_flags import resolve_v2_feature_flags
 from app.application.educational_experience import EducationalExperienceService
+from app.application.learning_session.runtime import LearningSessionRuntime
 from app.application.platform_integration.discovery import PUBLISHED_CATEGORY_CODE
 from app.application.platform_integration.enrolment_bridge import (
     FounderStudentEnrolmentBridge,
@@ -20,12 +22,25 @@ from app.application.student_runtime import StudentRuntimeCoordinator
 from app.application.student_runtime.evidence_companion import (
     is_sql_evidence_companion_mission,
 )
+from app.application.student_runtime.evidence_write_through import (
+    ScoredPracticeCounts,
+    aggregate_scored_practice_responses,
+    load_sitting_response_items,
+    optional_sql_topic_id,
+)
 from app.extensions import db
+from app.infrastructure.adapters.learning_session.package_activity_engine import (
+    PackageActivityEngine,
+)
 from app.infrastructure.adapters.learning_session.persistence import (
     LearningSessionPersistenceAdapter,
 )
+from app.infrastructure.adapters.learning_session.runtime_engine import (
+    LearningSessionRuntimeEngine,
+)
 from app.infrastructure.session.store import SessionDocumentStore
 from app.models.educational_runtime_engine import RuntimeMissionInstance
+from app.models.learning import StudyAttempt
 from app.models.mission import Mission
 from app.models.user import User
 from app.services.mission_service import MissionService
@@ -45,6 +60,9 @@ def _flags(*, companion: bool, primary: bool = True):
         # Keep commercial-loop inheritance from affecting other SR_* flags.
         "KWALITEC_COMMERCIAL_LOOP": "0",
         "KWALITEC_V2_SOLE_RUNTIME": "0",
+        "SR_EVIDENCE_GATE": "0",
+        "SR_TWIN_DAILY_LOOP": "0",
+        "SR_SESSION_COMPLETION_PRODUCT": "0",
     }
     return resolve_v2_feature_flags(environ=env)
 
@@ -60,11 +78,70 @@ def _enrol_runtime_c(user: User, subject: str) -> None:
     assert result.runtime_authority == "published_curriculum"
 
 
-def _coordinator(*, companion: bool):
-    persistence = LearningSessionPersistenceAdapter(store=SessionDocumentStore())
+def _coordinator(*, companion: bool, store: SessionDocumentStore | None = None):
+    persistence = LearningSessionPersistenceAdapter(
+        store=store or SessionDocumentStore()
+    )
     return StudentRuntimeCoordinator(
         persistence=persistence,
         flags=_flags(companion=companion),
+    ), persistence
+
+
+def _seed_scored_practice(
+    store: SessionDocumentStore,
+    *,
+    student_id: str,
+    session_id: str,
+    outcomes: list[bool | None],
+) -> None:
+    """Persist activity.responses items with scored practice outcomes."""
+    items = []
+    for index, scored in enumerate(outcomes):
+        items.append(
+            {
+                "activity_id": f"act-practice-{index}",
+                "stage": "practice",
+                "response": f"answer-{index}",
+                "scored_correct": scored,
+            }
+        )
+    # Non-practice / unscored noise that aggregation must ignore.
+    items.append(
+        {
+            "activity_id": "act-read-1",
+            "stage": "read",
+            "response": "noted",
+            "scored_correct": None,
+        }
+    )
+    key = PackageActivityEngine._key(student_id, session_id)
+    store.save(
+        PackageActivityEngine.NS_RESPONSES,
+        key,
+        {
+            "student_id": student_id,
+            "session_id": session_id,
+            "items": items,
+        },
+    )
+
+
+def _complete_sitting(
+    persistence: LearningSessionPersistenceAdapter,
+    *,
+    student_id: str,
+    session_id: str,
+    finish_verdict: str = "partially",
+):
+    engine = LearningSessionRuntimeEngine(
+        runtime=LearningSessionRuntime(),
+        persistence=persistence,
+    )
+    return engine.complete_session_opaque(
+        student_id,
+        session_id=session_id,
+        finish_verdict=finish_verdict,
     )
 
 
@@ -85,6 +162,28 @@ class TestEvidenceCompanionFlag:
         assert explicit.SR_SESSION_SQL_EVIDENCE_COMPANION is True
 
 
+class TestPracticeAggregationHelper:
+    def test_counts_only_scored_practice(self):
+        counts = aggregate_scored_practice_responses(
+            [
+                {"stage": "read", "scored_correct": True},
+                {"stage": "practice", "scored_correct": True},
+                {"stage": "practice", "scored_correct": False},
+                {"stage": "practice", "scored_correct": None},
+                {"stage": "worked_example", "scored_correct": False},
+            ]
+        )
+        assert counts == ScoredPracticeCounts(
+            questions_attempted=2, questions_correct=1
+        )
+
+    def test_optional_sql_topic_id_does_not_resolve_codes(self):
+        assert optional_sql_topic_id(42) == 42
+        assert optional_sql_topic_id("7") == 7
+        assert optional_sql_topic_id("topic-cash") is None
+        assert optional_sql_topic_id(None) is None
+
+
 @pytest.mark.usefixtures("ctx")
 class TestEvidenceCompanionAccept:
     def test_flag_on_creates_companion_and_stores_sql_mission_id(self):
@@ -96,7 +195,7 @@ class TestEvidenceCompanionAccept:
         mid = snap.mission.mission_instance_id
 
         before = Mission.query.filter_by(user_id=user.id).count()
-        coordinator = _coordinator(companion=True)
+        coordinator, _ = _coordinator(companion=True)
         coordinator.accept_and_start_session(
             user_id=user.id,
             mission_instance_id=mid,
@@ -124,7 +223,7 @@ class TestEvidenceCompanionAccept:
         assert snap is not None and snap.mission is not None
         mid = snap.mission.mission_instance_id
 
-        coordinator = _coordinator(companion=True)
+        coordinator, _ = _coordinator(companion=True)
         coordinator.accept_and_start_session(
             user_id=user.id,
             mission_instance_id=mid,
@@ -153,7 +252,7 @@ class TestEvidenceCompanionAccept:
         mid = snap.mission.mission_instance_id
 
         before = Mission.query.filter_by(user_id=user.id).count()
-        coordinator = _coordinator(companion=False)
+        coordinator, _ = _coordinator(companion=False)
         coordinator.accept_and_start_session(
             user_id=user.id,
             mission_instance_id=mid,
@@ -175,7 +274,7 @@ class TestEvidenceCompanionNotSurfacedAsTodaysMission:
         snap = EducationalExperienceService().load_for_user(user.id)
         assert snap is not None and snap.mission is not None
 
-        coordinator = _coordinator(companion=True)
+        coordinator, _ = _coordinator(companion=True)
         coordinator.accept_and_start_session(
             user_id=user.id,
             mission_instance_id=snap.mission.mission_instance_id,
@@ -201,7 +300,7 @@ class TestEvidenceCompanionNotSurfacedAsTodaysMission:
         snap = EducationalExperienceService().load_for_user(user.id)
         assert snap is not None and snap.mission is not None
 
-        coordinator = _coordinator(companion=True)
+        coordinator, _ = _coordinator(companion=True)
         coordinator.accept_and_start_session(
             user_id=user.id,
             mission_instance_id=snap.mission.mission_instance_id,
@@ -232,3 +331,213 @@ class TestEvidenceCompanionNotSurfacedAsTodaysMission:
         companion = Mission.query.get(companion_id)
         assert companion is not None
         assert companion.study_plan_id is None
+
+
+@pytest.mark.usefixtures("ctx")
+class TestEvidenceCompanionWriteThrough:
+    def test_flag_on_writes_study_attempt_with_aggregated_counts(self, monkeypatch):
+        monkeypatch.setenv("SR_SESSION_SQL_EVIDENCE_COMPANION", "1")
+        monkeypatch.setenv("KWALITEC_COMMERCIAL_LOOP", "0")
+        monkeypatch.setenv("SR_EVIDENCE_GATE", "0")
+        monkeypatch.setenv("SR_TWIN_DAILY_LOOP", "0")
+        monkeypatch.setenv("SR_SESSION_COMPLETION_PRODUCT", "0")
+
+        subject = publish_subject("ECMP6", title="Write Through On")
+        user = make_user("ecmp-write@example.com")
+        _enrol_runtime_c(user, subject)
+        snap = EducationalExperienceService().load_for_user(user.id)
+        assert snap is not None and snap.mission is not None
+
+        store = SessionDocumentStore()
+        coordinator, persistence = _coordinator(companion=True, store=store)
+        binding = coordinator.accept_and_start_session(
+            user_id=user.id,
+            mission_instance_id=snap.mission.mission_instance_id,
+        )
+        row = RuntimeMissionInstance.query.filter_by(
+            mission_instance_id=snap.mission.mission_instance_id
+        ).one()
+        companion_id = row.sql_mission_id
+        assert companion_id is not None
+
+        _seed_scored_practice(
+            store,
+            student_id=str(user.id),
+            session_id=binding.session_id,
+            outcomes=[True, False, True],
+        )
+        loaded = load_sitting_response_items(
+            store, student_id=str(user.id), session_id=binding.session_id
+        )
+        assert aggregate_scored_practice_responses(loaded).questions_attempted == 3
+
+        before = StudyAttempt.query.filter_by(mission_id=companion_id).count()
+        result = _complete_sitting(
+            persistence,
+            student_id=str(user.id),
+            session_id=binding.session_id,
+            finish_verdict="no",
+        )
+        assert result is not None
+        assert result["status"] == "completed"
+        # Additive only — gate/Twin off ⇒ Runtime C mission/twin flags unchanged.
+        assert result["mission_completed"] is False
+        assert result["twin_updated"] is False
+        assert result["sql_evidence_attempt_id"] is not None
+
+        attempts = StudyAttempt.query.filter_by(
+            user_id=user.id, mission_id=companion_id
+        ).all()
+        assert len(attempts) == before + 1
+        attempt = attempts[-1]
+        assert attempt.questions_attempted == 3
+        assert attempt.questions_correct == 2
+        assert attempt.topic_id is None  # curriculum code not SQL Topic.id yet
+        companion = Mission.query.get(companion_id)
+        assert companion is not None
+        assert companion.status == "Completed"
+
+    def test_flag_off_does_not_write_study_attempt(self, monkeypatch):
+        monkeypatch.setenv("SR_SESSION_SQL_EVIDENCE_COMPANION", "0")
+        monkeypatch.setenv("KWALITEC_COMMERCIAL_LOOP", "0")
+        monkeypatch.setenv("SR_EVIDENCE_GATE", "0")
+        monkeypatch.setenv("SR_SESSION_COMPLETION_PRODUCT", "0")
+
+        subject = publish_subject("ECMP7", title="Write Through Off")
+        user = make_user("ecmp-write-off@example.com")
+        _enrol_runtime_c(user, subject)
+        snap = EducationalExperienceService().load_for_user(user.id)
+        assert snap is not None and snap.mission is not None
+
+        store = SessionDocumentStore()
+        # Accept with companion ON so a Mission exists, then complete with flag OFF.
+        coordinator_on, persistence = _coordinator(companion=True, store=store)
+        binding = coordinator_on.accept_and_start_session(
+            user_id=user.id,
+            mission_instance_id=snap.mission.mission_instance_id,
+        )
+        row = RuntimeMissionInstance.query.filter_by(
+            mission_instance_id=snap.mission.mission_instance_id
+        ).one()
+        companion_id = row.sql_mission_id
+        assert companion_id is not None
+
+        _seed_scored_practice(
+            store,
+            student_id=str(user.id),
+            session_id=binding.session_id,
+            outcomes=[True, True],
+        )
+        monkeypatch.setenv("SR_SESSION_SQL_EVIDENCE_COMPANION", "0")
+        result = _complete_sitting(
+            persistence,
+            student_id=str(user.id),
+            session_id=binding.session_id,
+        )
+        assert result is not None
+        assert result.get("sql_evidence_attempt_id") is None
+        assert (
+            StudyAttempt.query.filter_by(mission_id=companion_id).count() == 0
+        )
+
+    def test_no_scored_practice_does_not_write(self, monkeypatch):
+        monkeypatch.setenv("SR_SESSION_SQL_EVIDENCE_COMPANION", "1")
+        monkeypatch.setenv("KWALITEC_COMMERCIAL_LOOP", "0")
+        monkeypatch.setenv("SR_EVIDENCE_GATE", "0")
+        monkeypatch.setenv("SR_SESSION_COMPLETION_PRODUCT", "0")
+
+        subject = publish_subject("ECMP8", title="No Scored Practice")
+        user = make_user("ecmp-noscore@example.com")
+        _enrol_runtime_c(user, subject)
+        snap = EducationalExperienceService().load_for_user(user.id)
+        assert snap is not None and snap.mission is not None
+
+        store = SessionDocumentStore()
+        coordinator, persistence = _coordinator(companion=True, store=store)
+        binding = coordinator.accept_and_start_session(
+            user_id=user.id,
+            mission_instance_id=snap.mission.mission_instance_id,
+        )
+        row = RuntimeMissionInstance.query.filter_by(
+            mission_instance_id=snap.mission.mission_instance_id
+        ).one()
+        companion_id = row.sql_mission_id
+
+        _seed_scored_practice(
+            store,
+            student_id=str(user.id),
+            session_id=binding.session_id,
+            outcomes=[None, None],
+        )
+        result = _complete_sitting(
+            persistence,
+            student_id=str(user.id),
+            session_id=binding.session_id,
+            finish_verdict="yes",
+        )
+        assert result is not None
+        assert result.get("sql_evidence_attempt_id") is None
+        assert (
+            StudyAttempt.query.filter_by(mission_id=companion_id).count() == 0
+        )
+        companion = Mission.query.get(companion_id)
+        assert companion is not None
+        assert companion.status == "In Progress"
+
+    def test_write_through_is_idempotent_on_recomplete(self, monkeypatch):
+        monkeypatch.setenv("SR_SESSION_SQL_EVIDENCE_COMPANION", "1")
+        monkeypatch.setenv("KWALITEC_COMMERCIAL_LOOP", "0")
+        monkeypatch.setenv("SR_EVIDENCE_GATE", "0")
+        monkeypatch.setenv("SR_SESSION_COMPLETION_PRODUCT", "0")
+
+        subject = publish_subject("ECMP9", title="Write Idempotent")
+        user = make_user("ecmp-idem-write@example.com")
+        _enrol_runtime_c(user, subject)
+        snap = EducationalExperienceService().load_for_user(user.id)
+        assert snap is not None and snap.mission is not None
+
+        store = SessionDocumentStore()
+        coordinator, persistence = _coordinator(companion=True, store=store)
+        binding = coordinator.accept_and_start_session(
+            user_id=user.id,
+            mission_instance_id=snap.mission.mission_instance_id,
+        )
+        row = RuntimeMissionInstance.query.filter_by(
+            mission_instance_id=snap.mission.mission_instance_id
+        ).one()
+        companion_id = row.sql_mission_id
+
+        _seed_scored_practice(
+            store,
+            student_id=str(user.id),
+            session_id=binding.session_id,
+            outcomes=[True, False],
+        )
+        first = _complete_sitting(
+            persistence,
+            student_id=str(user.id),
+            session_id=binding.session_id,
+            finish_verdict="partially",
+        )
+        assert first is not None
+        first_id = first.get("sql_evidence_attempt_id")
+        assert first_id is not None
+        assert (
+            StudyAttempt.query.filter_by(mission_id=companion_id).count() == 1
+        )
+
+        second = _complete_sitting(
+            persistence,
+            student_id=str(user.id),
+            session_id=binding.session_id,
+            finish_verdict="yes",
+        )
+        assert second is not None
+        assert second.get("sql_evidence_attempt_id") == first_id
+        assert (
+            StudyAttempt.query.filter_by(mission_id=companion_id).count() == 1
+        )
+        attempt = StudyAttempt.query.get(first_id)
+        assert attempt is not None
+        assert attempt.questions_attempted == 2
+        assert attempt.questions_correct == 1
