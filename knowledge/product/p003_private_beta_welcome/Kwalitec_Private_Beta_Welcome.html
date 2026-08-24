@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <title>Kwalitec Private Beta — Welcome Pack · Founding Cohort</title>
+  <meta name="author" content="Kwalitec" />
+  <meta name="description" content="Welcome Pack for the Kwalitec Private Beta Founding Cohort, 2026." />
+  <meta name="keywords" content="Kwalitec, Private Beta, Founding Cohort, actuarial study companion" />
+  <style>
+    @font-face {
+      font-family: "Inter";
+      src: url("assets/fonts/Inter-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "Inter";
+      src: url("assets/fonts/Inter-Medium.ttf") format("truetype");
+      font-weight: 500;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "Inter";
+      src: url("assets/fonts/Inter-SemiBold.ttf") format("truetype");
+      font-weight: 600;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "Inter";
+      src: url("assets/fonts/Inter-Bold.ttf") format("truetype");
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    :root {
+      --brand-blue: #3B4FB8;
+      --brand-navy: #0A1628;
+      --brand-primary-dark: #0D1B2A;
+      --brand-gold: #E8B02B;
+      --page-bg: #FAF8F2;
+      --section-bg: #F1F3F7;
+      --text: #1E2430;
+      --text-secondary: #4A5568;
+      --text-on-dark: #FFFFFF;
+      --text-muted-dark: #8B93A7;
+      --border-subtle: #e6e9ef;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    html, body {
+      width: 210mm;
+      height: 297mm;
+      font-family: "Inter", system-ui, sans-serif;
+      color: var(--text);
+      background: var(--page-bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      overflow: hidden;
+    }
+
+    .page {
+      width: 210mm;
+      height: 297mm;
+      background: var(--page-bg);
+      border: 1pt solid var(--brand-gold);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* ——— Header ——— */
+    .header {
+      background: var(--brand-navy);
+      color: var(--text-on-dark);
+      height: 68mm;
+      padding: 8mm 12mm 9mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+    }
+
+    .logo {
+      width: 42mm;
+      height: auto;
+      display: block;
+    }
+
+    .header-copy {
+      max-width: 140mm;
+      padding-top: 2mm;
+    }
+
+    .header h1 {
+      font-size: 24pt;
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--text-on-dark);
+    }
+
+    .header h1 .line2 {
+      display: block;
+      margin-top: 0.5mm;
+    }
+
+    .header-meta {
+      margin-top: 4mm;
+      font-size: 8.5pt;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted-dark);
+    }
+
+    .header-meta span + span::before {
+      content: "·";
+      margin: 0 2.2mm;
+      color: var(--brand-gold);
+    }
+
+    .gold-rule {
+      height: 1.25pt;
+      background: var(--brand-gold);
+      border: 0;
+      flex-shrink: 0;
+    }
+
+    /* ——— Body ——— */
+    .body {
+      flex: 1;
+      padding: 6.5mm 12mm 5mm;
+      display: flex;
+      flex-direction: column;
+      gap: 4.2mm;
+    }
+
+    h2 {
+      font-size: 10.5pt;
+      font-weight: 600;
+      color: var(--brand-blue);
+      letter-spacing: -0.01em;
+      margin-bottom: 1.6mm;
+    }
+
+    p {
+      font-size: 9.5pt;
+      line-height: 1.42;
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .section p {
+      max-width: 186mm;
+    }
+
+    /* Role grid */
+    .roles {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.8mm 5mm;
+      margin-top: 0.5mm;
+    }
+
+    .role {
+      display: flex;
+      gap: 2.8mm;
+      align-items: flex-start;
+      background: var(--section-bg);
+      border: 0.5pt solid var(--border-subtle);
+      border-radius: 1.5mm;
+      padding: 2.6mm 3mm;
+    }
+
+    .role-icon {
+      flex-shrink: 0;
+      width: 5.2mm;
+      height: 5.2mm;
+      margin-top: 0.3mm;
+      color: var(--brand-blue);
+    }
+
+    .role p {
+      font-size: 8.6pt;
+      line-height: 1.35;
+      color: var(--text);
+    }
+
+    /* Callout */
+    .callout {
+      border: 1pt solid var(--brand-gold);
+      background: #FFFCF5;
+      border-radius: 1.5mm;
+      padding: 3.2mm 4mm;
+    }
+
+    .callout h2 {
+      color: var(--brand-primary-dark);
+      font-size: 8pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.8mm;
+    }
+
+    .callout p {
+      font-size: 8.8pt;
+      line-height: 1.4;
+      color: var(--text-secondary);
+    }
+
+    .callout p + p {
+      margin-top: 1.4mm;
+    }
+
+    /* Split: Getting started + Commitment */
+    .split {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 5mm;
+      align-items: start;
+    }
+
+    .steps {
+      list-style: none;
+      counter-reset: step;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8mm;
+    }
+
+    .steps li {
+      display: flex;
+      gap: 2.6mm;
+      align-items: flex-start;
+      font-size: 8.8pt;
+      line-height: 1.35;
+      color: var(--text);
+    }
+
+    .steps li::before {
+      counter-increment: step;
+      content: counter(step);
+      flex-shrink: 0;
+      width: 4.8mm;
+      height: 4.8mm;
+      border-radius: 50%;
+      background: var(--brand-blue);
+      color: #fff;
+      font-size: 7pt;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 4.8mm;
+      text-align: center;
+      margin-top: 0.2mm;
+    }
+
+    .steps a {
+      color: var(--brand-blue);
+      text-decoration: underline;
+      text-underline-offset: 1pt;
+      font-weight: 500;
+    }
+
+    .commitment {
+      background: var(--section-bg);
+      border: 0.5pt solid var(--border-subtle);
+      border-radius: 1.5mm;
+      padding: 3.2mm 3.5mm;
+    }
+
+    .commitment h2 {
+      margin-bottom: 2mm;
+    }
+
+    .commitment p {
+      font-size: 8.4pt;
+      line-height: 1.4;
+      color: var(--text-secondary);
+    }
+
+    .commitment .quote {
+      font-style: italic;
+      color: var(--text);
+      margin: 1.8mm 0;
+      font-size: 8.6pt;
+      line-height: 1.38;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: auto;
+      padding-top: 3mm;
+    }
+
+    .footer .gold-rule {
+      margin-bottom: 2.4mm;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 4mm;
+    }
+
+    .footer-meta {
+      font-size: 7pt;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    .footer-meta span + span::before {
+      content: "·";
+      margin: 0 1.8mm;
+      color: var(--brand-gold);
+    }
+
+    .footer-tagline {
+      font-size: 7.5pt;
+      font-weight: 500;
+      color: var(--brand-primary-dark);
+      letter-spacing: -0.01em;
+      text-align: right;
+    }
+
+    /* Screen preview helper */
+    @media screen {
+      body {
+        background: #d8dce3;
+        padding: 24px;
+        display: flex;
+        justify-content: center;
+        width: auto;
+        height: auto;
+        min-height: 100vh;
+      }
+      .page {
+        box-shadow: 0 12px 40px rgba(13, 27, 42, 0.18);
+      }
+    }
+
+    @media print {
+      html, body {
+        width: 210mm;
+        height: 297mm;
+        background: var(--page-bg);
+        padding: 0;
+      }
+      .page {
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <article class="page" aria-label="Kwalitec Private Beta Welcome Pack">
+    <header class="header">
+      <div class="header-top">
+        <img
+          class="logo"
+          src="assets/logo-primary-dark.png"
+          width="1418"
+          height="371"
+          alt=""
+        />
+      </div>
+      <div class="header-copy">
+        <h1>
+          Welcome to
+          <span class="line2">Kwalitec Private Beta</span>
+        </h1>
+        <p class="header-meta">
+          <span>Founding Cohort</span>
+          <span>Private Beta</span>
+          <span>2026</span>
+        </p>
+      </div>
+    </header>
+
+    <div class="gold-rule" role="presentation"></div>
+
+    <div class="body">
+      <section class="section" aria-labelledby="welcome">
+        <h2 id="welcome">Welcome</h2>
+        <p>
+          Thank you for joining the Kwalitec Private Beta. You are among the very first students
+          invited into this Founding Cohort. Your participation will help shape how Kwalitec supports
+          actuarial learners preparing for professional examinations. We value your time, curiosity,
+          and honest feedback as we refine the product with care.
+        </p>
+      </section>
+
+      <section class="section" aria-labelledby="what">
+        <h2 id="what">What is Kwalitec?</h2>
+        <p>
+          Kwalitec is an AI-powered study companion. It complements official IFoA study resources and
+          is designed to bring clarity to what to study next and why it matters. It does not replace
+          your CMP, Core Reading, tutorials, or professional judgement. Those remain the foundation of
+          your preparation. Kwalitec is here to guide study decisions with honesty — not to substitute
+          the work of becoming a professional.
+        </p>
+      </section>
+
+      <section class="section" aria-labelledby="role">
+        <h2 id="role">Your Role</h2>
+        <div class="roles">
+          <div class="role">
+            <svg class="role-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+            </svg>
+            <p>Study normally using Kwalitec alongside your official resources.</p>
+          </div>
+          <div class="role">
+            <svg class="role-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            <p>Complete your Daily Missions and Study Sessions.</p>
+          </div>
+          <div class="role">
+            <svg class="role-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+            <p>Share honest feedback and suggestions.</p>
+          </div>
+          <div class="role">
+            <svg class="role-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            <p>Report issues to help improve the product before public release.</p>
+          </div>
+        </div>
+      </section>
+
+      <aside class="callout" aria-labelledby="note">
+        <h2 id="note">Please note</h2>
+        <p>
+          This is an invite-only Private Beta. Kwalitec is designed to support your learning journey.
+          It does not replace official study material. It does not guarantee examination success.
+        </p>
+        <p>
+          Success will always depend on your own preparation, practice and commitment.
+        </p>
+      </aside>
+
+      <div class="split">
+        <section aria-labelledby="start">
+          <h2 id="start">Getting Started</h2>
+          <ol class="steps">
+            <li>
+              Visit
+              <a href="https://kwalitec.onrender.com">https://kwalitec.onrender.com</a>
+            </li>
+            <li>Sign in using the credentials provided in your invitation email.</li>
+            <li>Change your temporary password.</li>
+            <li>Complete your first Daily Mission.</li>
+            <li>Share feedback through the application.</li>
+          </ol>
+        </section>
+
+        <aside class="commitment" aria-labelledby="commitment">
+          <h2 id="commitment">Our Commitment</h2>
+          <p>Every improvement to Kwalitec is measured against one question:</p>
+          <p class="quote">“Does this help students become better actuarial professionals?”</p>
+          <p>
+            As a Founding Cohort member, your feedback will directly influence the future of Kwalitec.
+          </p>
+        </aside>
+      </div>
+
+      <footer class="footer" style="margin-top: 4mm;">
+        <div class="gold-rule" role="presentation"></div>
+        <div class="footer-row">
+          <p class="footer-meta">
+            <span>Private Beta</span>
+            <span>Version 2.0.0-beta.1</span>
+            <span>Invite Only</span>
+          </p>
+          <p class="footer-tagline">Helping students become professionals.</p>
+        </div>
+      </footer>
+    </div>
+  </article>
+</body>
+</html>

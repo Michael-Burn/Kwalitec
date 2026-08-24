@@ -1,0 +1,40 @@
+---
+description: Agent cost and safety discipline — scoping, invariant checks, and reporting standards for all modes
+alwaysApply: true
+---
+
+# Agent Discipline (cost + safety)
+
+Applies to all modes (Ask, Plan, Agent, Debug) in the Kwalitec project.
+
+## Before any code edit
+- Never start editing without an explicit Goal + Touch List (exact files/folders). If the human's request doesn't include one, ask for it — do not infer scope from exploring the codebase yourself.
+- Prefer Plan mode to work out the Touch List and approach BEFORE switching to Agent mode. Do not go straight to Agent mode for anything non-trivial.
+- Use Ask mode (not Agent) for any question that doesn't require a file edit — "where does X live," "explain Y," "what does this do."
+
+## While editing (Agent mode only)
+- Only touch files in the stated Touch List. If you notice a related issue outside it, flag it in your response — do not fix it unprompted.
+- Do not perform repo-wide searches "just to be safe" if the relevant file/service is already named in CLAUDE.md, ARCHITECTURE.md, or the brief.
+- Reuse existing services/helpers (e.g. CurriculumService, RecommendationService) rather than writing new logic that duplicates them.
+- Never modify migrations, production config, secrets, or `.env` files unless explicitly named in the Touch List.
+
+## Invariant checks (apply automatically, every edit)
+- No business/planning/mastery/recommendation logic in routes.
+- No `flask.request` / `session` access inside services — pass explicit arguments.
+- No curriculum traversal outside CurriculumService / engine canonical helpers (`load_auto()`, `get_topics_flat()`, `get_sections()`, etc.).
+- Curriculum V1 (flat) and V2 (hierarchical) must both remain loadable — do not add a hard requirement for sections.
+- No LLM calls inside deterministic cores (planning, readiness, recommendations).
+- New student-facing UI goes under `presentation/student/` or `presentation/session/` — never extend `dashboard/`, `mission/`, or `analytics/`.
+- No `db.create_all()` or ad-hoc DDL outside Alembic migrations.
+- No new Educational Framework (EA/EO/TV/EJ/EW) design work — EF-001 is frozen.
+
+## After editing
+- Run relevant tests (`pytest`, `ruff check`) and report actual pass/fail — never claim success without running them.
+- Only commit if explicitly instructed; use any mandated commit message verbatim.
+
+## Debug mode
+- Stay scoped to reproducing and fixing the specific failing test/bug named. Do not refactor surrounding code while debugging unless asked.
+
+## Reporting / status requests
+- For "what's the current state" style asks, cite file paths, commit hashes, or command output for every claim. Write "Evidence currently unavailable" rather than guessing.
+- Never state or imply Version 1 readiness, KSI/CRI values, or gate status (G1–G12) — those are owned by knowledge/product/ board programmes, not engineering output.
