@@ -147,7 +147,7 @@
       "kind": "checkpoint",
       "item_id": "cs1009-2.6.4-cp-01",
       "title": "Checkpoint: 2.6.4",
-      "prompt": "Closed-book. Refuse 'Normal sampling laws finished the t-statistic.' State today's honest stop.",
+      "prompt": "Closed-book. Refuse 'Normal sampling laws for mean and variance already finished the t-statistic when σ is unknown.' Name what still sits ahead before introducing the t-statistic.",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 2.6.4.",
       "hints": [

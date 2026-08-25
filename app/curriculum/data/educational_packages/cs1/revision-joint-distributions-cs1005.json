@@ -150,7 +150,7 @@
       "kind": "checkpoint",
       "item_id": "cs1005-ce-r1-cp-01",
       "title": "Checkpoint: CE-R1",
-      "prompt": "Closed-book. (1) Weakest 2.2 link + one concrete rework. (2) Refuse Chapter 2 complete and first-pass spine PASS. (3) Name the honest next geography (2.3) or confirm declared stop.",
+      "prompt": "Closed-book. (1) Name today's weakest joint-distribution link and one concrete rework. (2) Refuse: 'Having the joint table means marginals and dependence measures are optional, so Chapter 2 is done.' (3) Name the honest next topic (conditional expectation, 2.3) or confirm you are stopping here.",
       "response_type": "short_structured",
       "body": "Weakest link + honest next.",
       "hints": [
@@ -178,7 +178,7 @@
   ],
   "reflection": {
     "framing": "Revision Reflection names the weakest Campaign link for spaced return.",
-    "prompt": "Which return target retrieved least cleanly and what one concrete rework will you schedule? Confirm Chapter 2 complete / spine / until-exam stayed out of scope.",
+    "prompt": "Which joint-distribution link retrieved least cleanly today — marginal/conditional extraction, independence, covariance/correlation, or linear combinations — and what one concrete rework will you schedule? Do not claim conditional expectation (2.3) or the rest of Chapter 2 are finished.",
     "prompts": [
       "Which return target retrieved least cleanly?",
       "What one concrete rework will you schedule?",

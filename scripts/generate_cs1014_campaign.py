@@ -279,7 +279,7 @@ def revision_pkg() -> dict:
             "success_criteria": [
                 "Closed-book, name the ten 4.2 Learning hinges in order (short phrases).",
                 "State at least one concrete weakest link with a rework plan.",
-                "Refuse Trust Front 5.1 absorb / spine / until-exam claims.",
+                "Refuse treating GLM revision as Bayesian Topic 5.1 finished.",
             ],
             "task_descriptions": [
                 "Without opening the CMP, sketch Xi's chain from family placement to fit/"
@@ -402,8 +402,9 @@ def revision_pkg() -> dict:
                 "item_id": "cs1014-cx-r1-cp-01",
                 "title": "Checkpoint: refuse 5.1 / spine",
                 "prompt": (
-                    "Closed-book. A colleague says 'GLM revision finished Bayesian and the "
-                    "exam journey.' Refuse; name weakest link; name honest next."
+                    "Closed-book. A colleague says 'GLM revision finished Bayesian modelling "
+                    "and the exam journey.' Refuse; name the weakest GLM link on today's "
+                    "retrieval chain; name one concrete next rework (not a new topic)."
                 ),
                 "response_type": "short_structured",
                 "body": "Refuse forbidden claims; harvest weakest link.",
@@ -429,12 +430,12 @@ def revision_pkg() -> dict:
         "reflection": {
             "framing": "Revision Reflection names the weakest Campaign link for spaced return.",
             "prompt": (
-                "Which return target retrieved least cleanly and what one concrete rework will "
-                "you schedule? Confirm Trust Front 5.1 absorb / spine / until-exam stayed "
-                "out of scope."
+                "Which GLM link retrieved least cleanly today and what one concrete rework will "
+                "you schedule? Do not claim Bayesian Topic 5.1 is finished because GLM "
+                "revision went well."
             ),
             "prompts": [
-                "Which return target retrieved least cleanly?",
+                "Which link retrieved least cleanly today?",
                 "What one concrete rework will you schedule?",
                 "Confirm: 5.1 absorb / spine PASS / until-exam trust were out of scope.",
             ],
@@ -1387,8 +1388,8 @@ LEARNING = [
         ),
         lo_text="Fit a generalised linear model to a data set and interpret the output.",
         focus=(
-            "Data → fit GLM → interpret coefficients / fit / diagnostics → refuse 5.1 / "
-            "spine / until-exam."
+            "Data → fit GLM → interpret coefficients / fit / diagnostics → refuse "
+            "treating a fitted GLM as Bayesian work finished."
         ),
         prior=(
             "Yesterday you applied formal acceptability tests (4.2.9). Today closes Topic "

@@ -41,7 +41,7 @@
     "learning_objective": "Fit a generalised linear model to a data set and interpret the output.",
     "concept_focus": "Choose family/link → fit → interpret coefficients/fit cues → refuse button-only.",
     "prior_bridge": "Yesterday formal tests (4.2.9). Today integrates fit/interpret.",
-    "why_now": "Fit a GLM to a dataset and interpret the output \u2014 this closes classical GLM before Bayesian work.",
+    "why_now": "Fit a GLM to a dataset and interpret the output — this closes classical GLM before Bayesian work.",
     "expected_benefit": "You'll be able to fit a GLM and interpret coefficients, fitted means, and basic output without treating software as a black box.",
     "explainability": "Campaign Delta Day 15 closes 4.2 Learning span.",
     "success_criteria": [
@@ -144,7 +144,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.10-cp-01",
       "title": "Checkpoint: 4.2.10",
-      "prompt": "Refuse: 'I clicked Fit so 4.2 is done / spine is ready.' What remains honest?",
+      "prompt": "Refuse: 'I clicked Fit, so interpretation and diagnostics are optional and Topic 4.2 is done.' What still needs an honest warrant after a software fit?",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.2.10.",
       "hints": [

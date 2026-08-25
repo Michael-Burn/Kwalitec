@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-PI",
   "volume_id": "CS1-016",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1016_EDUCATIONAL_VOLUME.md",
     "CS1016_CERTIFICATION_REPORT.md",
@@ -35,13 +35,13 @@
   "mission": {
     "mission_id": "msn-cs1016-cs1-5.1-bayes-theorem",
     "display_title": "Retrieve Bayes' theorem tip (Memory Front)",
-    "mission_purpose": "Today's Mission exists to retrieve Syllabus 5.1.1 Bayes' theorem under Memory Front discipline \u2014 without pretending first-pass spine PASS, until-exam trust, or Wave 0 clearance.",
+    "mission_purpose": "Today's Mission exists to retrieve Syllabus 5.1.1 Bayes' theorem under Memory Front discipline — without pretending first-pass spine PASS, until-exam trust, or Wave 0 clearance.",
     "tutor_intent": "Today I will force Bayes' theorem tip retrieval and refuse 'Memory Front finished the exam journey / first-pass spine / Wave 0'.",
     "educational_intent": "Produce Memory Front retrieval of Bayes' theorem as the Continuity Front tip hinge before Revision.",
-    "learning_objective": "Use Bayes\u2019 theorem to calculate simple conditional probabilities.",
-    "concept_focus": "Bayes' theorem \u2192 simple conditional \u2192 refuse spine / until-exam / Wave 0 clearance.",
+    "learning_objective": "Use Bayes’ theorem to calculate simple conditional probabilities.",
+    "concept_focus": "Bayes' theorem → simple conditional → refuse treating the theorem tip as conjugate priors finished.",
     "prior_bridge": "Yesterday you retrieved linear-regression entry (4.1.1). Today closes Memory Front Learning at the Continuity Front tip hinge.",
-    "why_now": "Retrieve Bayes' theorem at the tip of Topic 5.1 before revision \u2014 without inventing a Topic 5.2.",
+    "why_now": "Retrieve Bayes' theorem at the tip of Topic 5.1 before revision — without inventing a Topic 5.2.",
     "expected_benefit": "You'll retrieve Bayes' theorem for simple conditional probability updates.",
     "explainability": "Assigned as Campaign Pi Day 9 because Memory Front closes Learning at the CF tip hinge before CP-R1.",
     "success_criteria": [
@@ -61,17 +61,17 @@
   },
   "session": {
     "session_id": "ssn-cs1016-cs1-5.1-bayes-theorem",
-    "session_educational_purpose": "Execute today's Memory Front Mission for Syllabus 5.1.1 \u2014 retrieval under spine re-audit discipline, not a new first-pass LO discovery claim.",
+    "session_educational_purpose": "Execute today's Memory Front Mission for Syllabus 5.1.1 — retrieval under spine re-audit discipline, not a new first-pass LO discovery claim.",
     "session_tutor_purpose": "Set focus on 5.1.1 retrieval, exit to CMP, retrieve today's hinge, refuse spine PASS / until-exam / Wave 0 clearance swallow.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Retrieve Bayes' theorem tip (Memory Front). You practised selective CMP reading on Syllabus 5.1.1 under Memory Front discipline. This is Study Progress for today's hinge \u2014 not first-pass spine PASS, until-exam trust, or Wave 0 Approver honesty clearance.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.1 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Retrieve Bayes' theorem tip (Memory Front). You practised selective CMP reading on Syllabus 5.1.1 under Memory Front discipline. This is Study Progress for today's hinge — not first-pass spine PASS, until-exam trust, or Wave 0 Approver honesty clearance.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.1 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to retrieve Syllabus 5.1.1 \u2014 retrieve bayes' theorem tip (memory front) \u2014 under Memory Front / spine re-audit discipline. Stop before out-of-scope later hinges as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to retrieve Syllabus 5.1.1 — retrieve bayes' theorem tip (memory front) — under Memory Front / spine re-audit discipline. Stop before out-of-scope later hinges as primary.",
     "focus_questions": [
       "What is the core retrieval move of Syllabus 5.1.1?",
       "What warrant separates today's hinge from the next Memory Front day?",
@@ -83,7 +83,7 @@
       "Watch for inventing Topic 5.2.",
       "Watch for skipping Revision."
     ],
-    "open_point": "CMP \u00b7 Syllabus 5.1.1 Bayes\u2019 theorem for simple conditional probabilities",
+    "open_point": "CMP · Syllabus 5.1.1 Bayes’ theorem for simple conditional probabilities",
     "stop_condition": "Through the CMP treatment of Syllabus 5.1.1 (stop before terminal Revision as Learning; no spine / until-exam / Wave 0 claim)",
     "out_of_scope_today": [
       "First-pass spine PASS",
@@ -95,13 +95,13 @@
     ],
     "annotation_task": "Before deep reading: sketch today's hinge chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution \u2014 stay inside 5.1.1.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.1 Bayes\u2019 theorem for simple conditional probabilities. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.1 (stop before terminal Revision as Learning; no spine / until-exam / Wave 0 claim). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 5.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution — stay inside 5.1.1.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.1 Bayes’ theorem for simple conditional probabilities. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.1 (stop before terminal Revision as Learning; no spine / until-exam / Wave 0 claim). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 5.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core retrieval move in one sentence.",
+        "cue": "Pause — write today's core retrieval move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -144,7 +144,7 @@
       "kind": "checkpoint",
       "item_id": "cs1016-5.1.1-cp-01",
       "title": "Checkpoint: 5.1.1",
-      "prompt": "Closed-book. A colleague says 'Finishing 5.1.1 Memory Front finished the first-pass spine, cleared Wave 0, and unlocked until-exam trust.' Refuse and name tomorrow's honest next (Revision).",
+      "prompt": "Closed-book. A colleague says 'Retrieving Bayes' theorem finished conjugate priors and the whole Bayesian topic.' Refuse and name tomorrow's honest next (Revision of the Bayesian chain).",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 5.1.1.",
       "hints": [
@@ -159,7 +159,7 @@
         "revision"
       ],
       "explanation": "Checkpoint for 5.1.1.",
-      "model_answer": "Refuse: tip retrieval \u2260 spine PASS \u2260 Wave 0 clearance \u2260 until-exam. Tomorrow is CP-R1 Revision.",
+      "model_answer": "Refuse: tip retrieval ≠ spine PASS ≠ Wave 0 clearance ≠ until-exam. Tomorrow is CP-R1 Revision.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",
@@ -168,7 +168,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest Bayes-tip wobble \u2014 Revision protects the Memory Front chain tomorrow.",
+    "framing": "Harvest Bayes-tip wobble — Revision protects the Memory Front chain tomorrow.",
     "prompt": "Which part of today's 5.1.1 retrieval is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 5.1.1 retrieval is stickiest and why?",
@@ -178,10 +178,10 @@
   },
   "tomorrow_preview": {
     "next_topic_code": "CP-R1",
-    "next_topic_title": "Campaign Pi Revision \u2014 retrieve Memory Front hinges",
+    "next_topic_title": "Campaign Pi Revision — retrieve Memory Front hinges",
     "continuity_line": "Today you closed Memory Front Learning at Bayes tip; tomorrow is Campaign Pi Revision returning to the hinge chain.",
-    "light_prep_cue": "No new LO tonight \u2014 rest or jot the stickiest Memory Front hinge for Revision",
-    "student_facing": "Tomorrow: CP-R1 Revision of Memory Front hinges. Optional: note your weakest hinge \u2014 titles only tonight."
+    "light_prep_cue": "No new LO tonight — rest or jot the stickiest Memory Front hinge for Revision",
+    "student_facing": "Tomorrow: CP-R1 Revision of Memory Front hinges. Optional: note your weakest hinge — titles only tonight."
   },
   "revision_linkage": {
     "returns_on": "CP-R1",

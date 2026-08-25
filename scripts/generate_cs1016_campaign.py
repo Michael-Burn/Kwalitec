@@ -254,7 +254,7 @@ def revision_pkg() -> dict:
                 "and (9) Bayes' theorem tip."
             ),
             "concept_focus": (
-                "Campaign chain retrieval across Continuity Front geography after tip close."
+                "Quantiles → joints → CLT → sampling → estimators → intervals → tests → regression → Bayes tip retrieval."
             ),
             "prior_bridge": (
                 "Yesterday you finished Bayes' theorem tip retrieval (5.1.1). Today is Revision "
@@ -273,7 +273,7 @@ def revision_pkg() -> dict:
             "success_criteria": [
                 "Closed-book, name the nine CP Learning hinges in order (short phrases).",
                 "State at least one concrete weakest link with a rework plan.",
-                "Refuse spine PASS / until-exam / Wave 0 clearance claims.",
+                "Refuse treating one retrieval sitting as Topic mastery.",
             ],
             "task_descriptions": [
                 "Without opening the CMP, sketch Pi's hinge chain from 2.1.3 to 5.1.1.",
@@ -402,11 +402,12 @@ def revision_pkg() -> dict:
                 "episode_id": "lep-cs1016-cp-r1-cp-01",
                 "kind": "checkpoint",
                 "item_id": "cs1016-cp-r1-cp-01",
-                "title": "Checkpoint: refuse spine / until-exam / Wave 0",
+                "title": "Checkpoint: memory-chain revision honesty",
                 "prompt": (
-                    "Closed-book. A colleague says 'Finishing Pi Revision finished the first-pass "
-                    "spine, cleared Wave 0, and unlocked until-exam trust.' Refuse and name the "
-                    "honest residual."
+                    "Closed-book. A colleague says 'If I can recite Bayes' theorem, the whole "
+                    "chain from quantiles through regression is secure.' Refuse; name the "
+                    "weakest link on today's retrieval chain; name one concrete residual to "
+                    "rework."
                 ),
                 "response_type": "short_structured",
                 "body": "Checkpoint refuse for CP-R1.",
@@ -425,8 +426,10 @@ def revision_pkg() -> dict:
         "reflection": {
             "framing": "Harvest Memory Front wobble — Wave 0 Approver residual remains open.",
             "prompt": (
-                "Which Memory Front hinge is stickiest and why? What one rework plan will you "
-                "keep? What claim must you refuse after Revision?"
+                "Which hinge retrieved least cleanly today — quantiles, joints, CLT, sampling, "
+                "estimators, intervals, tests, regression roles, or Bayes tip — and why? "
+                "What one concrete rework will you schedule? Do not claim the full syllabus "
+                "stretch is finished because one retrieval sitting went well."
             ),
             "prompts": [
                 "Which Memory Front hinge is stickiest and why?",
@@ -470,7 +473,7 @@ LEARNING = [
         tutor="Today I will force closed-book probability/quantile retrieval and refuse 'Memory Front finished joint distributions / spine PASS'.",
         edu="Produce Memory Front retrieval of probabilities and quantiles as the lawful first hinge after Topic 5.1 tip close.",
         lo_text="Evaluate probabilities and quantiles associated with univariate distributions (by calculation or using statistical software as appropriate).",
-        focus="Distribution → probability/quantile move → refuse 2.2.1 / spine swallow.",
+        focus="Distribution → probability/quantile move → refuse treating evaluation as joint distributions finished.",
         prior="Yesterday you closed Campaign Omicron Revision at the Continuity Front tip (5.1). Today opens Memory Front / spine re-audit at the historical Opening Continuity Front hinge 2.1.3.",
         why="Topic 5.1 is closed and there is no 5.2 next — retrieve probability and quantile evaluation from earlier distribution work.",
         benefit="You'll retrieve 2.1.3.",
@@ -489,7 +492,7 @@ LEARNING = [
         ar_prompt="Closed-book. (1) What probability object do you evaluate for a univariate distribution? (2) What is a quantile move? (3) Why is 2.2.1 not today's primary?",
         ar_kw=["probability", "quantile", "univariate", "distribution"],
         ar_model="Evaluate probabilities and quantiles for named univariate distributions. Joint distributions open tomorrow under Memory Front.",
-        cp_prompt="Closed-book. A colleague says 'Retrieving 2.1.3 finished the first-pass spine.' Refuse and name tomorrow.",
+        cp_prompt="Closed-book. A colleague says 'Evaluating probabilities and quantiles means joint distributions are optional.' Refuse and name tomorrow's honest next.",
         cp_kw=["refuse", "spine", "2.2.1", "Memory"],
         cp_model="Refuse: one hinge ≠ spine PASS. Tomorrow is Memory Front 2.2.1.",
         reflect="Harvest probability/quantile wobble — joint distributions continue Memory Front tomorrow.",
@@ -755,7 +758,7 @@ LEARNING = [
         ar_prompt="Closed-book. (1) What is a response variable? (2) What is an explanatory variable? (3) Why is 5.1.1 not today's primary?",
         ar_kw=["response", "explanatory", "regression", "variable"],
         ar_model="Response is modelled outcome; explanatory variables explain variation in the response. Bayes tip opens tomorrow.",
-        cp_prompt="Closed-book. A colleague says '4.1.1 finished Bayes memory and the first-pass spine.' Refuse and name tomorrow.",
+        cp_prompt="Closed-book. A colleague says 'Naming response and explanatory variables finished linear modelling and Bayes tip retrieval.' Refuse and name tomorrow's honest next.",
         cp_kw=["refuse", "Bayes", "5.1.1", "spine"],
         cp_model="Refuse: regression entry ≠ Bayes tip ≠ spine PASS. Tomorrow is 5.1.1.",
         reflect="Harvest regression-entry wobble — Bayes tip continues Memory Front tomorrow.",
@@ -774,7 +777,7 @@ LEARNING = [
         tutor="Today I will force Bayes' theorem tip retrieval and refuse 'Memory Front finished the exam journey / first-pass spine / Wave 0'.",
         edu="Produce Memory Front retrieval of Bayes' theorem as the Continuity Front tip hinge before Revision.",
         lo_text="Use Bayes’ theorem to calculate simple conditional probabilities.",
-        focus="Bayes' theorem → simple conditional → refuse spine / until-exam / Wave 0 clearance.",
+        focus="Bayes' theorem → simple conditional → refuse treating the theorem tip as conjugate priors finished.",
         prior="Yesterday you retrieved linear-regression entry (4.1.1). Today closes Memory Front Learning at the Continuity Front tip hinge.",
         why="Retrieve Bayes' theorem at the tip of Topic 5.1 before revision — without inventing a Topic 5.2.",
         benefit="You'll retrieve Bayes' theorem for simple conditional probability updates.",
@@ -793,7 +796,7 @@ LEARNING = [
         ar_prompt="Closed-book. (1) State Bayes' theorem for a simple case. (2) What probability do you update? (3) Name one reason this does not finish first-pass spine or until-exam trust.",
         ar_kw=["Bayes", "conditional", "prior", "posterior"],
         ar_model="Bayes updates probabilities using prior and likelihood information in simple cases. Spine PASS and until-exam remain out of scope.",
-        cp_prompt="Closed-book. A colleague says 'Finishing 5.1.1 Memory Front finished the first-pass spine, cleared Wave 0, and unlocked until-exam trust.' Refuse and name tomorrow's honest next (Revision).",
+        cp_prompt="Closed-book. A colleague says 'Retrieving Bayes' theorem finished conjugate priors and the whole Bayesian topic.' Refuse and name tomorrow's honest next (Revision of the Bayesian chain).",
         cp_kw=["refuse", "spine", "Wave 0", "until-exam", "revision"],
         cp_model="Refuse: tip retrieval ≠ spine PASS ≠ Wave 0 clearance ≠ until-exam. Tomorrow is CP-R1 Revision.",
         reflect="Harvest Bayes-tip wobble — Revision protects the Memory Front chain tomorrow.",

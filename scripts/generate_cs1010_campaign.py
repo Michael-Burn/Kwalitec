@@ -377,9 +377,10 @@ def revision_pkg() -> dict:
                 "item_id": "cs1010-ck-r1-cp-01",
                 "title": "Checkpoint: CK-R1",
                 "prompt": (
-                    "Closed-book. (1) Weakest 3.1 link + one concrete rework. (2) Refuse "
-                    "Chapter 3 complete and first-pass spine PASS. (3) Name the honest next "
-                    "geography (3.2) or confirm declared stop."
+                    "Closed-book. (1) Name today's weakest estimator link and one concrete "
+                    "rework. (2) Refuse: 'Moments and MLE are interchangeable, so Chapter 3 "
+                    "is done.' (3) Name the honest next topic (confidence intervals, 3.2) or "
+                    "confirm you are stopping here."
                 ),
                 "response_type": "short_structured",
                 "body": "Weakest link + honest next.",
@@ -407,13 +408,13 @@ def revision_pkg() -> dict:
         "reflection": {
             "framing": "Revision Reflection names the weakest Campaign link for spaced return.",
             "prompt": (
-                "Which return target retrieved least cleanly and what one concrete rework will "
-                "you schedule? Confirm Chapter 3 complete / spine / until-exam stayed out of scope."
+                "Which link retrieved least cleanly today and what one concrete rework will "
+                "you schedule? Do not claim the rest of Chapter 3 is finished from one retrieval sitting."
             ),
             "prompts": [
-                "Which return target retrieved least cleanly?",
+                "Which link retrieved least cleanly today?",
                 "What one concrete rework will you schedule?",
-                "Confirm: Chapter 3 complete / spine PASS / until-exam trust were out of scope.",
+                "Do not claim the rest of Chapter 3 is finished from one retrieval sitting.",
             ],
         },
         "tomorrow_preview": {
@@ -1073,7 +1074,7 @@ LEARNING = [
         ),
         cp_prompt=(
             "Closed-book. (1) Refuse 'yesterday's asymptotics finished today's LO'. "
-            "(2) Refuse 'Chapter 3 is complete because I finished 3.1.6'. State the honest stop."
+            "(2) Refuse 'Chapter 3 is complete because I finished 3.1.6'. Name what still sits ahead before the next syllabus topic."
         ),
         cp_kw=[
             "refuse",

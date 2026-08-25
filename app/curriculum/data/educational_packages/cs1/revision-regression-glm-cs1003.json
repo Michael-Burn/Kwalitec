@@ -156,7 +156,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-cd-r2-cp-01",
       "title": "Checkpoint: CD-R2",
-      "prompt": "(1) Weakest link + rework. (2) Refuse Isolated Golden Day and spine PASS. (3) Name tomorrow's LO.",
+      "prompt": "(1) Name today's weakest link across classical regression and GLM, plus one concrete rework. (2) Refuse: 'One strong regression/GLM day means Bayesian foundations can be skipped.' (3) Name tomorrow's honest next (Bayesian entry) or confirm you are stopping here.",
       "response_type": "short_structured",
       "body": "Weakest link + honest next.",
       "hints": [
@@ -183,7 +183,7 @@
   ],
   "reflection": {
     "framing": "Revision Reflection names the weakest Campaign link for spaced return.",
-    "prompt": "Which return target retrieved least cleanly and what one concrete rework will you schedule? Confirm forbidden claims stayed out of scope.",
+    "prompt": "Which link retrieved least cleanly today — classical LM roles/forms/OLS/selection, or GLM family/link/fit/interpret — and what one concrete rework will you schedule? Do not claim Bayesian Topic 5.1 is finished.",
     "prompts": [
       "Which return target retrieved least cleanly?",
       "What one concrete rework will you schedule?",

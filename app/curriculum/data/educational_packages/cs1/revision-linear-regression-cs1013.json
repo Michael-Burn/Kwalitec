@@ -49,7 +49,7 @@
     "concept_focus": "Campaign chain retrieval: response/explanatory → simple/multiple → least squares → software fit/inference → variable selection.",
     "prior_bridge": "Yesterday you finished variable selection (4.1.5). Today is Revision mode: return to 4.1.1–4.1.5 under closed-book retrieval — no new first-pass LO.",
     "why_now": "You've just finished linear regression; spaced retrieval now protects that chain before you stop.",
-    "expected_benefit": "You'll confirm the linear-regression chain still retrieves \u2014 roles through variable selection.",
+    "expected_benefit": "You'll confirm the linear-regression chain still retrieves — roles through variable selection.",
     "explainability": "Assigned as Campaign Nu Revision because Architecture requires memory return inside the Pilot Arc before the next Volume.",
     "success_criteria": [
       "Closed-book, name the five 4.1 Learning hinges in order (short phrases).",
@@ -148,7 +148,7 @@
       "kind": "checkpoint",
       "item_id": "cs1013-cn-r1-cp-01",
       "title": "Checkpoint: CN-R1",
-      "prompt": "Closed-book. (1) Weakest 4.1 link + one concrete rework. (2) Refuse Trust Front 4.2/5.1 absorb and first-pass spine PASS. (3) Name the honest next (declared stop / Wave 0 honesty / spine re-audit) — not until-exam trust.",
+      "prompt": "Closed-book. (1) Name today's weakest linear-regression link and one concrete rework. (2) Refuse: 'Variable selection finished GLM and Bayesian modelling.' (3) Name whether you stop here or what syllabus topic honestly comes next — not 'exam ready.'",
       "response_type": "short_structured",
       "body": "Weakest link + honest next.",
       "hints": [
@@ -176,7 +176,7 @@
   ],
   "reflection": {
     "framing": "Revision Reflection names the weakest Campaign link for spaced return.",
-    "prompt": "Which return target retrieved least cleanly and what one concrete rework will you schedule? Confirm Trust Front 4.2/5.1 absorb / spine / until-exam stayed out of scope.",
+    "prompt": "Which linear-regression link retrieved least cleanly today — response/explanatory roles, simple vs multiple forms, least squares, software fit/inference, or variable selection — and what one concrete rework will you schedule? Do not claim GLM (4.2) or Bayesian (5.1) are finished.",
     "prompts": [
       "Which return target retrieved least cleanly?",
       "What one concrete rework will you schedule?",

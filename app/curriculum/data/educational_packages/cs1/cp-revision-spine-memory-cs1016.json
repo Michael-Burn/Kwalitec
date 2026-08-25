@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-PI",
   "volume_id": "CS1-016",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1016_EDUCATIONAL_VOLUME.md",
     "CS1016_CERTIFICATION_REPORT.md",
@@ -17,7 +17,7 @@
   "package_id": "CS1-EP001-PKG-REV-SPINE-MEMORY-PI",
   "campaign_day": "CP-R1",
   "topic_code": "CP-R1",
-  "topic_title": "Campaign Pi revision \u2014 Memory Front spine hinges",
+  "topic_title": "Campaign Pi revision — Memory Front spine hinges",
   "return_targets": [
     "2.1.3",
     "2.2.1",
@@ -46,14 +46,14 @@
   "mission": {
     "mission_id": "msn-cs1016-cs1-cp-r1-spine-memory",
     "display_title": "Retrieve Memory Front spine hinges",
-    "mission_purpose": "Today's Mission exists to protect memory across Campaign Pi \u2014 retrieving 2.1.3 through 5.1.1 hinges \u2014 so Continuity Front tip closure does not evaporate into until-exam theatre or Wave 0 clearance claims.",
-    "tutor_intent": "Today I will run closed-book retrieval across Pi's Learning hinges \u2014 not a passive CMP re-read and not a first-pass spine PASS or until-exam claim.",
-    "educational_intent": "Produce retrieval strength on the Campaign Educational Objective: 2.1.3 \u2192 2.2.1 \u2192 2.5.1 \u2192 2.6.1 \u2192 3.1.1 \u2192 3.2.1 \u2192 3.3.1 \u2192 4.1.1 \u2192 5.1.1.",
+    "mission_purpose": "Today's Mission exists to protect memory across Campaign Pi — retrieving 2.1.3 through 5.1.1 hinges — so Continuity Front tip closure does not evaporate into until-exam theatre or Wave 0 clearance claims.",
+    "tutor_intent": "Today I will run closed-book retrieval across Pi's Learning hinges — not a passive CMP re-read and not a first-pass spine PASS or until-exam claim.",
+    "educational_intent": "Produce retrieval strength on the Campaign Educational Objective: 2.1.3 → 2.2.1 → 2.5.1 → 2.6.1 → 3.1.1 → 3.2.1 → 3.3.1 → 4.1.1 → 5.1.1.",
     "learning_objective": "Retrieve and connect Memory Front hinges (1) probabilities/quantiles, (2) marginal/conditional, (3) CLT, (4) random samples, (5) estimators, (6) CI from sample, (7) hypothesis testing, (8) linear regression entry, and (9) Bayes' theorem tip.",
-    "concept_focus": "Campaign chain retrieval across Continuity Front geography after tip close.",
-    "prior_bridge": "Yesterday you finished Bayes' theorem tip retrieval (5.1.1). Today is Revision mode: return to CP hinges under closed-book retrieval \u2014 no new first-pass LO.",
-    "why_now": "Space a closed-book retrieval across the memory chain \u2014 quantiles through Bayes tip \u2014 before you stop.",
-    "expected_benefit": "You'll confirm the memory chain still retrieves closed-book \u2014 from quantiles through Bayes tip.",
+    "concept_focus": "Quantiles → joints → CLT → sampling → estimators → intervals → tests → regression → Bayes tip retrieval.",
+    "prior_bridge": "Yesterday you finished Bayes' theorem tip retrieval (5.1.1). Today is Revision mode: return to CP hinges under closed-book retrieval — no new first-pass LO.",
+    "why_now": "Space a closed-book retrieval across the memory chain — quantiles through Bayes tip — before you stop.",
+    "expected_benefit": "You'll confirm the memory chain still retrieves closed-book — from quantiles through Bayes tip.",
     "explainability": "Assigned as Campaign Pi Revision because Architecture requires memory return inside the Pilot Arc before the next Volume.",
     "success_criteria": [
       "Closed-book, name the nine CP Learning hinges in order (short phrases).",
@@ -72,20 +72,20 @@
   },
   "session": {
     "session_id": "ssn-cs1016-cs1-cp-r1-spine-memory",
-    "session_educational_purpose": "Retrieve and connect Campaign Pi Memory Front skills \u2014 not to claim spine PASS.",
-    "session_tutor_purpose": "Keep CMP closed for checks; harvest weakest link \u2014 Gate RV substance.",
+    "session_educational_purpose": "Retrieve and connect Campaign Pi Memory Front skills — not to claim spine PASS.",
+    "session_tutor_purpose": "Keep CMP closed for checks; harvest weakest link — Gate RV substance.",
     "duration_budget_minutes": {
       "min": 50,
       "max": 75
     },
-    "wrap_up": "Revision Session complete. You stress-tested CP hinge return targets. This is revision Study Progress \u2014 not first-pass spine PASS, not until-exam trust, and not Wave 0 Approver honesty clearance.",
-    "confidence_prompt": "How confident are you that Memory Front hinges will still retrieve in three days? Rate 1\u20135 and name the weakest link."
+    "wrap_up": "Revision Session complete. You stress-tested CP hinge return targets. This is revision Study Progress — not first-pass spine PASS, not until-exam trust, and not Wave 0 Approver honesty clearance.",
+    "confidence_prompt": "How confident are you that Memory Front hinges will still retrieve in three days? Rate 1–5 and name the weakest link."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this revision stage: strengthen retrieval of the Campaign Pi Memory Front chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus.",
     "focus_questions": [
       "Can you name the nine CP Learning hinges in order?",
-      "Can you state 2.1.3 \u2192 2.2.1 \u2192 2.5.1 \u2192 2.6.1 \u2192 3.1.1 \u2192 3.2.1 \u2192 3.3.1 \u2192 4.1.1 \u2192 5.1.1?",
+      "Can you state 2.1.3 → 2.2.1 → 2.5.1 → 2.6.1 → 3.1.1 → 3.2.1 → 3.3.1 → 4.1.1 → 5.1.1?",
       "What claim must you refuse (spine / until-exam / Wave 0 clearance)?"
     ],
     "misconception_watch": [
@@ -94,7 +94,7 @@
       "Watch for inventing Topic 5.2 as Continuity Front geography."
     ],
     "open_point": "No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block.",
-    "stop_condition": "After revision checks and Reflection \u2014 do not claim spine PASS, until-exam trust, or Wave 0 clearance in this sitting",
+    "stop_condition": "After revision checks and Reflection — do not claim spine PASS, until-exam trust, or Wave 0 clearance in this sitting",
     "out_of_scope_today": [
       "First-pass spine PASS",
       "Until-exam educational trust",
@@ -106,12 +106,12 @@
     "annotation_task": "Before checks: sketch return-target chain from memory",
     "attempt_before_reveal": "Attempt each check before any targeted CMP reopen",
     "worked_examples_cue": "Revision worked re-entry: attempt the failed hinge closed-book before targeted CMP reopen.",
-    "exit_line": "Keep the CMP closed to begin. Attempt closed-book retrieval of the Campaign Pi hinge chain. Only after a failed check may you reopen the exact failed locus in the CMP. Stop after checks and Reflection \u2014 refuse spine PASS, until-exam trust, and Wave 0 clearance claims.",
-    "return_cue": "You are finished when return-target checks and Reflection are complete. Immediate next: honest stop / Wave 0 Approver residual \u2014 not until-exam trust.",
+    "exit_line": "Keep the CMP closed to begin. Attempt closed-book retrieval of the Campaign Pi hinge chain. Only after a failed check may you reopen the exact failed locus in the CMP. Stop after checks and Reflection — refuse spine PASS, until-exam trust, and Wave 0 clearance claims.",
+    "return_cue": "You are finished when return-target checks and Reflection are complete. Immediate next: honest stop / Wave 0 Approver residual — not until-exam trust.",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 list the nine hinges from memory before any CMP reopen.",
+        "cue": "Pause — list the nine hinges from memory before any CMP reopen.",
         "student_action": "Retrieve"
       },
       {
@@ -147,7 +147,7 @@
         "5.1.1"
       ],
       "explanation": "Active recall for CP-R1.",
-      "model_answer": "Hinges: 2.1.3 \u2192 2.2.1 \u2192 2.5.1 \u2192 2.6.1 \u2192 3.1.1 \u2192 3.2.1 \u2192 3.3.1 \u2192 4.1.1 \u2192 5.1.1. Weakest link is personal. Spine PASS / until-exam remain out of scope.",
+      "model_answer": "Hinges: 2.1.3 → 2.2.1 → 2.5.1 → 2.6.1 → 3.1.1 → 3.2.1 → 3.3.1 → 4.1.1 → 5.1.1. Weakest link is personal. Spine PASS / until-exam remain out of scope.",
       "common_mistake": "Claiming spine or until-exam complete from Revision day.",
       "success_criteria": [
         "Nine hinges named.",
@@ -160,7 +160,7 @@
       "kind": "checkpoint",
       "item_id": "cs1016-cp-r1-cp-01",
       "title": "Checkpoint: refuse spine / until-exam / Wave 0",
-      "prompt": "Closed-book. A colleague says 'Finishing Pi Revision finished the first-pass spine, cleared Wave 0, and unlocked until-exam trust.' Refuse and name the honest residual.",
+      "prompt": "Closed-book. A colleague says 'If I can recite Bayes' theorem, the whole chain from quantiles through regression is secure.' Refuse; name the weakest link on today's retrieval chain; name one concrete residual to rework.",
       "response_type": "short_structured",
       "body": "Checkpoint refuse for CP-R1.",
       "hints": [
@@ -174,7 +174,7 @@
         "until-exam"
       ],
       "explanation": "Checkpoint for CP-R1.",
-      "model_answer": "Refuse: Memory Front Revision \u2260 first-pass spine PASS, \u2260 Wave 0 Approver clearance, \u2260 until-exam trust. Honest residual: Wave 0 Approver ownership remains scheduled; until-exam blocked.",
+      "model_answer": "Refuse: Memory Front Revision ≠ first-pass spine PASS, ≠ Wave 0 Approver clearance, ≠ until-exam trust. Honest residual: Wave 0 Approver ownership remains scheduled; until-exam blocked.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",
@@ -183,8 +183,8 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest Memory Front wobble \u2014 Wave 0 Approver residual remains open.",
-    "prompt": "Which Memory Front hinge is stickiest and why? What one rework plan will you keep? What claim must you refuse after Revision?",
+    "framing": "Harvest Memory Front wobble — Wave 0 Approver residual remains open.",
+    "prompt": "Which hinge retrieved least cleanly today — quantiles, joints, CLT, sampling, estimators, intervals, tests, regression roles, or Bayes tip — and why? What one concrete rework will you schedule? Do not claim the full syllabus stretch is finished because one retrieval sitting went well.",
     "prompts": [
       "Which Memory Front hinge is stickiest and why?",
       "What one rework plan will you keep?",
@@ -193,9 +193,9 @@
   },
   "tomorrow_preview": {
     "next_topic_code": "CR-D1",
-    "next_topic_title": "Aims of a data analysis Publication Front (1.1.1) \u2014 Campaign Rho / CS1-017",
+    "next_topic_title": "Aims of a data analysis Publication Front (1.1.1) — Campaign Rho / CS1-017",
     "continuity_line": "Campaign Pi / Volume CS1-016 completes after this Revision. Publication Front next: Campaign Rho Day 1 (CR-D1) opens Wave 0 Approver-path residual at Syllabus 1.1.1. Alpha/Beta honesty-gap packages remain independent inventory; Memory Front Pi remains LIVE independently.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 1.1.1 \u2014 titles only tonight",
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 1.1.1 — titles only tonight",
     "student_facing": "Campaign Pi / CS1-016 complete after today. Tomorrow: Campaign Rho opens Publication Front at Syllabus 1.1.1. Not first-pass spine PASS; not until-exam trust."
   },
   "revision_linkage": {

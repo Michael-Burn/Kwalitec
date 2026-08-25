@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-IOTA",
   "volume_id": "CS1-009",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1009_EDUCATIONAL_VOLUME.md",
     "CS1009_CERTIFICATION_REPORT.md",
@@ -16,7 +16,7 @@
   "package_id": "CS1-EP001-PKG-REV-SAMPLING-DISTRIBUTIONS",
   "campaign_day": "CI-R1",
   "topic_code": "CI-R1",
-  "topic_title": "Campaign Iota revision \u2014 random sampling and sampling distributions",
+  "topic_title": "Campaign Iota revision — random sampling and sampling distributions",
   "return_targets": [
     "2.6.1",
     "2.6.2",
@@ -45,14 +45,14 @@
   "mission": {
     "mission_id": "msn-cs1009-cs1-ci-r1-sampling-distributions",
     "display_title": "Retrieve sampling-distribution hinges (2.6)",
-    "mission_purpose": "Today's Mission exists to protect memory of Campaign Iota \u2014 retrieving random samples, sampling distributions of statistics, mean/variance of sample mean and mean of sample variance, Normal-sample mean/variance laws, the t-statistic, and the F ratio \u2014 so 2.6 does not evaporate before Chapter 3 inference.",
-    "tutor_intent": "Today I will run closed-book retrieval across Iota's Learning hinges \u2014 not a passive CMP re-read and not a first-pass 3.1 estimators lesson.",
-    "educational_intent": "Produce retrieval strength on the Campaign Educational Objective: random sampling \u2192 sampling distribution of a statistic \u2192 mean/variance results \u2192 Normal sampling laws \u2192 t \u2192 F.",
+    "mission_purpose": "Today's Mission exists to protect memory of Campaign Iota — retrieving random samples, sampling distributions of statistics, mean/variance of sample mean and mean of sample variance, Normal-sample mean/variance laws, the t-statistic, and the F ratio — so 2.6 does not evaporate before Chapter 3 inference.",
+    "tutor_intent": "Today I will run closed-book retrieval across Iota's Learning hinges — not a passive CMP re-read and not a first-pass 3.1 estimators lesson.",
+    "educational_intent": "Produce retrieval strength on the Campaign Educational Objective: random sampling → sampling distribution of a statistic → mean/variance results → Normal sampling laws → t → F.",
     "learning_objective": "Retrieve and connect (1) random samples, (2) the sampling distribution of a statistic, (3) mean/variance of a sample mean and mean of a sample variance, (4) basic Normal sampling distributions for mean and variance, (5) the t-statistic, and (6) the F distribution for a variance ratio.",
-    "concept_focus": "Campaign chain retrieval: random sample \u2192 sampling dist \u2192 E/Var results \u2192 Normal laws \u2192 t \u2192 F.",
-    "prior_bridge": "Yesterday you finished the F distribution for a variance ratio (2.6.6). Today is Revision mode: return to 2.6.1\u20132.6.6 under closed-book retrieval \u2014 no new first-pass LO.",
+    "concept_focus": "Campaign chain retrieval: random sample → sampling dist → E/Var results → Normal laws → t → F.",
+    "prior_bridge": "Yesterday you finished the F distribution for a variance ratio (2.6.6). Today is Revision mode: return to 2.6.1–2.6.6 under closed-book retrieval — no new first-pass LO.",
     "why_now": "You've just finished sampling distributions; spaced retrieval now protects that chain before estimators.",
-    "expected_benefit": "Evidence that the 2.6 chain retrieves \u2014 revision Study Progress, not a claim that Chapter 2 / Chapter 3 / the exam journey is complete.",
+    "expected_benefit": "Evidence that the 2.6 chain retrieves — revision Study Progress, not a claim that Chapter 2 / Chapter 3 / the exam journey is complete.",
     "explainability": "Assigned as Campaign Iota Revision because Architecture requires memory return inside the Pilot Arc before the next Volume.",
     "success_criteria": [
       "Closed-book, name the six 2.6 Learning hinges in order (short phrases).",
@@ -60,7 +60,7 @@
       "Refuse Chapter 2 complete / spine / until-exam / 3.1-as-done claims."
     ],
     "task_descriptions": [
-      "Without opening the CMP, sketch Iota's chain: sample \u2192 statistic \u2192 mean/var laws \u2192 Normal \u2192 t \u2192 F.",
+      "Without opening the CMP, sketch Iota's chain: sample → statistic → mean/var laws → Normal → t → F.",
       "Complete Revision Knowledge Checks under closed-book rules.",
       "Author a revision Reflection naming the weakest link."
     ],
@@ -71,14 +71,14 @@
   },
   "session": {
     "session_id": "ssn-cs1009-cs1-ci-r1-sampling-distributions",
-    "session_educational_purpose": "Retrieve and connect Campaign Iota skills \u2014 not to teach 3.1.",
-    "session_tutor_purpose": "Keep CMP closed for checks; harvest weakest link \u2014 Gate RV substance.",
+    "session_educational_purpose": "Retrieve and connect Campaign Iota skills — not to teach 3.1.",
+    "session_tutor_purpose": "Keep CMP closed for checks; harvest weakest link — Gate RV substance.",
     "duration_budget_minutes": {
       "min": 45,
       "max": 60
     },
-    "wrap_up": "Revision Session complete. You stress-tested 2.6.1\u20132.6.6 return targets. This is revision Study Progress \u2014 not Topic Complete for Chapter 3, and not first-pass spine PASS.",
-    "confidence_prompt": "How confident are you that sampling-distribution hinges will still retrieve in three days? Rate 1\u20135 and name the weakest link."
+    "wrap_up": "Revision Session complete. You stress-tested 2.6.1–2.6.6 return targets. This is revision Study Progress — not Topic Complete for Chapter 3, and not first-pass spine PASS.",
+    "confidence_prompt": "How confident are you that sampling-distribution hinges will still retrieve in three days? Rate 1–5 and name the weakest link."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this revision stage: strengthen retrieval of the Campaign Iota chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus.",
@@ -93,7 +93,7 @@
       "Watch for dropping Theta CLT memory as irrelevant."
     ],
     "open_point": "No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block.",
-    "stop_condition": "After revision checks and Reflection \u2014 do not begin Syllabus 3.1 in this sitting",
+    "stop_condition": "After revision checks and Reflection — do not begin Syllabus 3.1 in this sitting",
     "out_of_scope_today": [
       "First-pass estimators / inference (3.1)",
       "Confidence intervals / hypothesis testing primary",
@@ -108,7 +108,7 @@
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 mark the weakest link before checks.",
+        "cue": "Pause — mark the weakest link before checks.",
         "student_action": "Annotate"
       }
     ],
@@ -139,7 +139,7 @@
         "statistic"
       ],
       "explanation": "Revision retrieves the 2.6 arc.",
-      "model_answer": "Example: (1) iid draws from a population; (2) distribution of a statistic over repeated samples; (3) E/Var of X\u0304 and E[S\u00b2] in population terms; (4) Normal-sample laws for X\u0304 and S\u00b2 (\u03c7\u00b2 form as CMP); (5) t when \u03c3 unknown; (6) F for ratio of independent sample variances.",
+      "model_answer": "Example: (1) iid draws from a population; (2) distribution of a statistic over repeated samples; (3) E/Var of X̄ and E[S²] in population terms; (4) Normal-sample laws for X̄ and S² (χ² form as CMP); (5) t when σ unknown; (6) F for ratio of independent sample variances.",
       "common_mistake": "Passive summary without retrieval.",
       "success_criteria": [
         "Six hinges named.",
@@ -151,7 +151,7 @@
       "kind": "checkpoint",
       "item_id": "cs1009-ci-r1-cp-01",
       "title": "Checkpoint: CI-R1",
-      "prompt": "Closed-book. (1) Weakest 2.6 link + one concrete rework. (2) Refuse Chapter 2 complete and first-pass spine PASS. (3) Name the honest next geography (3.1) or confirm declared stop.",
+      "prompt": "Closed-book. (1) Name today's weakest sampling-distribution link and one concrete rework. (2) Refuse: 'My sample mean is the sampling distribution, so Chapter 2 is done.' (3) Name the honest next topic (estimators, 3.1) or confirm you are stopping here.",
       "response_type": "short_structured",
       "body": "Weakest link + honest next.",
       "hints": [
@@ -169,7 +169,7 @@
         "until-exam"
       ],
       "explanation": "RV harvests memory debt and honest next.",
-      "model_answer": "(1) e.g. F degrees of freedom \u2014 five-minute rework. (2) Refuse Chapter 2 complete / spine / until-exam. (3) Honest next is 3.1 (successor Volume) or declared stop \u2014 not claimed finished here.",
+      "model_answer": "(1) e.g. F degrees of freedom — five-minute rework. (2) Refuse Chapter 2 complete / spine / until-exam. (3) Honest next is 3.1 (successor Volume) or declared stop — not claimed finished here.",
       "common_mistake": "Spine / Chapter 2 / until-exam claim.",
       "success_criteria": [
         "Rework named.",
@@ -179,7 +179,7 @@
   ],
   "reflection": {
     "framing": "Revision Reflection names the weakest Campaign link for spaced return.",
-    "prompt": "Which return target retrieved least cleanly and what one concrete rework will you schedule? Confirm Chapter 2 complete / spine / until-exam stayed out of scope.",
+    "prompt": "Which sampling-distribution link retrieved least cleanly today — random samples, sampling distribution of a statistic, mean/variance results, Normal sampling laws, t, or F — and what one concrete rework will you schedule? Do not claim estimators (3.1) or the rest of Chapter 2 are finished.",
     "prompts": [
       "Which return target retrieved least cleanly?",
       "What one concrete rework will you schedule?",
@@ -188,9 +188,9 @@
   },
   "tomorrow_preview": {
     "next_topic_code": "3.1",
-    "next_topic_title": "Honest next \u2014 estimators and properties (3.1) under a successor Volume (or declared stop)",
-    "continuity_line": "Campaign Iota / Volume CS1-009 completes after this Revision. Honest stop: 2.6 Pilot Arc closed \u2014 not Chapter 2 complete; not first-pass spine; not until-exam trust. Successor geography is 3.1 under a later commission.",
-    "light_prep_cue": "No new first-pass LO tonight \u2014 rest or schedule weakest-link rework only",
+    "next_topic_title": "Honest next — estimators and properties (3.1) under a successor Volume (or declared stop)",
+    "continuity_line": "Campaign Iota / Volume CS1-009 completes after this Revision. Honest stop: 2.6 Pilot Arc closed — not Chapter 2 complete; not first-pass spine; not until-exam trust. Successor geography is 3.1 under a later commission.",
+    "light_prep_cue": "No new first-pass LO tonight — rest or schedule weakest-link rework only",
     "student_facing": "Campaign Iota / CS1-009 complete after today (pending human Approver + LIVE). Honest next: stop or await 3.1 successor Volume. Optional: schedule your weakest 2.6 rework only."
   }
 }

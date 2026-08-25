@@ -39,7 +39,7 @@
     "tutor_intent": "Today I will force a two-column contrast of assumptions and refuse spine/exam claims.",
     "educational_intent": "Produce honest contrast competence; close Trust Front Learning.",
     "learning_objective": "Explain differences between Bayesian and Empirical Bayes approaches and the assumptions underlying each.",
-    "concept_focus": "Contrast assumptions → name differences → refuse spine/exam claims.",
+    "concept_focus": "Contrast assumptions → name differences → refuse equating Bayes and EB as the same method.",
     "prior_bridge": "Yesterday EB credibility (5.1.8). Today contrasts and closes 5.1 Learning.",
     "why_now": "Contrast Bayesian vs Empirical Bayes assumptions to close Bayesian foundations before revision.",
     "expected_benefit": "You'll be able to state how Bayesian and Empirical Bayes differ in assumptions and what each is entitled to claim.",
@@ -143,7 +143,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-5.1.9-cp-01",
       "title": "Checkpoint: 5.1.9",
-      "prompt": "Refuse: 'CS1-003 means first-pass spine / until-exam trust.' What is the honest claim?",
+      "prompt": "Refuse: 'Contrasting Bayes and Empirical Bayes means Bayesian foundations are exam-ready.' What is the honest claim after today's contrast?",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 5.1.9.",
       "hints": [

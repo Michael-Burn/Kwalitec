@@ -368,9 +368,10 @@ def revision_pkg() -> dict:
                 "item_id": "cs1006-cz-r1-cp-01",
                 "title": "Checkpoint: CZ-R1",
                 "prompt": (
-                    "Closed-book. (1) Weakest 2.3 link + one concrete rework. (2) Refuse "
-                    "Chapter 2 complete and first-pass spine PASS. (3) Name the honest next "
-                    "geography (2.4) or confirm declared stop."
+                    "Closed-book. (1) Name today's weakest conditioning link and one concrete "
+                    "rework. (2) Refuse: 'E[Y|X] is just ordinary expectation, so Chapter 2 is "
+                    "done.' (3) Name the honest next topic (generating functions, 2.4) or "
+                    "confirm you are stopping here."
                 ),
                 "response_type": "short_structured",
                 "body": "Weakest link + honest next.",
@@ -398,13 +399,13 @@ def revision_pkg() -> dict:
         "reflection": {
             "framing": "Revision Reflection names the weakest Campaign link for spaced return.",
             "prompt": (
-                "Which return target retrieved least cleanly and what one concrete rework will "
-                "you schedule? Confirm Chapter 2 complete / spine / until-exam stayed out of scope."
+                "Which link retrieved least cleanly today and what one concrete rework will "
+                "you schedule? Do not claim the rest of Chapter 2 is finished from one retrieval sitting."
             ),
             "prompts": [
-                "Which return target retrieved least cleanly?",
+                "Which link retrieved least cleanly today?",
                 "What one concrete rework will you schedule?",
-                "Confirm: Chapter 2 complete / spine PASS / until-exam trust were out of scope.",
+                "Do not claim the rest of Chapter 2 is finished from one retrieval sitting.",
             ],
         },
         "tomorrow_preview": {
@@ -640,8 +641,9 @@ LEARNING = [
             "via conditioning (e.g. law of total variance / related CMP decomposition)."
         ),
         cp_prompt=(
-            "Closed-book. (1) Refuse 'yesterday's E[Y|X] finished today's LO'. (2) Refuse "
-            "'Chapter 2 is complete because I finished 2.3.2'. State the honest stop."
+            "Closed-book. (1) Refuse 'Yesterday's E[Y|X] already finished mean/variance via "
+            "conditioning.' (2) Refuse 'Finishing 2.3.2 means all of Chapter 2 is done.' Name "
+            "what still sits ahead before generating functions."
         ),
         cp_kw=["refuse", "tower", "variance", "chapter", "complete", "2.4", "revision", "stop"],
         cp_model=(

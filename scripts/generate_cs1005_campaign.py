@@ -375,9 +375,11 @@ def revision_pkg() -> dict:
                 "item_id": "cs1005-ce-r1-cp-01",
                 "title": "Checkpoint: CE-R1",
                 "prompt": (
-                    "Closed-book. (1) Weakest 2.2 link + one concrete rework. (2) Refuse "
-                    "Chapter 2 complete and first-pass spine PASS. (3) Name the honest next "
-                    "geography (2.3) or confirm declared stop."
+                    "Closed-book. (1) Name today's weakest joint-distribution link and one "
+                    "concrete rework. (2) Refuse: 'Having the joint table means marginals and "
+                    "dependence measures are optional, so Chapter 2 is done.' (3) Name the "
+                    "honest next topic (conditional expectation, 2.3) or confirm you are "
+                    "stopping here."
                 ),
                 "response_type": "short_structured",
                 "body": "Weakest link + honest next.",
@@ -405,13 +407,13 @@ def revision_pkg() -> dict:
         "reflection": {
             "framing": "Revision Reflection names the weakest Campaign link for spaced return.",
             "prompt": (
-                "Which return target retrieved least cleanly and what one concrete rework will "
-                "you schedule? Confirm Chapter 2 complete / spine / until-exam stayed out of scope."
+                "Which link retrieved least cleanly today and what one concrete rework will "
+                "you schedule? Do not claim the rest of Chapter 2 is finished from one retrieval sitting."
             ),
             "prompts": [
-                "Which return target retrieved least cleanly?",
+                "Which link retrieved least cleanly today?",
                 "What one concrete rework will you schedule?",
-                "Confirm: Chapter 2 complete / spine PASS / until-exam trust were out of scope.",
+                "Do not claim the rest of Chapter 2 is finished from one retrieval sitting.",
             ],
         },
         "tomorrow_preview": {
@@ -812,8 +814,9 @@ LEARNING = [
             "Var(aX+bY) = a² Var(X) + b² Var(Y) + 2ab Cov(X,Y) (Cov term vanishes if independent)."
         ),
         cp_prompt=(
-            "Closed-book. (1) Refuse 'I can always drop Cov'. (2) Refuse 'Chapter 2 is complete "
-            "because I finished 2.2.4'. State the honest stop."
+            "Closed-book. (1) Refuse 'I can always drop Cov when variables may be dependent.' "
+            "(2) Refuse 'Finishing linear combinations means all of Chapter 2 is done.' Name "
+            "what still sits ahead before conditional expectation."
         ),
         cp_kw=["refuse", "covariance", "chapter", "complete", "2.3", "revision", "stop"],
         cp_model=(

@@ -39,7 +39,7 @@
     "tutor_intent": "Today I will force Bayes vs EB assumption contrast and refuse 'Topic 5.1 finished the exam journey / first-pass spine'.",
     "educational_intent": "Produce Bayes vs EB contrast as the Topic 5.1 Learning close before Revision.",
     "learning_objective": "Understand the differences between Bayesian and Empirical Bayes approaches and the assumptions underlying each.",
-    "concept_focus": "Bayes assumptions ↔ EB assumptions → refuse spine / until-exam / Wave 0 clearance.",
+    "concept_focus": "Bayes assumptions ↔ EB assumptions → refuse equating the contrast with Topic 5.1 mastery.",
     "prior_bridge": "Yesterday you applied Empirical Bayes (5.1.8). Today closes Topic 5.1 Learning at the contrast.",
     "why_now": "Contrast Bayesian vs Empirical Bayes assumptions to close Bayesian foundations before revision.",
     "expected_benefit": "You'll be able to state how Bayesian and Empirical Bayes differ in assumptions and what each is entitled to claim.",
@@ -144,7 +144,7 @@
       "kind": "checkpoint",
       "item_id": "cs1015-5.1.9-cp-01",
       "title": "Checkpoint: 5.1.9",
-      "prompt": "Closed-book. A colleague says 'Finishing 5.1.9 finished the first-pass spine and the exam journey.' Refuse and name tomorrow's honest next (Revision).",
+      "prompt": "Closed-book. A colleague says 'Finishing Bayes vs EB means Topic 5.1 is exam-ready and Bayesian work can stop.' Refuse and name tomorrow's honest next (Revision of the Bayesian chain).",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 5.1.9.",
       "hints": [

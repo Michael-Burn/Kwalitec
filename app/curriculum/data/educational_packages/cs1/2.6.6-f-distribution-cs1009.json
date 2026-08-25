@@ -147,7 +147,7 @@
       "kind": "checkpoint",
       "item_id": "cs1009-2.6.6-cp-01",
       "title": "Checkpoint: 2.6.6",
-      "prompt": "Closed-book. (1) Refuse 'yesterday's t finished today's LO'. (2) Refuse 'Chapter 2 is complete because I finished 2.6.6'. State the honest stop.",
+      "prompt": "Closed-book. (1) Refuse 'Yesterday's t-statistic already finished the F ratio of sample variances.' (2) Refuse 'Finishing 2.6.6 means all of Chapter 2 is done.' Name what still sits ahead before estimators.",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 2.6.6.",
       "hints": [

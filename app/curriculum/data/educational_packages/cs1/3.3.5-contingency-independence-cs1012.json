@@ -40,9 +40,9 @@
     "tutor_intent": "Today I will force the candidate to form a two-way table and test independence, and refuse Chapter 3 complete / spine / until-exam claims.",
     "educational_intent": "Produce a cognitive move from distributional GOF to contingency-table independence testing under CMP procedures.",
     "learning_objective": "A contingency (or two-way) table, and use of a chi-square test to test the independence of two classification criteria.",
-    "concept_focus": "Two-way table → independence null → chi-square independence → refuse Chapter-3-complete / spine / until-exam.",
+    "concept_focus": "Two-way table → independence null → chi-square independence → refuse treating one independence test as all of Chapter 3.",
     "prior_bridge": "Yesterday you performed chi-square GOF (3.3.4). Today completes topic 3.3 Learning at LO 3.3.5 — contingency independence.",
-    "why_now": "Finish topic 3.3 with contingency tables and chi-square independence tests \u2014 then revise the hypothesis-testing chain.",
+    "why_now": "Finish topic 3.3 with contingency tables and chi-square independence tests — then revise the hypothesis-testing chain.",
     "expected_benefit": "You'll be able to read a contingency table and run a chi-square test of independence with the right hypotheses.",
     "explainability": "Assigned as Campaign Mu Day 5 because Continuity Front law finishes 3.3 Learning LOs before Revision.",
     "success_criteria": [

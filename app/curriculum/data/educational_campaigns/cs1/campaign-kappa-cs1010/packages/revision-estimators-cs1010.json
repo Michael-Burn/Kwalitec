@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-KAPPA",
   "volume_id": "CS1-010",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1010_EDUCATIONAL_VOLUME.md",
     "CS1010_CERTIFICATION_REPORT.md",
@@ -16,7 +16,7 @@
   "package_id": "CS1-EP001-PKG-REV-ESTIMATORS",
   "campaign_day": "CK-R1",
   "topic_code": "CK-R1",
-  "topic_title": "Campaign Kappa revision \u2014 estimators and their properties",
+  "topic_title": "Campaign Kappa revision — estimators and their properties",
   "return_targets": [
     "3.1.1",
     "3.1.2",
@@ -46,14 +46,14 @@
   "mission": {
     "mission_id": "msn-cs1010-cs1-ck-r1-estimators",
     "display_title": "Retrieve estimator hinges (3.1)",
-    "mission_purpose": "Today's Mission exists to protect memory of Campaign Kappa \u2014 retrieving method of moments, maximum likelihood, efficiency/bias/consistency/MSE, estimator comparison, asymptotic MLE behaviour, and bootstrap \u2014 so 3.1 does not evaporate before intervals (3.2).",
-    "tutor_intent": "Today I will run closed-book retrieval across Kappa's Learning hinges \u2014 not a passive CMP re-read and not a first-pass 3.2 intervals lesson.",
-    "educational_intent": "Produce retrieval strength on the Campaign Educational Objective: moments \u2192 MLE \u2192 estimator properties \u2192 comparison \u2192 asymptotic MLE \u2192 bootstrap.",
+    "mission_purpose": "Today's Mission exists to protect memory of Campaign Kappa — retrieving method of moments, maximum likelihood, efficiency/bias/consistency/MSE, estimator comparison, asymptotic MLE behaviour, and bootstrap — so 3.1 does not evaporate before intervals (3.2).",
+    "tutor_intent": "Today I will run closed-book retrieval across Kappa's Learning hinges — not a passive CMP re-read and not a first-pass 3.2 intervals lesson.",
+    "educational_intent": "Produce retrieval strength on the Campaign Educational Objective: moments → MLE → estimator properties → comparison → asymptotic MLE → bootstrap.",
     "learning_objective": "Retrieve and connect (1) method of moments, (2) maximum likelihood, (3) efficiency / bias / consistency / MSE, (4) comparison via MSE and bias, (5) asymptotic distribution of MLEs, and (6) bootstrap for estimator properties.",
-    "concept_focus": "Campaign chain retrieval: MoM \u2192 MLE \u2192 properties \u2192 comparison \u2192 asymptotics \u2192 bootstrap.",
-    "prior_bridge": "Yesterday you finished bootstrap for estimator properties (3.1.6). Today is Revision mode: return to 3.1.1\u20133.1.6 under closed-book retrieval \u2014 no new first-pass LO.",
+    "concept_focus": "Campaign chain retrieval: MoM → MLE → properties → comparison → asymptotics → bootstrap.",
+    "prior_bridge": "Yesterday you finished bootstrap for estimator properties (3.1.6). Today is Revision mode: return to 3.1.1–3.1.6 under closed-book retrieval — no new first-pass LO.",
     "why_now": "You've just finished estimators; spaced retrieval now protects that chain before confidence intervals.",
-    "expected_benefit": "Evidence that the 3.1 chain retrieves \u2014 revision Study Progress, not a claim that Chapter 3 / the exam journey is complete.",
+    "expected_benefit": "Evidence that the 3.1 chain retrieves — revision Study Progress, not a claim that Chapter 3 / the exam journey is complete.",
     "explainability": "Assigned as Campaign Kappa Revision because Architecture requires memory return inside the Pilot Arc before the next Volume.",
     "success_criteria": [
       "Closed-book, name the six 3.1 Learning hinges in order (short phrases).",
@@ -61,7 +61,7 @@
       "Refuse Chapter 3 complete / spine / until-exam / 3.2-as-done claims."
     ],
     "task_descriptions": [
-      "Without opening the CMP, sketch Kappa's chain: MoM \u2192 MLE \u2192 properties \u2192 comparison \u2192 asymptotics \u2192 bootstrap.",
+      "Without opening the CMP, sketch Kappa's chain: MoM → MLE → properties → comparison → asymptotics → bootstrap.",
       "Complete Revision Knowledge Checks under closed-book rules.",
       "Author a revision Reflection naming the weakest link."
     ],
@@ -72,14 +72,14 @@
   },
   "session": {
     "session_id": "ssn-cs1010-cs1-ck-r1-estimators",
-    "session_educational_purpose": "Retrieve and connect Campaign Kappa skills \u2014 not to teach 3.2.",
-    "session_tutor_purpose": "Keep CMP closed for checks; harvest weakest link \u2014 Gate RV substance.",
+    "session_educational_purpose": "Retrieve and connect Campaign Kappa skills — not to teach 3.2.",
+    "session_tutor_purpose": "Keep CMP closed for checks; harvest weakest link — Gate RV substance.",
     "duration_budget_minutes": {
       "min": 45,
       "max": 60
     },
-    "wrap_up": "Revision Session complete. You stress-tested 3.1.1\u20133.1.6 return targets. This is revision Study Progress \u2014 not Topic Complete for 3.2, and not first-pass spine PASS.",
-    "confidence_prompt": "How confident are you that estimator hinges will still retrieve in three days? Rate 1\u20135 and name the weakest link."
+    "wrap_up": "Revision Session complete. You stress-tested 3.1.1–3.1.6 return targets. This is revision Study Progress — not Topic Complete for 3.2, and not first-pass spine PASS.",
+    "confidence_prompt": "How confident are you that estimator hinges will still retrieve in three days? Rate 1–5 and name the weakest link."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this revision stage: strengthen retrieval of the Campaign Kappa chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus.",
@@ -94,7 +94,7 @@
       "Watch for dropping Iota sampling-distribution memory as irrelevant."
     ],
     "open_point": "No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block.",
-    "stop_condition": "After revision checks and Reflection \u2014 do not begin Syllabus 3.2 in this sitting",
+    "stop_condition": "After revision checks and Reflection — do not begin Syllabus 3.2 in this sitting",
     "out_of_scope_today": [
       "First-pass confidence / prediction intervals (3.2)",
       "Hypothesis testing primary (3.3)",
@@ -109,7 +109,7 @@
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 mark the weakest link before checks.",
+        "cue": "Pause — mark the weakest link before checks.",
         "student_action": "Annotate"
       }
     ],
@@ -152,7 +152,7 @@
       "kind": "checkpoint",
       "item_id": "cs1010-ck-r1-cp-01",
       "title": "Checkpoint: CK-R1",
-      "prompt": "Closed-book. (1) Weakest 3.1 link + one concrete rework. (2) Refuse Chapter 3 complete and first-pass spine PASS. (3) Name the honest next geography (3.2) or confirm declared stop.",
+      "prompt": "Closed-book. (1) Name today's weakest estimator link and one concrete rework. (2) Refuse: 'Moments and MLE are interchangeable, so Chapter 3 is done.' (3) Name the honest next topic (confidence intervals, 3.2) or confirm you are stopping here.",
       "response_type": "short_structured",
       "body": "Weakest link + honest next.",
       "hints": [
@@ -170,7 +170,7 @@
         "until-exam"
       ],
       "explanation": "RV harvests memory debt and honest next.",
-      "model_answer": "(1) e.g. asymptotic MLE variance \u2014 five-minute rework. (2) Refuse Chapter 3 complete / spine / until-exam. (3) Honest next is 3.2 (successor Volume) or declared stop \u2014 not claimed finished here.",
+      "model_answer": "(1) e.g. asymptotic MLE variance — five-minute rework. (2) Refuse Chapter 3 complete / spine / until-exam. (3) Honest next is 3.2 (successor Volume) or declared stop — not claimed finished here.",
       "common_mistake": "Spine / Chapter 3 / until-exam claim.",
       "success_criteria": [
         "Rework named.",
@@ -180,7 +180,7 @@
   ],
   "reflection": {
     "framing": "Revision Reflection names the weakest Campaign link for spaced return.",
-    "prompt": "Which return target retrieved least cleanly and what one concrete rework will you schedule? Confirm Chapter 3 complete / spine / until-exam stayed out of scope.",
+    "prompt": "Which estimator link retrieved least cleanly today — moments, MLE, bias/MSE/consistency, estimator comparison, asymptotics, or bootstrap — and what one concrete rework will you schedule? Do not claim confidence intervals (3.2) or the rest of Chapter 3 are finished.",
     "prompts": [
       "Which return target retrieved least cleanly?",
       "What one concrete rework will you schedule?",
@@ -189,9 +189,9 @@
   },
   "tomorrow_preview": {
     "next_topic_code": "3.2",
-    "next_topic_title": "Honest next \u2014 confidence and prediction intervals (3.2) under a successor Volume (or declared stop)",
-    "continuity_line": "Campaign Kappa / Volume CS1-010 completes after this Revision. Honest stop: 3.1 Pilot Arc closed \u2014 not Chapter 3 complete; not first-pass spine; not until-exam trust. Successor geography is 3.2 under a later commission.",
-    "light_prep_cue": "No new first-pass LO tonight \u2014 rest or schedule weakest-link rework only",
+    "next_topic_title": "Honest next — confidence and prediction intervals (3.2) under a successor Volume (or declared stop)",
+    "continuity_line": "Campaign Kappa / Volume CS1-010 completes after this Revision. Honest stop: 3.1 Pilot Arc closed — not Chapter 3 complete; not first-pass spine; not until-exam trust. Successor geography is 3.2 under a later commission.",
+    "light_prep_cue": "No new first-pass LO tonight — rest or schedule weakest-link rework only",
     "student_facing": "Campaign Kappa / CS1-010 complete after today (pending human Approver + LIVE). Honest next: stop or await 3.2 successor Volume. Optional: schedule your weakest 3.1 rework only."
   }
 }

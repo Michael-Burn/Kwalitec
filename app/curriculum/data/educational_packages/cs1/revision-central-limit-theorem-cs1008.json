@@ -146,7 +146,7 @@
       "kind": "checkpoint",
       "item_id": "cs1008-ct-r1-cp-01",
       "title": "Checkpoint: CT-R1",
-      "prompt": "Closed-book. (1) Weakest 2.5 link + one concrete rework. (2) Refuse Chapter 2 complete and first-pass spine PASS. (3) Name the honest next geography (2.6) or confirm declared stop.",
+      "prompt": "Closed-book. (1) Name today's weakest CLT link and one concrete rework. (2) Refuse: 'The CLT means every sample mean is already Normal, so Chapter 2 is done.' (3) Name the honest next topic (sampling distributions, 2.6) or confirm you are stopping here.",
       "response_type": "short_structured",
       "body": "Weakest link + honest next.",
       "hints": [
@@ -174,7 +174,7 @@
   ],
   "reflection": {
     "framing": "Revision Reflection names the weakest Campaign link for spaced return.",
-    "prompt": "Which return target retrieved least cleanly and what one concrete rework will you schedule? Confirm Chapter 2 complete / spine / until-exam stayed out of scope.",
+    "prompt": "Which CLT link retrieved least cleanly today — iid conditions, standardised sample mean, Normal limit statement, or simulated-sample comparison — and what one concrete rework will you schedule? Do not claim sampling distributions (2.6) or the rest of Chapter 2 are finished.",
     "prompts": [
       "Which return target retrieved least cleanly?",
       "What one concrete rework will you schedule?",

@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-PI",
   "volume_id": "CS1-016",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1016_EDUCATIONAL_VOLUME.md",
     "CS1016_CERTIFICATION_REPORT.md",
@@ -35,13 +35,13 @@
   "mission": {
     "mission_id": "msn-cs1016-cs1-2.1-prob-quantiles",
     "display_title": "Retrieve probabilities and quantiles (Memory Front)",
-    "mission_purpose": "Today's Mission exists to retrieve Syllabus 2.1.3 probability/quantile skill under Memory Front discipline after Continuity Front tip close \u2014 without pretending joint distributions (2.2.1) are finished.",
+    "mission_purpose": "Today's Mission exists to retrieve Syllabus 2.1.3 probability/quantile skill under Memory Front discipline after Continuity Front tip close — without pretending joint distributions (2.2.1) are finished.",
     "tutor_intent": "Today I will force closed-book probability/quantile retrieval and refuse 'Memory Front finished joint distributions / spine PASS'.",
     "educational_intent": "Produce Memory Front retrieval of probabilities and quantiles as the lawful first hinge after Topic 5.1 tip close.",
     "learning_objective": "Evaluate probabilities and quantiles associated with univariate distributions (by calculation or using statistical software as appropriate).",
-    "concept_focus": "Distribution \u2192 probability/quantile move \u2192 refuse 2.2.1 / spine swallow.",
+    "concept_focus": "Distribution → probability/quantile move → refuse treating evaluation as joint distributions finished.",
     "prior_bridge": "Yesterday you closed Campaign Omicron Revision at the Continuity Front tip (5.1). Today opens Memory Front / spine re-audit at the historical Opening Continuity Front hinge 2.1.3.",
-    "why_now": "Topic 5.1 is closed and there is no 5.2 next \u2014 retrieve probability and quantile evaluation from earlier distribution work.",
+    "why_now": "Topic 5.1 is closed and there is no 5.2 next — retrieve probability and quantile evaluation from earlier distribution work.",
     "expected_benefit": "You'll retrieve how to evaluate probabilities and quantiles for placed univariate families.",
     "explainability": "Assigned as Campaign Pi Day 1 because Memory Front after tip close begins at the Opening Continuity Front hinge already Published via Gamma.",
     "success_criteria": [
@@ -61,17 +61,17 @@
   },
   "session": {
     "session_id": "ssn-cs1016-cs1-2.1-prob-quantiles",
-    "session_educational_purpose": "Execute today's Memory Front Mission for Syllabus 2.1.3 \u2014 retrieval under spine re-audit discipline, not a new first-pass LO discovery claim.",
+    "session_educational_purpose": "Execute today's Memory Front Mission for Syllabus 2.1.3 — retrieval under spine re-audit discipline, not a new first-pass LO discovery claim.",
     "session_tutor_purpose": "Set focus on 2.1.3 retrieval, exit to CMP, retrieve today's hinge, refuse spine PASS / until-exam / Wave 0 clearance swallow.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Retrieve probabilities and quantiles (Memory Front). You practised selective CMP reading on Syllabus 2.1.3 under Memory Front discipline. This is Study Progress for today's hinge \u2014 not first-pass spine PASS, until-exam trust, or Wave 0 Approver honesty clearance.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 2.1.3 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Retrieve probabilities and quantiles (Memory Front). You practised selective CMP reading on Syllabus 2.1.3 under Memory Front discipline. This is Study Progress for today's hinge — not first-pass spine PASS, until-exam trust, or Wave 0 Approver honesty clearance.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 2.1.3 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to retrieve Syllabus 2.1.3 \u2014 retrieve probabilities and quantiles (memory front) \u2014 under Memory Front / spine re-audit discipline. Stop before out-of-scope later hinges as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to retrieve Syllabus 2.1.3 — retrieve probabilities and quantiles (memory front) — under Memory Front / spine re-audit discipline. Stop before out-of-scope later hinges as primary.",
     "focus_questions": [
       "What is the core retrieval move of Syllabus 2.1.3?",
       "What warrant separates today's hinge from the next Memory Front day?",
@@ -83,7 +83,7 @@
       "Watch for swallowing 2.2.1 today.",
       "Watch for claiming spine PASS from one hinge."
     ],
-    "open_point": "CMP \u00b7 Syllabus 2.1.3 probabilities and quantiles",
+    "open_point": "CMP · Syllabus 2.1.3 probabilities and quantiles",
     "stop_condition": "Through the CMP treatment of Syllabus 2.1.3 (stop before joint distributions primary 2.2.1)",
     "out_of_scope_today": [
       "Joint distributions as primary",
@@ -93,13 +93,13 @@
     ],
     "annotation_task": "Before deep reading: sketch today's hinge chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution \u2014 stay inside 2.1.3.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.1.3 probabilities and quantiles. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.1.3 (stop before joint distributions primary 2.2.1). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 2.1.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution — stay inside 2.1.3.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.1.3 probabilities and quantiles. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.1.3 (stop before joint distributions primary 2.2.1). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 2.1.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core retrieval move in one sentence.",
+        "cue": "Pause — write today's core retrieval move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -142,7 +142,7 @@
       "kind": "checkpoint",
       "item_id": "cs1016-2.1.3-cp-01",
       "title": "Checkpoint: 2.1.3",
-      "prompt": "Closed-book. A colleague says 'Retrieving 2.1.3 finished the first-pass spine.' Refuse and name tomorrow.",
+      "prompt": "Closed-book. A colleague says 'Evaluating probabilities and quantiles means joint distributions are optional.' Refuse and name tomorrow's honest next.",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 2.1.3.",
       "hints": [
@@ -156,7 +156,7 @@
         "Memory"
       ],
       "explanation": "Checkpoint for 2.1.3.",
-      "model_answer": "Refuse: one hinge \u2260 spine PASS. Tomorrow is Memory Front 2.2.1.",
+      "model_answer": "Refuse: one hinge ≠ spine PASS. Tomorrow is Memory Front 2.2.1.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",
@@ -165,7 +165,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest probability/quantile wobble \u2014 joint distributions continue Memory Front tomorrow.",
+    "framing": "Harvest probability/quantile wobble — joint distributions continue Memory Front tomorrow.",
     "prompt": "Which part of today's 2.1.3 retrieval is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 2.1.3 retrieval is stickiest and why?",
@@ -177,8 +177,8 @@
     "next_topic_code": "2.2",
     "next_topic_title": "Marginal and conditional distributions (2.2.1)",
     "continuity_line": "Today you retrieved 2.1.3; tomorrow continues Memory Front at 2.2.1.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.2.1 \u2014 titles only tonight",
-    "student_facing": "Tomorrow: marginal/conditional Memory Front hinge (2.2.1). Optional light prep: skim 2.2.1 headings \u2014 titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.2.1 — titles only tonight",
+    "student_facing": "Tomorrow: marginal/conditional Memory Front hinge (2.2.1). Optional light prep: skim 2.2.1 headings — titles only tonight."
   },
   "revision_linkage": {
     "returns_on": "CP-R1",

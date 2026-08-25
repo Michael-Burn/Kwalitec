@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-THETA",
   "volume_id": "CS1-008",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1008_EDUCATIONAL_VOLUME.md",
     "CS1008_CERTIFICATION_REPORT.md",
@@ -37,22 +37,22 @@
   "mission": {
     "mission_id": "msn-cs1008-cs1-2.5-simulated-sample-normal",
     "display_title": "Compare simulated samples with the Normal distribution",
-    "mission_purpose": "Today's Mission exists to compare simulated samples from a given distribution with the Normal distribution \u2014 so the simulation check on CLT intuition is usable \u2014 without claiming Chapter 2 or sampling distributions (2.6) complete.",
-    "tutor_intent": "Today I will force the candidate through simulated-sample vs Normal comparison \u2014 refuse treating yesterday's CLT statement as having finished 2.5.2, and refuse Chapter-2-complete claims.",
+    "mission_purpose": "Today's Mission exists to compare simulated samples from a given distribution with the Normal distribution — so the simulation check on CLT intuition is usable — without claiming Chapter 2 or sampling distributions (2.6) complete.",
+    "tutor_intent": "Today I will force the candidate through simulated-sample vs Normal comparison — refuse treating yesterday's CLT statement as having finished 2.5.2, and refuse Chapter-2-complete claims.",
     "educational_intent": "Produce executable warrants for comparing simulated samples from a stated distribution with the Normal (CMP method).",
     "learning_objective": "Compare simulated samples from a given distribution with the Normal distribution.",
-    "concept_focus": "Stated distribution \u2192 simulate samples \u2192 compare to Normal \u2192 refuse statement-as-done / Ch2-done.",
+    "concept_focus": "Stated distribution → simulate samples → compare to Normal → refuse statement-as-done / Ch2-done.",
     "prior_bridge": "Yesterday you stated and applied the CLT for iid sequences (2.5.1). Today uses simulation to compare sample behaviour with the Normal.",
     "why_now": "2.5.2 completes topic 2.5 Learning; Revision follows before any 2.6 commission.",
-    "expected_benefit": "Study Progress for simulated-vs-Normal \u2014 not 2.6; not Chapter 2 trophy.",
-    "explainability": "Campaign Theta Day 2 focuses LO 2.5.2 \u2014 terminal Learning day of CS1-008.",
+    "expected_benefit": "Study Progress for simulated-vs-Normal — not 2.6; not Chapter 2 trophy.",
+    "explainability": "Campaign Theta Day 2 focuses LO 2.5.2 — terminal Learning day of CS1-008.",
     "success_criteria": [
       "Closed-book, outline how to simulate samples from a given distribution for this LO.",
       "State what you compare against the Normal (and what a mismatch might mean).",
       "Refuse Chapter 2 complete / treating 2.5.1 as having finished 2.5.2."
     ],
     "task_descriptions": [
-      "Sketch simulate \u2192 compare-to-Normal plan before CMP.",
+      "Sketch simulate → compare-to-Normal plan before CMP.",
       "Guided Reading through CMP 2.5.2.",
       "Knowledge Checks: simulated-vs-Normal + refuse Ch2-complete."
     ],
@@ -63,17 +63,17 @@
   },
   "session": {
     "session_id": "ssn-cs1008-cs1-2.5-simulated-sample-normal",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 2.5.2 \u2014 not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 2.5.2 — not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 2.5.2, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Compare simulated samples with the Normal distribution. You practised selective CMP reading on Syllabus 2.5.2. This is Study Progress for today's block \u2014 not Topic Complete for later 2.5 LOs, Chapter 2, sampling distributions, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 2.5.2 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Compare simulated samples with the Normal distribution. You practised selective CMP reading on Syllabus 2.5.2. This is Study Progress for today's block — not Topic Complete for later 2.5 LOs, Chapter 2, sampling distributions, or until-exam trust.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 2.5.2 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 2.5.2 \u2014 compare simulated samples with the normal distribution. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 2.5.2 — compare simulated samples with the normal distribution. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 2.5.2?",
       "What warrant separates today's skill from yesterday's?",
@@ -85,7 +85,7 @@
       "Watch for claiming Chapter 2 / 2.6 finished.",
       "Watch for treating Revision as optional."
     ],
-    "open_point": "CMP \u00b7 Syllabus 2.5.2 simulated samples compared with the Normal",
+    "open_point": "CMP · Syllabus 2.5.2 simulated samples compared with the Normal",
     "stop_condition": "Through CMP 2.5.2 (stop before sampling distributions 2.6)",
     "out_of_scope_today": [
       "Sampling distributions (2.6)",
@@ -96,12 +96,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.5.2 simulated samples compared with the Normal. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.5.2 (stop before sampling distributions 2.6). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 2.5.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.5.2 simulated samples compared with the Normal. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.5.2 (stop before sampling distributions 2.6). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 2.5.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "cue": "Pause — write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -148,7 +148,7 @@
       "kind": "checkpoint",
       "item_id": "cs1008-2.5.2-cp-01",
       "title": "Checkpoint: 2.5.2",
-      "prompt": "Closed-book. (1) Refuse 'yesterday's CLT statement finished today's LO'. (2) Refuse 'Chapter 2 is complete because I finished 2.5.2'. State the honest stop.",
+      "prompt": "Closed-book. (1) Refuse 'Yesterday's CLT statement already finished comparing simulated samples with the Normal.' (2) Refuse 'Finishing 2.5.2 means all of Chapter 2 is done.' Name what still sits ahead before sampling distributions.",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 2.5.2.",
       "hints": [
@@ -166,7 +166,7 @@
         "stop"
       ],
       "explanation": "Checkpoint for 2.5.2.",
-      "model_answer": "(1) Refuse: stating the CLT is not the same as comparing simulated samples with the Normal. (2) Refuse: 2.5.2 closes topic 2.5 Learning, not Chapter 2; next is Revision then honest 2.6 successor \u2014 not spine/until-exam claims.",
+      "model_answer": "(1) Refuse: stating the CLT is not the same as comparing simulated samples with the Normal. (2) Refuse: 2.5.2 closes topic 2.5 Learning, not Chapter 2; next is Revision then honest 2.6 successor — not spine/until-exam claims.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",
@@ -175,7 +175,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest simulated-vs-Normal wobble \u2014 Revision protects the 2.5 chain tomorrow.",
+    "framing": "Harvest simulated-vs-Normal wobble — Revision protects the 2.5 chain tomorrow.",
     "prompt": "Which part of today's 2.5.2 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 2.5.2 is stickiest and why?",
@@ -185,9 +185,9 @@
   },
   "tomorrow_preview": {
     "next_topic_code": "CT-R1",
-    "next_topic_title": "Campaign Theta Revision \u2014 retrieve 2.5.1\u20132.5.2",
-    "continuity_line": "Today you finished simulated-sample comparison with the Normal; tomorrow is Revision mode \u2014 retrieve the 2.5 chain closed-book before any 2.6 first-pass work.",
-    "light_prep_cue": "Optional: list the two 2.5 LO hinges from memory \u2014 titles only tonight",
-    "student_facing": "Tomorrow: Campaign Theta Revision (retrieve 2.5.1\u20132.5.2). Optional light prep: list the two hinges from memory \u2014 titles only tonight."
+    "next_topic_title": "Campaign Theta Revision — retrieve 2.5.1–2.5.2",
+    "continuity_line": "Today you finished simulated-sample comparison with the Normal; tomorrow is Revision mode — retrieve the 2.5 chain closed-book before any 2.6 first-pass work.",
+    "light_prep_cue": "Optional: list the two 2.5 LO hinges from memory — titles only tonight",
+    "student_facing": "Tomorrow: Campaign Theta Revision (retrieve 2.5.1–2.5.2). Optional light prep: list the two hinges from memory — titles only tonight."
   }
 }

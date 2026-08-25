@@ -146,7 +146,7 @@
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.6-cp-01",
       "title": "Checkpoint: 3.1.6",
-      "prompt": "Closed-book. (1) Refuse 'yesterday's asymptotics finished today's LO'. (2) Refuse 'Chapter 3 is complete because I finished 3.1.6'. State the honest stop.",
+      "prompt": "Closed-book. (1) Refuse 'Yesterday's asymptotic MLE behaviour already finished bootstrap estimation of estimator properties.' (2) Refuse 'Finishing 3.1.6 means all of Chapter 3 is done.' Name what still sits ahead before confidence intervals.",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 3.1.6.",
       "hints": [

@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-NU",
   "volume_id": "CS1-013",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1013_EDUCATIONAL_VOLUME.md",
     "CS1013_CERTIFICATION_REPORT.md",
@@ -36,14 +36,14 @@
   "mission": {
     "mission_id": "msn-cs1013-cs1-4.1-variable-selection",
     "display_title": "Select explanatory variables using measures of model fit",
-    "mission_purpose": "Today's Mission exists to use measures of model fit to select an appropriate set of explanatory variables \u2014 without pretending GLM (4.2) or Bayesian (5.1) are finished, and without claiming first-pass spine PASS.",
+    "mission_purpose": "Today's Mission exists to use measures of model fit to select an appropriate set of explanatory variables — without pretending GLM (4.2) or Bayesian (5.1) are finished, and without claiming first-pass spine PASS.",
     "tutor_intent": "Today I will force the candidate to compare candidate explanatory sets using fit measures and refuse treating Trust Front 4.2/5.1 absorb as Continuity Front credit.",
     "educational_intent": "Produce a cognitive move from a single fitted linear model to disciplined variable selection using measures of model fit under CMP.",
     "learning_objective": "Measures of model fit to select an appropriate set of explanatory variables",
-    "concept_focus": "Candidate sets \u2192 fit measures \u2192 select appropriate explanatory set \u2192 refuse 4.2/5.1 / spine / until-exam.",
+    "concept_focus": "Candidate sets → fit measures → select appropriate explanatory set → refuse treating selection as GLM or Bayes finished.",
     "prior_bridge": "Yesterday you practised software fit, inference, prediction, and residual checks (4.1.4). Today closes Topic 4.1 Learning at variable selection.",
-    "why_now": "Finish Topic 4.1 by selecting variables using fit measures \u2014 then revise before moving into GLM.",
-    "expected_benefit": "Study Progress for variable selection \u2014 not Topic Complete for 4.2.",
+    "why_now": "Finish Topic 4.1 by selecting variables using fit measures — then revise before moving into GLM.",
+    "expected_benefit": "Study Progress for variable selection — not Topic Complete for 4.2.",
     "explainability": "Assigned as Campaign Nu Day 5 because Continuity Front law closes Topic 4.1 only; GLM and Bayesian remain Trust Front / later geography.",
     "success_criteria": [
       "Closed-book, name what 'selecting explanatory variables using measures of model fit' means in CMP-usable form.",
@@ -62,17 +62,17 @@
   },
   "session": {
     "session_id": "ssn-cs1013-cs1-4.1-variable-selection",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 4.1.5 \u2014 not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 4.1.5 — not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 4.1.5, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Select explanatory variables using measures of model fit. You practised selective CMP reading on Syllabus 4.1.5. This is Study Progress for today's block \u2014 not Topic Complete for later 4.1 LOs, Trust Front absorb of 4.2/5.1, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.1.5 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Select explanatory variables using measures of model fit. You practised selective CMP reading on Syllabus 4.1.5. This is Study Progress for today's block — not Topic Complete for later 4.1 LOs, Trust Front absorb of 4.2/5.1, first-pass spine PASS, or until-exam trust.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.1.5 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.1.5 \u2014 select explanatory variables using measures of model fit. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.1.5 — select explanatory variables using measures of model fit. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 4.1.5?",
       "What warrant separates today's skill from yesterday's?",
@@ -80,11 +80,11 @@
       "What will you practise in Knowledge Checks after the CMP?"
     ],
     "misconception_watch": [
-      "Watch for equating 'best R\u00b2' with automatically correct selection without CMP caveat.",
+      "Watch for equating 'best R²' with automatically correct selection without CMP caveat.",
       "Watch for claiming GLM/Bayesian finished Continuity Front.",
       "Watch for claiming spine / until-exam complete after Topic 4.1."
     ],
-    "open_point": "CMP \u00b7 Syllabus 4.1.5 measures of model fit for variable selection",
+    "open_point": "CMP · Syllabus 4.1.5 measures of model fit for variable selection",
     "stop_condition": "Through the CMP treatment of Syllabus 4.1.5 (stop before GLM 4.2 / Bayesian 5.1 / spine trophy claims)",
     "out_of_scope_today": [
       "GLM / Topic 4.2 as primary",
@@ -96,12 +96,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.1.5 measures of model fit for variable selection. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.1.5 (stop before GLM 4.2 / Bayesian 5.1 / spine trophy claims). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.1.5 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.1.5 measures of model fit for variable selection. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.1.5 (stop before GLM 4.2 / Bayesian 5.1 / spine trophy claims). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.1.5 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "cue": "Pause — write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -163,7 +163,7 @@
         "until-exam"
       ],
       "explanation": "Checkpoint for 4.1.5.",
-      "model_answer": "Refuse: GLM / spine / until-exam are not finished. Today is variable selection for linear models; tomorrow is CN-R1 Revision of 4.1 \u2014 not a trophy claim.",
+      "model_answer": "Refuse: GLM / spine / until-exam are not finished. Today is variable selection for linear models; tomorrow is CN-R1 Revision of 4.1 — not a trophy claim.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",
@@ -172,7 +172,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest selection / fit-measure wobble \u2014 Revision protects the 4.1 chain tomorrow.",
+    "framing": "Harvest selection / fit-measure wobble — Revision protects the 4.1 chain tomorrow.",
     "prompt": "Which part of today's 4.1.5 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 4.1.5 is stickiest and why?",
@@ -182,9 +182,9 @@
   },
   "tomorrow_preview": {
     "next_topic_code": "CN-R1",
-    "next_topic_title": "Campaign Nu Revision \u2014 retrieve 4.1 hinges",
-    "continuity_line": "Today you closed Topic 4.1 Learning at variable selection; tomorrow is Campaign Nu Revision returning to 4.1.1\u20134.1.5.",
-    "light_prep_cue": "No new LO tonight \u2014 rest or jot the stickiest 4.1 hinge for Revision",
-    "student_facing": "Tomorrow: CN-R1 Revision of 4.1. Optional: note your weakest 4.1 link \u2014 titles only tonight."
+    "next_topic_title": "Campaign Nu Revision — retrieve 4.1 hinges",
+    "continuity_line": "Today you closed Topic 4.1 Learning at variable selection; tomorrow is Campaign Nu Revision returning to 4.1.1–4.1.5.",
+    "light_prep_cue": "No new LO tonight — rest or jot the stickiest 4.1 hinge for Revision",
+    "student_facing": "Tomorrow: CN-R1 Revision of 4.1. Optional: note your weakest 4.1 link — titles only tonight."
   }
 }

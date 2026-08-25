@@ -383,9 +383,10 @@ def revision_pkg() -> dict:
                 "item_id": "cs1013-cn-r1-cp-01",
                 "title": "Checkpoint: CN-R1",
                 "prompt": (
-                    "Closed-book. (1) Weakest 4.1 link + one concrete rework. (2) Refuse "
-                    "Trust Front 4.2/5.1 absorb and first-pass spine PASS. (3) Name the honest "
-                    "next (declared stop / Wave 0 honesty / spine re-audit) — not until-exam trust."
+                    "Closed-book. (1) Name today's weakest linear-regression link and one "
+                    "concrete rework. (2) Refuse: 'Variable selection finished GLM and "
+                    "Bayesian modelling.' (3) Name whether you stop here or what syllabus "
+                    "topic honestly comes next — not 'exam ready.'"
                 ),
                 "response_type": "short_structured",
                 "body": "Weakest link + honest next.",
@@ -413,12 +414,12 @@ def revision_pkg() -> dict:
         "reflection": {
             "framing": "Revision Reflection names the weakest Campaign link for spaced return.",
             "prompt": (
-                "Which return target retrieved least cleanly and what one concrete rework will "
-                "you schedule? Confirm Trust Front 4.2/5.1 absorb / spine / until-exam stayed "
-                "out of scope."
+                "Which linear-regression link retrieved least cleanly today and what one "
+                "concrete rework will you schedule? Do not claim GLM (4.2) or Bayesian "
+                "(5.1) are finished."
             ),
             "prompts": [
-                "Which return target retrieved least cleanly?",
+                "Which link retrieved least cleanly today?",
                 "What one concrete rework will you schedule?",
                 "Confirm: 4.2/5.1 absorb / spine PASS / until-exam trust were out of scope.",
             ],
@@ -962,7 +963,7 @@ LEARNING = [
         ),
         focus=(
             "Candidate sets → fit measures → select appropriate explanatory set → refuse "
-            "4.2/5.1 / spine / until-exam."
+            "treating selection as GLM or Bayes finished."
         ),
         prior=(
             "Yesterday you practised software fit, inference, prediction, and residual "

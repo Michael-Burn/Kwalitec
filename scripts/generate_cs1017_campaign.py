@@ -258,8 +258,8 @@ def revision_pkg() -> dict:
                 "at failed locus."
             ),
             "concept_focus": (
-                "Publication Front chain retrieval → refuse Approver clearance / spine / "
-                "until-exam."
+                "Aims → reproducibility → EDA/PCA → discrete → continuous family retrieval → "
+                "refuse claiming the opening analysis arc is finished."
             ),
             "prior_bridge": (
                 "Yesterday you closed Publication Front Learning at continuous distributions "
@@ -277,7 +277,7 @@ def revision_pkg() -> dict:
             "success_criteria": [
                 "Closed-book, retrieve each CR Learning LO at foundation warrant level.",
                 "Reopen CMP only at a failed locus.",
-                "Refuse Approver clearance / spine PASS / until-exam claims.",
+                "Refuse claiming the opening analysis arc is finished from one retrieval sitting.",
             ],
             "task_descriptions": [
                 "List CR Learning LOs before opening any CMP.",
@@ -400,11 +400,12 @@ def revision_pkg() -> dict:
                 "episode_id": "lep-cs1017-cr-r1-cp-01",
                 "kind": "checkpoint",
                 "item_id": "cs1017-cr-r1-cp-01",
-                "title": "Checkpoint: refuse Approver / spine / until-exam",
+                "title": "Checkpoint: opening-arc revision honesty",
                 "prompt": (
-                    "Closed-book. A colleague says 'Finishing Rho Revision cleared Approver "
-                    "honesty, finished the first-pass spine, and unlocked until-exam trust.' "
-                    "Refuse and name the honest residual."
+                    "Closed-book. A colleague says 'Placing continuous families means aims, "
+                    "reproducibility, EDA, and discrete matching are all solid.' Refuse; name "
+                    "the weakest link on today's retrieval chain; name one concrete residual "
+                    "to rework."
                 ),
                 "response_type": "short_structured",
                 "body": "Refuse Approver / spine / until-exam swallow after Revision.",
@@ -424,8 +425,10 @@ def revision_pkg() -> dict:
         "reflection": {
             "framing": "Harvest Publication Front wobble — Approver residual remains open.",
             "prompt": (
-                "Which Publication Front LO is stickiest and why? What one rework plan will you "
-                "keep? What claim must you refuse after Revision?"
+                "Which link retrieved least cleanly today — analysis aims, reproducibility, "
+                "EDA summaries/association, PCA limits, discrete families, or continuous "
+                "placement — and why? What one concrete rework will you schedule? Do not "
+                "claim probability/quantile evaluation or later chapters are finished."
             ),
             "prompts": [
                 "Which Publication Front LO is stickiest and why?",
@@ -481,7 +484,7 @@ LEARNING = [
             "day after Memory Front close."
         ),
         lo_text="Aims of a data analysis (e.g. descriptive, inferential and predictive)",
-        focus="Aims map → descriptive/inferential/predictive → refuse 1.1.2 / Approver swallow.",
+        focus="Aims map → descriptive/inferential/predictive → refuse treating aims as stages and tools finished.",
         prior=(
             "Yesterday you closed Campaign Pi Revision (Memory Front). Today opens Publication "
             "Front / Wave 0 residual at Syllabus 1.1.1."
@@ -537,8 +540,9 @@ LEARNING = [
             "forecasts. Stages/tools open tomorrow."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'Studying 1.1.1 cleared Approver honesty for Wave 0.' "
-            "Refuse and name tomorrow."
+            "Closed-book. A colleague says 'Naming descriptive, inferential, and predictive "
+            "aims finished the analysis process and tools.' Refuse and name tomorrow's "
+            "honest next."
         ),
         cp_kw=["refuse", "Approver", "1.1.2", "Publication"],
         cp_model=(
@@ -779,8 +783,8 @@ LEARNING = [
             "data, code, and documentation warrants. EDA opens tomorrow."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says '1.1.4 finished EDA and cleared Approver honesty.' "
-            "Refuse and name tomorrow."
+            "Closed-book. A colleague says 'Reproducibility finished exploratory data analysis "
+            "summaries.' Refuse and name tomorrow's honest next."
         ),
         cp_kw=["refuse", "EDA", "1.2.1", "Approver"],
         cp_model="Refuse: reproducibility ≠ EDA ≠ Approver clearance. Tomorrow is 1.2.1.",
@@ -1016,8 +1020,8 @@ LEARNING = [
             "distributions open tomorrow."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says '1.2.3 finished discrete distributions and cleared "
-            "Approver honesty.' Refuse and name tomorrow."
+            "Closed-book. A colleague says 'PCA finished discrete distribution families.' "
+            "Refuse and name tomorrow's honest next."
         ),
         cp_kw=["refuse", "discrete", "2.1.1", "Approver"],
         cp_model=(
@@ -1148,8 +1152,8 @@ LEARNING = [
             "continuous distributions on an interval"
         ),
         focus=(
-            "Continuous family map → refuse Approver clearance / spine / until-exam / 2.1.3 "
-            "swallow as Learning close."
+            "Continuous family map → refuse treating family placement as probability/quantile "
+            "evaluation finished."
         ),
         prior=(
             "Yesterday you studied discrete distributions (2.1.1). Today closes Publication "
@@ -1218,9 +1222,9 @@ LEARNING = [
             "stories. Approver seals and spine PASS remain out of scope."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'Finishing 2.1.2 Rho cleared Approver honesty, "
-            "finished the first-pass spine, and unlocked until-exam trust.' Refuse and name "
-            "tomorrow's honest next (Revision)."
+            "Closed-book. A colleague says 'Placing continuous families finished "
+            "probability/quantile evaluation and the opening analysis-to-distributions "
+            "stretch.' Refuse and name tomorrow's honest next (Revision)."
         ),
         cp_kw=["refuse", "Approver", "spine", "until-exam", "revision"],
         cp_model=(

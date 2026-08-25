@@ -150,7 +150,7 @@
       "kind": "checkpoint",
       "item_id": "cs1004-cgr1-cp-01",
       "title": "Checkpoint: weakest link + honest next",
-      "prompt": "Closed-book. (1) Which link is weakest today and what one rework will you schedule? (2) Confirm that 2.2 was out of scope and name the honest next geography after this Volume.",
+      "prompt": "Closed-book. (1) Which univariate link is weakest today — family placement, probability/quantile evaluation, process link, or generation — and what one rework will you schedule? (2) Confirm joints (2.2) were out of scope today and name the honest next topic after this stretch.",
       "response_type": "short_structured",
       "body": "Weakest link + honest handoff to 2.2.",
       "hints": [

@@ -63,7 +63,7 @@
     "tutor_intent": "Today I will run closed-book retrieval across 4.1–5.1 return targets — not spine declaration; not until-exam trust.",
     "educational_intent": "Produce terminal Pilot Arc retrieval; honest stop.",
     "learning_objective": "Retrieve and connect mid-spine hinges across 4.1, 4.2, and 5.1; refuse spine and until-exam claims.",
-    "concept_focus": "LM → GLM → Bayes/credibility contrast retrieval + honest stop.",
+    "concept_focus": "LM → GLM → Bayes/credibility contrast retrieval → refuse claiming the mid-syllabus stretch is finished.",
     "prior_bridge": "Yesterday you finished Bayes vs EB contrast (5.1.9). Today is terminal Revision.",
     "why_now": "Space a closed-book retrieval across regression, GLM, and Bayes tip before you stop this mid-syllabus stretch.",
     "expected_benefit": "You'll confirm mid-syllabus hinges across regression, GLM, and Bayes tip still retrieve closed-book.",
@@ -163,7 +163,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-cd-r3-cp-01",
       "title": "Checkpoint: CD-R3",
-      "prompt": "(1) Weakest link + rework. (2) Confirm spine PASS and until-exam trust are refused. (3) Confirm Wave 3 is not started from this Revision alone.",
+      "prompt": "(1) Name today's weakest link across LM, GLM, and Bayes/credibility contrast, plus one concrete rework. (2) Refuse: 'Retrieving the mid-syllabus stretch means I am exam-ready on regression through Bayes.' (3) Confirm you are not treating this revision alone as a licence to skip remaining syllabus topics.",
       "response_type": "short_structured",
       "body": "Weakest link + honest next.",
       "hints": [
@@ -190,7 +190,7 @@
   ],
   "reflection": {
     "framing": "Revision Reflection names the weakest Campaign link for spaced return.",
-    "prompt": "Which return target retrieved least cleanly and what one concrete rework will you schedule? Confirm forbidden claims stayed out of scope.",
+    "prompt": "Which stretch retrieved least cleanly today — classical LM, GLM structure/fit, or Bayes/credibility contrast — and what one concrete rework will you schedule? Do not claim the whole mid-syllabus block is exam-ready from one retrieval sitting.",
     "prompts": [
       "Which return target retrieved least cleanly?",
       "What one concrete rework will you schedule?",

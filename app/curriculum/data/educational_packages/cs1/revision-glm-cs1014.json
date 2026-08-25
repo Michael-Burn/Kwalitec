@@ -54,7 +54,7 @@
     "concept_focus": "Campaign chain retrieval: family → moments → link → factors → η → deviance → choice → residuals → tests → fit/interpret.",
     "prior_bridge": "Yesterday you finished fit and interpret (4.2.10). Today is Revision mode: return to 4.2.1–4.2.10 under closed-book retrieval — no new first-pass LO.",
     "why_now": "You've just finished classical GLM; spaced retrieval now protects that chain before Bayesian work.",
-    "expected_benefit": "You'll confirm the GLM chain still retrieves \u2014 family through fit and interpret.",
+    "expected_benefit": "You'll confirm the GLM chain still retrieves — family through fit and interpret.",
     "explainability": "Assigned as Campaign Xi Revision because Architecture requires memory return inside the Pilot Arc before the next Volume.",
     "success_criteria": [
       "Closed-book, name the ten 4.2 Learning hinges in order (short phrases).",
@@ -180,7 +180,7 @@
   ],
   "reflection": {
     "framing": "Revision Reflection names the weakest Campaign link for spaced return.",
-    "prompt": "Which return target retrieved least cleanly and what one concrete rework will you schedule? Confirm Trust Front 5.1 absorb / spine / until-exam stayed out of scope.",
+    "prompt": "Which GLM link retrieved least cleanly today — exponential family, mean/variance, link, linear predictor, deviance, residuals, acceptability tests, or fit/interpret — and what one concrete rework will you schedule? Do not claim Bayesian Topic 5.1 is finished because GLM revision went well.",
     "prompts": [
       "Which return target retrieved least cleanly?",
       "What one concrete rework will you schedule?",

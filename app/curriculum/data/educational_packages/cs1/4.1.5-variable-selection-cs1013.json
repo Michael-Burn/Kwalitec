@@ -40,9 +40,9 @@
     "tutor_intent": "Today I will force the candidate to compare candidate explanatory sets using fit measures and refuse treating Trust Front 4.2/5.1 absorb as Continuity Front credit.",
     "educational_intent": "Produce a cognitive move from a single fitted linear model to disciplined variable selection using measures of model fit under CMP.",
     "learning_objective": "Measures of model fit to select an appropriate set of explanatory variables",
-    "concept_focus": "Candidate sets → fit measures → select appropriate explanatory set → refuse 4.2/5.1 / spine / until-exam.",
+    "concept_focus": "Candidate sets → fit measures → select appropriate explanatory set → refuse treating selection as GLM or Bayes finished.",
     "prior_bridge": "Yesterday you practised software fit, inference, prediction, and residual checks (4.1.4). Today closes Topic 4.1 Learning at variable selection.",
-    "why_now": "Finish Topic 4.1 by selecting variables using fit measures \u2014 then revise before moving into GLM.",
+    "why_now": "Finish Topic 4.1 by selecting variables using fit measures — then revise before moving into GLM.",
     "expected_benefit": "Study Progress for variable selection — not Topic Complete for 4.2.",
     "explainability": "Assigned as Campaign Nu Day 5 because Continuity Front law closes Topic 4.1 only; GLM and Bayesian remain Trust Front / later geography.",
     "success_criteria": [

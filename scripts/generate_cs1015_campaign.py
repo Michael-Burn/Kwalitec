@@ -280,7 +280,7 @@ def revision_pkg() -> dict:
             "success_criteria": [
                 "Closed-book, name the nine 5.1 Learning hinges in order (short phrases).",
                 "State at least one concrete weakest link with a rework plan.",
-                "Refuse spine PASS / until-exam / Wave 0 clearance claims.",
+                "Refuse treating one retrieval sitting as Topic mastery.",
             ],
             "task_descriptions": [
                 "Without opening the CMP, sketch Omicron's chain from Bayes' theorem to contrast.",
@@ -398,10 +398,11 @@ def revision_pkg() -> dict:
                 "episode_id": "lep-cs1015-co-r1-cp-01",
                 "kind": "checkpoint",
                 "item_id": "cs1015-co-r1-cp-01",
-                "title": "Checkpoint: refuse spine / until-exam",
+                "title": "Checkpoint: Bayesian revision honesty",
                 "prompt": (
-                    "Closed-book. A colleague says 'Bayesian revision finished the first-pass "
-                    "spine and the exam journey.' Refuse; name weakest link; name honest next."
+                    "Closed-book. A colleague says 'Contrasting Bayes and Empirical Bayes means "
+                    "Topic 5.1 is exam-ready.' Refuse; name the weakest link on today's "
+                    "Bayesian retrieval chain; name one concrete next rework (not a new topic)."
                 ),
                 "response_type": "short_structured",
                 "body": "Refuse forbidden claims; harvest weakest link.",
@@ -426,14 +427,16 @@ def revision_pkg() -> dict:
         "reflection": {
             "framing": "Revision Reflection names the weakest Campaign link for spaced return.",
             "prompt": (
-                "Which return target retrieved least cleanly and what one concrete rework will "
-                "you schedule? Confirm spine PASS / until-exam / Wave 0 clearance stayed "
-                "out of scope."
+                "Which Bayesian link retrieved least cleanly today — theorem, "
+                "prior/posterior/conjugate, loss/estimators, credible intervals, premium "
+                "factors, credibility, EB, or Bayes-vs-EB contrast — and what one concrete "
+                "rework will you schedule? Do not claim Topic 5.1 mastery from one retrieval "
+                "sitting."
             ),
             "prompts": [
-                "Which return target retrieved least cleanly?",
+                "Which link retrieved least cleanly today?",
                 "What one concrete rework will you schedule?",
-                "Confirm: spine PASS / until-exam trust / Wave 0 clearance were out of scope.",
+                "Do not claim Topic mastery from one retrieval sitting.",
             ],
         },
         "tomorrow_preview": {
@@ -777,7 +780,7 @@ LEARNING = LEARNING = [
         tutor="Today I will force Bayes vs EB assumption contrast and refuse 'Topic 5.1 finished the exam journey / first-pass spine'.",
         edu="Produce Bayes vs EB contrast as the Topic 5.1 Learning close before Revision.",
         lo_text="Understand the differences between Bayesian and Empirical Bayes approaches and the assumptions underlying each.",
-        focus="Bayes assumptions ↔ EB assumptions → refuse spine / until-exam / Wave 0 clearance.",
+        focus="Bayes assumptions ↔ EB assumptions → refuse equating the contrast with Topic 5.1 mastery.",
         prior="Yesterday you applied Empirical Bayes (5.1.8). Today closes Topic 5.1 Learning at the contrast.",
         why="Contrast Bayesian vs Empirical Bayes assumptions to close Bayesian foundations before revision.",
         benefit="You'll be able to state how Bayesian and Empirical Bayes differ in assumptions and what each is entitled to claim.",
@@ -796,7 +799,7 @@ LEARNING = LEARNING = [
         ar_prompt="Closed-book. (1) Name two assumption differences Bayes vs EB. (2) Why might premiums differ? (3) Name one reason this does not finish first-pass spine or until-exam trust.",
         ar_kw=["Bayes", "Empirical", "assumption", "prior", "data"],
         ar_model="Bayes uses a specified prior structure; EB estimates structural parameters from data — assumptions differ. Spine PASS and until-exam remain out of scope.",
-        cp_prompt="Closed-book. A colleague says 'Finishing 5.1.9 finished the first-pass spine and the exam journey.' Refuse and name tomorrow's honest next (Revision).",
+        cp_prompt="Closed-book. A colleague says 'Finishing Bayes vs EB means Topic 5.1 is exam-ready and Bayesian work can stop.' Refuse and name tomorrow's honest next (Revision of the Bayesian chain).",
         cp_kw=["refuse", "spine", "until-exam", "revision", "Wave 0"],
         cp_model="Refuse: spine / until-exam are not finished. Today is contrast; tomorrow is CO-R1 Revision of 5.1 — not a trophy claim.",
         reflect="Harvest contrast wobble — Revision protects the 5.1 chain tomorrow.",

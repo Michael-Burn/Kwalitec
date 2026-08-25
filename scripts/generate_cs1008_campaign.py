@@ -368,9 +368,10 @@ def revision_pkg() -> dict:
                 "item_id": "cs1008-ct-r1-cp-01",
                 "title": "Checkpoint: CT-R1",
                 "prompt": (
-                    "Closed-book. (1) Weakest 2.5 link + one concrete rework. (2) Refuse "
-                    "Chapter 2 complete and first-pass spine PASS. (3) Name the honest next "
-                    "geography (2.6) or confirm declared stop."
+                    "Closed-book. (1) Name today's weakest CLT link and one concrete rework. "
+                    "(2) Refuse: 'The CLT means every sample mean is already Normal, so "
+                    "Chapter 2 is done.' (3) Name the honest next topic (sampling "
+                    "distributions, 2.6) or confirm you are stopping here."
                 ),
                 "response_type": "short_structured",
                 "body": "Weakest link + honest next.",
@@ -398,13 +399,13 @@ def revision_pkg() -> dict:
         "reflection": {
             "framing": "Revision Reflection names the weakest Campaign link for spaced return.",
             "prompt": (
-                "Which return target retrieved least cleanly and what one concrete rework will "
-                "you schedule? Confirm Chapter 2 complete / spine / until-exam stayed out of scope."
+                "Which link retrieved least cleanly today and what one concrete rework will "
+                "you schedule? Do not claim the rest of Chapter 2 is finished from one retrieval sitting."
             ),
             "prompts": [
-                "Which return target retrieved least cleanly?",
+                "Which link retrieved least cleanly today?",
                 "What one concrete rework will you schedule?",
-                "Confirm: Chapter 2 complete / spine PASS / until-exam trust were out of scope.",
+                "Do not claim the rest of Chapter 2 is finished from one retrieval sitting.",
             ],
         },
         "tomorrow_preview": {
@@ -645,8 +646,9 @@ LEARNING = [
             "stress-tests when Normal approximation looks reasonable versus when it does not."
         ),
         cp_prompt=(
-            "Closed-book. (1) Refuse 'yesterday's CLT statement finished today's LO'. (2) Refuse "
-            "'Chapter 2 is complete because I finished 2.5.2'. State the honest stop."
+            "Closed-book. (1) Refuse 'Yesterday's CLT statement already finished comparing "
+            "simulated samples with the Normal.' (2) Refuse 'Finishing 2.5.2 means all of "
+            "Chapter 2 is done.' Name what still sits ahead before sampling distributions."
         ),
         cp_kw=[
             "refuse",

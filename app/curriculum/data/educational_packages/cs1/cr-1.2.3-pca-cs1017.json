@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
   "volume_id": "CS1-017",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1017_EDUCATIONAL_VOLUME.md",
     "CS1017_CERTIFICATION_REPORT.md",
@@ -35,14 +35,14 @@
   "mission": {
     "mission_id": "msn-cs1017-cs1-1.2-pca",
     "display_title": "Principal component analysis (Publication Front)",
-    "mission_purpose": "Today's Mission exists to study Syllabus 1.2.3 PCA under Publication Front discipline \u2014 without pretending discrete distributions (2.1.1) are finished.",
+    "mission_purpose": "Today's Mission exists to study Syllabus 1.2.3 PCA under Publication Front discipline — without pretending discrete distributions (2.1.1) are finished.",
     "tutor_intent": "Today I will force PCA dimensionality-reduction warrant and refuse 'Publication Front finished discrete distributions / Approver clearance'.",
     "educational_intent": "Produce Publication Front study of PCA to reduce dimensionality.",
     "learning_objective": "Principal component analysis to reduce the dimensionality of a complex data set",
-    "concept_focus": "Complex data \u2192 PCA reduction \u2192 refuse discrete-distributions swallow.",
+    "concept_focus": "Complex data → PCA reduction → refuse discrete-distributions swallow.",
     "prior_bridge": "Yesterday you studied correlation (1.2.2). Today closes Topic 1.2 on Publication Front.",
     "why_now": "PCA closes EDA before univariate distribution entry.",
-    "expected_benefit": "Study Progress for 1.2.3 \u2014 not Chapter 2 complete; not Approver clearance.",
+    "expected_benefit": "Study Progress for 1.2.3 — not Chapter 2 complete; not Approver clearance.",
     "explainability": "Assigned as Campaign Rho Day 7 because Publication Front closes Topic 1.2 at PCA before discrete distributions.",
     "success_criteria": [
       "Closed-book, state PCA purpose for dimensionality reduction.",
@@ -61,17 +61,17 @@
   },
   "session": {
     "session_id": "ssn-cs1017-cs1-1.2-pca",
-    "session_educational_purpose": "Execute today's Publication Front Mission for Syllabus 1.2.3 \u2014 LO-per-day Wave 0 residual catalogue under EP Production Era, not Approver clearance.",
+    "session_educational_purpose": "Execute today's Publication Front Mission for Syllabus 1.2.3 — LO-per-day Wave 0 residual catalogue under EP Production Era, not Approver clearance.",
     "session_tutor_purpose": "Set focus on 1.2.3, exit to CMP, practise today's LO, refuse spine PASS / until-exam / Approver clearance swallow.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Principal component analysis (Publication Front). You practised selective CMP reading on Syllabus 1.2.3 under Publication Front discipline. This is Study Progress for today's LO \u2014 not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 1.2.3 closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Principal component analysis (Publication Front). You practised selective CMP reading on Syllabus 1.2.3 under Publication Front discipline. This is Study Progress for today's LO — not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 1.2.3 closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.2.3 \u2014 principal component analysis (publication front) \u2014 under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.2.3 — principal component analysis (publication front) — under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
     "focus_questions": [
       "What is the core move of Syllabus 1.2.3?",
       "What warrant separates today's LO from the next Publication Front day?",
@@ -83,7 +83,7 @@
       "Watch for swallowing discrete distributions today.",
       "Watch for claiming Section 1 complete as Approver clearance."
     ],
-    "open_point": "CMP \u00b7 Syllabus 1.2.3 principal component analysis",
+    "open_point": "CMP · Syllabus 1.2.3 principal component analysis",
     "stop_condition": "Through the CMP treatment of Syllabus 1.2.3 (stop before discrete distributions primary 2.1.1)",
     "out_of_scope_today": [
       "Discrete distributions as primary",
@@ -93,13 +93,13 @@
     ],
     "annotation_task": "Before deep reading: sketch today's LO chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution \u2014 stay inside 1.2.3.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 1.2.3 principal component analysis. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.2.3 (stop before discrete distributions primary 2.1.1). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 1.2.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution — stay inside 1.2.3.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 1.2.3 principal component analysis. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.2.3 (stop before discrete distributions primary 2.1.1). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 1.2.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core LO move in one sentence.",
+        "cue": "Pause — write today's core LO move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -142,7 +142,7 @@
       "kind": "checkpoint",
       "item_id": "cs1017-1.2.3-cp-01",
       "title": "Checkpoint: 1.2.3",
-      "prompt": "Closed-book. A colleague says '1.2.3 finished discrete distributions and cleared Approver honesty.' Refuse and name tomorrow.",
+      "prompt": "Closed-book. A colleague says 'PCA finished discrete distribution families.' Refuse and name tomorrow's honest next.",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 1.2.3.",
       "hints": [
@@ -156,7 +156,7 @@
         "Approver"
       ],
       "explanation": "Checkpoint for 1.2.3.",
-      "model_answer": "Refuse: PCA \u2260 discrete distributions \u2260 Approver clearance. Tomorrow is 2.1.1.",
+      "model_answer": "Refuse: PCA ≠ discrete distributions ≠ Approver clearance. Tomorrow is 2.1.1.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",
@@ -165,7 +165,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest PCA wobble \u2014 discrete distributions continue Publication Front tomorrow.",
+    "framing": "Harvest PCA wobble — discrete distributions continue Publication Front tomorrow.",
     "prompt": "Which part of today's 1.2.3 work is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 1.2.3 work is stickiest and why?",
@@ -177,8 +177,8 @@
     "next_topic_code": "2.1",
     "next_topic_title": "Discrete distributions (2.1.1)",
     "continuity_line": "Today you studied 1.2.3; tomorrow continues Publication Front at 2.1.1.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.1.1 \u2014 titles only tonight",
-    "student_facing": "Tomorrow: discrete distributions Publication Front day (2.1.1). Optional light prep: skim 2.1.1 headings \u2014 titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.1.1 — titles only tonight",
+    "student_facing": "Tomorrow: discrete distributions Publication Front day (2.1.1). Optional light prep: skim 2.1.1 headings — titles only tonight."
   },
   "revision_linkage": {
     "returns_on": "CR-R1",

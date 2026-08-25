@@ -148,7 +148,7 @@
       "kind": "checkpoint",
       "item_id": "cs1008-2.5.2-cp-01",
       "title": "Checkpoint: 2.5.2",
-      "prompt": "Closed-book. (1) Refuse 'yesterday's CLT statement finished today's LO'. (2) Refuse 'Chapter 2 is complete because I finished 2.5.2'. State the honest stop.",
+      "prompt": "Closed-book. (1) Refuse 'Yesterday's CLT statement already finished comparing simulated samples with the Normal.' (2) Refuse 'Finishing 2.5.2 means all of Chapter 2 is done.' Name what still sits ahead before sampling distributions.",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 2.5.2.",
       "hints": [

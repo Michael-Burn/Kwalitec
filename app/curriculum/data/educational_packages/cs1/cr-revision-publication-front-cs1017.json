@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
   "volume_id": "CS1-017",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1017_EDUCATIONAL_VOLUME.md",
     "CS1017_CERTIFICATION_REPORT.md",
@@ -17,7 +17,7 @@
   "package_id": "CS1-EP001-PKG-REV-PUBLICATION-FRONT-RHO",
   "campaign_day": "CR-R1",
   "topic_code": "CR-R1",
-  "topic_title": "Campaign Rho revision \u2014 Publication Front Wave 0 residual",
+  "topic_title": "Campaign Rho revision — Publication Front Wave 0 residual",
   "return_targets": [
     "1.1.1",
     "1.1.2",
@@ -46,11 +46,11 @@
   "mission": {
     "mission_id": "msn-cs1017-cs1-cr-r1-publication-front",
     "display_title": "Retrieve Publication Front Wave 0 residual chain",
-    "mission_purpose": "Today's Mission exists to protect memory across Campaign Rho \u2014 retrieving 1.1.1 through 2.1.2 \u2014 so Publication Front catalogue completion does not evaporate into until-exam theatre or Approver clearance claims.",
+    "mission_purpose": "Today's Mission exists to protect memory across Campaign Rho — retrieving 1.1.1 through 2.1.2 — so Publication Front catalogue completion does not evaporate into until-exam theatre or Approver clearance claims.",
     "tutor_intent": "Today I will force closed-book retrieval across the Publication Front chain and refuse 'Rho finished Approver honesty / spine / until-exam'.",
     "educational_intent": "Produce Revision retrieval of Publication Front LO-per-day chain under one Sensei before an honest stop awaiting human Approver seals.",
-    "learning_objective": "Retrieve Campaign Rho Learning LOs 1.1.1\u20132.1.2 closed-book; reopen CMP only at failed locus.",
-    "concept_focus": "Publication Front chain retrieval \u2192 refuse Approver clearance / spine / until-exam.",
+    "learning_objective": "Retrieve Campaign Rho Learning LOs 1.1.1–2.1.2 closed-book; reopen CMP only at failed locus.",
+    "concept_focus": "Aims → reproducibility → EDA/PCA → discrete → continuous family retrieval → refuse claiming the opening analysis arc is finished.",
     "prior_bridge": "Yesterday you closed Publication Front Learning at continuous distributions (2.1.2). Today is Campaign Rho Revision.",
     "why_now": "Closed-book retrieval of the opening analysis-to-distributions chain before you stop.",
     "expected_benefit": "You'll confirm the opening analysis-to-distributions chain still retrieves closed-book.",
@@ -72,17 +72,17 @@
   },
   "session": {
     "session_id": "ssn-cs1017-cs1-cr-r1-publication-front",
-    "session_educational_purpose": "Execute Campaign Rho Revision \u2014 retrieve Publication Front chain without Approver clearance theatre.",
-    "session_tutor_purpose": "Force retrieval across 1.1.1\u20132.1.2; refuse Approver / spine / until-exam swallow.",
+    "session_educational_purpose": "Execute Campaign Rho Revision — retrieve Publication Front chain without Approver clearance theatre.",
+    "session_tutor_purpose": "Force retrieval across 1.1.1–2.1.2; refuse Approver / spine / until-exam swallow.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 80
     },
-    "wrap_up": "Session complete for Publication Front Revision. You retrieved the CR chain under Wave 0 residual discipline. This is Study Progress for Revision \u2014 not Approver honesty clearance, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve the Publication Front chain closed-book next week? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Publication Front Revision. You retrieved the CR chain under Wave 0 residual discipline. This is Study Progress for Revision — not Approver honesty clearance, first-pass spine PASS, or until-exam trust.",
+    "confidence_prompt": "How confident are you that you could retrieve the Publication Front chain closed-book next week? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: Revision is retrieval-first. Open the CMP only at a failed locus on the Publication Front chain \u2014 not as a re-teach of all of Chapter 1\u20132.1.",
+    "lead_line": "Purpose of this reading: Revision is retrieval-first. Open the CMP only at a failed locus on the Publication Front chain — not as a re-teach of all of Chapter 1–2.1.",
     "focus_questions": [
       "Which CR Learning LO is stickiest closed-book?",
       "Where will you reopen the CMP (failed locus only)?",
@@ -93,8 +93,8 @@
       "Watch for claiming Approver clearance from Revision.",
       "Watch for claiming spine / until-exam complete."
     ],
-    "open_point": "CMP \u00b7 only at failed Publication Front locus",
-    "stop_condition": "After closed-book retrieval of CR chain and targeted CMP reopen at failures \u2014 stop before claiming Approver clearance, until-exam trust, or spine PASS",
+    "open_point": "CMP · only at failed Publication Front locus",
+    "stop_condition": "After closed-book retrieval of CR chain and targeted CMP reopen at failures — stop before claiming Approver clearance, until-exam trust, or spine PASS",
     "out_of_scope_today": [
       "First-pass spine PASS",
       "Until-exam educational trust",
@@ -105,13 +105,13 @@
     ],
     "annotation_task": "List stickiest CR LO before any CMP reopen",
     "attempt_before_reveal": "Attempt closed-book retrieval before any CMP reopen",
-    "worked_examples_cue": "If a locus fails, reopen CMP only there \u2014 attempt the failed step before uncovering.",
-    "exit_line": "Keep CMP closed for first-pass retrieval. Reopen only at failed loci. Kwalitec is the guide; the CMP is authoritative. Stop when retrieval + targeted reopen are done \u2014 refuse Approver clearance, spine PASS, and until-exam claims.",
+    "worked_examples_cue": "If a locus fails, reopen CMP only there — attempt the failed step before uncovering.",
+    "exit_line": "Keep CMP closed for first-pass retrieval. Reopen only at failed loci. Kwalitec is the guide; the CMP is authoritative. Stop when retrieval + targeted reopen are done — refuse Approver clearance, spine PASS, and until-exam claims.",
     "return_cue": "You are finished when CR Learning LOs are retrieved closed-book (with targeted reopen only where needed) and forbidden claims are refused.",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 name the stickiest Publication Front LO before reopen.",
+        "cue": "Pause — name the stickiest Publication Front LO before reopen.",
         "student_action": "Annotate"
       },
       {
@@ -132,7 +132,7 @@
       "response_type": "short_structured",
       "body": "Retrieve Publication Front chain closed-book.",
       "hints": [
-        "Order: 1.1.1\u21922.1.2.",
+        "Order: 1.1.1→2.1.2.",
         "One sticky warrant."
       ],
       "accepted_keywords": [
@@ -143,7 +143,7 @@
         "retrieval"
       ],
       "explanation": "Active recall for CR-R1.",
-      "model_answer": "Chain: 1.1.1\u20131.1.4, 1.2.1\u20131.2.3, 2.1.1\u20132.1.2. Name the stickiest LO with one warrant.",
+      "model_answer": "Chain: 1.1.1–1.1.4, 1.2.1–1.2.3, 2.1.1–2.1.2. Name the stickiest LO with one warrant.",
       "common_mistake": "Skipping order or claiming Approver clearance.",
       "success_criteria": [
         "Order present.",
@@ -155,7 +155,7 @@
       "kind": "checkpoint",
       "item_id": "cs1017-cr-r1-cp-01",
       "title": "Checkpoint: refuse Approver / spine / until-exam",
-      "prompt": "Closed-book. A colleague says 'Finishing Rho Revision cleared Approver honesty, finished the first-pass spine, and unlocked until-exam trust.' Refuse and name the honest residual.",
+      "prompt": "Closed-book. A colleague says 'Placing continuous families means aims, reproducibility, EDA, and discrete matching are all solid.' Refuse; name the weakest link on today's retrieval chain; name one concrete residual to rework.",
       "response_type": "short_structured",
       "body": "Refuse Approver / spine / until-exam swallow after Revision.",
       "hints": [
@@ -169,7 +169,7 @@
         "until-exam"
       ],
       "explanation": "Checkpoint for CR-R1.",
-      "model_answer": "Refuse: Publication Front Revision \u2260 Approver honesty clearance, \u2260 first-pass spine PASS, \u2260 until-exam trust. Honest residual: human Publication Approver seals remain required; Coverage stays 63/72 until sealed.",
+      "model_answer": "Refuse: Publication Front Revision ≠ Approver honesty clearance, ≠ first-pass spine PASS, ≠ until-exam trust. Honest residual: human Publication Approver seals remain required; Coverage stays 63/72 until sealed.",
       "common_mistake": "Accepting Approver clearance from catalogue.",
       "success_criteria": [
         "Refusal present.",
@@ -178,8 +178,8 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest Publication Front wobble \u2014 Approver residual remains open.",
-    "prompt": "Which Publication Front LO is stickiest and why? What one rework plan will you keep? What claim must you refuse after Revision?",
+    "framing": "Harvest Publication Front wobble — Approver residual remains open.",
+    "prompt": "Which link retrieved least cleanly today — analysis aims, reproducibility, EDA summaries/association, PCA limits, discrete families, or continuous placement — and why? What one concrete rework will you schedule? Do not claim probability/quantile evaluation or later chapters are finished.",
     "prompts": [
       "Which Publication Front LO is stickiest and why?",
       "What one rework plan will you keep?",
@@ -189,8 +189,8 @@
   "tomorrow_preview": {
     "next_topic_code": "APPROVER",
     "next_topic_title": "Honest stop / Publication Approver residual (not cleared)",
-    "continuity_line": "Today you closed Campaign Rho Revision; next is an honest stop with Publication Approver ownership still required \u2014 not until-exam trust.",
-    "light_prep_cue": "No new LO tonight \u2014 rest or jot the stickiest Publication Front LO",
+    "continuity_line": "Today you closed Campaign Rho Revision; next is an honest stop with Publication Approver ownership still required — not until-exam trust.",
+    "light_prep_cue": "No new LO tonight — rest or jot the stickiest Publication Front LO",
     "student_facing": "Honest next: stop / Publication Approver residual. Do not claim first-pass spine PASS, until-exam trust, or Approver clearance from Rho catalogue alone."
   },
   "revision_linkage": {

@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
   "volume_id": "CS1-017",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1017_EDUCATIONAL_VOLUME.md",
     "CS1017_CERTIFICATION_REPORT.md",
@@ -36,14 +36,14 @@
   "mission": {
     "mission_id": "msn-cs1017-cs1-1.1-aims-analysis",
     "display_title": "Aims of a data analysis (Publication Front)",
-    "mission_purpose": "Today's Mission exists to study Syllabus 1.1.1 aims of data analysis under Publication Front / Wave 0 residual discipline after Memory Front LIVE \u2014 without pretending stages/tools (1.1.2) are finished or Approver honesty is cleared.",
+    "mission_purpose": "Today's Mission exists to study Syllabus 1.1.1 aims of data analysis under Publication Front / Wave 0 residual discipline after Memory Front LIVE — without pretending stages/tools (1.1.2) are finished or Approver honesty is cleared.",
     "tutor_intent": "Today I will force aims classification (descriptive / inferential / predictive) and refuse 'Publication Front finished stages/tools / Approver clearance'.",
     "educational_intent": "Produce Publication Front LO-per-day study of analysis aims as the lawful first day after Memory Front close.",
     "learning_objective": "Aims of a data analysis (e.g. descriptive, inferential and predictive)",
-    "concept_focus": "Aims map \u2192 descriptive/inferential/predictive \u2192 refuse 1.1.2 / Approver swallow.",
+    "concept_focus": "Aims map → descriptive/inferential/predictive → refuse treating aims as stages and tools finished.",
     "prior_bridge": "Yesterday you closed Campaign Pi Revision (Memory Front). Today opens Publication Front / Wave 0 residual at Syllabus 1.1.1.",
     "why_now": "Start the opening analysis arc at aims: descriptive, inferential, and predictive intents.",
-    "expected_benefit": "Study Progress for 1.1.1 \u2014 not Topic Complete for Section 1; not Approver clearance.",
+    "expected_benefit": "Study Progress for 1.1.1 — not Topic Complete for Section 1; not Approver clearance.",
     "explainability": "Assigned as Campaign Rho Day 1 because Publication Front after Memory Front close begins at the opening honesty LO already Awaiting Approval.",
     "success_criteria": [
       "Closed-book, distinguish descriptive, inferential, and predictive aims in one careful trio.",
@@ -62,17 +62,17 @@
   },
   "session": {
     "session_id": "ssn-cs1017-cs1-1.1-aims-analysis",
-    "session_educational_purpose": "Execute today's Publication Front Mission for Syllabus 1.1.1 \u2014 LO-per-day Wave 0 residual catalogue under EP Production Era, not Approver clearance.",
+    "session_educational_purpose": "Execute today's Publication Front Mission for Syllabus 1.1.1 — LO-per-day Wave 0 residual catalogue under EP Production Era, not Approver clearance.",
     "session_tutor_purpose": "Set focus on 1.1.1, exit to CMP, practise today's LO, refuse spine PASS / until-exam / Approver clearance swallow.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Aims of a data analysis (Publication Front). You practised selective CMP reading on Syllabus 1.1.1 under Publication Front discipline. This is Study Progress for today's LO \u2014 not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 1.1.1 closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Aims of a data analysis (Publication Front). You practised selective CMP reading on Syllabus 1.1.1 under Publication Front discipline. This is Study Progress for today's LO — not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 1.1.1 closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.1.1 \u2014 aims of a data analysis (publication front) \u2014 under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.1.1 — aims of a data analysis (publication front) — under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
     "focus_questions": [
       "What is the core move of Syllabus 1.1.1?",
       "What warrant separates today's LO from the next Publication Front day?",
@@ -84,7 +84,7 @@
       "Watch for swallowing 1.1.2 today.",
       "Watch for claiming Approver clearance from one LO."
     ],
-    "open_point": "CMP \u00b7 Syllabus 1.1.1 aims of a data analysis",
+    "open_point": "CMP · Syllabus 1.1.1 aims of a data analysis",
     "stop_condition": "Through the CMP treatment of Syllabus 1.1.1 (stop before stages/tools primary 1.1.2)",
     "out_of_scope_today": [
       "Stages and tools as primary",
@@ -94,13 +94,13 @@
     ],
     "annotation_task": "Before deep reading: sketch today's LO chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution \u2014 stay inside 1.1.1.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 1.1.1 aims of a data analysis. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.1.1 (stop before stages/tools primary 1.1.2). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 1.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution — stay inside 1.1.1.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 1.1.1 aims of a data analysis. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.1.1 (stop before stages/tools primary 1.1.2). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 1.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core LO move in one sentence.",
+        "cue": "Pause — write today's core LO move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -143,7 +143,7 @@
       "kind": "checkpoint",
       "item_id": "cs1017-1.1.1-cp-01",
       "title": "Checkpoint: 1.1.1",
-      "prompt": "Closed-book. A colleague says 'Studying 1.1.1 cleared Approver honesty for Wave 0.' Refuse and name tomorrow.",
+      "prompt": "Closed-book. A colleague says 'Naming descriptive, inferential, and predictive aims finished the analysis process and tools.' Refuse and name tomorrow's honest next.",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 1.1.1.",
       "hints": [
@@ -157,7 +157,7 @@
         "Publication"
       ],
       "explanation": "Checkpoint for 1.1.1.",
-      "model_answer": "Refuse: one catalogue day \u2260 Approver clearance. Tomorrow is Publication Front 1.1.2.",
+      "model_answer": "Refuse: one catalogue day ≠ Approver clearance. Tomorrow is Publication Front 1.1.2.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",
@@ -166,7 +166,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest aims wobble \u2014 stages/tools continue Publication Front tomorrow.",
+    "framing": "Harvest aims wobble — stages/tools continue Publication Front tomorrow.",
     "prompt": "Which part of today's 1.1.1 work is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 1.1.1 work is stickiest and why?",
@@ -178,8 +178,8 @@
     "next_topic_code": "1.1",
     "next_topic_title": "Stages and tools (1.1.2)",
     "continuity_line": "Today you studied 1.1.1; tomorrow continues Publication Front at 1.1.2.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 1.1.2 \u2014 titles only tonight",
-    "student_facing": "Tomorrow: stages and tools Publication Front day (1.1.2). Optional light prep: skim 1.1.2 headings \u2014 titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 1.1.2 — titles only tonight",
+    "student_facing": "Tomorrow: stages and tools Publication Front day (1.1.2). Optional light prep: skim 1.1.2 headings — titles only tonight."
   },
   "revision_linkage": {
     "returns_on": "CR-R1",
