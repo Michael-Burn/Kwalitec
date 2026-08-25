@@ -1,5 +1,5 @@
 /**
- * UX-001 — EOS Study Session chrome: live timer + focus mode.
+ * UX-001 — EOS Study Session chrome: live timer.
  * Presentation only — does not change session completion semantics.
  */
 (function () {
@@ -11,7 +11,6 @@
   var missionId = root.getAttribute("data-mission-id") || root.getAttribute("data-session-id") || "session";
   var timerEl = root.querySelector("[data-session-timer]");
   var timerLiveEl = root.querySelector("[data-session-timer-live]");
-  var focusBtn = root.querySelector("[data-session-focus-toggle]");
 
   function pad(n) {
     return String(n).padStart(2, "0");
@@ -85,16 +84,5 @@
     }
     tick();
     window.setInterval(tick, 1000);
-  }
-
-  if (focusBtn) {
-    // PX-B-033: enable only once interactive behaviour is wired.
-    focusBtn.disabled = false;
-    focusBtn.removeAttribute("aria-disabled");
-    focusBtn.addEventListener("click", function () {
-      var on = document.body.classList.toggle("ds-focus-mode");
-      focusBtn.setAttribute("aria-pressed", on ? "true" : "false");
-      focusBtn.textContent = on ? "Exit focus" : "Focus mode";
-    });
   }
 })();

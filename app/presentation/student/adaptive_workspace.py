@@ -1331,11 +1331,15 @@ def _quick_actions(
             )
         )
 
-    # View Forecast — Home forecast section when present (V1S-005 DF-010).
+    # View Forecast — Learning Journey forecast section when present
+    # (Home no longer hosts #ws-forecast-title; see learning_journey.html).
     forecast_href = ""
     if has_request_context():
         try:
-            forecast_href = url_for("student.home", _anchor="ws-forecast-title")
+            forecast_href = url_for(
+                "student.learning_journey",
+                _anchor="journey-forecast-title",
+            )
         except Exception:  # noqa: BLE001
             forecast_href = ""
     if forecast_href and has_forecast:
