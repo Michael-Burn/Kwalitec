@@ -26,6 +26,52 @@ _STUDY_PREFIX = re.compile(
     re.IGNORECASE,
 )
 
+# Decision-catalogue / placeholder titles that must not be treated as
+# syllabus concepts in Session Overview briefing mad-libs.
+_GENERIC_TOPIC_TITLES: frozenset[str] = frozenset(
+    {
+        "today's topic",
+        "today's primary mission",
+        "today's focus topic",
+        "this curriculum area",
+        "this weak topic",
+    }
+)
+_DECISION_TITLE_PREFIX = re.compile(
+    r"^(continue with|study|revise|strengthen confidence on|"
+    r"cover prerequisite|focus on)\s+(.+)$",
+    re.IGNORECASE,
+)
+# Paper / subject codes used as sole decision targets (e.g. CS1, CM2, SP5).
+_PAPER_OR_SUBJECT_CODE = re.compile(r"^[A-Za-z]{1,4}\d{0,2}[A-Za-z]?$")
+
+
+def is_generic_session_topic_title(topic_title: str) -> bool:
+    """True when title is a placeholder or decision framing — not a syllabus topic.
+
+    Used to omit Session Overview concept/checkpoint/reflection mad-libs that
+    would otherwise treat \"Continue with CS1\" as a real concept name.
+    """
+    title = scrub(topic_title)
+    if not title:
+        return True
+    lowered = title.lower()
+    if lowered in _GENERIC_TOPIC_TITLES:
+        return True
+    match = _DECISION_TITLE_PREFIX.match(title)
+    if match is None:
+        return False
+    target = scrub(match.group(2))
+    if not target:
+        return True
+    # Sole target is a paper/subject code (Continue with CS1) or a single
+    # short token — not multi-word syllabus topic prose.
+    if _PAPER_OR_SUBJECT_CODE.fullmatch(target):
+        return True
+    if " " not in target and len(target) <= 6:
+        return True
+    return False
+
 
 def looks_like_cmp_dump(text: str) -> bool:
     """True when text resembles raw CMP / syllabus extract."""

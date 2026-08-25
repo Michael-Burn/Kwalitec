@@ -174,8 +174,9 @@ class StudySessionService:
             expected_outcome = briefing["expected_outcome"]
             checkpoint_preview = briefing["checkpoint_preview"]
             reflection_preview = briefing["reflection_preview"]
-            if briefing["learning_objectives"] and not learning_objectives:
-                learning_objectives = briefing["learning_objectives"]
+            # Briefing is authoritative for Overview Session details — including
+            # quiet omit when the mission title is a generic decision placeholder.
+            learning_objectives = tuple(briefing["learning_objectives"] or ())
             if page.overview is not None:
                 explanation = page.overview.explanation
 
@@ -836,6 +837,25 @@ class StudySessionService:
         topic = (page.shell.topic_title or "").strip()
         if not topic and overview.topics:
             topic = (overview.topics[0] or "").strip()
+
+        # Generic / decision-framed titles (e.g. "Continue with CS1") are not
+        # syllabus concepts — omit concept focus, checkpoint, reflection, and
+        # learning-objective mad-libs rather than invent false specificity.
+        from app.application.educational_authoring.writing import (
+            is_generic_session_topic_title,
+        )
+
+        if is_generic_session_topic_title(topic):
+            return {
+                "why_today": why,
+                "concept_focus": (),
+                "session_stages": stages,
+                "expected_outcome": expected,
+                "checkpoint_preview": "",
+                "reflection_preview": "",
+                "learning_objectives": (),
+            }
+
         if topic:
             try:
                 from app.application.educational_authoring import (
