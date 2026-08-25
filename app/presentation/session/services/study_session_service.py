@@ -869,6 +869,10 @@ class StudySessionService:
                         if objectives
                         else (overview.objective or overview.learning_goal or "")
                     ),
+                    educational_package_id=(
+                        overview.educational_package_id or ""
+                    ),
+                    subject_code=overview.subject_code or "",
                 )
                 if composition is not None:
                     episodes = getattr(composition, "episodes", ()) or ()

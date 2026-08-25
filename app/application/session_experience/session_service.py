@@ -414,13 +414,25 @@ def _overview_with_substance(
     explanation = snap.explanation
     if explanation is None:
         explanation = explanation_snapshot_from_overview_opaque(opaque)
-    if not objectives and not substance and explanation is None:
+    pack_id = str(opaque.get("educational_package_id") or "").strip()
+    subject_code = str(
+        opaque.get("subject_code") or opaque.get("subject_id") or ""
+    ).strip()
+    if (
+        not objectives
+        and not substance
+        and explanation is None
+        and not pack_id
+        and not subject_code
+    ):
         return snap
     return replace(
         snap,
         learning_objectives=objectives or snap.learning_objectives,
         metadata=tuple(meta) if substance else snap.metadata,
         explanation=explanation,
+        educational_package_id=pack_id or snap.educational_package_id,
+        subject_code=subject_code or snap.subject_code,
     )
 
 

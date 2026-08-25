@@ -209,6 +209,17 @@ class LearningSessionRuntimeEngine:
                 substance_on=substance_on,
             )
         )
+        seq = self._persistence.store.get(
+            "activity.sequence", f"{student_id.strip()}::{session_id.strip()}"
+        )
+        educational_package_id = str(
+            record.get("educational_package_id") or ""
+        ).strip() or _educational_package_id_from_sequence(
+            seq if isinstance(seq, dict) else None
+        )
+        subject_id = str(
+            (record.get("curriculum_identity") or "").split(":")[0]
+        ).strip()
         return {
             "objective": f"Strengthen {topic}",
             "learning_goal": topic,
@@ -243,6 +254,8 @@ class LearningSessionRuntimeEngine:
             "paused": bool(progress.get("paused")),
             "finish_review_required": self._finish_review_required(),
             "finish_review": record.get("finish_review"),
+            "educational_package_id": educational_package_id,
+            "subject_id": subject_id,
         }
 
     def begin_session_opaque(

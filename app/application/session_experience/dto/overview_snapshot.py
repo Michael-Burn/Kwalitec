@@ -42,3 +42,6 @@ class OverviewSnapshot:
     metadata: tuple[tuple[str, str], ...] = field(default_factory=tuple)
     # Pass-through Adaptive MES for Overview (alongside why_studying L1 string).
     explanation: ExplanationSnapshot | None = None
+    # Sitting package identity for Overview briefing authoring (EA-006 overlay).
+    educational_package_id: str = ""
+    subject_code: str = ""

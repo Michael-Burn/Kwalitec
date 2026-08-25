@@ -214,6 +214,7 @@ class StudentRuntimeCoordinator:
             raise MissionNotAcceptable(str(exc)) from exc
 
         store = self._require_persistence()
+        pack_id = (mission.educational_package_id or "").strip()
         store.save_binding(
             student_id=sid,
             mission_instance_id=mid,
@@ -222,7 +223,7 @@ class StudentRuntimeCoordinator:
             topic_id=mission.topic_id,
             estimated_minutes=minutes,
             curriculum_identity=mission.curriculum_identity,
-            educational_package_id=mission.educational_package_id or "",
+            educational_package_id=pack_id,
         )
         if substance is not None:
             self._provision_substance_sequence(
@@ -252,6 +253,9 @@ class StudentRuntimeCoordinator:
                     curriculum_identity=mission.curriculum_identity,
                     educational_package_id=pack_id,
                 )
+        subject_code = str(
+            (mission.curriculum_identity or "").split(":")[0]
+        ).strip()
         self._provision_overview(
             student_id=sid,
             session_id=session_id,
@@ -259,6 +263,8 @@ class StudentRuntimeCoordinator:
             topic_title=title,
             estimated_minutes=minutes,
             substance=substance,
+            educational_package_id=pack_id,
+            subject_code=subject_code,
         )
 
         return SessionBindingResult(
@@ -466,6 +472,8 @@ class StudentRuntimeCoordinator:
         topic_title: str,
         estimated_minutes: int | None,
         substance: Any | None = None,
+        educational_package_id: str = "",
+        subject_code: str = "",
     ) -> None:
         writer = self._overview_writer
         if writer is None:
@@ -479,6 +487,7 @@ class StudentRuntimeCoordinator:
             else "Today's Mission is ready."
         )
         objective = f"Strengthen {topic_title}" if topic_title else "Today's study"
+        pack_id = (educational_package_id or "").strip()
         if substance is not None:
             learning_objectives = [
                 format_learning_objective_label(code=obj.code, text=obj.text)
@@ -498,6 +507,12 @@ class StudentRuntimeCoordinator:
                     code=substance.learning_objectives[0].code,
                     text=substance.learning_objectives[0].text,
                 )
+            if not pack_id:
+                from app.infrastructure.adapters.learning_session import (
+                    package_activity_engine as pkg_engine,
+                )
+
+                pack_id = pkg_engine._package_id_from_substance(substance)
         document = {
             "objective": objective,
             "learning_goal": topic_title or "Complete today's Study Session",
@@ -521,6 +536,8 @@ class StudentRuntimeCoordinator:
             "student_id": student_id,
             "authority": _AUTHORITY,
             "substance": substance_status,
+            "educational_package_id": pack_id,
+            "subject_id": (subject_code or "").strip(),
         }
         writer.put_overview(student_id, session_id=session_id, document=document)
 

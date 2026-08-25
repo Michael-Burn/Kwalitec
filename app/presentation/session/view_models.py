@@ -87,6 +87,9 @@ class OverviewViewModel:
     mission_id: str | None = None
     # Adaptive MES for Overview (pass-through; render in a later pass).
     explanation: ExplanationViewModel | None = None
+    # Sitting package identity for Overview briefing authoring.
+    educational_package_id: str = ""
+    subject_code: str = ""
 
 
 @dataclass(frozen=True)
@@ -258,6 +261,8 @@ def overview_vm(snap: OverviewSnapshot) -> OverviewViewModel:
         session_id=snap.session_id,
         mission_id=begin.mission_id if begin else None,
         explanation=explanation_vm(snap.explanation),
+        educational_package_id=snap.educational_package_id or "",
+        subject_code=snap.subject_code or "",
     )
 
 

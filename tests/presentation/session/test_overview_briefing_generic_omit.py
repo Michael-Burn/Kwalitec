@@ -23,6 +23,8 @@ def _overview_page(
     *,
     topic_title: str,
     objectives: tuple[str, ...] = (),
+    educational_package_id: str = "",
+    subject_code: str = "",
 ) -> SessionPageViewModel:
     return SessionPageViewModel(
         shell=SessionShellViewModel(
@@ -43,6 +45,8 @@ def _overview_page(
             begin_label="Begin Session",
             begin_enabled=True,
             session_id="sess-generic",
+            educational_package_id=educational_package_id,
+            subject_code=subject_code,
         ),
         primary_cta_label="Begin Session",
         primary_cta_enabled=True,
@@ -82,23 +86,31 @@ def test_overview_briefing_omits_mad_libs_for_continue_with_cs1() -> None:
 
 
 def test_overview_briefing_keeps_real_topic_fields() -> None:
+    """With a sitting package id, briefing uses authored package language."""
     topic = "Place GLM responses in the exponential family"
     page = _overview_page(
         topic_title=topic,
         objectives=("Recognise exponential-family membership for named responses.",),
+        educational_package_id="CS1-EP001-PKG-CX-4.2-EXPONENTIAL-FAMILY",
+        subject_code="CS1",
     )
     briefing = StudySessionService._overview_briefing(page, flow_label="")
     assert briefing["learning_objectives"]
     assert any("exponential" in o.lower() for o in briefing["learning_objectives"])
-    assert briefing["concept_focus"]
-    assert topic in briefing["concept_focus"] or any(
-        "exponential" in c.lower() for c in briefing["concept_focus"]
-    )
-    assert "Checkpoint:" in briefing["checkpoint_preview"]
-    assert topic in briefing["checkpoint_preview"]
-    assert "Reflect briefly:" in briefing["reflection_preview"]
-    assert topic in briefing["reflection_preview"]
-
+    concepts = tuple(c.lower() for c in briefing["concept_focus"])
+    assert any("named response" in c for c in concepts)
+    assert any("exponential family" in c for c in concepts)
+    assert any("package-name glm" in c or "refuse" in c for c in concepts)
+    checkpoint = str(briefing["checkpoint_preview"])
+    reflection = str(briefing["reflection_preview"])
+    assert "Closed-book" in checkpoint
+    assert "Refuse" in checkpoint
+    assert "package name" in checkpoint.lower()
+    assert "Checkpoint: can you explain" not in checkpoint
+    assert "stickiest" in reflection.lower()
+    assert "Reflect briefly:" not in reflection
+    assert topic not in checkpoint  # no title mad-lib embedding
+    assert topic not in reflection
 
 def test_build_page_session_details_omit_generic_mad_libs(app, ctx) -> None:
     page = _overview_page(topic_title="Continue with CS1")
