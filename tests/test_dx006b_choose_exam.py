@@ -82,11 +82,13 @@ def test_confirm_is_begin_learning_only(logged_in_client):
             "preferred_session_minutes": 60,
         },
     )
-    review = logged_in_client.get("/study-plan/review")
-    assert review.status_code == 200
-    body = review.get_data(as_text=True)
-    assert "Begin Learning" in body
-    assert "Yes, begin learning" not in body
-    assert "Current Position" not in body
-    assert "Learning Style" not in body
-    assert "Change selection" in body
+    # SB-001A: review is no longer a confirm page — Begin Learning enters Baseline.
+    review = logged_in_client.get("/study-plan/review", follow_redirects=False)
+    assert review.status_code == 302
+    location = review.headers.get("Location") or ""
+    assert "/baseline" in location
+    # Wizard must not re-collect position / learning-style on this path.
+    with logged_in_client.session_transaction() as sess:
+        wizard = sess.get("wizard_data") or {}
+        assert wizard.get("current_position") == "not_started"
+        assert "completed_curriculum_topics" not in wizard

@@ -80,11 +80,10 @@ class TestOnboardingDedup:
                 "weekend_study_minutes": 90,
                 "preferred_session_minutes": 60,
             }
-        get_resp = logged_in_client.get("/study-plan/review")
-        html = get_resp.get_data(as_text=True)
-        assert get_resp.status_code == 200
-        assert "Which topics have you already completed" not in html
-        assert "Begin Learning" in html or "Study Plan" in html
+        # SB-001A: GET review applies deferred defaults then routes to Baseline.
+        get_resp = logged_in_client.get("/study-plan/review", follow_redirects=False)
+        assert get_resp.status_code == 302
+        assert "/baseline" in (get_resp.headers.get("Location") or "")
         with logged_in_client.session_transaction() as sess:
             wizard_data = sess["wizard_data"]
             assert wizard_data.get("current_position") == "not_started"

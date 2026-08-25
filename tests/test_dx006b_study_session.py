@@ -343,5 +343,7 @@ def test_overview_template_structure(app, client, ctx, user):
     assert "design_system.css" in html or "ds-page" in html
     assert "Study Sensei" not in html
     assert "Readiness estimate" not in html
-    assert "progressbar" not in html
+    # Session shell intentionally exposes a reading-progress indicator (a11y).
+    assert 'role="progressbar"' in html
+    assert "data-session-reading-progress" in html
     assert "study session" not in html.lower()

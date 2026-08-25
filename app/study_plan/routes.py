@@ -540,7 +540,12 @@ def review():
 @study_plan_bp.post("/review")
 @login_required
 def review_post():
-    """Legacy POST — SB-001A finalise lives on Baseline confirm."""
+    """Legacy POST — refuse hollow subjects; else Baseline owns finalise."""
+    # Keep Coming Soon / unsupported refusal at this legacy entry so students
+    # never enter Baseline for a subject that cannot create a plan (PTP-001).
+    blocked = _require_supported_selection()
+    if blocked is not None:
+        return blocked
     return redirect(url_for("student_baseline.start"))
 
 

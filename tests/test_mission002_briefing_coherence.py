@@ -353,7 +353,12 @@ def test_integration_mission_matches_progress_and_home_why(
     assert mission.topic_id == progress.current_topic_id
     assert mission.topic_id == "node-f6efa6549c1cb033"
     assert not contains_internal_node_identifier(mission.title)
-    assert "1.1" in mission.title or "Data Analysis" in mission.title
+    # Titles may be package display titles (LO-style) rather than "1.1 — Data Analysis".
+    title_l = (mission.title or "").lower()
+    assert (
+        "1.1" in (mission.title or "")
+        or "data analysis" in title_l
+    ), mission.title
 
     experience = EducationalExperienceService().load_for_user(
         mission002_user.id,
@@ -402,27 +407,42 @@ def test_integration_mid_progress_coherence(ctx, mission002_user):
         subject_code="CS1",
         exam_date=date(2026, 12, 1),
     )
+    # Topic 1.1 has multiple LOs; one mission may not fully cover it. Keep
+    # completing day-missions until progress advances, asserting coherence each step.
+    from datetime import timedelta
+
+    day = date(2026, 7, 28)
     first = runtime.generate_daily_mission(
         user_id=mission002_user.id,
         subject_code="CS1",
-        mission_date=date(2026, 7, 28),
+        mission_date=day,
     )
-    runtime.complete_mission(
-        user_id=mission002_user.id,
-        mission_instance_id=first.mission_instance_id,
-    )
-    second = runtime.generate_daily_mission(
-        user_id=mission002_user.id,
-        subject_code="CS1",
-        mission_date=date(2026, 7, 29),
-    )
-    progress = runtime.get_progress(
-        user_id=mission002_user.id,
-        subject_code="CS1",
-    )
-    assert second.topic_id == progress.current_topic_id
+    assert first.topic_id == "node-f6efa6549c1cb033"
+    current = first
+    second = None
+    for offset in range(1, 8):
+        runtime.complete_mission(
+            user_id=mission002_user.id,
+            mission_instance_id=current.mission_instance_id,
+        )
+        day = date(2026, 7, 28) + timedelta(days=offset)
+        nxt = runtime.generate_daily_mission(
+            user_id=mission002_user.id,
+            subject_code="CS1",
+            mission_date=day,
+        )
+        progress = runtime.get_progress(
+            user_id=mission002_user.id,
+            subject_code="CS1",
+        )
+        assert nxt.topic_id == progress.current_topic_id
+        assert not contains_internal_node_identifier(nxt.title)
+        if nxt.topic_id != first.topic_id:
+            second = nxt
+            break
+        current = nxt
+    assert second is not None, "expected syllabus advance off topic 1.1 within a week"
     assert second.topic_id == "node-bbbbbbbbbbbbbb02"
-    assert not contains_internal_node_identifier(second.title)
 
 
 # ── Unit: Home why_now prefers mission rationale ────────────────────────────

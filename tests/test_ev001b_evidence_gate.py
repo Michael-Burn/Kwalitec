@@ -513,7 +513,11 @@ class TestAcceptanceGEvidence:
         )
         assert response.status_code == 200
         body = response.get_data(as_text=True).lower()
-        assert "study session" in body or "evidence" in body
+        # Copy evolved: gate steers to Session + accepted practice (not legacy
+        # "study session" / "evidence" phrasing).
+        assert "session" in body and (
+            "practice" in body or "evidence" in body or "accepted" in body
+        )
 
 
 class TestFinishReviewVerdictsExport:

@@ -446,6 +446,17 @@ class TestStudyPlanManagementRoutes:
 
     def test_set_active_plan_post(self, app, ctx, user):
         """POST set-active makes the plan active and deactivates others."""
+        from app.application.student_baseline import (
+            BaselineSubjectScope,
+            StudentBaselineService,
+        )
+        from app.application.student_baseline.enums import (
+            ConfidenceBand,
+            ExamHistory,
+            LearningObjective,
+            PositionMode,
+            PreviousExperience,
+        )
         from app.services.study_plan_service import StudyPlanService
         from datetime import date as dt_date, timedelta
 
@@ -482,6 +493,26 @@ class TestStudyPlanManagementRoutes:
         assert sp2.active is True
         assert sp1.active is False
 
+        # SB-001A: complete Baseline for CM1 so Home is reachable after activate.
+        scope = BaselineSubjectScope(
+            subject_key=StudentBaselineService.subject_key("IFoA", "CM1"),
+            category_code="IFoA",
+            subject_code="CM1",
+        )
+        draft = StudentBaselineService.ensure_draft(user.id, scope)
+        StudentBaselineService.save_answer(
+            draft.id,
+            user.id,
+            experience=PreviousExperience.BRAND_NEW.value,
+            position_mode=PositionMode.START_BEGINNING.value,
+            exam_history=ExamHistory.FIRST_SITTING.value,
+            learning_objective=LearningObjective.CONTINUE.value,
+            confidence=ConfidenceBand.MODERATE.value,
+        )
+        StudentBaselineService.mark_complete(
+            draft, twin_snapshot_id="routes-cm1", study_plan_id=sp1.id
+        )
+
         resp = client.post(
             f"/study-plan/{sp1.id}/set-active",
             follow_redirects=True,
@@ -490,8 +521,9 @@ class TestStudyPlanManagementRoutes:
         body = resp.get_data(as_text=True).lower()
         assert "active study plan" in body
         assert "cm1" in body
-        # IA-002: successful activate redirects into the dashboard compose path
-        assert resp.request.path.rstrip("/").endswith("dashboard") or (
+        # Sole runtime Home is /student; legacy dashboard path still accepted.
+        path = resp.request.path.rstrip("/")
+        assert path.endswith("dashboard") or path.endswith("student") or (
             "today" in body and "mission" in body
         )
 
