@@ -1682,6 +1682,39 @@ a.ds-list__row:hover {
   line-height: 1.45;
 }
 
+/* Structured Reading / L1 body: real heading vs list hierarchy.
+   DOM already uses briefing labels + ds-list; default ds-list is markerless
+   and labels are muted — strengthen only when content is structured. */
+.ds-session-content__body[data-content-structured="true"] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.ds-session-content__body[data-content-structured="true"]
+  .ds-session-briefing__block {
+  gap: var(--space-2);
+}
+
+.ds-session-content__body[data-content-structured="true"]
+  .ds-session-briefing__label {
+  font-size: var(--font-support);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+}
+
+.ds-session-content__body[data-content-structured="true"] .ds-list {
+  list-style: disc;
+  padding-left: 1.25rem;
+  gap: var(--space-1);
+}
+
+.ds-session-content__body[data-content-structured="true"] .ds-list > li {
+  color: var(--text-primary);
+  line-height: 1.45;
+}
+
 .ds-os-mastery__stats {
   list-style: none;
   margin: var(--space-3) 0 0;

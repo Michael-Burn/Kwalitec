@@ -372,12 +372,29 @@ class StudySessionService:
                 progress = f"Session step {total} of {total}"
 
         if not objective:
-            if page.activity and page.activity.context:
-                objective = page.activity.context.strip()
-            elif page.overview and page.overview.learning_goal:
+            # Never dump activity.context into sticky chrome: for package
+            # Reading activities that field is the full L1 body. Package LO
+            # text is not on ActivityViewModel when overview is absent
+            # (activity surface), so prefer short overview fields, else a
+            # type-aware one-liner matching existing session tone.
+            if page.overview and page.overview.learning_goal:
                 objective = page.overview.learning_goal.strip()
+            elif page.overview and page.overview.learning_objectives:
+                lead = (page.overview.learning_objectives[0] or "").strip()
+                if lead:
+                    objective = lead
             else:
-                objective = "Complete the current practice step"
+                stage = ""
+                if page.activity:
+                    stage = (
+                        page.activity.activity_type
+                        or page.activity.stage_label
+                        or ""
+                    ).strip().lower()
+                if stage in {"read", "reading"}:
+                    objective = "Complete today's reading"
+                else:
+                    objective = "Complete the current practice step"
 
         if not chapter:
             chapter = subject

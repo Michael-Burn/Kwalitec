@@ -129,6 +129,51 @@ def test_activity_feedback_continue_primary(app):
     assert "Bayes" in study.feedback_explanation
 
 
+def test_reading_activity_sticky_objective_not_full_body(app):
+    """Sticky Objective must stay short — never dump Reading activity.context."""
+    reading_body = "\n".join(
+        [
+            "Topic: t-statistic (2.6)",
+            "Mission: Describe the distribution of the t-statistic",
+            "",
+            "Open the CMP:",
+            "• Open your CMP at Syllabus 2.6.5",
+            "",
+            "Focus questions:",
+            "• What is the core move of Syllabus 2.6.5?",
+            "• What claim must you refuse today?",
+            "",
+            "Misconception watch:",
+            "• Watch for using z when S replaces σ",
+            "",
+            "Out of scope today:",
+            "• F distribution as primary (2.6.6)",
+        ]
+    )
+    flow = SessionFlowSnapshot(
+        workspace=_workspace(SessionSurface.ACTIVITY),
+        surface=SessionSurface.ACTIVITY.value,
+        activity=ActivitySnapshot(
+            activity_id="act-read-1",
+            session_id="sess-1",
+            question="Purpose of this reading: extract Syllabus 2.6.5",
+            context=reading_body,
+            activity_type="read",
+            stage_label="Reading",
+            activity_index=1,
+            activities_total=4,
+            topic_title="t-statistic",
+        ),
+    )
+    with app.test_request_context("/session/sess-1/activity"):
+        study = StudySessionService().build_page(page_from_flow(flow))
+    assert study.context.objective == "Complete today's reading"
+    assert reading_body not in study.context.objective
+    assert "Focus questions" not in study.context.objective
+    assert study.content_sections
+    assert any(s.label == "Focus questions" for s in study.content_sections)
+
+
 def test_reflection_and_complete_primaries(app):
     reflection_flow = SessionFlowSnapshot(
         workspace=_workspace(SessionSurface.REFLECTION),
