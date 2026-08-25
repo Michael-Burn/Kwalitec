@@ -15,7 +15,9 @@ from app.application.config.v2_flags import resolve_v2_feature_flags
 from app.domain.session_experience.session_workspace import SessionSurface
 from app.presentation.session.content_sections import (
     parse_session_content_body,
+    present_practice_content,
     present_reading_content,
+    present_worked_example_content,
     strip_author_voice,
 )
 from app.presentation.session.dto.study_session import (
@@ -52,16 +54,31 @@ class StudySessionService:
         content_sections = parse_session_content_body(content_body)
         content_intro_line = ""
         content_sections_more = ()
-        if (
-            surface is SessionSurface.ACTIVITY
-            and page.activity
-            and _is_reading_activity(page.activity)
-            and content_sections
-        ):
-            presented = present_reading_content(content_sections)
-            content_intro_line = presented.intro_line
-            content_sections = presented.primary
-            content_sections_more = presented.more
+        if surface is SessionSurface.ACTIVITY and page.activity:
+            stage = _activity_stage_key(page.activity)
+            if _is_reading_activity(page.activity) and content_sections:
+                presented = present_reading_content(content_sections)
+                content_intro_line = presented.intro_line
+                content_sections = presented.primary
+                content_sections_more = presented.more
+            elif stage == "worked_example" and content_sections:
+                presented = present_worked_example_content(content_sections)
+                content_intro_line = presented.intro_line
+                content_sections = presented.primary
+                content_sections_more = presented.more
+            elif stage == "practice":
+                # Prompt is the real question; assemble once (never title-dump).
+                # Skip when feedback is showing — keep explanation chrome intact.
+                if not getattr(page.activity, "has_explanation", False):
+                    presented = present_practice_content(
+                        prompt=str(content.get("practice_prompt") or ""),
+                        body=content_body,
+                    )
+                    content_intro_line = presented.intro_line
+                    content_sections = presented.primary
+                    content_sections_more = presented.more
+                    if content_sections:
+                        content_body = ""
         disclosures = self._disclosures(page, surface)
         # KWP-002: technical IDs stay off learner chrome (founder diagnostics only).
         technical: tuple[str, ...] = ()
@@ -412,6 +429,10 @@ class StudySessionService:
                     ).strip().lower()
                 if stage in {"read", "reading"}:
                     objective = "Complete today's reading"
+                elif stage == "worked_example":
+                    objective = "Follow today's worked example"
+                elif stage == "practice":
+                    objective = "Answer today's practice question"
                 else:
                     objective = "Complete the current practice step"
 
@@ -511,10 +532,8 @@ class StudySessionService:
 
             activity = REFLECTION_ACTIVITY_LABEL
             expected = REFLECTION_EXPECTED_LABEL
-            instruction = (
-                page.reflection.reflection_prompt
-                or "What mattered in this practice?"
-            )
+            # Question lives in L1 / the reflection textarea — do not repeat it here.
+            instruction = "Write a short note, then continue."
             next_milestone = "Ready to finish" if product else "Return Home"
             if page.reflection.topic_title:
                 expected = f"Reflect on {page.reflection.topic_title}"
@@ -523,6 +542,7 @@ class StudySessionService:
             if product and surface is SessionSurface.SUMMARY:
                 activity = "Finish review"
                 expected = "Record Yes, Partially, or No for today's planned study"
+                # Question lives on the finish-review form legend — keep task lean.
                 instruction = (
                     "Completing a session means today's planned learning "
                     "activity occurred. It does not mean mastery increased."
@@ -568,10 +588,13 @@ class StudySessionService:
             return "Submit Answer", "answer_form", True, ""
 
         if surface is SessionSurface.REFLECTION and page.reflection:
+            # Always use reflection_form so the student can answer the prompt.
+            # Product mode still advances to Finish Review via reflection_continue
+            # → summary; do not swap to request_finish_form (that hid the input).
             if product:
                 label = "Finish Session"
-                return label, "request_finish_form", True, ""
-            label = page.reflection.next_action_label or "Continue to Summary"
+            else:
+                label = page.reflection.next_action_label or "Continue to Summary"
             return label, "reflection_form", True, ""
 
         if surface is SessionSurface.SUMMARY:
@@ -619,6 +642,7 @@ class StudySessionService:
             "model_answer": "",
             "common_mistake": "",
             "feedback_next_action": "",
+            "practice_prompt": "",
         }
 
         if surface is SessionSurface.OVERVIEW and page.overview:
@@ -642,10 +666,26 @@ class StudySessionService:
                 feedback_outcome = act.feedback_outcome or "Reviewed"
                 feedback_explanation = act.explanation or ""
             title = _activity_content_title(act)
+            stage = _activity_stage_key(act)
+            body = act.context or ""
+            support = act.supporting_material or ""
+            practice_prompt = ""
+            if stage == "practice" and not act.has_explanation:
+                # Prompt is the question; keep it out of the H2 title path.
+                practice_prompt = act.question or ""
+                # Prefer structured present_practice_content; leave stub as body.
+                body = act.context or ""
+                # Avoid dumping the same prompt again as support when it matches.
+                if (
+                    support
+                    and practice_prompt
+                    and support.strip() == practice_prompt.strip()
+                ):
+                    support = ""
             return {
                 "title": title,
-                "body": act.context or "",
-                "support": act.supporting_material or "",
+                "body": body,
+                "support": support,
                 "answer_prompt": act.answer_prompt or "Your answer",
                 "show_answer_input": not act.has_explanation,
                 "feedback_outcome": feedback_outcome,
@@ -655,6 +695,7 @@ class StudySessionService:
                 "feedback_next_action": (
                     feedback_next_action if act.has_explanation else ""
                 ),
+                "practice_prompt": practice_prompt,
             }
 
         if surface is SessionSurface.REFLECTION and page.reflection:
@@ -663,69 +704,45 @@ class StudySessionService:
                 REFLECTION_VALUE_TITLE,
             )
 
-            body = page.reflection.reflection_prompt or ""
+            prompt = (page.reflection.reflection_prompt or "").strip()
             support = ""
             if page.reflection.key_insight:
                 support = page.reflection.key_insight
             else:
                 support = REFLECTION_VALUE_FRAMING
+            # Show the question once as the textarea label; keep L1 framing lean.
             return {
                 **empty,
                 "title": REFLECTION_VALUE_TITLE,
-                "body": body,
+                "body": "",
                 "support": support,
+                "answer_prompt": prompt or "Your reflection",
+                "show_answer_input": True,
             }
 
         if surface is SessionSurface.SUMMARY and product:
+            # Form legend owns the Yes/Partially/No question — do not repeat it.
+            # Task instruction already carries the mastery disclaimer.
             return {
                 **empty,
                 "title": "Finish review",
-                "body": (
-                    "Did you complete today's planned study? "
-                    "Choose Yes, Partially, or No."
-                ),
+                "body": "",
+                "support": "",
             }
 
         if surface in {SessionSurface.SUMMARY, SessionSurface.COMPLETE}:
             topic = ""
             headline = ""
-            journey_update = ""
             if page.completion:
                 topic = page.completion.primary_topic or ""
                 headline = page.completion.headline or ""
-                journey_update = page.completion.journey_update_label or ""
             if surface is SessionSurface.COMPLETE:
-                title = headline or "Sitting Report"
-                body_parts: list[str] = []
-                if page.completion and page.completion.what_studied:
-                    body_parts.append(page.completion.what_studied)
-                elif journey_update:
-                    body_parts.append(journey_update)
-                elif topic:
-                    body_parts.append(
-                        f"You completed practice on {topic}. Your Journey is updated."
-                    )
-                else:
-                    body_parts.append(
-                        "Honest practice recorded. "
-                        "Your Journey is ready with the next step."
-                    )
-                if page.completion and page.completion.performance_summary:
-                    body_parts.append(page.completion.performance_summary)
-                if page.completion and page.completion.strategy_explanation:
-                    body_parts.append(
-                        f"Why: {page.completion.strategy_explanation}"
-                    )
-                elif page.completion and page.completion.next_recommendation:
-                    body_parts.append(
-                        f"Up next: {page.completion.next_recommendation}"
-                    )
-                elif page.completion and page.completion.tomorrow_preview:
-                    body_parts.append(page.completion.tomorrow_preview)
+                # Structured Sitting Report fields render separately in the
+                # template — keep content_body empty to avoid duplication.
                 return {
                     **empty,
-                    "title": title,
-                    "body": "\n".join(body_parts),
+                    "title": headline or "Sitting Report",
+                    "body": "",
                 }
             body = "Session practice complete."
             if topic:
@@ -933,22 +950,28 @@ class StudySessionService:
         return tuple(lines)
 
 
-def _is_reading_activity(activity: object) -> bool:
-    """True when the activity is Guided Reading (or revision reading)."""
+def _activity_stage_key(activity: object) -> str:
+    """Normalised stage key from activity_type / stage_label."""
     stage = (
         getattr(activity, "activity_type", None)
         or getattr(activity, "stage_label", None)
         or ""
     )
-    normalized = str(stage).strip().lower()
+    return str(stage).strip().lower().replace(" ", "_")
+
+
+def _is_reading_activity(activity: object) -> bool:
+    """True when the activity is Guided Reading (or revision reading)."""
+    normalized = _activity_stage_key(activity)
     return normalized in {"read", "reading"} or "reading" in normalized
 
 
 def _activity_content_title(activity: object) -> str:
-    """Short L1 title. Reading never uses the purpose/lead sentence as the heading."""
+    """Short L1 title. Never dump a full-sentence prompt into the heading."""
     label = str(getattr(activity, "stage_label", None) or "").strip()
     question = str(getattr(activity, "question", None) or "").strip()
     topic = str(getattr(activity, "topic_title", None) or "").strip()
+    stage = _activity_stage_key(activity)
 
     if _is_reading_activity(activity):
         stage_label = label or "Reading"
@@ -959,7 +982,26 @@ def _activity_content_title(activity: object) -> str:
             return f"{stage_label}: {topic}"
         return stage_label
 
-    title = question or "Learning activity"
-    if label:
-        title = f"{label}: {question or label}"
-    return title
+    if stage == "worked_example":
+        stage_label = label or "Worked example"
+        if topic and len(topic) <= 48:
+            return f"{stage_label}: {topic}"
+        return stage_label
+
+    if stage == "practice":
+        stage_label = label or "Practice"
+        # Prefer a short topic/code tag when available — never the prompt.
+        code_match = _SYLLABUS_CODE_IN_TEXT.search(question)
+        if code_match:
+            return f"{stage_label} · {code_match.group(1)}"
+        if topic and len(topic) <= 48:
+            return f"{stage_label}: {topic}"
+        return stage_label
+
+    # Unknown stages: keep short — never concatenate a long prompt into H2.
+    stage_label = label or "Learning activity"
+    if question and len(question) <= 64 and "\n" not in question:
+        return f"{stage_label}: {question}" if label else question
+    if topic and len(topic) <= 48:
+        return f"{stage_label}: {topic}"
+    return stage_label

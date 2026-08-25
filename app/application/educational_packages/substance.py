@@ -137,10 +137,9 @@ def _activities(
                 + (reading.reentry_line or "")
             ).strip(),
             body=example_body,
-            supporting_material=(
-                "Keep the CMP closed for retrieval. "
-                "Do not re-brief the Mission — move to Knowledge Checks when ready."
-            ),
+            # Supporting line is folded into the structured body ("Before you
+            # continue") so the template does not render it a second time.
+            supporting_material="",
             hints=tuple(
                 f"{pp.get('id', 'PP')}: {pp.get('cue', '')}".strip()
                 for pp in reading.pause_points
@@ -269,10 +268,13 @@ def _reading_body(pack: CertifiedEducationalPackage) -> str:
 
 
 def _worked_example_body(pack: CertifiedEducationalPackage) -> str:
+    """Assemble Worked Example body from structured package fields.
+
+    Does **not** prepend the activity prompt/lead sentence — that belongs in
+    the stage chrome, not as a duplicated H1/body dump.
+    """
     reading = pack.reading
     lines = [
-        "Re-entry after CMP reading",
-        "",
         reading.reentry_line,
         "",
         "Confirm your structure sketch:",
@@ -288,9 +290,13 @@ def _worked_example_body(pack: CertifiedEducationalPackage) -> str:
             "",
             "Success criteria you will stress-test next:",
             *(f"• {c}" for c in pack.success_criteria),
+            "",
+            "Before you continue:",
+            "• Keep the CMP closed for retrieval.",
+            "• Move to Knowledge Checks when your sketch and pause notes are ready.",
         ]
     )
-    return "\n".join(lines)
+    return "\n".join(line for line in lines if line is not None)
 
 
 def _scoreable_from_check(

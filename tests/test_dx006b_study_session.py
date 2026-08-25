@@ -220,11 +220,114 @@ def test_reflection_and_complete_primaries(app):
         complete = StudySessionService().build_page(page_from_flow(complete_flow))
     assert reflection.primary_kind == "reflection_form"
     assert reflection.primary_label == "Continue to Summary"
+    assert reflection.answer_prompt == "What mattered in this practice?"
+    assert reflection.content_body == ""
     assert any(d.title == "Concept confidence" for d in reflection.disclosures)
     assert complete.primary_kind == "complete_form"
     assert complete.primary_label == "Return Home"
-    assert "Probability" in complete.content_body
+    assert "Probability" in complete.page_title or "Probability" in (
+        complete.completion_headline or ""
+    )
+    assert complete.content_body == ""
 
+
+def test_product_reflection_keeps_reflection_form(app, monkeypatch):
+    """Commercial Loop product mode must not hide the reflection textarea."""
+    monkeypatch.setenv("KWALITEC_COMMERCIAL_LOOP", "1")
+    monkeypatch.setenv("SR_SESSION_COMPLETION_PRODUCT", "1")
+    from app.application.config import v2_flags as flags_mod
+
+    flags_mod.V2_FEATURE_FLAGS = flags_mod.resolve_v2_feature_flags()
+    flow = SessionFlowSnapshot(
+        workspace=_workspace(SessionSurface.REFLECTION),
+        surface=SessionSurface.REFLECTION.value,
+        reflection=ReflectionSnapshot(
+            session_id="sess-1",
+            reflection_prompt="What still feels unclear about today's topic?",
+            topic_title="t-statistic",
+            next_action_label="Continue to Summary",
+        ),
+    )
+    with app.test_request_context("/session/sess-1/reflection"):
+        study = StudySessionService().build_page(page_from_flow(flow))
+    assert study.primary_kind == "reflection_form"
+    assert study.primary_label == "Finish Session"
+    assert "unclear" in study.answer_prompt.lower()
+    assert study.task.instruction != study.answer_prompt
+
+
+def test_practice_and_worked_example_use_short_titles(app):
+    practice_flow = SessionFlowSnapshot(
+        workspace=_workspace(SessionSurface.ACTIVITY),
+        surface=SessionSurface.ACTIVITY.value,
+        activity=ActivitySnapshot(
+            activity_id="act-practice-2",
+            session_id="sess-1",
+            question=(
+                "Closed-book. Refuse 'The t-statistic finished the F "
+                "variance-ratio LO and Chapter 3.' State today's stop."
+            ),
+            context="Checkpoint refuse/warrant for 2.6.5.",
+            activity_type="practice",
+            stage_label="Practice",
+            topic_title="t-statistic",
+            activity_index=3,
+            activities_total=4,
+            answer_prompt="Your answer",
+        ),
+    )
+    example_flow = SessionFlowSnapshot(
+        workspace=_workspace(SessionSurface.ACTIVITY),
+        surface=SessionSurface.ACTIVITY.value,
+        activity=ActivitySnapshot(
+            activity_id="act-example-1",
+            session_id="sess-1",
+            question=(
+                "Before Knowledge Checks: confirm your chain sketch "
+                "and pause-point notes. Re-enter with CMP closed."
+            ),
+            context="\n".join(
+                [
+                    "Re-enter with the CMP closed.",
+                    "",
+                    "Confirm your structure sketch:",
+                    "• Concept focus: t-statistic",
+                    "",
+                    "Pause-point harvest:",
+                    "• PP1: df warrant",
+                    "",
+                    "Success criteria you will stress-test next:",
+                    "• Name t vs z",
+                    "",
+                    "Before you continue:",
+                    "• Keep the CMP closed for retrieval.",
+                ]
+            ),
+            activity_type="worked_example",
+            stage_label="Worked example",
+            topic_title="t-statistic",
+            activity_index=2,
+            activities_total=4,
+        ),
+    )
+    with app.test_request_context("/session/sess-1/activity"):
+        practice = StudySessionService().build_page(page_from_flow(practice_flow))
+        example = StudySessionService().build_page(page_from_flow(example_flow))
+    assert practice.content_title == "Practice: t-statistic"
+    assert "Refuse" not in practice.content_title
+    assert practice.content_sections
+    assert practice.content_sections[0].label == "Question"
+    assert "Refuse" in practice.content_sections[0].paragraphs[0]
+    assert example.content_title == "Worked example: t-statistic"
+    assert "Before Knowledge Checks" not in example.content_title
+    assert any(
+        s.label == "Confirm your structure sketch"
+        for s in example.content_sections
+    )
+    assert any(
+        s.label == "Success criteria you will stress-test next"
+        for s in example.content_sections_more
+    )
 
 def test_overview_template_structure(app, client, ctx, user):
     from tests.presentation.workflows.helpers import login_student, wire_session

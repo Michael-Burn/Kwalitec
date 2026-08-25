@@ -412,7 +412,7 @@
     <p class="ds-list__meta">{{ s.educational_flow_label }}</p>
     {% endif %}
 
-    {% if s.stage_label and s.surface == 'activity' %}
+    {% if s.stage_label and s.surface == 'activity' and s.stage_label != s.content_title %}
     <p class="ds-list__meta" data-session-stage="{{ s.activity_type }}">
       {{ s.stage_label }}
     </p>
@@ -484,8 +484,15 @@
     <form method="post" action="{{ url_for('session.reflection_continue', session_id=s.session_id) }}">
       {{ form.hidden_tag() }}
       {{ form.session_id() }}
-      <label class="ds-session-answer__label" for="{{ form.reflection_note.id }}">Optional note</label>
-      {{ form.reflection_note(class_="ds-input", autocomplete="off") }}
+      <label class="ds-session-answer__label" for="{{ form.reflection_note.id }}" id="session-reflection-label">
+        {{ s.answer_prompt or 'Your reflection' }}
+      </label>
+      {{ form.reflection_note(
+        class_="ds-textarea",
+        rows="4",
+        autocomplete="off",
+        **{"aria-labelledby": "session-reflection-label"}
+      ) }}
       <button class="ds-btn ds-btn--primary" type="submit" data-session-cta="primary">
         {{ s.primary_label }}
       </button>

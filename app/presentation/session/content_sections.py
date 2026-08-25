@@ -62,6 +62,20 @@ _READING_MORE_LABELS: frozenset[str] = frozenset(
     }
 )
 
+# Worked-example essentials vs secondary guidance.
+_WORKED_EXAMPLE_PRIMARY_LABELS: frozenset[str] = frozenset(
+    {
+        "Confirm your structure sketch",
+        "Pause-point harvest",
+    }
+)
+_WORKED_EXAMPLE_MORE_LABELS: frozenset[str] = frozenset(
+    {
+        "Success criteria you will stress-test next",
+        "Before you continue",
+    }
+)
+
 
 def present_reading_content(
     sections: tuple[ContentSection, ...],
@@ -118,6 +132,81 @@ def _consolidate_reading_intro(paragraphs: tuple[str, ...]) -> str:
     if len(paragraphs) == 1:
         return paragraphs[0].strip()
     return min((p.strip() for p in paragraphs if p.strip()), key=len, default="")
+
+
+def present_worked_example_content(
+    sections: tuple[ContentSection, ...],
+) -> ReadingContentPresentation:
+    """Split worked-example sections into intro + essentials + more guidance."""
+    if not sections:
+        return ReadingContentPresentation()
+
+    intro_line = ""
+    primary: list[ContentSection] = []
+    more: list[ContentSection] = []
+
+    for section in sections:
+        if not section.label:
+            # Prefer the first non-empty prose block as the re-entry intro.
+            for para in section.paragraphs:
+                stripped = para.strip()
+                if stripped:
+                    intro_line = intro_line or stripped
+                    break
+            if section.bullets:
+                primary.append(
+                    ContentSection(
+                        label="",
+                        paragraphs=(),
+                        bullets=section.bullets,
+                    )
+                )
+            continue
+        if section.label in _WORKED_EXAMPLE_MORE_LABELS:
+            more.append(section)
+        elif section.label in _WORKED_EXAMPLE_PRIMARY_LABELS:
+            primary.append(section)
+        else:
+            primary.append(section)
+
+    return ReadingContentPresentation(
+        intro_line=intro_line,
+        primary=tuple(primary),
+        more=tuple(more),
+    )
+
+
+def present_practice_content(
+    *,
+    prompt: str,
+    body: str,
+) -> ReadingContentPresentation:
+    """Practice L1: show the question once; keep short stubs out of the title path.
+
+    The educational prompt is the student-facing question. Package ``body`` is
+    often a one-line authoring stub — omit it when it adds no new information.
+    """
+    question = strip_author_voice((prompt or "").strip())
+    stub = strip_author_voice((body or "").strip())
+    primary: list[ContentSection] = []
+    if question:
+        primary.append(
+            ContentSection(
+                label="Question",
+                paragraphs=(question,),
+                bullets=(),
+            )
+        )
+    if stub and stub.lower() not in question.lower() and len(stub) >= 12:
+        # Only keep a distinct stub that isn't already the question text.
+        primary.append(
+            ContentSection(
+                label="Focus",
+                paragraphs=(stub,),
+                bullets=(),
+            )
+        )
+    return ReadingContentPresentation(intro_line="", primary=tuple(primary), more=())
 
 
 def strip_author_voice(text: str) -> str:

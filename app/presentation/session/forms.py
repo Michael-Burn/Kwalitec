@@ -6,7 +6,6 @@ from flask_wtf import FlaskForm
 from wtforms import (
     HiddenField,
     RadioField,
-    StringField,
     SubmitField,
     TextAreaField,
 )
@@ -67,8 +66,8 @@ class ContinueReflectionForm(FlaskForm):
     """Continue from reflection to summary."""
 
     session_id = HiddenField(validators=[DataRequired(), Length(max=128)])
-    reflection_note = StringField(
-        "Reflection note",
+    reflection_note = TextAreaField(
+        "Your reflection",
         validators=[Optional(), Length(max=2000)],
     )
     submit = SubmitField("Continue to Summary")

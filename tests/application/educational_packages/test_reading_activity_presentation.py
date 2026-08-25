@@ -6,7 +6,9 @@ from app.application.educational_packages.loader import find_package_by_id
 from app.application.educational_packages.substance import substance_from_package
 from app.presentation.session.content_sections import (
     parse_session_content_body,
+    present_practice_content,
     present_reading_content,
+    present_worked_example_content,
     strip_author_voice,
 )
 
@@ -93,6 +95,54 @@ def test_present_reading_content_trims_to_essentials() -> None:
     ]
 
 
+def test_present_practice_content_shows_question_once() -> None:
+    presented = present_practice_content(
+        prompt="Closed-book. Name today's stop condition.",
+        body="Checkpoint refuse/warrant for 2.6.5.",
+    )
+    assert len(presented.primary) == 2
+    assert presented.primary[0].label == "Question"
+    assert "stop condition" in presented.primary[0].paragraphs[0]
+    assert presented.primary[1].label == "Focus"
+    # Identical stub is dropped
+    same = present_practice_content(
+        prompt="Closed-book. Name today's stop.",
+        body="Closed-book. Name today's stop.",
+    )
+    assert len(same.primary) == 1
+    assert same.primary[0].label == "Question"
+
+
+def test_present_worked_example_content_splits_essentials() -> None:
+    body = "\n".join(
+        [
+            "Re-enter with the CMP closed.",
+            "",
+            "Confirm your structure sketch:",
+            "• Concept focus: t",
+            "",
+            "Pause-point harvest:",
+            "• PP1: df",
+            "",
+            "Success criteria you will stress-test next:",
+            "• Name t vs z",
+            "",
+            "Before you continue:",
+            "• Keep the CMP closed for retrieval.",
+        ]
+    )
+    presented = present_worked_example_content(parse_session_content_body(body))
+    assert "Re-enter" in presented.intro_line
+    assert [s.label for s in presented.primary] == [
+        "Confirm your structure sketch",
+        "Pause-point harvest",
+    ]
+    assert [s.label for s in presented.more] == [
+        "Success criteria you will stress-test next",
+        "Before you continue",
+    ]
+
+
 def test_cs1009_2_6_5_reading_body_has_no_exit_line_duplication() -> None:
     pack = find_package_by_id("CS1-EP001-PKG-2.6-T-STATISTIC")
     assert pack is not None
@@ -122,3 +172,32 @@ def test_cs1009_2_6_5_reading_body_has_no_exit_line_duplication() -> None:
     assert {s.label for s in presented.primary} == {"Open the CMP", "Focus questions"}
     assert "Misconception watch" in {s.label for s in presented.more}
     assert "When you finish" in {s.label for s in presented.more}
+
+
+def test_cs1009_2_6_5_worked_example_body_is_structured() -> None:
+    pack = find_package_by_id("CS1-EP001-PKG-2.6-T-STATISTIC")
+    assert pack is not None
+    substance = substance_from_package(
+        pack, curriculum_identity="cs1-test", topic_id="t1"
+    )
+    example = next(
+        a for a in substance.activities if a.activity_id == "act-example-1"
+    )
+    assert example.supporting_material == ""
+    assert "Confirm your structure sketch:" in example.body
+    assert "Before you continue:" in example.body
+    presented = present_worked_example_content(
+        parse_session_content_body(example.body)
+    )
+    assert presented.primary
+    assert presented.more
+
+
+def test_cs1009_2_6_5_checkpoint_prompt_has_subject() -> None:
+    pack = find_package_by_id("CS1-EP001-PKG-2.6-T-STATISTIC")
+    assert pack is not None
+    checkpoint = next(
+        c for c in pack.knowledge_checks if "Checkpoint" in (c.title or "")
+    )
+    assert "Refuse 't finished" not in checkpoint.prompt
+    assert "The t-statistic finished" in checkpoint.prompt

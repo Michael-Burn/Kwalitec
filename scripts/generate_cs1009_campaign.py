@@ -924,8 +924,8 @@ LEARNING = [
             "by S. Degrees of freedom follow CMP (typically n−1 for one-sample)."
         ),
         cp_prompt=(
-            "Closed-book. Refuse 't finished the F variance-ratio LO and Chapter 3.' State "
-            "today's stop."
+            "Closed-book. Refuse 'The t-statistic finished the F variance-ratio LO "
+            "and Chapter 3.' State today's stop."
         ),
         cp_kw=["refuse", "F", "t", "stop", "2.6.5", "3.1", "chapter"],
         cp_model=(
