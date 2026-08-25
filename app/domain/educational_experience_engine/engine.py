@@ -15,6 +15,7 @@ from app.domain.educational_experience_engine.experience import (
 )
 from app.domain.educational_experience_engine.presentation import (
     curriculum_area_label,
+    educational_rationale_for,
     effort_label,
     motivation_for,
     next_steps_for,
@@ -91,7 +92,11 @@ class EducationalExperienceEngine:
             instance_id=decision.instance_id,
             title=title_for(decision.decision_type, decision.curriculum_target),
             summary=summary_for(decision.decision_type, area),
-            educational_rationale=decision.rationale_summary.strip(),
+            # Student-facing why from presentation catalogues — never copy
+            # EI-007 rationale_summary (internal audit / debug text).
+            educational_rationale=educational_rationale_for(
+                decision.decision_type, area
+            ),
             estimated_effort=EffortPresentation(
                 minutes=minutes,
                 label=effort_label(minutes),

@@ -219,7 +219,12 @@ def test_surface_consistency_across_dashboard_mission_coach(monkeypatch) -> None
         for r in results
         if r.experience is not None
     }
-    assert whys == {"Continue the incomplete curriculum path."}
+    assert len(whys) == 1
+    why = next(iter(whys))
+    assert why != "Continue the incomplete curriculum path."
+    assert "LO2" in why
+    assert "rank" not in why.lower()
+    assert "priority" not in why.lower()
 
 
 def test_has_educational_intelligence_does_not_record_telemetry(monkeypatch) -> None:

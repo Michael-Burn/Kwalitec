@@ -71,7 +71,13 @@ def test_adapters_share_decision_id_and_why() -> None:
         revision["educational_why"],
         session["educational_why"],
     }
-    assert why_values == {"Study new incomplete learning objective."}
+    assert len(why_values) == 1
+    why = next(iter(why_values))
+    assert why == bundle.experience.educational_rationale
+    assert why != _decision().rationale_summary
+    assert "LO1" in why
+    assert "rank" not in why.lower()
+    assert "priority" not in why.lower()
 
     assert dashboard["curriculum_target"] == "CS1.LO1"
     assert mission["curriculum_target"] == session["curriculum_target"] == "CS1.LO1"
@@ -86,4 +92,6 @@ def test_adapters_do_not_mutate_experience_model() -> None:
     map_dashboard_recommendation(bundle)
     map_daily_mission(bundle.daily_mission)
     assert bundle.experience.educational_rationale == before
-    assert decision.rationale_summary == before
+    # Internal audit string remains on the decision; experience why is separate.
+    assert decision.rationale_summary == "Study new incomplete learning objective."
+    assert before != decision.rationale_summary

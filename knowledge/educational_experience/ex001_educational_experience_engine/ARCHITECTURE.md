@@ -47,7 +47,7 @@ Package naming note: EX-001 lives under `educational_experience_engine` to remai
 ## 3. Transformation pipeline
 
 1. **Consume** — Accept an `EducationalDecision` (or EI-007 `DecisionView`) read-only.  
-2. **Present** — `EducationalExperienceEngine.present` builds the canonical `ExperienceModel` using deterministic catalogues (`eee.v1`).  
+2. **Present** — `EducationalExperienceEngine.present` builds the canonical `ExperienceModel` using deterministic catalogues (`eee.v1.1`).  
 3. **Project** — Surface helpers derive Daily Mission, Coach, Dashboard, Revision Planner, and Session briefing models from the same `ExperienceModel`.  
 4. **Serve** — `ExperienceTransformationService` exposes the ExperienceEnginePort contract for orchestrators and future UI adapters.  
 5. **Explain** — `explainable_presentation` returns a compact what/why/curriculum/outcome/effort payload with full decision trace.
@@ -64,7 +64,7 @@ Canonical `ExperienceModel` fields:
 |-------|------|
 | `title` | Student-facing recommendation headline |
 | `summary` | Short description of the recommended action |
-| `educational_rationale` | Why — taken from decision `rationale_summary` (not dropped) |
+| `educational_rationale` | Why — student-facing catalogue from decision type + area (never EI-007 `rationale_summary`) |
 | `estimated_effort` | Minutes + human label |
 | `expected_outcome` | Student-readable learning outcome |
 | `urgency` | Presentation urgency band derived from priority/type |
@@ -73,7 +73,7 @@ Canonical `ExperienceModel` fields:
 | `next_steps` | Ordered actionable steps for the surface |
 | `curriculum_area` | Human curriculum area label |
 | `trace` | Decision id, type, target, beliefs, evidence, rules, priority, rank |
-| `experience_version` | Presentation pack id (`eee.v1`) |
+| `experience_version` | Presentation pack id (`eee.v1.1`) |
 
 Surface models (`DailyMissionExperience`, `CoachConversationContext`, `DashboardPriorityCard`, `RevisionPlannerEntry`, `StudySessionBriefing`) are projections of the same ExperienceModel.
 
@@ -99,7 +99,7 @@ Runtime integration contracts live in `app/application/educational_experience_en
 
 ## 6. Presentation invariants
 
-1. Educational rationale from EI-007 is preserved verbatim in experience outputs.  
+1. Student-facing educational rationale comes from EX-001 presentation catalogues keyed by decision type and curriculum area — EI-007 `rationale_summary` remains internal audit text and is never copied into experience outputs.  
 2. Curriculum target and supporting belief / evidence / rule ids remain in `ExperienceTrace`.  
 3. Urgency and motivational framing are presentation signals only — they do not mutate priority.  
 4. All surfaces for one decision share the same `decision_id`, title family, and why text.  
@@ -113,7 +113,7 @@ Runtime integration contracts live in `app/application/educational_experience_en
 | Concern | Owner |
 |---------|-------|
 | What to study next | EI-007 Educational Reasoning Engine |
-| Why (educational) | EI-007 decision rationale + explanation |
+| Why (educational) | EX-001 presentation catalogues (decision type + area); EI-007 rationale stays internal |
 | Priority / rank | EI-007 prioritisation |
 | How to say it | EX-001 presentation catalogues |
 | How to shape per surface | EX-001 surface projections |

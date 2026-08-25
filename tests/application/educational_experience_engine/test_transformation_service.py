@@ -102,8 +102,12 @@ def test_present_all_surfaces_are_consistent() -> None:
         bundle.daily_mission.why_this_mission
         == bundle.coach.educational_why
         == bundle.dashboard_card.why_label
-        == decision.rationale_summary
+        == bundle.experience.educational_rationale
     )
+    # Catalogue why — not the internal EI-007 rationale_summary.
+    assert bundle.experience.educational_rationale != decision.rationale_summary
+    assert "LO1" in bundle.experience.educational_rationale
+    assert "rank" not in bundle.experience.educational_rationale.lower()
     assert (
         bundle.daily_mission.curriculum_target
         == bundle.session_briefing.curriculum_target

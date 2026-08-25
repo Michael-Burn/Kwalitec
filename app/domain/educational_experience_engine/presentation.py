@@ -78,6 +78,31 @@ _MOTIVATION: dict[str, str] = {
     ),
 }
 
+# Student-facing "why" — derived from decision semantics, never from EI-007
+# ``rationale_summary`` (that field is internal audit text only).
+_EDUCATIONAL_RATIONALE: dict[str, str] = {
+    DecisionType.STUDY_NEW.value: (
+        "{area} is the next learning objective on your incomplete curriculum path."
+    ),
+    DecisionType.REVISE.value: (
+        "Revision on {area} is due so what you have learned stays available "
+        "for the exam."
+    ),
+    DecisionType.STRENGTHEN_CONFIDENCE.value: (
+        "Building confidence on {area} makes your progress more reliable."
+    ),
+    DecisionType.SATISFY_PREREQUISITE.value: (
+        "Covering {area} clears a prerequisite so later topics can unlock."
+    ),
+    DecisionType.CONTINUE_PATH.value: (
+        "Continuing with {area} keeps momentum on your current study path."
+    ),
+}
+
+_GENERIC_EDUCATIONAL_RATIONALE = (
+    "This focus supports your highest-value next study action."
+)
+
 _NEXT_STEPS: dict[str, tuple[str, ...]] = {
     DecisionType.STUDY_NEW.value: (
         "Open the recommended curriculum area",
@@ -139,6 +164,15 @@ def motivation_for(decision_type: str) -> str:
         decision_type,
         "A focused study block moves you closer to exam readiness.",
     )
+
+
+def educational_rationale_for(decision_type: str, curriculum_area: str) -> str:
+    """Plain-language why for student surfaces (not EI-007 audit copy)."""
+    area = (curriculum_area or "").strip() or "this curriculum area"
+    template = _EDUCATIONAL_RATIONALE.get(decision_type)
+    if template is None:
+        return _GENERIC_EDUCATIONAL_RATIONALE
+    return template.format(area=area)
 
 
 def next_steps_for(decision_type: str) -> tuple[str, ...]:

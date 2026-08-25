@@ -7,5 +7,5 @@ pack that produced them so regenerations remain auditable and comparable.
 from __future__ import annotations
 
 # Bump when wording catalogues, urgency mapping, or surface projections change.
-EXPERIENCE_VERSION = "eee.v1"
+EXPERIENCE_VERSION = "eee.v1.1"
 """Stable identifier for the EX-001 deterministic experience pack."""

@@ -84,7 +84,10 @@ def test_same_decision_yields_identical_experience() -> None:
     assert first == second
     assert first.experience_version == EXPERIENCE_VERSION
     assert first.trace.decision_id == decision.decision_id
-    assert first.educational_rationale == decision.rationale_summary
+    # Student-facing why is catalogue-derived — never EI-007 audit text.
+    assert first.educational_rationale != decision.rationale_summary
+    assert "LO1" in first.educational_rationale
+    assert "incomplete curriculum path" in first.educational_rationale.lower()
 
 
 def test_surfaces_consume_same_decision_consistently() -> None:
@@ -127,6 +130,7 @@ def test_surfaces_consume_same_decision_consistently() -> None:
     }
     assert len(titles) == 1
 
+    expected_why = experience.educational_rationale
     whys = {
         mission.why_this_mission,
         coach.educational_why,
@@ -135,8 +139,46 @@ def test_surfaces_consume_same_decision_consistently() -> None:
         briefing.educational_why,
         experience.educational_rationale,
     }
-    assert whys == {decision.rationale_summary}
+    assert whys == {expected_why}
+    assert expected_why != decision.rationale_summary
+    assert "revision" in expected_why.lower()
     assert revision.is_revision_action is True
+
+
+def test_internal_rationale_summary_never_reaches_student_why() -> None:
+    """Bug 1: EI-007 audit strings must not leak into educational_rationale."""
+    decision = EducationalDecision(
+        decision_id="ere-dec-bug1",
+        instance_id="sci-1",
+        decision_type=DecisionType.CONTINUE_PATH.value,
+        curriculum_target="CS1",
+        priority=0.5,
+        rank_position=1,
+        rationale_summary=(
+            "Rank 1 continue_path on CS1 with priority 0.5000 "
+            "via rules [study_continuity] (ere.v1)."
+        ),
+        prerequisite_chain=(),
+        estimated_effort_minutes=25,
+        expected_educational_outcome=ExpectedOutcome.MAINTAIN_MOMENTUM.value,
+        supporting_belief_ids=("tie-1",),
+        supporting_curriculum_refs=("CS1",),
+        supporting_evidence_ids=("lee-1",),
+        applied_rule_ids=("study_continuity",),
+        reasoned_at=AS_OF,
+    )
+    experience = EducationalExperienceEngine().present(decision, presented_at=AS_OF)
+    mission = EducationalExperienceEngine().to_daily_mission(
+        decision, presented_at=AS_OF
+    )
+    assert experience.educational_rationale != decision.rationale_summary
+    assert "rank" not in experience.educational_rationale.lower()
+    assert "priority" not in experience.educational_rationale.lower()
+    assert "study_continuity" not in experience.educational_rationale
+    assert "ere.v1" not in experience.educational_rationale
+    assert mission.why_this_mission == experience.educational_rationale
+    assert "CS1" in experience.educational_rationale
+    assert "momentum" in experience.educational_rationale.lower()
 
 
 def test_explainability_preserved() -> None:
