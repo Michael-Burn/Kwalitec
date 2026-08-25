@@ -31,6 +31,95 @@ class ContentSection:
     bullets: tuple[str, ...] = ()
 
 
+@dataclass(frozen=True)
+class ReadingContentPresentation:
+    """Default-visible vs collapsed Reading sections (template-facing)."""
+
+    intro_line: str = ""
+    primary: tuple[ContentSection, ...] = ()
+    more: tuple[ContentSection, ...] = ()
+
+
+# Shown above the fold for Guided Reading / Revision reading bodies.
+_READING_PRIMARY_LABELS: frozenset[str] = frozenset(
+    {
+        "Open the CMP",
+        "Focus questions",
+        "Revision focus — retrieve, do not re-learn",
+        "Retrieval questions (answer closed-book first)",
+    }
+)
+
+# Available behind the Session "More guidance" disclosure.
+_READING_MORE_LABELS: frozenset[str] = frozenset(
+    {
+        "Misconception watch",
+        "While you read",
+        "While you retrieve",
+        "Out of scope today",
+        "When you finish",
+        "Next after Revision",
+    }
+)
+
+
+def present_reading_content(
+    sections: tuple[ContentSection, ...],
+) -> ReadingContentPresentation:
+    """Split parsed Reading sections into intro + essentials + more guidance.
+
+    Does not re-parse package text. Unlabelled Topic/Mission prose collapses to
+    a single Mission line when present; secondary labelled blocks move to
+    ``more`` for a default-closed disclosure.
+    """
+    if not sections:
+        return ReadingContentPresentation()
+
+    intro_line = ""
+    primary: list[ContentSection] = []
+    more: list[ContentSection] = []
+
+    for section in sections:
+        if not section.label:
+            intro_line = _consolidate_reading_intro(section.paragraphs) or intro_line
+            if section.bullets:
+                primary.append(
+                    ContentSection(
+                        label="",
+                        paragraphs=(),
+                        bullets=section.bullets,
+                    )
+                )
+            continue
+        if section.label in _READING_MORE_LABELS:
+            more.append(section)
+        elif section.label in _READING_PRIMARY_LABELS:
+            primary.append(section)
+        else:
+            # Unknown labelled block: keep visible rather than hide.
+            primary.append(section)
+
+    return ReadingContentPresentation(
+        intro_line=intro_line,
+        primary=tuple(primary),
+        more=tuple(more),
+    )
+
+
+def _consolidate_reading_intro(paragraphs: tuple[str, ...]) -> str:
+    """Prefer Mission over Topic (and other near-duplicate framing lines)."""
+    if not paragraphs:
+        return ""
+    for para in paragraphs:
+        stripped = para.strip()
+        if stripped.lower().startswith("mission:"):
+            return stripped
+    # Single prose line — keep it; multiple non-Mission lines → shortest.
+    if len(paragraphs) == 1:
+        return paragraphs[0].strip()
+    return min((p.strip() for p in paragraphs if p.strip()), key=len, default="")
+
+
 def strip_author_voice(text: str) -> str:
     """Remove internal-authoring meta-commentary from student-facing copy."""
     cleaned = text or ""

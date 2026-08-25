@@ -6,6 +6,7 @@ from app.application.educational_packages.loader import find_package_by_id
 from app.application.educational_packages.substance import substance_from_package
 from app.presentation.session.content_sections import (
     parse_session_content_body,
+    present_reading_content,
     strip_author_voice,
 )
 
@@ -56,6 +57,42 @@ def test_parse_session_content_body_builds_labelled_lists() -> None:
     assert focus.bullets[0].startswith("What is the core move")
 
 
+def test_present_reading_content_trims_to_essentials() -> None:
+    body = "\n".join(
+        [
+            "Topic: t-statistic (2.6)",
+            "Mission: Describe the t-statistic",
+            "",
+            "Open the CMP:",
+            "• Open your CMP at Syllabus 2.6.5",
+            "",
+            "Focus questions:",
+            "• What is the core move?",
+            "",
+            "Misconception watch:",
+            "• Watch for using z when S replaces σ",
+            "",
+            "While you read:",
+            "• Sketch the chain",
+            "",
+            "Out of scope today:",
+            "• F distribution",
+            "",
+            "When you finish:",
+            "• Close the CMP",
+        ]
+    )
+    presented = present_reading_content(parse_session_content_body(body))
+    assert presented.intro_line == "Mission: Describe the t-statistic"
+    assert [s.label for s in presented.primary] == ["Open the CMP", "Focus questions"]
+    assert [s.label for s in presented.more] == [
+        "Misconception watch",
+        "While you read",
+        "Out of scope today",
+        "When you finish",
+    ]
+
+
 def test_cs1009_2_6_5_reading_body_has_no_exit_line_duplication() -> None:
     pack = find_package_by_id("CS1-EP001-PKG-2.6-T-STATISTIC")
     assert pack is not None
@@ -79,3 +116,9 @@ def test_cs1009_2_6_5_reading_body_has_no_exit_line_duplication() -> None:
     assert pack.reading.exit_line not in body
     sections = parse_session_content_body(body)
     assert any(s.label == "Focus questions" and s.bullets for s in sections)
+    presented = present_reading_content(sections)
+    assert presented.intro_line.startswith("Mission:")
+    assert "Topic:" not in presented.intro_line
+    assert {s.label for s in presented.primary} == {"Open the CMP", "Focus questions"}
+    assert "Misconception watch" in {s.label for s in presented.more}
+    assert "When you finish" in {s.label for s in presented.more}

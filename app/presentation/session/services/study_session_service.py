@@ -7,12 +7,15 @@ question engines.
 
 from __future__ import annotations
 
+import re
+
 from flask import url_for
 
 from app.application.config.v2_flags import resolve_v2_feature_flags
 from app.domain.session_experience.session_workspace import SessionSurface
 from app.presentation.session.content_sections import (
     parse_session_content_body,
+    present_reading_content,
     strip_author_voice,
 )
 from app.presentation.session.dto.study_session import (
@@ -24,6 +27,7 @@ from app.presentation.session.dto.study_session import (
 from app.presentation.session.view_models import SessionPageViewModel
 
 _PAGE_TITLE = "Session"
+_SYLLABUS_CODE_IN_TEXT = re.compile(r"Syllabus\s+(\d+(?:\.\d+)*)", re.IGNORECASE)
 
 
 class StudySessionService:
@@ -46,6 +50,18 @@ class StudySessionService:
         if content_support and content_body and content_support in content_body:
             content_support = ""
         content_sections = parse_session_content_body(content_body)
+        content_intro_line = ""
+        content_sections_more = ()
+        if (
+            surface is SessionSurface.ACTIVITY
+            and page.activity
+            and _is_reading_activity(page.activity)
+            and content_sections
+        ):
+            presented = present_reading_content(content_sections)
+            content_intro_line = presented.intro_line
+            content_sections = presented.primary
+            content_sections_more = presented.more
         disclosures = self._disclosures(page, surface)
         # KWP-002: technical IDs stay off learner chrome (founder diagnostics only).
         technical: tuple[str, ...] = ()
@@ -194,6 +210,8 @@ class StudySessionService:
             content_body=content_body,
             content_support=content_support,
             content_sections=content_sections,
+            content_intro_line=content_intro_line,
+            content_sections_more=content_sections_more,
             answer_prompt=content["answer_prompt"],
             show_answer_input=content["show_answer_input"],
             feedback_outcome=content["feedback_outcome"],
@@ -622,9 +640,7 @@ class StudySessionService:
             if act.has_explanation:
                 feedback_outcome = act.feedback_outcome or "Reviewed"
                 feedback_explanation = act.explanation or ""
-            title = act.question or "Learning activity"
-            if act.stage_label:
-                title = f"{act.stage_label}: {act.question or act.stage_label}"
+            title = _activity_content_title(act)
             return {
                 "title": title,
                 "body": act.context or "",
@@ -891,3 +907,35 @@ class StudySessionService:
         if page.overview and page.overview.mission_id:
             lines.append(f"Mission ID · {page.overview.mission_id}")
         return tuple(lines)
+
+
+def _is_reading_activity(activity: object) -> bool:
+    """True when the activity is Guided Reading (or revision reading)."""
+    stage = (
+        getattr(activity, "activity_type", None)
+        or getattr(activity, "stage_label", None)
+        or ""
+    )
+    normalized = str(stage).strip().lower()
+    return normalized in {"read", "reading"} or "reading" in normalized
+
+
+def _activity_content_title(activity: object) -> str:
+    """Short L1 title. Reading never uses the purpose/lead sentence as the heading."""
+    label = str(getattr(activity, "stage_label", None) or "").strip()
+    question = str(getattr(activity, "question", None) or "").strip()
+    topic = str(getattr(activity, "topic_title", None) or "").strip()
+
+    if _is_reading_activity(activity):
+        stage_label = label or "Reading"
+        code_match = _SYLLABUS_CODE_IN_TEXT.search(question)
+        if code_match:
+            return f"{stage_label} · {code_match.group(1)}"
+        if topic and len(topic) <= 48:
+            return f"{stage_label}: {topic}"
+        return stage_label
+
+    title = question or "Learning activity"
+    if label:
+        title = f"{label}: {question or label}"
+    return title

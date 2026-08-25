@@ -344,8 +344,11 @@
       {% endif %}
     {% endif %}
 
-    {% if s.content_sections %}
+    {% if s.content_sections or s.content_intro_line or s.content_sections_more %}
     <div class="ds-session-content__body" data-content-structured="true">
+      {% if s.content_intro_line %}
+      <p class="ds-session-briefing__body" data-content-intro="true">{{ s.content_intro_line }}</p>
+      {% endif %}
       {% for section in s.content_sections %}
       <div class="ds-session-briefing__block" data-content-section="true">
         {% if section.label %}
@@ -363,6 +366,31 @@
         {% endif %}
       </div>
       {% endfor %}
+      {% if s.content_sections_more %}
+      <details
+        class="ds-session-briefing"
+        data-ux="reading-more-guidance"
+      >
+        <summary class="ds-section__title">More guidance</summary>
+        {% for section in s.content_sections_more %}
+        <div class="ds-session-briefing__block" data-content-section="true" data-content-more="true">
+          {% if section.label %}
+          <p class="ds-session-briefing__label">{{ section.label }}</p>
+          {% endif %}
+          {% for para in section.paragraphs %}
+          <p class="ds-session-briefing__body">{{ para }}</p>
+          {% endfor %}
+          {% if section.bullets %}
+          <ul class="ds-list" {% if section.label %}aria-label="{{ section.label }}"{% endif %}>
+            {% for item in section.bullets %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </details>
+      {% endif %}
     </div>
     {% elif s.content_body %}
     {% if '\n' in s.content_body %}

@@ -170,8 +170,24 @@ def test_reading_activity_sticky_objective_not_full_body(app):
     assert study.context.objective == "Complete today's reading"
     assert reading_body not in study.context.objective
     assert "Focus questions" not in study.context.objective
+    assert study.content_title == "Reading · 2.6.5"
+    assert "Purpose of this reading" not in study.content_title
+    assert study.content_intro_line == (
+        "Mission: Describe the distribution of the t-statistic"
+    )
     assert study.content_sections
+    assert [s.label for s in study.content_sections] == [
+        "Open the CMP",
+        "Focus questions",
+    ]
     assert any(s.label == "Focus questions" for s in study.content_sections)
+    assert {s.label for s in study.content_sections_more} >= {
+        "Misconception watch",
+        "Out of scope today",
+    }
+    assert all(
+        s.label != "Misconception watch" for s in study.content_sections
+    )
 
 
 def test_reflection_and_complete_primaries(app):

@@ -75,7 +75,11 @@ class StudySessionPage:
     activity_id: str
     mission_id: str = ""
     # Structured L1 body (Reading / checklist-style guidance). Empty → plain body.
+    # For Reading: default-visible essentials only; secondary blocks in
+    # content_sections_more (collapsed "More guidance" disclosure).
     content_sections: tuple[ContentSection, ...] = ()
+    content_intro_line: str = ""
+    content_sections_more: tuple[ContentSection, ...] = ()
     # UX-001 — reading progress for calm session chrome (0–100).
     reading_progress_percent: int = 0
     # LXP-003 / P2 product controls
