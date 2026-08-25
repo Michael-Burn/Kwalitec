@@ -7,6 +7,7 @@ import this module — presentation / factory does.
 
 from __future__ import annotations
 
+import logging
 from datetime import UTC, datetime
 from types import MappingProxyType
 from typing import Any
@@ -19,13 +20,13 @@ from app.application.student_experience.student_experience_service import (
 )
 from app.infrastructure.adapters.adaptive import ExperienceAdaptiveAdapter
 from app.infrastructure.adapters.journey import ExperienceJourneyAdapter
-from app.infrastructure.adapters.student_experience import (  # noqa: F401
-    commitment_persistence as _commitment_persistence,
-)
 from app.infrastructure.adapters.mission.experience_adapter import (
     ExperienceMissionAdapter,
 )
 from app.infrastructure.adapters.orchestrator import ExperienceOrchestratorAdapter
+from app.infrastructure.adapters.student_experience import (  # noqa: F401
+    commitment_persistence as _commitment_persistence,
+)
 from app.infrastructure.adapters.student_experience.defaults import (
     seeded_demo_activity,
     seeded_demo_adaptive,
@@ -52,6 +53,8 @@ from app.infrastructure.events.types.experience import (
     student_home_viewed,
 )
 from app.infrastructure.persistence.unit_of_work import UnitOfWork
+
+logger = logging.getLogger(__name__)
 
 
 class StudentExperienceComposition:
@@ -253,6 +256,19 @@ class StudentExperienceComposition:
         else:
             self.twin = experience_twin
         self._experience_twin = experience_twin
+        # Live Home shadow observation: Engine + Shadow DI present, Authority
+        # cutover inactive. Soak remains on composition for ops; adapter hook
+        # is observational only and never changes the served recommendation.
+        live_shadow_observation = (
+            adaptive_soak
+            if (
+                adaptive_soak is not None
+                and adaptive_shadow is not None
+                and explainability_gate is not None
+                and adaptive_port_router is None
+            )
+            else None
+        )
         self.adaptive = ExperienceAdaptiveAdapter(
             store=self.store,
             decision_engine=(
@@ -260,6 +276,7 @@ class StudentExperienceComposition:
             ),
             recommendation_read=recommendation_read,
             adaptive_port_router=adaptive_port_router,
+            adaptive_soak=live_shadow_observation,
             events=self.events,
             diagnostics=self.diagnostics,
         )
@@ -447,9 +464,23 @@ class StudentExperienceComposition:
                     topic_title=str(session_result.get("topic_title") or ""),
                     estimated_minutes=session_result.get("estimated_minutes"),
                 )
-                twin_ack = self.twin.apply_session_outcome(
-                    sid, session_payload=completed
+                # Twin Authority (StudentTwinFoundationAuthorityPort) is
+                # read-only: Runtime A owns session writes; Foundation
+                # re-reads on the next assemble(). Skip rather than crash.
+                apply_outcome = getattr(
+                    self.twin, "apply_session_outcome", None
                 )
+                if callable(apply_outcome):
+                    twin_ack = apply_outcome(sid, session_payload=completed)
+                else:
+                    logger.debug(
+                        "learning loop skip twin session outcome write "
+                        "student_id=%s twin=%s (read-only / Authority; "
+                        "Runtime A owns session writes)",
+                        sid,
+                        type(self.twin).__name__,
+                    )
+                    twin_ack = {}
                 twin_doc = self.store.get(self.store.twin, sid) or {}
                 self.adaptive.recalculate_from_twin(
                     sid, twin_payload={**twin_doc, **twin_ack}

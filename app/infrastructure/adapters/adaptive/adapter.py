@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import logging
 from copy import deepcopy
 from typing import Any
 
@@ -20,6 +21,8 @@ from app.infrastructure.events.types.experience import (
     recommendation_dismissed,
 )
 
+logger = logging.getLogger(__name__)
+
 
 class ExperienceAdaptiveAdapter:
     """Production adapter implementing Student Experience AdaptiveDecisionPort.
@@ -32,10 +35,15 @@ class ExperienceAdaptiveAdapter:
     + Authority flags), eligible adaptive recommendations may be served first;
     every adaptive failure / ineligibility falls back to RecommendationService
     (or the prior seed path when the Recommendation Bridge is off).
+
+    MS-003 A6 (shadow observation): when ``adaptive_soak`` is wired (Engine +
+    Shadow ON, Authority OFF), each Home ``get_todays_recommendation`` call
+    fail-open runs an observational soak compare against Runtime A. Soak
+    output never replaces the served recommendation.
     """
 
     ADAPTER_ID = "experience_adaptive"
-    ADAPTER_VERSION = "1.1.0-a4"
+    ADAPTER_VERSION = "1.1.1-a6-observe"
 
     def __init__(
         self,
@@ -44,6 +52,7 @@ class ExperienceAdaptiveAdapter:
         decision_engine: Any | None = None,
         recommendation_read: Any | None = None,
         adaptive_port_router: Any | None = None,
+        adaptive_soak: Any | None = None,
         events: EventRegistry | None = None,
         diagnostics: AdapterDiagnostics | None = None,
         available: bool = True,
@@ -53,6 +62,7 @@ class ExperienceAdaptiveAdapter:
         self._engine = decision_engine
         self._recommendation_read = recommendation_read
         self._adaptive_port_router = adaptive_port_router
+        self._adaptive_soak = adaptive_soak
         self._events = events or EventRegistry()
         self._diagnostics = diagnostics or AdapterDiagnostics()
         self._available = available
@@ -102,7 +112,35 @@ class ExperienceAdaptiveAdapter:
             adaptive = router.try_adaptive_recommendation(student_id)
             if adaptive is not None:
                 return dict(adaptive)
-        return self._recommendation_service_fallback(student_id)
+        served = self._recommendation_service_fallback(student_id)
+        # A6: observational shadow compare after the student-facing result is
+        # resolved. Fail-open — never changes ``served`` or raises into Home.
+        self._observe_shadow_comparison(student_id)
+        return served
+
+    def _observe_shadow_comparison(self, student_id: str) -> None:
+        """Run Adaptive Shadow Soak against Runtime A (observation only).
+
+        Activated only when composition wired ``adaptive_soak`` (Engine +
+        Shadow ON, Authority cutover inactive). Errors are swallowed.
+        """
+        soak = self._adaptive_soak
+        if soak is None:
+            return
+        try:
+            # Determinism replay doubles Adaptive evaluate cost; skip on the
+            # live Home path. Ops / soak windows can still call execute_soak
+            # with run_determinism_replay=True via composition.adaptive_soak.
+            soak.execute_soak(
+                student_id.strip(),
+                run_determinism_replay=False,
+            )
+        except Exception:  # noqa: BLE001 — observation must never affect UX
+            logger.debug(
+                "adaptive shadow observation failed student_id=%s",
+                student_id,
+                exc_info=True,
+            )
 
     def _recommendation_service_fallback(
         self, student_id: str

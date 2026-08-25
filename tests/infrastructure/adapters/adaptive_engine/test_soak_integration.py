@@ -296,6 +296,75 @@ def test_ops_dashboard_hook_from_composition(learner, app, ctx):
     assert dashboard["adaptive_shadow_soak"]["health"]["executions"] >= 1
 
 
+def test_home_recommendation_triggers_shadow_observation(learner, app, ctx):
+    """Engine + Shadow ON, Authority OFF: Home read runs soak compare fail-open."""
+    flags = resolve_v2_feature_flags(
+        environ={
+            "KWALITEC_ADAPTIVE_ENGINE": "1",
+            "KWALITEC_ADAPTIVE_SHADOW": "1",
+        }
+    )
+    composition, _ = build_production_experience(flags=flags)
+    assert composition.adaptive_soak is not None
+    assert composition.adaptive._adaptive_soak is composition.adaptive_soak
+    assert composition.explainability_gate is not None
+    assert composition.adaptive_port_router is None
+
+    sid = str(learner["user"].id)
+    before_health = composition.adaptive_soak.health_snapshot().executions
+
+    served = composition.adaptive.get_todays_recommendation(sid)
+
+    observation = composition.adaptive_soak.last_observation
+    assert observation is not None
+    assert observation.student_id == sid
+    assert observation.comparison is not None
+    # Minimum observation fields for shadow soak.
+    assert "agreed" in observation.comparison.to_canonical_dict()
+    assert isinstance(observation.explainability_passed, bool)
+    # Served path remains Runtime A / Experience — never Adaptive authority.
+    if served is not None:
+        authority = str(
+            (served.get("explanation") or {}).get("authority")
+            or served.get("authority")
+            or ""
+        )
+        assert authority != "adaptive_engine"
+    assert composition.adaptive_soak.health_snapshot().executions == before_health + 1
+
+    types = [e.event_type for e in composition.events.published()]
+    assert ADAPTIVE_SOAK_COMPARE in types or ADAPTIVE_ENGINE_SHADOW_COMPARE in types
+
+
+def test_home_shadow_observation_fail_open_never_changes_served(learner, app, ctx):
+    flags = resolve_v2_feature_flags(
+        environ={
+            "KWALITEC_ADAPTIVE_ENGINE": "1",
+            "KWALITEC_ADAPTIVE_SHADOW": "1",
+        }
+    )
+    composition, _ = build_production_experience(flags=flags)
+    sid = str(learner["user"].id)
+
+    with mock.patch.object(
+        composition.adaptive._adaptive_soak,
+        "execute_soak",
+        side_effect=RuntimeError("soak boom"),
+    ):
+        served = composition.adaptive.get_todays_recommendation(sid)
+
+    # Request must succeed; served result is still a dict or None (not an error).
+    assert served is None or isinstance(served, dict)
+
+
+def test_default_flags_home_has_no_shadow_observation_hook():
+    """Production defaults: no soak wired into AdaptiveDecisionPort."""
+    flags = resolve_v2_feature_flags(environ={})
+    composition, _ = build_production_experience(flags=flags)
+    assert composition.adaptive_soak is None
+    assert composition.adaptive._adaptive_soak is None
+
+
 def test_soak_modules_forbid_educational_writes():
     """Static guard: soak compute must not write educational state."""
     for name in (
