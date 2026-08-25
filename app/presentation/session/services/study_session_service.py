@@ -11,6 +11,10 @@ from flask import url_for
 
 from app.application.config.v2_flags import resolve_v2_feature_flags
 from app.domain.session_experience.session_workspace import SessionSurface
+from app.presentation.session.content_sections import (
+    parse_session_content_body,
+    strip_author_voice,
+)
 from app.presentation.session.dto.study_session import (
     LearningTask,
     SessionDisclosure,
@@ -36,6 +40,12 @@ class StudySessionService:
             page, surface, product=product
         )
         content = self._content(page, surface, product=product, substance=substance)
+        content_body = strip_author_voice(str(content["body"] or ""))
+        content_support = strip_author_voice(str(content["support"] or ""))
+        # Drop support when it merely repeats the body (legacy exit_line dump).
+        if content_support and content_body and content_support in content_body:
+            content_support = ""
+        content_sections = parse_session_content_body(content_body)
         disclosures = self._disclosures(page, surface)
         # KWP-002: technical IDs stay off learner chrome (founder diagnostics only).
         technical: tuple[str, ...] = ()
@@ -181,8 +191,9 @@ class StudySessionService:
             exit_href=url_for("student.home"),
             exit_label="Exit" if not product else "Pause & Exit",
             content_title=content["title"],
-            content_body=content["body"],
-            content_support=content["support"],
+            content_body=content_body,
+            content_support=content_support,
+            content_sections=content_sections,
             answer_prompt=content["answer_prompt"],
             show_answer_input=content["show_answer_input"],
             feedback_outcome=content["feedback_outcome"],

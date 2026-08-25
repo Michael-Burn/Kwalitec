@@ -344,7 +344,27 @@
       {% endif %}
     {% endif %}
 
-    {% if s.content_body %}
+    {% if s.content_sections %}
+    <div class="ds-session-content__body" data-content-structured="true">
+      {% for section in s.content_sections %}
+      <div class="ds-session-briefing__block" data-content-section="true">
+        {% if section.label %}
+        <p class="ds-session-briefing__label">{{ section.label }}</p>
+        {% endif %}
+        {% for para in section.paragraphs %}
+        <p class="ds-session-briefing__body">{{ para }}</p>
+        {% endfor %}
+        {% if section.bullets %}
+        <ul class="ds-list" {% if section.label %}aria-label="{{ section.label }}"{% endif %}>
+          {% for item in section.bullets %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    {% elif s.content_body %}
     {% if '\n' in s.content_body %}
     <div class="ds-session-content__body">
       {% for line in s.content_body.splitlines() %}

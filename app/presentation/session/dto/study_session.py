@@ -7,6 +7,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from app.presentation.session.content_sections import ContentSection
 from app.presentation.student.view_models import ExplanationViewModel
 
 
@@ -73,6 +74,8 @@ class StudySessionPage:
     session_id: str
     activity_id: str
     mission_id: str = ""
+    # Structured L1 body (Reading / checklist-style guidance). Empty → plain body.
+    content_sections: tuple[ContentSection, ...] = ()
     # UX-001 — reading progress for calm session chrome (0–100).
     reading_progress_percent: int = 0
     # LXP-003 / P2 product controls

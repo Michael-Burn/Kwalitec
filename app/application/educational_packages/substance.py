@@ -105,7 +105,11 @@ def _activities(
                 "and follow the Reading Guidance."
             ),
             body=reading_body,
-            supporting_material=reading.exit_line,
+            # exit_line is a legacy authoring dump that restates structured
+            # fields and often includes internal CMP-authority commentary.
+            # Structured body already carries open/stop/return; do not also
+            # render exit_line as supporting_material (that caused duplication).
+            supporting_material="",
             hints=tuple(reading.misconception_watch[:2])
             or ("Sketch Family / η / Link before deep reading.",),
             answer_prompt="What did you extract from the CMP setup?",
@@ -195,6 +199,13 @@ def _activities(
 
 
 def _reading_body(pack: CertifiedEducationalPackage) -> str:
+    """Assemble Guided Reading body from structured reading_guidance fields.
+
+    Does **not** append ``exit_line``: that field restates the same open/stop
+    /focus/misconception content and often includes internal authoring voice
+    ("Kwalitec is the guide… substitute textbook"). lead_line is the activity
+    prompt/title — omit it here to avoid repeating the purpose sentence.
+    """
     reading = pack.reading
     is_revision = (pack.mode or "").strip().lower() == "revision"
     if is_revision:
@@ -204,11 +215,9 @@ def _reading_body(pack: CertifiedEducationalPackage) -> str:
             f"Topic: {pack.topic_title} ({pack.topic_code})",
             f"Mission: {pack.display_title}",
             "",
-            reading.lead_line,
-            "",
             "Revision focus — retrieve, do not re-learn:",
-            f"Open: {reading.open_point}",
-            f"Stop: {reading.stop_condition}",
+            f"• Open: {reading.open_point}",
+            f"• Stop: {reading.stop_condition}",
             "",
             "Retrieval questions (answer closed-book first):",
             *(f"• {q}" for q in reading.focus_questions),
@@ -216,18 +225,19 @@ def _reading_body(pack: CertifiedEducationalPackage) -> str:
             "Misconception watch:",
             *(f"• {m}" for m in reading.misconception_watch),
             "",
-            f"Annotation: {reading.annotation_task}",
-            f"Attempt before reveal: {reading.attempt_before_reveal}",
+            "While you retrieve:",
+            f"• {reading.annotation_task}",
+            f"• {reading.attempt_before_reveal}",
             "",
             "Out of scope today:",
             *(f"• {x}" for x in reading.out_of_scope_today),
             "",
-            f"Return cue: {reading.return_cue}",
+            "When you finish:",
+            f"• {reading.return_cue}",
             "",
-            "Next after Revision: close this retrieval sitting, then continue "
-            "from Home when tomorrow's Mission is ready.",
-            "",
-            reading.exit_line,
+            "Next after Revision:",
+            "• Close this retrieval sitting, then continue from Home when "
+            "tomorrow's Mission is ready.",
         ]
         return "\n".join(line for line in lines if line is not None)
 
@@ -235,10 +245,9 @@ def _reading_body(pack: CertifiedEducationalPackage) -> str:
         f"Topic: {pack.topic_title} ({pack.topic_code})",
         f"Mission: {pack.display_title}",
         "",
-        reading.lead_line,
-        "",
-        f"Open: {reading.open_point}",
-        f"Stop: {reading.stop_condition}",
+        "Open the CMP:",
+        f"• Open your CMP at {reading.open_point}",
+        f"• Stop when: {reading.stop_condition}",
         "",
         "Focus questions:",
         *(f"• {q}" for q in reading.focus_questions),
@@ -246,15 +255,15 @@ def _reading_body(pack: CertifiedEducationalPackage) -> str:
         "Misconception watch:",
         *(f"• {m}" for m in reading.misconception_watch),
         "",
-        f"Annotation: {reading.annotation_task}",
-        f"Attempt before reveal: {reading.attempt_before_reveal}",
+        "While you read:",
+        f"• {reading.annotation_task}",
+        f"• {reading.attempt_before_reveal}",
         "",
         "Out of scope today:",
         *(f"• {x}" for x in reading.out_of_scope_today),
         "",
-        f"Return cue: {reading.return_cue}",
-        "",
-        reading.exit_line,
+        "When you finish:",
+        f"• {reading.return_cue}",
     ]
     return "\n".join(line for line in lines if line is not None)
 
