@@ -42,7 +42,7 @@
     "learning_objective": "Describe random samples from a population.",
     "concept_focus": "Population \u2192 random sample (iid / CMP conditions) \u2192 refuse convenience-sample as-done.",
     "prior_bridge": "Campaign Theta closed the central limit theorem (2.5) with Revision. Today opens topic 2.6 at LO 2.6.1 \u2014 the named Continuity Front after CS1-008.",
-    "why_now": "2.6.1 is the lawful Continuity Front after Theta. Closing it prevents a cliff at random sampling while keeping sampling-distribution of a statistic as day two.",
+    "why_now": "Inference needs sampling language first: describe random samples from a population before sampling distributions.",
     "expected_benefit": "Study Progress for random samples \u2014 not Topic Complete for 2.6.2.",
     "explainability": "Assigned as Campaign Iota Day 1 because CE-001 / EP-001 Continuity Front names 2.6 as the handoff from Theta.",
     "success_criteria": [

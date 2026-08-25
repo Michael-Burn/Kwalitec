@@ -43,7 +43,7 @@
     "learning_objective": "Obtain and interpret the moment and cumulant generating functions of a random variable.",
     "concept_focus": "Distribution \u2192 MGF M_X(t)=E[e^{tX}] \u2192 CGF (log M or CMP form) \u2192 refuse ordinary-moments-as-GF.",
     "prior_bridge": "Campaign Zeta closed expectations and conditional expectations (2.3) with Revision. Today opens topic 2.4 at LO 2.4.1 \u2014 the named Continuity Front after CS1-006.",
-    "why_now": "2.4.1 is the lawful Continuity Front after Zeta. Closing it prevents a cliff at generating functions while keeping moment-via-GF as day two.",
+    "why_now": "Form the moment and cumulant generating functions of an RV before you extract moments from them.",
     "expected_benefit": "Study Progress for MGF/CGF \u2014 not Topic Complete for 2.4.2.",
     "explainability": "Assigned as Campaign Eta Day 1 because CE-001 / EP-001 Continuity Front names 2.4 as the handoff from Zeta.",
     "success_criteria": [

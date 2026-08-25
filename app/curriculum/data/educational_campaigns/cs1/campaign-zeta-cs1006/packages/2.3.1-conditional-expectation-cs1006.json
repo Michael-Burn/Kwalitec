@@ -42,7 +42,7 @@
     "learning_objective": "Obtain and interpret the conditional expectation of one random variable given the value of another random variable.",
     "concept_focus": "Joint/conditional \u2192 E[Y|X=x] as a function of x \u2192 refuse ordinary-E-as-conditional.",
     "prior_bridge": "Campaign Epsilon closed joint distributions through linear combinations (2.2) with Revision. Today opens topic 2.3 at LO 2.3.1 \u2014 the named Continuity Front after CS1-005.",
-    "why_now": "2.3.1 is the lawful Continuity Front after Epsilon. Closing it prevents a cliff at conditional expectation while keeping mean/variance-via-conditioning as day two.",
+    "why_now": "After joints, form E[Y|X] carefully \u2014 mean and variance via conditioning build on this next.",
     "expected_benefit": "Study Progress for conditional expectation \u2014 not Topic Complete for 2.3.2.",
     "explainability": "Assigned as Campaign Zeta Day 1 because CE-001 / EP-001 Continuity Front names 2.3 as the handoff from Epsilon.",
     "success_criteria": [

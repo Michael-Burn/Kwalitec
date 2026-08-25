@@ -54,7 +54,7 @@
     "learning_objective": "Retrieve and connect (1) parameter CI from a random sample, (2) prediction interval, (3) CI given a sampling distribution, (4) Normal mean and variance CIs, (5) binomial/Poisson CIs with Normal approximation, (6) two-sample CIs, (7) paired mean-difference CI, and (8) bootstrap confidence intervals.",
     "concept_focus": "Campaign chain retrieval: parameter CI \u2192 prediction \u2192 given distribution \u2192 Normal \u2192 binomial/Poisson \u2192 two-sample \u2192 paired \u2192 bootstrap CI.",
     "prior_bridge": "Yesterday you finished bootstrap confidence intervals (3.2.8). Today is Revision mode: return to 3.2.1\u20133.2.8 under closed-book retrieval \u2014 no new first-pass LO.",
-    "why_now": "Pilot Arc law requires Revision after the Learning span; spacing protects Continuity Front closure before successor 3.3 work.",
+    "why_now": "You've just finished interval estimation; spaced retrieval now protects it before hypothesis testing.",
     "expected_benefit": "Evidence that the 3.2 chain retrieves \u2014 revision Study Progress, not a claim that Chapter 3 / the exam journey is complete.",
     "explainability": "Assigned as Campaign Lambda Revision because Architecture requires memory return inside the Pilot Arc before the next Volume.",
     "success_criteria": [

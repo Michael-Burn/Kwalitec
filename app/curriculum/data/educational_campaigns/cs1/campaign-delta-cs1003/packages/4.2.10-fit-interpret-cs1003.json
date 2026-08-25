@@ -41,8 +41,8 @@
     "learning_objective": "Fit a generalised linear model to a data set and interpret the output.",
     "concept_focus": "Choose family/link \u2192 fit \u2192 interpret coefficients/fit cues \u2192 refuse button-only.",
     "prior_bridge": "Yesterday formal tests (4.2.9). Today integrates fit/interpret.",
-    "why_now": "4.2.10 closes GLM Learning before CD-R2; still not Bayes.",
-    "expected_benefit": "Study Progress for GLM fit/interpret \u2014 not Bayesian foundations; not spine PASS.",
+    "why_now": "Fit a GLM to a dataset and interpret the output \u2014 this closes classical GLM before Bayesian work.",
+    "expected_benefit": "You'll be able to fit a GLM and interpret coefficients, fitted means, and basic output without treating software as a black box.",
     "explainability": "Campaign Delta Day 15 closes 4.2 Learning span.",
     "success_criteria": [
       "Closed-book, outline family/link choice \u2192 fit \u2192 interpret key output.",

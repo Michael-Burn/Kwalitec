@@ -45,7 +45,7 @@
     "learning_objective": "Understand the concepts of Null and alternative hypotheses, simple and composite hypotheses, type I and type II errors, sensitivity, specificity, test statistic, likelihood ratio, critical region, level of significance, probability value and power of a test.",
     "concept_focus": "Null/alternative \u2192 errors & operating characteristics \u2192 critical region / p-value / power \u2192 refuse applied-test-as-done.",
     "prior_bridge": "Campaign Lambda closed confidence and prediction intervals (3.2) with Revision. Today opens topic 3.3 at LO 3.3.1 \u2014 the named Continuity Front after CS1-011.",
-    "why_now": "3.3.1 is the lawful Continuity Front after Lambda. Closing it prevents a cliff at hypothesis testing while keeping basic applied tests as day two.",
+    "why_now": "Hypothesis testing starts with the vocabulary: null/alternative, errors, p-value, and power \u2014 applied tests come next.",
     "expected_benefit": "Study Progress for HT concepts \u2014 not Topic Complete for 3.3.2.",
     "explainability": "Assigned as Campaign Mu Day 1 because CE-001 / EP-001 Continuity Front names 3.3 as the handoff from Lambda.",
     "success_criteria": [

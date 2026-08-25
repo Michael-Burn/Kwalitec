@@ -43,7 +43,7 @@
     "learning_objective": "Method of moments for constructing estimators of population parameters.",
     "concept_focus": "Population moments → sample moments → solve for parameter → refuse MLE-as-done.",
     "prior_bridge": "Campaign Iota closed sampling distributions (2.6) with Revision. Today opens topic 3.1 at LO 3.1.1 — the named Continuity Front after CS1-009.",
-    "why_now": "3.1.1 is the lawful Continuity Front after Iota. Closing it prevents a cliff at estimators while keeping maximum likelihood as day two.",
+    "why_now": "Estimators start with method of moments \u2014 match sample moments to population ones before maximum likelihood.",
     "expected_benefit": "Study Progress for method of moments — not Topic Complete for 3.1.2.",
     "explainability": "Assigned as Campaign Kappa Day 1 because CE-001 / EP-001 Continuity Front names 3.1 as the handoff from Iota.",
     "success_criteria": [

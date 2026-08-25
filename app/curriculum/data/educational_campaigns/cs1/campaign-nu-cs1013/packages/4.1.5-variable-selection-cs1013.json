@@ -42,7 +42,7 @@
     "learning_objective": "Measures of model fit to select an appropriate set of explanatory variables",
     "concept_focus": "Candidate sets \u2192 fit measures \u2192 select appropriate explanatory set \u2192 refuse 4.2/5.1 / spine / until-exam.",
     "prior_bridge": "Yesterday you practised software fit, inference, prediction, and residual checks (4.1.4). Today closes Topic 4.1 Learning at variable selection.",
-    "why_now": "4.1.5 is the final Learning LO of Topic 4.1. Closing it completes the Continuity Front join Pilot Arc Learning span before Revision \u2014 still without absorbing Trust Front 4.2/5.1.",
+    "why_now": "Finish Topic 4.1 by selecting variables using fit measures \u2014 then revise before moving into GLM.",
     "expected_benefit": "Study Progress for variable selection \u2014 not Topic Complete for 4.2.",
     "explainability": "Assigned as Campaign Nu Day 5 because Continuity Front law closes Topic 4.1 only; GLM and Bayesian remain Trust Front / later geography.",
     "success_criteria": [

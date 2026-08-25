@@ -46,7 +46,7 @@
     "learning_objective": "Retrieve and connect (1) the central limit theorem for a sequence of independent, identically distributed random variables, and (2) comparison of simulated samples from a given distribution with the Normal distribution.",
     "concept_focus": "Campaign chain retrieval: CLT (iid) \u2192 simulated samples vs Normal.",
     "prior_bridge": "Yesterday you finished simulated-sample comparison with the Normal (2.5.2). Today is Revision mode: return to 2.5.1\u20132.5.2 under closed-book retrieval \u2014 no new first-pass LO.",
-    "why_now": "Pilot Arc law requires Revision after the Learning span; spacing protects Continuity Front closure before successor 2.6 work.",
+    "why_now": "You've just finished the CLT stretch; spaced retrieval now protects it before sampling distributions.",
     "expected_benefit": "Evidence that the 2.5 chain retrieves \u2014 revision Study Progress, not a claim that Chapter 2 or the exam journey is complete.",
     "explainability": "Assigned as Campaign Theta Revision because Architecture requires memory return inside the Pilot Arc before the next Volume.",
     "success_criteria": [

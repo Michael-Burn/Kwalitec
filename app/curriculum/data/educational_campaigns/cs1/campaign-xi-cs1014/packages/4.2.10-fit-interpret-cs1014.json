@@ -42,8 +42,8 @@
     "learning_objective": "Fit a generalised linear model to a data set and interpret the output.",
     "concept_focus": "Data \u2192 fit GLM \u2192 interpret coefficients / fit / diagnostics \u2192 refuse 5.1 / spine / until-exam.",
     "prior_bridge": "Yesterday you applied formal acceptability tests (4.2.9). Today closes Topic 4.2 Learning at fit and interpret.",
-    "why_now": "4.2.10 is contiguous after tests and closes classical GLM Learning before CX-R1 Revision.",
-    "expected_benefit": "Study Progress for fit/interpret \u2014 not Topic Complete for 5.1; not spine PASS.",
+    "why_now": "After goodness-of-fit tests, fit a GLM and interpret the output \u2014 then revise the GLM chain.",
+    "expected_benefit": "You'll be able to fit a GLM and interpret the output in exam-style language.",
     "explainability": "Assigned as Campaign Xi Day 10 because Continuity Front join closes Topic 4.2 Learning before Revision \u2014 not Trust Front 5.1 absorb.",
     "success_criteria": [
       "Closed-book, name at least three output elements you must interpret after a GLM fit.",

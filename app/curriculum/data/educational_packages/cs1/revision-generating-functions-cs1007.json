@@ -46,7 +46,7 @@
     "learning_objective": "Retrieve and connect (1) moment and cumulant generating functions of a random variable, and (2) moment calculation via series expansion or differentiation of a generating function.",
     "concept_focus": "Campaign chain retrieval: MGF/CGF \u2192 moments via series or differentiation.",
     "prior_bridge": "Yesterday you finished moment calculation via generating functions (2.4.2). Today is Revision mode: return to 2.4.1\u20132.4.2 under closed-book retrieval \u2014 no new first-pass LO.",
-    "why_now": "Pilot Arc law requires Revision after the Learning span; spacing protects Continuity Front closure before successor 2.5 work.",
+    "why_now": "You've just finished generating functions; spaced retrieval now protects it before the CLT.",
     "expected_benefit": "Evidence that the 2.4 chain retrieves \u2014 revision Study Progress, not a claim that Chapter 2 or the exam journey is complete.",
     "explainability": "Assigned as Campaign Eta Revision because Architecture requires memory return inside the Pilot Arc before the next Volume.",
     "success_criteria": [

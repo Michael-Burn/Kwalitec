@@ -44,7 +44,7 @@
     "learning_objective": "State and apply the central limit theorem for a sequence of independent, identically distributed random variables.",
     "concept_focus": "iid sequence → mean/variance conditions (CMP) → standardised sample mean → Normal limit → refuse Normal-everywhere theatre.",
     "prior_bridge": "Campaign Eta closed generating functions (2.4) with Revision. Today opens topic 2.5 at LO 2.5.1 — the named Continuity Front after CS1-007.",
-    "why_now": "2.5.1 is the lawful Continuity Front after Eta. Closing it prevents a cliff at the CLT while keeping simulated-sample comparison as day two.",
+    "why_now": "State and apply the CLT for iid sequences now; simulated-sample comparison builds on this next.",
     "expected_benefit": "Study Progress for CLT (iid) — not Topic Complete for 2.5.2.",
     "explainability": "Assigned as Campaign Theta Day 1 because CE-001 / EP-001 Continuity Front names 2.5 as the handoff from Eta.",
     "success_criteria": [

@@ -42,7 +42,7 @@
     "learning_objective": "Describe the characteristics of Normal, lognormal, exponential, gamma, chi-square, t, F, beta, and uniform continuous distributions on an interval, and match key members to recognisable modelling situations.",
     "concept_focus": "Support / shape story → continuous family → refuse Normal-by-default theatre.",
     "prior_bridge": "Yesterday you matched discrete counting situations to 2.1.1 families. Today the same 2.1 topic continues at 2.1.2: continuous univariate characteristics sit beside the discrete map — not a new chapter leap.",
-    "why_now": "2.1.2 is the contiguous next LO after discrete entry; splitting discrete and continuous across two Learning days prevents overloaded formula lists and preserves Pilot Arc pacing before Revision.",
+    "why_now": "You've placed discrete families; today place continuous ones beside them so you don't default every continuous problem to Normal.",
     "expected_benefit": "A continuous-family placement map with one refused Normal default — Study Progress for today's Session, not Topic Complete for 2.1.3–2.1.6.",
     "explainability": "Assigned as Campaign Beta Day 3 because contiguous 2.1.1→2.1.2 completes lawful distributional entry without swallowing probability evaluation and generation LOs.",
     "success_criteria": [

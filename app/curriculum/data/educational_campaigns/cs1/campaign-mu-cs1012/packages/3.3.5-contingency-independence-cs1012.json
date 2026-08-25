@@ -42,8 +42,8 @@
     "learning_objective": "A contingency (or two-way) table, and use of a chi-square test to test the independence of two classification criteria.",
     "concept_focus": "Two-way table \u2192 independence null \u2192 chi-square independence \u2192 refuse Chapter-3-complete / spine / until-exam.",
     "prior_bridge": "Yesterday you performed chi-square GOF (3.3.4). Today completes topic 3.3 Learning at LO 3.3.5 \u2014 contingency independence.",
-    "why_now": "3.3.5 completes the Continuity Front Learning span for topic 3.3. Closing it lawfully finishes Mu Learning before Revision \u2014 without Chapter 3 trophies.",
-    "expected_benefit": "Study Progress for contingency independence \u2014 not Chapter 3 complete / spine / until-exam trust.",
+    "why_now": "Finish topic 3.3 with contingency tables and chi-square independence tests \u2014 then revise the hypothesis-testing chain.",
+    "expected_benefit": "You'll be able to read a contingency table and run a chi-square test of independence with the right hypotheses.",
     "explainability": "Assigned as Campaign Mu Day 5 because Continuity Front law finishes 3.3 Learning LOs before Revision.",
     "success_criteria": [
       "Closed-book, state the independence null for two classification criteria.",

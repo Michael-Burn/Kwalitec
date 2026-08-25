@@ -41,7 +41,7 @@
     "learning_objective": "Use measures of model fit to select an appropriate set of explanatory variables.",
     "concept_focus": "Fit measure \u2192 compare models \u2192 select set \u2192 refuse kitchen-sink.",
     "prior_bridge": "Yesterday you completed software fit/inference/residuals (4.1.4). Today selects the X set.",
-    "why_now": "4.1.5 closes classical LM Learning before CD-R1 and GLM entry.",
+    "why_now": "Close classical linear models by selecting explanatory variables with fit measures \u2014 GLM structure comes after.",
     "expected_benefit": "Study Progress for selection \u2014 not GLM structure; not Topic Complete for 4.2.",
     "explainability": "Campaign Delta Day 5 closes 4.1 Learning span.",
     "success_criteria": [

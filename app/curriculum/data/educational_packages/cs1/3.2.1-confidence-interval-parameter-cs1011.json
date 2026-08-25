@@ -43,7 +43,7 @@
     "learning_objective": "Confidence interval for an unknown parameter of a distribution based on a random sample.",
     "concept_focus": "Random sample → estimator / pivotal idea → parameter CI → refuse prediction-as-done.",
     "prior_bridge": "Campaign Kappa closed estimators (3.1) with Revision. Today opens topic 3.2 at LO 3.2.1 — the named Continuity Front after CS1-010.",
-    "why_now": "3.2.1 is the lawful Continuity Front after Kappa. Closing it prevents a cliff at intervals while keeping prediction intervals as day two.",
+    "why_now": "Build a confidence interval for an unknown parameter from a random sample before prediction intervals.",
     "expected_benefit": "Study Progress for parameter CI — not Topic Complete for 3.2.2.",
     "explainability": "Assigned as Campaign Lambda Day 1 because CE-001 / EP-001 Continuity Front names 3.2 as the handoff from Kappa.",
     "success_criteria": [
