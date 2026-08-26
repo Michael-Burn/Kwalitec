@@ -40,7 +40,7 @@
     "tutor_intent": "Today I will force the candidate to form a two-way table and test independence, and refuse Chapter 3 complete / spine / until-exam claims.",
     "educational_intent": "Produce a cognitive move from distributional GOF to contingency-table independence testing under CMP procedures.",
     "learning_objective": "A contingency (or two-way) table, and use of a chi-square test to test the independence of two classification criteria.",
-    "concept_focus": "Two-way table → independence null → chi-square independence → refuse treating one independence test as all of Chapter 3.",
+    "concept_focus": "Two-way table → independence null → chi-square independence → refuse GOF-as-independence.",
     "prior_bridge": "Yesterday you performed chi-square GOF (3.3.4). Today completes topic 3.3 Learning at LO 3.3.5 — contingency independence.",
     "why_now": "Finish topic 3.3 with contingency tables and chi-square independence tests — then revise the hypothesis-testing chain.",
     "expected_benefit": "You'll be able to read a contingency table and run a chi-square test of independence with the right hypotheses.",
@@ -146,27 +146,28 @@
       "kind": "checkpoint",
       "item_id": "cs1012-3.3.5-cp-01",
       "title": "Checkpoint: 3.3.5",
-      "prompt": "Closed-book. A colleague says 'Contingency independence finished Chapter 3 and the exam journey.' Refuse in one sentence and name tomorrow's honest next (Revision).",
+      "prompt": "Closed-book. Two-way table: rating class × claim/no-claim. (1) State the independence null and how expected cell counts are formed. (2) Refuse: 'This is the same as a chi-square GOF to a named distribution.'",
       "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 3.3.5.",
+      "body": "Chi-square independence in a two-way table; refuse GOF conflation.",
       "hints": [
         "Name the refusal clearly.",
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
-        "chapter",
-        "spine",
-        "revision",
         "independence",
-        "until-exam"
+        "contingency",
+        "expected",
+        "row",
+        "column",
+        "refuse",
+        "GOF"
       ],
-      "explanation": "Checkpoint for 3.3.5.",
-      "model_answer": "Refuse: Chapter 3 / spine / until-exam are not finished. Today is contingency independence; tomorrow is CM-R1 Revision of 3.3 — not a trophy claim.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "explanation": "Independence uses product-of-margins expected counts in a contingency table; that is not one-sample distributional GOF.",
+      "model_answer": "(1) H₀: row and column classifications are independent; E_{ij} = (row i total × column j total) / n. (2) Refuse: GOF tests whether one sample follows a named distribution; independence tests association between two classification criteria in a two-way table.",
+      "common_mistake": "Treating GOF and two-way independence as the same chi-square procedure.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
+        "States independence null and margin-based expected counts.",
+        "Refuses equating independence with GOF."
       ]
     }
   ],

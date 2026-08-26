@@ -43,7 +43,7 @@
     "concept_focus": "Two estimators → MSE / bias comparison → refuse asymptotics-as-done.",
     "prior_bridge": "Yesterday you discussed efficiency, bias, consistency and MSE (3.1.3). Today continues topic 3.1 at LO 3.1.4 — comparison.",
     "why_now": "3.1.4 is contiguous after property language. Closing it prevents a cliff at comparison while keeping asymptotic MLE as day five.",
-    "expected_benefit": "Study Progress for estimator comparison — not Topic Complete for 3.1.5.",
+    "expected_benefit": "You will be able to compare two estimators explicitly via MSE (and bias), not just recall the definitions.",
     "explainability": "Assigned as Campaign Kappa Day 4 because Continuity Front membership places comparison after property definitions.",
     "success_criteria": [
       "Closed-book, compare two estimators using MSE and/or bias.",
@@ -146,27 +146,27 @@
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.4-cp-01",
       "title": "Checkpoint: 3.1.4",
-      "prompt": "Closed-book. A colleague says 'Bias and MSE defined yesterday — comparison is automatic.' Refuse and restate today's LO.",
+      "prompt": "Closed-book. Two estimators of θ: θ̂₁ is unbiased with Var=2/n; θ̂₂ has Bias=0.5/√n and Var=0.5/n. (1) Compare them using MSE — which do you prefer for large n? (2) Refuse: 'Bias and MSE are defined, so comparison is automatic without computing either estimator's MSE.'",
       "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 3.1.4.",
+      "body": "Explicit MSE comparison of two estimators; refuse definition-as-comparison.",
       "hints": [
         "Name the refusal clearly.",
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
-        "compare",
         "MSE",
         "bias",
-        "not automatic",
-        "today"
+        "compare",
+        "variance",
+        "prefer",
+        "refuse"
       ],
-      "explanation": "Checkpoint for 3.1.4.",
-      "model_answer": "Refuse: definitions ≠ comparison. Today requires an explicit MSE / bias comparison of estimators.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "explanation": "Estimator comparison under this LO is an explicit MSE/bias calculation, not property-definition recall.",
+      "model_answer": "(1) MSE₁=2/n; MSE₂=(0.5/√n)² + 0.5/n = 0.25/n + 0.5/n = 0.75/n. Prefer θ̂₂ on MSE (0.75/n < 2/n). (2) Refuse: comparison requires an explicit MSE (or bias) comparison of the named estimators — definitions alone are not a comparison.",
+      "common_mistake": "Stopping at property definitions without comparing the two estimators numerically.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
+        "Computes both MSEs and states a preference.",
+        "Refuses treating definitions as an automatic comparison."
       ]
     }
   ],

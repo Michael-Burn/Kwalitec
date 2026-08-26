@@ -44,7 +44,7 @@
     "concept_focus": "Bias · variance · MSE · efficiency · consistency — refuse comparison-as-done.",
     "prior_bridge": "Yesterday you constructed MLEs (3.1.2). Today continues topic 3.1 at LO 3.1.3 — estimator properties.",
     "why_now": "3.1.3 is contiguous after construction methods. Closing it prevents a cliff at property language while keeping comparison as day four.",
-    "expected_benefit": "Study Progress for estimator properties — not Topic Complete for 3.1.4.",
+    "expected_benefit": "You will be able to distinguish bias, MSE, efficiency, and consistency on a concrete estimator claim.",
     "explainability": "Assigned as Campaign Kappa Day 3 because Continuity Front membership places properties after construction.",
     "success_criteria": [
       "Closed-book, define bias and MSE of an estimator.",
@@ -147,27 +147,28 @@
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.3-cp-01",
       "title": "Checkpoint: 3.1.3",
-      "prompt": "Closed-book. A colleague says 'I can write MoM and MLE, so properties are done.' Refuse and restate today's LO.",
+      "prompt": "Closed-book. Estimator A is unbiased with Var(A)=4/n. Estimator B has Bias(B)=1/n and Var(B)=1/n. (1) Give MSE(A) and MSE(B). (2) For large n, which has smaller MSE? (3) Refuse: 'Unbiased always beats biased' and 'consistency means the estimator is unbiased.'",
       "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 3.1.3.",
+      "body": "Distinguish bias, MSE, consistency on a concrete claim.",
       "hints": [
         "Name the refusal clearly.",
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
         "bias",
         "MSE",
-        "efficiency",
+        "variance",
         "consistency",
-        "not same"
+        "efficiency",
+        "unbiased",
+        "refuse"
       ],
-      "explanation": "Checkpoint for 3.1.3.",
-      "model_answer": "Refuse: construction ≠ properties. Today requires bias, MSE, efficiency and consistency language with CMP warrants.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "explanation": "MSE = bias² + variance; consistency ≠ unbiasedness; a biased estimator can have smaller MSE.",
+      "model_answer": "(1) MSE(A)=4/n; MSE(B)=(1/n)² + 1/n = 1/n² + 1/n. (2) For large n, MSE(B)≈1/n < 4/n = MSE(A), so B is preferred on MSE. (3) Refuse: unbiasedness is not MSE optimality; consistency is large-sample concentration on the true value, not the same as unbiasedness.",
+      "common_mistake": "Treating unbiasedness as automatically best, or equating consistency with unbiasedness.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
+        "Computes both MSEs and compares them for large n.",
+        "Refuses conflating unbiasedness with MSE optimality and with consistency."
       ]
     }
   ],

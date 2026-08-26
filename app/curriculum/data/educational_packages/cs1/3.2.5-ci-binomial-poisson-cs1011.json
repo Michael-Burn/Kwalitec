@@ -45,7 +45,7 @@
     "concept_focus": "Binomial p CI → Poisson mean CI → Normal approx → refuse two-sample-as-done.",
     "prior_bridge": "Yesterday you formed Normal mean and variance CIs (3.2.4). Today continues topic 3.2 at LO 3.2.5 — binomial and Poisson intervals.",
     "why_now": "3.2.5 is contiguous after Normal recipes. Closing it prevents a cliff at discrete-parameter intervals while keeping two-sample CIs as day six.",
-    "expected_benefit": "Study Progress for binomial/Poisson CIs — not Topic Complete for 3.2.6.",
+    "expected_benefit": "You will be able to form Normal-approximation confidence intervals for both a binomial probability and a Poisson mean.",
     "explainability": "Assigned as Campaign Lambda Day 5 because Continuity Front membership places binomial/Poisson CIs after Normal mean/variance.",
     "success_criteria": [
       "Closed-book, state the binomial-probability CI hinge (incl. Normal approx).",
@@ -149,27 +149,27 @@
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.5-cp-01",
       "title": "Checkpoint: 3.2.5",
-      "prompt": "Closed-book. A colleague says 'I did binomial only — Poisson is the same and two-sample is still today.' Refuse and restate today's dual single-sample LO.",
+      "prompt": "Closed-book. (1) State a Normal-approximation CI form for a binomial probability p and for a Poisson mean λ (single sample). (2) Refuse: 'A binomial CI alone finishes the LO — Poisson is the same formula with a different letter.'",
       "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 3.2.5.",
+      "body": "Binomial-p and Poisson-mean CIs with Normal approx; refuse one-as-both.",
       "hints": [
         "Name the refusal clearly.",
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
         "binomial",
         "Poisson",
-        "two-sample",
-        "today",
-        "approximation"
+        "Normal",
+        "approximation",
+        "refuse",
+        "both"
       ],
-      "explanation": "Checkpoint for 3.2.5.",
-      "model_answer": "Refuse: today's LO requires both binomial-probability and Poisson-mean CIs (with Normal approx as in CMP). Two-sample is tomorrow.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "explanation": "Both discrete single-sample CI settings are required, including Normal approximation where used.",
+      "model_answer": "(1) Binomial: p̂ ± z_{1−α/2} √(p̂(1−p̂)/n). Poisson: λ̂ ± z_{1−α/2} √(λ̂/n) (or equivalent for a total count with matching variance). (2) Refuse: both binomial-p and Poisson-mean CIs with Normal approximation are required — one does not stand in for the other.",
+      "common_mistake": "Covering only binomial (or only Poisson) and calling the dual requirement done.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
+        "States Normal-approx CI forms for both binomial p and Poisson mean.",
+        "Refuses treating one as finishing both."
       ]
     }
   ],

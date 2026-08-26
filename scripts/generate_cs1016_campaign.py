@@ -625,10 +625,13 @@ LEARNING = [
         tutor="Today I will force estimator retrieval and refuse 'Memory Front finished CIs / spine PASS'.",
         edu="Produce Memory Front retrieval of method-of-moments estimators as inference entry.",
         lo_text="Use the method of moments for constructing estimators of population parameters.",
-        focus="Moments → estimator construction → refuse CI swallow.",
+        focus="Moments → equate → estimator → refuse MLE-as-MoM / estimator-as-CI.",
         prior="Yesterday you retrieved random samples (2.6.1). Today continues Memory Front at estimators.",
         why="Estimator construction is the first inference hinge after sampling foundations.",
-        benefit="You'll retrieve 3.1.1.",
+        benefit=(
+            "You'll retrieve how to construct a method-of-moments estimator from "
+            "population moment equations."
+        ),
         explain="Day 5 focuses the named learning objective — opens Chapter 3 at method of moments.",
         criteria=["Closed-book, outline method-of-moments construction in one careful chain.", "Name one population parameter you could target.", "Refuse one CI / spine swallow."],
         tasks=["Sketch moments→estimator path before CMP.", "Complete Guided Reading through CMP treatment of Syllabus 3.1.1.", "Closed-book Knowledge Checks."],
@@ -644,9 +647,19 @@ LEARNING = [
         ar_prompt="Closed-book. (1) What is the method-of-moments move? (2) What object do you construct? (3) Why is 3.2.1 not today's primary?",
         ar_kw=["moments", "estimator", "parameter", "population"],
         ar_model="Match sample moments to population moments to construct estimators. CIs open tomorrow.",
-        cp_prompt="Closed-book. A colleague says '3.1.1 finished confidence-interval memory.' Refuse and name tomorrow.",
-        cp_kw=["refuse", "confidence", "3.2.1", "estimator"],
-        cp_model="Refuse: estimators ≠ CI-from-sample. Tomorrow is 3.2.1.",
+        cp_prompt=(
+            "Closed-book. Exponential claim sizes with mean θ; sample mean x̄ = 5. "
+            "(1) Write the method-of-moments estimator for θ. (2) Refuse: 'I "
+            "maximised the likelihood, so I already have the MoM estimator' and 'an "
+            "estimator is the same object as a confidence interval.'"
+        ),
+        cp_kw=["moments", "equate", "mean", "refuse", "likelihood", "confidence", "estimator"],
+        cp_model=(
+            "(1) Equate E[X]=θ to x̄, so θ̂_MoM = x̄ = 5. (2) Refuse: MLE maximises "
+            "the likelihood — different construction from MoM. An estimator is a "
+            "point estimate of a parameter; a CI is an interval procedure for a "
+            "parameter."
+        ),
         reflect="Harvest estimator wobble — CI-from-sample continues Memory Front tomorrow.",
     ),
     dict(
@@ -663,10 +676,10 @@ LEARNING = [
         tutor="Today I will force CI-from-sample retrieval and refuse 'Memory Front finished HT / spine PASS'.",
         edu="Produce Memory Front retrieval of parameter CI based on a random sample.",
         lo_text="Construct a confidence interval for an unknown parameter of a distribution based on a random sample.",
-        focus="Sample → CI construction → refuse HT swallow.",
+        focus="Sample → parameter CI → coverage reading → refuse prediction-as-CI / HT-as-CI.",
         prior="Yesterday you retrieved estimators (3.1.1). Today continues Memory Front at CI-from-sample.",
         why="CI construction is a high-stakes inference hinge before hypothesis testing.",
-        benefit="You'll retrieve 3.2.1.",
+        benefit="You'll retrieve how to build a confidence interval for a parameter from a random sample.",
         explain="Day 6 focuses the named learning objective — places CI-from-sample before HT.",
         criteria=["Closed-book, outline CI construction from a random sample.", "State what 'confidence' does and does not mean in one careful sentence.", "Refuse one HT / spine swallow."],
         tasks=["Sketch CI path before CMP.", "Complete Guided Reading through CMP treatment of Syllabus 3.2.1.", "Closed-book Knowledge Checks."],
@@ -682,9 +695,20 @@ LEARNING = [
         ar_prompt="Closed-book. (1) What inputs enter a CI from a random sample? (2) What claim does the interval support? (3) Why is 3.3.1 not today's primary?",
         ar_kw=["confidence", "interval", "sample", "parameter"],
         ar_model="A CI uses sample information to construct an interval for an unknown parameter under stated assumptions. HT opens tomorrow.",
-        cp_prompt="Closed-book. A colleague says '3.2.1 finished hypothesis-testing memory.' Refuse and name tomorrow.",
-        cp_kw=["refuse", "hypothesis", "3.3.1", "confidence"],
-        cp_model="Refuse: CI-from-sample ≠ HT. Tomorrow is 3.3.1.",
+        cp_prompt=(
+            "Closed-book. A 95% CI for mean claim size μ is (80, 100). (1) What does "
+            "this interval claim about μ? (2) Refuse: 'There is a 95% chance the "
+            "next claim falls in (80, 100)' and 'a CI is the same as a hypothesis "
+            "test.'"
+        ),
+        cp_kw=["coverage", "parameter", "refuse", "prediction", "hypothesis", "confidence"],
+        cp_model=(
+            "(1) The interval comes from a procedure with 95% coverage for the "
+            "unknown parameter μ under repeated sampling. (2) Refuse: that is a "
+            "prediction reading of a future observation, not a parameter CI. A CI "
+            "estimates a parameter with coverage; a hypothesis test decides between "
+            "hypotheses."
+        ),
         reflect="Harvest CI wobble — hypothesis testing continues Memory Front tomorrow.",
     ),
     dict(
@@ -701,10 +725,10 @@ LEARNING = [
         tutor="Today I will force HT vocabulary retrieval and refuse 'Memory Front finished regression / spine PASS'.",
         edu="Produce Memory Front retrieval of HT foundations as Chapter 3 close hinge.",
         lo_text="Understand null/alternative hypotheses, error types, test statistics, critical regions, significance, p-values, and power at foundation level.",
-        focus="HT vocabulary map → refuse regression swallow.",
+        focus="Null/alternative → Type I/II → p-value / power → refuse cookbook-as-concepts.",
         prior="Yesterday you retrieved CI-from-sample (3.2.1). Today continues Memory Front at HT foundations.",
         why="Refresh hypothesis-testing foundations before you revisit regression and GLM.",
-        benefit="You'll retrieve 3.3.1.",
+        benefit="You'll retrieve null/alternative, error types, p-values, and power at foundation level.",
         explain="Day 7 focuses the named learning objective — closes Chapter 3 at HT foundations before CF-join regression.",
         criteria=["Closed-book, name null vs alternative and type I vs type II in careful pairs.", "Name test statistic / critical region / significance at foundation level.", "Refuse one regression / spine swallow."],
         tasks=["Sketch HT vocabulary map before CMP.", "Complete Guided Reading through CMP treatment of Syllabus 3.3.1.", "Closed-book Knowledge Checks."],
@@ -720,9 +744,21 @@ LEARNING = [
         ar_prompt="Closed-book. (1) Distinguish null and alternative. (2) Distinguish type I and type II. (3) Why is 4.1.1 not today's primary?",
         ar_kw=["null", "alternative", "type I", "type II", "power"],
         ar_model="Null vs alternative frame the test; type I/II name error directions; power is related. Regression opens tomorrow.",
-        cp_prompt="Closed-book. A colleague says '3.3.1 finished linear-regression memory.' Refuse and name tomorrow.",
-        cp_kw=["refuse", "regression", "4.1.1", "hypothesis"],
-        cp_model="Refuse: HT foundations ≠ linear regression. Tomorrow is 4.1.1.",
+        cp_prompt=(
+            "Closed-book. Fraud flag: H₀ = genuine claim, H₁ = fraudulent. (1) "
+            "Define Type I and Type II errors here. (2) In one sentence each, what "
+            "are a p-value and power? (3) Refuse: 'I clicked a software z-test, so "
+            "HT concepts are done' and 'HT foundations are the same skill as fitting "
+            "a linear regression.'"
+        ),
+        cp_kw=["Type I", "Type II", "p-value", "power", "refuse", "regression", "null"],
+        cp_model=(
+            "(1) Type I: flag fraud when the claim is genuine. Type II: miss fraud "
+            "when it is present. (2) p-value: probability under H₀ of data at least "
+            "as extreme as observed. Power: probability of rejecting H₀ when H₁ is "
+            "true. (3) Refuse: a cookbook software test does not replace HT "
+            "vocabulary; linear regression is a different topic."
+        ),
         reflect="Harvest HT wobble — linear regression continues Memory Front tomorrow.",
     ),
     dict(

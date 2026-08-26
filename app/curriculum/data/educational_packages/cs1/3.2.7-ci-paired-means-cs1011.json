@@ -44,7 +44,7 @@
     "concept_focus": "Paired observations → differences → mean-difference CI → refuse bootstrap-as-done.",
     "prior_bridge": "Yesterday you formed two-sample CIs (3.2.6). Today continues topic 3.2 at LO 3.2.7 — paired mean-difference intervals.",
     "why_now": "3.2.7 is contiguous after independent two-sample work. Closing it prevents a cliff at paired data while keeping bootstrap CI as day eight.",
-    "expected_benefit": "Study Progress for paired mean-difference CI — not Topic Complete for 3.2.8.",
+    "expected_benefit": "You will be able to form a paired mean-difference CI by analysing within-pair differences.",
     "explainability": "Assigned as Campaign Lambda Day 7 because Continuity Front membership places paired-means CI after two-sample situations.",
     "success_criteria": [
       "Closed-book, state the paired mean-difference CI hinge.",
@@ -146,27 +146,27 @@
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.7-cp-01",
       "title": "Checkpoint: 3.2.7",
-      "prompt": "Closed-book. A colleague says 'I reused yesterday's two-sample formula on paired rows and that finished both paired and bootstrap.' Refuse and restate today's LO.",
+      "prompt": "Closed-book. Each policyholder has a before/after loss pair (Xᵢ, Yᵢ). (1) What do you analyse to form a CI for the mean difference? (2) Refuse: 'Apply the independent two-sample CI to the before column and the after column.'",
       "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 3.2.7.",
+      "body": "Paired-difference CI; refuse independent two-sample on paired rows.",
       "hints": [
         "Name the refusal clearly.",
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
         "paired",
-        "two-sample",
-        "bootstrap",
-        "today",
-        "difference"
+        "difference",
+        "one-sample",
+        "refuse",
+        "independent",
+        "two-sample"
       ],
-      "explanation": "Checkpoint for 3.2.7.",
-      "model_answer": "Refuse: paired requires the paired-difference construction; bootstrap is tomorrow. Today is the paired mean-difference CI.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "explanation": "Paired means are handled via differences within pairs, not as two independent samples.",
+      "model_answer": "(1) Form paired differences Dᵢ = Yᵢ − Xᵢ (or Xᵢ − Yᵢ), then build a one-sample CI for μ_D. (2) Refuse: the independent two-sample formula ignores pairing and uses the wrong variance structure for matched pairs.",
+      "common_mistake": "Analysing paired columns with the independent two-sample interval formula.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
+        "States the differences-then-one-sample CI move.",
+        "Refuses applying independent two-sample CI to paired columns."
       ]
     }
   ],

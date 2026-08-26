@@ -466,9 +466,7 @@ LEARNING = [
         lo_text=(
             "Method of moments for constructing estimators of population parameters."
         ),
-        focus=(
-            "Population moments → sample moments → solve for parameter → refuse MLE-as-done."
-        ),
+        focus="Population moments → sample moments → solve for parameter → refuse MLE-as-done.",
         prior=(
             "Campaign Iota closed sampling distributions (2.6) with Revision. Today opens "
             "topic 3.1 at LO 3.1.1 — the named Continuity Front after CS1-009."
@@ -477,7 +475,10 @@ LEARNING = [
             "3.1.1 opens this stretch at the natural next learning objective. Close it to avoid "
             "a cliff at estimators, keeping maximum likelihood for the following session."
         ),
-        benefit="Study Progress for method of moments — not Topic Complete for 3.1.2.",
+        benefit=(
+            "You will be able to construct a method-of-moments estimator by equating "
+            "sample moments to population moments and solving."
+        ),
         explain=(
             "Day 1 opens 3.1 at the named learning objective — "
             "the natural next step after the previous topic."
@@ -540,13 +541,16 @@ LEARNING = [
             "any estimator formula is not the same as using that moment-matching move."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'I maximised a likelihood, so I finished today's "
-            "LO.' Refuse in one sentence and restate what today's LO requires."
+            "Closed-book. Claim sizes are modelled as Exponential with mean θ. A "
+            "sample has mean x̄ = 4. (1) Write the population first-moment equation "
+            "and the method-of-moments estimator for θ. (2) Refuse: 'I maximised the "
+            "likelihood, so I already have the method-of-moments estimator.'"
         ),
-        cp_kw=["refuse", "moments", "likelihood", "not same", "MoM", "today"],
+        cp_kw=["moments", "equate", "sample", "population", "mean", "refuse", "likelihood", "MLE", "MoM"],
         cp_model=(
-            "Refuse: MLE is tomorrow's LO. Today requires the method-of-moments "
-            "construction — equate sample and population moments and solve."
+            "(1) E[X] = θ; equate x̄ = θ, so θ̂_MoM = x̄ = 4. (2) Refuse: maximising "
+            "the likelihood is MLE, not MoM. MoM equates sample moments to "
+            "population moments and solves."
         ),
         reflect="Harvest MoM algebra wobble — keep MLE out of tonight's claim.",
     ),
@@ -572,9 +576,7 @@ LEARNING = [
         lo_text=(
             "Method of maximum likelihood for constructing estimators of population parameters."
         ),
-        focus=(
-            "Likelihood / log-likelihood → maximise → MLE → refuse properties-as-done."
-        ),
+        focus="Likelihood / log-likelihood → maximise → MLE → refuse properties-as-done.",
         prior=(
             "Yesterday you constructed method-of-moments estimators (3.1.1). Today continues "
             "topic 3.1 at LO 3.1.2 — maximum likelihood."
@@ -583,7 +585,10 @@ LEARNING = [
             "3.1.2 is contiguous after MoM. Closing it prevents a cliff at MLE while keeping "
             "estimator properties as day three."
         ),
-        benefit="Study Progress for MLE construction — not Topic Complete for 3.1.3.",
+        benefit=(
+            "You will be able to form and maximise a likelihood (or log-likelihood) "
+            "to obtain an MLE for a simple parametric model."
+        ),
         explain=(
             "Day 2 continues at the named learning objective — MLE immediately after MoM."
         ),
@@ -645,13 +650,16 @@ LEARNING = [
             "maximises the model likelihood."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'Yesterday's MoM means I already know MLE.' "
-            "Refuse in one sentence and restate today's LO."
+            "Closed-book. IID claims X₁,…,Xₙ ~ Exponential with rate λ (pdf λ "
+            "e^{−λx} for x>0). (1) Write the log-likelihood for λ and state the MLE. "
+            "(2) Refuse: 'Yesterday's method-of-moments estimator is the same skill "
+            "as maximum likelihood.'"
         ),
-        cp_kw=["refuse", "moments", "likelihood", "not same", "MLE", "today"],
+        cp_kw=["likelihood", "log-likelihood", "maximise", "MLE", "rate", "refuse", "moments", "MoM"],
         cp_model=(
-            "Refuse: MoM is not MLE. Today requires forming and maximising the likelihood / "
-            "log-likelihood for the parameter."
+            "(1) ℓ(λ) = n ln λ − λ Σ xᵢ; MLE λ̂ = n/Σ xᵢ = 1/x̄. (2) Refuse: MoM "
+            "matches moments; MLE maximises the likelihood (or log-likelihood). "
+            "Different construction — even when numerical answers coincide."
         ),
         reflect="Harvest likelihood / score algebra wobble — keep properties out of tonight.",
     ),
@@ -686,9 +694,7 @@ LEARNING = [
         lo_text=(
             "Efficiency, bias, consistency and mean square error of an estimator."
         ),
-        focus=(
-            "Bias · variance · MSE · efficiency · consistency — refuse comparison-as-done."
-        ),
+        focus="Bias · variance · MSE · efficiency · consistency — refuse comparison-as-done.",
         prior=(
             "Yesterday you constructed MLEs (3.1.2). Today continues topic 3.1 at LO 3.1.3 — "
             "estimator properties."
@@ -697,7 +703,10 @@ LEARNING = [
             "3.1.3 is contiguous after construction methods. Closing it prevents a cliff at "
             "property language while keeping comparison as day four."
         ),
-        benefit="Study Progress for estimator properties — not Topic Complete for 3.1.4.",
+        benefit=(
+            "You will be able to distinguish bias, MSE, efficiency, and consistency "
+            "on a concrete estimator claim."
+        ),
         explain=(
             "Day 3 continues at the named learning objective — properties after construction."
         ),
@@ -758,13 +767,17 @@ LEARNING = [
             "consistency concerns convergence in probability as sample size grows."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'I can write MoM and MLE, so properties are done.' "
-            "Refuse and restate today's LO."
+            "Closed-book. Estimator A is unbiased with Var(A)=4/n. Estimator B has "
+            "Bias(B)=1/n and Var(B)=1/n. (1) Give MSE(A) and MSE(B). (2) For large "
+            "n, which has smaller MSE? (3) Refuse: 'Unbiased always beats biased' "
+            "and 'consistency means the estimator is unbiased.'"
         ),
-        cp_kw=["refuse", "bias", "MSE", "efficiency", "consistency", "not same"],
+        cp_kw=["bias", "MSE", "variance", "consistency", "efficiency", "unbiased", "refuse"],
         cp_model=(
-            "Refuse: construction ≠ properties. Today requires bias, MSE, efficiency and "
-            "consistency language with CMP warrants."
+            "(1) MSE(A)=4/n; MSE(B)=(1/n)² + 1/n = 1/n² + 1/n. (2) For large n, "
+            "MSE(B)≈1/n < 4/n = MSE(A), so B is preferred on MSE. (3) Refuse: "
+            "unbiasedness is not MSE optimality; consistency is large-sample "
+            "concentration on the true value, not the same as unbiasedness."
         ),
         reflect="Harvest bias/MSE definition wobble — keep comparison for tomorrow.",
     ),
@@ -792,9 +805,7 @@ LEARNING = [
         lo_text=(
             "Comparison of estimators using their mean square error and bias or unbiasedness."
         ),
-        focus=(
-            "Two estimators → MSE / bias comparison → refuse asymptotics-as-done."
-        ),
+        focus="Two estimators → MSE / bias comparison → refuse asymptotics-as-done.",
         prior=(
             "Yesterday you discussed efficiency, bias, consistency and MSE (3.1.3). Today "
             "continues topic 3.1 at LO 3.1.4 — comparison."
@@ -803,7 +814,10 @@ LEARNING = [
             "3.1.4 is contiguous after property language. Closing it prevents a cliff at "
             "comparison while keeping asymptotic MLE as day five."
         ),
-        benefit="Study Progress for estimator comparison — not Topic Complete for 3.1.5.",
+        benefit=(
+            "You will be able to compare two estimators explicitly via MSE (and "
+            "bias), not just recall the definitions."
+        ),
         explain=(
             "Day 4 continues at the named learning objective — comparison after property definitions."
         ),
@@ -858,13 +872,17 @@ LEARNING = [
             "bias. Asymptotic MLE laws are tomorrow — not today's LO."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'Bias and MSE defined yesterday — comparison is "
-            "automatic.' Refuse and restate today's LO."
+            "Closed-book. Two estimators of θ: θ̂₁ is unbiased with Var=2/n; θ̂₂ has "
+            "Bias=0.5/√n and Var=0.5/n. (1) Compare them using MSE — which do you "
+            "prefer for large n? (2) Refuse: 'Bias and MSE are defined, so "
+            "comparison is automatic without computing either estimator's MSE.'"
         ),
-        cp_kw=["refuse", "compare", "MSE", "bias", "not automatic", "today"],
+        cp_kw=["MSE", "bias", "compare", "variance", "prefer", "refuse"],
         cp_model=(
-            "Refuse: definitions ≠ comparison. Today requires an explicit MSE / bias "
-            "comparison of estimators."
+            "(1) MSE₁=2/n; MSE₂=(0.5/√n)² + 0.5/n = 0.25/n + 0.5/n = 0.75/n. Prefer "
+            "θ̂₂ on MSE (0.75/n < 2/n). (2) Refuse: comparison requires an explicit "
+            "MSE (or bias) comparison of the named estimators — definitions alone "
+            "are not a comparison."
         ),
         reflect="Harvest comparison warrant wobble — keep asymptotics for tomorrow.",
     ),
@@ -891,9 +909,7 @@ LEARNING = [
             "distribution under CMP language."
         ),
         lo_text="Asymptotic distribution of maximum likelihood estimators.",
-        focus=(
-            "Large-sample MLE behaviour → asymptotic distribution → refuse bootstrap-as-done."
-        ),
+        focus="Large-sample MLE behaviour → asymptotic distribution → refuse bootstrap-as-done.",
         prior=(
             "Yesterday you compared estimators via MSE and bias (3.1.4). Today continues "
             "topic 3.1 at LO 3.1.5 — asymptotic distribution of MLEs."
@@ -902,7 +918,10 @@ LEARNING = [
             "3.1.5 is contiguous after comparison. Closing it prevents a cliff at asymptotic "
             "MLE while keeping bootstrap as day six."
         ),
-        benefit="Study Progress for asymptotic MLE — not Topic Complete for 3.1.6.",
+        benefit=(
+            "You will be able to state the asymptotic Normal claim for MLEs and use "
+            "it for large-sample inference."
+        ),
         explain=(
             "Day 5 continues at the named learning objective — asymptotics after comparison."
         ),
@@ -964,13 +983,18 @@ LEARNING = [
             "resampling LO (3.1.6)."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'I'll bootstrap now so asymptotics are done.' "
-            "Refuse and restate today's LO."
+            "Closed-book. Under regularity conditions, an MLE θ̂ₙ satisfies √n (θ̂ₙ "
+            "− θ) →ᵈ N(0, 1/I(θ)). (1) What does this asymptotic Normal claim give "
+            "you for large-sample inference about θ? (2) Refuse: 'I'll bootstrap the "
+            "sampling distribution, so I do not need the asymptotic MLE result.'"
         ),
-        cp_kw=["refuse", "asymptotic", "bootstrap", "not same", "MLE", "today"],
+        cp_kw=["asymptotic", "Normal", "MLE", "Fisher", "information", "large-sample", "bootstrap", "refuse"],
         cp_model=(
-            "Refuse: bootstrap is tomorrow. Today requires the asymptotic distribution claim "
-            "for MLEs under CMP conditions."
+            "(1) For large n, θ̂ₙ is approximately Normal about θ with variance ≈ "
+            "1/(n I(θ)), supporting large-sample SEs and Wald-type intervals/tests "
+            "from Fisher information. (2) Refuse: bootstrap estimates properties by "
+            "resampling; it does not replace stating the asymptotic distribution of "
+            "the MLE."
         ),
         reflect="Harvest asymptotic variance / regularity wobble — keep bootstrap for tomorrow.",
     ),
@@ -998,7 +1022,8 @@ LEARNING = [
         ),
         lo_text="Bootstrap method for estimating properties of an estimator.",
         focus=(
-            "Resample → estimate estimator properties → refuse 3.2 / Chapter-3-complete."
+            "Resample → estimate estimator properties → refuse "
+            "asymptotics-as-bootstrap / bootstrap-CI-as-same."
         ),
         prior=(
             "Yesterday you discussed asymptotic MLE behaviour (3.1.5). Today continues topic "
@@ -1009,8 +1034,8 @@ LEARNING = [
             "while keeping intervals (3.2) as a later Volume."
         ),
         benefit=(
-            "Study Progress for bootstrap properties — not Topic Complete for 3.2 or "
-            "Chapter 3."
+            "You will be able to use bootstrap resampling to estimate a property of "
+            "an estimator (such as its standard error)."
         ),
         explain=(
             "Day 6 closes this stretch at the named learning objective — 3.1 Learning at bootstrap before Revision."
@@ -1073,23 +1098,19 @@ LEARNING = [
             "topic 3.1 Learning, not Chapter 3 or intervals."
         ),
         cp_prompt=(
-            "Closed-book. (1) Refuse 'yesterday's asymptotics finished today's LO'. "
-            "(2) Refuse 'Chapter 3 is complete because I finished 3.1.6'. Name what still sits ahead before the next syllabus topic."
+            "Closed-book. You have an estimator θ̂ computed from a sample of size n. "
+            "(1) Describe the bootstrap move to estimate the standard error of θ̂. "
+            "(2) Refuse: 'The asymptotic Normal law for the MLE already finished "
+            "bootstrap estimation of estimator properties' and 'a bootstrap "
+            "confidence interval is the same LO.'"
         ),
-        cp_kw=[
-            "refuse",
-            "bootstrap",
-            "asymptotic",
-            "chapter",
-            "complete",
-            "3.2",
-            "revision",
-            "stop",
-        ],
+        cp_kw=["bootstrap", "resample", "standard error", "properties", "refuse", "asymptotic", "confidence"],
         cp_model=(
-            "(1) Refuse: asymptotics ≠ bootstrap. (2) Refuse: 3.1.6 closes topic 3.1 "
-            "Learning, not Chapter 3; next is Revision then honest 3.2 successor — not "
-            "spine/until-exam claims."
+            "(1) Draw resamples with replacement from the original sample, recompute "
+            "θ̂* on each resample, and use the empirical SD (or other summary) of "
+            "the θ̂* values as the SE estimate. (2) Refuse: asymptotics ≠ bootstrap "
+            "resampling for properties; constructing a bootstrap CI is a different "
+            "LO (interval construction, not property estimation)."
         ),
         reflect=(
             "Harvest bootstrap procedure wobble — Revision protects the 3.1 chain tomorrow."

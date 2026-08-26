@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-KAPPA",
   "volume_id": "CS1-010",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1010_EDUCATIONAL_VOLUME.md",
     "CS1010_CERTIFICATION_REPORT.md",
@@ -37,22 +37,22 @@
   "mission": {
     "mission_id": "msn-cs1010-cs1-3.1-method-of-moments",
     "display_title": "Construct estimators by the method of moments",
-    "mission_purpose": "Today's Mission exists to construct estimators of population parameters by the method of moments \u2014 so the MoM move is usable \u2014 without pretending maximum likelihood (3.1.2) is finished.",
-    "tutor_intent": "Today I will force the candidate to equate sample moments to population moments and solve for the parameter \u2014 and refuse treating 'I wrote an estimator' as having the MoM LO.",
+    "mission_purpose": "Today's Mission exists to construct estimators of population parameters by the method of moments — so the MoM move is usable — without pretending maximum likelihood (3.1.2) is finished.",
+    "tutor_intent": "Today I will force the candidate to equate sample moments to population moments and solve for the parameter — and refuse treating 'I wrote an estimator' as having the MoM LO.",
     "educational_intent": "Produce a cognitive move from population moments to a method-of-moments estimator under CMP language.",
     "learning_objective": "Method of moments for constructing estimators of population parameters.",
-    "concept_focus": "Population moments \u2192 sample moments \u2192 solve for parameter \u2192 refuse MLE-as-done.",
-    "prior_bridge": "Campaign Iota closed sampling distributions (2.6) with Revision. Today opens topic 3.1 at LO 3.1.1 \u2014 the named Continuity Front after CS1-009.",
-    "why_now": "Estimators start with method of moments \u2014 match sample moments to population ones before maximum likelihood.",
-    "expected_benefit": "Study Progress for method of moments \u2014 not Topic Complete for 3.1.2.",
+    "concept_focus": "Population moments → sample moments → solve for parameter → refuse MLE-as-done.",
+    "prior_bridge": "Campaign Iota closed sampling distributions (2.6) with Revision. Today opens topic 3.1 at LO 3.1.1 — the named Continuity Front after CS1-009.",
+    "why_now": "Estimators start with method of moments — match sample moments to population ones before maximum likelihood.",
+    "expected_benefit": "You will be able to construct a method-of-moments estimator by equating sample moments to population moments and solving.",
     "explainability": "Assigned as Campaign Kappa Day 1 because CE-001 / EP-001 Continuity Front names 3.1 as the handoff from Iota.",
     "success_criteria": [
       "Closed-book, state the method-of-moments construction move in CMP-usable form.",
       "Name how sample moments replace population moments.",
-      "Refuse one 'any formula for \u03b8\u0302 is MoM' claim."
+      "Refuse one 'any formula for θ̂ is MoM' claim."
     ],
     "task_descriptions": [
-      "Sketch population moments \u2192 sample moments \u2192 estimator before CMP.",
+      "Sketch population moments → sample moments → estimator before CMP.",
       "Complete Guided Reading through CMP treatment of Syllabus 3.1.1.",
       "Closed-book Knowledge Checks: MoM construction + refuse MLE swallow."
     ],
@@ -63,17 +63,17 @@
   },
   "session": {
     "session_id": "ssn-cs1010-cs1-3.1-method-of-moments",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 3.1.1 \u2014 not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 3.1.1 — not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 3.1.1, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Construct estimators by the method of moments. You practised selective CMP reading on Syllabus 3.1.1. This is Study Progress for today's block \u2014 not Topic Complete for later 3.1 LOs, Chapter 3 trophy, intervals (3.2), hypothesis testing (3.3), or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 3.1.1 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Construct estimators by the method of moments. You practised selective CMP reading on Syllabus 3.1.1. This is Study Progress for today's block — not Topic Complete for later 3.1 LOs, Chapter 3 trophy, intervals (3.2), hypothesis testing (3.3), or until-exam trust.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 3.1.1 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.1.1 \u2014 construct estimators by the method of moments. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.1.1 — construct estimators by the method of moments. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 3.1.1?",
       "What warrant separates today's skill from yesterday's?",
@@ -85,7 +85,7 @@
       "Watch for starting MLE drills (3.1.2) inside this sitting.",
       "Watch for interval construction (3.2) today."
     ],
-    "open_point": "CMP \u00b7 Syllabus 3.1.1 method of moments",
+    "open_point": "CMP · Syllabus 3.1.1 method of moments",
     "stop_condition": "Through the CMP treatment of Syllabus 3.1.1 (stop before maximum likelihood 3.1.2)",
     "out_of_scope_today": [
       "Maximum likelihood as primary (3.1.2)",
@@ -97,12 +97,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.1.1 method of moments. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.1.1 (stop before maximum likelihood 3.1.2). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 3.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.1.1 method of moments. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.1.1 (stop before maximum likelihood 3.1.2). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 3.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "cue": "Pause — write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -119,7 +119,7 @@
       "kind": "active_recall",
       "item_id": "cs1010-3.1.1-ar-01",
       "title": "Active Recall: 3.1.1",
-      "prompt": "Closed-book. (1) What is the method-of-moments construction move? (2) What replaces population moments in the equations? (3) Name one reason 'I have a formula for \u03b8\u0302' is not automatically MoM.",
+      "prompt": "Closed-book. (1) What is the method-of-moments construction move? (2) What replaces population moments in the equations? (3) Name one reason 'I have a formula for θ̂' is not automatically MoM.",
       "response_type": "short_structured",
       "body": "Retrieve 3.1.1 closed-book.",
       "hints": [
@@ -147,32 +147,35 @@
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.1-cp-01",
       "title": "Checkpoint: 3.1.1",
-      "prompt": "Closed-book. A colleague says 'I maximised a likelihood, so I finished today's LO.' Refuse in one sentence and restate what today's LO requires.",
+      "prompt": "Closed-book. Claim sizes are modelled as Exponential with mean θ. A sample has mean x̄ = 4. (1) Write the population first-moment equation and the method-of-moments estimator for θ. (2) Refuse: 'I maximised the likelihood, so I already have the method-of-moments estimator.'",
       "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 3.1.1.",
+      "body": "Equate moments and solve; refuse MLE-as-MoM.",
       "hints": [
         "Name the refusal clearly.",
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
         "moments",
+        "equate",
+        "sample",
+        "population",
+        "mean",
+        "refuse",
         "likelihood",
-        "not same",
-        "MoM",
-        "today"
+        "MLE",
+        "MoM"
       ],
-      "explanation": "Checkpoint for 3.1.1.",
-      "model_answer": "Refuse: MLE is tomorrow's LO. Today requires the method-of-moments construction \u2014 equate sample and population moments and solve.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "explanation": "Method of moments matches sample moments to population moments; likelihood maximisation is a different construction.",
+      "model_answer": "(1) E[X] = θ; equate x̄ = θ, so θ̂_MoM = x̄ = 4. (2) Refuse: maximising the likelihood is MLE, not MoM. MoM equates sample moments to population moments and solves.",
+      "common_mistake": "Treating any estimator formula (especially MLE) as automatically method of moments.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
+        "Writes the moment equation and MoM estimator for the vignette.",
+        "Refuses equating MLE with MoM."
       ]
     }
   ],
   "reflection": {
-    "framing": "Harvest MoM algebra wobble \u2014 keep MLE out of tonight's claim.",
+    "framing": "Harvest MoM algebra wobble — keep MLE out of tonight's claim.",
     "prompt": "Which part of today's 3.1.1 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 3.1.1 is stickiest and why?",
@@ -184,7 +187,7 @@
     "next_topic_code": "3.1",
     "next_topic_title": "Maximum likelihood estimators (3.1.2)",
     "continuity_line": "Today you constructed estimators by method of moments; tomorrow continues 3.1 at maximum likelihood.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.1.2 \u2014 titles only tonight",
-    "student_facing": "Tomorrow: maximum likelihood (3.1.2). Optional light prep: skim 3.1.2 headings \u2014 titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.1.2 — titles only tonight",
+    "student_facing": "Tomorrow: maximum likelihood (3.1.2). Optional light prep: skim 3.1.2 headings — titles only tonight."
   }
 }

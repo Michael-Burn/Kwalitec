@@ -45,7 +45,7 @@
     "concept_focus": "Normal sample → mean CI → variance CI → refuse binomial/Poisson-as-done.",
     "prior_bridge": "Yesterday you formed a CI from a given sampling distribution (3.2.3). Today continues topic 3.2 at LO 3.2.4 — Normal mean and variance intervals.",
     "why_now": "3.2.4 is contiguous after the given-distribution method. Closing it prevents a cliff at Normal recipes while keeping binomial/Poisson as day five.",
-    "expected_benefit": "Study Progress for Normal mean/variance CIs — not Topic Complete for 3.2.5.",
+    "expected_benefit": "You will be able to construct confidence intervals for both the mean and the variance of a Normal sample.",
     "explainability": "Assigned as Campaign Lambda Day 4 because Continuity Front membership places Normal mean/variance CIs after given-sampling-distribution CI.",
     "success_criteria": [
       "Closed-book, state the Normal mean CI hinge.",
@@ -149,27 +149,28 @@
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.4-cp-01",
       "title": "Checkpoint: 3.2.4",
-      "prompt": "Closed-book. A colleague says 'I did the Normal mean CI only — variance can wait and binomial is the same LO.' Refuse and restate today's dual requirement.",
+      "prompt": "Closed-book. IID Normal sample, n=16, x̄=10, s²=4 (σ unknown). (1) State the form of a CI for μ and the form of a CI for σ². (2) Refuse: 'The mean CI alone finishes today — variance can wait, and binomial is the same LO.'",
       "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 3.2.4.",
+      "body": "Both Normal mean and variance CI forms; refuse mean-only.",
       "hints": [
         "Name the refusal clearly.",
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
+        "Normal",
         "mean",
         "variance",
-        "normal",
-        "binomial",
-        "today"
+        "t",
+        "chi-square",
+        "refuse",
+        "both"
       ],
-      "explanation": "Checkpoint for 3.2.4.",
-      "model_answer": "Refuse: today's LO requires both Normal mean and Normal variance CIs. Binomial/Poisson is tomorrow's LO.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "explanation": "Syllabus 3.2.4 requires interval recipes for both the Normal mean and the Normal variance.",
+      "model_answer": "(1) For μ: x̄ ± t_{n−1, 1−α/2} · s/√n. For σ²: ((n−1)s² / χ²_{n−1, 1−α/2}, (n−1)s² / χ²_{n−1, α/2}). (2) Refuse: both Normal mean and Normal variance CIs are required; binomial/Poisson intervals are a different LO.",
+      "common_mistake": "Covering only the mean CI and treating variance (or binomial) as optional/same.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
+        "States both the t-based mean CI and the χ²-based variance CI forms.",
+        "Refuses mean-only as completing the requirement."
       ]
     }
   ],

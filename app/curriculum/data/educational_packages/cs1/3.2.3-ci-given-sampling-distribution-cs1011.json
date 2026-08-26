@@ -44,7 +44,7 @@
     "concept_focus": "Given sampling distribution → invert / pivot → CI → refuse Normal cookbook-as-done.",
     "prior_bridge": "Yesterday you constructed a prediction interval (3.2.2). Today continues topic 3.2 at LO 3.2.3 — CI using a given sampling distribution.",
     "why_now": "3.2.3 is contiguous after prediction. Closing it prevents a cliff at the given-distribution method while keeping Normal mean/variance CIs as day four.",
-    "expected_benefit": "Study Progress for given-distribution CI — not Topic Complete for 3.2.4.",
+    "expected_benefit": "You will be able to form a CI by inverting a given sampling distribution, not only by recalling Normal-mean formulae.",
     "explainability": "Assigned as Campaign Lambda Day 3 because Continuity Front membership places given-sampling-distribution CI after prediction.",
     "success_criteria": [
       "Closed-book, state how a given sampling distribution yields a CI.",
@@ -147,27 +147,27 @@
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.3-cp-01",
       "title": "Checkpoint: 3.2.3",
-      "prompt": "Closed-book. A colleague says 'I memorised the Normal mean CI, so I finished today's LO.' Refuse in one sentence and restate today's requirement.",
+      "prompt": "Closed-book. For an Exponential mean-θ model you are told that 2n X̄ / θ ~ χ²_{2n}. (1) Outline how you invert this sampling distribution to form a CI for θ. (2) Refuse: 'I memorised the Normal-mean CI cookbook, so any sampling-distribution CI is done.'",
       "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 3.2.3.",
+      "body": "Invert a given sampling distribution to form a CI; refuse Normal-cookbook-as-done.",
       "hints": [
         "Name the refusal clearly.",
         "Give a positive warrant."
       ],
       "accepted_keywords": [
+        "invert",
+        "sampling distribution",
+        "pivot",
+        "chi-square",
         "refuse",
-        "sampling",
-        "distribution",
-        "normal",
-        "today",
-        "given"
+        "Normal"
       ],
-      "explanation": "Checkpoint for 3.2.3.",
-      "model_answer": "Refuse: Normal mean/variance CIs are tomorrow. Today requires forming a CI from a given sampling distribution.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "explanation": "Given-distribution CIs rearrange a known pivotal/sampling relationship; memorised Normal-mean recipes are not a substitute.",
+      "model_answer": "(1) Choose χ² critical values so P(χ²_L < 2n X̄ / θ < χ²_U) = 1−α, then rearrange the inequality to isolate θ (bounds involve 2n X̄ / χ²). (2) Refuse: cookbook Normal-mean formulae do not replace inverting the given sampling distribution for this model.",
+      "common_mistake": "Jumping to a Normal-mean CI template without using the given sampling distribution.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
+        "Outlines inversion/rearrangement of the given χ² relationship for θ.",
+        "Refuses treating Normal-mean cookbook as finishing this LO."
       ]
     }
   ],

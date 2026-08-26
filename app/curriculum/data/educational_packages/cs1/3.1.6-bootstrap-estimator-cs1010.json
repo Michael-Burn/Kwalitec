@@ -40,10 +40,10 @@
     "tutor_intent": "Today I will force the candidate to describe bootstrap resampling for estimator properties — and refuse treating asymptotic MLE laws as finishing bootstrap, and refuse Chapter 3 trophy claims.",
     "educational_intent": "Produce a cognitive move from an estimator to bootstrap estimation of its properties under CMP language.",
     "learning_objective": "Bootstrap method for estimating properties of an estimator.",
-    "concept_focus": "Resample → estimate estimator properties → refuse 3.2 / Chapter-3-complete.",
+    "concept_focus": "Resample → estimate estimator properties → refuse asymptotics-as-bootstrap / bootstrap-CI-as-same.",
     "prior_bridge": "Yesterday you discussed asymptotic MLE behaviour (3.1.5). Today continues topic 3.1 at LO 3.1.6 — bootstrap — completing the Learning span.",
     "why_now": "3.1.6 completes topic 3.1 Learning. Closing it prevents a cliff before Revision while keeping intervals (3.2) as a later Volume.",
-    "expected_benefit": "Study Progress for bootstrap properties — not Topic Complete for 3.2 or Chapter 3.",
+    "expected_benefit": "You will be able to use bootstrap resampling to estimate a property of an estimator (such as its standard error).",
     "explainability": "Assigned as Campaign Kappa Day 6 because Continuity Front membership closes 3.1 Learning at bootstrap before Revision.",
     "success_criteria": [
       "Closed-book, describe the bootstrap move for estimating estimator properties.",
@@ -146,29 +146,28 @@
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.6-cp-01",
       "title": "Checkpoint: 3.1.6",
-      "prompt": "Closed-book. (1) Refuse 'Yesterday's asymptotic MLE behaviour already finished bootstrap estimation of estimator properties.' (2) Refuse 'Finishing 3.1.6 means all of Chapter 3 is done.' Name what still sits ahead before confidence intervals.",
+      "prompt": "Closed-book. You have an estimator θ̂ computed from a sample of size n. (1) Describe the bootstrap move to estimate the standard error of θ̂. (2) Refuse: 'The asymptotic Normal law for the MLE already finished bootstrap estimation of estimator properties' and 'a bootstrap confidence interval is the same LO.'",
       "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 3.1.6.",
+      "body": "Bootstrap to estimate estimator properties; refuse asymptotics-as-bootstrap and CI-as-same.",
       "hints": [
         "Name the refusal clearly.",
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
         "bootstrap",
+        "resample",
+        "standard error",
+        "properties",
+        "refuse",
         "asymptotic",
-        "chapter",
-        "complete",
-        "3.2",
-        "revision",
-        "stop"
+        "confidence"
       ],
-      "explanation": "Checkpoint for 3.1.6.",
-      "model_answer": "(1) Refuse: asymptotics ≠ bootstrap. (2) Refuse: 3.1.6 closes topic 3.1 Learning, not Chapter 3; next is Revision then honest 3.2 successor — not spine/until-exam claims.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "explanation": "Bootstrap for estimator properties resamples and summarises the replicate distribution of the estimator; that is not asymptotic MLE theory and not bootstrap CI construction.",
+      "model_answer": "(1) Draw resamples with replacement from the original sample, recompute θ̂* on each resample, and use the empirical SD (or other summary) of the θ̂* values as the SE estimate. (2) Refuse: asymptotics ≠ bootstrap resampling for properties; constructing a bootstrap CI is a different LO (interval construction, not property estimation).",
+      "common_mistake": "Equating asymptotic MLE behaviour or bootstrap CIs with bootstrap estimation of estimator properties.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
+        "Describes resampling and summarising replicate estimates for an SE (or similar property).",
+        "Refuses conflating asymptotics or bootstrap CIs with this LO."
       ]
     }
   ],

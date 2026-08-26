@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-MU",
   "volume_id": "CS1-012",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1012_EDUCATIONAL_VOLUME.md",
     "CS1012_CERTIFICATION_REPORT.md",
@@ -39,14 +39,14 @@
   "mission": {
     "mission_id": "msn-cs1012-cs1-3.3-hypothesis-concepts",
     "display_title": "Understand hypothesis-testing concepts (null/alternative, errors, p-value, power)",
-    "mission_purpose": "Today's Mission exists to establish the conceptual toolkit of hypothesis testing \u2014 null and alternative hypotheses, simple and composite forms, type I and type II errors, sensitivity and specificity, test statistic, likelihood ratio, critical region, significance level, p-value, and power \u2014 without pretending basic applied tests (3.3.2) are finished.",
+    "mission_purpose": "Today's Mission exists to establish the conceptual toolkit of hypothesis testing — null and alternative hypotheses, simple and composite forms, type I and type II errors, sensitivity and specificity, test statistic, likelihood ratio, critical region, significance level, p-value, and power — without pretending basic applied tests (3.3.2) are finished.",
     "tutor_intent": "Today I will force the candidate to name HT decision concepts in CMP language and refuse treating a cookbook one-sample test as today's LO.",
     "educational_intent": "Produce a cognitive move from interval-thinking (3.2) to the hypothesis-testing decision framework under CMP vocabulary.",
     "learning_objective": "Understand the concepts of Null and alternative hypotheses, simple and composite hypotheses, type I and type II errors, sensitivity, specificity, test statistic, likelihood ratio, critical region, level of significance, probability value and power of a test.",
-    "concept_focus": "Null/alternative \u2192 errors & operating characteristics \u2192 critical region / p-value / power \u2192 refuse applied-test-as-done.",
-    "prior_bridge": "Campaign Lambda closed confidence and prediction intervals (3.2) with Revision. Today opens topic 3.3 at LO 3.3.1 \u2014 the named Continuity Front after CS1-011.",
-    "why_now": "Hypothesis testing starts with the vocabulary: null/alternative, errors, p-value, and power \u2014 applied tests come next.",
-    "expected_benefit": "Study Progress for HT concepts \u2014 not Topic Complete for 3.3.2.",
+    "concept_focus": "Null/alternative → errors & operating characteristics → critical region / p-value / power → refuse applied-test-as-done.",
+    "prior_bridge": "Campaign Lambda closed confidence and prediction intervals (3.2) with Revision. Today opens topic 3.3 at LO 3.3.1 — the named Continuity Front after CS1-011.",
+    "why_now": "Hypothesis testing starts with the vocabulary: null/alternative, errors, p-value, and power — applied tests come next.",
+    "expected_benefit": "You will be able to use HT vocabulary (errors, p-value, power, critical region) correctly on a concrete vignette.",
     "explainability": "Assigned as Campaign Mu Day 1 because CE-001 / EP-001 Continuity Front names 3.3 as the handoff from Lambda.",
     "success_criteria": [
       "Closed-book, distinguish null vs alternative and type I vs type II errors.",
@@ -65,17 +65,17 @@
   },
   "session": {
     "session_id": "ssn-cs1012-cs1-3.3-hypothesis-concepts",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 3.3.1 \u2014 not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 3.3.1 — not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 3.3.1, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Understand hypothesis-testing concepts (null/alternative, errors, p-value, power). You practised selective CMP reading on Syllabus 3.3.1. This is Study Progress for today's block \u2014 not Topic Complete for later 3.3 LOs, Chapter 3 trophy, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 3.3.1 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Understand hypothesis-testing concepts (null/alternative, errors, p-value, power). You practised selective CMP reading on Syllabus 3.3.1. This is Study Progress for today's block — not Topic Complete for later 3.3 LOs, Chapter 3 trophy, first-pass spine PASS, or until-exam trust.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 3.3.1 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.3.1 \u2014 understand hypothesis-testing concepts (null/alternative, errors, p-value, power). Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.3.1 — understand hypothesis-testing concepts (null/alternative, errors, p-value, power). Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 3.3.1?",
       "What warrant separates today's skill from yesterday's?",
@@ -87,7 +87,7 @@
       "Watch for starting cookbook Normal/binomial tests (3.3.2) inside this sitting.",
       "Watch for Chapter 3 / spine / until-exam claims."
     ],
-    "open_point": "CMP \u00b7 Syllabus 3.3.1 hypothesis-testing concepts",
+    "open_point": "CMP · Syllabus 3.3.1 hypothesis-testing concepts",
     "stop_condition": "Through the CMP treatment of Syllabus 3.3.1 (stop before basic applied tests 3.3.2)",
     "out_of_scope_today": [
       "Basic one-/two-sample / paired tests as primary (3.3.2)",
@@ -99,12 +99,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.3.1 hypothesis-testing concepts. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.3.1 (stop before basic applied tests 3.3.2). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 3.3.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.3.1 hypothesis-testing concepts. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.3.1 (stop before basic applied tests 3.3.2). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 3.3.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "cue": "Pause — write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -151,33 +151,33 @@
       "kind": "checkpoint",
       "item_id": "cs1012-3.3.1-cp-01",
       "title": "Checkpoint: 3.3.1",
-      "prompt": "Closed-book. A colleague says 'I ran a one-sample Normal mean test, so I finished today's LO.' Refuse in one sentence and restate what today's LO requires.",
+      "prompt": "Closed-book. Disease screening: H₀ = no disease, H₁ = disease present. (1) Define Type I and Type II errors in this vignette. (2) What does a p-value measure, and what is power? (3) Refuse: 'I ran a one-sample Normal mean test in software, so the concepts LO is done.'",
       "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 3.3.1.",
+      "body": "HT vocabulary on a vignette; refuse cookbook-test-as-concepts.",
       "hints": [
         "Name the refusal clearly.",
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
-        "concepts",
-        "null",
+        "Type I",
+        "Type II",
         "p-value",
         "power",
-        "not same",
-        "today"
+        "null",
+        "refuse",
+        "critical"
       ],
-      "explanation": "Checkpoint for 3.3.1.",
-      "model_answer": "Refuse: applied tests are tomorrow's LO. Today requires HT concepts \u2014 null/alternative, errors, critical region, p-value, and power.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "explanation": "3.3.1 is conceptual toolkit — errors, p-value, power — not yet the applied cookbook tests.",
+      "model_answer": "(1) Type I: false positive — declare disease when healthy (reject H₀ wrongly). Type II: false negative — miss disease when present (fail to reject H₀ wrongly). (2) p-value: under H₀, the probability of a result at least as extreme as observed. Power: P(reject H₀ | H₁ true) = 1 − β. (3) Refuse: running a cookbook test is not the same as mastering HT vocabulary (errors, critical region, p-value, power).",
+      "common_mistake": "Skipping vocabulary for a cookbook z-test, or swapping Type I and Type II.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
+        "Defines Type I/II correctly on the vignette and states p-value and power.",
+        "Refuses treating an applied software test as finishing concepts."
       ]
     }
   ],
   "reflection": {
-    "framing": "Harvest HT vocabulary wobble \u2014 keep applied tests out of tonight's claim.",
+    "framing": "Harvest HT vocabulary wobble — keep applied tests out of tonight's claim.",
     "prompt": "Which part of today's 3.3.1 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 3.3.1 is stickiest and why?",
@@ -189,7 +189,7 @@
     "next_topic_code": "3.3",
     "next_topic_title": "Basic one-/two-sample and paired hypothesis tests (3.3.2)",
     "continuity_line": "Today you established hypothesis-testing concepts; tomorrow continues 3.3 at basic applied tests.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.3.2 \u2014 titles only tonight",
-    "student_facing": "Tomorrow: basic tests (3.3.2). Optional light prep: skim 3.3.2 headings \u2014 titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.3.2 — titles only tonight",
+    "student_facing": "Tomorrow: basic tests (3.3.2). Optional light prep: skim 3.3.2 headings — titles only tonight."
   }
 }

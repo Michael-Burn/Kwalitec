@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-PI",
   "volume_id": "CS1-016",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1016_EDUCATIONAL_VOLUME.md",
     "CS1016_CERTIFICATION_REPORT.md",
@@ -35,11 +35,11 @@
   "mission": {
     "mission_id": "msn-cs1016-cs1-3.2-ci-sample",
     "display_title": "Retrieve CI from a random sample (Memory Front)",
-    "mission_purpose": "Today's Mission exists to retrieve Syllabus 3.2.1 confidence-interval-from-sample skill under Memory Front discipline \u2014 without pretending hypothesis testing (3.3.1) is finished.",
+    "mission_purpose": "Today's Mission exists to retrieve Syllabus 3.2.1 confidence-interval-from-sample skill under Memory Front discipline — without pretending hypothesis testing (3.3.1) is finished.",
     "tutor_intent": "Today I will force CI-from-sample retrieval and refuse 'Memory Front finished HT / spine PASS'.",
     "educational_intent": "Produce Memory Front retrieval of parameter CI based on a random sample.",
     "learning_objective": "Construct a confidence interval for an unknown parameter of a distribution based on a random sample.",
-    "concept_focus": "Sample \u2192 CI construction \u2192 refuse HT swallow.",
+    "concept_focus": "Sample → parameter CI → coverage reading → refuse prediction-as-CI / HT-as-CI.",
     "prior_bridge": "Yesterday you retrieved estimators (3.1.1). Today continues Memory Front at CI-from-sample.",
     "why_now": "CI construction is a high-stakes inference hinge before hypothesis testing.",
     "expected_benefit": "You'll retrieve how to build a confidence interval for a parameter from a random sample.",
@@ -61,17 +61,17 @@
   },
   "session": {
     "session_id": "ssn-cs1016-cs1-3.2-ci-sample",
-    "session_educational_purpose": "Execute today's Memory Front Mission for Syllabus 3.2.1 \u2014 retrieval under spine re-audit discipline, not a new first-pass LO discovery claim.",
+    "session_educational_purpose": "Execute today's Memory Front Mission for Syllabus 3.2.1 — retrieval under spine re-audit discipline, not a new first-pass LO discovery claim.",
     "session_tutor_purpose": "Set focus on 3.2.1 retrieval, exit to CMP, retrieve today's hinge, refuse spine PASS / until-exam / Wave 0 clearance swallow.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Retrieve CI from a random sample (Memory Front). You practised selective CMP reading on Syllabus 3.2.1 under Memory Front discipline. This is Study Progress for today's hinge \u2014 not first-pass spine PASS, until-exam trust, or Wave 0 Approver honesty clearance.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 3.2.1 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Retrieve CI from a random sample (Memory Front). You practised selective CMP reading on Syllabus 3.2.1 under Memory Front discipline. This is Study Progress for today's hinge — not first-pass spine PASS, until-exam trust, or Wave 0 Approver honesty clearance.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 3.2.1 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to retrieve Syllabus 3.2.1 \u2014 retrieve ci from a random sample (memory front) \u2014 under Memory Front / spine re-audit discipline. Stop before out-of-scope later hinges as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to retrieve Syllabus 3.2.1 — retrieve ci from a random sample (memory front) — under Memory Front / spine re-audit discipline. Stop before out-of-scope later hinges as primary.",
     "focus_questions": [
       "What is the core retrieval move of Syllabus 3.2.1?",
       "What warrant separates today's hinge from the next Memory Front day?",
@@ -83,7 +83,7 @@
       "Watch for swallowing HT today.",
       "Watch for claiming Chapter 3 complete."
     ],
-    "open_point": "CMP \u00b7 Syllabus 3.2.1 confidence interval based on a random sample",
+    "open_point": "CMP · Syllabus 3.2.1 confidence interval based on a random sample",
     "stop_condition": "Through the CMP treatment of Syllabus 3.2.1 (stop before hypothesis testing primary 3.3.1)",
     "out_of_scope_today": [
       "Hypothesis testing as primary",
@@ -93,13 +93,13 @@
     ],
     "annotation_task": "Before deep reading: sketch today's hinge chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution \u2014 stay inside 3.2.1.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.2.1 confidence interval based on a random sample. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.2.1 (stop before hypothesis testing primary 3.3.1). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 3.2.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution — stay inside 3.2.1.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.2.1 confidence interval based on a random sample. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.2.1 (stop before hypothesis testing primary 3.3.1). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 3.2.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core retrieval move in one sentence.",
+        "cue": "Pause — write today's core retrieval move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -142,30 +142,32 @@
       "kind": "checkpoint",
       "item_id": "cs1016-3.2.1-cp-01",
       "title": "Checkpoint: 3.2.1",
-      "prompt": "Closed-book. A colleague says '3.2.1 finished hypothesis-testing memory.' Refuse and name tomorrow.",
+      "prompt": "Closed-book. A 95% CI for mean claim size μ is (80, 100). (1) What does this interval claim about μ? (2) Refuse: 'There is a 95% chance the next claim falls in (80, 100)' and 'a CI is the same as a hypothesis test.'",
       "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 3.2.1.",
+      "body": "Retrieve parameter CI reading; refuse prediction and HT conflation.",
       "hints": [
         "Name the refusal clearly.",
         "Give a positive warrant."
       ],
       "accepted_keywords": [
+        "coverage",
+        "parameter",
         "refuse",
+        "prediction",
         "hypothesis",
-        "3.3.1",
         "confidence"
       ],
-      "explanation": "Checkpoint for 3.2.1.",
-      "model_answer": "Refuse: CI-from-sample \u2260 HT. Tomorrow is 3.3.1.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "explanation": "CI-from-sample targets a parameter with coverage; it is not a prediction interval or a hypothesis test.",
+      "model_answer": "(1) The interval comes from a procedure with 95% coverage for the unknown parameter μ under repeated sampling. (2) Refuse: that is a prediction reading of a future observation, not a parameter CI. A CI estimates a parameter with coverage; a hypothesis test decides between hypotheses.",
+      "common_mistake": "Reading a CI as a probability for the next observation, or equating CIs with hypothesis tests.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
+        "States a correct parameter/coverage reading.",
+        "Refuses prediction-interval and HT conflations."
       ]
     }
   ],
   "reflection": {
-    "framing": "Harvest CI wobble \u2014 hypothesis testing continues Memory Front tomorrow.",
+    "framing": "Harvest CI wobble — hypothesis testing continues Memory Front tomorrow.",
     "prompt": "Which part of today's 3.2.1 retrieval is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 3.2.1 retrieval is stickiest and why?",
@@ -177,8 +179,8 @@
     "next_topic_code": "3.3",
     "next_topic_title": "Hypothesis testing foundations (3.3.1)",
     "continuity_line": "Today you retrieved 3.2.1; tomorrow continues Memory Front at 3.3.1.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.3.1 \u2014 titles only tonight",
-    "student_facing": "Tomorrow: hypothesis-testing Memory Front hinge (3.3.1). Optional light prep: skim 3.3.1 headings \u2014 titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.3.1 — titles only tonight",
+    "student_facing": "Tomorrow: hypothesis-testing Memory Front hinge (3.3.1). Optional light prep: skim 3.3.1 headings — titles only tonight."
   },
   "revision_linkage": {
     "returns_on": "CP-R1",

@@ -44,7 +44,7 @@
     "concept_focus": "Exchangeability under null → permute / reshuffle → reference distribution → refuse GOF-as-done.",
     "prior_bridge": "Yesterday you applied basic parametric / paired tests (3.3.2). Today continues topic 3.3 at LO 3.3.3 — permutation.",
     "why_now": "3.3.3 is the contiguous next LO after basic tests. Closing it adds the non-parametric permutation hinge before chi-square GOF.",
-    "expected_benefit": "Study Progress for permutation tests — not Topic Complete for 3.3.4.",
+    "expected_benefit": "You will be able to outline a permutation test from exchangeability under H₀ to a reference distribution.",
     "explainability": "Assigned as Campaign Mu Day 3 because Continuity Front law keeps LO-per-day contiguity inside topic 3.3.",
     "success_criteria": [
       "Closed-book, state what is permuted under the null and why.",
@@ -146,27 +146,29 @@
       "kind": "checkpoint",
       "item_id": "cs1012-3.3.3-cp-01",
       "title": "Checkpoint: 3.3.3",
-      "prompt": "Closed-book. A colleague says 'I ran a chi-square GOF, so I finished today's LO.' Refuse in one sentence and restate what today's LO requires.",
+      "prompt": "Closed-book. Under H₀ of no treatment effect, treatment labels are exchangeable across units. (1) Outline the permutation test move from that exchangeability to a decision. (2) Refuse: 'This is just a Normal two-sample z-test' and 'a chi-square GOF finishes permutation.'",
       "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 3.3.3.",
+      "body": "Exchangeability → permute → reference distribution; refuse parametric-cookbook and GOF conflation.",
       "hints": [
         "Name the refusal clearly.",
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
         "permutation",
-        "non-parametric",
-        "GOF",
-        "today",
-        "not same"
+        "exchangeability",
+        "shuffle",
+        "reference",
+        "null",
+        "refuse",
+        "Normal",
+        "GOF"
       ],
-      "explanation": "Checkpoint for 3.3.3.",
-      "model_answer": "Refuse: chi-square GOF is tomorrow's LO. Today requires the permutation approach to non-parametric hypothesis tests.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "explanation": "Permutation tests use reshuffling under an exchangeable null; they are not Normal cookbook tests or GOF.",
+      "model_answer": "(1) Shuffle/reassign labels under H₀, recompute the test statistic many times, and compare the observed statistic to that permutation reference distribution (tail probability / critical value). (2) Refuse: permutation builds a null reference from exchangeability, not from a parametric Normal cookbook; chi-square GOF is a different LO.",
+      "common_mistake": "Treating permutation as optional flavour of a Normal z-test, or swapping in GOF.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
+        "Outlines permute/recompute/compare-to-reference.",
+        "Refuses equating to parametric z-test or chi-square GOF."
       ]
     }
   ],

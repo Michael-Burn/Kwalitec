@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-PI",
   "volume_id": "CS1-016",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1016_EDUCATIONAL_VOLUME.md",
     "CS1016_CERTIFICATION_REPORT.md",
@@ -35,11 +35,11 @@
   "mission": {
     "mission_id": "msn-cs1016-cs1-3.3-hypothesis-testing",
     "display_title": "Retrieve hypothesis-testing foundations (Memory Front)",
-    "mission_purpose": "Today's Mission exists to retrieve Syllabus 3.3.1 hypothesis-testing foundations under Memory Front discipline \u2014 without pretending linear regression (4.1.1) is finished.",
+    "mission_purpose": "Today's Mission exists to retrieve Syllabus 3.3.1 hypothesis-testing foundations under Memory Front discipline — without pretending linear regression (4.1.1) is finished.",
     "tutor_intent": "Today I will force HT vocabulary retrieval and refuse 'Memory Front finished regression / spine PASS'.",
     "educational_intent": "Produce Memory Front retrieval of HT foundations as Chapter 3 close hinge.",
     "learning_objective": "Understand null/alternative hypotheses, error types, test statistics, critical regions, significance, p-values, and power at foundation level.",
-    "concept_focus": "HT vocabulary map \u2192 refuse regression swallow.",
+    "concept_focus": "Null/alternative → Type I/II → p-value / power → refuse cookbook-as-concepts.",
     "prior_bridge": "Yesterday you retrieved CI-from-sample (3.2.1). Today continues Memory Front at HT foundations.",
     "why_now": "Refresh hypothesis-testing foundations before you revisit regression and GLM.",
     "expected_benefit": "You'll retrieve null/alternative, error types, p-values, and power at foundation level.",
@@ -61,17 +61,17 @@
   },
   "session": {
     "session_id": "ssn-cs1016-cs1-3.3-hypothesis-testing",
-    "session_educational_purpose": "Execute today's Memory Front Mission for Syllabus 3.3.1 \u2014 retrieval under spine re-audit discipline, not a new first-pass LO discovery claim.",
+    "session_educational_purpose": "Execute today's Memory Front Mission for Syllabus 3.3.1 — retrieval under spine re-audit discipline, not a new first-pass LO discovery claim.",
     "session_tutor_purpose": "Set focus on 3.3.1 retrieval, exit to CMP, retrieve today's hinge, refuse spine PASS / until-exam / Wave 0 clearance swallow.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Retrieve hypothesis-testing foundations (Memory Front). You practised selective CMP reading on Syllabus 3.3.1 under Memory Front discipline. This is Study Progress for today's hinge \u2014 not first-pass spine PASS, until-exam trust, or Wave 0 Approver honesty clearance.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 3.3.1 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Retrieve hypothesis-testing foundations (Memory Front). You practised selective CMP reading on Syllabus 3.3.1 under Memory Front discipline. This is Study Progress for today's hinge — not first-pass spine PASS, until-exam trust, or Wave 0 Approver honesty clearance.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 3.3.1 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to retrieve Syllabus 3.3.1 \u2014 retrieve hypothesis-testing foundations (memory front) \u2014 under Memory Front / spine re-audit discipline. Stop before out-of-scope later hinges as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to retrieve Syllabus 3.3.1 — retrieve hypothesis-testing foundations (memory front) — under Memory Front / spine re-audit discipline. Stop before out-of-scope later hinges as primary.",
     "focus_questions": [
       "What is the core retrieval move of Syllabus 3.3.1?",
       "What warrant separates today's hinge from the next Memory Front day?",
@@ -83,7 +83,7 @@
       "Watch for swallowing regression today.",
       "Watch for claiming Chapter 3 complete as spine PASS."
     ],
-    "open_point": "CMP \u00b7 Syllabus 3.3.1 hypothesis testing foundations",
+    "open_point": "CMP · Syllabus 3.3.1 hypothesis testing foundations",
     "stop_condition": "Through the CMP treatment of Syllabus 3.3.1 (stop before linear regression primary 4.1.1)",
     "out_of_scope_today": [
       "Linear regression as primary",
@@ -93,13 +93,13 @@
     ],
     "annotation_task": "Before deep reading: sketch today's hinge chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution \u2014 stay inside 3.3.1.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.3.1 hypothesis testing foundations. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.3.1 (stop before linear regression primary 4.1.1). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 3.3.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution — stay inside 3.3.1.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.3.1 hypothesis testing foundations. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.3.1 (stop before linear regression primary 4.1.1). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 3.3.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core retrieval move in one sentence.",
+        "cue": "Pause — write today's core retrieval move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -143,30 +143,33 @@
       "kind": "checkpoint",
       "item_id": "cs1016-3.3.1-cp-01",
       "title": "Checkpoint: 3.3.1",
-      "prompt": "Closed-book. A colleague says '3.3.1 finished linear-regression memory.' Refuse and name tomorrow.",
+      "prompt": "Closed-book. Fraud flag: H₀ = genuine claim, H₁ = fraudulent. (1) Define Type I and Type II errors here. (2) In one sentence each, what are a p-value and power? (3) Refuse: 'I clicked a software z-test, so HT concepts are done' and 'HT foundations are the same skill as fitting a linear regression.'",
       "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 3.3.1.",
+      "body": "Retrieve HT concepts on a vignette; refuse cookbook-as-concepts and regression conflation.",
       "hints": [
         "Name the refusal clearly.",
         "Give a positive warrant."
       ],
       "accepted_keywords": [
+        "Type I",
+        "Type II",
+        "p-value",
+        "power",
         "refuse",
         "regression",
-        "4.1.1",
-        "hypothesis"
+        "null"
       ],
-      "explanation": "Checkpoint for 3.3.1.",
-      "model_answer": "Refuse: HT foundations \u2260 linear regression. Tomorrow is 4.1.1.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "explanation": "HT foundations are error types, p-value, and power — not software theatre or regression.",
+      "model_answer": "(1) Type I: flag fraud when the claim is genuine. Type II: miss fraud when it is present. (2) p-value: probability under H₀ of data at least as extreme as observed. Power: probability of rejecting H₀ when H₁ is true. (3) Refuse: a cookbook software test does not replace HT vocabulary; linear regression is a different topic.",
+      "common_mistake": "Swapping Type I/II, or treating a software z-test or regression fit as HT concepts.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
+        "Defines Type I/II, p-value, and power on the vignette.",
+        "Refuses cookbook-as-concepts and regression conflation."
       ]
     }
   ],
   "reflection": {
-    "framing": "Harvest HT wobble \u2014 linear regression continues Memory Front tomorrow.",
+    "framing": "Harvest HT wobble — linear regression continues Memory Front tomorrow.",
     "prompt": "Which part of today's 3.3.1 retrieval is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 3.3.1 retrieval is stickiest and why?",
@@ -178,8 +181,8 @@
     "next_topic_code": "4.1",
     "next_topic_title": "Linear regression entry (4.1.1)",
     "continuity_line": "Today you retrieved 3.3.1; tomorrow continues Memory Front at 4.1.1.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 4.1.1 \u2014 titles only tonight",
-    "student_facing": "Tomorrow: linear-regression Memory Front hinge (4.1.1). Optional light prep: skim 4.1.1 headings \u2014 titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 4.1.1 — titles only tonight",
+    "student_facing": "Tomorrow: linear-regression Memory Front hinge (4.1.1). Optional light prep: skim 4.1.1 headings — titles only tonight."
   },
   "revision_linkage": {
     "returns_on": "CP-R1",

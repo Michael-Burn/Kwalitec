@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-KAPPA",
   "volume_id": "CS1-010",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1010_EDUCATIONAL_VOLUME.md",
     "CS1010_CERTIFICATION_REPORT.md",
@@ -36,14 +36,14 @@
   "mission": {
     "mission_id": "msn-cs1010-cs1-3.1-maximum-likelihood",
     "display_title": "Construct estimators by maximum likelihood",
-    "mission_purpose": "Today's Mission exists to construct estimators by maximum likelihood \u2014 so the MLE move is usable \u2014 without pretending efficiency/bias/MSE (3.1.3) is finished.",
-    "tutor_intent": "Today I will force the candidate to form the likelihood / log-likelihood and maximise for the parameter \u2014 and refuse treating yesterday's MoM as finishing MLE.",
+    "mission_purpose": "Today's Mission exists to construct estimators by maximum likelihood — so the MLE move is usable — without pretending efficiency/bias/MSE (3.1.3) is finished.",
+    "tutor_intent": "Today I will force the candidate to form the likelihood / log-likelihood and maximise for the parameter — and refuse treating yesterday's MoM as finishing MLE.",
     "educational_intent": "Produce a cognitive move from a parametric model to an MLE under CMP language.",
     "learning_objective": "Method of maximum likelihood for constructing estimators of population parameters.",
-    "concept_focus": "Likelihood / log-likelihood \u2192 maximise \u2192 MLE \u2192 refuse properties-as-done.",
-    "prior_bridge": "Yesterday you constructed method-of-moments estimators (3.1.1). Today continues topic 3.1 at LO 3.1.2 \u2014 maximum likelihood.",
+    "concept_focus": "Likelihood / log-likelihood → maximise → MLE → refuse properties-as-done.",
+    "prior_bridge": "Yesterday you constructed method-of-moments estimators (3.1.1). Today continues topic 3.1 at LO 3.1.2 — maximum likelihood.",
     "why_now": "3.1.2 is contiguous after MoM. Closing it prevents a cliff at MLE while keeping estimator properties as day three.",
-    "expected_benefit": "Study Progress for MLE construction \u2014 not Topic Complete for 3.1.3.",
+    "expected_benefit": "You will be able to form and maximise a likelihood (or log-likelihood) to obtain an MLE for a simple parametric model.",
     "explainability": "Assigned as Campaign Kappa Day 2 because Continuity Front membership places MLE immediately after MoM.",
     "success_criteria": [
       "Closed-book, state the maximum-likelihood construction move.",
@@ -51,7 +51,7 @@
       "Refuse one 'MoM finished MLE' claim."
     ],
     "task_descriptions": [
-      "Sketch likelihood \u2192 log-likelihood \u2192 maximise before CMP.",
+      "Sketch likelihood → log-likelihood → maximise before CMP.",
       "Complete Guided Reading through CMP treatment of Syllabus 3.1.2.",
       "Closed-book Knowledge Checks: MLE construction + refuse MoM collapse."
     ],
@@ -62,17 +62,17 @@
   },
   "session": {
     "session_id": "ssn-cs1010-cs1-3.1-maximum-likelihood",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 3.1.2 \u2014 not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 3.1.2 — not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 3.1.2, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Construct estimators by maximum likelihood. You practised selective CMP reading on Syllabus 3.1.2. This is Study Progress for today's block \u2014 not Topic Complete for later 3.1 LOs, Chapter 3 trophy, intervals (3.2), hypothesis testing (3.3), or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 3.1.2 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Construct estimators by maximum likelihood. You practised selective CMP reading on Syllabus 3.1.2. This is Study Progress for today's block — not Topic Complete for later 3.1 LOs, Chapter 3 trophy, intervals (3.2), hypothesis testing (3.3), or until-exam trust.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 3.1.2 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.1.2 \u2014 construct estimators by maximum likelihood. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.1.2 — construct estimators by maximum likelihood. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 3.1.2?",
       "What warrant separates today's skill from yesterday's?",
@@ -84,7 +84,7 @@
       "Watch for jumping into bias/MSE definitions as primary.",
       "Watch for CI construction (3.2) today."
     ],
-    "open_point": "CMP \u00b7 Syllabus 3.1.2 maximum likelihood",
+    "open_point": "CMP · Syllabus 3.1.2 maximum likelihood",
     "stop_condition": "Through the CMP treatment of Syllabus 3.1.2 (stop before efficiency / bias / MSE 3.1.3)",
     "out_of_scope_today": [
       "Efficiency / bias / consistency / MSE as primary (3.1.3)",
@@ -96,12 +96,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.1.2 maximum likelihood. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.1.2 (stop before efficiency / bias / MSE 3.1.3). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 3.1.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.1.2 maximum likelihood. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.1.2 (stop before efficiency / bias / MSE 3.1.3). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 3.1.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "cue": "Pause — write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -146,32 +146,34 @@
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.2-cp-01",
       "title": "Checkpoint: 3.1.2",
-      "prompt": "Closed-book. A colleague says 'Yesterday's MoM means I already know MLE.' Refuse in one sentence and restate today's LO.",
+      "prompt": "Closed-book. IID claims X₁,…,Xₙ ~ Exponential with rate λ (pdf λ e^{−λx} for x>0). (1) Write the log-likelihood for λ and state the MLE. (2) Refuse: 'Yesterday's method-of-moments estimator is the same skill as maximum likelihood.'",
       "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 3.1.2.",
+      "body": "Form and maximise likelihood; refuse MoM-as-MLE.",
       "hints": [
         "Name the refusal clearly.",
         "Give a positive warrant."
       ],
       "accepted_keywords": [
+        "likelihood",
+        "log-likelihood",
+        "maximise",
+        "MLE",
+        "rate",
         "refuse",
         "moments",
-        "likelihood",
-        "not same",
-        "MLE",
-        "today"
+        "MoM"
       ],
-      "explanation": "Checkpoint for 3.1.2.",
-      "model_answer": "Refuse: MoM is not MLE. Today requires forming and maximising the likelihood / log-likelihood for the parameter.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "explanation": "MLE is defined by maximising the likelihood; moment matching is a different estimator construction.",
+      "model_answer": "(1) ℓ(λ) = n ln λ − λ Σ xᵢ; MLE λ̂ = n/Σ xᵢ = 1/x̄. (2) Refuse: MoM matches moments; MLE maximises the likelihood (or log-likelihood). Different construction — even when numerical answers coincide.",
+      "common_mistake": "Collapsing MoM and MLE because they sometimes give the same number.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
+        "Forms log-likelihood and states the MLE for the Exponential rate.",
+        "Refuses treating MoM as the same skill as MLE."
       ]
     }
   ],
   "reflection": {
-    "framing": "Harvest likelihood / score algebra wobble \u2014 keep properties out of tonight.",
+    "framing": "Harvest likelihood / score algebra wobble — keep properties out of tonight.",
     "prompt": "Which part of today's 3.1.2 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 3.1.2 is stickiest and why?",
@@ -183,7 +185,7 @@
     "next_topic_code": "3.1",
     "next_topic_title": "Efficiency, bias, consistency and MSE (3.1.3)",
     "continuity_line": "Today you constructed MLEs; tomorrow continues 3.1 at efficiency, bias, consistency and mean square error.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.1.3 \u2014 titles only tonight",
-    "student_facing": "Tomorrow: efficiency / bias / consistency / MSE (3.1.3). Optional light prep: skim 3.1.3 headings \u2014 titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.1.3 — titles only tonight",
+    "student_facing": "Tomorrow: efficiency / bias / consistency / MSE (3.1.3). Optional light prep: skim 3.1.3 headings — titles only tonight."
   }
 }

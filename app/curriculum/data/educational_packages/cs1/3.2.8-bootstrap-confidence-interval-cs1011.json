@@ -41,10 +41,10 @@
     "tutor_intent": "Today I will force bootstrap CI construction and refuse treating Kappa's bootstrap-for-estimator-properties or 3.3 hypothesis testing as today's LO.",
     "educational_intent": "Produce a cognitive move from resampling to a bootstrap confidence interval under CMP language.",
     "learning_objective": "Bootstrap method to obtain confidence intervals.",
-    "concept_focus": "Resample → bootstrap replicates of the interval statistic → bootstrap CI → refuse 3.3-as-done.",
+    "concept_focus": "Resample → bootstrap replicates of the statistic → bootstrap CI → refuse properties-bootstrap-as-CI.",
     "prior_bridge": "Yesterday you formed a paired mean-difference CI (3.2.7). Today completes the 3.2 Learning span at LO 3.2.8 — bootstrap confidence intervals.",
     "why_now": "3.2.8 completes topic 3.2 Learning. Closing it prevents a cliff at bootstrap intervals while keeping hypothesis testing as a later Volume.",
-    "expected_benefit": "Study Progress for bootstrap CI — not Topic Complete for 3.3 or Chapter 3.",
+    "expected_benefit": "You will be able to obtain a confidence interval by the bootstrap method and distinguish it from bootstrap SE estimation.",
     "explainability": "Assigned as Campaign Lambda Day 8 because Continuity Front membership places bootstrap CI as the terminal Learning day of 3.2.",
     "success_criteria": [
       "Closed-book, state the bootstrap CI construction move.",
@@ -146,27 +146,28 @@
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.8-cp-01",
       "title": "Checkpoint: 3.2.8",
-      "prompt": "Closed-book. A colleague says 'Bootstrap CI finished Chapter 3 and hypothesis testing.' Refuse in one sentence and name tomorrow's honest next (Revision).",
+      "prompt": "Closed-book. (1) Outline the bootstrap move to obtain a confidence interval for a parameter (percentile idea is enough). (2) Refuse: 'Bootstrap for an estimator standard error is the same as a bootstrap confidence interval' and 'finishing a bootstrap CI finishes hypothesis testing.'",
       "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 3.2.8.",
+      "body": "Bootstrap CI procedure; refuse properties-bootstrap-as-CI and HT-as-done.",
       "hints": [
         "Name the refusal clearly.",
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
-        "chapter",
-        "hypothesis",
-        "revision",
         "bootstrap",
-        "3.3"
+        "resample",
+        "percentile",
+        "confidence",
+        "interval",
+        "refuse",
+        "hypothesis"
       ],
-      "explanation": "Checkpoint for 3.2.8.",
-      "model_answer": "Refuse: Chapter 3 / 3.3 are not finished. Today is bootstrap CI; tomorrow is CL-R1 Revision of 3.2 — not first-pass hypothesis testing.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "explanation": "Bootstrap CIs use the replicate distribution to form interval endpoints; that differs from SE-only bootstrap and from HT.",
+      "model_answer": "(1) Resample with replacement, recompute the statistic on each resample, then form an interval from the bootstrap distribution of that statistic (e.g. percentile interval from the α/2 and 1−α/2 quantiles of the replicates). (2) Refuse: estimating an estimator property is not the same as constructing a CI; hypothesis testing is a different LO.",
+      "common_mistake": "Equating bootstrap estimator-property estimation with bootstrap CI construction, or claiming HT is finished.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
+        "Outlines resample → replicate statistic → interval from bootstrap distribution.",
+        "Refuses conflating with bootstrap SE estimation or hypothesis testing."
       ]
     }
   ],

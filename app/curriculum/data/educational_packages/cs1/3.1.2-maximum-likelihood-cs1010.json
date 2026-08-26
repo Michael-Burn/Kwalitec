@@ -43,7 +43,7 @@
     "concept_focus": "Likelihood / log-likelihood → maximise → MLE → refuse properties-as-done.",
     "prior_bridge": "Yesterday you constructed method-of-moments estimators (3.1.1). Today continues topic 3.1 at LO 3.1.2 — maximum likelihood.",
     "why_now": "3.1.2 is contiguous after MoM. Closing it prevents a cliff at MLE while keeping estimator properties as day three.",
-    "expected_benefit": "Study Progress for MLE construction — not Topic Complete for 3.1.3.",
+    "expected_benefit": "You will be able to form and maximise a likelihood (or log-likelihood) to obtain an MLE for a simple parametric model.",
     "explainability": "Assigned as Campaign Kappa Day 2 because Continuity Front membership places MLE immediately after MoM.",
     "success_criteria": [
       "Closed-book, state the maximum-likelihood construction move.",
@@ -146,27 +146,29 @@
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.2-cp-01",
       "title": "Checkpoint: 3.1.2",
-      "prompt": "Closed-book. A colleague says 'Yesterday's MoM means I already know MLE.' Refuse in one sentence and restate today's LO.",
+      "prompt": "Closed-book. IID claims X₁,…,Xₙ ~ Exponential with rate λ (pdf λ e^{−λx} for x>0). (1) Write the log-likelihood for λ and state the MLE. (2) Refuse: 'Yesterday's method-of-moments estimator is the same skill as maximum likelihood.'",
       "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 3.1.2.",
+      "body": "Form and maximise likelihood; refuse MoM-as-MLE.",
       "hints": [
         "Name the refusal clearly.",
         "Give a positive warrant."
       ],
       "accepted_keywords": [
+        "likelihood",
+        "log-likelihood",
+        "maximise",
+        "MLE",
+        "rate",
         "refuse",
         "moments",
-        "likelihood",
-        "not same",
-        "MLE",
-        "today"
+        "MoM"
       ],
-      "explanation": "Checkpoint for 3.1.2.",
-      "model_answer": "Refuse: MoM is not MLE. Today requires forming and maximising the likelihood / log-likelihood for the parameter.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "explanation": "MLE is defined by maximising the likelihood; moment matching is a different estimator construction.",
+      "model_answer": "(1) ℓ(λ) = n ln λ − λ Σ xᵢ; MLE λ̂ = n/Σ xᵢ = 1/x̄. (2) Refuse: MoM matches moments; MLE maximises the likelihood (or log-likelihood). Different construction — even when numerical answers coincide.",
+      "common_mistake": "Collapsing MoM and MLE because they sometimes give the same number.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
+        "Forms log-likelihood and states the MLE for the Exponential rate.",
+        "Refuses treating MoM as the same skill as MLE."
       ]
     }
   ],

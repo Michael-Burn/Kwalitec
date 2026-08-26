@@ -45,7 +45,7 @@
     "concept_focus": "Choose setting → apply basic Normal/binomial/Poisson or paired test → refuse permutation-as-done.",
     "prior_bridge": "Yesterday you established HT concepts (3.3.1). Today continues topic 3.3 at LO 3.3.2 — basic applied tests.",
     "why_now": "3.3.2 is the contiguous next LO after concepts. Closing it builds usable test skill before non-parametric permutation methods.",
-    "expected_benefit": "Study Progress for basic tests — not Topic Complete for 3.3.3.",
+    "expected_benefit": "You will be able to choose and apply a basic Normal, binomial, Poisson, or paired test for a stated setting.",
     "explainability": "Assigned as Campaign Mu Day 2 because Continuity Front law keeps LO-per-day contiguity inside topic 3.3.",
     "success_criteria": [
       "Closed-book, name when one-sample vs two-sample vs paired applies.",
@@ -149,28 +149,28 @@
       "kind": "checkpoint",
       "item_id": "cs1012-3.3.2-cp-01",
       "title": "Checkpoint: 3.3.2",
-      "prompt": "Closed-book. A colleague says 'I shuffled labels for a permutation test, so I finished today's LO.' Refuse in one sentence and restate what today's LO requires.",
+      "prompt": "Closed-book. (1) For each setting, name the appropriate basic test family: (a) one Normal mean with σ known; (b) two independent binomial proportions; (c) paired Normal differences. (2) Refuse: 'Shuffling labels for a permutation test finishes the applied basic-tests requirement.'",
       "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 3.3.2.",
+      "body": "Choose and name basic tests by setting; refuse permutation-as-basic.",
       "hints": [
         "Name the refusal clearly.",
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
-        "basic",
+        "z-test",
+        "proportion",
         "paired",
-        "normal",
+        "Normal",
         "binomial",
-        "permutation",
-        "today"
+        "refuse",
+        "permutation"
       ],
-      "explanation": "Checkpoint for 3.3.2.",
-      "model_answer": "Refuse: permutation is tomorrow's LO. Today requires basic one-/two-sample and paired tests for Normal / binomial / Poisson settings.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "explanation": "Basic tests match the sampling model and design (one-sample, two-sample, paired); permutation is separate.",
+      "model_answer": "(1) (a) one-sample Normal/z-test for a mean; (b) two-sample proportion test with Normal approximation; (c) paired test on differences (paired t/z). (2) Refuse: permutation tests are a different LO; today is basic parametric tests for Normal / binomial / Poisson / paired settings.",
+      "common_mistake": "Using a permutation shuffle or the wrong design (paired vs independent) for a basic-test setting.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
+        "Matches each setting to a basic Normal/binomial/paired test.",
+        "Refuses treating permutation as the basic-tests requirement."
       ]
     }
   ],

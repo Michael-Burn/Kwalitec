@@ -44,7 +44,7 @@
     "concept_focus": "Two independent samples → difference / contrast CI → refuse paired-as-done.",
     "prior_bridge": "Yesterday you formed binomial and Poisson single-sample CIs (3.2.5). Today continues topic 3.2 at LO 3.2.6 — two-sample situations.",
     "why_now": "3.2.6 is contiguous after single-sample discrete CIs. Closing it prevents a cliff at two-sample intervals while keeping paired means as day seven.",
-    "expected_benefit": "Study Progress for two-sample CIs — not Topic Complete for 3.2.7.",
+    "expected_benefit": "You will be able to construct independent two-sample CIs and refuse misapplying them to paired data.",
     "explainability": "Assigned as Campaign Lambda Day 6 because Continuity Front membership places two-sample CIs after binomial/Poisson single-sample work.",
     "success_criteria": [
       "Closed-book, state the two-sample CI hinge for a Normal setting.",
@@ -147,27 +147,27 @@
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.6-cp-01",
       "title": "Checkpoint: 3.2.6",
-      "prompt": "Closed-book. A colleague says 'Paired data is just two-sample with n₁ = n₂, so I finished both.' Refuse and restate today's independent two-sample focus.",
+      "prompt": "Closed-book. Independent samples of claim amounts from portfolio A and portfolio B (Normal model). (1) What parameter contrast does a two-sample CI target, and what independence assumption is required? (2) Refuse: 'Paired before/after rows with equal n are just two-sample with n₁ = n₂.'",
       "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 3.2.6.",
+      "body": "Independent two-sample CI; refuse paired-as-equal-n two-sample.",
       "hints": [
         "Name the refusal clearly.",
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
         "two-sample",
-        "paired",
         "independent",
-        "today",
-        "difference"
+        "difference",
+        "paired",
+        "refuse",
+        "Normal"
       ],
-      "explanation": "Checkpoint for 3.2.6.",
-      "model_answer": "Refuse: paired data is tomorrow. Today requires two-sample CIs for independent samples (Normal / binomial / Poisson with Normal approx).",
-      "common_mistake": "Accepting the forbidden claim.",
+      "explanation": "Two-sample CIs assume independent samples; pairing is a different design.",
+      "model_answer": "(1) Typically μ_A − μ_B (or an analogous contrast for binomial/Poisson with Normal approx), under independent samples from the two groups. (2) Refuse: paired data shares observational units; equal sample sizes do not make paired rows an independent two-sample problem — use the paired-difference construction instead.",
+      "common_mistake": "Applying the independent two-sample CI to paired observations because n₁ = n₂.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
+        "Names the contrast and independence assumption.",
+        "Refuses treating paired equal-n data as independent two-sample."
       ]
     }
   ],

@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-LAMBDA",
   "volume_id": "CS1-011",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1011_EDUCATIONAL_VOLUME.md",
     "CS1011_CERTIFICATION_REPORT.md",
@@ -37,14 +37,14 @@
   "mission": {
     "mission_id": "msn-cs1011-cs1-3.2-confidence-interval-parameter",
     "display_title": "Construct a confidence interval for an unknown parameter from a random sample",
-    "mission_purpose": "Today's Mission exists to construct a confidence interval for an unknown parameter of a distribution based on a random sample \u2014 so the CI coverage reading is usable \u2014 without pretending prediction intervals (3.2.2) are finished.",
+    "mission_purpose": "Today's Mission exists to construct a confidence interval for an unknown parameter of a distribution based on a random sample — so the CI coverage reading is usable — without pretending prediction intervals (3.2.2) are finished.",
     "tutor_intent": "Today I will force the candidate to state a CI for a parameter from sample evidence and refuse treating a prediction interval as today's LO.",
     "educational_intent": "Produce a cognitive move from random-sample evidence to a parameter confidence interval under CMP language.",
     "learning_objective": "Confidence interval for an unknown parameter of a distribution based on a random sample.",
-    "concept_focus": "Random sample \u2192 estimator / pivotal idea \u2192 parameter CI \u2192 refuse prediction-as-done.",
-    "prior_bridge": "Campaign Kappa closed estimators (3.1) with Revision. Today opens topic 3.2 at LO 3.2.1 \u2014 the named Continuity Front after CS1-010.",
+    "concept_focus": "Random sample → estimator / pivotal idea → parameter CI → refuse prediction-as-done.",
+    "prior_bridge": "Campaign Kappa closed estimators (3.1) with Revision. Today opens topic 3.2 at LO 3.2.1 — the named Continuity Front after CS1-010.",
     "why_now": "Build a confidence interval for an unknown parameter from a random sample before prediction intervals.",
-    "expected_benefit": "Study Progress for parameter CI \u2014 not Topic Complete for 3.2.2.",
+    "expected_benefit": "You will be able to construct and correctly interpret a confidence interval for an unknown parameter — and refuse prediction-interval readings.",
     "explainability": "Assigned as Campaign Lambda Day 1 because CE-001 / EP-001 Continuity Front names 3.2 as the handoff from Kappa.",
     "success_criteria": [
       "Closed-book, state what a confidence interval claims about a parameter.",
@@ -52,7 +52,7 @@
       "Refuse one 'prediction interval finished today's LO' claim."
     ],
     "task_descriptions": [
-      "Sketch sample \u2192 parameter CI before CMP.",
+      "Sketch sample → parameter CI before CMP.",
       "Complete Guided Reading through CMP treatment of Syllabus 3.2.1.",
       "Closed-book Knowledge Checks: parameter CI + refuse prediction swallow."
     ],
@@ -63,17 +63,17 @@
   },
   "session": {
     "session_id": "ssn-cs1011-cs1-3.2-confidence-interval-parameter",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 3.2.1 \u2014 not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 3.2.1 — not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 3.2.1, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Construct a confidence interval for an unknown parameter from a random sample. You practised selective CMP reading on Syllabus 3.2.1. This is Study Progress for today's block \u2014 not Topic Complete for later 3.2 LOs, Chapter 3 trophy, hypothesis testing (3.3), or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 3.2.1 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Construct a confidence interval for an unknown parameter from a random sample. You practised selective CMP reading on Syllabus 3.2.1. This is Study Progress for today's block — not Topic Complete for later 3.2 LOs, Chapter 3 trophy, hypothesis testing (3.3), or until-exam trust.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 3.2.1 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.2.1 \u2014 construct a confidence interval for an unknown parameter from a random sample. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.2.1 — construct a confidence interval for an unknown parameter from a random sample. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 3.2.1?",
       "What warrant separates today's skill from yesterday's?",
@@ -85,7 +85,7 @@
       "Watch for starting prediction-interval drills (3.2.2) inside this sitting.",
       "Watch for hypothesis testing (3.3) today."
     ],
-    "open_point": "CMP \u00b7 Syllabus 3.2.1 confidence interval for a parameter",
+    "open_point": "CMP · Syllabus 3.2.1 confidence interval for a parameter",
     "stop_condition": "Through the CMP treatment of Syllabus 3.2.1 (stop before prediction interval 3.2.2)",
     "out_of_scope_today": [
       "Prediction interval as primary (3.2.2)",
@@ -97,12 +97,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.2.1 confidence interval for a parameter. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.2.1 (stop before prediction interval 3.2.2). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 3.2.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.2.1 confidence interval for a parameter. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.2.1 (stop before prediction interval 3.2.2). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 3.2.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "cue": "Pause — write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -135,7 +135,7 @@
         "prediction"
       ],
       "explanation": "Active recall for 3.2.1.",
-      "model_answer": "A confidence interval uses random-sample evidence to give an interval for an unknown parameter with a stated frequentist coverage reading. A prediction interval targets a future observation \u2014 that is tomorrow's LO, not today's.",
+      "model_answer": "A confidence interval uses random-sample evidence to give an interval for an unknown parameter with a stated frequentist coverage reading. A prediction interval targets a future observation — that is tomorrow's LO, not today's.",
       "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
       "success_criteria": [
         "Addresses the prompt structure.",
@@ -147,32 +147,32 @@
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.1-cp-01",
       "title": "Checkpoint: 3.2.1",
-      "prompt": "Closed-book. A colleague says 'I wrote a prediction interval, so I finished today's LO.' Refuse in one sentence and restate what today's LO requires.",
+      "prompt": "Closed-book. From a large sample you obtain a 95% CI for mean claim size μ as (120, 140). (1) What does this interval claim about the unknown parameter μ? (2) Refuse: 'There is a 95% probability that the next claim falls between 120 and 140.'",
       "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 3.2.1.",
+      "body": "Interpret a parameter CI; refuse prediction-interval reading.",
       "hints": [
         "Name the refusal clearly.",
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
         "parameter",
-        "prediction",
+        "coverage",
         "confidence",
-        "today",
-        "not same"
+        "refuse",
+        "prediction",
+        "future"
       ],
-      "explanation": "Checkpoint for 3.2.1.",
-      "model_answer": "Refuse: prediction interval is tomorrow's LO. Today requires a confidence interval for an unknown parameter based on a random sample.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "explanation": "A parameter CI targets an unknown parameter with stated coverage; a prediction interval targets a future observation.",
+      "model_answer": "(1) The interval was produced by a procedure that covers the unknown parameter μ in 95% of repeated samples (frequentist coverage for μ). (2) Refuse: that reading is a prediction claim about a future observation, not a confidence interval for a parameter.",
+      "common_mistake": "Reading a parameter CI as if it were a probability statement about a future observation.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
+        "States a correct parameter/coverage reading of the CI.",
+        "Refuses reading it as a prediction interval for the next claim."
       ]
     }
   ],
   "reflection": {
-    "framing": "Harvest CI coverage-reading wobble \u2014 keep prediction out of tonight's claim.",
+    "framing": "Harvest CI coverage-reading wobble — keep prediction out of tonight's claim.",
     "prompt": "Which part of today's 3.2.1 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 3.2.1 is stickiest and why?",
@@ -184,7 +184,7 @@
     "next_topic_code": "3.2",
     "next_topic_title": "Prediction interval for a future observation (3.2.2)",
     "continuity_line": "Today you constructed a parameter confidence interval from a random sample; tomorrow continues 3.2 at prediction intervals.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.2.2 \u2014 titles only tonight",
-    "student_facing": "Tomorrow: prediction interval (3.2.2). Optional light prep: skim 3.2.2 headings \u2014 titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.2.2 — titles only tonight",
+    "student_facing": "Tomorrow: prediction interval (3.2.2). Optional light prep: skim 3.2.2 headings — titles only tonight."
   }
 }

@@ -43,7 +43,7 @@
     "concept_focus": "Large-sample MLE behaviour → asymptotic distribution → refuse bootstrap-as-done.",
     "prior_bridge": "Yesterday you compared estimators via MSE and bias (3.1.4). Today continues topic 3.1 at LO 3.1.5 — asymptotic distribution of MLEs.",
     "why_now": "3.1.5 is contiguous after comparison. Closing it prevents a cliff at asymptotic MLE while keeping bootstrap as day six.",
-    "expected_benefit": "Study Progress for asymptotic MLE — not Topic Complete for 3.1.6.",
+    "expected_benefit": "You will be able to state the asymptotic Normal claim for MLEs and use it for large-sample inference.",
     "explainability": "Assigned as Campaign Kappa Day 5 because Continuity Front membership places asymptotics after comparison.",
     "success_criteria": [
       "Closed-book, state the asymptotic distribution claim for MLEs (CMP form).",
@@ -146,27 +146,29 @@
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.5-cp-01",
       "title": "Checkpoint: 3.1.5",
-      "prompt": "Closed-book. A colleague says 'I'll bootstrap now so asymptotics are done.' Refuse and restate today's LO.",
+      "prompt": "Closed-book. Under regularity conditions, an MLE θ̂ₙ satisfies √n (θ̂ₙ − θ) →ᵈ N(0, 1/I(θ)). (1) What does this asymptotic Normal claim give you for large-sample inference about θ? (2) Refuse: 'I'll bootstrap the sampling distribution, so I do not need the asymptotic MLE result.'",
       "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 3.1.5.",
+      "body": "State asymptotic Normal MLE claim; refuse bootstrap-as-asymptotics.",
       "hints": [
         "Name the refusal clearly.",
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
         "asymptotic",
-        "bootstrap",
-        "not same",
+        "Normal",
         "MLE",
-        "today"
+        "Fisher",
+        "information",
+        "large-sample",
+        "bootstrap",
+        "refuse"
       ],
-      "explanation": "Checkpoint for 3.1.5.",
-      "model_answer": "Refuse: bootstrap is tomorrow. Today requires the asymptotic distribution claim for MLEs under CMP conditions.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "explanation": "Asymptotic MLE theory gives a Normal large-sample law via information; bootstrap is a different tool.",
+      "model_answer": "(1) For large n, θ̂ₙ is approximately Normal about θ with variance ≈ 1/(n I(θ)), supporting large-sample SEs and Wald-type intervals/tests from Fisher information. (2) Refuse: bootstrap estimates properties by resampling; it does not replace stating the asymptotic distribution of the MLE.",
+      "common_mistake": "Treating bootstrap resampling as if it were the asymptotic MLE distribution result.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
+        "States the large-sample Normal/MLE inference consequence.",
+        "Refuses substituting bootstrap for the asymptotic claim."
       ]
     }
   ],

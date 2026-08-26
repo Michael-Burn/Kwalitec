@@ -43,7 +43,7 @@
     "concept_focus": "Hypothesised distribution → expected frequencies → chi-square GOF → DF adjust if parameters estimated → refuse independence-as-done.",
     "prior_bridge": "Yesterday you applied permutation tests (3.3.3). Today continues topic 3.3 at LO 3.3.4 — chi-square GOF.",
     "why_now": "3.3.4 is the contiguous next LO after permutation. Closing it adds distributional GOF before contingency independence.",
-    "expected_benefit": "Study Progress for chi-square GOF — not Topic Complete for 3.3.5.",
+    "expected_benefit": "You will be able to run a chi-square GOF test, including DF adjustment when parameters are estimated.",
     "explainability": "Assigned as Campaign Mu Day 4 because Continuity Front law keeps LO-per-day contiguity inside topic 3.3.",
     "success_criteria": [
       "Closed-book, state the GOF hypothesis and how expected counts arise.",
@@ -145,27 +145,28 @@
       "kind": "checkpoint",
       "item_id": "cs1012-3.3.4-cp-01",
       "title": "Checkpoint: 3.3.4",
-      "prompt": "Closed-book. A colleague says 'I tested independence in a two-way table, so I finished today's LO.' Refuse in one sentence and restate what today's LO requires.",
+      "prompt": "Closed-book. You test whether claim counts follow a Poisson distribution; λ is estimated from the same sample. (1) How are expected frequencies formed, and what happens to degrees of freedom when λ is estimated? (2) Refuse: 'A chi-square test of independence in a two-way table finishes GOF.'",
       "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 3.3.4.",
+      "body": "Chi-square GOF with DF adjust if parameters estimated; refuse independence-as-GOF.",
       "hints": [
         "Name the refusal clearly.",
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
         "GOF",
-        "distribution",
-        "independence",
-        "today",
-        "not same"
+        "expected",
+        "degrees of freedom",
+        "estimated",
+        "Poisson",
+        "refuse",
+        "independence"
       ],
-      "explanation": "Checkpoint for 3.3.4.",
-      "model_answer": "Refuse: independence is tomorrow's LO. Today requires chi-square GOF that a sample is from a particular distribution, including unknown parameters.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "explanation": "GOF compares observed to expected under a hypothesised distribution; estimating parameters reduces DF; independence is separate.",
+      "model_answer": "(1) Expected frequencies = n × fitted Poisson probabilities using λ̂; DF = (number of bins − 1 − number of estimated parameters), so subtract 1 for λ̂. (2) Refuse: independence in a contingency table is a different LO from one-sample GOF to a named distribution.",
+      "common_mistake": "Forgetting to reduce DF when parameters are estimated, or treating independence as GOF.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
+        "States expected frequencies from the fitted distribution and DF adjustment for estimated parameters.",
+        "Refuses equating GOF with two-way independence."
       ]
     }
   ],

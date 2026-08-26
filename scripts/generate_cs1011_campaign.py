@@ -479,9 +479,7 @@ LEARNING = [
             "Confidence interval for an unknown parameter of a distribution based on a "
             "random sample."
         ),
-        focus=(
-            "Random sample → estimator / pivotal idea → parameter CI → refuse prediction-as-done."
-        ),
+        focus="Random sample → estimator / pivotal idea → parameter CI → refuse prediction-as-done.",
         prior=(
             "Campaign Kappa closed estimators (3.1) with Revision. Today opens topic 3.2 at "
             "LO 3.2.1 — the named Continuity Front after CS1-010."
@@ -490,7 +488,11 @@ LEARNING = [
             "3.2.1 opens this stretch at the natural next learning objective. Close it to avoid "
             "a cliff at intervals, keeping prediction intervals for the following session."
         ),
-        benefit="Study Progress for parameter CI — not Topic Complete for 3.2.2.",
+        benefit=(
+            "You will be able to construct and correctly interpret a confidence "
+            "interval for an unknown parameter — and refuse prediction-interval "
+            "readings."
+        ),
         explain=(
             "Day 1 opens 3.2 at the named learning objective — "
             "the natural next step after the previous topic."
@@ -553,13 +555,17 @@ LEARNING = [
             "interval targets a future observation — that is tomorrow's LO, not today's."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'I wrote a prediction interval, so I finished "
-            "today's LO.' Refuse in one sentence and restate what today's LO requires."
+            "Closed-book. From a large sample you obtain a 95% CI for mean claim "
+            "size μ as (120, 140). (1) What does this interval claim about the "
+            "unknown parameter μ? (2) Refuse: 'There is a 95% probability that the "
+            "next claim falls between 120 and 140.'"
         ),
-        cp_kw=["refuse", "parameter", "prediction", "confidence", "today", "not same"],
+        cp_kw=["parameter", "coverage", "confidence", "refuse", "prediction", "future"],
         cp_model=(
-            "Refuse: prediction interval is tomorrow's LO. Today requires a confidence "
-            "interval for an unknown parameter based on a random sample."
+            "(1) The interval was produced by a procedure that covers the unknown "
+            "parameter μ in 95% of repeated samples (frequentist coverage for μ). "
+            "(2) Refuse: that reading is a prediction claim about a future "
+            "observation, not a confidence interval for a parameter."
         ),
         reflect="Harvest CI coverage-reading wobble — keep prediction out of tonight's claim.",
     ),
@@ -590,7 +596,8 @@ LEARNING = [
             "random sample."
         ),
         focus=(
-            "Fitted model → future observation → prediction interval → refuse given-distribution CI-as-done."
+            "Fitted model → future observation → prediction interval → refuse "
+            "given-distribution CI-as-done."
         ),
         prior=(
             "Yesterday you constructed a parameter confidence interval (3.2.1). Today "
@@ -600,7 +607,10 @@ LEARNING = [
             "3.2.2 is contiguous after parameter CI. Closing it prevents a cliff at "
             "prediction while keeping given-sampling-distribution CI as day three."
         ),
-        benefit="Study Progress for prediction interval — not Topic Complete for 3.2.3.",
+        benefit=(
+            "You will be able to construct a prediction interval for a future "
+            "observation and distinguish it from a parameter CI."
+        ),
         explain=(
             "Day 2 continues at the named learning objective — prediction immediately after parameter CI."
         ),
@@ -662,13 +672,19 @@ LEARNING = [
             "parameter — different object."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'My parameter CI finished prediction intervals.' "
-            "Refuse in one sentence and restate today's LO."
+            "Closed-book. You fit a model to historical annual losses and need an "
+            "interval for next year's loss Y_new. (1) What does a prediction "
+            "interval cover that a parameter CI for E[Y] does not? (2) Refuse: 'My "
+            "confidence interval for the mean loss already finished the "
+            "prediction-interval LO.'"
         ),
-        cp_kw=["refuse", "prediction", "parameter", "future", "observation", "today"],
+        cp_kw=["prediction", "future", "observation", "parameter", "refuse", "mean", "wider"],
         cp_model=(
-            "Refuse: parameter CI is not prediction. Today requires a prediction interval "
-            "for a future observation from a fitted model."
+            "(1) A prediction interval aims to cover a future observation Y_new "
+            "(parameter uncertainty plus process/residual variation); a parameter CI "
+            "covers only a fixed unknown parameter such as E[Y]. (2) Refuse: a "
+            "parameter CI is not a prediction interval — different target, typically "
+            "wider for prediction."
         ),
         reflect="Harvest prediction-vs-CI wobble — keep given-distribution CI out of tonight's claim.",
     ),
@@ -697,9 +713,7 @@ LEARNING = [
         lo_text=(
             "Confidence interval for an unknown parameter using a given sampling distribution."
         ),
-        focus=(
-            "Given sampling distribution → invert / pivot → CI → refuse Normal cookbook-as-done."
-        ),
+        focus="Given sampling distribution → invert / pivot → CI → refuse Normal cookbook-as-done.",
         prior=(
             "Yesterday you constructed a prediction interval (3.2.2). Today continues topic "
             "3.2 at LO 3.2.3 — CI using a given sampling distribution."
@@ -708,7 +722,10 @@ LEARNING = [
             "3.2.3 is contiguous after prediction. Closing it prevents a cliff at the "
             "given-distribution method while keeping Normal mean/variance CIs as day four."
         ),
-        benefit="Study Progress for given-distribution CI — not Topic Complete for 3.2.4.",
+        benefit=(
+            "You will be able to form a CI by inverting a given sampling "
+            "distribution, not only by recalling Normal-mean formulae."
+        ),
         explain=(
             "Day 3 continues at the named learning objective — given-sampling-distribution CI after prediction."
         ),
@@ -770,13 +787,17 @@ LEARNING = [
             "mean/variance recipes are tomorrow's LO."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'I memorised the Normal mean CI, so I finished "
-            "today's LO.' Refuse in one sentence and restate today's requirement."
+            "Closed-book. For an Exponential mean-θ model you are told that 2n X̄ / "
+            "θ ~ χ²_{2n}. (1) Outline how you invert this sampling distribution to "
+            "form a CI for θ. (2) Refuse: 'I memorised the Normal-mean CI cookbook, "
+            "so any sampling-distribution CI is done.'"
         ),
-        cp_kw=["refuse", "sampling", "distribution", "normal", "today", "given"],
+        cp_kw=["invert", "sampling distribution", "pivot", "chi-square", "refuse", "Normal"],
         cp_model=(
-            "Refuse: Normal mean/variance CIs are tomorrow. Today requires forming a CI from "
-            "a given sampling distribution."
+            "(1) Choose χ² critical values so P(χ²_L < 2n X̄ / θ < χ²_U) = 1−α, then "
+            "rearrange the inequality to isolate θ (bounds involve 2n X̄ / χ²). (2) "
+            "Refuse: cookbook Normal-mean formulae do not replace inverting the "
+            "given sampling distribution for this model."
         ),
         reflect="Harvest given-distribution inversion wobble — keep Normal cookbook out of tonight's claim.",
     ),
@@ -804,9 +825,7 @@ LEARNING = [
         lo_text=(
             "Confidence intervals for the mean and the variance of a normal distribution."
         ),
-        focus=(
-            "Normal sample → mean CI → variance CI → refuse binomial/Poisson-as-done."
-        ),
+        focus="Normal sample → mean CI → variance CI → refuse binomial/Poisson-as-done.",
         prior=(
             "Yesterday you formed a CI from a given sampling distribution (3.2.3). Today "
             "continues topic 3.2 at LO 3.2.4 — Normal mean and variance intervals."
@@ -815,7 +834,10 @@ LEARNING = [
             "3.2.4 is contiguous after the given-distribution method. Closing it prevents a "
             "cliff at Normal recipes while keeping binomial/Poisson as day five."
         ),
-        benefit="Study Progress for Normal mean/variance CIs — not Topic Complete for 3.2.5.",
+        benefit=(
+            "You will be able to construct confidence intervals for both the mean "
+            "and the variance of a Normal sample."
+        ),
         explain=(
             "Day 4 continues at the named learning objective — Normal mean/variance CIs after given-sampling-distribution CI."
         ),
@@ -871,13 +893,17 @@ LEARNING = [
             "tomorrow."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'I did the Normal mean CI only — variance can "
-            "wait and binomial is the same LO.' Refuse and restate today's dual requirement."
+            "Closed-book. IID Normal sample, n=16, x̄=10, s²=4 (σ unknown). (1) "
+            "State the form of a CI for μ and the form of a CI for σ². (2) Refuse: "
+            "'The mean CI alone finishes today — variance can wait, and binomial is "
+            "the same LO.'"
         ),
-        cp_kw=["refuse", "mean", "variance", "normal", "binomial", "today"],
+        cp_kw=["Normal", "mean", "variance", "t", "chi-square", "refuse", "both"],
         cp_model=(
-            "Refuse: today's LO requires both Normal mean and Normal variance CIs. "
-            "Binomial/Poisson is tomorrow's LO."
+            "(1) For μ: x̄ ± t_{n−1, 1−α/2} · s/√n. For σ²: ((n−1)s² / χ²_{n−1, "
+            "1−α/2}, (n−1)s² / χ²_{n−1, α/2}). (2) Refuse: both Normal mean and "
+            "Normal variance CIs are required; binomial/Poisson intervals are a "
+            "different LO."
         ),
         reflect="Harvest mean-vs-variance CI wobble — keep binomial out of tonight's claim.",
     ),
@@ -908,9 +934,7 @@ LEARNING = [
             "Confidence intervals for a binomial probability and a Poisson mean, including "
             "the use of the normal approximation in both cases."
         ),
-        focus=(
-            "Binomial p CI → Poisson mean CI → Normal approx → refuse two-sample-as-done."
-        ),
+        focus="Binomial p CI → Poisson mean CI → Normal approx → refuse two-sample-as-done.",
         prior=(
             "Yesterday you formed Normal mean and variance CIs (3.2.4). Today continues "
             "topic 3.2 at LO 3.2.5 — binomial and Poisson intervals."
@@ -919,7 +943,10 @@ LEARNING = [
             "3.2.5 is contiguous after Normal recipes. Closing it prevents a cliff at "
             "discrete-parameter intervals while keeping two-sample CIs as day six."
         ),
-        benefit="Study Progress for binomial/Poisson CIs — not Topic Complete for 3.2.6.",
+        benefit=(
+            "You will be able to form Normal-approximation confidence intervals for "
+            "both a binomial probability and a Poisson mean."
+        ),
         explain=(
             "Day 5 continues at the named learning objective — binomial/Poisson CIs after Normal mean/variance."
         ),
@@ -982,13 +1009,17 @@ LEARNING = [
             "tomorrow."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'I did binomial only — Poisson is the same and "
-            "two-sample is still today.' Refuse and restate today's dual single-sample LO."
+            "Closed-book. (1) State a Normal-approximation CI form for a binomial "
+            "probability p and for a Poisson mean λ (single sample). (2) Refuse: 'A "
+            "binomial CI alone finishes the LO — Poisson is the same formula with a "
+            "different letter.'"
         ),
-        cp_kw=["refuse", "binomial", "Poisson", "two-sample", "today", "approximation"],
+        cp_kw=["binomial", "Poisson", "Normal", "approximation", "refuse", "both"],
         cp_model=(
-            "Refuse: today's LO requires both binomial-probability and Poisson-mean CIs "
-            "(with Normal approx as in CMP). Two-sample is tomorrow."
+            "(1) Binomial: p̂ ± z_{1−α/2} √(p̂(1−p̂)/n). Poisson: λ̂ ± z_{1−α/2} "
+            "√(λ̂/n) (or equivalent for a total count with matching variance). (2) "
+            "Refuse: both binomial-p and Poisson-mean CIs with Normal approximation "
+            "are required — one does not stand in for the other."
         ),
         reflect="Harvest discrete-parameter CI wobble — keep two-sample out of tonight's claim.",
     ),
@@ -1019,9 +1050,7 @@ LEARNING = [
             "distribution and the binomial and Poisson distributions using the normal "
             "approximation."
         ),
-        focus=(
-            "Two independent samples → difference / contrast CI → refuse paired-as-done."
-        ),
+        focus="Two independent samples → difference / contrast CI → refuse paired-as-done.",
         prior=(
             "Yesterday you formed binomial and Poisson single-sample CIs (3.2.5). Today "
             "continues topic 3.2 at LO 3.2.6 — two-sample situations."
@@ -1030,7 +1059,10 @@ LEARNING = [
             "3.2.6 is contiguous after single-sample discrete CIs. Closing it prevents a "
             "cliff at two-sample intervals while keeping paired means as day seven."
         ),
-        benefit="Study Progress for two-sample CIs — not Topic Complete for 3.2.7.",
+        benefit=(
+            "You will be able to construct independent two-sample CIs and refuse "
+            "misapplying them to paired data."
+        ),
         explain=(
             "Day 6 continues at the named learning objective — two-sample CIs after binomial/Poisson single-sample work."
         ),
@@ -1092,13 +1124,19 @@ LEARNING = [
             "is tomorrow's LO."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'Paired data is just two-sample with n₁ = n₂, so "
-            "I finished both.' Refuse and restate today's independent two-sample focus."
+            "Closed-book. Independent samples of claim amounts from portfolio A and "
+            "portfolio B (Normal model). (1) What parameter contrast does a "
+            "two-sample CI target, and what independence assumption is required? (2) "
+            "Refuse: 'Paired before/after rows with equal n are just two-sample with "
+            "n₁ = n₂.'"
         ),
-        cp_kw=["refuse", "two-sample", "paired", "independent", "today", "difference"],
+        cp_kw=["two-sample", "independent", "difference", "paired", "refuse", "Normal"],
         cp_model=(
-            "Refuse: paired data is tomorrow. Today requires two-sample CIs for independent "
-            "samples (Normal / binomial / Poisson with Normal approx)."
+            "(1) Typically μ_A − μ_B (or an analogous contrast for binomial/Poisson "
+            "with Normal approx), under independent samples from the two groups. (2) "
+            "Refuse: paired data shares observational units; equal sample sizes do "
+            "not make paired rows an independent two-sample problem — use the "
+            "paired-difference construction instead."
         ),
         reflect="Harvest two-sample contrast wobble — keep paired out of tonight's claim.",
     ),
@@ -1126,9 +1164,7 @@ LEARNING = [
         lo_text=(
             "Confidence intervals for a difference between two means from paired data."
         ),
-        focus=(
-            "Paired observations → differences → mean-difference CI → refuse bootstrap-as-done."
-        ),
+        focus="Paired observations → differences → mean-difference CI → refuse bootstrap-as-done.",
         prior=(
             "Yesterday you formed two-sample CIs (3.2.6). Today continues topic 3.2 at LO "
             "3.2.7 — paired mean-difference intervals."
@@ -1137,7 +1173,10 @@ LEARNING = [
             "3.2.7 is contiguous after independent two-sample work. Closing it prevents a "
             "cliff at paired data while keeping bootstrap CI as day eight."
         ),
-        benefit="Study Progress for paired mean-difference CI — not Topic Complete for 3.2.8.",
+        benefit=(
+            "You will be able to form a paired mean-difference CI by analysing "
+            "within-pair differences."
+        ),
         explain=(
             "Day 7 continues at the named learning objective — paired-means CI after two-sample situations."
         ),
@@ -1191,13 +1230,16 @@ LEARNING = [
             "CI is tomorrow."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'I reused yesterday's two-sample formula on paired "
-            "rows and that finished both paired and bootstrap.' Refuse and restate today's LO."
+            "Closed-book. Each policyholder has a before/after loss pair (Xᵢ, Yᵢ). "
+            "(1) What do you analyse to form a CI for the mean difference? (2) "
+            "Refuse: 'Apply the independent two-sample CI to the before column and "
+            "the after column.'"
         ),
-        cp_kw=["refuse", "paired", "two-sample", "bootstrap", "today", "difference"],
+        cp_kw=["paired", "difference", "one-sample", "refuse", "independent", "two-sample"],
         cp_model=(
-            "Refuse: paired requires the paired-difference construction; bootstrap is "
-            "tomorrow. Today is the paired mean-difference CI."
+            "(1) Form paired differences Dᵢ = Yᵢ − Xᵢ (or Xᵢ − Yᵢ), then build a "
+            "one-sample CI for μ_D. (2) Refuse: the independent two-sample formula "
+            "ignores pairing and uses the wrong variance structure for matched pairs."
         ),
         reflect="Harvest pairing wobble — keep bootstrap out of tonight's claim.",
     ),
@@ -1224,8 +1266,8 @@ LEARNING = [
         ),
         lo_text="Bootstrap method to obtain confidence intervals.",
         focus=(
-            "Resample → bootstrap replicates of the interval statistic → bootstrap CI → "
-            "refuse 3.3-as-done."
+            "Resample → bootstrap replicates of the statistic → bootstrap CI → "
+            "refuse properties-bootstrap-as-CI."
         ),
         prior=(
             "Yesterday you formed a paired mean-difference CI (3.2.7). Today completes the "
@@ -1236,7 +1278,8 @@ LEARNING = [
             "intervals while keeping hypothesis testing as a later Volume."
         ),
         benefit=(
-            "Study Progress for bootstrap CI — not Topic Complete for 3.3 or Chapter 3."
+            "You will be able to obtain a confidence interval by the bootstrap "
+            "method and distinguish it from bootstrap SE estimation."
         ),
         explain=(
             "Day 8 continues at the named learning objective — bootstrap CI as the terminal Learning day of 3.2."
@@ -1298,13 +1341,19 @@ LEARNING = [
             "interval. Hypothesis testing is topic 3.3 — not today's LO."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'Bootstrap CI finished Chapter 3 and hypothesis "
-            "testing.' Refuse in one sentence and name tomorrow's honest next (Revision)."
+            "Closed-book. (1) Outline the bootstrap move to obtain a confidence "
+            "interval for a parameter (percentile idea is enough). (2) Refuse: "
+            "'Bootstrap for an estimator standard error is the same as a bootstrap "
+            "confidence interval' and 'finishing a bootstrap CI finishes hypothesis "
+            "testing.'"
         ),
-        cp_kw=["refuse", "chapter", "hypothesis", "revision", "bootstrap", "3.3"],
+        cp_kw=["bootstrap", "resample", "percentile", "confidence", "interval", "refuse", "hypothesis"],
         cp_model=(
-            "Refuse: Chapter 3 / 3.3 are not finished. Today is bootstrap CI; tomorrow is "
-            "CL-R1 Revision of 3.2 — not first-pass hypothesis testing."
+            "(1) Resample with replacement, recompute the statistic on each "
+            "resample, then form an interval from the bootstrap distribution of that "
+            "statistic (e.g. percentile interval from the α/2 and 1−α/2 quantiles of "
+            "the replicates). (2) Refuse: estimating an estimator property is not "
+            "the same as constructing a CI; hypothesis testing is a different LO."
         ),
         reflect=(
             "Harvest bootstrap CI procedure wobble — Revision protects the 3.2 chain tomorrow."

@@ -487,8 +487,8 @@ LEARNING = [
             "power of a test."
         ),
         focus=(
-            "Null/alternative → errors & operating characteristics → critical region / "
-            "p-value / power → refuse applied-test-as-done."
+            "Null/alternative → errors & operating characteristics → critical region "
+            "/ p-value / power → refuse applied-test-as-done."
         ),
         prior=(
             "Campaign Lambda closed confidence and prediction intervals (3.2) with Revision. "
@@ -498,7 +498,10 @@ LEARNING = [
             "3.3.1 opens this stretch at the natural next learning objective. Close it to avoid "
             "a cliff at hypothesis testing, keeping basic applied tests for the following session."
         ),
-        benefit="Study Progress for HT concepts — not Topic Complete for 3.3.2.",
+        benefit=(
+            "You will be able to use HT vocabulary (errors, p-value, power, critical "
+            "region) correctly on a concrete vignette."
+        ),
         explain=(
             "Day 1 opens 3.3 at the named learning objective — "
             "the natural next step after the previous topic."
@@ -565,13 +568,19 @@ LEARNING = [
             "tomorrow's LO."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'I ran a one-sample Normal mean test, so I finished "
-            "today's LO.' Refuse in one sentence and restate what today's LO requires."
+            "Closed-book. Disease screening: H₀ = no disease, H₁ = disease present. "
+            "(1) Define Type I and Type II errors in this vignette. (2) What does a "
+            "p-value measure, and what is power? (3) Refuse: 'I ran a one-sample "
+            "Normal mean test in software, so the concepts LO is done.'"
         ),
-        cp_kw=["refuse", "concepts", "null", "p-value", "power", "not same", "today"],
+        cp_kw=["Type I", "Type II", "p-value", "power", "null", "refuse", "critical"],
         cp_model=(
-            "Refuse: applied tests are tomorrow's LO. Today requires HT concepts — "
-            "null/alternative, errors, critical region, p-value, and power."
+            "(1) Type I: false positive — declare disease when healthy (reject H₀ "
+            "wrongly). Type II: false negative — miss disease when present (fail to "
+            "reject H₀ wrongly). (2) p-value: under H₀, the probability of a result "
+            "at least as extreme as observed. Power: P(reject H₀ | H₁ true) = 1 − β. "
+            "(3) Refuse: running a cookbook test is not the same as mastering HT "
+            "vocabulary (errors, critical region, p-value, power)."
         ),
         reflect="Harvest HT vocabulary wobble — keep applied tests out of tonight's claim.",
     ),
@@ -622,7 +631,10 @@ LEARNING = [
             "3.3.2 is the contiguous next LO after concepts. Closing it builds usable test "
             "skill before non-parametric permutation methods."
         ),
-        benefit="Study Progress for basic tests — not Topic Complete for 3.3.3.",
+        benefit=(
+            "You will be able to choose and apply a basic Normal, binomial, Poisson, "
+            "or paired test for a stated setting."
+        ),
         explain=(
             "Day 2 focuses the named learning objective — contiguity inside topic 3.3."
         ),
@@ -685,13 +697,18 @@ LEARNING = [
             "tests appear under CMP basic procedures. Permutation is tomorrow's LO."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'I shuffled labels for a permutation test, so I "
-            "finished today's LO.' Refuse in one sentence and restate what today's LO requires."
+            "Closed-book. (1) For each setting, name the appropriate basic test "
+            "family: (a) one Normal mean with σ known; (b) two independent binomial "
+            "proportions; (c) paired Normal differences. (2) Refuse: 'Shuffling "
+            "labels for a permutation test finishes the applied basic-tests "
+            "requirement.'"
         ),
-        cp_kw=["refuse", "basic", "paired", "normal", "binomial", "permutation", "today"],
+        cp_kw=["z-test", "proportion", "paired", "Normal", "binomial", "refuse", "permutation"],
         cp_model=(
-            "Refuse: permutation is tomorrow's LO. Today requires basic one-/two-sample and "
-            "paired tests for Normal / binomial / Poisson settings."
+            "(1) (a) one-sample Normal/z-test for a mean; (b) two-sample proportion "
+            "test with Normal approximation; (c) paired test on differences (paired "
+            "t/z). (2) Refuse: permutation tests are a different LO; today is basic "
+            "parametric tests for Normal / binomial / Poisson / paired settings."
         ),
         reflect="Harvest basic-test selection wobble — keep permutation out of tonight's claim.",
     ),
@@ -718,8 +735,8 @@ LEARNING = [
         ),
         lo_text="The permutation approach to non-parametric hypothesis tests.",
         focus=(
-            "Exchangeability under null → permute / reshuffle → reference distribution → "
-            "refuse GOF-as-done."
+            "Exchangeability under null → permute / reshuffle → reference "
+            "distribution → refuse GOF-as-done."
         ),
         prior=(
             "Yesterday you applied basic parametric / paired tests (3.3.2). Today continues "
@@ -729,7 +746,10 @@ LEARNING = [
             "3.3.3 is the contiguous next LO after basic tests. Closing it adds the "
             "non-parametric permutation hinge before chi-square GOF."
         ),
-        benefit="Study Progress for permutation tests — not Topic Complete for 3.3.4.",
+        benefit=(
+            "You will be able to outline a permutation test from exchangeability "
+            "under H₀ to a reference distribution."
+        ),
         explain=(
             "Day 3 focuses the named learning objective — contiguity inside topic 3.3."
         ),
@@ -790,13 +810,18 @@ LEARNING = [
             "to that distribution. Chi-square GOF is tomorrow's LO."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'I ran a chi-square GOF, so I finished today's LO.' "
-            "Refuse in one sentence and restate what today's LO requires."
+            "Closed-book. Under H₀ of no treatment effect, treatment labels are "
+            "exchangeable across units. (1) Outline the permutation test move from "
+            "that exchangeability to a decision. (2) Refuse: 'This is just a Normal "
+            "two-sample z-test' and 'a chi-square GOF finishes permutation.'"
         ),
-        cp_kw=["refuse", "permutation", "non-parametric", "GOF", "today", "not same"],
+        cp_kw=["permutation", "exchangeability", "shuffle", "reference", "null", "refuse", "Normal", "GOF"],
         cp_model=(
-            "Refuse: chi-square GOF is tomorrow's LO. Today requires the permutation approach "
-            "to non-parametric hypothesis tests."
+            "(1) Shuffle/reassign labels under H₀, recompute the test statistic many "
+            "times, and compare the observed statistic to that permutation reference "
+            "distribution (tail probability / critical value). (2) Refuse: "
+            "permutation builds a null reference from exchangeability, not from a "
+            "parametric Normal cookbook; chi-square GOF is a different LO."
         ),
         reflect="Harvest permutation-mechanism wobble — keep GOF out of tonight's claim.",
     ),
@@ -833,8 +858,8 @@ LEARNING = [
             "distribution, including cases where parameters are unknown."
         ),
         focus=(
-            "Hypothesised distribution → expected frequencies → chi-square GOF → DF adjust "
-            "if parameters estimated → refuse independence-as-done."
+            "Hypothesised distribution → expected frequencies → chi-square GOF → DF "
+            "adjust if parameters estimated → refuse independence-as-done."
         ),
         prior=(
             "Yesterday you applied permutation tests (3.3.3). Today continues topic 3.3 at "
@@ -844,7 +869,10 @@ LEARNING = [
             "3.3.4 is the contiguous next LO after permutation. Closing it adds distributional "
             "GOF before contingency independence."
         ),
-        benefit="Study Progress for chi-square GOF — not Topic Complete for 3.3.5.",
+        benefit=(
+            "You will be able to run a chi-square GOF test, including DF adjustment "
+            "when parameters are estimated."
+        ),
         explain=(
             "Day 4 focuses the named learning objective — contiguity inside topic 3.3."
         ),
@@ -906,13 +934,18 @@ LEARNING = [
             "tomorrow's LO."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'I tested independence in a two-way table, so I "
-            "finished today's LO.' Refuse in one sentence and restate what today's LO requires."
+            "Closed-book. You test whether claim counts follow a Poisson "
+            "distribution; λ is estimated from the same sample. (1) How are expected "
+            "frequencies formed, and what happens to degrees of freedom when λ is "
+            "estimated? (2) Refuse: 'A chi-square test of independence in a two-way "
+            "table finishes GOF.'"
         ),
-        cp_kw=["refuse", "GOF", "distribution", "independence", "today", "not same"],
+        cp_kw=["GOF", "expected", "degrees of freedom", "estimated", "Poisson", "refuse", "independence"],
         cp_model=(
-            "Refuse: independence is tomorrow's LO. Today requires chi-square GOF that a "
-            "sample is from a particular distribution, including unknown parameters."
+            "(1) Expected frequencies = n × fitted Poisson probabilities using λ̂; "
+            "DF = (number of bins − 1 − number of estimated parameters), so subtract "
+            "1 for λ̂. (2) Refuse: independence in a contingency table is a "
+            "different LO from one-sample GOF to a named distribution."
         ),
         reflect="Harvest GOF / DF wobble — keep contingency out of tonight's claim.",
     ),
@@ -949,7 +982,7 @@ LEARNING = [
         ),
         focus=(
             "Two-way table → independence null → chi-square independence → refuse "
-            "treating one independence test as all of Chapter 3."
+            "GOF-as-independence."
         ),
         prior=(
             "Yesterday you performed chi-square GOF (3.3.4). Today completes topic 3.3 "
@@ -1024,14 +1057,16 @@ LEARNING = [
             "One LO does not finish Chapter 3 or first-pass spine PASS."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'Contingency independence finished Chapter 3 and "
-            "the exam journey.' Refuse in one sentence and name tomorrow's honest next "
-            "(Revision)."
+            "Closed-book. Two-way table: rating class × claim/no-claim. (1) State "
+            "the independence null and how expected cell counts are formed. (2) "
+            "Refuse: 'This is the same as a chi-square GOF to a named distribution.'"
         ),
-        cp_kw=["refuse", "chapter", "spine", "revision", "independence", "until-exam"],
+        cp_kw=["independence", "contingency", "expected", "row", "column", "refuse", "GOF"],
         cp_model=(
-            "Refuse: Chapter 3 / spine / until-exam are not finished. Today is contingency "
-            "independence; tomorrow is CM-R1 Revision of 3.3 — not a trophy claim."
+            "(1) H₀: row and column classifications are independent; E_{ij} = (row i "
+            "total × column j total) / n. (2) Refuse: GOF tests whether one sample "
+            "follows a named distribution; independence tests association between "
+            "two classification criteria in a two-way table."
         ),
         reflect=(
             "Harvest independence / expected-count wobble — Revision protects the 3.3 chain "

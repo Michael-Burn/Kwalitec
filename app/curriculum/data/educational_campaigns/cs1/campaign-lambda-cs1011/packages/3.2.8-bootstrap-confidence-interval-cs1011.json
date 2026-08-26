@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-LAMBDA",
   "volume_id": "CS1-011",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1011_EDUCATIONAL_VOLUME.md",
     "CS1011_CERTIFICATION_REPORT.md",
@@ -37,14 +37,14 @@
   "mission": {
     "mission_id": "msn-cs1011-cs1-3.2-bootstrap-confidence-interval",
     "display_title": "Obtain confidence intervals by the bootstrap method",
-    "mission_purpose": "Today's Mission exists to obtain confidence intervals by the bootstrap method \u2014 so bootstrap interval construction is usable \u2014 without pretending hypothesis testing (3.3) or Chapter 3 complete are finished.",
+    "mission_purpose": "Today's Mission exists to obtain confidence intervals by the bootstrap method — so bootstrap interval construction is usable — without pretending hypothesis testing (3.3) or Chapter 3 complete are finished.",
     "tutor_intent": "Today I will force bootstrap CI construction and refuse treating Kappa's bootstrap-for-estimator-properties or 3.3 hypothesis testing as today's LO.",
     "educational_intent": "Produce a cognitive move from resampling to a bootstrap confidence interval under CMP language.",
     "learning_objective": "Bootstrap method to obtain confidence intervals.",
-    "concept_focus": "Resample \u2192 bootstrap replicates of the interval statistic \u2192 bootstrap CI \u2192 refuse 3.3-as-done.",
-    "prior_bridge": "Yesterday you formed a paired mean-difference CI (3.2.7). Today completes the 3.2 Learning span at LO 3.2.8 \u2014 bootstrap confidence intervals.",
+    "concept_focus": "Resample → bootstrap replicates of the statistic → bootstrap CI → refuse properties-bootstrap-as-CI.",
+    "prior_bridge": "Yesterday you formed a paired mean-difference CI (3.2.7). Today completes the 3.2 Learning span at LO 3.2.8 — bootstrap confidence intervals.",
     "why_now": "3.2.8 completes topic 3.2 Learning. Closing it prevents a cliff at bootstrap intervals while keeping hypothesis testing as a later Volume.",
-    "expected_benefit": "Study Progress for bootstrap CI \u2014 not Topic Complete for 3.3 or Chapter 3.",
+    "expected_benefit": "You will be able to obtain a confidence interval by the bootstrap method and distinguish it from bootstrap SE estimation.",
     "explainability": "Assigned as Campaign Lambda Day 8 because Continuity Front membership places bootstrap CI as the terminal Learning day of 3.2.",
     "success_criteria": [
       "Closed-book, state the bootstrap CI construction move.",
@@ -52,7 +52,7 @@
       "Refuse one 'Chapter 3 / 3.3 finished' claim."
     ],
     "task_descriptions": [
-      "Sketch resample \u2192 bootstrap CI before CMP.",
+      "Sketch resample → bootstrap CI before CMP.",
       "Complete Guided Reading through CMP treatment of Syllabus 3.2.8.",
       "Closed-book Knowledge Checks: bootstrap CI + refuse 3.3 / Chapter 3 swallow."
     ],
@@ -63,17 +63,17 @@
   },
   "session": {
     "session_id": "ssn-cs1011-cs1-3.2-bootstrap-confidence-interval",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 3.2.8 \u2014 not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 3.2.8 — not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 3.2.8, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Obtain confidence intervals by the bootstrap method. You practised selective CMP reading on Syllabus 3.2.8. This is Study Progress for today's block \u2014 not Topic Complete for later 3.2 LOs, Chapter 3 trophy, hypothesis testing (3.3), or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 3.2.8 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Obtain confidence intervals by the bootstrap method. You practised selective CMP reading on Syllabus 3.2.8. This is Study Progress for today's block — not Topic Complete for later 3.2 LOs, Chapter 3 trophy, hypothesis testing (3.3), or until-exam trust.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 3.2.8 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.2.8 \u2014 obtain confidence intervals by the bootstrap method. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.2.8 — obtain confidence intervals by the bootstrap method. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 3.2.8?",
       "What warrant separates today's skill from yesterday's?",
@@ -85,7 +85,7 @@
       "Watch for starting hypothesis testing (3.3) inside this sitting.",
       "Watch for Chapter 3 / spine / until-exam claims."
     ],
-    "open_point": "CMP \u00b7 Syllabus 3.2.8 bootstrap confidence intervals",
+    "open_point": "CMP · Syllabus 3.2.8 bootstrap confidence intervals",
     "stop_condition": "Through the CMP treatment of Syllabus 3.2.8 (stop before hypothesis testing 3.3)",
     "out_of_scope_today": [
       "Hypothesis testing / goodness of fit as primary (3.3)",
@@ -96,12 +96,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 3.2.8 bootstrap confidence intervals. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.2.8 (stop before hypothesis testing 3.3). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 3.2.8 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.2.8 bootstrap confidence intervals. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.2.8 (stop before hypothesis testing 3.3). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 3.2.8 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "cue": "Pause — write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -134,7 +134,7 @@
         "hypothesis"
       ],
       "explanation": "Active recall for 3.2.8.",
-      "model_answer": "Resample from the sample (or an appropriate bootstrap mechanism under CMP), form the interval statistic on replicates, and obtain a bootstrap confidence interval. Hypothesis testing is topic 3.3 \u2014 not today's LO.",
+      "model_answer": "Resample from the sample (or an appropriate bootstrap mechanism under CMP), form the interval statistic on replicates, and obtain a bootstrap confidence interval. Hypothesis testing is topic 3.3 — not today's LO.",
       "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
       "success_criteria": [
         "Addresses the prompt structure.",
@@ -146,32 +146,33 @@
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.8-cp-01",
       "title": "Checkpoint: 3.2.8",
-      "prompt": "Closed-book. A colleague says 'Bootstrap CI finished Chapter 3 and hypothesis testing.' Refuse in one sentence and name tomorrow's honest next (Revision).",
+      "prompt": "Closed-book. (1) Outline the bootstrap move to obtain a confidence interval for a parameter (percentile idea is enough). (2) Refuse: 'Bootstrap for an estimator standard error is the same as a bootstrap confidence interval' and 'finishing a bootstrap CI finishes hypothesis testing.'",
       "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 3.2.8.",
+      "body": "Bootstrap CI procedure; refuse properties-bootstrap-as-CI and HT-as-done.",
       "hints": [
         "Name the refusal clearly.",
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
-        "chapter",
-        "hypothesis",
-        "revision",
         "bootstrap",
-        "3.3"
+        "resample",
+        "percentile",
+        "confidence",
+        "interval",
+        "refuse",
+        "hypothesis"
       ],
-      "explanation": "Checkpoint for 3.2.8.",
-      "model_answer": "Refuse: Chapter 3 / 3.3 are not finished. Today is bootstrap CI; tomorrow is CL-R1 Revision of 3.2 \u2014 not first-pass hypothesis testing.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "explanation": "Bootstrap CIs use the replicate distribution to form interval endpoints; that differs from SE-only bootstrap and from HT.",
+      "model_answer": "(1) Resample with replacement, recompute the statistic on each resample, then form an interval from the bootstrap distribution of that statistic (e.g. percentile interval from the α/2 and 1−α/2 quantiles of the replicates). (2) Refuse: estimating an estimator property is not the same as constructing a CI; hypothesis testing is a different LO.",
+      "common_mistake": "Equating bootstrap estimator-property estimation with bootstrap CI construction, or claiming HT is finished.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
+        "Outlines resample → replicate statistic → interval from bootstrap distribution.",
+        "Refuses conflating with bootstrap SE estimation or hypothesis testing."
       ]
     }
   ],
   "reflection": {
-    "framing": "Harvest bootstrap CI procedure wobble \u2014 Revision protects the 3.2 chain tomorrow.",
+    "framing": "Harvest bootstrap CI procedure wobble — Revision protects the 3.2 chain tomorrow.",
     "prompt": "Which part of today's 3.2.8 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 3.2.8 is stickiest and why?",
@@ -181,9 +182,9 @@
   },
   "tomorrow_preview": {
     "next_topic_code": "CL-R1",
-    "next_topic_title": "Campaign Lambda Revision \u2014 retrieve 3.2 hinges",
-    "continuity_line": "Today you obtained bootstrap confidence intervals; tomorrow is Revision \u2014 retrieve the 3.2 chain closed-book (not first-pass 3.3).",
-    "light_prep_cue": "Optional: list the eight 3.2 LO codes from memory \u2014 titles only tonight",
-    "student_facing": "Tomorrow: CL-R1 Revision (retrieve 3.2.1\u20133.2.8). Optional light prep: list the eight LO codes from memory \u2014 titles only tonight."
+    "next_topic_title": "Campaign Lambda Revision — retrieve 3.2 hinges",
+    "continuity_line": "Today you obtained bootstrap confidence intervals; tomorrow is Revision — retrieve the 3.2 chain closed-book (not first-pass 3.3).",
+    "light_prep_cue": "Optional: list the eight 3.2 LO codes from memory — titles only tonight",
+    "student_facing": "Tomorrow: CL-R1 Revision (retrieve 3.2.1–3.2.8). Optional light prep: list the eight LO codes from memory — titles only tonight."
   }
 }
