@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
   "volume_id": "CS1-017",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1017_EDUCATIONAL_VOLUME.md",
     "CS1017_CERTIFICATION_REPORT.md",
@@ -35,14 +35,14 @@
   "mission": {
     "mission_id": "msn-cs1017-cs1-1.2-eda-summaries",
     "display_title": "EDA summaries and visualisations (Publication Front)",
-    "mission_purpose": "Today's Mission exists to study Syllabus 1.2.1 EDA summaries/visuals under Publication Front discipline \u2014 without pretending correlation (1.2.2) is finished.",
+    "mission_purpose": "Today's Mission exists to study Syllabus 1.2.1 EDA summaries/visuals under Publication Front discipline — without pretending correlation (1.2.2) is finished.",
     "tutor_intent": "Today I will force summary/visual tool warrant and refuse 'Publication Front finished correlation / Approver clearance'.",
     "educational_intent": "Produce Publication Front study of EDA summary statistics and visualisations.",
     "learning_objective": "Appropriate tools to calculate suitable summary statistics and undertake exploratory data visualisations",
-    "concept_focus": "Summary tools \u2192 exploratory visuals \u2192 refuse correlation swallow.",
+    "concept_focus": "Variable type → suitable summary → suitable visualisation → aim alignment → refuse mean-only / pie misuse.",
     "prior_bridge": "Yesterday you studied reproducibility (1.1.4). Today opens Topic 1.2 on Publication Front.",
     "why_now": "EDA entry is the next contiguous opening honesty LO after Topic 1.1 close.",
-    "expected_benefit": "Study Progress for 1.2.1 \u2014 not Topic 1.2 complete; not Approver clearance.",
+    "expected_benefit": "You will be able to choose a summary-and-plot pair for a named EDA aim and refuse a visualisation misuse.",
     "explainability": "Assigned as Campaign Rho Day 5 because Publication Front opens EDA at summaries before association measures.",
     "success_criteria": [
       "Closed-book, name suitable summary tools and one visualisation class.",
@@ -61,17 +61,17 @@
   },
   "session": {
     "session_id": "ssn-cs1017-cs1-1.2-eda-summaries",
-    "session_educational_purpose": "Execute today's Publication Front Mission for Syllabus 1.2.1 \u2014 LO-per-day Wave 0 residual catalogue under EP Production Era, not Approver clearance.",
+    "session_educational_purpose": "Execute today's Publication Front Mission for Syllabus 1.2.1 — LO-per-day Wave 0 residual catalogue under EP Production Era, not Approver clearance.",
     "session_tutor_purpose": "Set focus on 1.2.1, exit to CMP, practise today's LO, refuse spine PASS / until-exam / Approver clearance swallow.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for EDA summaries and visualisations (Publication Front). You practised selective CMP reading on Syllabus 1.2.1 under Publication Front discipline. This is Study Progress for today's LO \u2014 not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 1.2.1 closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for EDA summaries and visualisations (Publication Front). You practised selective CMP reading on Syllabus 1.2.1 under Publication Front discipline. This is Study Progress for today's LO — not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 1.2.1 closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.2.1 \u2014 eda summaries and visualisations (publication front) \u2014 under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.2.1 — eda summaries and visualisations (publication front) — under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
     "focus_questions": [
       "What is the core move of Syllabus 1.2.1?",
       "What warrant separates today's LO from the next Publication Front day?",
@@ -83,7 +83,7 @@
       "Watch for swallowing correlation today.",
       "Watch for claiming Topic 1.2 complete."
     ],
-    "open_point": "CMP \u00b7 Syllabus 1.2.1 summary statistics and exploratory visualisations",
+    "open_point": "CMP · Syllabus 1.2.1 summary statistics and exploratory visualisations",
     "stop_condition": "Through the CMP treatment of Syllabus 1.2.1 (stop before correlation primary 1.2.2)",
     "out_of_scope_today": [
       "Correlation measures as primary",
@@ -93,13 +93,13 @@
     ],
     "annotation_task": "Before deep reading: sketch today's LO chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution \u2014 stay inside 1.2.1.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 1.2.1 summary statistics and exploratory visualisations. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.2.1 (stop before correlation primary 1.2.2). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 1.2.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution — stay inside 1.2.1.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 1.2.1 summary statistics and exploratory visualisations. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.2.1 (stop before correlation primary 1.2.2). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 1.2.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core LO move in one sentence.",
+        "cue": "Pause — write today's core LO move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -142,7 +142,7 @@
       "kind": "checkpoint",
       "item_id": "cs1017-1.2.1-cp-01",
       "title": "Checkpoint: 1.2.1",
-      "prompt": "Closed-book. A colleague says '1.2.1 finished correlation memory.' Refuse and name tomorrow.",
+      "prompt": "Closed-book. Claim counts per policy-year: many zeros, a long right tail of large counts. Aim: explore the frequency shape before modelling. (1) Name one exploratory visualisation you would use and what pattern it should reveal. (2) Name one visualisation or summary misuse you would refuse for this aim.",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 1.2.1.",
       "hints": [
@@ -156,7 +156,7 @@
         "EDA"
       ],
       "explanation": "Checkpoint for 1.2.1.",
-      "model_answer": "Refuse: EDA summaries \u2260 correlation. Tomorrow is 1.2.2.",
+      "model_answer": "(1) A bar/histogram of counts (or a zero-aware frequency plot) to reveal the mass at zero and the right tail. (2) Refuse a pie chart of policies or a mean-only table that hides zero-inflation and the tail.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",
@@ -165,7 +165,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest EDA wobble \u2014 correlation continues Publication Front tomorrow.",
+    "framing": "Harvest EDA wobble — correlation continues Publication Front tomorrow.",
     "prompt": "Which part of today's 1.2.1 work is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 1.2.1 work is stickiest and why?",
@@ -177,8 +177,8 @@
     "next_topic_code": "1.2",
     "next_topic_title": "Correlation measures (1.2.2)",
     "continuity_line": "Today you studied 1.2.1; tomorrow continues Publication Front at 1.2.2.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 1.2.2 \u2014 titles only tonight",
-    "student_facing": "Tomorrow: correlation Publication Front day (1.2.2). Optional light prep: skim 1.2.2 headings \u2014 titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 1.2.2 — titles only tonight",
+    "student_facing": "Tomorrow: correlation Publication Front day (1.2.2). Optional light prep: skim 1.2.2 headings — titles only tonight."
   },
   "revision_linkage": {
     "returns_on": "CR-R1",

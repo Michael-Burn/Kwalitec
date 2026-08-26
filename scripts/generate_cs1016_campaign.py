@@ -473,10 +473,14 @@ LEARNING = [
         tutor="Today I will force closed-book probability/quantile retrieval and refuse 'Memory Front finished joint distributions / spine PASS'.",
         edu="Produce Memory Front retrieval of probabilities and quantiles as the lawful first hinge after Topic 5.1 tip close.",
         lo_text="Evaluate probabilities and quantiles associated with univariate distributions (by calculation or using statistical software as appropriate).",
-        focus="Distribution → probability/quantile move → refuse treating evaluation as joint distributions finished.",
+        focus=(
+            """Named univariate family → probability or quantile evaluation (tables/software/calculation) → refuse recognition-as-evaluation."""
+        ),
         prior="Yesterday you closed Campaign Omicron Revision at the Continuity Front tip (5.1). Today opens Memory Front / spine re-audit at the historical Opening Continuity Front hinge 2.1.3.",
         why="Topic 5.1 is closed and there is no 5.2 next — retrieve probability and quantile evaluation from earlier distribution work.",
-        benefit="You'll retrieve 2.1.3.",
+        benefit=(
+            """You'll retrieve how to evaluate a probability and a quantile for a placed univariate family from memory."""
+        ),
         explain="Day 1 focuses the named learning objective — after tip close begins at the Opening hinge already Published via Gamma.",
         criteria=["Closed-book, outline one probability and one quantile move for a named univariate distribution.", "State why this is retrieval not new first-pass discovery theatre.", "Refuse one joint-distributions / spine swallow."],
         tasks=["Sketch probability/quantile path before CMP.", "Complete Guided Reading through CMP treatment of Syllabus 2.1.3.", "Closed-book Knowledge Checks: retrieval + refuse swallow."],
@@ -492,9 +496,13 @@ LEARNING = [
         ar_prompt="Closed-book. (1) What probability object do you evaluate for a univariate distribution? (2) What is a quantile move? (3) Why is 2.2.1 not today's primary?",
         ar_kw=["probability", "quantile", "univariate", "distribution"],
         ar_model="Evaluate probabilities and quantiles for named univariate distributions. Joint distributions open tomorrow under Memory Front.",
-        cp_prompt="Closed-book. A colleague says 'Evaluating probabilities and quantiles means joint distributions are optional.' Refuse and name tomorrow's honest next.",
-        cp_kw=["refuse", "spine", "2.2.1", "Memory"],
-        cp_model="Refuse: one hinge ≠ spine PASS. Tomorrow is Memory Front 2.2.1.",
+        cp_prompt=(
+            """Closed-book. Claim sizes ~ Exponential with mean θ = 1000. (1) Compute P(X > 2000). (2) Compute the 90th percentile of X (leave exact form or a one-decimal numerical value). (3) Refuse: 'I recognise it is Exponential, so evaluation is finished without computing.'"""
+        ),
+        cp_kw=["probability", "quantile", "exponential", "percentile", "refuse", "evaluate"],
+        cp_model=(
+            """(1) P(X > 2000) = e^{-2000/1000} = e^{-2} ≈ 0.135. (2) Solve 1 − e^{-x/1000} = 0.9 ⇒ x = 1000 ln(10) ≈ 2302.6. (3) Refuse: naming the family is not the evaluation — you still must compute the probability or quantile."""
+        ),
         reflect="Harvest probability/quantile wobble — joint distributions continue Memory Front tomorrow.",
     ),
     dict(
@@ -511,10 +519,12 @@ LEARNING = [
         tutor="Today I will force marginal/conditional retrieval and refuse 'Memory Front finished CLT / spine PASS'.",
         edu="Produce Memory Front retrieval of marginal and conditional distributions contiguous after 2.1.3.",
         lo_text="Obtain the probability function or density function for marginal and conditional distributions of jointly distributed random variables.",
-        focus="Joint → marginal / conditional → refuse CLT swallow.",
+        focus="Joint \u2192 marginal (sum/integrate) \u2192 conditional (normalise) \u2192 refuse joint-as-margins-done.",
         prior="Yesterday you retrieved probabilities/quantiles (2.1.3). Today continues Memory Front at joint entry.",
         why="Keep Chapter 2 alive: retrieve how to form marginals and conditionals from a joint distribution.",
-        benefit="You'll retrieve 2.2.1.",
+        benefit=(
+            """You'll retrieve how to obtain a marginal and a conditional from a joint distribution by actual extraction, not by recognition alone."""
+        ),
         explain="Day 2 focuses the named learning objective — preserves joint-entry hinge after retrieval.",
         criteria=["Closed-book, distinguish marginal vs conditional in one sentence each.", "State one joint-to-marginal move.", "Refuse one CLT / spine swallow."],
         tasks=["Sketch marginal/conditional path before CMP.", "Complete Guided Reading through CMP treatment of Syllabus 2.2.1.", "Closed-book Knowledge Checks."],
@@ -530,9 +540,15 @@ LEARNING = [
         ar_prompt="Closed-book. (1) How do you obtain a marginal from a joint? (2) What changes for a conditional? (3) Why is CLT not today's primary?",
         ar_kw=["marginal", "conditional", "joint", "density"],
         ar_model="Marginals integrate/sum out other variables; conditionals renormalise on a condition. CLT is tomorrow.",
-        cp_prompt="Closed-book. A colleague says '2.2.1 finished CLT memory.' Refuse and name tomorrow.",
-        cp_kw=["refuse", "CLT", "2.5.1", "Memory"],
-        cp_model="Refuse: marginal/conditional ≠ CLT. Tomorrow is 2.5.1.",
+        cp_prompt=(
+            """Closed-book. Joint PMF of (X, Y):
+  P(0,0)=0.10, P(0,1)=0.20, P(1,0)=0.30, P(1,1)=0.40.
+(1) Compute the marginal P(X=1). (2) Compute P(Y=1 | X=1). (3) Refuse: 'We have the joint table, so marginals and conditionals are optional decoration.'"""
+        ),
+        cp_kw=["marginal", "conditional", "joint", "sum", "normalise", "refuse"],
+        cp_model=(
+            """(1) P(X=1) = 0.30 + 0.40 = 0.70. (2) P(Y=1 | X=1) = 0.40 / 0.70 ≈ 0.571. (3) Refuse: the joint is not the same as its margins or conditionals — you must sum for the marginal and divide by that marginal for the conditional."""
+        ),
         reflect="Harvest joint-entry wobble — CLT continues Memory Front tomorrow.",
     ),
     dict(
@@ -549,10 +565,14 @@ LEARNING = [
         tutor="Today I will force CLT retrieval and refuse 'Memory Front finished sampling / spine PASS'.",
         edu="Produce Memory Front retrieval of CLT contiguous in the hinge chain.",
         lo_text="Apply the central limit theorem for a sequence of independent, identically distributed random variables.",
-        focus="IID sequence → CLT statement → refuse sampling swallow.",
+        focus=(
+            """IID sequence → standardised sample mean → Normal limit under CLT conditions → refuse Normal-everywhere-without-CLT."""
+        ),
         prior="Yesterday you retrieved marginal/conditional (2.2.1). Today continues Memory Front at CLT.",
         why="CLT is a high-decay hinge between distributions and sampling/inference.",
-        benefit="You'll retrieve 2.5.1.",
+        benefit=(
+            """You'll retrieve how to apply the CLT to approximate a probability for a sample mean from an iid sequence."""
+        ),
         explain="Day 3 focuses the named learning objective — protects CLT before sampling foundations.",
         criteria=["Closed-book, state CLT for an IID sequence in one careful sentence.", "Name one condition you must not drop.", "Refuse one sampling / spine swallow."],
         tasks=["Sketch CLT path before CMP.", "Complete Guided Reading through CMP treatment of Syllabus 2.5.1.", "Closed-book Knowledge Checks."],
@@ -568,9 +588,13 @@ LEARNING = [
         ar_prompt="Closed-book. (1) State CLT for an IID sequence. (2) What does it approximate? (3) Why is 2.6.1 not today's primary?",
         ar_kw=["CLT", "IID", "approximate", "normal"],
         ar_model="For IID with finite mean/variance, sample-mean distributions approach Normal under CLT conditions. Sampling foundations open tomorrow.",
-        cp_prompt="Closed-book. A colleague says 'CLT finished random-sample memory.' Refuse and name tomorrow.",
-        cp_kw=["refuse", "sample", "2.6.1", "CLT"],
-        cp_model="Refuse: CLT ≠ sampling foundations. Tomorrow is 2.6.1.",
+        cp_prompt=(
+            """Closed-book. Claim sizes are iid with mean μ = 500 and sd σ = 200; n = 100. Using the CLT, approximate P(X̄ > 540). (1) State the approximate distribution of X̄. (2) Compute the standardised z and the approximate probability (use Φ(2) ≈ 0.977). (3) Refuse: 'We already use the Normal all the time, so the CLT is just common sense and needs no statement.'"""
+        ),
+        cp_kw=["CLT", "iid", "sample mean", "Normal", "standardise", "refuse"],
+        cp_model=(
+            """(1) X̄ ≈ Normal(μ=500, sd=σ/√n=20). (2) z = (540 − 500) / 20 = 2; P(X̄ > 540) ≈ 1 − Φ(2) ≈ 0.023. (3) Refuse: casual Normal habit is not the CLT — today's skill is stating and applying the theorem for iid sequences under the stated conditions."""
+        ),
         reflect="Harvest CLT wobble — random samples continue Memory Front tomorrow.",
     ),
     dict(
@@ -587,10 +611,12 @@ LEARNING = [
         tutor="Today I will force random-sample retrieval and refuse 'Memory Front finished estimators / spine PASS'.",
         edu="Produce Memory Front retrieval of random samples as the bridge into inference hinges.",
         lo_text="Explain random samples from a population and the role of sampling as the bridge into inference.",
-        focus="Population → random sample → refuse estimators swallow.",
+        focus="Population \u2192 random sample (iid / CMP sampling warrant) \u2192 refuse n-observations-as-random-sample.",
         prior="Yesterday you retrieved CLT (2.5.1). Today continues Memory Front at sampling foundations.",
         why="Sampling vocabulary must retrieve before estimator and CI hinges.",
-        benefit="You'll retrieve 2.6.1.",
+        benefit=(
+            """You'll retrieve what a random sample from a population requires and why a pile of observations is not automatically one."""
+        ),
         explain="Day 4 focuses the named learning objective — places sampling before inference hinges.",
         criteria=["Closed-book, define a random sample from a population.", "State why sampling precedes estimators in the hinge chain.", "Refuse one estimators / spine swallow."],
         tasks=["Sketch sample/population path before CMP.", "Complete Guided Reading through CMP treatment of Syllabus 2.6.1.", "Closed-book Knowledge Checks."],
@@ -606,9 +632,13 @@ LEARNING = [
         ar_prompt="Closed-book. (1) What is a random sample from a population? (2) Why does sampling precede estimators? (3) Why is 3.1.1 not today's primary?",
         ar_kw=["sample", "population", "random", "inference"],
         ar_model="A random sample is drawn from a population under a sampling model. Estimators open tomorrow.",
-        cp_prompt="Closed-book. A colleague says '2.6.1 finished estimators memory.' Refuse and name tomorrow.",
-        cp_kw=["refuse", "estimator", "3.1.1", "sample"],
-        cp_model="Refuse: sampling foundations ≠ estimators. Tomorrow is 3.1.1.",
+        cp_prompt=(
+            """Closed-book. An analyst takes the 40 most recent claims from one large commercial client and treats them as a random sample from the whole motor book. (1) In one sentence, why this may fail as a random sample of the portfolio population. (2) State what a random sample from a population requires. (3) Refuse: 'I have n = 40 observations, so I already have a random sample.'"""
+        ),
+        cp_kw=["random sample", "population", "iid", "sampling", "refuse", "observations"],
+        cp_model=(
+            """(1) Consecutive claims from one client are clustered and not an iid draw from the whole book — dependence and selection bias break the portfolio sampling warrant. (2) A random sample is drawn so that each observation follows the population distribution under CMP/iid (or stated sampling) conditions. (3) Refuse: having observations is not the same as a random sample with a lawful sampling warrant."""
+        ),
         reflect="Harvest sampling wobble — estimators continue Memory Front tomorrow.",
     ),
     dict(
@@ -775,10 +805,12 @@ LEARNING = [
         tutor="Today I will force regression-entry retrieval and refuse 'Memory Front finished Bayes / spine PASS'.",
         edu="Produce Memory Front retrieval of linear-regression entry as Continuity Front join hinge.",
         lo_text="Distinguish response and explanatory variables in a linear regression setting.",
-        focus="Response ↔ explanatory → refuse Bayes tip swallow.",
+        focus="Data sketch \u2192 name response Y \u2192 name explanatory X's with warrants \u2192 refuse column-soup / role-swap.",
         prior="Yesterday you retrieved HT foundations (3.3.1). Today continues Memory Front at Continuity Front join regression entry.",
         why="Refresh response vs explanatory roles — the entry point into linear modelling.",
-        benefit="You'll retrieve 4.1.1.",
+        benefit=(
+            """You'll retrieve how to name response and explanatory variables with modelling warrants in a linear regression setting."""
+        ),
         explain="Day 8 focuses the named learning objective — returns to Nu CF-join entry before Bayes tip.",
         criteria=["Closed-book, distinguish response vs explanatory with one actuarial-flavoured example.", "State why this is entry not full 4.1 mastery.", "Refuse one Bayes / spine swallow."],
         tasks=["Sketch response/explanatory map before CMP.", "Complete Guided Reading through CMP treatment of Syllabus 4.1.1.", "Closed-book Knowledge Checks."],
@@ -794,9 +826,13 @@ LEARNING = [
         ar_prompt="Closed-book. (1) What is a response variable? (2) What is an explanatory variable? (3) Why is 5.1.1 not today's primary?",
         ar_kw=["response", "explanatory", "regression", "variable"],
         ar_model="Response is modelled outcome; explanatory variables explain variation in the response. Bayes tip opens tomorrow.",
-        cp_prompt="Closed-book. A colleague says 'Naming response and explanatory variables finished linear modelling and Bayes tip retrieval.' Refuse and name tomorrow's honest next.",
-        cp_kw=["refuse", "Bayes", "5.1.1", "spine"],
-        cp_model="Refuse: regression entry ≠ Bayes tip ≠ spine PASS. Tomorrow is 5.1.1.",
+        cp_prompt=(
+            """Closed-book. Household contents book: you want to model renewal premium. Columns include renewal premium, sum insured, number of bedrooms, previous claims count, and postcode band. (1) Name the response and two explanatory variables with a one-sentence warrant each. (2) Refuse: 'Put every numeric column on the right-hand side — that finishes variable-role modelling' and 'Treat renewal premium as an explanatory variable for sum insured.'"""
+        ),
+        cp_kw=["response", "explanatory", "regression", "warrant", "refuse", "column-soup"],
+        cp_model=(
+            """(1) Response Y = renewal premium (the outcome to explain/predict). Explanatory examples: sum insured and bedrooms (predictors of premium level); previous claims count may also warrant as an X. (2) Refuse: column-soup is not modelling — choose Y for the modelling question, then choose X's with warrants. Swapping so that premium explains sum insured answers a different question."""
+        ),
         reflect="Harvest regression-entry wobble — Bayes tip continues Memory Front tomorrow.",
     ),
     dict(
@@ -813,10 +849,14 @@ LEARNING = [
         tutor="Today I will force Bayes' theorem tip retrieval and refuse 'Memory Front finished the exam journey / first-pass spine / Wave 0'.",
         edu="Produce Memory Front retrieval of Bayes' theorem as the Continuity Front tip hinge before Revision.",
         lo_text="Use Bayes’ theorem to calculate simple conditional probabilities.",
-        focus="Bayes' theorem → simple conditional → refuse treating the theorem tip as conjugate priors finished.",
+        focus=(
+            """Prior / base rate → likelihood of data → Bayes update → posterior → refuse inverse-probability confusion."""
+        ),
         prior="Yesterday you retrieved linear-regression entry (4.1.1). Today closes Memory Front Learning at the Continuity Front tip hinge.",
         why="Retrieve Bayes' theorem at the tip of Topic 5.1 before revision — without inventing a Topic 5.2.",
-        benefit="You'll retrieve Bayes' theorem for simple conditional probability updates.",
+        benefit=(
+            """You'll retrieve how to apply Bayes' theorem to compute a simple posterior probability and refuse inverse-probability errors."""
+        ),
         explain="Day 9 retrieves Bayes' theorem at the tip of Topic 5.1 before revision.",
         criteria=["Closed-book, state Bayes' theorem for a simple conditional probability case.", "Compute or outline one simple application.", "Refuse one spine / until-exam / Wave 0 clearance claim."],
         tasks=["Sketch Bayes path before CMP.", "Complete Guided Reading through CMP treatment of Syllabus 5.1.1.", "Closed-book Knowledge Checks: theorem + refuse spine swallow."],
@@ -832,9 +872,13 @@ LEARNING = [
         ar_prompt="Closed-book. (1) State Bayes' theorem for a simple case. (2) What probability do you update? (3) Name one reason this does not finish first-pass spine or until-exam trust.",
         ar_kw=["Bayes", "conditional", "prior", "posterior"],
         ar_model="Bayes updates probabilities using prior and likelihood information in simple cases. Spine PASS and until-exam remain out of scope.",
-        cp_prompt="Closed-book. A colleague says 'Retrieving Bayes' theorem finished conjugate priors and the whole Bayesian topic.' Refuse and name tomorrow's honest next (Revision of the Bayesian chain).",
-        cp_kw=["refuse", "spine", "Wave 0", "until-exam", "revision"],
-        cp_model="Refuse: tip retrieval ≠ spine PASS ≠ Wave 0 clearance ≠ until-exam. Tomorrow is CP-R1 Revision.",
+        cp_prompt=(
+            """Closed-book. Screening: P(D) = 0.01, P(+|D) = 0.95, P(+|not D) = 0.10. A case tests positive. (1) Compute P(D|+) via Bayes (show the normalising P(+)). (2) Refuse: 'P(D|+) equals P(+|D) = 0.95.'"""
+        ),
+        cp_kw=["Bayes", "posterior", "prior", "likelihood", "base rate", "refuse"],
+        cp_model=(
+            """(1) P(+) = 0.95·0.01 + 0.10·0.99 = 0.0095 + 0.099 = 0.1085. P(D|+) = 0.0095 / 0.1085 ≈ 0.0876. (2) Refuse: that equates posterior with likelihood and ignores the base rate — Bayes multiplies prior × likelihood and normalises."""
+        ),
         reflect="Harvest Bayes-tip wobble — Revision protects the Memory Front chain tomorrow.",
     ),
 ]

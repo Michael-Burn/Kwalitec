@@ -484,7 +484,9 @@ LEARNING = [
             "day after Memory Front close."
         ),
         lo_text="Aims of a data analysis (e.g. descriptive, inferential and predictive)",
-        focus="Aims map → descriptive/inferential/predictive → refuse treating aims as stages and tools finished.",
+        focus=(
+            """Stated task → classify aim (descriptive / inferential / predictive) → refuse collapsing all aims into EDA."""
+        ),
         prior=(
             "Yesterday you closed Campaign Pi Revision (Memory Front). Today opens Publication "
             "Front / Wave 0 residual at Syllabus 1.1.1."
@@ -493,7 +495,7 @@ LEARNING = [
             "Start the opening analysis arc at aims: descriptive, inferential, and predictive intents."
         ),
         benefit=(
-            "You'll be able to state descriptive, inferential, and predictive analysis aims clearly."
+            """You will be able to classify actuarial analysis aims as descriptive, inferential, or predictive and refuse EDA-as-everything."""
         ),
         explain=(
             "Day 1 opens the analysis arc at aims — the natural start for opening syllabus work."
@@ -540,13 +542,11 @@ LEARNING = [
             "forecasts. Stages/tools open tomorrow."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'Naming descriptive, inferential, and predictive "
-            "aims finished the analysis process and tools.' Refuse and name tomorrow's "
-            "honest next."
+            """Closed-book. Motor pricing review tasks: (A) histogram of last year's claim severities; (B) a confidence interval for mean severity; (C) a model that forecasts next year's severity. (1) Classify each as descriptive, inferential, or predictive. (2) Refuse: 'All three are just EDA, so aims are done.'"""
         ),
-        cp_kw=["refuse", "Approver", "1.1.2", "Publication"],
+        cp_kw=["descriptive", "inferential", "predictive", "aims", "refuse", "EDA"],
         cp_model=(
-            "Refuse: one catalogue day ≠ Approver clearance. Tomorrow is Publication Front 1.1.2."
+            """(1) A descriptive (summarise observed severities); B inferential (generalise from sample evidence to a parameter); C predictive (forecast future severity). (2) Refuse: EDA is exploratory summarising — it does not replace naming distinct descriptive, inferential, and predictive aims."""
         ),
         reflect="Harvest aims wobble — stages/tools continue Publication Front tomorrow.",
     ),
@@ -573,10 +573,12 @@ LEARNING = [
             "Stages and suitable tools used to conduct a data analysis to solve real-world "
             "problems"
         ),
-        focus="Stages → suitable tools → refuse data-sources swallow.",
+        focus="Analysis stages in order \u2192 suitable tool class per stage \u2192 refuse tool-shopping-without-stages.",
         prior="Yesterday you studied analysis aims (1.1.1). Today continues Publication Front.",
         why="Stages/tools convert aims into an executable analysis path.",
-        benefit="You'll make study progress on 1.1.2.",
+        benefit=(
+            """You will be able to list analysis stages in a sensible order and pair a stage with a suitable tool class."""
+        ),
         explain=(
             "Day 2 focuses preserves opening."
             "contiguity after aims."
@@ -621,11 +623,12 @@ LEARNING = [
             "Stages structure the analysis path; tools serve stages. Data sources open tomorrow."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says '1.1.2 finished data-source honesty.' Refuse and "
-            "name tomorrow."
+            """Closed-book. You are running a reserves data analysis. (1) List the main stages in a sensible order and mark which stage exploratory work sits in. (2) Pair the clean/explore stage with one suitable tool class. (3) Refuse: 'I opened a notebook and loaded packages, so the analysis stages are finished.'"""
         ),
-        cp_kw=["refuse", "sources", "1.1.3", "stages"],
-        cp_model="Refuse: stages/tools ≠ data sources. Tomorrow is 1.1.3.",
+        cp_kw=["stages", "tools", "explore", "EDA", "refuse", "order"],
+        cp_model=(
+            """(1) Define aim → obtain data → clean/explore → analyse (infer or predict) → communicate; EDA sits in clean/explore. (2) Clean/explore pairs with summary statistics and exploratory visualisations (or data-wrangling scripts). (3) Refuse: opening tools is not completing the staged analysis path."""
+        ),
         reflect="Harvest stages/tools wobble — data sources continue Publication Front tomorrow.",
     ),
     dict(
@@ -650,10 +653,12 @@ LEARNING = [
         lo_text=(
             "Sources of data and their characteristics, including extremely large data sets"
         ),
-        focus="Sources → characteristics / scale → refuse reproducibility swallow.",
+        focus="Source type \u2192 trust/quality characteristics (incl. scale) \u2192 refuse bigger-equals-better.",
         prior="Yesterday you studied stages/tools (1.1.2). Today continues Publication Front.",
         why="Source honesty precedes reproducible analysis claims.",
-        benefit="You'll make study progress on 1.1.3.",
+        benefit=(
+            """You will be able to name source characteristics that change how you trust results, including constraints from large data sets."""
+        ),
         explain=(
             "Day 3 focuses places source."
             "characteristics before reproducibility."
@@ -702,11 +707,12 @@ LEARNING = [
             "Reproducibility opens tomorrow."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says '1.1.3 finished reproducibility.' Refuse and name "
-            "tomorrow."
+            """Closed-book. Compare an administrative claims extract with a voluntary customer survey, both used for the same pricing question. (1) Name two source characteristics that change how you trust results. (2) Name one characteristic of an extremely large data set that constrains analysis. (3) Refuse: 'The bigger file is automatically better data.'"""
         ),
-        cp_kw=["refuse", "reproducible", "1.1.4", "sources"],
-        cp_model="Refuse: sources ≠ reproducibility. Tomorrow is 1.1.4.",
+        cp_kw=["sources", "bias", "granularity", "large data", "refuse", "quality"],
+        cp_model=(
+            """(1) Examples: selection/response bias (voluntary survey vs administrative coverage); granularity or completeness of fields; measurement error. (2) Scale constraints: storage/compute limits, need for sampling or distributed tooling, or quality issues that volume does not fix. (3) Refuse: volume alone does not imply representativeness or fitness for the analysis aim."""
+        ),
         reflect=(
             "Harvest sources wobble — reproducible research continues Publication Front tomorrow."
         ),
@@ -734,10 +740,14 @@ LEARNING = [
             "Meaning and value of reproducible research and the elements required to ensure "
             "a data analysis is reproducible"
         ),
-        focus="Reproducibility meaning → required elements → refuse EDA swallow.",
+        focus=(
+            """Reproducibility meaning → required elements (data, code, docs) → refuse one-off-rerun-as-reproducible."""
+        ),
         prior="Yesterday you studied data sources (1.1.3). Today continues Publication Front.",
         why="Reproducibility closes Topic 1.1 before EDA entry.",
-        benefit="You'll make study progress on 1.1.4.",
+        benefit=(
+            """You will be able to state what reproducible research means and name elements required to keep a data analysis reproducible."""
+        ),
         explain=(
             "Day 4 focuses the named learning objective — closes Topic 1.1 at "
             "reproducibility before EDA."
@@ -783,11 +793,12 @@ LEARNING = [
             "data, code, and documentation warrants. EDA opens tomorrow."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'Reproducibility finished exploratory data analysis "
-            "summaries.' Refuse and name tomorrow's honest next."
+            """Closed-book. A colleague says their pricing analysis is reproducible because they can re-run one notebook cell on their laptop. (1) In one sentence, what does reproducible research mean? (2) Name two elements required to keep an analysis reproducible. (3) Refuse the colleague's claim in one sentence."""
         ),
-        cp_kw=["refuse", "EDA", "1.2.1", "Approver"],
-        cp_model="Refuse: reproducibility ≠ EDA ≠ Approver clearance. Tomorrow is 1.2.1.",
+        cp_kw=["reproducible", "versioned", "scripted", "documentation", "refuse", "reconstruct"],
+        cp_model=(
+            """(1) Others (or a future you) can reconstruct the same analysis results from the stated inputs and steps. (2) Examples: versioned data (or clear extract identity); scripted code path; documented environment/parameters and decisions. (3) Refuse: a one-off local re-run without shared data, code, and documentation is not reproducibility."""
+        ),
         reflect="Harvest reproducibility wobble — EDA continues Publication Front tomorrow.",
     ),
     dict(
@@ -813,10 +824,14 @@ LEARNING = [
             "Appropriate tools to calculate suitable summary statistics and undertake "
             "exploratory data visualisations"
         ),
-        focus="Summary tools → exploratory visuals → refuse correlation swallow.",
+        focus=(
+            """Variable type → suitable summary → suitable visualisation → aim alignment → refuse mean-only / pie misuse."""
+        ),
         prior="Yesterday you studied reproducibility (1.1.4). Today opens Topic 1.2 on Publication Front.",
         why="EDA entry is the next contiguous opening honesty LO after Topic 1.1 close.",
-        benefit="You'll make study progress on 1.2.1.",
+        benefit=(
+            """You will be able to choose a summary-and-plot pair for a named EDA aim and refuse a visualisation misuse."""
+        ),
         explain=(
             "Day 5 focuses opens EDA at summaries."
             "before association measures."
@@ -862,11 +877,12 @@ LEARNING = [
             "Correlation opens tomorrow."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says '1.2.1 finished correlation memory.' Refuse and "
-            "name tomorrow."
+            """Closed-book. Claim counts per policy-year: many zeros, a long right tail of large counts. Aim: explore the frequency shape before modelling. (1) Name one exploratory visualisation you would use and what pattern it should reveal. (2) Name one visualisation or summary misuse you would refuse for this aim."""
         ),
-        cp_kw=["refuse", "correlation", "1.2.2", "EDA"],
-        cp_model="Refuse: EDA summaries ≠ correlation. Tomorrow is 1.2.2.",
+        cp_kw=["EDA", "summary", "visualisation", "histogram", "refuse", "zero"],
+        cp_model=(
+            """(1) A bar/histogram of counts (or a zero-aware frequency plot) to reveal the mass at zero and the right tail. (2) Refuse a pie chart of policies or a mean-only table that hides zero-inflation and the tail."""
+        ),
         reflect="Harvest EDA wobble — correlation continues Publication Front tomorrow.",
     ),
     dict(
@@ -892,10 +908,14 @@ LEARNING = [
             "Interpret and make statistical inferences using Pearson’s, Spearman’s and "
             "Kendall’s measures of correlation for bivariate data"
         ),
-        focus="Pearson / Spearman / Kendall → interpretation → refuse PCA swallow.",
+        focus=(
+            """Measure choice (Pearson / Spearman / Kendall) → what association means → refuse causation / linearity overclaim."""
+        ),
         prior="Yesterday you studied EDA summaries (1.2.1). Today continues Publication Front.",
         why="Association measures sit between summaries and dimensionality reduction.",
-        benefit="You'll make study progress on 1.2.2.",
+        benefit=(
+            """You will be able to justify a correlation measure for bivariate data and state one inferential limit of a large coefficient."""
+        ),
         explain=(
             "Day 6 focuses places correlation."
             "before PCA."
@@ -940,10 +960,12 @@ LEARNING = [
             "Pearson is linear association; Spearman/Kendall are rank-based. PCA opens tomorrow."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says '1.2.2 finished PCA.' Refuse and name tomorrow."
+            """Closed-book. Years licensed vs claim frequency: frequency is skewed with visible outliers; the scatter looks roughly decreasing but nonlinear. (1) Which correlation measure would you prefer and why? (2) State one claim a large coefficient still does not justify."""
         ),
-        cp_kw=["refuse", "PCA", "1.2.3", "correlation"],
-        cp_model="Refuse: correlation ≠ PCA. Tomorrow is 1.2.3.",
+        cp_kw=["Spearman", "Pearson", "Kendall", "correlation", "causation", "refuse"],
+        cp_model=(
+            """(1) Prefer Spearman (or Kendall) because the relationship looks monotone but nonlinear and outliers can distort Pearson. (2) A large coefficient still does not prove that changing years licensed causes frequency to change."""
+        ),
         reflect="Harvest correlation wobble — PCA continues Publication Front tomorrow.",
     ),
     dict(
@@ -968,10 +990,12 @@ LEARNING = [
         lo_text=(
             "Principal component analysis to reduce the dimensionality of a complex data set"
         ),
-        focus="Complex data → PCA reduction → refuse discrete-distributions swallow.",
+        focus="Why reduce dimensions \u2192 what PCs capture \u2192 refuse PC-as-causal-driver theatre.",
         prior="Yesterday you studied correlation (1.2.2). Today closes Topic 1.2 on Publication Front.",
         why="PCA closes EDA before univariate distribution entry.",
-        benefit="You'll make study progress on 1.2.3.",
+        benefit=(
+            """You will be able to state a lawful exploratory use of PCA and refuse treating a principal component as a proven causal factor."""
+        ),
         explain=(
             "Day 7 focuses the named learning objective — closes Topic 1.2 at PCA "
             "before discrete distributions."
@@ -1020,12 +1044,11 @@ LEARNING = [
             "distributions open tomorrow."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'PCA finished discrete distribution families.' "
-            "Refuse and name tomorrow's honest next."
+            """Closed-book. A colleague says: 'PC1 from our rating factors is the true underlying risk score, so we can treat it as a causal driver and auto-decline on PC1 alone.' (1) What one useful thing might PC1 still be doing exploratorily? (2) State one claim this statement overreaches."""
         ),
-        cp_kw=["refuse", "discrete", "2.1.1", "Approver"],
+        cp_kw=["PCA", "dimension", "variation", "causal", "refuse", "exploratory"],
         cp_model=(
-            "Refuse: PCA ≠ discrete distributions ≠ Approver clearance. Tomorrow is 2.1.1."
+            """(1) PC1 may usefully summarise major shared variation among correlated rating factors for exploration or visualisation. (2) It does not by itself prove a causal risk driver or justify auto-decline without external subject-matter and decision warrants."""
         ),
         reflect=(
             "Harvest PCA wobble — discrete distributions continue Publication Front tomorrow."
@@ -1058,10 +1081,14 @@ LEARNING = [
             "Geometric, binomial, negative binomial, hypergeometric, Poisson and uniform "
             "discrete distributions on a finite set"
         ),
-        focus="Discrete family map → refuse continuous swallow.",
+        focus=(
+            """Counting / selection situation → discrete family → defining characteristic → refuse mismatched family."""
+        ),
         prior="Yesterday you studied PCA (1.2.3). Today opens Topic 2.1 on Publication Front.",
         why="Discrete families are the first univariate distribution honesty LO still AA.",
-        benefit="You'll make study progress on 2.1.1.",
+        benefit=(
+            """You will be able to match a discrete data-generating situation to a syllabus family and refuse a habitual mismatch."""
+        ),
         explain=(
             "Day 8 focuses places discrete."
             "families before continuous families."
@@ -1111,11 +1138,12 @@ LEARNING = [
             "Continuous families open tomorrow."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says '2.1.1 finished continuous distributions.' Refuse "
-            "and name tomorrow."
+            """Closed-book. (1) For a single policy, you model the number of claims in a fixed year with a constant rare-event rate and independent increments — which discrete family fits, and why? (2) Name one family that would be a habitual mismatch here, and refuse it in one sentence."""
         ),
-        cp_kw=["refuse", "continuous", "2.1.2", "discrete"],
-        cp_model="Refuse: discrete ≠ continuous. Tomorrow is 2.1.2.",
+        cp_kw=["Poisson", "discrete", "count", "rate", "refuse", "family"],
+        cp_model=(
+            """(1) Poisson — counts of rare events in a fixed interval under a constant rate / independent-increments story. (2) Refuse continuous Normal for a non-negative integer count, or refuse hypergeometric if there is no without-replacement draw from a finite success/failure population."""
+        ),
         reflect=(
             "Harvest discrete wobble — continuous distributions continue Publication Front "
             "tomorrow."
@@ -1151,10 +1179,7 @@ LEARNING = [
             "Normal, lognormal, exponential, gamma, chi-square, t, F, beta and uniform "
             "continuous distributions on an interval"
         ),
-        focus=(
-            "Continuous family map → refuse treating family placement as probability/quantile "
-            "evaluation finished."
-        ),
+        focus="Support / shape story \u2192 continuous family \u2192 refuse Normal-by-default for mismatched response.",
         prior=(
             "Yesterday you studied discrete distributions (2.1.1). Today closes Publication "
             "Front Learning."
@@ -1164,7 +1189,7 @@ LEARNING = [
             "analysis-to-distributions chain."
         ),
         benefit=(
-            "You'll place continuous families with at least one refused Normal default for a mismatched response type."
+            """You will be able to place a continuous family from support and shape and refuse Normal-by-default for a mismatched quantity."""
         ),
         explain=(
             "Day 9 closes the opening stretch at continuous families — then revise the chain."
@@ -1222,14 +1247,11 @@ LEARNING = [
             "stories. Approver seals and spine PASS remain out of scope."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'Placing continuous families finished "
-            "probability/quantile evaluation and the opening analysis-to-distributions "
-            "stretch.' Refuse and name tomorrow's honest next (Revision)."
+            """Closed-book. Inter-claim waiting times are strictly positive and, under a constant hazard story, memoryless. (1) Which continuous family would you place first, and why? (2) Refuse Normal-by-default for this quantity in one sentence."""
         ),
-        cp_kw=["refuse", "Approver", "spine", "until-exam", "revision"],
+        cp_kw=["exponential", "continuous", "waiting", "Normal", "refuse", "support"],
         cp_model=(
-            "Refuse: Learning close ≠ Approver clearance ≠ spine PASS ≠ until-exam. Tomorrow "
-            "is CR-R1 Revision."
+            """(1) Exponential — positive support and memoryless waiting times under a constant hazard. (2) Refuse Normal-by-default because a symmetric all-real support model mismatches strictly positive waiting times."""
         ),
         reflect=(
             "Harvest continuous-family wobble — Revision protects the Publication Front chain "

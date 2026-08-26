@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
   "volume_id": "CS1-017",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1017_EDUCATIONAL_VOLUME.md",
     "CS1017_CERTIFICATION_REPORT.md",
@@ -36,14 +36,14 @@
   "mission": {
     "mission_id": "msn-cs1017-cs1-2.1-discrete",
     "display_title": "Discrete distributions (Publication Front)",
-    "mission_purpose": "Today's Mission exists to study Syllabus 2.1.1 discrete distributions under Publication Front discipline \u2014 without pretending continuous distributions (2.1.2) are finished.",
+    "mission_purpose": "Today's Mission exists to study Syllabus 2.1.1 discrete distributions under Publication Front discipline — without pretending continuous distributions (2.1.2) are finished.",
     "tutor_intent": "Today I will force discrete family recognition and refuse 'Publication Front finished continuous distributions / Approver clearance'.",
     "educational_intent": "Produce Publication Front study of named discrete distributions on a finite set.",
     "learning_objective": "Geometric, binomial, negative binomial, hypergeometric, Poisson and uniform discrete distributions on a finite set",
-    "concept_focus": "Discrete family map \u2192 refuse continuous swallow.",
+    "concept_focus": "Counting / selection situation → discrete family → defining characteristic → refuse mismatched family.",
     "prior_bridge": "Yesterday you studied PCA (1.2.3). Today opens Topic 2.1 on Publication Front.",
     "why_now": "Discrete families are the first univariate distribution honesty LO still AA.",
-    "expected_benefit": "Study Progress for 2.1.1 \u2014 not Topic 2.1 complete; not Approver clearance.",
+    "expected_benefit": "You will be able to match a discrete data-generating situation to a syllabus family and refuse a habitual mismatch.",
     "explainability": "Assigned as Campaign Rho Day 8 because Publication Front places discrete families before continuous families.",
     "success_criteria": [
       "Closed-book, name the discrete families in scope.",
@@ -62,17 +62,17 @@
   },
   "session": {
     "session_id": "ssn-cs1017-cs1-2.1-discrete",
-    "session_educational_purpose": "Execute today's Publication Front Mission for Syllabus 2.1.1 \u2014 LO-per-day Wave 0 residual catalogue under EP Production Era, not Approver clearance.",
+    "session_educational_purpose": "Execute today's Publication Front Mission for Syllabus 2.1.1 — LO-per-day Wave 0 residual catalogue under EP Production Era, not Approver clearance.",
     "session_tutor_purpose": "Set focus on 2.1.1, exit to CMP, practise today's LO, refuse spine PASS / until-exam / Approver clearance swallow.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Discrete distributions (Publication Front). You practised selective CMP reading on Syllabus 2.1.1 under Publication Front discipline. This is Study Progress for today's LO \u2014 not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 2.1.1 closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Discrete distributions (Publication Front). You practised selective CMP reading on Syllabus 2.1.1 under Publication Front discipline. This is Study Progress for today's LO — not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 2.1.1 closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 2.1.1 \u2014 discrete distributions (publication front) \u2014 under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 2.1.1 — discrete distributions (publication front) — under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
     "focus_questions": [
       "What is the core move of Syllabus 2.1.1?",
       "What warrant separates today's LO from the next Publication Front day?",
@@ -84,7 +84,7 @@
       "Watch for swallowing continuous families today.",
       "Watch for claiming Topic 2.1 complete."
     ],
-    "open_point": "CMP \u00b7 Syllabus 2.1.1 discrete distributions",
+    "open_point": "CMP · Syllabus 2.1.1 discrete distributions",
     "stop_condition": "Through the CMP treatment of Syllabus 2.1.1 (stop before continuous distributions primary 2.1.2)",
     "out_of_scope_today": [
       "Continuous distributions as primary",
@@ -95,13 +95,13 @@
     ],
     "annotation_task": "Before deep reading: sketch today's LO chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution \u2014 stay inside 2.1.1.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.1.1 discrete distributions. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.1.1 (stop before continuous distributions primary 2.1.2). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 2.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution — stay inside 2.1.1.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.1.1 discrete distributions. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.1.1 (stop before continuous distributions primary 2.1.2). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 2.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core LO move in one sentence.",
+        "cue": "Pause — write today's core LO move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -144,7 +144,7 @@
       "kind": "checkpoint",
       "item_id": "cs1017-2.1.1-cp-01",
       "title": "Checkpoint: 2.1.1",
-      "prompt": "Closed-book. A colleague says '2.1.1 finished continuous distributions.' Refuse and name tomorrow.",
+      "prompt": "Closed-book. (1) For a single policy, you model the number of claims in a fixed year with a constant rare-event rate and independent increments — which discrete family fits, and why? (2) Name one family that would be a habitual mismatch here, and refuse it in one sentence.",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 2.1.1.",
       "hints": [
@@ -158,7 +158,7 @@
         "discrete"
       ],
       "explanation": "Checkpoint for 2.1.1.",
-      "model_answer": "Refuse: discrete \u2260 continuous. Tomorrow is 2.1.2.",
+      "model_answer": "(1) Poisson — counts of rare events in a fixed interval under a constant rate / independent-increments story. (2) Refuse continuous Normal for a non-negative integer count, or refuse hypergeometric if there is no without-replacement draw from a finite success/failure population.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",
@@ -167,7 +167,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest discrete wobble \u2014 continuous distributions continue Publication Front tomorrow.",
+    "framing": "Harvest discrete wobble — continuous distributions continue Publication Front tomorrow.",
     "prompt": "Which part of today's 2.1.1 work is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 2.1.1 work is stickiest and why?",
@@ -179,8 +179,8 @@
     "next_topic_code": "2.1",
     "next_topic_title": "Continuous distributions (2.1.2)",
     "continuity_line": "Today you studied 2.1.1; tomorrow continues Publication Front at 2.1.2.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.1.2 \u2014 titles only tonight",
-    "student_facing": "Tomorrow: continuous distributions Publication Front day (2.1.2). Optional light prep: skim 2.1.2 headings \u2014 titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.1.2 — titles only tonight",
+    "student_facing": "Tomorrow: continuous distributions Publication Front day (2.1.2). Optional light prep: skim 2.1.2 headings — titles only tonight."
   },
   "revision_linkage": {
     "returns_on": "CR-R1",

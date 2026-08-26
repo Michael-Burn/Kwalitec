@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-PI",
   "volume_id": "CS1-016",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1016_EDUCATIONAL_VOLUME.md",
     "CS1016_CERTIFICATION_REPORT.md",
@@ -35,14 +35,14 @@
   "mission": {
     "mission_id": "msn-cs1016-cs1-2.5-clt",
     "display_title": "Retrieve the central limit theorem (Memory Front)",
-    "mission_purpose": "Today's Mission exists to retrieve Syllabus 2.5.1 CLT under Memory Front discipline \u2014 without pretending random-sample foundations (2.6.1) are finished.",
+    "mission_purpose": "Today's Mission exists to retrieve Syllabus 2.5.1 CLT under Memory Front discipline — without pretending random-sample foundations (2.6.1) are finished.",
     "tutor_intent": "Today I will force CLT retrieval and refuse 'Memory Front finished sampling / spine PASS'.",
     "educational_intent": "Produce Memory Front retrieval of CLT contiguous in the hinge chain.",
     "learning_objective": "Apply the central limit theorem for a sequence of independent, identically distributed random variables.",
-    "concept_focus": "IID sequence \u2192 CLT statement \u2192 refuse sampling swallow.",
+    "concept_focus": "IID sequence → standardised sample mean → Normal limit under CLT conditions → refuse Normal-everywhere-without-CLT.",
     "prior_bridge": "Yesterday you retrieved marginal/conditional (2.2.1). Today continues Memory Front at CLT.",
     "why_now": "CLT is a high-decay hinge between distributions and sampling/inference.",
-    "expected_benefit": "You'll retrieve the CLT for iid sequences and when the Normal approximation is warranted.",
+    "expected_benefit": "You'll retrieve how to apply the CLT to approximate a probability for a sample mean from an iid sequence.",
     "explainability": "Assigned as Campaign Pi Day 3 because Memory Front protects CLT before sampling foundations.",
     "success_criteria": [
       "Closed-book, state CLT for an IID sequence in one careful sentence.",
@@ -61,17 +61,17 @@
   },
   "session": {
     "session_id": "ssn-cs1016-cs1-2.5-clt",
-    "session_educational_purpose": "Execute today's Memory Front Mission for Syllabus 2.5.1 \u2014 retrieval under spine re-audit discipline, not a new first-pass LO discovery claim.",
+    "session_educational_purpose": "Execute today's Memory Front Mission for Syllabus 2.5.1 — retrieval under spine re-audit discipline, not a new first-pass LO discovery claim.",
     "session_tutor_purpose": "Set focus on 2.5.1 retrieval, exit to CMP, retrieve today's hinge, refuse spine PASS / until-exam / Wave 0 clearance swallow.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Retrieve the central limit theorem (Memory Front). You practised selective CMP reading on Syllabus 2.5.1 under Memory Front discipline. This is Study Progress for today's hinge \u2014 not first-pass spine PASS, until-exam trust, or Wave 0 Approver honesty clearance.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 2.5.1 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Retrieve the central limit theorem (Memory Front). You practised selective CMP reading on Syllabus 2.5.1 under Memory Front discipline. This is Study Progress for today's hinge — not first-pass spine PASS, until-exam trust, or Wave 0 Approver honesty clearance.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 2.5.1 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to retrieve Syllabus 2.5.1 \u2014 retrieve the central limit theorem (memory front) \u2014 under Memory Front / spine re-audit discipline. Stop before out-of-scope later hinges as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to retrieve Syllabus 2.5.1 — retrieve the central limit theorem (memory front) — under Memory Front / spine re-audit discipline. Stop before out-of-scope later hinges as primary.",
     "focus_questions": [
       "What is the core retrieval move of Syllabus 2.5.1?",
       "What warrant separates today's hinge from the next Memory Front day?",
@@ -83,7 +83,7 @@
       "Watch for swallowing sampling foundations today.",
       "Watch for claiming inference complete."
     ],
-    "open_point": "CMP \u00b7 Syllabus 2.5.1 central limit theorem",
+    "open_point": "CMP · Syllabus 2.5.1 central limit theorem",
     "stop_condition": "Through the CMP treatment of Syllabus 2.5.1 (stop before random samples primary 2.6.1)",
     "out_of_scope_today": [
       "Random samples as primary",
@@ -93,13 +93,13 @@
     ],
     "annotation_task": "Before deep reading: sketch today's hinge chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution \u2014 stay inside 2.5.1.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.5.1 central limit theorem. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.5.1 (stop before random samples primary 2.6.1). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 2.5.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution — stay inside 2.5.1.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.5.1 central limit theorem. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.5.1 (stop before random samples primary 2.6.1). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 2.5.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core retrieval move in one sentence.",
+        "cue": "Pause — write today's core retrieval move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -142,7 +142,7 @@
       "kind": "checkpoint",
       "item_id": "cs1016-2.5.1-cp-01",
       "title": "Checkpoint: 2.5.1",
-      "prompt": "Closed-book. A colleague says 'CLT finished random-sample memory.' Refuse and name tomorrow.",
+      "prompt": "Closed-book. Claim sizes are iid with mean μ = 500 and sd σ = 200; n = 100. Using the CLT, approximate P(X̄ > 540). (1) State the approximate distribution of X̄. (2) Compute the standardised z and the approximate probability (use Φ(2) ≈ 0.977). (3) Refuse: 'We already use the Normal all the time, so the CLT is just common sense and needs no statement.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 2.5.1.",
       "hints": [
@@ -156,7 +156,7 @@
         "CLT"
       ],
       "explanation": "Checkpoint for 2.5.1.",
-      "model_answer": "Refuse: CLT \u2260 sampling foundations. Tomorrow is 2.6.1.",
+      "model_answer": "(1) X̄ ≈ Normal(μ=500, sd=σ/√n=20). (2) z = (540 − 500) / 20 = 2; P(X̄ > 540) ≈ 1 − Φ(2) ≈ 0.023. (3) Refuse: casual Normal habit is not the CLT — today's skill is stating and applying the theorem for iid sequences under the stated conditions.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",
@@ -165,7 +165,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest CLT wobble \u2014 random samples continue Memory Front tomorrow.",
+    "framing": "Harvest CLT wobble — random samples continue Memory Front tomorrow.",
     "prompt": "Which part of today's 2.5.1 retrieval is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 2.5.1 retrieval is stickiest and why?",
@@ -177,8 +177,8 @@
     "next_topic_code": "2.6",
     "next_topic_title": "Random samples (2.6.1)",
     "continuity_line": "Today you retrieved 2.5.1; tomorrow continues Memory Front at 2.6.1.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.6.1 \u2014 titles only tonight",
-    "student_facing": "Tomorrow: random samples Memory Front hinge (2.6.1). Optional light prep: skim 2.6.1 headings \u2014 titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.6.1 — titles only tonight",
+    "student_facing": "Tomorrow: random samples Memory Front hinge (2.6.1). Optional light prep: skim 2.6.1 headings — titles only tonight."
   },
   "revision_linkage": {
     "returns_on": "CP-R1",

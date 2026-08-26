@@ -40,10 +40,10 @@
     "tutor_intent": "Today I will force continuous family recognition and refuse 'Publication Front cleared Approver honesty / finished spine / unlocked until-exam'.",
     "educational_intent": "Produce Publication Front study of named continuous distributions as the Learning close before Revision.",
     "learning_objective": "Normal, lognormal, exponential, gamma, chi-square, t, F, beta and uniform continuous distributions on an interval",
-    "concept_focus": "Continuous family map → refuse treating family placement as probability/quantile evaluation finished.",
+    "concept_focus": "Support / shape story → continuous family → refuse Normal-by-default for mismatched response.",
     "prior_bridge": "Yesterday you studied discrete distributions (2.1.1). Today closes Publication Front Learning.",
     "why_now": "Place continuous families to close this opening stretch — then revise the analysis-to-distributions chain.",
-    "expected_benefit": "You'll place continuous families with at least one refused Normal default for a mismatched response type.",
+    "expected_benefit": "You will be able to place a continuous family from support and shape and refuse Normal-by-default for a mismatched quantity.",
     "explainability": "Assigned as Campaign Rho Day 9 because Publication Front closes Learning at the last AA continuous-families LO before CR-R1.",
     "success_criteria": [
       "Closed-book, name continuous families in scope.",
@@ -146,7 +146,7 @@
       "kind": "checkpoint",
       "item_id": "cs1017-2.1.2-cp-01",
       "title": "Checkpoint: 2.1.2",
-      "prompt": "Closed-book. A colleague says 'Placing continuous families finished probability/quantile evaluation and the opening analysis-to-distributions stretch.' Refuse and name tomorrow's honest next (Revision).",
+      "prompt": "Closed-book. Inter-claim waiting times are strictly positive and, under a constant hazard story, memoryless. (1) Which continuous family would you place first, and why? (2) Refuse Normal-by-default for this quantity in one sentence.",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 2.1.2.",
       "hints": [
@@ -161,7 +161,7 @@
         "revision"
       ],
       "explanation": "Checkpoint for 2.1.2.",
-      "model_answer": "Refuse: Learning close ≠ Approver clearance ≠ spine PASS ≠ until-exam. Tomorrow is CR-R1 Revision.",
+      "model_answer": "(1) Exponential — positive support and memoryless waiting times under a constant hazard. (2) Refuse Normal-by-default because a symmetric all-real support model mismatches strictly positive waiting times.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",

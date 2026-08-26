@@ -39,10 +39,10 @@
     "tutor_intent": "Today I will force PCA dimensionality-reduction warrant and refuse 'Publication Front finished discrete distributions / Approver clearance'.",
     "educational_intent": "Produce Publication Front study of PCA to reduce dimensionality.",
     "learning_objective": "Principal component analysis to reduce the dimensionality of a complex data set",
-    "concept_focus": "Complex data → PCA reduction → refuse discrete-distributions swallow.",
+    "concept_focus": "Why reduce dimensions → what PCs capture → refuse PC-as-causal-driver theatre.",
     "prior_bridge": "Yesterday you studied correlation (1.2.2). Today closes Topic 1.2 on Publication Front.",
     "why_now": "PCA closes EDA before univariate distribution entry.",
-    "expected_benefit": "Study Progress for 1.2.3 — not Chapter 2 complete; not Approver clearance.",
+    "expected_benefit": "You will be able to state a lawful exploratory use of PCA and refuse treating a principal component as a proven causal factor.",
     "explainability": "Assigned as Campaign Rho Day 7 because Publication Front closes Topic 1.2 at PCA before discrete distributions.",
     "success_criteria": [
       "Closed-book, state PCA purpose for dimensionality reduction.",
@@ -142,7 +142,7 @@
       "kind": "checkpoint",
       "item_id": "cs1017-1.2.3-cp-01",
       "title": "Checkpoint: 1.2.3",
-      "prompt": "Closed-book. A colleague says 'PCA finished discrete distribution families.' Refuse and name tomorrow's honest next.",
+      "prompt": "Closed-book. A colleague says: 'PC1 from our rating factors is the true underlying risk score, so we can treat it as a causal driver and auto-decline on PC1 alone.' (1) What one useful thing might PC1 still be doing exploratorily? (2) State one claim this statement overreaches.",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 1.2.3.",
       "hints": [
@@ -156,7 +156,7 @@
         "Approver"
       ],
       "explanation": "Checkpoint for 1.2.3.",
-      "model_answer": "Refuse: PCA ≠ discrete distributions ≠ Approver clearance. Tomorrow is 2.1.1.",
+      "model_answer": "(1) PC1 may usefully summarise major shared variation among correlated rating factors for exploration or visualisation. (2) It does not by itself prove a causal risk driver or justify auto-decline without external subject-matter and decision warrants.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",

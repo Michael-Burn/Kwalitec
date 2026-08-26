@@ -39,10 +39,10 @@
     "tutor_intent": "Today I will force regression-entry retrieval and refuse 'Memory Front finished Bayes / spine PASS'.",
     "educational_intent": "Produce Memory Front retrieval of linear-regression entry as Continuity Front join hinge.",
     "learning_objective": "Distinguish response and explanatory variables in a linear regression setting.",
-    "concept_focus": "Response ↔ explanatory → refuse Bayes tip swallow.",
+    "concept_focus": "Data sketch → name response Y → name explanatory X's with warrants → refuse column-soup / role-swap.",
     "prior_bridge": "Yesterday you retrieved HT foundations (3.3.1). Today continues Memory Front at Continuity Front join regression entry.",
     "why_now": "Refresh response vs explanatory roles — the entry point into linear modelling.",
-    "expected_benefit": "You'll retrieve how to name response and explanatory variables in a linear regression setting.",
+    "expected_benefit": "You'll retrieve how to name response and explanatory variables with modelling warrants in a linear regression setting.",
     "explainability": "Assigned as Campaign Pi Day 8 because Memory Front returns to Nu CF-join entry before Bayes tip.",
     "success_criteria": [
       "Closed-book, distinguish response vs explanatory with one actuarial-flavoured example.",
@@ -143,7 +143,7 @@
       "kind": "checkpoint",
       "item_id": "cs1016-4.1.1-cp-01",
       "title": "Checkpoint: 4.1.1",
-      "prompt": "Closed-book. A colleague says 'Naming response and explanatory variables finished linear modelling and Bayes tip retrieval.' Refuse and name tomorrow's honest next.",
+      "prompt": "Closed-book. Household contents book: you want to model renewal premium. Columns include renewal premium, sum insured, number of bedrooms, previous claims count, and postcode band. (1) Name the response and two explanatory variables with a one-sentence warrant each. (2) Refuse: 'Put every numeric column on the right-hand side — that finishes variable-role modelling' and 'Treat renewal premium as an explanatory variable for sum insured.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.1.1.",
       "hints": [
@@ -157,7 +157,7 @@
         "spine"
       ],
       "explanation": "Checkpoint for 4.1.1.",
-      "model_answer": "Refuse: regression entry ≠ Bayes tip ≠ spine PASS. Tomorrow is 5.1.1.",
+      "model_answer": "(1) Response Y = renewal premium (the outcome to explain/predict). Explanatory examples: sum insured and bedrooms (predictors of premium level); previous claims count may also warrant as an X. (2) Refuse: column-soup is not modelling — choose Y for the modelling question, then choose X's with warrants. Swapping so that premium explains sum insured answers a different question.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",

@@ -39,10 +39,10 @@
     "tutor_intent": "Today I will force closed-book probability/quantile retrieval and refuse 'Memory Front finished joint distributions / spine PASS'.",
     "educational_intent": "Produce Memory Front retrieval of probabilities and quantiles as the lawful first hinge after Topic 5.1 tip close.",
     "learning_objective": "Evaluate probabilities and quantiles associated with univariate distributions (by calculation or using statistical software as appropriate).",
-    "concept_focus": "Distribution → probability/quantile move → refuse treating evaluation as joint distributions finished.",
+    "concept_focus": "Named univariate family → probability or quantile evaluation (tables/software/calculation) → refuse recognition-as-evaluation.",
     "prior_bridge": "Yesterday you closed Campaign Omicron Revision at the Continuity Front tip (5.1). Today opens Memory Front / spine re-audit at the historical Opening Continuity Front hinge 2.1.3.",
     "why_now": "Topic 5.1 is closed and there is no 5.2 next — retrieve probability and quantile evaluation from earlier distribution work.",
-    "expected_benefit": "You'll retrieve how to evaluate probabilities and quantiles for placed univariate families.",
+    "expected_benefit": "You'll retrieve how to evaluate a probability and a quantile for a placed univariate family from memory.",
     "explainability": "Assigned as Campaign Pi Day 1 because Memory Front after tip close begins at the Opening Continuity Front hinge already Published via Gamma.",
     "success_criteria": [
       "Closed-book, outline one probability and one quantile move for a named univariate distribution.",
@@ -142,7 +142,7 @@
       "kind": "checkpoint",
       "item_id": "cs1016-2.1.3-cp-01",
       "title": "Checkpoint: 2.1.3",
-      "prompt": "Closed-book. A colleague says 'Evaluating probabilities and quantiles means joint distributions are optional.' Refuse and name tomorrow's honest next.",
+      "prompt": "Closed-book. Claim sizes ~ Exponential with mean θ = 1000. (1) Compute P(X > 2000). (2) Compute the 90th percentile of X (leave exact form or a one-decimal numerical value). (3) Refuse: 'I recognise it is Exponential, so evaluation is finished without computing.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 2.1.3.",
       "hints": [
@@ -156,7 +156,7 @@
         "Memory"
       ],
       "explanation": "Checkpoint for 2.1.3.",
-      "model_answer": "Refuse: one hinge ≠ spine PASS. Tomorrow is Memory Front 2.2.1.",
+      "model_answer": "(1) P(X > 2000) = e^{-2000/1000} = e^{-2} ≈ 0.135. (2) Solve 1 − e^{-x/1000} = 0.9 ⇒ x = 1000 ln(10) ≈ 2302.6. (3) Refuse: naming the family is not the evaluation — you still must compute the probability or quantile.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",

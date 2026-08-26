@@ -39,10 +39,10 @@
     "tutor_intent": "Today I will force Bayes' theorem tip retrieval and refuse 'Memory Front finished the exam journey / first-pass spine / Wave 0'.",
     "educational_intent": "Produce Memory Front retrieval of Bayes' theorem as the Continuity Front tip hinge before Revision.",
     "learning_objective": "Use Bayes’ theorem to calculate simple conditional probabilities.",
-    "concept_focus": "Bayes' theorem → simple conditional → refuse treating the theorem tip as conjugate priors finished.",
+    "concept_focus": "Prior / base rate → likelihood of data → Bayes update → posterior → refuse inverse-probability confusion.",
     "prior_bridge": "Yesterday you retrieved linear-regression entry (4.1.1). Today closes Memory Front Learning at the Continuity Front tip hinge.",
     "why_now": "Retrieve Bayes' theorem at the tip of Topic 5.1 before revision — without inventing a Topic 5.2.",
-    "expected_benefit": "You'll retrieve Bayes' theorem for simple conditional probability updates.",
+    "expected_benefit": "You'll retrieve how to apply Bayes' theorem to compute a simple posterior probability and refuse inverse-probability errors.",
     "explainability": "Assigned as Campaign Pi Day 9 because Memory Front closes Learning at the CF tip hinge before CP-R1.",
     "success_criteria": [
       "Closed-book, state Bayes' theorem for a simple conditional probability case.",
@@ -144,7 +144,7 @@
       "kind": "checkpoint",
       "item_id": "cs1016-5.1.1-cp-01",
       "title": "Checkpoint: 5.1.1",
-      "prompt": "Closed-book. A colleague says 'Retrieving Bayes' theorem finished conjugate priors and the whole Bayesian topic.' Refuse and name tomorrow's honest next (Revision of the Bayesian chain).",
+      "prompt": "Closed-book. Screening: P(D) = 0.01, P(+|D) = 0.95, P(+|not D) = 0.10. A case tests positive. (1) Compute P(D|+) via Bayes (show the normalising P(+)). (2) Refuse: 'P(D|+) equals P(+|D) = 0.95.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 5.1.1.",
       "hints": [
@@ -159,7 +159,7 @@
         "revision"
       ],
       "explanation": "Checkpoint for 5.1.1.",
-      "model_answer": "Refuse: tip retrieval ≠ spine PASS ≠ Wave 0 clearance ≠ until-exam. Tomorrow is CP-R1 Revision.",
+      "model_answer": "(1) P(+) = 0.95·0.01 + 0.10·0.99 = 0.0095 + 0.099 = 0.1085. P(D|+) = 0.0095 / 0.1085 ≈ 0.0876. (2) Refuse: that equates posterior with likelihood and ignores the base rate — Bayes multiplies prior × likelihood and normalises.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",

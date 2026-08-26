@@ -39,10 +39,10 @@
     "tutor_intent": "Today I will force reproducibility elements warrant and refuse 'Publication Front finished EDA / Approver clearance'.",
     "educational_intent": "Produce contiguous Publication Front study of reproducibility elements.",
     "learning_objective": "Meaning and value of reproducible research and the elements required to ensure a data analysis is reproducible",
-    "concept_focus": "Reproducibility meaning → required elements → refuse EDA swallow.",
+    "concept_focus": "Reproducibility meaning → required elements (data, code, docs) → refuse one-off-rerun-as-reproducible.",
     "prior_bridge": "Yesterday you studied data sources (1.1.3). Today continues Publication Front.",
     "why_now": "Reproducibility closes Topic 1.1 before EDA entry.",
-    "expected_benefit": "Study Progress for 1.1.4 — not Topic 1.2 complete; not Approver clearance.",
+    "expected_benefit": "You will be able to state what reproducible research means and name elements required to keep a data analysis reproducible.",
     "explainability": "Assigned as Campaign Rho Day 4 because Publication Front closes Topic 1.1 at reproducibility before EDA.",
     "success_criteria": [
       "Closed-book, state meaning/value of reproducible research.",
@@ -142,7 +142,7 @@
       "kind": "checkpoint",
       "item_id": "cs1017-1.1.4-cp-01",
       "title": "Checkpoint: 1.1.4",
-      "prompt": "Closed-book. A colleague says 'Reproducibility finished exploratory data analysis summaries.' Refuse and name tomorrow's honest next.",
+      "prompt": "Closed-book. A colleague says their pricing analysis is reproducible because they can re-run one notebook cell on their laptop. (1) In one sentence, what does reproducible research mean? (2) Name two elements required to keep an analysis reproducible. (3) Refuse the colleague's claim in one sentence.",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 1.1.4.",
       "hints": [
@@ -156,7 +156,7 @@
         "Approver"
       ],
       "explanation": "Checkpoint for 1.1.4.",
-      "model_answer": "Refuse: reproducibility ≠ EDA ≠ Approver clearance. Tomorrow is 1.2.1.",
+      "model_answer": "(1) Others (or a future you) can reconstruct the same analysis results from the stated inputs and steps. (2) Examples: versioned data (or clear extract identity); scripted code path; documented environment/parameters and decisions. (3) Refuse: a one-off local re-run without shared data, code, and documentation is not reproducibility.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",
